@@ -4,154 +4,102 @@
   <p class="kicker">第 44 分鐘 · 解鎖</p>
   <h2 class="title">TASK-B1-001</h2>
   <p class="subtitle">修復學生票折扣異常 · Agent = Teammate</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，解開：</p>
-  <p><span class="chip teammate fx">B1 任務卡</span></p>
-  <p class="muted fx fx-fade">先補填 Shared Context「任務揭露後」表，人核准範圍與計畫後才修改。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開「B1 修復學生票折扣異常」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">接下來 8 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>解鎖（指令書 §3）</b>：44 分鐘群組 B1 只解開「B1 任務卡」。解鎖碼由本頁大字顯示；完整碼表見講者視窗。</p>
-    <p><b>Cue（RB 44–52）</b>：只發 B1 任務，再補任務範圍、計畫及核准，核准後才修改。BF4：只發 TASK-B1-001；說明 Teammate、人核准範圍與計畫再執行。</p>
-    <p>來源沒有 B1 的逐字宣布台詞，只有上述 Cue；請以 Cue 口述，不自行補充任務細節或提示。</p>
-    <p><b>44 分鐘（BF6）</b>：確認人已核准範圍與計畫，主要 Agent 才實作；修復要最小化。</p>
-    <p>接下來情境／協作／AC 三頁快速帶過，停在「B1 倒數」頁（或先到倒數頁按 T 啟動再返回講解）。</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。先補 Shared Context、由人核准範圍與計畫，核准後主要 Agent 才修改。要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 08:00 段落計時（00:00＝第 44 分），翻頁時持續計時。本頁大字顯示 B1 解鎖碼；只解開「B1 任務卡」，完整碼表見講者視窗。</p>
+    <p><b>Cue（RB 44–52）</b>：只發 B1 任務，再補任務範圍、計畫及核准，核准後才修改。說明 Teammate：人核准範圍與計畫再執行。來源沒有 B1 的逐字宣布台詞；以 Cue 口述，不自行補充任務細節或提示。</p>
+    <p><b>不可說</b>：不指出檔案位置、錯誤數值或失敗數量。「多個失敗可能源自同一個 Bug」是主持原則，不可當第一個提示直接說出位置或常數。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="b1" data-title="B1 情境與固定規則" data-minute="44">
-  <p class="kicker">TASK-B1-001 · 情境與目標</p>
-  <h2 class="title">學生旅客的票價可能算錯了</h2>
-  <ol class="stage-bar">
-    <li class="tool">Tool</li>
-    <li class="teammate active">Teammate</li>
-    <li class="dw">Digital Worker</li>
-  </ol>
-  <div class="cols-2">
-    <div class="card fx fx-up">
-      <span class="chip">客服回報</span>
-      <p>公開規則仍為基礎票價（Base Fare）的 75%，但有若干相關自動測試失敗，可能具有共同原因。</p>
-      <p><b>確認根因與影響範圍 → 最小安全修復 → 驗證成人及混合旅客交易</b></p>
-    </div>
-    <div class="card teammate fx fx-up">
-      <span class="chip teammate">固定規則</span>
-      <p><code>FARE-002</code> 學生 75%</p>
-      <p><code>FARE-003</code> 每位旅客個別計價後加總</p>
-      <p class="muted">不變：成人 100%、提前購票 85%、企業會員 95%、既有優惠選擇順序</p>
-    </div>
-  </div>
-  <aside class="notes">
-    <p><b>來源</b>：TC1「情境與目標」。只念任務卡內容，<b>不指出</b>檔案位置、錯誤數值或失敗數量。</p>
-    <p>「多個失敗可能源自同一個 Bug」是 BF5 的主持原則；不要以此作為第一個提示直接說出位置或常數（BF4：避免第一次提示就直接指出位置或修正常數）。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b1" data-title="Teammate 模式" data-minute="44">
-  <p class="kicker">TASK-B1-001 · 人與 Agent 合作</p>
-  <h2 class="title">Teammate：人核准，Agent 執行，人審查</h2>
-  <div class="cols-2">
-    <ol class="steps">
-      <li class="fx">比較各自 Agent 的分析，查證規則與測試證據</li>
-      <li class="fx">更新 Shared Context（任務揭露後表）</li>
-      <li class="fx"><b>人</b>核准修改範圍與主要 Agent 計畫</li>
-      <li class="fx">主要 Agent 依核准方案執行</li>
-      <li class="fx"><b>人</b>審查程式差異（Diff）與測試：接受／要求修正／拒絕</li>
-    </ol>
-    <div class="card fx fx-up">
-      <span class="chip">禁止</span>
-      <ul>
-        <li>刪除、弱化或隱藏測試</li>
-        <li>把正確期待值改成符合錯誤輸出</li>
-        <li>全面重寫計價</li>
-        <li>修改不相關的 API 契約</li>
-        <li>導入新服務或新增優惠政策</li>
-      </ul>
-    </div>
-  </div>
-  <aside class="notes">
-    <p><b>來源</b>：TC1「人與Agent合作」。未核准或證據不足時只補缺口，不修改程式（BP4）。</p>
-    <p>B1 <b>不提前</b>套用 Digital Worker 的「人不得改 Code」限制；B1 仍以 Teammate 定位觀察（BF7）。</p>
-    <p><b>預期行為 → 介入訊號（BF7）</b>：Teammate 分析：比較個人 Agent 結果、要求規則及測試證據、保留分歧與假設 → 直接採最肯定的摘要、未查來源｜人員責任：人核准修改範圍、計畫，選主要 Agent 執行 → 未核准即修改；只接受結果不審查｜最小安全修復：針對學生計價，維持成人與既有優惠／順序 → 全面重寫、提早新增多優惠政策或不相關 API 變更。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b1" data-title="B1 驗收條件" data-minute="45">
-  <p class="kicker">TASK-B1-001 · 驗收條件</p>
-  <h2 class="title">AC-B1-001 ～ 007</h2>
-  <table class="table">
-    <thead><tr><th>AC ID</th><th>完成條件</th></tr></thead>
-    <tbody>
-      <tr class="fx"><td><code>AC-B1-001</code></td><td>單一學生旅客票價為 Base Fare 75%</td></tr>
-      <tr class="fx"><td><code>AC-B1-002</code></td><td>成人票價不受影響</td></tr>
-      <tr class="fx"><td><code>AC-B1-003</code></td><td>成人＋學生 Booking Total 正確（700 基價 → <b>1225</b>）</td></tr>
-      <tr class="fx"><td><code>AC-B1-004</code></td><td>原 28 項 G1 Regression 保留正確斷言並通過（28 不是全套數）</td></tr>
-      <tr class="fx"><td><code>AC-B1-005</code></td><td>原學生票相關失敗全部恢復，含各測試層與新增案例</td></tr>
-      <tr class="fx"><td><code>AC-B1-006</code></td><td>全套測試完整執行並通過：零失敗、無 Skip／XFail</td></tr>
-      <tr class="fx"><td><code>AC-B1-007</code></td><td>Business Rules 仍記 75%，與程式一致</td></tr>
-    </tbody>
-  </table>
-  <aside class="notes">
-    <p><b>來源</b>：TC1 驗收條件表（逐條摘要，未改條件）。</p>
-    <p><b>交付物（TC1）</b>：Root Cause、Impact Analysis、核准計畫、修正 Diff、完整測試指令與實際結果、規則／AC 對照、簡短摘要。正確文件不必無意義重寫。</p>
-    <p>宣稱軟體已修復，仍須符合全部 AC 並通過全套測試；B1 學習成功包含有效的分析與協作，不以速度評分（BF7）。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b1" data-title="B1 倒數" data-minute="45" data-timer="08:00">
+<section class="slide" data-seg="b1" data-title="B1 四個檢查點" data-minute="44" data-timer="08:00" data-gates="b1">
   <p class="kicker">B1 · 44–52 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">8 分鐘</h2>
+  <h2 class="title">人核准之後，主要 Agent 才修改</h2>
+  <p class="muted">每個檢查點 Agent 停下、你們確認。只有實際完成驗收才能宣稱修復完成。</p>
   <ol class="timeline">
-    <li data-seg="b1"><span class="tl-min">44</span><b>補 Shared Context · 人核准範圍與計畫</b></li>
-    <li data-seg="b1"><span class="tl-min">46</span><b>核對計畫，主要 Agent 執行</b></li>
-    <li data-seg="b1"><span class="tl-min">49</span><b>停止擴充，完整測試</b></li>
-    <li data-seg="b1"><span class="tl-min">51</span><b>Review Diff · AC · Regression</b></li>
-    <li data-seg="b1"><span class="tl-min">52</span><b>停止，交付現況</b></li>
+    <li data-seg="b1"><span class="tl-min">00:00</span><b>1 · 分析與核准</b></li>
+    <li data-seg="b1"><span class="tl-min">02:00</span><b>2 · 最小修復</b></li>
+    <li data-seg="b1"><span class="tl-min">05:00</span><b>3 · 完整測試</b></li>
+    <li data-seg="b1"><span class="tl-min">07:00</span><b>4 · 審查與交付</b></li>
   </ol>
-  <p class="callout fx fx-fade">只有實際完成驗收才能宣稱修復完成；時間到仍未完成，保留分析與計畫、列明未完成事項。</p>
   <aside class="notes">
-    <p><b>計時</b>：本段 8:00 自第 44 分起算，按 <b>T</b> 啟動。</p>
-    <p><b>時間提示（BF6；BF4）</b></p>
-    <ul>
-      <li><b>46</b>：核對計畫（BF4）；觀察是否核對公開的 75% 與相關失敗、是否擴大範圍；必要時發方向提示（BF6）。</li>
-      <li><b>49</b>：停止新增工作，優先執行完整測試，保留真實結果。</li>
-      <li><b>51</b>：審查 Diff、AC 與原 Regression，產生交付摘要。</li>
-      <li><b>52</b>：立即停止 B1 擴充；未完成就發 Hint 3，保留 Root Cause／Impact／計畫與缺項。</li>
-    </ul>
-    <p><b>Brownfield 三級提示（BF5，B1；每次只給需要的級別，記錄原因與時間）</b></p>
-    <ul>
-      <li><b>Hint 1 方向</b>（仍只搜尋數字、未形成假設）：先把失敗測試與 Rule ID 交叉核對，判斷是否有共同計價路徑。</li>
-      <li><b>Hint 2 證據</b>（把目前輸出當合法規則或準備改期待值）：公開學生規則與原 Regression 期待值哪個有根據？用 Rule、測試與程式分辨規則實作問題或測試問題。</li>
-      <li><b>Hint 3 模組</b>（有規則證據但無法追到影響位置，或時間到仍卡住）：檢查 Fare／Discount Policy 及其 Application 呼叫端；核對單一與混合旅客計價，不提供完整修正 Code。</li>
-      <li><b>時間不足</b>（49 分鐘仍在擴充或大幅重構）：停止擴充，保留 Root Cause、Impact、核准計畫與測試結果；先完成可展示證據，未完成如實列明。</li>
-    </ul>
-    <p>由人核准計畫並審查 Diff；主持人不代小組完成分析。成人、提前優惠、企業會員與既有順序都不可順手修改。不可用刪除測試的方式減少失敗數（BF5）。避免第一次提示就直接指出位置或修正常數（BF4）。</p>
-    <p><b>立即介入（BF6）</b>：刪除或弱化斷言、修改正確的期待值、用 Skip／XFail 隱藏、全面重寫、未經核准的 API 或外部依賴、虛報測試結果 → 要求 Agent 停止該行為，回到規則與範圍；時間壓力不能豁免驗收。</p>
-    <p><b>預期行為 → 介入訊號（BF7）</b>：Regression：正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 只跑單一測試、改期待值或 Skip／XFail｜Review：人核對 Diff、規則、金額與 AC 再接受或要求修正 → Agent 說完成就直接交付｜誠實交付：摘要含 Root Cause、Impact、結果及缺項，時間到收斂 → 把診斷或 Recovery 算作自行完成。</p>
+    <p><b>說（約 20 秒）</b>：「8 分鐘。先讓主要 Agent 只提根因、影響與計畫，你們補好 Shared Context、由人核准；核准後才修改，修復要最小。第 49 分停止擴充跑完整測試，第 51 分由人審查，第 52 分停止。」</p>
+    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>原則</b>：由人核准計畫並審查 Diff；主持人不代小組完成分析。B1 仍以 Teammate 定位觀察，<b>不提前</b>套用 Digital Worker 的「人不得改 Code」限制。提示每次只給需要的級別（三級提示分在檢查點 1、2、4 備註），記錄原因與時間。</p>
+    <p><b>交付物（任務卡）</b>：Root Cause、Impact Analysis、核准計畫、修正 Diff、完整測試指令與實際結果、規則／AC 對照、簡短摘要；正確文件不必無意義重寫。宣稱修復仍須符合全部 AC 並通過全套測試；B1 學習成功包含有效的分析與協作，不以速度評分。可接受不同的分析順序與摘要形式，但要有來源、核准與可重現的結果。</p>
+    <p><b>巡場時看什麼</b>：Shared Context 的核准紀錄與 B1 修復摘要有沒有逐步填。紀錄空白但 Agent 已改完程式 → 典型的「未核准即修改」，請小組回到檢查點 1 補核准。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="b1" data-title="收斂：測試與 Review" data-minute="49">
-  <p class="kicker">B1 · 第 49 → 51 分鐘</p>
-  <h2 class="title">停止擴充，用證據收尾</h2>
-  <div class="cols-3">
-    <div class="card fx fx-up">
-      <span class="chip">49</span>
-      <h3>完整測試</h3>
-      <p>執行全套測試，保留指令與實際結果；驗證成人與混合旅客</p>
-    </div>
-    <div class="card teammate fx fx-up">
-      <span class="chip teammate">51</span>
-      <h3>人員審查</h3>
-      <p>核對 Diff、規則、金額與 AC；接受、要求修正或拒絕</p>
-    </div>
-    <div class="card fx fx-up">
-      <span class="chip">52</span>
-      <h3>交付</h3>
-      <p>根因 · 影響分析 · 核准計畫 · 程式差異 · 測試結果 · 規則／AC 對照 · 摘要</p>
-    </div>
-  </div>
-  <p class="callout warn fx fx-fade">不刪除或弱化測試、不改正確期待值、不用 Skip／XFail 隱藏。</p>
+<section class="slide" data-seg="b1" data-title="檢查點 1 · 分析與核准" data-minute="44">
+  <p class="kicker">檢查點 1 / 4 · 第 44–46 分鐘</p>
+  <h2 class="title">分析與核准：Agent 先不改檔案</h2>
+  <ol class="steps">
+    <li>主要 Agent 只提根因、影響分析與 5–8 步計畫</li>
+    <li>補填 Shared Context「任務揭露後補填」欄位</li>
+    <li><b>人</b>核准範圍與計畫，記下核准人、時間、結論、條件</li>
+  </ol>
+  <p class="callout">Runbook › B1 › 檢查點 1 · 填 Shared Context「人員核准紀錄」</p>
   <aside class="notes">
-    <p><b>49 分鐘（BF6）</b>：停止新增工作，優先執行完整測試，保留真實結果。若仍在擴充或大幅重構 → 發「時間不足提示」（BF5）。</p>
-    <p><b>51 分鐘（BF6）</b>：審查 Diff、AC 與原 Regression，產生交付摘要。觀察人是否真的 Review，而非 Agent 說完成就交付（BF7）。</p>
-    <p>可接受不同的分析順序與摘要形式，但要有來源、核准與可重現的結果（BF7）。</p>
+    <p><b>說（00:00／第 44 分）</b>：「先補 Shared Context 的任務範圍、計畫及核准；人核准之前，主要 Agent 不修改。」</p>
+    <p><b>看</b>：是否比較各自 Agent 的結果、要求規則及測試證據、保留分歧與假設 → 介入訊號：直接採最肯定的摘要、未查來源。是否核對公開的 75% 與相關失敗、是否擴大範圍。未核准或證據不足時只補缺口，不修改程式。</p>
+    <p><b>介入</b>：Agent 未核准即開始改檔 → 請小組叫它停下，回到計畫。計畫含全面重寫、提早新增多優惠政策或不相關 API 變更 → 請小組刪掉，回到最小安全修復。</p>
+    <p><b>提示・Hint 1 方向</b>（仍只搜尋數字、未形成假設）：先把失敗測試與 Rule ID 交叉核對，判斷是否有共同計價路徑。</p>
+    <p><b>提示・Hint 2 證據</b>（把目前輸出當合法規則，或準備改期待值）：公開學生規則與原 Regression 期待值哪個有根據？用 Rule、測試與程式分辨是規則實作問題還是測試問題。</p>
+    <p>避免第一次提示就直接指出位置或修正常數。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b1" data-title="檢查點 2 · 最小修復" data-minute="46">
+  <p class="kicker">檢查點 2 / 4 · 第 46–49 分鐘</p>
+  <h2 class="title">最小修復：只做核准的範圍</h2>
+  <ol class="steps">
+    <li>核對計畫與核准紀錄一致，核准人回覆主要 Agent 執行</li>
+    <li>Agent 改完跑 <code>pytest -q</code>、貼 <code>git diff --stat</code> 後停下</li>
+    <li>你們看 <code>git diff</code>：沒有計畫外檔案、沒動測試斷言</li>
+  </ol>
+  <p class="callout">Runbook › B1 › 檢查點 2 · 填「B1 修復摘要」根因～主要修改</p>
+  <aside class="notes">
+    <p><b>說（00:02／第 46 分）</b>：「核對計畫，確認已由人核准，再讓主要 Agent 依核准範圍修改；改完停下，你們看 Diff。」</p>
+    <p><b>看</b>：人是否核准範圍與計畫、選主要 Agent 執行 → 介入訊號：未核准即修改；只接受結果不審查。最小安全修復：針對學生計價，維持成人與既有優惠／順序。</p>
+    <p><b>不可順手修改</b>：成人、提前優惠、企業會員與既有順序。</p>
+    <p><b>立即介入</b>：刪除或弱化斷言、修改正確的期待值、用 Skip／XFail 隱藏、全面重寫、未經核准的 API 或外部依賴、虛報測試結果 → 要求 Agent 停止該行為，回到規則與範圍；時間壓力不能豁免驗收。不可用刪除測試的方式減少失敗數。</p>
+    <p><b>提示・Hint 3 模組</b>（有規則證據但無法追到影響位置）：檢查 Fare／Discount Policy 及其 Application 呼叫端；核對單一與混合旅客計價，不提供完整修正 Code。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b1" data-title="檢查點 3 · 完整測試" data-minute="49">
+  <p class="kicker">檢查點 3 / 4 · 第 49–51 分鐘 · 還有 3 分鐘</p>
+  <h2 class="title">完整測試：停止擴充</h2>
+  <ol class="steps">
+    <li>不再加新修改；執行<b>全套</b> <code>pytest -q</code>，不只跑單一測試</li>
+    <li>零失敗、無 Skip／XFail；原學生票相關失敗全部恢復</li>
+    <li>成人與混合旅客通過：成人＋學生 <b>1225</b></li>
+  </ol>
+  <p class="callout warn">Runbook › B1 › 檢查點 3 · 填「B1 修復摘要」測試指令與實際結果</p>
+  <aside class="notes">
+    <p><b>說（00:05／第 49 分）</b>：「停止新增工作，優先執行完整測試，保留真實結果。」</p>
+    <p><b>看</b>：正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。</p>
+    <p><b>提示・時間不足</b>（第 49 分仍在擴充或大幅重構）：停止擴充，保留 Root Cause、Impact、核准計畫與測試結果；先完成可展示證據，未完成如實列明。</p>
+    <p>不刪除或弱化測試、不改正確期待值、不用 Skip／XFail 隱藏；看到時同樣立即介入。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b1" data-title="檢查點 4 · 審查與交付" data-minute="51">
+  <p class="kicker">檢查點 4 / 4 · 第 51–52 分鐘</p>
+  <h2 class="title">審查與交付：人決定接受與否</h2>
+  <ol class="steps">
+    <li><b>人</b>核對 Diff、規則、金額與 AC：接受／要求修正／拒絕</li>
+    <li>Agent 整理摘要；沒跑過的標「未驗證」，以你們的紀錄為準</li>
+    <li>填完 AC 對照、審查結論與未完成事項</li>
+  </ol>
+  <p class="callout warn">第 52 分鐘停止；未完成也保留根因、影響分析、計畫與未完成事項。</p>
+  <aside class="notes">
+    <p><b>說（00:07／第 51 分）</b>：「審查 Diff、AC 與原 Regression，產生交付摘要。只有實際完成驗收才能宣稱修復完成。」</p>
+    <p><b>看</b>：人核對 Diff、規則、金額與 AC 再接受或要求修正 → 介入訊號：Agent 說完成就直接交付。誠實交付：摘要含 Root Cause、Impact、結果及缺項，時間到收斂 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
+    <p><b>停止（00:08／第 52 分）</b>：翻到「請先停手」頁，立即停止 B1 擴充；未完成就發 Hint 3，保留 Root Cause／Impact／計畫與缺項。</p>
   </aside>
 </section>
 
@@ -169,7 +117,7 @@
     <p><b>Recovery 切換（RB；BF4／BF6；Recovery Plan）</b></p>
     <ul>
       <li>B1 時間到仍未修好：接受 Root Cause／Impact／計畫作為當前學習成果。</li>
-      <li>需接續 B2 時，只發<b>已驗收的正式 B1 Recovery Baseline</b>：只提供已結束 B1 能力，不含 B2／B3；原 B1 成果另留，不算自行修復。主持人按需核准後，私下提供獨立 Recovery 碼；一般活動碼不開放此基線，不在投影或群組公開 Recovery 碼。</li>
+      <li>需接續 B2 時，只發<b>已驗收的正式 B1 Recovery Baseline</b>：只提供已結束 B1 能力，不含 B2／B3；原 B1 成果另留，不算自行修復。主持人按需核准後，私下提供獨立 Recovery 碼（碼：<code data-code="recovery-b1"></code>）；一般活動碼不開放此基線，不在投影或群組公開 Recovery 碼。</li>
       <li>記錄原小組完成度、來源版本、切換原因與時間。</li>
       <li>B0 Evaluation 診斷副本／隔離診斷副本只用來證明 Bug 因果，<b>不是</b>已完成的 B1，也<b>不是</b>學員 Recovery 材料；沒有正式可用基線時，不以診斷結果冒充完成。版本缺失或 Hash 不符先停止，不能用不明副本。</li>
     </ul>

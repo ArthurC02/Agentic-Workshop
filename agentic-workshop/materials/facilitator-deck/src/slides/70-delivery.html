@@ -1,39 +1,61 @@
 <!-- ===================== Delivery 76–80 ===================== -->
 
-<section class="slide" data-seg="delivery" data-title="交付與收件" data-minute="76" data-timer="04:00">
-  <p class="kicker">Delivery · 76–80</p>
-  <h2 class="title">停止新增，如實交付</h2>
-  <div class="cols-3">
-    <div class="card fx fx-up">
-      <span class="chip">Level 1</span>
-      <h3>分析完成</h3>
-      <p class="muted">Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因</p>
-    </div>
-    <div class="card teammate fx fx-up">
-      <span class="chip teammate">Level 2</span>
-      <h3>核心流程完成</h3>
-      <p class="muted">建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整</p>
-    </div>
-    <div class="card dw fx fx-up">
-      <span class="chip dw">Level 3</span>
-      <h3>完整交付</h3>
-      <p class="muted">建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成</p>
-    </div>
-  </div>
-  <ol class="steps">
-    <li class="fx">交 Delivery Summary：擇一 Level 並說明證據，<b>不自動選 Level 3</b></li>
-    <li class="fx">附真實測試命令與結果；未執行明記原因，未驗證不能寫 PASS</li>
-    <li class="fx">附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）</li>
+<section class="slide" data-seg="delivery" data-title="交付與收件" data-minute="76" data-timer="04:00" data-gates="delivery">
+  <p class="kicker">Delivery · 76–80 · 停止新增，如實交付</p>
+  <h2 class="title">先交件，再揭曉</h2>
+  <p class="muted">Runbook 打開「Delivery Summary 與交付」，從檢查點 1 開始。全員交件後，投影才翻到揭曉頁。</p>
+  <ol class="timeline">
+    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 定稿交付摘要</b></li>
+    <li data-seg="delivery"><span class="tl-min">02:00</span><b>2 · 匯出與交件</b></li>
+    <li data-seg="delivery"><span class="tl-min">03:00</span><b>揭曉（看投影）</b></li>
   </ol>
-  <p class="callout fx fx-fade">學習成果可為 Level 1／2。測試全過仍須核對範圍、AC、文件與風險，才能宣稱完整交付。</p>
   <aside class="notes">
-    <p><b>按 T 開始 04:00 倒數。</b></p>
-    <p><b>RB 76–80</b>：「收Delivery、真實測試、核准及缺項。」主持重點：「確認未驗證、Recovery、風險與偏差，功能Level與治理證據分開。」停止：「80分鐘進回顧，不追加Demo美化或修Code。」</p>
-    <p><b>來源</b>：Level 定義依 P05 §Completion Level 濃縮，Level 1 無修改／未執行說明依 P03；「擇一並說明證據，不自動選 Level 3」（P05）；TC 完成條件。P04：宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。</p>
-    <p>Delivery Summary 十二欄（P05）：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜CONDITIONAL APPROVAL｜REJECT；人員最後決策由 Gate 3 記錄）。</p>
-    <p><b>F05 開場框架（逐字，可朗讀）</b>：「Tool階段人理解需求、選設計與拆解，Agent協助；Teammate比較Agent分析、形成Shared Context；Digital Worker由Agent主導交付，人保留Challenge、核准與Review。責任轉移與重新分配，不因Agent自主而消失。」</p>
-    <p><b>Debrief 九題（F05，時間不足選最有證據的題目）</b>：1 人工作真的減少，還是轉為Review與治理？2 哪個Gate最有價值？3 哪個Gate容易流於形式？4 若沒人發現SQLite越界，缺少哪項治理能力？5 測試通過是否足以核准交付？6 哪些資訊應由平台自動留下Audit Log？7 哪些Rule可Machine-Enforce？8 哪些決策仍須人判斷？9 Tool→Digital Worker的責任消失，或重新分配？</p>
-    <p>F05：「時間不足選最有證據的題目，不延長B3或假稱已完成完整回顧」。收齊後再翻到「請先停手」頁開始揭曉。</p>
+    <p><b>操作</b>：B3 結束（第 76 分）翻到本頁，按 <b>T</b> 啟動 04:00 段落計時（00:00＝第 76 分）。說完翻到檢查點 1。</p>
+    <p><b>說（約 15 秒）</b>：「76 分鐘到，停止新增功能。請打開 Runbook 的 Delivery Summary 與交付，從檢查點 1 開始：先定稿交付摘要，再匯出交件。全員交件後我才揭曉 B3 的對照內容；揭曉後不再修改。」</p>
+    <p><b>順序（重要）</b>：學員 Runbook 要在 76–80 定稿並匯出，揭曉頁原本排在 77–79，兩者重疊。依下列順序處理，不要邊收件邊揭曉：</p>
+    <ol>
+      <li>00:00–00:02（76–78）檢查點 1：定稿 Delivery Summary 與 Level。</li>
+      <li>00:02–00:03（78–79）檢查點 2：匯出、交件。<b>確認全員已交件</b>（最遲 00:03／第 79 分）。</li>
+      <li>翻「請先停手 · B3」→ 揭曉頁。只剩約 1 分鐘：優先「B3 預期影響」「Atomicity／Compensation」「SQLite 標準決策」；治理 Rubric 與版本矩陣可略過，回顧時需要再翻回。全員提早交件就提早揭曉。</li>
+      <li>00:04（第 80 分）不論揭曉到哪一頁，翻到「回顧解鎖」。</li>
+    </ol>
+    <p><b>主持重點</b>：「確認未驗證、Recovery、風險與偏差，功能 Level 與治理證據分開。」</p>
+    <p><b>停止</b>：「80 分鐘進回顧，不追加 Demo 美化或修 Code。」延遲不增加總 90 分鐘。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="delivery" data-title="檢查點 1 · 定稿交付摘要" data-minute="76">
+  <p class="kicker">檢查點 1 / 2 · 第 76–78 分鐘</p>
+  <h2 class="title">停止新增，定稿交付摘要</h2>
+  <ol class="steps">
+    <li>停止擴充；Agent 依實際證據交 Delivery Summary，做完停下</li>
+    <li>審查者核對：Level 擇一有證據，<b>不自動選 Level 3</b>；未驗證不寫 PASS</li>
+    <li>填「交付摘要」；Gate 3 還沒記錄的，補記人員決策</li>
+  </ol>
+  <p class="callout">Runbook › Delivery › 檢查點 1 · 填「交付摘要」</p>
+  <aside class="notes">
+    <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與 Level，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
+    <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整｜Level 3 完整交付＝建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成。</p>
+    <p><b>看</b>：Level 擇一並說明證據，不自動選 Level 3｜附真實測試命令與結果，未執行明記原因，未驗證不能寫 PASS｜附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）。</p>
+    <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。</p>
+    <p><b>Delivery Summary 十二欄</b>：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜CONDITIONAL APPROVAL｜REJECT；人員最後決策由 Gate 3 記錄）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="delivery" data-title="檢查點 2 · 匯出與交件" data-minute="78">
+  <p class="kicker">檢查點 2 / 2 · 第 78–79 分鐘</p>
+  <h2 class="title">匯出與交件，交完就停手</h2>
+  <ol class="steps">
+    <li>逐一匯出 B3 表單：Work Order、Gate 1／2／3、有用到的 Review／例外卡</li>
+    <li>匯出 Delivery Summary，依指定方式交件</li>
+    <li>交件後不再修改，看投影</li>
+  </ol>
+  <p class="callout warn">Runbook › Delivery › 檢查點 2 · 填「檢查點 2 確認」</p>
+  <aside class="notes">
+    <p><b>說（00:02／第 78 分）</b>：「請匯出 B3 所有表單和交付摘要，依指定方式交件。交件後不再修改，接下來看投影。」</p>
+    <p><b>收件</b>：Gate 紀錄、Impact／方案、Diff、實際測試、文件及 Delivery Summary。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
+    <p><b>看</b>：每組都已交件。還在改 Delivery Summary 或補程式 → 「保持交付時的樣子，缺項如實列出。」</p>
+    <p><b>停止</b>：最遲 00:03（第 79 分）確認全員交件 → 翻「請先停手 · B3」開始揭曉。時間不足時揭曉頁只選最有證據可對照的頁面，第 80 分進回顧。</p>
   </aside>
 </section>
 
@@ -56,7 +78,7 @@
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · B3 預期影響" data-minute="77">
   <p class="reveal-badge">揭曉 · B3 團體訂票</p>
   <h2 class="title">預期影響：新增，而非重寫</h2>
-  <div class="cols-2">
+  <div class="cols-2" style="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)">
     <table class="table fx fx-fade">
       <thead><tr><th>模組</th><th>預期影響</th></tr></thead>
       <tbody>

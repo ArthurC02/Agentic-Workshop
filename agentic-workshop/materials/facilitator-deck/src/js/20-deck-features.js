@@ -202,6 +202,12 @@
     var SVGNS = 'http://www.w3.org/2000/svg';
     var CIRC = 339.292; // 2 * PI * 54
 
+    // Speaker-notes placeholders (e.g. on-demand Recovery codes): <code data-code="recovery-b1"></code>
+    document.querySelectorAll('code[data-code]').forEach(function (c) {
+      var g = codeFor(c.getAttribute('data-code'));
+      c.textContent = g && g.code ? g.code : '（找不到解鎖碼：' + c.getAttribute('data-code') + '）';
+    });
+
     slides.forEach(function (s, i) {
       var seg = s.getAttribute('data-seg') === 'reveal' ? segOf(i) : (s.getAttribute('data-seg') || segOf(i));
 
@@ -264,6 +270,35 @@
         insertBeforeNotes(s, cd);
       }
     });
+
+    /* Fit-to-slide safety net: if a slide's flow content runs past the safe area (above the
+       agenda bar), shrink its children uniformly with CSS zoom. ponytail: zoom floor 0.7 —
+       a slide that needs more than that should be split, not shrunk (see console warning). */
+    function fitSlide(s) {
+      var kids = Array.prototype.filter.call(s.children, function (c) {
+        if (c.tagName === 'ASIDE') return false;
+        var pos = getComputedStyle(c).position;
+        return pos !== 'absolute' && pos !== 'fixed';
+      });
+      kids.forEach(function (c) { c.style.zoom = ''; });
+      var limit = s.clientHeight - parseFloat(getComputedStyle(s).paddingBottom);
+      function bottom() {
+        return kids.reduce(function (m, c) { return Math.max(m, c.getBoundingClientRect().bottom); }, 0);
+      }
+      var top = s.getBoundingClientRect().top, k = s.getBoundingClientRect().height / s.offsetHeight || 1;
+      var z = 1;
+      for (var n = 0; n < 12 && (bottom() - top) / k > limit + 1 && z > 0.7; n++) {
+        z = Math.max(0.7, z - 0.03);
+        kids.forEach(function (c) { c.style.zoom = String(z); });
+      }
+      if ((bottom() - top) / k > limit + 1 && window.console) {
+        console.warn('[deck] slide still overflows after fit:', s.getAttribute('data-title'));
+      }
+    }
+    function fitAll() { slides.forEach(fitSlide); }
+    fitAll();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+    window.addEventListener('load', fitAll);
 
     /* Countdown click (capture + delegation; also covers presenter clones). */
     document.addEventListener('click', function (e) {
@@ -466,6 +501,8 @@
       var clockTime = clock.appendChild(el('span', 'pv-clock-time'));
       var wsBtn = clock.appendChild(btn('pv-btn pv-ws-start', '開始工作坊', 'data-cmd', 'workshop'));
       var plan = el('div', 'pv-plan');
+      var planText = plan.appendChild(el('div', 'pv-plan-text'));
+      var nowCodes = plan.appendChild(el('div', 'pv-now'));
 
       var codesBox = el('div', 'pv-codes');
       var table = codesBox.appendChild(el('table'));
@@ -501,7 +538,7 @@
       window.addEventListener('resize', fitFrames);
 
       pv = { root: root, curFrame: cur.frame, nextFrame: nxt.frame, nextTitle: nextTitle, notes: notes,
-        timer: timer, tLabel: tLabel, tTime: tTime, clockTime: clockTime, wsBtn: wsBtn, plan: plan,
+        timer: timer, tLabel: tLabel, tTime: tTime, clockTime: clockTime, wsBtn: wsBtn, plan: planText, now: nowCodes,
         rows: rows, count: count, link: link, shown: '' };
     }
 
@@ -545,7 +582,20 @@
       pv.notes.innerHTML = notes && notes.innerHTML.trim() ? notes.innerHTML : '<p class="pv-no-notes">（本頁無備註）</p>';
       pv.count.textContent = (i + 1) + ' / ' + slides.length;
       var seg = segOf(i);
-      pv.rows.forEach(function (tr) { tr.classList.toggle('is-current', tr.getAttribute('data-id') === seg); });
+      // Codes released at this slide's minute (incl. on-demand Recovery codes) or for its segment.
+      var sm = s && s.hasAttribute('data-minute') ? parseInt(s.getAttribute('data-minute'), 10) : NaN;
+      var hits = codes().filter(function (g) { return g.id === seg || (!isNaN(sm) && g.minute === sm); });
+      pv.rows.forEach(function (tr) {
+        tr.classList.toggle('is-current', hits.some(function (g) { return g.id === tr.getAttribute('data-id'); }));
+      });
+      pv.now.textContent = '';
+      if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本時點解鎖碼'));
+      hits.forEach(function (g) {
+        var row = pv.now.appendChild(el('div', 'pv-now-row'));
+        row.appendChild(el('span', 'pv-now-label', g.label || g.id));
+        row.appendChild(el('code', null, g.code));
+      });
+      pv.now.hidden = !hits.length;
       fitFrames();
       setTimeout(fitFrames, 0);
     }

@@ -1,111 +1,106 @@
 <!-- ===================== Individual analysis 33–39 · Shared Context 39–44 ===================== -->
 
-<section class="slide" data-seg="analysis" data-title="個人 Agent 分析" data-minute="33" data-timer="06:00">
+<section class="slide" data-seg="analysis" data-title="個人分析兩個檢查點" data-minute="33" data-timer="06:00" data-gates="analysis">
   <p class="kicker">個人分析 · 33–39 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">6 分鐘：各自請 Agent 理解同一份 B0</h2>
-  <div class="cols-2">
-    <ol class="steps">
-      <li class="fx">讀 B0 系統背景、README、架構文件與架構決策紀錄（ADR）</li>
-      <li class="fx">把通用提示詞交給<b>自己的</b> Agent</li>
-      <li class="fx">執行並保留測試輸出；記錄規則來源與推論依據</li>
-      <li class="fx">填寫個人 Agent 分析表，區分事實與推論</li>
-    </ol>
-    <div class="card teammate fx fx-up">
-      <span class="chip teammate">通用提示詞</span>
-      <p class="quote">先不要修改程式。請先理解程式庫與測試，列出有證據的結論、假設、資訊缺口與調查順序，並說明各項依據。</p>
-    </div>
-  </div>
-  <p class="callout warn fx fx-fade"><b>先不要修改程式。</b>不要只列檔名：說明模組責任、依賴與可能影響。</p>
+  <h2 class="title">各自讓 Agent 理解 B0，先不改程式</h2>
+  <p class="muted">打開 Runbook「個人 Agent 分析」，從檢查點 1 開始。每個檢查點 Agent 停下，你核對證據、填分析表。</p>
+  <ol class="timeline">
+    <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 理解 B0 與測試</b></li>
+    <li data-seg="analysis"><span class="tl-min">03:00</span><b>2 · 證據與推論</b></li>
+  </ol>
   <aside class="notes">
-    <p><b>Cue（RB 33–39）</b>：發個人分析表，每人用自己的 Agent 讀同一 B0。BF4：個人 Agent 分析；不發任務解答，不允許修改。</p>
-    <p><b>計時</b>：33 分鐘按 <b>T</b> 啟動 6:00。</p>
-    <p><b>系統 Context（BP1）</b>：分層 API／Schemas → Application → Domain；Infrastructure 提供 In-Memory Repository、固定 Seed、Clock、模擬付款。流程：查詢讀 Trip；訂票驗證旅客與容量、計價並保留座位；付款建立 Order；改退票協調班次容量與紀錄；相關事件留下通知與 Audit。</p>
-    <p><b>觀察（RB／BF1）</b>：區分事實、假設、來源與缺口；分析是否有證據；必要提示核對 Code／Test／Rule。一般工程師應能在 Agent 協助下理解，不以隱晦知識設障。可接受不同調查順序、圖表格式與合理架構摘要；不接受無證據的結論或弱化測試。</p>
-    <p><b>介入條件（BF1）</b>：版本／環境錯誤、提前修改、刪除或弱化測試、分析停滯、分歧無法收斂 → 依漸進 Repository 提示（下一頁 notes）。</p>
-    <p><b>停止（RB）</b>：39 分鐘收分析，未查清如實記錄。</p>
+    <p><b>說（約 20 秒）</b>：「請打開 Runbook 的個人 Agent 分析，從檢查點 1 開始。每個人用自己的 Agent 讀同一份 B0，先不要修改程式。區分事實與推論，記下證據；第 39 分鐘要帶著分析表跟小組比較。」</p>
+    <p><b>操作</b>：本段沒有解鎖頁（內容已在第 29 分隨 Time Skip 解鎖）。在本頁按 <b>T</b> 啟動 6:00 段落計時（00:00＝第 33 分）。說完翻到檢查點 1；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>系統 Context</b>：分層 API／Schemas → Application → Domain；Infrastructure 提供 In-Memory Repository、固定 Seed、Clock、模擬付款。流程：查詢讀 Trip；訂票驗證旅客與容量、計價並保留座位；付款建立 Order；改退票協調班次容量與紀錄；相關事件留下通知與 Audit。</p>
+    <p><b>可接受／不接受</b>：一般工程師應能在 Agent 協助下理解，不以隱晦知識設障。可接受不同調查順序、圖表格式與合理架構摘要；不接受無證據的結論或弱化測試。</p>
+    <p><b>不可揭露</b>：不發任務解答，不允許修改。一般回答限於操作與活動範圍，不主動揭露學生率錯誤、檔案位置、失敗數量或文件落差位置。</p>
+    <p><b>巡場時看什麼</b>：分析表有沒有填、有沒有區分事實與推論。表單空白但 Agent 已在改檔案 → 請學員叫它停下、還原，回到目前檢查點。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="analysis" data-title="個人分析表" data-minute="35">
-  <p class="kicker">個人 Agent 分析表 · 9 欄</p>
-  <h2 class="title">留下可追查、可比較的分析</h2>
-  <div class="cols-3">
-    <div class="card"><span class="chip">1</span><h3>系統模組摘要／依賴</h3></div>
-    <div class="card"><span class="chip">2</span><h3>失敗測試及實際輸出</h3></div>
-    <div class="card"><span class="chip">3</span><h3>可能根因／替代假設</h3><p class="muted">區分事實與推論</p></div>
-    <div class="card"><span class="chip">4</span><h3>受影響檔案與理由</h3></div>
-    <div class="card"><span class="chip">5</span><h3>相關 Rule ID 與來源</h3></div>
-    <div class="card"><span class="chip">6</span><h3>程式／測試／文件的交叉證據</h3></div>
-    <div class="card"><span class="chip">7</span><h3>資訊缺口／待問問題</h3></div>
-    <div class="card"><span class="chip">8</span><h3>建議調查順序</h3></div>
-    <div class="card"><span class="chip">9</span><h3>風險／不宜修改區域</h3></div>
-  </div>
-  <p class="lead fx fx-fade">
-    <span class="chip">事實</span> <span class="chip">假設</span> <span class="chip">來源</span> <span class="chip">缺口</span>
-    — 未執行的測試、未驗證的根因，不寫成已證實。
-  </p>
+<section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 1 · 理解 B0 與測試" data-minute="33">
+  <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
+  <h2 class="title">理解 B0：模組、依賴、實際測試輸出</h2>
+  <ol class="steps">
+    <li>讀 B0 Context、README、架構文件與 ADR，開<b>新的</b> Agent Session</li>
+    <li>貼提示詞 1：<b>先不要修改程式</b>，說明模組責任與依賴，做完停下</li>
+    <li>自己跑 <code>pytest -q</code>，保留實際輸出</li>
+  </ol>
+  <p class="callout">Runbook › 個人 Agent 分析 › 檢查點 1 · 填分析表第 1–2 欄</p>
   <aside class="notes">
-    <p><b>36 分鐘 Cue（BF4）</b>：要求學員留下來源、事實、假設與缺口。</p>
-    <p><b>完成條件（BP3）</b>：保留可追查的分析成果供小組比較；不把未執行的測試或未驗證的根因描述成已證實。</p>
-    <p><b>漸進 Repository 提示（BF2，33–44 期間停滯時）</b>：依停滯程度逐級提示；<b>不一次發全表、不提供完整 Code</b>；提示後要求小組補證據，不替小組核准計畫；記錄提示與觸發原因。</p>
-    <ul>
-      <li>不知從哪開始：H1 先概述核心流程，再看失敗是否相關｜H2 看 pytest 輸出、Rule ID 及 ADR｜H3 看 Application 與 Domain 計價群組</li>
-      <li>只看文件：H1 文件結論如何驗證？｜H2 找對應測試與實際輸出｜H3 比較改票 Application 與相關 docs</li>
-      <li>只改測試：H1 公開規則與現在期望一致嗎？｜H2 比較 business-rules 與原 Regression 斷言｜H3 檢查 Fare／Discount Policy，不給修正碼</li>
-      <li>建議全面重寫：H1 哪些差異是本任務必要？｜H2 以失敗集合及最小 Diff 評估｜H3 先限制到計價 Policy 與受影響服務</li>
-    </ul>
-    <p><b>僅限學員已自行找到數值後才可用</b>（會透露數值與計價位置）：「找到85但不知規則」→ H1 折扣適用對象是否相同？｜H2 核對 FARE-002 與學生票測試｜H3 追 Passenger Type 到 Fare／Discount 計價。</p>
-    <p>一般回答限於操作與活動範圍，不主動揭露學生率錯誤、檔案位置、失敗數量或文件落差位置；停滯時依上述條件逐級提示，不跳級給答案。</p>
+    <p><b>說（00:00／第 33 分）</b>：「每人用自己的 Agent 讀同一份 B0。先讓 Agent 說明模組責任與依賴、跑一次測試，然後停下；你自己也跑一次 pytest，對照輸出。」</p>
+    <p><b>看 → 介入</b>：版本／環境錯誤 → 先協助，確認是主持人提供的同一份 B0｜Agent 提前修改、刪除或弱化測試 → 請學員叫它停下並還原｜只列檔名 → 「這個模組負責什麼？依賴誰？」｜分析停滯 → 用下方提示。</p>
+    <p><b>提示・不知從哪開始</b>（一次一級）：H1 先概述核心流程，再看失敗是否相關｜H2 看 pytest 輸出、Rule ID 及 ADR｜H3 看 Application 與 Domain 計價群組。</p>
+    <p><b>漸進提示原則（33–44 期間停滯時）</b>：依停滯程度逐級提示，不跳級；<b>不一次發全表、不提供完整 Code</b>；提示後要求補證據；記錄提示與觸發原因。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="shared" data-title="Shared Context" data-minute="39" data-timer="05:00">
+<section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 2 · 證據與推論" data-minute="36">
+  <p class="kicker">檢查點 2 / 2 · 第 36–39 分鐘</p>
+  <h2 class="title">證據與推論：分開寫</h2>
+  <ol class="steps">
+    <li>貼提示詞 2：結論、假設、缺口、調查順序，各附依據，列完停下</li>
+    <li>挑一個關鍵結論，自己打開來源核對；對不上就標為推論</li>
+    <li>未執行的測試、未驗證的根因，不寫成已證實</li>
+  </ol>
+  <p class="callout warn">Runbook › 個人 Agent 分析 › 檢查點 2 · 填分析表第 3–9 欄；第 39 分鐘停止</p>
+  <aside class="notes">
+    <p><b>說（00:03／第 36 分）</b>：「請 Agent 列出結論、假設、缺口與調查順序，每一項附來源。分析表上要留下來源、事實、假設與缺口；查不清的寫進缺口，不要寫成已證實。」</p>
+    <p><b>看</b>：分析是否有證據；必要時提示學員核對 Code／Test／Rule。完成條件：保留可追查的分析成果供小組比較；不把未執行的測試或未驗證的根因描述成已證實。</p>
+    <p><b>提示・只看文件</b>：H1 文件結論如何驗證？｜H2 找對應測試與實際輸出｜H3 比較改票 Application 與相關 docs。</p>
+    <p><b>提示・只改測試</b>：H1 公開規則與現在期望一致嗎？｜H2 比較 business-rules 與原 Regression 斷言｜H3 檢查 Fare／Discount Policy，不給修正碼。</p>
+    <p><b>提示・建議全面重寫</b>：H1 哪些差異是本任務必要？｜H2 以失敗集合及最小 Diff 評估｜H3 先限制到計價 Policy 與受影響服務。</p>
+    <p><b>僅限學員已自行找到數值後才可用</b>（會透露數值與計價位置）：「找到 85 但不知規則」→ H1 折扣適用對象是否相同？｜H2 核對 FARE-002 與學生票測試｜H3 追 Passenger Type 到 Fare／Discount 計價。</p>
+    <p><b>停止（00:06／第 39 分）</b>：收分析，未查清如實記錄。翻到 Shared Context 總覽頁。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="shared" data-title="Shared Context 兩個檢查點" data-minute="39" data-timer="05:00" data-gates="shared">
   <p class="kicker">Shared Context · 39–44 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">5 分鐘：比較分析，整理共同背景</h2>
-  <div class="cols-2">
-    <ol class="steps">
-      <li class="fx">比較每位成員的分析表：共同事實、證據與分歧</li>
-      <li class="fx">選定主要 Agent 與負責核准的人</li>
-      <li class="fx">把整理後的共同背景交給主要 Agent</li>
-      <li class="fx">只填「共同」表，待決事項留到任務揭露後</li>
-    </ol>
-    <div class="cols-2">
-      <div class="card teammate fx fx-up"><h3>共同事實</h3><p class="muted">附規則來源</p></div>
-      <div class="card teammate fx fx-up"><h3>已驗證證據</h3><p class="muted">檔案／測試／輸出</p></div>
-      <div class="card fx fx-up"><h3>分歧</h3><p class="muted">及驗證方式</p></div>
-      <div class="card fx fx-up"><h3>Agent 分工</h3><p class="muted">主要 Agent · 核准者</p></div>
-    </div>
-  </div>
-  <p class="callout warn fx fx-fade">不要直接拼接每個人的完整對話。B1 尚未揭露：<b>不提出、也不核准任務修改計畫。</b></p>
+  <h2 class="title">小組比較分析，整理共同背景</h2>
+  <p class="muted">打開 Runbook「Shared Context」，從檢查點 1 開始。B1 尚未揭露：<b>不提出、也不核准任務修改計畫。</b></p>
+  <ol class="timeline">
+    <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較與分工</b></li>
+    <li data-seg="shared"><span class="tl-min">03:00</span><b>2 · 收斂並交給主要 Agent</b></li>
+  </ol>
   <aside class="notes">
-    <p><b>Cue（RB 39–44）</b>：發 Shared Context，比較分歧、選主要 Agent。BF4：比較分析、形成 Shared Context、選定主要 Agent。</p>
-    <p><b>計時</b>：39 分鐘按 <b>T</b> 啟動 5:00。</p>
-    <p><b>觀察（RB）</b>：核對共同規則、來源版本、限制與待決事項；<b>42 分鐘提醒收斂</b>；尚未揭露 B1，不核准任務修改。BF1：要求比對分歧並建立 Shared Context。</p>
-    <p><b>小組結論矛盾（BF2）</b>：H1 區分事實、假設與缺口｜H2 要求各自附來源及可重現輸出｜H3 追同一請求的 API→Service→Policy 路徑。</p>
-    <p>時間到即收斂成果；<b>本階段不發 B1 答案</b>（BF1）。</p>
+    <p><b>說（約 20 秒）</b>：「請打開 Runbook 的 Shared Context，從檢查點 1 開始。比較每個人的分析表，整理共同事實、證據與分歧，選定主要 Agent 與核准者。B1 還沒揭露，這段不提修改計畫、不改程式。」</p>
+    <p><b>操作</b>：本段沒有解鎖頁。在本頁按 <b>T</b> 啟動 5:00 段落計時（00:00＝第 39 分）。說完翻到檢查點 1。</p>
+    <p><b>看</b>：核對共同規則、來源版本、限制與待決事項；尚未揭露 B1，不核准任務修改。<b>本階段不發 B1 答案。</b></p>
+    <p><b>巡場時看什麼</b>：小組是否在拼接每個人的完整對話（→ 請他們先整理成表單再交給主要 Agent）；是否已經在討論怎麼改程式（→ 拉回共同事實與分歧）。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="shared" data-title="Shared Context 範本" data-minute="42">
-  <p class="kicker">Shared Context 範本 · 第 1 部分（39–44）</p>
-  <h2 class="title">整理共同背景後，仍須取得任務授權</h2>
-  <table class="table">
-    <thead><tr><th>#</th><th>欄位</th></tr></thead>
-    <tbody>
-      <tr class="fx"><td>1</td><td>共同事實與規則來源</td></tr>
-      <tr class="fx"><td>2</td><td>已驗證證據（檔案／測試／輸出）</td></tr>
-      <tr class="fx"><td>3</td><td>仍有分歧的判斷及驗證方式</td></tr>
-      <tr class="fx"><td>4</td><td>已知限制／不宜修改區域 <span class="muted">— 記錄系統限制，不預先核准修改</span></td></tr>
-      <tr class="fx"><td>5</td><td>主要 Agent 與人員核准者</td></tr>
-      <tr class="fx"><td>6</td><td>尚待任務揭露後決定的事項</td></tr>
-    </tbody>
-  </table>
-  <p class="callout fx fx-fade">第 44 分鐘取得任務後，再補填「任務揭露後」表；未核准或證據不足時，先補缺口，不修改程式。</p>
+<section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 1 · 比較與分工" data-minute="39">
+  <p class="kicker">檢查點 1 / 2 · 第 39–42 分鐘</p>
+  <h2 class="title">比較：共同事實、證據、分歧</h2>
+  <ol class="steps">
+    <li>逐欄比較每個人的個人分析表</li>
+    <li>有來源、可重現 → 共同事實／已驗證證據；說法不同 → 分歧</li>
+    <li>選定主要 Agent 與人員核准者</li>
+  </ol>
+  <p class="callout">Runbook › Shared Context › 檢查點 1 · 填範本第 1、2、5 欄</p>
   <aside class="notes">
-    <p><b>42 分鐘 Cue（BF4）</b>：要求驗證分歧並確認範圍。<b>44 分鐘</b>：收斂共同 Context。</p>
-    <p>39–44 只收集共同事實、來源、分歧、系統限制與角色；B1 揭露前不要求核准修改計畫（BF4）。</p>
-    <p><b>完成條件（BP4）</b>：39–44 分鐘留下共同事實、來源、分歧、限制、主要 Agent 與待決事項；未確認的推論要清楚標示。「不以共同Context代替任務授權。」</p>
-    <p><b>停止（RB 39–44）</b>：44 分鐘留共同 Context 及角色，任務計畫待揭露後補填，不以口頭補充取代紀錄。</p>
-    <p>第 2 部分「任務揭露後補填」欄位（B1、B2 各填一次）：任務ID／起點版本／規則來源｜任務範圍／不處理項目｜建議修改區域、理由及不應修改區域｜測試計畫／Regression 保留｜主要 Agent 的 5–8 步執行計畫｜人員核准紀錄（核准人、時間、結論與條件）。</p>
+    <p><b>說（00:00／第 39 分）</b>：「請比較每個人的分析，找出共同事實、證據與分歧，選定主要 Agent。不要把每個人的完整對話直接拼起來。」</p>
+    <p><b>看</b>：要求比對分歧並建立 Shared Context；共同事實是否附規則來源與版本。</p>
+    <p><b>提示・小組結論矛盾</b>（一次一級）：H1 區分事實、假設與缺口｜H2 要求各自附來源及可重現輸出｜H3 追同一請求的 API→Service→Policy 路徑。提示後要求小組補證據，不替小組核准計畫。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 2 · 收斂" data-minute="42">
+  <p class="kicker">檢查點 2 / 2 · 第 42–44 分鐘</p>
+  <h2 class="title">收斂：交給主要 Agent，不提修改計畫</h2>
+  <ol class="steps">
+    <li>寫下分歧的驗證方式、已知限制與待決事項</li>
+    <li>把整理後的共同 Context 交給主要 Agent，請它複述後停下</li>
+    <li>「任務揭露後補填」欄位留到第 44 分鐘</li>
+  </ol>
+  <p class="callout warn">Runbook › Shared Context › 檢查點 2 · 填範本第 3、4、6 欄；B1 尚未揭露</p>
+  <aside class="notes">
+    <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘，請開始收斂。驗證分歧、確認範圍，把共同 Context 交給主要 Agent，請它複述後停下。B1 還沒揭露，不提修改計畫。」</p>
+    <p><b>看</b>：39–44 只收集共同事實、來源、分歧、系統限制與角色；B1 揭露前不要求核准修改計畫。「已知限制」只記錄系統限制，不預先核准修改。不以共同 Context 代替任務授權。</p>
+    <p><b>完成條件</b>：留下共同事實、來源、分歧、限制、主要 Agent 與待決事項；未確認的推論清楚標示。</p>
+    <p><b>任務揭露後補填</b>（第 2 部分，B1、B2 各填一次）：任務 ID／起點版本／規則來源｜任務範圍／不處理項目｜建議修改區域、理由及不應修改區域｜測試計畫／Regression 保留｜主要 Agent 的 5–8 步執行計畫｜人員核准紀錄（核准人、時間、結論與條件）。未核准或證據不足時，先補缺口，不修改程式。</p>
+    <p><b>停止（00:05／第 44 分）</b>：留共同 Context 及角色，任務計畫待揭露後補填，不以口頭補充取代紀錄。時間到即收斂；本階段不發 B1 答案。翻到「解鎖 B1」。</p>
   </aside>
 </section>

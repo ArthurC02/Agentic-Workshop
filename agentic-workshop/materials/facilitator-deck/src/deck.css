@@ -398,6 +398,7 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
 }
 .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.table th { white-space: nowrap; }
 .cols-2 > *, .cols-3 > * { min-width: 0; }
 
 /* Six AC examples need room for complete values such as 20→18. */
@@ -890,6 +891,13 @@ ol.stage-bar > li.active::after {
   font-variant-numeric: tabular-nums;
 }
 .slide-title .dk-ring-bg { stroke: rgba(255, 255, 255, .15); }
+/* Countdown slides: ring sits in the top-right corner instead of taking a 360px row. */
+.slide[data-countdown] { padding-right: calc(var(--pad-x) + 250px); }
+.slide[data-countdown] > .dk-countdown {
+  position: absolute; top: var(--pad-top); right: var(--pad-x);
+  width: 220px; height: 220px; margin: 0;
+}
+.slide[data-countdown] > .dk-countdown .dk-count-num { font-size: 84px; }
 .slide-title .dk-count-num { color: var(--white); }
 .dk-countdown[data-state="idle"] .dk-ring-fg { stroke: var(--muted); }
 .dk-countdown[data-state="running"] .dk-ring-fg { stroke: var(--primary); }
@@ -1184,6 +1192,11 @@ body.is-presenter #dk-black { display: none !important; }
   color: #CFE6F2;
 }
 .pv-plan { font-size: 17px; font-weight: 600; color: #CFE6F2; }
+.pv-now { margin-top: 8px; padding-top: 8px; border-top: 1px solid #263452; }
+.pv-now-title { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: #7FD3EE; margin-bottom: 4px; }
+.pv-now-row { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.pv-now-row code { font-family: var(--mono); font-weight: 800; letter-spacing: .12em; color: #FFFFFF; font-size: 18px; }
+.pv-codes tr.is-current td { background: #22345A; }
 .pv-plan[data-state="late"], .pv-plan.is-late { color: var(--orange); }
 
 .pv-codes { overflow: auto; max-height: 34vh; }

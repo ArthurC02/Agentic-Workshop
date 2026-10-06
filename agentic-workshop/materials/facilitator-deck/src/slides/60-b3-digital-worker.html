@@ -3,22 +3,14 @@
 <section class="slide slide-title" data-seg="b3" data-title="解鎖 B3 / Digital Worker" data-minute="63" data-unlock="b3">
   <p class="kicker">第 63 分鐘 · 解鎖</p>
   <h2 class="title">B3 團體訂票 · Digital Worker</h2>
-  <p class="subtitle">在 Runbook 輸入解鎖碼，解開：</p>
-  <p>
-    <span class="chip dw fx">TASK-B3-001 任務卡</span>
-    <span class="chip dw fx">操作規則（Operating Rules）</span>
-    <span class="chip dw fx">Agent 工作單（Work Order）</span>
-    <span class="chip dw fx">三個核准關卡（Approval Gate）</span>
-    <span class="chip fx">審查／交付範本</span>
-    <span class="chip fx">空白例外回應卡</span>
-  </p>
-  <p class="muted fx fx-fade">先讀 Operating Rules（2 分鐘內），再填 Work Order「Approved Context」交給 Agent。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開「B3 團體訂票：Digital Worker 流程」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">接下來 13 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>解鎖（指令書 §3）</b>：63 分鐘解開「B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、空白例外回應卡」。解鎖碼由本頁大字顯示；完整碼表見講者視窗。</p>
-    <p><b>Cue（F02 0／63）</b>：「發B3與Operating Rules，宣布人不直接改Code。」下一頁宣布規則改變。</p>
-    <p><b>可見性（P06 前言）</b>：空白範本不預發情境或標準答案。例外情境只在 69–70 分鐘由本簡報呈現，<b>不要在此提到例外內容</b>。</p>
-    <p><b>必讀</b>只有 Operating Rules、Work Order、Approval Gates 與任務卡；Review／Delivery／Exception 卡按需使用（P01）。</p>
-    <p><b>B2 Recovery（F04）</b>：只於 63 分鐘進 B3（受控切換，保留原成果、未完成、來源與切換原因，不算小組自行完成）。B3 開始後卡點不再切換版本，改採降級流程。</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、Work Order 和三個 Gate 表單都在 Runbook；投影只告訴你時間和現在是第幾個檢查點。」說完翻下一頁宣布規則改變。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼；完整碼表見講者視窗。</p>
+    <p><b>解鎖內容</b>：B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、空白例外回應卡。必讀只有操作規則、Work Order、Approval Gates 與任務卡；Review／Delivery／Exception 卡按需使用。</p>
+    <p><b>不可說</b>：空白範本不預發情境或答案。例外情境只在第 69–70 分由本簡報呈現，<b>不要在此提到例外內容</b>。</p>
+    <p><b>B2 Recovery</b>：只於第 63 分進 B3 時按需提供（碼：<code data-code="recovery-b2"></code>）（受控切換，保留原成果、未完成、來源與切換原因，不算小組自行完成）。<b>B3 開始後卡點不再切換版本</b>，改採降級流程（見總覽頁備註）。</p>
   </aside>
 </section>
 
@@ -54,192 +46,81 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="b3" data-title="Operating Rules" data-minute="63">
-  <p class="kicker">Operating Rules · 2 分鐘內讀完</p>
-  <h2 class="title">誰可以做什麼</h2>
-  <div class="cols-2">
-    <div class="card teammate fx fx-up">
-      <h3><span class="chip teammate">人</span> 可以</h3>
-      <p>提供需求、要求解釋假設、Challenge、Review Diff／測試／文件、Approve／Reject、要求補證與修正，或中止 Agent</p>
-      <h3><span class="chip">人</span> 不得</h3>
-      <p class="muted">直接 Coding、修改程式或替 Agent 補測試；不跳過 Gate；不因時間壓力接受未驗證說法</p>
-    </div>
-    <div class="card dw fx fx-up">
-      <h3><span class="chip dw">Agent</span> 可以</h3>
-      <p>理解 Repository、分析影響、提出選項；按核准計畫修改、建立與執行測試、更新文件及揭露未完成事項</p>
-      <h3><span class="chip">Agent</span> 不得</h3>
-      <p class="muted">越過核准範圍、未核准變更 API、自行改商業規則、加入外部服務／資料庫／規則引擎、刪除或弱化測試、捏造通過結果、未經 Gate 核准就前進</p>
-    </div>
-  </div>
-  <p class="callout fx fx-fade">先 Gate 1 核准需求，再 Gate 2 核准影響與設計；<b>Gate 2 核准後才改程式</b>。Gate 3 檢查實際證據與未完成事項後決定交付。衝突、資訊不足或超權限立即停止並升級。</p>
-  <aside class="notes">
-    <p><b>來源</b>：P01 可／不可表與流程規則（逐字）。目標：B3 開始後 2 分鐘內讀完（P01 前言）。</p>
-    <p><b>P01 §完成條件（逐字）</b>：「13 分鐘內保留三 Gate 與真實證據；時間不足保留 Gate 1／2，Gate 3 至少審查測試及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付，不強求完整程式量。」</p>
-    <p>本頁不要預告任何特定越界提議；只指回規則本身。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b3" data-title="Work Order 重點" data-minute="63">
-  <p class="kicker">Agent Work Order · TASK-B3-001</p>
-  <h2 class="title">團體訂票：Agent 主導交付，人負責三個 Gate</h2>
-  <div class="cols-3">
-    <div class="card fx fx-up">
-      <div class="big-number">5–20</div>
-      <p>人搭同一 Trip；<b>同車廂連續空位</b>，找不到完整區段整筆拒絕</p>
-    </div>
-    <div class="card fx fx-up">
-      <div class="big-number">1</div>
-      <p>付款成功整筆成立且<b>一筆 Order</b>；失敗整筆取消、釋放全部座位、無 Order</p>
-    </div>
-    <div class="card fx fx-up">
-      <div class="big-number">B2</div>
-      <p>每位旅客沿用 B2 個別最有利單一優惠並加總，<b>不疊加</b></p>
-    </div>
-  </div>
-  <div class="cols-2">
-    <div class="card fx fx-fade">
-      <h3>允許修改的範圍</h3>
-      <p class="muted">團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件；每個預計檔案先提出影響理由（Gate 2 核准範圍由小組填寫）</p>
-    </div>
-    <div class="card fx fx-fade">
-      <h3>禁止修改的範圍</h3>
-      <p class="muted">不全面重寫一般 Booking、不改不相關 API、不移除既有功能／Regression、不引入外部服務、資料庫或第三方規則引擎；不自行改商業規則、技術棧或既定容量</p>
-    </div>
-  </div>
-  <p class="muted fx fx-fade">無部分成功、分次付款、候補或特定座位偏好。Approved Context 未填資料由小組確認，不由 Agent 猜測。</p>
-  <aside class="notes">
-    <p><b>來源</b>：P02 Mission、Approved Requirements、Allowed／Prohibited Change Scope（逐字濃縮）。</p>
-    <p><b>Rule ID（P02）</b>：GROUP-001／002（5／20 人）、GROUP-003／004（同 Trip／同車廂連續）、GROUP-005～007（無完整配置不建立／一次保留全部／建立失敗不保留）、GROUP-PAY-001～005、GROUP-FARE-001／002、GROUP-AUDIT-001、GROUP-NOTIFY-001／002；B2 FARE-007～010 持續適用。</p>
-    <p><b>Required Tests（P02）</b>：5／20 合法、4／21 非法，同廂連續與無完整區段，建立失敗無殘留，逐人 B2 計價，付款成功唯一 Order，失敗取消／全釋放／無 Order，Audit／通知與既有 Regression；實際命令、結果與未執行部分均須記錄。</p>
-    <p><b>Required Deliverables（P02）</b>：需求理解、Impact Analysis、核准計畫與 Gate 證據、核准範圍內 Diff、測試結果、文件、Rule／Acceptance 對照、Delivery Summary 與未完成事項。</p>
-    <p>TC：「不在本卡規定完整Response或座位演算法」——學員問演算法細節時，指回 Gate 2 由 Agent 提案、人審查。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b3" data-title="三個核准關卡（Approval Gate）" data-minute="63">
-  <p class="kicker">Approval Gates · 每個 Gate 1–3 分鐘</p>
-  <h2 class="title">三個 Gate，三次人員決策</h2>
-  <div class="cols-3">
-    <div class="card dw fx fx-up">
-      <span class="chip dw">Gate 1 · 第 3 分鐘</span>
-      <h3>需求理解</h3>
-      <p class="muted">Agent：需求摘要、規則、假設、缺口、Out of Scope</p>
-      <p>人：5–20 邊界、同 Trip／同車廂連續、無部分成功、失敗全釋放、B2 逐人優惠</p>
-      <p><b>核准後才設計</b></p>
-    </div>
-    <div class="card dw fx fx-up">
-      <span class="chip dw">Gate 2 · 第 6 分鐘</span>
-      <h3>影響分析與設計</h3>
-      <p class="muted">Agent：影響模組、API 合約、座位配置、原子性／補償、測試策略與預計修改檔案</p>
-      <p>人：確認範圍合理、不全面重寫、建立與付款失敗均有處理，且未引入未核准的外部依賴</p>
-      <p><b>核准後才改程式</b></p>
-    </div>
-    <div class="card dw fx fx-up">
-      <span class="chip dw">Gate 3 · 第 12 分鐘</span>
-      <h3>交付審查</h3>
-      <p class="muted">Agent：成果摘要、AC 對照、規則追溯與未完成事項；測試結果據實記錄，未執行須說明</p>
-      <p>人：核對範圍與缺項；有修改時審查 Diff，有實測時核對結果、Skip／XFail 及未知失敗</p>
-      <p><b>依實際成果決定交付</b></p>
-    </div>
-  </div>
-  <p class="fx fx-fade">
-    <span class="chip teammate">APPROVE</span>
-    <span class="chip">APPROVE WITH CONDITIONS</span>
-    <span class="chip dw">REJECT AND REVISE</span>
-  </p>
-  <p class="callout warn fx fx-fade">三 Gate 是執行中的人員核准；核准不等於功能 PASS，也不取代程式驗收。條件核准須說明哪些活動已允許、哪些仍被阻擋。</p>
-  <aside class="notes">
-    <p><b>來源</b>：P03（細節）＋ TC §人機責任與三個Gate（摘要）。</p>
-    <p><b>Gate 2 人員檢查（P03）</b>：「不以方案看似合理取代授權檢查。」條件未滿足的範圍先停止；偏差需補證或重新核准。</p>
-    <p><b>Gate 3 Level 1（P03）</b>：附需求／設計與完整測試策略，無修改或未執行明記，不預填成功；不能將活動收件視為功能通過。</p>
-    <p><b>F02 主持規則（逐字）</b>：「條件核准不等於可忽略條件直接執行：條件必須具體、可驗證且先解除」。</p>
-    <p>觀察（F01 Human）：先 Review 再核准｜Challenge 假設、風險、邊界與替代方案｜不跳 Gate。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b3" data-title="Gate 短格式" data-minute="63">
-  <p class="kicker">Gate Decision · 短格式</p>
-  <h2 class="title">每個 Gate 一份，由人填寫</h2>
-  <div class="cols-2">
-    <pre class="code fx fx-fade">Gate ID:
-Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
-Evidence Reviewed:
-Conditions / Required Corrections:
-Approver:
-Timestamp / Workshop Minute:</pre>
-    <ol class="steps">
-      <li class="fx">由人填寫決策，<b>Agent 不代填核准</b></li>
-      <li class="fx">無須電子簽章</li>
-      <li class="fx">條件含完成方式與需回到哪個 Gate</li>
-      <li class="fx">缺證據不得把核准當作測試通過</li>
-    </ol>
-  </div>
-  <p class="muted fx fx-fade">Runbook 的「Gate 決策」表單可直接填寫並匯出 Markdown。</p>
-  <aside class="notes">
-    <p><b>來源</b>：P03 §Gate Decision（逐字）及附註。</p>
-    <p>差異註記：F02 的同一短格式少了 <code>Gate ID:</code> 一行；學員表單以 P03 六欄為準。</p>
-    <p>觀察記錄最少欄位（F01）：小組／Session、相對與活動分鐘、Gate、證據、決策與條件、例外、介入、Completion Level 及缺項。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b3" data-title="Stop &amp; Escalate" data-minute="63">
-  <p class="kicker">Stop and Escalate · 任一觸發即停止受影響動作</p>
-  <h2 class="title">停下來，提出證據與決策需求</h2>
-  <div class="cols-2">
-    <table class="table fx fx-fade">
-      <thead><tr><th>類型</th><th>觸發條件</th></tr></thead>
-      <tbody>
-        <tr><td>衝突</td><td>需求與 Rule ID 衝突；文件與程式衝突，且測試無法判定</td></tr>
-        <tr><td>範圍</td><td>需改核准範圍外 API Contract；需新增外部服務或套件；需移除既有 Regression Test；修改檔案數顯著超過 Gate 2 預估</td></tr>
-        <tr><td>設計</td><td>無法確認付款失敗的正確狀態；找不到同時滿足座位與 Atomicity 的方案</td></tr>
-        <tr><td>品質／時間</td><td>測試有與任務無關的新失敗；剩餘時間不足完成承諾交付</td></tr>
-      </tbody>
-    </table>
-    <pre class="code fx fx-fade"># Escalation
-## Trigger
-## Evidence
-## Impact
-## Options
-## Recommendation
-## Decision Needed</pre>
-  </div>
-  <p class="callout fx fx-fade">使用 Escalation 範本，<b>等待人員決策後才續行</b>。</p>
-  <aside class="notes">
-    <p><b>來源</b>：P02 §Stop and Escalate Conditions（十項，畫面依類型分組、內容逐字）；P06 §Escalation 短格式。</p>
-    <p>P06 附註：「一般停止條件使用以下升級短格式；不等同新增第二個主持例外事件。」——本場只有一件主持例外，不因學員升級而再注入。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="b3" data-title="B3 13 分鐘 Gate 節奏" data-minute="63" data-timer="13:00" data-gates="b3">
+<section class="slide" data-seg="b3" data-title="B3 六個檢查點" data-minute="63" data-timer="13:00" data-gates="b3">
   <p class="kicker">B3 · 63–76 · Agent = Digital Worker</p>
-  <h2 class="title">13 分鐘，三 Gate 不跳過</h2>
+  <h2 class="title">13 分鐘，三個 Gate 不跳過</h2>
+  <p class="muted">每個檢查點 Agent 停下、人確認。Gate 由人填寫決策，核准後才進下一步。</p>
   <ol class="timeline">
-    <li data-seg="b3"><span class="tl-min">00:00</span><b>讀規則、填 Approved Context</b></li>
-    <li data-seg="b3"><span class="tl-min">00:03</span><b>Gate 1 決策</b></li>
-    <li data-seg="b3"><span class="tl-min">00:06</span><b>Gate 2 決策</b></li>
-    <li data-seg="b3"><span class="tl-min">00:07</span><b>按核准計畫執行</b></li>
-    <li data-seg="b3"><span class="tl-min">00:11</span><b>停止擴充，整理測試證據</b></li>
-    <li data-seg="b3"><span class="tl-min">00:12</span><b>Gate 3 交付審查</b></li>
-    <li data-seg="b3"><span class="tl-min">00:13</span><b>交付 Delivery Summary 與 Level</b></li>
+    <li data-seg="b3"><span class="tl-min">00:00</span><b>1 · 交辦</b></li>
+    <li data-seg="b3"><span class="tl-min">01:00</span><b>2 · Gate 1 需求理解</b></li>
+    <li data-seg="b3"><span class="tl-min">03:00</span><b>3 · Gate 2 影響與設計</b></li>
+    <li data-seg="b3"><span class="tl-min">07:00</span><b>4 · 依核准計畫執行</b></li>
+    <li data-seg="b3"><span class="tl-min">11:00</span><b>5 · 停止擴充</b></li>
+    <li data-seg="b3"><span class="tl-min">12:00</span><b>6 · Gate 3 與交付</b></li>
   </ol>
-  <p class="callout fx fx-fade">每 Gate 控制 1–3 分鐘；例外判斷含在此時間，不額外加時。</p>
+  <p class="callout">每 Gate 控制 1–3 分鐘；例外判斷含在此時間，不額外加時。</p>
   <aside class="notes">
-    <p><b>按 T 開始 13:00 倒數。</b>畫面節奏為 P02 §Timebox 學員版（不含任何例外內容）。</p>
-    <p><b>主持 Cue（F02；括號為活動分鐘）</b></p>
-    <ul>
-      <li>0（63）發B3與Operating Rules，宣布人不直接改Code。</li>
-      <li>1（64）Agent開始Gate1：摘要、假設、缺口、Out of Scope。</li>
-      <li>3（66）人做Gate1決策；核准才進Gate2設計。Agent開始Gate2：Impact、API／Seat／Atomicity、測試及風險。</li>
-      <li>6（69）人做Gate2決策，處理唯一SQLite例外 → <b>翻到下一頁例外事件卡</b>（若 Agent 已自然提出 SQLite，見下一頁備註）。</li>
-      <li>7（70）例外與條件已解除，Agent才按核准計畫執行。</li>
-      <li>11（74）停止擴充；已有程式時執行測試，整理證據、文件與缺項。尚無程式則明記未執行及原因。</li>
-      <li>12（75）Gate3 Review：有修改／實測時審Diff、實際結果、Rule與文件；Level 1 無修改／未執行時審Gate1／2、合理Impact、完整Test Strategy與缺項，不宣稱功能PASS。</li>
-      <li>13（76）Agent交摘要與Level，停止新增功能。</li>
-    </ul>
-    <p><b>介入觸發（F04，七項）</b>：Agent未等待Gate即修改程式｜人員直接Coding｜Agent刪除或弱化測試｜小組核准SQLite越界｜小組無視付款失敗補償｜Agent宣稱測試通過卻無實際證據｜時間到仍持續擴充。</p>
-    <p><b>不應介入（F04）</b>：命名不同｜合理但不同的In-Memory設計｜選擇Level1或Level2｜拒絕不必要重構｜文件表達不同但內容正確。</p>
-    <p><b>五步介入（依序，最小必要）</b>：1 提醒既定Rule → 2 要求證據 → 3 要求回Approval Gate → 4 發方向提示 → 5 必要時採分析／Review降級並保留Level1／2或未完成摘要。不在 B3 中途切換版本或發 B3 標準解答；不得提供完整 Code 或由人補程式。</p>
-    <p><b>降級（F02 逐字）</b>：「若Gate或條件未完成，仍維持停止線與誠實成果分級，不假核准趕進度。」</p>
+    <p><b>說（約 20 秒）</b>：「13 分鐘、6 個檢查點，其中三個是 Gate。Agent 每到檢查點就停下，由你們填 Gate 決策才繼續。Gate 2 核准、條件解除前 Agent 不能改程式；人全程不改程式。」</p>
+    <p><b>操作</b>：計時應已在解鎖頁啟動（沒有就在本頁按 T）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，第 69 分在檢查點 3 之後翻到例外事件頁。本頁時間軸會依計時自動標示目前檢查點，需要總覽時可翻回。</p>
+    <p><b>巡場時看什麼</b>：Runbook 的 Gate 表單有沒有填、核准時間是否早於修改。Gate 表單空白但 Agent 已在改程式 → 介入觸發 #1。</p>
+    <p><b>介入觸發（七項）</b>：#1 Agent 未等待 Gate 即修改程式｜#2 人員直接 Coding｜#3 Agent 刪除或弱化測試｜#4 小組核准 SQLite 越界｜#5 小組無視付款失敗補償｜#6 Agent 宣稱測試通過卻無實際證據｜#7 時間到仍持續擴充。</p>
+    <p><b>不應介入</b>：命名不同｜合理但不同的 In-Memory 設計｜選擇 Level 1 或 Level 2｜拒絕不必要重構｜文件表達不同但內容正確。</p>
+    <p><b>五步介入（依序，最小必要）</b>：1 提醒既定 Rule → 2 要求證據 → 3 要求回 Approval Gate → 4 發方向提示 → 5 必要時採分析／Review 降級，並保留 Level 1／2 或未完成摘要。不在 B3 中途切換版本或發 B3 標準解答；不得提供完整 Code 或由人補程式。</p>
+    <p><b>降級（逐字）</b>：「若Gate或條件未完成，仍維持停止線與誠實成果分級，不假核准趕進度。」</p>
+    <p><b>不可說</b>：不預告任何特定越界提議，只指回規則本身。</p>
+    <p><b>觀察紀錄最少欄位</b>：小組／Session、相對與活動分鐘、Gate、證據、決策與條件、例外、介入、Completion Level 及缺項。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b3" data-title="檢查點 1 · 交辦" data-minute="63">
+  <p class="kicker">檢查點 1 / 6 · 第 63–64 分鐘</p>
+  <h2 class="title">交辦：填 Approved Context，交給 Agent</h2>
+  <ol class="steps">
+    <li>讀操作規則與任務卡（目標 2 分鐘內讀完）</li>
+    <li>填 Work Order 的 Approved Context；未填資料由小組確認，不讓 Agent 猜</li>
+    <li>貼上交辦提示：<b>只交 Gate 1 Input，然後停下</b></li>
+  </ol>
+  <p class="callout">Runbook › B3 › 檢查點 1 · 填「Work Order」的 Approved Context</p>
+  <aside class="notes">
+    <p><b>說（00:00／第 63 分）</b>：「請照 Runbook 檢查點 1：讀操作規則，填 Work Order 的 Approved Context，交給主要 Agent。Agent 先只交 Gate 1 的需求理解，交完停下等你們決策。」</p>
+    <p><b>看</b>：第 64 分 Agent 應已開始 Gate 1（摘要、假設、缺口、Out of Scope）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。</p>
+    <p><b>可回答</b>：操作規則、表單位置、Approved Context 欄位意思。操作規則 2 分鐘讀不完的組，可在 Agent 準備 Gate 1 時讀完（Runbook 已寫）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b3" data-title="檢查點 2 · Gate 1 需求理解" data-minute="64">
+  <p class="kicker">檢查點 2 / 6 · 第 64–66 分鐘</p>
+  <h2 class="title">Gate 1：需求理解，由人決策</h2>
+  <ol class="steps">
+    <li>Agent 交 Gate 1 Input：需求摘要、規則、假設、缺口、Out of Scope</li>
+    <li>核對 5–20 人、同車廂連續、無部分成功、失敗全釋放、B2 逐人優惠</li>
+    <li>第 66 分前填 Gate 1 決策：<b>核准需求才進入設計</b></li>
+  </ol>
+  <p class="callout">Runbook › B3 › 檢查點 2 · 填「Gate Decision · GATE1」</p>
+  <aside class="notes">
+    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 Input 後，請核對它的需求理解，回答它的問題。第 66 分前由人填 Gate 1 決策。」</p>
+    <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策；核准才進 Gate 2 設計，拒絕就要求修正。」</p>
+    <p><b>看</b>：先 Review 再核准｜Challenge 假設、風險、邊界與替代方案｜不跳 Gate。Gate 決策由人填寫，Agent 不代填；無須電子簽章。學員表單為六欄短格式（含 Gate ID）。</p>
+    <p><b>條件核准（逐字）</b>：「條件核准不等於可忽略條件直接執行：條件必須具體、可驗證且先解除」。條件須說明哪些活動已允許、哪些仍被阻擋，以及要回到哪個 Gate。</p>
+    <p><b>Rule ID（學員問時指回任務卡／Work Order）</b>：GROUP-001／002（5／20 人）、GROUP-003／004（同 Trip／同車廂連續）、GROUP-005～007（無完整配置不建立／一次保留全部／建立失敗不保留）、GROUP-PAY-001～005、GROUP-FARE-001／002、GROUP-AUDIT-001、GROUP-NOTIFY-001／002；B2 FARE-007～010 持續適用。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b3" data-title="檢查點 3 · Gate 2 影響與設計" data-minute="66">
+  <p class="kicker">檢查點 3 / 6 · 第 66–70 分鐘</p>
+  <h2 class="title">Gate 2：影響與設計，核准後才改程式</h2>
+  <ol class="steps">
+    <li>Agent 交 Gate 2 Input：影響模組、API、座位配置、Atomicity／補償、測試、預計修改檔案</li>
+    <li>核對範圍合理、不全面重寫、建立與付款失敗都有處理、無未核准外部依賴</li>
+    <li>第 69 分前填 Gate 2 決策與 Work Order「Gate 2 核准範圍」</li>
+  </ol>
+  <p class="callout">Runbook › B3 › 檢查點 3 · 填「Gate Decision · GATE2」</p>
+  <aside class="notes">
+    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准的組，請 Agent 交 Gate 2：影響、API、座位、Atomicity、測試與風險。Gate 2 核准、條件解除前，不能改程式。」</p>
+    <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件卡</b>（若 Agent 已自然提出 SQLite，見下一頁備註）。</p>
+    <p><b>看</b>：「不以方案看似合理取代授權檢查。」條件未滿足的範圍先停止；偏差需補證或重新核准。Agent 在 Gate 2 決策前就改檔案 → 觸發 #1。</p>
+    <p><b>可回答</b>：學員問座位演算法或完整 Response 細節 → 任務卡不規定完整 Response 或座位演算法，由 Agent 在 Gate 2 提案、人審查。</p>
+    <p><b>允許／禁止範圍（Work Order 已寫）</b>：允許團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件，每個預計檔案先提出影響理由；禁止全面重寫一般 Booking、改不相關 API、移除既有功能／Regression、引入外部服務、資料庫或第三方規則引擎，不自行改商業規則、技術棧或既定容量。</p>
   </aside>
 </section>
 
@@ -286,34 +167,56 @@ Timestamp / Workshop Minute:</pre>
   </aside>
 </section>
 
-<section class="slide" data-seg="b3" data-title="執行到交付" data-minute="70">
-  <p class="kicker">B3 · 00:07–00:13 · 第 70–76 分鐘</p>
-  <h2 class="title">Agent 執行，人審查</h2>
-  <div class="cols-3">
-    <div class="card dw fx fx-up">
-      <span class="chip dw">00:07 · 70</span>
-      <h3>按核准計畫執行</h3>
-      <p class="muted">Gate 2 核准且條件解除後才改程式；觸發停止條件即提請人員決策</p>
-    </div>
-    <div class="card fx fx-up">
-      <span class="chip">00:11 · 74</span>
-      <h3>停止擴充</h3>
-      <p class="muted">已有程式時執行測試，整理證據、文件與缺項；未執行須明記原因</p>
-    </div>
-    <div class="card teammate fx fx-up">
-      <span class="chip teammate">00:12 · 75</span>
-      <h3>Gate 3 交付審查</h3>
-      <p class="muted">需求、範圍、品質、證據：逐項依實際證據勾選</p>
-    </div>
-  </div>
-  <p class="quote fx fx-fade">人不寫程式、不補測試。</p>
-  <p class="callout warn fx fx-fade">未完成或未驗證保持未勾並說明，不由 Agent 自動全勾。76 分鐘到停止擴充並列缺項。</p>
+<section class="slide" data-seg="b3" data-title="檢查點 4 · 依核准計畫執行" data-minute="70">
+  <p class="kicker">檢查點 4 / 6 · 第 70–74 分鐘</p>
+  <h2 class="title">執行：Agent 在核准範圍內做，人審查</h2>
+  <ol class="steps">
+    <li>Gate 2 核准、條件解除後，才請 Agent 按核准計畫執行</li>
+    <li>遇停止條件：Agent 停下，用 Escalation 短格式提出證據，人決策後才續行</li>
+    <li><b>人不寫程式、不補測試</b>；看修改檔案是否都在核准範圍</li>
+  </ol>
+  <p class="callout">Runbook › B3 › 檢查點 4 · 填「檢查點 4 確認」</p>
   <aside class="notes">
-    <p><b>來源</b>：學員步驟（P01／P02 §Timebox）、P04 Review Checklist 勾選規則、TC §完成條件。</p>
-    <p><b>Cue 7（70）</b>：「例外與條件已解除，Agent才按核准計畫執行。」若條件未解除仍在改 Code → 介入觸發 #1，依序：提醒Rule → 要求證據 → 回 Gate。</p>
-    <p><b>觀察（F01 Agent）</b>：等待Gate（核准時間先於修改）｜不超範圍（Diff與核准區域一致，SQLite提議被處理）｜執行測試（指令、結果與失敗原因，沒有虛報）｜揭露缺項（Level與實際完成一致）。</p>
-    <p><b>Human</b>：要求測試（不只接受「已完成」摘要）｜檢查Diff（不以摘要代替範圍審查）｜判斷交付（區分Agent完成宣稱與成果可接受）。</p>
-    <p><b>Cue 12（75）</b>：Level 1 無修改／未執行時審 Gate1／2、合理 Impact、完整 Test Strategy 與缺項，不宣稱功能 PASS。</p>
-    <p><b>Cue 13（76）</b>：「Agent交摘要與Level，停止新增功能。」→ 翻到 Delivery 頁。</p>
+    <p><b>說（00:07／第 70 分）</b>：「例外與條件已解除的組，Agent 才按核准計畫執行。人不寫程式、不補測試；遇到停止條件，Agent 要停下來提出證據，等你們決定。」</p>
+    <p><b>看 → 介入</b>：條件未解除仍在改 Code → 觸發 #1，依序：提醒 Rule → 要求證據 → 回 Gate｜人伸手改程式 → #2｜Agent 刪除或弱化測試 → #3｜小組無視付款失敗補償 → #5。</p>
+    <p><b>看（Agent）</b>：等待 Gate（核准時間先於修改）｜不超範圍（Diff 與核准區域一致，SQLite 提議已處理）｜執行測試（指令、結果與失敗原因，沒有虛報）｜揭露缺項（Level 與實際完成一致）。</p>
+    <p><b>停止與升級十項（Work Order 已列）</b>：衝突（需求與 Rule ID 衝突；文件與程式衝突且測試無法判定）｜範圍（需改核准範圍外 API Contract；需新增外部服務或套件；需移除既有 Regression Test；修改檔案數顯著超過 Gate 2 預估）｜設計（無法確認付款失敗的正確狀態；找不到同時滿足座位與 Atomicity 的方案）｜品質／時間（與任務無關的新失敗；剩餘時間不足完成承諾交付）。</p>
+    <p><b>Escalation 不是第二件例外</b>：一般停止條件用 Escalation 短格式，不等同新增第二個主持例外事件；本場只有一件主持例外，不因學員升級而再注入。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b3" data-title="檢查點 5 · 停止擴充" data-minute="74">
+  <p class="kicker">檢查點 5 / 6 · 第 74–75 分鐘</p>
+  <h2 class="title">停止擴充，整理測試證據</h2>
+  <ol class="steps">
+    <li>不再新增功能；已有修改就執行測試，記下實際命令與結果</li>
+    <li>尚無修改或未執行：明記「無修改／未執行」與原因，不預填成功</li>
+    <li>Agent 交 Gate 3 Input 後停下</li>
+  </ol>
+  <p class="callout warn">Runbook › B3 › 檢查點 5 · 填「檢查點 5 確認」</p>
+  <aside class="notes">
+    <p><b>說（00:11／第 74 分）</b>：「停止擴充。已有程式的組執行測試，整理證據、文件與缺項；還沒有程式的，明記未執行及原因。」</p>
+    <p><b>看 → 介入</b>：實際命令與結果、未執行部分有沒有記錄，不以預期代替實測。Agent 宣稱測試通過卻無實際證據 → #6，要求證據｜時間到仍擴充 → #7。</p>
+    <p><b>Required Tests（Work Order 已列）</b>：5／20 合法、4／21 非法，同廂連續與無完整區段，建立失敗無殘留，逐人 B2 計價，付款成功唯一 Order，失敗取消／全釋放／無 Order，Audit／通知與既有 Regression。</p>
+    <p><b>時間不足（完成條件，逐字）</b>：「13 分鐘內保留三 Gate 與真實證據；時間不足保留 Gate 1／2，Gate 3 至少審查測試及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付，不強求完整程式量。」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b3" data-title="檢查點 6 · Gate 3 與交付" data-minute="75">
+  <p class="kicker">檢查點 6 / 6 · 第 75–76 分鐘</p>
+  <h2 class="title">Gate 3：依實際證據決定交付</h2>
+  <ol class="steps">
+    <li>審查 Gate 3 Input：有修改看 Diff，有實測核對結果與 Skip／XFail</li>
+    <li>填 Gate 3 決策；未驗證保持未勾，不由 Agent 全勾</li>
+    <li>Agent 交 Delivery Summary 與 Level，<b>不自動選 Level 3</b></li>
+  </ol>
+  <p class="callout warn">第 76 分鐘停止新增；人不補程式或測試，缺項如實列出。</p>
+  <aside class="notes">
+    <p><b>說（00:12／第 75 分）</b>：「Gate 3 Review：有修改的看 Diff、實際測試結果、Rule 與文件；還沒有程式的，審 Gate 1／2、影響分析、測試策略與缺項，不宣稱功能通過。」</p>
+    <p><b>看（Human）</b>：要求測試（不只接受「已完成」摘要）｜檢查 Diff（不以摘要代替範圍審查）｜判斷交付（區分 Agent 完成宣稱與成果可接受）。</p>
+    <p><b>Level 1</b>：無修改／未執行時審 Gate 1／2、合理 Impact、完整 Test Strategy 與缺項，明記「無修改／未執行」，不預填成功；不能將活動收件視為功能通過。</p>
+    <p><b>核准 ≠ PASS</b>：三 Gate 是執行中的人員核准，不取代程式驗收；缺證據不得把核准當作測試通過。</p>
+    <p><b>Required Deliverables（Work Order 已列）</b>：需求理解、Impact Analysis、核准計畫與 Gate 證據、核准範圍內 Diff、測試結果、文件、Rule／Acceptance 對照、Delivery Summary 與未完成事項。</p>
+    <p><b>停止（00:13／第 76 分）</b>：「Agent 交摘要與 Level，停止新增功能。」→ 翻到 Delivery 頁（交付與收件）。</p>
   </aside>
 </section>
