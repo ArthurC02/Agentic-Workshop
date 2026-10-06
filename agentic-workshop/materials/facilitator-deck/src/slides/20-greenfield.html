@@ -8,12 +8,13 @@
     <span class="chip tool fx">G0 任務說明與學員文件</span>
     <span class="chip tool fx">G0 程式骨架下載</span>
   </p>
-  <p class="muted fx fx-fade">請確認任務、需求、驗收條件（AC）與程式專案可開啟。</p>
+  <p class="muted fx fx-fade">請確認任務、需求、驗收條件（AC）與程式專案可開啟；讓 Agent 修改前，先依 Runbook 步驟 2 建立 Git 基準。</p>
   <aside class="notes">
     <p><b>00:00（第 07 分）口令（TC，逐字）</b>：「請確認任務、需求、AC 及 Repository 可開啟。」</p>
     <p><b>核對</b>：使用 Participant 素材，未發送內部答案。</p>
     <p>RB 07–29：統一發 G0 Mission、需求／AC 及骨架，人選設計與拆解、Agent 協助。</p>
     <p>學員 Starter 初始預期 <code>1 passed, 8 skipped</code>（實際以輸出為準）；四個業務 API 回應 501（README）。</p>
+    <p><b>Git 基準</b>：G0 ZIP 不是 Git Repository；Runbook 步驟 2 要求學員先 <code>git init</code>／<code>git add -A</code>／<code>git commit</code>，之後以 <code>git diff</code> 審 Diff。無 Git 的學員改用 Agent／編輯器變更檢視，並在交付摘要註明。</p>
     <p>本頁大字顯示 Greenfield 解鎖碼。Greenfield 22:00 自第 07 分起算：接下來 Mission／API／Rule／AC／Loop 五頁請在 00:02 口令前快速帶過，之後停留在「Greenfield 倒數」頁。計時須於第 07 分啟動：在解鎖頁按 T 啟動段落計時即可；翻頁時持續計時，不另加講解時間。</p>
   </aside>
 </section>
@@ -58,7 +59,7 @@
     <tbody>
       <tr class="fx"><td><code>GET /trips</code></td><td>可選 <code>origin</code>／<code>destination</code> 精確篩選；只列有可售座位班次</td></tr>
       <tr class="fx"><td><code>POST /bookings</code></td><td><code>trip_id</code> ＋ 1–4 位 <code>ADULT</code>／<code>STUDENT</code>；逐位計價、保留座位</td></tr>
-      <tr class="fx"><td><code>POST /bookings/{booking_id}/pay</code></td><td>模擬付款服務；成功建立唯一訂單（Order）；拒絕重複付款</td></tr>
+      <tr class="fx"><td><code>POST /bookings/{booking_id}/pay</code></td><td>模擬付款服務；成功建立唯一訂單（Order）；拒絕重複付款；失敗維持待付款、保留座位</td></tr>
       <tr class="fx"><td><code>GET /orders/{order_id}</code></td><td>訂票編號（Booking ID）、金額與付款狀態；訂單不存在時回傳 404</td></tr>
     </tbody>
   </table>
@@ -68,6 +69,7 @@
   </div>
   <aside class="notes">
     <p><b>BR 補充</b>：不存在的 Booking 應回傳 404；無效請求回傳明確錯誤。付款測試可控制失敗結果，不使用隨機失敗；失敗不得建立 Order 或錯誤標為已付款。Request Validation 可保留 FastAPI 422（README）。</p>
+    <p><b>全場一致澄清（已寫入 Runbook 步驟 4「需求澄清」）</b>：付款失敗 → Booking 維持 <code>PENDING_PAYMENT</code>、座位不釋放、不建立 Order、可再付款；不存在資源 404，規則衝突 4xx（代碼由學員決定並寫入 api-examples），格式錯誤可保留 422；以 <code>MockPaymentGateway.next_result = PaymentStatus.FAILED</code> 測失敗。學員提問時指向該段，不另作個別解釋。</p>
     <p><b>可回答（FG）</b>：時間、交付方式、已寫明的規則、環境安裝／啟動／Import／測試操作、錯誤訊息如何閱讀。遇需求歧義，指向 Participant 需求及 AC，對全場一致澄清。</p>
     <p><b>不可直接揭露（FG）</b>：完整實作、完整解題 Prompt、每個 TODO 的答案、參考解答或後續階段問題。</p>
     <p>學員版 AC-G-013 只要求「不存在 Trip 訂票回傳明確錯誤」，<b>不要求特定錯誤碼</b>。</p>
@@ -152,8 +154,8 @@
       <li class="fx"><b>說明（Explain）· 2 分</b> — 說明修改檔案、規則／AC 對應與風險；由你審查主要修改</li>
     </ol>
     <div class="card tool fx fx-fade">
-      <h3>通用起始提示</h3>
-      <p class="quote">先不要修改程式。請閱讀我提供的需求與驗收條件，掃描 Starter Repository，搜尋 <code>TODO(GREENFIELD</code>，整理待完成工作、規則對應與風險，提出 5 至 8 步計畫。列出需要我決定的問題，等待我確認。</p>
+      <h3>起始提示（完整版：Runbook 步驟 4）</h3>
+      <p class="quote">先不要修改程式。請閱讀 <code>../02-</code>需求與 <code>../03-</code>驗收條件，搜尋 <code>TODO(GREENFIELD</code>，提出 5 至 8 步計畫並標出 Rule ID。列出需要我決定的問題，等待我確認。</p>
     </div>
   </div>
   <aside class="notes">
@@ -162,6 +164,7 @@
     <p>MB：「建議分配：閱讀與計畫 4 分鐘、實作 12 分鐘、測試 4 分鐘、摘要與審查 2 分鐘。」TC 主持版：閱讀與拆解 4／Agent 執行與人員互動 12／測試、文件、快速驗收 4／交付與收尾 2。</p>
     <p>README：搜尋 <code>TODO(GREENFIELD</code> 找出 11 個主要實作點；初始 Skip 不代表完成 MVP。</p>
     <p><b>Hint 1（找不到入口，PH）</b>：搜尋 Greenfield TODO、Rule ID，閱讀 README 啟動入口。</p>
+    <p><b>Runbook 已提供的學員指引</b>：步驟 4 起始提示（含需求檔路徑）、核准前檢查、需求澄清、核准回覆範本；步驟 5 分段實作並每段跑 <code>pytest -q</code>、看 <code>git diff</code>；步驟 6 邊界測試清單與 <code>/docs</code> 手動走流程；步驟 7 交付摘要提示與「如何審查 Diff」。學員卡住時先指向對應步驟，再依三級提示。</p>
   </aside>
 </section>
 
@@ -170,7 +173,7 @@
   <h2 class="title">Greenfield 共 22 分鐘</h2>
   <p class="muted">以下為本段已經過的時間，00:00 對應全場第 7 分鐘。</p>
   <ol class="timeline">
-    <li data-seg="greenfield"><span class="tl-min">00:00</span><b>確認材料</b></li>
+    <li data-seg="greenfield"><span class="tl-min">00:00</span><b>確認材料、建立 Git 基準</b></li>
     <li data-seg="greenfield"><span class="tl-min">00:02</span><b>Plan，先不修改</b></li>
     <li data-seg="greenfield"><span class="tl-min">00:04</span><b>核准後修改</b></li>
     <li data-seg="greenfield"><span class="tl-min">00:12</span><b>看主要 Diff</b></li>

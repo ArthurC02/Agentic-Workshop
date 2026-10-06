@@ -28,6 +28,8 @@ Plan → Human Review → Execute → Test → Explain
 
 Agent 的摘要與「全部通過」的訊息都不能取代你的審查。
 
+每份下載的 Repository 解壓後、交給 Agent 修改之前，先建立 Git 基準（`git init`、`git add -A`、`git commit -m "baseline"`），之後用 `git diff --stat` 與 `git diff` 查看實際變更。詳細步驟見 [Greenfield 任務](#greenfield) 的步驟 2 與步驟 7。
+
 - [ ] 打開實際變更內容（Diff），找出主要修改的檔案與函式。
 - [ ] 對照需求的 Rule ID 與驗收條件，確認每個主要變更有對應理由。
 - [ ] 確認沒有擴大範圍、修改商業規則或新增未核准的外部套件。

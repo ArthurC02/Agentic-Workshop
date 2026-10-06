@@ -15,6 +15,7 @@ section: 開始之前
 - [ ] Python **3.13**（已驗收版本 3.13.15），可使用 `venv` 與 `pip`。
 - [ ] 一個可用的通用 Coding Agent，能讀取本機資料夾、修改檔案並執行終端指令。
 - [ ] 可開啟 PowerShell 或 bash 終端機。
+- [ ] 已安裝 Git（`git --version` 有回應），用來查看 Agent 的實際修改；沒有 Git 時，改用 Agent 或編輯器內建的變更檢視。
 - [ ] 已用瀏覽器開啟這份 `runbook.html`。
 
 套件由各版 `requirements.txt` 指定：FastAPI 0.115.12、Uvicorn 0.34.2、Pydantic 2.11.4、pytest 8.3.5、httpx 0.28.1。不需要前端、外部資料庫、真實金流或交通 API。

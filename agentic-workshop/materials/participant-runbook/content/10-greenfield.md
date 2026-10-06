@@ -44,7 +44,12 @@ cd ~/work/g0/agentic-workshop/01-greenfield/participant/starter-repository
 
 ```callout info
 ZIP 內容
-ZIP 內除了 `starter-repository/`，還有本頁連結的五份 Greenfield 參與者文件（`01-mission-brief.md` 至 `05-submission-checklist.md`）。內容與本 Runbook 的參考頁相同，可交給你的 Agent 閱讀。
+ZIP 內除了 `starter-repository/`，還有本頁連結的五份 Greenfield 參與者文件（`01-mission-brief.md` 至 `05-submission-checklist.md`），放在 `starter-repository` 的**上一層**（`..\`）。內容與本 Runbook 的參考頁相同，可交給你的 Agent 閱讀。
+```
+
+```callout tip
+Agent 從哪個資料夾開啟
+請在 `starter-repository` 開啟你的 Agent，讓它能直接執行測試。若 Agent 無法讀取上一層資料夾，把 `..\02-business-requirements.md` 與 `..\03-acceptance-criteria.md` 複製到 `starter-repository\docs\` 再交給它。
 ```
 
 ## 步驟 2：建立環境並執行起始測試
@@ -71,6 +76,25 @@ python -m venv .venv
 G0 提供框架、固定資料與 Health；四個業務 API 回應 501，核心 Use Case 尚未實作。功能測試的 Skip 原因對應 Rule ID；初始 Skip 不代表完成 MVP。
 ```
 
+### 建立 Git 基準，之後才看得到 Diff
+
+G0 不是 Git Repository。請在讓 Agent 修改任何檔案**之前**，先記下起始狀態；之後隨時可用 `git diff` 查看 Agent 實際改了什麼，不必只依賴 Agent 的摘要。
+
+- [ ] 在 `starter-repository` 執行下列指令，建立起始 Commit。
+
+```cmd
+# powershell
+git init
+git add -A
+git commit -m "G0 baseline"
+# bash
+git init
+git add -A
+git commit -m "G0 baseline"
+```
+
+若出現要求設定姓名或 Email 的訊息，先執行 `git config user.name "你的名字"` 與 `git config user.email "you@example.com"`（不加 `--global` 時只寫入本資料夾），再重新 Commit。電腦沒有安裝 Git 時，改用你的 Agent 或編輯器內建的變更檢視，並在交付摘要註明。
+
 Health 檢查與疑難排解請見 [環境準備](#environment)。
 
 ## 步驟 3：找出 `TODO(GREENFIELD`
@@ -88,34 +112,110 @@ grep -rn "TODO(GREENFIELD" src
 
 ## 步驟 4：Plan（約 4 分鐘）
 
-- [ ] 閱讀 [需求](#gf-requirements) 與 [驗收條件](#gf-acceptance)。
-- [ ] 把下方通用起始提示交給你的 Agent，要求 5 至 8 步計畫，**先不要修改程式**。
-- [ ] 核對計畫的範圍、規則與風險，回答 Agent 列出的問題，確認後才核准執行。
+- [ ] 閱讀 [需求](#gf-requirements) 與 [驗收條件](#gf-acceptance)，先記住幾個核對用的數字：成人 700、學生 525、成人＋學生 1225；每筆 1–4 人；T003 已售完。
+- [ ] 把下方起始提示交給你的 Agent，要求 5 至 8 步計畫，**先不要修改程式**。
+- [ ] 依下方「核准前檢查」核對計畫，回答 Agent 列出的問題，再用「核准回覆」格式回覆。
 
-通用起始提示：
+起始提示（已填入本案例的文件位置）：
 
 ```text
-先不要修改程式。請閱讀我提供的需求與驗收條件，掃描 Starter Repository，搜尋 `TODO(GREENFIELD`，整理待完成工作、規則對應與風險，提出 5 至 8 步計畫。列出需要我決定的問題，等待我確認。
+先不要修改程式。請閱讀 `../02-business-requirements.md` 與 `../03-acceptance-criteria.md`，以及本 Repository 的 README.md 與 docs/architecture.md，搜尋 `TODO(GREENFIELD`，整理待完成工作、規則對應與風險，提出 5 至 8 步計畫。每一步標出對應的 Rule ID。列出需要我決定的問題，等待我確認。
+```
+
+Agent 的計畫合格時，應該：找到 11 個 `TODO(GREENFIELD`、每一步標出 Rule ID、列出需要你決定的問題。若它沒讀到需求文件、跳過 Rule ID 或已經開始修改，請要求它重做計畫。
+
+### 核准前檢查
+
+- [ ] 每一步都對應到 Rule ID 或 AC；沒有前端、登入、會員、優惠、改退票、新套件等範圍外項目。
+- [ ] 實作順序由你決定。建議先做能獨立測試的部分，例如票價 → 班次查詢 → 建立訂票 → 付款 → 查詢訂單。
+- [ ] 商業規則放在 `domain/` 或 `application/`，`api/routes.py` 只負責轉換請求與回應。
+- [ ] Agent 列出的每個問題都有你的決定。答案先查下方「需求澄清」與需求文件；查不到時舉手問主持人，不要讓 Agent 自行假設。
+
+```callout info
+需求澄清（全場一致）
+下列項目需求文件沒有逐字寫明，以此為準：
+- **付款失敗**：Booking 維持 `PENDING_PAYMENT`，已保留的座位不釋放，不建立 Order；之後仍可再次付款。
+- **錯誤回應**：找不到 Trip／Booking／Order 回 404；人數、座位不足、重複付款、付款失敗等規則衝突回 4xx，代碼由你決定並寫進 `docs/api-examples.md`；Request 格式錯誤可保留 FastAPI 的 422。錯誤內容沿用既有的 `{"error":{"code":"...","message":"..."}}`。
+- **付款失敗怎麼測**：在測試中把 `MockPaymentGateway.next_result` 設為 `PaymentStatus.FAILED`，不使用隨機結果。
+```
+
+### 核准回覆
+
+用以下格式回覆 Agent。`〈 〉` 的內容由你填寫：
+
+```text
+計畫核准，順序如下：
+〈依你決定的順序列出步驟〉
+
+我的決定：
+- 〈Agent 問題 1〉：〈你的決定與依據〉
+- 〈Agent 問題 2〉：〈你的決定與依據〉
+
+限制：商業規則放在 domain／application，Router 只做轉換；不新增依賴、不改 Seed、不動 /health；功能完成才移除對應的 skip，不得修改或刪除既有斷言。
+
+先做第 1 到 〈N〉 步，做完執行 pytest -q 給我看實際輸出，然後停下等我。
 ```
 
 ## 步驟 5：Execute（約 12 分鐘）
 
-- [ ] 依你核准的計畫讓 Agent 完成 TODO，先完成一段能測試的核心流程。
-- [ ] 由你決定設計方向與優先順序；遇到疑問先請 Agent 說明假設，由你確認。
-- [ ] 限制修改於 MVP，不任意增加外部依賴或改需求；保留現有分層，不把商業規則集中到 API Router。
+一次只讓 Agent 做一段，每段都**測試、看 Diff、再繼續**，不要讓它一口氣完成全部 TODO。
+
+- [ ] Agent 完成一段後，確認它回報的是**實際執行**的 `pytest -q` 輸出，且減少的 Skip 正好是這一段的功能。
+- [ ] 執行 `git diff --stat` 看改了哪些檔案，再用 `git diff` 看主要檔案（說明見步驟 7 的「如何審查 Diff」）。確認改動沒有超出這一段。
+- [ ] 沒問題再交代下一段，例如：
+
+```text
+這一段看過了。接著做第 〈N+1〉 到 〈M〉 步，做完執行 pytest -q，列出還剩哪些 skip，然後停下等我。
+```
+
+- [ ] 你可以每段結束時 `git add -A` 加 `git commit -m "說明"`，之後 `git diff` 只會顯示新一段的變更。
+- [ ] 遇到疑問先請 Agent 說明它的假設，由你確認；不要讓它改需求或新增範圍外功能。
 
 ## 步驟 6：Test（約 4 分鐘）
 
-- [ ] 要求 Agent 執行 `pytest -q`，記錄指令和實際結果。
-- [ ] 核對驗收條件，補足失敗與邊界案例；完成功能後移除對應 Skip。
-- [ ] 辨識仍被 Skip 的測試；不刪除或弱化斷言掩蓋失敗。
-- [ ] 核對完整 API 流程（查詢→訂票→模擬付款→查詢 Order）與 `/health`。
+- [ ] 要求 Agent 補足邊界測試並執行 `pytest -q`，記錄指令和實際結果。至少包含：0 人與 5 人被拒、4 人可建立、座位不足被拒且座位不變、成人＋學生 1225、不存在的 Booking／Order 回 404、付款失敗不建立 Order 也不變成 `PAID`、重複付款被拒。
+- [ ] 辨識仍被 Skip 的測試，列入未完成項目。
+- [ ] 執行 `git diff -- tests`，確認只有「移除 skip」與「新增測試」，沒有刪除或放寬既有斷言。
+- [ ] 自己走一次完整流程：查班次 → 建立訂票 → 付款 → 查詢 Order，並確認 `/health` 正常。
+
+最簡單的手動驗證方式是用瀏覽器開啟 App 內建的 API 測試頁 `http://127.0.0.1:8000/docs`（App 需先啟動）：
+
+1. `GET /trips`：按「Try it out」→「Execute」，確認沒有 T003。
+2. `POST /bookings`：貼上下方內容，確認 `total_fare` 為 1225、狀態為 `PENDING_PAYMENT`，記下 `booking_id`。
+3. `POST /bookings/{booking_id}/pay`：填入 `booking_id`，確認回傳 Order，記下 `order_id`。
+4. `GET /orders/{order_id}`：確認 `amount` 為 1225、`payment_status` 為 `SUCCESS`、`booking_id` 正確。
+5. 再付款一次同一個 `booking_id`，確認被拒絕。
+
+```text
+{
+  "trip_id": "T001",
+  "passengers": [
+    {"passenger_id": "P1", "name": "測試旅客一", "passenger_type": "ADULT"},
+    {"passenger_id": "P2", "name": "測試旅客二", "passenger_type": "STUDENT"}
+  ]
+}
+```
+
+回應欄位名稱以你實作的 Schema 為準。把實際呼叫結果整理進 `docs/api-examples.md`。App 重啟後資料會重置，這是設計行為。
 
 ## 步驟 7：Explain 與提交（約 2 分鐘）
 
-- [ ] 要求 Agent 列出修改檔案、商業規則與驗收條件的對應、測試結果、文件更新、風險與未完成項目。
+- [ ] 要求 Agent 整理交付摘要：
+
+```text
+請整理交付摘要：修改檔案、Rule ID 與 AC 對應、最後一次 pytest -q 的指令與完整輸出、文件更新、未完成項目與風險。沒有實際執行過的項目標為「未驗證」。
+```
+
 - [ ] 由你審查主要 Diff，確認與核准計畫一致；不要只看摘要或通過數量。
-- [ ] 依 [Submission Checklist](#gf-submission) 核對並填寫交付摘要。
+- [ ] 依 [Submission Checklist](#gf-submission) 核對，逐欄確認後才填寫交付摘要。「人和 Agent 各做什麼」請自己寫。
+
+### 如何審查 Diff
+
+1. `git diff --stat`：列出改了哪些檔案、各改多少行。看有沒有計畫外的檔案。
+2. `git diff -- src`：看程式變更。挑一個主要變更，用自己的話說出它做什麼、對應哪個 Rule ID 與 AC、由哪個測試驗證。
+3. `git diff -- tests`：確認沒有刪除或放寬斷言。
+
+若你在步驟 5 每段都有 Commit，用 `git diff HEAD~〈段數〉` 或 `git log -p` 查看全部變更。`git diff` 畫面按 `q` 離開。
 
 ## 時間提示
 
