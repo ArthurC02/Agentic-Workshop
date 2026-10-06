@@ -257,6 +257,74 @@
     });
   }
 
+  /* Steps: a task page with 2+ "檢查點 N · …（第 a–b 分鐘）" headings is split into
+   * 總覽 + one step per top-level heading from the first checkpoint on; one step is
+   * shown at a time and listed as sub-items under the page in the left nav. */
+  var STEP_RE = /^檢查點\s*(\d+)\s*[·・]\s*(.*?)\s*（第\s*([0-9–-]+)\s*分鐘）\s*$/;
+  var steps = {};             // pageId -> [{ id, label, min, el }]
+
+  function buildSteps(art) {
+    var pid = art.getAttribute('data-page'), body = art.querySelector('.rb-page-body');
+    if (!body || body.querySelector(':scope > .rb-step')) return;     // already split
+    delete steps[pid];
+    var heads = $$(':scope > h3[id]', body);
+    if (heads.filter(function (h) { return STEP_RE.test(h.textContent.trim()); }).length < 2) return;
+    var list = [], cur = null, started = false;
+    function open(id, label, min) {
+      cur = { id: id, label: label, min: min, el: el('section', 'rb-step') };
+      cur.el.setAttribute('data-step', id);
+      list.push(cur);
+    }
+    open(pid + '--overview', '總覽', '');
+    cur.el.id = pid + '--overview';
+    Array.prototype.slice.call(body.childNodes).forEach(function (n) {
+      if (n.nodeType === 1 && n.tagName === 'H3' && n.id) {
+        var m = STEP_RE.exec(n.textContent.trim());
+        if (m) started = true;
+        if (started) open(n.id, m ? m[1] + ' · ' + m[2] : n.textContent.trim(), m ? m[3] : '');
+      }
+      cur.el.appendChild(n);
+    });
+    list.forEach(function (s) { body.appendChild(s.el); });
+    steps[pid] = list;
+  }
+
+  function stepIndex(id) {
+    var list = steps[id];
+    if (!list) return -1;
+    var want = store.get('stw:step:' + id);
+    for (var i = 0; i < list.length; i++) if (list[i].id === want) return i;
+    return 0;
+  }
+
+  function showStep(id, i) {
+    var list = steps[id];
+    if (!list) return;
+    list.forEach(function (s, k) { s.el.hidden = k !== i; });
+    store.set('stw:step:' + id, list[i].id);
+  }
+
+  function renderNavSteps() {
+    $$('.rb-nav-steps').forEach(function (n) { n.parentNode.removeChild(n); });
+    var list = steps[currentId];
+    var link = list && !isPageLocked(currentId) && $('.rb-nav-link[data-page="' + currentId + '"]');
+    if (!link) return;
+    var cur = stepIndex(currentId);
+    var ol = el('ol', 'rb-nav-steps');
+    ol.setAttribute('aria-label', pageTitle(currentId) + '：步驟');
+    list.forEach(function (s, k) {
+      var a = el('a', 'rb-nav-step' + (k === cur ? ' is-current' : ''));
+      a.href = '#' + s.id;
+      a.appendChild(el('span', 'rb-nav-step-title', s.label));
+      if (s.min) a.appendChild(el('span', 'rb-badge rb-badge-min', s.min));
+      if (k === cur) a.setAttribute('aria-current', 'step');
+      var li = el('li');
+      li.appendChild(a);
+      ol.appendChild(li);
+    });
+    link.parentNode.appendChild(ol);
+  }
+
   function renderHead(id) {
     var p = pageById[id] || {};
     var locked = isPageLocked(id);
@@ -290,6 +358,12 @@
     if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
     var art = articles[id];
     var hs = art ? $$('.rb-page-body h2[id], .rb-page-body h3[id]', art) : [];
+    var sub = 'H3';
+    if (steps[id]) {
+      var stepEl = steps[id][stepIndex(id)].el;
+      hs = $$('h3[id], h4[id]', stepEl).filter(function (h) { return !h.closest('.rb-include'); });
+      sub = 'H4';
+    }
     var tocBox = $('.rb-toc');
     if (tocBox) tocBox.classList.toggle('is-empty', hs.length === 0);
     if (!hs.length) {
@@ -298,7 +372,7 @@
     }
     var linkFor = {};
     hs.forEach(function (h) {
-      var li = el('li', 'rb-toc-item' + (h.tagName === 'H3' ? ' rb-toc-sub rb-toc-h3' : ''));
+      var li = el('li', 'rb-toc-item' + (h.tagName === sub ? ' rb-toc-sub rb-toc-h3' : ''));
       li.setAttribute('data-level', h.tagName.charAt(1));
       var a = el('a', 'rb-toc-link', h.textContent);
       a.href = '#' + h.id;
@@ -332,9 +406,24 @@
     a.appendChild(el('span', 'rb-pager-title', pageTitle(id)));
     return a;
   }
+  function stepLink(s, dir) {
+    var a = el('a', 'rb-pager-link rb-pager-' + dir);
+    a.href = '#' + s.id;
+    a.appendChild(el('span', 'rb-pager-dir', dir === 'prev' ? '上一步' : '下一步'));
+    a.appendChild(el('span', 'rb-pager-title', s.label));
+    return a;
+  }
   function renderPager(id) {
     if (!pagerEl) return;
     pagerEl.innerHTML = '';
+    var list = !isPageLocked(id) && steps[id], k = list ? stepIndex(id) : -1;
+    if (list && (k > 0 || k < list.length - 1)) {
+      if (k > 0) pagerEl.appendChild(stepLink(list[k - 1], 'prev'));
+      else if (order.indexOf(id) > 0) pagerEl.appendChild(pagerLink(order[order.indexOf(id) - 1], 'prev'));
+      if (k < list.length - 1) pagerEl.appendChild(stepLink(list[k + 1], 'next'));
+      else if (order.indexOf(id) < order.length - 1) pagerEl.appendChild(pagerLink(order[order.indexOf(id) + 1], 'next'));
+      return;
+    }
     var i = order.indexOf(id);
     if (i > 0) pagerEl.appendChild(pagerLink(order[i - 1], 'prev'));
     if (i >= 0 && i < order.length - 1) pagerEl.appendChild(pagerLink(order[i + 1], 'next'));
@@ -351,10 +440,20 @@
     Object.keys(articles).forEach(function (k) { articles[k].hidden = (k !== id); });
     currentId = id;
     store.set('stw:last-page', id);
+    if (steps[id]) {
+      var stepEl = anchorEl && anchorEl.closest ? anchorEl.closest('.rb-step') : null;
+      var k = stepEl ? steps[id].map(function (s) { return s.el; }).indexOf(stepEl) : -1;
+      var before = stepIndex(id);
+      showStep(id, k >= 0 ? k : before);
+      if (k >= 0 && k !== before) changed = true;
+      // Jumping to a step itself (its section or its heading) starts at the top.
+      if (stepEl && (anchorEl === stepEl || anchorEl === stepEl.firstElementChild)) anchorEl = null;
+    }
     renderHead(id);
     renderToc(id);
     renderPager(id);
     updateNavStates();
+    renderNavSteps();
     closeSidebar();
     if (anchorEl) setTimeout(function () { scrollToEl(anchorEl); }, 0);
     else if (changed) { resetScroll(); setTimeout(resetScroll, 0); }
@@ -419,6 +518,29 @@
       setTimeout(function () { doc.body.removeChild(a); URL.revokeObjectURL(url); }, 30000);
       return true;
     } catch (e) { return false; }
+  }
+
+  // Included source documents: copy the original Markdown or save it as a .md file.
+  function initIncludes(ctx) {
+    $$('.rb-include-meta', ctx).forEach(function (meta) {
+      var src = meta.querySelector(':scope > .rb-include-src');
+      if (!src || meta.querySelector(':scope > .rb-include-actions')) return;
+      var md, name = (meta.querySelector('code') || {}).textContent || 'document.md';
+      try { md = JSON.parse(src.textContent); } catch (e) { return; }
+      var box = meta.appendChild(el('span', 'rb-include-actions'));
+      var copy = box.appendChild(el('button', 'rb-chip', '複製 Markdown'));
+      copy.type = 'button';
+      on(copy, 'click', function () {
+        copyText(md).then(function (ok) {
+          toast(ok ? '已複製 ' + name : '無法存取剪貼簿，請改用下載', ok ? 'info' : 'warning');
+        });
+      });
+      var dl = box.appendChild(el('button', 'rb-chip', '下載 .md'));
+      dl.type = 'button';
+      on(dl, 'click', function () {
+        if (!saveBlob(new Blob([md], { type: 'text/markdown;charset=utf-8' }), name)) toast('下載失敗', 'warning');
+      });
+    });
   }
 
   /* ------------------------------------------------------------------ *
@@ -579,6 +701,125 @@
     return out.join('\n').replace(/\n+$/, '') + '\n';
   }
 
+  /* Capsule buttons: click inserts preset text (appended on a new line in textareas;
+     replaces a text input's value) and saves through the field's normal input handler. */
+  function suggestChips(f, inp) {
+    var box = el('div', 'rb-suggest');
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', f.label + '：快速填入');
+    f.suggestions.forEach(function (s) {
+      var label = typeof s === 'string' ? s : s.label;
+      var text = typeof s === 'string' ? s : s.text;
+      var b = el('button', 'rb-chip', label);
+      b.type = 'button';
+      b.title = text;
+      on(b, 'click', function () {
+        if (inp.tagName === 'TEXTAREA' && inp.value.trim()) inp.value = inp.value.replace(/\s*$/, '') + '\n' + text;
+        else inp.value = text;
+        inp.dispatchEvent(new Event('input', { bubbles: true }));
+        // ponytail: CSS field-sizing auto-grows in Chromium; elsewhere grow once here.
+        if (inp.tagName === 'TEXTAREA' && inp.scrollHeight > inp.clientHeight) inp.style.height = (inp.scrollHeight + 4) + 'px';
+        try {
+          inp.focus();
+          var p = inp.value.indexOf('〈', inp.value.length - text.length);
+          if (p >= 0) inp.setSelectionRange(p, inp.value.indexOf('〉', p) + 1);
+        } catch (e) { /* ignore */ }
+      });
+      box.appendChild(b);
+    });
+    return box;
+  }
+
+  /* Export all: every rendered form, one .md per form, foldered by page, as a ZIP. */
+  var allForms = {};          // formId -> { def, values, page }
+
+  function formHasInput(def, values) {
+    return (def.fields || []).some(function (f) {
+      var v = values[f.id];
+      if (f.readonly) return false;
+      if (Array.isArray(v)) return v.some(Boolean);
+      return f.type === 'checkbox' ? !!v : String(v == null ? '' : v).trim() !== '';
+    });
+  }
+
+  var crcTable = null;
+  function crc32(b) {
+    if (!crcTable) {
+      crcTable = [];
+      for (var n = 0; n < 256; n++) {
+        var c = n;
+        for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1;
+        crcTable[n] = c >>> 0;
+      }
+    }
+    var x = -1;
+    for (var i = 0; i < b.length; i++) x = crcTable[(x ^ b[i]) & 255] ^ (x >>> 8);
+    return (x ^ -1) >>> 0;
+  }
+
+  // ponytail: stored (uncompressed) ZIP; a few KB of Markdown needs no deflate.
+  function makeZip(files) {
+    var parts = [], central = [], off = 0, d = new Date();
+    var time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
+    var date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+    files.forEach(function (f) {
+      var name = utf8Encode(f.name), data = utf8Encode(f.text), crc = crc32(data);
+      var h = new DataView(new ArrayBuffer(30));
+      h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true);
+      h.setUint16(10, time, true); h.setUint16(12, date, true); h.setUint32(14, crc, true);
+      h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, name.length, true);
+      parts.push(h.buffer, name, data);
+      var c = new DataView(new ArrayBuffer(46));
+      c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true);
+      c.setUint16(12, time, true); c.setUint16(14, date, true); c.setUint32(16, crc, true);
+      c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, name.length, true);
+      c.setUint32(42, off, true);
+      central.push(c.buffer, name);
+      off += 30 + name.length + data.length;
+    });
+    var size = 0;
+    central.forEach(function (p) { size += p.byteLength; });
+    var e = new DataView(new ArrayBuffer(22));
+    e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true);
+    e.setUint32(12, size, true); e.setUint32(16, off, true);
+    return new Blob(parts.concat(central, [e.buffer]), { type: 'application/zip' });
+  }
+
+  function exportAll() {
+    var d = new Date(), stamp = d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate()) + '-' + pad2(d.getHours()) + pad2(d.getMinutes());
+    var files = [], index = ['# Smart Ticket 工作坊：填寫內容匯出', '', '匯出時間：' + d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()) + ' ' + nowHMS(), ''];
+    var empty = [];
+    order.forEach(function (pid, i) {
+      var mine = Object.keys(allForms).filter(function (fid) { return allForms[fid].page === pid; });
+      var filled = mine.filter(function (fid) { return formHasInput(allForms[fid].def, allForms[fid].values); });
+      mine.forEach(function (fid) { if (filled.indexOf(fid) < 0) empty.push(pageTitle(pid) + '：' + (allForms[fid].def.title || fid)); });
+      if (!filled.length) return;
+      var dir = pad2(i + 1) + '-' + pid + '/';
+      index.push('## ' + pageTitle(pid), '');
+      filled.forEach(function (fid) {
+        files.push({ name: dir + fid + '.md', text: formToMarkdown(allForms[fid].def, allForms[fid].values) });
+        index.push('- [' + (allForms[fid].def.title || fid) + '](' + dir + fid + '.md)');
+      });
+      index.push('');
+    });
+    if (!files.length) { toast('目前沒有任何已填寫的表單', 'warning'); return; }
+    if (empty.length) index.push('## 未填寫（未匯出）', '', empty.map(function (s) { return '- ' + s; }).join('\n'), '');
+    files.unshift({ name: 'README.md', text: index.join('\n') });
+    var ok = saveBlob(makeZip(files), 'smart-ticket-runbook-' + stamp + '.zip');
+    toast(ok ? '已下載 ' + (files.length - 1) + ' 份表單（ZIP）' : '瀏覽器阻擋了下載，請改用各表單的「匯出 Markdown」', ok ? 'info' : 'danger');
+  }
+
+  function initExportAll(ctx) {
+    $$('.rb-export-all', ctx).forEach(function (box) {
+      if (box.firstChild) return;
+      var b = el('button', 'rb-btn rb-btn-primary', '下載全部填寫內容（ZIP）');
+      b.type = 'button';
+      on(b, 'click', exportAll);
+      box.appendChild(b);
+      box.appendChild(el('span', 'rb-field-hint', '每份已填寫的表單各一個 .md 檔，依章節分資料夾，附 README 目錄。'));
+    });
+  }
+
   function initForm(host) {
     if (host.getAttribute('data-rb-init')) return;
     var defEl = host.querySelector('script.rb-form-def');
@@ -593,6 +834,8 @@
     var saved = store.getJSON(key) || {};
     var values = {}, inputs = {};
     var fields = def.fields || [];
+    var pageEl = host.closest ? host.closest('.rb-page') : null;
+    allForms[fid] = { def: def, values: values, page: pageEl ? pageEl.getAttribute('data-page') : '' };
 
     var card = el('div', 'rb-form-card' + (def.kind ? ' rb-form-' + def.kind : ''));
     if (def.kind) card.setAttribute('data-kind', def.kind);
@@ -681,6 +924,7 @@
         on(inp, f.type === 'select' ? 'change' : 'input', function () { values[f.id] = inp.value; persist(); });
         inputs[f.id] = inp;
         wrap.appendChild(inp);
+        if (Array.isArray(f.suggestions) && !f.readonly) wrap.appendChild(suggestChips(f, inp));
       }
       if (f.hint) wrap.appendChild(el('p', 'rb-field-hint', f.hint));
       card.appendChild(wrap);
@@ -738,9 +982,11 @@
 
   function initComponents(ctx) {
     initCopy(ctx);
+    initIncludes(ctx);
     initCmd(ctx);
     initChecks(ctx);
     initForms(ctx);
+    initExportAll(ctx);
     initDownloads(ctx);
   }
 
@@ -819,6 +1065,7 @@
       body.innerHTML = pages[pid];
       art.classList.add('is-unlocked');
       initComponents(body);
+      buildSteps(art);
     });
     unlocked[gid] = true;
     if (g && g.pages) g.pages.forEach(function (pid) { if (articles[pid]) articles[pid].classList.add('is-unlocked'); });
@@ -839,7 +1086,7 @@
   function afterUnlockChange() {
     updateProgress();
     buildSearchIndex();
-    if (currentId) { renderHead(currentId); renderToc(currentId); renderPager(currentId); }
+    if (currentId) showPage(currentId);
     updateNavStates();
   }
 
@@ -923,6 +1170,13 @@
     hits.slice(0, 12).forEach(function (h) {
       var a = el('a', 'rb-search-hit rb-search-result' + (h.it.locked ? ' is-locked' : ''));
       a.href = '#p-' + h.it.id;
+      if (!h.it.locked && steps[h.it.id]) {
+        steps[h.it.id].some(function (s) {
+          if ((s.el.textContent || '').toLowerCase().indexOf(q) < 0) return false;
+          a.href = '#' + s.id;
+          return true;
+        });
+      }
       a.setAttribute('role', 'option');
       a.appendChild(el('b', 'rb-search-result-title', h.it.title));
       if (h.it.section) a.appendChild(el('span', 'rb-search-result-section', h.it.section));
@@ -976,6 +1230,8 @@
   /* ------------------------------------------------------------------ *
    * Shell chrome: theme, sidebar (mobile), keyboard, zip/temp warning
    * ------------------------------------------------------------------ */
+  function initExportBtn() { on($('.rb-export-btn'), 'click', exportAll); }
+
   function initTheme() {
     on($('.rb-theme-btn'), 'click', function () {
       var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -1047,8 +1303,10 @@
     try { restored = restoreUnlocked(); } catch (e) { restored = []; }
     zipTempWarning();
     initComponents(doc);
+    Object.keys(articles).forEach(function (k) { buildSteps(articles[k]); });
     initSearch();
     initTheme();
+    initExportBtn();
     initSidebar();
     initKeys();
     buildSearchIndex();

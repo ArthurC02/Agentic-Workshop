@@ -516,6 +516,28 @@ kbd {
   border: 1.5px solid var(--c-line);
   background: transparent;
 }
+.rb-nav-steps {
+  list-style: none;
+  margin: .15rem 0 .45rem .9rem;
+  padding: 0 0 0 .55rem;
+  border-left: 1px solid var(--c-line);
+}
+.rb-nav-step {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .5rem;
+  border-radius: var(--radius-sm);
+  color: var(--c-ink-2);
+  font-size: .83rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.rb-nav-step:hover { background: var(--c-surface-2); color: var(--c-ink); }
+.rb-nav-step-title { flex: 1 1 auto; min-width: 0; }
+.rb-nav-step.is-current { background: var(--c-tint); color: var(--c-primary-700); font-weight: 700; }
+.rb-nav-step.is-current .rb-badge { background: var(--c-surface); }
+.rb-step > :first-child { margin-top: 0; }
 .rb-nav-link.is-current {
   background: var(--c-tint);
   color: var(--c-primary-700);
@@ -1128,6 +1150,10 @@ pre.rb-code code {
   -webkit-mask: var(--i-file) center / contain no-repeat;
   mask: var(--i-file) center / contain no-repeat;
 }
+.rb-export-all { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 1rem 0; }
+.rb-export-all .rb-field-hint { margin: 0; }
+.rb-include-actions { margin-left: auto; display: inline-flex; gap: .4rem; }
+.rb-include-actions .rb-chip::before { content: none; }
 .rb-page-body .rb-include-meta code {
   background: var(--c-surface);
   border: 1px solid var(--c-line-soft);
@@ -1469,6 +1495,20 @@ pre.rb-code code {
   font-size: .88rem;
   font-weight: 700;
 }
+.rb-suggest { display: flex; flex-wrap: wrap; gap: .35rem; margin: .4rem 0 .2rem; }
+.rb-chip {
+  padding: .2rem .7rem;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  background: var(--c-surface);
+  color: var(--c-ink-2);
+  font: inherit;
+  font-size: .8rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.rb-chip::before { content: "+ "; color: var(--c-primary, #0093C1); font-weight: 700; }
+.rb-chip:hover, .rb-chip:focus-visible { border-color: var(--c-primary, #0093C1); color: var(--c-ink); }
 .rb-field-hint {
   margin: -.1rem 0 .4rem;
   color: var(--c-ink-2);
@@ -1494,7 +1534,7 @@ pre.rb-code code {
   line-height: 1.5;
   transition: border-color .15s, box-shadow .15s, background-color .15s;
 }
-.rb-form-card textarea { min-height: 6.5rem; resize: vertical; }
+.rb-form-card textarea { min-height: 6.5rem; max-height: 32rem; resize: vertical; field-sizing: content; }
 .rb-form-card select {
   -webkit-appearance: none;
   appearance: none;

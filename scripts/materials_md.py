@@ -39,11 +39,14 @@ class RenderContext:
 
 
 MAX_INCLUDE_DEPTH = 8
+# Source documents open with "> 讀者：… 使用時機：… 前置條件：…" right under the title; that
+# authoring metadata is noise for learners, so includes drop it (page and copy/export alike).
+READER_NOTE_RE = re.compile(r"\A(\ufeff?#[^\n]*?(\r?\n))(?:[ \t]*\r?\n)*>[ \t]*(?:目標)?讀者：[^\n]*\n(?:>[^\n]*\n)*(?:[ \t]*\r?\n)*")
 CALLOUT_KINDS = ("info", "tip", "warning", "danger")
-EXTENSIONS = ("cmd", "callout", "include", "download", "form", "gate")
+EXTENSIONS = ("cmd", "callout", "include", "download", "form", "gate", "exportall")
 FIELD_TYPES = ("text", "textarea", "select", "checkbox", "checklist")
 FORM_KEYS = {"id", "title", "kind", "fields"}
-FIELD_KEYS = {"id", "label", "type", "options", "items", "hint", "value", "readonly"}
+FIELD_KEYS = {"id", "label", "type", "options", "items", "hint", "value", "readonly", "suggestions"}
 LOCAL_HOSTS = ("127.0.0.1", "localhost")
 ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
 _BOM = chr(0xFEFF)
@@ -123,16 +126,21 @@ def make_gate_def(gate_id: str) -> dict:
     upper = gate_id.upper()
     return {
         "id": gate_id,
-        "title": f"Gate Decision · {upper}",
+        "title": f"Gate 核准決策 · {upper}",
         "kind": "gate",
         "fields": [
-            {"id": "gate_id", "label": "Gate ID", "type": "text", "value": upper, "readonly": True},
-            {"id": "decision", "label": "Decision", "type": "select",
-             "options": ["APPROVE", "APPROVE WITH CONDITIONS", "REJECT AND REVISE"]},
-            {"id": "evidence", "label": "Evidence Reviewed", "type": "textarea"},
-            {"id": "conditions", "label": "Conditions / Required Corrections", "type": "textarea"},
-            {"id": "approver", "label": "Approver", "type": "text"},
-            {"id": "timestamp", "label": "Timestamp / Workshop Minute", "type": "text"},
+            {"id": "gate_id", "label": "Gate 編號", "type": "text", "value": upper, "readonly": True},
+            {"id": "decision", "label": "決策", "type": "select",
+             "options": ["核准（APPROVE）", "有條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）"]},
+            {"id": "evidence", "label": "已審查的證據", "type": "textarea",
+             "suggestions": [{"label": "證據範本", "text": "Diff：〈檔案〉\n測試：〈指令與結果〉\n文件：〈路徑〉"},
+                             {"label": "測試輸出", "text": "pytest -q：〈數字〉 passed、〈數字〉 failed"}]},
+            {"id": "conditions", "label": "條件／必要修正", "type": "textarea",
+             "suggestions": [{"label": "條件範本", "text": "續行前必須：〈條件〉"},
+                             {"label": "修正範本", "text": "退回修正：〈問題〉，補上〈證據／測試〉後再送審"}, "無"]},
+            {"id": "approver", "label": "核准人", "type": "text"},
+            {"id": "timestamp", "label": "時間／工作坊分鐘", "type": "text",
+             "suggestions": [{"label": "分鐘範本", "text": "第 〈分〉 分鐘"}]},
         ],
     }
 
@@ -182,6 +190,17 @@ def _validate_form(obj) -> dict:
             raise MarkdownError(f"{where}: 'readonly' must be a boolean")
         if "value" in fdef and not isinstance(fdef["value"], (str, bool, list)):
             raise MarkdownError(f"{where}: 'value' must be a string, boolean or list")
+        if "suggestions" in fdef:
+            # Capsule buttons that insert preset text: "text" or {"label": ..., "text": ...}.
+            sug = fdef["suggestions"]
+            ok = isinstance(sug, list) and sug and ftype in ("text", "textarea") and all(
+                (isinstance(s, str) and s.strip()) or (
+                    isinstance(s, dict) and set(s) == {"label", "text"}
+                    and all(isinstance(v, str) and v.strip() for v in s.values()))
+                for s in sug)
+            if not ok:
+                raise MarkdownError(f"{where}: 'suggestions' must be a non-empty list of strings or "
+                                    "{{label, text}} objects on a text/textarea field")
     return obj
 
 
@@ -915,14 +934,18 @@ class _BlockParser:
         text = self.ctx.load_include(zip_name, path)
         if not isinstance(text, str):
             raise MarkdownError(f"```include: loader returned {type(text).__name__} for {zip_name}:{path}")
+        text = READER_NOTE_RE.sub(r"\1\2", text, count=1)
         stack.append(key)
         try:
             inner = render_markdown(text, self.ctx, heading_shift=self.shift, source=path)
         finally:
             stack.pop()
         base = path.rstrip("/").rsplit("/", 1)[-1]
+        # Raw Markdown for the copy / download buttons; "</" escaped so it cannot close the script.
+        raw = json.dumps(text, ensure_ascii=False).replace("</", "<\\/")
         return (f'<section class="rb-include" data-source="{_esc(zip_name + ":" + path)}">'
-                f'<div class="rb-include-meta">來源文件：<code>{_esc(base)}</code></div>\n'
+                f'<div class="rb-include-meta">來源文件：<code>{_esc(base)}</code>'
+                f'<script type="application/json" class="rb-include-src">{raw}</script></div>\n'
                 f"{inner}\n</section>")
 
     def _ext_download(self, words, body) -> str:
@@ -952,6 +975,11 @@ class _BlockParser:
     def _ext_gate(self, words, body) -> str:
         kv = _parse_kv(_single_line(body, "```gate"), ("id",), "```gate")
         return _form_html(make_gate_def(kv["id"]))
+
+    def _ext_exportall(self, words, body) -> str:
+        if any(line.strip() for line in body):
+            raise MarkdownError("```exportall: takes no content")
+        return '<div class="rb-export-all"></div>'
 
 
 def _render_blocks(blocks: list[tuple[str, str]], tight: bool = False) -> list[str]:

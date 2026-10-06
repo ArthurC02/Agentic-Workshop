@@ -414,9 +414,22 @@ class IncludeTests(unittest.TestCase):
         out = render("# Page\n\n" + fence("include", INC), page="pg", rec=rec)
         self.assertEqual(out, '<h2 id="pg--h1">Page</h2>\n'
                               '<section class="rb-include" data-source="pkg.zip:agentic-workshop/x/01-doc.md">'
-                              '<div class="rb-include-meta">來源文件：<code>01-doc.md</code></div>\n'
+                              '<div class="rb-include-meta">來源文件：<code>01-doc.md</code>'
+                              '<script type="application/json" class="rb-include-src">"# Doc\\n\\n## Sub\\n\\ntext <b>"</script></div>\n'
                               '<h2 id="pg--h2">Doc</h2>\n<h3 id="pg--h3">Sub</h3>\n<p>text &lt;b&gt;</p>\n</section>')
         self.assertEqual(rec.include_calls, [("pkg.zip", "agentic-workshop/x/01-doc.md")])
+
+    def test_exportall_block(self):
+        self.assertEqual(render(fence("exportall", "")), '<div class="rb-export-all"></div>')
+        with self.assertRaises(MarkdownError):
+            render(fence("exportall", "x"))
+
+    def test_include_drops_reader_note(self):
+        doc = "# Doc\r\n\r\n> 讀者：小組。使用時機：B3。\r\n> 前置條件：無。\r\n\r\nBody\r\n\r\n> 讀者：kept later\r\n"
+        out = render(fence("include", INC), page="pg", rec=Recorder(includes={("pkg.zip", "agentic-workshop/x/01-doc.md"): doc}))
+        self.assertNotIn("使用時機", out)
+        self.assertIn("kept later", out)
+        self.assertIn('"# Doc\\r\\n\\r\\nBody', out)
 
     def test_links_inside_include_get_source_path(self):
         rec = Recorder(includes={("pkg.zip", "a/b.md"): "[c](c.md) [p](#page)"}, links={"c.md": "#p-c"})
@@ -504,6 +517,11 @@ class FormTests(unittest.TestCase):
         self.assertEqual(out.count("</script>"), 1)
         self.assertIn("\\u003c/script\\u003e \\u0026 \\u003cx\\u003e", out)
 
+    def test_suggestions_accepted(self):
+        sug = ["沒有", {"label": "Rule 範本", "text": "Rule 〈ID〉：〈內容〉"}]
+        obj = {"id": "f1", "title": "T", "fields": [{"id": "a", "label": "A", "type": "textarea", "suggestions": sug}]}
+        self.assertEqual(form_def(render(fence("form", json.dumps(obj, ensure_ascii=False))))[1], obj)
+
     def test_validation_errors(self):
         def variant(**changes):
             obj = json.loads(json.dumps(self.FORM))
@@ -519,6 +537,9 @@ class FormTests(unittest.TestCase):
             variant(fields=[{**field, "type": "checklist"}]), variant(fields=[field, field]),
             variant(fields=[{**field, "placeholder": "p"}]), variant(fields=[{**field, "readonly": "yes"}]),
             variant(fields=["f"]),
+            variant(fields=[{**field, "suggestions": []}]), variant(fields=[{**field, "suggestions": [""]}]),
+            variant(fields=[{**field, "suggestions": [{"label": "a"}]}]),
+            variant(fields=[{**field, "type": "checkbox", "suggestions": ["a"]}]),
         ]
         bad.append(json.dumps({k: v for k, v in self.FORM.items() if k != "title"}))
         bad.append(json.dumps({k: v for k, v in self.FORM.items() if k != "fields"}))
@@ -528,14 +549,19 @@ class FormTests(unittest.TestCase):
 
 
 class GateTests(unittest.TestCase):
-    EXPECTED = {"id": "gate1", "title": "Gate Decision · GATE1", "kind": "gate", "fields": [
-        {"id": "gate_id", "label": "Gate ID", "type": "text", "value": "GATE1", "readonly": True},
-        {"id": "decision", "label": "Decision", "type": "select",
-         "options": ["APPROVE", "APPROVE WITH CONDITIONS", "REJECT AND REVISE"]},
-        {"id": "evidence", "label": "Evidence Reviewed", "type": "textarea"},
-        {"id": "conditions", "label": "Conditions / Required Corrections", "type": "textarea"},
-        {"id": "approver", "label": "Approver", "type": "text"},
-        {"id": "timestamp", "label": "Timestamp / Workshop Minute", "type": "text"}]}
+    EXPECTED = {"id": "gate1", "title": "Gate 核准決策 · GATE1", "kind": "gate", "fields": [
+        {"id": "gate_id", "label": "Gate 編號", "type": "text", "value": "GATE1", "readonly": True},
+        {"id": "decision", "label": "決策", "type": "select",
+         "options": ["核准（APPROVE）", "有條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）"]},
+        {"id": "evidence", "label": "已審查的證據", "type": "textarea",
+         "suggestions": [{"label": "證據範本", "text": "Diff：〈檔案〉\n測試：〈指令與結果〉\n文件：〈路徑〉"},
+                         {"label": "測試輸出", "text": "pytest -q：〈數字〉 passed、〈數字〉 failed"}]},
+        {"id": "conditions", "label": "條件／必要修正", "type": "textarea",
+         "suggestions": [{"label": "條件範本", "text": "續行前必須：〈條件〉"},
+                         {"label": "修正範本", "text": "退回修正：〈問題〉，補上〈證據／測試〉後再送審"}, "無"]},
+        {"id": "approver", "label": "核准人", "type": "text"},
+        {"id": "timestamp", "label": "時間／工作坊分鐘", "type": "text",
+         "suggestions": [{"label": "分鐘範本", "text": "第 〈分〉 分鐘"}]}]}
 
     def test_make_gate_def(self):
         self.assertEqual(make_gate_def("gate1"), self.EXPECTED)
@@ -611,7 +637,8 @@ class RealChapterSmokeTests(unittest.TestCase):
                            "label", "input", "span", "blockquote", "hr", "br", "div", "table", "thead", "tbody",
                            "tr", "th", "td", "pre", "button", "section", "script"}
                 self.assertLessEqual(tags, allowed)
-                self.assertEqual(out.count("<script"), out.count('<script type="application/json" class="rb-form-def">'))
+                self.assertEqual(out.count("<script"), out.count('<script type="application/json" class="rb-form-def">')
+                                 + out.count('<script type="application/json" class="rb-include-src">'))
                 for _, raw in re.findall(r'data-form-id="([^"]+)"><script[^>]*>(.*?)</script>', out, re.S):
                     self.assertIn("fields", json.loads(raw))
 
