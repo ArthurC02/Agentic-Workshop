@@ -1,0 +1,428 @@
+{
+  "source_file_count": 54,
+  "changed_files": [
+    "README.md",
+    "docs/adr/001-use-in-memory-repositories.md",
+    "docs/adr/002-introduce-discount-policy.md",
+    "docs/adr/003-record-notifications-synchronously.md",
+    "docs/api-examples.md",
+    "docs/architecture.md",
+    "docs/business-rules.md",
+    "docs/change-booking-guide.md",
+    "docs/discount-overview.md",
+    "docs/version-history.md",
+    "pyproject.toml",
+    "src/smart_ticket/application/booking_service.py",
+    "src/smart_ticket/application/change_booking_service.py",
+    "src/smart_ticket/domain/discounts.py",
+    "src/smart_ticket/domain/models.py",
+    "src/smart_ticket/main.py",
+    "src/smart_ticket/schemas/contracts.py",
+    "tests/integration/test_advance.py"
+  ],
+  "added_files": [
+    "tests/integration/test_best_discount_api.py",
+    "tests/unit/test_best_discount_policy.py"
+  ],
+  "b1_source_hashes_unchanged": true,
+  "original_g1_and_other_b1_test_files_unchanged": true,
+  "intentional_policy_test_migration": [
+    "tests/integration/test_advance.py"
+  ],
+  "test_passed": 55,
+  "test_exit_code": 0,
+  "skip": 0,
+  "xfail": 0,
+  "warnings": [
+    "The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead."
+  ],
+  "test_results": [
+    {
+      "nodeid": "tests/integration/test_advance.py::test_advance_purchase_thirteen_fourteen_and_fifteen_day_boundary",
+      "outcome": "passed",
+      "duration": 0.012057600004482083,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_advance.py::test_corporate_advance_uses_best_single_discount",
+      "outcome": "passed",
+      "duration": 0.005593299996689893,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_b0_api.py::test_new_endpoints_report_missing_resources",
+      "outcome": "passed",
+      "duration": 0.009825799999816809,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_b0_api.py::test_invalid_change_contract_does_not_mutate_booking",
+      "outcome": "passed",
+      "duration": 0.007642700002179481,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_best_discount_api.py::test_mixed_triple_eligibility_exposes_per_passenger_discount_without_stacking",
+      "outcome": "passed",
+      "duration": 0.0027531000014278106,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_best_discount_api.py::test_corporate_student_selects_student_rate_even_without_advance",
+      "outcome": "passed",
+      "duration": 0.003347100006067194,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_best_discount_api.py::test_change_reprices_each_passenger_with_same_policy_and_preserves_paid_order",
+      "outcome": "passed",
+      "duration": 0.006716299998515751,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_best_discount_api.py::test_failed_change_preserves_fare_discount_and_all_ledgers_atomically",
+      "outcome": "passed",
+      "duration": 0.006634600002143998,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_changes.py::test_paid_change_transfers_seats_and_records_fare_difference",
+      "outcome": "passed",
+      "duration": 0.016532499997993,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_changes.py::test_change_rejects_pending_missing_and_insufficient_target_atomically",
+      "outcome": "passed",
+      "duration": 0.02030600000580307,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_sellable_trips",
+      "outcome": "passed",
+      "duration": 0.009074800000234973,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_exact_trip_filters",
+      "outcome": "passed",
+      "duration": 0.016869799997948576,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_empty_trip_query",
+      "outcome": "passed",
+      "duration": 0.00330250000115484,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_adult_booking",
+      "outcome": "passed",
+      "duration": 0.005043599994678516,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_student_booking",
+      "outcome": "passed",
+      "duration": 0.006203600001754239,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_mixed_booking_reserves_seats",
+      "outcome": "passed",
+      "duration": 0.014504099999612663,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_zero_passengers_rejected",
+      "outcome": "passed",
+      "duration": 0.005031300002883654,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_more_than_four_rejected",
+      "outcome": "passed",
+      "duration": 0.008553500003472436,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_insufficient_seats_rejected",
+      "outcome": "passed",
+      "duration": 0.005236700002569705,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_missing_resources",
+      "outcome": "passed",
+      "duration": 0.01774429999932181,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_happy_path_and_paid_order_query",
+      "outcome": "passed",
+      "duration": 0.016501700003573205,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_payment_then_duplicate_rejected",
+      "outcome": "passed",
+      "duration": 0.012026700002024882,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_failed_payment_preserves_pending",
+      "outcome": "passed",
+      "duration": 0.010887299999012612,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_features.py::test_request_validation",
+      "outcome": "passed",
+      "duration": 0.0031667000002926216,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_members.py::test_optional_and_standard_member_preserve_adult_fare",
+      "outcome": "passed",
+      "duration": 0.01498390000051586,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_members.py::test_corporate_member_discount_and_invalid_member_atomic",
+      "outcome": "passed",
+      "duration": 0.009700299997348338,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_records.py::test_booking_and_payment_append_queryable_audit_events",
+      "outcome": "passed",
+      "duration": 0.01698430000396911,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_records.py::test_refund_creates_notification_and_audit_records",
+      "outcome": "passed",
+      "duration": 0.019238599998061545,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_refunds.py::test_refund_releases_capacity_once_and_preserves_original_order",
+      "outcome": "passed",
+      "duration": 0.013277099998958874,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_refunds.py::test_pending_refund_is_rejected_without_releasing_reservation",
+      "outcome": "passed",
+      "duration": 0.005996999992930796,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_seats.py::test_seat_ids_are_unique_and_capacity_failure_leaves_no_assignment",
+      "outcome": "passed",
+      "duration": 0.01161619999766117,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_seats.py::test_reset_restores_seed_clock_gateway_and_all_transaction_ledgers",
+      "outcome": "passed",
+      "duration": 0.008868000004440546,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_seed.py::test_full_b0_seed_extends_original_routes",
+      "outcome": "passed",
+      "duration": 0.003708199998072814,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/integration/test_seed.py::test_member_seed_and_departure_times_are_fixed",
+      "outcome": "passed",
+      "duration": 0.008272999999462627,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/test_health.py::test_health",
+      "outcome": "passed",
+      "duration": 0.0037188999995123595,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[adult]",
+      "outcome": "passed",
+      "duration": 0.000640199999907054,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[student]",
+      "outcome": "passed",
+      "duration": 0.00034079999750247225,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[advance]",
+      "outcome": "passed",
+      "duration": 0.00038950000453041866,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[corporate]",
+      "outcome": "passed",
+      "duration": 0.0007988999932422303,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[student-advance]",
+      "outcome": "passed",
+      "duration": 0.0005120999994687736,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[corporate-advance]",
+      "outcome": "passed",
+      "duration": 0.0004261999929440208,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_best_discount_policy.py::test_selects_best_single_candidate[all-three]",
+      "outcome": "passed",
+      "duration": 0.00047400000039488077,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_fare_policy.py::test_adult_fare_is_full_base_fare",
+      "outcome": "passed",
+      "duration": 0.0003242999955546111,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_fare_policy.py::test_student_fare_is_seventy_five_percent",
+      "outcome": "passed",
+      "duration": 0.0003536000003805384,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_fare_policy.py::test_mixed_passenger_fares_sum_as_integers",
+      "outcome": "passed",
+      "duration": 0.0005167999988771044,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_zero_passengers_rejected_without_mutating_store",
+      "outcome": "passed",
+      "duration": 0.0004850000041187741,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_five_passengers_rejected_without_mutating_store",
+      "outcome": "passed",
+      "duration": 0.00038719999429304153,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_four_passengers_are_accepted",
+      "outcome": "passed",
+      "duration": 0.0011296000011498109,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_insufficient_seats_rejected_atomically",
+      "outcome": "passed",
+      "duration": 0.0004324999972595833,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_successful_mixed_booking_reserves_seats_and_starts_pending",
+      "outcome": "passed",
+      "duration": 0.0005983000010019168,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_missing_trip_rejected_without_mutating_store",
+      "outcome": "passed",
+      "duration": 0.0003451000011409633,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_payment_success_marks_paid_and_creates_one_matching_order",
+      "outcome": "passed",
+      "duration": 0.0005362000010791235,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_duplicate_payment_rejected_without_second_order",
+      "outcome": "passed",
+      "duration": 0.0005362000010791235,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_failed_payment_keeps_pending_without_order",
+      "outcome": "passed",
+      "duration": 0.0005189000003156252,
+      "traceback": null
+    },
+    {
+      "nodeid": "tests/unit/test_services.py::test_missing_booking_and_order_are_reported",
+      "outcome": "passed",
+      "duration": 0.0004608000017469749,
+      "traceback": null
+    }
+  ],
+  "participant_task_card_scan": "PASS",
+  "source_sha256": {
+    ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+    "README.md": "8332cf7dfeccf34dac65b7c0791ce097f3b0077bce5a90452b5a06e0101f07b5",
+    "docs/adr/001-use-in-memory-repositories.md": "a48104ceb05534998f9108afdce2b054ec7f840b40cd9409b97ec23e3c2e5dea",
+    "docs/adr/002-introduce-discount-policy.md": "3d34590fa303142811a10a62db2947a3e809e18dc6780d1000f4b3e920d06de9",
+    "docs/adr/003-record-notifications-synchronously.md": "5750d43626286f78de5c02728730e1f709724c8df7b3fb0263cb93a13275dcf0",
+    "docs/api-examples.md": "18e832c37cd48e0989066208829e42d4f41601c468ee2c6f14e4086d9b2dedc3",
+    "docs/architecture.md": "225681ded21550ac573d51f71e9728c0c39ae7f4395c9f2b92b4899e4b136d5c",
+    "docs/business-rules.md": "dc7dd8f36fd5e20b7272677bacae3b5a67c79b6aa3bd040ca2a309721b18125a",
+    "docs/change-booking-guide.md": "59245ee18ab23721a7fe505a3be7626d4a32d95fba8ee0a0d4d993c34eb5fe24",
+    "docs/discount-overview.md": "67b08306cc4fcf453f20fe218f6953e391bfb6556486e2002ca0cdf7f1e095d4",
+    "docs/version-history.md": "47e94e616d1fc86fd5b66f4e2f733ccf11df5750b595e3bb17a7d54a589c7514",
+    "pyproject.toml": "faedd87ac66a682b92c7cfd5ceb63d6cac669d807b3723b8f17db440e4a71edd",
+    "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+    "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+    "src/smart_ticket/api/dependencies.py": "338f54891171239c6f340e3d13ff8daf160be99afbcc94a0d99e4270e254ac65",
+    "src/smart_ticket/api/routes.py": "ad7b24f1459e8f268a9afd01167c767978c0dc0f5107444873cdc8f339081409",
+    "src/smart_ticket/application/audit_service.py": "119fca819b322f62a1e958ee2c37a0614bde736b290bc387bcc913f71d0b08d2",
+    "src/smart_ticket/application/booking_service.py": "5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+    "src/smart_ticket/application/change_booking_service.py": "e9a9b4f30d5ef63026219c3d538f2095cccdd94a6602a4b8d9e9ddab6ed49950",
+    "src/smart_ticket/application/member_service.py": "8581ebb95d708d565cec6b8105fcdda91e5ebdecbdd313ee5d20508b4c8a073f",
+    "src/smart_ticket/application/notification_service.py": "38e08be0580299840fb3806ecd85ede2199c0c20f8bd8522279d4f56073f73f0",
+    "src/smart_ticket/application/order_service.py": "831396a908de91204da1284edcc9d896be158199d25c07bd9086ea5a7c150270",
+    "src/smart_ticket/application/payment_service.py": "0cd0ede68fd8290f08a9092faeb286ce7356d5bf2516ddbfcf82acec3f2571e8",
+    "src/smart_ticket/application/refund_service.py": "97ac389dbc04c99adecf7ea411237789278daeb5145512222e27aab06306b000",
+    "src/smart_ticket/application/seat_service.py": "005e52eb6f13e7c396455324c4f2342f080a03ee8f20fafebfb15e0a00419bbf",
+    "src/smart_ticket/application/trip_service.py": "2f2e9ef0a497130572b5f92aecba91761882adc24c9c5945dadbe489cd3f5c4e",
+    "src/smart_ticket/domain/discounts.py": "5035297c2da3cbab351d208056157a3682c1ae8f5b03d5eca8856122080b71da",
+    "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+    "src/smart_ticket/domain/fare_policy.py": "16ecb901f6d8dd3abebdbc71be3ed4ddd5935f95f582724b4aedfb5fc69ff7f5",
+    "src/smart_ticket/domain/members.py": "c1a58002f6c63f9ab6e370f93c3d5e6ad391b36bc3f864b3979eb39cb9b9d181",
+    "src/smart_ticket/domain/models.py": "68f106501df32e502f8fb65f1fbed48511e04d8c0355a9481190cdcd15e41c4c",
+    "src/smart_ticket/domain/records.py": "79137d29152e2a7ca52e0ad495166ffe373af9337449507fe682dbd447252bc5",
+    "src/smart_ticket/domain/repositories.py": "e077ab4e774652d173d064bd855efe63a9a4bf58fb5303e65cbebe5d8b0e0501",
+    "src/smart_ticket/infrastructure/clock.py": "dbf28972483502a76e2432beb3a2f3642fc2419e16b74c5105e435e12dba070f",
+    "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+    "src/smart_ticket/infrastructure/seed_data.py": "07ea8653b263230e756b7e59d7e05ab0eaa8885025ad311df79c02042f6fbfd5",
+    "src/smart_ticket/infrastructure/store.py": "6100d65989d9debc95a4afe451d52ff158e6ea1837ef7fac3eb48c1f398ad920",
+    "src/smart_ticket/main.py": "85c98f502eb75ca470fe636873f33f0433d581d7f88eea916cacddd5b5f818d3",
+    "src/smart_ticket/schemas/contracts.py": "57cc0f723704285bc51ba271d17a256f08f59df4d17ae90869650834be7dc717",
+    "tests/conftest.py": "90ec2ff545786059cbf27c201bcb1e75e6d3396740939087df25ce03b8e1e520",
+    "tests/integration/test_advance.py": "a581320e7a03f3cf77979a1ff4244753015593db3fc9e79acf7a945a41a8c81a",
+    "tests/integration/test_b0_api.py": "d69259405ef8a39917aac61f3271eafa6d826fb0df0a629609ae10461732a111",
+    "tests/integration/test_best_discount_api.py": "f7d604b157e9e1208c8cc9fa6ab8a292cc70e60a2221b59e0cec3e2d629bab41",
+    "tests/integration/test_changes.py": "6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4",
+    "tests/integration/test_features.py": "9548fd432ceeff4373aa2087bdb903b7dce353250ea66c94870fb5a49b674cb1",
+    "tests/integration/test_members.py": "2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4",
+    "tests/integration/test_records.py": "97b0bcf6cd5968faf127f40384e14d82cc761a433b5f5a7c74086aed6fdb80d9",
+    "tests/integration/test_refunds.py": "762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea",
+    "tests/integration/test_seats.py": "edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e",
+    "tests/integration/test_seed.py": "2a54bc7c4af6d9a14fe905d5f07c547ce38d326197568f9459bbf7df8a7431db",
+    "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+    "tests/unit/test_best_discount_policy.py": "026f6b2dd0a173da45db9e1e56d6d3c167e2ddf6f9fd42b81d0ba4243408119f",
+    "tests/unit/test_fare_policy.py": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8",
+    "tests/unit/test_services.py": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
+  }
+}

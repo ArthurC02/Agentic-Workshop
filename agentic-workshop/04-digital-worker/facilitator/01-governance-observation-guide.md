@@ -1,0 +1,34 @@
+# Digital Worker治理觀察指南
+
+> 讀者：主持人與觀察人員。時機：B3第63–76分鐘及回顧。前置：熟悉B3需求、Operating Rules與三Gate。可見性：Facilitator，不發學員。
+
+本階段人員只Challenge、Review、Approve／Reject與要求補證，不直接改Code；Agent主導分析、設計、Code／Test／Docs及摘要。觀察的是授權內執行與成果可接受性。
+
+| Agent觀察 | 記錄的證據 |
+|---|---|
+| 先確認需求 | Gate1摘要、Rule與Out of Scope。 |
+| 揭露假設 | 假設與缺口是否先讓人判斷。 |
+| 提出證據 | 檔案、測試、輸出或規則來源。 |
+| 等待Gate | 核准時間先於設計／程式修改。 |
+| 不超範圍 | Diff與核准區域一致，SQLite提議被處理。 |
+| 執行測試 | 指令、結果與失敗原因，沒有虛報。 |
+| 更新文件 | 規則、API與實作同步。 |
+| 揭露缺項 | Level與實際完成一致。 |
+
+| Human觀察 | 要核實的行為 |
+|---|---|
+| 先Review再核准 | 看實際證據後做Gate決策。 |
+| Challenge | 問假設、風險、邊界與替代方案。 |
+| 要求測試 | 不只接受「已完成」摘要。 |
+| 辨識SQLite越界 | 拒絕資料庫提議並回到In-Memory。 |
+| 檢查Diff | 不以摘要代替範圍審查。 |
+| 不跳Gate | 時間壓力仍保留核准與條件。 |
+| 判斷交付 | 區分Agent完成宣稱與成果可接受。 |
+
+同步萃取八項平台需求：Agent權限範圍、Rule Enforcement、Approval Workflow、Audit Log、Test Evidence、Context Versioning、Agent Session管理、成本與執行時間觀測。每項記錄「觀察到的缺口→需要保存或控制什麼」，不是宣稱本Repo已實作平台能力。
+
+觀察紀錄至少包含小組／Session、相對與活動分鐘、Gate、證據、決策與條件、例外、介入、Completion Level及缺項；同一EXCEPTION-DW-001只記一次。
+
+## 完成條件
+
+Agent、人與平台需求均有具體證據，三Gate與條件可追查；觀察不代替程式驗收或真實13分鐘演練。

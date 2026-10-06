@@ -1,0 +1,181 @@
+<!-- ===================== Time Skip 29–33 ===================== -->
+
+<section class="slide slide-title ts-jump" data-seg="timeskip" data-title="時間快轉 · 12 個月後" data-minute="29">
+  <style>
+    /* Time-skip jump animation (scoped to .ts-jump). Plays when the slide is rendered; final frame = resting state. */
+    @property --ts-n { syntax: "<integer>"; inherits: false; initial-value: 12; }
+    .ts-jump .ts-stage { display: flex; align-items: center; justify-content: center; gap: 3.5rem; flex-wrap: wrap; margin: 1.2rem 0 1.4rem; }
+    .ts-jump .ts-clock { width: 11rem; height: 11rem; flex: none; }
+    .ts-jump .ts-clock .ts-face { fill: none; stroke: var(--c-primary, #0093C1); stroke-width: 4; }
+    .ts-jump .ts-clock .ts-tick { stroke: var(--c-muted, #AEAFB4); stroke-width: 3; stroke-linecap: round; }
+    .ts-jump .ts-clock .ts-hand { stroke-linecap: round; transform-origin: 60px 60px; transform-box: view-box; }
+    .ts-jump .ts-clock .ts-min { stroke: var(--c-accent, #F5693D); stroke-width: 4; animation: ts-spin-min 2.4s cubic-bezier(.2,.7,.2,1) .2s both; }
+    .ts-jump .ts-clock .ts-hr { stroke: var(--c-teal, #00A59B); stroke-width: 6; animation: ts-spin-hr 2.4s cubic-bezier(.2,.7,.2,1) .2s both; }
+    .ts-jump .ts-clock .ts-hub { fill: var(--c-accent, #F5693D); }
+    .ts-jump .ts-cal { flex: none; width: 13rem; border-radius: .6rem; overflow: hidden; background: #FFFFFF; color: #0C0E1F; box-shadow: 0 6px 24px rgba(0,0,0,.25); text-align: center; perspective: 600px; }
+    .ts-jump .ts-cal-head { background: var(--c-danger, #EB4751); color: #fff; font-weight: 700; padding: .45rem 0; letter-spacing: .08em; }
+    .ts-jump .ts-cal-body { padding: .6rem 0 .9rem; transform-origin: top center; animation: ts-flip .2s ease-in-out 12 .2s; }
+    .ts-jump .ts-cal-num { display: block; font-size: 5.2rem; line-height: 1; font-weight: 700; color: #014865; --ts-n: 12; counter-reset: tsm var(--ts-n); animation: ts-count 2.4s steps(12, end) .2s both; }
+    .ts-jump .ts-cal-num::after { content: counter(tsm); }
+    .ts-jump .ts-cal-unit { display: block; font-size: 1.05rem; color: #494A57; }
+    .ts-jump .ts-months { display: grid; grid-template-columns: repeat(12, 1fr); gap: .45rem; max-width: 46rem; margin: 0 auto .4rem; }
+    .ts-jump .ts-months span { height: .7rem; border-radius: 99px; background: var(--c-teal, #00A59B); animation: ts-fill .2s ease-out both; animation-delay: calc(var(--i) * .2s + .2s); }
+    .ts-jump .ts-axis { display: flex; justify-content: space-between; max-width: 46rem; margin: 0 auto; font-size: .95rem; opacity: .8; }
+    .ts-jump .ts-big { font-size: 4.4rem; font-weight: 700; letter-spacing: .04em; margin: .2rem 0 0; }
+    @keyframes ts-spin-min { from { transform: rotate(0deg); } to { transform: rotate(4320deg); } }
+    @keyframes ts-spin-hr { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes ts-count { from { --ts-n: 0; } to { --ts-n: 12; } }
+    @keyframes ts-flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(-75deg); } 100% { transform: rotateX(0); } }
+    @keyframes ts-fill { from { background: var(--c-line, #D7D6DB); transform: scaleY(.5); opacity: .4; } to { background: var(--c-teal, #00A59B); transform: scaleY(1); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      .ts-jump .ts-min, .ts-jump .ts-hr, .ts-jump .ts-cal-body, .ts-jump .ts-cal-num, .ts-jump .ts-months span { animation: none !important; }
+    }
+  </style>
+  <p class="kicker">Time Skip · 29–33</p>
+  <div class="ts-stage" aria-hidden="true">
+    <svg class="ts-clock" viewBox="0 0 120 120" role="presentation">
+      <circle class="ts-face" cx="60" cy="60" r="54"/>
+      <line class="ts-tick" x1="60" y1="10" x2="60" y2="18"/>
+      <line class="ts-tick" x1="110" y1="60" x2="102" y2="60"/>
+      <line class="ts-tick" x1="60" y1="110" x2="60" y2="102"/>
+      <line class="ts-tick" x1="10" y1="60" x2="18" y2="60"/>
+      <line class="ts-hand ts-hr" x1="60" y1="60" x2="60" y2="32"/>
+      <line class="ts-hand ts-min" x1="60" y1="60" x2="60" y2="16"/>
+      <circle class="ts-hub" cx="60" cy="60" r="5"/>
+    </svg>
+    <div class="ts-cal">
+      <div class="ts-cal-head">上線後</div>
+      <div class="ts-cal-body">
+        <span class="ts-cal-num"></span>
+        <span class="ts-cal-unit">個月</span>
+      </div>
+    </div>
+  </div>
+  <div class="ts-months" aria-hidden="true">
+    <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span>
+    <span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span>
+    <span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span>
+  </div>
+  <div class="ts-axis" aria-hidden="true"><span>MVP 上線</span><span>現在</span></div>
+  <h1 class="title ts-big">12 個月後</h1>
+  <p class="subtitle fx fx-up">Smart Ticket 已上線 12 個月</p>
+  <aside class="notes">
+    <p><b>29 分鐘宣布（TS-F1，逐字）</b>：「我們快轉到上線12個月後。請停止自己的 Greenfield 開發，接手同一份既有系統。這次先各自請 Agent 理解，再比較證據與結論。」</p>
+    <p><b>轉場時間提示（TS-F1）</b>：29 宣布｜30 發放 B0 與接手文件（下一頁解鎖）｜31 確認所有人使用相同版本與環境｜32 提醒有若干測試失敗、文件要交叉驗證｜33 停止背景敘述，開始 6 分鐘個人分析，禁止修改。</p>
+    <p><b>RB 29–33</b>：Time Skip 宣告，停止個人 Repo，全員換統一 B0。確認來源；<b>不發 B1／B2／B3 或 Bug 根因</b>。33 分鐘進分析；不能用個人 G1 或已修 B1 代替 B0。</p>
+    <p>動畫（時鐘、月曆 0→12、月份進度條）於進入本頁時自動播放；系統設定「減少動態」時直接顯示終點畫面。</p>
+    <p>轉場須在 4 分鐘內完成；實際時間需另行演練（TS-F1）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="timeskip" data-title="Agent 的分工改變" data-minute="29" data-timer="04:00" data-fragments="step">
+  <p class="kicker">Time Skip · Agent 角色</p>
+  <h2 class="title">從 Tool 變成 Teammate</h2>
+  <ol class="stage-bar">
+    <li class="tool">Tool</li>
+    <li class="teammate active">Teammate</li>
+    <li class="dw">Digital Worker</li>
+  </ol>
+  <div class="cols-2">
+    <div class="card tool fx fx-up">
+      <span class="chip tool">之前 · Greenfield</span>
+      <h3>自己的程式庫</h3>
+      <p>人理解需求、拆解工作並審查；Agent 協助產生程式、測試與文件。</p>
+    </div>
+    <div class="card teammate fx fx-up">
+      <span class="chip teammate">現在 · Brownfield</span>
+      <h3>同一份既有系統 B0</h3>
+      <p>各自請 Agent 分析 → 比較判斷 → 整理小組共同背景（Shared Context）。</p>
+    </div>
+  </div>
+  <p class="quote fx fx-fade">先理解既有系統與證據，再決定如何修改。</p>
+  <aside class="notes">
+    <p><b>計時</b>：本段 4:00（29–33）。宣布台詞說完即按 <b>T</b> 啟動；若計時器不隨翻頁持續，請停在本頁啟動後再往下講。</p>
+    <p><b>TS-A 原文</b>：「請停止使用自己的 Greenfield Repository，接手主持人統一提供的 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從 Tool 轉為 Teammate：各自分析、比較判斷，再整合小組 Shared Context。」</p>
+    <p><b>觀察（TS-F1）</b>：是否仍使用自己的 MVP、是否提前修程式、是否有環境阻塞。</p>
+    <p>主持人只回答操作與活動範圍的問題；不揭露學生票率錯誤、檔案位置、失敗數量或文件落差位置。</p>
+  </aside>
+</section>
+
+<section class="slide slide-title" data-seg="timeskip" data-title="解鎖 Time Skip" data-minute="29" data-unlock="timeskip">
+  <p class="kicker">第 29 分鐘 · 解鎖</p>
+  <h2 class="title">Time Skip 交接資料</h2>
+  <p class="lead">在 Runbook 輸入解鎖碼，解開：</p>
+  <p>
+    <span class="chip fx">Time Skip 公告與交接</span>
+    <span class="chip teammate fx">B0 下載</span>
+    <span class="chip fx">個人分析表</span>
+    <span class="chip fx">Shared Context 範本</span>
+  </p>
+  <p class="muted fx fx-fade">全員使用同一份 B0 既有系統基線；請先不要修改程式。</p>
+  <aside class="notes">
+    <p><b>解鎖（指令書 §3）</b>：29 分鐘群組 Time Skip 解開「Time Skip 公告與交接、B0 下載、個人分析表、Shared Context 範本」。解鎖碼由本頁大字顯示；完整碼表見講者視窗。</p>
+    <p><b>30 分鐘（TS-F1）</b>：發放 B0 與接手文件。<b>31 分鐘</b>：確認所有人使用相同版本及環境。</p>
+    <p><b>停止條件（TS-F1）</b>：多人版本不一致或環境不可啟動時，先使用已驗收發放件處理，不讓學員各自更換基線。</p>
+    <p><b>Recovery（29–33 Time Skip／B0 來源或啟動異常）</b>：正式 B0 或同源 clean-copy，保留 Bug；全員統一 B0；不可發診斷修復副本或 B1 替代初始分析。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="timeskip" data-title="公司與系統成長" data-minute="30">
+  <p class="kicker">公司與系統成長摘要</p>
+  <h2 class="title">12 個月來，系統長大了</h2>
+  <div class="cols-2">
+    <div class="card fx fx-up">
+      <span class="chip">延續</span>
+      <h3>原有核心流程</h3>
+      <p>
+        <span class="chip">查詢</span> →
+        <span class="chip">訂票</span> →
+        <span class="chip">付款</span> →
+        <span class="chip">訂單</span>
+      </p>
+      <p class="muted">使用人數與商業需求增加，不同工程師陸續擴充系統。</p>
+    </div>
+    <div class="card teammate fx fx-up">
+      <span class="chip teammate">新增</span>
+      <ul>
+        <li>選填會員識別與會員類型</li>
+        <li>提前購票及企業會員優惠資格</li>
+        <li>已付款訂票改票與退票</li>
+        <li>本機通知紀錄、座位配置與稽核紀錄（Audit Log）</li>
+      </ul>
+    </div>
+  </div>
+  <p class="callout warn fx fx-fade">文件可提供背景，但不保證與程式完全同步；重要結論須用程式、測試與公開規則交叉驗證。</p>
+  <aside class="notes">
+    <p><b>來源</b>：TS-G 公司與系統成長摘要。完成條件：能說明核心流程如何延續、哪些能力新增，且不把文件或單一 Agent 的推論視為已確認事實。</p>
+    <p><b>回答背景問題（TS-F2）</b>：公開說明只描述模組與歷史成長；不得把內部原因、修正方法、文件落差的具體位置或後續任務解法帶進轉場。</p>
+    <p>B0 延續 G1 的分層、Domain、四個核心業務 API、Health、固定資料與測試；演化重點是讓「理解與影響分析」成為必要能力，不是全面重建另一個產品（TS-F2）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="timeskip" data-title="Brownfield 接手" data-minute="31">
+  <p class="kicker">Brownfield 接手說明</p>
+  <h2 class="title">接手 B0 既有系統基線</h2>
+  <div class="cols-2">
+    <ol class="steps">
+      <li class="fx">停止使用自己的 Greenfield 程式庫</li>
+      <li class="fx">取得同一份 B0，確認版本</li>
+      <li class="fx">依 README 安裝、啟動，執行 <code>pytest -q</code></li>
+      <li class="fx">保留測試輸出、規則來源與推論依據</li>
+    </ol>
+    <div class="card teammate fx fx-up">
+      <h3>交接重點</h3>
+      <p class="lead">目前有若干測試失敗，需小組分析是否有共同原因。</p>
+      <p><b>請先不要修改程式。</b></p>
+      <p class="muted">只有經確認的共同事實，才能成為主要 Agent 的執行依據。</p>
+    </div>
+  </div>
+  <ol class="timeline fx fx-fade">
+    <li data-seg="analysis"><span class="tl-min">33–39</span><b>個人 Agent 分析</b></li>
+    <li data-seg="shared"><span class="tl-min">39–44</span><b>比較 · Shared Context</b></li>
+    <li data-seg="b1"><span class="tl-min">44–52</span><b>依發放任務與核准計畫工作</b></li>
+  </ol>
+  <aside class="notes">
+    <p><b>來源</b>：TS-H Brownfield 接手說明。核心功能含班次、訂票、付款、Order、會員、改退票、通知、座位與 Audit。</p>
+    <p><b>32 分鐘提醒（TS-F1）</b>：測試有若干失敗、文件要交叉驗證。</p>
+    <p><b>嚴禁揭露</b>：失敗的原因、檔案位置、失敗數量或文件落差位置；只說「若干」。學員問「是不是一個 Bug」→ 回到「請小組分析是否具有共同原因」。</p>
+    <p><b>33 分鐘</b>：停止背景敘述，翻到下一頁開始 6 分鐘個人分析，禁止修改。完成檢核（TS-H）：已確認 B0 版本、理解安裝與測試方法、完成個人分析準備，尚未直接修改程式。</p>
+    <p>RB 停止／降級：不能用個人 G1 或已修 B1 代替 B0。</p>
+  </aside>
+</section>

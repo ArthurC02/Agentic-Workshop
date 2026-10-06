@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "embedded_downloads": [
+    {
+      "group": "greenfield",
+      "download": "g0.zip",
+      "sha256": "34b6209e345412db4c49b50df2a74050dfffeedd33170c3a6bf93f801b5829ef",
+      "candidate_match": true
+    },
+    {
+      "group": "timeskip",
+      "download": "b0.zip",
+      "sha256": "d74cd38cc679105576819bb00fd507696e98f6a8a4a69f3465cf70795fcfbf22",
+      "candidate_match": true
+    },
+    {
+      "group": "recovery-b1",
+      "download": "recovery-52-b1.zip",
+      "sha256": "6e9ea99f8450773a3504baea9e8512a67d57fe45ece4243f19534b4f4a301431",
+      "candidate_match": true
+    },
+    {
+      "group": "recovery-b2",
+      "download": "recovery-63-b2.zip",
+      "sha256": "bd344f9715f0c0b668c9d3ee5fa0a1e1544a5a78af4bf7c76353bcb88a9cdd1a",
+      "candidate_match": true
+    }
+  ],
+  "participant_archive_members": [
+    "runbook.html"
+  ],
+  "tests_passed": 134,
+  "javascript_syntax": "PASS",
+  "browser_preflight": "NOT RUN",
+  "human_rehearsal": "NOT RUN",
+  "source_candidate": "f6127e67546395c5"
+}

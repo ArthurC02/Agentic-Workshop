@@ -1,0 +1,689 @@
+{
+  "executed_utc": "2026-10-05T11:13:34.928068+00:00",
+  "checks": [
+    {
+      "id": "C-01-02",
+      "criterion": "Actual B0 ZIP hides generated bug/priority answers and preserves two controlled gap documents plus three safe ADRs",
+      "status": "PASS",
+      "files": [
+        "scripts/package-manifest.json",
+        "scripts/build_delivery.py"
+      ],
+      "details": {
+        "zip": "dist/p11-candidate/f6127e67546395c5/participant-29-b0.zip",
+        "zip_sha256": "d74cd38cc679105576819bb00fd507696e98f6a8a4a69f3465cf70795fcfbf22",
+        "controlled_files": [
+          "docs/change-booking-guide.md",
+          "docs/discount-overview.md",
+          "docs/adr/001-use-in-memory-repositories.md",
+          "docs/adr/002-introduce-discount-policy.md",
+          "docs/adr/003-record-notifications-synchronously.md"
+        ]
+      }
+    },
+    {
+      "id": "C-03",
+      "criterion": "39–44 Shared Context gathers common facts; task-specific scope/plan/approval follows B1 reveal at44",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/03-brownfield/participant/04-shared-context-template.md"
+      ],
+      "details": null
+    },
+    {
+      "id": "C-04",
+      "criterion": "Level1 requires understanding/design gates, reasonable impact and complete test strategy; delivery permits no code changes/tests not run",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
+        "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
+        "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
+        "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
+        "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
+        "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
+        "agentic-workshop/04-digital-worker/evaluation/03-digital-worker-audit-template.md"
+      ],
+      "details": {
+        "level_definition_checks": {
+          "03-brownfield/participant/task-cards/03-b3-group-booking.md": true,
+          "04-digital-worker/participant/05-delivery-template.md": true,
+          "05-retrospective/participant/maturity-comparison.md": true
+        },
+        "delivery_allows_no_changes": true,
+        "delivery_allows_tests_not_run": true,
+        "review_allows_analysis": true,
+        "gate3_allows_analysis": true,
+        "facilitator_cue_allows_analysis": true,
+        "audit_allows_analysis": true
+      }
+    },
+    {
+      "id": "C-05",
+      "criterion": "B3 does not switch versions midway; Recovery only at52 intoB2 and63 intoB3, then analysis/review fallback",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md"
+      ],
+      "details": null
+    },
+    {
+      "id": "C-06",
+      "criterion": "Frozen B2 example FULL_FARE correction to ADULT is explicit; docs/API/AC sync qualification is distinguished from runtime PASS",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md",
+        "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/domain/discounts.py"
+      ],
+      "details": null
+    },
+    {
+      "id": "C-07",
+      "criterion": "Mission brief distributed at7; opening remains verbal introduction and does not distribute task documents early",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/01-greenfield/participant/01-mission-brief.md",
+        "agentic-workshop/06-runbook/workshop-runbook.md"
+      ],
+      "details": null
+    },
+    {
+      "id": "C-08",
+      "criterion": "Exception response card is blank at63, activated69–70; does not prefill SQLite answer",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md"
+      ],
+      "details": null
+    },
+    {
+      "id": "C-09",
+      "criterion": "Version matrix labels prior P8 scope historically and links current correction report as the latest status chain",
+      "status": "PASS",
+      "files": [
+        "agentic-workshop/03-brownfield/evaluation/11-b0-to-b3-version-matrix.md"
+      ],
+      "details": null
+    }
+  ],
+  "documents": {
+    "status": "PASS",
+    "markdown_files": 190,
+    "relative_links": 617,
+    "errors": [],
+    "existing_utf8_bom_files": [
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/architecture.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/business-rules.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md"
+    ],
+    "scope": "Agent.md + docs/**/*.md + agentic-workshop/**/*.md + scripts/**/*.md",
+    "limits": "Static links/encoding/fences/participant internal references only; not semantic review"
+  },
+  "traceability": {
+    "status": "PASS",
+    "registry_rule_count": 57,
+    "acceptance_maps": {
+      "G1": {
+        "map": "01-greenfield/evaluation/06-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-G-001",
+          "AC-G-002",
+          "AC-G-003",
+          "AC-G-004",
+          "AC-G-005",
+          "AC-G-006",
+          "AC-G-007",
+          "AC-G-008",
+          "AC-G-009",
+          "AC-G-010",
+          "AC-G-011",
+          "AC-G-012",
+          "AC-G-013",
+          "AC-G-014",
+          "AC-G-015"
+        ],
+        "count": 15
+      },
+      "B1": {
+        "map": "03-brownfield/evaluation/08-b1-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-B1-001",
+          "AC-B1-002",
+          "AC-B1-003",
+          "AC-B1-004",
+          "AC-B1-005",
+          "AC-B1-006",
+          "AC-B1-007"
+        ],
+        "count": 7
+      },
+      "B2": {
+        "map": "03-brownfield/evaluation/09-b2-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-B2-001",
+          "AC-B2-002",
+          "AC-B2-003",
+          "AC-B2-004",
+          "AC-B2-005",
+          "AC-B2-006",
+          "AC-B2-007",
+          "AC-B2-008",
+          "AC-B2-009",
+          "AC-B2-010",
+          "AC-B2-011",
+          "AC-B2-012",
+          "AC-B2-013"
+        ],
+        "count": 13
+      },
+      "B3": {
+        "map": "03-brownfield/evaluation/10-b3-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-B3-001",
+          "AC-B3-002",
+          "AC-B3-003",
+          "AC-B3-004",
+          "AC-B3-005",
+          "AC-B3-006",
+          "AC-B3-007",
+          "AC-B3-008",
+          "AC-B3-009",
+          "AC-B3-010",
+          "AC-B3-011",
+          "AC-B3-012",
+          "AC-B3-013",
+          "AC-B3-014",
+          "AC-B3-015",
+          "AC-B3-016",
+          "AC-B3-017",
+          "AC-B3-018",
+          "AC-B3-019"
+        ],
+        "count": 19
+      }
+    },
+    "versions": {
+      "G1": {
+        "business_rules": 16,
+        "cited_test_functions": 14,
+        "maps": [
+          "01-greenfield/evaluation/06-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B0": {
+        "business_rules": 36,
+        "cited_test_functions": 22,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B1": {
+        "business_rules": 36,
+        "cited_test_functions": 26,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md",
+          "03-brownfield/evaluation/08-b1-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B2": {
+        "business_rules": 40,
+        "cited_test_functions": 29,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md",
+          "03-brownfield/evaluation/09-b2-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B3": {
+        "business_rules": 57,
+        "cited_test_functions": 46,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md",
+          "03-brownfield/evaluation/09-b2-acceptance-test-map.md",
+          "03-brownfield/evaluation/10-b3-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      }
+    },
+    "errors": [],
+    "limits": "Rule ID coverage and named test symbol presence; not proof of complete assertion semantics"
+  },
+  "frozen_app_sources": {
+    "status": "PASS",
+    "versions": {
+      "B0": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/validation-evidence.json",
+        "source_file_count": 52,
+        "changed_files": []
+      },
+      "B1": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/13-b1-validation-evidence.json",
+        "source_file_count": 52,
+        "changed_files": []
+      },
+      "B2": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/16-b2-validation-evidence.json",
+        "source_file_count": 54,
+        "changed_files": []
+      },
+      "B3": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/19-b3-validation-evidence.json",
+        "source_file_count": 59,
+        "changed_files": []
+      }
+    },
+    "errors": [],
+    "limits": "Compare B0/B1/B2/B3 source bytes against previously accepted evidence"
+  },
+  "six_version_sources_unchanged_since_technical_run": {
+    "status": "PASS",
+    "baseline": "p11-validation-evidence.json technical source manifests",
+    "versions": {
+      "G0": {
+        "status": "PASS",
+        "files": 26,
+        "source_sha256": {
+          ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+          "docs/api-examples.md": "4a25a9b9ac73d8b7f05a8db5af9703a7c47366fa415840ba60d297d631202293",
+          "docs/architecture.md": "311c3513fad3bd6fa82976aee8d190d6b6097ddfa6f2acec701b7f8af9419c58",
+          "docs/business-rules.md": "6c6d10dbc4d14bff1dc50a6641fe6854e7cba76d7a715effec3b565fec60ec6d",
+          "pyproject.toml": "7ab82f9092a9f1572bd2ac3b1aaa8ee6919020a3f10a8bb302282988883ecba4",
+          "README.md": "0d7bb71dc3c29154860e65f1d38a009ffc47a39bdf3fd4d4a14e412e6624ed21",
+          "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+          "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+          "src/smart_ticket/api/dependencies.py": "8c8a3aeaf91a95fa987dbb14bed32817d8077f05b59d8420b4bed4ebfabdb952",
+          "src/smart_ticket/api/routes.py": "a90191fb6c8dc84cd4eaafbf92067ecf8e58e44459d2b1fa74ee1d82ec07686e",
+          "src/smart_ticket/application/booking_service.py": "2acb89d4583e2c5959d35834a329d75288b1086226bf6529435e8084449f5372",
+          "src/smart_ticket/application/order_service.py": "ee58abd7d6562cef868e93c56fc9494fffdb4cde69a69647cb2e696aaaf08a27",
+          "src/smart_ticket/application/payment_service.py": "145bb77a463b3c2be6f25883e1f870d00e0d222037cdc751d85350b0d6cbc9f6",
+          "src/smart_ticket/application/trip_service.py": "141586fad14d86701125e7fa78081ad1e4fc08af6f18a6f71efde0ab87453f80",
+          "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+          "src/smart_ticket/domain/fare_policy.py": "369d7e4acf4bcfce596b3e78ab37eab902af32a6d5917edbca8537e05a127a97",
+          "src/smart_ticket/domain/models.py": "373a39560e252e6883383034f4fe65355fcf0edfa53e44f8ad7c2c9b0c1fc252",
+          "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "src/smart_ticket/infrastructure/seed_data.py": "69496b78b2e3a22b0159c8e9eae3fd85d668b84f6c05b7002aa4f2bd1f0d7429",
+          "src/smart_ticket/infrastructure/store.py": "88995b6ca2bd8b5ffa4172741dab9a0a959da04b3250c5bd3135881880b9ce80",
+          "src/smart_ticket/main.py": "a891a2ea8d9caf7405bfc77f4a25c14434d20bec73fd4d089277744eabaa66ea",
+          "src/smart_ticket/schemas/contracts.py": "f04b7b6fb034c73594e0d49ff4b51e9e1cd60486213aa93dc18328c0c25b6e69",
+          "tests/conftest.py": "5035198bc3e46b5656f998af7b6e57a5cd1dafcba33a81728aa5adaa7604d501",
+          "tests/integration/test_features.py": "b75e8fcba995f60e7bbb7d703073246c38f2a8a7a9def3115b9621d2ecdb9828",
+          "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+          "tests/unit/test_fare_policy.py": "b9834947fee66a5cd1397553500ffd9626e4b3c7a2a8ee2f185bd8353d547da3"
+        }
+      },
+      "G1": {
+        "status": "PASS",
+        "files": 30,
+        "source_sha256": {
+          ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+          "docs/api-examples.md": "e11d4afc4000629d6ff22238b15a33fe8b8c5cb2a1703ef653f75b503f681dc7",
+          "docs/architecture.md": "fb626058083871e8b484bedda4bb69b24aed0e54a145b8662af0112cc65357ab",
+          "docs/business-rules.md": "9db2761f8117872172c541988b7cc351b15649e0467eb5b0fb47882fb38afa63",
+          "docs/case-history.md": "fbbcd7465ff9891dba2d7a27495075f8f2cb58f1340a60729087be52e0f17177",
+          "docs/version-history.md": "eea60c824f566dc386690058f62488d6915ccef67b01a9a441321d204d384fd4",
+          "pyproject.toml": "86c7b93b49b384013e5b82b800993935f2c4634f7bd119d90c8eb0ff8afa07aa",
+          "README.md": "cbf39f7be1546c10815f7f0f378822a19ddff399c32cbdd606cce61aa5ab2565",
+          "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+          "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+          "src/smart_ticket/api/dependencies.py": "8c8a3aeaf91a95fa987dbb14bed32817d8077f05b59d8420b4bed4ebfabdb952",
+          "src/smart_ticket/api/routes.py": "a7dcc4d27851fff473aa084fb33c401a1d729dba2783edc59c6de9bb3d691d6a",
+          "src/smart_ticket/application/booking_service.py": "5eee517d2846c7910ff46c8db130694fcabdbd08b71f1dca00c4d7610170b99b",
+          "src/smart_ticket/application/order_service.py": "831396a908de91204da1284edcc9d896be158199d25c07bd9086ea5a7c150270",
+          "src/smart_ticket/application/payment_service.py": "57326bcc18c1b58e21f96352e2386c13d20a1206a1125eb883035aec53dd9ad5",
+          "src/smart_ticket/application/trip_service.py": "2f2e9ef0a497130572b5f92aecba91761882adc24c9c5945dadbe489cd3f5c4e",
+          "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+          "src/smart_ticket/domain/fare_policy.py": "ff985a9ee7eef33332d2668b96a3254f765d87fdb9e9fd5679299e35b2ff16ce",
+          "src/smart_ticket/domain/models.py": "373a39560e252e6883383034f4fe65355fcf0edfa53e44f8ad7c2c9b0c1fc252",
+          "src/smart_ticket/domain/repositories.py": "e077ab4e774652d173d064bd855efe63a9a4bf58fb5303e65cbebe5d8b0e0501",
+          "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "src/smart_ticket/infrastructure/seed_data.py": "69496b78b2e3a22b0159c8e9eae3fd85d668b84f6c05b7002aa4f2bd1f0d7429",
+          "src/smart_ticket/infrastructure/store.py": "b9cb6d59a530d0cf9db57d7217e77b6d669575bfab4836170be6f528344d2f2a",
+          "src/smart_ticket/main.py": "ec27681270c907b6b3688f9aeba954c2b9e6b388a3bdf477086b3b04be6f3310",
+          "src/smart_ticket/schemas/contracts.py": "4a9645395c733babd3b5fb80408bc76f80ca900e6631f08055052be2e4213226",
+          "tests/conftest.py": "5035198bc3e46b5656f998af7b6e57a5cd1dafcba33a81728aa5adaa7604d501",
+          "tests/integration/test_features.py": "9548fd432ceeff4373aa2087bdb903b7dce353250ea66c94870fb5a49b674cb1",
+          "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+          "tests/unit/test_fare_policy.py": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8",
+          "tests/unit/test_services.py": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
+        }
+      },
+      "B0": {
+        "status": "PASS",
+        "files": 52,
+        "source_sha256": {
+          ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+          "docs/adr/001-use-in-memory-repositories.md": "edbd33c67fcdd72d4c0f51ba2ee3d7fe30df9644478834e0be36446508d8c7a7",
+          "docs/adr/002-introduce-discount-policy.md": "277b991fdf817fe830fb41f1a472f14e6a053ec2bab9f208f0f8daebb1c9917d",
+          "docs/adr/003-record-notifications-synchronously.md": "c584ae51da78cbb506fb62a327a675665e77232d8f0fc336c2b74ae3b2ceb600",
+          "docs/api-examples.md": "e8ea38e75045cc49f82ca0f6a3d9e8d05f0d70f1e0c304a145da6b5b7da82c03",
+          "docs/architecture.md": "0834055b3743790d7c358f4f03079d2f98c36212b90400fc504b14913687868b",
+          "docs/business-rules.md": "c1f9a62518f6a3179b9614b80b342a3db02808cc8592e289b792221c4568d596",
+          "docs/change-booking-guide.md": "6ef773ca6f65cf97d077a7ec8d96ba7fe068f67f302ce46c1a8d26e35545db37",
+          "docs/discount-overview.md": "89fc61ff9e3a9591793efcc4fce7f9d0e3a900a86583f49cb0d134bfa9ce43a0",
+          "docs/version-history.md": "e058e85d899850db1cc92b9c52c6deb89527f10efa2a902b2fc27b2061f11be0",
+          "pyproject.toml": "86c7b93b49b384013e5b82b800993935f2c4634f7bd119d90c8eb0ff8afa07aa",
+          "README.md": "4977524bab83b5d414332f3b4eebb8bc53e850857b4f14641692ddc292be8d87",
+          "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+          "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+          "src/smart_ticket/api/dependencies.py": "338f54891171239c6f340e3d13ff8daf160be99afbcc94a0d99e4270e254ac65",
+          "src/smart_ticket/api/routes.py": "ad7b24f1459e8f268a9afd01167c767978c0dc0f5107444873cdc8f339081409",
+          "src/smart_ticket/application/audit_service.py": "119fca819b322f62a1e958ee2c37a0614bde736b290bc387bcc913f71d0b08d2",
+          "src/smart_ticket/application/booking_service.py": "83eec869a8f67389fec634c861c7335e9f41a9d584733e416198bef579b9bcf7",
+          "src/smart_ticket/application/change_booking_service.py": "095299594f9367e14ae06b21894433628aa0004d9ad5d578b4d69b077746737d",
+          "src/smart_ticket/application/member_service.py": "8581ebb95d708d565cec6b8105fcdda91e5ebdecbdd313ee5d20508b4c8a073f",
+          "src/smart_ticket/application/notification_service.py": "38e08be0580299840fb3806ecd85ede2199c0c20f8bd8522279d4f56073f73f0",
+          "src/smart_ticket/application/order_service.py": "831396a908de91204da1284edcc9d896be158199d25c07bd9086ea5a7c150270",
+          "src/smart_ticket/application/payment_service.py": "0cd0ede68fd8290f08a9092faeb286ce7356d5bf2516ddbfcf82acec3f2571e8",
+          "src/smart_ticket/application/refund_service.py": "97ac389dbc04c99adecf7ea411237789278daeb5145512222e27aab06306b000",
+          "src/smart_ticket/application/seat_service.py": "005e52eb6f13e7c396455324c4f2342f080a03ee8f20fafebfb15e0a00419bbf",
+          "src/smart_ticket/application/trip_service.py": "2f2e9ef0a497130572b5f92aecba91761882adc24c9c5945dadbe489cd3f5c4e",
+          "src/smart_ticket/domain/discounts.py": "23796185eff8e371f3e9275ff2394c42f64059eb015c8e3f3b47128bde64557a",
+          "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+          "src/smart_ticket/domain/fare_policy.py": "63907a02cd8573f91a0d12759139ce7208c69bf4a29abf727fcda89dcdf05b0e",
+          "src/smart_ticket/domain/members.py": "c1a58002f6c63f9ab6e370f93c3d5e6ad391b36bc3f864b3979eb39cb9b9d181",
+          "src/smart_ticket/domain/models.py": "3468ad5a5a08ebd68671aa720339946db8e553b0a4ee1ff27f782427bd2ea76c",
+          "src/smart_ticket/domain/records.py": "79137d29152e2a7ca52e0ad495166ffe373af9337449507fe682dbd447252bc5",
+          "src/smart_ticket/domain/repositories.py": "e077ab4e774652d173d064bd855efe63a9a4bf58fb5303e65cbebe5d8b0e0501",
+          "src/smart_ticket/infrastructure/clock.py": "dbf28972483502a76e2432beb3a2f3642fc2419e16b74c5105e435e12dba070f",
+          "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "src/smart_ticket/infrastructure/seed_data.py": "07ea8653b263230e756b7e59d7e05ab0eaa8885025ad311df79c02042f6fbfd5",
+          "src/smart_ticket/infrastructure/store.py": "6100d65989d9debc95a4afe451d52ff158e6ea1837ef7fac3eb48c1f398ad920",
+          "src/smart_ticket/main.py": "0c26da268269915f2d864c2c1cb6bfd55a359ded9e7831824e340e292c3b2309",
+          "src/smart_ticket/schemas/contracts.py": "892b34942840231a5e2c4624b95d08ca721cfdc6f0291176df9c347a1f4e1f25",
+          "tests/conftest.py": "90ec2ff545786059cbf27c201bcb1e75e6d3396740939087df25ce03b8e1e520",
+          "tests/integration/test_advance.py": "7c2594e388d2687f02ccea6b70f9d481c0de7a891ac738f69b16f49db93f8dd4",
+          "tests/integration/test_b0_api.py": "d69259405ef8a39917aac61f3271eafa6d826fb0df0a629609ae10461732a111",
+          "tests/integration/test_changes.py": "6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4",
+          "tests/integration/test_features.py": "9548fd432ceeff4373aa2087bdb903b7dce353250ea66c94870fb5a49b674cb1",
+          "tests/integration/test_members.py": "2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4",
+          "tests/integration/test_records.py": "97b0bcf6cd5968faf127f40384e14d82cc761a433b5f5a7c74086aed6fdb80d9",
+          "tests/integration/test_refunds.py": "762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea",
+          "tests/integration/test_seats.py": "edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e",
+          "tests/integration/test_seed.py": "2a54bc7c4af6d9a14fe905d5f07c547ce38d326197568f9459bbf7df8a7431db",
+          "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+          "tests/unit/test_fare_policy.py": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8",
+          "tests/unit/test_services.py": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
+        }
+      },
+      "B1": {
+        "status": "PASS",
+        "files": 52,
+        "source_sha256": {
+          ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+          "docs/adr/001-use-in-memory-repositories.md": "edbd33c67fcdd72d4c0f51ba2ee3d7fe30df9644478834e0be36446508d8c7a7",
+          "docs/adr/002-introduce-discount-policy.md": "277b991fdf817fe830fb41f1a472f14e6a053ec2bab9f208f0f8daebb1c9917d",
+          "docs/adr/003-record-notifications-synchronously.md": "c584ae51da78cbb506fb62a327a675665e77232d8f0fc336c2b74ae3b2ceb600",
+          "docs/api-examples.md": "e8ea38e75045cc49f82ca0f6a3d9e8d05f0d70f1e0c304a145da6b5b7da82c03",
+          "docs/architecture.md": "0834055b3743790d7c358f4f03079d2f98c36212b90400fc504b14913687868b",
+          "docs/business-rules.md": "c1f9a62518f6a3179b9614b80b342a3db02808cc8592e289b792221c4568d596",
+          "docs/change-booking-guide.md": "6ef773ca6f65cf97d077a7ec8d96ba7fe068f67f302ce46c1a8d26e35545db37",
+          "docs/discount-overview.md": "89fc61ff9e3a9591793efcc4fce7f9d0e3a900a86583f49cb0d134bfa9ce43a0",
+          "docs/version-history.md": "2167d2df15a9bfec292fa8805b9334d334b097e26002d695ed4fd4e28827ba64",
+          "pyproject.toml": "9be5bc02633489573a1318b7b15f55400c9c921df44c0c3d88b5ef0ccb153243",
+          "README.md": "8bc50bca75bcfd0670973806a51e296af5eb873ca4cf41fba9998a2ddd96e58d",
+          "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+          "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+          "src/smart_ticket/api/dependencies.py": "338f54891171239c6f340e3d13ff8daf160be99afbcc94a0d99e4270e254ac65",
+          "src/smart_ticket/api/routes.py": "ad7b24f1459e8f268a9afd01167c767978c0dc0f5107444873cdc8f339081409",
+          "src/smart_ticket/application/audit_service.py": "119fca819b322f62a1e958ee2c37a0614bde736b290bc387bcc913f71d0b08d2",
+          "src/smart_ticket/application/booking_service.py": "83eec869a8f67389fec634c861c7335e9f41a9d584733e416198bef579b9bcf7",
+          "src/smart_ticket/application/change_booking_service.py": "095299594f9367e14ae06b21894433628aa0004d9ad5d578b4d69b077746737d",
+          "src/smart_ticket/application/member_service.py": "8581ebb95d708d565cec6b8105fcdda91e5ebdecbdd313ee5d20508b4c8a073f",
+          "src/smart_ticket/application/notification_service.py": "38e08be0580299840fb3806ecd85ede2199c0c20f8bd8522279d4f56073f73f0",
+          "src/smart_ticket/application/order_service.py": "831396a908de91204da1284edcc9d896be158199d25c07bd9086ea5a7c150270",
+          "src/smart_ticket/application/payment_service.py": "0cd0ede68fd8290f08a9092faeb286ce7356d5bf2516ddbfcf82acec3f2571e8",
+          "src/smart_ticket/application/refund_service.py": "97ac389dbc04c99adecf7ea411237789278daeb5145512222e27aab06306b000",
+          "src/smart_ticket/application/seat_service.py": "005e52eb6f13e7c396455324c4f2342f080a03ee8f20fafebfb15e0a00419bbf",
+          "src/smart_ticket/application/trip_service.py": "2f2e9ef0a497130572b5f92aecba91761882adc24c9c5945dadbe489cd3f5c4e",
+          "src/smart_ticket/domain/discounts.py": "23796185eff8e371f3e9275ff2394c42f64059eb015c8e3f3b47128bde64557a",
+          "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+          "src/smart_ticket/domain/fare_policy.py": "16ecb901f6d8dd3abebdbc71be3ed4ddd5935f95f582724b4aedfb5fc69ff7f5",
+          "src/smart_ticket/domain/members.py": "c1a58002f6c63f9ab6e370f93c3d5e6ad391b36bc3f864b3979eb39cb9b9d181",
+          "src/smart_ticket/domain/models.py": "3468ad5a5a08ebd68671aa720339946db8e553b0a4ee1ff27f782427bd2ea76c",
+          "src/smart_ticket/domain/records.py": "79137d29152e2a7ca52e0ad495166ffe373af9337449507fe682dbd447252bc5",
+          "src/smart_ticket/domain/repositories.py": "e077ab4e774652d173d064bd855efe63a9a4bf58fb5303e65cbebe5d8b0e0501",
+          "src/smart_ticket/infrastructure/clock.py": "dbf28972483502a76e2432beb3a2f3642fc2419e16b74c5105e435e12dba070f",
+          "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "src/smart_ticket/infrastructure/seed_data.py": "07ea8653b263230e756b7e59d7e05ab0eaa8885025ad311df79c02042f6fbfd5",
+          "src/smart_ticket/infrastructure/store.py": "6100d65989d9debc95a4afe451d52ff158e6ea1837ef7fac3eb48c1f398ad920",
+          "src/smart_ticket/main.py": "fa14b3218b994ad0cbf3da3fa10319ef0c57a6eea970cd08ad938f971fcd8d0d",
+          "src/smart_ticket/schemas/contracts.py": "892b34942840231a5e2c4624b95d08ca721cfdc6f0291176df9c347a1f4e1f25",
+          "tests/conftest.py": "90ec2ff545786059cbf27c201bcb1e75e6d3396740939087df25ce03b8e1e520",
+          "tests/integration/test_advance.py": "7c2594e388d2687f02ccea6b70f9d481c0de7a891ac738f69b16f49db93f8dd4",
+          "tests/integration/test_b0_api.py": "d69259405ef8a39917aac61f3271eafa6d826fb0df0a629609ae10461732a111",
+          "tests/integration/test_changes.py": "6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4",
+          "tests/integration/test_features.py": "9548fd432ceeff4373aa2087bdb903b7dce353250ea66c94870fb5a49b674cb1",
+          "tests/integration/test_members.py": "2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4",
+          "tests/integration/test_records.py": "97b0bcf6cd5968faf127f40384e14d82cc761a433b5f5a7c74086aed6fdb80d9",
+          "tests/integration/test_refunds.py": "762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea",
+          "tests/integration/test_seats.py": "edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e",
+          "tests/integration/test_seed.py": "2a54bc7c4af6d9a14fe905d5f07c547ce38d326197568f9459bbf7df8a7431db",
+          "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+          "tests/unit/test_fare_policy.py": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8",
+          "tests/unit/test_services.py": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
+        }
+      },
+      "B2": {
+        "status": "PASS",
+        "files": 54,
+        "source_sha256": {
+          ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+          "docs/adr/001-use-in-memory-repositories.md": "a48104ceb05534998f9108afdce2b054ec7f840b40cd9409b97ec23e3c2e5dea",
+          "docs/adr/002-introduce-discount-policy.md": "3d34590fa303142811a10a62db2947a3e809e18dc6780d1000f4b3e920d06de9",
+          "docs/adr/003-record-notifications-synchronously.md": "5750d43626286f78de5c02728730e1f709724c8df7b3fb0263cb93a13275dcf0",
+          "docs/api-examples.md": "18e832c37cd48e0989066208829e42d4f41601c468ee2c6f14e4086d9b2dedc3",
+          "docs/architecture.md": "225681ded21550ac573d51f71e9728c0c39ae7f4395c9f2b92b4899e4b136d5c",
+          "docs/business-rules.md": "dc7dd8f36fd5e20b7272677bacae3b5a67c79b6aa3bd040ca2a309721b18125a",
+          "docs/change-booking-guide.md": "59245ee18ab23721a7fe505a3be7626d4a32d95fba8ee0a0d4d993c34eb5fe24",
+          "docs/discount-overview.md": "67b08306cc4fcf453f20fe218f6953e391bfb6556486e2002ca0cdf7f1e095d4",
+          "docs/version-history.md": "47e94e616d1fc86fd5b66f4e2f733ccf11df5750b595e3bb17a7d54a589c7514",
+          "pyproject.toml": "faedd87ac66a682b92c7cfd5ceb63d6cac669d807b3723b8f17db440e4a71edd",
+          "README.md": "8332cf7dfeccf34dac65b7c0791ce097f3b0077bce5a90452b5a06e0101f07b5",
+          "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+          "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+          "src/smart_ticket/api/dependencies.py": "338f54891171239c6f340e3d13ff8daf160be99afbcc94a0d99e4270e254ac65",
+          "src/smart_ticket/api/routes.py": "ad7b24f1459e8f268a9afd01167c767978c0dc0f5107444873cdc8f339081409",
+          "src/smart_ticket/application/audit_service.py": "119fca819b322f62a1e958ee2c37a0614bde736b290bc387bcc913f71d0b08d2",
+          "src/smart_ticket/application/booking_service.py": "5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "src/smart_ticket/application/change_booking_service.py": "e9a9b4f30d5ef63026219c3d538f2095cccdd94a6602a4b8d9e9ddab6ed49950",
+          "src/smart_ticket/application/member_service.py": "8581ebb95d708d565cec6b8105fcdda91e5ebdecbdd313ee5d20508b4c8a073f",
+          "src/smart_ticket/application/notification_service.py": "38e08be0580299840fb3806ecd85ede2199c0c20f8bd8522279d4f56073f73f0",
+          "src/smart_ticket/application/order_service.py": "831396a908de91204da1284edcc9d896be158199d25c07bd9086ea5a7c150270",
+          "src/smart_ticket/application/payment_service.py": "0cd0ede68fd8290f08a9092faeb286ce7356d5bf2516ddbfcf82acec3f2571e8",
+          "src/smart_ticket/application/refund_service.py": "97ac389dbc04c99adecf7ea411237789278daeb5145512222e27aab06306b000",
+          "src/smart_ticket/application/seat_service.py": "005e52eb6f13e7c396455324c4f2342f080a03ee8f20fafebfb15e0a00419bbf",
+          "src/smart_ticket/application/trip_service.py": "2f2e9ef0a497130572b5f92aecba91761882adc24c9c5945dadbe489cd3f5c4e",
+          "src/smart_ticket/domain/discounts.py": "5035297c2da3cbab351d208056157a3682c1ae8f5b03d5eca8856122080b71da",
+          "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+          "src/smart_ticket/domain/fare_policy.py": "16ecb901f6d8dd3abebdbc71be3ed4ddd5935f95f582724b4aedfb5fc69ff7f5",
+          "src/smart_ticket/domain/members.py": "c1a58002f6c63f9ab6e370f93c3d5e6ad391b36bc3f864b3979eb39cb9b9d181",
+          "src/smart_ticket/domain/models.py": "68f106501df32e502f8fb65f1fbed48511e04d8c0355a9481190cdcd15e41c4c",
+          "src/smart_ticket/domain/records.py": "79137d29152e2a7ca52e0ad495166ffe373af9337449507fe682dbd447252bc5",
+          "src/smart_ticket/domain/repositories.py": "e077ab4e774652d173d064bd855efe63a9a4bf58fb5303e65cbebe5d8b0e0501",
+          "src/smart_ticket/infrastructure/clock.py": "dbf28972483502a76e2432beb3a2f3642fc2419e16b74c5105e435e12dba070f",
+          "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "src/smart_ticket/infrastructure/seed_data.py": "07ea8653b263230e756b7e59d7e05ab0eaa8885025ad311df79c02042f6fbfd5",
+          "src/smart_ticket/infrastructure/store.py": "6100d65989d9debc95a4afe451d52ff158e6ea1837ef7fac3eb48c1f398ad920",
+          "src/smart_ticket/main.py": "85c98f502eb75ca470fe636873f33f0433d581d7f88eea916cacddd5b5f818d3",
+          "src/smart_ticket/schemas/contracts.py": "57cc0f723704285bc51ba271d17a256f08f59df4d17ae90869650834be7dc717",
+          "tests/conftest.py": "90ec2ff545786059cbf27c201bcb1e75e6d3396740939087df25ce03b8e1e520",
+          "tests/integration/test_advance.py": "a581320e7a03f3cf77979a1ff4244753015593db3fc9e79acf7a945a41a8c81a",
+          "tests/integration/test_b0_api.py": "d69259405ef8a39917aac61f3271eafa6d826fb0df0a629609ae10461732a111",
+          "tests/integration/test_best_discount_api.py": "f7d604b157e9e1208c8cc9fa6ab8a292cc70e60a2221b59e0cec3e2d629bab41",
+          "tests/integration/test_changes.py": "6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4",
+          "tests/integration/test_features.py": "9548fd432ceeff4373aa2087bdb903b7dce353250ea66c94870fb5a49b674cb1",
+          "tests/integration/test_members.py": "2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4",
+          "tests/integration/test_records.py": "97b0bcf6cd5968faf127f40384e14d82cc761a433b5f5a7c74086aed6fdb80d9",
+          "tests/integration/test_refunds.py": "762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea",
+          "tests/integration/test_seats.py": "edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e",
+          "tests/integration/test_seed.py": "2a54bc7c4af6d9a14fe905d5f07c547ce38d326197568f9459bbf7df8a7431db",
+          "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+          "tests/unit/test_best_discount_policy.py": "026f6b2dd0a173da45db9e1e56d6d3c167e2ddf6f9fd42b81d0ba4243408119f",
+          "tests/unit/test_fare_policy.py": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8",
+          "tests/unit/test_services.py": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
+        }
+      },
+      "B3": {
+        "status": "PASS",
+        "files": 59,
+        "source_sha256": {
+          ".gitignore": "3f46466f569eb5e18c5c7d6f441153d0d4f016100321d1b64310b9e6ae439cf3",
+          "docs/adr/001-use-in-memory-repositories.md": "a48104ceb05534998f9108afdce2b054ec7f840b40cd9409b97ec23e3c2e5dea",
+          "docs/adr/002-introduce-discount-policy.md": "3d34590fa303142811a10a62db2947a3e809e18dc6780d1000f4b3e920d06de9",
+          "docs/adr/003-record-notifications-synchronously.md": "5750d43626286f78de5c02728730e1f709724c8df7b3fb0263cb93a13275dcf0",
+          "docs/adr/004-group-seat-atomicity.md": "31d59d50698210dc36df8916b77246832ca6294ced3847fb863fe45a3a9465b6",
+          "docs/api-examples.md": "f45f91759d094c5c9b32f465548ff5b9131db29c562d740625f5d7e9149ae524",
+          "docs/architecture.md": "16a7efbef768b387e8d79e1d2a247070607b1e2d978ff48baf1cf47c306db7c9",
+          "docs/business-rules.md": "cf927ad386dc3e636ce5557824a3dd8cb7be26110bf46a51a652bb2ff295389c",
+          "docs/change-booking-guide.md": "452216f862890b31d55ae9f1cd7fb79df69e3e669b0bc93b10b3ac1933ef39b3",
+          "docs/discount-overview.md": "b4027a7c5d7570704c9ed08c518a322a3954b10ef179f3ac5d96d8f0e0fb45c2",
+          "docs/version-history.md": "1dd74878377840f357d322e505c2eca1bc4b8f2c039695a4974235dc2cf3ce59",
+          "pyproject.toml": "4011d4f4c6d76fe30f87c917eda28f413901c1cf1fb5c8000abef833b631d1ca",
+          "README.md": "b7cd5b2abecb59704b59a686122fb3a8ce18acc11db015853176bc633fdc22c3",
+          "requirements.txt": "c1acf55cafa052436d136a626474440978b814f74a474a7dbd94688a988fa798",
+          "src/smart_ticket/__init__.py": "b14f7e11d5e4be0123f639ed9128ffabf2e1144671c0a7a807155110290c15cd",
+          "src/smart_ticket/api/dependencies.py": "f56ab4e18a2fd6406357ddaef8aa43ef9e8e83b2fc17c3ae53aaca2fddc32c2c",
+          "src/smart_ticket/api/routes.py": "001aeae10a360aa1476e27106cf44fd5f2f2404db70fdd9206d4a9ad180cb0eb",
+          "src/smart_ticket/application/audit_service.py": "119fca819b322f62a1e958ee2c37a0614bde736b290bc387bcc913f71d0b08d2",
+          "src/smart_ticket/application/booking_service.py": "5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "src/smart_ticket/application/change_booking_service.py": "2f01c7f2e5a612f87607c86c9e268e2db7723425290310629dcf1cbc061ae015",
+          "src/smart_ticket/application/group_booking_service.py": "0f95e497f83436bbeb183a73da13bb6b30b537f152e8127fa310a71a28ff9882",
+          "src/smart_ticket/application/member_service.py": "8581ebb95d708d565cec6b8105fcdda91e5ebdecbdd313ee5d20508b4c8a073f",
+          "src/smart_ticket/application/notification_service.py": "38e08be0580299840fb3806ecd85ede2199c0c20f8bd8522279d4f56073f73f0",
+          "src/smart_ticket/application/order_service.py": "831396a908de91204da1284edcc9d896be158199d25c07bd9086ea5a7c150270",
+          "src/smart_ticket/application/payment_service.py": "deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "src/smart_ticket/application/refund_service.py": "7d218d867e08783ea39ba5bf062405c5493c7b490c22c85942c5e032365de64b",
+          "src/smart_ticket/application/seat_service.py": "288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "src/smart_ticket/application/trip_service.py": "2f2e9ef0a497130572b5f92aecba91761882adc24c9c5945dadbe489cd3f5c4e",
+          "src/smart_ticket/domain/discounts.py": "5035297c2da3cbab351d208056157a3682c1ae8f5b03d5eca8856122080b71da",
+          "src/smart_ticket/domain/errors.py": "14d021e0d9a9eee2f6a92f8cdd82e06ef295e24a91f1243863801a5ec9074121",
+          "src/smart_ticket/domain/fare_policy.py": "16ecb901f6d8dd3abebdbc71be3ed4ddd5935f95f582724b4aedfb5fc69ff7f5",
+          "src/smart_ticket/domain/members.py": "c1a58002f6c63f9ab6e370f93c3d5e6ad391b36bc3f864b3979eb39cb9b9d181",
+          "src/smart_ticket/domain/models.py": "1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "src/smart_ticket/domain/records.py": "b9f87d221f3e5b01f2aa0fdff71fb486f697a7f6b9d93f0a2c2e455b98bf99b5",
+          "src/smart_ticket/domain/repositories.py": "e077ab4e774652d173d064bd855efe63a9a4bf58fb5303e65cbebe5d8b0e0501",
+          "src/smart_ticket/infrastructure/clock.py": "dbf28972483502a76e2432beb3a2f3642fc2419e16b74c5105e435e12dba070f",
+          "src/smart_ticket/infrastructure/payment_gateway.py": "c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "src/smart_ticket/infrastructure/seed_data.py": "07ea8653b263230e756b7e59d7e05ab0eaa8885025ad311df79c02042f6fbfd5",
+          "src/smart_ticket/infrastructure/store.py": "6100d65989d9debc95a4afe451d52ff158e6ea1837ef7fac3eb48c1f398ad920",
+          "src/smart_ticket/main.py": "6554723fbfbeb133fe52808cc239a8b5c32511dceeca9ee569880562ded2457c",
+          "src/smart_ticket/schemas/contracts.py": "97dc69a2221060634809fe3e7af1c3802f1ad5d644fd043015112e21c4dd44d8",
+          "tests/conftest.py": "90ec2ff545786059cbf27c201bcb1e75e6d3396740939087df25ce03b8e1e520",
+          "tests/integration/conftest.py": "a122e8081c519db58881ad430566c55224d95dfee2609c8a735abdf373fbe95a",
+          "tests/integration/test_advance.py": "a581320e7a03f3cf77979a1ff4244753015593db3fc9e79acf7a945a41a8c81a",
+          "tests/integration/test_b0_api.py": "d69259405ef8a39917aac61f3271eafa6d826fb0df0a629609ae10461732a111",
+          "tests/integration/test_best_discount_api.py": "f7d604b157e9e1208c8cc9fa6ab8a292cc70e60a2221b59e0cec3e2d629bab41",
+          "tests/integration/test_changes.py": "6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4",
+          "tests/integration/test_features.py": "9548fd432ceeff4373aa2087bdb903b7dce353250ea66c94870fb5a49b674cb1",
+          "tests/integration/test_group_creation.py": "21026eecab37bdaa88aa1c26711576dc1bc0693c6d3073bfc5b442c42fc9797c",
+          "tests/integration/test_group_payment.py": "24bff5ff661c30b753977a74d0396f6386734634cf8322ea0ea54eb279113127",
+          "tests/integration/test_members.py": "2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4",
+          "tests/integration/test_records.py": "97b0bcf6cd5968faf127f40384e14d82cc761a433b5f5a7c74086aed6fdb80d9",
+          "tests/integration/test_refunds.py": "762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea",
+          "tests/integration/test_seats.py": "edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e",
+          "tests/integration/test_seed.py": "2a54bc7c4af6d9a14fe905d5f07c547ce38d326197568f9459bbf7df8a7431db",
+          "tests/test_health.py": "9d7b4dd895bb952ca1492f3f90d7f05b7ab43c815dacd1ebd1c794e411b337c1",
+          "tests/unit/test_best_discount_policy.py": "026f6b2dd0a173da45db9e1e56d6d3c167e2ddf6f9fd42b81d0ba4243408119f",
+          "tests/unit/test_fare_policy.py": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8",
+          "tests/unit/test_services.py": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
+        }
+      }
+    }
+  },
+  "historical_p9_p10_document_comparison": {
+    "historical_evidence_sha256": {
+      "04-digital-worker/evaluation/07-governance-validation-evidence.json": "64737be75daceff26c6e1594894b0346aab50839a42052d1278e11af2fa058eb",
+      "06-runbook/evaluation/p10-validation-evidence.json": "64802a01a6308167d8ec63fa67557f8fa4dba6e04bcea35729c10aaecf15e9b3"
+    },
+    "changed_documents": [
+      {
+        "file": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
+        "historical_sha256": "abc6fe14f7684c2e9f94353021d239ef17e67c9da075c8629cd0be54535e143b",
+        "current_sha256": "50f0ef8d675d19f9989436e712fd132120bb9967bc8d52240429a50920710a52"
+      },
+      {
+        "file": "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md",
+        "historical_sha256": "b5303f3fbb106209691eab0caca77a98c5ac6af6f5f941703cf8c0a639aa475d",
+        "current_sha256": "719adad62cf34ad5e2a7255b592515d9d55a1d0c13a9c4da35d12395817fb9b0"
+      },
+      {
+        "file": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
+        "historical_sha256": "1249e7df7806f31e7df47d4f385c8260d38fe74a9119523500b10f9190bff950",
+        "current_sha256": "8e6587d5cfead1fe416dca449702a2eff1c3e94030a2b4c8511a69949af4dd6e"
+      },
+      {
+        "file": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
+        "historical_sha256": "a6f8af2e328b86d1d26406fe773c7ebbc010a8ecf8b1f96af3a9ecb59c4a4ff0",
+        "current_sha256": "367ba26500c39a1b5a4229ce23f64b5089cf515659ac1f0f3ba996cd8391f918"
+      },
+      {
+        "file": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
+        "historical_sha256": "5b7314141313f135a4c121385f75ae80eaa5d5e4b4f2463c14303c9048b591b6",
+        "current_sha256": "e6a3cd477b9ef7ab31c1ee557bd107030233e05da5e73710c3747010455777d6"
+      },
+      {
+        "file": "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md",
+        "historical_sha256": "2a9adcd2c053fd5dfe632f128652007af3b7c3915f897155f5dd53e5faf02a2e",
+        "current_sha256": "ff27750b67ce3a46adf0ab88ff6aab2af8466e22b89727359f6b1c8a8f5d10e5"
+      },
+      {
+        "file": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
+        "historical_sha256": "daab07a4e8354fe5a3155e1a00efa321718d637d969e0314e244057593afd75b",
+        "current_sha256": "b72ae6b3d581ddae692b07361e06c54756bab04109b8f07635d5bea6f2b4c05a"
+      },
+      {
+        "file": "agentic-workshop/06-runbook/preflight-checklist.md",
+        "historical_sha256": "31718da19058433174f2324ffd8f1f0d53b9a1226a4a4b7de902bbc8809a2e01",
+        "current_sha256": "dc6a3e4808faa099efe2875af682785841b20dc886f08643dd3e0c9b106f6d2c"
+      },
+      {
+        "file": "agentic-workshop/06-runbook/recovery-plan.md",
+        "historical_sha256": "d38b24c61910deeced2391f8fcd803b5a26713f03a540945afa180e75160f9ee",
+        "current_sha256": "ce51643b198764fff85a91252f8fee5f0120787814f6fc6794a576733c90b94b"
+      },
+      {
+        "file": "agentic-workshop/06-runbook/workshop-runbook.md",
+        "historical_sha256": "216006a52a20e454f7f894106adc110244cb083948073fedaa2e034d182db3b5",
+        "current_sha256": "bc67dc6a45f78c40768b7e5530a06c56503f2109e0e0d15b85a552259c2a5a88"
+      }
+    ],
+    "unchanged_document_count": 17,
+    "interpretation": "Prior PASS describes prior files; changed documents have new current semantic evidence here. Historical JSON is not rewritten."
+  },
+  "current_checked_sha256": {
+    "agentic-workshop/01-greenfield/participant/01-mission-brief.md": "aec62fc3136985bddcdabd2696e15eb6858ce92d9685f3797f6b944a8f1ad296",
+    "agentic-workshop/03-brownfield/evaluation/11-b0-to-b3-version-matrix.md": "972d23832c1b9320f2dc10b8cb5fcec1c16ba48646a6103a329dcbf288a46619",
+    "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md": "7d85bbe2614b14116ffd30edca2002fff090b83b9674e0afd6c42877ecc9e9d5",
+    "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/domain/discounts.py": "5035297c2da3cbab351d208056157a3682c1ae8f5b03d5eca8856122080b71da",
+    "agentic-workshop/03-brownfield/participant/04-shared-context-template.md": "f91649a4209be961a3d421b071c15190992f5142ecff99451b3f7ad6f6f012a0",
+    "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md": "9a2c07f04c9529aee470c7d9191ba2e05bb854a81a79a4eeb1d0e42010dfebf6",
+    "agentic-workshop/04-digital-worker/evaluation/03-digital-worker-audit-template.md": "9c4d2c3117aa9b9a2d2414d03a5a33daeefd0585b3ad5278e43ef5adf9483e1c",
+    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "50f0ef8d675d19f9989436e712fd132120bb9967bc8d52240429a50920710a52",
+    "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md": "719adad62cf34ad5e2a7255b592515d9d55a1d0c13a9c4da35d12395817fb9b0",
+    "agentic-workshop/04-digital-worker/participant/03-approval-gates.md": "8e6587d5cfead1fe416dca449702a2eff1c3e94030a2b4c8511a69949af4dd6e",
+    "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "367ba26500c39a1b5a4229ce23f64b5089cf515659ac1f0f3ba996cd8391f918",
+    "agentic-workshop/04-digital-worker/participant/05-delivery-template.md": "e6a3cd477b9ef7ab31c1ee557bd107030233e05da5e73710c3747010455777d6",
+    "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md": "ff27750b67ce3a46adf0ab88ff6aab2af8466e22b89727359f6b1c8a8f5d10e5",
+    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "68ea10a8a07757b910bf3464f6642040abb34da2cbaafdb69ef97fe1a6d0629a",
+    "agentic-workshop/06-runbook/workshop-runbook.md": "bc67dc6a45f78c40768b7e5530a06c56503f2109e0e0d15b85a552259c2a5a88",
+    "scripts/build_delivery.py": "02f180ca4f22cfc74b6a3ac55ff9d947f794928946a23f84e4fb9d612acf9822",
+    "scripts/package-manifest.json": "f6127e67546395c5df286a9a3c9a098e27c59ba383d837eccb2228b299c13795"
+  },
+  "app_suite_rerun": "NOT RUN: exact frozen source comparison; prior actual technical evidence retained",
+  "human_rehearsal": "NOT RUN",
+  "limits": "Explicit review issue checks and actual B0 ZIP policy; not general semantic proof or human rehearsal.",
+  "status": "PASS"
+}

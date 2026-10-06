@@ -1,0 +1,7 @@
+.codex-tmp/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+dist/

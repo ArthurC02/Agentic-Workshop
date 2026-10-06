@@ -1,0 +1,53 @@
+{
+  "description": "主持人專用：學員 Runbook 各揭露時點的寫死解鎖碼。不發給學員。輸入時不分大小寫，空白與連字號會被忽略。依據 docs/instructions/10_主持簡報與學員Runbook產製指令書.md §3。",
+  "groups": [
+    {
+      "id": "greenfield",
+      "minute": 7,
+      "code": "G0-START-07",
+      "label": "Greenfield"
+    },
+    {
+      "id": "timeskip",
+      "minute": 29,
+      "code": "TIMESKIP-29",
+      "label": "Time Skip"
+    },
+    {
+      "id": "b1",
+      "minute": 44,
+      "code": "B1-FARE-44",
+      "label": "B1"
+    },
+    {
+      "id": "b2",
+      "minute": 52,
+      "code": "B2-BEST-52",
+      "label": "B2"
+    },
+    {
+      "id": "b3",
+      "minute": 63,
+      "code": "B3-GROUP-63",
+      "label": "B3 / Digital Worker"
+    },
+    {
+      "id": "retro",
+      "minute": 80,
+      "code": "RETRO-80",
+      "label": "回顧"
+    },
+    {
+      "id": "recovery-b1",
+      "minute": 52,
+      "code": "RESUME-B1-52",
+      "label": "B1 Recovery（主持按需提供）"
+    },
+    {
+      "id": "recovery-b2",
+      "minute": 63,
+      "code": "RESUME-B2-63",
+      "label": "B2 Recovery（主持按需提供）"
+    }
+  ]
+}

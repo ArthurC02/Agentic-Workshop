@@ -1,0 +1,145 @@
+{
+  "slides": [
+    {
+      "id": "start",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "why",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "chain",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "folder",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "idea",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "mvp",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "task",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "story",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "acceptance",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "flow",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "flow-review",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "gherkin",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "gherkin-boundary",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "tests",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false
+    },
+    {
+      "id": "architecture",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "layout",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "trace",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    },
+    {
+      "id": "handover",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true
+    }
+  ],
+  "errors": [],
+  "actions": {
+    "copy": true,
+    "copyFallback": true,
+    "next": true,
+    "prev": true,
+    "notes": true,
+    "notesClosed": true,
+    "overview": true,
+    "jump": true,
+    "timer": true,
+    "reset": true,
+    "assets": true,
+    "downloadPayload": true
+  }
+}

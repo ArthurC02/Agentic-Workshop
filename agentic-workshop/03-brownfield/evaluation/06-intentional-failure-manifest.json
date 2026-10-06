@@ -1,0 +1,7 @@
+[
+  "tests/unit/test_fare_policy.py::test_student_fare_is_seventy_five_percent",
+  "tests/unit/test_fare_policy.py::test_mixed_passenger_fares_sum_as_integers",
+  "tests/unit/test_services.py::test_successful_mixed_booking_reserves_seats_and_starts_pending",
+  "tests/integration/test_features.py::test_student_booking",
+  "tests/integration/test_features.py::test_mixed_booking_reserves_seats"
+]

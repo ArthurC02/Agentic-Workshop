@@ -1,0 +1,269 @@
+{
+  "build_manifest_sha256": "f6127e67546395c5df286a9a3c9a098e27c59ba383d837eccb2228b299c13795",
+  "output": "dist/p11-candidate/f6127e67546395c5",
+  "packages": [
+    {
+      "id": "participant-07-g0",
+      "files": 31,
+      "zip_sha256": "34b6209e345412db4c49b50df2a74050dfffeedd33170c3a6bf93f801b5829ef",
+      "relative_links": 8,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-29-time-skip",
+      "files": 3,
+      "zip_sha256": "420ad6c8a6364cc8a2d73623e89547f58fcb7ef3dc3981955a5ec9ebe348da1e",
+      "relative_links": 0,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-29-b0",
+      "files": 51,
+      "zip_sha256": "d74cd38cc679105576819bb00fd507696e98f6a8a4a69f3465cf70795fcfbf22",
+      "relative_links": 9,
+      "membership": "PASS",
+      "pedagogical_policy": "PASS: original controlled context and three exact ADR retained; generated material has no diagnosis or priority disclosure"
+    },
+    {
+      "id": "participant-33-analysis",
+      "files": 3,
+      "zip_sha256": "46c827a4b41633a2dd57f47aacb5019efd95fcf3e4cb6dc6a66b76de2694d03e",
+      "relative_links": 0,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-39-shared-context",
+      "files": 1,
+      "zip_sha256": "1e44dd0f543244b2bcbf642bacca804078b4e541089291d176d712df783bb4bf",
+      "relative_links": 0,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-44-b1",
+      "files": 1,
+      "zip_sha256": "45b380210eb9db35879d033085ffd19d089fc87c1c5e507a4ae5b2bb7201095d",
+      "relative_links": 0,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-52-b2",
+      "files": 1,
+      "zip_sha256": "b6eb75ccde6e49f0d0e016d429a27389ab712fbde102abc3c63f6964cf534607",
+      "relative_links": 0,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-63-b3-governance",
+      "files": 7,
+      "zip_sha256": "40c12ac5f9dd835099149ab45200f473c601c06d5d926ba537765b4d02b697e9",
+      "relative_links": 15,
+      "membership": "PASS"
+    },
+    {
+      "id": "participant-80-retrospective",
+      "files": 2,
+      "zip_sha256": "c229c4ef3a6e25aee918d9a54eb0a61559284d1b4f256170e16a9aaffa703675",
+      "relative_links": 2,
+      "membership": "PASS"
+    },
+    {
+      "id": "recovery-52-b1",
+      "files": 46,
+      "zip_sha256": "6e9ea99f8450773a3504baea9e8512a67d57fe45ece4243f19534b4f4a301431",
+      "relative_links": 4,
+      "membership": "PASS",
+      "recovery_checks": [
+        {
+          "command": [
+            "C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b1-env\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": "dist/p11-candidate/5061def543bc1b83/unpacked-recovery-52-b1/recovery-b1",
+          "exit_code": 0,
+          "stdout": "No broken requirements found.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b1-env\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider"
+          ],
+          "cwd": "dist/p11-candidate/5061def543bc1b83/unpacked-recovery-52-b1/recovery-b1",
+          "exit_code": 0,
+          "stdout": "............................................                             [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\.codex-tmp\\b1-env\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b1-env\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n44 passed, 1 warning in 0.29s\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b1-env\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-c",
+            "from smart_ticket.main import app; assert app.version=='B1'; from fastapi.testclient import TestClient; from smart_ticket.main import app; c=TestClient(app); assert c.get('/health').json()=={'status':'ok'}; spec=c.get('/openapi.json').json(); assert len(spec['paths'])==11; r=c.post('/bookings',json={'trip_id':'T001','passengers':[{'passenger_id':'P1','name':'Demo','passenger_type':'ADULT'}]}); assert r.status_code==201,r.text; bid=r.json()['booking_id']; assert c.post('/bookings/'+bid+'/pay').status_code==200; assert c.post('/bookings/'+bid+'/change',json={'target_trip_id':'T005'}).status_code==200; assert c.post('/bookings/'+bid+'/refund').status_code==200; print(app.version,'Health/OpenAPI/create/pay/change/refund PASS')"
+          ],
+          "cwd": "dist/p11-candidate/5061def543bc1b83/unpacked-recovery-52-b1/recovery-b1",
+          "exit_code": 0,
+          "stdout": "B1 Health/OpenAPI/create/pay/change/refund PASS\n",
+          "stderr": ""
+        }
+      ],
+      "environment": "Existing version-specific Python3.13 venv; no fresh install claimed",
+      "reused_technical_evidence": {
+        "sha256": "05136fdd5bde5bfda1fe7d6b7092b6318d22e123c2195179066a1c80c6f441a9",
+        "reason": "Exact deterministic Recovery ZIP SHA256 unchanged; current ZIP membership verified anew"
+      }
+    },
+    {
+      "id": "recovery-63-b2",
+      "files": 48,
+      "zip_sha256": "bd344f9715f0c0b668c9d3ee5fa0a1e1544a5a78af4bf7c76353bcb88a9cdd1a",
+      "relative_links": 4,
+      "membership": "PASS",
+      "recovery_checks": [
+        {
+          "command": [
+            "C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b2-env\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": "dist/p11-candidate/5061def543bc1b83/unpacked-recovery-63-b2/recovery-b2",
+          "exit_code": 0,
+          "stdout": "No broken requirements found.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b2-env\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider"
+          ],
+          "cwd": "dist/p11-candidate/5061def543bc1b83/unpacked-recovery-63-b2/recovery-b2",
+          "exit_code": 0,
+          "stdout": ".......................................................                  [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\.codex-tmp\\b2-env\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b2-env\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n55 passed, 1 warning in 0.37s\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\arthur.chang\\OneDrive - Fubon Financial Holding Co., Ltd\\桌面\\工作坊\\.codex-tmp\\b2-env\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-c",
+            "from smart_ticket.main import app; assert app.version=='B2'; from fastapi.testclient import TestClient; from smart_ticket.main import app; c=TestClient(app); assert c.get('/health').json()=={'status':'ok'}; spec=c.get('/openapi.json').json(); assert len(spec['paths'])==11; r=c.post('/bookings',json={'trip_id':'T001','passengers':[{'passenger_id':'P1','name':'Demo','passenger_type':'ADULT'}]}); assert r.status_code==201,r.text; bid=r.json()['booking_id']; assert c.post('/bookings/'+bid+'/pay').status_code==200; assert c.post('/bookings/'+bid+'/change',json={'target_trip_id':'T005'}).status_code==200; assert c.post('/bookings/'+bid+'/refund').status_code==200; print(app.version,'Health/OpenAPI/create/pay/change/refund PASS')"
+          ],
+          "cwd": "dist/p11-candidate/5061def543bc1b83/unpacked-recovery-63-b2/recovery-b2",
+          "exit_code": 0,
+          "stdout": "B2 Health/OpenAPI/create/pay/change/refund PASS\n",
+          "stderr": ""
+        }
+      ],
+      "environment": "Existing version-specific Python3.13 venv; no fresh install claimed",
+      "reused_technical_evidence": {
+        "sha256": "05136fdd5bde5bfda1fe7d6b7092b6318d22e123c2195179066a1c80c6f441a9",
+        "reason": "Exact deterministic Recovery ZIP SHA256 unchanged; current ZIP membership verified anew"
+      }
+    },
+    {
+      "id": "facilitator-before-session",
+      "files": 59,
+      "zip_sha256": "ca4f2b764f7836721281fe92d3e426a810b4e84dd2ba508a251d3b2f6638c91c",
+      "relative_links": null,
+      "membership": "PASS"
+    },
+    {
+      "id": "evaluation-private",
+      "files": 394,
+      "zip_sha256": "da6b0faf167e71c782f6d01cda5b2e4a5621cf1d1eea51a39e48c48067a04373",
+      "relative_links": null,
+      "membership": "PASS"
+    }
+  ],
+  "negative_checks": [
+    {
+      "case": "../escape",
+      "result": "REJECTED"
+    },
+    {
+      "case": ".git/config",
+      "result": "REJECTED"
+    },
+    {
+      "case": "/absolute",
+      "result": "REJECTED"
+    },
+    {
+      "case": "safe/.venv/config",
+      "result": "REJECTED"
+    },
+    {
+      "case": "missing relative link",
+      "result": "REJECTED"
+    },
+    {
+      "case": "schema {'id': '../../outside', 'role': 'participant', 'release_minute': 7}",
+      "result": "REJECTED"
+    },
+    {
+      "case": "schema {'id': 'participant-07-g0', 'role': 'partcipant', 'release_minute': 7}",
+      "result": "REJECTED"
+    },
+    {
+      "case": "schema {'id': 'recovery-63-b2', 'role': 'participant', 'release_minute': 0, 'source_version': 'B2'}",
+      "result": "REJECTED"
+    },
+    {
+      "case": "actual ZIP injected .git/config",
+      "result": "REJECTED"
+    },
+    {
+      "case": "actual ZIP injected evaluation/answer.md",
+      "result": "REJECTED"
+    },
+    {
+      "case": "actual ZIP injected future/b3-answer.py",
+      "result": "REJECTED"
+    },
+    {
+      "case": "actual ZIP byte corruption",
+      "result": "REJECTED"
+    }
+  ],
+  "human_recovery": "NOT RUN",
+  "real_session_preflight": "NOT RUN",
+  "human_rehearsal": "NOT RUN",
+  "private_overlay_links": {
+    "checked": 630,
+    "missing": [],
+    "detached_artifact_sha256": {
+      "scripts/build_delivery.py": "02f180ca4f22cfc74b6a3ac55ff9d947f794928946a23f84e4fb9d612acf9822",
+      "scripts/package-manifest.json": "f6127e67546395c5df286a9a3c9a098e27c59ba383d837eccb2228b299c13795",
+      "scripts/README.md": "d74fc6f557117fcffab4f81d7b4680fe4a49b80df5c519307296e1ab068b5d09",
+      "scripts/test_build_delivery.py": "57a7ee93e114c05b28ee5f6f2ad38df66bb37065ada0aff43eb182d1883047d5",
+      "scripts/test_validate_workshop.py": "707b4e56ad5ef88d172b3d14ccac619084cb0f8a2c6f5c8b78e85363405810bc",
+      "scripts/validate_consistency_corrections.py": "9622d5008227cd7b81b927375adfafe36bf630094d91d8a8f4b0604af85cf17a",
+      "scripts/validate_workshop.py": "c3fe69a95fdabda9cccd76f802ad2705099efb533f43a3fbd457906f0d2815dd",
+      "scripts/verify_delivery.py": "2331bf4a5eb2d5c2b0b12fb4f7dbaff3b8002c6e0c543d512c524fcf4a295714",
+      "scripts/verify_runtime_baselines.py": "26fb741797e5e1f3d6bee7f859e03646c17e4f0406c62bf50067f84396c7241d",
+      "agentic-workshop/06-runbook/evaluation/p11-package-validation-evidence.json": "c45bb799a496723581dd254e95d654ca5c2368b9f6da488622eea1e8ac54a07b",
+      "agentic-workshop/06-runbook/evaluation/consistency-correction-evidence.json": "3f7ab3b3dfba48d0f07d4781043b1715bfd5e8d59e8b1900a60a24342c39b27a"
+    },
+    "mount": "All 13 ZIPs plus detached scripts and package evidence in a private reviewer tree; never learner distribution"
+  }
+}

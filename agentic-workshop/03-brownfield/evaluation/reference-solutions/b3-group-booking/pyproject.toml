@@ -1,0 +1,9 @@
+[project]
+name = "smart-ticket-reference-mvp"
+version = "0.2.3"
+requires-python = ">=3.13,<3.14"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"

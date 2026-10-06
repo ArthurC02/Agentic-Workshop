@@ -1,0 +1,34 @@
+# 90分鐘工作坊主持Runbook
+
+> 讀者：主持人與協同觀察者。時機：準備及活動全程。前置：[環境準備](environment-setup.md)、[Preflight](preflight-checklist.md)及按角色準備的材料。可見性：Facilitator，不整份發學員。
+
+本機案例Smart Ticket，主線Tool→Teammate→Digital Worker。下表為計畫，不是已執行紀錄。開場前選定計時者及證據記錄者；Greenfield個人，Brownfield先個人分析再小組整合，選主要Agent，不安排額外角色輪轉。
+
+| 分鐘 | 長度 | Cue／本段發放 | 觀察與提示條件 | 停止／降級 |
+|---|---:|---|---|---|
+| 00–07 | 7 | 口頭說明90分鐘、Tool→Teammate→Digital Worker、責任與證據；任務文件於7分鐘統一發放。 | 確認環境與Agent可用，不比較Coding速度。 | 7分鐘進任務；環境未備妥按Recovery分析降級。 |
+| 07–29 | 22 | 統一發[G0 Mission](../01-greenfield/participant/01-mission-brief.md)、[需求／AC](../01-greenfield/participant/03-acceptance-criteria.md)及骨架，人選設計與拆解、Agent協助。 | 要求計畫、Diff及實測，停滯按[Greenfield提示](../01-greenfield/facilitator/03-progressive-hints.md)。 | 29分鐘留成果／缺項，不強修完整MVP。 |
+| 29–33 | 4 | [Time Skip宣告](../02-time-skip/participant/01-time-skip-announcement.md)，停止個人Repo，全員換統一B0。 | 確認來源；不發B1／B2／B3或Bug根因。 | 33分鐘進分析；不能用個人G1或已修B1代替B0。 |
+| 33–39 | 6 | 發[個人分析表](../03-brownfield/participant/03-individual-analysis-sheet.md)，每人用自己的Agent讀同一B0。 | 區分事實、假設、來源與缺口，先不修改；必要提示核對Code／Test／Rule。 | 39分鐘收分析，未查清如實記錄。 |
+| 39–44 | 5 | 發[Shared Context](../03-brownfield/participant/04-shared-context-template.md)，比較分歧、選主要Agent。 | 核對共同規則、來源版本、限制與待決事項，42分鐘提醒收斂；尚未揭露B1，不核准任務修改。 | 44分鐘留共同Context及角色，任務計畫待揭露後補填，不以口頭補充取代紀錄。 |
+| 44–52 | 8 | 只發[B1任務](../03-brownfield/participant/task-cards/01-b1-student-fare-bug.md)，再補任務範圍、計畫及核准，核准後才修改。 | 46分鐘核計畫、49分鐘收斂測試、51分鐘Review；按[Brownfield三級提示](../03-brownfield/facilitator/05-task-progressive-hints.md)。 | 52分鐘停止；需接續時用已驗證B1 Recovery，原成果另留。 |
+| 52–63 | 11 | 再發[B2任務](../03-brownfield/participant/task-cards/02-b2-discount-policy-change.md)。 | 52–55比較2–3方案，人選擇核准；59測試／文件、62 Review逐人優惠與改票。 | 63分鐘停止；缺完成保留方案／Test Cases，按B2 Recovery接續。 |
+| 63–76 | 13 | 宣布人不Coding，發[B3任務](../03-brownfield/participant/task-cards/03-b3-group-booking.md)、[操作規則](../04-digital-worker/participant/01-operating-rules.md)、[Work Order](../04-digital-worker/participant/02-agent-work-order.md)與[Gate](../04-digital-worker/participant/03-approval-gates.md)。 | 66 Gate1、69 Gate2及唯一例外、70起實作、74收測試、75 Gate3；Cue見下節。 | 76分鐘停止，Level1–3如實交付；人不補Code／Test。 |
+| 76–80 | 4 | 收[Delivery](../04-digital-worker/participant/05-delivery-template.md)、真實測試、核准及缺項。 | 確認未驗證、Recovery、風險與偏差，功能Level與治理證據分開。 | 80分鐘進回顧，不追加Demo美化或修Code。 |
+| 80–90 | 10 | 發[Reflection](../05-retrospective/participant/reflection-sheet.md)與[Maturity](../05-retrospective/participant/maturity-comparison.md)。 | 按[Debrief](../05-retrospective/facilitator/debrief-guide.md)收根因、六類改善、責任人／驗證。 | 90分鐘準時結束；未觀察不編數據，不排名。 |
+
+總90分鐘；29–80共51分鐘，B3的13分鐘已包含治理，不新增另一段。原contents一日／半日與跨角色交接只作方法參考，Context交接映射到Time Skip及Shared Context。
+
+## B3核准與唯一例外
+
+相對0／1／3／6／7／11／12／13＝活動63／64／66／69／70／74／75／76。Gate1核准才設計，Gate2核准且條件解除才改程式；Gate3至少審實際測試及未完成。三Gate是學員決策，與素材驗收分開。
+
+唯一`EXCEPTION-DW-001`依[主持事件卡](../04-digital-worker/facilitator/03-exception-injection.md)：若Agent已自然提SQLite不再注入；否則69分鐘用假設卡詢問，69–70最多60秒，必要縮30秒但不刪事件。不安裝SQLite，標準答案不預發Participant。未核准／未解除條件保持停止，不為趕時間假核准。
+
+## 收件與復原
+
+使用[評估索引](../05-retrospective/evaluation/workshop-evaluation-index.md)定位各段AC、提示、接受範圍與內部答案，勿分享該索引。保留版本、Context、Diff、測試指令／退出碼、Gate人員／時間、提示／介入、Recovery及未完成。
+
+依[Recovery Plan](recovery-plan.md)只在時點發受控已驗收起點，未有合格包降級分析／Review。延遲不增加總90分鐘，不犧牲理解／設計Gate與最低交付Review。主持不得直接提供完整答案Code或替學員修改。
+
+完成條件：十段完整執行紀錄、分批發放、Gate／例外／Recovery及成果與改善可追溯；本文件僅提供流程，實際90分鐘演練待執行。

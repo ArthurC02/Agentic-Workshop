@@ -1,0 +1,336 @@
+<!-- ===================== B2 52–63 ===================== -->
+
+<section class="slide slide-title" data-seg="b2" data-title="解鎖 B2" data-minute="52" data-unlock="b2">
+  <style>
+    /* B2 fragment-scoped visuals (prefix b2-) */
+    .b2-bars{display:grid;gap:.7rem;margin-top:.4rem}
+    .b2-bar{display:grid;grid-template-columns:minmax(7rem,10rem) 1fr 4.5rem;align-items:center;gap:.9rem}
+    .b2-bar .b2-name{font-weight:700}
+    .b2-bar .b2-name small{display:block;font-weight:400;color:var(--c-ink-2,#494A57)}
+    .b2-track{height:1.5rem;border-radius:99px;background:var(--c-line,#D7D6DB);overflow:hidden}
+    .b2-fill{height:100%;width:calc(var(--r) * 1%);border-radius:99px;background:var(--c-primary,#0093C1)}
+    .b2-bar.b2-adult .b2-fill{background:var(--c-muted,#AEAFB4)}
+    .b2-bar.b2-low .b2-fill{background:var(--c-teal,#00A59B)}
+    .b2-pct{font-size:1.5em;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+    .b2-ex{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem;padding:.55rem .9rem;margin:.45rem 0;border:1px solid var(--c-line,#D7D6DB);border-radius:.6rem;background:var(--c-surface,#fff);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .b2-ex .b2-plus{color:var(--c-ink-2,#494A57);font-weight:700}
+    .b2-ex .b2-out{margin-left:auto;font-size:1.35em;font-weight:700;color:var(--c-teal,#00A59B)}
+    .b2-ex.b2-no{border-color:var(--c-danger,#EB4751)}
+    .b2-ex.b2-no .b2-out{color:var(--c-danger,#EB4751)}
+    .b2-lane{display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;padding:.8rem 1rem;margin:.6rem 0;border:1px solid var(--c-line,#D7D6DB);border-radius:.6rem;background:var(--c-surface,#fff);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .b2-who{min-width:11rem;font-weight:700}
+    .b2-who small{display:block;font-weight:400;color:var(--c-ink-2,#494A57)}
+    .b2-cand{position:relative;display:inline-flex;flex-direction:column;align-items:center;min-width:6.5rem;padding:.3rem .8rem;border:2px solid var(--c-line,#D7D6DB);border-radius:.6rem;font-family:"Cascadia Code",Consolas,"Courier New",monospace}
+    .b2-cand b{font-size:1.35em}
+    .b2-cand.b2-win{border-color:var(--c-teal,#00A59B)}
+    .b2-x{position:absolute;inset:0;border-radius:.5rem;background:linear-gradient(to top right,transparent calc(50% - 2px),var(--c-danger,#EB4751) calc(50% - 1px),var(--c-danger,#EB4751) calc(50% + 1px),transparent calc(50% + 2px))}
+    .b2-arrow{font-size:1.5em;color:var(--c-ink-2,#494A57)}
+    .b2-result{margin-left:auto;padding:.4rem 1.1rem;border-radius:99px;background:var(--c-teal,#00A59B);color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+    .b2-total{display:flex;align-items:baseline;justify-content:flex-end;gap:.8rem;margin-top:.4rem}
+    .b2-total .big-number{color:var(--c-teal,#00A59B)}
+  </style>
+  <p class="kicker">第 52 分鐘 · 解鎖</p>
+  <h2 class="title">B2 開始</h2>
+  <p class="subtitle">TASK-B2-001：導入不可疊加的最有利優惠政策</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，解開：</p>
+  <p>
+    <span class="chip teammate fx">B2 任務卡</span>
+  </p>
+  <p class="muted fx fx-fade">起點：小組已驗收的 B1，或主持人核准提供的 B1 復原基線；請更新 Shared Context。</p>
+  <aside class="notes">
+    <p><b>解鎖（指令書 §3）</b>：52 分鐘只解開「B2 任務卡」。解鎖碼由本頁大字顯示；完整碼表見講者視窗。</p>
+    <p><b>Cue（BF4 P7）</b>：第 52 分鐘才發 TASK-B2-001，並確認小組的起點是<b>已驗收的 B1</b> 與 Shared Context。來源沒有 B2 逐字台詞，只有此 Cue。</p>
+    <p><b>RB 52–63</b>：「再發B2任務。」B1 未完成需接續時，只發<b>已驗收的正式 B1 Recovery Baseline</b>，記錄原小組完成度、來源版本、切換原因與時間（BF4、BF6）；B0 Evaluation 診斷副本不是已完成的 B1，也不是 Recovery 材料。</p>
+    <p>B2 11:00 自第 52 分起算：接下來的任務簡介頁請快速帶過，之後停留在「B2 倒數」頁。若計時器不隨翻頁持續，先跳到倒數頁按 T 啟動再返回講解；停止點仍是第 63 分鐘。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b2" data-title="B2 任務 · 費率" data-minute="52">
+  <p class="kicker">TASK-B2-001 · Agent = <span class="chip teammate">Teammate</span>→<span class="chip dw">Digital Worker</span> 過渡</p>
+  <h2 class="title">多項優惠同時符合：只取一項最有利的</h2>
+  <ol class="stage-bar">
+    <li class="tool">Tool</li>
+    <li class="teammate active">Teammate</li>
+    <li class="dw">Digital Worker</li>
+  </ol>
+  <div class="b2-bars">
+    <div class="b2-bar b2-adult fx fx-up"><span class="b2-name">成人 <small>Base Fare</small></span><span class="b2-track"><span class="b2-fill" style="--r:100"></span></span><span class="b2-pct">100%</span></div>
+    <div class="b2-bar fx fx-up"><span class="b2-name">企業會員</span><span class="b2-track"><span class="b2-fill" style="--r:95"></span></span><span class="b2-pct">95%</span></div>
+    <div class="b2-bar fx fx-up"><span class="b2-name">提前購票 <small>至少 14 天</small></span><span class="b2-track"><span class="b2-fill" style="--r:85"></span></span><span class="b2-pct">85%</span></div>
+    <div class="b2-bar b2-low fx fx-up"><span class="b2-name">學生</span><span class="b2-track"><span class="b2-fill" style="--r:75"></span></span><span class="b2-pct">75%</span></div>
+  </div>
+  <p class="callout fx fx-fade">不可疊加；<b>每位旅客獨立評估</b>，再加總 Booking Total。</p>
+  <aside class="notes">
+    <p><b>任務卡（TC2 情境與規則）</b>：「多項優惠同時符合時，採對該旅客最有利的單一優惠，不可疊加。成人Base Fare100%、學生75%、提前至少14天85%、企業會員95%；各旅客獨立評估後加總Booking Total。」</p>
+    <p>Agent 角色：Teammate→Digital Worker 過渡（TC2 header）。</p>
+    <p><b>不要說</b>：現行 B0 的優惠選擇方式（屬 DEBT-001，揭曉頁才談）；不示範金額計算或實作方式。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b2" data-title="B2 範例 · FARE-007～010" data-minute="52">
+  <p class="kicker">TASK-B2-001 · 不可疊加</p>
+  <h2 class="title">逐位旅客取最有利單一優惠</h2>
+  <div class="cols-2">
+    <div>
+      <div class="b2-ex fx fx-up"><span class="chip">學生</span><span class="b2-plus">＋</span><span class="chip">提前</span><span class="b2-out">75%</span></div>
+      <div class="b2-ex fx fx-up"><span class="chip">企業</span><span class="b2-plus">＋</span><span class="chip">提前</span><span class="b2-out">85%</span></div>
+      <div class="b2-ex fx fx-up"><span class="chip">學生</span><span class="b2-plus">＋</span><span class="chip">企業</span><span class="b2-plus">＋</span><span class="chip">提前</span><span class="b2-out">75%</span></div>
+      <div class="b2-ex fx fx-up"><span class="chip">成人 · 無資格</span><span class="b2-out">100%</span></div>
+      <div class="b2-ex b2-no fx fx-up"><span>不把 75% 與 85% 相乘</span><span class="b2-out">✕ 75%×85%</span></div>
+    </div>
+    <table class="table fx fx-fade">
+      <thead><tr><th>Rule ID</th><th>新政策</th></tr></thead>
+      <tbody>
+        <tr><td><code>FARE-007</code></td><td>多項優惠不可疊加。</td></tr>
+        <tr><td><code>FARE-008</code></td><td>多項同時符合採數值最低的單一折扣率。</td></tr>
+        <tr><td><code>FARE-009</code></td><td>每位 Passenger 獨立決定優惠。</td></tr>
+        <tr><td><code>FARE-010</code></td><td>Fare Result 記錄實際採用 Discount Type 與 Rate。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <aside class="notes">
+    <p><b>範例（TC2，逐字）</b>：「例如學生加提前採75%，企業加提前採85%，三項同時符合採75%；不把75%與85%相乘，成人無資格時100%。」本頁只用任務卡的範例，<b>不加算金額</b>。</p>
+    <p>FARE-007～010 為任務卡規則表原文。學員步驟：更新 Shared Context 第 2 部分（TASK-B2-001，規則 FARE-007～010）。</p>
+    <p><b>Hint 1（方向）觸發</b>：仍沿用條件先後，未分析多資格 →「先列出每位旅客可能符合的優惠，與各自公開資格對照。」只在觸發時逐級發放並記錄原因（BF5 P7）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b2" data-title="B2 人與 Agent 合作" data-minute="52">
+  <p class="kicker">Teammate → Digital Worker 過渡</p>
+  <h2 class="title">Agent 提出 2–3 個方案，人來選</h2>
+  <div class="cols-2">
+    <ol class="steps">
+      <li class="fx">Agent 分析規則交互作用與跨模組影響</li>
+      <li class="fx">Agent 提出 <b>2–3 個可行方案</b>、取捨與風險</li>
+      <li class="fx">人質疑並查證假設、<b>選擇方案</b>、核准工作拆解</li>
+      <li class="fx">核准後，主要 Agent 主導實作、測試與文件</li>
+      <li class="fx">人審查規則、測試、文件與 Diff</li>
+    </ol>
+    <div>
+      <div class="card teammate fx fx-up">
+        <span class="chip teammate">Agent</span>
+        <h3>分析 · 提案 · 實作</h3>
+        <p>主動提出方案比較，核准後主導執行。</p>
+      </div>
+      <div class="card dw fx fx-up">
+        <span class="chip dw">人</span>
+        <h3>查證假設 · 選擇 · 核准 · 審查</h3>
+        <p>選方案與核准計畫是人的決定。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TC2 人與Agent合作</b>：「先要求Agent分析規則交互作用與跨模組影響，提出2–3個可行方案、取捨與風險。由人Challenge假設、選方案並核准Task Breakdown，再由主要Agent主導實作；人審查規則、測試、文件與Diff。」</p>
+    <p><b>預期（BF7 P7）</b>：Agent 主動分析並提出 2–3 個方案及取捨；人 Challenge、選方案、核准 Task Breakdown；主要 Agent 核准後主導實作、測試與文件；人 Review Diff／Rule／AC，決定接受或要求修正。</p>
+    <p><b>需要介入（BF7 P7）</b>：未比較方案。主持人<b>不替人選方案或核准計畫</b>（BF5 P7）。</p>
+    <p><b>Cue 55（BF4 P7）</b>：由人選擇方案並核准 Task Breakdown（須在 55 前核准），主要 Agent 再執行。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b2" data-title="B2 影響分析與邊界" data-minute="52">
+  <p class="kicker">TASK-B2-001 · 交付與邊界</p>
+  <h2 class="title">要分析的影響，與不能做的事</h2>
+  <div class="cols-2">
+    <div class="card fx fx-up">
+      <h3>影響分析</h3>
+      <ul>
+        <li>分三欄：<b>一定要改／可能影響／不應改</b></li>
+        <li>規則交互作用與跨模組影響</li>
+        <li>建立訂票與改票重新計價：<b>政策一致</b></li>
+        <li>API 呈現實際採用優惠；保留原旅客 Request／Response 三欄</li>
+        <li>若擴充 Booking 回應：根層 <code>applied_discounts</code>（<code>passenger_id</code>、<code>discount_type</code>、<code>rate</code>、<code>amount</code>）</li>
+      </ul>
+    </div>
+    <div class="callout warn fx fx-up">
+      <h3>禁止事項</h3>
+      <ul>
+        <li>不可疊乘；不對整筆訂票只選同一優惠</li>
+        <li>不將政策塞入 Router</li>
+        <li>不引入規則引擎或第三方規則套件</li>
+        <li>不全面重寫；不新增團體功能</li>
+        <li>保留付款／改退票、座位、Audit 與同步通知</li>
+        <li>學生修復與原正確 Regression 不可弱化</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>來源</b>：TC2「人與Agent合作及交付」段（交付物、API／一致性、禁止事項）原文。本頁只列任務卡寫明的影響面；<b>不點名具體模組或檔案</b>（揭曉頁才列）。</p>
+    <p><b>Hint 3（模組）觸發</b>：只改建立流程，忽略使用端 →「核對Fare／Discount與Booking Change是否共用相同政策，以及回應明細與文件；不提供修正Code。」</p>
+    <p><b>須立即停止並糾正（BF6 P7）</b>：規則疊乘、弱化 Regression、未經核准的外部套件、提前做團體功能。</p>
+    <p><b>需要介入（BF7 P7）</b>：只改一個分支、忽略 Change、用全團共同優惠或疊乘計價、全面重構成 Engine。保留同步 Notification；折扣政策清楚化即足夠，不要求複雜的 Engine（BF5 P7）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b2" data-title="B2 驗收條件" data-minute="52">
+  <p class="kicker">TASK-B2-001 · 驗收條件</p>
+  <h2 class="title">AC-B2-001～013</h2>
+  <div class="cols-3">
+    <div class="card fx fx-up">
+      <span class="chip">001–007</span>
+      <h3>單一優惠結果</h3>
+      <p>成人無資格 100%、學生 75%、提前成人 85%、企業成人 95%；學生＋提前 75%、企業＋提前 85%、三者同時 75%。</p>
+    </div>
+    <div class="card fx fx-up">
+      <span class="chip">008–010</span>
+      <h3>政策性質</h3>
+      <p>不疊加；不同旅客可採不同優惠；結果含實際優惠類型與折扣率。</p>
+    </div>
+    <div class="card fx fx-up">
+      <span class="chip">011–013</span>
+      <h3>一致與回歸</h3>
+      <p>改票重新計價遵循相同政策；B1 與原 G1 回歸測試通過；折扣文件與程式同步。</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>AC 原文（TC2 驗收條件表）</b>：001 成人無資格100%｜002 學生75%｜003 提前購票成人85%｜004 企業會員成人95%｜005 學生加提前75%｜006 企業會員加提前85%｜007 學生、企業、提前同時符合75%｜008 不疊加｜009 不同旅客可採不同優惠｜010 結果含實際Discount Type與Rate｜011 改票重新計價遵循相同政策｜012 B1與原G1 Regression通過｜013 折扣文件與程式同步。</p>
+    <p><b>觀察（BF7 P7）</b>：是否逐位旅客取最有利、不疊加、改票與建立一致、Applied Discount 真實、折扣文件同步、完整 Regression 保留。</p>
+    <p><b>Hint 2（證據）觸發</b>：疊乘或以整團共同優惠計算 →「折扣率越低對旅客越有利；比較學生／提前／企業代表組合，確認逐位評估。」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="b2" data-title="B2 倒數" data-minute="52" data-timer="11:00">
+  <p class="kicker">B2 · 52–63</p>
+  <h2 class="title">11 分鐘：分析 → 選方案 → 實作 → 審查</h2>
+  <p>
+    <span class="chip fx">影響分析</span>
+    <span class="chip fx">方案比較</span>
+    <span class="chip fx">核准計畫</span>
+    <span class="chip fx">程式 Diff</span>
+    <span class="chip fx">代表組合＋完整回歸測試</span>
+    <span class="chip fx">更新文件</span>
+    <span class="chip fx">摘要</span>
+  </p>
+  <p class="callout warn fx fx-fade">63 分鐘停止擴充；未完成時保留政策設計、測試案例、文件清單與未完成事項，不宣稱完整交付。</p>
+  <aside class="notes">
+    <p><b>時間 Cue（BF4 P7；RB 52–63）</b>：<b>52</b> 發 TASK-B2-001，確認起點＝已驗收 B1＋Shared Context｜<b>52–55</b> Agent 提出 2–3 個方案並附 Impact／取捨｜<b>55</b> 人選方案並核准 Task Breakdown（須在 55 前核准），主要 Agent 再執行｜<b>59</b> 提醒停止擴充，優先處理測試與折扣文件｜<b>62</b> Review：核對 Diff、Applied Discount 與 Regression（逐人優惠與改票）｜<b>63</b> 停止新增工作，收摘要。</p>
+    <p><b>漸進提示（BF5 P7，逐級發放並記錄原因）</b>：H1 方向（仍沿用條件先後）→ 先列出每位旅客可能符合的優惠，與各自公開資格對照。H2 證據（疊乘或整團共同優惠）→ 折扣率越低對旅客越有利；比較學生／提前／企業代表組合，確認逐位評估。H3 模組（只改建立流程）→ 核對 Fare／Discount 與 Booking Change 是否共用相同政策，以及回應明細與文件；不提供修正 Code。<b>時間不足</b>（59 仍擴充或未測試）→ 保存 Policy Design、代表 Test Cases 與文件清單，停止額外功能並如實交付缺項。</p>
+    <p><b>立即停止並糾正（BF6 P7）</b>：規則疊乘、弱化 Regression、未經核准的外部套件、提前做團體功能。</p>
+    <p><b>記錄（BF7 P7）</b>：核准、提示、實際結果與未完成項目。不替人選方案或核准計畫。</p>
+  </aside>
+</section>
+
+<!-- ===================== B2 reveal (after 63) ===================== -->
+
+<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="請先停手 · B2" data-minute="63">
+  <div class="stop-screen">
+    <p class="kicker">B2 00:11 · 第 63 分鐘</p>
+    <h2 class="title">請先停手</h2>
+    <p class="lead">停止新增工作，收摘要。</p>
+    <p class="muted">未完成時保留政策設計、測試案例、文件清單與未完成事項。</p>
+  </div>
+  <aside class="notes">
+    <p><b>Cue 63（BF4 P7）</b>：停止新增工作，收摘要。<b>RB 52–63 停止</b>：「63分鐘停止；缺完成保留方案／Test Cases，按B2 Recovery接續。」</p>
+    <p><b>停止規則（BF6 P7）</b>：未完成時保留 Policy Design、Test Cases、文件更新清單、實際結果與缺項；不以方案文件冒稱程式已完成。</p>
+    <p><b>Recovery（BF6 P7）</b>：若接續 B3，可發<b>已驗收的正式 B2 Recovery Baseline</b>，並記錄來源、原因與原小組完成度；主持人按需核准後，私下提供獨立 Recovery 碼，一般活動碼不開放此基線，不在投影或群組公開 Recovery 碼。沒有可用的正式基線時，不以未驗證的快照或其他階段的診斷副本代替。不把 Recovery 視為原小組的成果（BF7 P7）。B3 開始後卡點不再切換版本。</p>
+    <p>確認全員停手後才翻到揭曉頁。B3 於 63 分鐘開始，揭曉頁只短暫展示；延遲不增加總 90 分鐘。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 候選取最低 rate" data-minute="63">
+  <p class="reveal-badge">揭曉 · B2</p>
+  <h2 class="title">每位旅客：列出符合的優惠 → 取最低折扣率</h2>
+  <p class="muted fx fx-fade">舊：首個符合（CORPORATE → ADVANCE → STUDENT → ADULT）　→　新：選最低折扣率、每人只用一項</p>
+  <div class="b2-lane">
+    <span class="b2-who">成人 <small>企業會員＋提前 · Base 700</small></span>
+    <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
+    <span class="b2-cand b2-win">ADVANCE<b>85</b></span>
+    <span class="b2-arrow" aria-hidden="true">→</span>
+    <span class="b2-result fx fx-up">ADVANCE · 85 · 595</span>
+  </div>
+  <div class="b2-lane">
+    <span class="b2-who">學生 <small>企業會員＋提前＋學生 · Base 700</small></span>
+    <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
+    <span class="b2-cand">ADVANCE<b>85</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
+    <span class="b2-cand b2-win">STUDENT<b>75</b></span>
+    <span class="b2-arrow" aria-hidden="true">→</span>
+    <span class="b2-result fx fx-up">STUDENT · 75 · 525</span>
+  </div>
+  <div class="b2-total fx fx-up">
+    <span class="muted">Booking Total（595 + 525）</span>
+    <span class="big-number">1120</span>
+  </div>
+  <p class="callout fx fx-fade">amount = Base Fare × 單一 rate 整除 100；無疊乘、無團體功能。</p>
+  <aside class="notes">
+    <p><b>Policy 轉變（R2-1；evaluation 06 開頭段）</b>：第一匹配 → 建立所有符合的候選、選最低折扣率、每人只用一項。費率不變：學生 75%、提前 85%、Corporate 95%、成人 100%。</p>
+    <p><b>本頁示例</b>＝AC-B2-007／008／009 的三資格混合案例：學生 STUDENT 75／525、成人 ADVANCE 85／595，總額 <b>1120</b>（09 acceptance map）。按 → 逐步：淘汰較高 rate → 顯示結果 → 總額。</p>
+    <p><b>C4 揭露要點</b>：B2 取代 DEBT-001 的「首個符合」政策；Booking 建立與 Booking Change 共用同一政策，回應明細與文件同步；不要求複雜的 Engine，保留同步 Notification。</p>
+    <p>來源沒有 B2 標準實作 Code；只講觀察準則，<b>不現場補寫答案 Code</b>。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 代表組合" data-minute="63">
+  <p class="reveal-badge">揭曉 · B2</p>
+  <h2 class="title">代表組合與實際數字（Base 700）</h2>
+  <table class="table fx fx-fade">
+    <thead><tr><th>情境</th><th>Type／Rate／Amount</th><th>AC</th></tr></thead>
+    <tbody>
+      <tr><td>成人無優惠</td><td><code>ADULT／100／700</code></td><td>AC-B2-001</td></tr>
+      <tr><td>學生</td><td><code>STUDENT／75／525</code></td><td>AC-B2-002</td></tr>
+      <tr><td>提前成人（≥14 天；13／14／15 天邊界）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
+      <tr><td>Corporate 成人</td><td><code>CORPORATE／95／665</code></td><td>AC-B2-004</td></tr>
+      <tr><td>學生＋提前</td><td><code>STUDENT／75／525</code>（不疊乘 85%）</td><td>AC-B2-005</td></tr>
+      <tr><td>Corporate＋提前</td><td><code>ADVANCE／85／595</code>（舊測試 665 → 595）</td><td>AC-B2-006</td></tr>
+      <tr><td>三者同時符合</td><td>學生 75／525、成人 85／595</td><td>AC-B2-007</td></tr>
+      <tr><td>Corporate 學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
+    </tbody>
+  </table>
+  <p class="muted fx fx-fade">改票（新基價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；Fare Difference <b>−26</b>；原 Order 仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ Unit 7 ＋ Integration 4 ＝ <b>55 passed</b></p>
+  <aside class="notes">
+    <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
+    <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
+    <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
+    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。凍結的 B2 api-examples.md 第 55 行、architecture.md 第 15 行、discount-overview.md 第 5 行寫成 FULL_FARE；B3 已修正。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 影響模組" data-minute="63">
+  <p class="reveal-badge">揭曉 · B2</p>
+  <h2 class="title">受影響模組與核對重點</h2>
+  <table class="table fx fx-fade">
+    <thead><tr><th>區域</th><th>核對行為</th></tr></thead>
+    <tbody>
+      <tr><td>Domain <code>DiscountPolicy.calculate</code></td><td>候選資格（有效會員／固定 Clock／≥14 天／旅客型別），選最低 rate，回傳 amount、discount_type、整數 rate</td></tr>
+      <tr><td><code>BookingService.create</code></td><td>每人獨立選擇，總額＝每人 amount 加總；驗證後才寫 Booking／座位</td></tr>
+      <tr><td><code>ChangeBookingService.change</code></td><td>目標 Trip＋當前 Clock 用同政策重新計價；同步 total_fare、fare_difference、applied_discounts；原 Order 付款金額不變</td></tr>
+      <tr><td>Domain／Schema／API</td><td>Booking 根層 <code>applied_discounts</code>：passenger_id、discount_type、rate、amount；原 passengers 三欄不變</td></tr>
+      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API Examples；ADR 記錄候選選擇</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>來源</b>：R2-2（evaluation 06 影響表）。</p>
+    <p>對照學員的 Impact Analysis 三欄（一定要改／可能影響／不應改）：最常漏的是 Booking Change 與文件（Hint 3 觸發點即「只改建立流程，忽略使用端」）。</p>
+    <p><b>DEBT-003</b>：改票指南「不處理金額差異」是刻意保留的技術債（實際記錄 new−old Fare Difference，不做補退款金流），與 FULL_FARE 名稱誤文分開。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 可接受 vs 不可接受" data-minute="63">
+  <p class="reveal-badge">揭曉 · B2</p>
+  <h2 class="title">哪些設計符合要求？</h2>
+  <div class="cols-2">
+    <div class="card teammate fx fx-up">
+      <span class="chip teammate">可接受</span>
+      <ul>
+        <li>列出符合的優惠，選最低折扣率，每人一項</li>
+        <li>ADR 記錄候選選擇的簡單設計</li>
+        <li>唯一一項舊測試因新政策<b>明確遷移</b>（665 → 595）</li>
+        <li>每案核對實際折扣率、優惠類型與金額</li>
+        <li>改票失敗時 Booking／Order／Seat／Audit／通知零部分變更</li>
+      </ul>
+    </div>
+    <div class="callout warn fx fx-up">
+      <h3>不可接受</h3>
+      <ul>
+        <li>疊乘多項優惠</li>
+        <li>引入複雜規則引擎</li>
+        <li>刪除覆蓋、降低要求、為湊通過弱化斷言</li>
+        <li>只核對總額</li>
+        <li>改票部分寫入；提前實作 B3 團體</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>來源</b>：R2-2 可接受 vs 不可接受表（evaluation 06 §一項合法的政策測試遷移、完成條件）。</p>
+    <p><b>Debrief 提問</b>：誰選了方案、誰核准 Task Breakdown？核准紀錄、政策、實際測試與文件是否一致（TC2 完成條件）？只記錄觀察到的核准、提示與實際結果，不排名。</p>
+    <p><b>Recovery 提醒</b>：未完成小組若接續 B3，只發已驗收的正式 B2 Recovery Baseline 並記錄來源、原因與原小組完成度（BF6 P7）；Recovery 不算原小組成果。</p>
+  </aside>
+</section>

@@ -1,0 +1,36 @@
+{
+  "required_files": 15,
+  "required_files_present": true,
+  "documents_checked": 17,
+  "relative_links_checked": 40,
+  "participant_link_isolation": "PASS",
+  "unique_exception_ids": [
+    "EXCEPTION-DW-001"
+  ],
+  "work_order_group_rule_count": 17,
+  "work_order_rule_set_matches_b3": true,
+  "required_template_headings": "PASS",
+  "operating_rules_han_characters": 384,
+  "b3_59_source_sha256_unchanged": true,
+  "real_workshop_rehearsal": "NOT RUN",
+  "package_validation": "NOT RUN",
+  "source_sha256": {
+    "evaluation/01-autonomy-and-governance-rubric.md": "b116e2e726486433d9888771308a46f2887df23437397086b0433c2eff616dac",
+    "evaluation/02-approval-evidence-checklist.md": "bf5931b34a1428e2c07e1a3c266bfe584111f173d5dd499654f0cbca81c83fad",
+    "evaluation/03-digital-worker-audit-template.md": "9c4d2c3117aa9b9a2d2414d03a5a33daeefd0585b3ad5278e43ef5adf9483e1c",
+    "evaluation/04-exception-reference-answer.md": "a8459d41f52f1970ab11a7d00421bb65c8f8278ed9ba95a164686b1f511cbb13",
+    "evaluation/05-governance-consistency-map.md": "096b42c6788c64a4451ac1f827a205164bc5551fc91af14b753bd8d035802f07",
+    "evaluation/06-governance-validation-report.md": "37a1755abd250e799954beb91942e5b93b99669f46ee48fd37b44e789bb431b8",
+    "facilitator/01-governance-observation-guide.md": "2a11bfd41d8c028d548e4961173bdb1a1c2f8c14b2eaf559c23e2440e813b725",
+    "facilitator/02-approval-gate-cues.md": "abc6fe14f7684c2e9f94353021d239ef17e67c9da075c8629cd0be54535e143b",
+    "facilitator/03-exception-injection.md": "baa88571b78a3480e895436da650d4c2495e7de2e5936911c833cddaf2966b04",
+    "facilitator/04-intervention-rules.md": "b5303f3fbb106209691eab0caca77a98c5ac6af6f5f941703cf8c0a639aa475d",
+    "facilitator/05-digital-worker-debrief-notes.md": "94ba54f62cf819b034001a6c347d1ab53d7a410babc537cb17a66266ff579832",
+    "participant/01-operating-rules.md": "320565cd5309c9c6d2d2432b715285a8ca26e81fbc4adbc9b2ddb48d58e9697f",
+    "participant/02-agent-work-order.md": "3d39b4fd60a833bfd2625e3ddedc2a5d64ece73d79244b2907ac111bba3cb65c",
+    "participant/03-approval-gates.md": "1249e7df7806f31e7df47d4f385c8260d38fe74a9119523500b10f9190bff950",
+    "participant/04-review-checklist.md": "a6f8af2e328b86d1d26406fe773c7ebbc010a8ecf8b1f96af3a9ecb59c4a4ff0",
+    "participant/05-delivery-template.md": "5b7314141313f135a4c121385f75ae80eaa5d5e4b4f2463c14303c9048b591b6",
+    "participant/06-exception-response-card.md": "2a9adcd2c053fd5dfe632f128652007af3b7c3915f897155f5dd53e5faf02a2e"
+  }
+}

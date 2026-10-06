@@ -1,0 +1,22 @@
+# Digital Worker 操作規則
+
+> 讀者：B3 小組與主要 Coding Agent。
+> 使用時機：B3 開始，目標 2 分鐘內讀完。
+> 前置條件：已有核准的 Shared Context、B2 接手版本與 [B3 任務卡](../../03-brownfield/participant/task-cards/03-b3-group-booking.md)。
+
+Agent 主導分析、設計、實作、測試、文件及交付；人設定邊界、核准、挑戰與驗證，承擔最終提交責任。
+
+- 人可以提供需求、要求解釋假設、Challenge、Review Diff／測試／文件、Approve／Reject、要求補證與修正，或中止 Agent。
+- 人不得直接 Coding、修改程式或替 Agent 補測試，不跳過 Gate，也不因時間壓力接受未驗證說法。
+- Agent 可以理解 Repository、分析影響、提出選項，按核准計畫修改、建立與執行測試、更新文件及揭露未完成事項。
+- Agent 不得越過核准範圍、未核准變更 API、自行改商業規則、加入外部服務／資料庫／規則引擎、刪弱測試、捏造通過結果或在 Gate 未核准前前進。
+
+先 Gate 1 核准需求，再 Gate 2 核准影響與設計；Gate 2 核准後才改程式。Gate 3 檢查實際證據與未完成事項後決定交付。衝突、資訊不足或超權限立即停止並升級，見 [工作命令](02-agent-work-order.md)。
+
+工具不支援自動修改時，Agent 可產生 Patch，由環境套用；人員仍不得自行補寫程式或測試。
+
+必讀限本規則、[Work Order](02-agent-work-order.md)、[Approval Gates](03-approval-gates.md) 與 B3 任務卡。[Review](04-review-checklist.md)、[Delivery](05-delivery-template.md) 與 [Exception Card](06-exception-response-card.md) 按需使用。
+
+## 完成條件
+
+13 分鐘內保留三 Gate 與真實證據；時間不足保留 Gate 1／2，Gate 3 至少審查測試及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付，不強求完整程式量。

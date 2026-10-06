@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>{{TITLE}}</title>
+<style>{{STYLE}}</style>
+</head>
+<body>
+<main id="stage" aria-label="投影片">
+  <header><span id="chapter"></span><span>Speech 01 · Greenfield／Tool · 45 分鐘</span></header>
+  <h1 id="title"></h1><p id="lead"></p>
+  <div id="content"></div>
+  <section id="prompt-box" hidden><div class="label"><b>交給 Agent 的指令</b><button id="copy">複製指令</button></div><p id="prompt"></p></section>
+  <p id="check"></p>
+  <aside id="notes" hidden aria-label="講者備註"></aside>
+  <footer><span id="status" role="status" aria-live="polite"></span><span id="counter"></span></footer>
+</main>
+<nav aria-label="簡報操作">
+  <button id="prev" aria-label="上一頁">←</button><button id="next" aria-label="下一頁">→</button>
+  <button id="overview-button">總覽 O</button><button id="notes-button" aria-pressed="false">備註 N</button>
+  <button id="fullscreen">全螢幕 F</button><button id="download-idea">下載 Idea</button>
+  <button id="download-feature">下載 Gherkin 參考</button><button id="download-handout">下載操作講義</button>
+  <span id="timer" aria-label="經過時間">00:00 / 45:00</span><button id="timer-button">計時 T</button><button id="reset">重設</button>
+</nav>
+<dialog id="overview"><h2>第一階段 · 投影片總覽</h2><div id="overview-list"></div><button id="close-overview">關閉 Esc</button></dialog>
+<script>{{DATA}}</script>
+<script>{{SCRIPT}}</script>
+</body>
+</html>

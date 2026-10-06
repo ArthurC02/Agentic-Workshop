@@ -1,0 +1,18 @@
+ssssss.ss                                                                [100%]
+============================== warnings summary ===============================
+..\..\..\..\.codex-tmp\g0-env\Lib\site-packages\starlette\testclient.py:37
+  C:\Users\arthur.chang\OneDrive - Fubon Financial Holding Co., Ltd\桌面\工作坊\.codex-tmp\g0-env\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\arthur.chang\OneDrive - Fubon Financial Holding Co., Ltd\桌面\工作坊\agentic-workshop\06-runbook\evaluation\p11-validation-logs\g0-pytest.xml -
+=========================== short test summary info ===========================
+SKIPPED [1] tests\integration\test_features.py:8: G0 TRIP-001, TRIP-002: implement trip query
+SKIPPED [1] tests\integration\test_features.py:14: G0 BOOKING-004, BOOKING-005: implement booking creation
+SKIPPED [1] tests\integration\test_features.py:21: G0 BOOKING-002: implement passenger upper bound
+SKIPPED [1] tests\integration\test_features.py:25: G0 BOOKING-003: implement remaining-seat check
+SKIPPED [1] tests\integration\test_features.py:30: G0 PAYMENT-002, PAYMENT-003, ORDER-001: implement payment flow
+SKIPPED [1] tests\integration\test_features.py:36: G0 ORDER-001, ORDER-002: implement order query
+SKIPPED [1] tests\unit\test_fare_policy.py:5: G0 FARE-001: implement adult fare
+SKIPPED [1] tests\unit\test_fare_policy.py:9: G0 FARE-002: implement student fare
+1 passed, 8 skipped, 1 warning in 0.19s

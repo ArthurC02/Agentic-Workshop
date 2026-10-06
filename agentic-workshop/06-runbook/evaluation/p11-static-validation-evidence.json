@@ -1,0 +1,192 @@
+{
+  "executed_utc": "2026-10-05T10:41:21.805132+00:00",
+  "installation": "NOT RUN: static checks only",
+  "human_rehearsal": "NOT RUN",
+  "agent_service_availability": "NOT RUN",
+  "coverage": "STATIC_ONLY",
+  "documents": {
+    "status": "PASS",
+    "markdown_files": 187,
+    "relative_links": 574,
+    "errors": [],
+    "existing_utf8_bom_files": [
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/architecture.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/business-rules.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md"
+    ],
+    "scope": "Agent.md + docs/**/*.md + agentic-workshop/**/*.md + scripts/**/*.md",
+    "limits": "Static links/encoding/fences/participant internal references only; not semantic review"
+  },
+  "traceability": {
+    "status": "PASS",
+    "registry_rule_count": 57,
+    "acceptance_maps": {
+      "G1": {
+        "map": "01-greenfield/evaluation/06-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-G-001",
+          "AC-G-002",
+          "AC-G-003",
+          "AC-G-004",
+          "AC-G-005",
+          "AC-G-006",
+          "AC-G-007",
+          "AC-G-008",
+          "AC-G-009",
+          "AC-G-010",
+          "AC-G-011",
+          "AC-G-012",
+          "AC-G-013",
+          "AC-G-014",
+          "AC-G-015"
+        ],
+        "count": 15
+      },
+      "B1": {
+        "map": "03-brownfield/evaluation/08-b1-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-B1-001",
+          "AC-B1-002",
+          "AC-B1-003",
+          "AC-B1-004",
+          "AC-B1-005",
+          "AC-B1-006",
+          "AC-B1-007"
+        ],
+        "count": 7
+      },
+      "B2": {
+        "map": "03-brownfield/evaluation/09-b2-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-B2-001",
+          "AC-B2-002",
+          "AC-B2-003",
+          "AC-B2-004",
+          "AC-B2-005",
+          "AC-B2-006",
+          "AC-B2-007",
+          "AC-B2-008",
+          "AC-B2-009",
+          "AC-B2-010",
+          "AC-B2-011",
+          "AC-B2-012",
+          "AC-B2-013"
+        ],
+        "count": 13
+      },
+      "B3": {
+        "map": "03-brownfield/evaluation/10-b3-acceptance-test-map.md",
+        "ac_ids": [
+          "AC-B3-001",
+          "AC-B3-002",
+          "AC-B3-003",
+          "AC-B3-004",
+          "AC-B3-005",
+          "AC-B3-006",
+          "AC-B3-007",
+          "AC-B3-008",
+          "AC-B3-009",
+          "AC-B3-010",
+          "AC-B3-011",
+          "AC-B3-012",
+          "AC-B3-013",
+          "AC-B3-014",
+          "AC-B3-015",
+          "AC-B3-016",
+          "AC-B3-017",
+          "AC-B3-018",
+          "AC-B3-019"
+        ],
+        "count": 19
+      }
+    },
+    "versions": {
+      "G1": {
+        "business_rules": 16,
+        "cited_test_functions": 14,
+        "maps": [
+          "01-greenfield/evaluation/06-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B0": {
+        "business_rules": 36,
+        "cited_test_functions": 22,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B1": {
+        "business_rules": 36,
+        "cited_test_functions": 26,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md",
+          "03-brownfield/evaluation/08-b1-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B2": {
+        "business_rules": 40,
+        "cited_test_functions": 29,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md",
+          "03-brownfield/evaluation/09-b2-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      },
+      "B3": {
+        "business_rules": 57,
+        "cited_test_functions": 46,
+        "maps": [
+          "03-brownfield/evaluation/04-b0-rule-traceability.md",
+          "03-brownfield/evaluation/09-b2-acceptance-test-map.md",
+          "03-brownfield/evaluation/10-b3-acceptance-test-map.md"
+        ],
+        "missing_registry": [],
+        "missing_mapping": [],
+        "missing_test_functions": []
+      }
+    },
+    "errors": [],
+    "limits": "Rule ID coverage and named test symbol presence; not proof of complete assertion semantics"
+  },
+  "frozen_sources": {
+    "status": "PASS",
+    "versions": {
+      "B0": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/validation-evidence.json",
+        "source_file_count": 52,
+        "changed_files": []
+      },
+      "B1": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/13-b1-validation-evidence.json",
+        "source_file_count": 52,
+        "changed_files": []
+      },
+      "B2": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/16-b2-validation-evidence.json",
+        "source_file_count": 54,
+        "changed_files": []
+      },
+      "B3": {
+        "baseline": "agentic-workshop/03-brownfield/evaluation/19-b3-validation-evidence.json",
+        "source_file_count": 59,
+        "changed_files": []
+      }
+    },
+    "errors": [],
+    "limits": "Compare B0/B1/B2/B3 source bytes against previously accepted evidence"
+  },
+  "versions": {},
+  "status": "STATIC_PASS"
+}

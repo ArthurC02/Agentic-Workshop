@@ -1,0 +1,1992 @@
+{
+  "date": "2026-10-06",
+  "scope": "review only; original source and generated materials unchanged",
+  "build_check": "UP-TO-DATE for both products",
+  "unit_tests": {
+    "count": 134,
+    "result": "OK"
+  },
+  "form_field_counts": {
+    "reflection": 38,
+    "maturity": 5
+  },
+  "reviewed_product_sha256": {
+    "agentic-workshop/materials/facilitator-deck/facilitator-deck.html": "088723d6b83c4aa8bb519ec9814915f3205c7b06693368a36876985f6067fadf",
+    "agentic-workshop/materials/participant-runbook/runbook.html": "3291a15ccad5f71b21fa2ddd1da9f522ac21ada392f4c192d926cd2269546df6"
+  },
+  "browser_results": {
+    "deck-1920": {
+      "viewport": [
+        1896,
+        988
+      ],
+      "pages": [
+        {
+          "index": 1,
+          "title": "工作坊開場",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 2,
+          "title": "今日旅程",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 3,
+          "title": "90 分鐘議程",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 4,
+          "title": "基本規則",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 5,
+          "title": "Runbook 使用方式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 6,
+          "title": "開場倒數 · 環境確認",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 7,
+          "title": "解鎖 Greenfield",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 8,
+          "title": "Greenfield 任務",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 9,
+          "title": "MVP API",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 10,
+          "title": "Rule IDs",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 11,
+          "title": "AC 重點",
+          "scrollY": 122,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "不以未執行測試或仍被 Skip 的功能宣稱完成。",
+              "rect": {
+                "left": 157.6017608642578,
+                "right": 1738.3933868408203,
+                "top": 903.646484375,
+                "bottom": 993.2978515625
+              }
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "title": "Plan / Execute / Test / Explain",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 13,
+          "title": "Greenfield 倒數",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 14,
+          "title": "停止擴充，先測試",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 15,
+          "title": "提交清單",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 16,
+          "title": "請先停手 · Greenfield",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 17,
+          "title": "揭曉 · 預期 MVP 輪廓",
+          "scrollY": 101,
+          "issues": [
+            {
+              "kind": "footer-overlap",
+              "text": "功能完成度與人機協作分開判讀：未完成也可留下良好的計畫與驗證紀錄；流程跑通仍需人員審查。",
+              "rect": {
+                "left": 157.6017608642578,
+                "right": 1738.3933868408203,
+                "top": 884.5927124023438,
+                "bottom": 974.2440795898438
+              }
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "title": "時間快轉 · 12 個月後",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 19,
+          "title": "Agent 的分工改變",
+          "scrollY": 57,
+          "issues": []
+        },
+        {
+          "index": 20,
+          "title": "解鎖 Time Skip",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 21,
+          "title": "公司與系統成長",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 22,
+          "title": "Brownfield 接手",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 23,
+          "title": "個人 Agent 分析",
+          "scrollY": 113,
+          "issues": [
+            {
+              "kind": "footer-overlap",
+              "text": "06:00按 T 開始計時",
+              "rect": {
+                "left": 638.8775634765625,
+                "right": 1257.1033935546875,
+                "top": 750.987548828125,
+                "bottom": 985.1788940429688
+              }
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "title": "個人分析表",
+          "scrollY": 16,
+          "issues": []
+        },
+        {
+          "index": 25,
+          "title": "Shared Context",
+          "scrollY": 69,
+          "issues": [
+            {
+              "kind": "footer-overlap",
+              "text": "05:00按 T 開始計時",
+              "rect": {
+                "left": 638.8775634765625,
+                "right": 1257.1033935546875,
+                "top": 711.1361083984375,
+                "bottom": 945.3275146484375
+              }
+            }
+          ]
+        },
+        {
+          "index": 26,
+          "title": "Shared Context 範本",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 27,
+          "title": "解鎖 B1",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 28,
+          "title": "B1 情境與固定規則",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 29,
+          "title": "Teammate 模式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 30,
+          "title": "B1 驗收條件",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 31,
+          "title": "B1 倒數",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 32,
+          "title": "收斂：測試與 Review",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 33,
+          "title": "請先停手 · B1",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 34,
+          "title": "揭曉 · 一個 Bug",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 35,
+          "title": "揭曉 · 因果鏈與最小修正",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 36,
+          "title": "揭曉 · 好的分析",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 37,
+          "title": "解鎖 B2",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 38,
+          "title": "B2 任務 · 費率",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 39,
+          "title": "B2 範例 · FARE-007～010",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 40,
+          "title": "B2 人與 Agent 合作",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 41,
+          "title": "B2 影響分析與邊界",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 42,
+          "title": "B2 驗收條件",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 43,
+          "title": "B2 倒數",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 44,
+          "title": "請先停手 · B2",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 45,
+          "title": "揭曉 · 候選取最低 rate",
+          "scrollY": 47,
+          "issues": []
+        },
+        {
+          "index": 46,
+          "title": "揭曉 · 代表組合",
+          "scrollY": 49,
+          "issues": []
+        },
+        {
+          "index": 47,
+          "title": "揭曉 · 影響模組",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 48,
+          "title": "揭曉 · 可接受 vs 不可接受",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 49,
+          "title": "解鎖 B3 / Digital Worker",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 50,
+          "title": "規則改變：人不直接改程式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 51,
+          "title": "Operating Rules",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 52,
+          "title": "Work Order 重點",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 53,
+          "title": "三個核准關卡（Approval Gate）",
+          "scrollY": 42,
+          "issues": []
+        },
+        {
+          "index": 54,
+          "title": "Gate 短格式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 55,
+          "title": "Stop & Escalate",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 56,
+          "title": "B3 13 分鐘 Gate 節奏",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 57,
+          "title": "例外事件 EXCEPTION-DW-001",
+          "scrollY": 376,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "60",
+              "rect": {
+                "left": 783.331787109375,
+                "right": 1112.6634521484375,
+                "top": 896.785400390625,
+                "bottom": 1226.116943359375
+              }
+            }
+          ]
+        },
+        {
+          "index": 58,
+          "title": "執行到交付",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 59,
+          "title": "交付與收件",
+          "scrollY": 284,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "04:00按 T 開始計時",
+              "rect": {
+                "left": 638.8775634765625,
+                "right": 1257.1033935546875,
+                "top": 907.09130859375,
+                "bottom": 1141.2825927734375
+              }
+            }
+          ]
+        },
+        {
+          "index": 60,
+          "title": "請先停手 · B3",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 61,
+          "title": "揭曉 · B3 預期影響",
+          "scrollY": 373,
+          "issues": [
+            {
+              "kind": "footer-overlap",
+              "text": "Change／Refund",
+              "rect": {
+                "left": 158.51657104492188,
+                "right": 554.8865966796875,
+                "top": 842.9402465820312,
+                "bottom": 977.01708984375
+              }
+            },
+            {
+              "kind": "footer-overlap",
+              "text": "Group 改票暫不支援（409）；已付 Group 退款全釋放",
+              "rect": {
+                "left": 554.8865966796875,
+                "right": 932.44580078125,
+                "top": 842.9402465820312,
+                "bottom": 977.01708984375
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "API",
+              "rect": {
+                "left": 158.51657104492188,
+                "right": 554.8865966796875,
+                "top": 977.01708984375,
+                "bottom": 1110.1790771484375
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "POST /group-bookings、/group-bookings/{booking_id}/pay",
+              "rect": {
+                "left": 554.8865966796875,
+                "right": 932.44580078125,
+                "top": 977.01708984375,
+                "bottom": 1110.1790771484375
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "沿用 B2 逐人最有利單一優惠，不新增折扣率；同 Trip、同車廂完整連續區段、無部分成立。",
+              "rect": {
+                "left": 157.6017608642578,
+                "right": 1738.3933868408203,
+                "top": 1133.04931640625,
+                "bottom": 1222.70068359375
+              }
+            }
+          ]
+        },
+        {
+          "index": 62,
+          "title": "揭曉 · 座位演算法",
+          "scrollY": 5,
+          "issues": []
+        },
+        {
+          "index": 63,
+          "title": "揭曉 · Atomicity／Compensation",
+          "scrollY": 127,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "3 成人提前 85%（各 595）＋ 2 學生 75%（各 525）",
+              "rect": {
+                "left": 187.79049682617188,
+                "right": 903.1718444824219,
+                "top": 958.5922241210938,
+                "bottom": 997.0142822265625
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "一般訂票付款失敗仍保留 pending，僅 GROUP 採取消；須分別保留兩種行為。",
+              "rect": {
+                "left": 962.634521484375,
+                "right": 1738.3934326171875,
+                "top": 794.8412475585938,
+                "bottom": 997.9290771484375
+              }
+            }
+          ]
+        },
+        {
+          "index": 64,
+          "title": "揭曉 · SQLite 標準決策",
+          "scrollY": 80,
+          "issues": [
+            {
+              "kind": "footer-overlap",
+              "text": "不因 13 分鐘壓力「先做再補核准」；找不到可行設計 → 停止、說明阻擋並升級",
+              "rect": {
+                "left": 157.6017608642578,
+                "right": 1738.3933868408203,
+                "top": 886.4223022460938,
+                "bottom": 954.8472290039062
+              }
+            }
+          ]
+        },
+        {
+          "index": 65,
+          "title": "揭曉 · 治理 Rubric",
+          "scrollY": 78,
+          "issues": [
+            {
+              "kind": "footer-overlap",
+              "text": "合計最高 15，僅供回顧與平台需求萃取，不作競賽排名；缺證據記「未觀察」，未觀察 ≠ 0 分；與 Level 1／2／3 分開記錄。",
+              "rect": {
+                "left": 157.6017608642578,
+                "right": 1738.3933868408203,
+                "top": 819.7269287109375,
+                "bottom": 953.2891845703125
+              }
+            }
+          ]
+        },
+        {
+          "index": 66,
+          "title": "揭曉 · 版本矩陣 B0→B3",
+          "scrollY": 44,
+          "issues": []
+        },
+        {
+          "index": 67,
+          "title": "回顧解鎖",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 68,
+          "title": "10 分鐘回顧節奏",
+          "scrollY": 175,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "10:00按 T 開始計時",
+              "rect": {
+                "left": 638.8775634765625,
+                "right": 1257.1033935546875,
+                "top": 807.3627319335938,
+                "bottom": 1041.5540771484375
+              }
+            }
+          ]
+        },
+        {
+          "index": 69,
+          "title": "成熟度比較",
+          "scrollY": 323,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "常見資訊缺口Context不完整、假設與事實混淆。",
+              "rect": {
+                "left": 724.469482421875,
+                "right": 1171.511474609375,
+                "top": 941.3251953125,
+                "bottom": 1018.1692504882812
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "常見資訊缺口授權／Review／證據與條件不明。",
+              "rect": {
+                "left": 1261.162841796875,
+                "right": 1708.2047119140625,
+                "top": 941.3251953125,
+                "bottom": 1018.1692504882812
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。更自主仍須範圍、品質與可追溯；責任重新分配，不消失。",
+              "rect": {
+                "left": 157.6017608642578,
+                "right": 1738.3933868408203,
+                "top": 1041.0394287109375,
+                "bottom": 1177.689208984375
+              }
+            }
+          ]
+        },
+        {
+          "index": 70,
+          "title": "你的比較證據",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 71,
+          "title": "成果分級與根因",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 72,
+          "title": "六類改善",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 73,
+          "title": "可執行行動",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 74,
+          "title": "預期產出",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 75,
+          "title": "結束 · 謝謝參與",
+          "scrollY": 220,
+          "issues": []
+        }
+      ],
+      "errors": [],
+      "actions": {}
+    },
+    "deck-1366": {
+      "viewport": [
+        1342,
+        676
+      ],
+      "pages": [
+        {
+          "index": 1,
+          "title": "工作坊開場",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 2,
+          "title": "今日旅程",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 3,
+          "title": "90 分鐘議程",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 4,
+          "title": "基本規則",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 5,
+          "title": "Runbook 使用方式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 6,
+          "title": "開場倒數 · 環境確認",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 7,
+          "title": "解鎖 Greenfield",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 8,
+          "title": "Greenfield 任務",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 9,
+          "title": "MVP API",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 10,
+          "title": "Rule IDs",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 11,
+          "title": "AC 重點",
+          "scrollY": 122,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "不以未執行測試或仍被 Skip 的功能宣稱完成。",
+              "rect": {
+                "left": 130.19927978515625,
+                "right": 1211.8062133789062,
+                "top": 618.2916870117188,
+                "bottom": 679.6328735351562
+              }
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "title": "Plan / Execute / Test / Explain",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 13,
+          "title": "Greenfield 倒數",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 14,
+          "title": "停止擴充，先測試",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 15,
+          "title": "提交清單",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 16,
+          "title": "請先停手 · Greenfield",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 17,
+          "title": "揭曉 · 預期 MVP 輪廓",
+          "scrollY": 101,
+          "issues": []
+        },
+        {
+          "index": 18,
+          "title": "時間快轉 · 12 個月後",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 19,
+          "title": "Agent 的分工改變",
+          "scrollY": 57,
+          "issues": []
+        },
+        {
+          "index": 20,
+          "title": "解鎖 Time Skip",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 21,
+          "title": "公司與系統成長",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 22,
+          "title": "Brownfield 接手",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 23,
+          "title": "個人 Agent 分析",
+          "scrollY": 113,
+          "issues": []
+        },
+        {
+          "index": 24,
+          "title": "個人分析表",
+          "scrollY": 16,
+          "issues": []
+        },
+        {
+          "index": 25,
+          "title": "Shared Context",
+          "scrollY": 69,
+          "issues": []
+        },
+        {
+          "index": 26,
+          "title": "Shared Context 範本",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 27,
+          "title": "解鎖 B1",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 28,
+          "title": "B1 情境與固定規則",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 29,
+          "title": "Teammate 模式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 30,
+          "title": "B1 驗收條件",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 31,
+          "title": "B1 倒數",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 32,
+          "title": "收斂：測試與 Review",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 33,
+          "title": "請先停手 · B1",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 34,
+          "title": "揭曉 · 一個 Bug",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 35,
+          "title": "揭曉 · 因果鏈與最小修正",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 36,
+          "title": "揭曉 · 好的分析",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 37,
+          "title": "解鎖 B2",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 38,
+          "title": "B2 任務 · 費率",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 39,
+          "title": "B2 範例 · FARE-007～010",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 40,
+          "title": "B2 人與 Agent 合作",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 41,
+          "title": "B2 影響分析與邊界",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 42,
+          "title": "B2 驗收條件",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 43,
+          "title": "B2 倒數",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 44,
+          "title": "請先停手 · B2",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 45,
+          "title": "揭曉 · 候選取最低 rate",
+          "scrollY": 47,
+          "issues": []
+        },
+        {
+          "index": 46,
+          "title": "揭曉 · 代表組合",
+          "scrollY": 49,
+          "issues": []
+        },
+        {
+          "index": 47,
+          "title": "揭曉 · 影響模組",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 48,
+          "title": "揭曉 · 可接受 vs 不可接受",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 49,
+          "title": "解鎖 B3 / Digital Worker",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 50,
+          "title": "規則改變：人不直接改程式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 51,
+          "title": "Operating Rules",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 52,
+          "title": "Work Order 重點",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 53,
+          "title": "三個核准關卡（Approval Gate）",
+          "scrollY": 42,
+          "issues": []
+        },
+        {
+          "index": 54,
+          "title": "Gate 短格式",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 55,
+          "title": "Stop & Escalate",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 56,
+          "title": "B3 13 分鐘 Gate 節奏",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 57,
+          "title": "例外事件 EXCEPTION-DW-001",
+          "scrollY": 376,
+          "issues": []
+        },
+        {
+          "index": 58,
+          "title": "執行到交付",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 59,
+          "title": "交付與收件",
+          "scrollY": 284,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "04:00按 T 開始計時",
+              "rect": {
+                "left": 459.49713134765625,
+                "right": 882.4986572265625,
+                "top": 620.6487426757812,
+                "bottom": 780.8867797851562
+              }
+            }
+          ]
+        },
+        {
+          "index": 60,
+          "title": "請先停手 · B3",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 61,
+          "title": "揭曉 · B3 預期影響",
+          "scrollY": 373,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "API",
+              "rect": {
+                "left": 130.82521057128906,
+                "right": 402.02894592285156,
+                "top": 668.4932250976562,
+                "bottom": 759.6051635742188
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "POST /group-bookings、/group-bookings/{booking_id}/pay",
+              "rect": {
+                "left": 402.0289306640625,
+                "right": 660.3619995117188,
+                "top": 668.4932250976562,
+                "bottom": 759.6051635742188
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "沿用 B2 逐人最有利單一優惠，不新增折扣率；同 Trip、同車廂完整連續區段、無部分成立。",
+              "rect": {
+                "left": 130.19927978515625,
+                "right": 1211.8062133789062,
+                "top": 775.25341796875,
+                "bottom": 836.5946044921875
+              }
+            }
+          ]
+        },
+        {
+          "index": 62,
+          "title": "揭曉 · 座位演算法",
+          "scrollY": 5,
+          "issues": []
+        },
+        {
+          "index": 63,
+          "title": "揭曉 · Atomicity／Compensation",
+          "scrollY": 127,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "3 成人提前 85%（各 595）＋ 2 學生 75%（各 525）",
+              "rect": {
+                "left": 150.85498046875,
+                "right": 640.3322143554688,
+                "top": 655.8866577148438,
+                "bottom": 682.1757202148438
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "一般訂票付款失敗仍保留 pending，僅 GROUP 採取消；須分別保留兩種行為。",
+              "rect": {
+                "left": 681.0177001953125,
+                "right": 1211.8062744140625,
+                "top": 543.8451538085938,
+                "bottom": 682.8016357421875
+              }
+            }
+          ]
+        },
+        {
+          "index": 64,
+          "title": "揭曉 · SQLite 標準決策",
+          "scrollY": 80,
+          "issues": []
+        },
+        {
+          "index": 65,
+          "title": "揭曉 · 治理 Rubric",
+          "scrollY": 78,
+          "issues": []
+        },
+        {
+          "index": 66,
+          "title": "揭曉 · 版本矩陣 B0→B3",
+          "scrollY": 44,
+          "issues": []
+        },
+        {
+          "index": 67,
+          "title": "回顧解鎖",
+          "scrollY": 220,
+          "issues": []
+        },
+        {
+          "index": 68,
+          "title": "10 分鐘回顧節奏",
+          "scrollY": 175,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "10:00按 T 開始計時",
+              "rect": {
+                "left": 459.49713134765625,
+                "right": 882.4986572265625,
+                "top": 552.41259765625,
+                "bottom": 712.650634765625
+              }
+            }
+          ]
+        },
+        {
+          "index": 69,
+          "title": "成熟度比較",
+          "scrollY": 323,
+          "issues": [
+            {
+              "kind": "outside",
+              "text": "常見資訊缺口Context不完整、假設與事實混淆。",
+              "rect": {
+                "left": 518.0607299804688,
+                "right": 823.9351196289062,
+                "top": 644.0722045898438,
+                "bottom": 696.6503295898438
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "常見資訊缺口授權／Review／證據與條件不明。",
+              "rect": {
+                "left": 885.2762451171875,
+                "right": 1191.150634765625,
+                "top": 644.0722045898438,
+                "bottom": 696.6503295898438
+              }
+            },
+            {
+              "kind": "outside",
+              "text": "成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。更自主仍須範圍、品質與可追溯；責任重新分配，不消失。",
+              "rect": {
+                "left": 130.19927978515625,
+                "right": 1211.8062133789062,
+                "top": 712.298583984375,
+                "bottom": 805.796875
+              }
+            }
+          ]
+        },
+        {
+          "index": 70,
+          "title": "你的比較證據",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 71,
+          "title": "成果分級與根因",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 72,
+          "title": "六類改善",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 73,
+          "title": "可執行行動",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 74,
+          "title": "預期產出",
+          "scrollY": 0,
+          "issues": []
+        },
+        {
+          "index": 75,
+          "title": "結束 · 謝謝參與",
+          "scrollY": 220,
+          "issues": []
+        }
+      ],
+      "errors": [],
+      "actions": {}
+    },
+    "runbook-1440": {
+      "viewport": [
+        1416,
+        808
+      ],
+      "pages": [
+        {
+          "id": "welcome",
+          "title": "歡迎與使用方式",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "environment",
+          "title": "環境準備",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 7
+        },
+        {
+          "id": "agent-basics",
+          "title": "Agent 工作方式與安全規則",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 5
+        },
+        {
+          "id": "greenfield",
+          "title": "Greenfield 任務：核心訂票 MVP",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 20
+        },
+        {
+          "id": "gf-mission",
+          "title": "任務說明 Mission Brief",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-requirements",
+          "title": "商業需求 Business Requirements",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-acceptance",
+          "title": "驗收條件 Acceptance Criteria",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-agent-guide",
+          "title": "Agent 使用指南 Usage Guide",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-submission",
+          "title": "提交清單與交付摘要",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 17
+        },
+        {
+          "id": "gf-starter-docs",
+          "title": "Starter Repository 文件",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "time-skip",
+          "title": "Time Skip：12 個月後",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 12
+        },
+        {
+          "id": "b0-context",
+          "title": "B0 系統 Context 與已知限制",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 3
+        },
+        {
+          "id": "individual-analysis",
+          "title": "個人 Agent 分析",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 17
+        },
+        {
+          "id": "shared-context",
+          "title": "Shared Context：小組比較分析",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 23
+        },
+        {
+          "id": "b1",
+          "title": "B1 修復學生票折扣異常",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 26
+        },
+        {
+          "id": "b2",
+          "title": "B2 導入不可疊加的最有利優惠政策",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 47
+        },
+        {
+          "id": "recovery-b1",
+          "title": "B1 Recovery 切換",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 8
+        },
+        {
+          "id": "b3",
+          "title": "B3 團體訂票：Digital Worker 流程",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 19
+        },
+        {
+          "id": "b3-task-card",
+          "title": "B3 任務卡 TASK-B3-001",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "b3-operating-rules",
+          "title": "Digital Worker 操作規則",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "b3-work-order",
+          "title": "Digital Worker Work Order",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 7
+        },
+        {
+          "id": "b3-approval-gates",
+          "title": "B3 人員核准 Gate",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 18
+        },
+        {
+          "id": "b3-review-checklist",
+          "title": "B3 交付審查檢核表",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 43
+        },
+        {
+          "id": "b3-exception-card",
+          "title": "Exception Response 與 Escalation",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 20
+        },
+        {
+          "id": "recovery-b2",
+          "title": "B2 Recovery 切換",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 8
+        },
+        {
+          "id": "delivery",
+          "title": "Delivery Summary 與交付",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 33
+        },
+        {
+          "id": "retrospective",
+          "title": "工作坊回顧",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 54
+        },
+        {
+          "id": "glossary",
+          "title": "詞彙表",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        }
+      ],
+      "errors": [],
+      "actions": {
+        "greenfield": true,
+        "timeskip": true,
+        "b1": true,
+        "b2": true,
+        "b3": true,
+        "retro": true,
+        "recovery-b1": true,
+        "recovery-b2": true
+      }
+    },
+    "runbook-768": {
+      "viewport": [
+        744,
+        932
+      ],
+      "pages": [
+        {
+          "id": "welcome",
+          "title": "歡迎與使用方式",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "environment",
+          "title": "環境準備",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 7
+        },
+        {
+          "id": "agent-basics",
+          "title": "Agent 工作方式與安全規則",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 5
+        },
+        {
+          "id": "greenfield",
+          "title": "Greenfield 任務：核心訂票 MVP",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 20
+        },
+        {
+          "id": "gf-mission",
+          "title": "任務說明 Mission Brief",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-requirements",
+          "title": "商業需求 Business Requirements",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-acceptance",
+          "title": "驗收條件 Acceptance Criteria",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-agent-guide",
+          "title": "Agent 使用指南 Usage Guide",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-submission",
+          "title": "提交清單與交付摘要",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 17
+        },
+        {
+          "id": "gf-starter-docs",
+          "title": "Starter Repository 文件",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "time-skip",
+          "title": "Time Skip：12 個月後",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 12
+        },
+        {
+          "id": "b0-context",
+          "title": "B0 系統 Context 與已知限制",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 3
+        },
+        {
+          "id": "individual-analysis",
+          "title": "個人 Agent 分析",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 17
+        },
+        {
+          "id": "shared-context",
+          "title": "Shared Context：小組比較分析",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 23
+        },
+        {
+          "id": "b1",
+          "title": "B1 修復學生票折扣異常",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 26
+        },
+        {
+          "id": "b2",
+          "title": "B2 導入不可疊加的最有利優惠政策",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 47
+        },
+        {
+          "id": "recovery-b1",
+          "title": "B1 Recovery 切換",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 8
+        },
+        {
+          "id": "b3",
+          "title": "B3 團體訂票：Digital Worker 流程",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 19
+        },
+        {
+          "id": "b3-task-card",
+          "title": "B3 任務卡 TASK-B3-001",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "b3-operating-rules",
+          "title": "Digital Worker 操作規則",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "b3-work-order",
+          "title": "Digital Worker Work Order",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 7
+        },
+        {
+          "id": "b3-approval-gates",
+          "title": "B3 人員核准 Gate",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 18
+        },
+        {
+          "id": "b3-review-checklist",
+          "title": "B3 交付審查檢核表",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 43
+        },
+        {
+          "id": "b3-exception-card",
+          "title": "Exception Response 與 Escalation",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 20
+        },
+        {
+          "id": "recovery-b2",
+          "title": "B2 Recovery 切換",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 8
+        },
+        {
+          "id": "delivery",
+          "title": "Delivery Summary 與交付",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 33
+        },
+        {
+          "id": "retrospective",
+          "title": "工作坊回顧",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 54
+        },
+        {
+          "id": "glossary",
+          "title": "詞彙表",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        }
+      ],
+      "errors": [],
+      "actions": {
+        "greenfield": true,
+        "timeskip": true,
+        "b1": true,
+        "b2": true,
+        "b3": true,
+        "retro": true,
+        "recovery-b1": true,
+        "recovery-b2": true
+      }
+    },
+    "runbook-390": {
+      "viewport": [
+        476,
+        752
+      ],
+      "pages": [
+        {
+          "id": "welcome",
+          "title": "歡迎與使用方式",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "environment",
+          "title": "環境準備",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 7
+        },
+        {
+          "id": "agent-basics",
+          "title": "Agent 工作方式與安全規則",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 5
+        },
+        {
+          "id": "greenfield",
+          "title": "Greenfield 任務：核心訂票 MVP",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 20
+        },
+        {
+          "id": "gf-mission",
+          "title": "任務說明 Mission Brief",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-requirements",
+          "title": "商業需求 Business Requirements",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-acceptance",
+          "title": "驗收條件 Acceptance Criteria",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-agent-guide",
+          "title": "Agent 使用指南 Usage Guide",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "gf-submission",
+          "title": "提交清單與交付摘要",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 17
+        },
+        {
+          "id": "gf-starter-docs",
+          "title": "Starter Repository 文件",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "time-skip",
+          "title": "Time Skip：12 個月後",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 12
+        },
+        {
+          "id": "b0-context",
+          "title": "B0 系統 Context 與已知限制",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 3
+        },
+        {
+          "id": "individual-analysis",
+          "title": "個人 Agent 分析",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 17
+        },
+        {
+          "id": "shared-context",
+          "title": "Shared Context：小組比較分析",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 23
+        },
+        {
+          "id": "b1",
+          "title": "B1 修復學生票折扣異常",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 26
+        },
+        {
+          "id": "b2",
+          "title": "B2 導入不可疊加的最有利優惠政策",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 47
+        },
+        {
+          "id": "recovery-b1",
+          "title": "B1 Recovery 切換",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 8
+        },
+        {
+          "id": "b3",
+          "title": "B3 團體訂票：Digital Worker 流程",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 19
+        },
+        {
+          "id": "b3-task-card",
+          "title": "B3 任務卡 TASK-B3-001",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "b3-operating-rules",
+          "title": "Digital Worker 操作規則",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        },
+        {
+          "id": "b3-work-order",
+          "title": "Digital Worker Work Order",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 7
+        },
+        {
+          "id": "b3-approval-gates",
+          "title": "B3 人員核准 Gate",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 18
+        },
+        {
+          "id": "b3-review-checklist",
+          "title": "B3 交付審查檢核表",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 43
+        },
+        {
+          "id": "b3-exception-card",
+          "title": "Exception Response 與 Escalation",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 20
+        },
+        {
+          "id": "recovery-b2",
+          "title": "B2 Recovery 切換",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 8
+        },
+        {
+          "id": "delivery",
+          "title": "Delivery Summary 與交付",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 33
+        },
+        {
+          "id": "retrospective",
+          "title": "工作坊回顧",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 54
+        },
+        {
+          "id": "glossary",
+          "title": "詞彙表",
+          "visible": true,
+          "docOverflow": -15,
+          "issues": [],
+          "fields": 0
+        }
+      ],
+      "errors": [],
+      "actions": {
+        "greenfield": true,
+        "timeskip": true,
+        "b1": true,
+        "b2": true,
+        "b3": true,
+        "retro": true,
+        "recovery-b1": true,
+        "recovery-b2": true
+      }
+    }
+  },
+  "limitations": [
+    "Headless Edge on local probe copies; viewport dimensions are reported actual innerWidth/innerHeight",
+    "deck-1920 includes countdown and footer checks; deck-1366 covers original element checks only",
+    "Human visual inspection: two problem slide screenshots and runbook delivery screenshot",
+    "No actual 390px viewport, dark mode, print, presenter synchronization or human rehearsal validation"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "slides": 75,
+  "source_files": [
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/10-opening.html",
+      "sha256": "eac10aa6dd972e4dc1552a7648d44c6f9bb3e0234c1b1ae82ddeca22d3aab856"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/20-greenfield.html",
+      "sha256": "0d861336c70cfe50d95323c4f565adfbbbeab6a762b7af044efedd3f30cb7143"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/30-timeskip.html",
+      "sha256": "7db3a893d15bc643713a3bb0c24bd69e7dcddf7b77f1ad88651ba44a8e05b7da"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/40-analysis-shared.html",
+      "sha256": "36c539add2752b13e55a8b1afd2a846d8ab82ce57a7bfd3274eddcce62233c9f"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/50-b1.html",
+      "sha256": "f7bb8894dc213c12d64409c7ffe5493e9fca18738ac89196394a8bf730cc5d05"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/55-b2.html",
+      "sha256": "bfb7d26b77ee8108b8d1465b251e54d5d6879b3d8ad0699ac6909f30e997ac43"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/60-b3-digital-worker.html",
+      "sha256": "54665c2c5ac24329c5115e3d03a44d7cb8cc54a0e72988c3e6ee512b4cc8abe8"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/70-delivery.html",
+      "sha256": "d3bda561f0b0ef189faab8ef6c1f84364031cd1bc7a466ab635dd2201830f704"
+    },
+    {
+      "path": "agentic-workshop/materials/facilitator-deck/src/slides/80-retrospective.html",
+      "sha256": "cb7a5d6447fa3ef999594963d02d6fde570a89db8e34f09f7949ccfbe9f2822d"
+    }
+  ],
+  "timing_unlock_reveal_metadata": "unchanged",
+  "code_identifiers": "unchanged",
+  "table_numeric_values": "unchanged",
+  "encoding": "PASS",
+  "material_tests_passed": 134,
+  "deck_rebuild": "UP-TO-DATE",
+  "runbook_check": "UP-TO-DATE",
+  "deck_sha256": "088723d6b83c4aa8bb519ec9814915f3205c7b06693368a36876985f6067fadf",
+  "browser_visual_and_human_comprehension": "NOT RUN"
+}

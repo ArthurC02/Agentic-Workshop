@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Smart Ticket 工作坊主持簡報</title>
+<!-- 主持人專用，不發給學員。{{BUILD_INFO}} -->
+<style>
+{{STYLE}}
+</style>
+</head>
+<body class="deck">
+<div id="dk-viewport">
+  <div id="dk-stage">
+{{SLIDES}}
+  </div>
+</div>
+
+<div id="dk-chrome" aria-hidden="true">
+  <div class="dk-stage-ind"></div>
+  <div class="dk-timer-chip" hidden></div>
+  <div class="dk-bottom">
+    <div class="dk-agenda"></div>
+    <div class="dk-counter"></div>
+  </div>
+</div>
+
+<div id="dk-overview" hidden></div>
+<div id="dk-help" hidden></div>
+<div id="dk-black" hidden></div>
+
+<script>window.DECK_CODES = {{CODES_JSON}};</script>
+<script>
+{{SCRIPT}}
+</script>
+</body>
+</html>

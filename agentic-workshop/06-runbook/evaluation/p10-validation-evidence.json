@@ -1,0 +1,74 @@
+{
+  "required_output_count": 11,
+  "markdown_checked": 10,
+  "relative_links_checked": 131,
+  "markdown_encoding_and_fences": "PASS",
+  "participant_content_and_link_isolation": "PASS",
+  "schedule_intervals": [
+    [
+      0,
+      7
+    ],
+    [
+      7,
+      29
+    ],
+    [
+      29,
+      33
+    ],
+    [
+      33,
+      39
+    ],
+    [
+      39,
+      44
+    ],
+    [
+      44,
+      52
+    ],
+    [
+      52,
+      63
+    ],
+    [
+      63,
+      76
+    ],
+    [
+      76,
+      80
+    ],
+    [
+      80,
+      90
+    ]
+  ],
+  "schedule_total_minutes": 90,
+  "schedule_no_gaps_or_overlap": true,
+  "time_skip_brownfield_delivery_minutes": 51,
+  "b3_minutes": 13,
+  "retrospective_minutes": 10,
+  "unique_exception_ids": [
+    "EXCEPTION-DW-001"
+  ],
+  "b3_59_source_hashes_unchanged": true,
+  "p9_17_document_hashes_unchanged": true,
+  "real_rehearsal": "NOT RUN",
+  "actual_preflight": "NOT RUN",
+  "package_and_recovery_execution": "NOT RUN",
+  "source_sha256": {
+    "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md": "daab07a4e8354fe5a3155e1a00efa321718d637d969e0314e244057593afd75b",
+    "agentic-workshop/05-retrospective/facilitator/debrief-guide.md": "b02204a93b69803a8527910cd25a949ef9f8d69a3e17f1bcee93d980949b0478",
+    "agentic-workshop/05-retrospective/facilitator/organization-adoption-prompts.md": "974891cef080d0ada562dfbc0fc6ac7d25d34f3dd9f70eb1d0c50178b27ef4f5",
+    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "68ea10a8a07757b910bf3464f6642040abb34da2cbaafdb69ef97fe1a6d0629a",
+    "agentic-workshop/05-retrospective/participant/reflection-sheet.md": "a4702801a60736adc174ef6c109db53f9e450407411d27ce38482d1723a3e41c",
+    "agentic-workshop/06-runbook/environment-setup.md": "9c17c4a14f5497a78c677f7f66705c9f14472d80d8985ed4bf20a02f909ede77",
+    "agentic-workshop/06-runbook/evaluation/p10-validation-report.md": "bafc9046338f11c52c2ea57d491183130380d272bd0dc29fa1f01e2bd9ec241d",
+    "agentic-workshop/06-runbook/preflight-checklist.md": "31718da19058433174f2324ffd8f1f0d53b9a1226a4a4b7de902bbc8809a2e01",
+    "agentic-workshop/06-runbook/recovery-plan.md": "d38b24c61910deeced2391f8fcd803b5a26713f03a540945afa180e75160f9ee",
+    "agentic-workshop/06-runbook/workshop-runbook.md": "216006a52a20e454f7f894106adc110244cb083948073fedaa2e034d182db3b5"
+  }
+}
