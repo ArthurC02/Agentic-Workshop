@@ -52,5 +52,10 @@ curl --fail http://127.0.0.1:8000/health
 建立新 Agent Session，或明確重新輸入接手版本、原成果未完成事項、已確認規則與 B2 核准範圍；更新 Shared Context 後接續 [B2](#b2)。不提供 B3 實作起點。
 
 ```form
-{"id":"recovery-b1-record","title":"B1 Recovery 紀錄","fields":[{"id":"decision","label":"觸發／主持核准人／時間／提供來源","type":"textarea"},{"id":"preserved","label":"原成果保存路徑／Diff／Gate／未完成","type":"textarea"},{"id":"verification","label":"新目錄／B1版本證據／安裝、44項測試及Health實際結果與退出碼","type":"textarea"},{"id":"context","label":"新Session或Context／接續核准範圍／非自行完成能力","type":"textarea"}]}
+{"id": "recovery-b1-record", "title": "B1 Recovery 紀錄","fields":[
+{"id": "decision", "label": "觸發／主持核准人／時間／提供來源", "type": "textarea", "suggestions": [{"label": "觸發範本", "text": "觸發：〈B1 未完成的原因〉\n主持核准人：〈姓名〉；時間：第〈 〉分鐘\n提供來源：recovery-52-b1.zip"}]},
+{"id": "preserved", "label": "原成果保存路徑／Diff／Gate／未完成", "type": "textarea", "suggestions": [{"label": "保存範本", "text": "原成果路徑：〈路徑〉\nDiff：〈已保存／路徑〉\nGate：〈狀態〉\n未完成：〈…〉"}]},
+{"id": "verification", "label": "新目錄／B1版本證據／安裝、44項測試及Health實際結果與退出碼", "type": "textarea", "suggestions": [{"label": "驗證範本", "text": "新目錄：〈路徑〉\nB1 版本證據：〈SHA256／README／docs/context.md〉\n安裝：〈結果〉，退出碼〈 〉\npytest -q：〈 〉 passed，退出碼〈 〉\nHealth：〈實際回應〉"}]},
+{"id": "context", "label": "新Session或Context／接續核准範圍／非自行完成能力", "type": "textarea", "suggestions": [{"label": "接續範本", "text": "〈新 Session／重新輸入 Context〉\n接續核准範圍：〈B2 範圍〉\n非自行完成：B1 能力由 Recovery 提供"}]}
+]}
 ```
