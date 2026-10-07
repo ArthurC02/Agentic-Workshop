@@ -1,0 +1,48 @@
+{
+  "format": "domain-requirement/v1",
+  "requirement_id": "REQ-CORE-001",
+  "status": "draft",
+  "intent": "把 D1 整理出的 Smart Ticket 現況領域模型（5 個 Context、詞彙、關鍵規則、Aggregate、Context 間互動與已知設計洩漏）升為 reviewed，讓後續 Agent 以它為事實。",
+  "actor": "Smart Ticket 維護者（domain-owner）",
+  "observable_outcome": "validate --require-reviewed 通過；get-context／analyze-boundary 回傳的都是 reviewed 紀錄。",
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "statement": "每位旅客取 rate 最低的單一優惠，不疊加；結果明細含 type、rate、amount。"
+    },
+    {
+      "id": "AC-2",
+      "statement": "團體訂票 5–20 人、同車廂連續座位，失敗不留任何狀態。"
+    },
+    {
+      "id": "AC-3",
+      "statement": "付款成功建立唯一 Order；團體付款失敗取消、全釋放、無 Order。"
+    }
+  ],
+  "candidate_terms": [
+    "最有利單一優惠",
+    "提前購票優惠",
+    "團體訂票",
+    "團體付款失敗補償",
+    "訂單"
+  ],
+  "open_questions": [
+    "Trip 查詢、通知、稽核刻意未建模為 Context（支援性／通用子域，DLC 情境未觸及）。",
+    "Inventory 與 Membership 尚無 Aggregate：現況沒有守住一致性的單一擁有者（見 ASIS-001），由 D3 情境決定。"
+  ],
+  "risk_flags": [
+    "financial_decision",
+    "cross_context"
+  ],
+  "required_approval_roles": [
+    "domain-owner"
+  ],
+  "sources": [
+    "docs/requirements/business-rules.md",
+    "docs/requirements/discount-overview.md",
+    "docs/adr/002-introduce-discount-policy.md",
+    "docs/adr/004-group-seat-atomicity.md",
+    "src/smart_ticket",
+    "tests"
+  ]
+}

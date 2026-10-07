@@ -1,0 +1,1352 @@
+{
+ "schema": "dlc-validation-evidence/1",
+ "spec": "docs/instructions/11_DDD_DLC產製指令書.md §7",
+ "executed": "2026-10-07",
+ "candidate": {
+  "id": "efbd1ba2c3e7b958",
+  "path": "dist/dlc-candidate/efbd1ba2c3e7b958",
+  "manifest_sha256": "efbd1ba2c3e7b958bdb5f0cd4b24e191446189650c78bbfd43de2c87ab295706",
+  "python": "3.13.14",
+  "zlib": "1.3.1",
+  "missing_packages": [],
+  "zip_sha256": {
+   "participant-dlc-open": "1bc1e9264312c12cbcabd04aa36157f1fa6c8c93949ab82a7a9ec1e26afdb1bc",
+   "participant-dlc-d1": "3323bfc59700aeb229222c699a72ff1a08d155eeb4264211b1b9217877fb33a4",
+   "participant-dlc-d2": "e87b0834385024163709dd52bef47d0476230df52d687a44152f2a70d5d9b877",
+   "participant-dlc-d3a": "6f06ca0791c0201fef697ffc39a27b7ce4a262861e0a0768ca916dec2aadb04a",
+   "participant-dlc-d3b": "c3fec40558e13b3844504924856539dff0270349b97516aefae83949e7bc1d1a",
+   "participant-dlc-d3c": "115220484cbbb6e8ad71fb63ad2fbc4cd2b0a6089b42d7ed61c745444fa08897",
+   "participant-dlc-d4": "7ab3f05b90bac7c0d51ee49e23df19854bbb2644d9baf550b14623711b3c6893",
+   "recovery-dlc-d1": "20beee9f91cd8f1eb139e25612878dced98925ef282f9b29157abdc09289cdf0",
+   "recovery-dlc-d2": "3da1a153619a797eb4a42d4ab4a8eff72e7fcafe9cd5ef3b12457745d889c165",
+   "recovery-dlc-d3a": "6444e113b6de731d4de92ed7b460a8880ca58eb93ea679cf0fb9893c97d77506",
+   "recovery-dlc-d3b": "a3b8a133474b0ecf3d157f0e3875f7bc3d56fcae5c95da7e5e40ff961322b3ae",
+   "recovery-dlc-d3c": "5563ca09dc2136daf35d796a42363bcbdd9b3d1d78b7737180313681a2dbc324",
+   "facilitator-dlc-before-session": "eb9cc581f6739109c02fb529bdd21710276acfdd950e9784e29f2e75f9c6d473",
+   "evaluation-dlc-private": "65cd6640f31167f66108c6e42d0fac406ee553dec02f99a6b44d849de91d281d"
+  },
+  "unchanged_vs_63c281a541f2001a": [
+   "participant-dlc-d1",
+   "participant-dlc-d2",
+   "participant-dlc-d3a",
+   "participant-dlc-d3b",
+   "participant-dlc-d3c",
+   "participant-dlc-d4",
+   "participant-dlc-open",
+   "recovery-dlc-d1",
+   "recovery-dlc-d2",
+   "recovery-dlc-d3a",
+   "recovery-dlc-d3b",
+   "recovery-dlc-d3c"
+  ],
+  "changed_vs_63c281a541f2001a": [
+   "evaluation-dlc-private",
+   "facilitator-dlc-before-session"
+  ]
+ },
+ "environment": {
+  "os": "Windows 11 Pro 10.0.26300",
+  "python": "3.13.14",
+  "workdir": "C:/dlcv (extracted from candidate ZIPs, deleted afterwards)",
+  "venv": "fresh py -3.13 venv, pip install -r requirements.txt (fastapi 0.115.12, pytest 8.3.5)",
+  "plugin": "domain-memory 0.2.2 extracted from participant-dlc-open.zip vendor ZIP (SkillHub source untouched)"
+ },
+ "method_note": "output_sha256 = sha256 of captured stdout(+stderr) of that command in this run; outputs were not committed.",
+ "checks": {
+  "7.1_plugin_integrity": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "sha256sum -c domain-memory-0.2.2.zip.SHA256SUMS: 130/130 OK (129 plugin files + whole ZIP de6aad75…c89dc); .claude-plugin/plugin.json version 0.2.2; vendor_dlc_plugin.py --check UP-TO-DATE",
+   "runs": {
+    "7.10-vendor-plugin-check": {
+     "exit": 0,
+     "output_sha256": "d450d05c671ab84b80bbd7bd277ffaccafd0ebff78f9a484fefc71f779eb2fe8",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 scripts/vendor_dlc_plugin.py --check"
+    }
+   }
+  },
+  "7.2_start_repo": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "fresh venv pytest -q -rsx: 76 passed, 0 skip/xfail (1 Starlette/AnyIO DeprecationWarning); §5.1 grep (excl .venv/__pycache__/.pyc): 0 hits",
+   "runs": {
+    "7.2-start-repo-pytest": {
+     "exit": 0,
+     "output_sha256": "99e72b73aedf2fef2f1724a2934af40380d7e13443cf7a642e28801fe3eb5c92",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    }
+   }
+  },
+  "7.3_reference_registry": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "git clone of reference bundle: 3 Registry commits G maintainer@example.com, base commit N; validate --require-reviewed 'Registry is valid.'; verify-evidence 162/162 current; verify-sources current/developer-confirmed; verify-audit valid 62 events head sha256:4d82bb43…6affa; verify-git-governance valid; install-git-hitl-hook then governance-readiness {status: ready, blocks: []}; coverage 5 contexts/21 terms/2 aggregates/16 rules, gaps without_aggregate [inventory, membership], without_contract all 5, confirmed_absent pricing aggregate, evidence_gaps [] (all documented as deliberate in reference-registry/README.md)",
+   "runs": {
+    "7.3-git-log-signatures": {
+     "exit": 0,
+     "output_sha256": "4b8b17510e50724f0a23cbeea2fae715c26d2228f66211a2ac581f40279c8a66",
+     "cmd": "git log --format=%h %G? %GS %s"
+    },
+    "7.3-validate-require-reviewed": {
+     "exit": 0,
+     "output_sha256": "6fc41bb0aa5cfe22c149529e3af666f1f3a56d99d42d9a9491247e3705d72008",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py validate --require-reviewed"
+    },
+    "7.3-verify-evidence": {
+     "exit": 0,
+     "output_sha256": "d8bf7330e8fe62124efcb9af89ec12f3338c11cffcd621610a91aad8ede0d08c",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-evidence"
+    },
+    "7.3-verify-sources": {
+     "exit": 0,
+     "output_sha256": "9005f8c1518307d236836a1e606c937aaf40e871bc6ce85bbd91105996616b4e",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-sources"
+    },
+    "7.3-verify-audit": {
+     "exit": 0,
+     "output_sha256": "b62affe84302d41a3e4294ffb9855366670ecbe3ec8309042af0a63b2e9d1dcb",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-audit"
+    },
+    "7.3-coverage": {
+     "exit": 0,
+     "output_sha256": "18b338b19e95d8874d6e2123f588f3c37c401ad0b0c8f24c12cfb4b78f9ad874",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py coverage"
+    },
+    "7.3-verify-git-governance": {
+     "exit": 0,
+     "output_sha256": "4215236497190189c3d260d48889707c9849cb4ce85df1634493401de8382ed4",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-git-governance --commit 5538b6dbcba9e5c4468ceddec72b75b231f9688d"
+    },
+    "7.3-install-git-hitl-hook": {
+     "exit": 0,
+     "output_sha256": "2160c99a3e7e200cc20f9f94964e56ec75a8476ab8463de6a65d4ca40b0f23c8",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py install-git-hitl-hook"
+    },
+    "7.3-governance-readiness": {
+     "exit": 0,
+     "output_sha256": "859784dfddc45c36e91dd24afa498f1454da51a7c340eb262f47e16dc8504215",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py governance-readiness"
+    }
+   }
+  },
+  "7.4_reference_solutions": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": {
+    "d3a": "118 passed (no skip/xfail); validate OK; verify-audit valid 72 events head sha256:d6b8f6bf…1a6e; coverage OK (6 contexts, 24 terms, 20 rules, evidence_gaps []); +10 candidates, D2 reviewed set unchanged; changes/ only CP-CORE-001 (D2); expected stale: verify-evidence 177 current / 15 stale (payment_service.py 11, store.py 4), verify-sources stale (docs/adr, src, tests changed) — exit 1, listed in SOLUTION-NOTES §9",
+    "d3b": "156 passed; validate OK; verify-audit valid 82 events head sha256:f3f25677…63c8; coverage OK (6 contexts, 26 terms, 26 rules); +10 candidates; expected stale 57 of 225 (business-rules.md 7, booking_service 8, group_booking_service 4, payment_service 14, refund_service 4, members 3, models 13, store 4), listed in SOLUTION-NOTES §9",
+    "d3c": "179 passed; validate OK; verify-audit valid 90 events head sha256:94032381…d986; coverage OK (6 contexts, 27 terms, 30 rules, 3 aggregates incl. candidate booking-v2); +8 candidates; expected stale 77 of 248 (business-rules.md 12, models 15, payment_service 14, seat_service 8, booking_service 8, refund_service 6, group_booking_service 5, store 4, members 3, records 2), listed in SOLUTION-NOTES §9"
+   },
+   "runs": {
+    "7.4-d3a-pytest": {
+     "exit": 0,
+     "output_sha256": "48239c2455e5d6d38cee0f3cf98bb967f08694b1132a715b796dd0c5bc658816",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    },
+    "7.4-d3a-validate": {
+     "exit": 0,
+     "output_sha256": "a2c12d2671aa4445ee32f503375086fc4a8c12b41b8a118ffbd82745ff7425ec",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py validate"
+    },
+    "7.4-d3a-verify-audit": {
+     "exit": 0,
+     "output_sha256": "746a1b8f4d73a5bb34222bc12af7729dd2cf0e19a3c2d38c8d7b9715e4d16186",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-audit"
+    },
+    "7.4-d3a-coverage": {
+     "exit": 0,
+     "output_sha256": "0842fb16411ae592f31feb8767ea64b0f1a15600278c2f6b9b4bad3f37fea134",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py coverage"
+    },
+    "7.4-d3a-verify-evidence": {
+     "exit": 1,
+     "output_sha256": "fb5add1dda90b598bc7afa6a0c9958c0281a8e9cdafe6fddaae76d0b505980a4",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-evidence"
+    },
+    "7.4-d3a-verify-sources": {
+     "exit": 1,
+     "output_sha256": "d1628885288df2ba4fea22d2b15992a6c14f101db7bf1ffa36f156c5f65e5633",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-sources"
+    },
+    "7.4-d3b-pytest": {
+     "exit": 0,
+     "output_sha256": "5bfcb90afe259a5a690f59a36e426d294cdcf35dab3344e53238561139fd3325",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    },
+    "7.4-d3b-validate": {
+     "exit": 0,
+     "output_sha256": "a2c12d2671aa4445ee32f503375086fc4a8c12b41b8a118ffbd82745ff7425ec",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py validate"
+    },
+    "7.4-d3b-verify-audit": {
+     "exit": 0,
+     "output_sha256": "9121cf0e1b375162d604e7d3a9d87a472ed80b7d4304f4ebcb29be11525eae78",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-audit"
+    },
+    "7.4-d3b-coverage": {
+     "exit": 0,
+     "output_sha256": "40480560c790728cd0516b5118288063319b9f3e5b0dc80ea63dfa5c615abbf3",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py coverage"
+    },
+    "7.4-d3b-verify-evidence": {
+     "exit": 1,
+     "output_sha256": "9de5883c5360d290655d85ed49587ef3efd6fb1ea00c5b92ef21d46e1e8a2eaf",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-evidence"
+    },
+    "7.4-d3b-verify-sources": {
+     "exit": 1,
+     "output_sha256": "bceafb9ca0736b9e4126f4960f78c8ff4ad7a0173843543c614c02a5978b84f1",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-sources"
+    },
+    "7.4-d3c-pytest": {
+     "exit": 0,
+     "output_sha256": "6b99baeefd103cd3aa62d8ab1e242d0d3f9e2aa409677bc2a2a519d300cb2209",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    },
+    "7.4-d3c-validate": {
+     "exit": 0,
+     "output_sha256": "a2c12d2671aa4445ee32f503375086fc4a8c12b41b8a118ffbd82745ff7425ec",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py validate"
+    },
+    "7.4-d3c-verify-audit": {
+     "exit": 0,
+     "output_sha256": "d6da31fa0a0813b0a80bfa2f6e216bef4a3dc68a5e153cd3e75e4d10f1dbc689",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-audit"
+    },
+    "7.4-d3c-coverage": {
+     "exit": 0,
+     "output_sha256": "73bd6e58e42be285b795577c3137c0d1f183464284d9530794e3573fd0a07c0e",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py coverage"
+    },
+    "7.4-d3c-verify-evidence": {
+     "exit": 1,
+     "output_sha256": "e2ec927d284f3e13427de858d1e9ad34c25c0829d95ba8752cea7b7368efbc19",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-evidence"
+    },
+    "7.4-d3c-verify-sources": {
+     "exit": 1,
+     "output_sha256": "507b552d720a3fe7ab3778881d183d495a82f9d0cd4ca3b44c01afee407b6965",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py verify-sources"
+    }
+   }
+  },
+  "7.5_counterfactual": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "Re-ran every shipped evidence/run_counterfactuals.py case on extracted copies (cmd.exe test command with absolute venv python): d3a 25/25 killed; d3b 23/24 killed (survivor = documented equivalent mutant min-points-1, PTS-003 has 3 other kills); d3c 37/38 killed (survivor = documented equivalent mutant days-by-datetime, PCR-004 has 10 other kills). Verdicts identical to shipped JSON; src/tests/docs/domain-memory byte-identical after runs; full suites still 118/156/179 passed. Every new Registry rule candidate (EINV-002/003/005/008, PTS-003/005/008/009/012/014, PCR-004/005/008, REFUND-004-V2 via PCR-007/012) has >=1 killed. Gap in shipped evidence: EINV-012 (extension) and EINV-015 (test-double requirement) have no counterfactual JSON; verifier ad-hoc mutants (not written to deliverables) were both killed.",
+   "per_rule": {
+    "d3a": {
+     "EINV-001": {
+      "killed": 2
+     },
+     "EINV-002": {
+      "killed": 3
+     },
+     "EINV-003": {
+      "killed": 2
+     },
+     "EINV-004": {
+      "killed": 2
+     },
+     "EINV-005": {
+      "killed": 1
+     },
+     "EINV-006": {
+      "killed": 2
+     },
+     "EINV-007": {
+      "killed": 1
+     },
+     "EINV-008": {
+      "killed": 2
+     },
+     "EINV-009": {
+      "killed": 1
+     },
+     "EINV-010": {
+      "killed": 1
+     },
+     "EINV-011": {
+      "killed": 2
+     },
+     "EINV-013": {
+      "killed": 4
+     },
+     "EINV-014": {
+      "killed": 2
+     }
+    },
+    "d3b": {
+     "PTS-001": {
+      "killed": 1
+     },
+     "PTS-002": {
+      "killed": 1
+     },
+     "PTS-003": {
+      "killed": 3,
+      "survived": 1
+     },
+     "PTS-004": {
+      "killed": 1
+     },
+     "PTS-005": {
+      "killed": 3
+     },
+     "PTS-006": {
+      "killed": 1
+     },
+     "PTS-007": {
+      "killed": 2
+     },
+     "PTS-008": {
+      "killed": 1
+     },
+     "PTS-009": {
+      "killed": 2
+     },
+     "PTS-010": {
+      "killed": 1
+     },
+     "PTS-011": {
+      "killed": 1
+     },
+     "PTS-012": {
+      "killed": 2
+     },
+     "PTS-013": {
+      "killed": 1
+     },
+     "PTS-014": {
+      "killed": 1
+     },
+     "PTS-015": {
+      "killed": 2
+     }
+    },
+    "d3c": {
+     "PCR-001": {
+      "killed": 3
+     },
+     "PCR-002": {
+      "killed": 4
+     },
+     "PCR-003": {
+      "killed": 1
+     },
+     "PCR-004": {
+      "killed": 10,
+      "survived": 1
+     },
+     "PCR-005": {
+      "killed": 3
+     },
+     "PCR-006": {
+      "killed": 4
+     },
+     "PCR-007": {
+      "killed": 1
+     },
+     "PCR-008": {
+      "killed": 2
+     },
+     "PCR-009": {
+      "killed": 2
+     },
+     "PCR-010": {
+      "killed": 2
+     },
+     "PCR-011": {
+      "killed": 1
+     },
+     "PCR-012": {
+      "killed": 1
+     },
+     "PCR-013": {
+      "killed": 2
+     },
+     "PCR-014": {
+      "killed": 1
+     }
+    }
+   },
+   "rows": {
+    "d3a": [
+     {
+      "case": "invoice-issued-after-payment",
+      "rule": "EINV-001",
+      "file": "src/smart_ticket/application/payment_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "group-whole-booking-one-invoice-line",
+      "rule": "EINV-001",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "status-values-queryable",
+      "rule": "EINV-006",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "unknown-order-invoice-404",
+      "rule": "EINV-006",
+      "file": "src/smart_ticket/application/invoicing_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "vat-rate",
+      "rule": "EINV-003",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "vat-half-up-rounding",
+      "rule": "EINV-003",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "unit-price-floor",
+      "rule": "EINV-004",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "unit-price-floor-vs-round",
+      "rule": "EINV-004",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "retry-cap-number",
+      "rule": "EINV-008",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "retry-cap-comparison",
+      "rule": "EINV-008",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "permanent-failure-no-retry",
+      "rule": "EINV-009",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "timeout-3-seconds",
+      "rule": "EINV-007",
+      "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "idempotency-merchant-order-no",
+      "rule": "EINV-005",
+      "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "duplicate-2001-is-issued",
+      "rule": "EINV-010",
+      "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "issued-not-resent",
+      "rule": "EINV-011",
+      "file": "src/smart_ticket/application/invoicing_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "issued-number-immutable",
+      "rule": "EINV-011",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "failure-isolation-timeout",
+      "rule": "EINV-002",
+      "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "failure-isolation-busy-is-an-outcome",
+      "rule": "EINV-002",
+      "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "no-provider-call-under-lock",
+      "rule": "EINV-002",
+      "file": "src/smart_ticket/application/invoicing_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "validation-business-id-8-digits",
+      "rule": "EINV-013",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "validation-mobile-barcode",
+      "rule": "EINV-013",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "validation-either-not-both",
+      "rule": "EINV-013",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "validation-company-name-required",
+      "rule": "EINV-013",
+      "file": "src/smart_ticket/domain/invoicing.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "audit-failed-with-code",
+      "rule": "EINV-014",
+      "file": "src/smart_ticket/application/invoicing_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "notify-issued",
+      "rule": "EINV-014",
+      "file": "src/smart_ticket/application/invoicing_service.py",
+      "verdict": "killed",
+      "exit": 0
+     }
+    ],
+    "d3b": [
+     {
+      "case": "zero-means-not-used",
+      "rule": "PTS-001",
+      "file": "src/smart_ticket/application/member_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "member-required",
+      "rule": "PTS-002",
+      "file": "src/smart_ticket/application/member_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "min-check-blocks-negative",
+      "rule": "PTS-003",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "min-points-number",
+      "rule": "PTS-003",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "min-points-1-EQUIVALENT-survived",
+      "rule": "PTS-003",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "survived",
+      "exit": 1
+     },
+     {
+      "case": "unit-100",
+      "rule": "PTS-003",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "balance-check",
+      "rule": "PTS-004",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "cap-percent",
+      "rule": "PTS-005",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "cap-floor-vs-round",
+      "rule": "PTS-005",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "cap-inclusive",
+      "rule": "PTS-005",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "cap-on-discounted-total",
+      "rule": "PTS-006",
+      "file": "src/smart_ticket/application/member_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "point-value",
+      "rule": "PTS-007",
+      "file": "src/smart_ticket/domain/members.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "payable-is-total-minus-points",
+      "rule": "PTS-007",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "reserve-before-commit",
+      "rule": "PTS-008",
+      "file": "src/smart_ticket/application/booking_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "charge-payable",
+      "rule": "PTS-009",
+      "file": "src/smart_ticket/application/payment_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "order-amount-payable",
+      "rule": "PTS-009",
+      "file": "src/smart_ticket/application/payment_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "group-failure-restores",
+      "rule": "PTS-010",
+      "file": "src/smart_ticket/application/payment_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "individual-failure-keeps",
+      "rule": "PTS-011",
+      "file": "src/smart_ticket/application/payment_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "refund-cash-is-order-amount",
+      "rule": "PTS-012",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "refund-restores-points",
+      "rule": "PTS-012",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "fare-difference-uses-totals",
+      "rule": "PTS-013",
+      "file": "src/smart_ticket/application/change_booking_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "global-lock",
+      "rule": "PTS-014",
+      "file": "src/smart_ticket/application/booking_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "audit-reserved-points",
+      "rule": "PTS-015",
+      "file": "src/smart_ticket/application/member_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "audit-restored-points",
+      "rule": "PTS-015",
+      "file": "src/smart_ticket/application/member_service.py",
+      "verdict": "killed",
+      "exit": 0
+     }
+    ],
+    "d3c": [
+     {
+      "case": "group-only",
+      "rule": "PCR-001",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "points-excluded",
+      "rule": "PCR-001",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "paid-only",
+      "rule": "PCR-001",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "empty-list-422",
+      "rule": "PCR-002",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "duplicate-ids-422",
+      "rule": "PCR-002",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "passenger-not-found",
+      "rule": "PCR-002",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "already-cancelled",
+      "rule": "PCR-002",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "window-closes-at-d0",
+      "rule": "PCR-003",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "band-14-days",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "band-7-days",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "rate-10",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "rate-20",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "rate-30",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "band-inclusive",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "fee-floor-vs-round",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/cancellation.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "fee-per-passenger",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "fee-on-own-fare",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "days-off-by-one",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "days-by-datetime-EQUIVALENT-survived",
+      "rule": "PCR-004",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "survived",
+      "exit": 1
+     },
+     {
+      "case": "all-or-at-least-min",
+      "rule": "PCR-005",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "min-group-size",
+      "rule": "PCR-005",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "global-lock",
+      "rule": "PCR-005",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "inventory-keeps-others",
+      "rule": "PCR-006",
+      "file": "src/smart_ticket/application/seat_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "trip-counter",
+      "rule": "PCR-006",
+      "file": "src/smart_ticket/application/seat_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "release-called",
+      "rule": "PCR-006",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "booking-drops-seats",
+      "rule": "PCR-006",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "append-not-overwrite",
+      "rule": "PCR-007",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "refund-is-fare-minus-fee",
+      "rule": "PCR-008",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "whole-refund-cancels-everyone",
+      "rule": "PCR-008",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "refunded-when-none-left",
+      "rule": "PCR-009",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "paid-while-some-left",
+      "rule": "PCR-009",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "response-shows-cancelled",
+      "rule": "PCR-010",
+      "file": "src/smart_ticket/schemas/contracts.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "refunds-of-this-booking",
+      "rule": "PCR-010",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "decide-before-release",
+      "rule": "PCR-011",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "no-whole-refund-after-partial",
+      "rule": "PCR-012",
+      "file": "src/smart_ticket/domain/models.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "audit-detail",
+      "rule": "PCR-013",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "notification",
+      "rule": "PCR-013",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     },
+     {
+      "case": "no-gateway-call",
+      "rule": "PCR-014",
+      "file": "src/smart_ticket/application/refund_service.py",
+      "verdict": "killed",
+      "exit": 0
+     }
+    ]
+   },
+   "rows_sha256": {
+    "d3a": "6b6446f917b5e6cd3a254932055d74fb43ae4fdeb653c79a4f21791a07c6782f",
+    "d3b": "f0597674b39db8cd5e47869d498943dfa10c1c9a36330ce0a453aeaa30dc3cbf",
+    "d3c": "1dca0cacda07f73786eb3afd4e12fe38f3d785cd2f03d46810bff4427876e29c"
+   },
+   "adhoc_verifier_mutants": {
+    "EINV-012": {
+     "mutant": "payment_service.py: invoicing.open(..., buyer) -> InvoiceBuyer()",
+     "test": "-k einv_012",
+     "verdict": "killed",
+     "output_sha256": "5df649a8d023cb3833fe26dd70d2340b1ec7e700bca7e507f1586a6654461c75"
+    },
+    "EINV-015": {
+     "mutant": "einvoice_provider.py: REJECTED_CODES {1001,1002} -> {1001}",
+     "test": "-k einv_015",
+     "verdict": "killed",
+     "output_sha256": "fbacc3c5bdc40e0bf50c78512ef18d989abc6e6b72b6f30be287713aaa39ce76"
+    }
+   },
+   "runs": {
+    "7.5-d3a-counterfactuals": {
+     "exit": 0,
+     "output_sha256": "1dec0dc33b556a51f133c1e902d6bfed0a26bd20560f07809bdee74775666c61",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\s\\d3a\\evidence\\run_counterfactuals.py C:\\dlcv\\venv\\Scripts\\python.exe C:\\dlcv\\dm\\domain-memory\\scripts\\registry_tools.py"
+    },
+    "7.5-d3a-pytest-after-restore": {
+     "exit": 0,
+     "output_sha256": "0fd019639dd2ae7e48be917d45d81944992d10886443552e9aa36a083c916b9d",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    },
+    "7.5-d3b-counterfactuals": {
+     "exit": 0,
+     "output_sha256": "ded5fac3a079afe212d3ccd3141ba95524fa6f6618827eeaabbca429514c942a",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\s\\d3b\\evidence\\run_counterfactuals.py C:\\dlcv\\venv\\Scripts\\python.exe C:\\dlcv\\dm\\domain-memory\\scripts\\registry_tools.py"
+    },
+    "7.5-d3b-pytest-after-restore": {
+     "exit": 0,
+     "output_sha256": "2e8b9d377ef4c280fe52d7ae434bcc899154c52f2dc8c6d96099648beeff9501",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    },
+    "7.5-d3c-counterfactuals": {
+     "exit": 0,
+     "output_sha256": "49038fa1ef258a208df047d8912a4ec17759cd54ac1cf259e7e160930ae4d07e",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\s\\d3c\\evidence\\run_counterfactuals.py C:\\dlcv\\venv\\Scripts\\python.exe C:\\dlcv\\dm\\domain-memory\\scripts\\registry_tools.py"
+    },
+    "7.5-d3c-pytest-after-restore": {
+     "exit": 0,
+     "output_sha256": "4b193700f440950abda5d418c59d763e438c111afa6419befdb5781a6cbf38ed",
+     "cmd": "C:\\dlcv\\venv\\Scripts\\python.exe -m pytest -q -rsx -p no:cacheprovider"
+    }
+   }
+  },
+  "7.6_paired_signing_drill": {
+   "status": "PASS",
+   "run_by": "verifier (re-run of orchestrator's scratchpad/push_test.sh with CAND=efbd1ba2c3e7b958)",
+   "summary": "From participant-dlc-open + recovery-dlc-d2 ZIPs, following RECOVERY.md literally with git user 'DLC Proposer' and signer maintainer@example.com (new key under redirected HOME/.dlc-keys): 76 passed; history 3x G + N; init-signing-key, amend-policy authorized_signers, install-git-hitl-hook; governance-readiness ready; signed commit G; setup_remote.py bare remote; signed push exit 0; unsigned Registry commit push rejected by pre-push hook 'ERROR: Git commit signature is invalid' exit 1. scan-secrets on that repo afterwards: complete, 0 findings. Full two-identity D2 (proposer submit, maintainer record-approval, signed approval commit, attestation, finalize, apply) is evidenced by the reference bundle (CP-CORE-001 proposer Proposer / reviewer Maintainer; verify-git-governance valid) and was not re-run end-to-end.",
+   "orchestrator_prior_run": "same script against 63c281a541f2001a: signed push exit 0, unsigned push rejected exit 1; participant/recovery ZIPs byte-identical between the two candidates (see candidate.unchanged_vs_63c281a541f2001a)",
+   "log_sha256": "bee61e169f9e779af0468b12f4e1697063656bfe3181c4c3ddc9f965bd093dc9",
+   "runs": {
+    "7.10-scan-secrets-push-drill-repo": {
+     "exit": 0,
+     "output_sha256": "3e212df34ffbaa9791d4802ed23c76e7b5765457f3a96e675b675589b1be83db",
+     "cmd": "dmlib.py scan-secrets (drill repo)"
+    }
+   }
+  },
+  "7.7_helper_scripts": {
+   "status": "PASS (self-tests); timing NOT_RUN",
+   "run_by": "verifier",
+   "summary": "participant/tools/test_tools.py: Ran 5 tests OK (DOMAIN_MEMORY_PLUGIN = extracted vendor plugin). Orchestrator also reported 5 OK against SkillHub plugin.",
+   "not_run": {
+    "item": "re-doing D1/D2 with the scripts under a timer",
+    "reason": "no timed rehearsal performed",
+    "how": "time make_record.py --batch + fill_package.py D1/D2 runs per CHECKPOINTS.md windows; pilot session"
+   },
+   "runs": {
+    "7.7-tools-selftest": {
+     "exit": 0,
+     "output_sha256": "f8b7f53cebb700becff9565295718c32866a4da761dc89328729717adc4ad0ba",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 test_tools.py"
+    }
+   }
+  },
+  "7.8_build": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "build_materials.py --edition dlc run twice: deck f87b1bd1…69da and runbook fdaba90f…b2c9 identical both times and identical to pre-run disk; --edition dlc --check UP-TO-DATE (deck 72 slides, runbook 12 candidate ZIPs, safety codes/plaintext clean, forbidden_hits 0, external_urls 0); main --check UP-TO-DATE (safety clean, b0_policy clean)",
+   "runs": {
+    "7.8-build-dlc-check": {
+     "exit": 0,
+     "output_sha256": "e216f2113da9dae656765f8fbd05c83674971e9b38ea7f6b43a903ab15b69827",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 scripts/build_materials.py --edition dlc --check"
+    },
+    "7.8-build-main-check": {
+     "exit": 0,
+     "output_sha256": "70f12c05e6d27ee6cdf61b5fc53dda33fa66769ccbcf30f498b3f9d9c3351181",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 scripts/build_materials.py --check"
+    },
+    "7.8-build-dlc-run1": {
+     "exit": 0,
+     "output_sha256": "f3c156c0141751244d52c39d10c42bd3cba8382b0130d0961dfabf06e16e2b8f",
+     "cmd": "build_materials.py --edition dlc"
+    },
+    "7.8-build-dlc-run2": {
+     "exit": 0,
+     "output_sha256": "f3c156c0141751244d52c39d10c42bd3cba8382b0130d0961dfabf06e16e2b8f",
+     "cmd": "build_materials.py --edition dlc"
+    }
+   }
+  },
+  "7.9_dlc_tests": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "python -m unittest discover -s scripts -p test_*.py: Ran 165 tests OK (includes test_build_materials.py EditionTests and test_build_delivery_dlc.py)",
+   "runs": {
+    "7.10-unittest-discover": {
+     "exit": 0,
+     "output_sha256": "5b46f6a71011b3bc2bf2945218782091edf9a57d46447feb8fb04e6f207d8d5e",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 -m unittest discover -s scripts -p test_*.py"
+    }
+   }
+  },
+  "7.10_global": {
+   "status": "PASS",
+   "run_by": "verifier",
+   "summary": "validate_workshop.py --static-only STATIC_PASS (403 md, 869 links, 0 errors); validate_consistency_corrections.py PASS (C-01..C-09); build_delivery_dlc.py --verify dist/dlc-candidate/efbd1ba2c3e7b958: 14 packages verified, missing []; scripts/package-manifest.json unmodified and dist/p11-candidate/c841f2424d256c28 13 ZIPs match its evidence; git ls-files dist = 0; no tracked private-key file/content; scan-secrets on reference Registry clone and on drill repo: complete, 0 findings. Side effect: both validators rewrite agentic-workshop/06-runbook/evaluation/{p11-static-validation,consistency-correction}-evidence.json (timestamps/counts) — restored with git checkout.",
+   "runs": {
+    "7.10-validate-workshop-static": {
+     "exit": 0,
+     "output_sha256": "bb7a679112eee355a160246649be37fa26ae78abb98795c2f8ea5bd2ba85fa7f",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 scripts/validate_workshop.py --static-only"
+    },
+    "7.10-validate-consistency": {
+     "exit": 0,
+     "output_sha256": "92a4e5445e5fb45a398c36725a947026507b88993a16304f72048e4f7bb80a33",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 scripts/validate_consistency_corrections.py"
+    },
+    "7.10-verify-candidate": {
+     "exit": 0,
+     "output_sha256": "a09409aa8687fed72d555af58e1fca70e850b376c5491df2b7ba3f2b808db2fd",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 scripts/build_delivery_dlc.py --verify dist/dlc-candidate/efbd1ba2c3e7b958"
+    },
+    "7.10-scan-secrets-reference-registry": {
+     "exit": 0,
+     "output_sha256": "ad0f862ae27439e05a3110d64bd1058f402baba8d80bf853b144fa0c3ba44e60",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\dlcv\\open\\agentic-workshop\\07-dlc-ddd\\participant\\tools\\dmlib.py scan-secrets"
+    }
+   }
+  },
+  "7.11_leakage": {
+   "status": "PASS",
+   "run_by": "verifier (re-run; orchestrator got the same 659/0)",
+   "summary": "scratchpad/zip_leak_scan.py over all participant-* and recovery-* ZIPs incl. nested ZIPs: 659 files, 0 problems (path segments facilitator/evaluation/instructions/reference-*/rubric/observation*/.dlc-keys/.venv/.git, private-key headers, forbidden phrases, 13 unlock codes normalized). Headless runbook with all 13 groups unlocked: 0 forbidden markers, 0 codes in 131,771 chars. Recovery ZIP structure unchanged from 63c281a541f2001a (byte-identical).",
+   "runs": {
+    "7.11-zip-leak-scan": {
+     "exit": 0,
+     "output_sha256": "96c5800b0c5398a4bb0dc2d0cb0a236b76b24feb6bf229c872860090bfa36141",
+     "cmd": "C:\\Users\\a8022\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\zip_leak_scan.py dist/dlc-candidate/efbd1ba2c3e7b958"
+    }
+   }
+  },
+  "7.12_browser_smoke": {
+   "status": "PASS (headless); manual real-browser NOT_RUN",
+   "run_by": "verifier",
+   "summary": "headless Edge, file://, current runbook.html: 21 pages all unlocked with content; checkpoint pages nav steps == .rb-step (environment 5, d1 8, d2 8, d3a 8, …, d4 4, retro 5); chip fills stwdlc:form:*; export-all ZIP smart-ticket-dlc-runbook-<stamp>.zip testzip None; 3 main stw: sentinel keys untouched, all new keys stwdlc:. dist/materials-dlc/participant-materials-dlc.zip = [runbook.html] with sha256 equal to built runbook.",
+   "not_run": {
+    "item": "real (non-headless) browser walk-through, manual code entry, screenshot layout review of deck + runbook",
+    "reason": "not performed in this verification",
+    "how": "open both HTML via file:// in Edge/Chrome, enter codes by hand, screenshot each D segment"
+   },
+   "runs": {
+    "7.12-headless-smoke": {
+     "exit": 0,
+     "output_sha256": "01d6e5c9f04d7962be4fb4170926077febf9b995120285466ff37345b04d5786",
+     "cmd": "scratchpad/dlc_smoke.py"
+    }
+   }
+  },
+  "human_rehearsal": {
+   "status": "NOT_RUN",
+   "reason": "no real session yet",
+   "how": "pilot session; record actual minutes per checkpoint"
+  }
+ },
+ "all_runs_index": {
+  "7.2-start-repo-pytest": {
+   "exit": 0,
+   "output_sha256": "99e72b73aedf2fef2f1724a2934af40380d7e13443cf7a642e28801fe3eb5c92"
+  },
+  "7.7-tools-selftest": {
+   "exit": 0,
+   "output_sha256": "f8b7f53cebb700becff9565295718c32866a4da761dc89328729717adc4ad0ba"
+  },
+  "7.5-d3a-counterfactuals": {
+   "exit": 0,
+   "output_sha256": "1dec0dc33b556a51f133c1e902d6bfed0a26bd20560f07809bdee74775666c61"
+  },
+  "7.5-d3a-pytest-after-restore": {
+   "exit": 0,
+   "output_sha256": "0fd019639dd2ae7e48be917d45d81944992d10886443552e9aa36a083c916b9d"
+  },
+  "7.5-d3b-counterfactuals": {
+   "exit": 0,
+   "output_sha256": "ded5fac3a079afe212d3ccd3141ba95524fa6f6618827eeaabbca429514c942a"
+  },
+  "7.5-d3b-pytest-after-restore": {
+   "exit": 0,
+   "output_sha256": "2e8b9d377ef4c280fe52d7ae434bcc899154c52f2dc8c6d96099648beeff9501"
+  },
+  "7.5-d3c-counterfactuals": {
+   "exit": 0,
+   "output_sha256": "49038fa1ef258a208df047d8912a4ec17759cd54ac1cf259e7e160930ae4d07e"
+  },
+  "7.5-d3c-pytest-after-restore": {
+   "exit": 0,
+   "output_sha256": "4b193700f440950abda5d418c59d763e438c111afa6419befdb5781a6cbf38ed"
+  },
+  "7.4-d3a-pytest": {
+   "exit": 0,
+   "output_sha256": "48239c2455e5d6d38cee0f3cf98bb967f08694b1132a715b796dd0c5bc658816"
+  },
+  "7.4-d3a-validate": {
+   "exit": 0,
+   "output_sha256": "a2c12d2671aa4445ee32f503375086fc4a8c12b41b8a118ffbd82745ff7425ec"
+  },
+  "7.4-d3a-verify-audit": {
+   "exit": 0,
+   "output_sha256": "746a1b8f4d73a5bb34222bc12af7729dd2cf0e19a3c2d38c8d7b9715e4d16186"
+  },
+  "7.4-d3a-coverage": {
+   "exit": 0,
+   "output_sha256": "0842fb16411ae592f31feb8767ea64b0f1a15600278c2f6b9b4bad3f37fea134"
+  },
+  "7.4-d3a-verify-evidence": {
+   "exit": 1,
+   "output_sha256": "fb5add1dda90b598bc7afa6a0c9958c0281a8e9cdafe6fddaae76d0b505980a4"
+  },
+  "7.4-d3a-verify-sources": {
+   "exit": 1,
+   "output_sha256": "d1628885288df2ba4fea22d2b15992a6c14f101db7bf1ffa36f156c5f65e5633"
+  },
+  "7.4-d3b-pytest": {
+   "exit": 0,
+   "output_sha256": "5bfcb90afe259a5a690f59a36e426d294cdcf35dab3344e53238561139fd3325"
+  },
+  "7.4-d3b-validate": {
+   "exit": 0,
+   "output_sha256": "a2c12d2671aa4445ee32f503375086fc4a8c12b41b8a118ffbd82745ff7425ec"
+  },
+  "7.4-d3b-verify-audit": {
+   "exit": 0,
+   "output_sha256": "9121cf0e1b375162d604e7d3a9d87a472ed80b7d4304f4ebcb29be11525eae78"
+  },
+  "7.4-d3b-coverage": {
+   "exit": 0,
+   "output_sha256": "40480560c790728cd0516b5118288063319b9f3e5b0dc80ea63dfa5c615abbf3"
+  },
+  "7.4-d3b-verify-evidence": {
+   "exit": 1,
+   "output_sha256": "9de5883c5360d290655d85ed49587ef3efd6fb1ea00c5b92ef21d46e1e8a2eaf"
+  },
+  "7.4-d3b-verify-sources": {
+   "exit": 1,
+   "output_sha256": "bceafb9ca0736b9e4126f4960f78c8ff4ad7a0173843543c614c02a5978b84f1"
+  },
+  "7.4-d3c-pytest": {
+   "exit": 0,
+   "output_sha256": "6b99baeefd103cd3aa62d8ab1e242d0d3f9e2aa409677bc2a2a519d300cb2209"
+  },
+  "7.4-d3c-validate": {
+   "exit": 0,
+   "output_sha256": "a2c12d2671aa4445ee32f503375086fc4a8c12b41b8a118ffbd82745ff7425ec"
+  },
+  "7.4-d3c-verify-audit": {
+   "exit": 0,
+   "output_sha256": "d6da31fa0a0813b0a80bfa2f6e216bef4a3dc68a5e153cd3e75e4d10f1dbc689"
+  },
+  "7.4-d3c-coverage": {
+   "exit": 0,
+   "output_sha256": "73bd6e58e42be285b795577c3137c0d1f183464284d9530794e3573fd0a07c0e"
+  },
+  "7.4-d3c-verify-evidence": {
+   "exit": 1,
+   "output_sha256": "e2ec927d284f3e13427de858d1e9ad34c25c0829d95ba8752cea7b7368efbc19"
+  },
+  "7.4-d3c-verify-sources": {
+   "exit": 1,
+   "output_sha256": "507b552d720a3fe7ab3778881d183d495a82f9d0cd4ca3b44c01afee407b6965"
+  },
+  "7.3-git-log-signatures": {
+   "exit": 0,
+   "output_sha256": "4b8b17510e50724f0a23cbeea2fae715c26d2228f66211a2ac581f40279c8a66"
+  },
+  "7.3-validate-require-reviewed": {
+   "exit": 0,
+   "output_sha256": "6fc41bb0aa5cfe22c149529e3af666f1f3a56d99d42d9a9491247e3705d72008"
+  },
+  "7.3-verify-evidence": {
+   "exit": 0,
+   "output_sha256": "d8bf7330e8fe62124efcb9af89ec12f3338c11cffcd621610a91aad8ede0d08c"
+  },
+  "7.3-verify-sources": {
+   "exit": 0,
+   "output_sha256": "9005f8c1518307d236836a1e606c937aaf40e871bc6ce85bbd91105996616b4e"
+  },
+  "7.3-verify-audit": {
+   "exit": 0,
+   "output_sha256": "b62affe84302d41a3e4294ffb9855366670ecbe3ec8309042af0a63b2e9d1dcb"
+  },
+  "7.3-coverage": {
+   "exit": 0,
+   "output_sha256": "18b338b19e95d8874d6e2123f588f3c37c401ad0b0c8f24c12cfb4b78f9ad874"
+  },
+  "7.3-verify-git-governance": {
+   "exit": 0,
+   "output_sha256": "4215236497190189c3d260d48889707c9849cb4ce85df1634493401de8382ed4"
+  },
+  "7.3-install-git-hitl-hook": {
+   "exit": 0,
+   "output_sha256": "2160c99a3e7e200cc20f9f94964e56ec75a8476ab8463de6a65d4ca40b0f23c8"
+  },
+  "7.3-governance-readiness": {
+   "exit": 0,
+   "output_sha256": "859784dfddc45c36e91dd24afa498f1454da51a7c340eb262f47e16dc8504215"
+  },
+  "7.10-scan-secrets-reference-registry": {
+   "exit": 0,
+   "output_sha256": "ad0f862ae27439e05a3110d64bd1058f402baba8d80bf853b144fa0c3ba44e60"
+  },
+  "7.8-build-dlc-check": {
+   "exit": 0,
+   "output_sha256": "e216f2113da9dae656765f8fbd05c83674971e9b38ea7f6b43a903ab15b69827"
+  },
+  "7.8-build-main-check": {
+   "exit": 0,
+   "output_sha256": "70f12c05e6d27ee6cdf61b5fc53dda33fa66769ccbcf30f498b3f9d9c3351181"
+  },
+  "7.10-verify-candidate": {
+   "exit": 0,
+   "output_sha256": "a09409aa8687fed72d555af58e1fca70e850b376c5491df2b7ba3f2b808db2fd"
+  },
+  "7.10-vendor-plugin-check": {
+   "exit": 0,
+   "output_sha256": "d450d05c671ab84b80bbd7bd277ffaccafd0ebff78f9a484fefc71f779eb2fe8"
+  },
+  "7.10-validate-consistency": {
+   "exit": 0,
+   "output_sha256": "92a4e5445e5fb45a398c36725a947026507b88993a16304f72048e4f7bb80a33"
+  },
+  "7.10-validate-workshop-static": {
+   "exit": 0,
+   "output_sha256": "bb7a679112eee355a160246649be37fa26ae78abb98795c2f8ea5bd2ba85fa7f"
+  },
+  "7.10-unittest-discover": {
+   "exit": 0,
+   "output_sha256": "5b46f6a71011b3bc2bf2945218782091edf9a57d46447feb8fb04e6f207d8d5e"
+  },
+  "7.11-zip-leak-scan": {
+   "exit": 0,
+   "output_sha256": "96c5800b0c5398a4bb0dc2d0cb0a236b76b24feb6bf229c872860090bfa36141"
+  }
+ }
+}

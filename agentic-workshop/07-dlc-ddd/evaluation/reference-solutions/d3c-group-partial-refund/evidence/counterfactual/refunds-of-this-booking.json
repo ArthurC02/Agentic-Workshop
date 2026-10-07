@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 54,
+  "mutated_protection": {
+    "from": "if record.booking_id == booking_id]",
+    "to": "if True]"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_010\"",
+  "verdict": "killed",
+  "failing_evidence": "oking_id': '3fc546e0-c918-4c8d-8e92-081614cdd440', 'created_at': '2030-01-14T09:00:00+08:00', 'fee': 210, ...}\nE         Use -v to get more diff\n\ntests\\integration\\test_partial_cancellation.py:232: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_010_booking_query_shows_cancelled_passengers_and_all_refunds\n1 failed, 22 deselected, 1 warning in 0.26s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:e53a8888e6b4f2d1c91189e52291021ed7628cea9017a0ecd9caae656f5e2e68"
+  },
+  "rule": "refunds-of-this-booking",
+  "acceptance_criterion": "PCR-010",
+  "exit_code": 0
+}

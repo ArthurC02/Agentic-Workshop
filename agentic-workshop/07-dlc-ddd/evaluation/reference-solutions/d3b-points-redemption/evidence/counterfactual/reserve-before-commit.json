@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/booking_service.py",
+  "line": 49,
+  "mutated_protection": {
+    "from": "self.members.reserve_points(booking)\r\n            self.store.bookings[booking.booking_id] = booking\r\n            self.seats.reserve(booking.booking_id, trip_id, assignments)\r\n",
+    "to": "self.store.bookings[booking.booking_id] = booking\r\n            self.seats.reserve(booking.booking_id, trip_id, assignments)\r\n            self.members.reserve_points(booking)\r\n"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_008\"",
+  "verdict": "killed",
+  "failing_evidence": "a\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_008_failed_redemption_creates_no_booking_seats_or_deduction[no-member]\nFAILED tests/integration/test_points_redemption.py::test_pts_008_failed_redemption_creates_no_booking_seats_or_deduction[invalid]\nFAILED tests/integration/test_points_redemption.py::test_pts_008_failed_redemption_creates_no_booking_seats_or_deduction[insufficient]\nFAILED tests/integration/test_points_redemption.py::test_pts_008_failed_redemption_creates_no_booking_seats_or_deduction[over-limit]\n4 failed, 1 passed, 33 deselected, 1 warning in 0.32s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:39168508970dad8ee306f2518602064aa9709dff3822eda1f3ece96767e6180a"
+  },
+  "rule": "reserve-before-commit",
+  "acceptance_criterion": "PTS-008",
+  "exit_code": 0
+}

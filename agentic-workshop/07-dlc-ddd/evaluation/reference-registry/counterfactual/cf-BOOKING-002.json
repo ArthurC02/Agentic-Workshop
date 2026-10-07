@@ -1,0 +1,16 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/booking_service.py",
+  "line": 32,
+  "mutated_protection": {
+    "from": "1 <= len(passengers) <= 4",
+    "to": "1 <= len(passengers) <= 5"
+  },
+  "test_command": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_features.py",
+  "verdict": "killed",
+  "failing_evidence": " _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nresponse = <Response [201 Created]>, code = 'INVALID_PASSENGER_COUNT'\nstatus = 409\n\n    def error(response, code, status=409):\n>       assert response.status_code == status\nE       assert 201 == 409\nE        +  where 201 = <Response [201 Created]>.status_code\n\ntests\\integration\\test_features.py:11: AssertionError\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\dlc-ref\\repo\\.venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_features.py::test_more_than_four_rejected - ass...\n1 failed, 13 passed, 1 warning in 0.50s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87"
+  }
+}

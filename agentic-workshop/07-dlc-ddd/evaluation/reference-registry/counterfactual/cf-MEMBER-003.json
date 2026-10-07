@@ -1,0 +1,16 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/discounts.py",
+  "line": 33,
+  "mutated_protection": {
+    "from": "(95, DiscountType.CORPORATE)",
+    "to": "(96, DiscountType.CORPORATE)"
+  },
+  "test_command": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_members.py",
+  "verdict": "killed",
+  "failing_evidence": ">\nmemory_store = <smart_ticket.infrastructure.store.InMemoryStore object at 0x000001B17227C980>\n\n    def test_corporate_member_discount_and_invalid_member_atomic(client, book_adult, memory_store):\n        corporate = book_adult(member_id=\"M002\")\n>       assert corporate[\"total_fare\"] == 665\nE       assert 672 == 665\n\ntests\\integration\\test_members.py:12: AssertionError\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\dlc-ref\\repo\\.venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_members.py::test_corporate_member_discount_and_invalid_member_atomic\n1 failed, 1 passed, 1 warning in 0.36s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/discounts.py",
+  "line": 30,
+  "mutated_protection": {
+    "from": ".days >= 14",
+    "to": ".days > 14"
+  },
+  "test_command": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_advance.py",
+  "verdict": "killed",
+  "failing_evidence": "\n\n    def test_corporate_advance_uses_best_single_discount(book_adult, memory_store):\n        memory_store.clock.today = date(2030, 1, 1)\n>       assert book_adult(member_id=\"M002\")[\"total_fare\"] == 595\nE       assert 665 == 595\n\ntests\\integration\\test_advance.py:15: AssertionError\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\dlc-ref\\repo\\.venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_advance.py::test_advance_purchase_thirteen_fourteen_and_fifteen_day_boundary\nFAILED tests/integration/test_advance.py::test_corporate_advance_uses_best_single_discount\n2 failed, 1 warning in 0.29s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6"
+  }
+}

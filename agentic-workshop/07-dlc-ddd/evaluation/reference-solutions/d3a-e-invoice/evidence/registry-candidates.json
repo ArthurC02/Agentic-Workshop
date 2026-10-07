@@ -1,0 +1,37 @@
+[
+  {"asset": "contexts", "id": "invoicing", "name": "電子發票 Invoicing", "subdomain": "supporting",
+   "responsibility": "為每筆付款成功的 Order 開立一張電子發票：持有 Invoice（以 order_id 識別）、購票人發票資訊、稅額拆分、品項、重試上限與狀態機；只經 Port InvoiceIssuer 與外部發票服務商溝通，發票失敗不回滾付款。",
+   "evidence": ["docs/adr/005-issue-e-invoices-through-a-port.md:14-15", "src/smart_ticket/domain/invoicing.py:1-5"]},
+
+  {"asset": "vocabulary", "id": "invoice", "name": "電子發票", "context": ["invoicing"], "synonyms": ["Invoice", "e-invoice"],
+   "definition": "為一筆 Order 開立的電子發票，以 order_id 識別、總額等於 Order.amount；狀態 PENDING（可重試）、ISSUED（含不可變更的發票號碼）、FAILED（永久失敗或達呼叫上限，需人工處理）。",
+   "evidence": ["docs/requirements/business-rules.md:88", "src/smart_ticket/domain/invoicing.py:106-113"]},
+  {"asset": "vocabulary", "id": "invoice-buyer-info", "name": "購票人發票資訊", "context": ["invoicing"], "synonyms": ["InvoiceBuyer", "Buyer Info"],
+   "definition": "付款時選填的統編（8 位數字，須附公司名稱）或手機條碼載具（/ 加 7 碼），二者擇一；皆未提供時開立一般個人發票。格式錯誤在扣款前以 422 拒絕；資訊存在 Invoice，不寫入 Booking 或 Order。",
+   "evidence": ["docs/requirements/business-rules.md:94-95", "src/smart_ticket/domain/invoicing.py:30-45"]},
+  {"asset": "vocabulary", "id": "issue-attempt", "name": "開立呼叫次數", "context": ["invoicing"], "synonyms": ["attempts", "Issue Attempt"],
+   "definition": "Invoicing 為同一張發票呼叫服務商的累計次數（含第一次），每次都用同一 order_id；暫時失敗記錄最後錯誤並維持 PENDING，第 5 次仍未成功轉 FAILED。",
+   "evidence": ["docs/requirements/business-rules.md:89-90", "src/smart_ticket/domain/invoicing.py:15", "src/smart_ticket/domain/invoicing.py:119-130"]},
+
+  {"asset": "rules", "id": "EINV-003", "context": ["invoicing"],
+   "statement": "發票總額等於 Order.amount；銷售額 = 總額 ÷ 1.05 四捨五入、稅額 = 總額 − 銷售額，全部以整數計算。",
+   "examples": ["700 → 銷售額 667、稅額 33", "3,500 → 3,333／167", "665 → 633／32"],
+   "evidence": ["docs/requirements/business-rules.md:85", "src/smart_ticket/domain/invoicing.py:21-27", "tests/integration/test_e_invoice.py:124-134"]},
+  {"asset": "rules", "id": "EINV-008", "context": ["invoicing"],
+   "statement": "暫時失敗（忙碌、逾時、連線失敗）維持 PENDING 並可重試；累計呼叫 5 次（含第一次）仍未成功轉 FAILED，永久失敗（1001／1002）第一次就轉 FAILED；FAILED 之後不再呼叫服務商（EINV-007／008／009）。",
+   "evidence": ["docs/requirements/business-rules.md:89-91", "src/smart_ticket/domain/invoicing.py:119-130", "tests/integration/test_e_invoice.py:191-211"]},
+  {"asset": "rules", "id": "EINV-005", "context": ["invoicing"],
+   "statement": "一筆 Order 至多一張已開立發票：以 order_id 作為服務商的商家訂單編號，第一次開立、逾時後重試都用同一編號；服務商回覆已開立（2001）視為成功並沿用原號碼（EINV-010）。",
+   "evidence": ["docs/requirements/business-rules.md:87", "docs/requirements/business-rules.md:92", "src/smart_ticket/infrastructure/einvoice_provider.py:31-34", "src/smart_ticket/infrastructure/einvoice_provider.py:6", "tests/integration/test_e_invoice.py:148-156", "tests/integration/test_e_invoice.py:214-219"]},
+  {"asset": "rules", "id": "EINV-002", "context": ["invoicing", "payment"],
+   "statement": "發票開立的任何結果都不影響付款：Order 與 PAID 先在付款鎖內成立，釋放全域鎖後才呼叫服務商（一般與團體路徑皆然），失敗只改 Invoice 狀態，付款 API 照樣成功、Order 金額不變。",
+   "evidence": ["docs/requirements/business-rules.md:84", "src/smart_ticket/application/payment_service.py:22-27", "src/smart_ticket/application/invoicing_service.py:26-39", "tests/integration/test_e_invoice.py:77-94", "tests/integration/test_e_invoice.py:116-121"]},
+
+  {"asset": "interactions", "id": "payment-triggers-invoicing", "producer_context": "payment", "consumer_context": "invoicing", "consistency": "synchronous",
+   "delivery": "PaymentService 在付款鎖內呼叫 InvoicingService.open 傳入 Order（發票金額的唯一來源）建立 PENDING 發票，釋放鎖後呼叫 issue 一次；Invoicing 不回寫 Order 或 Booking。",
+   "evidence": ["src/smart_ticket/application/payment_service.py:22-27", "src/smart_ticket/application/payment_service.py:52", "src/smart_ticket/application/invoicing_service.py:17-24"]},
+
+  {"asset": "decisions", "id": "ADR-005", "status": "accepted", "source": "docs/adr/005-issue-e-invoices-through-a-port.md",
+   "statement": "新增 Invoicing Context 與 Domain 端 Port InvoiceIssuer（三種結果 ISSUED／REJECTED／UNAVAILABLE，不拋例外）；服務商欄位、代碼與 3 秒逾時只在 Adapter；付款在鎖內建立 PENDING 發票、鎖外第一次開立，失敗不回滾付款；重試以同一 order_id 由維運觸發，不引入 Queue；付款閘道不一併 Port 化。",
+   "evidence": ["docs/adr/005-issue-e-invoices-through-a-port.md:12-19"]}
+]

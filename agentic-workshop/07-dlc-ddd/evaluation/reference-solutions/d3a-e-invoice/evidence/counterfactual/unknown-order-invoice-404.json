@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/invoicing_service.py",
+  "line": 44,
+  "mutated_protection": {
+    "from": "\"Invoice not found\", 404)",
+    "to": "\"Invoice not found\", 400)"
+  },
+  "test_command": "\"C:\\dlcr\\venv\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_006\"",
+  "verdict": "killed",
+  "failing_evidence": " == \"ISSUED\"\n        assert re.fullmatch(r\"[A-Z]{2}[0-9]{8}\", issued[\"invoice_number\"])\n>       assert client.get(\"/orders/MISSING/invoice\").status_code == 404\nE       AssertionError: assert 400 == 404\nE        +  where 400 = <Response [400 Bad Request]>.status_code\nE        +    where <Response [400 Bad Request]> = get('/orders/MISSING/invoice')\nE        +      where get = <starlette.testclient.TestClient object at 0x0000017850789010>.get\n\ntests\\integration\\test_e_invoice.py:168: AssertionError\n============================== warnings summary ===============================\n..\\venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\dlcr\\venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_006_invoice_status_is_queryable_by_order_id\n1 failed, 41 deselected, 1 warning in 0.27s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:71a9821b18134d97a0e3e29ec04e007d0a3948f2b9f02896adcf9cb392994a43"
+  },
+  "rule": "unknown-order-invoice-404",
+  "acceptance_criterion": "EINV-006",
+  "exit_code": 0
+}

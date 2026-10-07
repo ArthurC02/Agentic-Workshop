@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/payment_service.py",
+  "line": 26,
+  "mutated_protection": {
+    "from": "self.invoicing.issue(order.order_id)",
+    "to": "pass"
+  },
+  "test_command": "\"C:\\dlcr\\venv\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_001\"",
+  "verdict": "killed",
+  "failing_evidence": "provider.SimulatedEInvoiceProvider object at 0x0000021D4A9D9D30>\n\n    def test_einv_001_individual_and_group_payment_each_issue_one_invoice(book, pay, invoice_of, provider):\n        individual = pay(book())\n        group = pay(book(group_of(5), group=True))\n>       assert invoice_of(individual[\"order_id\"])[\"status\"] == \"ISSUED\"\nE       AssertionError: assert 'PENDING' == 'ISSUED'\nE         \nE         - ISSUED\nE         + PENDING\n\ntests\\integration\\test_e_invoice.py:71: AssertionError\n============================== warnings summary ===============================\n..\\venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\dlcr\\venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_001_individual_and_group_payment_each_issue_one_invoice\n1 failed, 41 deselected, 1 warning in 0.25s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:dbed800bae9fb854a785e7845f62f6cd3a802f863d4470844eb72d3f3a01ed79"
+  },
+  "rule": "invoice-issued-after-payment",
+  "acceptance_criterion": "EINV-001",
+  "exit_code": 0
+}

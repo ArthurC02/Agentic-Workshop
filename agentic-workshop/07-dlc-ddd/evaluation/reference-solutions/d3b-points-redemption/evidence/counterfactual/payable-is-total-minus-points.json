@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/models.py",
+  "line": 62,
+  "mutated_protection": {
+    "from": "return self.total_fare - points_value(self.redeemed_points)",
+    "to": "return self.total_fare"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_007\"",
+  "verdict": "killed",
+  "failing_evidence": "ges\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_007_booking_shows_total_redeemed_points_and_payable[passengers0-M001-200-700-500]\nFAILED tests/integration/test_points_redemption.py::test_pts_007_booking_shows_total_redeemed_points_and_payable[passengers1-M002-100-665-565]\nFAILED tests/integration/test_points_redemption.py::test_pts_007_booking_shows_total_redeemed_points_and_payable[passengers2-M001-1000-3500-2500]\nFAILED tests/integration/test_points_redemption.py::test_pts_007_booking_shows_total_redeemed_points_and_payable[passengers3-M001-300-1225-925]\n4 failed, 34 deselected, 1 warning in 0.34s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:5b72147e6ee03163e67b31336cd87ee9dcc062959ab916ecbd1b135846285bbe"
+  },
+  "rule": "payable-is-total-minus-points",
+  "acceptance_criterion": "PTS-007",
+  "exit_code": 0
+}

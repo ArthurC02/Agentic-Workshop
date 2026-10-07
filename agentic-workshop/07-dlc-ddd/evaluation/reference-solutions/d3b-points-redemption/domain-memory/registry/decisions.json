@@ -1,0 +1,452 @@
+{
+  "format": "domain-decisions/v1",
+  "status": "candidate",
+  "decisions": [
+    {
+      "id": "ADR-001",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "docs/adr/001-use-in-memory-repositories.md",
+      "statement": "採本機 In-Memory Adapter 與 Repository Protocol、固定 Seed 與共用 RLock；重啟即清除資料，不提供持久化或跨程序交易保證。",
+      "evidence": [
+        {
+          "path": "docs/adr/001-use-in-memory-repositories.md",
+          "lines": {
+            "start": 10,
+            "end": 14
+          },
+          "content_sha256": "sha256:a90464d63ad75b50e69e5a308343eeff4c7efcbfd08f529c26e1f3c4fb52ce3b",
+          "excerpt_sha256": "sha256:0da2db4f574ab593b810c1f1a5629a854f6cda63ec524a3f4c2b95ad8b2d7ddd",
+          "source_kind": "decisions"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ADR-002",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "docs/adr/002-introduce-discount-policy.md",
+      "statement": "以 Domain Discount Policy 處理優惠資格；後續決策改為全部資格候選取最低 rate、逐旅客評估、不疊加，建立與改票共用。",
+      "evidence": [
+        {
+          "path": "docs/adr/002-introduce-discount-policy.md",
+          "lines": {
+            "start": 10,
+            "end": 10
+          },
+          "content_sha256": "sha256:0122d103a4785a588b937b863fcc626b8fbffbac5852cca71c4a7c78cf9fb845",
+          "excerpt_sha256": "sha256:3f15836c4b7dcf5bf794e96c6f885830b76c6e00f7c00804a391ce7cb0e7e52f",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "docs/adr/002-introduce-discount-policy.md",
+          "lines": {
+            "start": 18,
+            "end": 18
+          },
+          "content_sha256": "sha256:0122d103a4785a588b937b863fcc626b8fbffbac5852cca71c4a7c78cf9fb845",
+          "excerpt_sha256": "sha256:89a5ec6bb5df3e3e6065d0fb5282e873dadefc3822bbd8b5725560671a0e04a4",
+          "source_kind": "decisions"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ADR-003",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "docs/adr/003-record-notifications-synchronously.md",
+      "statement": "Application 同步呼叫 Notification Service，只新增 In-Memory 紀錄，不導入 Queue 或外部發送。",
+      "evidence": [
+        {
+          "path": "docs/adr/003-record-notifications-synchronously.md",
+          "lines": {
+            "start": 10,
+            "end": 10
+          },
+          "content_sha256": "sha256:1d8abf620505701ccc4809b526ff6502076f3a00e4974fc9fb4b8d3c4deaa25b",
+          "excerpt_sha256": "sha256:2ac7f9c61ae6568a45b20b40834d57a27303cb50a9206ac50cce80cc3b8666f9",
+          "source_kind": "decisions"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ADR-004",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "docs/adr/004-group-seat-atomicity.md",
+      "statement": "團體需同車廂完整連續空位、一次保留；團體付款失敗以取消、全釋放、無 Order 及紀錄補償；團體改票拒絕、已付款團體退票保留。不引入資料庫或通用交易 Framework。",
+      "evidence": [
+        {
+          "path": "docs/adr/004-group-seat-atomicity.md",
+          "lines": {
+            "start": 6,
+            "end": 6
+          },
+          "content_sha256": "sha256:3f99dcb7c77680a497cbbde9dbe7aaaef14763812c5681eff44a9a10927a532b",
+          "excerpt_sha256": "sha256:ace309d1036d85025d4440fcc9c28fb6a4e05b0af585c9a1b1c7507827068a77",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "docs/adr/004-group-seat-atomicity.md",
+          "lines": {
+            "start": 10,
+            "end": 10
+          },
+          "content_sha256": "sha256:3f99dcb7c77680a497cbbde9dbe7aaaef14763812c5681eff44a9a10927a532b",
+          "excerpt_sha256": "sha256:21a97a6b2b9622339882afb743c8c3d525af18be24f2b36f615b1dba36700638",
+          "source_kind": "decisions"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ASIS-001",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "src/smart_ticket/application/seat_service.py",
+      "statement": "現況觀察（非已核准決策）：座位庫存有三份資料——Trip.available_seats 計數器、seat_assignments、seat_capacity——沒有單一擁有者守住一致性，只靠服務層同步與全域 RLock。改動座位的變更必須同時處理三者。",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 28,
+            "end": 28
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:70fe431755f712dd8c24770a1139f01b7ae3e69f87c9a9f059f5194650948e49",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 20,
+            "end": 27
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:6db7bed85eefb641565312e70064a992e416e0c1b0394b62f89782b3b838cc41",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/infrastructure/store.py",
+          "lines": {
+            "start": 23,
+            "end": 27
+          },
+          "content_sha256": "sha256:675022ee31ec4bb64addbafb2ee94cb514698e47b82dc6fef2a70fdd444e1c3d",
+          "excerpt_sha256": "sha256:4e7390c84209ccafecf99baed2e681ad51115cc1399bcf821ccbdfbfa3e0931b",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ASIS-002",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "src/smart_ticket/application/booking_service.py",
+      "statement": "現況觀察（非已核准決策）：計價迴圈在一般建立、團體建立、改票三處複製；新增計價規則必須三處一起改，否則路徑間不一致。文件說由 Fare Policy 協調，實際只走 DiscountPolicy，FarePolicy.calculate 只剩單元測試使用。",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/application/booking_service.py",
+          "lines": {
+            "start": 37,
+            "end": 43
+          },
+          "content_sha256": "sha256:5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "excerpt_sha256": "sha256:5afbdd645d50c0fbb72016112294f3ba1ef0f7287e3593090d9b70b01c2d0d19",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/group_booking_service.py",
+          "lines": {
+            "start": 30,
+            "end": 34
+          },
+          "content_sha256": "sha256:0f95e497f83436bbeb183a73da13bb6b30b537f152e8127fa310a71a28ff9882",
+          "excerpt_sha256": "sha256:433d2b3beb08d55525ea6f9589280faeaf2708ab4fa3d0ffc2987cbc6e8eaf6d",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/change_booking_service.py",
+          "lines": {
+            "start": 35,
+            "end": 41
+          },
+          "content_sha256": "sha256:2f01c7f2e5a612f87607c86c9e268e2db7723425290310629dcf1cbc061ae015",
+          "excerpt_sha256": "sha256:4f4f7438ae8b32f7ef59330582f66519ab596264cb7b2afddd39bc782e9a9b45",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/fare_policy.py",
+          "lines": {
+            "start": 5,
+            "end": 10
+          },
+          "content_sha256": "sha256:a678a9818d901ae1e51333a90788754a318717db722adc2d9ed45a467987b8cf",
+          "excerpt_sha256": "sha256:c3ea1b29b85b640f882740a4f4e696cbaed421e9c075157c5b73fd3feb5a3165",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 22,
+            "end": 23
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:387a251a6e7b2b40e461fc5652817c591ef71bd5c9a43be7519b38afb939e19f",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ASIS-003",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "src/smart_ticket/application/payment_service.py",
+      "statement": "現況觀察（非已核准決策）：PaymentService 直接依賴具體 MockPaymentGateway（無 Port），閘道只有 charge；團體補償、Booking 狀態改寫都寫在 PaymentService 內。",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 5,
+            "end": 16
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:75ccfdf8da512cd3ab9ca0f8f5439c8e123716261da6be77527a16fc5027b85f",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/infrastructure/payment_gateway.py",
+          "lines": {
+            "start": 3,
+            "end": 12
+          },
+          "content_sha256": "sha256:c9ea54277bc68332d4772f26cdf23d734567e74eebeb049dcec3c5d089acdc96",
+          "excerpt_sha256": "sha256:5965bafa9f1220f7b71501b95509dc1f050a4ac270f343f74a912cd3431f3480",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ASIS-004",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "source": "src/smart_ticket/application/refund_service.py",
+      "statement": "現況觀察（非已核准決策）：退款紀錄以 booking_id 為鍵且金額固定為總票價，結構上一筆訂票只能有一筆全額退款；部分退款需要先改變這個結構。",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/application/refund_service.py",
+          "lines": {
+            "start": 22,
+            "end": 29
+          },
+          "content_sha256": "sha256:7d218d867e08783ea39ba5bf062405c5493c7b490c22c85942c5e032365de64b",
+          "excerpt_sha256": "sha256:33b78b1face67df0d1447198fdb46d4ac8d08b5d059711d796298193d3cc7d8d",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/infrastructure/store.py",
+          "lines": {
+            "start": 24,
+            "end": 24
+          },
+          "content_sha256": "sha256:675022ee31ec4bb64addbafb2ee94cb514698e47b82dc6fef2a70fdd444e1c3d",
+          "excerpt_sha256": "sha256:8aeaa023bf3a657baa00485f7e49f83443ffe2f6092c6a5bd43966a6331f2f17",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "review_status": "reviewed"
+    },
+    {
+      "id": "ADR-005",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "status": "accepted",
+      "source": "docs/adr/005-issue-e-invoices-through-a-port.md",
+      "statement": "新增 Invoicing Context 與 Domain 端 Port InvoiceIssuer（三種結果 ISSUED／REJECTED／UNAVAILABLE，不拋例外）；服務商欄位、代碼與 3 秒逾時只在 Adapter；付款在鎖內建立 PENDING 發票、鎖外第一次開立，失敗不回滾付款；重試以同一 order_id 由維運觸發，不引入 Queue；付款閘道不一併 Port 化。",
+      "evidence": [
+        {
+          "path": "docs/adr/005-issue-e-invoices-through-a-port.md",
+          "lines": {
+            "start": 12,
+            "end": 19
+          },
+          "content_sha256": "sha256:279c6454ed959a2621ca07b82fb2606d5c9be7de08d34f6f8775316144209438",
+          "excerpt_sha256": "sha256:04695c179618b6dd805742f8104a093d1a798d0bca5179e003d890d60f6f8400",
+          "source_kind": "decisions"
+        }
+      ],
+      "review_status": "candidate"
+    },
+    {
+      "id": "ADR-006",
+      "effective_from": "unknown",
+      "supersedes": [],
+      "status": "accepted",
+      "source": "docs/adr/006-membership-owns-points-redemption.md",
+      "statement": "Membership 擁有點數餘額與全部折抵規則（最低、單位、30% 上限、換算率），Pricing 不知道點數；預留＝直接扣餘額、失敗加回，記在 Booking.redeemed_points，不建 Reservation；單一入口 MemberService.reserve_points 在一般與團體建立各呼叫一次；應付金額由 Booking 推導，付款與 Order.amount 用它，退款取 Order.amount；同步直接呼叫，不引入事件或 Loyalty Context。",
+      "evidence": [
+        {
+          "path": "docs/adr/006-membership-owns-points-redemption.md",
+          "lines": {
+            "start": 15,
+            "end": 24
+          },
+          "content_sha256": "sha256:4382b0fdb93605805baef37164583253f7927508661bdc71b2130d59f04c928f",
+          "excerpt_sha256": "sha256:db7a050470d8a6272fc55ea15dd2f1863533a7cf3082a3a1f66bf55c91a63afc",
+          "source_kind": "decisions"
+        }
+      ],
+      "review_status": "candidate"
+    }
+  ]
+}

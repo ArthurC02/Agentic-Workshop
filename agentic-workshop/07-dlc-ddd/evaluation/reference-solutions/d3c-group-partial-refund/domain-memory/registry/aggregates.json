@@ -1,0 +1,235 @@
+{
+  "format": "domain-aggregates/v1",
+  "status": "candidate",
+  "aggregates": [
+    {
+      "id": "booking",
+      "entities": [
+        "Passenger"
+      ],
+      "value_objects": [
+        "AppliedDiscount"
+      ],
+      "domain_services": [],
+      "policies": [],
+      "commands": [
+        "create",
+        "create_group",
+        "pay",
+        "change",
+        "refund"
+      ],
+      "allowed_dependencies": [
+        "pricing",
+        "inventory",
+        "membership"
+      ],
+      "prohibited_dependencies": [],
+      "root": "Booking",
+      "invariants": [
+        "狀態只能 PENDING_PAYMENT → PAID → REFUNDED，或團體 PENDING_PAYMENT → CANCELLED",
+        "一般訂票 1–4 人、團體 5–20 人",
+        "總票價 = 採用優惠明細 amount 加總",
+        "已付款訂票只能退一次"
+      ],
+      "context": "booking",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 43,
+            "end": 55
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:79b4ac99efb2e12eeb455c9a1d9b71ecbe8748c36417d8b93c6917709a655965",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 11,
+            "end": 15
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:4ad7d7efab7c15ab9fc7f02f521f49f4c4c03793e780266d8fad358856d3b8ff",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 23,
+            "end": 24
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:9281061c4a1b574e8bba100456dd0bea317d35b00f0b5626b8c827db82544b04",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/refund_service.py",
+          "lines": {
+            "start": 22,
+            "end": 23
+          },
+          "content_sha256": "sha256:7d218d867e08783ea39ba5bf062405c5493c7b490c22c85942c5e032365de64b",
+          "excerpt_sha256": "sha256:a3da4b76e6ccf50d999b03d698256085a1406d618764236dad008763a711e8fb",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "order",
+      "entities": [],
+      "value_objects": [],
+      "domain_services": [],
+      "policies": [],
+      "commands": [
+        "pay"
+      ],
+      "allowed_dependencies": [],
+      "prohibited_dependencies": [],
+      "root": "Order",
+      "invariants": [
+        "一筆付款成功只建立一筆 Order",
+        "amount 為付款當時的訂票總票價，建立後不因改票而改變"
+      ],
+      "context": "payment",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 57,
+            "end": 62
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:67a736b874d8eac9a3da2dc7293d573c2fd22ca3771856425bfb0465300a2840",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 23,
+            "end": 24
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:695856482638ebd79238c851e25f8897dfcd12ec5ae88fdf1f6c69081ed94c07",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 35,
+            "end": 36
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:f6e3e5ddd73e5d39a2383fab2c4a1480977ee6fb84eb3b1eb576f3edea986a02",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "booking-v2",
+      "entities": [
+        "Passenger"
+      ],
+      "value_objects": [
+        "AppliedDiscount",
+        "PassengerCancellation"
+      ],
+      "domain_services": [],
+      "policies": [],
+      "commands": [
+        "create",
+        "create_group",
+        "pay",
+        "change",
+        "refund_in_full",
+        "cancel_passengers"
+      ],
+      "allowed_dependencies": [
+        "pricing",
+        "inventory",
+        "membership"
+      ],
+      "prohibited_dependencies": [],
+      "root": "Booking",
+      "invariants": [
+        "狀態 PENDING_PAYMENT → PAID →（部分取消 n 次仍 PAID）→ REFUNDED，或團體 PENDING_PAYMENT → CANCELLED",
+        "一般訂票 1–4 人；團體建立時 5–20 人，部分取消後有效旅客 ≥ 5 或 0",
+        "Σ退款 + Σ手續費 + Σ有效旅客票價 = Order.amount；total_fare 與 applied_discounts 不因取消改變",
+        "每位旅客只能被取消一次；部分取消過的訂票不可整筆退票（取代 reviewed aggregates:booking 的「已付款訂票只能退一次」）"
+      ],
+      "context": "booking",
+      "evidence": [
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 74,
+            "end": 114
+          },
+          "content_sha256": "sha256:5f8d341697ea6dfabd2f835dd29ba3bf1c3bc867afff14a7c0fc4e3956ebb844",
+          "excerpt_sha256": "sha256:fcfc6aca589ba9e8c6ac2fd9a71e9d5870812ae115e5b5ef07c7e6630116c780",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 9,
+            "end": 9
+          },
+          "content_sha256": "sha256:5f8d341697ea6dfabd2f835dd29ba3bf1c3bc867afff14a7c0fc4e3956ebb844",
+          "excerpt_sha256": "sha256:ef11c5bb8560846e43e7fbcdd0b7a17d6804b35a1c2a90def5ed753764370658",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "docs/adr/007-group-booking-owns-passenger-cancellation.md",
+          "lines": {
+            "start": 18,
+            "end": 20
+          },
+          "content_sha256": "sha256:ee88427a8a15d75c77b5f58939888a20e538389de9d028e368fbbb90913ddac4",
+          "excerpt_sha256": "sha256:16dc0399d63f2569c952c1e784aa852421a043c766c7d9f8acdd0d6a2fc8b3ed",
+          "source_kind": "decisions"
+        }
+      ],
+      "status": "candidate"
+    }
+  ]
+}

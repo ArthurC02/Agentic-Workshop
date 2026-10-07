@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/cancellation.py",
+  "line": 7,
+  "mutated_protection": {
+    "from": "((14, 10), (7, 20), (1, 30))",
+    "to": "((14, 10), (7, 20), (0, 30))"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_003\"",
+  "verdict": "killed",
+  "failing_evidence": "0\"],\"fee\":210,\"created_at\":\"2030-01-15T09:00:00+08:00\"}\nE       assert 200 == 409\nE        +  where 200 = <Response [200 OK]>.status_code\n\ntests\\integration\\test_partial_cancellation.py:31: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_003_no_cancellation_on_or_after_the_departure_date[today0]\n1 failed, 1 passed, 21 deselected, 1 warning in 0.22s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:783b8ea7ffa7fb2490254f548ca89e6d5541bcbdd269c11d83a235c477a2ae66"
+  },
+  "rule": "window-closes-at-d0",
+  "acceptance_criterion": "PCR-003",
+  "exit_code": 0
+}

@@ -1,0 +1,38 @@
+[
+  {"asset": "vocabulary", "id": "redeemed-points", "name": "折抵點數", "context": ["membership", "booking"], "synonyms": ["redeemed_points", "Points Redemption"],
+   "definition": "訂票建立時以會員點數折抵票款的點數（1 點 = 1 元）：至少 100 點、為 100 的倍數、價值不超過優惠後總額 30%（向下取整）；建立成功即從餘額預留（扣除），記在 Booking 上作為歸還依據。折抵不是優惠。",
+   "evidence": ["docs/requirements/business-rules.md:106-110", "src/smart_ticket/domain/members.py:5-10", "src/smart_ticket/domain/models.py:57"]},
+  {"asset": "vocabulary", "id": "payable-amount", "name": "應付金額", "context": ["booking", "payment"], "synonyms": ["payable_amount"],
+   "definition": "優惠後總額（total_fare）減去折抵點數價值；付款向閘道扣的就是它，Order.amount 等於它，電子發票與退款再從 Order.amount 取。total_fare 與 applied_discounts 不因折抵改變。",
+   "evidence": ["docs/requirements/business-rules.md:112", "docs/requirements/business-rules.md:114", "src/smart_ticket/domain/models.py:59-62"]},
+
+  {"asset": "rules", "id": "PTS-003", "context": ["membership"],
+   "statement": "折抵點數小於 100 或不是 100 的倍數（含負數）時拒絕建立訂票（409 POINTS_INVALID_AMOUNT），餘額不變。",
+   "examples": ["-100、50、99、150、250 → 409"],
+   "evidence": ["docs/requirements/business-rules.md:108", "src/smart_ticket/domain/members.py:31-33", "tests/integration/test_points_redemption.py:85-88"]},
+  {"asset": "rules", "id": "PTS-005", "context": ["membership"],
+   "statement": "折抵點數價值不得超過優惠後總額的 30%（向下取整），剛好等於上限可以；以 total_fare（逐位最有利優惠後）計，不是基本票價。",
+   "examples": ["700 → 上限 210", "M002 企業會員 665 → 上限 199（不是 200）", "T002 成人 2 位 3,000 → 900 可折"],
+   "evidence": ["docs/requirements/business-rules.md:110", "src/smart_ticket/domain/members.py:19-21", "src/smart_ticket/domain/members.py:36-38", "tests/integration/test_points_redemption.py:98-110"]},
+  {"asset": "rules", "id": "PTS-008", "context": ["membership", "booking", "inventory"],
+   "statement": "點數在訂票建立成功時立即預留（扣除），且是寫入 Booking 與座位之前最後一道會拒絕的檢查；任何檢查失敗都不留下 Booking、座位、Audit 或扣點。",
+   "evidence": ["docs/requirements/business-rules.md:113", "src/smart_ticket/application/booking_service.py:49", "src/smart_ticket/application/group_booking_service.py:43", "src/smart_ticket/application/member_service.py:17-24", "tests/integration/test_points_redemption.py:132-144"]},
+  {"asset": "rules", "id": "PTS-009", "context": ["payment", "booking", "invoicing"],
+   "statement": "付款向閘道扣應付金額，Order.amount 等於應付金額（不再是訂票總票價），電子發票總額因此也是應付金額。取代 reviewed ORDER-002 在有折抵時的描述。",
+   "examples": ["M001 成人 1 位折 200 點：扣款 500、Order 500、發票 476＋24"],
+   "evidence": ["docs/requirements/business-rules.md:114", "src/smart_ticket/application/payment_service.py:38", "src/smart_ticket/application/payment_service.py:50", "tests/integration/test_points_redemption.py:147-160"]},
+  {"asset": "rules", "id": "PTS-012", "context": ["booking", "membership", "payment"],
+   "statement": "整筆退票的退款金額一律為 Order.amount（實付金額，未折抵、已改票的訂票亦同），折抵點數另外全數歸還；現金與點數不互相換算。",
+   "evidence": ["docs/requirements/business-rules.md:117", "src/smart_ticket/application/refund_service.py:25-28", "tests/integration/test_points_redemption.py:183-199"]},
+  {"asset": "rules", "id": "PTS-014", "context": ["membership"],
+   "statement": "會員可用點數永不為負：餘額只在 Member.reserve_points 減少，檢查與扣除在同一把全域鎖內，同一會員同時建立多筆訂票合計預留不超過原餘額。取代 reviewed MEMBER-004 的「沒有使用點數的功能」。",
+   "evidence": ["docs/requirements/business-rules.md:119", "src/smart_ticket/domain/members.py:29-39", "tests/integration/test_points_redemption.py:212-240"]},
+
+  {"asset": "interactions", "id": "booking-reserves-member-points", "producer_context": "membership", "consumer_context": "booking", "consistency": "synchronous",
+   "delivery": "BookingService 與 GroupBookingService 在全域鎖內、寫入前呼叫 MemberService.reserve_points(booking)；團體付款失敗（PaymentService）與退票（RefundService）呼叫 restore_points。同步直接呼叫，不用事件。",
+   "evidence": ["src/smart_ticket/application/booking_service.py:49", "src/smart_ticket/application/member_service.py:17-31", "src/smart_ticket/application/payment_service.py:46", "src/smart_ticket/application/refund_service.py:28"]},
+
+  {"asset": "decisions", "id": "ADR-006", "status": "accepted", "source": "docs/adr/006-membership-owns-points-redemption.md",
+   "statement": "Membership 擁有點數餘額與全部折抵規則（最低、單位、30% 上限、換算率），Pricing 不知道點數；預留＝直接扣餘額、失敗加回，記在 Booking.redeemed_points，不建 Reservation；單一入口 MemberService.reserve_points 在一般與團體建立各呼叫一次；應付金額由 Booking 推導，付款與 Order.amount 用它，退款取 Order.amount；同步直接呼叫，不引入事件或 Loyalty Context。",
+   "evidence": ["docs/adr/006-membership-owns-points-redemption.md:15-24"]}
+]

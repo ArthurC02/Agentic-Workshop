@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/invoicing.py",
+  "line": 101,
+  "mutated_protection": {
+    "from": "PENDING = \"PENDING\"",
+    "to": "PENDING = \"WAITING\""
+  },
+  "test_command": "\"C:\\dlcr\\venv\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_006\"",
+  "verdict": "killed",
+  "failing_evidence": "invoice_status_is_queryable_by_order_id(client, book, pay, invoice_of, retry, provider):\n        provider.queue(\"9001\")\n        order = pay(book())\n        pending = invoice_of(order[\"order_id\"])\n>       assert (pending[\"status\"], pending[\"invoice_number\"]) == (\"PENDING\", None)\nE       AssertionError: assert ('WAITING', None) == ('PENDING', None)\nE         \nE         At index 0 diff: 'WAITING' != 'PENDING'\nE         Use -v to get more diff\n\ntests\\integration\\test_e_invoice.py:163: AssertionError\n============================== warnings summary ===============================\n..\\venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\dlcr\\venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_006_invoice_status_is_queryable_by_order_id\n1 failed, 41 deselected, 1 warning in 0.30s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:9c4dba921c8473b31b08b201139935a046ae45467bb8341112cadff7728a9027"
+  },
+  "rule": "status-values-queryable",
+  "acceptance_criterion": "EINV-006",
+  "exit_code": 0
+}

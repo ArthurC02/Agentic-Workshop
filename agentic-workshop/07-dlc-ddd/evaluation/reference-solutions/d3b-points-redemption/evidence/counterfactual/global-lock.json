@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/booking_service.py",
+  "line": 29,
+  "mutated_protection": {
+    "from": "with self.store.lock:",
+    "to": "if True:"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_014\"",
+  "verdict": "killed",
+  "failing_evidence": ", 'ok', ...k', 'ok', ...] == ['POINTS_INSU...k', 'ok', ...]\nE         \nE         At index 0 diff: 'ok' != 'POINTS_INSUFFICIENT'\nE         Use -v to get more diff\n\ntests\\integration\\test_points_redemption.py:239: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_014_concurrent_bookings_cannot_overdraw\n1 failed, 1 passed, 36 deselected, 1 warning in 0.32s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:39168508970dad8ee306f2518602064aa9709dff3822eda1f3ece96767e6180a"
+  },
+  "rule": "global-lock",
+  "acceptance_criterion": "PTS-014",
+  "exit_code": 0
+}

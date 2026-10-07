@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/invoicing_service.py",
+  "line": 33,
+  "mutated_protection": {
+    "from": "result = self.issuer.issue(invoice.request)",
+    "to": "with self.store.lock: result = self.issuer.issue(invoice.request)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"outside_the_store_lock\"",
+  "verdict": "killed",
+  "failing_evidence": "   At index 0 diff: False != True\nE         Use -v to get more diff\n\ntests\\integration\\test_e_invoice.py:121: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_002_provider_is_called_outside_the_store_lock[False]\nFAILED tests/integration/test_e_invoice.py::test_einv_002_provider_is_called_outside_the_store_lock[True]\n2 failed, 40 deselected, 1 warning in 2.41s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:71a9821b18134d97a0e3e29ec04e007d0a3948f2b9f02896adcf9cb392994a43"
+  },
+  "rule": "no-provider-call-under-lock",
+  "acceptance_criterion": "EINV-002",
+  "exit_code": 0
+}

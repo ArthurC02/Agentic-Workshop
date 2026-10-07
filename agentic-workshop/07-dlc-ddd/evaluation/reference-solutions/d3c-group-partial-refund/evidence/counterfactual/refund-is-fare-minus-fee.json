@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/models.py",
+  "line": 104,
+  "mutated_protection": {
+    "from": "PassengerCancellation(list(passenger_ids), fee, sum(fares) - fee)",
+    "to": "PassengerCancellation(list(passenger_ids), fee, sum(fares) * (100 - percent) // 100)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_004 or pcr_008\"",
+  "verdict": "killed",
+  "failing_evidence": "sers\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_004_fee_band_follows_days_before_departure[today0-14-59-536]\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_004_fee_band_follows_days_before_departure[today3-6-178-417]\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_004_fee_band_follows_days_before_departure[today4-1-178-417]\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_004_each_passenger_pays_a_fee_on_their_own_fare\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_008_holds_across_fee_bands_and_after_a_whole_refund\n5 failed, 3 passed, 15 deselected, 1 warning in 0.39s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:5f8d341697ea6dfabd2f835dd29ba3bf1c3bc867afff14a7c0fc4e3956ebb844"
+  },
+  "rule": "refund-is-fare-minus-fee",
+  "acceptance_criterion": "PCR-008",
+  "exit_code": 0
+}

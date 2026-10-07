@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/members.py",
+  "line": 36,
+  "mutated_protection": {
+    "from": "points_value(points) > redemption_cap(total_fare)",
+    "to": "points_value(points) >= redemption_cap(total_fare)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_005\"",
+  "verdict": "killed",
+  "failing_evidence": "code\":\"POINTS_EXCEED_LIMIT\",\"message\":\"Points may cover at most 30% of the total fare\"}}\nE       assert 409 == 201\nE        +  where 409 = <Response [409 Conflict]>.status_code\n\ntests\\integration\\test_points_redemption.py:30: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_005_cap_itself_is_allowed\n1 failed, 3 passed, 34 deselected, 1 warning in 0.30s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:3f93042f629b7cb5cd36dc23a4fcf3b34e59d81e248c14ed45aa5c59a1ea45ca"
+  },
+  "rule": "cap-inclusive",
+  "acceptance_criterion": "PTS-005",
+  "exit_code": 0
+}

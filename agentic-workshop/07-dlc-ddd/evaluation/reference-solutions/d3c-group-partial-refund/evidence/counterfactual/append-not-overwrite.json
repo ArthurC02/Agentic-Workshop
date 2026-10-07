@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 44,
+  "mutated_protection": {
+    "from": "self.store.refunds.append(record)\n            self.audit.record(booking_id, \"PASSENGERS_CANCELLED\"",
+    "to": "self.store.refunds[:] = [record]\n            self.audit.record(booking_id, \"PASSENGERS_CANCELLED\""
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_007\"",
+  "verdict": "killed",
+  "failing_evidence": "'booking_id': '63f0ab0d-008c-4b5a-8bd5-0a36b0e8ef10', 'created_at': '2030-01-14T09:00:00+08:00', 'fee': 210, ...}\nE         Use -v to get more diff\n\ntests\\integration\\test_partial_cancellation.py:185: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_007_every_partial_cancellation_adds_its_own_refund_record\n1 failed, 22 deselected, 1 warning in 0.23s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:e53a8888e6b4f2d1c91189e52291021ed7628cea9017a0ecd9caae656f5e2e68"
+  },
+  "rule": "append-not-overwrite",
+  "acceptance_criterion": "PCR-007",
+  "exit_code": 0
+}

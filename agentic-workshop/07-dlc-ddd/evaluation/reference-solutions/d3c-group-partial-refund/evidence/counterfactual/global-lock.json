@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 37,
+  "mutated_protection": {
+    "from": "with self.store.lock:\n            booking = BookingService(self.store, FarePolicy()).get(booking_id)\n            departure",
+    "to": "if True:\n            booking = BookingService(self.store, FarePolicy()).get(booking_id)\n            departure"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_005\"",
+  "verdict": "killed",
+  "failing_evidence": "'ok'] == ['GROUP_BELOW...INIMUM', 'ok']\nE         \nE         At index 0 diff: 'ok' != 'GROUP_BELOW_MINIMUM'\nE         Use -v to get more diff\n\ntests\\integration\\test_partial_cancellation.py:161: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_005_concurrent_cancellations_cannot_break_the_minimum\n1 failed, 1 passed, 21 deselected, 1 warning in 0.27s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:e53a8888e6b4f2d1c91189e52291021ed7628cea9017a0ecd9caae656f5e2e68"
+  },
+  "rule": "global-lock",
+  "acceptance_criterion": "PCR-005",
+  "exit_code": 0
+}

@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/models.py",
+  "line": 100,
+  "mutated_protection": {
+    "from": "self.assigned_seats = [seat for seat in self.assigned_seats if seat.passenger_id not in passenger_ids]",
+    "to": "self.assigned_seats = self.assigned_seats"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_006\"",
+  "verdict": "killed",
+  "failing_evidence": "_id': '59435778-0411-442a-a396-b9dd574bbe52', 'carriage_id': 'C001', 'passenger_id': 'P5', 'position': 6, ...}\nE         Use -v to get more diff\n\ntests\\integration\\test_partial_cancellation.py:173: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_006_only_cancelled_seats_are_released_and_nobody_is_reseated\n1 failed, 22 deselected, 1 warning in 0.23s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:5f8d341697ea6dfabd2f835dd29ba3bf1c3bc867afff14a7c0fc4e3956ebb844"
+  },
+  "rule": "booking-drops-seats",
+  "acceptance_criterion": "PCR-006",
+  "exit_code": 0
+}

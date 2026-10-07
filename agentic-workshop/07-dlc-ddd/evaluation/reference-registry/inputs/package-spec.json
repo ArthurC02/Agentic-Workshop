@@ -1,0 +1,67 @@
+{
+  "package": "domain-memory/changes/CP-CORE-001",
+  "requirement_id": "REQ-CORE-001",
+  "proposal_id": "CP-CORE-001",
+  "proposer": "Proposer <proposer@example.com>",
+  "intent": "把 D1 整理出的 Smart Ticket 現況領域模型（5 個 Context、詞彙、關鍵規則、Aggregate、Context 間互動與已知設計洩漏）升為 reviewed，讓後續 Agent 以它為事實。",
+  "actor": "Smart Ticket 維護者（domain-owner）",
+  "observable_outcome": "validate --require-reviewed 通過；get-context／analyze-boundary 回傳的都是 reviewed 紀錄。",
+  "approval_roles": ["domain-owner"],
+  "risk_flags": ["financial_decision", "cross_context"],
+  "candidate_terms": ["最有利單一優惠", "提前購票優惠", "團體訂票", "團體付款失敗補償", "訂單"],
+  "open_questions": [
+    "Trip 查詢、通知、稽核刻意未建模為 Context（支援性／通用子域，DLC 情境未觸及）。",
+    "Inventory 與 Membership 尚無 Aggregate：現況沒有守住一致性的單一擁有者（見 ASIS-001），由 D3 情境決定。"
+  ],
+  "sources": ["docs/requirements/business-rules.md", "docs/requirements/discount-overview.md", "docs/adr/002-introduce-discount-policy.md", "docs/adr/004-group-seat-atomicity.md", "src/smart_ticket", "tests"],
+  "acceptance_criteria": [
+    {"id": "AC-1", "statement": "每位旅客取 rate 最低的單一優惠，不疊加；結果明細含 type、rate、amount。",
+     "test": "tests/integration/test_best_discount_api.py", "expected": "混合資格逐位計價，總額為個別加總", "level": "integration"},
+    {"id": "AC-2", "statement": "團體訂票 5–20 人、同車廂連續座位，失敗不留任何狀態。",
+     "test": "tests/integration/test_group_creation.py", "expected": "邊界人數與跨車廂案例符合規則", "level": "integration"},
+    {"id": "AC-3", "statement": "付款成功建立唯一 Order；團體付款失敗取消、全釋放、無 Order。",
+     "test": "tests/integration/test_group_payment.py", "expected": "Order 唯一且補償完整", "level": "integration"}
+  ],
+  "rules": [
+    {"id": "FARE-002", "test": "tests/unit/test_best_discount_policy.py", "expected": "學生 75", "level": "unit"},
+    {"id": "FARE-003", "test": "tests/integration/test_best_discount_api.py::test_mixed_triple_eligibility_exposes_per_passenger_discount_without_stacking", "expected": "595 + 525 = 1120"},
+    {"id": "FARE-005", "test": "tests/integration/test_advance.py", "expected": "13 天 700；14、15 天 595"},
+    {"id": "FARE-008", "test": "tests/unit/test_best_discount_policy.py", "expected": "多資格取最低 rate", "level": "unit"},
+    {"id": "MEMBER-003", "test": "tests/integration/test_members.py", "expected": "M002 成人 665"},
+    {"id": "BOOKING-002", "test": "tests/integration/test_features.py::test_more_than_four_rejected", "expected": "5 人 409、4 人 201"},
+    {"id": "BOOKING-003", "test": "tests/integration/test_features.py::test_insufficient_seats_rejected", "expected": "超過剩餘座位 409 且不留狀態"},
+    {"id": "SEAT-001", "test": "tests/integration/test_seats.py::test_seat_ids_are_unique_and_capacity_failure_leaves_no_assignment", "expected": "同班次 Seat ID 不重複"},
+    {"id": "GROUP-001", "test": "tests/integration/test_group_creation.py::test_group_size_boundaries", "expected": "4、21 人 409；5、20 人 201"},
+    {"id": "GROUP-004", "test": "tests/integration/test_group_creation.py::test_contiguous_global_ids_cannot_cross_carriage", "expected": "跨車廂 409"},
+    {"id": "GROUP-PAY-002", "test": "tests/integration/test_group_payment.py::test_group_failure_cancels_releases_every_seat_and_creates_no_order", "expected": "CANCELLED、全釋放、無 Order"},
+    {"id": "PAYMENT-001", "test": "tests/integration/test_features.py::test_payment_then_duplicate_rejected", "expected": "重複付款 409"},
+    {"id": "ORDER-002", "test": "tests/integration/test_best_discount_api.py::test_change_reprices_each_passenger_with_same_policy_and_preserves_paid_order", "expected": "改票後 Order 仍 1225"},
+    {"id": "REFUND-004", "test": "tests/integration/test_refunds.py::test_refund_releases_capacity_once_and_preserves_original_order", "expected": "第二次退票 409"},
+    {"id": "CHANGE-004", "test": "tests/integration/test_changes.py::test_paid_change_transfers_seats_and_records_fare_difference", "expected": "fare_difference 50、Order 700"},
+    {"id": "MEMBER-004", "test": "tests/integration/test_seed.py::test_member_seed_points_balances", "expected": "1200／5000／0"}
+  ],
+  "promote": {
+    "contexts": ["booking", "pricing", "inventory", "membership", "payment"],
+    "vocabulary": ["base-fare", "discount-rate", "best-single-discount", "advance-purchase-discount", "student-discount", "corporate-discount", "applied-discount", "total-fare", "booking", "booking-status", "group-booking", "passenger", "fare-difference", "refund-record", "seat-assignment", "consecutive-seat-segment", "available-seats", "member", "points-balance", "order", "group-payment-compensation"],
+    "rules": ["FARE-002", "FARE-003", "FARE-005", "FARE-008", "MEMBER-003", "BOOKING-002", "BOOKING-003", "SEAT-001", "GROUP-001", "GROUP-004", "GROUP-PAY-002", "PAYMENT-001", "ORDER-002", "REFUND-004", "CHANGE-004", "MEMBER-004"],
+    "aggregates": ["booking", "order"],
+    "interactions": ["booking-uses-pricing", "pricing-reads-membership", "booking-reserves-inventory", "payment-settles-booking", "payment-compensates-inventory"],
+    "decisions": ["ADR-001", "ADR-002", "ADR-003", "ADR-004", "ASIS-001", "ASIS-002", "ASIS-003", "ASIS-004"]
+  },
+  "owner_context": "pricing",
+  "invariant": "每位旅客恰好採用一個優惠：所有符合資格中 rate 最低者。",
+  "owner_evidence": ["docs/requirements/business-rules.md:46-48", "src/smart_ticket/domain/discounts.py:27-35"],
+  "interaction": "Booking 在建立、團體建立、改票時同步呼叫 DiscountPolicy（ADR-002）；Pricing 直接讀 Membership 的 Member 型別。",
+  "consistency": "synchronous",
+  "prohibited_dependencies": [],
+  "boundary_evidence": ["docs/adr/002-introduce-discount-policy.md:18", "src/smart_ticket/application/booking_service.py:36-39"],
+  "design": {
+    "domain_forces": ["優惠資格會隨版本增加", "優惠不可疊加", "三條計價路徑必須一致"],
+    "decision": "不引入新的戰術模式：本提案只把現況模型登記為 reviewed，含已知設計洩漏（ASIS-001～004），不修改程式。",
+    "invariants_preserved": ["FARE-008", "FARE-005", "GROUP-004", "GROUP-PAY-002"],
+    "rejected_alternatives": ["只登記理想模型而隱藏現況洩漏", "把 FarePolicy 當成計價入口（實際只剩單元測試使用）"],
+    "counterfactual_check": "把 discounts.py 的 '.days >= 14' 改為 '.days > 14'，tests/integration/test_advance.py 必須失敗。"
+  },
+  "counterfactual": {"obligation_id": "OB-FARE-005", "result_file": "../cf/cf-FARE-005.json"},
+  "residual_risks": ["record-approval 只比對身分字串；同機雙身分仍可通過，治理強度取決於金鑰由誰持有。"]
+}

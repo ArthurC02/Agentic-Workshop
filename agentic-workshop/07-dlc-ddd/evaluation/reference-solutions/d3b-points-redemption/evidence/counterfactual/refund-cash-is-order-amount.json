@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 27,
+  "mutated_protection": {
+    "from": "RefundRecord(str(uuid4()), booking_id, paid.amount)",
+    "to": "RefundRecord(str(uuid4()), booking_id, booking.payable_amount)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_012\"",
+  "verdict": "killed",
+  "failing_evidence": " \"T005\"})   # 750\n>       assert client.post(f\"/bookings/{booking['booking_id']}/refund\").json()[\"amount\"] == 500\nE       assert 550 == 500\n\ntests\\integration\\test_points_redemption.py:198: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_012_refund_after_change_returns_order_amount_not_the_new_fare\n1 failed, 2 passed, 35 deselected, 1 warning in 0.35s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:7fec98c24bfd27f50d4e9c4985bff86f323245959f67512ffa3a3fba4f87bb27"
+  },
+  "rule": "refund-cash-is-order-amount",
+  "acceptance_criterion": "PTS-012",
+  "exit_code": 0
+}

@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/payment_service.py",
+  "line": 38,
+  "mutated_protection": {
+    "from": "self.gateway.charge(booking_id, booking.payable_amount)",
+    "to": "self.gateway.charge(booking_id, booking.total_fare)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_009\"",
+  "verdict": "killed",
+  "failing_evidence": "to get more diff)\n\ntests\\integration\\test_points_redemption.py:158: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_009_gateway_charges_payable_and_order_and_invoice_use_it[individual]\nFAILED tests/integration/test_points_redemption.py::test_pts_009_gateway_charges_payable_and_order_and_invoice_use_it[group]\n2 failed, 36 deselected, 1 warning in 0.41s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:151354c7e85d440f79c4efe2f18eb3aac083ac15aba5ac47db599ab72ea64085"
+  },
+  "rule": "charge-payable",
+  "acceptance_criterion": "PTS-009",
+  "exit_code": 0
+}

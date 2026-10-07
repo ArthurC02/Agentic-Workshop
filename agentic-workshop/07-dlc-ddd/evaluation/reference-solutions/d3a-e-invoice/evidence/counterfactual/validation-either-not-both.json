@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/invoicing.py",
+  "line": 38,
+  "mutated_protection": {
+    "from": "if self.business_id is not None and self.mobile_barcode is not None:",
+    "to": "if False:"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_013\"",
+  "verdict": "killed",
+  "failing_evidence": "{\"error\":{\"code\":\"PAYMENT_FAILED\",\"message\":\"Payment failed\"}}\nE       assert 409 == 422\nE        +  where 409 = <Response [409 Conflict]>.status_code\n\ntests\\integration\\test_e_invoice.py:41: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_013_invalid_invoice_info_rejects_payment_before_charging[invoice6]\n1 failed, 6 passed, 35 deselected, 1 warning in 0.36s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:9c4dba921c8473b31b08b201139935a046ae45467bb8341112cadff7728a9027"
+  },
+  "rule": "validation-either-not-both",
+  "acceptance_criterion": "EINV-013",
+  "exit_code": 0
+}

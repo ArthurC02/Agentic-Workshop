@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/models.py",
+  "line": 92,
+  "mutated_protection": {
+    "from": "if passenger_id not in active:",
+    "to": "if False:"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_002\"",
+  "verdict": "killed",
+  "failing_evidence": "INIMUM\",\"message\":\"A group keeps at least 5 active passengers, or none\"}}\nE       assert 409 == 404\nE        +  where 409 = <Response [409 Conflict]>.status_code\n\ntests\\integration\\test_partial_cancellation.py:31: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_002_passengers_are_named_by_id_and_validated\n1 failed, 22 deselected, 1 warning in 0.23s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:5f8d341697ea6dfabd2f835dd29ba3bf1c3bc867afff14a7c0fc4e3956ebb844"
+  },
+  "rule": "passenger-not-found",
+  "acceptance_criterion": "PCR-002",
+  "exit_code": 0
+}

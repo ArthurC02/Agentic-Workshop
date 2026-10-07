@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/member_service.py",
+  "line": 31,
+  "mutated_protection": {
+    "from": "\"POINTS_RESTORED\", f\"points={booking.redeemed_points}\"",
+    "to": "\"POINTS_RESTORED\", \"\""
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_015\"",
+  "verdict": "killed",
+  "failing_evidence": "S...'points=700')]\nE         \nE         At index 1 diff: ('POINTS_RESTORED', '') != ('POINTS_RESTORED', 'points=700')\nE         Use -v to get more diff\n\ntests\\integration\\test_points_redemption.py:247: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_015_reservation_and_restoration_are_audited_with_the_points\n1 failed, 37 deselected, 1 warning in 0.29s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:367f9cbe2f64833b091085d4199b4d2eeef2fc14ce3269cc7aac1a0ab5b6a0ac"
+  },
+  "rule": "audit-restored-points",
+  "acceptance_criterion": "PTS-015",
+  "exit_code": 0
+}

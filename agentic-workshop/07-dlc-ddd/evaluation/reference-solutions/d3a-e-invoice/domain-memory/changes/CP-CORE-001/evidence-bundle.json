@@ -1,0 +1,228 @@
+{
+  "format": "domain-evidence-bundle/v1",
+  "requirement_id": "REQ-CORE-001",
+  "proposal_id": "CP-CORE-001",
+  "registry_revision": {
+    "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+    "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+  },
+  "approvals": [
+    {
+      "role": "domain-owner",
+      "reviewer": "Maintainer <maintainer@example.com>",
+      "decision": "approved",
+      "approved_at": "2026-10-07T03:06:45.386842Z",
+      "scope": "CP-CORE-001 全部 registry_updates",
+      "proposal_revision": 1,
+      "base_registry_revision": {
+        "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+        "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+      }
+    }
+  ],
+  "scm_attestation": {
+    "provider": "git-signed-commit",
+    "commit": "5538b6dbcba9e5c4468ceddec72b75b231f9688d",
+    "status": "approved",
+    "proposal_revision": 1,
+    "base_registry_revision": {
+      "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+      "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+    },
+    "verified_at": "2026-10-07T03:06:47Z"
+  },
+  "counterfactual_check": {
+    "status": "passed",
+    "obligation_id": "OB-FARE-005",
+    "mutated_protection": "src/smart_ticket/domain/discounts.py:30 .days >= 14 -> .days > 14",
+    "failure_evidence": "nt.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_advance.py::test_advance_purchase_thirteen_fourteen_and_fifteen_day_boundary\nFAILED tests/integration/test_advance.py::test_corporate_advance_uses_best_single_discount\n2 failed, 1 warning in 0.29s\n",
+    "restored": true
+  },
+  "sources": [
+    "docs/requirements/business-rules.md",
+    "docs/requirements/discount-overview.md",
+    "docs/adr/002-introduce-discount-policy.md",
+    "docs/adr/004-group-seat-atomicity.md",
+    "src/smart_ticket",
+    "tests"
+  ],
+  "test_results": [
+    {
+      "obligation_id": "OB-AC-1",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_best_discount_api.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:5befb85f7967b8d62f7b9d062fc5635f7ad093ae75de4722e1076c837359f7d6",
+      "finished_at": "2026-10-07T03:05:58Z"
+    },
+    {
+      "obligation_id": "OB-AC-2",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_group_creation.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:ada3f3e1a713b7f0955543be7f301859e8e937ddb6eb5c89fb09e33ce32d8f4c",
+      "finished_at": "2026-10-07T03:06:00Z"
+    },
+    {
+      "obligation_id": "OB-AC-3",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_group_payment.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:56d8ea1a03a9f6a46f8cdd5ca817eb8379eb1f85ca0dd75a4d3fc6d2eba890f3",
+      "finished_at": "2026-10-07T03:06:02Z"
+    },
+    {
+      "obligation_id": "OB-FARE-002",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/unit/test_best_discount_policy.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:edd29cb45962c55ca3731045c3003f96d4742e41062c2c403d2dc248689c509b",
+      "finished_at": "2026-10-07T03:06:05Z"
+    },
+    {
+      "obligation_id": "OB-FARE-003",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_best_discount_api.py::test_mixed_triple_eligibility_exposes_per_passenger_discount_without_stacking",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:c574596634ab0ad2772f653cc9f8c20d7647730557eb4c8be9147df623da01a7",
+      "finished_at": "2026-10-07T03:06:07Z"
+    },
+    {
+      "obligation_id": "OB-FARE-005",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_advance.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:c6ff3c90b3d421654b117a903af4294ac455aaeb4bee387fea85691b8d8fa8e2",
+      "finished_at": "2026-10-07T03:06:08Z"
+    },
+    {
+      "obligation_id": "OB-FARE-008",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/unit/test_best_discount_policy.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:5042bda104557be1250dcac9e42bbfbed6ac423c036fa9d295ac45b6a72157d2",
+      "finished_at": "2026-10-07T03:06:10Z"
+    },
+    {
+      "obligation_id": "OB-MEMBER-003",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_members.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:eaa4b18abcf90ba6b33eabd2acdb651bddb2fe3ce22422d831b3b922897cf541",
+      "finished_at": "2026-10-07T03:06:12Z"
+    },
+    {
+      "obligation_id": "OB-BOOKING-002",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_features.py::test_more_than_four_rejected",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:c574596634ab0ad2772f653cc9f8c20d7647730557eb4c8be9147df623da01a7",
+      "finished_at": "2026-10-07T03:06:13Z"
+    },
+    {
+      "obligation_id": "OB-BOOKING-003",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_features.py::test_insufficient_seats_rejected",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:ecf4e118e07dcdf48e55a3130c495decf03efaee4a7cf4bef97dcbebdca93136",
+      "finished_at": "2026-10-07T03:06:15Z"
+    },
+    {
+      "obligation_id": "OB-SEAT-001",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_seats.py::test_seat_ids_are_unique_and_capacity_failure_leaves_no_assignment",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:ecf4e118e07dcdf48e55a3130c495decf03efaee4a7cf4bef97dcbebdca93136",
+      "finished_at": "2026-10-07T03:06:16Z"
+    },
+    {
+      "obligation_id": "OB-GROUP-001",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_group_creation.py::test_group_size_boundaries",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:b2354d52e539779bdbb745c9ee5cdceb2e54a4ebda12a8767dcb2da8c4e9af81",
+      "finished_at": "2026-10-07T03:06:18Z"
+    },
+    {
+      "obligation_id": "OB-GROUP-004",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_group_creation.py::test_contiguous_global_ids_cannot_cross_carriage",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:19fbcad8c30e5d025f036b8f4c77b77b15a70bbf51bcb430cd938b5db2cde699",
+      "finished_at": "2026-10-07T03:06:19Z"
+    },
+    {
+      "obligation_id": "OB-GROUP-PAY-002",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_group_payment.py::test_group_failure_cancels_releases_every_seat_and_creates_no_order",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:1b9dab0cd3c2bc0951254e7d1eacbe85699ba00f1f885386d7aa290e7358845c",
+      "finished_at": "2026-10-07T03:06:21Z"
+    },
+    {
+      "obligation_id": "OB-PAYMENT-001",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_features.py::test_payment_then_duplicate_rejected",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:1b9dab0cd3c2bc0951254e7d1eacbe85699ba00f1f885386d7aa290e7358845c",
+      "finished_at": "2026-10-07T03:06:22Z"
+    },
+    {
+      "obligation_id": "OB-ORDER-002",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_best_discount_api.py::test_change_reprices_each_passenger_with_same_policy_and_preserves_paid_order",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:19fbcad8c30e5d025f036b8f4c77b77b15a70bbf51bcb430cd938b5db2cde699",
+      "finished_at": "2026-10-07T03:06:24Z"
+    },
+    {
+      "obligation_id": "OB-REFUND-004",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_refunds.py::test_refund_releases_capacity_once_and_preserves_original_order",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:9b5950b590f9818339e50561dfbd902889b4e343cf7a3f326cf86bc4ea152e75",
+      "finished_at": "2026-10-07T03:06:26Z"
+    },
+    {
+      "obligation_id": "OB-CHANGE-004",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_changes.py::test_paid_change_transfers_seats_and_records_fare_difference",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:ecf4e118e07dcdf48e55a3130c495decf03efaee4a7cf4bef97dcbebdca93136",
+      "finished_at": "2026-10-07T03:06:28Z"
+    },
+    {
+      "obligation_id": "OB-MEMBER-004",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_seed.py::test_member_seed_points_balances",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:1b9dab0cd3c2bc0951254e7d1eacbe85699ba00f1f885386d7aa290e7358845c",
+      "finished_at": "2026-10-07T03:06:30Z"
+    }
+  ],
+  "contract_checks": [],
+  "architecture_checks": [],
+  "security_checks": [],
+  "residual_risks": [
+    "record-approval 只比對身分字串；同機雙身分仍可通過，治理強度取決於金鑰由誰持有。"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/payment_service.py",
+  "line": 46,
+  "mutated_protection": {
+    "from": "self.members.restore_points(booking)",
+    "to": "None"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_010\"",
+  "verdict": "killed",
+  "failing_evidence": "kingStatus.CANCELLED\n>       assert balance() == 1200\nE       assert 200 == 1200\nE        +  where 200 = <function balance.<locals>.<lambda> at 0x0000016D19CE4A40>()\n\ntests\\integration\\test_points_redemption.py:168: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_010_group_payment_failure_restores_all_points\n1 failed, 37 deselected, 1 warning in 0.29s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:151354c7e85d440f79c4efe2f18eb3aac083ac15aba5ac47db599ab72ea64085"
+  },
+  "rule": "group-failure-restores",
+  "acceptance_criterion": "PTS-010",
+  "exit_code": 0
+}

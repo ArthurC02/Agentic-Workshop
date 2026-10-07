@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/invoicing.py",
+  "line": 75,
+  "mutated_protection": {
+    "from": "InvoiceLine(f\"{origin}-{destination} 車票\", passenger_count,",
+    "to": "InvoiceLine(f\"{origin}-{destination} 車票\", 1,"
+  },
+  "test_command": "\"C:\\dlcr\\venv\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_001\"",
+  "verdict": "killed",
+  "failing_evidence": "ay(book())\n        group = pay(book(group_of(5), group=True))\n        assert invoice_of(individual[\"order_id\"])[\"status\"] == \"ISSUED\"\n        assert invoice_of(group[\"order_id\"])[\"status\"] == \"ISSUED\"\n        assert [p[\"merchant_order_no\"] for p in provider.received] == [individual[\"order_id\"], group[\"order_id\"]]\n>       assert provider.received[1][\"items\"][0][\"quantity\"] == 5   # whole group on one invoice\nE       assert 1 == 5\n\ntests\\integration\\test_e_invoice.py:74: AssertionError\n============================== warnings summary ===============================\n..\\venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\dlcr\\venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_001_individual_and_group_payment_each_issue_one_invoice\n1 failed, 41 deselected, 1 warning in 0.26s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:9c4dba921c8473b31b08b201139935a046ae45467bb8341112cadff7728a9027"
+  },
+  "rule": "group-whole-booking-one-invoice-line",
+  "acceptance_criterion": "EINV-001",
+  "exit_code": 0
+}

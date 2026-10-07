@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+  "line": 6,
+  "mutated_protection": {
+    "from": "ISSUED_CODES = {\"0000\", \"2001\"}",
+    "to": "ISSUED_CODES = {\"0000\"}"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_010\"",
+  "verdict": "killed",
+  "failing_evidence": "    AssertionError: assert ('PENDING', None) == ('ISSUED', 'AB10000001')\nE         \nE         At index 0 diff: 'PENDING' != 'ISSUED'\nE         Use -v to get more diff\n\ntests\\integration\\test_e_invoice.py:219: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_010_duplicate_answer_2001_marks_issued_with_original_number\n1 failed, 41 deselected, 1 warning in 0.22s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:be866ef20dbcbbb6b50849ee1253bc49a6cfeabab7f105cdaa2b10f805622db2"
+  },
+  "rule": "duplicate-2001-is-issued",
+  "acceptance_criterion": "EINV-010",
+  "exit_code": 0
+}

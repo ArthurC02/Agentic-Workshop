@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/infrastructure/einvoice_provider.py",
+  "line": 34,
+  "mutated_protection": {
+    "from": "\"merchant_order_no\": request.order_id,",
+    "to": "\"merchant_order_no\": __import__(\"uuid\").uuid4().hex,"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_e_invoice.py -k \"einv_005\"",
+  "verdict": "killed",
+  "failing_evidence": "9dd88d90' != '51b61c21-ae08-4098-8d93-121284b14e46'\nE         Left contains one more item: '92f75de72a1c4672ae6ef1379129a516'\nE         Use -v to get more diff\n\ntests\\integration\\test_e_invoice.py:154: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3a\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_e_invoice.py::test_einv_005_timeout_after_provider_issued_does_not_create_a_second_invoice\n1 failed, 41 deselected, 1 warning in 0.25s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:be866ef20dbcbbb6b50849ee1253bc49a6cfeabab7f105cdaa2b10f805622db2"
+  },
+  "rule": "idempotency-merchant-order-no",
+  "acceptance_criterion": "EINV-005",
+  "exit_code": 0
+}

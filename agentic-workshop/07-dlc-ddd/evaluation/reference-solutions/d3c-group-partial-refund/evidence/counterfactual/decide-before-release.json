@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 40,
+  "mutated_protection": {
+    "from": "cancellation = booking.cancel_passengers(passenger_ids, (departure - self.store.clock.today).days)\n            self.seats.release_passengers(booking_id, booking.trip_id, cancellation.passenger_ids)",
+    "to": "self.seats.release_passengers(booking_id, booking.trip_id, passenger_ids)\n            cancellation = booking.cancel_passengers(passenger_ids, (departure - self.store.clock.today).days)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_011\"",
+  "verdict": "killed",
+  "failing_evidence": "id='P5', trip_id='T001', seat_id='S006', carriage_id='C001', row_number=2, seat_num...\nE         \nE         ...Full output truncated (2 lines hidden), use '-vv' to show\n\ntests\\integration\\test_partial_cancellation.py:243: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_011_a_failed_request_changes_nothing\n1 failed, 22 deselected, 1 warning in 0.31s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:e53a8888e6b4f2d1c91189e52291021ed7628cea9017a0ecd9caae656f5e2e68"
+  },
+  "rule": "decide-before-release",
+  "acceptance_criterion": "PCR-011",
+  "exit_code": 0
+}

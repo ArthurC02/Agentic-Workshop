@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 47,
+  "mutated_protection": {
+    "from": "self.notifications.record(booking_id, \"PASSENGERS_CANCELLED\")",
+    "to": "self.notifications.record(booking_id, \"PASSENGERS_CANCELLED\"); __import__(\"smart_ticket.api.dependencies\", fromlist=[\"gateway\"]).gateway.charge(booking_id, -record.amount)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_014\"",
+  "verdict": "killed",
+  "failing_evidence": " AssertionError(\"partial cancellation must not reach the payment gateway\")\nE       AssertionError: partial cancellation must not reach the payment gateway\n\ntests\\integration\\test_partial_cancellation.py:271: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_014_cancellation_does_not_call_the_payment_gateway\n1 failed, 22 deselected, 1 warning in 0.60s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:e53a8888e6b4f2d1c91189e52291021ed7628cea9017a0ecd9caae656f5e2e68"
+  },
+  "rule": "no-gateway-call",
+  "acceptance_criterion": "PCR-014",
+  "exit_code": 0
+}

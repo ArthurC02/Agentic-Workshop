@@ -1,0 +1,344 @@
+{
+  "format": "domain-contexts/v1",
+  "status": "candidate",
+  "contexts": [
+    {
+      "id": "booking",
+      "business_owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "name": "訂票 Booking",
+      "subdomain": "core",
+      "responsibility": "管理一筆訂票從建立、付款前待付、付款後、改票到退票的生命週期；一般訂票 1–4 人，團體訂票 5–20 人同一班次。",
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 11,
+            "end": 15
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:4ad7d7efab7c15ab9fc7f02f521f49f4c4c03793e780266d8fad358856d3b8ff",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 59,
+            "end": 61
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:bfaceff15c23a3781bfcc9d01871a443a40fb31e96ff01411383e40395369dde",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 43,
+            "end": 55
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:79b4ac99efb2e12eeb455c9a1d9b71ecbe8748c36417d8b93c6917709a655965",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "pricing",
+      "business_owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "name": "計價 Pricing",
+      "subdomain": "core",
+      "responsibility": "逐位旅客評估所有優惠資格，採 rate 最低的單一優惠（不疊加），產生每位旅客的整數票價與 Applied Discount。",
+      "confirmed_absences": [
+        {
+          "asset": "aggregates",
+          "reason": "計價是無狀態的政策（DiscountPolicy），只根據輸入計算結果，不持有需要一致性保護的狀態。"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/discount-overview.md",
+          "lines": {
+            "start": 3,
+            "end": 3
+          },
+          "content_sha256": "sha256:6c7054e02561bb1f66dc0c9d8d2269f391fbd61648380c22dfa041b5fc3f1112",
+          "excerpt_sha256": "sha256:fc5678df1c855e235ef5777cbb7204fccab27e7fccce5282e83a8688c78d77f1",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/adr/002-introduce-discount-policy.md",
+          "lines": {
+            "start": 18,
+            "end": 18
+          },
+          "content_sha256": "sha256:0122d103a4785a588b937b863fcc626b8fbffbac5852cca71c4a7c78cf9fb845",
+          "excerpt_sha256": "sha256:89a5ec6bb5df3e3e6065d0fb5282e873dadefc3822bbd8b5725560671a0e04a4",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 20,
+            "end": 35
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:81ecc217bf62dc9872316323df7a5f8c2b85d888231c300054f5c58b2dd17638",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "inventory",
+      "business_owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "name": "座位庫存 Inventory",
+      "subdomain": "supporting",
+      "responsibility": "依班次容量配置與釋放座位：同班次座位不重複，團體需同車廂連續座位，訂票建立即保留、退票與團體付款失敗時釋放。",
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 42,
+            "end": 43
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e87da0d0ff624c96c28da423857890cf782ee6b83d8a33c64e80802c743c036f",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 62,
+            "end": 62
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:19c1ea0de4babefb0a4f59b3153fcda4672af15284ed83cfefb2e60844426b43",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/adr/004-group-seat-atomicity.md",
+          "lines": {
+            "start": 10,
+            "end": 10
+          },
+          "content_sha256": "sha256:3f99dcb7c77680a497cbbde9dbe7aaaef14763812c5681eff44a9a10927a532b",
+          "excerpt_sha256": "sha256:21a97a6b2b9622339882afb743c8c3d525af18be24f2b36f615b1dba36700638",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 10,
+            "end": 27
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:9644bc5936334d398d491f578512e76fe4748490d147bf991fcab8599734c2ad",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "membership",
+      "business_owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "name": "會員 Membership",
+      "subdomain": "supporting",
+      "responsibility": "提供會員身分、會員類型（STANDARD／CORPORATE）與點數餘額查詢；訂票可不綁定會員。",
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 25,
+            "end": 28
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e822e1a70d250df62c3ad9be896a422b092cfde24ea0f8798957093c4e459fd4",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/members.py",
+          "lines": {
+            "start": 4,
+            "end": 12
+          },
+          "content_sha256": "sha256:3b1e75d51590c00539422a97f6be622cfc6090cc6cbdb798483a16d46f7a1e2e",
+          "excerpt_sha256": "sha256:bb0c05aa56856c0bc84f12f67c4e4138211ff7eb33ce7c8ca9f4ae9baca8842f",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "payment",
+      "business_owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "name": "付款 Payment",
+      "subdomain": "supporting",
+      "responsibility": "向付款閘道扣款；成功時建立唯一 Order 作為付款當時的金額快照，團體付款失敗時執行補償。",
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 20,
+            "end": 24
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:00607467ff05dd112e44eb9cd6ef487b489abe8bbe57a303d7204785ad1a16d3",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 66,
+            "end": 70
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e6e702c86865526cfdfbb5500bd668f987b070477b3875d7562d58dcd5e632da",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 18,
+            "end": 41
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:c606635e9245ba8f23aa6046cd3458ab9d66539e88b51f24101f17a230297b63",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "invoicing",
+      "business_owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "name": "電子發票 Invoicing",
+      "subdomain": "supporting",
+      "responsibility": "為每筆付款成功的 Order 開立一張電子發票：持有 Invoice（以 order_id 識別）、購票人發票資訊、稅額拆分、品項、重試上限與狀態機；只經 Port InvoiceIssuer 與外部發票服務商溝通，發票失敗不回滾付款。",
+      "evidence": [
+        {
+          "path": "docs/adr/005-issue-e-invoices-through-a-port.md",
+          "lines": {
+            "start": 14,
+            "end": 15
+          },
+          "content_sha256": "sha256:279c6454ed959a2621ca07b82fb2606d5c9be7de08d34f6f8775316144209438",
+          "excerpt_sha256": "sha256:99cd932696ce96ce6d8528e2738759e9077e62bc40f2b14f135b4ddcecce6311",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "src/smart_ticket/domain/invoicing.py",
+          "lines": {
+            "start": 1,
+            "end": 5
+          },
+          "content_sha256": "sha256:9c4dba921c8473b31b08b201139935a046ae45467bb8341112cadff7728a9027",
+          "excerpt_sha256": "sha256:ed0b9954adf46be38263af421d06de745cfa95016d5292c9223f0876e09d7e5f",
+          "source_kind": "implementation"
+        }
+      ],
+      "status": "candidate"
+    }
+  ]
+}

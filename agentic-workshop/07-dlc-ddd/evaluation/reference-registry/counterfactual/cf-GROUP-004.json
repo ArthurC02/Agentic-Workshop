@@ -1,0 +1,16 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/seat_service.py",
+  "line": 45,
+  "mutated_protection": {
+    "from": "if (start - 1) // 20 != (end - 1) // 20:",
+    "to": "if False:"
+  },
+  "test_command": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_group_creation.py",
+  "verdict": "killed",
+  "failing_evidence": "        controlled_free_positions({19, 20, 21, 22, 23}, capacity=42)\n        before = transaction_snapshot()\n        response = client.post(\"/group-bookings\", json=group_payload())\n>       assert response.status_code == 409\nE       assert 201 == 409\nE        +  where 201 = <Response [201 Created]>.status_code\n\ntests\\integration\\test_group_creation.py:62: AssertionError\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\dlc-ref\\repo\\.venv\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_group_creation.py::test_contiguous_global_ids_cannot_cross_carriage\n1 failed, 11 passed, 1 warning in 0.48s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0"
+  }
+}

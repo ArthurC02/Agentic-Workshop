@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/application/refund_service.py",
+  "line": 28,
+  "mutated_protection": {
+    "from": "MemberService(self.store).restore_points(booking)",
+    "to": "None"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_points_redemption.py -k \"pts_012\"",
+  "verdict": "killed",
+  "failing_evidence": "================ warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3b\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_points_redemption.py::test_pts_012_refund_returns_paid_cash_and_all_points[individual]\nFAILED tests/integration/test_points_redemption.py::test_pts_012_refund_returns_paid_cash_and_all_points[group]\nFAILED tests/integration/test_points_redemption.py::test_pts_012_refund_after_change_returns_order_amount_not_the_new_fare\n3 failed, 35 deselected, 1 warning in 0.33s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:7fec98c24bfd27f50d4e9c4985bff86f323245959f67512ffa3a3fba4f87bb27"
+  },
+  "rule": "refund-restores-points",
+  "acceptance_criterion": "PTS-012",
+  "exit_code": 0
+}

@@ -1,0 +1,19 @@
+{
+  "format": "domain-memory-counterfactual/v1",
+  "file": "src/smart_ticket/domain/models.py",
+  "line": 98,
+  "mutated_protection": {
+    "from": "fee = sum(cancellation_fee(fare, percent) for fare in fares)",
+    "to": "fee = cancellation_fee(sum(fares), percent)"
+  },
+  "test_command": "\"C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Scripts\\python.exe\" -X utf8 -m pytest -q -p no:cacheprovider tests\\integration\\test_partial_cancellation.py -k \"pcr_004\"",
+  "verdict": "killed",
+  "failing_evidence": "\"amount\"]) == (314, 736)\nE       assert (315, 735) == (314, 736)\nE         \nE         At index 0 diff: 315 != 314\nE         Use -v to get more diff\n\ntests\\integration\\test_partial_cancellation.py:127: AssertionError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\AppData\\Local\\Temp\\claude\\c--Users-a8022-Desktop-Agentic-Workshop\\f81aee46-41db-4437-996d-ecb44025f0ca\\scratchpad\\venv-d3c\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/integration/test_partial_cancellation.py::test_pcr_004_each_passenger_pays_a_fee_on_their_own_fare\n1 failed, 5 passed, 17 deselected, 1 warning in 0.36s\n",
+  "restoration_result": {
+    "restored": true,
+    "content_sha256": "sha256:5f8d341697ea6dfabd2f835dd29ba3bf1c3bc867afff14a7c0fc4e3956ebb844"
+  },
+  "rule": "fee-per-passenger",
+  "acceptance_criterion": "PCR-004",
+  "exit_code": 0
+}
