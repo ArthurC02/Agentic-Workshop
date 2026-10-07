@@ -1,0 +1,36 @@
+{
+  "format": "domain-memory-policy/v1",
+  "storage_mode": "tracked",
+  "data_classification": "internal",
+  "review_mode": "scm-verified",
+  "review_governance": {
+    "verifier": "git-signed-commit",
+    "trigger": "git-push",
+    "ci_requirement": "none",
+    "authorized_signers": [
+      "SHA256:Zgznp4qU2GZH6Vmr2/RHtQzVnE+CbK2meH71Cq9BAH0"
+    ]
+  },
+  "source_policy": {
+    "selected_paths": [
+      "docs/adr",
+      "docs/requirements",
+      "src",
+      "tests"
+    ],
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "**/__pycache__/**"
+    ],
+    "authority": "Proposer <proposer@example.com>"
+  },
+  "limits": {
+    "max_file_count": 10000,
+    "max_file_bytes": 10485760,
+    "max_total_bytes": 104857600,
+    "max_query_results": 100
+  },
+  "approved_command_profiles": []
+}

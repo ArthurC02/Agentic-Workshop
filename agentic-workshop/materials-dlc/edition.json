@@ -1,0 +1,93 @@
+{
+  "candidate_id": "2dd98ae5984b5887",
+  "total_minutes": 180,
+  "plan": [
+    [
+      "dlc-opening",
+      0,
+      10,
+      "開場"
+    ],
+    [
+      "dlc-d1",
+      10,
+      35,
+      "D1 語言與邊界"
+    ],
+    [
+      "dlc-d2",
+      35,
+      60,
+      "D2 審查核准"
+    ],
+    [
+      "dlc-break",
+      60,
+      70,
+      "休息"
+    ],
+    [
+      "dlc-d3a",
+      70,
+      95,
+      "D3a 電子發票"
+    ],
+    [
+      "dlc-d3b",
+      95,
+      125,
+      "D3b 點數折抵"
+    ],
+    [
+      "dlc-d3c",
+      125,
+      155,
+      "D3c 部分退款"
+    ],
+    [
+      "dlc-d4",
+      155,
+      165,
+      "D4 交接"
+    ],
+    [
+      "dlc-retro",
+      165,
+      180,
+      "回顧"
+    ]
+  ],
+  "recovery_downloads": {
+    "recovery-dlc-d1.zip": [
+      "dlc-rec-d1",
+      35
+    ],
+    "recovery-dlc-d2.zip": [
+      "dlc-rec-d2",
+      45
+    ],
+    "recovery-dlc-d3a.zip": [
+      "dlc-rec-d3a",
+      95
+    ],
+    "recovery-dlc-d3b.zip": [
+      "dlc-rec-d3b",
+      125
+    ],
+    "recovery-dlc-d3c.zip": [
+      "dlc-rec-d3c",
+      155
+    ]
+  },
+  "forbidden_markers": [
+    "facilitator",
+    "evaluation",
+    "reference-solution",
+    "reference answer",
+    "標準答案",
+    "observation-guide",
+    "rubric",
+    "評分表",
+    "reference-registry"
+  ]
+}

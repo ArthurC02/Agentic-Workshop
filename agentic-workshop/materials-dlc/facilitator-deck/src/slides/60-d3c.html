@@ -1,0 +1,204 @@
+<!-- ===================== D3c 團體部分退款 125-155 ===================== -->
+
+<section class="slide slide-title" data-seg="dlc-d3c" data-title="解鎖 D3c 團體部分退款" data-minute="125" data-unlock="dlc-d3c">
+  <p class="kicker">第 125 分鐘 · 解鎖</p>
+  <h2 class="title">D3c 團體部分退款 開始</h2>
+  <p class="subtitle">團體部分退款：一致性邊界</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開「D3c 團體部分退款」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">接下來 30 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
+  <aside class="notes">
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註按需私下提供。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="D3c 團體部分退款 6 個檢查點" data-minute="125" data-timer="30:00" data-gates="dlc-d3c">
+  <p class="kicker">D3c 團體部分退款 · 125–155</p>
+  <h2 class="title">D3c 團體部分退款：Aggregate 的邊界畫在哪？</h2>
+  <p class="muted">30 分鐘、六個檢查點。每一條新規則都要證明；只做完 Aggregate 與兩條規則也算合格。</p>
+  <ol class="timeline">
+    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀情境卡與 reviewed 事實</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">03:00</span><b>2 · Aggregate 邊界與不變量</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · Handoff 與 Agent 實作</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">17:00</span><b>4 · Counterfactual 證明</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · Review 與登記候選</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">27:00</span><b>6 · 停手與揭曉對照</b></li>
+  </ol>
+  <aside class="notes">
+    <p><b>說（約 20 秒）</b>：「D3c 團體部分退款：30 分鐘、六個檢查點。這次主題是 Aggregate：一致性邊界畫在哪？每一條新規則都要有 counterfactual。時間不夠就先做 Aggregate 與兩條規則。」</p>
+    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>重點</b>：Booking 為 Aggregate root，<code>cancel_passengers</code> 為唯一入口；累計退款 ≤ 已付金額；座位數 = 剩餘旅客數；同一旅客不得重複取消；全部取消等同整張退票。</p>
+    <p><b>驗收</b>：<b>每一條</b>新規則都有一次 killed 的 counterfactual 紀錄。</p>
+    <p><b>降級</b>：允許只完成 Aggregate 與兩條規則（R2）。手續費與時間門檻以情境卡為準，不自創。</p>
+    <p><b>範圍（解鎖時就宣布）</b>：核心 PCR-001、003～009、011、012；延伸 PCR-002 完整驗證、010、013、014 與 passenger_id 唯一性。卡上的「API」小節先講（<code>cancel-passengers</code> 路徑、<code>cancelled_passenger_ids</code>、退款紀錄查詢）。</p>
+    <p><b>時間（三張卡最重）</b>：參考解答 +141 行、唯一需要改既有資料結構的一張；核心切片勉強放得下。第 142 分沒做完也進 counterfactual，第 148–152 分的 Review 不可壓縮，本卡的教學重點全在 Review。</p>
+    <p><b>Recovery</b>：參考設計揭曉之後，才可公布 <code data-code="dlc-rec-d3c"></code>（D3c 參考解答清理版）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 1 · 讀情境卡與 reviewed 事實" data-minute="125">
+  <p class="kicker">檢查點 1 / 6 · 第 125–128 分鐘</p>
+  <h2 class="title">讀情境卡，向 Memory 取 reviewed 事實</h2>
+  <ol class="steps">
+    <li>讀情境卡：先用自己的話說出<b>要解決什麼</b></li>
+    <li>對卡上的名詞跑 <code>resolve-terms</code>，對相關 Context 跑 <code>get-context</code></li>
+    <li>把 reviewed 事實與<b>未知項</b>分開寫下，填確認表單</li>
+  </ol>
+  <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 1 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（00:00／第 125 分）</b>：「第 125 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問 reviewed 事實，哪些是已知、哪些是未知，分開寫。」</p>
+    <p><b>看</b>：有沒有直接把情境卡貼給 Agent 叫它做；有沒有用 reviewed 查詢，而不是憑記憶。留意 refunds 以 booking_id 為鍵、現行『只能退一次』。</p>
+    <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
+    <p><b>提示</b>：H1：「現在的退款紀錄，能表達『同一筆訂票退過兩次』嗎？」</p>
+    <p><b>公告</b>：「先看『本次範圍』的核心／延伸，再看『API』小節。本段最緊，延伸一律最後。」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 2 · Aggregate 邊界與不變量" data-minute="128">
+  <p class="kicker">檢查點 2 / 6 · 第 128–133 分鐘</p>
+  <h2 class="title">決策卡：Aggregate root、不變量、邊界</h2>
+  <ol class="steps">
+    <li>決定 <b>Aggregate root</b> 與唯一入口（誰負責同時守住旅客、座位、退款）</li>
+    <li>列出不變量：累計退款 ≤ 已付金額；座位數＝剩餘旅客數；同一旅客不得重複取消；全部取消＝整張退票</li>
+    <li>決定手續費規則歸屬與退款紀錄設計（取代以 booking_id 為鍵）</li>
+  </ol>
+  <p class="callout warn">Runbook › D3c 團體部分退款 › 檢查點 2 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（03:00／第 128 分）</b>：「第 128 分。這一段是今天的核心：先由人做設計決策，寫進 D3 決策卡，再讓 Agent 實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
+    <p><b>看</b>：是否真的有『唯一入口』；座位、退款是否被拆在不同服務各自更新。</p>
+    <p><b>介入訊號</b>：座位與退款各改各的、沒有交易邊界 → 問：中途失敗，座位已釋放但退款沒記，怎麼辦？</p>
+    <p><b>提示</b>：H2：「PCR-008 的恆等式，誰負責在每次變更後保證它成立？」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 3 · Handoff 與 Agent 實作" data-minute="133">
+  <p class="kicker">檢查點 3 / 6 · 第 133–142 分鐘</p>
+  <h2 class="title">把決策卡交給 Agent，依 Handoff 實作，做完停下</h2>
+  <ol class="steps">
+    <li>以 Runbook 提示詞把決策卡交給 Agent：<b>先提計畫，等你核准</b>再改檔</li>
+    <li>核准後讓 Agent 實作；看它貼出的<b>實際</b> <code>pytest -q</code>（用 <code>.venv</code> 的 python）</li>
+    <li>每條新規則各寫測試；既有『只能退一次』測試改寫要記錄理由</li>
+  </ol>
+  <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 3 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（08:00／第 133 分）</b>：「第 133 分。把決策卡交給 Agent。Handoff 要寫清楚事實、取捨、外部系統與未知項。Agent 先提計畫，你核准再做；每一輪做完停下，你看測試。」</p>
+    <p><b>看</b>：Agent 是否沿用決策卡（owner、不變量），還是自己重新決定；測試是否真的執行。手續費是否以每位旅客自己的票價計算（不平均分攤）。</p>
+    <p><b>介入訊號</b>：Agent 自創手續費門檻 → 以情境卡為準，要求回報不明處而不是猜。</p>
+    <p><b>提示</b>：H3：「剩 1–4 人時，請求是整個被拒，還是部分成功？」</p>
+    <p><b>巡堂重點</b>：改 <code>total_fare</code> 或 Order.amount（恆等式右邊被改掉）；邊驗證邊修改（第三位才 404，前兩位已取消）；整筆 release 再重新 reserve；四份座位資料只改一兩份；忘了整筆退票路徑（先取消 1 位再整筆退全額）。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 4 · Counterfactual 證明" data-minute="142">
+  <p class="kicker">檢查點 4 / 6 · 第 142–148 分鐘</p>
+  <h2 class="title">每條新規則，各做一次 counterfactual，要看到 killed</h2>
+  <ol class="steps">
+    <li>對每條新規則：破壞實作的一處，用 <code>counterfactual --test-command</code> 跑對應測試</li>
+    <li>只認輸出中的 <b>killed</b> 字樣；路徑錯誤會印 Big5 亂碼加 ERROR: the tests do not pass before anything is broken（exit 1）</li>
+    <li>還原後整套 <code>pytest -q</code> 要再全綠</li>
+  </ol>
+  <p class="callout warn">Runbook › D3c 團體部分退款 › 檢查點 4 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（17:00／第 142 分）</b>：「第 142 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算，亂碼加 exit 0 不是成功。」</p>
+    <p><b>建議現場做的 4 個</b>：手續費逐位或以自己的票價（改成總額取整一次或平均分攤；全成人測試會存活，補成人＋學生混合團後 killed）、先決定再釋放（把釋放座位移到決定之前）、部分取消後不可整筆退（拿掉守門，多退 4,200）、只釋放被取消者的座位（改成整筆釋放）。</p>
+    <p><b>看</b>：是否每條新規則都有 killed；指令路徑是否用反斜線或絕對路徑；還原後是否重跑全套。</p>
+    <p><b>介入訊號</b>：只看到亂碼或 ERROR（exit 1）而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 5 · Review 與登記候選" data-minute="148">
+  <p class="kicker">檢查點 5 / 6 · 第 148–152 分鐘</p>
+  <h2 class="title">人 Review，並用 upsert-candidate 登記新事實</h2>
+  <ol class="steps">
+    <li>Review Diff：設計符合決策卡嗎？有沒有偷改測試斷言</li>
+    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱 reviewed</li>
+    <li>填確認表單；第 152 分停手</li>
+  </ol>
+  <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 5 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（23:00／第 148 分）</b>：「第 148 分。人 Review：看 Diff，看測試有沒有被弱化。新學到的事實登記成候選，注意它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
+    <p><b>看</b>：是否有人只看 Agent 的總結；候選的措辭是否仍保持候選。</p>
+    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原並重新核對 R8 允許改寫的範圍。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 6 · 停手與揭曉對照" data-minute="152">
+  <p class="kicker">檢查點 6 / 6 · 第 152–155 分鐘</p>
+  <h2 class="title">停手，對照參考設計，記下差異</h2>
+  <ol class="steps">
+    <li>停止所有修改</li>
+    <li>看投影的參考設計，對照自己的決策卡</li>
+    <li>記下一個<b>差異</b>與其理由；不評分、不比誰對</li>
+  </ol>
+  <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 6 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（27:00／第 152 分）</b>：「第 152 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
+    <p><b>看</b>：停手後是否還有人在改；對照時是否討論理由而不是對錯。</p>
+    <p><b>介入訊號</b>：還有人在改 → 請他停手保存現況，揭曉後可用 Recovery 接續。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="dlc-d3c" data-title="請先停手 · D3c 團體部分退款" data-minute="152">
+  <div class="stop-screen">
+    <p class="kicker">D3c 團體部分退款 · 第 152 分鐘</p>
+    <h2 class="title">請先停手</h2>
+    <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
+    <p class="muted">不評分、不比誰對；差異代表不同取捨。</p>
+  </div>
+  <aside class="notes">
+    <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
+    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可按需私下提供 Recovery 碼（<code data-code="dlc-rec-d3c"></code>）；不在投影或群組公開。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="dlc-d3c" data-title="揭曉 · D3c 參考設計：團體 Booking 擁有旅客取消" data-minute="153">
+  <p class="reveal-badge">揭曉 · D3c 團體部分退款</p>
+  <h2 class="title">D3c 參考設計：團體 Booking 擁有旅客取消</h2>
+  <div class="cols-3">
+    <div class="card fx fx-up">
+      <span class="chip">唯一入口</span>
+      <p><code>booking.cancel_passengers(ids, D)</code>：全部條件先檢查，通過才寫入；整筆退票也經 Booking 守門</p>
+    </div>
+    <div class="card fx fx-up">
+      <span class="chip">手續費一個家</span>
+      <p>費率帶 D ≥ 14／7–13／1–6 → 10／20／30%、D ≤ 0 不受理，放同一模組；逐位 ⌊票價 × 費率⌋</p>
+    </div>
+    <div class="card fx fx-up">
+      <span class="chip">座位與紀錄</span>
+      <p>只釋放被取消旅客的座位，其他人不重配；退款紀錄改為 append-only 清單，每次一筆</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>說</b>：參考設計的重點是<b>全有或全無</b>：一致性邊界決定哪些東西必須一起成功。請學員指出自己的邊界。</p>
+    <p><b>邊界細節</b>：Booking 決定「誰被取消、每人 fee＋refund」並刪自己的座位副本；Inventory 在同一把鎖、同一個 Use Case 內跟著改（<code>store.seat_assignments</code> 與 <code>Trip.available_seats</code>），但不併入 Booking。Refund 只記錄，不重算金額。Pricing、Payment、Membership 一行不改；有點數的團體直接 409。</p>
+    <p><b>否決的方案</b>：全寫在 RefundService（恆等式在整筆與部分兩條路徑各一份）；從 <code>total_fare</code> 扣掉被取消的票價；整筆 release 再重新 reserve；在 <code>Passenger</code> 上加 status（破壞既有合約）。依據：參考解答 d3c-group-partial-refund 的 SOLUTION-NOTES 與 ADR 007。</p>
+    <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="reveal" data-reveal-of="dlc-d3c" data-title="揭曉 · D3c 不變量與 counterfactual" data-minute="154">
+  <p class="reveal-badge">揭曉 · D3c 團體部分退款</p>
+  <h2 class="title">D3c 不變量與每條規則的 counterfactual</h2>
+  <div class="cols-3">
+    <div class="card fx fx-up">
+      <span class="chip">恆等式</span>
+      <p>Σ退款＋Σ手續費＋Σ有效票價＝Order.amount；6 成人 4,200：490＋2,450＋210＋1,050＝4,200</p>
+    </div>
+    <div class="card fx fx-up">
+      <span class="chip">部分 vs 整筆</span>
+      <p>部分取消過就不能整筆退票；整筆退票＝全部旅客取消、手續費 0；Order.amount 永不改變</p>
+    </div>
+    <div class="card fx fx-up">
+      <span class="chip">證明</span>
+      <p>每條規則各弄壞一次 → killed；平均分攤與總額取整一次，只有混合團測試抓得到</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>說</b>：請學員報告哪些規則已有 killed、哪些還沒有；沒有的就是還沒被證明。</p>
+    <p><b>教學 mutant</b>：卡上範例全是成人（6 × 700 × 30% 整除，平均票價＝每人票價），所以「總額上取整一次」只有兩位學生一起取消（314 vs 315）抓得到，「以 <code>total_fare</code> 平均分攤」只有成人＋學生混合團抓得到。D 用 datetime 相減在 Seed Clock（09:00、班次 09:00）下是等價 mutant：規則對，但現有 Clock 無法觀察。</p>
+    <p>參考解答 37／38 killed，1 個等價 mutant 存活紀錄。</p>
+    <p>揭曉後才可公布 <code data-code="dlc-rec-d3c"></code>。</p>
+    <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
+  </aside>
+</section>
+

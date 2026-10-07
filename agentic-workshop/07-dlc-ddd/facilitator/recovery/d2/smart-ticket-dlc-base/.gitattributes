@@ -1,0 +1,2 @@
+# domain-memory 證據以位元組雜湊；禁止換行轉換，checkout 後引用才不會失效。
+* -text

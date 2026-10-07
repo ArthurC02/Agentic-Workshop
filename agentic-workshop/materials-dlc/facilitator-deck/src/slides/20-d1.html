@@ -1,0 +1,132 @@
+<!-- ===================== D1 語言與邊界 10-35 ===================== -->
+
+<section class="slide slide-title" data-seg="dlc-d1" data-title="解鎖 D1 語言與邊界" data-minute="10" data-unlock="dlc-d1">
+  <p class="kicker">第 10 分鐘 · 解鎖</p>
+  <h2 class="title">D1 語言與邊界 開始</h2>
+  <p class="subtitle">把散落在文件與程式裡的領域知識，變成有證據的候選</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開「D1」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">接下來 25 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
+  <aside class="notes">
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D1 共同語言與邊界，從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 10 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註按需私下提供。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="D1 語言與邊界 6 個檢查點" data-minute="10" data-timer="25:00" data-gates="dlc-d1">
+  <p class="kicker">D1 語言與邊界 · 10–35</p>
+  <h2 class="title">D1：從來源挑選到邊界分析，每一步都有證據</h2>
+  <p class="muted">25 分鐘、六個檢查點。候選都用 cite 掛證據；還不是 reviewed 事實。</p>
+  <ol class="timeline">
+    <li data-seg="dlc-d1"><span class="tl-min">00:00</span><b>1 · 人工選來源</b></li>
+    <li data-seg="dlc-d1"><span class="tl-min">03:00</span><b>2 · 初始化與確認來源</b></li>
+    <li data-seg="dlc-d1"><span class="tl-min">07:00</span><b>3 · 詞彙候選</b></li>
+    <li data-seg="dlc-d1"><span class="tl-min">12:00</span><b>4 · Context 與規則候選</b></li>
+    <li data-seg="dlc-d1"><span class="tl-min">17:00</span><b>5 · coverage 與 resolve-terms</b></li>
+    <li data-seg="dlc-d1"><span class="tl-min">21:00</span><b>6 · get-context 與 analyze-boundary</b></li>
+  </ol>
+  <aside class="notes">
+    <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定讀哪些來源，再建詞彙、Context 與規則候選，最後跑 coverage 和邊界分析。輔助腳本幫你組 JSON，時間花在判斷。」</p>
+    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy、Compensation 無對應程式）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
+    <p><b>Recovery</b>：第 35 分鐘 D1 未完成者，私下發 <code data-code="dlc-rec-d1"></code>（Repo＋已確認 source map＋D1 候選集），記錄原因與時間；Recovery 不作為小組成果評分。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="檢查點 1 · 人工選來源" data-minute="10">
+  <p class="kicker">檢查點 1 / 6 · 第 10–13 分鐘</p>
+  <h2 class="title">從 discover-sources 的結果，人來勾選來源</h2>
+  <ol class="steps">
+    <li>跑 <code>discover-sources</code>，看 Plugin 找到什麼</li>
+    <li>對照來源選擇表：<b>必含</b> <code>docs/requirements/</code>、<code>docs/adr/</code>、<code>src/</code>、<code>tests/</code></li>
+    <li>排除 <code>**/__pycache__/**</code>，填確認表單</li>
+  </ol>
+  <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 1 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（00:00／第 10 分）</b>：「第 10 分。請輸入解鎖碼，從檢查點 1 開始。discover-sources 只是建議，選哪些來源是人的決定：需求、ADR、程式、測試都要，快取檔不要。」</p>
+    <p><b>看</b>：有沒有照單全收；有沒有漏掉 docs/requirements/（Plugin 只自動分類這一類資料夾）；__pycache__ 是否排除。</p>
+    <p><b>介入訊號</b>：13 分仍在猶豫 → 提醒四個必含來源，其他由小組決定並寫下理由。</p>
+    <p><b>提示</b>：H1：「想一下：之後每條規則的證據，會從哪些檔案引用？」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="檢查點 2 · 初始化與確認來源" data-minute="13">
+  <p class="kicker">檢查點 2 / 6 · 第 13–17 分鐘</p>
+  <h2 class="title">init-domain-memory 與 confirm-sources</h2>
+  <ol class="steps">
+    <li><code>init-domain-memory --storage-mode tracked --review-mode local-draft-only</code></li>
+    <li><code>confirm-sources</code>：只確認剛才選定的來源</li>
+    <li>看到 source map 已確認，填確認表單</li>
+  </ol>
+  <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 2 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（03:00／第 13 分）</b>：「第 13 分。初始化 Domain Memory，storage 用 tracked、review 先用 local-draft-only。這一步是把『我們讀哪些來源』寫成檔案，不是口頭同意。」</p>
+    <p><b>看</b>：參數是否照 Runbook；confirm-sources 後 source map 內容是否與選擇表一致。</p>
+    <p><b>介入訊號</b>：指令報錯 → 看是否在 Repo 根目錄、是否經 dm 腳本。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="檢查點 3 · 詞彙候選" data-minute="17">
+  <p class="kicker">檢查點 3 / 6 · 第 17–22 分鐘</p>
+  <h2 class="title">用 cite 建立至少 5 個 vocabulary 候選</h2>
+  <ol class="steps">
+    <li>以 <code>make_record.py</code> 建 vocabulary，附 <code>path:start-end</code> 證據</li>
+    <li>至少 <b>5</b> 個詞，含 <b>Fare Policy／Discount Policy</b> 這組疑問</li>
+    <li>每個候選至少一個 cite 證據；做到這裡停下</li>
+  </ol>
+  <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 3 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（07:00／第 17 分）</b>：「第 17 分。建詞彙候選，至少 5 個。請把 Fare Policy 和 Discount Policy 放進來，看證據時想想它們是同一件事還是兩件事。每個詞都要有證據行號。」</p>
+    <p><b>看</b>：有沒有只寫定義沒附 cite；證據行號是否真的指到程式或文件；有沒有人發現 Fare／Discount 在程式與文件用法不同。</p>
+    <p><b>介入訊號</b>：22 分仍不到 3 個 → 先把需求文件裡明確出現的詞做完，其餘留到 coverage 補。</p>
+    <p><b>提示</b>：H2：「同一個概念在文件與程式用不同名字，要記成一個詞的別名，還是兩個詞？先看證據再決定。」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="檢查點 4 · Context 與規則候選" data-minute="22">
+  <p class="kicker">檢查點 4 / 6 · 第 22–27 分鐘</p>
+  <h2 class="title">建立至少 2 個 contexts、2 個 rules 候選</h2>
+  <ol class="steps">
+    <li>以 <code>make_record.py</code> 建 <b>≥ 2</b> 個 contexts</li>
+    <li>建 <b>≥ 2</b> 個 rules，證據必須在<b>已確認來源</b>內</li>
+    <li>Compensation 在程式中找不到對應：照實記為缺口，不要編造</li>
+  </ol>
+  <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 4 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（12:00／第 22 分）</b>：「第 22 分。Context 兩個以上，規則兩條以上。規則的證據一定要在剛才確認的來源裡。Compensation 這個詞文件有、程式找不到，請如實記錄。」</p>
+    <p><b>看</b>：Context 切法是否有理由；規則是否只有口語沒有證據；有人是否為了湊數寫出程式沒有的行為。</p>
+    <p><b>介入訊號</b>：有人憑空補上 Compensation 實作 → 請對照證據，退回『未建模』。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="檢查點 5 · coverage 與 resolve-terms" data-minute="27">
+  <p class="kicker">檢查點 5 / 6 · 第 27–31 分鐘</p>
+  <h2 class="title">coverage 看缺口，resolve-terms 用一句話查詞</h2>
+  <ol class="steps">
+    <li>跑 <code>coverage</code>：哪些來源或概念還沒被候選涵蓋</li>
+    <li>用<b>一句話</b>跑 <code>resolve-terms</code>（例如描述旅客改票的情境）</li>
+    <li>把缺口與查詢結果記進確認表單</li>
+  </ol>
+  <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 5 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看 Plugin 能不能把你的話對到 Ubiquitous Language。對不到的，就是語言還沒統一。」</p>
+    <p><b>看</b>：有沒有真的讀 coverage 的缺口，而不是只看 OK；查詢句是否是領域句子而不是指令。</p>
+    <p><b>介入訊號</b>：查不到詞 → 回到檢查點 3 補詞或補別名。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-d1" data-title="檢查點 6 · get-context 與 analyze-boundary" data-minute="31">
+  <p class="kicker">檢查點 6 / 6 · 第 31–35 分鐘</p>
+  <h2 class="title">get-context 取出 Context，analyze-boundary 看邊界洩漏</h2>
+  <ol class="steps">
+    <li>對兩個不同 Context 各跑一次 <code>get-context</code></li>
+    <li>跑 <code>analyze-boundary</code>（<b>至少 2 個 Context</b>）</li>
+    <li>寫下一處看到的邊界洩漏，填確認表單；到 35 分停手</li>
+  </ol>
+  <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 6 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（21:00／第 31 分）</b>：「第 31 分。最後：get-context 取出每個 Context 的知識，analyze-boundary 檢查 Context 之間是否互相知道得太多。請寫下你看到的一個洩漏。35 分鐘 D1 結束，D2 換成兩人一組。」</p>
+    <p><b>看</b>：是否至少涵蓋兩個不同 Context；是否讀到實際的洩漏（例如三處複製計價、直接依賴具體 Gateway）。</p>
+    <p><b>介入訊號</b>：第 35 分仍未完成 → 不延長；以 Recovery 接續，記錄。</p>
+  </aside>
+</section>
+

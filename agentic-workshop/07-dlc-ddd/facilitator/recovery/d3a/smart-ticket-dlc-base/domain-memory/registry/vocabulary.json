@@ -1,0 +1,1382 @@
+{
+  "format": "domain-vocabulary/v1",
+  "status": "candidate",
+  "terms": [
+    {
+      "id": "base-fare",
+      "synonyms": [
+        "Base Fare",
+        "base_fare"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "基本票價",
+      "definition": "班次的標準全額票價（整數）；成人無其他優惠時就付基本票價（rate 100）。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 16,
+            "end": 16
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:27004ea6e03617fe9c9d75958d529792fc79dc64cce81fb2a4dd28f498ff89f5",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 27,
+            "end": 27
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:d946aadb4e46c26dffe0954cd15053c8dff834d49902fbc2f65d0759c30a87f7",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "discount-rate",
+      "synonyms": [
+        "Rate",
+        "rate"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "折扣率",
+      "definition": "以百分比整數表示的票價比例（100、95、85、75）；旅客票價 = 基本票價 × rate // 100。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 5,
+            "end": 5
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:aa62b0eb17e954655f6c72c581d8e837e602b75b0e3366ee28e9dc2028935ab4",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 27,
+            "end": 35
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:5b21670b385a034ebf8c1c9d8104297c86204c0703751a5e34a07e15b9080200",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "best-single-discount",
+      "synonyms": [
+        "Best Single Discount",
+        "DiscountPolicy"
+      ],
+      "not_same_as": [
+        "fare-policy"
+      ],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "最有利單一優惠",
+      "definition": "每位旅客實際採用的唯一優惠：在所有符合的資格（含成人全額預設）中取 rate 最低者；多項優惠不疊加，也不依條件先後取第一個符合者。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 46,
+            "end": 48
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:3228e1b59ca1744056b2b033f361d370476c257b68f8dc80e372cd2484ebc777",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/discount-overview.md",
+          "lines": {
+            "start": 3,
+            "end": 3
+          },
+          "content_sha256": "sha256:6c7054e02561bb1f66dc0c9d8d2269f391fbd61648380c22dfa041b5fc3f1112",
+          "excerpt_sha256": "sha256:fc5678df1c855e235ef5777cbb7204fccab27e7fccce5282e83a8688c78d77f1",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 27,
+            "end": 34
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:c63f7dca019714e6017457c2a920d5da70b642dcb309d262f5b73635c6157c45",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "advance-purchase-discount",
+      "synonyms": [
+        "Advance Purchase",
+        "ADVANCE"
+      ],
+      "not_same_as": [
+        "corporate-discount"
+      ],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "提前購票優惠",
+      "definition": "購票日（系統 Clock 的今天）至出發日相差至少 14 天時取得的 85% 資格；13 天不符合。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 29,
+            "end": 30
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:021b4fd4a4f7bd1bccc5426fa7cd23514c7598ae922537153134c195807b2716",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 30,
+            "end": 31
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:ee4d4e5395e763c2b00eb1adeda46c7d8aec282304f7635b2ba0935424bb682f",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "student-discount",
+      "synonyms": [
+        "STUDENT"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "學生優惠",
+      "definition": "旅客類型為學生時取得的 75% 資格；仍與其他資格一起比較，取最低 rate。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 17,
+            "end": 17
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:5053fd35676ab3c319a54a13f535b951134e7e38bb5591caf3d1e706c0da86c8",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/fare_policy.py",
+          "lines": {
+            "start": 3,
+            "end": 3
+          },
+          "content_sha256": "sha256:a678a9818d901ae1e51333a90788754a318717db722adc2d9ed45a467987b8cf",
+          "excerpt_sha256": "sha256:8c54d88ec7aedbc4470bc05c7c4cab7ac42a4070060d791f8e48de03d70ee59b",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 28,
+            "end": 29
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:159904de6ab72ab01cc76e078fe4222b62ef50e7f5af8153d4263b311526fabe",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "corporate-discount",
+      "synonyms": [
+        "CORPORATE"
+      ],
+      "not_same_as": [
+        "advance-purchase-discount"
+      ],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "企業會員優惠",
+      "definition": "訂票綁定的會員類型為 CORPORATE 時取得的 95% 資格；資格判斷目前寫在 Pricing，直接讀取 Membership 的 Member 型別。",
+      "contexts": [
+        "pricing",
+        "membership"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 27,
+            "end": 27
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:bd508437b67a7f6e2c2006663d0ba265a0763c7f68e597306310f77974d1d95e",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 32,
+            "end": 33
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:67eff644f630d233a69dae193ed3a268cf2b0faf36f14ace1bea7429d0acab95",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "applied-discount",
+      "synonyms": [
+        "Applied Discount",
+        "applied_discounts",
+        "Fare Result",
+        "DiscountResult"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "採用優惠明細",
+      "definition": "每位旅客實際採用的優惠紀錄：passenger_id、discount_type、rate、amount；建立與改票都會重新產生。文件稱 Fare Result，程式在計價端叫 DiscountResult、在 Booking 上叫 AppliedDiscount。",
+      "contexts": [
+        "pricing",
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 49,
+            "end": 49
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:8fc03deca299452ab13b7a76cf273bd48841263635e66bf5e60df5a978cce0a4",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/discount-overview.md",
+          "lines": {
+            "start": 7,
+            "end": 7
+          },
+          "content_sha256": "sha256:6c7054e02561bb1f66dc0c9d8d2269f391fbd61648380c22dfa041b5fc3f1112",
+          "excerpt_sha256": "sha256:4250549ebb7c87077566d387bb4fd726a6252a08284155f1fa6f17c11e743af4",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 36,
+            "end": 41
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:71fab771728baffa9f67b60a971039434e6796e354bbca840ef734298cb28e53",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 14,
+            "end": 18
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:af7b5a24af5eeee3f3bcd79dc6e57003ea12ceb85a6fa2374805d0a8b5130690",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "total-fare",
+      "synonyms": [
+        "Total Fare",
+        "total_fare"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "訂票總票價",
+      "definition": "每位旅客個別計價後的整數金額加總；團體同樣是個別票價加總。",
+      "contexts": [
+        "pricing",
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 18,
+            "end": 19
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:d96485f0ad72afd6f80f201c8958744c5f571a758d350f503de5c18f4b8b2992",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 72,
+            "end": 72
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:d0bd0888aec7d2d8574e2bd1f7937e81829c58f271bb51b6489a399298376994",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/booking_service.py",
+          "lines": {
+            "start": 40,
+            "end": 40
+          },
+          "content_sha256": "sha256:5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "excerpt_sha256": "sha256:60b3d63cdf05da3538c01cc868d047043a53fee4c591e9ef8b8d333ecbbd13d6",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "booking",
+      "synonyms": [
+        "Booking"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "訂票",
+      "definition": "一位或多位旅客對同一班次的一次訂位，持有旅客、狀態、總票價、採用優惠明細、座位與可選的會員 id。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 11,
+            "end": 15
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:4ad7d7efab7c15ab9fc7f02f521f49f4c4c03793e780266d8fad358856d3b8ff",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 43,
+            "end": 55
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:79b4ac99efb2e12eeb455c9a1d9b71ecbe8748c36417d8b93c6917709a655965",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "booking-status",
+      "synonyms": [
+        "BookingStatus",
+        "PENDING_PAYMENT",
+        "PAID",
+        "CANCELLED",
+        "REFUNDED"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "訂票狀態",
+      "definition": "建立後為 PENDING_PAYMENT；付款成功轉 PAID；已付款退票轉 REFUNDED；團體付款失敗轉 CANCELLED。一般付款失敗維持 PENDING_PAYMENT。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 15,
+            "end": 15
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:5b6e93663bbb50a77b5ad7e3eb90cdfa951b8d37f44998ccec99b3dd0b08d92d",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 21,
+            "end": 21
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:42ded7967f3dee77693a28ae91bb01972efbc1531674d3b0aa38907890e69d4f",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 36,
+            "end": 36
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:241ecfef191bedfde9a5a28862502cb147e7fcb0d1a6122529e2ebe86236fa8f",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 67,
+            "end": 67
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:1f6ea53b7baca0e4a56185661be48b36b49ad4fa7f5db482ac1ec312aeac2be1",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 10,
+            "end": 14
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:de6409657e80b171736cda500115c7a9e72ae6cd30a31a13439b9eaa7b5c684d",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "group-booking",
+      "synonyms": [
+        "Group Booking",
+        "GROUP",
+        "booking_type"
+      ],
+      "not_same_as": [
+        "booking"
+      ],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "團體訂票",
+      "definition": "5–20 位旅客搭乘同一班次、配置同車廂連續座位的訂票；以 booking_type 字串 \"GROUP\" 區分，沒有獨立型別。",
+      "contexts": [
+        "booking",
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 59,
+            "end": 62
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e5ff7c45ca994a8d577477a62b74eede557d013ffe6f2301525180e39827015b",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/group_booking_service.py",
+          "lines": {
+            "start": 25,
+            "end": 26
+          },
+          "content_sha256": "sha256:0f95e497f83436bbeb183a73da13bb6b30b537f152e8127fa310a71a28ff9882",
+          "excerpt_sha256": "sha256:07e876b08bc12bd077ef7509bb20e65f776d1c6a6f8029f657ac8cd7df9f2ada",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 54,
+            "end": 54
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:88a8d525126ec50aced4cfebbc34973fb6263344290c4272443aa1533299d607",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "passenger",
+      "synonyms": [
+        "Passenger",
+        "PassengerType",
+        "ADULT",
+        "STUDENT"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "旅客",
+      "definition": "訂票中的一位乘客，帶 passenger_id、姓名與旅客類型（ADULT 或 STUDENT）；每位旅客獨立決定優惠。",
+      "contexts": [
+        "booking",
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 48,
+            "end": 48
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:5b57403b736c195257536a63ff55df84be6bed39563ff72bc23d1605e0cc9155",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 6,
+            "end": 8
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:f5b24aff9d835654d9d20062200d27e99a9fe6f7197d3445e8e9c54c93fcf0ed",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 30,
+            "end": 34
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:a27a5c4ef9283e5f5ffcea03ca4159cfa55dad6262931c17ffeabf39ebbdefa2",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "fare-difference",
+      "synonyms": [
+        "Fare Difference",
+        "fare_difference"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "票價差額",
+      "definition": "改票時新票價減原票價（new - old）；只記錄在 Booking 上，不執行補款或退款，Order 金額不變。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 34,
+            "end": 34
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:6865782809dcaa9aae551744101ce8d776ee518cc6512134ad02c1e44becdbdd",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/change-booking-guide.md",
+          "lines": {
+            "start": 3,
+            "end": 3
+          },
+          "content_sha256": "sha256:20ef516bfa1572a275b817f3a8c1cb785ff392444d98087af9f8c8756d4659b0",
+          "excerpt_sha256": "sha256:de0039e192166979de1622f2f309bcb0a762c71041d738e2120ef1f176f25b80",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/change_booking_service.py",
+          "lines": {
+            "start": 43,
+            "end": 49
+          },
+          "content_sha256": "sha256:2f01c7f2e5a612f87607c86c9e268e2db7723425290310629dcf1cbc061ae015",
+          "excerpt_sha256": "sha256:f8ab1f7072bf9309d08d6ccec652ab5f6d8eb7c21abf56f779bdc6ff6c7f3efd",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "refund-record",
+      "synonyms": [
+        "Refund Record",
+        "RefundRecord"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "退款紀錄",
+      "definition": "已付款訂票退票時建立的唯一本機紀錄，金額為訂票總票價；目前以 booking_id 為鍵，結構上一筆訂票只能退一次。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 38,
+            "end": 38
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:1089369560938252a2769a446548ee401da7524769827ec26ceea685a9cef352",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/records.py",
+          "lines": {
+            "start": 15,
+            "end": 19
+          },
+          "content_sha256": "sha256:b9f87d221f3e5b01f2aa0fdff71fb486f697a7f6b9d93f0a2c2e455b98bf99b5",
+          "excerpt_sha256": "sha256:cb21e5b34b19e971bf12ded045c65474780c88b696584995d6b1e9c17fe312ab",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/refund_service.py",
+          "lines": {
+            "start": 22,
+            "end": 29
+          },
+          "content_sha256": "sha256:7d218d867e08783ea39ba5bf062405c5493c7b490c22c85942c5e032365de64b",
+          "excerpt_sha256": "sha256:33b78b1face67df0d1447198fdb46d4ac8d08b5d059711d796298193d3cc7d8d",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "seat-assignment",
+      "synonyms": [
+        "Seat Assignment",
+        "SeatAssignment",
+        "Seat ID"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "座位指派",
+      "definition": "一位旅客在某班次的座位：Seat ID（S001 起）、車廂、排、位置；同班次 Seat ID 不重複。",
+      "contexts": [
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 42,
+            "end": 42
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:1aa2b89deab537aacd215ed1d2daf91ec953a39264abe35d4502a03476a00f4c",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/records.py",
+          "lines": {
+            "start": 4,
+            "end": 13
+          },
+          "content_sha256": "sha256:b9f87d221f3e5b01f2aa0fdff71fb486f697a7f6b9d93f0a2c2e455b98bf99b5",
+          "excerpt_sha256": "sha256:0be683ff1acefd36341a7550d1948e6a9302c5fcd21601889aec4260dd053b18",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 29,
+            "end": 35
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:8e2b44f85b53cf46d4f7dabc71fe1b9493e11cb50dcdc1477006905343adbfaa",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "consecutive-seat-segment",
+      "synonyms": [
+        "Consecutive Seats"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "連續座位區段",
+      "definition": "同一車廂（每車廂 20 個位置）內連號且完全空著的一段座位；團體訂票只能配置在這樣的一段內，不可跨車廂。",
+      "contexts": [
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 62,
+            "end": 62
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:19c1ea0de4babefb0a4f59b3153fcda4672af15284ed83cfefb2e60844426b43",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/adr/004-group-seat-atomicity.md",
+          "lines": {
+            "start": 10,
+            "end": 10
+          },
+          "content_sha256": "sha256:3f99dcb7c77680a497cbbde9dbe7aaaef14763812c5681eff44a9a10927a532b",
+          "excerpt_sha256": "sha256:21a97a6b2b9622339882afb743c8c3d525af18be24f2b36f615b1dba36700638",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 37,
+            "end": 51
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:7430ac5b1c621a65aa1c4deb44edc98f7830fb329b7bd9afb133cc8109a5a02d",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "available-seats",
+      "synonyms": [
+        "available_seats",
+        "可售座位"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "剩餘座位數",
+      "definition": "班次目前還能賣的座位數；訂票保留時減少、釋放時增加。程式中同時存在計數器、座位指派表與容量表三份資料。",
+      "contexts": [
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 13,
+            "end": 13
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:773dd1daff8bda123494cbe7fd00986cd6061421c142fcd36b54b55ba8650760",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 28,
+            "end": 28
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:70fe431755f712dd8c24770a1139f01b7ae3e69f87c9a9f059f5194650948e49",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 20,
+            "end": 27
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:6db7bed85eefb641565312e70064a992e416e0c1b0394b62f89782b3b838cc41",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/infrastructure/store.py",
+          "lines": {
+            "start": 27,
+            "end": 27
+          },
+          "content_sha256": "sha256:675022ee31ec4bb64addbafb2ee94cb514698e47b82dc6fef2a70fdd444e1c3d",
+          "excerpt_sha256": "sha256:b820570459bdae3e73657fd1167a07f30d4cbef0382cddeb01994c81c147ec53",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "member",
+      "synonyms": [
+        "Member",
+        "MemberType",
+        "STANDARD",
+        "CORPORATE"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "會員",
+      "definition": "有效會員 id 可附加到訂票；會員類型為 STANDARD 或 CORPORATE。",
+      "contexts": [
+        "membership"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 25,
+            "end": 27
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:d66b3f0f2682f70d8a20c899d65000d8126b22c90f3eb7b9d901378e721d44e9",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/members.py",
+          "lines": {
+            "start": 4,
+            "end": 12
+          },
+          "content_sha256": "sha256:3b1e75d51590c00539422a97f6be622cfc6090cc6cbdb798483a16d46f7a1e2e",
+          "excerpt_sha256": "sha256:bb0c05aa56856c0bc84f12f67c4e4138211ff7eb33ce7c8ca9f4ae9baca8842f",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "points-balance",
+      "synonyms": [
+        "points_balance"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "點數餘額",
+      "definition": "每位會員的非負整數點數，可經會員查詢取得；目前沒有任何累積或使用點數的功能。",
+      "contexts": [
+        "membership"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 28,
+            "end": 28
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:7dd7a93f7b101bd0ea0d835b5d245434d50dd7dbd5afd3572bc9ce5e19d2f83a",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/members.py",
+          "lines": {
+            "start": 12,
+            "end": 12
+          },
+          "content_sha256": "sha256:3b1e75d51590c00539422a97f6be622cfc6090cc6cbdb798483a16d46f7a1e2e",
+          "excerpt_sha256": "sha256:89966f34a24ddb9a7558ebb029c27995641c123d46aa71d307a5462b247d700b",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "order",
+      "synonyms": [
+        "Order"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "訂單",
+      "definition": "付款成功後建立的唯一交易快照，amount 等於付款當時的訂票總票價；之後改票不改變它。",
+      "contexts": [
+        "payment"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 23,
+            "end": 24
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:695856482638ebd79238c851e25f8897dfcd12ec5ae88fdf1f6c69081ed94c07",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/models.py",
+          "lines": {
+            "start": 57,
+            "end": 62
+          },
+          "content_sha256": "sha256:1dbf08e0516886a78da42638b06485dfc0e9017163ee40f02e5b0d84d623bcb8",
+          "excerpt_sha256": "sha256:67a736b874d8eac9a3da2dc7293d573c2fd22ca3771856425bfb0465300a2840",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 35,
+            "end": 36
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:f6e3e5ddd73e5d39a2383fab2c4a1480977ee6fb84eb3b1eb576f3edea986a02",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    },
+    {
+      "id": "group-payment-compensation",
+      "synonyms": [
+        "Compensation",
+        "補償"
+      ],
+      "not_same_as": [],
+      "required_qualifiers": [],
+      "owner": "unknown",
+      "name": "團體付款失敗補償",
+      "definition": "團體付款失敗時的整套處置：訂票轉 CANCELLED、釋放全部座位、不建立 Order、留下 Audit 與取消通知。文件稱補償，程式沒有對應名稱，只是 PaymentService.pay 內的一個分支。",
+      "contexts": [
+        "payment",
+        "booking",
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 67,
+            "end": 69
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:92390da918c7cab69c51fa1feb8d36736c9e6603b6536a18c88f44f788b7ab03",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/adr/004-group-seat-atomicity.md",
+          "lines": {
+            "start": 10,
+            "end": 10
+          },
+          "content_sha256": "sha256:3f99dcb7c77680a497cbbde9dbe7aaaef14763812c5681eff44a9a10927a532b",
+          "excerpt_sha256": "sha256:21a97a6b2b9622339882afb743c8c3d525af18be24f2b36f615b1dba36700638",
+          "source_kind": "decisions"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 26,
+            "end": 34
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:24dded47e154bec4bb19496fcf9b80671569b6e591e3aabbaba0602434a2f3b6",
+          "source_kind": "implementation"
+        }
+      ],
+      "review": {
+        "proposal_id": "CP-CORE-001",
+        "proposal_revision": 1,
+        "approvals": [
+          {
+            "role": "domain-owner",
+            "reviewer": "Maintainer <maintainer@example.com>",
+            "decision": "approved",
+            "approved_at": "2026-10-07T03:06:45.386842Z",
+            "scope": "CP-CORE-001 全部 registry_updates",
+            "proposal_revision": 1,
+            "base_registry_revision": {
+              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
+              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+            }
+          }
+        ]
+      },
+      "status": "reviewed"
+    }
+  ]
+}

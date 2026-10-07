@@ -1,0 +1,771 @@
+{
+  "format": "domain-rules/v1",
+  "status": "candidate",
+  "rules": [
+    {
+      "id": "FARE-002",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "基本票價 700 的學生，無其他資格：525"
+      ],
+      "statement": "學生旅客具備基本票價 75% 的資格，實際結果仍由最有利單一優惠決定。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 17,
+            "end": 17
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:5053fd35676ab3c319a54a13f535b951134e7e38bb5591caf3d1e706c0da86c8",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 28,
+            "end": 29
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:159904de6ab72ab01cc76e078fe4222b62ef50e7f5af8153d4263b311526fabe",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/unit/test_best_discount_policy.py",
+          "lines": {
+            "start": 9,
+            "end": 25
+          },
+          "content_sha256": "sha256:026f6b2dd0a173da45db9e1e56d6d3c167e2ddf6f9fd42b81d0ba4243408119f",
+          "excerpt_sha256": "sha256:34e62a07435a82fbe6350137ca00df9ff5d8cfb889d9395dc3a526b973b3d6de",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "FARE-003",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "成人提前 595 + 學生 525 = 1120"
+      ],
+      "statement": "每位旅客個別計價，個別整數金額加總為訂票總票價。",
+      "contexts": [
+        "pricing",
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 18,
+            "end": 18
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:81ffe065ca270936c9856dbbf291c42104514e49a706e76a36eac3441c254875",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/booking_service.py",
+          "lines": {
+            "start": 37,
+            "end": 40
+          },
+          "content_sha256": "sha256:5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "excerpt_sha256": "sha256:e3da98fb99f5d75cd9d47c317279882ad003ff57147632b047511690eb251317",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_best_discount_api.py",
+          "lines": {
+            "start": 14,
+            "end": 25
+          },
+          "content_sha256": "sha256:f7d604b157e9e1208c8cc9fa6ab8a292cc70e60a2221b59e0cec3e2d629bab41",
+          "excerpt_sha256": "sha256:bc9f618bf55561885e9076edd8c7ef29a9a9d65e56677152f661a749d56c2797",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "FARE-005",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "相差 13 天：700",
+        "相差 14 天：595",
+        "相差 15 天：595"
+      ],
+      "statement": "購票日至出發日相差至少 14 天才具備 85% 提前購票資格；未滿 14 天不具備（FARE-006）。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 29,
+            "end": 30
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:021b4fd4a4f7bd1bccc5426fa7cd23514c7598ae922537153134c195807b2716",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 30,
+            "end": 31
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:ee4d4e5395e763c2b00eb1adeda46c7d8aec282304f7635b2ba0935424bb682f",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_advance.py",
+          "lines": {
+            "start": 4,
+            "end": 10
+          },
+          "content_sha256": "sha256:a581320e7a03f3cf77979a1ff4244753015593db3fc9e79acf7a945a41a8c81a",
+          "excerpt_sha256": "sha256:32a05044cf694fbd69abc830f3861451c4ef97d6fc755f2f8354e0d36160f6fe",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "FARE-008",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "學生加提前：75",
+        "企業加提前：85",
+        "學生、企業、提前同時符合：75"
+      ],
+      "statement": "同時符合多項優惠時只採 rate 最低的單一優惠，多項優惠不疊加（FARE-007）。",
+      "contexts": [
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 46,
+            "end": 47
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:0124050434f167fba7b1618dd14b1db328ad2c27a92f1c9dce63b25c1b55f9e2",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "docs/requirements/discount-overview.md",
+          "lines": {
+            "start": 5,
+            "end": 5
+          },
+          "content_sha256": "sha256:6c7054e02561bb1f66dc0c9d8d2269f391fbd61648380c22dfa041b5fc3f1112",
+          "excerpt_sha256": "sha256:1db0f853587bae8c022bc3b91a2d92ecc4d43f873b25d7cf57d75e6c40c9439d",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 34,
+            "end": 35
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:89c6543da87b8bece69aed4df28652edd74fe9ed0496a745a12cf8dea1934d26",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/unit/test_best_discount_policy.py",
+          "lines": {
+            "start": 9,
+            "end": 25
+          },
+          "content_sha256": "sha256:026f6b2dd0a173da45db9e1e56d6d3c167e2ddf6f9fd42b81d0ba4243408119f",
+          "excerpt_sha256": "sha256:34e62a07435a82fbe6350137ca00df9ff5d8cfb889d9395dc3a526b973b3d6de",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "MEMBER-003",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "M002 成人無提前：665"
+      ],
+      "statement": "綁定 CORPORATE 會員的訂票，旅客具備 95% 企業優惠資格。",
+      "contexts": [
+        "membership",
+        "pricing"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 27,
+            "end": 27
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:bd508437b67a7f6e2c2006663d0ba265a0763c7f68e597306310f77974d1d95e",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/domain/discounts.py",
+          "lines": {
+            "start": 32,
+            "end": 33
+          },
+          "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+          "excerpt_sha256": "sha256:67eff644f630d233a69dae193ed3a268cf2b0faf36f14ace1bea7429d0acab95",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_members.py",
+          "lines": {
+            "start": 10,
+            "end": 12
+          },
+          "content_sha256": "sha256:2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4",
+          "excerpt_sha256": "sha256:1336e65317f1317a11247e722b5f89b5120334af8c47d3487aa0d088fe78a364",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "BOOKING-002",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "5 位：409 INVALID_PASSENGER_COUNT",
+        "4 位：建立成功"
+      ],
+      "statement": "一般訂票單筆 1 至 4 位旅客；5 位以上要走團體訂票。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 11,
+            "end": 12
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e0d17d37a1fc6b3ba280b3fb5185fee50ed9a3cfbccbca8dd948a7b9858c3973",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/booking_service.py",
+          "lines": {
+            "start": 32,
+            "end": 33
+          },
+          "content_sha256": "sha256:5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "excerpt_sha256": "sha256:cc874ea64f62b2e5bee7fb4b23e27d2a2f09af1adec47a42e5a1bc429a498f3c",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_features.py",
+          "lines": {
+            "start": 53,
+            "end": 56
+          },
+          "content_sha256": "sha256:b0b34bc8efa0de9b63b046da9bab275cc82f0113d24f2c05f47c270356f47d9f",
+          "excerpt_sha256": "sha256:40c2ae60ae58677653827dc2c4a905a3003f18095e3111472cee8ffe78ce869e",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "BOOKING-003",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [],
+      "statement": "旅客數不得超過班次剩餘座位數，失敗時不留下任何訂票或座位。",
+      "contexts": [
+        "booking",
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 13,
+            "end": 13
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:773dd1daff8bda123494cbe7fd00986cd6061421c142fcd36b54b55ba8650760",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/booking_service.py",
+          "lines": {
+            "start": 34,
+            "end": 35
+          },
+          "content_sha256": "sha256:5743983a87db939bcd993d2d25b40562bbecd08d91001a896470d02f970bdf87",
+          "excerpt_sha256": "sha256:60164a1014aae5312421998623953ca7c46f922eb0ad23a49a17d7656039d18e",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_features.py",
+          "lines": {
+            "start": 58,
+            "end": 65
+          },
+          "content_sha256": "sha256:b0b34bc8efa0de9b63b046da9bab275cc82f0113d24f2c05f47c270356f47d9f",
+          "excerpt_sha256": "sha256:fefe3e49d387e20854a47ee6dc7363c4ee13ce426fabcce8136ec7ae8d0e2e9e",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "SEAT-001",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [],
+      "statement": "同一班次內 Seat ID 不可重複配置。",
+      "contexts": [
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 42,
+            "end": 42
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:1aa2b89deab537aacd215ed1d2daf91ec953a39264abe35d4502a03476a00f4c",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 10,
+            "end": 18
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:8847e4da24867d69551027f85bed2b955ddbd692a9fdbdcdb2d7673bec0ace32",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_seats.py",
+          "lines": {
+            "start": 6,
+            "end": 13
+          },
+          "content_sha256": "sha256:edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e",
+          "excerpt_sha256": "sha256:af5da76ce1f53add547eaf2cafe3715208b93c2d9add85ce6d0189c316ea43ef",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "GROUP-001",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "4 人：409",
+        "5 人、20 人：201",
+        "21 人：409"
+      ],
+      "statement": "團體訂票旅客數為 5 至 20 人（GROUP-001 最少 5、GROUP-002 最多 20）。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 59,
+            "end": 60
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:08acbdabeef0904d355530b12a89cfcf6fdef3c081bca6c644c53c974c16fd6b",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/group_booking_service.py",
+          "lines": {
+            "start": 25,
+            "end": 26
+          },
+          "content_sha256": "sha256:0f95e497f83436bbeb183a73da13bb6b30b537f152e8127fa310a71a28ff9882",
+          "excerpt_sha256": "sha256:07e876b08bc12bd077ef7509bb20e65f776d1c6a6f8029f657ac8cd7df9f2ada",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_group_creation.py",
+          "lines": {
+            "start": 5,
+            "end": 23
+          },
+          "content_sha256": "sha256:1e1fc56e29a9f32da8cb66ce038d6a4a7d973038c8d54328a2eb042f930fea1a",
+          "excerpt_sha256": "sha256:0ff318082f6bc19213eea336526072b08fe39c9f398f01986d07a0f5ebf1765d",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "GROUP-004",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "位置 19–23 跨車廂：409 CONSECUTIVE_SEATS_UNAVAILABLE"
+      ],
+      "statement": "團體訂票必須配置同一車廂內的連續座位；找不到完整區段就不建立訂票（GROUP-005）。",
+      "contexts": [
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 62,
+            "end": 63
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:3f827c2e0a36b984b1654d5894d0dd894bd4dcd0fb6663ef768d76d7dfcf6139",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/seat_service.py",
+          "lines": {
+            "start": 43,
+            "end": 51
+          },
+          "content_sha256": "sha256:288a2a6ab58a4fb86c3b88b019e50bb54fa65e93e68815e404e4abad3ad39dc0",
+          "excerpt_sha256": "sha256:4755e4803f673661d0cd599c1fd9c64a578ab1c425c81d350c4eea9c346b38e8",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_group_creation.py",
+          "lines": {
+            "start": 58,
+            "end": 64
+          },
+          "content_sha256": "sha256:1e1fc56e29a9f32da8cb66ce038d6a4a7d973038c8d54328a2eb042f930fea1a",
+          "excerpt_sha256": "sha256:f7e2029468d4a33ef85c05bf2cefb6e8d6087e8daf232609fef8d5ec8764d5fe",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "GROUP-PAY-002",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [],
+      "statement": "團體付款失敗時訂票轉 CANCELLED、釋放全部團體座位且不建立 Order（GROUP-PAY-002 至 004）。",
+      "contexts": [
+        "payment",
+        "booking",
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 67,
+            "end": 69
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:92390da918c7cab69c51fa1feb8d36736c9e6603b6536a18c88f44f788b7ab03",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 26,
+            "end": 34
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:24dded47e154bec4bb19496fcf9b80671569b6e591e3aabbaba0602434a2f3b6",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_group_payment.py",
+          "lines": {
+            "start": 21,
+            "end": 32
+          },
+          "content_sha256": "sha256:24bff5ff661c30b753977a74d0396f6386734634cf8322ea0ea54eb279113127",
+          "excerpt_sha256": "sha256:0c23ab49ad1168d6128d97d381b7cbc4489eaf9120c36c6f1439c1a6ccebf95e",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "PAYMENT-001",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [],
+      "statement": "只有 PENDING_PAYMENT 的訂票可以付款；同一訂票不得重複付款（PAYMENT-003）。",
+      "contexts": [
+        "payment",
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 20,
+            "end": 22
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e701fa8bd3e6b5b0f9f523eab96a9d90dca18f89f412a8d1bcef4d0a0ae36c67",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 23,
+            "end": 24
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:9281061c4a1b574e8bba100456dd0bea317d35b00f0b5626b8c827db82544b04",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_features.py",
+          "lines": {
+            "start": 90,
+            "end": 94
+          },
+          "content_sha256": "sha256:b0b34bc8efa0de9b63b046da9bab275cc82f0113d24f2c05f47c270356f47d9f",
+          "excerpt_sha256": "sha256:b104171b98af388ed2f1538926b2988f12155b5bf136c4fba86e5806ed7a9eef",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "ORDER-002",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [],
+      "statement": "Order 建立時 amount 等於付款當時的訂票總票價；改票後 Order 保留原付款快照，不執行差額金流。",
+      "contexts": [
+        "payment",
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 24,
+            "end": 24
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:15d857afef33219d6e091009674cfffc04d7450cf59b27d1ac9938038e947901",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/payment_service.py",
+          "lines": {
+            "start": 35,
+            "end": 35
+          },
+          "content_sha256": "sha256:deb9740b7dfeefffc8d2e1ad38b4e810285798a4053403a17dc7c8625ddd85e6",
+          "excerpt_sha256": "sha256:1f270e195c3e45c4d6ba12de9c3662c64f72a6406412221452be71225d2a1d4c",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_best_discount_api.py",
+          "lines": {
+            "start": 38,
+            "end": 56
+          },
+          "content_sha256": "sha256:f7d604b157e9e1208c8cc9fa6ab8a292cc70e60a2221b59e0cec3e2d629bab41",
+          "excerpt_sha256": "sha256:befa63bd2224aa5f3851812eee88d4ff929c5ace369e23d2af9eb304683ee40c",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "REFUND-004",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [],
+      "statement": "只有已付款訂票可退票，退票建立唯一退款紀錄並釋放座位；同一訂票不可再退。",
+      "contexts": [
+        "booking",
+        "inventory"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 35,
+            "end": 38
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:e94f9078ca55a3df93f04cd0a70b391c3b21ec8c6922503c29baafbbec40456c",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/refund_service.py",
+          "lines": {
+            "start": 22,
+            "end": 29
+          },
+          "content_sha256": "sha256:7d218d867e08783ea39ba5bf062405c5493c7b490c22c85942c5e032365de64b",
+          "excerpt_sha256": "sha256:33b78b1face67df0d1447198fdb46d4ac8d08b5d059711d796298193d3cc7d8d",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_refunds.py",
+          "lines": {
+            "start": 4,
+            "end": 17
+          },
+          "content_sha256": "sha256:762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea",
+          "excerpt_sha256": "sha256:dddaee8b1e0176d41d96afdfb67468d418a19aba84cd3e0c90a63565a9c953fe",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "CHANGE-004",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "T001 700 改 T005 750：fare_difference 50，Order 仍 700"
+      ],
+      "statement": "改票只記錄票價差額（new - old），不執行補價或退款。",
+      "contexts": [
+        "booking"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 34,
+            "end": 34
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:6865782809dcaa9aae551744101ce8d776ee518cc6512134ad02c1e44becdbdd",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/application/change_booking_service.py",
+          "lines": {
+            "start": 43,
+            "end": 49
+          },
+          "content_sha256": "sha256:2f01c7f2e5a612f87607c86c9e268e2db7723425290310629dcf1cbc061ae015",
+          "excerpt_sha256": "sha256:f8ab1f7072bf9309d08d6ccec652ab5f6d8eb7c21abf56f779bdc6ff6c7f3efd",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_changes.py",
+          "lines": {
+            "start": 1,
+            "end": 10
+          },
+          "content_sha256": "sha256:6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4",
+          "excerpt_sha256": "sha256:5efdd715f9dada3b7ea0919b2c2a57acaf0cb30645884458c38a4006797fc7b2",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "MEMBER-004",
+      "owner": "unknown",
+      "version": "unknown",
+      "effective_from": "unknown",
+      "effective_until": "unknown",
+      "examples": [
+        "M001 1200、M002 5000、M003 0"
+      ],
+      "statement": "每位會員有非負整數點數餘額，可經會員查詢取得；目前沒有累積或使用點數的功能。",
+      "contexts": [
+        "membership"
+      ],
+      "evidence": [
+        {
+          "path": "docs/requirements/business-rules.md",
+          "lines": {
+            "start": 28,
+            "end": 28
+          },
+          "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+          "excerpt_sha256": "sha256:7dd7a93f7b101bd0ea0d835b5d245434d50dd7dbd5afd3572bc9ce5e19d2f83a",
+          "source_kind": "requirements"
+        },
+        {
+          "path": "src/smart_ticket/infrastructure/store.py",
+          "lines": {
+            "start": 20,
+            "end": 22
+          },
+          "content_sha256": "sha256:675022ee31ec4bb64addbafb2ee94cb514698e47b82dc6fef2a70fdd444e1c3d",
+          "excerpt_sha256": "sha256:c0cb77d95b42908a6ae7b3e474d1352e7c07b22e10b07597f26caf4106b06b6e",
+          "source_kind": "implementation"
+        },
+        {
+          "path": "tests/integration/test_seed.py",
+          "lines": {
+            "start": 17,
+            "end": 20
+          },
+          "content_sha256": "sha256:f8c4cc3cb08212da754407148f1fed20419d5081da7fcf85151cc023968fd404",
+          "excerpt_sha256": "sha256:bf776c80dcce873e6311ddfa006152a7239fd6979fd0452fed8cc130d1dd781b",
+          "source_kind": "tests"
+        }
+      ],
+      "status": "candidate"
+    }
+  ]
+}

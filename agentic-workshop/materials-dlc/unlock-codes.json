@@ -1,0 +1,83 @@
+{
+  "description": "主持人專用：DDD DLC 學員 Runbook 各揭露時點的寫死解鎖碼。不發給學員。輸入時不分大小寫，空白與連字號會被忽略。依據 docs/instructions/11_DDD_DLC產製指令書.md §3.2。",
+  "groups": [
+    {
+      "id": "dlc-opening",
+      "minute": 0,
+      "code": "DLC-START-00",
+      "label": "開場"
+    },
+    {
+      "id": "dlc-d1",
+      "minute": 10,
+      "code": "DLC-D1-10",
+      "label": "D1 共同語言與邊界"
+    },
+    {
+      "id": "dlc-d2",
+      "minute": 35,
+      "code": "DLC-D2-35",
+      "label": "D2 審查與核准"
+    },
+    {
+      "id": "dlc-d3a",
+      "minute": 70,
+      "code": "DLC-D3A-70",
+      "label": "D3a 電子發票"
+    },
+    {
+      "id": "dlc-d3b",
+      "minute": 95,
+      "code": "DLC-D3B-95",
+      "label": "D3b 點數折抵"
+    },
+    {
+      "id": "dlc-d3c",
+      "minute": 125,
+      "code": "DLC-D3C-125",
+      "label": "D3c 團體部分退款"
+    },
+    {
+      "id": "dlc-d4",
+      "minute": 155,
+      "code": "DLC-D4-155",
+      "label": "D4 交接"
+    },
+    {
+      "id": "dlc-retro",
+      "minute": 165,
+      "code": "DLC-RETRO-165",
+      "label": "回顧"
+    },
+    {
+      "id": "dlc-rec-d1",
+      "minute": 35,
+      "code": "RESUME-DLC-D1-35",
+      "label": "D1 Recovery（主持按需提供）"
+    },
+    {
+      "id": "dlc-rec-d2",
+      "minute": 45,
+      "code": "RESUME-DLC-D2-45",
+      "label": "D2 Recovery（主持按需提供）"
+    },
+    {
+      "id": "dlc-rec-d3a",
+      "minute": 95,
+      "code": "RESUME-DLC-D3A-95",
+      "label": "D3a Recovery（揭曉後，主持按需提供）"
+    },
+    {
+      "id": "dlc-rec-d3b",
+      "minute": 125,
+      "code": "RESUME-DLC-D3B-125",
+      "label": "D3b Recovery（揭曉後，主持按需提供）"
+    },
+    {
+      "id": "dlc-rec-d3c",
+      "minute": 155,
+      "code": "RESUME-DLC-D3C-155",
+      "label": "D3c Recovery（揭曉後，主持按需提供）"
+    }
+  ]
+}

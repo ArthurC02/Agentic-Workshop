@@ -1,0 +1,157 @@
+<!-- ===================== 開場 0–10 ===================== -->
+
+<section class="slide slide-title" data-seg="dlc-opening" data-title="DLC 開場" data-minute="0">
+  <p class="kicker">DDD DLC · 180 分鐘加課</p>
+  <h1 class="title">Agent 的領域記憶</h1>
+  <p class="subtitle">把領域知識變成經審查、以檔案保存的 Domain Memory，並用它驅動受治理的變更</p>
+  <div class="cols-3">
+    <div class="card fx fx-up"><div class="big-number">180</div><p class="muted">分鐘 · 九個時段</p></div>
+    <div class="card fx fx-up"><div class="big-number">3</div><p class="muted">個情境依序全做</p></div>
+    <div class="card fx fx-up"><div class="big-number">2</div><p class="muted">人一組（D2 起）</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>開場前</b>：選定<b>計時者</b>與<b>證據記錄者</b>；本頁就按 <b>T</b> 啟動 10:00 開場計時。</p>
+    <p><b>說</b>：「主課你們學了 Tool、Teammate、Digital Worker。今天 180 分鐘加課，主題是：Agent 靠什麼記得領域？答案是 Domain Memory。」</p>
+    <p><b>前提</b>：對象是已完成主課的學員；DDD 概念全部透過 domain-memory Plugin 的操作來學，不另開理論講堂。</p>
+  </aside>
+</section>
+
+<section class="slide slide-title" data-seg="dlc-opening" data-title="解鎖 開場" data-minute="0" data-unlock="dlc-opening">
+  <p class="kicker">第 0 分鐘 · 解鎖</p>
+  <h2 class="title">開場與環境 開始</h2>
+  <p class="subtitle">下載學員包、解出 Plugin、確認環境就緒</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開「開場與環境」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">接下來 10 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
+  <aside class="notes">
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。」</p>
+    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；下載後解壓到 <code>C:\dlc</code> 這類短路徑。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="開場與環境 4 個檢查點" data-minute="0" data-timer="10:00" data-gates="dlc-opening">
+  <p class="kicker">開場與環境 · 0–10</p>
+  <h2 class="title">開場 10 分鐘：環境就緒</h2>
+  <p class="muted">四個檢查點，每個都要看到成功輸出才算數。Runbook「開場與環境」以本段解鎖碼開啟，從檢查點 1 開始。</p>
+  <ol class="timeline">
+    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 依賴安裝與測試</b></li>
+    <li data-seg="dlc-opening"><span class="tl-min">03:00</span><b>2 · Plugin 解出與 SHA 核對</b></li>
+    <li data-seg="dlc-opening"><span class="tl-min">05:00</span><b>3 · readiness 與 quality-gates</b></li>
+    <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>4 · 確認真實 Python</b></li>
+  </ol>
+  <aside class="notes">
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都有『看到什麼算成功』。要輸入什麼都在 Runbook，投影只顯示時間與目前的檢查點。」</p>
+    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：第一頁就按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說明頁（為什麼、怎麼進行、分組）穿插在安裝等待時說，不另佔時間。</p>
+    <p><b>降級</b>：第 10 分鐘仍有人 E1–E5 未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="檢查點 1 · 依賴安裝與測試" data-minute="0">
+  <p class="kicker">檢查點 1 / 4 · 第 0–3 分鐘</p>
+  <h2 class="title">安裝依賴，起始 Repo 測試 76 passed</h2>
+  <ol class="steps">
+    <li>解出起始 Repo，進入專案資料夾、啟用 <code>.venv</code></li>
+    <li><code>pip install -r requirements.txt</code>（約 50 秒）</li>
+    <li><code>pytest -q</code>：看到 <b>76 passed</b></li>
+  </ol>
+  <p class="callout">Runbook › 開場與環境 › 檢查點 1 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：安裝依賴，跑一次測試，要看到 76 passed。安裝約 50 秒，我趁這段先說明今天為什麼要學 Domain Memory。」</p>
+    <p><b>看</b>：有沒有人在 <code>pip install -e .</code>（不需要）；是不是在別的資料夾跑測試；輸出是 76 passed 而不是 error。</p>
+    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 看 Python 是否 3.13、網路與 pip 來源；先記錄，不要全場等。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="為什麼是 Domain Memory" data-minute="1">
+  <p class="kicker">為什麼</p>
+  <h2 class="title">Agent 會忘，團隊會換人，領域知識需要住在檔案裡</h2>
+  <div class="cols-3">
+    <div class="card fx fx-up"><span class="chip">問題</span><h3>知識散在各處</h3><p>文件、ADR、程式、測試各說各話，Agent 只能猜。</p></div>
+    <div class="card fx fx-up"><span class="chip">做法</span><h3>候選 → 審查 → 事實</h3><p>用證據建候選，經人審查與簽章核准，才成為 reviewed 事實。</p></div>
+    <div class="card fx fx-up"><span class="chip">目的</span><h3>驅動受治理的變更</h3><p>Agent 依 reviewed 事實設計、實作，並用 counterfactual 證明。</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>說（安裝等待時，約 1 分鐘）</b>：「Agent 每次對話都從零開始。Domain Memory 把領域知識放進有證據、可驗證、可審查的檔案。今天你們先建一份，再用它做三個變更。」</p>
+    <p><b>注意</b>：只講動機，不示範指令；不提前說明 D3 情境細節。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="今天怎麼進行" data-minute="2">
+  <p class="kicker">180 分鐘</p>
+  <h2 class="title">建立 Memory → 審查核准 → 用它做三個變更 → 交接</h2>
+  <ol class="timeline">
+    <li data-seg="dlc-d1"><span class="tl-min">10</span><b>D1 · 共同語言與邊界（25）</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">35</span><b>D2 · 審查與核准，成對（25）</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">70</span><b>D3a · 電子發票（25）</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">95</span><b>D3b · 點數折抵（30）</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">125</span><b>D3c · 團體部分退款（30）</b></li>
+    <li data-seg="dlc-d4"><span class="tl-min">155</span><b>D4 · 交接；165 回顧</b></li>
+  </ol>
+  <aside class="notes">
+    <p><b>說（約 1 分鐘）</b>：「60–70 分休息。每段都從 Runbook 解鎖，投影只顯示時間與檢查點；每個檢查點 Agent 停下，你確認再繼續。D3 三個情境全做，依序累積。」</p>
+    <p><b>規則</b>：每段有獨立解鎖碼；卡住時主持人才按需發 Recovery，Recovery 不作為小組成果評分。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="檢查點 2 · Plugin 解出與 SHA 核對" data-minute="3">
+  <p class="kicker">檢查點 2 / 4 · 第 3–5 分鐘</p>
+  <h2 class="title">解出 Plugin，SHA 核對通過</h2>
+  <ol class="steps">
+    <li>解出 domain-memory 0.2.2 ZIP</li>
+    <li>依 Runbook 指令核對 SHA256 清單</li>
+    <li>看到逐檔與整包核對 OK</li>
+  </ol>
+  <p class="callout">Runbook › 開場與環境 › 檢查點 2 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（03:00／第 3 分）</b>：「第 3 分。檢查點 2：解出 Plugin，核對雜湊。我們不改 Plugin 一個位元組，核對是為了確定大家手上是同一份。」</p>
+    <p><b>看</b>：有沒有核對失敗，或只核整包不核逐檔；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
+    <p><b>介入訊號</b>：核對失敗 → 重新解壓或重新下載 ZIP，不要手動修改檔案。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="檢查點 3 · readiness 與 quality-gates" data-minute="5">
+  <p class="kicker">檢查點 3 / 4 · 第 5–8 分鐘</p>
+  <h2 class="title">readiness 判定 brownfield，quality-gates 列出 pytest</h2>
+  <ol class="steps">
+    <li>用 <code>dm</code> 腳本跑 <code>readiness</code>：輸出 <b>brownfield</b></li>
+    <li>跑 <code>quality-gates</code>：清單中有 <b>pytest</b></li>
+    <li>不要手打長指令，一律經 <code>tools/dm.ps1</code> 或 <code>dm.sh</code></li>
+  </ol>
+  <p class="callout">Runbook › 開場與環境 › 檢查點 3 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（05:00／第 5 分）</b>：「第 5 分。檢查點 3：讓 Plugin 看一下這個 Repo。readiness 要說是 brownfield，quality-gates 要列出 pytest。這兩個輸出之後每次變更都會再看。」</p>
+    <p><b>看</b>：是不是經由 dm 腳本執行（固定 -X utf8）；輸出是 brownfield 還是 greenfield。</p>
+    <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → 沒走 dm 腳本，改走腳本。</p>
+    <p><b>提示</b>：H1：「指令前綴是 tools/dm.ps1（或 dm.sh），不是直接呼叫 registry_tools.py。」</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="找夥伴" data-minute="7">
+  <p class="kicker">D2 預告</p>
+  <h2 class="title">兩人一組：proposer 與 maintainer</h2>
+  <div class="cols-2">
+    <div class="card fx fx-up"><span class="chip">proposer</span><h3>操作者</h3><p>準備 Change Package，提交提案；不得自己核准。</p></div>
+    <div class="card fx fx-up"><span class="chip">maintainer</span><h3>夥伴 · 持簽章金鑰</h3><p>核准、簽章 commit。人數為奇數時，第三人當 observer。</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>說</b>：「D2 兩人一組，一人當 proposer，另一人當 maintainer，持金鑰、核准、簽章。現在找好夥伴。」</p>
+    <p><b>注意</b>：同機雙身分仍可通過 <code>record-approval</code>（只比對字串）；明講這是教學示範而非安全保證。三人組時第三人當 Observer：對照 D2 簽章流程清單，確認每一步是對的人在做，並核對 <code>verify-audit</code> 輸出。</p>
+  </aside>
+</section>
+
+<section class="slide" data-seg="dlc-opening" data-title="檢查點 4 · 確認真實 Python" data-minute="8">
+  <p class="kicker">檢查點 4 / 4 · 第 8–10 分鐘</p>
+  <h2 class="title">確認 python 是真實直譯器，不是 Store 別名</h2>
+  <ol class="steps">
+    <li><code>python --version</code> 顯示 <b>3.13.x</b></li>
+    <li>在已啟用 <code>.venv</code> 的視窗再確認一次</li>
+    <li>還沒有夥伴的，現在找到今天 D2 的夥伴</li>
+  </ol>
+  <p class="callout">Runbook › 開場與環境 › 檢查點 4 · 填確認表單</p>
+  <aside class="notes">
+    <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Windows Store 的別名。之後 push 時 hook 會呼叫裸 python，這裡不處理，D2 會在 push 時卡住。順便找好夥伴，D2 兩人一組。」</p>
+    <p><b>看</b>：輸出是否為『Python was not found』或開啟 Microsoft Store；是否已找到夥伴。</p>
+    <p><b>介入訊號</b>：Store 別名 → 啟用 .venv 或關閉 App 執行別名；落單者就近併組，三人組第三人當 observer。</p>
+  </aside>
+</section>
+

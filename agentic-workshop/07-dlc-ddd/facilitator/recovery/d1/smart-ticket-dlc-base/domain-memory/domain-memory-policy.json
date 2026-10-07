@@ -1,0 +1,34 @@
+{
+  "format": "domain-memory-policy/v1",
+  "storage_mode": "tracked",
+  "data_classification": "internal",
+  "review_mode": "local-draft-only",
+  "review_governance": {
+    "verifier": "none",
+    "trigger": "none",
+    "ci_requirement": "none",
+    "authorized_signers": []
+  },
+  "source_policy": {
+    "selected_paths": [
+      "docs/adr",
+      "docs/requirements",
+      "src",
+      "tests"
+    ],
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "**/__pycache__/**"
+    ],
+    "authority": "DLC Proposer <proposer@example.com>"
+  },
+  "limits": {
+    "max_file_count": 10000,
+    "max_file_bytes": 10485760,
+    "max_total_bytes": 104857600,
+    "max_query_results": 100
+  },
+  "approved_command_profiles": []
+}

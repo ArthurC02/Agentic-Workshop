@@ -1,0 +1,141 @@
+{
+  "format": "domain-source-map/v1",
+  "repo_root": ".",
+  "source_order": [
+    "repository_instructions",
+    "decisions",
+    "requirements",
+    "contracts",
+    "bounded_contexts",
+    "implementation",
+    "tests"
+  ],
+  "source_groups": [
+    {
+      "kind": "repository_instructions",
+      "authority": "instructions to coding agents, not a statement of the business domain",
+      "caution": "These files exist to steer agents working in this repository. They are rewritten whenever the workflow changes, and a Domain Memory that rests on one loses its evidence when it is. Select them only for a domain fact no other source states, and record the gap.",
+      "paths": []
+    },
+    {
+      "kind": "decisions",
+      "authority": "current approved decisions when their status says so",
+      "paths": [
+        "docs/adr"
+      ]
+    },
+    {
+      "kind": "requirements",
+      "authority": "intended behavior and acceptance criteria",
+      "paths": [
+        "docs/requirements"
+      ]
+    },
+    {
+      "kind": "contracts",
+      "authority": "inter-process promises and compatibility",
+      "paths": []
+    },
+    {
+      "kind": "bounded_contexts",
+      "authority": "candidate technical boundaries requiring domain review",
+      "paths": []
+    },
+    {
+      "kind": "implementation",
+      "authority": "current executable behavior",
+      "paths": [
+        "src"
+      ]
+    },
+    {
+      "kind": "tests",
+      "authority": "evidence that a specific behavior is checked",
+      "paths": [
+        "tests/integration/test_advance.py",
+        "tests/integration/test_best_discount_api.py",
+        "tests/integration/test_changes.py",
+        "tests/integration/test_features.py",
+        "tests/integration/test_group_creation.py",
+        "tests/integration/test_group_payment.py",
+        "tests/integration/test_members.py",
+        "tests/integration/test_missing_resources_api.py",
+        "tests/integration/test_records.py",
+        "tests/integration/test_refunds.py",
+        "tests/integration/test_seats.py",
+        "tests/integration/test_seed.py",
+        "tests/test_health.py",
+        "tests/unit/test_best_discount_policy.py",
+        "tests/unit/test_fare_policy.py",
+        "tests/unit/test_services.py"
+      ]
+    }
+  ],
+  "missing_groups": [
+    "repository_instructions",
+    "contracts",
+    "bounded_contexts"
+  ],
+  "selection_status": "developer-confirmed",
+  "governance_candidates": {
+    "ci_tools": [],
+    "recommended_verifier": "git-signed-commit",
+    "recommended_trigger": "git-push"
+  },
+  "note": "The map locates candidate sources. It does not establish a domain fact or source authority by itself.",
+  "selected_paths": [
+    "docs/adr",
+    "docs/requirements",
+    "src",
+    "tests"
+  ],
+  "source_policy_report": {
+    "files": 52,
+    "total_bytes": 85414,
+    "oversized_files": [],
+    "errors": []
+  },
+  "source_kinds": {
+    "docs/adr": "decisions",
+    "docs/requirements": "requirements",
+    "src": "implementation",
+    "tests": "unclassified"
+  },
+  "git_state": {
+    "tracked_objects": {
+      "docs/adr": "f89f0822c7e34d48ca9588d6eaf9b36951b4175a",
+      "docs/requirements": "7f28c424e3b5b9a64208ac695339389bc640b526",
+      "src": "ea127c28950815978c37b31f09ceef50f20bfee7",
+      "tests": "1a204036bfec04ba318ff83d1ff4864debc2a304"
+    },
+    "dirty_sources": []
+  },
+  "source_snapshots": [
+    {
+      "path": "docs/adr",
+      "file_count": 4,
+      "digest": "sha256:cdbc1f5b57a81c491bf6f268ab266bcd725906c89759b754d07a49edb38d4570",
+      "listing_sha256": "sha256:f0fb1a141a54fabaed5d7499d3c55e58f08cda808219ed5155daefd775283911"
+    },
+    {
+      "path": "docs/requirements",
+      "file_count": 3,
+      "digest": "sha256:a698a32ae7fbc89a63639a19070f8bc9a6743c08b42ca66975146abaab740ca3",
+      "listing_sha256": "sha256:807df746019cfd35f5d8a1fa8b1db5f1c6b53ba5801d05fc9d243a76288db49b"
+    },
+    {
+      "path": "src",
+      "file_count": 27,
+      "digest": "sha256:857680448712718a684d66d66e151e1423c5acc85fa1a5d9f207c8615dcb83ab",
+      "listing_sha256": "sha256:e846e115a405f7d35ea0387b57f9d87eeb4a3bb56f1211dc775ec8cbef3a11f0"
+    },
+    {
+      "path": "tests",
+      "file_count": 18,
+      "digest": "sha256:606aa6c3739fea7861f3e59e0b970b8298f11c159aec89c6e21a3cf6e7654af0",
+      "listing_sha256": "sha256:d40c413da8312da7f017d9053b02a94cf27019bf4b1ac60229ac278c52ad227b"
+    }
+  ],
+  "confirmed_by": "Proposer <proposer@example.com>",
+  "confirmed_at": "2026-10-07T02:57:59.073452Z"
+}
