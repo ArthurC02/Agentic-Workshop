@@ -34,7 +34,7 @@
    * ------------------------------------------------------------------ */
   var store = {
     ok: (function () {
-      try { var k = 'stw:__probe'; localStorage.setItem(k, '1'); localStorage.removeItem(k); return true; } catch (e) { return false; }
+      try { var k = '{{STORAGE_PREFIX}}__probe'; localStorage.setItem(k, '1'); localStorage.removeItem(k); return true; } catch (e) { return false; }
     })(),
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, String(v)); return true; } catch (e) { return false; } },
@@ -292,7 +292,7 @@
   function stepIndex(id) {
     var list = steps[id];
     if (!list) return -1;
-    var want = store.get('stw:step:' + id);
+    var want = store.get('{{STORAGE_PREFIX}}step:' + id);
     for (var i = 0; i < list.length; i++) if (list[i].id === want) return i;
     return 0;
   }
@@ -301,7 +301,7 @@
     var list = steps[id];
     if (!list) return;
     list.forEach(function (s, k) { s.el.hidden = k !== i; });
-    store.set('stw:step:' + id, list[i].id);
+    store.set('{{STORAGE_PREFIX}}step:' + id, list[i].id);
   }
 
   function renderNavSteps() {
@@ -439,7 +439,7 @@
     var changed = id !== currentId;
     Object.keys(articles).forEach(function (k) { articles[k].hidden = (k !== id); });
     currentId = id;
-    store.set('stw:last-page', id);
+    store.set('{{STORAGE_PREFIX}}last-page', id);
     if (steps[id]) {
       var stepEl = anchorEl && anchorEl.closest ? anchorEl.closest('.rb-step') : null;
       var k = stepEl ? steps[id].map(function (s) { return s.el; }).indexOf(stepEl) : -1;
@@ -476,7 +476,7 @@
       var art = target && target.closest ? target.closest('.rb-page') : null;
       if (art) { showPage(art.getAttribute('data-page'), target); return; }
     }
-    var last = store.get('stw:last-page');
+    var last = store.get('{{STORAGE_PREFIX}}last-page');
     showPage(last && articles[last] ? last : order[0]);
   }
 
@@ -575,7 +575,7 @@
   }
 
   function defaultShell() {
-    var s = store.get('stw:shell');
+    var s = store.get('{{STORAGE_PREFIX}}shell');
     if (s === 'powershell' || s === 'bash') return s;
     var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
     return /win/i.test(plat) ? 'powershell' : 'bash';
@@ -602,7 +602,7 @@
       $$('.rb-cmd-tab', box).forEach(function (t) {
         on(t, 'click', function () {
           var sh = t.getAttribute('data-shell');
-          store.set('stw:shell', sh);
+          store.set('{{STORAGE_PREFIX}}shell', sh);
           applyShell(sh, doc);
         });
       });
@@ -614,7 +614,7 @@
     $$('input.rb-check[data-check]', ctx).forEach(function (cb) {
       if (cb.getAttribute('data-rb-init')) return;
       cb.setAttribute('data-rb-init', '1');
-      var key = 'stw:check:' + cb.getAttribute('data-check');
+      var key = '{{STORAGE_PREFIX}}check:' + cb.getAttribute('data-check');
       cb.checked = store.get(key) === '1';
       var li = cb.closest ? cb.closest('.rb-task') : null;
       if (li) li.classList.toggle('is-checked', cb.checked);
@@ -830,7 +830,7 @@
     }
     host.setAttribute('data-rb-init', '1');
     var fid = def.id || host.getAttribute('data-form-id') || 'form';
-    var key = 'stw:form:' + fid;
+    var key = '{{STORAGE_PREFIX}}form:' + fid;
     var saved = store.getJSON(key) || {};
     var values = {}, inputs = {};
     var fields = def.fields || [];
@@ -1079,7 +1079,7 @@
     if (unlocked[gid]) return true;
     var content = decodePayload(gid, n, g.payload);
     applyGroup(gid, content);
-    store.set('stw:unlocked:' + gid, n);
+    store.set('{{STORAGE_PREFIX}}unlocked:' + gid, n);
     return true;
   }
 
@@ -1111,12 +1111,12 @@
   function restoreUnlocked() {
     var restored = [];
     DATA.groups.forEach(function (g) {
-      var n = store.get('stw:unlocked:' + g.id);
+      var n = store.get('{{STORAGE_PREFIX}}unlocked:' + g.id);
       if (!n) return;
       try {
         if (tryGroup(g.id, n)) restored.push(g.label || g.id);
-        else store.del('stw:unlocked:' + g.id);
-      } catch (e) { store.del('stw:unlocked:' + g.id); }
+        else store.del('{{STORAGE_PREFIX}}unlocked:' + g.id);
+      } catch (e) { store.del('{{STORAGE_PREFIX}}unlocked:' + g.id); }
     });
     return restored;
   }
@@ -1236,7 +1236,7 @@
     on($('.rb-theme-btn'), 'click', function () {
       var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', t);
-      store.set('stw:theme', t);
+      store.set('{{STORAGE_PREFIX}}theme', t);
     });
   }
 

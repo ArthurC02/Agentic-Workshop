@@ -1,3 +1,4 @@
+import dataclasses
 import tempfile
 import unittest
 import zipfile
@@ -20,6 +21,18 @@ class ParticipantDistributionTests(unittest.TestCase):
             with zipfile.ZipFile(target) as archive:
                 self.assertEqual(archive.namelist(), ["runbook.html"])
                 self.assertEqual(archive.read("runbook.html"), b"reviewed HTML")
+
+    def test_dlc_edition_writes_its_own_zip_and_never_the_main_one(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "runbook.html"
+            source.write_bytes(b"dlc HTML")
+            edition = dataclasses.replace(pm.bm.MAIN, name="dlc", materials=root,
+                                                package_output="dist/materials-dlc/participant-materials-dlc.zip")
+            with mock.patch.object(pm.bm, "ROOT", root), mock.patch.object(pm.bm, "outputs", return_value={"runbook": source}), mock.patch.object(pm.bm, "build_runbook", return_value=(b"dlc HTML", {})):
+                target = pm.package(edition)
+            self.assertEqual(target, root / "dist/materials-dlc/participant-materials-dlc.zip")
+            self.assertFalse((root / "dist/materials").exists())
 
     def test_stale_html_is_rejected_before_distribution(self):
         with tempfile.TemporaryDirectory() as tmp:

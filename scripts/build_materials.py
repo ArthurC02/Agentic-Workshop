@@ -20,6 +20,7 @@ import os
 import re
 import sys
 import zipfile
+from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote
@@ -60,6 +61,72 @@ RECOVERY_GROUPS = {group: minute for group, minute in RECOVERY_DOWNLOADS.values(
 #   04-digital-worker/participant/06-exception-response-card.md) that states the blank card does NOT
 #   pre-release the scenario or the answer. Remove this entry to make the build strict again.
 MARKER_EXEMPTIONS = (("b3-exception-card", "空白範本不預發情境或標準答案"),)
+TOTAL_MINUTES = 90
+STORAGE_PREFIX_TOKEN = "{{STORAGE_PREFIX}}"
+
+
+@dataclass(frozen=True)
+class Edition:
+    """One course edition: where its sources live and the rules its materials are validated against."""
+    name: str
+    materials: Path
+    candidate_id: str
+    candidate_root: Path
+    plan: tuple
+    total_minutes: int
+    recovery_downloads: dict = field(default_factory=dict)
+    marker_exemptions: tuple = ()
+    forbidden_markers: tuple = FORBIDDEN_MARKERS
+    b0_guard: bool = False  # B0 pedagogy regexes + build_delivery.content_policy (main course only)
+    storage_prefix: str = "stw:"  # runbook localStorage key prefix; file:// pages share one origin
+    package_output: str = "dist/materials/participant-materials.zip"  # relative to ROOT
+
+    def __post_init__(self):
+        if not re.fullmatch(r"[a-z0-9]+:", self.storage_prefix):
+            raise BuildError("storage_prefix must match [a-z0-9]+:", [self.storage_prefix])
+
+    @property
+    def candidate_dir(self) -> Path:
+        return self.candidate_root / self.candidate_id
+
+    @property
+    def segments(self) -> tuple:
+        return tuple(seg for seg, *_rest in self.plan) + ("reveal",)
+
+    @property
+    def recovery_groups(self) -> dict:
+        return {group: minute for group, minute in self.recovery_downloads.values()}
+
+
+DLC_MATERIALS = ROOT / "agentic-workshop" / "materials-dlc"
+
+
+def load_edition(name: str = "main") -> Edition:
+    if name == "main":
+        return MAIN
+    if name != "dlc":
+        raise BuildError("Unknown edition", [name])
+    # ponytail: DLC declares plan/candidate/recovery downloads in its own edition.json.
+    path = DLC_MATERIALS / "edition.json"
+    if not path.exists():
+        raise BuildError("DLC edition is not set up yet", [
+            f"missing {path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path}",
+            'expected JSON: {"candidate_id": "<hash16 under dist/dlc-candidate/>", "total_minutes": 180, '
+            '"plan": [["opening", 0, 10, "開場"], ...], "marker_exemptions": [["page-id", "exact phrase"]]}'])
+    try:
+        cfg = json.loads(read_text(path))
+        return Edition(name="dlc", materials=DLC_MATERIALS, candidate_id=str(cfg["candidate_id"]),
+                       candidate_root=ROOT / "dist" / "dlc-candidate",
+                       plan=tuple((str(s), int(a), int(b), str(label)) for s, a, b, label in cfg["plan"]),
+                       total_minutes=int(cfg["total_minutes"]),
+                       recovery_downloads={str(name): (str(group), int(minute)) for name, (group, minute)
+                                           in cfg.get("recovery_downloads", {}).items()},
+                       marker_exemptions=tuple(tuple(x) for x in cfg.get("marker_exemptions", ())),
+                       forbidden_markers=tuple(cfg.get("forbidden_markers", FORBIDDEN_MARKERS)),
+                       storage_prefix="stwdlc:",
+                       package_output="dist/materials-dlc/participant-materials-dlc.zip")
+    except (KeyError, TypeError, ValueError) as exc:
+        raise BuildError("Invalid DLC edition.json", [f"{path}: {type(exc).__name__}: {exc}"]) from exc
 
 
 class BuildError(Exception):
@@ -68,6 +135,11 @@ class BuildError(Exception):
     def __init__(self, title: str, problems: list[str] | None = None):
         self.problems = list(problems or [])
         super().__init__(title + ("".join("\n  - " + p for p in self.problems)))
+
+
+MAIN = Edition(name="main", materials=MATERIALS, candidate_id=CANDIDATE_ID, candidate_root=CANDIDATE.parent,
+               plan=PLAN, total_minutes=TOTAL_MINUTES, recovery_downloads=RECOVERY_DOWNLOADS,
+               marker_exemptions=MARKER_EXEMPTIONS, b0_guard=True)
 
 
 # ---------------------------------------------------------------- generic helpers
@@ -118,7 +190,7 @@ def script_safe_json(value) -> str:
     return text.replace("<", "\\u003c")
 
 
-def load_codes(materials: Path) -> list[dict]:
+def load_codes(materials: Path, recovery_groups: dict = RECOVERY_GROUPS) -> list[dict]:
     data = json.loads(read_text(materials / "unlock-codes.json"))
     groups = data.get("groups")
     problems = []
@@ -132,7 +204,7 @@ def load_codes(materials: Path) -> list[dict]:
         if g.get("id") in seen:
             problems.append(f"duplicate group id {g.get('id')!r}")
         seen.add(g.get("id"))
-        if g.get("id") in RECOVERY_GROUPS and g.get("minute") != RECOVERY_GROUPS[g["id"]]:
+        if g.get("id") in recovery_groups and g.get("minute") != recovery_groups[g["id"]]:
             problems.append(f"recovery group {g['id']!r} has incorrect release minute")
         if g.get("id") == "open":
             problems.append("'open' is reserved and cannot be an unlock group")
@@ -141,7 +213,7 @@ def load_codes(materials: Path) -> list[dict]:
     if problems:
         raise BuildError("Invalid unlock-codes.json", problems)
     for g in groups:
-        if g["id"] in RECOVERY_GROUPS and any(
+        if g["id"] in recovery_groups and any(
                 other["id"] != g["id"] and normalize_code(str(other["code"])) == normalize_code(str(g["code"]))
                 for other in groups):
             raise BuildError("Recovery unlock code must be independent", [g["id"]])
@@ -364,7 +436,7 @@ class _SlideParser(HTMLParser):
                 self._current = None
 
 
-def plan_problems(plan=PLAN) -> list[str]:
+def plan_problems(plan=PLAN, total: int = TOTAL_MINUTES) -> list[str]:
     problems = []
     expected = 0
     for seg, start, end, _label in plan:
@@ -375,13 +447,16 @@ def plan_problems(plan=PLAN) -> list[str]:
         expected = end
     if plan and plan[0][1] != 0:
         problems.append("plan must start at minute 0")
-    if sum(end - start for _, start, end, _ in plan) != 90 or expected != 90:
-        problems.append("plan segments must total 90 minutes ending at 90")
+    if sum(end - start for _, start, end, _ in plan) != total or expected != total:
+        problems.append(f"plan segments must total {total} minutes ending at {total}")
     return problems
 
 
-def validate_slides(slides_html: str, groups: list[dict], plan=PLAN) -> list[dict]:
+def validate_slides(slides_html: str, groups: list[dict], plan=None, edition: Edition = MAIN) -> list[dict]:
     """Validate deck slides; returns parsed slides or raises BuildError listing every problem."""
+    plan = edition.plan if plan is None else plan
+    segments = tuple(seg for seg, *_rest in plan) + ("reveal",)
+    recovery_groups = edition.recovery_groups
     if isinstance(slides_html, str):
         parser = _SlideParser()
         parser.feed(slides_html)
@@ -389,7 +464,7 @@ def validate_slides(slides_html: str, groups: list[dict], plan=PLAN) -> list[dic
         slides = parser.slides
     else:
         slides = list(slides_html)
-    problems = plan_problems(plan)
+    problems = plan_problems(plan, edition.total_minutes)
     group_ids = {g["id"]: g for g in groups}
     plan_index = {seg: i for i, (seg, *_rest) in enumerate(plan)}
     plan_start = {seg: start for seg, start, _e, _l in plan}
@@ -402,8 +477,8 @@ def validate_slides(slides_html: str, groups: list[dict], plan=PLAN) -> list[dic
         a = s["attrs"]
         where = f"slide {n} ({a.get('data-title') or '?'}, {s.get('file', '')}:{s['line']})"
         seg = a.get("data-seg")
-        if seg not in SEGMENTS:
-            problems.append(f"{where}: data-seg {seg!r} not in {SEGMENTS}")
+        if seg not in segments:
+            problems.append(f"{where}: data-seg {seg!r} not in {segments}")
         if not (a.get("data-title") or "").strip():
             problems.append(f"{where}: missing data-title")
         if not s["notes"]:
@@ -424,7 +499,7 @@ def validate_slides(slides_html: str, groups: list[dict], plan=PLAN) -> list[dic
             problems.append(f"{where}: data-countdown must be seconds")
         unlock = a.get("data-unlock")
         if unlock is not None:
-            if unlock in RECOVERY_GROUPS:
+            if unlock in recovery_groups:
                 problems.append(f"{where}: Recovery codes must only be supplied on demand in the speaker window")
             if unlock not in group_ids:
                 problems.append(f"{where}: data-unlock {unlock!r} is not a known group")
@@ -437,7 +512,7 @@ def validate_slides(slides_html: str, groups: list[dict], plan=PLAN) -> list[dic
                     problems.append(f"{where}: unlock minute {group_ids[unlock]['minute']} != segment "
                                     f"{effective} start {plan_start[effective]}")
     for g in groups:
-        if g["id"] in RECOVERY_GROUPS:
+        if g["id"] in recovery_groups:
             continue  # Only the speaker window supplies these codes on demand.
         if unlocks.get(g["id"], 0) < 1:
             problems.append(f"group {g['id']!r} has no data-unlock slide")
@@ -458,7 +533,19 @@ def deck_sources(materials: Path) -> dict:
             "slides": slide_files, "codes": materials / "unlock-codes.json"}
 
 
-def build_deck(materials: Path = MATERIALS) -> tuple[bytes, dict]:
+JS_PLAN_ROW = re.compile(r'\{\s*seg:\s*"([^"]+)",\s*label:\s*"([^"]*)",\s*start:\s*(\d+),\s*end:\s*(\d+)\s*\}')
+
+
+def js_plan_problems(script: str, plan) -> list[str]:
+    """The deck runtime keeps its own JS PLAN (per-edition js/ directory); it must equal the edition plan."""
+    rows = tuple((seg, int(a), int(b), label) for seg, label, a, b in JS_PLAN_ROW.findall(script))
+    if rows and rows != tuple(tuple(p) for p in plan):
+        return [f"deck js PLAN {rows} differs from edition plan {tuple(plan)}"]
+    return []
+
+
+def build_deck(materials: Path | None = None, edition: Edition = MAIN) -> tuple[bytes, dict]:
+    materials = edition.materials if materials is None else materials
     paths = deck_sources(materials)
     missing = [str(p) for k, p in paths.items() if k not in ("slides", "scripts") and not Path(p).exists()]
     if not paths["scripts"]:
@@ -467,7 +554,7 @@ def build_deck(materials: Path = MATERIALS) -> tuple[bytes, dict]:
         missing.append(str(materials / "facilitator-deck/src/slides/*.html"))
     if missing:
         raise BuildError("Deck sources missing", missing)
-    groups = load_codes(materials)
+    groups = load_codes(materials, edition.recovery_groups)
     template, style = read_text(paths["template"]), read_text(paths["style"])
     script = "\n;\n".join(read_text(p) for p in paths["scripts"])
     parts, slides = [], []
@@ -481,7 +568,9 @@ def build_deck(materials: Path = MATERIALS) -> tuple[bytes, dict]:
         slides.extend(parser.slides)
         parts.append(text.rstrip("\n"))
     slides_html = "\n".join(parts) + "\n"
-    validate_slides(slides, groups)
+    validate_slides(slides, groups, edition=edition)
+    if js_plan_problems(script, edition.plan):
+        raise BuildError("Deck validation failed", js_plan_problems(script, edition.plan))
     if re.search(r"</script", script, re.I):
         raise BuildError("deck scripts must not contain a literal </script")
     inputs = [("template", template.encode()), ("style", style.encode()),
@@ -512,8 +601,9 @@ def md_module():
 class Candidate:
     """Read-only access to hash-verified participant ZIPs of the controlled candidate."""
 
-    def __init__(self, directory: Path = CANDIDATE):
+    def __init__(self, directory: Path = CANDIDATE, recovery_downloads: dict = RECOVERY_DOWNLOADS):
         self.directory = Path(directory)
+        self.recovery_downloads = recovery_downloads
         evidence_path = self.directory / "build-evidence.json"
         if not Path(long_path(evidence_path)).exists():
             raise BuildError("Candidate evidence missing", [str(evidence_path)])
@@ -526,7 +616,7 @@ class Candidate:
     def zip_bytes(self, name: str) -> bytes:
         if name in self._zips:
             return self._zips[name]
-        if name not in RECOVERY_DOWNLOADS and not re.fullmatch(r"participant-[a-z0-9-]+\.zip", name or ""):
+        if name not in self.recovery_downloads and not re.fullmatch(r"participant-[a-z0-9-]+\.zip", name or ""):
             raise BuildError("Only participant-*.zip packages may be used", [repr(name)])
         package_id = name[:-4]
         package = self.packages.get(package_id)
@@ -534,10 +624,12 @@ class Candidate:
             raise BuildError("Package not listed in build-evidence.json", [name])
         if package.get("role") != "participant":
             raise BuildError("Package is not a participant package", [name])
-        if name in RECOVERY_DOWNLOADS:
-            expected_minute = RECOVERY_DOWNLOADS[name][1]
-            expected_version = "B1" if name == "recovery-52-b1.zip" else "B2"
-            if package.get("release_minute") != expected_minute or package.get("source_version") != expected_version:
+        if name in self.recovery_downloads:
+            expected_minute = self.recovery_downloads[name][1]
+            # B1/B2 source versions exist only in the main course; other editions check the minute alone.
+            expected_version = {"recovery-52-b1.zip": "B1", "recovery-63-b2.zip": "B2"}.get(name)
+            if package.get("release_minute") != expected_minute or (
+                    expected_version and package.get("source_version") != expected_version):
                 raise BuildError("Recovery package release minute or source version mismatch", [name])
         data = read_bytes(self.directory / name)
         actual = sha256_hex(data)
@@ -558,7 +650,7 @@ class Candidate:
         return self._members[name]
 
     def read_member(self, name: str, path: str) -> bytes:
-        if name in RECOVERY_DOWNLOADS:
+        if name in self.recovery_downloads:
             raise BuildError("Recovery packages are download-only", [name])
         members = self.members(name)
         if path not in members:
@@ -711,6 +803,8 @@ def runbook_sources(materials: Path) -> dict:
 def render_pages(ordered: list[dict], candidate: Candidate, group_ids: set[str]):
     """Render every page; returns (inner html by id, downloads by group, used zips, resolver)."""
     md = md_module()
+    recovery_downloads = candidate.recovery_downloads
+    recovery_groups = {g: m for g, m in recovery_downloads.values()}
     includes_by_page = {ch["id"]: [f"{a.get('zip')}:{a.get('path')}" for a in scan_fence_args(ch["body"], "include")]
                         for ch in ordered}
     resolver = LinkResolver([ch["id"] for ch in ordered], includes_by_page)
@@ -740,9 +834,9 @@ def render_pages(ordered: list[dict], candidate: Candidate, group_ids: set[str])
                 raise
 
         def register_download(download_id, zip_name, label=None, _pid=pid, _group=group, _errors=errors):
-            if zip_name in RECOVERY_DOWNLOADS and _group != RECOVERY_DOWNLOADS[zip_name][0]:
+            if zip_name in recovery_downloads and _group != recovery_downloads[zip_name][0]:
                 raise BuildError("Recovery download requires its independent unlock group", [zip_name, _group])
-            if _group in RECOVERY_GROUPS and zip_name not in RECOVERY_DOWNLOADS:
+            if _group in recovery_groups and zip_name not in recovery_downloads:
                 raise BuildError("Recovery group may only download its matching recovery package", [zip_name, _group])
             if _group == "open":
                 _errors.append(f"[{_pid}] downloads are not allowed on open pages ({download_id})")
@@ -769,21 +863,31 @@ def render_pages(ordered: list[dict], candidate: Candidate, group_ids: set[str])
     return rendered, downloads, used_zips, resolver
 
 
-def build_runbook(materials: Path = MATERIALS, candidate_dir: Path = CANDIDATE,
-                  candidate_id: str = CANDIDATE_ID, exemptions=MARKER_EXEMPTIONS) -> tuple[bytes, dict]:
+def build_runbook(materials: Path | None = None, candidate_dir: Path | None = None,
+                  candidate_id: str | None = None, exemptions=None, edition: Edition = MAIN) -> tuple[bytes, dict]:
+    materials = edition.materials if materials is None else materials
+    candidate_dir = edition.candidate_dir if candidate_dir is None else candidate_dir
+    candidate_id = edition.candidate_id if candidate_id is None else candidate_id
+    exemptions = edition.marker_exemptions if exemptions is None else exemptions
     paths = runbook_sources(materials)
     missing = [str(p) for p in paths.values() if not Path(p).exists()]
     if missing:
         raise BuildError("Runbook sources missing", missing)
-    groups = load_codes(materials)
+    groups = load_codes(materials, edition.recovery_groups)
     group_by_id = {g["id"]: g for g in groups}
     chapters = load_chapters(paths["content"], set(group_by_id))
     ordered = nav_order(chapters)
-    candidate = Candidate(candidate_dir)
+    candidate = Candidate(candidate_dir, edition.recovery_downloads)
     rendered, downloads, used_zips, resolver = render_pages(ordered, candidate, set(group_by_id))
     template, style, script = (read_text(paths[k]) for k in ("template", "style", "script"))
     if re.search(r"</script", script, re.I):
         raise BuildError("runbook.js must not contain a literal </script")
+    # Template and runbook.js spell localStorage keys as '{{STORAGE_PREFIX}}theme' etc.; substituted here so
+    # each edition keeps its own keys (main stays 'stw:' for existing participant data).
+    template_out = template.replace(STORAGE_PREFIX_TOKEN, edition.storage_prefix)
+    script_out = script.replace(STORAGE_PREFIX_TOKEN, edition.storage_prefix)
+    if edition.storage_prefix != "stw:" and re.search(r"['\"`]stw:", template_out + script_out):
+        raise BuildError("Hard-coded 'stw:' storage key; use " + STORAGE_PREFIX_TOKEN, [edition.name])
 
     articles, group_pages = [], {}
     for ch in ordered:
@@ -824,7 +928,7 @@ def build_runbook(materials: Path = MATERIALS, candidate_dir: Path = CANDIDATE,
     nav = render_nav(ordered)
     data_html = '<script id="rb-data" type="application/json">' + script_safe_json(data) + "</script>"
     info = f"候選包 {esc(candidate_id)} · build {digest[:12]}"
-    document = fill_template(template, {"STYLE": style, "SCRIPT": script, "NAV": nav,
+    document = fill_template(template_out, {"STYLE": style, "SCRIPT": script_out, "NAV": nav,
                                         "PAGES": "\n".join(articles), "DATA": data_html, "BUILD_INFO": info})
 
     # ---- safety (4a-4d)
@@ -836,13 +940,13 @@ def build_runbook(materials: Path = MATERIALS, candidate_dir: Path = CANDIDATE,
     problems += check_plaintext_windows(document, locked_html, open_corpus,
                                         strip=tuple(g["payload"] for g in data_groups))
     texts = {ch["id"]: ch["title"] + "\n" + rendered[ch["id"]] for ch in ordered}
-    chrome = {"template": template, "runbook.css": style, "runbook.js": script, "nav": nav, "build-info": info}
+    chrome = {"template": template_out, "runbook.css": style, "runbook.js": script_out, "nav": nav, "build-info": info}
     exempted: list[str] = []
-    forbidden = scan_forbidden({**texts, **chrome}, exemptions=exemptions, exempted=exempted)
+    forbidden = scan_forbidden({**texts, **chrome}, edition.forbidden_markers, exemptions=exemptions, exempted=exempted)
     urls = scan_urls(texts) + scan_urls(chrome, allow_namespaces=True)
-    b0_hits = scan_b0_policy(ordered, rendered, {g["id"]: int(g["minute"]) for g in groups})
+    b0_hits = scan_b0_policy(ordered, rendered, {g["id"]: int(g["minute"]) for g in groups}) if edition.b0_guard else []
     b0_zip = "participant-29-b0.zip"
-    if b0_zip in used_zips:
+    if edition.b0_guard and b0_zip in used_zips:
         members = dict(candidate.members(b0_zip))
         members.pop("PACKAGE-MANIFEST.json", None)
         try:
@@ -861,27 +965,28 @@ def build_runbook(materials: Path = MATERIALS, candidate_dir: Path = CANDIDATE,
                "used_zips": sorted(used_zips), "bytes": len(out), "inputs_sha256": digest,
                "notes": list(resolver.unresolved), "exempted_markers": exempted,
                "safety": {"codes": "clean", "plaintext_windows": "clean", "forbidden_hits": 0,
-                          "external_urls": 0, "b0_policy": "clean" if b0_zip in used_zips else "not applicable"}}
+                          "external_urls": 0, "b0_policy": "clean" if edition.b0_guard and b0_zip in used_zips else "not applicable"}}
     return out, summary
 
 
 # ---------------------------------------------------------------- CLI
 
-def outputs(materials: Path = MATERIALS) -> dict[str, Path]:
+def outputs(materials: Path = MATERIALS) -> dict[str, Path]:  # same file names in every edition's materials dir
     return {"deck": materials / "facilitator-deck" / "facilitator-deck.html",
             "runbook": materials / "participant-runbook" / "runbook.html"}
 
 
-def run(check: bool = False, only: str | None = None, materials: Path = MATERIALS,
-        candidate_dir: Path = CANDIDATE, out_paths: dict[str, Path] | None = None) -> int:
+def run(check: bool = False, only: str | None = None, materials: Path | None = None,
+        candidate_dir: Path | None = None, out_paths: dict[str, Path] | None = None, edition: Edition = MAIN) -> int:
+    materials = edition.materials if materials is None else materials
     out_paths = out_paths or outputs(materials)
     targets = [only] if only else ["deck", "runbook"]
     status = 0
     for target in targets:
         if target == "deck":
-            data, summary = build_deck(materials)
+            data, summary = build_deck(materials, edition)
         else:
-            data, summary = build_runbook(materials, candidate_dir)
+            data, summary = build_runbook(materials, candidate_dir, edition=edition)
         path = out_paths[target]
         rel = path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else str(path)
         if check:
@@ -924,9 +1029,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build facilitator deck and participant runbook HTML.")
     parser.add_argument("--check", action="store_true", help="rebuild in memory and compare with disk")
     parser.add_argument("--only", choices=("deck", "runbook"))
+    parser.add_argument("--edition", choices=("main", "dlc"), default="main",
+                        help="main = 90-min course (materials/); dlc = DDD DLC (materials-dlc/)")
     args = parser.parse_args(argv)
     try:
-        return run(check=args.check, only=args.only)
+        return run(check=args.check, only=args.only, edition=load_edition(args.edition))
     except BuildError as exc:
         print("BUILD FAILED: " + str(exc), file=sys.stderr)
         return 2

@@ -663,3 +663,95 @@ class RealBuildIntegrationTests(unittest.TestCase):
                 self.assertIn(target, page_ids)
         hits = bm.scan_forbidden(decoded_all, exemptions=bm.MARKER_EXEMPTIONS)
         self.assertEqual(hits, [])
+
+
+# ---------------------------------------------------------------- editions
+
+DLC_PLAN = (("intro", 0, 7, "Intro"), ("greenfield", 7, 44, "Domain"), ("b1", 44, 180, "Model"))
+
+
+class EditionTests(FixtureCase):
+    def edition(self, **kw):
+        return bm.Edition(**{"name": "dlc", "materials": self.fx.materials, "candidate_id": "candidate",
+                             "candidate_root": self.fx.root, "plan": DLC_PLAN, "total_minutes": 180,
+                             "storage_prefix": "stwdlc:", **kw})
+
+    def use_dlc_sources(self):
+        slides = (slide("intro", "Intro", ' data-minute="00"') +
+                  slide("greenfield", "Unlock", ' data-minute="07" data-unlock="greenfield"') +
+                  slide("b1", "Unlock B1", ' data-minute="44" data-unlock="b1"') +
+                  slide("reveal", "Reveal", ' data-reveal-of="b1"'))
+        (self.fx.materials / "facilitator-deck" / "src" / "slides" / "10-all.html").write_text(slides, encoding="utf-8")
+        tpl = self.fx.materials / "participant-runbook" / "template"
+        (tpl / "runbook.template.html").write_text(
+            "<html><script>localStorage.getItem('{{STORAGE_PREFIX}}theme')</script><style>{{STYLE}}</style>"
+            "<aside>{{NAV}}<div>{{BUILD_INFO}}</div></aside><main>{{PAGES}}</main>{{DATA}}<script>{{SCRIPT}}</script>"
+            "</html>\n", encoding="utf-8")
+        (tpl / "runbook.js").write_text("store.set('{{STORAGE_PREFIX}}form:' + id);\n", encoding="utf-8")
+
+    def test_main_defaults_unchanged(self):
+        main = bm.load_edition("main")
+        self.assertIs(main, bm.MAIN)
+        self.assertEqual((main.materials, main.candidate_dir, main.plan, main.segments, main.total_minutes),
+                         (bm.MATERIALS, bm.CANDIDATE, bm.PLAN, bm.SEGMENTS, 90))
+        self.assertEqual((main.storage_prefix, main.recovery_groups, main.marker_exemptions),
+                         ("stw:", bm.RECOVERY_GROUPS, bm.MARKER_EXEMPTIONS))
+        self.assertEqual(main.package_output, "dist/materials/participant-materials.zip")
+        with self.assertRaises(bm.BuildError):
+            bm.load_edition("nope")
+
+    def test_dlc_edition_json(self):
+        with mock.patch.object(bm, "DLC_MATERIALS", self.fx.root / "materials-dlc"):
+            with self.assertRaises(bm.BuildError) as cm:
+                bm.load_edition("dlc")
+            self.assertIn("edition.json", str(cm.exception))
+            (self.fx.root / "materials-dlc").mkdir()
+            (self.fx.root / "materials-dlc" / "edition.json").write_text(json.dumps(
+                {"candidate_id": "abc", "total_minutes": 180, "plan": [list(p) for p in DLC_PLAN]}), encoding="utf-8")
+            dlc = bm.load_edition("dlc")
+        self.assertEqual((dlc.plan, dlc.total_minutes, dlc.storage_prefix), (DLC_PLAN, 180, "stwdlc:"))
+        self.assertEqual(dlc.candidate_dir, bm.ROOT / "dist" / "dlc-candidate" / "abc")
+        self.assertEqual(dlc.segments, ("intro", "greenfield", "b1", "reveal"))
+        self.assertEqual((dlc.recovery_downloads, dlc.b0_guard), ({}, False))
+        self.assertNotEqual(dlc.package_output, bm.MAIN.package_output)
+
+    def test_plan_uses_edition_total(self):
+        self.assertEqual(bm.plan_problems(DLC_PLAN, 180), [])
+        self.assertTrue(any("total 90" in p for p in bm.plan_problems(DLC_PLAN)))
+        with self.assertRaises(bm.BuildError):
+            bm.validate_slides(good_slides(), GROUPS, edition=self.edition())  # main segments under a dlc plan
+
+    def test_dlc_fixture_build(self):
+        self.use_dlc_sources()
+        ed = self.edition()
+        deck, summary = bm.build_deck(edition=ed)
+        self.assertEqual(summary["unlock_slides"], 2)
+        out, _ = bm.build_runbook(edition=ed)
+        text = out.decode("utf-8")
+        self.assertIn("'stwdlc:theme'", text)
+        self.assertIn("'stwdlc:form:'", text)
+        self.assertNotIn("STORAGE_PREFIX", text)
+        self.assertIn('"source_candidate":"candidate"', text)
+        # A runbook.js copied without the token would share main's keys: rejected.
+        (self.fx.materials / "participant-runbook" / "template" / "runbook.js").write_text(
+            "store.get('stw:form:x');\n", encoding="utf-8")
+        with self.assertRaises(bm.BuildError):
+            bm.build_runbook(edition=ed)
+        # The deck's own JS PLAN must match the edition plan.
+        (self.fx.materials / "facilitator-deck" / "src" / "js" / "10-core.js").write_text(
+            'var PLAN = [{ seg: "intro", label: "Intro", start: 0, end: 7 }];\n', encoding="utf-8")
+        with self.assertRaises(bm.BuildError) as cm:
+            bm.build_deck(edition=ed)
+        self.assertIn("deck js PLAN", str(cm.exception))
+
+    def test_main_js_plan_matches(self):
+        script = "\n".join(p.read_text(encoding="utf-8") for p in bm.deck_sources(bm.MATERIALS)["scripts"])
+        self.assertTrue(bm.JS_PLAN_ROW.findall(script))
+        self.assertEqual(bm.js_plan_problems(script, bm.PLAN), [])
+
+    def test_dlc_js_plan_matches(self):
+        # js_plan_problems passes silently when no JS PLAN row parses; pin that the real DLC deck does parse.
+        dlc = bm.load_edition("dlc")
+        script = "\n".join(p.read_text(encoding="utf-8") for p in bm.deck_sources(dlc.materials)["scripts"])
+        self.assertEqual(len(bm.JS_PLAN_ROW.findall(script)), len(dlc.plan))
+        self.assertEqual(bm.js_plan_problems(script, dlc.plan), [])
