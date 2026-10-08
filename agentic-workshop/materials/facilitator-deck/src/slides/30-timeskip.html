@@ -62,7 +62,7 @@
   <aside class="notes">
     <p><b>操作</b>：進入本頁即按 <b>T</b> 啟動 04:00 段落計時（00:00＝第 29 分），翻頁時持續計時。</p>
     <p><b>說（00:00／第 29 分，逐字）</b>：「我們快轉到上線12個月後。請停止自己的新專案開發，接手同一份既有系統。這次先各自請 Agent 理解，再比較證據與結論。」</p>
-    <p><b>節奏</b>：本頁與「Agent 的分工改變」合計約 30 秒，接著翻到解鎖頁。之後每分鐘翻一個檢查點：29 停手｜30 取得 B0｜31 確認同一版本與環境｜32 提醒若干測試失敗、文件要交叉驗證｜33 停止背景敘述，翻到「個人 Agent 分析」。</p>
+    <p><b>節奏</b>：本頁與「Agent 的分工改變」合計約 30 秒，接著翻到解鎖頁。之後依檢查點翻頁：29 停手並取得 B0｜31 開新對話先貼規則與背景｜32 請 Agent 建好環境並記下起點，提醒若干測試失敗、文件要交叉驗證｜33 停止背景敘述，翻到「個人 Agent 分析」。</p>
     <p><b>不可揭露</b>：B1／B2／B3 任務、Bug 根因、學生票率錯誤、檔案位置、失敗數量或文件落差位置。不能用個人 G1 或已修 B1 代替 B0。</p>
     <p>動畫（時鐘、月曆 0→12、月份進度條）於進入本頁時自動播放；系統設定「減少動態」時直接顯示終點畫面。轉場須在 4 分鐘內完成，實際時間需另行演練。</p>
   </aside>
@@ -105,91 +105,81 @@
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Time Skip，從檢查點 1 開始。接下來要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
     <p><b>操作</b>：計時已在「時間快轉」頁按 T 啟動；若還沒啟動，在本頁按 <b>T</b>（04:00，00:00＝第 29 分）。</p>
-    <p>本頁大字顯示 Time Skip 解鎖碼（解開 Time Skip 公告與交接、B0 下載、個人分析表、Shared Context 範本）；完整碼表見講者視窗。</p>
+    <p>本頁大字顯示 Time Skip 解鎖碼（解開 Time Skip 公告與交接、B0 下載、個人分析、Shared Context）；完整碼表見講者視窗。</p>
     <p><b>Recovery（B0 來源或啟動異常）</b>：正式 B0 或同源 clean-copy，保留 Bug；全員統一 B0；不可發診斷修復副本或 B1 替代初始分析。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="timeskip" data-title="Time Skip 四個檢查點" data-minute="29" data-timer="04:00" data-gates="timeskip">
-  <p class="kicker">Time Skip · 29–33 · Agent 是隊友（Teammate）</p>
-  <h2 class="title">4 分鐘：停手、接手同一份 B0</h2>
-  <p class="muted">本段只接手、建環境、跑測試，不修改程式。做完一個檢查點，填好 Runbook 的「確認」表單再往下。</p>
+<section class="slide" data-seg="timeskip" data-title="Time Skip · 現在在做什麼" data-minute="29" data-timer="04:00" data-gates="timeskip">
+  <p class="kicker">Time Skip · 29–33 · 技巧：開新對話先給規則與脈絡</p>
+  <h2 class="title">現在在做什麼</h2>
+  <table class="table fx fx-fade">
+    <tbody>
+      <tr><td><b>情境</b></td><td>上線 12 個月，你接手同事維護的既有系統 B0</td></tr>
+      <tr><td><b>你的目標</b></td><td>4 分鐘內停下 Greenfield，在 B0 開新對話，把環境跑起來</td></tr>
+      <tr><td><b>今天的技巧</b></td><td>換專案就開新對話，第一件事貼規則、說明背景</td></tr>
+      <tr><td><b>完成的樣子</b></td><td>Agent 複述得出規則；版本 B0、健康檢查正常，起點寫進 <code>notes/time-skip.md</code></td></tr>
+    </tbody>
+  </table>
   <ol class="timeline">
-    <li data-seg="timeskip"><span class="tl-min">00:00</span><b>1 · 停手</b></li>
-    <li data-seg="timeskip"><span class="tl-min">01:00</span><b>2 · 取得 B0</b></li>
-    <li data-seg="timeskip"><span class="tl-min">02:00</span><b>3 · 環境與版本</b></li>
-    <li data-seg="timeskip"><span class="tl-min">03:00</span><b>4 · 測試與基準</b></li>
+    <li data-seg="timeskip"><span class="tl-min">00:00</span><b>1 · 停手並取得 B0</b></li>
+    <li data-seg="timeskip"><span class="tl-min">02:00</span><b>2 · 開新對話先貼規則與背景</b></li>
+    <li data-seg="timeskip"><span class="tl-min">03:00</span><b>3 · 請 Agent 建好環境並記下起點</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 10 秒）</b>：「4 分鐘，每分鐘一個檢查點：停手、取得 B0、請 Agent 確認環境與版本、跑測試並建立 Git 基準。指令都由 Agent 打，不修改程式，Agent 分析從第 33 分鐘開始。」</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每分鐘翻到下一個檢查點頁；本頁時間軸依計時自動標示目前檢查點，需要總覽時可翻回。</p>
+    <p><b>說（約 15 秒，先講技巧再講步驟）</b>：「這段的技巧是：換專案就開新對話，第一件事貼規則、說明背景，再請 Agent 複述。Agent 不記得上一個專案，沒給規則它就照自己的習慣做。步驟三個：停手並取得 B0、開新對話貼規則與背景、請 Agent 建環境並記下起點。不修改程式，分析從第 33 分鐘開始。」</p>
+    <p><b>操作</b>：說完翻到檢查點 1。本頁時間軸依計時自動標示目前檢查點，需要總覽時可翻回。</p>
     <p><b>可回答</b>：操作與活動範圍、環境安裝／啟動／測試命令。<b>不可揭露</b>：B1／B2／B3 任務、Bug 根因、學生票率錯誤、檔案位置、失敗數量或文件落差位置。</p>
-    <p><b>巡場時看什麼</b>：學員是否仍在改自己的 MVP、是否已叫 Agent 修程式、是否卡在環境。</p>
+    <p><b>巡場時看什麼</b>：B0 是不是開了新對話、第一件事有沒有貼規則與背景（本段技巧）；是否仍在改自己的 MVP、是否已叫 Agent 修程式、是否卡在環境。不因表單少填扣分。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="timeskip" data-title="檢查點 1 · 停手" data-minute="29">
-  <p class="kicker">檢查點 1 / 4 · 第 29–30 分鐘</p>
-  <h2 class="title">停手：保留 Greenfield 現況</h2>
+<section class="slide" data-seg="timeskip" data-title="檢查點 1 · 停手並取得 B0" data-minute="29">
+  <p class="kicker">檢查點 1 / 3 · 第 29–31 分鐘</p>
+  <h2 class="title">停手並取得 B0</h2>
   <ol class="steps">
-    <li>停止修改自己的 Greenfield，保留現況，不刪除、不覆寫</li>
-    <li>請 Greenfield 的 Agent 停止它在背景啟動的伺服器</li>
-    <li>讀時間快轉公告與公司成長摘要</li>
-  </ol>
-  <p class="callout">Runbook › Time Skip › 檢查點 1 · 填「檢查點 1 確認」</p>
-  <aside class="notes">
-    <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，停掉 Greenfield 的 App。讀一下公告：系統上線 12 個月，增加了會員、優惠、改退票、通知、座位與稽核。」</p>
-    <p><b>看</b>：是否仍在改自己的 MVP；Agent 是否還在背景執行 Greenfield 的工作（請學員停下）。</p>
-    <p><b>回答背景問題</b>：公開說明只描述模組與歷史成長；不得把內部原因、修正方法、文件落差的具體位置或後續任務解法帶進轉場。B0 延續 G1 的分層、Domain、四個核心業務 API、Health、固定資料與測試；演化重點是讓「理解與影響分析」成為必要能力，不是全面重建另一個產品。</p>
-    <p><b>完成條件（成長摘要）</b>：能說明核心流程如何延續、哪些能力新增，且不把文件或單一 Agent 的推論視為已確認事實。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="timeskip" data-title="檢查點 2 · 取得 B0" data-minute="30">
-  <p class="kicker">檢查點 2 / 4 · 第 30–31 分鐘</p>
-  <h2 class="title">取得 B0：同一份既有系統</h2>
-  <ol class="steps">
+    <li>保留 Greenfield 現況；請舊對話的 Agent 停掉它啟動的伺服器</li>
     <li>從 Runbook 下載 B0，解壓到短路徑，例如 <code>C:\work\b0</code></li>
-    <li>進入 <code>smart-ticket-b0</code>（含 <code>README.md</code>）</li>
-    <li>在 B0 開<b>新的</b> Agent 對話（Session），不沿用 Greenfield；先不交代工作</li>
+    <li>找到 <code>smart-ticket-b0</code>（含 <code>README.md</code>）</li>
   </ol>
-  <p class="callout">Runbook › Time Skip › 檢查點 2 · 填「檢查點 2 確認」</p>
+  <p class="callout">Runbook › Time Skip › 檢查點 1</p>
   <aside class="notes">
-    <p><b>說（00:01／第 30 分）</b>：「B0 已發放。請從 Runbook 下載，解壓到短路徑，在 B0 資料夾開一個新的 Agent 對話。」</p>
-    <p><b>看</b>：解壓到深層路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；沿用 Greenfield 的 Session；用自己的 G1 代替 B0。</p>
+    <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，請原本的 Agent 停掉 App。B0 已發放，從 Runbook 下載，解壓到短路徑。公告裡寫了：系統上線 12 個月，增加了會員、優惠、改退票、通知、座位與稽核。」</p>
+    <p><b>看</b>：是否仍在改自己的 MVP；解壓到深層路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；用自己的 G1 代替 B0。</p>
     <p><b>介入</b>：不能用個人 G1 或已修 B1 代替 B0；下載失敗時由主持人提供同一份已驗收的 B0，不讓學員各自找替代版本。</p>
+    <p><b>回答背景問題</b>：公開說明只描述模組與歷史成長；不得把內部原因、修正方法、文件落差的具體位置或後續任務解法帶進轉場。B0 延續 G1 的分層、Domain、四個核心業務 API、Health、固定資料與測試；演化重點是讓「理解與影響分析」成為必要能力，不是全面重建另一個產品。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="timeskip" data-title="檢查點 3 · 環境與版本" data-minute="31">
-  <p class="kicker">檢查點 3 / 4 · 第 31–32 分鐘</p>
-  <h2 class="title">環境與版本：大家都是 B0</h2>
+<section class="slide" data-seg="timeskip" data-title="檢查點 2 · 開新對話先貼規則與背景" data-minute="31">
+  <p class="kicker">檢查點 2 / 3 · 第 31–32 分鐘</p>
+  <h2 class="title">開新對話先貼規則與背景</h2>
   <ol class="steps">
-    <li>貼上 Agent 工作規則（Brownfield 版），請 Agent 在 B0 另建執行環境，確認套件相依沒有衝突</li>
-    <li>請 Agent 回報版本：<code>Smart Ticket Platform B0</code></li>
-    <li>請 Agent 在背景啟動 App，健康檢查（<code>/health</code>）回應 ok</li>
+    <li>在 <code>smart-ticket-b0</code> 開<b>新的</b> Agent 對話，不沿用 Greenfield</li>
+    <li>第一件事：貼 Agent 工作規則，再貼專案背景</li>
+    <li>請 Agent 用三句話複述，漏了就請它重讀</li>
   </ol>
-  <p class="callout">Runbook › Time Skip › 檢查點 3 · 填「檢查點 3 確認」</p>
+  <p class="callout">Runbook › Time Skip › 檢查點 2</p>
   <aside class="notes">
-    <p><b>說（00:02／第 31 分）</b>：「請確認大家用的是同一份 B0：版本輸出是 B0，健康檢查回 ok。環境起不來請馬上舉手。」</p>
-    <p><b>看</b>：沿用 G0 的 venv；版本不是 B0；Port 8000 被佔用（G0 的 App 沒停 → 請學員叫 Greenfield 的 Agent 停掉它）；學員自己打指令 → 提醒改請 Agent 執行。</p>
-    <p><b>停止條件</b>：多人版本不一致或環境不可啟動時，先使用已驗收發放件處理，不讓學員各自更換基線。可直接協助 Python、依賴與啟動命令；記錄耗時，不延長 33 分的分析開始時間。</p>
+    <p><b>說（00:02／第 31 分）</b>：「這就是本段的技巧：新專案、新對話，第一件事貼規則和背景，再請 Agent 複述。舊對話裡的規則和背景都是 Greenfield 的，不適用。」</p>
+    <p><b>看</b>：沿用 Greenfield 的對話；沒貼規則就直接叫 Agent 做事；Agent 複述漏了「不自己改程式、先計畫再核准、沒執行過的標未驗證」卻沒人追問。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="timeskip" data-title="檢查點 4 · 測試與基準" data-minute="32">
-  <p class="kicker">檢查點 4 / 4 · 第 32–33 分鐘</p>
-  <h2 class="title">測試與基準：記下起點，不修改</h2>
+<section class="slide" data-seg="timeskip" data-title="檢查點 3 · 請 Agent 建好環境並記下起點" data-minute="32">
+  <p class="kicker">檢查點 3 / 3 · 第 32–33 分鐘</p>
+  <h2 class="title">請 Agent 建好環境並記下起點</h2>
   <ol class="steps">
-    <li>請 Agent 跑一次全部測試，交驗收對照表並保留<b>實際輸出</b>，個人分析時要用</li>
-    <li>請 Agent 建立 Git 基準版本（第一次 commit），之後才能請它說明改了什麼</li>
-    <li>讀 Brownfield 接手說明；<b>請先不要修改程式</b></li>
+    <li>Agent 建環境、跑測試、確認版本是 B0、健康檢查回 ok</li>
+    <li>Agent 建立 Git 起點，結果寫進 <code>notes/time-skip.md</code></li>
+    <li>瀏覽器打開 <code>/docs</code>；<b>請先不要修改程式</b></li>
   </ol>
   <p class="callout warn">目前有若干測試失敗；文件是線索，要和程式、測試交叉驗證。</p>
   <aside class="notes">
-    <p><b>說（00:03／第 32 分）</b>：「目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式，請 Agent 跑完測試、建好 Git 基準，之後才能請它說明改了哪些檔案。」</p>
+    <p><b>說（00:03／第 32 分）</b>：「請 Agent 建環境、確認版本與健康檢查、建 Git 起點，結果寫進 notes。目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式。」</p>
     <p><b>嚴禁揭露</b>：失敗的原因、檔案位置、失敗數量或文件落差位置；只說「若干」。學員問「是不是一個 Bug」→ 回到「請小組分析是否具有共同原因」。</p>
-    <p><b>看</b>：學員把失敗描述成「全部通過」或開始修測試 → 請他保留實際輸出、先不要修改。Git 要求姓名／Email → 請 Agent 照 Runbook 用不加 <code>--global</code> 的 <code>git config</code> 設定。</p>
-    <p><b>停止（00:04／第 33 分）</b>：停止背景敘述，翻到「個人 Agent 分析」開始 6 分鐘個人分析，禁止修改。完成檢核：已確認 B0 版本、理解安裝與測試方法、完成個人分析準備，尚未直接修改程式。接下來：33–39 個人 Agent 分析｜39–44 比較・Shared Context｜44–52 依發放任務與核准計畫工作；只有經確認的共同事實才能成為主要 Agent 的執行依據。</p>
+    <p><b>看</b>：沿用 G0 的 venv；版本不是 B0；Port 8000 被佔用（G0 的 App 沒停 → 請學員叫 Greenfield 的 Agent 停掉它）；學員自己打指令 → 提醒改請 Agent 執行；學員把失敗描述成「全部通過」或開始修測試 → 請他保留實際結果、先不要修改。Git 要求姓名／Email → 請 Agent 照 Runbook 用不加 <code>--global</code> 的 <code>git config</code> 設定。</p>
+    <p><b>停止條件</b>：多人版本不一致或環境不可啟動時，先使用已驗收發放件處理，不讓學員各自更換基線。可直接協助 Python、依賴與啟動命令；記錄耗時，不延長 33 分的分析開始時間。</p>
+    <p><b>停止（00:04／第 33 分）</b>：停止背景敘述，翻到「個人 Agent 分析」開始 6 分鐘個人分析，禁止修改。接下來：33–39 個人 Agent 分析｜39–44 共同脈絡｜44–52 依發放任務與核准計畫工作；只有經確認的共同事實才能成為主要 Agent 的執行依據。</p>
   </aside>
 </section>

@@ -18,9 +18,9 @@ Smart Ticket要求多項優惠同時符合時，採對該旅客最有利的單�
 
 ## 人與Agent合作及交付
 
-先要求Agent分析規則交互作用與跨模組影響，提出2–3個可行方案、取捨與風險。由人Challenge假設、選方案並核准Task Breakdown，再由主要Agent主導實作；人透過變更審查問題、驗收對照表與在 /docs 實際試的結果，審查規則、測試、文件與變更內容（Diff），不需要讀程式。
+不接受第一個答案：先要求Agent分析規則交互作用與跨模組影響，提出2–3個可行方案並比較取捨與風險。由人Challenge假設、選方案並核准Task Breakdown，再由主要Agent主導實作；人透過變更審查問題、驗收對照表與在 /docs 實際試的結果，審查規則、測試、文件與變更內容（Diff），不需要讀程式。
 
-交付Impact Analysis（一定要改／可能影響／不應改）、方案比較、核准計畫、程式變更內容（Diff）、代表組合與全套測試結果（確認既有功能沒被改壞）、更新文件及摘要。Booking建立與改票重新計價須政策一致，API需呈現實際採用優惠。保留原旅客Request／Response三欄；如擴充Booking回應，以根層applied_discounts明細包含passenger_id、discount_type、rate、amount。
+由Agent寫進 `notes/b2.md`：Impact Analysis（一定要改／可能影響／不應改）、方案比較、核准計畫、程式變更內容（Diff）、代表組合與全套測試結果（確認既有功能沒被改壞）、更新文件及摘要。Booking建立與改票重新計價須政策一致，API需呈現實際採用優惠。保留原旅客Request／Response三欄；如擴充Booking回應，以根層applied_discounts明細包含passenger_id、discount_type、rate、amount。
 
 不可疊乘、不對整筆訂票只選同一優惠、不將政策塞入API路由層、不引入Rule Engine／第三方規則套件、不全面重寫、不新增團體功能。原付款／改退票、座位、Audit與同步通知應保留；學生修復與原本正確的既有功能測試不可弱化。
 

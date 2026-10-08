@@ -38,6 +38,8 @@ Evidence：實際成果／對照表、審查結論與 [Delivery Summary](05-deli
 
 ## Gate Decision
 
+人說出決策後，Agent 依此格式把原文寫進 `notes/b3.md` 對應的 Gate 段落：
+
 ```text
 Gate ID:
 Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
@@ -47,7 +49,7 @@ Approver:
 Timestamp / Workshop Minute:
 ```
 
-由人填寫決策，Agent 不代填核准。無須電子簽章；條件含完成方式與需回到哪個 Gate。缺證據不得把核准當作測試通過。
+由人決定，Agent 只照原文記錄，不代填核准。無須電子簽章；條件含完成方式與需回到哪個 Gate。缺證據不得把核准當作測試通過。
 
 ## 完成條件
 

@@ -4,6 +4,8 @@
 
 全程人本來就不寫程式；到B3連核准方式也要變：人只透過三道Gate管Agent，只Challenge、Review、Approve／Reject與要求補證；Agent主導分析、設計、Code／Test／Docs及摘要。觀察的是授權內執行與成果可接受性。不因學員沒讀程式或沒自己打指令而判失敗；人看的是Gate提交、驗收對照表、變更審查回答與/docs試用結果。
 
+本段技巧是「委派整件任務：工作單＋三道關卡」。先觀察技巧有沒有用上：工作單與四頁文件是否整份交給Agent（不是口頭交代）；範圍與停止條件是否寫清楚；人是否只在Gate與停止條件介入，而非逐步下指令；`notes/b3.md`是否有已核准背景、Gate決策原文、驗收對照表與變更審查答案。學員表單只有一張4欄Gate決策表，證據以`notes/b3.md`為準，不因表單少填扣分。
+
 | Agent觀察 | 記錄的證據 |
 |---|---|
 | 先確認需求 | Gate1摘要、Rule與Out of Scope。 |
@@ -27,7 +29,7 @@
 
 同步萃取八項平台需求：Agent權限範圍、Rule Enforcement、Approval Workflow、Audit Log、Test Evidence、Context Versioning、Agent Session管理、成本與執行時間觀測。每項記錄「觀察到的缺口→需要保存或控制什麼」，不是宣稱本Repo已實作平台能力。
 
-觀察紀錄至少包含小組／Session、相對與活動分鐘、Gate、證據、決策與條件、例外、介入、Completion Level及缺項；同一EXCEPTION-DW-001只記一次。
+觀察紀錄（可直接引用學員`notes/b3.md`）至少包含小組／Session、相對與活動分鐘、Gate、證據、決策與條件、例外、介入、Completion Level及缺項；同一EXCEPTION-DW-001只記一次。
 
 ## 完成條件
 

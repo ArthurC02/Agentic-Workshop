@@ -1,44 +1,49 @@
 <!-- ===================== Delivery 76–80 ===================== -->
 
-<section class="slide" data-seg="delivery" data-title="交付與收件" data-minute="76" data-timer="04:00" data-gates="delivery">
-  <p class="kicker">交付（Delivery）· 76–80 · 停止新增，如實交付</p>
-  <h2 class="title">先交件，再揭曉</h2>
-  <p class="muted">Runbook 打開「Delivery Summary 與交付」，從檢查點 1 開始。全員交件後，投影才翻到揭曉頁。</p>
+<section class="slide" data-seg="delivery" data-title="交付 · 現在在做什麼" data-minute="76" data-timer="04:00" data-gates="delivery">
+  <p class="kicker">交付（Delivery）· 76–80 · 今天的技巧：請 Agent 整理交付摘要，人核對</p>
+  <h2 class="title">摘要交給 Agent 寫，每一句都要附證據</h2>
+  <div class="card dw">
+    <p><b>情境</b>：B3 時間到，主管要知道做了什麼、證據在哪、還缺什麼</p>
+    <p><b>你的目標</b>：Agent 寫交付摘要，你逐項核對後交件</p>
+    <p><b>今天的技巧</b>：整理交給 Agent；人只問「證據在哪？」，未驗證如實標示</p>
+    <p><b>完成的樣子</b>：<code>notes/delivery.md</code> 附證據來源；交付核對表 4 欄填完並交件</p>
+  </div>
   <ol class="timeline">
-    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 定稿交付摘要</b></li>
+    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 請 Agent 寫交付摘要，你來核對</b></li>
     <li data-seg="delivery"><span class="tl-min">02:00</span><b>2 · 匯出與交件</b></li>
     <li data-seg="delivery"><span class="tl-min">03:00</span><b>揭曉（看投影）</b></li>
   </ol>
   <aside class="notes">
     <p><b>操作</b>：B3 結束（第 76 分）翻到本頁，按 <b>T</b> 啟動 04:00 段落計時（00:00＝第 76 分）。說完翻到檢查點 1。</p>
-    <p><b>說（約 15 秒）</b>：「76 分鐘到，停止新增功能。請打開 Runbook 的 Delivery Summary 與交付，從檢查點 1 開始：先定稿交付摘要，再匯出交件。全員交件後我才揭曉 B3 的對照內容；揭曉後不再修改。」</p>
-    <p><b>順序（重要）</b>：學員 Runbook 要在 76–80 定稿並匯出，揭曉頁原本排在 77–79，兩者重疊。依下列順序處理，不要邊收件邊揭曉：</p>
+    <p><b>說（約 15 秒，先情境與技巧）</b>：「76 分鐘到，停止新增功能。交付摘要不用自己寫：請 Agent 依證據寫進 notes/delivery.md，你們只問它『這句的證據在哪？』，指不出來的改成未驗證。然後匯出交件；全員交件後我才揭曉 B3 的對照內容。」</p>
+    <p><b>順序（重要）</b>：不要邊收件邊揭曉。</p>
     <ol>
-      <li>00:00–00:02（76–78）檢查點 1：定稿 Delivery Summary 與 Level。</li>
-      <li>00:02–00:03（78–79）檢查點 2：匯出、交件。<b>確認全員已交件</b>（最遲 00:03／第 79 分）。</li>
+      <li>00:00–00:02（76–78）檢查點 1：Agent 寫摘要，人核對、填交付核對表。</li>
+      <li>00:02–00:03（78–79）檢查點 2：匯出表單並連同 notes 資料夾交件。<b>確認全員已交件</b>（最遲 00:03／第 79 分）。</li>
       <li>翻「請先停手 · B3」→ 揭曉頁。只剩約 1 分鐘：優先「B3 預期影響」「Atomicity／Compensation」「SQLite 標準決策」；治理 Rubric 與版本矩陣可略過，回顧時需要再翻回。全員提早交件就提早揭曉。</li>
       <li>00:04（第 80 分）不論揭曉到哪一頁，翻到「回顧解鎖」。</li>
     </ol>
-    <p><b>主持重點</b>：「確認未驗證、Recovery、風險與偏差，功能 Level 與治理證據分開。」</p>
+    <p><b>巡場看技巧有沒有用上</b>：有沒有人追問 Agent「證據在哪」｜摘要裡未驗證的項目是否如實標示｜Gate 決策是否與 notes/b3.md 原文一致。不因學員表單少填扣分。</p>
     <p><b>停止</b>：「80 分鐘進回顧，不追加 Demo 美化或修 Code。」延遲不增加總 90 分鐘。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="delivery" data-title="檢查點 1 · 定稿交付摘要" data-minute="76">
+<section class="slide" data-seg="delivery" data-title="檢查點 1 · 請 Agent 寫交付摘要，你來核對" data-minute="76">
   <p class="kicker">檢查點 1 / 2 · 第 76–78 分鐘</p>
-  <h2 class="title">停止新增，定稿交付摘要</h2>
+  <h2 class="title">請 Agent 寫交付摘要，你來核對</h2>
   <ol class="steps">
-    <li>停止擴充；Agent 依實際證據交交付摘要（Delivery Summary），做完停下</li>
-    <li>審查者核對：完成等級（Level 1–3）擇一並有證據，<b>不自動選 Level 3</b>；未驗證不寫通過（PASS）</li>
-    <li>填「交付摘要」；Gate 3 還沒記錄的，補記人員決策</li>
+    <li>貼提示詞：Agent 讀 <code>notes/b3.md</code>，把摘要寫進 <code>notes/delivery.md</code>，每欄附證據</li>
+    <li>抽三句問「證據在哪？」；指不出來的改成未驗證；<b>不自動選 Level 3</b></li>
+    <li>填「交付核對」第 1–3 欄</li>
   </ol>
-  <p class="callout">Runbook › Delivery › 檢查點 1 · 填「交付摘要」</p>
+  <p class="callout">Runbook › Delivery › 檢查點 1 · 請 Agent 寫交付摘要，你來核對</p>
   <aside class="notes">
-    <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與完成等級，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
+    <p><b>說（00:00／第 76 分）</b>：「請貼 Runbook 的提示詞，讓 Agent 寫交付摘要。你們抽三句問它證據在哪，再填交付核對。」</p>
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整｜Level 3 完整交付＝建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成。</p>
-    <p><b>看</b>：Level 擇一並說明證據，不自動選 Level 3｜附 Agent 實際執行的測試命令與驗收對照表，未執行明記原因，未驗證不能寫 PASS｜附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）。</p>
-    <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。</p>
-    <p><b>Delivery Summary 十二欄</b>：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜CONDITIONAL APPROVAL｜REJECT；人員最後決策由 Gate 3 記錄）。</p>
+    <p><b>看</b>：Level 擇一並說明證據｜附 Agent 實際執行的測試命令與驗收對照表，未執行明記原因，未驗證不能寫 PASS｜偏差（沒有偏差也須明寫）。</p>
+    <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。學員自己動手寫摘要 → 提醒技巧：「交給 Agent 寫，你只核對證據。」</p>
+    <p><b>Delivery Summary 十二欄</b>：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜CONDITIONAL APPROVAL｜REJECT；人員最後決策以 Gate 3 為準）。</p>
   </aside>
 </section>
 
@@ -46,15 +51,15 @@
   <p class="kicker">檢查點 2 / 2 · 第 78–79 分鐘</p>
   <h2 class="title">匯出與交件，交完就停手</h2>
   <ol class="steps">
-    <li>逐一匯出 B3 表單：工作單（Work Order）、Gate 1／2／3、有用到的檢視（Review）／例外卡</li>
-    <li>匯出交付摘要（Delivery Summary），依指定方式交件</li>
+    <li>一鍵匯出所有表單（ZIP）</li>
+    <li>連同主要 Agent 電腦上的 <code>notes/</code> 資料夾，依指定方式交件</li>
     <li>交件後不再修改，看投影</li>
   </ol>
-  <p class="callout warn">Runbook › Delivery › 檢查點 2 · 填「檢查點 2 確認」</p>
+  <p class="callout warn">Runbook › Delivery › 檢查點 2 · 匯出與交件</p>
   <aside class="notes">
-    <p><b>說（00:02／第 78 分）</b>：「請匯出 B3 所有表單和交付摘要，依指定方式交件。交件後不再修改，接下來看投影。」</p>
-    <p><b>收件</b>：Gate 紀錄、Impact／方案、變更審查答案、驗收對照表與實際測試、文件及 Delivery Summary。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
-    <p><b>看</b>：每組都已交件。還在改 Delivery Summary 或補程式 → 「保持交付時的樣子，缺項如實列出。」</p>
+    <p><b>說（00:02／第 78 分）</b>：「請匯出表單，連同 notes 資料夾依指定方式交件。交件後不再修改，接下來看投影。」</p>
+    <p><b>收件</b>：notes/b3.md（Gate 決策原文、驗收對照表、變更審查答案）、notes/delivery.md、匯出的表單。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
+    <p><b>看</b>：每組都已交件。還在改摘要或補程式 → 「保持交付時的樣子，缺項如實列出。」</p>
     <p><b>停止</b>：最遲 00:03（第 79 分）確認全員交件 → 翻「請先停手 · B3」開始揭曉。時間不足時揭曉頁只選最有證據可對照的頁面，第 80 分進回顧。</p>
   </aside>
 </section>

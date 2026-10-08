@@ -1,7 +1,7 @@
 # Digital Worker Delivery Summary
 
 > 讀者：主要 Coding Agent 與小組審查者。
-> 使用時機：Gate 3 及 B3 結束，按需填寫。
+> 使用時機：B3 結束後（第 76–78 分鐘），由 Agent 依此格式寫進 `notes/delivery.md`，人核對。每一欄都要附證據來源（`notes/b3.md` 的哪一段、哪個測試指令或文件）；沒有證據的寫「未驗證」。
 > 前置條件：已有當前分析／設計成果與 Gate 紀錄；如有修改或已執行命令，附實際紀錄。Level 1 可無修改、無已執行測試，須明記原因與未驗證範圍；填實際成果，不預填成功。
 
 ## Mission Result
@@ -58,6 +58,6 @@ Gate 2 計畫與實際差異：____；升級與人員決策：____。沒有偏�
 
 APPROVE | CONDITIONAL APPROVAL | REJECT
 
-Agent 建議與理由：____；人員最後決策由 Gate 3 記錄。測試通過還須核對需求、範圍、文件及未完成事項。
+Agent 建議與理由：____；人員最後決策由 Gate 3 記錄，摘要中的 Gate 決策必須和 `notes/b3.md` 的原文一致。測試通過還須核對需求、範圍、文件及未完成事項。
 
 完成條件：十二欄均以實際證據或「未修改／未執行／未驗證」及原因填寫，Level 1／2 如實揭露差距；活動成果可接受不等於完整軟體交付。Level 3 與 Reference 仍須完整功能、Regression、文件與 Review 證據，最終責任由人員承擔。

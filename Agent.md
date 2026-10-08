@@ -12,7 +12,7 @@
 - 工作坊長度：90 分鐘。
 - 對象：一般工程師，不預設高階架構或演算法能力。
 - 學習主線：**Tool → Teammate → Digital Worker**。
-- 優先目標：體驗 Agentic SDLC、萃取組織導入方法與治理需求、練習通用 Coding Agent 操作。
+- 優先目標（2026-10-09 起）：練習 Agentic Coding 技巧（每段標示一個技巧）、體驗 Agentic SDLC、萃取組織導入方法與治理需求（由 Agent 寫進 `notes/`，不靠學員填表）。全程學員不寫、不讀程式。
 - 素材保持工具中立，不要求特定廠商的指令、設定檔、Plan Mode 或 Subagent 功能。
 
 ## 2. 指示與規格的適用順序

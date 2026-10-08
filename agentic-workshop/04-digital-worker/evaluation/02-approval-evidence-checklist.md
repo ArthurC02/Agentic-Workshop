@@ -6,7 +6,7 @@
 
 Gate 1 Requirement Understanding → Gate 2 Impact and Design → Gate 3 Delivery Review。Gate 1前不得跳過理解；Gate 2明確核准且前置條件已滿足後才修改程式；Gate 3Review後才接受交付。保留短紀錄，不要求完整會議逐字稿。
 
-每Gate複製以下七欄，並補核准人、時間及Context／Submission版本；空白不代表核准。
+每Gate從學員`notes/b3.md`的Gate段落核對以下七欄（學員Runbook只選填決策，其餘由Agent照原文記錄），並補核准人、時間及Context／Submission版本；空白不代表核准，表單少填不扣分。
 
 | 必要欄位 | 待填內容／核對要求 |
 |---|---|
@@ -25,6 +25,6 @@ Approver：待填。Timestamp／Workshop Minute：待填。Approved Context Vers
 - [ ] Reject SQLite方案不代表Reject整個任務；回到In-Memory重提Gate 2方案，不以條件式核准放行SQLite。
 - [ ] Gate 3有Agent的變更審查回答（含實際git diff檢查）／完整Test結果與驗收對照表、未完成及風險；時間不足仍保留最小Review，不接受口頭「全過」。
 - [ ] 未執行命令／測試明記未執行；已執行保留Agent實際執行的指令、退出碼、summary及證據連結。
-- [ ] 人員證據不要求讀程式或自己打指令；看是否先要計畫、核准後才動、檢查驗收對照表與變更審查答案、用/docs驗證行為。
+- [ ] 人員證據不要求讀程式或自己打指令；看是否用上技巧（工作單整份交付、只在Gate介入）、核准後才動、檢查驗收對照表與變更審查答案、用/docs驗證行為。
 
 完成條件：三Gate七欄與核准人／時間／版本可核對，所有條件閉環、不跳Gate，最終交付決定有證據；本表尚未填入真實工作坊紀錄。

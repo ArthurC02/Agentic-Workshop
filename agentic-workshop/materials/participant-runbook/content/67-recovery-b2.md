@@ -10,11 +10,19 @@ section: Brownfield｜Digital Worker
 
 本頁是 Recovery（復原包：進度落後時改用的接續基線）。B2（導入不可疊加的最有利優惠政策）沒做完、但要接著做 B3 的小組，經主持人確認後，才會個別拿到本頁解鎖碼；一般 B3 解鎖碼打不開本頁。復原包只含 B2 該完成的修改，不含 B3 的完整實作；使用復原包不代表本組自己完成了 B2。
 
+```callout info
+現在在做什麼
+- **情境**：B2 還沒做完，但時間到了，要換到已完成 B2 的版本接著做 B3。
+- **你的目標**：保存原成果、換到復原包，確認版本正確後接續 B3。
+- **今天的技巧**：開新對話先給規則與脈絡。換資料夾就開新的 Agent 對話，第一件事貼規則、把 `notes` 交給它讀，Agent 才知道之前發生什麼。
+- **完成的樣子**：雜湊值相符、測試 55 passed、`/health` 正常；`notes/recovery-b2.md` 記下切換紀錄。
+```
+
 ```download
 id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 ```
 
-- [ ] 先保存原本的成果，不要覆蓋：請原本的 Agent 把目前狀態 Commit，並用白話列出目前的變更內容（Diff）、最後一次測試結果與退出碼（exit code）；你保存核准關卡（Gate）紀錄與未完成事項。
+- [ ] 先保存原本的成果，不要覆蓋：請原本的 Agent 把目前狀態 Commit，並把目前的變更內容（Diff）、最後一次測試結果與退出碼（exit code）、未完成事項寫進 `notes/b2.md`。
 - [ ] 在原本的 Agent 對話貼上下方提示詞，請它停止舊版本的伺服器（不要停止別人的服務）：
 
 ```text
@@ -39,13 +47,23 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 - [ ] 核對：Agent 貼的 SHA256 與下載卡上的值相同（雜湊是檔案的指紋；一個位元組被改，值就不同）；測試預期 55 passed；`/health` 回傳 status=ok。任何一項不符就停止切換，請主持人確認。
 - [ ] 版本要用包內說明文件（README、docs/context.md）、B2 的修改是否存在與測試結果一起確認，不能只看 Health 檢查。
 
-在新對話中明確告訴 Agent：現在接手的是哪個版本、原成果還有哪些未完成、已確認的規則，以及 B3 已核准的範圍；更新共同脈絡（Shared Context）後，接續 [B3](#b3)，仍須通過三個核准關卡（Gate）。
+- [ ] 把原成果的紀錄交給新對話，並請 Agent 記下切換經過。`〈 〉` 的內容由你們填寫：
+
+```text
+我們原本的成果在〈原成果資料夾〉。請把那裡的 notes 資料夾複製到這個資料夾（只複製 notes，不要動程式），讀 notes/shared-context.md 與 notes/b2.md，用白話告訴我原成果還有哪些未完成。再把下列內容寫進 notes/recovery-b2.md：切換原因與時間、原成果保存位置、SHA256／測試數／health 的實際結果與退出碼，以及「B2 的政策由 Recovery 提供，不是本組自己完成」。不要修改程式。
+```
+
+完成後接續 [B3](#b3)，仍須通過三個核准關卡（Gate）。
 
 ```form
 {"id": "recovery-b2-record", "title": "B2 Recovery 紀錄","fields":[
-{"id": "decision", "label": "切換原因／核准的主持人／時間／復原包來源", "type": "textarea", "suggestions": [{"label": "觸發範本", "text": "觸發：〈B2 未完成的原因〉\n主持核准人：〈姓名〉；時間：第〈 〉分鐘\n提供來源：recovery-63-b2.zip"}]},
-{"id": "preserved", "label": "原成果保存路徑／變更內容（Diff）／Gate 狀態／未完成事項", "type": "textarea", "suggestions": [{"label": "保存範本", "text": "原成果路徑：〈路徑〉\n變更內容：〈Agent 已 Commit／摘要〉\nGate：〈狀態〉\n未完成：〈…〉"}]},
-{"id": "verification", "label": "新目錄／確認是 B2 版本的證據／安裝、55 項測試與 Health 的實際結果及退出碼", "type": "textarea", "suggestions": [{"label": "驗證範本", "text": "新目錄：〈路徑〉\nB2 版本證據：〈SHA256／README／docs/context.md〉\n安裝：〈結果〉，退出碼〈 〉\npytest -q：〈 〉 passed，退出碼〈 〉\nHealth：〈實際回應〉"}]},
-{"id": "context", "label": "新對話（Session）或重新提供的背景／接續的核准範圍／哪些不是本組自己完成的", "type": "textarea", "suggestions": [{"label": "接續範本", "text": "〈新 Session／重新輸入 Context〉\n接續核准範圍：〈B3 範圍〉\n非自行完成：B2 能力由 Recovery 提供"}]}
+{"id": "approver", "label": "1. 核准切換的主持人與分鐘", "type": "text", "suggestions": [{"label": "格式", "text": "〈姓名〉，第〈 〉分鐘"}]},
+{"id": "verified", "label": "2. 雜湊值、55 passed、/health 三項都相符嗎？", "type": "select", "options": ["都相符", "有不符，已停止並請主持人確認"]},
+{"id": "preserved", "label": "3. 原成果保存在哪個資料夾？", "type": "text", "suggestions": [{"label": "格式", "text": "〈資料夾路徑〉（已請 Agent Commit）"}]}
 ]}
+```
+
+```callout tip
+這段學到的技巧
+換資料夾或換版本就開新對話：先貼規則，再把 notes 交給 Agent 讀，它才接得上之前的脈絡。
 ```

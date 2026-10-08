@@ -6,25 +6,24 @@ group: b3
 section: Delivery
 ---
 
-# 交付：留下可供審查的成果
+# 交付：請 Agent 整理交付摘要，人核對
 
-全場第 76 分鐘停止擴充，接下來 **3 分鐘**定稿交付摘要（Delivery Summary）、匯出並交件。交付摘要由主要 Agent 提交、小組審查者核對；Agent 的建議不等於人員決策，人員最後決策由 [Gate 3](#b3-approval-gates) 記錄。
+```callout info
+現在在做什麼
+- **情境**：B3 時間到了。主管要一份「做了什麼、證據在哪、還缺什麼」的交付摘要，才能決定能不能收。
+- **你的目標**：請 Agent 依實際證據寫交付摘要，你逐項核對後交件。
+- **今天的技巧**：**請 Agent 整理交付摘要，人核對**。整理很花時間，交給 Agent；但摘要每一句都要指得出證據，沒驗證的如實標「未驗證」，人只需核對，不必自己寫。
+- **完成的樣子**：`notes/delivery.md` 有附證據來源的交付摘要與完成等級（Level）；你填完 4 欄的交付核對表並交件。
+```
+
+全場第 76 分鐘停止擴充，接下來 **3 分鐘**定稿交付摘要（Delivery Summary）並交件。Agent 的建議不等於人員決策，人員最後決策以 B3 的 Gate 3 為準。
 
 ```callout warning
 如實交付，交件後不再修改
-- 填實際成果，不預填成功。
 - 完成等級（Completion Level：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付）擇一並說明證據，不自動選 Level 3。
-- 未驗證不能寫 PASS（通過）。
-- Gate 核准代表人員接受下一步或目前成果，不能代替驗收或測試 PASS。
-- 已完成分析時，可交付 Level 1；無程式修改或未執行測試也可提交活動成果，但須列明原因、未驗證範圍與後續工作。
-- 測試通過還須核對需求、範圍、文件及未完成事項。
-- 活動成果可接受不等於完整軟體交付。
+- 未驗證不能寫 PASS（通過）；Gate 核准也不能代替驗收或測試 PASS。
+- 已完成分析時，可交付 Level 1；無程式修改或未執行測試也可交付，但須列明原因、未驗證範圍與後續工作。
 - 交件後，交付摘要與 Level 保持交件時的樣子；人不補寫程式或測試。
-```
-
-```callout info
-投影畫面和這份 Runbook 怎麼分工
-投影畫面只顯示**時間**和**現在進行到第幾個檢查點**；要做什麼、要貼給 Agent 的提示詞、要填的表單，全部在本頁。全員交件後，主持人會在投影上說明 B3 的對照重點，這時請看投影。
 ```
 
 ## 檢查點總覽
@@ -33,90 +32,51 @@ section: Delivery
 
 | 檢查點 | 全場分鐘 | 段內時間 | 你要完成的事 |
 |---|---:|---:|---|
-| 1 · 定稿交付摘要 | 76–78 | 00–02 | 停止擴充；Agent 交出交付摘要後停下；你核對並填表 |
-| 2 · 匯出與交件 | 78–79 | 02–03 | 匯出 B3 所有表單與交付摘要，依主持人指定方式交件 |
+| 1 · 請 Agent 寫交付摘要，你來核對 | 76–78 | 00–02 | Agent 寫 `notes/delivery.md` 後停下；你核對證據並填交付核對表 |
+| 2 · 匯出與交件 | 78–79 | 02–03 | 匯出表單，連同 `notes/` 資料夾依主持人指定方式交件 |
 | 看投影 | 79–80 | 03–04 | 交件後不再修改；第 80 分鐘進入回顧 |
 
-## 檢查點 1 · 定稿交付摘要（第 76–78 分鐘）
+## 檢查點 1 · 請 Agent 寫交付摘要，你來核對（第 76–78 分鐘）
 
-- [ ] 76 分鐘到，停止擴充並列出缺項。
-- [ ] 已在 [B3 檢查點 6](#b3) 請 Agent 交出交付摘要的，直接進入下一項核對；還沒交出的，把下方提示詞貼給主要 Agent，並附上本頁下方的 Delivery Summary 範本全文。
+- [ ] 76 分鐘到，停止擴充。把下方提示詞貼給主要 Agent，並附上本頁下方的 Delivery Summary 範本全文：
 
 ```text
-停止新增功能與測試，不要再修改任何檔案。請依附上的 Delivery Summary 範本十二欄，用實際證據整理交付摘要：
+停止新增功能與測試，不要再修改任何程式。請讀 notes/b3.md，依附上的 Delivery Summary 範本十二欄，把交付摘要寫進 notes/delivery.md：
+- 每一欄都附證據來源：notes/b3.md 的哪一段、哪個實際執行的指令、哪份文件。找不到證據的寫「未驗證」及原因，未驗證不能寫 PASS。
 - Completion Level 擇一並說明證據，不自動選 Level 3。
-- 測試只寫實際執行過的命令與完整結果；沒執行的寫「未執行」及原因，未驗證不能寫 PASS。
-- 修改檔案欄用白話寫每個檔案改了什麼、為什麼，並附上 Gate 3 變更審查的回答；沒有修改時寫「無修改」及原因，不虛構變更。
-- 驗收結果用驗收對照表呈現：每條驗收條件一列，寫通過／失敗／未驗證與依據的測試名稱。
-- 寫出與 Gate 2 核准計畫的偏差；沒有偏差也要明寫。
-整理完就停下，等我們核對。不要自行修正或補做任何項目。
+- 修改檔案欄用白話寫每個檔案改了什麼、為什麼，附上 Gate 3 前的變更審查答案；沒有修改時寫「無修改」及原因，不虛構變更。
+- 驗收結果用驗收對照表呈現；測試只寫實際執行過的命令與結果，沒執行的寫「未執行」及原因。
+- Gate 決策照 notes/b3.md 的原文抄錄；寫出與 Gate 2 核准計畫的偏差，沒有偏差也要明寫。
+寫完在對話列出：建議的 Level、未驗證項目清單，然後停下等我們核對。不要自行修正或補做任何項目。
 ```
 
-- [ ] 小組審查者核對 Agent 的摘要（不看程式）：Level 是否有證據、驗收對照表是否附實際執行的指令、是否和你的變更審查卡一致、未完成與偏差是否寫出；看不懂就請 Agent 解釋。必要時以 [Review Checklist](#b3-review-checklist)（交付審查檢核表）逐項檢核。與你們的實際紀錄不一致時，以人員確認為準。
-- [ ] 把核對後的內容填入下方「交付摘要」表單。
-- [ ] [Gate 3 表單](#b3-approval-gates) 還沒記錄人員決策的，現在補記。
+- [ ] 核對摘要（不看程式）：抽三句話問 Agent「這句的證據在哪？」，它應該指得出 `notes/b3.md` 的段落或實際指令；Level 有證據；未驗證項目如實列出；Gate 決策與 `notes/b3.md` 一致。指不出證據的句子，請 Agent 改成「未驗證」。必要時請 Agent 依 [交付審查清單](#b3-review-checklist) 自評。
+- [ ] 填下方「交付核對」表單第 1–3 欄。
 
 ```include
 zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/participant/05-delivery-template.md
 ```
 
-### 填寫：交付摘要（Delivery Summary）
-
-```form
-{"id": "delivery-summary", "title": "交付摘要（任務 ID：TASK-B3-001）","fields":[
-{"id": "mission-result", "label": "任務成果｜結果", "type": "textarea", "hint": "任務 ID：TASK-B3-001。填實際成果，不預填成功。", "suggestions": [{"label": "結果範本", "text": "實際成果：〈完成了什麼〉；尚未完成：〈缺項〉"}, {"label": "僅完成分析", "text": "僅完成分析：〈分析結論〉；未修改程式，原因：〈原因〉"}]},
-{"id": "mission-basis", "label": "任務成果｜依據", "type": "textarea", "suggestions": [{"label": "依據來源", "text": "依據：〈Gate 紀錄／驗收對照表／變更審查答案／文件〉（〈檔案或紀錄位置〉）"}]},
-{"id": "completion-level", "label": "完成程度", "type": "select", "options": ["Level 1：分析完成（Analysis Complete）", "Level 2：核心流程完成（Core Flow Complete）", "Level 3：交付完成（Delivery Complete）"], "hint": "Level 1＝分析完成；Level 2＝核心流程完成；Level 3＝完整交付。依實際證據擇一，不自動選 Level 3。"},
-{"id": "completion-reason", "label": "完成程度｜實際等級與原因", "type": "textarea", "suggestions": [{"label": "等級與證據", "text": "實際等級：Level 〈1／2／3〉；證據：〈驗收對照表／變更審查答案／文件〉；未達下一級的原因：〈原因〉"}]},
-{"id": "implemented-scope", "label": "已完成範圍｜已完成", "type": "textarea", "suggestions": [{"label": "已完成項", "text": "〈完成項目〉（證據：〈檔案／測試／紀錄〉）"}, "無"]},
-{"id": "not-implemented", "label": "未完成事項｜未完成／未驗證", "type": "textarea", "suggestions": [{"label": "未完成項", "text": "未完成：〈項目〉"}, {"label": "未驗證項", "text": "未驗證：〈項目〉，原因：〈原因〉"}, "無"]},
-{"id": "not-implemented-impact", "label": "未完成事項｜影響", "type": "textarea", "suggestions": [{"label": "影響範本", "text": "〈未完成項目〉：影響〈功能／使用者／規則〉"}, "無"]},
-{"id": "not-implemented-next", "label": "未完成事項｜下一步", "type": "textarea", "suggestions": [{"label": "下一步", "text": "〈項目〉：由〈誰〉〈做什麼〉，以〈測試／審查〉確認"}, "無"]},
-{"id": "files-changed", "label": "修改檔案｜實際檔案與主要變更", "type": "textarea", "hint": "用白話寫每個檔案改了什麼、為什麼；無修改時寫「無修改」及原因，不虛構變更。", "suggestions": [{"label": "檔案與變更", "text": "〈檔案路徑〉：〈主要變更〉"}, {"label": "無修改", "text": "無修改，原因：〈原因〉"}]},
-{"id": "rules-covered", "label": "涵蓋的商業規則｜Rule ID 與實作、測試、文件證據", "type": "textarea", "suggestions": [{"label": "Rule 證據", "text": "Rule 〈Rule ID〉：實作〈檔案〉、測試〈測試名稱〉、文件〈路徑〉"}, {"label": "部分涵蓋", "text": "Rule 〈Rule ID〉：僅〈實作／測試／文件〉，缺〈…〉"}]},
-{"id": "ac-results", "label": "驗收結果｜各項驗收條件的狀態與實際證據", "type": "textarea", "hint": "驗收條件編號（AC ID）見 B3 任務卡。PASS＝通過；FAIL＝失敗；NOT VERIFIED＝未驗證。未驗證不能寫 PASS，人員核准關卡（Gate）核准也不等於 PASS。", "suggestions": [{"label": "AC 狀態", "text": "〈AC ID〉：〈PASS／FAIL／NOT VERIFIED〉（證據：〈測試輸出／檔案〉）"}, {"label": "未驗證 AC", "text": "〈AC ID〉：NOT VERIFIED，原因：〈原因〉"}]},
-{"id": "change-review-answers", "label": "變更審查｜Agent 的回答與變更審查卡結果", "type": "textarea", "hint": "照 B3 檢查點 6 的變更審查卡填寫。任何一題是「否」或「不確定」要寫出後續處理。", "suggestions": [{"label": "審查結果", "text": "檔案都在核准計畫內：〈是／否／不確定〉；測試數沒變少、沒新增跳過：〈是／否／不確定〉；沒刪測試或改期待值：〈是／否／不確定〉；後續處理：〈…〉"}, {"label": "無修改", "text": "無修改，未做變更審查"}]},
-{"id": "docs-check", "label": "/docs 實測結果", "type": "textarea", "hint": "在瀏覽器 /docs 實際試過的 API、輸入、狀態碼與結果。沒試就寫「未驗證」及原因。", "suggestions": [{"label": "實測紀錄", "text": "試〈API〉：〈輸入摘要〉→ 狀態碼〈數字〉，〈結果〉；符合需求：〈是／否〉"}, {"label": "未驗證", "text": "未驗證：沒有在 /docs 實測，原因：〈原因〉"}]},
-{"id": "test-workdir", "label": "實際測試｜工作目錄／版本", "type": "text", "suggestions": [{"label": "目錄與版本", "text": "〈工作目錄〉／〈版本或 commit〉"}]},
-{"id": "test-command", "label": "實際測試｜實際命令", "type": "textarea", "suggestions": [{"label": "實際命令", "text": "〈實際執行的命令〉"}, "未執行"]},
-{"id": "test-result", "label": "實際測試｜結果／exit code", "type": "textarea", "suggestions": [{"label": "結果範本", "text": "〈數字〉 passed、〈數字〉 failed；exit code 〈數字〉"}, "未執行"]},
-{"id": "test-issues", "label": "實際測試｜Fail／Skip／XFail／Warning", "type": "textarea", "suggestions": [{"label": "問題項目", "text": "〈Fail／Skip／XFail／Warning〉：〈測試名稱〉，〈訊息摘要〉"}, "無"]},
-{"id": "test-not-run", "label": "實際測試｜未執行及原因", "type": "textarea", "suggestions": [{"label": "未執行原因", "text": "〈測試範圍〉未執行，原因：〈原因〉"}, "無"]},
-{"id": "docs-updated", "label": "文件更新｜文件與內容", "type": "textarea", "suggestions": [{"label": "文件更新", "text": "〈文件路徑〉：〈更新內容〉"}, {"label": "未更新", "text": "未更新文件，原因：〈原因〉"}]},
-{"id": "docs-not-synced", "label": "文件更新｜仍未同步", "type": "textarea", "suggestions": [{"label": "未同步項", "text": "〈文件路徑〉：〈尚未同步的內容〉"}, "無"]},
-{"id": "risks", "label": "風險與限制｜已知風險、限制與責任影響", "type": "textarea", "suggestions": [{"label": "風險範本", "text": "風險：〈…〉；限制：〈…〉；責任影響：〈由誰承擔／確認〉"}, "未發現已知風險（依據：〈…〉）"]},
-{"id": "deviations", "label": "核准計畫的偏差｜Gate 2 計畫與實際差異", "type": "textarea", "hint": "沒有偏差也須明寫。", "suggestions": [{"label": "偏差範本", "text": "Gate 2 計畫：〈…〉；實際：〈…〉；原因：〈…〉"}, "無偏差，實際執行與 Gate 2 核准計畫一致"]},
-{"id": "deviations-escalation", "label": "核准計畫的偏差｜升級與人員決策", "type": "textarea", "suggestions": [{"label": "已升級", "text": "已升級給〈誰〉；人員決策：〈決策〉（第〈分〉分）"}, "無需升級（無偏差）"]},
-{"id": "recommended-decision", "label": "建議決策", "type": "select", "options": ["核准（APPROVE）", "附條件核准（CONDITIONAL APPROVAL）", "拒絕（REJECT）"], "hint": "這是 Agent 的建議；人員最後決策由 Gate 3 記錄。"},
-{"id": "recommended-reason", "label": "建議決策｜Agent 建議與理由", "type": "textarea", "hint": "測試通過還須核對需求、範圍、文件及未完成事項。", "suggestions": [{"label": "建議與理由", "text": "建議：〈APPROVE／CONDITIONAL APPROVAL／REJECT〉；理由：〈證據〉；條件／未完成：〈…〉"}]}
-]}
-```
+**看什麼證據**：`notes/delivery.md` 每一欄都有證據來源或「未驗證」；Agent 沒有在這段修改程式。
 
 ## 檢查點 2 · 匯出與交件（第 78–79 分鐘）
 
-每份表單都會自動暫存在瀏覽器中，但要匯出才算交件。按下方按鈕（或右上角下載圖示）一次下載所有已填寫的表單；也可以在個別表單按「匯出 Markdown」。
+表單會自動暫存在瀏覽器中，但要匯出才算交件。按下方按鈕（或右上角下載圖示）一次下載所有已填寫的表單。
 
 ```exportall
 ```
 
-- [ ] 確認 ZIP 內有下列 B3 表單（或已逐一匯出）：
-  - [Work Order](#b3-work-order)：Approved Context 與 Gate 2 核准範圍
-  - [B3 檢查點 4、5 確認與檢查點 6 變更審查卡](#b3)
-  - [Gate 1、Gate 2、Gate 3 決策紀錄](#b3-approval-gates)
-  - [Review Checklist](#b3-review-checklist)（有使用時）
-  - [Exception Response 與 Escalation](#b3-exception-card)（有使用時）
-  - 本頁的 Delivery Summary
-- [ ] 依主持人指定方式交件；交付內容為 Gate 紀錄、影響分析（Impact）／方案、驗收對照表、變更審查答案、/docs 實測結果、文件及摘要。
+- [ ] 依主持人指定方式交件：匯出的表單 ZIP，加上主要 Agent 電腦上的 `notes/` 資料夾（`b3.md`、`delivery.md`）。Gate 紀錄、條件與未完成事項本身就是交付的一部分。
+- [ ] 勾選下方表單第 4 欄。
 
-```callout tip
-功能 Level 與治理證據分開
-Level 1／2 可如實作為活動成果，但不得冒稱完整程式交付。Gate 紀錄、條件與未完成事項本身就是交付的一部分，請一併保留。
-```
+### 填寫：交付核對
 
 ```form
-{"id":"delivery-cp2","title":"檢查點 2 確認","fields":[
-{"id":"exported","label":"已匯出的表單","type":"checklist","items":["Work Order（工作指令單）","B3 檢查點 4、5 確認","Gate 1／2／3 決策紀錄","Review Checklist（有使用時）","Exception Response 與 Escalation（有使用時）","Delivery Summary（交付摘要）"],"hint":"只勾實際已匯出的項目；沒有使用的表單不用勾。"},
-{"id":"handed-in","label":"已依主持人指定方式交件","type":"checkbox"}
+{"id": "delivery-check", "title": "交付核對（任務 ID：TASK-B3-001）","fields":[
+{"id": "level", "label": "核對後的完成等級", "type": "select", "options": ["Level 1：分析完成（Analysis Complete）", "Level 2：核心流程完成（Core Flow Complete）", "Level 3：交付完成（Delivery Complete）"], "hint": "依 notes/delivery.md 的證據擇一，不自動選 Level 3。"},
+{"id": "evidence-cited", "label": "摘要每一句都指得出證據嗎？", "type": "select", "options": ["是", "否，已請 Agent 改成未驗證", "不確定"]},
+{"id": "unverified-honest", "label": "未驗證的項目有如實標示嗎？還缺什麼？", "type": "text", "suggestions": [{"label": "有缺項", "text": "有如實標示；缺：〈一句話〉"}, "有如實標示；無缺項"]},
+{"id": "handed-in", "label": "已匯出表單並連同 notes 資料夾交件", "type": "checkbox"}
 ]}
 ```
 
@@ -124,3 +84,5 @@ Level 1／2 可如實作為活動成果，但不得冒稱完整程式交付。Ga
 交件後停止修改
 交件後不再修改交付摘要、Level 或任何表單，接下來看投影。未完成如實列為缺項，不把部分完成描述為完整交付。第 80 分鐘進入回顧。
 ```
+
+> 這段學到的技巧：**讓 Agent 寫摘要，但要求每一句附證據**；人用「證據在哪？」核對，比自己寫更快也更可靠。

@@ -19,11 +19,13 @@ Teammate
 Digital Worker
 ```
 
-本工作坊的主要目標依優先順序為：
+本工作坊的主要目標依優先順序為（2026-10-09 已核准變更，原順序為 SDLC 體驗 → 組織導入 → Agent 操作）：
 
-1. 體驗 Agentic Software Development Lifecycle。
-2. 萃取組織導入 Agentic Development 的方法、控制點與平台需求。
-3. 練習通用的 Coding Agent 使用方式。
+1. 練習通用的 Agentic Coding 技巧：每段明確標示一個技巧，學員實際用上並看到效果。
+2. 體驗 Agentic Software Development Lifecycle（Tool → Teammate → Digital Worker）。
+3. 萃取組織導入 Agentic Development 的方法、控制點與平台需求；證據由 Agent 寫進學員 Repo 的 `notes/` 檔，不靠學員填表。
+
+設計規則：每段頁首有「現在在做什麼」卡（情境、目標、技巧、完成的樣子）；檢查點每段最多 3 個（Greenfield、B3 最多 4 個）；表單每段最多一張、最多 4 欄，只記錄人的決定。全程人不寫、不讀程式，以行為與證據驗收。
 
 本工作坊不是：
 

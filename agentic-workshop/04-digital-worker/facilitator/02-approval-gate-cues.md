@@ -4,7 +4,7 @@
 
 | B3相對分鐘 | 活動分鐘 | Cue與決策 |
 |---|---|---|
-| 0 | 63 | 發B3與Operating Rules，宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。 |
+| 0 | 63 | 發B3與Operating Rules，先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員把工作單整份交給Agent。 |
 | 1 | 64 | Agent開始Gate1：摘要、假設、缺口、Out of Scope。 |
 | 3 | 66 | 人做Gate1決策；核准才進Gate2設計。 |
 | 3 | 66 | Agent開始Gate2：Impact、API／Seat／Atomicity、測試及風險。 |
@@ -14,7 +14,7 @@
 | 12 | 75 | Gate3 Review：有修改／實測時請Agent回答變更審查並附驗收對照表，人看實際結果、Rule與文件（可在/docs試）；Level 1 無修改／未執行時審Gate1／2、合理Impact、完整Test Strategy與缺項，不宣稱功能PASS。 |
 | 13 | 76 | Agent交摘要與Level，停止新增功能。 |
 
-Gate回覆採短格式：
+Gate回覆採短格式；由人口述，Agent照原文寫進`notes/b3.md`，學員只在Runbook的「B3 Gate決策」表選填決策：
 
 ```text
 Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE

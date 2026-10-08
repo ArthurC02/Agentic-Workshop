@@ -23,7 +23,7 @@
 | 2 Impact and Design | 影響模組、API、座位與Atomicity方案、測試策略及風險。 | 核准後才改程式；不一次跳到完成實作。 |
 | 3 Code and Test Review | 驗收對照表、變更審查答案（白話說明改了哪些檔案、為什麼）、實際測試、規則追溯、文件與未完成項目。 | 人看驗收對照表與變更審查答案（不看程式）後Approve／Reject或要求修正。 |
 
-使用短格式回覆，保留核准紀錄。
+使用短格式回覆；Gate決策由人說，Agent照原文寫進 `notes/b3.md`，保留核准紀錄。今天練習的技巧是「委派整件任務：工作單＋三道關卡」：範圍與停止條件先寫清楚，人只在Gate介入。
 
 ## 驗收與交付
 
@@ -51,4 +51,4 @@
 
 ## 完成條件
 
-交付Gate紀錄、Impact／方案、驗收對照表、變更審查答案、/docs 實測結果、實際測試、文件及摘要。Level1：Gate1／2、合理Impact與完整Test Strategy，Code未完成；Level2：團體建立及連續座位與主要Unit Test完成，補償或文件仍有缺項；Level3：建立、付款成功／失敗補償、Regression、文件及摘要完整。學習成果可為Level1／2，只有完整證據才能宣稱完整軟體交付。76分鐘到停止擴充並列缺項。
+交付Gate紀錄、Impact／方案、驗收對照表、變更審查答案、/docs 實測結果、實際測試、文件及摘要；以上由Agent寫進 `notes/b3.md` 與 `notes/delivery.md`。Level1：Gate1／2、合理Impact與完整Test Strategy，Code未完成；Level2：團體建立及連續座位與主要Unit Test完成，補償或文件仍有缺項；Level3：建立、付款成功／失敗補償、Regression、文件及摘要完整。學習成果可為Level1／2，只有完整證據才能宣稱完整軟體交付。76分鐘到停止擴充並列缺項。

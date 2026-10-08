@@ -1,12 +1,12 @@
 # Greenfield MVP 評估清單
 
 > 讀者：Evaluation、Facilitator。時機：20 分鐘摘要、22 分鐘收件後評估。
-> 前置：取得本次提交、Participant 需求／AC、測試輸出與人機分工摘要；閱讀 [G0 指令](../../../docs/instructions/02_Greenfield_Starter_Kit產製指令書.md)。
+> 前置：取得本次提交（含 `notes/greenfield.md` 與交付表單）、Participant 需求／AC、測試輸出與人機分工摘要；閱讀 [G0 指令](../../../docs/instructions/02_Greenfield_Starter_Kit產製指令書.md)。
 > 可見性：Evaluation／Facilitator 內部；不將內部驗收說明當解答發放。
 
 各列記錄「符合／部分符合／未符合／未驗證」、證據位置及限制；空白或 Agent 自述不能代替實際驗證。這是評估清單，不是已完成的 validation report。
 
-全程人不碰程式：不因學員沒讀程式或沒自己打指令而扣分或判失敗。功能類的證據可由 Agent 代為執行並附指令與輸出，或來自學員在 /docs 的實際試用；Agentic 行為類看學員是否先要計畫、核准後才動、要求並檢查驗收對照表與變更審查答案、用 /docs 驗證行為、如實標示未驗證。
+全程人不碰程式：不因學員沒讀程式或沒自己打指令而扣分或判失敗。功能類的證據可由 Agent 代為執行並附指令與輸出，或來自學員在 /docs 的實際試用；Agentic 行為類看學員是否用上本段技巧（給 Agent 一份規則；先要計畫再動手；小步執行、每步驗收）以及證據是否齊全：`notes/greenfield.md` 有計畫、核准紀錄、每步驗收對照表與變更審查答案、交付摘要；學員用 /docs 驗證行為、如實標示未驗證。不因學員表單少填而扣分；表單只有 4 欄人的決定，紀錄以 notes 檔為準。
 
 | 類別 | 核對項目 | 應留證據 |
 |---|---|---|
@@ -19,10 +19,10 @@
 | Test | 不刪除／弱化測試來湊通過；已完成功能無 Feature Skip | 變更審查第 2、3 題回答（含 Agent 附的 git diff 輸出）、Skip 待辦清單 |
 | Documentation | README 可讓 Agent 重現安裝／啟動／測試；業務規則與 API 範例一致 | 文件路徑、實際範例與 Rule ID |
 | Documentation | 交付摘要列完成／未完成／已知限制與下一步 | 摘要與可驗證證據連結 |
-| Agentic Behavior | 修改前先請 Agent Plan，由人確認任務順序與範圍 | Plan、人的確認與調整 |
-| Agentic Behavior | 人要求變更審查，逐題判斷後才核准；能用白話說明改了什麼、對應哪條規則 | 變更審查回答與審查卡 |
-| Agentic Behavior | 人要求驗收對照表，並在 /docs 試過行為後接受或要求修正；未驗證項如實標示 | 驗收對照表、/docs 試用記錄與後續決策 |
-| Agentic Behavior | 能說明人做什麼、Agent 做什麼，仍由人主導驗收 | 人機分工摘要／簡短口述記錄 |
+| Agentic Behavior | 開工先貼 Agent 工作規則；修改前先請 Agent Plan，由人確認任務順序與範圍 | notes 的計畫與核准紀錄、人的調整 |
+| Agentic Behavior | 小步放行：一次只核准一步，每步要求變更審查並判斷後才放行 | notes 中逐步的變更審查答案與核准分鐘 |
+| Agentic Behavior | 人要求驗收對照表，並在 /docs 試過行為後接受或要求修正；未驗證項如實標示 | notes 的驗收對照表、交付表單的 /docs 試用與接受決定 |
+| Agentic Behavior | 能說明人做什麼、Agent 做什麼，仍由人主導驗收 | notes 交付摘要的人機分工／簡短口述記錄 |
 
 功能完成度與 Agentic 行為分開判讀：功能未完成仍可具備良好的計畫／變更審查／驗收對照表行為；功能跑通也不代表人已審查。此階段 Agent 是 Tool，不評自主率高低、不以提示次數、程式碼量或速度競賽。
 

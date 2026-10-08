@@ -1,7 +1,7 @@
 # Digital Worker Work Order
 
 > 讀者：小組與主要 Coding Agent。
-> 使用時機：B3 發放後交給 Agent；先填小組與 Context，Gate 2 範圍待設計核准時填寫。
+> 使用時機：B3 發放後交給 Agent；Agent 先把已核准背景寫進 `notes/b3.md`，Gate 2 範圍待設計核准後由 Agent 照人員決策原文補記。
 > 前置條件：核准 Shared Context 及 [B3 任務卡](../../03-brownfield/participant/task-cards/03-b3-group-booking.md)。
 
 ## Mission
@@ -26,11 +26,11 @@ B2 的 `FARE-007`–`FARE-010` 持續適用：不可疊加、最低合格單一�
 
 ## Approved Context
 
-小組：____；主要 Agent／Session：____；Context 版本：____；接手 Repository 版本：____；已確認假設／限制：____；尚待決定事項：____。未填資料由小組確認，不由 Agent 猜測。
+請 Agent 依此格式寫進 `notes/b3.md` 的「已核准背景」段落：小組；主要 Agent／Session；Context 版本（`notes/shared-context.md`）；接手 Repository 版本；已確認假設／限制；尚待決定事項。查不到的寫「待小組確認」，由小組確認，不由 Agent 猜測。
 
 ## Allowed Change Scope
 
-Gate 2 核准範圍：____。允許為團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件修改；每個預計檔案均須先提出影響理由。
+Gate 2 核准範圍：由人在 Gate 2 決定，Agent 照原文寫進 `notes/b3.md` 的「Gate 2」段落。允許為團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件修改；每個預計檔案均須先提出影響理由。
 
 ## Prohibited Change Scope
 
@@ -46,7 +46,7 @@ Gate 2 核准範圍：____。允許為團體流程所需的 API、Domain、Appli
 
 ## Approval Gates
 
-依 [三 Gate](03-approval-gates.md)：Gate 1 需求、Gate 2 影響與設計、Gate 3 交付 Review。決策含審查證據、條件、核准人與分鐘；條件未滿足不得擴大核准。
+依 [三 Gate](03-approval-gates.md)：Gate 1 需求、Gate 2 影響與設計、Gate 3 交付 Review。決策含審查證據、條件、核准人與分鐘，由人說、Agent 照原文寫進 `notes/b3.md`；條件未滿足不得擴大核准。
 
 ## Stop and Escalate Conditions
 
@@ -63,10 +63,10 @@ Gate 2 核准範圍：____。允許為團體流程所需的 API、Domain、Appli
 9. 修改檔案數顯著超過 Gate 2 預估。
 10. 剩餘時間不足完成承諾交付。
 
-使用 [Escalation 範本](06-exception-response-card.md#escalation)，等待人員決策後才續行。
+依 [Escalation 範本](06-exception-response-card.md#escalation) 的格式，把觸發原因、證據、影響、可選方案、建議與需要人決定的事寫進 `notes/b3.md`，等待人員決策後才續行。
 
 ## Timebox
 
 B3 13 分鐘；每 Gate 控制 1–3 分鐘。第 3 分鐘 Gate 1 決策、第 6 分鐘 Gate 2 決策，第 7 分鐘起執行、第 11 分鐘停止擴充測試、第 12 分鐘 Review、第 13 分鐘交付。例外判斷含在此時間，不額外加時。
 
-完成條件：小組先確認 Context，於 Gate 2 填妥核准範圍；Agent 理解規則與停止條件，保留核准證據與誠實完成度，未完成部分不宣稱驗收通過。
+完成條件：小組先確認 Context，Gate 2 核准範圍已記進 `notes/b3.md`；Agent 理解規則與停止條件，保留核准證據與誠實完成度，未完成部分不宣稱驗收通過。

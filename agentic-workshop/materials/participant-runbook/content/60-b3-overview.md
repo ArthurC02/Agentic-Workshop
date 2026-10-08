@@ -6,25 +6,23 @@ group: b3
 section: B3｜Digital Worker
 ---
 
-# B3｜Digital Worker：由 Agent 主導交付
-
-本段共 **13 分鐘**（第 63–76 分鐘），任務是 `TASK-B3-001` 團體訂票。Agent 的角色是 **Digital Worker**（數位員工）：今天 Agent 從工具、隊友，走到這一段能獨立執行任務的數位員工。Agent 主導分析、設計、實作、測試、文件及交付；人設定邊界、核准、挑戰與驗證，承擔最終提交責任。
-
-```callout danger
-人不寫程式；到 B3 連核准方式也變
-今天全程人本來就不寫程式、不讀程式。到 B3 連核准方式也要變：人只透過三道 Gate 管 Agent，也就是挑戰假設、核准或拒絕、要求補證或修正。判斷依據是驗收對照表、變更審查答案與 /docs 實測結果，不看程式。Agent 負責分析、設計、實作、測試、文件與摘要。
-
-工具不支援自動修改時，Agent 可產生 Patch（修改檔），由環境套用；人員仍不得自行補寫程式或測試。
-```
-
-```callout warning
-不要讓 Agent 跳過 Gate
-本段分成 6 個檢查點，其中三個的「確認」就是人員核准關卡（Gate 1、Gate 2、Gate 3）。每個檢查點結束時 Agent 必須停下；由人填好該檢查點的確認，才交代下一步。Gate 2 核准且相關條件解除前，Agent 不得修改程式。
-```
+# B3｜委派整件任務：工作單 + 三道關卡
 
 ```callout info
-投影畫面和這份 Runbook 怎麼分工
-投影畫面只顯示**時間**和**現在進行到第幾個檢查點**。要做什麼、要貼給 Agent 的提示詞、要填的表單，全部在本頁。主持人換頁時，請跟著跳到本頁對應的檢查點。
+現在在做什麼
+- **情境**：旅行社想一次幫 5–20 人的團體訂同一班車、同一節車廂的連號座位，付款失敗要整團取消。這是任務 `TASK-B3-001` 團體訂票。
+- **你的目標**：把整件任務交給 Agent 自主完成；你只在三道關卡（Gate）做決定，13 分鐘內如實交付。
+- **今天的技巧**：**委派整件任務：工作單 + 三道關卡**。範圍、禁止事項與停止條件先寫進工作單（Work Order），Agent 就能自己往前走；你只在 Gate 介入，不必盯每一步，也不會失控。
+- **完成的樣子**：`notes/b3.md` 裡有 Agent 寫的需求理解、設計、你的三個 Gate 決策、驗收對照表與變更審查答案；完成等級（Level）有證據支持。
+```
+
+本段 Agent 是 **Digital Worker（數位員工）**：Agent 主導分析、設計、實作、測試、文件與交付；人設定邊界、在 Gate 核准或退回、要求補證，承擔最終提交責任。
+
+```callout danger
+到 B3 連核准方式也變
+今天全程人本來就不寫、不讀程式。前幾段你逐步核准每一小步；到 B3，人只透過三道 Gate 管 Agent：挑戰假設、核准或退回、要求補證或修正。判斷依據是驗收對照表、變更審查答案與 /docs 實測結果，不看程式。Gate 2 核准且條件解除前，Agent 不得修改程式。
+
+工具不支援自動修改時，Agent 可產生 Patch（修改檔），由環境套用；人員仍不得自行補寫程式或測試。
 ```
 
 ## 檢查點總覽
@@ -33,52 +31,20 @@ section: B3｜Digital Worker
 
 | 檢查點 | 全場分鐘 | 段內時間 | 你要完成的事 |
 |---|---:|---:|---|
-| 1 · 交辦 | 63–64 | 00–01 | 讀操作規則、填 Approved Context、把 Work Order 交給 Agent |
-| 2 · Gate 1 需求理解 | 64–66 | 01–03 | 審查 Agent 的需求理解；第 66 分做 Gate 1 決策 |
-| 3 · Gate 2 影響分析與設計 | 66–70 | 03–07 | 審查影響與設計；第 69 分做 Gate 2 決策、填核准範圍 |
-| 4 · 依核准計畫執行 | 70–74 | 07–11 | Agent 在核准範圍內修改、測試、更新文件；人看 Agent 的白話回報，不寫、不讀程式 |
-| 5 · 停止擴充、整理證據 | 74–75 | 11–12 | 停止新增；Agent 交驗收對照表與 Gate 3 Input |
-| 6 · Gate 3 與交付 | 75–76 | 12–13 | Agent 回答變更審查問題；Gate 3 交付審查；Agent 交 Delivery Summary（交付摘要）與 Level（完成等級） |
+| 1 · 把工作單交給 Agent | 63–64 | 00–01 | 貼規則、任務卡與工作單；Agent 交出 Gate 1 資料後停下 |
+| 2 · Gate 1：確認 Agent 懂需求 | 64–66 | 01–03 | 核對需求理解；第 66 分做 Gate 1 決策 |
+| 3 · Gate 2：核准設計與修改範圍 | 66–70 | 03–07 | 核對設計；第 69 分做 Gate 2 決策；第 69–70 分處理例外事件 |
+| 4 · 放手執行，Gate 3 決定交付 | 70–76 | 07–13 | Agent 在核准範圍內做完；第 74 分停止擴充、第 75 分 Gate 3、第 76 分停止 |
 
-## 本段文件
+本段只有一張表單：頁尾的「B3 Gate 決策」（4 欄）。需求理解、設計、決策原文、驗收對照表與變更審查答案，都請 Agent 寫進 `notes/b3.md`，你不用抄。
 
-| 文件 | 用途 | 使用方式 |
-|---|---|---|
-| [B3 任務卡](#b3-task-card) | `TASK-B3-001` 需求、邊界與驗收條件（AC） | 必讀 |
-| [Digital Worker 操作規則](#b3-operating-rules) | 人與 Agent 的可以／不得 | 必讀，目標 2 分鐘內讀完 |
-| [Work Order](#b3-work-order)（工作命令） | 交給 Agent 的工作命令；填 Approved Context（已核准的背景資料）與 Gate 2 核准範圍 | 必讀；檢查點 1、3 填寫 |
-| [Approval Gates](#b3-approval-gates)（核准關卡） | 三個人員核准關卡與決策短格式 | 必讀；檢查點 2、3、6 填寫 |
-| [Review Checklist](#b3-review-checklist)（交付審查檢核表） | Gate 3 交付審查 | 按需使用（檢查點 6） |
-| [Delivery Summary](#delivery) | Gate 3 及 B3 結束時的交付摘要 | 按需使用（檢查點 6） |
-| [Exception Response 卡](#b3-exception-card)（例外回應卡） | 例外回應與 Escalation（升級處理：停下來交給人決定）短格式 | 按需使用 |
+需要時再查：[B3 任務卡](#b3-task-card)、[操作規則](#b3-operating-rules)、[工作單 Work Order](#b3-work-order)、[三道 Gate](#b3-approval-gates)、[交付審查清單](#b3-review-checklist)、[例外回應卡](#b3-exception-card)。
 
-## 檢查點 1 · 交辦（第 63–64 分鐘）
+## 檢查點 1 · 把工作單交給 Agent（第 63–64 分鐘）
 
-- [ ] 讀 [Digital Worker 操作規則](#b3-operating-rules) 與 [B3 任務卡](#b3-task-card)。操作規則目標 2 分鐘內讀完，可在 Agent 準備 Gate 1 Input（Agent 交給 Gate 1 審查的資料）時讀完。
+一次把整件任務交代清楚：要做什麼、能動哪裡、什麼情況要停下來、在哪裡等你決定。交代清楚，Agent 才能自己往前走。
 
-本段人員可以做的事：
-
-- **挑戰假設（Challenge）**：要求 Agent 解釋假設，挑戰方案與風險。
-- **審查（Review）**：看驗收對照表、變更審查答案與文件，在 /docs 試 API；看不懂就請 Agent 解釋。
-- **核准／拒絕（Approve／Reject）**：在三個核准關卡（Approval Gate）做決策。
-- **要求補證或修正**：證據不足時要求補證，或要求 Agent 修正。
-- **中止 Agent**：衝突、資訊不足或超權限時停止並升級。
-
-| 角色 | 可以 | 不得 |
-|---|---|---|
-| 人 | 提供需求、要求解釋假設、Challenge、審查驗收對照表／變更審查答案／文件、Approve／Reject、要求補證與修正，或中止 Agent。 | 寫程式、讀程式、修改程式或替 Agent 補測試，不跳過 Gate，也不因時間壓力接受未驗證說法。 |
-| Agent | 理解 Repository、分析影響、提出選項，按核准計畫修改、建立與執行測試、更新文件及揭露未完成事項。 | 越過核准範圍、未核准變更 API、自行改商業規則、加入外部服務／資料庫／規則引擎、刪弱測試、捏造通過結果或在 Gate 未核准前前進。 |
-
-- [ ] 在 [Work Order](#b3-work-order) 先填小組與 Context（Approved Context）。「Gate 2 核准範圍」留到檢查點 3 再填。未填資料由小組確認，不由 Agent 猜測。
-- [ ] 把下列內容交給主要 Agent。依操作規則的前置條件，Agent 需要已核准的 Shared Context、B2 接手版本與 B3 任務卡：
-
-1. 已核准的 Shared Context 與 B2 接手版本。
-2. [B3 任務卡](#b3-task-card) 全文。
-3. [Digital Worker 操作規則](#b3-operating-rules) 全文。
-4. [Work Order](#b3-work-order) 全文，加上已填寫的 Approved Context（可用表單的「複製 Markdown」）。
-5. [Approval Gates](#b3-approval-gates) 全文，讓 Agent 知道每個 Gate 要提交的 Input。
-
-- [ ] 先貼上下方工作規則（這段是給 Agent 的，不需要看懂）。B3 沿用操作規則與 Work Order，另加這四條回報規則：
+- [ ] 在主要 Agent 的對話先貼上下方工作規則（這段是給 Agent 的，不需要看懂）。B3 沿用操作規則與工作單，另加這四條回報規則：
 
 ```text
 以下是這次工作的規則，請在整段對話中遵守：
@@ -88,163 +54,128 @@ section: B3｜Digital Worker
 4. 你沒有實際執行的事情，一律標「未驗證」。
 ```
 
-- [ ] 連同上述內容貼上下方提示詞（文字取自上述文件，可依小組需要調整）。最後一句讓 Agent 這一次只做 Gate 1：
+- [ ] 接著貼上 [B3 任務卡](#b3-task-card)、[操作規則](#b3-operating-rules)、[工作單](#b3-work-order)、[三道 Gate](#b3-approval-gates) 四頁全文，再貼下方交辦提示詞：
 
 ```text
-請依附上的 Digital Worker Work Order 執行 TASK-B3-001，並遵守 Digital Worker 操作規則與 B3 人員核准 Gate。
-1. 先提交 Gate 1 Input：需求摘要、規則清單、關鍵假設、資訊缺口、Out of Scope、需要人決定的問題。等待人員決策，核准需求才進入設計。
-2. Gate 1 核准後提交 Gate 2 Input：受影響／不受影響模組、API Contract、Domain 變更、Seat Assignment 方案、Atomicity／Compensation 方案、測試策略、文件清單、主要風險與預計修改檔案。Gate 2 核准後才可改程式。
-3. 遇 Work Order 的 Stop and Escalate Conditions，停止受影響動作，使用 Escalation 範本提出證據與決策需求，等待人員決策後才續行。
-4. Gate 決策由人填寫，Agent 不代填核准。實際執行命令、結果與未執行部分均須記錄，不以預期代替實測。
+請依附上的工作單（Work Order）執行 TASK-B3-001 團體訂票，遵守 Digital Worker 操作規則與三道 Gate。
+1. 先讀 notes/shared-context.md，在 notes/b3.md 建立「已核准背景」：小組、接手的程式版本（B2 接手版本或 B2 復原包）、已確認的假設與限制、尚待決定的事項。查不到的寫「待小組確認」，不要猜。
+2. 提交 Gate 1 資料：需求摘要、規則清單、關鍵假設、資訊缺口、不做的範圍（Out of Scope）、需要我決定的問題。寫進 notes/b3.md 的「Gate 1」段落，並在對話用白話摘要。
+3. 每過一道 Gate 才進下一步：Gate 1 核准才設計；Gate 2 核准且條件解除才改程式；Gate 3 由我決定是否交付。
+4. 遇到工作單的停止與升級條件（Stop and Escalate Conditions），停止受影響動作，依 Escalation 格式把證據、選項與建議寫進 notes/b3.md，等我決定。
+5. Gate 決策由我說，你照原文記進 notes/b3.md（決策、理由、條件、核准人、分鐘），不要代我核准。實際執行的命令、結果與未執行的部分都要記錄，不以預期代替實測。
 
-這一次只做第 1 項：提交 Gate 1 Input 後停下，等我做 Gate 1 決策。不要開始設計，也不要修改任何檔案。
+這一次只做第 1、2 項：交出 Gate 1 資料後停下，不要開始設計，也不要修改任何檔案。
 ```
 
-**確認**：[Work Order](#b3-work-order) 表單的小組、Agent／工作階段、背景資料版本、程式庫版本、已確認假設、尚待決定事項已填寫。
+**看什麼證據**：`notes/b3.md` 出現「已核准背景」與「Gate 1」兩段；Agent 列出了要你決定的問題；它還沒改任何檔案。
 
-## 檢查點 2 · Gate 1 需求理解（第 64–66 分鐘）
+## 檢查點 2 · Gate 1：確認 Agent 懂需求（第 64–66 分鐘）
 
-Agent 交出 Gate 1 Input 後停下。**換你審查並決策**，決策前不要讓它進入設計。
+第一道關卡：需求理解錯了，後面做得再快都是白做。
 
-- [ ] 確認 Agent 提交了 Gate 1 Input：需求摘要、規則清單、關鍵假設、資訊缺口、Out of Scope（不在範圍內的項目）、需要人決定的問題。
-- [ ] 人員檢視（Review）：5–20 人邊界、同班次（Trip）／同車廂連續、無部分成功、失敗整筆取消及全釋放、B2 個別旅客優惠是否理解一致。
+- [ ] 對照任務卡核對 Agent 的 Gate 1 資料：5–20 人邊界、同班次（Trip）與同車廂連續座位、無部分成功、付款失敗整筆取消並全部釋放座位、每位旅客沿用 B2 最有利單一優惠。看不懂就請 Agent 用白話解釋。
 - [ ] 回答 Agent 列出的問題；查不到依據時由小組確認，不讓 Agent 自行假設。
-- [ ] 最晚全場第 66 分鐘，在 [Gate 1 表單](#b3-approval-gates) 記錄決策。核准需求才進入設計；拒絕時要求修正。條件核准需說明哪些活動已允許、哪些仍被阻擋。三種決策：APPROVE＝核准；APPROVE WITH CONDITIONS＝附條件核准；REJECT AND REVISE＝退回修正。
-- [ ] 用下方格式回覆 Agent。`〈 〉` 的內容由你填寫：
+- [ ] 最晚全場第 66 分鐘做 Gate 1 決策，選填下方表單第 1 欄，並用下方格式回覆 Agent。三種決策：APPROVE＝核准；APPROVE WITH CONDITIONS＝附條件核准（說明哪些活動已允許、哪些仍被阻擋）；REJECT AND REVISE＝退回修正。`〈 〉` 的內容由你填寫：
 
 ```text
 Gate 1 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
-審查依據：〈我核對了哪些規則與假設〉
+理由：〈我核對了哪些規則與假設〉
 條件／修正：〈沒有就寫「無」〉
 我對你的問題的決定：〈逐項列出〉
+核准人與分鐘：〈姓名〉，第〈分〉分
 
-〈核准時〉請提交 Gate 2 Input：受影響／不受影響模組、API Contract、Domain 變更、Seat Assignment 方案、Atomicity／Compensation 方案、測試策略、文件清單、主要風險與預計修改檔案。提交後停下等我做 Gate 2 決策，不要修改程式。
-〈拒絕時〉請依上述修正重新提交 Gate 1 Input，然後停下等我。
+請把以上決策照原文記進 notes/b3.md 的「Gate 1」段落。
+〈核准時〉接著提交 Gate 2 資料：受影響／不受影響的模組、API 合約（API Contract）、業務模型變更、座位分配方案、整筆成功或整筆失敗（Atomicity）與失敗復原（Compensation）方案、測試策略、文件清單、主要風險與預計修改檔案。寫進 notes/b3.md 的「Gate 2」段落後停下，不要修改程式。
+〈退回時〉請依上述修正重新提交 Gate 1 資料，然後停下等我。
 ```
 
-```callout tip
-決策紀錄由人填寫
-三個 Gate 的決策請在 [Approval Gates](#b3-approval-gates) 頁面的表單中由人員填寫；表單會自動暫存，可匯出或複製 Markdown 保留核准紀錄。
-```
+**看什麼證據**：`notes/b3.md` 的 Gate 1 段落記著你的決策原文；核准前 Agent 沒有開始設計。
 
-**確認**：[Gate 1 表單](#b3-approval-gates)（Gate 核准決策 · GATE1）。
+## 檢查點 3 · Gate 2：核准設計與修改範圍（第 66–70 分鐘）
 
-## 檢查點 3 · Gate 2 影響分析與設計（第 66–70 分鐘）
+這一步 Agent **只提設計，不改程式**。你核准的範圍，就是 Agent 接下來能自己動手的邊界。
 
-這一步 Agent **只提設計，不改程式**。
-
-- [ ] 確認 Agent 提交了 Gate 2 Input：受影響／不受影響模組、API Contract（API 合約）、Domain 變更（業務模型變更）、Seat Assignment（座位分配）方案、Atomicity／Compensation（整筆成功或整筆失敗／失敗時復原已保留的座位等狀態）方案、測試策略、文件清單、主要風險與預計修改檔案。
-- [ ] 人員 Review：範圍是否合理、避免全面重寫、建立與付款失敗均處理、座位釋放、既有功能沒被改壞（既有測試保留）與未核准外部依賴；不以方案看似合理取代授權檢查。看不懂的地方請 Agent 用白話解釋。
-- [ ] 最晚全場第 69 分鐘，在 [Gate 2 表單](#b3-approval-gates) 記錄決策，並在 [Work Order](#b3-work-order) 填妥「Gate 2 核准範圍」。
-- [ ] 第 69–70 分鐘：主持人若宣布例外事件，用 [Exception Response 卡](#b3-exception-card) 在 60 秒內記錄提議、證據、決策與給 Agent 的指令。時間緊可用 30 秒口頭判斷並留下簡短紀錄。
-- [ ] Gate 2 核准且相關條件已解除後，才進入檢查點 4。條件未滿足的範圍先停止；偏差需補證或重新核准。
-
-**確認**：[Gate 2 表單](#b3-approval-gates)（Gate 核准決策 · GATE2）與 [Work Order](#b3-work-order) 的「Gate 2 核准範圍」；有例外事件時加上 [Exception Response 卡](#b3-exception-card)。
-
-## 檢查點 4 · 依核准計畫執行（第 70–74 分鐘）
-
-- [ ] Gate 2 核准且條件解除後，交代 Agent 執行：
+- [ ] 核對 Gate 2 資料：範圍是否合理、沒有全面重寫、建立失敗與付款失敗都有處理、座位會釋放、既有功能沒被改壞（既有測試保留）、沒有未核准的外部依賴。不以方案看似合理取代授權檢查；看不懂請 Agent 用白話解釋。
+- [ ] 最晚全場第 69 分鐘做 Gate 2 決策，選填表單第 2 欄，並回覆 Agent：
 
 ```text
-Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS〉
-核准範圍：〈貼上 Work Order 的「Gate 2 核准範圍」〉
-條件：〈列出條件，並說明已如何解除；沒有就寫「無」〉
+Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
+核准的修改範圍：〈允許修改哪些檔案或模組；不得修改哪些〉
+條件：〈列出條件與解除方式；沒有就寫「無」〉
+核准人與分鐘：〈姓名〉，第〈分〉分
 
-請按核准計畫執行：只修改核准範圍內的檔案，建立與執行測試、更新文件。不要擴大範圍；與 Gate 2 計畫有偏差時先回報，等我核准。
-遇 Work Order 的 Stop and Escalate Conditions，立即停止受影響動作，用 Escalation 短格式提出證據與決策需求，等我決定。
-完成核准計畫或遇停止條件時停下，用白話回報修改了哪些檔案、各改了什麼、為什麼，並附驗收對照表與實際執行的測試指令，等我確認，不要自行進入交付。
+請把以上決策與核准範圍照原文記進 notes/b3.md 的「Gate 2」段落，然後停下。條件解除、我說「開始執行」之前，不要修改程式。
 ```
 
-- [ ] Gate 2 核准後，Agent 才按核准計畫修改、建立與執行測試、更新文件。條件未滿足的範圍先停止；偏差需補證或重新核准。
-- [ ] 人員不寫、不讀程式，也不替 Agent 補測試；看 Agent 的白話說明與驗收對照表，持續挑戰假設，看不懂就請 Agent 解釋。
-- [ ] 遇工作命令中的停止與升級條件（Stop and Escalate Conditions），Agent 停止受影響動作，使用 [升級處理範本](#b3-exception-card) 提出證據與決策需求；取得人員決策且相關條件解除後才續行。
+- [ ] 第 69–70 分鐘：主持人若宣布例外事件，用 [例外回應卡](#b3-exception-card) 在 60 秒內判斷提議是否在核准範圍內、做決策並回覆 Agent；時間緊可用 30 秒口頭判斷並留下簡短紀錄。也請 Agent 把你的例外決策照原文記進 `notes/b3.md`。
+- [ ] Gate 2 核准且條件已解除後，才進入檢查點 4。條件未滿足的範圍先停止；偏差需補證或重新核准。
 
-```callout info
-例外與升級
-需要例外判斷時，使用 [Exception Response 卡](#b3-exception-card) 記錄提議、證據、決策與給 Agent 的指令；例外判斷含在本段限定時間（Timebox）內，不額外加時。一般停止條件使用同頁的 Escalation 短格式。
-```
+**看什麼證據**：`notes/b3.md` 的 Gate 2 段落有核准範圍與條件；Agent 到目前仍沒改程式。
 
-```form
-{"id": "b3-cp4", "title": "檢查點 4 確認","fields":[
-{"id": "files", "label": "Agent 修改的檔案，與 Gate 2 核准範圍對照", "type": "textarea", "hint": "超出核准範圍的檔案要註明。尚無修改就寫「無修改」及原因。", "suggestions": [{"label": "範圍內檔案", "text": "〈檔案〉：在 Gate 2 核准範圍內（〈修改目的〉）"}, {"label": "超出範圍", "text": "〈檔案〉：不在 Gate 2 核准範圍，已要求 Agent 回報理由／還原"}, {"label": "無修改", "text": "無修改，原因：〈原因〉"}]},
-{"id": "escalations", "label": "偏差或停止升級事件與人員決策", "type": "textarea", "hint": "沒有就寫「沒有」。有升級時另填 Escalation 表單。", "suggestions": [{"label": "偏差與決策", "text": "〈事件〉：Agent 於第〈分〉分停止並回報；人員決策：〈核准／拒絕／要求補證〉"}, "沒有"]},
-{"id": "human-no-code", "label": "人員沒有直接修改程式或補測試", "type": "checkbox"}
-]}
-```
+## 檢查點 4 · 放手執行，Gate 3 決定交付（第 70–76 分鐘）
 
-## 檢查點 5 · 停止擴充、整理證據（第 74–75 分鐘）
+這段 Agent 自己做；你不盯每一步，只在它停下升級時和 Gate 3 介入。
 
-**不再新增功能。**
-
-- [ ] 要求 Agent 停止擴充並整理證據：
+- [ ] 第 70 分鐘，Gate 2 核准且條件解除後，交代 Agent 執行：
 
 ```text
-停止擴充，不要再新增功能。
-已有程式修改時，執行測試並整理驗收對照表：每條驗收條件（或規則）一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」。最後一行寫測試總數：通過幾個、失敗幾個、跳過幾個。附上你實際執行的指令。
-尚無修改或未執行測試時，明記「無修改／未執行」、原因與未驗證範圍，不要預填成功。
-接著提交 Gate 3 Input：當前成果摘要、驗收對照表、Rule Traceability、未完成事項、已知風險及交付建議；有修改時附實際修改檔案，有測試時附命令與真實結果。提交後停下，等我做 Gate 3 決策。
+開始執行。只修改 notes/b3.md 記錄的 Gate 2 核准範圍內的檔案，建立與執行測試、更新文件。不要擴大範圍；與 Gate 2 計畫有偏差時先停下回報，等我核准。
+遇到工作單的停止與升級條件，立即停止受影響動作，依 Escalation 格式把證據、選項與需要我決定的事寫進 notes/b3.md，等我決定。
+做完核准計畫就停下，用白話回報改了哪些檔案、為什麼，等我確認；不要自行進入交付。
 ```
 
-- [ ] 停止擴充。實際執行命令、結果與未執行部分均須記錄，不以預期代替實測。
-- [ ] 尚無修改或未執行測試時，明記「無修改／未執行」及原因與未驗證範圍，不預填成功。
-
-```form
-{"id": "b3-cp5", "title": "檢查點 5 確認","fields":[
-{"id": "test-command", "label": "實際執行的測試命令", "type": "text", "hint": "未執行就寫「未執行」。", "suggestions": ["pytest -q", "未執行"]},
-{"id": "test-result", "label": "實際結果", "type": "text", "hint": "照 Agent 驗收對照表最後一行的測試總數填寫：通過、失敗、跳過各幾個。", "suggestions": [{"label": "測試數量", "text": "〈數字〉 passed、〈數字〉 failed、〈數字〉 skipped"}, {"label": "未執行", "text": "未執行：〈原因〉"}]},
-{"id": "not-run", "label": "未執行或未驗證的項目與原因", "type": "textarea", "hint": "沒有就寫「沒有」。", "suggestions": [{"label": "未驗證項目", "text": "〈項目〉：未驗證，原因：〈原因〉"}, "沒有"]}
-]}
-```
-
-## 檢查點 6 · Gate 3 與交付（第 75–76 分鐘）
-
-- [ ] 確認 Agent 提交了 Gate 3 Input：當前成果摘要、驗收對照表、規則追溯（Rule Traceability：每條規則由 Agent 對到程式、測試與文件）、未完成事項、已知風險及交付建議；有修改時附實際檔案，有測試時附命令與真實結果。
-- [ ] 有程式修改時，把下方變更審查提示貼給 Agent。Gate 3 的審查看的是 Agent 的回答與驗收對照表，不看程式：
+- [ ] Agent 執行時，你不寫、不讀程式，也不替 Agent 補測試；只在它停下升級時做決定，並請它把你的決定照原文記進 `notes/b3.md`。
+- [ ] **第 74 分鐘停止擴充**。不論 Agent 做到哪裡，都貼上：
 
 ```text
-不要再修改。請用白話回答下列審查問題，每題附上你實際執行的指令與輸出：
-1. 這次改了哪些檔案？每個檔案改了什麼、為什麼？有沒有不在核准計畫裡的檔案？
-2. 測試總數和上一次比有沒有變少？有沒有新增 skip 或 xfail？
-3. 有沒有刪除測試，或修改既有測試的期待值？（請用 git diff 檢查 tests 資料夾後回答）
-4. 列出驗收對照表。
+停止擴充，不要再新增功能，也不要再修改。請完成下列三件事，全部寫進 notes/b3.md，再在對話用白話摘要：
+1. 驗收對照表：每條驗收條件（或規則）一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」。最後一行寫測試總數：通過幾個、失敗幾個、跳過幾個。附上你實際執行的指令。尚無修改或未執行測試時，明記「無修改／未執行」、原因與未驗證範圍，不要預填成功。
+2. 變更審查：用白話回答下列問題，每題附上你實際執行的指令與輸出。
+   (1) 這次改了哪些檔案？每個檔案改了什麼、為什麼？有沒有不在核准計畫裡的檔案？
+   (2) 測試總數和上一次比有沒有變少？有沒有新增 skip 或 xfail？
+   (3) 有沒有刪除測試，或修改既有測試的期待值？（請用 git diff 檢查 tests 資料夾後回答）
+3. Gate 3 資料：成果摘要、規則追溯（每條規則對到程式、測試與文件）、未完成事項、已知風險，以及建議的完成等級（Level 1–3 擇一並附證據，不要自動選 Level 3）。
+做完停下，等我做 Gate 3 決策。
 ```
 
-- [ ] 時間允許時，用瀏覽器試一次團體訂票：在瀏覽器開 `http://127.0.0.1:8000/docs` → 點開要試的 API → 按「Try it out」→ 在 Request body 貼上 Agent 提供的範例（或使用預設範例）→ 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、400 輸入錯誤、404 找不到）和內容。伺服器還沒啟動時，請 Agent 在背景啟動（埠號 8000）並告訴你 /docs 的網址；沒時間試就在審查卡第 5 題選「沒試（未驗證）」。
-- [ ] 填下方變更審查卡。任何一題是「否」或「不確定」→ 不核准，請 Agent 解釋或修正。
-- [ ] 人員審查（可用 [交付審查檢核表](#b3-review-checklist)）：是否越界、成果證據與未完成事項是否如實揭露。對照你在檢查點 4、5 的確認紀錄；不一致時以你的實際確認為準。
-
-```form
-{"id": "b3-change-review", "title": "檢查點 6 變更審查卡","fields":[
-{"id": "files-in-plan", "label": "1. 改的檔案都在核准計畫裡嗎？", "type": "select", "options": ["是", "否", "不確定"], "hint": "依 Agent 對第 1 題的回答，對照 Work Order 的「Gate 2 核准範圍」。"},
-{"id": "test-count-kept", "label": "2. 測試數沒有變少、沒有新增跳過？", "type": "select", "options": ["是", "否", "不確定"], "hint": "依 Agent 對第 2 題的回答。"},
-{"id": "tests-not-weakened", "label": "3. 沒有刪除測試或改既有期待值？", "type": "select", "options": ["是", "否", "不確定"], "hint": "依 Agent 對第 3 題的回答。"},
-{"id": "open-items", "label": "4. 驗收對照表裡還有哪些失敗或未驗證？", "type": "textarea", "suggestions": [{"label": "失敗或未驗證", "text": "〈AC 編號〉：〈失敗／未驗證〉，原因：〈Agent 的說明〉"}, "沒有"]},
-{"id": "docs-behavior", "label": "5. 我在 /docs 實際試過的行為符合需求嗎？", "type": "select", "options": ["是", "否", "不確定", "沒試（未驗證）"]},
-{"id": "docs-detail", "label": "5. 試了什麼、看到什麼", "type": "textarea", "suggestions": [{"label": "實測紀錄", "text": "試〈API〉：〈輸入摘要〉→ 狀態碼〈數字〉，〈看到的結果〉"}, "沒試，原因：〈原因〉"]},
-{"id": "need-explain", "label": "6. 有沒有看不懂、要 Agent 再解釋的地方？", "type": "textarea", "suggestions": [{"label": "要再解釋", "text": "請 Agent 再解釋：〈哪一點〉"}, "沒有"]}
-]}
-```
-
-- [ ] 在 [Gate 3 表單](#b3-approval-gates) 記錄決策：依實際成果核准、條件核准或拒絕並修正。
-- [ ] 要求 Agent 交付：
+- [ ] 第 75 分鐘 Gate 3：只看 Agent 的回答，不看程式，逐題判斷：(1) 改的檔案都在 Gate 2 核准範圍裡嗎？(2) 測試數沒有變少、沒有新增跳過？(3) 沒有刪除測試或改既有期待值？(4) 驗收對照表裡還有哪些失敗或未驗證？任何一題是「否」或「不確定」→ 不核准，請 Agent 解釋或修正。想逐項核對時，請 Agent 依 [交付審查清單](#b3-review-checklist) 自評並寫進 `notes/b3.md`，你抽查。
+- [ ] 時間允許時，用瀏覽器試一次團體訂票：在瀏覽器開 `http://127.0.0.1:8000/docs` → 點開要試的 API → 按「Try it out」→ 在 Request body 貼上 Agent 提供的範例（或使用預設範例）→ 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、400 輸入錯誤、404 找不到）和內容。伺服器還沒啟動時，請 Agent 在背景啟動（埠號 8000）並告訴你 /docs 的網址。沒時間試，就在 Gate 3 回覆寫「/docs 未實測（未驗證）」。
+- [ ] 做 Gate 3 決策，選填表單第 3 欄，並回覆 Agent：
 
 ```text
 Gate 3 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
+理由：〈依據哪些驗收對照表與變更審查答案〉
 條件／修正：〈沒有就寫「無」〉
+/docs 實測：〈試了什麼、看到什麼；沒試就寫「未驗證」〉
+核准人與分鐘：〈姓名〉，第〈分〉分
 
-請依 Delivery Summary 範本整理交付摘要。Completion Level 從 Level 1–3 擇一並說明證據，不要自動選 Level 3；沒有實際執行過的項目標為「未驗證」。交出後停止，不再新增功能。
+請把以上決策照原文記進 notes/b3.md 的「Gate 3」段落，然後停止，不再新增功能。交付摘要在下一段整理。
 ```
 
-- [ ] Agent 交付 [Delivery Summary](#delivery) 與 Completion Level（完成等級：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付；擇一並說明證據，不自動選 Level 3）。
 - [ ] 全場第 76 分鐘到，停止擴充並列出缺項。
+
+**看什麼證據**：`notes/b3.md` 有附實際指令的驗收對照表、變更審查三題答案、三個 Gate 的決策原文；建議的 Level 有證據支持。
 
 ```callout warning
 時間不足時
-13 分鐘內保留三個核准關卡與真實證據；時間不足保留 Gate 1／2，Gate 3 至少看驗收對照表及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付。若已完成分析，可交付 Level 1；即使無程式修改或未執行測試，也須交付分析、核准紀錄、未驗證範圍與原因，不宣稱功能已通過驗收。
+13 分鐘內保留三個核准關卡與真實證據；時間不足保留 Gate 1／2，Gate 3 至少看驗收對照表及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付（Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付；不自動選 Level 3）。若已完成分析，可交付 Level 1；即使無程式修改或未執行測試，也須交付分析、核准紀錄、未驗證範圍與原因，不宣稱功能已通過驗收。
 ```
 
-**確認**：檢查點 6 變更審查卡與 [Gate 3 表單](#b3-approval-gates)（Gate 核准決策 · GATE3）；有使用時加上 [交付審查檢核表](#b3-review-checklist)。
+### 填寫：B3 Gate 決策
+
+只記人的決定。理由、條件與證據已由 Agent 寫進 `notes/b3.md`，這裡不用重寫。
+
+```form
+{"id": "b3-gates", "title": "B3 Gate 決策","fields":[
+{"id": "gate1", "label": "Gate 1 需求理解（第 66 分）", "type": "select", "options": ["核准（APPROVE）", "附條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）", "未進行"]},
+{"id": "gate2", "label": "Gate 2 影響分析與設計（第 69 分，含例外事件）", "type": "select", "options": ["核准（APPROVE）", "附條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）", "未進行"], "hint": "附條件核准時，條件解除後才可修改程式。"},
+{"id": "gate3", "label": "Gate 3 交付審查（第 75 分）", "type": "select", "options": ["核准（APPROVE）", "附條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）", "未進行"], "hint": "核准代表接受目前成果，不等於測試通過；通過要看驗收對照表。"},
+{"id": "approver-open", "label": "核准人；還有什麼不確定", "type": "text", "suggestions": [{"label": "範本", "text": "核准人：〈姓名〉；不確定：〈一句話〉"}, {"label": "沒有不確定", "text": "核准人：〈姓名〉；不確定：無"}]}
+]}
+```
 
 ## 必要時受控接續
 
-未完成前一段時，主持人只於進入本段時按需核准並提供獨立解鎖碼。到 [B2 Recovery](#recovery-b2) 下載及切換；保留原成果、未完成及來源；Recovery（復原包：進度落後時改用的接續基線）不算小組自行完成。B3開始後不再換版，改交分析／檢視（Review）成果。
+未完成前一段時，主持人只於進入本段時按需核准並提供獨立解鎖碼。到 [B2 Recovery](#recovery-b2) 下載及切換；保留原成果、未完成及來源；Recovery（復原包：進度落後時改用的接續基線）不算小組自行完成。B3 開始後不再換版，改交分析／檢視（Review）成果。
+
+> 這段學到的技巧：**委派整件任務時，先把範圍與停止條件寫成工作單，再只在關卡介入**；放手不等於放任，Gate 讓你在關鍵點拿回決定權。

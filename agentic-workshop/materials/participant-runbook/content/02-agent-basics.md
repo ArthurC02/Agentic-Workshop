@@ -57,7 +57,7 @@ Agent 的摘要與「全部通過」的訊息都不能取代你的審查。你�
 
 ```callout tip
 把重要結論整理成可交接的紀錄（Artifact）
-重要階段的結果不要只留在對話中。計畫、分析、測試結果與交付摘要都應整理成可審查、可交接的紀錄。本 Runbook 的表單可直接匯出 Markdown。
+重要階段的結果不要只留在對話中。請 Agent 把計畫、分析、驗收對照表與交付摘要寫進 Repository 的 `notes/<段落>.md`（例如 `notes/greenfield.md`），每段提示詞都會講明寫到哪個檔。你只在 Runbook 表單記下自己的決定，可直接匯出 Markdown。
 ```
 
 ## Context 與 Prompt

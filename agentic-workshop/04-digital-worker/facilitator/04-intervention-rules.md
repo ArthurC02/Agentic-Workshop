@@ -22,7 +22,7 @@
 
 ## 五步介入流程
 
-提醒既定Rule→要求證據→要求回Approval Gate→發方向提示→必要時採分析／Review降級並保留Level1／2或未完成摘要。這是63–76分鐘B3內的介入流程，不在B3中途切換版本或發B3標準解答。每步以最小必要介入為準，不立即代小組解題。提示參考 [B3漸進提示](../../03-brownfield/facilitator/05-task-progressive-hints.md)，不得提供完整Code或由人補程式。
+提醒既定Rule→要求證據→要求回Approval Gate→提醒該用的技巧（工作單寫清範圍與停止條件、只在Gate介入）並給可直接貼的Runbook提示詞→必要時採分析／Review降級並保留Level1／2或未完成摘要。這是63–76分鐘B3內的介入流程，不在B3中途切換版本或發B3標準解答。每步以最小必要介入為準，不立即代小組解題。提示參考 [B3漸進提示](../../03-brownfield/facilitator/05-task-progressive-hints.md)，不得提供完整Code或由人補程式。
 
 條件核准須核對條件解除才執行；拒絕SQLite是拒絕提議，不終止全Mission。B1 Recovery只於52分鐘進B2、B2 Recovery只於63分鐘進B3，由主持人依[Recovery計畫](../../06-runbook/recovery-plan.md)受控切換；保留原小組成果、未完成、來源與切換原因，不算小組自行完成。沒有已驗收可用基線，不以診斷或未驗證副本替代；B3開始後卡點採上述降級流程。
 

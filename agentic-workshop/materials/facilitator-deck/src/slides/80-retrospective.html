@@ -4,122 +4,84 @@
   <p class="kicker">第 80 分鐘 · 解鎖</p>
   <h2 class="title">Retrospective 回顧</h2>
   <p class="subtitle">在 Runbook 輸入解鎖碼，打開「工作坊回顧」，從<b>檢查點 1</b> 開始</p>
-  <p class="lead fx fx-fade">接下來 10 分鐘，要寫什麼都看 Runbook；投影只顯示時間與目前的檢查點。</p>
+  <p class="lead fx fx-fade">接下來 10 分鐘，要做什麼都看 Runbook；投影只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的工作坊回顧，從檢查點 1 開始。請用實際證據回顧，不排名、不比程式碼量；沒觀察到就填『未觀察』。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 80 分），翻頁時持續計時。本頁大字顯示回顧解鎖碼（解開工作坊回顧紀錄與成熟度比較）；完整碼表見講者視窗。</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的工作坊回顧，從檢查點 1 開始。今天最後一個技巧，是把今天學到的變成你自己的提示詞清單。」</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 80 分），翻頁時持續計時。本頁大字顯示回顧解鎖碼（解開提示詞清單與成熟度比較）；完整碼表見講者視窗。</p>
     <p><b>前段停止</b>：「80 分鐘進回顧，不追加 Demo 美化或修 Code。」若仍有人在修 Code，請先停手再解鎖。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="10 分鐘回顧節奏" data-minute="80" data-timer="10:00" data-gates="retro">
-  <p class="kicker">Retrospective · 80–90 · 沒有 Agent 操作</p>
-  <h2 class="title">每個檢查點，寫下你的證據</h2>
-  <p class="muted">先個人、再小組。未觀察或未完成如實保留，不強填每格。</p>
+<section class="slide" data-seg="retro" data-title="回顧 · 現在在做什麼" data-minute="80" data-timer="10:00" data-gates="retro">
+  <p class="kicker">Retrospective · 80–90 · 今天的技巧：把今天的技巧變成自己的提示詞清單</p>
+  <h2 class="title">每人帶走 3 段自己會再用的提示詞</h2>
+  <div class="card">
+    <p><b>情境</b>：回到自己的專案，身邊沒有 Runbook</p>
+    <p><b>你的目標</b>：帶走 3 段提示詞，小組留下一項帶回團隊的行動</p>
+    <p><b>今天的技巧</b>：技巧寫成可直接貼上的提示詞，下次打開 Agent 就用得上</p>
+    <p><b>完成的樣子</b>：<code>notes/my-prompts.md</code> 有 3 段提示詞；回顧表 4 欄填完並匯出</p>
+  </div>
   <ol class="timeline">
-    <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 個人記錄</b></li>
-    <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 小組比較</b></li>
-    <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 收斂改善</b></li>
-    <li data-seg="retro"><span class="tl-min">09:00</span><b>4 · 行動與匯出</b></li>
+    <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 選出三個要帶走的技巧</b></li>
+    <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 請 Agent 寫成你的提示詞</b></li>
+    <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 小組討論盲點，留下一項行動</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先自己寫，再小組比較、收斂改善，最後留下一項有責任人的行動。回顧不用 Agent，你在 Runbook 寫下的就是每個檢查點的確認。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先自己挑 3 個今天最有用的技巧，請 Agent 改寫成你回去能直接貼的提示詞；最後小組討論一個盲點，留下一項帶回團隊的行動。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
-    <p><b>主持重點</b>：「按 Debrief 收根因、六類改善、責任人／驗證。」</p>
-    <p><b>提問順序</b>：「先實例 → 影響與來源 → 根因假設 → 改善 → 後續驗證。」</p>
-    <p><b>降級</b>：「時間不足選 Top 1–3 與一項行動，保留尚未觀察，不造數據補齊五項。」</p>
-    <p><b>不可</b>：討論偏向產品比較、完整架構設計或找責任歸咎時，回到本次證據與可改流程；不得公開完整 Evaluation 或未來解答。</p>
-    <p><b>主持端完成條件</b>：十分鐘內形成成熟度責任比較、有證據的有效實務與根因、六類改善與行動／責任人／後續驗證；未討論、未觀察與未完成明確記錄。本段無標準答案；未觀察耗時明記，不以 pytest 秒數代替人員活動時間。</p>
+    <p><b>主持重點</b>：每段提示詞要有「看什麼證據」；「今天的例子」只寫實際發生的事，沒有就寫未觀察。</p>
+    <p><b>不可</b>：討論偏向產品比較、完整架構設計或找責任歸咎時，回到本次證據與可改流程；不得公開完整 Evaluation 或未來解答。不排名，不以 pytest 秒數代替人員活動時間。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="檢查點 1 · 個人記錄" data-minute="80">
-  <p class="kicker">檢查點 1 / 4 · 第 80–82 分鐘</p>
-  <h2 class="title">個人記錄：先自己寫，不討論</h2>
+<section class="slide" data-seg="retro" data-title="檢查點 1 · 選出三個要帶走的技巧" data-minute="80">
+  <p class="kicker">檢查點 1 / 3 · 第 80–82 分鐘</p>
+  <h2 class="title">選出三個要帶走的技巧</h2>
   <ol class="steps">
-    <li>翻出今天的紀錄：檢查點確認、共同脈絡（Shared Context）、核准關卡（Gate）、交付摘要（Delivery Summary）</li>
-    <li>回顧紀錄<b>第 1 部分</b>：三個階段人和 Agent 各做什麼、證據</li>
-    <li>B3 完成等級（Level）與治理證據分開寫；用過 Recovery（復原包：進度落後時改用的接續基線）要註明來源</li>
+    <li>看 Runbook 的技巧總表：今天九段，各練一個技巧</li>
+    <li>回想哪個做法真的幫上忙（或沒用上、讓你吃虧）</li>
+    <li>挑 3 個回去最會用的，填回顧表第 1 欄</li>
   </ol>
-  <p class="callout">Runbook › 回顧 › 檢查點 1 · 填「工作坊回顧紀錄」第 1 部分</p>
+  <p class="callout">Runbook › 回顧 › 檢查點 1 · 選出三個要帶走的技巧</p>
   <aside class="notes">
-    <p><b>說（00:00／第 80 分）</b>：「個人填回顧表，選真實例子。」</p>
-    <p><b>看</b>：只有工具感想時問「哪份證據支持？」無數據填「未觀察」。</p>
-    <p><b>主持原則</b>：分清三件事：學員 B3 Level 1／2／3、治理 Rubric 表現、Reference 標準實作驗收。學習不只 Level 3，不排名、不以 Recovery 當學員完成。人員活動時間與 Prompt／介入／重工數若未量測，記未觀察；pytest 耗時不是活動完成時間。比例指標只有分子／分母與口徑可核實才計算。</p>
-    <p>Recovery、未完成、失敗、條件核准與人員介入需如實保留；不可將演練時間壓力轉成跳過 Gate／測試的理由。</p>
-    <p><b>停止（00:02／第 82 分）</b>：「82 停止個人延伸，每人至少一個例子或缺口。」</p>
+    <p><b>說（00:00／第 80 分）</b>：「先自己想，不討論：今天哪個做法你回去最會用？挑 3 個。」</p>
+    <p><b>看</b>：只寫感想、沒有技巧名稱時問：「是哪一段、哪個做法？」</p>
+    <p><b>停止（00:02／第 82 分）</b>：「每人至少選好 3 個技巧。」</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="檢查點 2 · 小組比較" data-minute="82">
-  <p class="kicker">檢查點 2 / 4 · 第 82–86 分鐘</p>
-  <h2 class="title">小組比較：Tool → Teammate → Digital Worker</h2>
+<section class="slide" data-seg="retro" data-title="檢查點 2 · 請 Agent 寫成你的提示詞" data-minute="82">
+  <p class="kicker">檢查點 2 / 3 · 第 82–86 分鐘</p>
+  <h2 class="title">請 Agent 寫成你的提示詞</h2>
   <ol class="steps">
-    <li>對照成熟度比較表，比較工具、隊友、數位員工三階段的責任、有效做法與問題</li>
-    <li>填「你的比較證據」五題；沒觀察到填「未觀察」</li>
-    <li>回顧紀錄<b>第 2 部分</b>：有效實務與根因，各選有證據的 1–3 項</li>
+    <li>貼「提示詞格式」與提示詞：Agent 讀 <code>notes/</code>，寫進 <code>notes/my-prompts.md</code></li>
+    <li>不綁今天的專案；會變的部分用〈 〉；每段寫「看什麼證據」</li>
+    <li>讀一遍，改到你願意直接用為止</li>
   </ol>
-  <p class="callout">Runbook › 回顧 › 檢查點 2 · 填「你的比較證據」與第 2 部分</p>
+  <p class="callout">Runbook › 回顧 › 檢查點 2 · 請 Agent 寫成你的提示詞</p>
   <aside class="notes">
-    <p><b>說（00:02／第 82 分）</b>：「小組比較 Tool／Teammate／Digital Worker 的責任與有效實務／問題。」可接著朗讀口述版：「今天全程人都沒碰程式，三種角色的差別在人怎麼介入：Tool（工具）是人逐步下指令、每步驗收；Teammate（隊友）是 Agent 一起分析、人核准計畫；Digital Worker（數位員工）是 Agent 自主執行、人只在 Gate 核准。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
-    <p><b>看</b>：意見衝突時區分事實、假設、證據與根因；避免將 Code 量當成果。不要把三欄當排名，只問「哪份證據支持？」</p>
-    <p><b>根因分類</b>：需求／提示詞／背景資料／規則／能力缺口、Agent 錯誤、人員審查缺口、工具／環境問題；假設未驗證要標清楚。</p>
-    <p><b>Debrief 九題（選最有證據的題目，不全問）</b>：1 Agent 主導後，人工作真的減少，還是轉為 Review 與治理？2 哪個 Gate 最有價值？請附實例。3 哪個 Gate 容易流於形式？4 若沒人發現 SQLite 越界，缺少哪項治理能力？5 測試通過是否足以核准交付？還要哪些範圍／文件／風險證據？6 哪些資訊應由平台自動留下 Audit Log？7 哪些 Rule 可 Machine-Enforce？8 哪些決策仍須人判斷？9 Tool→Digital Worker 的責任消失，或重新分配？10（新增）只看證據不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？時間不足選最有證據的題目，不延長 B3 或假稱已完成完整回顧。</p>
-    <p><b>Rubric</b>：五維 Rubric 僅供回顧與平台需求萃取，不排名；本段不再投影評分表，也不公開小組分數。未觀察不能直接當作 0 分。</p>
-    <p><b>停止（00:06／第 86 分）</b>：「86 收斂有證據 1–3 項，不強填 Top 5。」</p>
+    <p><b>說（00:02／第 82 分）</b>：「用你自己的 Agent，把 3 個技巧寫成提示詞清單。notes 在組員電腦上的，直接把 Runbook 對應段落的提示詞貼給 Agent。」</p>
+    <p><b>看</b>：提示詞是否可重用（不寫死 Smart Ticket）｜有沒有「看什麼證據」｜「今天的例子」有沒有編造。Agent 寫得像範本、不像本人用語 → 「請它改成你平常講話的方式。」</p>
+    <p><b>可口述（三種角色）</b>：「今天全程人都沒碰程式，三種角色的差別在人怎麼介入：Tool 是人逐步下指令、每步驗收；Teammate 是 Agent 一起分析、人核准計畫；Digital Worker 是 Agent 自主執行、人只在 Gate 核准。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
+    <p><b>停止（00:06／第 86 分）</b>：「notes/my-prompts.md 有 3 段就好，進小組討論。」</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="檢查點 3 · 收斂改善" data-minute="86">
-  <p class="kicker">檢查點 3 / 4 · 第 86–89 分鐘</p>
-  <h2 class="title">收斂改善：分到六類，選 1–3 項</h2>
+<section class="slide" data-seg="retro" data-title="檢查點 3 · 小組討論盲點，留下一項行動" data-minute="86">
+  <p class="kicker">檢查點 3 / 3 · 第 86–90 分鐘</p>
+  <h2 class="title">小組討論盲點，留下一項行動</h2>
   <ol class="steps">
-    <li>分類：背景資料（Context）／規則（Rule）／技能（Skill：可重複使用的 Agent 工作指引）／流程／平台／治理</li>
-    <li>選有證據的 1–3 項，連回實際的 Gate、例外或檢查點紀錄</li>
-    <li>回顧紀錄<b>第 3 部分</b>：要改善什麼／保留何種證據</li>
+    <li>只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？</li>
+    <li>組織導入的第一步：誰、何時、用什麼證據確認</li>
+    <li>填回顧表第 2–4 欄，<b>匯出所有表單</b></li>
   </ol>
-  <p class="muted">討論題：今天只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？</p>
-  <p class="callout">Runbook › 回顧 › 檢查點 3 · 填「工作坊回顧紀錄」第 3 部分</p>
+  <p class="callout warn">Runbook › 回顧 › 檢查點 3 · 小組討論盲點，留下一項行動</p>
   <aside class="notes">
-    <p><b>說（00:06／第 86 分）</b>：「將改善分為背景資料、規則、技能（Skill）、流程、平台、治理六類。也請想一題：今天全程只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？」</p>
-    <p><b>這題的代價要講明</b>：只看驗收對照表、變更審查與 /docs 行為，抓不到「測試全過但寫法有問題」的程式（例如規則寫錯層、重複邏輯、日後難維護）。可引導到：程式審查角色（懂程式的審查者或資深工程師抽查）、自動化檢查（靜態分析、架構規則檢查）、平台留痕（Audit Log、Test Evidence）。歸類可放在「治理」或「平台」。</p>
-    <p><b>介入</b>：只喊「Agent 更聰明」時追問：可改哪個 Context、Gate 或可驗證控制？</p>
-    <p><b>收斂最低內容</b>：至少一項 Context／Rule 改善、一項 Skill 或流程需求、一項平台需求，並連回 Gate 或例外證據。平台需求可對應權限、Rule Enforcement、Approval、Audit、Test Evidence、Context Versioning、Session、成本與時間觀測，不宣稱此工作坊已建成平台。</p>
-    <p><b>組織導入提示（不投影）</b>：從一個真實案例出發，每項記錄「觀察 → 需求 → 責任人 → 下一步驗證」，依風險與證據選 1–3 項。</p>
-    <ul>
-      <li>Context｜哪些資訊缺失造成錯誤？版本與來源可查嗎？→ 改善 Context Package 與版本欄位，以新 Session 接手驗證。</li>
-      <li>Rule｜哪些限制可機器檢查？哪些決策仍需人判斷？→ 區分自動約束／人工 Gate；保留豁免與條件解除證據。</li>
-      <li>Skill｜哪個重複工作已有清楚輸入、輸出與驗證？哪些不宜自動化？→ 小範圍 Skill 候選與人工 Review 邊界，試做而非直接全面導入。</li>
-      <li>流程｜Gate 何時有價值、何時形式化？→ 調整提交證據、核准者與停止／升級條件，不只增加簽核。</li>
-      <li>權限｜Agent 可讀寫、執行或觸及哪些區域？→ 最小必要權限、範圍檢查、條件核准與撤回。</li>
-      <li>Audit｜哪些命令、Diff、核准、例外與測試應自動留痕？→ 連結 Session／Work Order／Context 版本與結果，保留來源。</li>
-      <li>Test Evidence｜何種證據足以核准？測試通過還缺什麼？→ 保存指令與原輸出、AC 映射、範圍／文件／風險 Review。</li>
-      <li>Session｜切換時遺失什麼，哪些資訊只能口頭補充？→ 摘要與交接包、Session 關聯與已確認 Memory；不永久保存未驗證推論。</li>
-      <li>成本與時間｜真實成本／人員時間有量測嗎？→ 訂口徑並收集執行、Review 與重工時間，未量測不估造成效。</li>
-      <li>治理責任｜從 Tool 到 Digital Worker，誰負責範圍、品質與接受結果？→ 具名責任、人工判斷項、Rejected／Conditional 與未完成追蹤。</li>
-    </ul>
-    <p><b>SQLite 事件定位</b>：可作 Rule Enforcement 與人員 Review 的證據：不能因技術方案看似合理就忽略授權；核准條件與方案修正要可核實。不要將單次活動觀察當成組織平台已建成，或假定更高自主率必然更好。</p>
-    <p><b>停止（00:09／第 89 分）</b>：「89 停止新議題，留下未討論與待驗證事項。」</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="retro" data-title="檢查點 4 · 行動與匯出" data-minute="89">
-  <p class="kicker">檢查點 4 / 4 · 第 89–90 分鐘</p>
-  <h2 class="title">行動與責任人，然後匯出</h2>
-  <ol class="steps">
-    <li>至少一項改善寫完整：責任人、下一步、驗證方式／期限</li>
-    <li>說得出「誰、何時、用什麼證據確認」；其餘標待研究</li>
-    <li><b>匯出所有表單</b>：回顧紀錄、你的比較證據，以及今天其他表單</li>
-  </ol>
-  <p class="callout warn">Runbook › 回顧 › 檢查點 4 · 最後提醒：匯出所有表單</p>
-  <aside class="notes">
-    <p><b>說（00:09／第 89 分）</b>：「選至少一項行動、責任人、下一步及驗證。寫完請匯出所有表單。」</p>
-    <p><b>介入</b>：行動含糊時問「誰在何時用什麼證據確認？」</p>
-    <p><b>行動紀錄欄位</b>（組織導入行動紀錄表，不投影）：行動｜觀察依據｜責任人｜期限／下一步｜驗證方式與所需證據。學員用回顧紀錄第 3 部分的「責任人」「下一步與驗證方式／期限」填寫。</p>
-    <p><b>完成條件</b>：至少一項實際可執行改善具責任人與驗證，機器可約束與人判斷的界線明確；其他題目保留為待研究，不編造未觀察結果或承諾未完成平台能力。</p>
-    <p><b>各段停止產出</b>：82「每人至少一個例子或缺口」｜86「收斂有證據 1–3 項，不強填 Top 5」｜89「留下未討論與待驗證事項」｜90「保留可執行行動紀錄」。</p>
-    <p><b>收回</b>：工作坊回顧紀錄、你的比較證據及行動紀錄（責任人／下一步／驗證）。提醒學員用表單的「匯出 Markdown」或「複製 Markdown」。</p>
-    <p><b>停止（00:10／第 90 分）</b>：「90 準時結束，保留可執行行動紀錄。」翻到結束頁。</p>
+    <p><b>說（00:06／第 86 分）</b>：「小組討論一題：今天全程只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？再想組織導入的第一步。」</p>
+    <p><b>這題的代價要講明</b>：只看驗收對照表、變更審查與 /docs 行為，抓不到「測試全過但寫法有問題」的程式（例如規則寫錯層、重複邏輯、日後難維護）。可引導到：程式審查角色（懂程式的審查者或資深工程師抽查）、自動化檢查（靜態分析、架構規則檢查）、平台留痕（Audit Log、Test Evidence）。</p>
+    <p><b>組織導入（選一兩題，不全問）</b>：背景資料｜哪些資訊缺失造成錯誤？→ 版本化的 Context 檔（如 notes/shared-context.md）。規則｜哪些限制可機器檢查？→ 自動約束與人工 Gate 分開。流程｜哪個 Gate 有價值、哪個流於形式？→ 調整提交證據與停止條件，不只增加簽核。平台｜哪些命令、核准、例外與測試應自動留痕？SQLite 事件可作規則強制與人員審查的例子。</p>
+    <p><b>介入</b>：只喊「Agent 更聰明」時追問：可改哪份背景資料、哪個 Gate 或哪個可驗證控制？行動含糊時問「誰在何時用什麼證據確認？」</p>
+    <p><b>停止</b>：00:09（第 89 分）停止新議題；00:10（第 90 分）準時結束，確認已匯出表單、notes/my-prompts.md 自己帶走。翻到結束頁。</p>
   </aside>
 </section>
 
@@ -132,11 +94,11 @@
     <li class="dw active">Digital Worker</li>
   </ol>
   <p class="quote fx fx-fade">更自主仍須範圍、品質與可追溯；責任重新分配，不消失。</p>
-  <p class="muted fx fx-fade">成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。</p>
+  <p class="muted fx fx-fade">帶走你的 3 段提示詞，下次打開 Agent 就用得上。</p>
   <aside class="notes">
     <p><b>結束（RB 80–90）</b>：「90分鐘準時結束；未觀察不編數據，不排名。」</p>
-    <p>原始素材沒有獨立的結尾講稿；本頁兩句均為成熟度比較表下原文。可口述：「責任轉移與重新分配，不因Agent自主而消失。」</p>
+    <p>可口述：「責任轉移與重新分配，不因Agent自主而消失。」</p>
     <p><b>不要宣稱</b>本流程已經真實演練驗證：「真人演練人員、時段與記錄者尚待提供，未執行90分鐘活動」（Acceptance Gates P11 本輪執行狀態）。也不要將單次活動觀察說成組織平台已建成。</p>
-    <p>收回：反思表、成熟度比較及行動紀錄（責任人／下一步／驗證）。</p>
+    <p>收回：匯出的回顧表（技巧、盲點、行動、B3 Level）；提示詞清單由學員自行帶走。</p>
   </aside>
 </section>

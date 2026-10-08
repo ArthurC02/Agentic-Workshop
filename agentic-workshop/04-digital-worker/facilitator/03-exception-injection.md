@@ -18,7 +18,7 @@
 | 含糊條件後開始Coding | 不可接受；條件未解除先停工補證。 |
 | 長篇討論或實際安裝 | 不可接受，立即停止並回既定範圍。 |
 
-預期人員核對Constraint，Reject或有條件改回現有Repository補償；Agent調整方案且等待核准。記錄原提議／假設卡來源、證據、風險、Decision、Conditions、Approver、時間與回覆Agent內容；若已有自然例外，不重複記成兩件。
+預期人員核對Constraint，Reject或有條件改回現有Repository補償；Agent調整方案且等待核准。記錄原提議／假設卡來源、證據、風險、Decision、Conditions、Approver、時間與回覆Agent內容（學員可請Agent照原文寫進`notes/b3.md`）；若已有自然例外，不重複記成兩件。
 
 ## 完成條件
 
