@@ -15,13 +15,13 @@
 
 ## 人機責任與三個Gate
 
-人員不得直接修改程式，只能Challenge、Review、Approve／Reject、要求補證或修正。Agent負責分析、設計、實作、測試、文件與摘要。
+全程人本來就不寫程式、不讀程式；到B3連核准方式也變：人只透過三道Gate管Agent，只能Challenge、Review、Approve／Reject、要求補證或修正，判斷依據是驗收對照表、變更審查答案與 /docs 實測結果。Agent負責分析、設計、實作、測試、文件與摘要。
 
 | Gate | Agent提交 | 人員決策與下一步 |
 |---|---|---|
 | 1 Requirement Understanding | 需求摘要、假設、資訊缺口、Out of Scope。 | 核准後才設計；未核准先補缺口。 |
 | 2 Impact and Design | 影響模組、API、座位與Atomicity方案、測試策略及風險。 | 核准後才改程式；不一次跳到完成實作。 |
-| 3 Code and Test Review | Diff、實際測試、規則追溯、文件與未完成項目。 | 人Review後Approve／Reject或要求修正。 |
+| 3 Code and Test Review | 驗收對照表、變更審查答案（白話說明改了哪些檔案、為什麼）、實際測試、規則追溯、文件與未完成項目。 | 人看驗收對照表與變更審查答案（不看程式）後Approve／Reject或要求修正。 |
 
 使用短格式回覆，保留核准紀錄。
 
@@ -46,9 +46,9 @@
 | AC-B3-015 | 失敗不建立Order。 |
 | AC-B3-016 | 必要成功／失敗Audit。 |
 | AC-B3-017 | 付款結果通知紀錄。 |
-| AC-B3-018 | 原G1／B1／B2 Regression通過。 |
+| AC-B3-018 | 原G1／B1／B2既有功能沒被改壞（既有測試通過）。 |
 | AC-B3-019 | 文件、API Example與規則同步。 |
 
 ## 完成條件
 
-交付Gate紀錄、Impact／方案、Diff、實際測試、文件及摘要。Level1：Gate1／2、合理Impact與完整Test Strategy，Code未完成；Level2：團體建立及連續座位與主要Unit Test完成，補償或文件仍有缺項；Level3：建立、付款成功／失敗補償、Regression、文件及摘要完整。學習成果可為Level1／2，只有完整證據才能宣稱完整軟體交付。76分鐘到停止擴充並列缺項。
+交付Gate紀錄、Impact／方案、驗收對照表、變更審查答案、/docs 實測結果、實際測試、文件及摘要。Level1：Gate1／2、合理Impact與完整Test Strategy，Code未完成；Level2：團體建立及連續座位與主要Unit Test完成，補償或文件仍有缺項；Level3：建立、付款成功／失敗補償、Regression、文件及摘要完整。學習成果可為Level1／2，只有完整證據才能宣稱完整軟體交付。76分鐘到停止擴充並列缺項。

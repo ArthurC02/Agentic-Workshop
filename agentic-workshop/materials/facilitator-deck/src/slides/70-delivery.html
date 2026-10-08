@@ -36,7 +36,7 @@
   <aside class="notes">
     <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與完成等級，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整｜Level 3 完整交付＝建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成。</p>
-    <p><b>看</b>：Level 擇一並說明證據，不自動選 Level 3｜附真實測試命令與結果，未執行明記原因，未驗證不能寫 PASS｜附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）。</p>
+    <p><b>看</b>：Level 擇一並說明證據，不自動選 Level 3｜附 Agent 實際執行的測試命令與驗收對照表，未執行明記原因，未驗證不能寫 PASS｜附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）。</p>
     <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。</p>
     <p><b>Delivery Summary 十二欄</b>：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜CONDITIONAL APPROVAL｜REJECT；人員最後決策由 Gate 3 記錄）。</p>
   </aside>
@@ -53,7 +53,7 @@
   <p class="callout warn">Runbook › Delivery › 檢查點 2 · 填「檢查點 2 確認」</p>
   <aside class="notes">
     <p><b>說（00:02／第 78 分）</b>：「請匯出 B3 所有表單和交付摘要，依指定方式交件。交件後不再修改，接下來看投影。」</p>
-    <p><b>收件</b>：Gate 紀錄、Impact／方案、Diff、實際測試、文件及 Delivery Summary。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
+    <p><b>收件</b>：Gate 紀錄、Impact／方案、變更審查答案、驗收對照表與實際測試、文件及 Delivery Summary。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
     <p><b>看</b>：每組都已交件。還在改 Delivery Summary 或補程式 → 「保持交付時的樣子，缺項如實列出。」</p>
     <p><b>停止</b>：最遲 00:03（第 79 分）確認全員交件 → 翻「請先停手 · B3」開始揭曉。時間不足時揭曉頁只選最有證據可對照的頁面，第 80 分進回顧。</p>
   </aside>
@@ -215,7 +215,7 @@
     <tbody>
       <tr><td><b>A</b> 需求理解</td><td>未分析需求即修改</td><td>只重述需求</td><td>辨識主要規則與假設</td><td>完整辨識規則、缺口、範圍及風險</td></tr>
       <tr><td><b>B</b> 計畫與範圍控制</td><td>無計畫或大幅超出範圍</td><td>有計畫但範圍不清楚</td><td>計畫合理且大致遵守</td><td>計畫、修改與偏差均可追溯</td></tr>
-      <tr><td><b>C</b> 證據與品質</td><td>無測試證據</td><td>只有部分測試或口頭說明</td><td>主要測試及 Diff 可驗證</td><td>驗收條件、回歸測試、文件及風險均有證據</td></tr>
+      <tr><td><b>C</b> 證據與品質</td><td>無測試證據</td><td>只有部分測試或口頭說明</td><td>主要測試及變更審查可驗證</td><td>驗收條件、回歸測試、文件及風險均有證據</td></tr>
       <tr><td><b>D</b> 人員監督</td><td>人員未審查即接受</td><td>形式性核准</td><td>有質疑假設、檢視（Review）與條件式核准</td><td>能辨識超範圍方案並做出有證據的決策</td></tr>
       <tr><td><b>E</b> 透明揭露</td><td>掩飾或未揭露失敗</td><td>只回報成功內容</td><td>回報未完成及已知限制</td><td>完整回報偏差、風險、證據與建議決策</td></tr>
     </tbody>
@@ -223,7 +223,7 @@
   <p class="callout fx fx-fade">合計最高 15，<b>僅供回顧與平台需求萃取，不作競賽排名</b>；缺證據記「未觀察」，未觀察 ≠ 0 分；與 Level 1／2／3 分開記錄。</p>
   <aside class="notes">
     <p><b>來源</b>：<code>04-digital-worker/evaluation/01-autonomy-and-governance-rubric.md</code>。</p>
-    <p>不以程式量、工具操作數或自主率評分；程式通過不代表治理通過。</p>
+    <p>不以程式量、工具操作數或自主率評分；程式通過不代表治理通過。不因學員沒讀程式或沒自己打指令而扣分；改看是否先要計畫、核准後才動、是否要求並檢查驗收對照表與變更審查答案、是否用 <code>/docs</code> 驗證行為、是否把未驗證如實標示。C 面向的「變更審查」原為「Diff」，改版後由 Agent 回答審查問題取代人讀 Diff。</p>
     <p><b>平台需求八項（F01／F05）</b>：Agent權限範圍、Rule Enforcement、Approval Workflow、Audit Log、Test Evidence、Context Versioning、Agent Session管理、成本與執行時間觀測。以「觀察到的缺口→需要保存或控制什麼」呈現，不宣稱本 Repo 已實作平台能力。</p>
     <p>收斂紀錄至少（F05）：一項 Context／Rule 改善、一項 Skill 或流程需求、一項平台需求，並連回 Gate 或例外證據。</p>
   </aside>

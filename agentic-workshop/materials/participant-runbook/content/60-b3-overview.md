@@ -11,8 +11,8 @@ section: B3｜Digital Worker
 本段共 **13 分鐘**（第 63–76 分鐘），任務是 `TASK-B3-001` 團體訂票。Agent 的角色是 **Digital Worker**（數位員工）：今天 Agent 從工具、隊友，走到這一段能獨立執行任務的數位員工。Agent 主導分析、設計、實作、測試、文件及交付；人設定邊界、核准、挑戰與驗證，承擔最終提交責任。
 
 ```callout danger
-人員不得直接修改程式
-人員不得直接修改程式，只能挑戰假設、審查、核准或拒絕，並要求補證或修正。Agent 負責分析、設計、實作、測試、文件與摘要。
+人不寫程式；到 B3 連核准方式也變
+今天全程人本來就不寫程式、不讀程式。到 B3 連核准方式也要變：人只透過三道 Gate 管 Agent，也就是挑戰假設、核准或拒絕、要求補證或修正。判斷依據是驗收對照表、變更審查答案與 /docs 實測結果，不看程式。Agent 負責分析、設計、實作、測試、文件與摘要。
 
 工具不支援自動修改時，Agent 可產生 Patch（修改檔），由環境套用；人員仍不得自行補寫程式或測試。
 ```
@@ -36,9 +36,9 @@ section: B3｜Digital Worker
 | 1 · 交辦 | 63–64 | 00–01 | 讀操作規則、填 Approved Context、把 Work Order 交給 Agent |
 | 2 · Gate 1 需求理解 | 64–66 | 01–03 | 審查 Agent 的需求理解；第 66 分做 Gate 1 決策 |
 | 3 · Gate 2 影響分析與設計 | 66–70 | 03–07 | 審查影響與設計；第 69 分做 Gate 2 決策、填核准範圍 |
-| 4 · 依核准計畫執行 | 70–74 | 07–11 | Agent 在核准範圍內修改、測試、更新文件；人審查，不寫程式 |
-| 5 · 停止擴充、整理證據 | 74–75 | 11–12 | 停止新增；記錄實際測試命令與結果；Agent 交 Gate 3 Input |
-| 6 · Gate 3 與交付 | 75–76 | 12–13 | Gate 3 交付審查；Agent 交 Delivery Summary（交付摘要）與 Level（完成等級） |
+| 4 · 依核准計畫執行 | 70–74 | 07–11 | Agent 在核准範圍內修改、測試、更新文件；人看 Agent 的白話回報，不寫、不讀程式 |
+| 5 · 停止擴充、整理證據 | 74–75 | 11–12 | 停止新增；Agent 交驗收對照表與 Gate 3 Input |
+| 6 · Gate 3 與交付 | 75–76 | 12–13 | Agent 回答變更審查問題；Gate 3 交付審查；Agent 交 Delivery Summary（交付摘要）與 Level（完成等級） |
 
 ## 本段文件
 
@@ -59,14 +59,14 @@ section: B3｜Digital Worker
 本段人員可以做的事：
 
 - **挑戰假設（Challenge）**：要求 Agent 解釋假設，挑戰方案與風險。
-- **審查（Review）**：檢查程式差異（Diff）、測試與文件。
+- **審查（Review）**：看驗收對照表、變更審查答案與文件，在 /docs 試 API；看不懂就請 Agent 解釋。
 - **核准／拒絕（Approve／Reject）**：在三個核准關卡（Approval Gate）做決策。
 - **要求補證或修正**：證據不足時要求補證，或要求 Agent 修正。
 - **中止 Agent**：衝突、資訊不足或超權限時停止並升級。
 
 | 角色 | 可以 | 不得 |
 |---|---|---|
-| 人 | 提供需求、要求解釋假設、Challenge、Review Diff／測試／文件、Approve／Reject、要求補證與修正，或中止 Agent。 | 直接 Coding、修改程式或替 Agent 補測試，不跳過 Gate，也不因時間壓力接受未驗證說法。 |
+| 人 | 提供需求、要求解釋假設、Challenge、審查驗收對照表／變更審查答案／文件、Approve／Reject、要求補證與修正，或中止 Agent。 | 寫程式、讀程式、修改程式或替 Agent 補測試，不跳過 Gate，也不因時間壓力接受未驗證說法。 |
 | Agent | 理解 Repository、分析影響、提出選項，按核准計畫修改、建立與執行測試、更新文件及揭露未完成事項。 | 越過核准範圍、未核准變更 API、自行改商業規則、加入外部服務／資料庫／規則引擎、刪弱測試、捏造通過結果或在 Gate 未核准前前進。 |
 
 - [ ] 在 [Work Order](#b3-work-order) 先填小組與 Context（Approved Context）。「Gate 2 核准範圍」留到檢查點 3 再填。未填資料由小組確認，不由 Agent 猜測。
@@ -77,6 +77,16 @@ section: B3｜Digital Worker
 3. [Digital Worker 操作規則](#b3-operating-rules) 全文。
 4. [Work Order](#b3-work-order) 全文，加上已填寫的 Approved Context（可用表單的「複製 Markdown」）。
 5. [Approval Gates](#b3-approval-gates) 全文，讓 Agent 知道每個 Gate 要提交的 Input。
+
+- [ ] 先貼上下方工作規則（這段是給 Agent 的，不需要看懂）。B3 沿用操作規則與 Work Order，另加這四條回報規則：
+
+```text
+以下是這次工作的規則，請在整段對話中遵守：
+1. 你負責所有程式、測試與指令操作；我不會自己修改程式，也不會自己讀程式，請用白話向我說明。
+2. 每次做完都執行 pytest -q，並用「驗收對照表」回報：每條驗收條件或規則一列，寫通過／失敗／未驗證，以及依據的測試名稱。不要只貼原始輸出。
+3. 每次修改後用白話說明：改了哪些檔案、各改了什麼、為什麼，以及有沒有超出我核准的範圍。
+4. 你沒有實際執行的事情，一律標「未驗證」。
+```
 
 - [ ] 連同上述內容貼上下方提示詞（文字取自上述文件，可依小組需要調整）。最後一句讓 Agent 這一次只做 Gate 1：
 
@@ -124,7 +134,7 @@ Gate 1 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
 這一步 Agent **只提設計，不改程式**。
 
 - [ ] 確認 Agent 提交了 Gate 2 Input：受影響／不受影響模組、API Contract（API 合約）、Domain 變更（業務模型變更）、Seat Assignment（座位分配）方案、Atomicity／Compensation（整筆成功或整筆失敗／失敗時復原已保留的座位等狀態）方案、測試策略、文件清單、主要風險與預計修改檔案。
-- [ ] 人員 Review：範圍是否合理、避免全面重寫、建立與付款失敗均處理、座位釋放、Regression 保留與未核准外部依賴；不以方案看似合理取代授權檢查。
+- [ ] 人員 Review：範圍是否合理、避免全面重寫、建立與付款失敗均處理、座位釋放、既有功能沒被改壞（既有測試保留）與未核准外部依賴；不以方案看似合理取代授權檢查。看不懂的地方請 Agent 用白話解釋。
 - [ ] 最晚全場第 69 分鐘，在 [Gate 2 表單](#b3-approval-gates) 記錄決策，並在 [Work Order](#b3-work-order) 填妥「Gate 2 核准範圍」。
 - [ ] 第 69–70 分鐘：主持人若宣布例外事件，用 [Exception Response 卡](#b3-exception-card) 在 60 秒內記錄提議、證據、決策與給 Agent 的指令。時間緊可用 30 秒口頭判斷並留下簡短紀錄。
 - [ ] Gate 2 核准且相關條件已解除後，才進入檢查點 4。條件未滿足的範圍先停止；偏差需補證或重新核准。
@@ -142,11 +152,11 @@ Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS〉
 
 請按核准計畫執行：只修改核准範圍內的檔案，建立與執行測試、更新文件。不要擴大範圍；與 Gate 2 計畫有偏差時先回報，等我核准。
 遇 Work Order 的 Stop and Escalate Conditions，立即停止受影響動作，用 Escalation 短格式提出證據與決策需求，等我決定。
-完成核准計畫或遇停止條件時停下，回報修改的檔案、執行的測試命令與實際結果，等我確認，不要自行進入交付。
+完成核准計畫或遇停止條件時停下，用白話回報修改了哪些檔案、各改了什麼、為什麼，並附驗收對照表與實際執行的測試指令，等我確認，不要自行進入交付。
 ```
 
 - [ ] Gate 2 核准後，Agent 才按核准計畫修改、建立與執行測試、更新文件。條件未滿足的範圍先停止；偏差需補證或重新核准。
-- [ ] 人員不寫程式、不替 Agent 補測試，持續挑戰假設與審查成果。
+- [ ] 人員不寫、不讀程式，也不替 Agent 補測試；看 Agent 的白話說明與驗收對照表，持續挑戰假設，看不懂就請 Agent 解釋。
 - [ ] 遇工作命令中的停止與升級條件（Stop and Escalate Conditions），Agent 停止受影響動作，使用 [升級處理範本](#b3-exception-card) 提出證據與決策需求；取得人員決策且相關條件解除後才續行。
 
 ```callout info
@@ -170,8 +180,9 @@ Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS〉
 
 ```text
 停止擴充，不要再新增功能。
-已有程式修改時，執行測試並貼出實際命令與完整輸出；尚無修改或未執行測試時，明記「無修改／未執行」、原因與未驗證範圍，不要預填成功。
-接著提交 Gate 3 Input：當前成果摘要、Acceptance Criteria 對照、Rule Traceability、未完成事項、已知風險及交付建議；有修改時附實際修改檔案，有測試時附命令與真實結果。提交後停下，等我做 Gate 3 決策。
+已有程式修改時，執行測試並整理驗收對照表：每條驗收條件（或規則）一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」。最後一行寫測試總數：通過幾個、失敗幾個、跳過幾個。附上你實際執行的指令。
+尚無修改或未執行測試時，明記「無修改／未執行」、原因與未驗證範圍，不要預填成功。
+接著提交 Gate 3 Input：當前成果摘要、驗收對照表、Rule Traceability、未完成事項、已知風險及交付建議；有修改時附實際修改檔案，有測試時附命令與真實結果。提交後停下，等我做 Gate 3 決策。
 ```
 
 - [ ] 停止擴充。實際執行命令、結果與未執行部分均須記錄，不以預期代替實測。
@@ -180,15 +191,40 @@ Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS〉
 ```form
 {"id": "b3-cp5", "title": "檢查點 5 確認","fields":[
 {"id": "test-command", "label": "實際執行的測試命令", "type": "text", "hint": "未執行就寫「未執行」。", "suggestions": ["pytest -q", "未執行"]},
-{"id": "test-result", "label": "實際結果", "type": "text", "hint": "照 Agent 貼出的實際輸出填寫，例如 passed／failed／skipped 數量。", "suggestions": [{"label": "測試數量", "text": "〈數字〉 passed、〈數字〉 failed、〈數字〉 skipped"}, {"label": "未執行", "text": "未執行：〈原因〉"}]},
+{"id": "test-result", "label": "實際結果", "type": "text", "hint": "照 Agent 驗收對照表最後一行的測試總數填寫：通過、失敗、跳過各幾個。", "suggestions": [{"label": "測試數量", "text": "〈數字〉 passed、〈數字〉 failed、〈數字〉 skipped"}, {"label": "未執行", "text": "未執行：〈原因〉"}]},
 {"id": "not-run", "label": "未執行或未驗證的項目與原因", "type": "textarea", "hint": "沒有就寫「沒有」。", "suggestions": [{"label": "未驗證項目", "text": "〈項目〉：未驗證，原因：〈原因〉"}, "沒有"]}
 ]}
 ```
 
 ## 檢查點 6 · Gate 3 與交付（第 75–76 分鐘）
 
-- [ ] 確認 Agent 提交了 Gate 3 Input：當前成果摘要、驗收條件（Acceptance Criteria）對照、規則追溯（Rule Traceability：每條規則對到哪段程式、測試與文件）、未完成事項、已知風險及交付建議；有修改時附實際檔案，有測試時附命令與真實結果。
+- [ ] 確認 Agent 提交了 Gate 3 Input：當前成果摘要、驗收對照表、規則追溯（Rule Traceability：每條規則由 Agent 對到程式、測試與文件）、未完成事項、已知風險及交付建議；有修改時附實際檔案，有測試時附命令與真實結果。
+- [ ] 有程式修改時，把下方變更審查提示貼給 Agent。Gate 3 的審查看的是 Agent 的回答與驗收對照表，不看程式：
+
+```text
+不要再修改。請用白話回答下列審查問題，每題附上你實際執行的指令與輸出：
+1. 這次改了哪些檔案？每個檔案改了什麼、為什麼？有沒有不在核准計畫裡的檔案？
+2. 測試總數和上一次比有沒有變少？有沒有新增 skip 或 xfail？
+3. 有沒有刪除測試，或修改既有測試的期待值？（請用 git diff 檢查 tests 資料夾後回答）
+4. 列出驗收對照表。
+```
+
+- [ ] 時間允許時，用瀏覽器試一次團體訂票：在瀏覽器開 `http://127.0.0.1:8000/docs` → 點開要試的 API → 按「Try it out」→ 在 Request body 貼上 Agent 提供的範例（或使用預設範例）→ 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、400 輸入錯誤、404 找不到）和內容。伺服器還沒啟動時，請 Agent 在背景啟動（埠號 8000）並告訴你 /docs 的網址；沒時間試就在審查卡第 5 題選「沒試（未驗證）」。
+- [ ] 填下方變更審查卡。任何一題是「否」或「不確定」→ 不核准，請 Agent 解釋或修正。
 - [ ] 人員審查（可用 [交付審查檢核表](#b3-review-checklist)）：是否越界、成果證據與未完成事項是否如實揭露。對照你在檢查點 4、5 的確認紀錄；不一致時以你的實際確認為準。
+
+```form
+{"id": "b3-change-review", "title": "檢查點 6 變更審查卡","fields":[
+{"id": "files-in-plan", "label": "1. 改的檔案都在核准計畫裡嗎？", "type": "select", "options": ["是", "否", "不確定"], "hint": "依 Agent 對第 1 題的回答，對照 Work Order 的「Gate 2 核准範圍」。"},
+{"id": "test-count-kept", "label": "2. 測試數沒有變少、沒有新增跳過？", "type": "select", "options": ["是", "否", "不確定"], "hint": "依 Agent 對第 2 題的回答。"},
+{"id": "tests-not-weakened", "label": "3. 沒有刪除測試或改既有期待值？", "type": "select", "options": ["是", "否", "不確定"], "hint": "依 Agent 對第 3 題的回答。"},
+{"id": "open-items", "label": "4. 驗收對照表裡還有哪些失敗或未驗證？", "type": "textarea", "suggestions": [{"label": "失敗或未驗證", "text": "〈AC 編號〉：〈失敗／未驗證〉，原因：〈Agent 的說明〉"}, "沒有"]},
+{"id": "docs-behavior", "label": "5. 我在 /docs 實際試過的行為符合需求嗎？", "type": "select", "options": ["是", "否", "不確定", "沒試（未驗證）"]},
+{"id": "docs-detail", "label": "5. 試了什麼、看到什麼", "type": "textarea", "suggestions": [{"label": "實測紀錄", "text": "試〈API〉：〈輸入摘要〉→ 狀態碼〈數字〉，〈看到的結果〉"}, "沒試，原因：〈原因〉"]},
+{"id": "need-explain", "label": "6. 有沒有看不懂、要 Agent 再解釋的地方？", "type": "textarea", "suggestions": [{"label": "要再解釋", "text": "請 Agent 再解釋：〈哪一點〉"}, "沒有"]}
+]}
+```
+
 - [ ] 在 [Gate 3 表單](#b3-approval-gates) 記錄決策：依實際成果核准、條件核准或拒絕並修正。
 - [ ] 要求 Agent 交付：
 
@@ -204,10 +240,10 @@ Gate 3 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
 
 ```callout warning
 時間不足時
-13 分鐘內保留三個核准關卡與真實證據；時間不足保留 Gate 1／2，Gate 3 至少審查測試及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付。若已完成分析，可交付 Level 1；即使無程式修改或未執行測試，也須交付分析、核准紀錄、未驗證範圍與原因，不宣稱功能已通過驗收。
+13 分鐘內保留三個核准關卡與真實證據；時間不足保留 Gate 1／2，Gate 3 至少看驗收對照表及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付。若已完成分析，可交付 Level 1；即使無程式修改或未執行測試，也須交付分析、核准紀錄、未驗證範圍與原因，不宣稱功能已通過驗收。
 ```
 
-**確認**：[Gate 3 表單](#b3-approval-gates)（Gate 核准決策 · GATE3）；有使用時加上 [交付審查檢核表](#b3-review-checklist)。
+**確認**：檢查點 6 變更審查卡與 [Gate 3 表單](#b3-approval-gates)（Gate 核准決策 · GATE3）；有使用時加上 [交付審查檢核表](#b3-review-checklist)。
 
 ## 必要時受控接續
 

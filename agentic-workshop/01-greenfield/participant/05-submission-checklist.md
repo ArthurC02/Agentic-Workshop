@@ -2,15 +2,15 @@
 
 > 讀者：參與者。時機：最後 2 分鐘及提交之前。前置：已完成實作、執行測試並取得 Agent 修改摘要。可見性：Participant。
 
-- [ ] App 可載入與啟動，既有 `/health` 正常。
-- [ ] `GET /trips`、`POST /bookings`、`POST /bookings/{booking_id}/pay`、`GET /orders/{order_id}` 可呼叫。
+- [ ] Agent 已啟動 App，既有 `/health` 正常。
+- [ ] `GET /trips`、`POST /bookings`、`POST /bookings/{booking_id}/pay`、`GET /orders/{order_id}` 可在 `/docs` 呼叫。
 - [ ] 查詢→訂票→模擬付款→查詢 Order 的完整流程有實際證據。
-- [ ] 已執行 `pytest -q`，記錄指令、通過／失敗／Skip 數及實際輸出。
+- [ ] Agent 已執行 `pytest -q` 並提供驗收對照表，記錄指令、通過／失敗／Skip 數及實際結果。
 - [ ] 已核對 [驗收條件](03-acceptance-criteria.md)，包括人數、剩餘座位、75% 學生票及付款邊界。
 - [ ] 核心未完成與仍被 Skip 的測試已明確列出。
 - [ ] README 或相關使用文件已更新，安裝、啟動、測試及 API 說明可用。
 - [ ] Agent 已提供修改檔案、規則對應、風險與未完成項目的摘要。
-- [ ] 你已審查主要 Diff，確認符合核准計畫，未擴大範圍或修改商業規則。
+- [ ] 你已完成變更審查（Agent 回答審查問題，審查卡沒有「否」或「不確定」），確認符合核准計畫，未擴大範圍或修改商業規則。
 
 ## 交付摘要
 

@@ -31,6 +31,8 @@ B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可
 - [ ] B1 Recovery只於52分鐘接續B2，B2 Recovery只於63分鐘接續B3，包已驗證且保留原成果／Context。
 - [ ] 若包未備妥，分析／Review降級可用，不分享Evaluation目錄。
 - [ ] Agent可用；個人分析、小組Shared Context及主要Agent／人員核准者已確認。
+- [ ] 每台學員電腦：貼上環境準備提示後，Agent能代為建立.venv、安裝依賴並回報pytest結果；能在背景啟動伺服器（埠號8000）、確認/health為status=ok；瀏覽器能開http://127.0.0.1:8000/docs並用Try it out執行一次。學員全程不需自己打指令。
+- [ ] Agent能停止自己啟動的伺服器並換版重啟；Port佔用時Agent能改埠並告知新網址。
 - [ ] 三Gate與條件閉環、唯一EXCEPTION-DW-001、60秒含69–70／可縮30秒已準備。
 - [ ] 90分鐘計時、觀察／提示／停止、收件與回顧材料可用；不排名、不強求Level3。
 
@@ -41,6 +43,7 @@ B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可
 | 安裝／啟動／版本 | 待填 | 未執行 | 待填 | 待填 |
 | pytest／Manifest／Smoke | 待填 | 未執行 | 待填 | 待填 |
 | 包／Recovery／Agent | 待填 | 未執行 | 待填 | 待填 |
+| 學員電腦Agent代建環境／啟動／瀏覽器/docs | 待填 | 未執行 | 待填 | 待填 |
 | 時程／治理／回顧 | 待填 | 未執行 | 待填 | 待填 |
 
 完成條件：必要檢查有本次真實證據，未知問題已處理或採記錄在案的降級；空表不可當正式活動放行。候選包以[一致性修正報告](evaluation/consistency-correction-report.md)及實際包證據為準；真人演練與現場Preflight仍待執行。

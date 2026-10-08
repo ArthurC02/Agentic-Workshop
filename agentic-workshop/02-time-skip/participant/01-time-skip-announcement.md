@@ -4,7 +4,7 @@
 
 Smart Ticket 上線已經過12個月。系統增加會員、優惠、改退票、通知、座位與稽核，程式、測試及歷史決策也一起成長。
 
-請停止使用自己的 Greenfield Repository，接手主持人統一提供的 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從 Tool 轉為 Teammate：各自分析、比較判斷，再整合小組 Shared Context。
+請停止使用自己的 Greenfield Repository，接手主持人統一提供的 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從 Tool 轉為 Teammate：各自請 Agent 分析、比較判斷，再整合小組 Shared Context。你仍然不寫程式、不讀程式、不自己打終端機指令；Agent 負責操作並用白話說明，你負責判斷與核准。
 
 ## 完成條件
 

@@ -16,45 +16,37 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ## 保存與切換
 
-- [ ] 先保存原本的 Repo、Diff、測試輸出、退出碼（exit code）、核准關卡（Gate）紀錄與未完成事項，不要覆蓋原成果。
-- [ ] 解壓縮到新目錄，核對下載卡上的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同），並看包內 README 與 docs/context.md，確認這是 B1 完成後的版本。
-- [ ] 在原本啟動 Server 的終端機按 Ctrl+C，停止自己啟動的服務；不要停止別人的服務。
-- [ ] 在新目錄安裝並執行完整測試，預期 44 passed；結果不符就停止切換，請主持人確認。
+- [ ] 先保存原本的成果，不要覆蓋：請原本的 Agent 把目前狀態 Commit，並用白話列出目前的變更內容（Diff）、最後一次測試結果與退出碼（exit code）；你保存核准關卡（Gate）紀錄與未完成事項。
+- [ ] 在原本的 Agent 對話貼上下方提示詞，請它停止舊版本的伺服器（不要停止別人的服務）：
 
-```cmd
-# powershell
-# 在 ZIP 所在目錄；新目錄名稱尚未使用
-Expand-Archive -LiteralPath .\recovery-52-b1.zip -DestinationPath .\resume-b1-52
-Set-Location .\resume-b1-52\recovery-b1
-py -3.13 -m venv .venv
-& '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
-& '.\.venv\Scripts\python.exe' -m pytest -q
-& '.\.venv\Scripts\python.exe' -m uvicorn smart_ticket.main:app --app-dir src --host 127.0.0.1 --port 8000
-# bash
-# 在 ZIP 所在目錄；新目錄名稱尚未使用
-unzip recovery-52-b1.zip -d resume-b1-52
-cd resume-b1-52/recovery-b1
-python3.13 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m pytest -q
-.venv/bin/python -m uvicorn smart_ticket.main:app --app-dir src --host 127.0.0.1 --port 8000
+```text
+我們要切換到 B1 復原基線。請停止你在背景啟動的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 已經連不上，然後用白話告訴我結果。不要修改任何檔案，也不要停止不是你啟動的服務。
 ```
 
-另開一個終端機確認 `/health` 有回應。版本要用包內說明文件（README、docs/context.md）、B1 的修改是否存在與測試結果一起確認，不能只看 Health 檢查。
+- [ ] 用檔案總管（右鍵「全部解壓縮」）或 Finder，把 `recovery-52-b1.zip` 解壓縮到新的資料夾（例如 `resume-b1-52`，不要覆蓋原成果），找到裡面的 `recovery-b1` 資料夾。
+- [ ] 在 `recovery-b1` 開一個新的 Agent 對話（Session），先貼上 [B2](#b2) 開頭的「Agent 工作規則」，再依序貼上下方三段提示詞：
 
-```cmd
-# powershell
-Invoke-RestMethod http://127.0.0.1:8000/health
-# bash
-curl --fail http://127.0.0.1:8000/health
+```text
+請計算 recovery-52-b1.zip（位置：〈ZIP 所在資料夾〉）的 SHA256 雜湊並貼出來；再閱讀這個資料夾的 README 與 docs/context.md，用白話告訴我這是不是 B1 完成後的版本。不要修改任何檔案。
 ```
 
-開一個新的 Agent 對話（Session），或在原對話中明確告訴 Agent：現在接手的是哪個版本、原成果還有哪些未完成、已確認的規則，以及 B2 已核准的範圍；更新共同脈絡（Shared Context）後，接續 [B2](#b2)。本頁不提供 B3 的起點。
+```text
+請幫我準備這個專案的執行環境：確認 Python 版本是 3.13，在專案資料夾建立 .venv 虛擬環境並安裝 requirements.txt，接著執行 pytest -q。用白話告訴我：環境是否建好、測試有幾個通過／失敗／跳過，以及下一步要做什麼。遇到錯誤時先說明原因，不要自行修改程式。
+```
+
+```text
+請在背景啟動這個專案的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 回傳 status=ok，然後告訴我 /docs 的網址。之後要換版本或結束時，先停止你啟動的伺服器。
+```
+
+- [ ] 核對：Agent 貼的 SHA256 與下載卡上的值相同（雜湊是檔案的指紋；一個位元組被改，值就不同）；測試預期 44 passed；`/health` 回傳 status=ok。任何一項不符就停止切換，請主持人確認。
+- [ ] 版本要用包內說明文件（README、docs/context.md）、B1 的修改是否存在與測試結果一起確認，不能只看 Health 檢查。
+
+在新對話中明確告訴 Agent：現在接手的是哪個版本、原成果還有哪些未完成、已確認的規則，以及 B2 已核准的範圍；更新共同脈絡（Shared Context）後，接續 [B2](#b2)。本頁不提供 B3 的起點。
 
 ```form
 {"id": "recovery-b1-record", "title": "B1 Recovery 紀錄","fields":[
 {"id": "decision", "label": "切換原因／核准的主持人／時間／復原包來源", "type": "textarea", "suggestions": [{"label": "觸發範本", "text": "觸發：〈B1 未完成的原因〉\n主持核准人：〈姓名〉；時間：第〈 〉分鐘\n提供來源：recovery-52-b1.zip"}]},
-{"id": "preserved", "label": "原成果保存路徑／Diff／Gate 狀態／未完成事項", "type": "textarea", "suggestions": [{"label": "保存範本", "text": "原成果路徑：〈路徑〉\nDiff：〈已保存／路徑〉\nGate：〈狀態〉\n未完成：〈…〉"}]},
+{"id": "preserved", "label": "原成果保存路徑／變更內容（Diff）／Gate 狀態／未完成事項", "type": "textarea", "suggestions": [{"label": "保存範本", "text": "原成果路徑：〈路徑〉\n變更內容：〈Agent 已 Commit／摘要〉\nGate：〈狀態〉\n未完成：〈…〉"}]},
 {"id": "verification", "label": "新目錄／確認是 B1 版本的證據／安裝、44 項測試與 Health 的實際結果及退出碼", "type": "textarea", "suggestions": [{"label": "驗證範本", "text": "新目錄：〈路徑〉\nB1 版本證據：〈SHA256／README／docs/context.md〉\n安裝：〈結果〉，退出碼〈 〉\npytest -q：〈 〉 passed，退出碼〈 〉\nHealth：〈實際回應〉"}]},
 {"id": "context", "label": "新對話（Session）或重新提供的背景／接續的核准範圍／哪些不是本組自己完成的", "type": "textarea", "suggestions": [{"label": "接續範本", "text": "〈新 Session／重新輸入 Context〉\n接續核准範圍：〈B2 範圍〉\n非自行完成：B1 能力由 Recovery 提供"}]}
 ]}

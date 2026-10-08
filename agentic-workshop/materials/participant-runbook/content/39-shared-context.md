@@ -34,21 +34,21 @@ B1 尚未揭露
 ## 檢查點 1 · 比較與分工（第 39–42 分鐘）
 
 - [ ] 每個人打開自己的 [個人 Agent 分析表](#individual-analysis)，逐欄比較：共同事實、證據與分歧。
-- [ ] 有來源、可重現的結論，列為共同事實或已驗證證據；說法不同或沒有證據的，先列為分歧。
+- [ ] 有來源、可重現的結論（Agent 說得出規則原文、測試名稱與實際執行結果），列為共同事實或已驗證證據；說法不同或沒有證據的，先列為分歧。不需要讀程式，比較的是各自 Agent 對「程式、規則、測試三者是否一致」的白話說明。
 - [ ] 選定主要 Agent 與人員核准者。
 
 **確認**：填下方表單第 1 欄「共同事實與規則來源」、第 2 欄「已驗證證據（檔案／測試／輸出）」、第 5 欄「主要 Agent 與人員核准者」。
 
 ## 檢查點 2 · 收斂並交給主要 Agent（第 42–44 分鐘）
 
-- [ ] 對仍有分歧的判斷，寫下驗證方式；未確認的推論清楚標示。
+- [ ] 對仍有分歧的判斷，寫下驗證方式（例如請 Agent 重新執行哪個測試、對照哪條規則）；未確認的推論清楚標示。
 - [ ] 寫下已知限制與不宜修改的區域（只記錄系統限制，不預先核准修改），以及尚待任務揭露後決定的事項。
 - [ ] 把整理後的共同 Context 交給主要 Agent；不要把所有人的 Session 原封不動拼接。
 
 ```text
 先不要修改程式，也不要提出修改計畫。以下是我們小組整理的共同 Context：
 〈貼上表單第 1–6 欄〉
-請用條列複述你的理解：共同事實與來源、已驗證證據、仍有分歧的判斷、已知限制與不宜修改的區域、待決事項。指出你認為證據不足或互相矛盾的地方。複述完停下，等我們確認。
+請用白話條列複述你的理解：共同事實與來源、已驗證證據、仍有分歧的判斷、已知限制與不宜修改的區域、待決事項。指出你認為證據不足，或規則、測試、程式三者互相矛盾的地方。複述完停下，等我們確認。
 ```
 
 - [ ] 核對 Agent 的複述：有沒有把分歧或推論說成事實？有沒有自己加入修改計畫？有就請它修正。
@@ -69,20 +69,20 @@ zip=participant-39-shared-context.zip path=agentic-workshop/03-brownfield/partic
 ```form
 {"id": "shared-context", "title": "Shared Context（小組共同脈絡）","fields":[
 {"id": "common-facts", "label": "共同事實與規則來源", "type": "textarea", "suggestions": [{"label": "Rule 與來源", "text": "Rule 〈Rule ID〉：〈規則內容〉（來源：〈文件路徑〉）"}, {"label": "模組責任", "text": "〈模組〉負責〈責任〉，依賴〈模組〉（來源：〈檔案〉）"}, {"label": "多人一致", "text": "〈結論〉：〈幾〉位成員的分析一致（來源：〈檔案／文件〉）"}]},
-{"id": "verified-evidence", "label": "已驗證證據（檔案／測試／輸出）", "type": "textarea", "suggestions": [{"label": "測試輸出", "text": "pytest -q：〈數字〉 passed、〈數字〉 failed（〈誰〉第〈分〉分實際執行）"}, {"label": "失敗測試", "text": "失敗測試〈測試名稱〉：期待〈值〉，實際〈值〉"}, {"label": "程式位置", "text": "〈檔案〉第〈行〉行：〈實際看到的內容〉"}]},
-{"id": "disagreements", "label": "仍有分歧的判斷及驗證方式", "type": "textarea", "suggestions": [{"label": "分歧與驗證", "text": "〈判斷〉：〈成員 A〉認為〈…〉，〈成員 B〉認為〈…〉；驗證方式：〈跑哪個測試／看哪個檔案〉"}, {"label": "文件與程式不一致", "text": "文件〈路徑〉寫〈…〉，程式〈檔案〉是〈…〉；以何者為準待驗證：〈方式〉"}, "目前沒有分歧"]},
-{"id": "constraints", "label": "已知限制／不宜修改區域", "type": "textarea", "hint": "記錄系統限制，不預先核准修改", "suggestions": [{"label": "不在範圍內", "text": "〈模組／檔案〉：〈原因〉，本段不修改"}, {"label": "不新增套件", "text": "不新增未核准的外部套件"}, {"label": "保留既有測試", "text": "既有通過的 Regression 測試不可刪除或放寬斷言"}]},
-{"id": "main-agent-approver", "label": "主要Agent與人員核准者", "type": "textarea", "suggestions": [{"label": "分工範本", "text": "主要 Agent：〈誰〉的 Agent，在〈誰〉的電腦執行\n人員核准者：〈姓名〉\n其他成員：〈Review Diff／跑測試／記錄〉"}]},
+{"id": "verified-evidence", "label": "已驗證證據（檔案／測試／輸出）", "type": "textarea", "suggestions": [{"label": "測試輸出", "text": "pytest -q：〈數字〉 passed、〈數字〉 failed（〈誰〉第〈分〉分實際執行）"}, {"label": "失敗測試", "text": "失敗測試〈測試名稱〉：期待〈值〉，實際〈值〉"}, {"label": "程式行為", "text": "Agent 說明程式實際行為：〈…〉（依據：〈測試名稱／實際執行結果〉）"}]},
+{"id": "disagreements", "label": "仍有分歧的判斷及驗證方式", "type": "textarea", "suggestions": [{"label": "分歧與驗證", "text": "〈判斷〉：〈成員 A〉認為〈…〉，〈成員 B〉認為〈…〉；驗證方式：〈請 Agent 跑哪個測試／對照哪條規則〉"}, {"label": "文件與程式不一致", "text": "文件〈路徑〉寫〈…〉，Agent 說明程式實際是〈…〉；以何者為準待驗證：〈方式〉"}, "目前沒有分歧"]},
+{"id": "constraints", "label": "已知限制／不宜修改區域", "type": "textarea", "hint": "記錄系統限制，不預先核准修改", "suggestions": [{"label": "不在範圍內", "text": "〈系統部分／檔案〉：〈原因〉，本段不修改"}, {"label": "不新增套件", "text": "不新增未核准的外部套件"}, {"label": "保留既有測試", "text": "既有通過的測試（確認既有功能沒被改壞）不可刪除，也不可降低期待"}]},
+{"id": "main-agent-approver", "label": "主要Agent與人員核准者", "type": "textarea", "suggestions": [{"label": "分工範本", "text": "主要 Agent：〈誰〉的 Agent，在〈誰〉的電腦執行\n人員核准者：〈姓名〉\n其他成員：〈核對驗收對照表／在 /docs 試行為／記錄〉"}]},
 {"id": "pending-decisions", "label": "尚待任務揭露後決定的事項", "type": "textarea", "suggestions": [{"label": "待決事項", "text": "〈問題〉：等任務揭露後，依〈任務卡／規則〉決定"}, {"label": "修改授權", "text": "修改範圍與計畫：等任務揭露後由〈核准者〉核准"}]},
 {"id": "b1-task-source", "label": "【任務揭露後補填】任務ID／起點版本／規則來源", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "任務來源", "text": "任務 ID：〈任務 ID〉；起點版本：〈B0／其他〉；規則來源：〈Rule ID／文件〉"}]},
 {"id": "b1-scope", "label": "【任務揭露後補填】任務範圍／不處理項目", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "範圍範本", "text": "處理：〈…〉\n不處理：〈…〉（依任務卡）"}]},
 {"id": "b1-change-areas", "label": "【任務揭露後補填】建議修改區域、理由及不應修改區域", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "修改區域", "text": "建議修改：〈檔案／函式〉，理由：〈證據〉\n不應修改：〈檔案／模組〉，理由：〈…〉"}]},
-{"id": "b1-test-plan", "label": "【任務揭露後補填】測試計畫／Regression保留", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "測試計畫", "text": "修改前：先跑〈目前失敗的測試〉保留輸出\n修改後：完整 pytest -q，既有 Regression 全部保留，不放寬斷言"}]},
-{"id": "b1-plan", "label": "【任務揭露後補填】主要Agent的5–8步執行計畫", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "5–8 步範本", "text": "1. 〈確認根因與證據〉\n2. 〈最小修改內容〉\n3. 〈執行相關測試〉\n4. 〈執行完整 Regression〉\n5. 〈更新文件〉\n6. 〈整理交付摘要〉"}]},
+{"id": "b1-test-plan", "label": "【任務揭露後補填】測試計畫／確認既有功能沒被改壞", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "測試計畫", "text": "修改前：請 Agent 先跑〈目前失敗的測試〉保留結果\n修改後：請 Agent 跑完整 pytest -q 並交驗收對照表；既有測試全部保留，不降低期待"}]},
+{"id": "b1-plan", "label": "【任務揭露後補填】主要Agent的5–8步執行計畫", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "5–8 步範本", "text": "1. 〈確認原因與證據〉\n2. 〈最小修改內容〉\n3. 〈執行相關測試〉\n4. 〈執行全套測試，確認既有功能沒被改壞〉\n5. 〈更新文件〉\n6. 〈整理交付摘要〉"}]},
 {"id": "b1-approver", "label": "【任務揭露後補填】人員核准紀錄：核准人", "type": "text", "hint": "第44分鐘取得B1任務後填寫"},
 {"id": "b1-approved-at", "label": "【任務揭露後補填】人員核准紀錄：時間", "type": "text", "hint": "第44分鐘取得B1任務後填寫", "suggestions": ["第 45 分鐘", "第 46 分鐘"]},
 {"id": "b1-decision", "label": "【任務揭露後補填】人員核准紀錄：結論", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": ["核准", "有條件核准（見條件）", {"label": "退回修正", "text": "退回修正：〈原因〉"}]},
-{"id": "b1-conditions", "label": "【任務揭露後補填】人員核准紀錄：條件", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "只改指定處", "text": "只修改〈檔案／函式〉，不順手重構"}, "不得刪除或放寬既有測試", "改完執行完整測試後停下，等人審查 Diff", "無"]}
+{"id": "b1-conditions", "label": "【任務揭露後補填】人員核准紀錄：條件", "type": "textarea", "hint": "第44分鐘取得B1任務後填寫", "suggestions": [{"label": "只改指定處", "text": "只修改〈檔案／函式〉，不順手重構"}, "不得刪除或放寬既有測試", "改完執行完整測試後停下，等人審查變更內容", "無"]}
 ]}
 ```
 

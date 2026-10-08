@@ -80,18 +80,18 @@
     <div class="card tool fx fx-up">
       <span class="chip tool">之前 · Greenfield</span>
       <h3>自己的程式庫</h3>
-      <p>人理解需求、拆解工作並審查；Agent 協助產生程式、測試與文件。</p>
+      <p>人逐步下指令、每步驗收；Agent 產生程式、測試與文件。</p>
     </div>
     <div class="card teammate fx fx-up">
       <span class="chip teammate">現在 · Brownfield</span>
       <h3>同一份既有系統 B0</h3>
       <p>Brownfield（已有程式碼的既有專案）。B0 是全員共用的接手起點；之後的 B1–B3 是在它上面的任務代號。</p>
-      <p>各自請 Agent 分析 → 比較判斷 → 整理共同脈絡（Shared Context：小組整理出的共同事實）。</p>
+      <p>Agent 一起分析、提出計畫，人核准後才動手：各自請 Agent 分析 → 比較判斷 → 整理共同脈絡（Shared Context：小組整理出的共同事實）。</p>
     </div>
   </div>
   <p class="quote fx fx-fade">先理解既有系統與證據，再決定如何修改。</p>
   <aside class="notes">
-    <p><b>說（00:00／第 29 分）</b>：「請停止使用自己的 Greenfield 程式庫，接手主持人統一提供的既有系統 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從工具轉為隊友：各自分析、比較判斷，再整合成小組的共同脈絡。」</p>
+    <p><b>說（00:00／第 29 分）</b>：「請停止使用自己的 Greenfield 程式庫，接手主持人統一提供的既有系統 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從工具轉為隊友：你不再逐步下指令，而是讓 Agent 一起分析、提出計畫，由你核准。各自分析、比較判斷，再整合成小組的共同脈絡。一樣不寫、不讀程式。」</p>
     <p><b>看</b>（整段）：是否仍使用自己的 MVP、是否提前修程式、是否有環境阻塞。</p>
     <p>只回答操作與活動範圍的問題；不揭露學生票率錯誤、檔案位置、失敗數量或文件落差位置。說完翻到解鎖頁。</p>
   </aside>
@@ -121,7 +121,7 @@
     <li data-seg="timeskip"><span class="tl-min">03:00</span><b>4 · 測試與基準</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 10 秒）</b>：「4 分鐘，每分鐘一個檢查點：停手、取得 B0、確認環境與版本、跑測試並建立 Git 基準。不修改程式，Agent 分析從第 33 分鐘開始。」</p>
+    <p><b>說（約 10 秒）</b>：「4 分鐘，每分鐘一個檢查點：停手、取得 B0、請 Agent 確認環境與版本、跑測試並建立 Git 基準。指令都由 Agent 打，不修改程式，Agent 分析從第 33 分鐘開始。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每分鐘翻到下一個檢查點頁；本頁時間軸依計時自動標示目前檢查點，需要總覽時可翻回。</p>
     <p><b>可回答</b>：操作與活動範圍、環境安裝／啟動／測試命令。<b>不可揭露</b>：B1／B2／B3 任務、Bug 根因、學生票率錯誤、檔案位置、失敗數量或文件落差位置。</p>
     <p><b>巡場時看什麼</b>：學員是否仍在改自己的 MVP、是否已叫 Agent 修程式、是否卡在環境。</p>
@@ -133,7 +133,7 @@
   <h2 class="title">停手：保留 Greenfield 現況</h2>
   <ol class="steps">
     <li>停止修改自己的 Greenfield，保留現況，不刪除、不覆寫</li>
-    <li>在啟動伺服器的終端機按 <code>Ctrl+C</code>，停止 Greenfield 的 App</li>
+    <li>請 Greenfield 的 Agent 停止它在背景啟動的伺服器</li>
     <li>讀時間快轉公告與公司成長摘要</li>
   </ol>
   <p class="callout">Runbook › Time Skip › 檢查點 1 · 填「檢查點 1 確認」</p>
@@ -165,14 +165,14 @@
   <p class="kicker">檢查點 3 / 4 · 第 31–32 分鐘</p>
   <h2 class="title">環境與版本：大家都是 B0</h2>
   <ol class="steps">
-    <li>在 B0 資料夾另建 Python 虛擬環境、安裝套件，確認套件相依沒有衝突</li>
-    <li>印出版本：<code>Smart Ticket Platform B0</code></li>
-    <li>啟動 App，健康檢查（<code>/health</code>）回應 ok</li>
+    <li>貼上 Agent 工作規則（Brownfield 版），請 Agent 在 B0 另建執行環境，確認套件相依沒有衝突</li>
+    <li>請 Agent 回報版本：<code>Smart Ticket Platform B0</code></li>
+    <li>請 Agent 在背景啟動 App，健康檢查（<code>/health</code>）回應 ok</li>
   </ol>
   <p class="callout">Runbook › Time Skip › 檢查點 3 · 填「檢查點 3 確認」</p>
   <aside class="notes">
     <p><b>說（00:02／第 31 分）</b>：「請確認大家用的是同一份 B0：版本輸出是 B0，健康檢查回 ok。環境起不來請馬上舉手。」</p>
-    <p><b>看</b>：沿用 G0 的 venv；版本不是 B0；Port 8000 被佔用（G0 的 App 沒停）。</p>
+    <p><b>看</b>：沿用 G0 的 venv；版本不是 B0；Port 8000 被佔用（G0 的 App 沒停 → 請學員叫 Greenfield 的 Agent 停掉它）；學員自己打指令 → 提醒改請 Agent 執行。</p>
     <p><b>停止條件</b>：多人版本不一致或環境不可啟動時，先使用已驗收發放件處理，不讓學員各自更換基線。可直接協助 Python、依賴與啟動命令；記錄耗時，不延長 33 分的分析開始時間。</p>
   </aside>
 </section>
@@ -181,15 +181,15 @@
   <p class="kicker">檢查點 4 / 4 · 第 32–33 分鐘</p>
   <h2 class="title">測試與基準：記下起點，不修改</h2>
   <ol class="steps">
-    <li>跑一次全部測試，保留<b>實際輸出</b>，個人分析時要用</li>
-    <li>建立 Git 基準版本（第一次 commit），之後才看得出 Agent 改了什麼</li>
+    <li>請 Agent 跑一次全部測試，交驗收對照表並保留<b>實際輸出</b>，個人分析時要用</li>
+    <li>請 Agent 建立 Git 基準版本（第一次 commit），之後才能請它說明改了什麼</li>
     <li>讀 Brownfield 接手說明；<b>請先不要修改程式</b></li>
   </ol>
   <p class="callout warn">目前有若干測試失敗；文件是線索，要和程式、測試交叉驗證。</p>
   <aside class="notes">
-    <p><b>說（00:03／第 32 分）</b>：「目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式，跑完測試、建好 Git 基準，之後才能比對 Agent 改了哪些程式。」</p>
+    <p><b>說（00:03／第 32 分）</b>：「目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式，請 Agent 跑完測試、建好 Git 基準，之後才能請它說明改了哪些檔案。」</p>
     <p><b>嚴禁揭露</b>：失敗的原因、檔案位置、失敗數量或文件落差位置；只說「若干」。學員問「是不是一個 Bug」→ 回到「請小組分析是否具有共同原因」。</p>
-    <p><b>看</b>：學員把失敗描述成「全部通過」或開始修測試 → 請他保留實際輸出、先不要修改。Git 要求姓名／Email → 照 Runbook 用不加 <code>--global</code> 的 <code>git config</code>。</p>
+    <p><b>看</b>：學員把失敗描述成「全部通過」或開始修測試 → 請他保留實際輸出、先不要修改。Git 要求姓名／Email → 請 Agent 照 Runbook 用不加 <code>--global</code> 的 <code>git config</code> 設定。</p>
     <p><b>停止（00:04／第 33 分）</b>：停止背景敘述，翻到「個人 Agent 分析」開始 6 分鐘個人分析，禁止修改。完成檢核：已確認 B0 版本、理解安裝與測試方法、完成個人分析準備，尚未直接修改程式。接下來：33–39 個人 Agent 分析｜39–44 比較・Shared Context｜44–52 依發放任務與核准計畫工作；只有經確認的共同事實才能成為主要 Agent 的執行依據。</p>
   </aside>
 </section>

@@ -38,7 +38,7 @@ Gate 2 核准範圍：____。允許為團體流程所需的 API、Domain、Appli
 
 ## Required Deliverables
 
-需求理解、Impact Analysis、核准計畫與 Gate 證據、核准範圍內 Diff、測試結果、文件、Rule／Acceptance 對照，以及 [Delivery Summary](05-delivery-template.md) 與未完成事項。來源與結果須可追查。
+需求理解、Impact Analysis、核准計畫與 Gate 證據、核准範圍內的變更與白話變更說明、Gate 3 變更審查答案、測試結果、文件、驗收對照表（Rule／Acceptance 對照），以及 [Delivery Summary](05-delivery-template.md) 與未完成事項。來源與結果須可追查。
 
 ## Required Tests
 

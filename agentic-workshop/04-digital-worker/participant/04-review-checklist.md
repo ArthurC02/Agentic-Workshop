@@ -2,9 +2,9 @@
 
 > 讀者：小組審查者。
 > 使用時機：Gate 3，按需使用。
-> 前置條件：Agent 已提供當前成果、Gate 紀錄與 [Delivery Summary](05-delivery-template.md)；如有修改或測試，附實際 Diff 與結果。Level 1 可尚無修改或未執行測試，但必須明記原因與未驗證範圍。
+> 前置條件：Agent 已提供當前成果、Gate 紀錄與 [Delivery Summary](05-delivery-template.md)；如有修改或測試，附變更審查答案與驗收對照表。Level 1 可尚無修改或未執行測試，但必須明記原因與未驗證範圍。
 
-逐項依證據勾選；未完成或未驗證保持未勾並說明，不由 Agent 自動全勾。Level 1 仍審理解／設計 Gate、合理 Impact、完整 Test Strategy 及缺項，不以沒有程式變更阻擋成果收件；這不代表功能驗收通過。
+逐項依驗收對照表、變更審查答案與 /docs 實測結果勾選，不看程式；看不懂就請 Agent 解釋。未完成或未驗證保持未勾並說明，不由 Agent 自動全勾。Level 1 仍審理解／設計 Gate、合理 Impact、完整 Test Strategy 及缺項，不以沒有程式變更阻擋成果收件；這不代表功能驗收通過。
 
 ## Requirement
 

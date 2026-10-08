@@ -4,7 +4,7 @@
 
 | Debt ID | Location | Historical Reason | Learning Purpose | Participant Visibility | Must Fix Now | Acceptable Handling |
 |---|---|---|---|---|---|---|
-| DEBT-001 | Domain Discount／Fare Policy | 優惠陸續加入，依既有條件選首個符合 | 理解政策成長及跨模組影響 | 可從程式與測試發現，不直接標答案 | 否，B0保留 | B1不改順序；規則政策任務另行處理 |
+| DEBT-001 | Domain Discount／Fare Policy | 優惠陸續加入，依既有條件選首個符合 | 理解政策成長及跨模組影響 | 可請Agent從程式與測試找出並說明，不直接標答案 | 否，B0保留 | B1不改順序；規則政策任務另行處理 |
 | DEBT-002 | Payment／Change／Refund→Notification | MVP以同步本機紀錄降低複雜度 | 說明耦合與歷史取捨 | 可見ADR與呼叫關係 | 否 | 保留同步紀錄，不要求Queue／外部服務 |
 | DEBT-003 | docs/change-booking-guide.md | 程式新增Fare Difference，舊指南未更新 | Context Verification | 不主動揭露文件位置 | 否，B0保留 | 主要規則與API正確；學員交叉核對，不全面改寫 |
 

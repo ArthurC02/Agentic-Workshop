@@ -37,7 +37,7 @@ id=gate2
 
 ### Gate 3：交付審查（Delivery Review）｜檢查點 6 確認
 
-B3 開始後第 12 分鐘（全場第 75 分鐘）審查。可搭配 [Review Checklist](#b3-review-checklist) 與 [Delivery Summary](#delivery)。
+B3 開始後第 12 分鐘（全場第 75 分鐘）審查。審查依據是 Agent 的驗收對照表與變更審查答案（見 [B3 流程](#b3)檢查點 6 的變更審查卡），不看程式。可搭配 [Review Checklist](#b3-review-checklist) 與 [Delivery Summary](#delivery)。
 
 ```gate
 id=gate3

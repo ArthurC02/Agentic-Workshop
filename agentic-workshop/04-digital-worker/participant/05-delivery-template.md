@@ -28,7 +28,7 @@
 
 ## Files Changed
 
-實際檔案與主要 Diff：____。無修改時寫「無修改」及原因，不虛構 Diff。
+實際檔案與白話變更說明（每個檔案改了什麼、為什麼）：____；Gate 3 變更審查答案：____。無修改時寫「無修改」及原因，不虛構變更。
 
 ## Business Rules Covered
 
@@ -36,7 +36,7 @@ Rule ID 與實作／測試／文件證據：____。
 
 ## Acceptance Criteria Results
 
-各項 AC：PASS／FAIL／NOT VERIFIED，實際證據：____。未驗證不能寫 PASS。
+以驗收對照表呈現各項 AC：PASS／FAIL／NOT VERIFIED，依據的測試名稱：____；人員在 /docs 實測的結果：____。未驗證不能寫 PASS。
 
 ## Test Command and Actual Result
 

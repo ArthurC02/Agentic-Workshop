@@ -52,13 +52,13 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 
 ```form
 {"id": "reflection", "title": "工作坊回顧紀錄","fields":[
-{"id": "s1-tool-human", "label": "1. 本次成果與責任｜工具角色／從零開發｜人的主要工作", "type": "textarea", "hint": "請用實際證據回顧，不排名、不比程式碼量；沒觀察到就填「未觀察」。", "suggestions": [{"label": "人做的事", "text": "〈下指令／審查／測試／決策〉：〈具體例子〉"}, "未觀察"]},
+{"id": "s1-tool-human", "label": "1. 本次成果與責任｜工具角色／從零開發｜人的主要工作", "type": "textarea", "hint": "請用實際證據回顧，不排名、不比程式碼量；沒觀察到就填「未觀察」。", "suggestions": [{"label": "人做的事", "text": "〈下指令／看驗收對照表／在 /docs 試 API／決策〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-tool-agent", "label": "1. 本次成果與責任｜工具角色／從零開發｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈產生程式／測試／文件〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-tool-evidence", "label": "1. 本次成果與責任｜工具角色／從零開發｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈檔案／測試輸出／表單紀錄〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
 {"id": "s1-teammate-human", "label": "1. 本次成果與責任｜隊友角色／分析與共用背景資料｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈比對分析／整理共識／核准〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-teammate-agent", "label": "1. 本次成果與責任｜隊友角色／分析與共用背景資料｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈讀程式／整理規則／提出假設〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-teammate-evidence", "label": "1. 本次成果與責任｜隊友角色／分析與共用背景資料｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈Shared Context／分析紀錄／測試輸出〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
-{"id": "s1-dw-human", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈Gate 核准／審查 Diff／處理例外〉：〈具體例子〉"}, "未觀察"]},
+{"id": "s1-dw-human", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈Gate 核准／看變更審查答案與驗收對照表／處理例外〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-dw-agent", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈依 Work Order 執行／測試／交付摘要〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-dw-evidence", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈Gate 紀錄／Delivery Summary／測試輸出〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
 {"id": "s1-team", "label": "1. 本次成果與責任｜小組", "type": "text"},
@@ -98,7 +98,7 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 下方比較表原文以 Tool、Teammate、Digital Worker 表示工具、隊友、數位員工三種角色（Agent 從工具、隊友到能獨立執行任務的數位員工）；比較的是工作安排與責任配置。
 
 - [ ] 小組對照比較表，比較三個階段的責任、有效做法與問題。意見不同時，分清事實、假設、證據與根因；不要把程式碼量當成果。
-- [ ] 填下方「你的比較證據」五題，每題寫本次的具體例子；沒觀察到就填「未觀察」。
+- [ ] 填下方「你的比較證據」六題，每題寫本次的具體例子；沒觀察到就填「未觀察」。
 - [ ] 回到檢查點 1 的「工作坊回顧紀錄」，填**第 2 部分**：有效實務與問題根因，各選有證據的 1–3 項。根因可分為需求、提示、背景資料、規則或技能缺口、Agent 錯誤、人員審查缺口、工具或環境問題；假設未驗證要標清楚。
 - [ ] 第 86 分鐘收斂成有證據的 1–3 項，不強填滿。
 
@@ -114,7 +114,8 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 {"id": "rule-gate-decision", "label": "哪條規則或哪個核准關卡改變了決策？", "type": "textarea", "suggestions": [{"label": "改變決策", "text": "〈Rule ID／Gate〉：原本〈…〉，因此改為〈…〉（證據：〈紀錄〉）"}, "未觀察"]},
 {"id": "skill-vs-human", "label": "哪類工作適合交給技能處理，哪類仍需人判斷？", "type": "textarea", "suggestions": [{"label": "分工範本", "text": "適合技能處理：〈…〉\n仍需人判斷：〈…〉，原因：〈…〉"}, "未觀察"]},
 {"id": "review-rework", "label": "哪些審查或重工增加／減少？是否有計時證據？", "type": "textarea", "hint": "未觀察不推測數據。", "suggestions": [{"label": "增減與證據", "text": "〈增加／減少〉：〈審查或重工項目〉；計時證據：〈有／無〉"}, "未觀察，無計時證據"]},
-{"id": "platform-retain", "label": "平台應保存哪些背景資料、對話工作階段、權限與測試資訊？", "type": "textarea", "suggestions": [{"label": "應保存項", "text": "背景資料：〈…〉\n對話工作階段：〈…〉\n權限：〈…〉\n測試資訊：〈…〉"}, "未觀察"]}
+{"id": "platform-retain", "label": "平台應保存哪些背景資料、對話工作階段、權限與測試資訊？", "type": "textarea", "suggestions": [{"label": "應保存項", "text": "背景資料：〈…〉\n對話工作階段：〈…〉\n權限：〈…〉\n測試資訊：〈…〉"}, "未觀察"]},
+{"id": "evidence-only-risk", "label": "只看證據不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？", "type": "textarea", "hint": "例如測試全過，但程式寫法有問題，今天的流程抓不到。", "suggestions": [{"label": "風險與補位", "text": "風險：〈…〉（本次例子：〈…〉）\n補位：〈角色，例如懂程式的審查者／平台功能，例如自動程式檢查〉"}, "未觀察"]}
 ]}
 ```
 
@@ -152,7 +153,7 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 - [ ] Time Skip：[各檢查點確認](#time-skip)
 - [ ] Brownfield 分析：[個人 Agent 分析](#individual-analysis)、[Shared Context](#shared-context)
 - [ ] [B1](#b1)、[B2](#b2) 各段頁面中的表單（有填寫時）
-- [ ] B3：[各檢查點確認](#b3)、[Work Order](#b3-work-order)、[Gate 1／2／3 決策紀錄](#b3-approval-gates)、[Review Checklist](#b3-review-checklist)、[Exception Response 與 Escalation](#b3-exception-card)（有使用時）
+- [ ] B3：[各檢查點確認與變更審查卡](#b3)、[Work Order](#b3-work-order)、[Gate 1／2／3 決策紀錄](#b3-approval-gates)、[Review Checklist](#b3-review-checklist)、[Exception Response 與 Escalation](#b3-exception-card)（有使用時）
 - [ ] Delivery：[Delivery Summary 與檢查點 2 確認](#delivery)
 - [ ] 回顧：本頁的工作坊回顧紀錄與你的比較證據
 

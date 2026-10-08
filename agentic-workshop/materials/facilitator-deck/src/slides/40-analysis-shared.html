@@ -22,15 +22,15 @@
   <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
   <h2 class="title">理解 B0：模組、依賴、實際測試輸出</h2>
   <ol class="steps">
-    <li>讀 B0 的背景說明（Context）、README、架構文件與 ADR（Architecture Decision Record，架構決策紀錄），開<b>新的</b> Agent 對話（Session）</li>
-    <li>貼提示詞 1：<b>先不要修改程式</b>，說明模組責任與依賴，做完停下</li>
-    <li>自己跑一次全部測試，保留實際輸出</li>
+    <li>讀 B0 的背景說明（Context）與 README，開<b>新的</b> Agent 對話（Session）並貼上 Agent 工作規則</li>
+    <li>貼提示詞 1：<b>先不要修改程式</b>，用白話說明模組責任與依賴，做完停下</li>
+    <li>請 Agent 用驗收對照表整理全部測試結果：哪些失敗、對應哪條規則</li>
   </ol>
   <p class="callout">Runbook › 個人 Agent 分析 › 檢查點 1 · 填分析表第 1–2 欄</p>
   <aside class="notes">
-    <p><b>說（00:00／第 33 分）</b>：「每人用自己的 Agent 讀同一份 B0。先讓 Agent 說明模組責任與依賴、跑一次測試，然後停下；你自己也跑一次 pytest，對照輸出。」</p>
+    <p><b>說（00:00／第 33 分）</b>：「每人用自己的 Agent 讀同一份 B0。先讓 Agent 用白話說明模組責任與依賴、跑一次測試並用驗收對照表回報，然後停下。你不用讀程式，看它的說明和對照表就好。」</p>
     <p><b>看 → 介入</b>：版本／環境錯誤 → 先協助，確認是主持人提供的同一份 B0｜Agent 提前修改、刪除或弱化測試 → 請學員叫它停下並還原｜只列檔名 → 「這個模組負責什麼？依賴誰？」｜分析停滯 → 用下方提示。</p>
-    <p><b>提示・不知從哪開始</b>（一次一級）：H1 先概述核心流程，再看失敗是否相關｜H2 看 pytest 輸出、Rule ID 及 ADR｜H3 看 Application 與 Domain 計價群組。</p>
+    <p><b>提示・不知從哪開始</b>（一次一級，請學員轉問 Agent）：H1 請 Agent 先概述核心流程，再說明失敗是否相關｜H2 請 Agent 把失敗測試對照 Rule ID 及 ADR｜H3 請 Agent 說明 Application 與 Domain 計價群組各負責什麼。</p>
     <p><b>漸進提示原則（33–44 期間停滯時）</b>：依停滯程度逐級提示，不跳級；<b>不一次發全表、不提供完整 Code</b>；提示後要求補證據；記錄提示與觸發原因。</p>
   </aside>
 </section>
@@ -40,17 +40,17 @@
   <h2 class="title">證據與推論：分開寫</h2>
   <ol class="steps">
     <li>貼提示詞 2：結論、假設、缺口、調查順序，各附依據，列完停下</li>
-    <li>挑一個關鍵結論，自己打開來源核對；對不上就標為推論</li>
+    <li>挑一個關鍵結論，請 Agent 指出依據（哪份文件、哪個測試、實際輸出）；給不出證據就標為推論</li>
     <li>未執行的測試、未驗證的根因，不寫成已證實</li>
   </ol>
   <p class="callout warn">Runbook › 個人 Agent 分析 › 檢查點 2 · 填分析表第 3–9 欄；第 39 分鐘停止</p>
   <aside class="notes">
     <p><b>說（00:03／第 36 分）</b>：「請 Agent 列出結論、假設、缺口與調查順序，每一項附來源。分析表上要留下來源、事實、假設與缺口；查不清的寫進缺口，不要寫成已證實。」</p>
-    <p><b>看</b>：分析是否有證據；必要時提示學員核對 Code／Test／Rule。完成條件：保留可追查的分析成果供小組比較；不把未執行的測試或未驗證的根因描述成已證實。</p>
-    <p><b>提示・只看文件</b>：H1 文件結論如何驗證？｜H2 找對應測試與實際輸出｜H3 比較改票 Application 與相關 docs。</p>
-    <p><b>提示・只改測試</b>：H1 公開規則與現在期望一致嗎？｜H2 比較 business-rules 與原 Regression 斷言｜H3 檢查 Fare／Discount Policy，不給修正碼。</p>
-    <p><b>提示・建議全面重寫</b>：H1 哪些差異是本任務必要？｜H2 以失敗集合及最小 Diff 評估｜H3 先限制到計價 Policy 與受影響服務。</p>
-    <p><b>僅限學員已自行找到數值後才可用</b>（會透露數值與計價位置）：「找到 85 但不知規則」→ H1 折扣適用對象是否相同？｜H2 核對 FARE-002 與學生票測試｜H3 追 Passenger Type 到 Fare／Discount 計價。</p>
+    <p><b>看</b>：分析是否有證據；必要時提示學員請 Agent 對照 Code／Test／Rule 說明依據（不要求學員自己查程式）。完成條件：保留可追查的分析成果供小組比較；不把未執行的測試或未驗證的根因描述成已證實。</p>
+    <p><b>提示・只看文件</b>（請學員轉問 Agent）：H1 請 Agent 說明文件結論如何驗證｜H2 請 Agent 找對應測試並交實際輸出｜H3 請 Agent 比較改票 Application 與相關 docs 是否一致。</p>
+    <p><b>提示・只改測試</b>：H1 請 Agent 對照規則：公開規則與現在期望一致嗎？｜H2 請 Agent 比較 business-rules 與原 Regression 期待值｜H3 請 Agent 說明 Fare／Discount Policy 的行為，不給修正碼。</p>
+    <p><b>提示・建議全面重寫</b>：H1 請 Agent 說明哪些差異是本任務必要｜H2 請 Agent 以失敗集合及最小修改評估｜H3 請 Agent 先把範圍限制到計價 Policy 與受影響服務。</p>
+    <p><b>僅限學員已自行找到數值後才可用</b>（會透露數值與計價位置）：「找到 85 但不知規則」→ H1 請 Agent 對照規則：折扣適用對象是否相同？｜H2 請 Agent 核對 FARE-002 與學生票測試｜H3 請 Agent 追 Passenger Type 到 Fare／Discount 計價並用白話說明。</p>
     <p><b>停止（00:06／第 39 分）</b>：收分析，未查清如實記錄。翻到 Shared Context 總覽頁。</p>
   </aside>
 </section>
@@ -83,7 +83,7 @@
   <aside class="notes">
     <p><b>說（00:00／第 39 分）</b>：「請比較每個人的分析，找出共同事實、證據與分歧，選定主要 Agent。不要把每個人的完整對話直接拼起來。」</p>
     <p><b>看</b>：要求比對分歧並建立 Shared Context；共同事實是否附規則來源與版本。</p>
-    <p><b>提示・小組結論矛盾</b>（一次一級）：H1 區分事實、假設與缺口｜H2 要求各自附來源及可重現輸出｜H3 追同一請求的 API→Service→Policy 路徑。提示後要求小組補證據，不替小組核准計畫。</p>
+    <p><b>提示・小組結論矛盾</b>（一次一級）：H1 區分事實、假設與缺口｜H2 要求各自附來源及可重現輸出｜H3 請 Agent 說明同一請求的 API→Service→Policy 路徑。提示後要求小組補證據，不替小組核准計畫。</p>
   </aside>
 </section>
 

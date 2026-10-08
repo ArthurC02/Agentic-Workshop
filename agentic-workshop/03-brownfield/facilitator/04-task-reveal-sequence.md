@@ -6,7 +6,7 @@
 |---|---|---|
 | 33–39 | 個人Agent分析；不發任務解答、不允許修改。 | 36分鐘要求留下來源、事實、假設與缺口。 |
 | 39–44 | 比較分析、形成Shared Context、選定主要Agent。 | 42分鐘要求分歧驗證與範圍，44分鐘收斂共同Context。 |
-| 44–52 | 只發TASK-B1-001。說明Teammate、人核准範圍與計畫再執行。 | 46分鐘核對計畫；49分鐘停止擴充優先測試；51分鐘審Diff與摘要；52分鐘停止。 |
+| 44–52 | 只發TASK-B1-001。說明Teammate、人核准範圍與計畫再執行。 | 46分鐘核對計畫；49分鐘停止擴充優先測試；51分鐘做變更審查與摘要；52分鐘停止。 |
 | 52–63 | 後續階段發TASK-B2-001，11分鐘。 | 僅在對應素材與基線完成後發放；本P6不提前產製或揭露其內容。 |
 | 63–76 | 宣布Digital Worker操作規則後才發TASK-B3-001，13分鐘。 | 依後續Gate素材受控執行，本P6不新增B3提示或解答。 |
 | 76–80 | 交付摘要，4分鐘。 | 清楚區分已完成、Recovery與未完成。 |
@@ -21,13 +21,13 @@ B1時間到未修復時，接受Root Cause／Impact／計畫作當前學習成�
 
 ## P7：B2已完成素材的揭露方式
 
-第52分鐘才發TASK-B2-001，確認小組起點為已驗收B1與Shared Context。52–55要求Agent提出2–3方案與Impact／取捨；55分鐘由人選擇、核准Task Breakdown，主要Agent再執行。59分鐘提醒停止擴充、優先測試與折扣文件；62分鐘核對Diff、Applied Discount與Regression；63分鐘停止並收摘要。
+第52分鐘才發TASK-B2-001，確認小組起點為已驗收B1與Shared Context。52–55要求Agent提出2–3方案與Impact／取捨；55分鐘由人選擇、核准Task Breakdown，主要Agent再執行。59分鐘提醒停止擴充、優先測試與折扣文件；62分鐘做變更審查、核對Applied Discount（可在/docs試）與既有功能沒被改壞；63分鐘停止並收摘要。
 
 原表中的「本P6不提前產製B2」是B1階段當時的限制；本P7新增B2專用材料，不改B1時程或歷史。B3仍只保留既定揭露順序，不在本階段新增其提示或答案。
 
 ## P8：B3揭露與Gate節奏
 
-P8當時先以TASK-B3-001自含Gate支援活動，完整Operating Rules／Work Order模板留待P9，這是產製歷史。正式活動63分鐘先宣布Digital Worker：人不直接改Code，只Challenge／Review／Approve／Reject及要求補證；再發TASK-B3-001、目前已完成的Operating Rules／Work Order／三Gate與空白例外回應卡。例外情境於69–70分鐘才啟用，不預發情境或標準答案。
+P8當時先以TASK-B3-001自含Gate支援活動，完整Operating Rules／Work Order模板留待P9，這是產製歷史。正式活動63分鐘先宣布Digital Worker：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent，只Challenge／Review／Approve／Reject及要求補證；再發TASK-B3-001、目前已完成的Operating Rules／Work Order／三Gate與空白例外回應卡。例外情境於69–70分鐘才啟用，不預發情境或標準答案。
 
 B3相對第3分鐘（66）作Gate1決策，核准才設計；第6分鐘（69）作Gate2決策，核准才改Code；第11分鐘（74）停止擴充、收斂測試；第12分鐘（75）Gate3 Review；第13分鐘（76）摘要並停止。核准短格式但需有證據，不為趕時間跳Gate。
 

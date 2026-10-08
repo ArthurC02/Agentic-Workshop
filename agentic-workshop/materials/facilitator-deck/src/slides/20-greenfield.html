@@ -26,11 +26,12 @@
     <li data-seg="greenfield"><span class="tl-min">20:00</span><b>6 · 交付</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 30 秒，學員邊聽邊下載）</b>：「你有 22 分鐘建立核心訂票流程。重點不是 Agent 寫多快，而是你怎麼掌控它：先要計畫、你核准；每做完一段就停下，你看測試、看 Diff，填好確認表單才繼續。未完成也請交付現況及限制。」</p>
+    <p><b>說（約 30 秒，學員邊聽邊下載）</b>：「你有 22 分鐘建立核心訂票流程。重點不是 Agent 寫多快，而是你怎麼掌控它：先貼 Runbook 的 Agent 工作規則，再要計畫、你核准；每做完一段就停下，你看驗收對照表、請 Agent 說明改了什麼（變更審查），填好確認表單才繼續。你不寫、不讀程式，也不自己打指令。未完成也請交付現況及限制。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點，需要總覽時可翻回。</p>
-    <p><b>可回答</b>：時間、交付方式、已寫明的規則、環境安裝／啟動／測試操作、錯誤訊息如何閱讀。需求歧義先指向 Runbook 檢查點 2 的「需求澄清」，再對全場一致說明。</p>
+    <p><b>可回答</b>：時間、交付方式、已寫明的規則、環境與 Agent 操作問題（先請學員把錯誤貼給 Agent 用白話說明，Agent 處理不了再協助）。需求歧義先指向 Runbook 檢查點 2 的「需求澄清」，再對全場一致說明。</p>
     <p><b>不可揭露</b>：完整實作、完整解題 Prompt、每個 TODO 的答案、參考解答或後續階段問題。</p>
     <p><b>巡場時看什麼</b>：學員 Runbook 上檢查點表單有沒有填。表單空白但 Agent 已做到很後面 → 典型的「讓 Agent 做完全部」，請他回到目前檢查點補確認。</p>
+    <p><b>判讀重點</b>：不因學員沒讀程式或沒自己打指令而判失敗；看他是否先要計畫、核准後才讓 Agent 動手、是否要求並檢查驗收對照表與變更審查答案、是否在 <code>/docs</code> 驗證行為、是否把未驗證如實標示。</p>
   </aside>
 </section>
 
@@ -38,15 +39,15 @@
   <p class="kicker">檢查點 1 / 6 · 第 07–09 分鐘</p>
   <h2 class="title">準備：下載、起始測試、Git 基準</h2>
   <ol class="steps">
-    <li>下載 G0（Greenfield 起始包），解壓到短路徑，進入 <code>starter-repository</code> 資料夾</li>
-    <li>建立 Python 虛擬環境並安裝套件，跑一次起始測試，結果應為 <code>1 passed, 8 skipped</code></li>
-    <li>建立 Git 基準版本（第一次 commit），之後才看得出 Agent 改了什麼；在此資料夾開啟 Agent</li>
+    <li>下載 G0（Greenfield 起始包），解壓到短路徑，在 <code>starter-repository</code> 資料夾開啟 Agent</li>
+    <li>貼上 Agent 工作規則，再貼環境準備提示：Agent 建好環境並跑起始測試，回報應為 <code>1 passed, 8 skipped</code></li>
+    <li>請 Agent 建立 Git 基準版本（第一次 commit），之後才能請它說明改了什麼</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 1 · 填「檢查點 1 確認」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 07 分）</b>：「請確認任務、需求、驗收條件及程式庫可開啟，照 Runbook 檢查點 1 建好環境與 Git 基準。」</p>
-    <p><b>看</b>：起始 <code>1 passed, 8 skipped</code>（以實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。</p>
-    <p><b>常見卡點</b>：解壓到深層路徑、PowerShell 執行原則（直接用 venv 裡的 python.exe）、Git 要求姓名／Email、Agent 讀不到上一層需求文件（複製到 <code>docs/</code>）。</p>
+    <p><b>說（00:00／第 07 分）</b>：「請確認任務、需求、驗收條件及程式庫可開啟，照 Runbook 檢查點 1 先貼 Agent 工作規則，再請 Agent 建好環境與 Git 基準。這些指令都由 Agent 打，你看它的白話回報。」</p>
+    <p><b>看</b>：起始 <code>1 passed, 8 skipped</code>（以 Agent 回報的實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。學員自己在終端機打指令 → 提醒改請 Agent 執行。</p>
+    <p><b>常見卡點</b>（先請學員把錯誤貼給 Agent 說明；Agent 處理不了再由主持人協助）：解壓到深層路徑、PowerShell 執行原則（直接用 venv 裡的 python.exe）、Git 要求姓名／Email、Agent 讀不到上一層需求文件（複製到 <code>docs/</code>）。</p>
     <p><b>環境阻擋</b>：可直接協助 Python、Import、依賴與測試命令；記錄耗時，不私下延長截止時間。</p>
   </aside>
 </section>
@@ -62,9 +63,9 @@
   <p class="callout">Runbook › Greenfield › 檢查點 2 · 填「檢查點 2 確認」</p>
   <aside class="notes">
     <p><b>說（00:02／第 09 分）</b>：「請 Agent 先讀需求、掃 TODO、提出計畫，先不要修改。你調整、回答它的問題後再核准，並且限定第一段只做到哪裡。」</p>
-    <p><b>看</b>：Agent 是否已開始改檔案（→ 請學員叫它停下、重做計畫）；學員是否調整了計畫或回答了問題（只回「OK 開始」可接受，但檢查點 3 要特別看他有沒有看 Diff）。</p>
+    <p><b>看</b>：Agent 是否已開始改檔案（→ 請學員叫它停下、重做計畫）；學員是否調整了計畫或回答了問題（只回「OK 開始」可接受，但檢查點 3 要特別看他有沒有做變更審查）。</p>
     <p><b>需求澄清（Runbook 已寫）</b>：付款失敗 → Booking 維持 <code>PENDING_PAYMENT</code>、座位不釋放、不建立 Order、可再付款；不存在資源 404，規則衝突 4xx（代碼由學員決定），格式錯誤可保留 422；失敗以 <code>MockPaymentGateway.next_result = PaymentStatus.FAILED</code> 模擬。學員版 AC-G-013 不要求特定錯誤碼。學員提問時指向該段。</p>
-    <p><b>提示・找不到入口</b>（一次一級）：H1 搜尋 <code>TODO(GREENFIELD</code>、Rule ID、README｜H2 從 API 追到 Application，再找 Domain／Repository｜H3 看 <code>main.py</code>、<code>api/</code>、<code>application/</code>，請學員畫出呼叫方向。</p>
+    <p><b>提示・找不到入口</b>（一次一級，請學員轉問 Agent，不要求他自己查程式）：H1 請 Agent 列出 <code>TODO(GREENFIELD</code> 與對應的 Rule ID、README 說明｜H2 請 Agent 用白話說明一個請求從 API 到 Application，再到 Domain／Repository 經過哪幾層｜H3 請 Agent 對照 <code>main.py</code>、<code>api/</code>、<code>application/</code> 畫出呼叫方向，學員確認每一步對應哪條規則。</p>
   </aside>
 </section>
 
@@ -72,16 +73,16 @@
   <p class="kicker">檢查點 3 / 6 · 第 11–19 分鐘</p>
   <h2 class="title">第一段：Agent 做完就停下，換你確認</h2>
   <ol class="steps">
-    <li>看 Agent 貼出的<b>實際</b>測試執行輸出</li>
-    <li>看程式修改內容（Diff）：說出一處變更對應哪條規則</li>
-    <li>手算 700 ＋ 525 ＝ <b>1225</b>，與程式結果對照；沒問題再 commit 存一版</li>
+    <li>看 Agent 交的<b>驗收對照表</b>：每條驗收條件通過／失敗／未驗證</li>
+    <li>變更審查：請 Agent 說明改了哪些檔案、各對應哪條規則、有沒有超出核准範圍</li>
+    <li>手算 700 ＋ 525 ＝ <b>1225</b>，在 <code>/docs</code> 或對照表核對；沒問題再請 Agent commit 存一版</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 3 · 填「檢查點 3 確認」</p>
   <aside class="notes">
-    <p><b>說（00:04／第 11 分）</b>：「確認計畫後，讓 Agent 做第一段，做完一定要停下。停下後換你看測試、看 Diff、手算 1225，填好確認表單才繼續。」</p>
-    <p><b>看 → 介入</b>：Agent 擴大範圍或自改需求 → 請學員停止該次修改，回到核准範圍｜看到「全部通過」就接受 → 「指出一個主要變更、對應規則與測試」｜一直改程式沒跑測試 → 先跑最小可驗證流程｜規則寫進 Router → 現場不直接糾正，Debrief 以分層原則帶過。</p>
-    <p><b>提示・票價不正確</b>：H1 比對 FARE-001–004 手算｜H2 每位先計價再加總；學生 75%；規則在 Domain Policy｜H3 看 <code>domain/</code> Fare Policy、Booking 用例及 Fare 單元測試。</p>
-    <p><b>提示・測試資料無法重置</b>：H1 單獨重跑，是否依賴執行順序｜H2 每個測試前重置 In-Memory Store｜H3 看 <code>tests/conftest.py</code>、Store／Seed／Reset，fixture scope 與 App 實例是否一致。</p>
+    <p><b>說（00:04／第 11 分）</b>：「確認計畫後，讓 Agent 做第一段，做完一定要停下。停下後換你看驗收對照表、請 Agent 回答變更審查問題、手算 1225，填好確認表單才繼續。」</p>
+    <p><b>看 → 介入</b>：Agent 擴大範圍或自改需求 → 請學員停止該次修改，回到核准範圍｜看到「全部通過」就接受 → 「請 Agent 說明一個主要變更對應哪條規則、哪個測試」｜Agent 只貼原始輸出 → 請學員要求改用驗收對照表｜一直改程式沒跑測試 → 請 Agent 先跑最小可驗證流程｜規則寫進 Router → 現場不直接糾正，Debrief 以分層原則帶過。</p>
+    <p><b>提示・票價不正確</b>（請學員轉問 Agent）：H1 請 Agent 列出 FARE-001–004 的手算結果並與實際結果對照｜H2 請 Agent 對照規則確認：每位先計價再加總、學生 75%、規則放在 Domain Policy｜H3 請 Agent 對照 Fare Policy、Booking 用例及 Fare 單元測試，用白話說明差在哪。</p>
+    <p><b>提示・測試資料無法重置</b>（請學員轉問 Agent）：H1 請 Agent 單獨重跑失敗的測試，說明是否依賴執行順序｜H2 請 Agent 確認每個測試前是否重置 In-Memory Store｜H3 請 Agent 檢查 <code>tests/conftest.py</code>、Store／Seed／Reset，說明 fixture scope 與 App 實例是否一致。</p>
     <p><b>進度判讀</b>：第 19 分做完訂票算正常；學員 Runbook 檢查點 3 表單空白但 Agent 已做到付款 → 請他回頭補確認。</p>
   </aside>
 </section>
@@ -90,16 +91,16 @@
   <p class="kicker">檢查點 4 / 6 · 第 19–24 分鐘 · 還有 10 分鐘</p>
   <h2 class="title">第二段：付款與訂單，同樣停下確認</h2>
   <ol class="steps">
-    <li>交代第二段，做完停下；看實際測試輸出</li>
+    <li>交代第二段，做完停下；看 Agent 交的驗收對照表</li>
     <li>核對付款：只有待付款可付、成功後為已付款（<code>PAID</code>）並只建立一筆訂單（Order）、重複付款被拒</li>
-    <li>看測試檔的修改：沒有刪除或放寬既有斷言（測試裡檢查結果的條件）</li>
+    <li>變更審查：測試總數沒有變少、沒有刪除測試或改既有期待值（請 Agent 檢查後回答）</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 4 · 填「檢查點 4 確認」</p>
   <aside class="notes">
-    <p><b>說（00:12／第 19 分）</b>：「還有 10 分鐘。請查看主要 Diff，確認對應規則及目前測試；還沒做付款的，交代第二段，做完同樣停下確認。」</p>
+    <p><b>說（00:12／第 19 分）</b>：「還有 10 分鐘。請 Agent 回答變更審查問題，確認對應規則及驗收對照表；還沒做付款的，交代第二段，做完同樣停下確認。」</p>
     <p><b>看</b>：找出阻擋，只提供所需級別提示。第 24 分還沒做到付款 → 停在已完成的部分，直接進檢查點 5 驗證。</p>
-    <p><b>提示・付款／訂單</b>：H1 對照 PAYMENT-001–003、ORDER-001–002｜H2 付款用例負責狀態轉移及唯一 Order｜H3 看付款用例、Mock Gateway、Repository 及整合測試。</p>
-    <p>不可用刪除測試或放寬斷言讓測試通過；看到時問「這個斷言原本在檢查哪條規則？」</p>
+    <p><b>提示・付款／訂單</b>（請學員轉問 Agent）：H1 請 Agent 對照 PAYMENT-001–003、ORDER-001–002 列驗收對照表｜H2 請 Agent 說明付款用例怎麼處理狀態轉移及唯一 Order｜H3 請 Agent 對照付款用例、Mock Gateway、Repository 及整合測試說明缺口。</p>
+    <p>不可用刪除測試或放寬斷言讓測試通過；看到時請學員問 Agent「這個測試原本在檢查哪條規則？」</p>
   </aside>
 </section>
 
@@ -108,13 +109,13 @@
   <h2 class="title">驗證：不再加功能</h2>
   <ol class="steps">
     <li>請 Agent 補邊界測試並執行：0／5 人、座位不足、404、付款失敗、重複付款</li>
-    <li>自己在 API 文件頁（<code>/docs</code>）走一次：查班次 → 訂票 1225 → 付款 → 查訂單</li>
+    <li>自己在 API 文件頁（<code>/docs</code>）按「Try it out」走一次：查班次 → 訂票 1225 → 付款 → 查訂單</li>
     <li>列出仍被略過（Skip）或未完成的項目</li>
   </ol>
   <p class="callout warn">Runbook › Greenfield › 檢查點 5 · 填「檢查點 5 確認」</p>
   <aside class="notes">
     <p><b>說（00:17／第 24 分）</b>：「請優先測試既有變更、補文件與記錄未完成項，不再加新功能。」</p>
-    <p><b>看</b>：不新增非必要功能；辨識尚未實作而 Skip 的測試，不刪除或弱化斷言掩蓋失敗；核對完整 API 流程與 <code>/health</code>。</p>
+    <p><b>看</b>：不新增非必要功能；請 Agent 列出尚未實作而 Skip 的測試，不刪除或弱化斷言掩蓋失敗；學員自己在 <code>/docs</code> 核對完整 API 流程與 <code>/health</code>（不用 curl 或手打指令）。</p>
     <p><b>提示・時間不足</b>：H1 列出已完成、未驗證與尚未開始項目，回到核心 AC｜H2 停止擴充，先驗證已做流程，再補最少文件與限制｜H3 依檢查點 5、6 收斂，未完成如實標記。</p>
   </aside>
 </section>
@@ -130,9 +131,9 @@
   <p class="callout warn">第 29 分鐘停止修改；未完成也交付現況與限制。</p>
   <aside class="notes">
     <p><b>說（00:20／第 27 分）</b>：「列完成／未完成、測試結果、限制，以及人和 Agent 各做什麼。」</p>
-    <p><b>看</b>：結果附命令／輸出，未跑明記未驗證；勾選只代表已實際確認。</p>
-    <p><b>提交清單九項</b>：App 可載入與啟動、<code>/health</code> 正常｜四個 API 可呼叫｜完整流程有實際證據｜已執行 <code>pytest -q</code> 並記錄｜已核對 AC（人數、剩餘座位、75% 學生票及付款邊界）｜未完成與仍被 Skip 的測試已列出｜文件已更新｜Agent 已提供摘要｜已審查主要 Diff，未擴大範圍或修改商業規則。</p>
-    <p><b>停止（00:22／第 29 分）</b>：翻到「請先停手」頁，說「停止修改，保存並提交現況；不再延長實作。」未達完整 MVP 仍收取計畫、Diff、測試、限制與人機分工說明；不宣稱未驗證功能通過。</p>
+    <p><b>看</b>：結果附 Agent 實際執行的命令與驗收對照表，未跑明記未驗證；勾選只代表已實際確認。</p>
+    <p><b>提交清單九項</b>：App 可載入與啟動、<code>/health</code> 正常｜四個 API 可呼叫｜完整流程有實際證據（含學員在 <code>/docs</code> 試過）｜Agent 已執行 <code>pytest -q</code> 並交驗收對照表｜已核對 AC（人數、剩餘座位、75% 學生票及付款邊界）｜未完成與仍被 Skip 的測試已列出｜文件已更新｜Agent 已提供摘要｜已完成變更審查，未擴大範圍或修改商業規則。</p>
+    <p><b>停止（00:22／第 29 分）</b>：翻到「請先停手」頁，說「停止修改，保存並提交現況；不再延長實作。」未達完整 MVP 仍收取計畫、變更審查答案、驗收對照表、限制與人機分工說明；不宣稱未驗證功能通過。</p>
   </aside>
 </section>
 
@@ -148,7 +149,7 @@
   <aside class="notes">
     <p><b>00:22（第 29 分）口令（TC，逐字）</b>：「停止修改，保存並提交現況；不再延長實作。」<b>核對</b>：收取交付摘要與證據。</p>
     <p><b>停止（RB 07–29）</b>：29 分鐘留成果／缺項，不強修完整 MVP。不私下延長截止時間（TC）。22 分鐘停止並收取真實現況，不宣稱未驗證功能通過（FG）。</p>
-    <p>進度未達完整 MVP 時，仍收取 Plan／Diff／Test／限制與人機分工說明（FG）。</p>
+    <p>進度未達完整 MVP 時，仍收取 Plan／變更審查答案／驗收對照表／限制與人機分工說明（FG）。</p>
     <p>確認全員停手後才翻到下一頁揭曉。RB 29–33 為 Time Skip，揭曉頁只短暫展示；延遲不增加總 90 分鐘。</p>
   </aside>
 </section>
@@ -168,12 +169,12 @@
       </tbody>
     </table>
     <ol class="steps">
-      <li class="fx"><span>依 README 啟動程式，檢查健康檢查（/health）與 API 文件頁<br>保留實際測試輸出</span></li>
+      <li class="fx"><span>請 Agent 啟動程式，檢查健康檢查（/health）與 API 文件頁<br>保留 Agent 交的驗收對照表</span></li>
       <li class="fx"><span>重設資料後查班次：T003 不出現<br>站名篩選符合固定資料</span></li>
       <li class="fx"><span>T001 成人＋學生：<b>1,225</b>，保留 2 座<br>訂票狀態：<code>PENDING_PAYMENT</code></span></li>
       <li class="fx"><span>付款後 <code>PAID</code>；唯一訂單金額 1,225<br>重複付款遭拒，不新增訂單</span></li>
       <li class="fx"><span>檢查 0／5 人、座位不足與付款失敗<br>未執行的項目標為「未驗證」</span></li>
-      <li class="fx"><span>核對業務規則、API 範例與程式差異<br>說明人與 Agent 各自負責的工作</span></li>
+      <li class="fx"><span>核對業務規則、API 範例與變更審查答案<br>說明人與 Agent 各自負責的工作</span></li>
     </ol>
   </div>
   <p class="callout fx fx-fade"><b>功能完成度、人機協作分開判讀。</b>保留計畫與驗證紀錄；流程跑通仍需人員審查。</p>
@@ -182,7 +183,7 @@
     <p><b>不可偏離（EMO）</b>：學生 75%、每筆最多 4 人、成功保留座位、付款狀態、唯一 Order、精確站名篩選及錯誤一致性；不得加入會員、早鳥、團體或其他後續功能。</p>
     <p><b>可接受的簡化（EMO）</b>：固定示例日期、整數金額、In-Memory 儲存、Mock 付款、無身份驗證與前端；標準輕量分層。</p>
     <p><b>分層（EMO）</b>：API 處理 HTTP／Schema／錯誤轉換；Application 串接用例；Domain 提供模型與 Fare Policy；Infrastructure 提供 In-Memory Repository、Seed／Reset 與 Mock Payment。Domain 不依賴 FastAPI 或測試框架。</p>
-    <p><b>評估判讀值（EVAL）</b>：符合／部分符合／未符合／未驗證；空白或 Agent 自述不能代替實際驗證。Agentic Behavior 四項：修改前先 Plan 由人確認｜人審主要 Diff｜人要求 Test 並據結果接受或要求修正｜能說明人做什麼、Agent 做什麼。</p>
+    <p><b>評估判讀值（EVAL）</b>：符合／部分符合／未符合／未驗證；空白或 Agent 自述不能代替實際驗證。Agentic Behavior 四項：修改前先 Plan 由人確認｜人做變更審查（請 Agent 說明改動，不要求自己讀程式）｜人要求 Test 與驗收對照表並據結果接受或要求修正｜能說明人做什麼、Agent 做什麼。不因學員沒讀程式或沒自己打指令而扣分。</p>
     <p><b>Debrief 訊息（EVAL）</b>：此階段 Agent 是 Tool，不評自主率高低、不以提示次數、程式碼量或速度競賽。</p>
     <p>G0 是可啟動但未完成的骨架；G0 的未實作 Feature Skip 是骨架設計，不得因 G0 骨架通過判定學員 MVP 已完成（EMO／EVAL）。</p>
     <p>注意：快速驗收第 4 步 Order 金額 1,225 為混合訂票情境；ATM 的 AC-G-010／012 測試以 700（單人）驗證，情境不同，非矛盾。</p>

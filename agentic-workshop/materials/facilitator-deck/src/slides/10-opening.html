@@ -21,6 +21,7 @@
   <aside class="notes">
     <p><b>開場前</b>：選定<b>計時者</b>及<b>證據記錄者</b>（RB）。</p>
     <p><b>Cue（RB 00–07）</b>：口頭說明 90 分鐘流程、Tool→Teammate→Digital Worker、<b>責任與證據</b>；任務文件於第 7 分鐘統一解鎖。</p>
+    <p><b>今日原則（全程適用）</b>：人不寫程式、不讀程式、不自己打終端機指令。Agent 負責所有程式、測試與指令操作；人負責決定、核准，並用行為與證據驗證（驗收對照表、變更審查、在 <code>/docs</code> 實際試）。</p>
     <p><b>主持原則（08 §3 開場）</b>：先說明工作坊要驗證的問題；明確說明不是競賽，也不是追求最多程式碼；統一名詞及成功標準。</p>
     <p>本頁三個數字：90 分鐘；學員只發一次 runbook.html；Tool／Teammate／Digital Worker 三階段。</p>
   </aside>
@@ -37,23 +38,24 @@
   <div class="cols-3">
     <div class="card tool fx fx-up">
       <span class="chip tool">Tool · 07–29</span>
-      <h3>由人主導，完成個人任務</h3>
-      <p>人理解需求、選擇設計、拆解任務並審查；Agent 協助撰寫程式、測試與文件。</p>
+      <h3>人逐步下指令，每步驗收</h3>
+      <p>人交代一小步、Agent 做完就停；人看驗收對照表、請 Agent 說明改了什麼，確認後才交代下一步。</p>
     </div>
     <div class="card teammate fx fx-up">
       <span class="chip teammate">Teammate</span>
-      <h3>個人分析 → 小組比較</h3>
-      <p>Agent 分析既有程式與設計取捨；人比較各自的分析，整理共同脈絡（Shared Context：小組整理出的共同事實）。</p>
+      <h3>Agent 一起分析，人核准計畫</h3>
+      <p>Agent 分析既有系統、提出方案與計畫；人比較各自的分析、整理共同脈絡（Shared Context：小組整理出的共同事實），核准計畫後 Agent 才動手。</p>
     </div>
     <div class="card dw fx fx-up">
       <span class="chip dw">Digital Worker</span>
-      <h3>Agent 主導交付</h3>
-      <p>Agent 依三個核准關卡（Gate）與時間限制執行；人負責質疑假設、核准及審查。</p>
+      <h3>Agent 自主執行，人只在 Gate 核准</h3>
+      <p>Agent 在三個核准關卡（Gate）之間自主執行；人在 Gate 質疑假設、核准或退回、要求補證。</p>
     </div>
   </div>
-  <p class="quote fx fx-fade">三種角色描述協作分工；人仍對最後的決策與成果負責。</p>
+  <p class="quote fx fx-fade">三種角色的差別是「人怎麼介入」，不是「人寫多少程式」——今天全程人都不碰程式。</p>
   <aside class="notes">
-    <p><b>主持口述版（Digital Worker Debrief Notes）</b>：「Tool（工具）階段人理解需求、選設計與拆解，Agent協助；Teammate（隊友）比較Agent分析、形成共同脈絡（Shared Context）；Digital Worker（數位員工）由Agent主導交付，人保留質疑假設、核准與檢視（Review）。責任轉移與重新分配，不因Agent自主而消失。」</p>
+    <p><b>主持口述版（依「全程人不碰程式」改版）</b>：「今天從頭到尾，你不寫程式、不讀程式、不自己打指令，這些都交給 Agent；你負責決定、核准，用證據驗收。三種角色的差別在你怎麼介入：Tool（工具）是你逐步下指令、每步驗收；Teammate（隊友）是 Agent 一起分析、你核准計畫；Digital Worker（數位員工）是 Agent 自主執行、你只在 Gate 核准。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
+    <p><b>代價要先講明</b>：只看證據不看程式，可能抓不到「測試全過但寫法有問題」的程式；這點留到回顧討論公司需要什麼角色或平台補上。</p>
     <p>Maturity 表下原文：「成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。」</p>
     <p>注意：此處只講角色與責任；三種角色不是產品分類，也不代表每項工作都應提高自主程度。<b>不提前說明 B1／B2／B3 任務內容或 Bug</b>（29 分鐘前不發 B1／B2／B3 或 Bug 根因）。</p>
   </aside>
@@ -99,18 +101,19 @@
       <p>不追求最多程式碼，也不排名。</p>
     </div>
     <div class="card fx fx-up">
-      <span class="chip">人負責</span>
-      <h3>由人決策與驗收</h3>
-      <p>決定工作範圍，審查主要修改（Diff），核對需求與實際測試結果。</p>
+      <span class="chip">人不碰程式</span>
+      <h3>你決定，Agent 動手</h3>
+      <p>Agent 寫程式、跑測試、打指令；你不寫、不讀程式，也不自己打指令，看不懂就請 Agent 用白話說明。</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">證據優先</span>
-      <h3>計畫、修改與實測證據</h3>
-      <p>未驗證就如實標記；準時停止，交付現況及限制。</p>
+      <h3>用行為與證據驗收</h3>
+      <p>先核准計畫；看驗收對照表、做變更審查、在 <code>/docs</code> 實際試。未驗證就如實標記；準時停止，交付現況及限制。</p>
     </div>
   </div>
   <aside class="notes">
     <p><b>來源</b>：RB 00–07「不比較Coding速度」；08 §3「不是競賽，也不是追求最多程式碼」；FG 開場說法「你負責決定做什麼、查看主要變更，並用測試接受結果。未完成也請交付現況及限制。」</p>
+    <p><b>說（新原則）</b>：「今天全程你不寫程式、不讀程式、也不自己打指令。Agent 負責這些；你負責決定、核准，並用證據驗收：Agent 交的驗收對照表、變更審查的回答，還有你自己在 /docs 試出來的結果。每段開始時，Runbook 有一段『Agent 工作規則』要整段貼給 Agent，那段是給 Agent 看的，不需要看懂。」</p>
     <p>FG：不要以代理工具操作數、生成量或自主程度排名。EVAL：不評自主率高低、不以提示次數、程式碼量或速度競賽。</p>
     <p>回顧原則：未觀察不編數據，不排名（RB 80–90）。</p>
   </aside>
@@ -161,7 +164,7 @@
     <div class="card fx fx-up">
       <span class="chip">2</span>
       <h3>環境</h3>
-      <p>依「環境準備」確認 Python 3.13</p>
+      <p>依「環境準備」請 Agent 確認 Python 3.13</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">3</span>
@@ -173,7 +176,7 @@
   <aside class="notes">
     <p><b>觀察（RB 00–07）</b>：確認環境與 Agent 可用，不比較 Coding 速度。</p>
     <p><b>停止／降級（RB 00–07）</b>：第7分鐘進任務；環境未備妥則協助排除，仍受阻時保留需求分析與計畫，不以未驗證程式宣稱完成。</p>
-    <p>環境問題可直接協助確認 Python、Import、依賴與測試命令（PH 表下段）。遇環境問題記錄耗時與採用的 Recovery；不私下延長截止時間（TC）。</p>
+    <p>環境問題先請學員把錯誤訊息貼給 Agent，請它用白話說明原因；Agent 處理不了時，主持人可直接協助確認 Python、Import、依賴與測試命令（PH 表下段）。不要求學員自己打指令。遇環境問題記錄耗時與採用的 Recovery；不私下延長截止時間（TC）。</p>
     <p>計時：7:00 倒數自第 00 分起算（開場第一頁即按 T 啟動段落計時，翻頁時會持續計時）；到 00:00 即切到下一頁 Greenfield 解鎖。</p>
   </aside>
 </section>
