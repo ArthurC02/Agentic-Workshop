@@ -14,6 +14,8 @@
 
 以上取代 D-04 中「學員多包分批發放」的實體形式，不改變任何商業規則、時程、版本或測試期待值。
 
+2026-10-09 已核准變更：Runbook 改為「技巧優先，紀錄交給 Agent」。每個檢查點是可複製的提示詞，指令由 Agent 執行；分析、計畫、審查與交付紀錄由 Agent 寫進 `notes/*.md`、`skills/*.md`；表單每段最多一張、以下拉／勾選為主。詳見 [00 總控指令書 §1](00_Agentic工作坊素材產製總控指令書.md#1-專案目標)；下方第 3、5 節已依此更新。
+
 ## 2. 產出
 
 | 位置 | 內容 | 受眾 |
@@ -21,7 +23,7 @@
 | `agentic-workshop/materials/README.md` | 使用方式、建置指令、解鎖碼清單位置、Preflight 補充項 | 主持人／維護者 |
 | `materials/facilitator-deck/src/` | 簡報模板、CSS、JS、逐段投影片片段 | 維護者 |
 | `materials/facilitator-deck/facilitator-deck.html` | 建置後的單檔簡報（含講者視窗） | 主持人（不發學員） |
-| `materials/participant-runbook/content/` | Runbook 章節原稿與表單定義 | 維護者 |
+| `materials/participant-runbook/content/` | Runbook 章節原稿（含提示詞與每段最多一張的決定表單） | 維護者 |
 | `materials/participant-runbook/template/` | Runbook 模板、CSS、JS | 維護者 |
 | `materials/participant-runbook/runbook.html` | 建置後的學員單檔 Runbook | 學員 |
 | `materials/unlock-codes.json` | 各揭露時點的寫死解鎖碼 | 主持人（不發學員） |
@@ -33,11 +35,11 @@
 |---|---|---|
 | 00 | 不鎖 | 開始之前、環境準備、Runbook 使用方式、開場、詞彙表 |
 | 07 | Greenfield | G0 Mission 與學員文件、G0 Starter 下載 |
-| 29 | Time Skip | Time Skip 公告與交接、B0 下載、個人分析表、Shared Context 範本 |
+| 29 | Time Skip | Time Skip 公告與交接、B0 下載、個人分析與 Shared Context 頁（含 Agent 紀錄格式） |
 | 44 | B1 | B1 任務卡 |
 | 52 | B2 | B2 任務卡 |
 | 63 | B3 | B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、空白例外回應卡 |
-| 80 | 回顧 | 反思表、成熟度比較 |
+| 80 | 回顧 | 提示詞清單格式、成熟度比較 |
 
 學員內容一律取自最新受控候選包的學員 ZIP，沿用其白名單與安全改寫；不得直接讀取作者 Repo 的 facilitator／evaluation 目錄；Recovery只讀凍結候選的兩份受控ZIP。唯一例外事件情境只在 69–70 分鐘由主持簡報呈現，不預放在 Runbook。
 
@@ -54,9 +56,9 @@
 ## 5. 學員 Runbook 要求
 
 - 單一 HTML、零外部依賴，可由 `file://` 離線開啟；版型參考 AWS Workshop Studio：左側章節導覽、上一頁／下一頁、進度、章節內步驟。
-- 指令區塊提供 PowerShell 與 bash 兩種寫法及複製按鈕。
+- 每段頁首有「現在在做什麼」卡（情境、目標、技巧、完成的樣子）；每個檢查點提供可複製的提示詞區塊與複製按鈕，終端機指令寫在提示詞中由 Agent 執行，學員不自行輸入；每段任務後有「完成後想一想」反思題。
 - 提示框分 Info、Tip、Warning、Danger。
-- 可填寫表單：個人分析表、Shared Context、Gate 決策短格式、Review Checklist、Delivery Summary、例外回應卡、反思表；自動暫存於瀏覽器，並可匯出 Markdown。
+- 表單每段最多一張、最多 4 欄，以下拉／勾選為主，只記錄人的決定（例如交付決定、B1／B2 決定、B3 Gate 決策、例外回應、交付核對、回顧）；自動暫存於瀏覽器，並可匯出 Markdown。分析、Shared Context、Review、Delivery 與提示詞清單由 Agent 依格式寫進 `notes/`，不做成學員表單。
 - 鎖定章節顯示標題與鎖頭；解鎖狀態記在瀏覽器中，重新開啟仍保留。
 - 工具中立，不要求任何特定 Agent 產品的指令或功能。
 

@@ -6,9 +6,11 @@ group: greenfield
 section: Greenfield｜Tool
 ---
 
-> 本頁上半部取自 G0 參與者文件 `05-submission-checklist.md`，在提交之前使用。交付摘要由 Agent 寫進 `notes/greenfield.md`；你只填下方 4 欄的交付表單，記下你的決定。表單會自動暫存，可匯出或複製 Markdown 後依主持人指定方式交付。
+> 本頁上半部取自 G0 參與者文件 `05-submission-checklist.md`，在提交之前使用。交付摘要由 Agent 寫進 `notes/greenfield.md`；你不用逐項勾，貼下方提示詞請 Agent 依清單自我檢查，你只核對它的回報，再在表單選交付決定。這是機械性的核對（技巧：模型選擇），可用快速模型或低推論強度；回報用固定欄位的表格（技巧：結構化輸出），缺項一眼就看得到。
 
-原文中的 AC（Acceptance Criteria）是驗收條件，Rule ID 是商業規則編號。你不需要讀程式：請依 `notes/greenfield.md` 裡的驗收對照表、變更審查答案與你在 /docs 的實際操作核對，再勾選完成。
+```text
+請讀上一層資料夾的 05-submission-checklist.md（提交清單），依清單逐項檢查 notes/greenfield.md、README 與 docs/，用固定三欄的表格回報：清單編號、結果（有證據／缺）、證據在哪一段或缺什麼。缺的項目先不要補，列給我看，等我決定。不要修改程式。
+```
 
 ```include
 zip=participant-07-g0.zip path=agentic-workshop/01-greenfield/participant/05-submission-checklist.md
@@ -20,7 +22,8 @@ zip=participant-07-g0.zip path=agentic-workshop/01-greenfield/participant/05-sub
 {"id": "greenfield-delivery", "title": "Greenfield 交付決定","fields":[
 {"id": "accept", "label": "我接受這份交付嗎？", "type": "select", "options": ["接受：完整 MVP", "接受：部分完成，未完成已寫進 notes", "不接受，已請 Agent 修正"]},
 {"id": "docs-flow", "label": "我在 /docs 親自走過完整流程，結果符合需求嗎？", "type": "select", "options": ["是", "部分符合", "否／沒走到"]},
-{"id": "reason", "label": "一句理由（我是依什麼證據決定的）", "type": "text", "suggestions": [{"label": "理由範本", "text": "驗收對照表〈數字〉項通過、我在 /docs 看到〈結果〉"}]},
-{"id": "unsure", "label": "還有什麼不確定、要再問 Agent 的？", "type": "text", "suggestions": ["沒有"]}
+{"id": "unsure", "label": "還有什麼不確定、要再問 Agent 的？（選填）", "type": "text", "suggestions": ["沒有"]}
 ]}
 ```
+
+判斷依據（驗收對照表、/docs 試用結果）已由 Agent 寫進 `notes/greenfield.md` 的「交付摘要」，表單不用再寫理由。

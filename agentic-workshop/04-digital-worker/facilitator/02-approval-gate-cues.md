@@ -4,7 +4,7 @@
 
 | B3相對分鐘 | 活動分鐘 | Cue與決策 |
 |---|---|---|
-| 0 | 63 | 發B3與Operating Rules，先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員把工作單整份交給Agent。 |
+| 0 | 63 | 發B3與Operating Rules，先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員在新對話把工作單整份交給Agent，Agent存成`skills/b3-work-order.md`（Skill）；工具有模型選單的選較強模型。 |
 | 1 | 64 | Agent開始Gate1：摘要、假設、缺口、Out of Scope。 |
 | 3 | 66 | 人做Gate1決策；核准才進Gate2設計。 |
 | 3 | 66 | Agent開始Gate2：Impact、API／Seat／Atomicity、測試及風險。 |
@@ -14,7 +14,7 @@
 | 12 | 75 | Gate3 Review：有修改／實測時請Agent回答變更審查並附驗收對照表，人看實際結果、Rule與文件（可在/docs試）；Level 1 無修改／未執行時審Gate1／2、合理Impact、完整Test Strategy與缺項，不宣稱功能PASS。 |
 | 13 | 76 | Agent交摘要與Level，停止新增功能。 |
 
-Gate回覆採短格式；由人口述，Agent照原文寫進`notes/b3.md`，學員只在Runbook的「B3 Gate決策」表選填決策：
+每道Gate學員貼Runbook提示詞，Agent先用固定的「Gate回報格式」（Gate、建議結論、證據、風險、需要人決定的事）整理成是非題、附證據與建議決策再問人，對話只給摘要；人回一句話（決策、條件、核准人、分鐘），Agent照原文以下列短格式寫進`notes/b3.md`，學員只在Runbook的「B3 Gate決策」選決策。人只說「照你的建議」時，追問「你核對了哪一題？」：
 
 ```text
 Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
@@ -25,6 +25,8 @@ Timestamp / Workshop Minute:
 ```
 
 條件核准不等於可忽略條件直接執行：條件必須具體、可驗證且先解除；若SQLite仍在方案，不能改Code。例外處理占相對6–7分鐘內最多60秒，必要縮為30秒但不刪事件或再注入。若Gate或條件未完成，仍維持停止線與誠實成果分級，不假核准趕進度。
+
+檢查點4（74分前）第一次正式介紹完成等級（Level），指著Runbook「新概念：完成等級（Level）」小卡花約30秒講。B3（76分前）與交付（80分前）各自收尾：請學員看Runbook「完成後想一想」，挑第2題請1–2組分享（約1分鐘）。
 
 ## 完成條件
 

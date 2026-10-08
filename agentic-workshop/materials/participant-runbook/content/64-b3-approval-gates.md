@@ -6,7 +6,7 @@ group: b3
 section: B3｜Digital Worker
 ---
 
-> 本頁內容取自 B3 參與者文件 `03-approval-gates.md`，在 [B3 流程](#b3)檢查點 1 連同全文交給主要 Agent，讓它知道每個 Gate 要交什麼。三個 Gate 的決策由人在 B3 流程頁的「B3 Gate 決策」表單選填；理由、條件、核准人與分鐘由人說、Agent 照原文寫進 `notes/b3.md`。
+> 本頁內容取自 B3 參與者文件 `03-approval-gates.md`，在 [B3 流程](#b3)檢查點 1 連同全文交給主要 Agent，讓它知道每個 Gate 要交什麼。每道 Gate 由 Agent 先用固定的「Gate 回報格式」整理成決策卡問你，你回一句決定；理由、條件、核准人與分鐘由 Agent 照原文寫進 `notes/b3.md`，你只在 B3 流程頁的「B3 Gate 決策」選決策。
 
 ```callout info
 由人決策，Agent 只照抄

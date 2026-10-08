@@ -46,7 +46,7 @@ const REPORT = {
 
 phase('Edit')
 const reports = await parallel(groups.map(g => () => agent(
-  `Plain-language pass. Read ${SKILL} and ${SPEC} first and follow them strictly.
+  `Plain-language pass. Read ${SKILL}, ${SPEC} and .claude/skills/course-authoring/SKILL.md first and follow them strictly.
 Your files (edit only these): ${g.files}.
 ${g.glossary ? 'You also own the glossary for this edition: add entries for terms your files introduce.' : 'Do not edit the glossary; list missing terms in glossary_gaps.'}
 Review every learner-visible sentence, then edit in place: expand abbreviations at first use, add Chinese to English working terms, rewrite bureaucratic phrasing, fix contradictions. Do not run builds.
@@ -61,7 +61,7 @@ phase('Consistency')
 const consistency = await agent(
   `Cross-group consistency check after a plain-language pass. Read ${SPEC}.
 Group reports: ${JSON.stringify(done)}
-1. Checkpoint renames must appear identically in runbook headings, runbook overview tables, deck data-title/kicker/callout and CHECKPOINTS.md (dlc) — fix any mismatch.
+1. Checkpoint renames must appear identically in runbook headings, runbook checkpoint overviews, deck data-title/kicker/callout and CHECKPOINTS.md (dlc) — fix any mismatch.
 2. Add every glossary_gaps term to the edition glossary (88-glossary.md).
 3. Grep the edited files for the same term expanded two different ways; align to the spec.
 Edit files directly. Do not run builds. Return a short summary of fixes and anything left for the human.`,

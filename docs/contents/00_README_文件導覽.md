@@ -1,5 +1,7 @@
 # Agentic Software Development 工作坊文件包
 
+> 2026-10-09 起，本文件包已對齊現行 90 分鐘設計：目標依序為練習 Agentic Coding 技巧 → 體驗 Agentic SDLC（Tool → Teammate → Digital Worker）→ 萃取組織導入方法；全程學員不寫、不讀程式，以行為與證據驗收；每個檢查點是可複製的提示詞，指令由 Agent 執行，紀錄由 Agent 寫進 `notes/*.md` 與 `skills/*.md`。與產製規格不一致時，以 [總控指令書](../instructions/00_Agentic工作坊素材產製總控指令書.md) 為準。
+
 ## 文件目的
 
 本文件包將 Agentic Software Development 工作坊拆分為多份可獨立閱讀、又能相互銜接的 Markdown 文件。
@@ -38,12 +40,17 @@
 改善 Context、Rule、Skill 與後續平台能力
 ```
 
+第 9 份文件「範本與檢核表」列出 Agent 寫入的 `notes/` 格式與剩餘小表單的位置，不再提供學員填寫範本。
+
 ## 一致性原則
 
 所有文件共同遵循以下原則：
 
 - 一個工作坊只使用一組明確的 Goal、Story 與 Acceptance Criteria。
 - Agent 可以執行工作，但人員仍對正式提交與驗收結果負責。
+- 學員不寫、不讀程式，也不自己打終端機指令；以驗收對照表、白話變更審查與實際操作驗證結果。
+- 分析、計畫、驗收與交付紀錄由 Agent 寫成檔案；學員頁面每段最多一張小表單，只記錄人的決定。
+- 每段標示一個帶得走的技巧；知識點在第一次需要時才介紹，並附延伸閱讀出處名稱。
 - Agent 修改程式前，必須先完成系統理解、影響分析與執行計畫。
 - 每個階段都必須具備明確輸入、活動、輸出及人工檢查點。
 - Context、Rule、Skill、Session 與 Memory 採用一致定義，不交互混用。

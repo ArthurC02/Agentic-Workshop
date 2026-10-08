@@ -13,9 +13,7 @@ Audience: bank in-house developers new to Agentic SDLC / DDD. Goal: every abbrev
 - Then run the `release-materials` skill.
 
 ## Rules that are easy to break
-- Never edit `include`d content (comes from the frozen candidate ZIP) — explain it in surrounding text or the glossary.
-- Form JSON: keep `"id"`, `"type"`, option values, checklist items and their order; `"title"`/`"label"`/`"hint"` may change.
-- Checkpoint titles must match across runbook headings, runbook overview table, deck `data-title`/kicker/callout and `CHECKPOINTS.md` — rename all or none.
+- Content structure, forms, prompts and what must never change: follow `course-authoring` (this skill only covers wording).
+- `include`d text comes from participant docs packed into the candidate ZIP: edit the source doc, not around it.
 - Code blocks, commands, rule IDs, numbers, minutes: unchanged.
-- Forbidden strings (build rejects): facilitator, evaluation, reference-solution, reference answer, 標準答案, observation-guide, rubric, 評分表, reference-registry; no external URLs.
-- Preserve each file's line endings.
+- Checkpoint titles: rename everywhere or nowhere (runbook heading, overview, deck `data-title`/kicker/callout, DLC `CHECKPOINTS.md`).

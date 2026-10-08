@@ -16,7 +16,6 @@
 ```text
 /
 ├── Agent.md                         # Agent 工作入口（已建立）
-├── README.md                        # 後續 Repo 導覽
 ├── .gitignore                       # 後續排除環境與生成檔
 ├── docs/
 │   ├── contents/                    # 既有概念、流程與範本
@@ -76,19 +75,24 @@
 │   ├── 05-retrospective/
 │   │   ├── participant/
 │   │   └── facilitator/
-│   └── 06-runbook/
-│       ├── workshop-runbook.md
-│       ├── environment-setup.md
-│       ├── preflight-checklist.md
-│       └── recovery-plan.md
-├── scripts/
-│   ├── validate_structure.py
-│   ├── validate_versions.py
-│   └── build_packages.py
-└── dist/
-    ├── participant/
-    ├── facilitator/
-    └── evaluation/
+│   ├── 06-runbook/
+│   │   ├── workshop-runbook.md
+│   │   ├── environment-setup.md
+│   │   ├── preflight-checklist.md
+│   │   └── recovery-plan.md
+│   ├── 07-dlc-ddd/                    # DDD DLC 素材
+│   ├── materials/                     # 主課主持簡報與學員 Runbook
+│   └── materials-dlc/                 # DLC 主持簡報與學員 Runbook
+├── scripts/                           # 建置、驗證與打包工具，見 scripts/README.md
+│   ├── build_materials.py
+│   ├── package_materials.py
+│   ├── validate_workshop.py
+│   ├── build_delivery.py
+│   └── verify_delivery.py
+└── dist/                              # 可重新生成的候選包
+    ├── p11-candidate/
+    ├── dlc-candidate/
+    └── materials/
 ```
 
 樹狀圖省略各專屬指令已列出的主持文件、評估矩陣、驗證報告與 ADR；省略不表示取消。完整檔案要求分別見 [G0](../instructions/02_Greenfield_Starter_Kit產製指令書.md)、[G1](../instructions/03_G1_Greenfield_Reference_MVP產製指令書.md)、[B0](../instructions/04_B0_Brownfield_Repository演化產製指令書.md)、[B1–B3](../instructions/05_Brownfield任務卡與B1-B3產製指令書.md)與[治理素材](../instructions/06_Digital_Worker治理與操作規則產製指令書.md)。
@@ -161,11 +165,11 @@ B0 Evaluation 的 clean-copy 暫保留原規格路徑，作為不可直接人工
 | 包／階段 | 選入內容 | 排除內容 |
 |---|---|---|
 | Greenfield | G0、任務簡介、需求、驗收與操作指南 | G1、Evaluation、Facilitator、產製指令 |
-| Time Skip／B0 | 時間快轉、B0、已知限制、分析表與 Shared Context 範本 | clean-copy、答案地圖、B1–B3、尚未發放任務卡 |
+| Time Skip／B0 | 時間快轉、B0、已知限制、個人分析與 Shared Context 紀錄格式（由 Agent 寫進 `notes/`） | clean-copy、答案地圖、B1–B3、尚未發放任務卡 |
 | B1 任務包 | 第一張任務卡 | B2／B3 任務卡及答案 |
 | B2 任務包 | 第二張任務卡 | B3 任務卡及答案 |
 | B3／Digital Worker | 第三張任務卡與治理操作文件 | 治理評估答案、例外標準回應、標準實作 |
-| 回顧 | 學員反思表與成熟度比較 | 主持人觀察與評分紀錄 |
+| 回顧 | 提示詞清單格式（`reflection-sheet.md`）與成熟度比較 | 主持人觀察與評分紀錄 |
 | Facilitator | 主持指南、發放節奏、提示與受控 Recovery Package | 無必要公開的工作環境資料 |
 | Evaluation | 標準實作、追溯矩陣與驗證報告 | 個人憑證與私人 Session 資料 |
 

@@ -6,6 +6,18 @@
 
 每 Gate 使用 1–3 分鐘與下方短格式，記錄真實審查證據。三 Gate 是執行中的人員核准，不取代程式驗收。
 
+## Gate 回報格式（Agent 每道 Gate 提交時使用）
+
+Agent 每道 Gate 都用同一組固定標題回報（結構化輸出），人才看得快、能和上一道 Gate 比對；完整內容寫進 `notes/b3.md` 對應段落，對話只給這個摘要。要交給程式處理時，可改用 JSON，欄位相同。
+
+```text
+Gate：Gate 1／Gate 2／Gate 3
+建議結論：APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE（一句理由）
+證據：是非題清單，每題「是／否／不確定」＋依據位置（任務卡、工作單、notes/b3.md、測試名稱或實際指令）
+風險：最沒把握的地方、失敗或未驗證項目
+需要人決定的事：每題附建議答案；查不到依據的標「待小組確認」
+```
+
 ## Gate 1：Requirement Understanding
 
 Agent Input：需求摘要、規則清單、關鍵假設、資訊缺口、Out of Scope、需要人決定的問題。

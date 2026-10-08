@@ -2,6 +2,7 @@
 
 > 讀者：小組與主要 Coding Agent。
 > 使用時機：B3 發放後交給 Agent；Agent 先把已核准背景寫進 `notes/b3.md`，Gate 2 範圍待設計核准後由 Agent 照人員決策原文補記。
+> 這份工作單就是給 Agent 的 Skill（可重複使用的工作說明）：Agent 連同任務卡、操作規則與三道 Gate 存成 `skills/b3-work-order.md`，之後依它自主執行，人不必每步重貼。
 > 前置條件：核准 Shared Context 及 [B3 任務卡](../../03-brownfield/participant/task-cards/03-b3-group-booking.md)。
 
 ## Mission
@@ -46,7 +47,7 @@ Gate 2 核准範圍：由人在 Gate 2 決定，Agent 照原文寫進 `notes/b3.
 
 ## Approval Gates
 
-依 [三 Gate](03-approval-gates.md)：Gate 1 需求、Gate 2 影響與設計、Gate 3 交付 Review。決策含審查證據、條件、核准人與分鐘，由人說、Agent 照原文寫進 `notes/b3.md`；條件未滿足不得擴大核准。
+依 [三 Gate](03-approval-gates.md)：Gate 1 需求、Gate 2 影響與設計、Gate 3 交付 Review。每道 Gate 用該文件的「Gate 回報格式」提交。決策含審查證據、條件、核准人與分鐘，由人說、Agent 照原文寫進 `notes/b3.md`；條件未滿足不得擴大核准。
 
 ## Stop and Escalate Conditions
 

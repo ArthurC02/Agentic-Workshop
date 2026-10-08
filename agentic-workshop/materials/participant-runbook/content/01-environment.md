@@ -21,10 +21,8 @@ section: 開始之前
 
 ## 你會在什麼時候拿到程式碼
 
-| 分鐘 | 取得內容 | 取得方式 |
-|---:|---|---|
-| 07 | G0 Starter Repository（Greenfield 起始程式包） | 主持人公布解鎖碼後，在 [Greenfield 任務](#greenfield) 頁面下載 |
-| 29 | B0 Repository（Brownfield 起點：假設已上線 12 個月的既有程式） | 主持人公布解鎖碼後，在 Time Skip（時間快轉）章節下載 |
+- **第 07 分鐘**：G0 Starter Repository（Greenfield 起始程式包）。主持人公布解鎖碼後，在 [Greenfield 任務](#greenfield) 頁面下載。
+- **第 29 分鐘**：B0 Repository（Brownfield 起點：假設已上線 12 個月的既有程式）。主持人公布解鎖碼後，在 Time Skip（時間快轉）章節下載。
 
 兩份程式碼都以 ZIP 形式內嵌在本 Runbook 中。每一版都請 Agent 在該版自己的資料夾內**獨立**建立環境（venv），不共用環境，也不混用不同版本的程式。
 
@@ -51,26 +49,13 @@ ZIP 內的資料夾層級較深。請解壓縮到短路徑，例如 `C:\work\g0`
 
 - [ ] 用瀏覽器開 Agent 給你的 `/docs` 網址，看得到 API 清單就代表 App 正常運作。
 
-### 備用：手動指令
-
-只有 Agent 無法執行指令、且主持人請你手動處理時才使用：
-
-```cmd
-# powershell
-python --version
-python -m venv .venv
-& '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
-& '.\.venv\Scripts\python.exe' -m pytest -q
-& '.\.venv\Scripts\python.exe' -m uvicorn smart_ticket.main:app --app-dir src --host 127.0.0.1 --port 8000
-# bash
-python --version
-python -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m pytest -q
-.venv/bin/python -m uvicorn smart_ticket.main:app --app-dir src --host 127.0.0.1 --port 8000
-```
-
 ## 疑難排解
+
+遇到任何錯誤，先把錯誤訊息交給 Agent，請它用白話說明，不要自己動手修：
+
+```text
+剛才的步驟出錯了。請先不要修改任何檔案，用白話告訴我：錯誤訊息是什麼意思、可能的原因、你建議怎麼處理（列 1–2 個做法），然後停下等我決定。
+```
 
 ```callout tip
 Agent 回報無法啟用 venv

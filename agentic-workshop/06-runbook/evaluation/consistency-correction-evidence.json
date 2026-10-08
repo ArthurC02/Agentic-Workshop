@@ -1,5 +1,5 @@
 {
-  "executed_utc": "2026-10-08T19:07:50.356381+00:00",
+  "executed_utc": "2026-10-08T19:53:40.337963+00:00",
   "checks": [
     {
       "id": "C-01-02",
@@ -10,7 +10,7 @@
         "scripts/build_delivery.py"
       ],
       "details": {
-        "zip": "dist/p11-candidate/4175a07e2901321a/participant-29-b0.zip",
+        "zip": "dist/p11-candidate/011365444098d714/participant-29-b0.zip",
         "zip_sha256": "c6f1a92f8030805a5fd7c38386a294537209c517c19514a1f8cc7ed3a17ef656",
         "controlled_files": [
           "docs/change-booking-guide.md",
@@ -108,7 +108,7 @@
   "documents": {
     "status": "PASS",
     "markdown_files": 401,
-    "relative_links": 878,
+    "relative_links": 882,
     "errors": [],
     "existing_utf8_bom_files": [
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -617,7 +617,7 @@
       {
         "file": "agentic-workshop/04-digital-worker/evaluation/01-autonomy-and-governance-rubric.md",
         "historical_sha256": "b116e2e726486433d9888771308a46f2887df23437397086b0433c2eff616dac",
-        "current_sha256": "84107f0942ebb3709332f966b7462cb2865d3e59b450b125c68842055ebd23c9"
+        "current_sha256": "695a0420cd7178366855fd59e0dce3f2e6fdf87fdb572624d90d4873816f1ec9"
       },
       {
         "file": "agentic-workshop/04-digital-worker/evaluation/02-approval-evidence-checklist.md",
@@ -627,12 +627,12 @@
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
         "historical_sha256": "2a11bfd41d8c028d548e4961173bdb1a1c2f8c14b2eaf559c23e2440e813b725",
-        "current_sha256": "adf721724967f12421b3d4774840f3e796a564b1b55226d9c077536da97a12bf"
+        "current_sha256": "a55457f7ccf4aeda623a87a313b7fd168650edd2d1e0d13fc7385986a291bd05"
       },
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
         "historical_sha256": "abc6fe14f7684c2e9f94353021d239ef17e67c9da075c8629cd0be54535e143b",
-        "current_sha256": "5ec096016a0ed238ac6d059d1db0a6cce01b7c0dbdb046ddd6a5113c68cacf9f"
+        "current_sha256": "a20ef050545494131fc82f27bbd16053af99b61a553735397f8d1663dd74bd3c"
       },
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -652,27 +652,27 @@
       {
         "file": "agentic-workshop/04-digital-worker/participant/01-operating-rules.md",
         "historical_sha256": "320565cd5309c9c6d2d2432b715285a8ca26e81fbc4adbc9b2ddb48d58e9697f",
-        "current_sha256": "1cdcade8d7cbfd49e1ecded3cc3d1f839e6c34badf0a90208f9a50c1edfc4188"
+        "current_sha256": "12c18f04d277a404272c15039202b3a3410b087bf2f07fcaae5d6a05559c4b4d"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/02-agent-work-order.md",
         "historical_sha256": "3d39b4fd60a833bfd2625e3ddedc2a5d64ece73d79244b2907ac111bba3cb65c",
-        "current_sha256": "d5f7a5263d900be7325b9dca6f72e700602b4a507140265ac83bdc4a9e79a4f4"
+        "current_sha256": "11cb02f8fd5ba78517a00da455b4df3fa4d048a37f4421c1bc9e9d3ae7512982"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
         "historical_sha256": "1249e7df7806f31e7df47d4f385c8260d38fe74a9119523500b10f9190bff950",
-        "current_sha256": "7f8399e862a5a8e8eb12b0e69e0be88b6fab6e26dc2e8af8a949ad6425353e70"
+        "current_sha256": "994ff3fd63745be8e7c098658fe65342c5d7cee0d4d81e1ddc36e79aeacc9e33"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
         "historical_sha256": "a6f8af2e328b86d1d26406fe773c7ebbc010a8ecf8b1f96af3a9ecb59c4a4ff0",
-        "current_sha256": "0472687e5c77d75ba236f93fe4543d63f444c4fe7d5805881d46f53314efbc4e"
+        "current_sha256": "286e64d888c743ef62631fc6641e74511d2160185982de88f295b4b980c9643c"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
         "historical_sha256": "5b7314141313f135a4c121385f75ae80eaa5d5e4b4f2463c14303c9048b591b6",
-        "current_sha256": "690c5cc73c9b7f342573e71ebc0f325f08d5afba2e729c51d8b03e3968302e6d"
+        "current_sha256": "ee561d982147544760a009fde969641d0c17eb324c0ea6e0df19cca443b10c8f"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md",
@@ -682,27 +682,27 @@
       {
         "file": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
         "historical_sha256": "daab07a4e8354fe5a3155e1a00efa321718d637d969e0314e244057593afd75b",
-        "current_sha256": "f9e6056d98c744ca0fb77dfea016f3e47fb5475b3b37b61ecde19b27d3a9b31e"
+        "current_sha256": "3204427a17495d5f85def1f4e9368a6678ce741a32b63eeddd0368d0d9670810"
       },
       {
         "file": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
         "historical_sha256": "b02204a93b69803a8527910cd25a949ef9f8d69a3e17f1bcee93d980949b0478",
-        "current_sha256": "3de65a7c2b701d82de60f3e76e2522c60e583469efee930a180a0d863314da2c"
+        "current_sha256": "b99ff186897c7a0e62df9155bbd4ef72a0a24d29e7fcbb1f31356aa46366d42c"
       },
       {
         "file": "agentic-workshop/05-retrospective/facilitator/organization-adoption-prompts.md",
         "historical_sha256": "974891cef080d0ada562dfbc0fc6ac7d25d34f3dd9f70eb1d0c50178b27ef4f5",
-        "current_sha256": "8a15bf7f96ff3499797c3ef343c1580c35af8c9e6b9cf87279d73d853f8007e9"
+        "current_sha256": "c3b651462c04a4dc39c7f700246951cb5a8d68e1516b5160dae7809a504276a3"
       },
       {
         "file": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
         "historical_sha256": "68ea10a8a07757b910bf3464f6642040abb34da2cbaafdb69ef97fe1a6d0629a",
-        "current_sha256": "1b57121f0a8e5476524beaa438229acd071f9b158155d7f656f9bb33018850da"
+        "current_sha256": "57551ca850d09b833fd07c5860ed773601b52f59a5b06fcbd3a9c0524d96d4b9"
       },
       {
         "file": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
         "historical_sha256": "a4702801a60736adc174ef6c109db53f9e450407411d27ce38482d1723a3e41c",
-        "current_sha256": "4bd8697e50bf018f29251c55888f634ff8095b90cadf9391216e8a23de733210"
+        "current_sha256": "6a2bcce128d20140207c8b68b0088b2711756c7982854501b87b629e959de278"
       },
       {
         "file": "agentic-workshop/06-runbook/environment-setup.md",
@@ -722,7 +722,7 @@
       {
         "file": "agentic-workshop/06-runbook/workshop-runbook.md",
         "historical_sha256": "216006a52a20e454f7f894106adc110244cb083948073fedaa2e034d182db3b5",
-        "current_sha256": "531b7f04d0d9af7171ace3d4fa3d5741196cc384851cada9324f4dbd5a0f44a6"
+        "current_sha256": "6f0f353b8174b871981df0d37ef1ae6d03f6fdac86b226c0740e9b4307ff1de4"
       }
     ],
     "unchanged_document_count": 5,
@@ -733,19 +733,19 @@
     "agentic-workshop/03-brownfield/evaluation/11-b0-to-b3-version-matrix.md": "1039967024cf4c9c0e2e64f32697034e21ea135f673f4f247b62f92099e08234",
     "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md": "7d85bbe2614b14116ffd30edca2002fff090b83b9674e0afd6c42877ecc9e9d5",
     "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/domain/discounts.py": "ca437bdf58cab41c4ab630a7f20731ca7dd8f44b32df2c1b68da054804993258",
-    "agentic-workshop/03-brownfield/participant/04-shared-context-template.md": "2bb52c46eb5401f877d395de5832a6233d1b0c1a028875423b4f85657afcad3b",
+    "agentic-workshop/03-brownfield/participant/04-shared-context-template.md": "85f40b7e38af60473a5ac932709f85f3403693b26b43b7aabf751bf65a35ef47",
     "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md": "2d712f1a4d9af870dc4dabe15a5b705a3b8d253146ce72e680add1ba2ab26ad9",
     "agentic-workshop/04-digital-worker/evaluation/03-digital-worker-audit-template.md": "9c4d2c3117aa9b9a2d2414d03a5a33daeefd0585b3ad5278e43ef5adf9483e1c",
-    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "5ec096016a0ed238ac6d059d1db0a6cce01b7c0dbdb046ddd6a5113c68cacf9f",
+    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "a20ef050545494131fc82f27bbd16053af99b61a553735397f8d1663dd74bd3c",
     "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md": "e4f0a51829bbcca3127672855864b215eeb583ae1523669d1be416c751ce98e9",
-    "agentic-workshop/04-digital-worker/participant/03-approval-gates.md": "7f8399e862a5a8e8eb12b0e69e0be88b6fab6e26dc2e8af8a949ad6425353e70",
-    "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "0472687e5c77d75ba236f93fe4543d63f444c4fe7d5805881d46f53314efbc4e",
-    "agentic-workshop/04-digital-worker/participant/05-delivery-template.md": "690c5cc73c9b7f342573e71ebc0f325f08d5afba2e729c51d8b03e3968302e6d",
+    "agentic-workshop/04-digital-worker/participant/03-approval-gates.md": "994ff3fd63745be8e7c098658fe65342c5d7cee0d4d81e1ddc36e79aeacc9e33",
+    "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "286e64d888c743ef62631fc6641e74511d2160185982de88f295b4b980c9643c",
+    "agentic-workshop/04-digital-worker/participant/05-delivery-template.md": "ee561d982147544760a009fde969641d0c17eb324c0ea6e0df19cca443b10c8f",
     "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md": "ff27750b67ce3a46adf0ab88ff6aab2af8466e22b89727359f6b1c8a8f5d10e5",
-    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "1b57121f0a8e5476524beaa438229acd071f9b158155d7f656f9bb33018850da",
-    "agentic-workshop/06-runbook/workshop-runbook.md": "531b7f04d0d9af7171ace3d4fa3d5741196cc384851cada9324f4dbd5a0f44a6",
+    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "57551ca850d09b833fd07c5860ed773601b52f59a5b06fcbd3a9c0524d96d4b9",
+    "agentic-workshop/06-runbook/workshop-runbook.md": "6f0f353b8174b871981df0d37ef1ae6d03f6fdac86b226c0740e9b4307ff1de4",
     "scripts/build_delivery.py": "d74a3972d931303107fa44ca59b943e8b99a8a7941bbf6a579ac1f5a841a597f",
-    "scripts/package-manifest.json": "4175a07e2901321ab623cd784e545190f50fbf52cf3d33878517422be945c8d3"
+    "scripts/package-manifest.json": "011365444098d7142012e24b59f1df2d53846f0c3f00904735bd707049fb85dc"
   },
   "app_suite_rerun": "NOT RUN: exact frozen source comparison; prior actual technical evidence retained",
   "human_rehearsal": "NOT RUN",

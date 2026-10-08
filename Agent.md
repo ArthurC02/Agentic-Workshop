@@ -12,7 +12,7 @@
 - 工作坊長度：90 分鐘。
 - 對象：一般工程師，不預設高階架構或演算法能力。
 - 學習主線：**Tool → Teammate → Digital Worker**。
-- 優先目標（2026-10-09 起）：練習 Agentic Coding 技巧（每段標示一個技巧）、體驗 Agentic SDLC、萃取組織導入方法與治理需求（由 Agent 寫進 `notes/`，不靠學員填表）。全程學員不寫、不讀程式。
+- 優先目標（2026-10-09 起）：練習 Agentic Coding 技巧（每段標示一個技巧）、體驗 Agentic SDLC、萃取組織導入方法與治理需求（由 Agent 寫進 `notes/`，不靠學員填表）。全程學員不寫、不讀程式。主課埋入六項技巧：Prompt 結構、Structured Output、Skill、Token 節費、模型選擇、推論強度（工具中立）。
 - 素材保持工具中立，不要求特定廠商的指令、設定檔、Plan Mode 或 Subagent 功能。
 
 ## 2. 指示與規格的適用順序
@@ -167,8 +167,11 @@ uvicorn smart_ticket.main:app --app-dir src --reload
 
 - `scripts/release_materials.py`：偵測 Manifest 漂移 → 驗證 → 重新釘選 → 建置與驗證兩份候選 → 同步候選 ID → 重建兩版教材與 Speech → 瀏覽器與單元測試。一次執行完成第 8 節流程，Repo 未變時不產生新候選。
 - Skill `release-materials`：何時執行上述腳本、通過後提交與推送、失敗時的處理原則。
+- Skill `course-authoring`：學員內容的寫作標準（複製提示詞即通關、紀錄交給 Agent、知識點首次需要處介紹、六項 Agent 技巧、不可變項目）；任何改教材的工作與子 Agent 都先讀它。
 - Skill `plain-language-review`：學員文字白話化與縮寫展開的共用規範（`wording-spec.md`）。
 - Workflow `wording-pass`：依 `scope`（main／dlc）分組平行審視並修改，再做跨組一致性檢查。
+- Skill `curriculum-review`：教材的內外兩個迴圈。外迴圈審視整體規劃是否循序漸進（知識點在首次需要處介紹、難易度合理、螺旋加深）；內迴圈審視每個任務的設定與內文（提示詞可執行、過關條件可觀察、事實與 Repo 一致、無答案洩漏）。
+- Workflow `curriculum-review`：依 `scope`（main／dlc）同時跑外迴圈審查與各段內迴圈審查，逐段驗證發現後修正，再做跨段一致性檢查。內容改版後、發布前執行。
 - Hook `guard_generated.py`：禁止直接修改建置產物（Runbook／簡報 HTML、Speech Deck 與講義），改由原稿重建。
 
 ## 9. 決策與待協調事項的維護
