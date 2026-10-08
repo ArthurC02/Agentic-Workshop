@@ -3,7 +3,7 @@
 > 讀者：產製 DDD DLC 教材、參考解答、建置與打包工具的 Coding Agent，以及驗收者。
 > 時機：主課 P12 素材完成之後；與 edition-aware 建置（`scripts/build_materials.py --edition dlc`）平行進行。
 > 前置：00 總控、05、06、10 指令書；起始 Repo `agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/`；domain-memory Plugin 0.2.2（`SKILL.md`、`AGENTS.md`、`references/script-api.md`、`references/seven-step-workflow.md`、`references/implementation-handoff.md`、`references/ports-and-adapters.md`、`references/pattern-verification.md`）。
-> 主課凍結候選以程式為準：`dist/p11-candidate/6ceb985374e7e0fa/`。
+> 主課候選以程式為準：`scripts/build_materials.py` 的 `CANDIDATE_ID`。
 
 ## 1. 已核准變更（2026-10-07，使用者於對話中核准）
 
@@ -16,7 +16,7 @@
 7. D2 為成對練習：每組一人當 proposer，夥伴持 maintainer 簽章金鑰並核准。主持人提供的 reviewed Registry 為預設降級與 Recovery。
 8. 每個 D 段沿用主課檢查點節奏：投影顯示時間與目前檢查點；Runbook 放指令、以「停下等我」結尾的提示詞、附建議膠囊的確認表單；每段有獨立解鎖碼與 Recovery 包。
 9. 學員輔助腳本由 Spike 衍生（以 `cite` 組 record、Change Package 填寫器、SCM attestation 寫入器），讓時間花在領域決策而不是手打 JSON。
-10. 建置走 edition 參數：`scripts/build_materials.py --edition dlc`，輸出 `agentic-workshop/materials-dlc/`；Runbook 儲存前綴 `stwdlc:`；打包獨立（`scripts/package-manifest-dlc.json`、`dist/dlc-candidate/<id>/`、獨立證據）。主課 `scripts/package-manifest.json` 與 `6ceb985374e7e0fa` 不得變更。
+10. 建置走 edition 參數：`scripts/build_materials.py --edition dlc`，輸出 `agentic-workshop/materials-dlc/`；Runbook 儲存前綴 `stwdlc:`；打包獨立（`scripts/package-manifest-dlc.json`、`dist/dlc-candidate/<id>/`、獨立證據）。DLC 工作不得變更主課 `scripts/package-manifest.json` 與主課候選。
 11. Evaluation 素材（reference Registry、各情境參考解答、觀察指引／評分表）僅供主持人；揭曉前不得可由任何學員包或 Runbook 取得。
 12. 2026-10-07 追加核准：(a) 起始 Repo 允許新增 `.gitattributes`（`* -text`），測試數為 76；(b) DLC 學員簽章金鑰放在 Repo 外 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），不放 Repo 內 `.dlc-keys/`（scan-secrets 會掃忽略目錄）也不放 `~/.ssh`，故 `scan-secrets` 預期 exit 0。
 13. 2026-10-07 依最終驗證報告（`evaluation/dlc-final-report.md`）對齊已建成設計，不放寬任何安全要求：(a) **D3 參考解答**的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實以**候選**（`upsert-candidate`）登記；D3 不產出已 finalize 的 Change Package（受治理的晉升是 D2 的課題，D4 負責交接）。驗證改為對各參考解答的 `domain-memory/` 執行 `validate`、`verify-audit`、`coverage`；已變動檔案上的 stale evidence 為預期並須列出。(b) **開場**：環境／下載頁屬解鎖群組 `dlc-opening`（第 0 分鐘，碼寫在第一張解鎖投影片），因為開放頁不得提供下載；只有開始之前、Runbook 用法、詞彙表為 `open`。開場有四個檢查點（見 `materials-dlc/CHECKPOINTS.md`）：依賴安裝與測試／Plugin 解出與 SHA 核對／readiness 與 quality-gates／確認真實 Python。(c) **實際檔名**：DLC 建置測試為 `scripts/test_build_materials.py`（`EditionTests`）與 `scripts/test_build_delivery_dlc.py`；DLC 包驗證器為 `scripts/build_delivery_dlc.py --verify <dir>`；Plugin 封裝為 `scripts/vendor_dlc_plugin.py`；Recovery 產生器為 `agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py`（資料夾 d1、d2、d3a、d3b、d3c）；不存在 `scripts/test_build_materials_dlc.py`、`scripts/validate_dlc.py`。(d) **檢查點時窗例外**：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分（d3a／d3b／d3c）、D3c 步驟 4 為 6 分，超過每步 5 分鐘，列為已接受例外；緩解：情境卡把 AC 分成核心與延伸，時間不足只做核心。(e) **RECOVERY 接手**會把維護者**公鑰**（allowed-signers 一行）複製到學員的 `~/.dlc-keys`；僅公鑰，可接受，私鑰仍不得出現在任何包內。
@@ -171,7 +171,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 - 打包：`scripts/package-manifest-dlc.json`（與主課同 schema），包別至少 `participant-dlc-00-open`、`participant-dlc-<段>`、`recovery-dlc-<段>`、`facilitator-dlc-before-session`、`evaluation-dlc-private`。學員來源路徑必須含 `participant` 段；輸出至 `dist/dlc-candidate/<manifest sha256 前 16 碼>/`，永不覆寫既有目錄；ZIP 固定時間戳與排序；`build-evidence.json` 另記錄 Python 與 zlib 版本。
 - Runbook 只讀 DLC 候選包 ZIP 位元組並比對 `zip_sha256`，不得讀作者 Repo 的 facilitator／evaluation 目錄。
 - 學員發放：只發 `dist/materials-dlc/participant-materials-dlc.zip`（內含 `runbook.html`）；不得覆寫 `dist/materials/participant-materials.zip`。
-- 主課保護：`scripts/package-manifest.json`、`dist/p11-candidate/6ceb985374e7e0fa/` 不得變更；主課 `--check` 必須維持 UP-TO-DATE。若 builder 位元組變更迫使主課兩份 HTML 重建一次，差異僅限 build id／digest，且由 edition 平行工作負責記錄。
+- 主課保護：DLC 工作不得變更 `scripts/package-manifest.json` 與主課候選；主課來源本身的修改依 [08 規範調整](08_全域驗證與受控打包產製指令書.md) 重驗並重新釘選；主課 `--check` 必須維持 UP-TO-DATE。若 builder 位元組變更迫使主課兩份 HTML 重建一次，差異僅限 build id／digest，且由 edition 平行工作負責記錄。
 
 ## 7. 驗證
 
@@ -259,5 +259,5 @@ Final Decision 僅可為 `PASS FOR WORKSHOP USE` 或 `FAIL`；任何第 7 節項
 - 第 3.3 節操作順序與第 5.2 節 Windows 陷阱在 Runbook 與參考解答中一致處理。
 - 三個參考解答測試全綠；其 `domain-memory/` 的 `validate`、`verify-audit`、`coverage` OK（stale evidence 已列出）；reference Registry（D2）`validate --require-reviewed` 與 `verify-audit` OK；每條新規則有 killed counterfactual。
 - Participant、Facilitator、Evaluation 隔離，Leakage Check 通過，私鑰未被追蹤或打包。
-- 主課 `package-manifest.json`、凍結候選 `6ceb985374e7e0fa` 未變，主課 `--check` UP-TO-DATE。
+- 主課 `package-manifest.json`、主課候選未因 DLC 工作而變，主課 `--check` UP-TO-DATE。
 - 第 7 節結果如實記錄，NOT_RUN 有原因；未經使用者要求不得 Commit。

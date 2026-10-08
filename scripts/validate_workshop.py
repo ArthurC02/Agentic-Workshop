@@ -143,21 +143,30 @@ def traceability():
             'limits': 'Rule ID coverage and named test symbol presence; not proof of complete assertion semantics'}
 
 
-def frozen_sources():
+BASELINE_EVIDENCE = ROOT / 'agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json'
+
+
+def frozen_sources(versions=None):
+    """Compare the six source trees with the latest behavior-verified run (full run passes its own results)."""
+    if versions is None:
+        versions = (json.loads(BASELINE_EVIDENCE.read_text(encoding='utf-8')).get('versions', {})
+                    if BASELINE_EVIDENCE.is_file() else {})
     errors, results = [], {}
-    for version, filename in [('B0', 'validation-evidence.json'), ('B1', '13-b1-validation-evidence.json'),
-                              ('B2', '16-b2-validation-evidence.json'), ('B3', '19-b3-validation-evidence.json')]:
-        baseline = ROOT / 'agentic-workshop/03-brownfield/evaluation' / filename
-        expected = json.loads(baseline.read_text(encoding='utf-8-sig'))['source_sha256']
-        repo = ROOT / 'agentic-workshop' / VERSIONS[version][0]
+    for version, config in VERSIONS.items():
+        expected = versions.get(version, {}).get('source_sha256')
+        if not expected:
+            errors.append({'version': version, 'error': 'no behavior-verified baseline; run full validation'})
+            continue
+        repo = ROOT / 'agentic-workshop' / config[0]
         changed = [name for name, digest in expected.items()
                    if not (repo / name).is_file() or file_hash(repo / name) != digest]
-        results[version] = {'baseline': baseline.relative_to(ROOT).as_posix(),
-                            'source_file_count': len(expected), 'changed_files': changed}
+        results[version] = {'source_file_count': len(expected), 'changed_files': changed}
         if changed:
             errors.append({'version': version, 'changed_files': changed})
     return {'status': 'PASS' if not errors else 'FAIL', 'versions': results, 'errors': errors,
-            'limits': 'Compare B0/B1/B2/B3 source bytes against previously accepted evidence'}
+            'baseline': BASELINE_EVIDENCE.relative_to(ROOT).as_posix(),
+            'limits': 'Compare G0-B3 source bytes against the latest full validation that ran their tests; '
+                      'changed sources require a new full validation, which becomes the new baseline'}
 
 
 def command(python, args, cwd, env, logfile, timeout=120):
@@ -275,6 +284,7 @@ def main():
             except Exception as error:
                 evidence['versions'][version] = {'status': 'FAIL', 'error': str(error)}
             print(f"{version}: {evidence['versions'][version]['status']}", flush=True)
+        evidence['frozen_sources'] = frozen_sources(evidence['versions'])
     # Documents can be added concurrently during the technical run; scan final state.
     evidence['documents'] = documents()
     success = (evidence['documents']['status'] == 'PASS' and evidence['traceability']['status'] == 'PASS'

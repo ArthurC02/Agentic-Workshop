@@ -1,9 +1,16 @@
 """Exercise rejected gate inputs without modifying the intentional-bug app."""
 import unittest
-from validate_workshop import KNOWN_WARNING, VERSIONS, test_gate, warning_gate
+from validate_workshop import KNOWN_WARNING, VERSIONS, frozen_sources, test_gate, warning_gate
 
 
 class ValidatorGateTests(unittest.TestCase):
+    def test_frozen_sources_rejects_changed_or_missing_baseline(self):
+        self.assertEqual(frozen_sources({})['status'], 'FAIL')
+        drifted = {v: {'source_sha256': {'requirements.txt': '0' * 64}} for v in VERSIONS}
+        result = frozen_sources(drifted)
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertEqual(result['versions']['B0']['changed_files'], ['requirements.txt'])
+
     def test_same_count_different_b0_failure_is_rejected(self):
         manifest = [f'tests/unit/test_fare.py::test_{i}' for i in range(5)]
         changed = sorted(manifest[:-1] + ['tests/unit/test_fare.py::test_unknown'])

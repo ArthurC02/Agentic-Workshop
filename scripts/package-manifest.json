@@ -1035,7 +1035,7 @@
         {
           "source": "Agent.md",
           "destination": "Agent.md",
-          "sha256": "8a5cd77b9d196f343fc81cbdb76ed6210eec381be2d9070482ec794edf9fbc02"
+          "sha256": "ed2f186eae7c74a15fa71937b78c2c192dbb6d0096e47ddbe214d3ac34735646"
         },
         {
           "source": "docs/planning/agent-work-history.md",
@@ -1300,12 +1300,12 @@
         {
           "source": "docs/instructions/08_全域驗證與受控打包產製指令書.md",
           "destination": "docs/instructions/08_全域驗證與受控打包產製指令書.md",
-          "sha256": "a217673ec6df16d537f5c2e0fec038cb4c35a9c798865251a434a8144c3e3f0a"
+          "sha256": "af8189ef5e5e8b9f083991c60faad8095fba44e533903a35505bb8812858da25"
         },
         {
           "source": "docs/instructions/09_教材一致性修正與交付重驗指令書.md",
           "destination": "docs/instructions/09_教材一致性修正與交付重驗指令書.md",
-          "sha256": "2bcadc19a26d87daacb7c00bd7c5d03531380eb88b0f8a6ab0a9fbaf4dac7565"
+          "sha256": "9ad66e16b97f80fde54aff1e32e06019cbbce328b06a5939604d791b4c5e4932"
         },
         {
           "source": "docs/planning/b0-regression-gate-proposal.md",
@@ -1315,7 +1315,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "5c4cafba07bd28e9ff0837891a10f698f5993b11154b3ba430238a2220fed7bf"
+          "sha256": "cacd4b30b44d7301269207f508190dbed02a1998cff2810ef00890d7dad9ba0d"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -1330,7 +1330,7 @@
         {
           "source": "scripts/README.md",
           "destination": "scripts/README.md",
-          "sha256": "d74fc6f557117fcffab4f81d7b4680fe4a49b80df5c519307296e1ab068b5d09"
+          "sha256": "d9865e4cbed948804ed3cbfcab3b6af8c190e077d63b6f53c7d04570934259bc"
         }
       ],
       "generated": {}
@@ -3085,232 +3085,317 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-runtime-baseline-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-runtime-baseline-evidence.json",
-          "sha256": "e078844cc05d2766ea8210074361f202e81c1f8df089591544f1ebc4c3c9cce4"
+          "sha256": "49d7aca73664398b3c966dda499d09c45907a09236b8fb6248331941734e0cda"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "46d5f412541e96fda91e23f46a692444b070d27abc9ae803ccc74477eedae6b5"
+          "sha256": "c254d18a203d72e5e495333e9cfe0f4ab4178e814d1f8790b93ce0476d2662f8"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
-          "sha256": "fad776288cc3f198fd11eff163b138cde89e421e374140fbab4052d4028e84c3"
+          "sha256": "0d58bf2f8c159199ecb8b31f1f29ea94610303762dbe1a46e1d66590b0d53ff0"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-core_smoke.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-core_smoke.log",
-          "sha256": "eae9cb925d6355a13e44ca24cd83dd34c96c8b25f57bc0b75e0285ba03009f10"
+          "sha256": "d69a3df2ffc1edfb1184da3548f4fc165eb8552d4aedf9f16e641b020dcac912"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-dependency-pins.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-dependency-pins.log",
-          "sha256": "3a4e61d717fbd1c38ca1bcc2efce53c6c02161774191bba5f5cad35689b2e211"
+          "sha256": "ed095ee2f64af5c2a2d7a0c51f75dfc688d7d07be47f8616d913e4064b17b9ab"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pip_check.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pip_check.log",
-          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+          "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.log",
-          "sha256": "3a5e4e1ad751e5cf9544ffff504f870e251f5c3c26925ea633b2414f927c81ad"
+          "sha256": "2ecfcefd965a89185950a88d3a95471fb51aa75c77905b903a0692988fd677b7"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.xml",
-          "sha256": "99b0b3d59000aa26745c08bf966c1e651139b15549a046a8f236f1773bd10818"
+          "sha256": "7ce2fba4d03f1364956de46f888e3c6da4f088d61b6bc37c72f5ec6313ddc9c3"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-python.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-python.log",
-          "sha256": "322f765b04793d55160c8788550761630087e4847a77ed7a1090d79791f73c3b"
+          "sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-uvicorn_health_openapi.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-uvicorn_health_openapi.log",
-          "sha256": "745f58f694e4084b9cd0efb3c701bae652f8a263e62d778cbda43c8dd051a19c"
+          "sha256": "ae18b5ade20f4a37368f91871793dbbd6aed46bf4e6f98bbc09f46a82db066db"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-core_smoke.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-core_smoke.log",
-          "sha256": "d7a172710883504f4bc0f8fd04a992423bcbe035505b34fdad6a2c77cfcadd24"
+          "sha256": "4d4b885dd1c11ed98b0ed1094f79dee2056c5fc223549573654434c16118a6c0"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-dependency-pins.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-dependency-pins.log",
-          "sha256": "3a4e61d717fbd1c38ca1bcc2efce53c6c02161774191bba5f5cad35689b2e211"
+          "sha256": "ed095ee2f64af5c2a2d7a0c51f75dfc688d7d07be47f8616d913e4064b17b9ab"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pip_check.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pip_check.log",
-          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+          "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.log",
-          "sha256": "ea21094bef31d90cbf08d0302ea49fed19bbe3ff778ab975f80cd8df39a035f1"
+          "sha256": "b7d37e63a1ed136e0d941fba4935f90c9709f0b75f066608432750980c8bf134"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.xml",
-          "sha256": "1ef3aba7feaf93f1ed2e5fc8a7faf7f1c49fde6448b43496663dd211ecf9463f"
+          "sha256": "4fb55c8afdfeb151b9f5780c868468dfd7f21953f88ab05d70927b561add4d0d"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-python.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-python.log",
-          "sha256": "322f765b04793d55160c8788550761630087e4847a77ed7a1090d79791f73c3b"
+          "sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-uvicorn_health_openapi.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-uvicorn_health_openapi.log",
-          "sha256": "cadf9310a7a349b20bc220bff8342ae7f74b30801730f5adffecd0987a367264"
+          "sha256": "db40a4189881fe87e8bc17aee12460bc2ccbae8453d1738d04a1430dd808813e"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-core_smoke.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-core_smoke.log",
-          "sha256": "bc8836e1fb0f37e0954a5287782f9cb468981e92865cad2f5351e24977070a3c"
+          "sha256": "7cc2e86eed078ced9c5e8f1bcef4954140709ea008788411bb6ce61d2a1fed03"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-dependency-pins.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-dependency-pins.log",
-          "sha256": "3a4e61d717fbd1c38ca1bcc2efce53c6c02161774191bba5f5cad35689b2e211"
+          "sha256": "ed095ee2f64af5c2a2d7a0c51f75dfc688d7d07be47f8616d913e4064b17b9ab"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pip_check.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pip_check.log",
-          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+          "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.log",
-          "sha256": "f16c256c6d4b01ca4dde6d190fcbe8cff8380d1c621e64651eb11ca3667535c7"
+          "sha256": "dec4805c873b839dd2f09bedd52300157aec9e5931634a88534bd631a1739940"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.xml",
-          "sha256": "c57869e5c37f37cfe67e0a0612232ec9c80f7d68c973284dff67b4402b89d26e"
+          "sha256": "6f4a341a4395773d92f01b097cfef44fd839330359d11af7ed89b81bf2ee9650"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-python.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-python.log",
-          "sha256": "322f765b04793d55160c8788550761630087e4847a77ed7a1090d79791f73c3b"
+          "sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-uvicorn_health_openapi.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-uvicorn_health_openapi.log",
-          "sha256": "ab2c34b1eae7b8e0de414f0218367d8e86ad4f41562cb03841222868212a9a1a"
+          "sha256": "328b55aa8e3e1bb6c887f4fa5f9b26ad8407956c286c8c4f9ea928dec9d22329"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-core_smoke.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-core_smoke.log",
-          "sha256": "d779e73bcd1c1b9af3b71b01680c8d7f27087f612f27e2272efa09599f1e1fd1"
+          "sha256": "e629f81d6267f976aae9adb63126f19aeeee81a074243bc00afab32f92703d5d"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-dependency-pins.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-dependency-pins.log",
-          "sha256": "3a4e61d717fbd1c38ca1bcc2efce53c6c02161774191bba5f5cad35689b2e211"
+          "sha256": "ed095ee2f64af5c2a2d7a0c51f75dfc688d7d07be47f8616d913e4064b17b9ab"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pip_check.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pip_check.log",
-          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+          "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.log",
-          "sha256": "04f21d84ccb8c67ea962a28c4ef67dde4a9c6e6d86aa1287b678913dd2b53ba2"
+          "sha256": "b3bc732a39554f507542a71d4fc3834eb26fdc1556e6e80445e6027d88f96f55"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.xml",
-          "sha256": "091034829d95ba41cf9ad8a5b0aeb1c192f658adc654a95c387b6abb32530efa"
+          "sha256": "646ac61a1163f79d6d780d542fba70a63f10f7a095fd8e0bb01006dbf5839825"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-python.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-python.log",
-          "sha256": "322f765b04793d55160c8788550761630087e4847a77ed7a1090d79791f73c3b"
+          "sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-uvicorn_health_openapi.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-uvicorn_health_openapi.log",
-          "sha256": "f7840993994fe117226691c600a39fe42fbcd6dc8140037eee0cc235dfdf1160"
+          "sha256": "8eac96d14371b1968f1b90535f6354ffe525c3d291491bee6f84fa12d3e0b59b"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-core_smoke.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-core_smoke.log",
-          "sha256": "431464a682c411d27fcd7da06d2d380b09512939ddbc8f35f9d6965267b2f049"
+          "sha256": "7671379144adf712e9e381f2cd2163378d6ca73ca4837f2afc1bf5b704d4f93a"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-dependency-pins.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-dependency-pins.log",
-          "sha256": "3a4e61d717fbd1c38ca1bcc2efce53c6c02161774191bba5f5cad35689b2e211"
+          "sha256": "ed095ee2f64af5c2a2d7a0c51f75dfc688d7d07be47f8616d913e4064b17b9ab"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pip_check.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pip_check.log",
-          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+          "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.log",
-          "sha256": "8e54aa291c3f6607084a28a69312ed757b4aba642ae6c1b88137fc5cc8ad5e8a"
+          "sha256": "77dc5802cb4709d8621cf20187af0b51c14ce447c27603cd48c3de490b281ed3"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.xml",
-          "sha256": "b70af2d0032c9c8c3c484baca760e39a6162dfe81627bdfd6edd79fc70cede5b"
+          "sha256": "f251827a182ac191531a83291862b0309665e0cd1da406452fe60d497e1b9251"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-python.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-python.log",
-          "sha256": "322f765b04793d55160c8788550761630087e4847a77ed7a1090d79791f73c3b"
+          "sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-uvicorn_health_openapi.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-uvicorn_health_openapi.log",
-          "sha256": "ab4eba473fc8d5fc3734bd411e6609c487ffcab2163621b92f35d8b9c0fef99f"
+          "sha256": "dfffc7f2a6311b05479e1f11b4e20da2121a3401b29f4c2030bc371b36f90c15"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-core_smoke.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-core_smoke.log",
-          "sha256": "8dbefe4b86e5f30eb08add63662a63b1ba42f989d4b597336a07e8f70439165c"
+          "sha256": "58302077921d5cc835c9c6a03bb58d5548693c861df4f0b4ac4805d9e0746d4b"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-dependency-pins.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-dependency-pins.log",
-          "sha256": "3a4e61d717fbd1c38ca1bcc2efce53c6c02161774191bba5f5cad35689b2e211"
+          "sha256": "ed095ee2f64af5c2a2d7a0c51f75dfc688d7d07be47f8616d913e4064b17b9ab"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pip_check.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pip_check.log",
-          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+          "sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.log",
-          "sha256": "8df0266ba9bbf10d44c03f310d593ff83c0c6bada6511daa23487ee0eb4bfd73"
+          "sha256": "77f1c7b7566b90169980520c9099bf76675b00394594c9874d308ee6e1fef1e2"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.xml",
-          "sha256": "0c354da8f7ef2342618816203e5bda4243205e53d42b56512bd37054b5b311d7"
+          "sha256": "0a7a72bfe76bcfd0ae10ea95934533ae5434a3e3102e587e88db4cd6a0f817f2"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-python.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-python.log",
-          "sha256": "322f765b04793d55160c8788550761630087e4847a77ed7a1090d79791f73c3b"
+          "sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-uvicorn_health_openapi.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-uvicorn_health_openapi.log",
-          "sha256": "ede92c48f7187ba9bcb836124f3a03a8555e9e6865e4ecd84990afc505bc63ed"
+          "sha256": "fd29a09c3a474c90aa98e7487626ed8ce2fc819ea297dfca7aa1f1707832d03c"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-report.md",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-report.md",
           "sha256": "eb17dc54adbe7363f0fd7e2f3851d428a874d0b4b3fcf53e2f52c3069ef27106"
+        },
+        {
+          "source": "agentic-workshop/materials/README.md",
+          "destination": "agentic-workshop/materials/README.md",
+          "sha256": "fc00a50959957d958e7c42b7f67dd4279ae6b09fd5b8388128c4cdf723efa37c"
+        },
+        {
+          "source": "agentic-workshop/materials/cross-review-2026-10-06.json",
+          "destination": "agentic-workshop/materials/cross-review-2026-10-06.json",
+          "sha256": "4d5264addc70b5d233a38c8db1761ea329d72f17f764dd73957da100702fa63d"
+        },
+        {
+          "source": "agentic-workshop/materials/cross-review-2026-10-06.md",
+          "destination": "agentic-workshop/materials/cross-review-2026-10-06.md",
+          "sha256": "783b5b7b1e33ef90f15763133024ac303b54cae825b20e3f2d30c24703ed60cb"
+        },
+        {
+          "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
+          "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
+          "sha256": "d170db7dfa351e0e7ba7a623ea8ec37fc74434053eaa8bab50cc0a6c440c4ed5"
+        },
+        {
+          "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
+          "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
+          "sha256": "d11b716dcea4c4c50c88059bc671688307ac77fc8534c187dab1d6847e5cd57b"
+        },
+        {
+          "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
+          "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
+          "sha256": "4d3d8d07b18dea39045b0b5c4f92f091db55b3ca8b9ad7c40e794bfeaf6d1554"
+        },
+        {
+          "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
+          "destination": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
+          "sha256": "87bb7274e5b76a3f01ab0b42a18945bed2a7a10c8c35bd18df73427b19c6d00f"
+        },
+        {
+          "source": "agentic-workshop/materials/review-evidence/deck-b3-impact.png",
+          "destination": "agentic-workshop/materials/review-evidence/deck-b3-impact.png",
+          "sha256": "4dda10147d9a06476f8d29c2ac39e6331a9a3977adbd4abc8ec55ff5e4a0bcfd"
+        },
+        {
+          "source": "agentic-workshop/materials/review-evidence/deck-maturity.png",
+          "destination": "agentic-workshop/materials/review-evidence/deck-maturity.png",
+          "sha256": "002c8df0b8d3c8b68fc1a6702e55df211bd7d9cb96ee4d0e7bb29193c6bf056f"
+        },
+        {
+          "source": "agentic-workshop/materials/review-evidence/runbook-delivery.png",
+          "destination": "agentic-workshop/materials/review-evidence/runbook-delivery.png",
+          "sha256": "9f00e69893857abb282c21b0ff85789ea45b4edac1f744c48c7e60ab1d2bffcb"
+        },
+        {
+          "source": "agentic-workshop/materials/speech/01-greenfield/README.md",
+          "destination": "agentic-workshop/materials/speech/01-greenfield/README.md",
+          "sha256": "f7b89c7ff43730f886806dff154ddcb8e3057eee25ab862ea49cfcead744d1e9"
+        },
+        {
+          "source": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
+          "destination": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
+          "sha256": "195e6f5a29f6bcd9cc048caf96ce6ab556308abb9f8a43c12825a80237a59cb0"
+        },
+        {
+          "source": "agentic-workshop/materials/speech/01-greenfield/validation-report.md",
+          "destination": "agentic-workshop/materials/speech/01-greenfield/validation-report.md",
+          "sha256": "e9faaab4df58caa408da2689b4fb2030e11c1068916411d882933325b09173f2"
+        },
+        {
+          "source": "agentic-workshop/materials/speech/README.md",
+          "destination": "agentic-workshop/materials/speech/README.md",
+          "sha256": "b06bdcbe93b924a148fde25bbb08b6f89f1d2d2d8e8c51556a01b62585f40022"
+        },
+        {
+          "source": "agentic-workshop/materials/validation-evidence.json",
+          "destination": "agentic-workshop/materials/validation-evidence.json",
+          "sha256": "b1596cd352b89463f61e8eb9d0ca9a696d6627a57212175088f8e67ba130c0d3"
+        },
+        {
+          "source": "agentic-workshop/materials/validation-report.md",
+          "destination": "agentic-workshop/materials/validation-report.md",
+          "sha256": "3fdacd418c49e193806afd1305d3fe80680ae4ca8b661f567154af39cdd9d1a3"
+        },
+        {
+          "source": "docs/instructions/10_主持簡報與學員Runbook產製指令書.md",
+          "destination": "docs/instructions/10_主持簡報與學員Runbook產製指令書.md",
+          "sha256": "cdc90abb94ff945242181bea35c4e36cdb6f2483f2d1a25fee2b0e3b3108652a"
         }
       ],
       "generated": {}

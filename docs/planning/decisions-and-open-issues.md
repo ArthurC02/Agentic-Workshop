@@ -161,3 +161,9 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 2026-10-05 使用者要求設為新目標並優先處理審查發現。先前候選360cb551f76eeb73的清單／Hash／連結與Recovery技術通過不涵蓋教學語意；該包已停止用於本次演練。修正初始B0答案洩漏、恢復兩份受控落差與三份安全ADR，並對齊任務揭露、Level1交付、Recovery、B2合約勘誤、Mission／空白例外卡發放與歷史狀態。凍結程式／測試／案例來源保持，P9／P10歷史JSON不改寫。新候選與實際驗證以本輪報告為準；真人演練及正式放行仍待驗收，O-01／O-02真人證據解除條件保留。
 
 依據：[修正指令](../instructions/09_教材一致性修正與交付重驗指令書.md)；[一致性修正報告](../../agentic-workshop/06-runbook/evaluation/consistency-correction-report.md)。
+
+## 來源漂移後改以行為為基準
+
+2026-10-08 主課候選 `c841f2424d256c28` 無法重建：Manifest 釘選的位元組混用 CRLF／LF，且部分來源已修訂；B0–B3 原驗收證據的來源雜湊亦不符。以 uv 建立六版環境完整執行，G0 1 pass／8 skip、G1 28、B0 39 pass／5 精確失敗、B1 44、B2 55、B3 75 與 Health／OpenAPI 全部符合原門檻。使用者決定調整規範而非回復舊位元組：凍結改以行為驗證為準，最新完整驗證即來源基準，來源可修改但須重驗與重新釘選，Manifest 來源不轉換換行。
+
+依據：[08 指令書規範調整](../instructions/08_全域驗證與受控打包產製指令書.md#2026-10-08-規範調整來源漂移後的基準)；[完整驗證證據](../../agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json)。

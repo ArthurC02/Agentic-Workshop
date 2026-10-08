@@ -1,13 +1,13 @@
 {
-  "executed_utc": "2026-10-05T10:41:21.805132+00:00",
+  "executed_utc": "2026-10-08T13:19:01.033809+00:00",
   "installation": "NOT RUN: static checks only",
   "human_rehearsal": "NOT RUN",
   "agent_service_availability": "NOT RUN",
   "coverage": "STATIC_ONLY",
   "documents": {
     "status": "PASS",
-    "markdown_files": 187,
-    "relative_links": 574,
+    "markdown_files": 401,
+    "relative_links": 875,
     "errors": [],
     "existing_utf8_bom_files": [
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -163,29 +163,34 @@
   "frozen_sources": {
     "status": "PASS",
     "versions": {
+      "G0": {
+        "source_file_count": 26,
+        "changed_files": []
+      },
+      "G1": {
+        "source_file_count": 30,
+        "changed_files": []
+      },
       "B0": {
-        "baseline": "agentic-workshop/03-brownfield/evaluation/validation-evidence.json",
         "source_file_count": 52,
         "changed_files": []
       },
       "B1": {
-        "baseline": "agentic-workshop/03-brownfield/evaluation/13-b1-validation-evidence.json",
         "source_file_count": 52,
         "changed_files": []
       },
       "B2": {
-        "baseline": "agentic-workshop/03-brownfield/evaluation/16-b2-validation-evidence.json",
         "source_file_count": 54,
         "changed_files": []
       },
       "B3": {
-        "baseline": "agentic-workshop/03-brownfield/evaluation/19-b3-validation-evidence.json",
         "source_file_count": 59,
         "changed_files": []
       }
     },
     "errors": [],
-    "limits": "Compare B0/B1/B2/B3 source bytes against previously accepted evidence"
+    "baseline": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
+    "limits": "Compare G0-B3 source bytes against the latest full validation that ran their tests; changed sources require a new full validation, which becomes the new baseline"
   },
   "versions": {},
   "status": "STATIC_PASS"

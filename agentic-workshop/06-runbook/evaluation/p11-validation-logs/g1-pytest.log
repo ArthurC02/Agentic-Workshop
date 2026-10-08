@@ -1,9 +1,9 @@
 ............................                                             [100%]
 ============================== warnings summary ===============================
 ..\..\..\..\..\.codex-tmp\g1-env\Lib\site-packages\starlette\testclient.py:37
-  C:\Users\arthur.chang\OneDrive - Fubon Financial Holding Co., Ltd\桌面\工作坊\.codex-tmp\g1-env\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+  C:\Users\a8022\OneDrive\Desktop\Agentic-Workshop\.codex-tmp\g1-env\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
     _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-- generated xml file: C:\Users\arthur.chang\OneDrive - Fubon Financial Holding Co., Ltd\桌面\工作坊\agentic-workshop\06-runbook\evaluation\p11-validation-logs\g1-pytest.xml -
-28 passed, 1 warning in 0.25s
+- generated xml file: C:\Users\a8022\OneDrive\Desktop\Agentic-Workshop\agentic-workshop\06-runbook\evaluation\p11-validation-logs\g1-pytest.xml -
+28 passed, 1 warning in 0.64s
