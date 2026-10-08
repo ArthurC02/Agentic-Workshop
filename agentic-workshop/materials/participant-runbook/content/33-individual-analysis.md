@@ -35,7 +35,7 @@ Agent 只讀、跑測試、寫 `notes/analysis.md`；不要讓它修改、刪除
 ```callout tip
 技巧：模型選擇、推論強度與 Token 節費
 Greenfield 計畫時學過模型選擇與推論強度，這次用在「分析陌生程式」這種最需要想的工作：若你的工具有模型選單或推論強度設定，這段選較強的模型、調高推論強度。Time Skip 學過 Token 節費，這次多加一招：不要叫它「讀整個專案」──那最耗 Token，也最容易讀到後面忘了前面；先列目錄、挑重點檔讀，再回報讀了哪些。紀錄格式則是 Greenfield 學過的結構化輸出：固定五個標題，小組下一段才比得起來。
-📖 延伸閱讀：Anthropic Engineering 文章〈Effective context engineering for AI agents〉、Anthropic 官方文件〈Choosing a model〉、OpenAI 官方文件〈Reasoning models〉；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Anthropic Engineering 文章〈Effective context engineering for AI agents〉、Anthropic 官方文件〈Choosing the right model〉、OpenAI 官方文件〈Reasoning models〉；你所用工具的官方文件通常有同名章節。
 ```
 
 ```text

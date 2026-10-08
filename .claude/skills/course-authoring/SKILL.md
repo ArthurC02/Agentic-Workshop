@@ -37,12 +37,11 @@ Audience: very junior engineers who may not know Python. They **never write or r
 - The opening is a roadmap only.
 - Never require a point that has not been introduced. Text addressed only to the Agent gets the note 「這段是給 Agent 的，不需要看懂」.
 - When a concept recurs, deepen it and say so. A page introduces at most 3 new points.
-- Technique callouts end with `📖 延伸閱讀：〈組織〉官方文件〈標題〉`. List titles only, never URLs, because the build rejects external URLs on learner pages. Use only real titles, for example:
-  - Anthropic 〈Prompt engineering overview〉, 〈Structured outputs〉, 〈Agent Skills〉, 〈Choosing a model〉, 〈Building with extended thinking〉, 〈Context windows〉
-  - OpenAI 〈Prompt engineering〉, 〈Structured Outputs〉, 〈Reasoning models〉
-  - GitHub Copilot 〈Adding repository custom instructions〉
-  - DLC: Evans 《Domain-Driven Design》, Vernon 《Implementing Domain-Driven Design》, plugin docs by relative path, Git 〈git-commit〉
-  If unsure, write 「你所用工具的官方文件中關於〈主題〉的章節」.
+- **Every knowledge point** gets a reference at its first introduction:
+  - Techniques and general concepts: `📖 延伸閱讀：…` with titles only, never URLs, because the build rejects external URLs on learner pages.
+  - Course-defined concepts: `📖 定義出處：本課程〈…〉`.
+  - Every glossary row (`88-glossary.md`) ends with a 「出處」 cell under the same rules. `scripts/check_references.py` enforces all of this, and it runs inside `release-materials`.
+  - Cite **only** titles listed in [references.md](references.md). They were verified online and record retired titles. If you need a new source, verify it and then add it there.
 
 ## The six Agent techniques (main course) and where they first appear
 | Technique | First use |

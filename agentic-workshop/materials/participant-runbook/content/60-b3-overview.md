@@ -43,7 +43,7 @@ section: B3｜Digital Worker
 ```callout tip
 技巧：模型選擇（加深一層）
 Greenfield 學過「分析、自主執行用推理能力較強的模型」。B3 要讓 Agent 長時間自己分析、設計、實作，是今天最吃推理能力的一段：在主要 Agent **開一個新對話**做 B3（Token 節費），若你的工具有模型選單，選推理能力較強的模型（沒有就用預設）。
-📖 延伸閱讀：Anthropic 官方文件〈Choosing a model〉、GitHub 官方文件〈Changing the AI model for Copilot Chat〉；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Anthropic 官方文件〈Choosing the right model〉、GitHub 官方文件〈Changing the AI model for GitHub Copilot Chat〉；你所用工具的官方文件通常有同名章節。
 ```
 
 複製下方提示詞貼給主要 Agent，接著依序打開 [B3 任務卡](#b3-task-card)、[操作規則](#b3-operating-rules)、[工作單](#b3-work-order)、[三道 Gate](#b3-approval-gates) 四頁，按各頁文件上方的「複製 Markdown」，接在後面一起貼上。提示詞與四份文件裡的英文術語（例如 Out of Scope、Escalation、Atomicity）是給 Agent 的，不需要看懂；要你決定的事，Agent 會用白話問你。
@@ -65,7 +65,7 @@ Greenfield 學過「分析、自主執行用推理能力較強的模型」。B3 
 ```callout tip
 技巧：Skill（加深一層）
 你已經建過兩個 Skill：存規則的 `skills/team-rules.md`、存做法的 `skills/fix-bug-with-test.md`。這次多加一層：把「整件任務」寫成 Skill。工作單（Work Order）就是一份寫清楚範圍、禁止事項、停止條件與回報格式的工作說明，存成 `skills/b3-work-order.md` 後，Agent 自己往前走時隨時可以回頭查，你也不必每道 Gate 重貼。
-📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Anthropic Engineering 文章〈Claude Code: Best practices for agentic coding〉；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Claude Code 官方文件〈Best practices for Claude Code〉；你所用工具的官方文件通常有同名章節。
 ```
 
 **看到什麼算過關**
@@ -150,6 +150,7 @@ Agent 停下升級時，讀它寫的選項與建議，回一句決定即可（�
 ```callout info
 新概念：完成等級（Level）
 Gate 3 時 Agent 會建議一個完成等級：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付。你依證據擇一，不自動選 Level 3；各級要的證據見本頁最後的「時間不足時」與 [B3 任務卡](#b3-task-card)。
+📖 定義出處：本課程〈B3 任務卡 TASK-B3-001〉與〈Tool → Teammate → Digital Worker比較〉（Level 1–3 由本課程定義）。
 ```
 
 **第 74 分鐘停止擴充。** 不論 Agent 做到哪裡，都貼上：

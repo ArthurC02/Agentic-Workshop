@@ -21,7 +21,9 @@ B0／Recovery採過濾輸出與安全README、Context、API摘要；程式與測
 
 Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並拒絕路徑穿越、隱藏Git、越界答案與損壞內容。B1／B2解壓副本使用既有獨立venv執行pip check、44／55項版本Gate及Health／OpenAPI／建立／付款／改退票Smoke；不宣稱重新安裝依賴或真人Recovery完成。Python `-O` 不支援驗證。
 
-一次執行全部步驟（偵測漂移、驗證、釘選、建置、驗證候選、重建教材與測試）：`scripts/release_materials.py`。
+一次執行全部步驟（檢查知識點出處、偵測漂移、驗證、釘選、建置、驗證候選、重建教材與測試）：`scripts/release_materials.py`。
+
+知識點出處檢查：`scripts/check_references.py`。每個「技巧／新概念」說明框和詞彙表的每一列，都必須引用 `.claude/skills/course-authoring/references.md` 中已查證的出處；Plugin 章節與本課程文件標題也必須真的存在。
 
 ## 全域技術驗證
 

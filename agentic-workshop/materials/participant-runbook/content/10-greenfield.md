@@ -25,7 +25,7 @@ section: Greenfield｜Tool
 ```callout tip
 技巧：給 Agent 一份工作規則
 工作規則是 Agent 在整段對話都要遵守的約定：誰負責什麼、什麼時候停下、怎麼回報。今天先用貼的；到共同脈絡段，你會把它存成檔案，之後只說「先讀它」。
-📖 延伸閱讀：Anthropic Engineering 文章〈Claude Code: Best practices for agentic coding〉、OpenAI Codex 文件中的〈AGENTS.md〉說明、GitHub 官方文件 Copilot〈Adding repository custom instructions〉；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Claude Code 官方文件〈Best practices for Claude Code〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件 Copilot〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。
 ```
 
 ```text
@@ -85,13 +85,13 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 ```callout tip
 技巧：Prompt 結構
 提示詞是你交給 Agent 的單次工作指令，好的提示詞有五個部分。下面這段就照五個部分寫：【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件（做完停下等我）】。缺任何一塊，Agent 就會自己猜；之後你寫自己的提示詞也照這五格填。需求仍以任務文件與驗收條件為準。
-📖 延伸閱讀：Anthropic 官方文件〈Prompt engineering overview〉與〈Be clear, direct, and detailed〉、OpenAI 官方文件〈Prompt engineering〉；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Anthropic 官方文件〈Prompt engineering overview〉與〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉；你所用工具的官方文件通常有同名章節。
 ```
 
 ```callout tip
 技巧：模型選擇與推論強度
 **模型選擇**：簡單、機械性的工作（跑測試、整理格式、改文字）用快速、便宜的模型；分析、設計取捨、自主執行用推理能力較強的模型。**推論強度**（Reasoning Effort）：同一個模型可以調「想多深」，計畫、找原因、比較方案調高，小步明確的修改調低；想越深越慢、越貴。計畫要想清楚拆法與取捨，所以這一步：若你的工具有模型選單或推論強度設定，選較強的模型、調高推論強度；沒有的話，提示詞裡「先仔細想過再回答」就是替代。
-📖 延伸閱讀：Anthropic 官方文件〈Choosing a model〉與〈Building with extended thinking〉、OpenAI 官方文件〈Reasoning models〉（含 reasoning effort）；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Anthropic 官方文件〈Choosing the right model〉與〈Effort〉、OpenAI 官方文件〈Reasoning models〉（含 reasoning effort）；你所用工具的官方文件通常有同名章節。
 ```
 
 ```text
@@ -142,6 +142,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 ```callout info
 新概念：變更審查
 你不讀程式，所以不看變更內容（Diff：修改前後的差異），改請 Agent 用白話回答固定的審查問題。題目裡的 skip 是「略過測試」，xfail 是「把測試標成預期會失敗」，兩者都會把問題藏起來，所以要問有沒有新增。
+📖 延伸閱讀：Google Engineering Practices〈Code Review Developer Guide〉、Git 官方文件〈git-diff〉；你所用工具的官方文件通常有同名章節。
 ```
 
 每一步都用同一段提示詞，重複貼就好：
