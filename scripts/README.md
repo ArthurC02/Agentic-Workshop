@@ -4,6 +4,8 @@
 
 `package-manifest.json` 列出每個允許來源、目的地及SHA256，以及刻意改寫的角色安全文件。增加檔案或更新雜湊須先審查角色、時点及內容，不用遞迴目錄直接發學員。
 
+來源修改後（依[08規範調整](../docs/instructions/08_全域驗證與受控打包產製指令書.md)）：完整驗證通過，再以`build_delivery.py --repin-reviewed-sources --expect-manifest-sha256 <目前Manifest SHA256>`更新雜湊並重建；新候選ID只寫在`build_materials.py`的`CANDIDATE_ID`。Manifest來源由根目錄`.gitattributes`設為`-text`，雜湊即Repo原始位元組。
+
 ```powershell
 & '.\.codex-tmp\b3-env\Scripts\python.exe' -X utf8 scripts/build_delivery.py
 & '.\.codex-tmp\b3-env\Scripts\python.exe' -X utf8 scripts/verify_delivery.py dist/p11-candidate/<manifest-hash-prefix> --evidence agentic-workshop/06-runbook/evaluation/p11-package-validation-evidence.json
@@ -19,6 +21,8 @@ B0／Recovery採過濾輸出與安全README、Context、API摘要；程式與測
 
 Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並拒絕路徑穿越、隱藏Git、越界答案與損壞內容。B1／B2解壓副本使用既有獨立venv執行pip check、44／55項版本Gate及Health／OpenAPI／建立／付款／改退票Smoke；不宣稱重新安裝依賴或真人Recovery完成。Python `-O` 不支援驗證。
 
+一次執行全部步驟（偵測漂移、驗證、釘選、建置、驗證候選、重建教材與測試）：`scripts/release_materials.py`。
+
 ## 全域技術驗證
 
 ```powershell
@@ -27,9 +31,9 @@ Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並
 & '.\.codex-tmp\b3-env\Scripts\python.exe' -X utf8 -m unittest discover -s scripts -p 'test_*.py'
 ```
 
-六個獨立環境預設`.codex-tmp/g0-env`至`b3-env`；全域驗證可用`--env-root`指定已準備環境，沒有自動安裝。執行JSON與原始log／JUnit XML保存於`agentic-workshop/06-runbook/evaluation/`；B0僅精確Manifest失敗集合可接受，G0受控skip與其他版本全通過分開。
+六個獨立環境預設`.codex-tmp/g0-env`至`b3-env`；全域驗證可用`--env-root`指定已準備環境。可用uv建立：`uv venv --seed --python 3.13 .codex-tmp/<版本>-env`，再`uv pip install --python .codex-tmp/<版本>-env/Scripts/python.exe -r <版本目錄>/requirements.txt`。執行JSON與原始log／JUnit XML保存於`agentic-workshop/06-runbook/evaluation/`；B0僅精確Manifest失敗集合可接受，G0受控skip與其他版本全通過分開。
 
-`validate_workshop.py --static-only`另寫STATIC_PASS證據，不能當六版技術PASS。完成技術執行後只改文件，可用`--refresh-static`核對六版來源與原始log雜湊後更新靜態部分，保留技術原執行時間。`verify_runtime_baselines.py`核對requirements固定版本及本次依賴核對前後來源Hash，未宣稱重新安裝。
+`validate_workshop.py --static-only`另寫STATIC_PASS證據，不能當六版技術PASS；其凍結來源檢查只與最新一次完整執行的六版來源雜湊比對。完成技術執行後只改文件，可用`--refresh-static`核對六版來源與原始log雜湊後更新靜態部分，保留技術原執行時間。`verify_runtime_baselines.py`核對requirements固定版本及本次依賴核對前後來源Hash，未宣稱重新安裝。
 
 真人90分鐘、B3 13分鐘、兩分鐘閱讀及60秒例外、現場Agent可用性與發布核准仍需人工證據。填[演練紀錄](../agentic-workshop/06-runbook/rehearsal-record.md)及[發布清單](../agentic-workshop/06-runbook/release-checklist.md)，未執行項保持NOT_RUN／PENDING。
 

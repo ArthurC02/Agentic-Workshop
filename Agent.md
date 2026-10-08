@@ -125,6 +125,7 @@ uvicorn smart_ticket.main:app --app-dir src --reload
 - 資料夾分層不等於權限隔離；學員交付包應採明確允許清單，排除正式答案及可暴露答案的 Git History。
 - B1／B2／B3 任務按時段揭露；Materials 學員版只發成品 HTML 或單檔 ZIP，以活動碼解鎖，原稿不發學員。B1／B2 Recovery 使用獨立碼，由主持人於 52／63 分鐘按需核准，保留原成果與切換紀錄；一般活動碼不開 Recovery，B3 開始後不換版，也不提供 B3 解答。
 - 規劃文件修改以內容、一致性、連結及 Diff 檢查驗證，不需為純文字變更安裝應用依賴。
+- 「凍結」以行為驗證為準：G0–B3 測試數、受控 skip、B0 精確失敗集合與 Smoke 不變。來源可修改，但須完整驗證、重新釘選 Manifest 並重建候選；最新完整驗證即來源基準（見 [08 規範調整](docs/instructions/08_全域驗證與受控打包產製指令書.md)）。
 
 ### 8.1 Clone 後生成 `dist`
 
@@ -159,6 +160,16 @@ uvicorn smart_ticket.main:app --app-dir src --reload
    輸出 `dist/materials/participant-materials.zip`，精確只含 `runbook.html`，可重新生成並覆寫同名學員 ZIP。只發此 ZIP 或成品 HTML，不發作者 Repo、原稿、整個 `dist/` 或主持／評估包。
 
 完成條件：候選包生成成功、教材 `--check` 通過、學員 ZIP 只含成品 HTML。生成成功不代表案例測試、Recovery、現場 Preflight 或真人演練已通過；完整驗證另依 [scripts/README.md](scripts/README.md) 與 [Materials 操作說明](agentic-workshop/materials/README.md) 執行。
+
+### 8.2 Claude Code 工具
+
+`.claude/` 存放課程製作的標準化工具，隨 Repo 提交：
+
+- `scripts/release_materials.py`：偵測 Manifest 漂移 → 驗證 → 重新釘選 → 建置與驗證兩份候選 → 同步候選 ID → 重建兩版教材與 Speech → 瀏覽器與單元測試。一次執行完成第 8 節流程，Repo 未變時不產生新候選。
+- Skill `release-materials`：何時執行上述腳本、通過後提交與推送、失敗時的處理原則。
+- Skill `plain-language-review`：學員文字白話化與縮寫展開的共用規範（`wording-spec.md`）。
+- Workflow `wording-pass`：依 `scope`（main／dlc）分組平行審視並修改，再做跨組一致性檢查。
+- Hook `guard_generated.py`：禁止直接修改建置產物（Runbook／簡報 HTML、Speech Deck 與講義），改由原稿重建。
 
 ## 9. 決策與待協調事項的維護
 
