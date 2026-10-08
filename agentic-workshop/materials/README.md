@@ -2,7 +2,7 @@
 
 > 目標讀者：主持人與素材維護者。
 > 使用時機：工作坊事前準備、現場主持，以及修改簡報或 Runbook 之後重新建置。
-> 前置條件：已閱讀 [P12 指令書](../../docs/instructions/10_主持簡報與學員Runbook產製指令書.md)；建置需要作者 Repo 中的 Python 3.13 環境與最新受控候選包 `dist/p11-candidate/c841f2424d256c28/`。
+> 前置條件：已閱讀 [P12 指令書](../../docs/instructions/10_主持簡報與學員Runbook產製指令書.md)；建置需要作者 Repo 中的 Python 3.13 環境與最新受控候選包 `dist/p11-candidate/6ceb985374e7e0fa/`。
 > 可見性：本目錄除 `participant-runbook/runbook.html` 外，都是主持與維護用，不發給學員。
 
 ## 1. 成品

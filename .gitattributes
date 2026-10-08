@@ -1,0 +1,13 @@
+# Main-course candidate sources are pinned by scripts/package-manifest.json (sha256 of raw bytes): never convert line endings.
+agentic-workshop/00-governance/** -text
+agentic-workshop/01-greenfield/** -text
+agentic-workshop/02-time-skip/** -text
+agentic-workshop/03-brownfield/** -text
+agentic-workshop/04-digital-worker/** -text
+agentic-workshop/05-retrospective/** -text
+agentic-workshop/06-runbook/** -text
+docs/contents/** -text
+docs/instructions/** -text
+docs/planning/** -text
+Agent.md -text
+scripts/README.md -text
