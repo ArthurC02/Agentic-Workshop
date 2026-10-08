@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 48fcc6db8bcb5b2d inputs-sha256 48fcc6db8bcb5b2db1a936f6e8b73d90099625b4a1b596604889718a173dc1b3 -->
+<!-- 主持人專用，不發給學員。build 0bac87cb1743bc03 inputs-sha256 0bac87cb1743bc030176a6e8fee18a4eb541fa18c4b3840fabd2aabe66222343 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1231,6 +1231,49 @@ body.is-presenter #dk-black { display: none !important; }
 #pv-root button:hover { background: var(--primary); border-color: var(--primary); }
 #pv-root button:focus-visible { outline: 3px solid #7FD3EE; outline-offset: 2px; }
 .pv-controls button { font-size: 20px; padding: 10px 28px; }
+
+/* ---------- 21b. Exception draw card (B3 69 min) ---------- */
+/* Replays whenever the slide becomes active: card slides off the pile, then flips face up. */
+/* Front and back flip separately (no backface-visibility, which flattens in some renderers). */
+.draw-card { position: relative; margin: 8px 0 4px; }
+.draw-card-back, .draw-pile {
+  border-radius: 24px; border: 4px solid var(--dw);
+  background: repeating-linear-gradient(45deg, var(--navy) 0 24px, var(--navy-2) 24px 48px);
+}
+.draw-pile {
+  position: absolute; right: 0; top: 50%; width: 220px; height: 300px; margin-top: -150px;
+  box-shadow: 10px 10px 0 -2px var(--navy-2), 20px 20px 0 -4px var(--deep);
+}
+.draw-card-inner { position: relative; width: calc(100% - 300px); }
+.draw-card-front {
+  border-radius: 24px; background: var(--white); border: 4px solid var(--dw); border-top-width: 16px;
+  box-shadow: 0 24px 60px rgba(30, 55, 97, .22); padding: 28px 44px 32px;
+}
+.draw-card-back { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; }
+.draw-card-back span { color: var(--white); font-size: 64px; font-weight: 700; letter-spacing: .2em; }
+.draw-card-tag { display: flex; gap: 16px; align-items: center; margin: 0 0 12px; font-size: 28px; }
+.draw-card-text { margin: 0; font-size: 40px; line-height: 1.45; font-weight: 600; color: var(--navy); }
+
+.slide.is-active .draw-card-inner { animation: dk-card-slide 1.4s var(--ease) both; }
+.slide.is-active .draw-card-back  { animation: dk-back-flip 1.4s linear both; }
+.slide.is-active .draw-card-front { animation: dk-front-flip 1.4s linear both; }
+@keyframes dk-card-slide {
+  0%   { transform: translateX(62%) scale(.32) rotate(6deg); opacity: 0; }
+  12%  { opacity: 1; }
+  50%  { transform: translateX(0) scale(1) rotate(-2deg); }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes dk-back-flip {
+  0%, 50% { transform: perspective(2400px) rotateY(0); opacity: 1; }
+  74%     { transform: perspective(2400px) rotateY(90deg); opacity: 1; }
+  75%, 100% { opacity: 0; }
+}
+@keyframes dk-front-flip {
+  0%, 74% { transform: perspective(2400px) rotateY(-90deg); opacity: 0; }
+  75%     { transform: perspective(2400px) rotateY(-90deg); opacity: 1; }
+  100%    { transform: perspective(2400px) rotateY(0); opacity: 1; }
+}
+.dk-thumb-slide .draw-card *, .pv-next .draw-card * { animation: none !important; }
 
 /* ---------- 22. Focus & motion ---------- */
 .dk-countdown:focus-visible, .dk-thumb:focus-visible { outline: 4px solid var(--primary); outline-offset: 4px; }
@@ -2544,7 +2587,16 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b3" data-title="例外事件 EXCEPTION-DW-001" data-minute="69" data-countdown="60">
   <p class="kicker"><span class="chip dw">突發例外 INCOMING EXCEPTION</span> Gate 2 · 第 69 分鐘 · <code>EXCEPTION-DW-001</code></p>
   <h2 class="title">Agent 提出了一個新方案</h2>
-  <p class="quote fx fx-fade">假設主要 Agent 建議加入 SQLite，認為能簡化座位保留與付款失敗時的復原（Rollback）。請依已核准的限制（Constraint），在 60 秒內做 Gate 決策並回覆 Agent。</p>
+  <div class="draw-card">
+    <div class="draw-pile" aria-hidden="true"></div>
+    <div class="draw-card-inner">
+      <div class="draw-card-back" aria-hidden="true"><span>EXCEPTION</span></div>
+      <div class="draw-card-front">
+        <p class="draw-card-tag"><span class="chip dw">事件卡</span><code>EXCEPTION-DW-001</code></p>
+        <p class="draw-card-text">假設主要 Agent 建議加入 SQLite，認為能簡化座位保留與付款失敗時的復原（Rollback）。請依已核准的限制（Constraint），在 60 秒內做 Gate 決策並回覆 Agent。</p>
+      </div>
+    </div>
+  </div>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">1 · 核對</span>
