@@ -99,6 +99,7 @@ Plugin 必須**原樣**使用：今天的 Registry 規則與各種檢查都由�
 ```callout info
 新概念：SHA256 雜湊
 雜湊是由檔案內容算出的一串固定長度的字，像檔案的指紋：內容改了一個位元組，雜湊就完全不同。SHA256 是常用的一種。學員包附了每個 Plugin 檔案的「正確指紋」清單，Agent 重算一次、逐檔比對，全部相同才印 `SHA OK`。D1 起 Plugin 也用同樣的方法記住你引用的證據內容。
+📖 延伸閱讀：NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉。
 ```
 
 ```text
