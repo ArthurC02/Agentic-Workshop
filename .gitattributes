@@ -7,6 +7,8 @@ agentic-workshop/04-digital-worker/** -text
 agentic-workshop/05-retrospective/** -text
 agentic-workshop/06-runbook/** -text
 agentic-workshop/materials/** -text
+# DLC sources and built outputs: build --check compares raw bytes.
+agentic-workshop/materials-dlc/** -text
 docs/contents/** -text
 docs/instructions/** -text
 docs/planning/** -text
