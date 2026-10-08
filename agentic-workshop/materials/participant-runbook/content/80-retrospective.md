@@ -14,7 +14,7 @@ section: 回顧
 用證據回顧，不排名、不編數據
 - 每一格寫本次的具體例子；沒觀察到就填「未觀察」。未觀察或未完成如實保留，不強填每格。
 - 不排名、不比程式碼量。成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。
-- 沒有活動計時，不以 pytest 執行秒數代替人員工作時間；沒有可比較基準，不編造效率或自主率。
+- 沒有活動計時，不以 pytest 執行秒數代替人員工作時間；沒有可比較基準，不編造效率或 Agent 自主完成的比例。
 ```
 
 ```callout info
@@ -55,12 +55,12 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 {"id": "s1-tool-human", "label": "1. 本次成果與責任｜工具角色／從零開發｜人的主要工作", "type": "textarea", "hint": "請用實際證據回顧，不排名、不比程式碼量；沒觀察到就填「未觀察」。", "suggestions": [{"label": "人做的事", "text": "〈下指令／審查／測試／決策〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-tool-agent", "label": "1. 本次成果與責任｜工具角色／從零開發｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈產生程式／測試／文件〉：〈具體例子〉"}, "未觀察"]},
 {"id": "s1-tool-evidence", "label": "1. 本次成果與責任｜工具角色／從零開發｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈檔案／測試輸出／表單紀錄〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
-{"id": "s1-teammate-human", "label": "1. 本次成果與責任｜協作夥伴角色／分析與共用背景資料｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈比對分析／整理共識／核准〉：〈具體例子〉"}, "未觀察"]},
-{"id": "s1-teammate-agent", "label": "1. 本次成果與責任｜協作夥伴角色／分析與共用背景資料｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈讀程式／整理規則／提出假設〉：〈具體例子〉"}, "未觀察"]},
-{"id": "s1-teammate-evidence", "label": "1. 本次成果與責任｜協作夥伴角色／分析與共用背景資料｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈Shared Context／分析紀錄／測試輸出〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
-{"id": "s1-dw-human", "label": "1. 本次成果與責任｜數位工作者角色／依核准範圍執行｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈Gate 核准／審查 Diff／處理例外〉：〈具體例子〉"}, "未觀察"]},
-{"id": "s1-dw-agent", "label": "1. 本次成果與責任｜數位工作者角色／依核准範圍執行｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈依 Work Order 執行／測試／交付摘要〉：〈具體例子〉"}, "未觀察"]},
-{"id": "s1-dw-evidence", "label": "1. 本次成果與責任｜數位工作者角色／依核准範圍執行｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈Gate 紀錄／Delivery Summary／測試輸出〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
+{"id": "s1-teammate-human", "label": "1. 本次成果與責任｜隊友角色／分析與共用背景資料｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈比對分析／整理共識／核准〉：〈具體例子〉"}, "未觀察"]},
+{"id": "s1-teammate-agent", "label": "1. 本次成果與責任｜隊友角色／分析與共用背景資料｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈讀程式／整理規則／提出假設〉：〈具體例子〉"}, "未觀察"]},
+{"id": "s1-teammate-evidence", "label": "1. 本次成果與責任｜隊友角色／分析與共用背景資料｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈Shared Context／分析紀錄／測試輸出〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
+{"id": "s1-dw-human", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜人的主要工作", "type": "textarea", "suggestions": [{"label": "人做的事", "text": "〈Gate 核准／審查 Diff／處理例外〉：〈具體例子〉"}, "未觀察"]},
+{"id": "s1-dw-agent", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜Agent 的主要工作", "type": "textarea", "suggestions": [{"label": "Agent 做的事", "text": "〈依 Work Order 執行／測試／交付摘要〉：〈具體例子〉"}, "未觀察"]},
+{"id": "s1-dw-evidence", "label": "1. 本次成果與責任｜數位員工角色／依核准範圍執行｜具體證據／未完成", "type": "textarea", "suggestions": [{"label": "證據", "text": "證據：〈Gate 紀錄／Delivery Summary／測試輸出〉"}, {"label": "未完成", "text": "未完成：〈項目〉，原因：〈原因〉"}]},
 {"id": "s1-team", "label": "1. 本次成果與責任｜小組", "type": "text"},
 {"id": "s1-b3-level", "label": "1. 本次成果與責任｜B3 實際完成程度", "type": "text", "hint": "Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付與治理表現分開記錄。若切換接續版本（Recovery），寫原成果／缺項、版本來源與切換時間；使用接續版本不代表小組自行完成任務。", "suggestions": [{"label": "Level", "text": "Level 〈1／2／3〉"}, {"label": "有切換接續", "text": "Level 〈1／2／3〉；原成果／缺項：〈…〉；接續版本來源：〈…〉，第〈分〉分切換"}]},
 {"id": "s1-governance-evidence", "label": "1. 本次成果與責任｜治理證據", "type": "textarea", "suggestions": [{"label": "Gate 紀錄", "text": "Gate 〈1／2／3〉：〈決策〉，核准人〈姓名〉"}, {"label": "例外處理", "text": "例外：〈情況〉→ 升級給〈誰〉，決策：〈…〉"}, "未觀察"]},
@@ -95,7 +95,7 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 
 ## 檢查點 2 · 小組比較（第 82–86 分鐘）
 
-下方比較表原文以 Tool、Teammate、Digital Worker 表示工具、協作夥伴、數位工作者三種角色；比較的是工作安排與責任配置。
+下方比較表原文以 Tool、Teammate、Digital Worker 表示工具、隊友、數位員工三種角色（Agent 從工具、隊友到能獨立執行任務的數位員工）；比較的是工作安排與責任配置。
 
 - [ ] 小組對照比較表，比較三個階段的責任、有效做法與問題。意見不同時，分清事實、假設、證據與根因；不要把程式碼量當成果。
 - [ ] 填下方「你的比較證據」五題，每題寫本次的具體例子；沒觀察到就填「未觀察」。

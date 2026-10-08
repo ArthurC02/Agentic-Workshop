@@ -10,7 +10,7 @@ section: Brownfield｜Teammate
 
 個人分析前，請先閱讀本頁兩份文件，再閱讀 B0 Repository 內的 README、架構文件與 ADR。這些內容也可以交給你的 Agent 作為 Context。
 
-ADR（Architecture Decision Record）是架構決策紀錄，說明當時的選擇與取捨；Context 指分析所需的背景資料。
+ADR（Architecture Decision Record，架構決策紀錄）說明當時的選擇與取捨；Context 指分析所需的背景資料。
 
 ```callout info
 文件是線索，不是結論

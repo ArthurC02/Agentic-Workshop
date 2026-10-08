@@ -1,8 +1,8 @@
 <!-- ===================== Individual analysis 33–39 · Shared Context 39–44 ===================== -->
 
 <section class="slide" data-seg="analysis" data-title="個人分析兩個檢查點" data-minute="33" data-timer="06:00" data-gates="analysis">
-  <p class="kicker">個人分析 · 33–39 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">各自讓 Agent 理解 B0，先不改程式</h2>
+  <p class="kicker">個人分析 · 33–39 · Agent 是隊友 <span class="chip teammate">Teammate</span></p>
+  <h2 class="title">各自讓 Agent 理解既有系統 B0，先不改程式</h2>
   <p class="muted">打開 Runbook「個人 Agent 分析」，從檢查點 1 開始。每個檢查點 Agent 停下，你核對證據、填分析表。</p>
   <ol class="timeline">
     <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 理解 B0 與測試</b></li>
@@ -22,9 +22,9 @@
   <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
   <h2 class="title">理解 B0：模組、依賴、實際測試輸出</h2>
   <ol class="steps">
-    <li>讀 B0 Context、README、架構文件與 ADR，開<b>新的</b> Agent Session</li>
+    <li>讀 B0 的背景說明（Context）、README、架構文件與 ADR（Architecture Decision Record，架構決策紀錄），開<b>新的</b> Agent 對話（Session）</li>
     <li>貼提示詞 1：<b>先不要修改程式</b>，說明模組責任與依賴，做完停下</li>
-    <li>自己跑 <code>pytest -q</code>，保留實際輸出</li>
+    <li>自己跑一次全部測試，保留實際輸出</li>
   </ol>
   <p class="callout">Runbook › 個人 Agent 分析 › 檢查點 1 · 填分析表第 1–2 欄</p>
   <aside class="notes">
@@ -56,15 +56,15 @@
 </section>
 
 <section class="slide" data-seg="shared" data-title="Shared Context 兩個檢查點" data-minute="39" data-timer="05:00" data-gates="shared">
-  <p class="kicker">Shared Context · 39–44 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">小組比較分析，整理共同背景</h2>
-  <p class="muted">打開 Runbook「Shared Context」，從檢查點 1 開始。B1 尚未揭露：<b>不提出、也不核准任務修改計畫。</b></p>
+  <p class="kicker">Shared Context · 39–44 · Agent 是隊友 <span class="chip teammate">Teammate</span></p>
+  <h2 class="title">小組比較分析，整理共同脈絡（Shared Context）</h2>
+  <p class="muted">打開 Runbook「Shared Context」，從檢查點 1 開始。B1（第一個 Brownfield 任務）尚未揭露：<b>不提出、也不核准任務修改計畫。</b></p>
   <ol class="timeline">
     <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較與分工</b></li>
     <li data-seg="shared"><span class="tl-min">03:00</span><b>2 · 收斂並交給主要 Agent</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「請打開 Runbook 的 Shared Context，從檢查點 1 開始。比較每個人的分析表，整理共同事實、證據與分歧，選定主要 Agent 與核准者。B1 還沒揭露，這段不提修改計畫、不改程式。」</p>
+    <p><b>說（約 20 秒）</b>：「請打開 Runbook 的 Shared Context（共同脈絡），從檢查點 1 開始。比較每個人的分析表，整理共同事實、證據與分歧，選定主要 Agent 與核准者。B1 還沒揭露，這段不提修改計畫、不改程式。」</p>
     <p><b>操作</b>：本段沒有解鎖頁。在本頁按 <b>T</b> 啟動 5:00 段落計時（00:00＝第 39 分）。說完翻到檢查點 1。</p>
     <p><b>看</b>：核對共同規則、來源版本、限制與待決事項；尚未揭露 B1，不核准任務修改。<b>本階段不發 B1 答案。</b></p>
     <p><b>巡場時看什麼</b>：小組是否在拼接每個人的完整對話（→ 請他們先整理成表單再交給主要 Agent）；是否已經在討論怎麼改程式（→ 拉回共同事實與分歧）。</p>
@@ -92,12 +92,12 @@
   <h2 class="title">收斂：交給主要 Agent，不提修改計畫</h2>
   <ol class="steps">
     <li>寫下分歧的驗證方式、已知限制與待決事項</li>
-    <li>把整理後的共同 Context 交給主要 Agent，請它複述後停下</li>
+    <li>把整理後的共同脈絡交給主要 Agent，請它複述後停下</li>
     <li>「任務揭露後補填」欄位留到第 44 分鐘</li>
   </ol>
   <p class="callout warn">Runbook › Shared Context › 檢查點 2 · 填範本第 3、4、6 欄；B1 尚未揭露</p>
   <aside class="notes">
-    <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘，請開始收斂。驗證分歧、確認範圍，把共同 Context 交給主要 Agent，請它複述後停下。B1 還沒揭露，不提修改計畫。」</p>
+    <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘，請開始收斂。驗證分歧、確認範圍，把共同脈絡交給主要 Agent，請它複述後停下。B1 還沒揭露，不提修改計畫。」</p>
     <p><b>看</b>：39–44 只收集共同事實、來源、分歧、系統限制與角色；B1 揭露前不要求核准修改計畫。「已知限制」只記錄系統限制，不預先核准修改。不以共同 Context 代替任務授權。</p>
     <p><b>完成條件</b>：留下共同事實、來源、分歧、限制、主要 Agent 與待決事項；未確認的推論清楚標示。</p>
     <p><b>任務揭露後補填</b>（第 2 部分，B1、B2 各填一次）：任務 ID／起點版本／規則來源｜任務範圍／不處理項目｜建議修改區域、理由及不應修改區域｜測試計畫／Regression 保留｜主要 Agent 的 5–8 步執行計畫｜人員核准紀錄（核准人、時間、結論與條件）。未核准或證據不足時，先補缺口，不修改程式。</p>

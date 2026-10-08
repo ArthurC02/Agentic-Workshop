@@ -6,7 +6,7 @@ group: greenfield
 section: Greenfield｜Tool
 ---
 
-> 本頁收錄 G0 Starter Repository 內的四份文件，方便在 Plan 前快速閱讀。實際要更新的是你本機 `starter-repository/` 中的檔案；`docs/business-rules.md` 與 `docs/api-examples.md` 是待填表，需由你與 Agent 依實作與實際呼叫結果補齊。
+> 本頁收錄 G0 Starter Repository 內的四份文件，方便在擬計畫（Plan）前快速閱讀。實際要更新的是你本機 `starter-repository/` 中的檔案；`docs/business-rules.md` 與 `docs/api-examples.md` 是待填表，需由你與 Agent 依實作與實際呼叫結果補齊。
 
 ## README.md
 

@@ -13,8 +13,8 @@ section: Delivery
 ```callout warning
 如實交付，交件後不再修改
 - 填實際成果，不預填成功。
-- Completion Level 擇一並說明證據，不自動選 Level 3。
-- 未驗證不能寫 PASS。
+- 完成等級（Completion Level：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付）擇一並說明證據，不自動選 Level 3。
+- 未驗證不能寫 PASS（通過）。
 - Gate 核准代表人員接受下一步或目前成果，不能代替驗收或測試 PASS。
 - 已完成分析時，可交付 Level 1；無程式修改或未執行測試也可提交活動成果，但須列明原因、未驗證範圍與後續工作。
 - 測試通過還須核對需求、範圍、文件及未完成事項。
@@ -51,7 +51,7 @@ section: Delivery
 整理完就停下，等我們核對。不要自行修正或補做任何項目。
 ```
 
-- [ ] 小組審查者核對 Agent 的摘要：Level 是否有證據、測試是否為實際輸出、未完成與偏差是否寫出。必要時以 [Review Checklist](#b3-review-checklist) 逐項檢核。與你們的實際紀錄不一致時，以人員確認為準。
+- [ ] 小組審查者核對 Agent 的摘要：Level 是否有證據、測試是否為實際輸出、未完成與偏差是否寫出。必要時以 [Review Checklist](#b3-review-checklist)（交付審查檢核表）逐項檢核。與你們的實際紀錄不一致時，以人員確認為準。
 - [ ] 把核對後的內容填入下方「交付摘要」表單。
 - [ ] [Gate 3 表單](#b3-approval-gates) 還沒記錄人員決策的，現在補記。
 
@@ -103,7 +103,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
   - [Review Checklist](#b3-review-checklist)（有使用時）
   - [Exception Response 與 Escalation](#b3-exception-card)（有使用時）
   - 本頁的 Delivery Summary
-- [ ] 依主持人指定方式交件；交付內容為 Gate 紀錄、Impact／方案、Diff、實際測試、文件及摘要。
+- [ ] 依主持人指定方式交件；交付內容為 Gate 紀錄、影響分析（Impact）／方案、Diff（程式修改內容）、實際測試、文件及摘要。
 
 ```callout tip
 功能 Level 與治理證據分開

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 098d47e32c867e98 inputs-sha256 098d47e32c867e98e27d026a15f3fe3e2e21a543eb077e36b567af017cd87c80 -->
+<!-- 主持人專用，不發給學員。build 226f92eebd54822c inputs-sha256 226f92eebd54822ccce27de157cccaccbb295c2d52a47acca45136d3f8c3818a -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1284,7 +1284,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="opening" data-title="今日旅程" data-minute="01" data-fragments="step">
-  <p class="kicker">今日主線</p>
+  <p class="kicker">今日主線：Agent 從工具、隊友到能獨立執行任務的數位員工</p>
   <h2 class="title">Tool → Teammate → Digital Worker</h2>
   <ol class="stage-bar">
     <li class="tool active">Tool</li>
@@ -1300,7 +1300,7 @@ body.is-presenter #dk-black { display: none !important; }
     <div class="card teammate fx fx-up">
       <span class="chip teammate">Teammate</span>
       <h3>個人分析 → 小組比較</h3>
-      <p>Agent 分析既有程式與設計取捨；人比較各自的分析，整理小組共同背景（Shared Context）。</p>
+      <p>Agent 分析既有程式與設計取捨；人比較各自的分析，整理共同脈絡（Shared Context：小組整理出的共同事實）。</p>
     </div>
     <div class="card dw fx fx-up">
       <span class="chip dw">Digital Worker</span>
@@ -1310,7 +1310,7 @@ body.is-presenter #dk-black { display: none !important; }
   </div>
   <p class="quote fx fx-fade">三種角色描述協作分工；人仍對最後的決策與成果負責。</p>
   <aside class="notes">
-    <p><b>主持口述版（DW Debrief Notes）</b>：「Tool階段人理解需求、選設計與拆解，Agent協助；Teammate比較Agent分析、形成Shared Context；Digital Worker由Agent主導交付，人保留Challenge、核准與Review。責任轉移與重新分配，不因Agent自主而消失。」</p>
+    <p><b>主持口述版（Digital Worker Debrief Notes）</b>：「Tool（工具）階段人理解需求、選設計與拆解，Agent協助；Teammate（隊友）比較Agent分析、形成共同脈絡（Shared Context）；Digital Worker（數位員工）由Agent主導交付，人保留質疑假設、核准與檢視（Review）。責任轉移與重新分配，不因Agent自主而消失。」</p>
     <p>Maturity 表下原文：「成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。」</p>
     <p>注意：此處只講角色與責任；三種角色不是產品分類，也不代表每項工作都應提高自主程度。<b>不提前說明 B1／B2／B3 任務內容或 Bug</b>（29 分鐘前不發 B1／B2／B3 或 Bug 根因）。</p>
   </aside>
@@ -1326,12 +1326,13 @@ body.is-presenter #dk-black { display: none !important; }
     <li data-seg="analysis" style="--len:6"><span class="tl-min">33–39</span><b>個人分析</b><span class="chip teammate">Teammate</span></li>
     <li data-seg="shared" style="--len:5"><span class="tl-min">39–44</span><b>Shared Context</b><span class="chip teammate">Teammate</span></li>
     <li data-seg="b1" style="--len:8"><span class="tl-min">44–52</span><b>B1</b><span class="chip teammate">Teammate</span></li>
-    <li data-seg="b2" style="--len:11"><span class="tl-min">52–63</span><b>B2</b><span class="chip teammate">Teammate→DW</span></li>
+    <li data-seg="b2" style="--len:11"><span class="tl-min">52–63</span><b>B2</b><span class="chip teammate">Teammate→Digital Worker</span></li>
     <li data-seg="b3" style="--len:13"><span class="tl-min">63–76</span><b>B3</b><span class="chip dw">Digital Worker</span></li>
-    <li data-seg="delivery" style="--len:4"><span class="tl-min">76–80</span><b>Delivery</b></li>
+    <li data-seg="delivery" style="--len:4"><span class="tl-min">76–80</span><b>交付（Delivery）</b></li>
     <li data-seg="retro" style="--len:10"><span class="tl-min">80–90</span><b>回顧</b></li>
   </ol>
-  <p class="lead fx fx-fade">新系統開發（Greenfield）採個人練習；接手既有系統（Brownfield）先各自分析，再整合小組判斷。</p>
+  <p class="lead fx fx-fade">Greenfield（從頭開始的新專案）採個人練習；Brownfield（已有程式碼的既有專案）先各自分析，再整合小組判斷。</p>
+  <p class="muted fx fx-fade">MVP（Minimum Viable Product，最小可行產品）；Time Skip（時間快轉：專案假設已開發一段時間）；B1／B2／B3 是 Brownfield 三段任務的代號，內容到時再解鎖。</p>
   <aside class="notes">
     <p>十段：00–07｜07–29｜29–33｜33–39｜39–44｜44–52｜52–63｜63–76｜76–80｜80–90，合計 90 分鐘；29–80 共 51 分鐘，B3 的 13 分鐘已包含治理，不新增另一段（RB）。</p>
     <p>RB：Greenfield 個人，Brownfield 先個人分析再小組整合，選主要 Agent，不安排額外角色輪轉。</p>
@@ -1351,7 +1352,7 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
     <div class="card fx fx-up">
       <span class="chip">不是競賽</span>
-      <h3>不比 Coding 速度</h3>
+      <h3>不比寫程式速度</h3>
       <p>不追求最多程式碼，也不排名。</p>
     </div>
     <div class="card fx fx-up">
@@ -1380,7 +1381,7 @@ body.is-presenter #dk-black { display: none !important; }
       <li class="fx">開啟 <code>runbook.html</code>（離線即可）</li>
       <li class="fx">現在可讀：開始之前、環境準備、Runbook 使用方式、開場、詞彙表</li>
       <li class="fx">一般活動章節：等主持人在畫面公布解鎖碼</li>
-      <li class="fx">輸入解鎖碼後閱讀章節；有程式碼的章節可下載 ZIP</li>
+      <li class="fx">輸入解鎖碼後閱讀章節；有程式碼的章節可下載 ZIP 壓縮檔</li>
       <li class="fx">每段分成幾個<b>檢查點</b>：投影只顯示時間與現在第幾個檢查點，<b>要做什麼看 Runbook</b></li>
     </ol>
     <div class="card fx fx-fade">
@@ -1438,6 +1439,7 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="greenfield" data-title="解鎖 Greenfield" data-minute="07" data-unlock="greenfield">
   <p class="kicker">第 07 分鐘 · 解鎖</p>
   <h2 class="title">Greenfield 開始</h2>
+  <p class="subtitle">Greenfield（從頭開始的新專案）：個人用 Agent 完成核心訂票 MVP（Minimum Viable Product，最小可行產品）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Greenfield 任務」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 22 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
@@ -1448,7 +1450,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="greenfield" data-title="Greenfield 六個檢查點" data-minute="07" data-timer="22:00" data-gates="greenfield">
-  <p class="kicker">Greenfield · 07–29 · Agent = Tool</p>
+  <p class="kicker">Greenfield · 07–29 · Agent 是工具（Tool）</p>
   <h2 class="title">每個檢查點，Agent 停下、你確認</h2>
   <p class="muted">不要讓 Agent 一次做完全部。你填好 Runbook 該檢查點的「確認」表單，才交代下一段。</p>
   <ol class="timeline">
@@ -1472,13 +1474,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 1 / 6 · 第 07–09 分鐘</p>
   <h2 class="title">準備：下載、起始測試、Git 基準</h2>
   <ol class="steps">
-    <li>下載 G0，解壓到短路徑，進入 <code>starter-repository</code></li>
-    <li>建 venv、安裝、<code>pytest -q</code> → <code>1 passed, 8 skipped</code></li>
-    <li><code>git init</code> → <code>git add -A</code> → <code>git commit</code>，在此資料夾開啟 Agent</li>
+    <li>下載 G0（Greenfield 起始包），解壓到短路徑，進入 <code>starter-repository</code> 資料夾</li>
+    <li>建立 Python 虛擬環境並安裝套件，跑一次起始測試，結果應為 <code>1 passed, 8 skipped</code></li>
+    <li>建立 Git 基準版本（第一次 commit），之後才看得出 Agent 改了什麼；在此資料夾開啟 Agent</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 1 · 填「檢查點 1 確認」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 07 分）</b>：「請確認任務、需求、AC 及 Repository 可開啟，照 Runbook 檢查點 1 建好環境與 Git 基準。」</p>
+    <p><b>說（00:00／第 07 分）</b>：「請確認任務、需求、驗收條件及程式庫可開啟，照 Runbook 檢查點 1 建好環境與 Git 基準。」</p>
     <p><b>看</b>：起始 <code>1 passed, 8 skipped</code>（以實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。</p>
     <p><b>常見卡點</b>：解壓到深層路徑、PowerShell 執行原則（直接用 venv 裡的 python.exe）、Git 要求姓名／Email、Agent 讀不到上一層需求文件（複製到 <code>docs/</code>）。</p>
     <p><b>環境阻擋</b>：可直接協助 Python、Import、依賴與測試命令；記錄耗時，不私下延長截止時間。</p>
@@ -1489,7 +1491,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 2 / 6 · 第 09–11 分鐘</p>
   <h2 class="title">計畫：Agent 只提計畫，你核准</h2>
   <ol class="steps">
-    <li>貼上 Runbook 的起始提示：<b>先不要修改程式</b>，提出 5–8 步計畫並標 Rule ID</li>
+    <li>貼上 Runbook 的起始提示：<b>先不要修改程式</b>，提出 5–8 步計畫並標出規則編號（Rule ID）</li>
     <li>你調整順序、刪掉範圍外項目、回答 Agent 的問題</li>
     <li>用「核准回覆」格式回覆：<b>這次只做到第 N 步，做完停下等我</b></li>
   </ol>
@@ -1506,9 +1508,9 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 3 / 6 · 第 11–19 分鐘</p>
   <h2 class="title">第一段：Agent 做完就停下，換你確認</h2>
   <ol class="steps">
-    <li>看 Agent 貼出的<b>實際</b> <code>pytest -q</code> 輸出</li>
-    <li><code>git diff --stat</code>、<code>git diff -- src</code>：說出一處變更對應哪條 Rule</li>
-    <li>手算 700 ＋ 525 ＝ <b>1225</b>，與程式結果對照；沒問題再 Commit</li>
+    <li>看 Agent 貼出的<b>實際</b>測試執行輸出</li>
+    <li>看程式修改內容（Diff）：說出一處變更對應哪條規則</li>
+    <li>手算 700 ＋ 525 ＝ <b>1225</b>，與程式結果對照；沒問題再 commit 存一版</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 3 · 填「檢查點 3 確認」</p>
   <aside class="notes">
@@ -1525,8 +1527,8 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">第二段：付款與訂單，同樣停下確認</h2>
   <ol class="steps">
     <li>交代第二段，做完停下；看實際測試輸出</li>
-    <li>核對付款：只有待付款可付、成功 <code>PAID</code> ＋唯一 Order、重複付款被拒</li>
-    <li><code>git diff -- tests</code>：沒有刪除或放寬既有斷言</li>
+    <li>核對付款：只有待付款可付、成功後為已付款（<code>PAID</code>）並只建立一筆訂單（Order）、重複付款被拒</li>
+    <li>看測試檔的修改：沒有刪除或放寬既有斷言（測試裡檢查結果的條件）</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 4 · 填「檢查點 4 確認」</p>
   <aside class="notes">
@@ -1542,8 +1544,8 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">驗證：不再加功能</h2>
   <ol class="steps">
     <li>請 Agent 補邊界測試並執行：0／5 人、座位不足、404、付款失敗、重複付款</li>
-    <li>自己在 <code>/docs</code> 走一次：查班次 → 訂票 1225 → 付款 → 查 Order</li>
-    <li>列出仍被 Skip 或未完成的項目</li>
+    <li>自己在 API 文件頁（<code>/docs</code>）走一次：查班次 → 訂票 1225 → 付款 → 查訂單</li>
+    <li>列出仍被略過（Skip）或未完成的項目</li>
   </ol>
   <p class="callout warn">Runbook › Greenfield › 檢查點 5 · 填「檢查點 5 確認」</p>
   <aside class="notes">
@@ -1589,20 +1591,20 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide slide-mvp-review" data-seg="reveal" data-reveal-of="greenfield" data-title="揭曉 · 預期 MVP 輪廓" data-minute="29">
   <p class="reveal-badge">揭曉 · Greenfield</p>
-  <h2 class="title">預期 MVP 輪廓與快速驗收</h2>
+  <h2 class="title">預期 MVP（最小可行產品）輪廓與快速驗收</h2>
   <div class="cols-2 mvp-review-layout">
     <table class="table fx fx-fade">
       <thead><tr><th>API</th><th>核心行為</th></tr></thead>
       <tbody>
         <tr><td><code>GET /health</code></td><td>200，<code>{"status":"ok"}</code></td></tr>
         <tr><td><code>GET /trips</code></td><td>僅可售座位 &gt; 0；站名精確篩選</td></tr>
-        <tr><td><code>POST /bookings</code></td><td>1–4 人且座位足夠；保留座位、<code>PENDING_PAYMENT</code>、逐人計價加總</td></tr>
-        <tr><td><code>POST …/pay</code></td><td>僅 <code>PENDING_PAYMENT</code> 可付；<code>PAID</code>＋唯一 Order；重複付款拒絕</td></tr>
-        <tr><td><code>GET /orders/{order_id}</code></td><td>讀取既有 Order；金額＝Booking 總額</td></tr>
+        <tr><td><code>POST /bookings</code></td><td>1–4 人且座位足夠；保留座位、狀態為待付款（<code>PENDING_PAYMENT</code>）、逐人計價加總</td></tr>
+        <tr><td><code>POST …/pay</code></td><td>僅待付款可付；成功為 <code>PAID</code>＋唯一訂單；重複付款拒絕</td></tr>
+        <tr><td><code>GET /orders/{order_id}</code></td><td>讀取既有訂單；金額＝訂票總額</td></tr>
       </tbody>
     </table>
     <ol class="steps">
-      <li class="fx"><span>依 README 載入程式，檢查 Health／OpenAPI<br>保留實際測試輸出</span></li>
+      <li class="fx"><span>依 README 啟動程式，檢查健康檢查（/health）與 API 文件頁<br>保留實際測試輸出</span></li>
       <li class="fx"><span>重設資料後查班次：T003 不出現<br>站名篩選符合固定資料</span></li>
       <li class="fx"><span>T001 成人＋學生：<b>1,225</b>，保留 2 座<br>訂票狀態：<code>PENDING_PAYMENT</code></span></li>
       <li class="fx"><span>付款後 <code>PAID</code>；唯一訂單金額 1,225<br>重複付款遭拒，不新增訂單</span></li>
@@ -1656,7 +1658,7 @@ body.is-presenter #dk-black { display: none !important; }
       .ts-jump .ts-min, .ts-jump .ts-hr, .ts-jump .ts-cal-body, .ts-jump .ts-cal-num, .ts-jump .ts-months span { animation: none !important; }
     }
   </style>
-  <p class="kicker">Time Skip · 29–33</p>
+  <p class="kicker">Time Skip（時間快轉：專案假設已開發一段時間）· 29–33</p>
   <div class="ts-stage" aria-hidden="true">
     <svg class="ts-clock" viewBox="0 0 120 120" role="presentation">
       <circle class="ts-face" cx="60" cy="60" r="54"/>
@@ -1686,7 +1688,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="subtitle fx fx-up">Smart Ticket 已上線 12 個月</p>
   <aside class="notes">
     <p><b>操作</b>：進入本頁即按 <b>T</b> 啟動 04:00 段落計時（00:00＝第 29 分），翻頁時持續計時。</p>
-    <p><b>說（00:00／第 29 分，逐字）</b>：「我們快轉到上線12個月後。請停止自己的 Greenfield 開發，接手同一份既有系統。這次先各自請 Agent 理解，再比較證據與結論。」</p>
+    <p><b>說（00:00／第 29 分，逐字）</b>：「我們快轉到上線12個月後。請停止自己的新專案開發，接手同一份既有系統。這次先各自請 Agent 理解，再比較證據與結論。」</p>
     <p><b>節奏</b>：本頁與「Agent 的分工改變」合計約 30 秒，接著翻到解鎖頁。之後每分鐘翻一個檢查點：29 停手｜30 取得 B0｜31 確認同一版本與環境｜32 提醒若干測試失敗、文件要交叉驗證｜33 停止背景敘述，翻到「個人 Agent 分析」。</p>
     <p><b>不可揭露</b>：B1／B2／B3 任務、Bug 根因、學生票率錯誤、檔案位置、失敗數量或文件落差位置。不能用個人 G1 或已修 B1 代替 B0。</p>
     <p>動畫（時鐘、月曆 0→12、月份進度條）於進入本頁時自動播放；系統設定「減少動態」時直接顯示終點畫面。轉場須在 4 分鐘內完成，實際時間需另行演練。</p>
@@ -1695,7 +1697,7 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="timeskip" data-title="Agent 的分工改變" data-minute="29" data-fragments="step">
   <p class="kicker">Time Skip · Agent 角色</p>
-  <h2 class="title">從 Tool 變成 Teammate</h2>
+  <h2 class="title">從工具（Tool）變成隊友（Teammate）</h2>
   <ol class="stage-bar">
     <li class="tool">Tool</li>
     <li class="teammate active">Teammate</li>
@@ -1710,12 +1712,13 @@ body.is-presenter #dk-black { display: none !important; }
     <div class="card teammate fx fx-up">
       <span class="chip teammate">現在 · Brownfield</span>
       <h3>同一份既有系統 B0</h3>
-      <p>各自請 Agent 分析 → 比較判斷 → 整理小組共同背景（Shared Context）。</p>
+      <p>Brownfield（已有程式碼的既有專案）。B0 是全員共用的接手起點；之後的 B1–B3 是在它上面的任務代號。</p>
+      <p>各自請 Agent 分析 → 比較判斷 → 整理共同脈絡（Shared Context：小組整理出的共同事實）。</p>
     </div>
   </div>
   <p class="quote fx fx-fade">先理解既有系統與證據，再決定如何修改。</p>
   <aside class="notes">
-    <p><b>說（00:00／第 29 分）</b>：「請停止使用自己的 Greenfield Repository，接手主持人統一提供的 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從 Tool 轉為 Teammate：各自分析、比較判斷，再整合小組 Shared Context。」</p>
+    <p><b>說（00:00／第 29 分）</b>：「請停止使用自己的 Greenfield 程式庫，接手主持人統一提供的既有系統 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從工具轉為隊友：各自分析、比較判斷，再整合成小組的共同脈絡。」</p>
     <p><b>看</b>（整段）：是否仍使用自己的 MVP、是否提前修程式、是否有環境阻塞。</p>
     <p>只回答操作與活動範圍的問題；不揭露學生票率錯誤、檔案位置、失敗數量或文件落差位置。說完翻到解鎖頁。</p>
   </aside>
@@ -1735,7 +1738,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="timeskip" data-title="Time Skip 四個檢查點" data-minute="29" data-timer="04:00" data-gates="timeskip">
-  <p class="kicker">Time Skip · 29–33 · Agent = Teammate</p>
+  <p class="kicker">Time Skip · 29–33 · Agent 是隊友（Teammate）</p>
   <h2 class="title">4 分鐘：停手、接手同一份 B0</h2>
   <p class="muted">本段只接手、建環境、跑測試，不修改程式。做完一個檢查點，填好 Runbook 的「確認」表單再往下。</p>
   <ol class="timeline">
@@ -1757,12 +1760,12 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">停手：保留 Greenfield 現況</h2>
   <ol class="steps">
     <li>停止修改自己的 Greenfield，保留現況，不刪除、不覆寫</li>
-    <li>在啟動 Server 的終端機按 <code>Ctrl+C</code>，停止 G0 的 App</li>
+    <li>在啟動伺服器的終端機按 <code>Ctrl+C</code>，停止 Greenfield 的 App</li>
     <li>讀時間快轉公告與公司成長摘要</li>
   </ol>
   <p class="callout">Runbook › Time Skip › 檢查點 1 · 填「檢查點 1 確認」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，停掉 G0 的 App。讀一下公告：系統上線 12 個月，增加了會員、優惠、改退票、通知、座位與稽核。」</p>
+    <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，停掉 Greenfield 的 App。讀一下公告：系統上線 12 個月，增加了會員、優惠、改退票、通知、座位與稽核。」</p>
     <p><b>看</b>：是否仍在改自己的 MVP；Agent 是否還在背景執行 Greenfield 的工作（請學員停下）。</p>
     <p><b>回答背景問題</b>：公開說明只描述模組與歷史成長；不得把內部原因、修正方法、文件落差的具體位置或後續任務解法帶進轉場。B0 延續 G1 的分層、Domain、四個核心業務 API、Health、固定資料與測試；演化重點是讓「理解與影響分析」成為必要能力，不是全面重建另一個產品。</p>
     <p><b>完成條件（成長摘要）</b>：能說明核心流程如何延續、哪些能力新增，且不把文件或單一 Agent 的推論視為已確認事實。</p>
@@ -1775,11 +1778,11 @@ body.is-presenter #dk-black { display: none !important; }
   <ol class="steps">
     <li>從 Runbook 下載 B0，解壓到短路徑，例如 <code>C:\work\b0</code></li>
     <li>進入 <code>smart-ticket-b0</code>（含 <code>README.md</code>）</li>
-    <li>在 B0 開<b>新的</b> Agent Session，不沿用 Greenfield；先不交代工作</li>
+    <li>在 B0 開<b>新的</b> Agent 對話（Session），不沿用 Greenfield；先不交代工作</li>
   </ol>
   <p class="callout">Runbook › Time Skip › 檢查點 2 · 填「檢查點 2 確認」</p>
   <aside class="notes">
-    <p><b>說（00:01／第 30 分）</b>：「B0 已發放。請從 Runbook 下載，解壓到短路徑，在 B0 資料夾開一個新的 Agent Session。」</p>
+    <p><b>說（00:01／第 30 分）</b>：「B0 已發放。請從 Runbook 下載，解壓到短路徑，在 B0 資料夾開一個新的 Agent 對話。」</p>
     <p><b>看</b>：解壓到深層路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；沿用 Greenfield 的 Session；用自己的 G1 代替 B0。</p>
     <p><b>介入</b>：不能用個人 G1 或已修 B1 代替 B0；下載失敗時由主持人提供同一份已驗收的 B0，不讓學員各自找替代版本。</p>
   </aside>
@@ -1789,13 +1792,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 3 / 4 · 第 31–32 分鐘</p>
   <h2 class="title">環境與版本：大家都是 B0</h2>
   <ol class="steps">
-    <li>在 B0 資料夾獨立建 venv、安裝、<code>pip check</code></li>
+    <li>在 B0 資料夾另建 Python 虛擬環境、安裝套件，確認套件相依沒有衝突</li>
     <li>印出版本：<code>Smart Ticket Platform B0</code></li>
-    <li>啟動 App，<code>/health</code> → <code>{"status":"ok"}</code></li>
+    <li>啟動 App，健康檢查（<code>/health</code>）回應 ok</li>
   </ol>
   <p class="callout">Runbook › Time Skip › 檢查點 3 · 填「檢查點 3 確認」</p>
   <aside class="notes">
-    <p><b>說（00:02／第 31 分）</b>：「請確認大家用的是同一份 B0：版本輸出是 B0，Health 回 ok。環境起不來請馬上舉手。」</p>
+    <p><b>說（00:02／第 31 分）</b>：「請確認大家用的是同一份 B0：版本輸出是 B0，健康檢查回 ok。環境起不來請馬上舉手。」</p>
     <p><b>看</b>：沿用 G0 的 venv；版本不是 B0；Port 8000 被佔用（G0 的 App 沒停）。</p>
     <p><b>停止條件</b>：多人版本不一致或環境不可啟動時，先使用已驗收發放件處理，不讓學員各自更換基線。可直接協助 Python、依賴與啟動命令；記錄耗時，不延長 33 分的分析開始時間。</p>
   </aside>
@@ -1805,13 +1808,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 4 / 4 · 第 32–33 分鐘</p>
   <h2 class="title">測試與基準：記下起點，不修改</h2>
   <ol class="steps">
-    <li><code>pytest -q</code>，保留<b>實際輸出</b>，個人分析時要用</li>
-    <li><code>git init</code> → <code>git add -A</code> → <code>git commit -m "B0 baseline"</code></li>
+    <li>跑一次全部測試，保留<b>實際輸出</b>，個人分析時要用</li>
+    <li>建立 Git 基準版本（第一次 commit），之後才看得出 Agent 改了什麼</li>
     <li>讀 Brownfield 接手說明；<b>請先不要修改程式</b></li>
   </ol>
   <p class="callout warn">目前有若干測試失敗；文件是線索，要和程式、測試交叉驗證。</p>
   <aside class="notes">
-    <p><b>說（00:03／第 32 分）</b>：「目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式，跑完測試、建好 Git 基準，之後才能用 Diff 看 Agent 改了什麼。」</p>
+    <p><b>說（00:03／第 32 分）</b>：「目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式，跑完測試、建好 Git 基準，之後才能比對 Agent 改了哪些程式。」</p>
     <p><b>嚴禁揭露</b>：失敗的原因、檔案位置、失敗數量或文件落差位置；只說「若干」。學員問「是不是一個 Bug」→ 回到「請小組分析是否具有共同原因」。</p>
     <p><b>看</b>：學員把失敗描述成「全部通過」或開始修測試 → 請他保留實際輸出、先不要修改。Git 要求姓名／Email → 照 Runbook 用不加 <code>--global</code> 的 <code>git config</code>。</p>
     <p><b>停止（00:04／第 33 分）</b>：停止背景敘述，翻到「個人 Agent 分析」開始 6 分鐘個人分析，禁止修改。完成檢核：已確認 B0 版本、理解安裝與測試方法、完成個人分析準備，尚未直接修改程式。接下來：33–39 個人 Agent 分析｜39–44 比較・Shared Context｜44–52 依發放任務與核准計畫工作；只有經確認的共同事實才能成為主要 Agent 的執行依據。</p>
@@ -1820,8 +1823,8 @@ body.is-presenter #dk-black { display: none !important; }
 <!-- ===================== Individual analysis 33–39 · Shared Context 39–44 ===================== -->
 
 <section class="slide" data-seg="analysis" data-title="個人分析兩個檢查點" data-minute="33" data-timer="06:00" data-gates="analysis">
-  <p class="kicker">個人分析 · 33–39 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">各自讓 Agent 理解 B0，先不改程式</h2>
+  <p class="kicker">個人分析 · 33–39 · Agent 是隊友 <span class="chip teammate">Teammate</span></p>
+  <h2 class="title">各自讓 Agent 理解既有系統 B0，先不改程式</h2>
   <p class="muted">打開 Runbook「個人 Agent 分析」，從檢查點 1 開始。每個檢查點 Agent 停下，你核對證據、填分析表。</p>
   <ol class="timeline">
     <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 理解 B0 與測試</b></li>
@@ -1841,9 +1844,9 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
   <h2 class="title">理解 B0：模組、依賴、實際測試輸出</h2>
   <ol class="steps">
-    <li>讀 B0 Context、README、架構文件與 ADR，開<b>新的</b> Agent Session</li>
+    <li>讀 B0 的背景說明（Context）、README、架構文件與 ADR（Architecture Decision Record，架構決策紀錄），開<b>新的</b> Agent 對話（Session）</li>
     <li>貼提示詞 1：<b>先不要修改程式</b>，說明模組責任與依賴，做完停下</li>
-    <li>自己跑 <code>pytest -q</code>，保留實際輸出</li>
+    <li>自己跑一次全部測試，保留實際輸出</li>
   </ol>
   <p class="callout">Runbook › 個人 Agent 分析 › 檢查點 1 · 填分析表第 1–2 欄</p>
   <aside class="notes">
@@ -1875,15 +1878,15 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="shared" data-title="Shared Context 兩個檢查點" data-minute="39" data-timer="05:00" data-gates="shared">
-  <p class="kicker">Shared Context · 39–44 · Agent = <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">小組比較分析，整理共同背景</h2>
-  <p class="muted">打開 Runbook「Shared Context」，從檢查點 1 開始。B1 尚未揭露：<b>不提出、也不核准任務修改計畫。</b></p>
+  <p class="kicker">Shared Context · 39–44 · Agent 是隊友 <span class="chip teammate">Teammate</span></p>
+  <h2 class="title">小組比較分析，整理共同脈絡（Shared Context）</h2>
+  <p class="muted">打開 Runbook「Shared Context」，從檢查點 1 開始。B1（第一個 Brownfield 任務）尚未揭露：<b>不提出、也不核准任務修改計畫。</b></p>
   <ol class="timeline">
     <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較與分工</b></li>
     <li data-seg="shared"><span class="tl-min">03:00</span><b>2 · 收斂並交給主要 Agent</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「請打開 Runbook 的 Shared Context，從檢查點 1 開始。比較每個人的分析表，整理共同事實、證據與分歧，選定主要 Agent 與核准者。B1 還沒揭露，這段不提修改計畫、不改程式。」</p>
+    <p><b>說（約 20 秒）</b>：「請打開 Runbook 的 Shared Context（共同脈絡），從檢查點 1 開始。比較每個人的分析表，整理共同事實、證據與分歧，選定主要 Agent 與核准者。B1 還沒揭露，這段不提修改計畫、不改程式。」</p>
     <p><b>操作</b>：本段沒有解鎖頁。在本頁按 <b>T</b> 啟動 5:00 段落計時（00:00＝第 39 分）。說完翻到檢查點 1。</p>
     <p><b>看</b>：核對共同規則、來源版本、限制與待決事項；尚未揭露 B1，不核准任務修改。<b>本階段不發 B1 答案。</b></p>
     <p><b>巡場時看什麼</b>：小組是否在拼接每個人的完整對話（→ 請他們先整理成表單再交給主要 Agent）；是否已經在討論怎麼改程式（→ 拉回共同事實與分歧）。</p>
@@ -1911,12 +1914,12 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">收斂：交給主要 Agent，不提修改計畫</h2>
   <ol class="steps">
     <li>寫下分歧的驗證方式、已知限制與待決事項</li>
-    <li>把整理後的共同 Context 交給主要 Agent，請它複述後停下</li>
+    <li>把整理後的共同脈絡交給主要 Agent，請它複述後停下</li>
     <li>「任務揭露後補填」欄位留到第 44 分鐘</li>
   </ol>
   <p class="callout warn">Runbook › Shared Context › 檢查點 2 · 填範本第 3、4、6 欄；B1 尚未揭露</p>
   <aside class="notes">
-    <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘，請開始收斂。驗證分歧、確認範圍，把共同 Context 交給主要 Agent，請它複述後停下。B1 還沒揭露，不提修改計畫。」</p>
+    <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘，請開始收斂。驗證分歧、確認範圍，把共同脈絡交給主要 Agent，請它複述後停下。B1 還沒揭露，不提修改計畫。」</p>
     <p><b>看</b>：39–44 只收集共同事實、來源、分歧、系統限制與角色；B1 揭露前不要求核准修改計畫。「已知限制」只記錄系統限制，不預先核准修改。不以共同 Context 代替任務授權。</p>
     <p><b>完成條件</b>：留下共同事實、來源、分歧、限制、主要 Agent 與待決事項；未確認的推論清楚標示。</p>
     <p><b>任務揭露後補填</b>（第 2 部分，B1、B2 各填一次）：任務 ID／起點版本／規則來源｜任務範圍／不處理項目｜建議修改區域、理由及不應修改區域｜測試計畫／Regression 保留｜主要 Agent 的 5–8 步執行計畫｜人員核准紀錄（核准人、時間、結論與條件）。未核准或證據不足時，先補缺口，不修改程式。</p>
@@ -1928,11 +1931,11 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide slide-title" data-seg="b1" data-title="解鎖 B1" data-minute="44" data-unlock="b1">
   <p class="kicker">第 44 分鐘 · 解鎖</p>
   <h2 class="title">TASK-B1-001</h2>
-  <p class="subtitle">修復學生票折扣異常 · Agent = Teammate</p>
+  <p class="subtitle">修復學生票折扣異常 · Agent 是隊友（Teammate）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B1 修復學生票折扣異常」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 8 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。先補 Shared Context、由人核准範圍與計畫，核准後主要 Agent 才修改。要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。先補共同脈絡（Shared Context）、由人核准範圍與計畫，核准後主要 Agent 才修改。要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 08:00 段落計時（00:00＝第 44 分），翻頁時持續計時。本頁大字顯示 B1 解鎖碼；只解開「B1 任務卡」，完整碼表見講者視窗。</p>
     <p><b>Cue（RB 44–52）</b>：只發 B1 任務，再補任務範圍、計畫及核准，核准後才修改。說明 Teammate：人核准範圍與計畫再執行。來源沒有 B1 的逐字宣布台詞；以 Cue 口述，不自行補充任務細節或提示。</p>
     <p><b>不可說</b>：不指出檔案位置、錯誤數值或失敗數量。「多個失敗可能源自同一個 Bug」是主持原則，不可當第一個提示直接說出位置或常數。</p>
@@ -1940,7 +1943,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b1" data-title="B1 四個檢查點" data-minute="44" data-timer="08:00" data-gates="b1">
-  <p class="kicker">B1 · 44–52 · Agent = <span class="chip teammate">Teammate</span></p>
+  <p class="kicker">B1 · 44–52 · Agent 是隊友 <span class="chip teammate">Teammate</span></p>
   <h2 class="title">人核准之後，主要 Agent 才修改</h2>
   <p class="muted">每個檢查點 Agent 停下、你們確認。只有實際完成驗收才能宣稱修復完成。</p>
   <ol class="timeline">
@@ -1950,7 +1953,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li data-seg="b1"><span class="tl-min">07:00</span><b>4 · 審查與交付</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「8 分鐘。先讓主要 Agent 只提根因、影響與計畫，你們補好 Shared Context、由人核准；核准後才修改，修復要最小。第 49 分停止擴充跑完整測試，第 51 分由人審查，第 52 分停止。」</p>
+    <p><b>說（約 20 秒）</b>：「8 分鐘。先讓主要 Agent 只提根因、影響與計畫，你們補好共同脈絡、由人核准；核准後才修改，修復要最小。第 49 分停止擴充跑完整測試，第 51 分由人審查，第 52 分停止。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>原則</b>：由人核准計畫並審查 Diff；主持人不代小組完成分析。B1 仍以 Teammate 定位觀察，<b>不提前</b>套用 Digital Worker 的「人不得改 Code」限制。提示每次只給需要的級別（三級提示分在檢查點 1、2、4 備註），記錄原因與時間。</p>
     <p><b>交付物（任務卡）</b>：Root Cause、Impact Analysis、核准計畫、修正 Diff、完整測試指令與實際結果、規則／AC 對照、簡短摘要；正確文件不必無意義重寫。宣稱修復仍須符合全部 AC 並通過全套測試；B1 學習成功包含有效的分析與協作，不以速度評分。可接受不同的分析順序與摘要形式，但要有來源、核准與可重現的結果。</p>
@@ -1963,7 +1966,7 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">分析與核准：Agent 先不改檔案</h2>
   <ol class="steps">
     <li>主要 Agent 只提根因、影響分析與 5–8 步計畫</li>
-    <li>補填 Shared Context「任務揭露後補填」欄位</li>
+    <li>補填共同脈絡（Shared Context）「任務揭露後補填」欄位</li>
     <li><b>人</b>核准範圍與計畫，記下核准人、時間、結論、條件</li>
   </ol>
   <p class="callout">Runbook › B1 › 檢查點 1 · 填 Shared Context「人員核准紀錄」</p>
@@ -1982,8 +1985,8 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">最小修復：只做核准的範圍</h2>
   <ol class="steps">
     <li>核對計畫與核准紀錄一致，核准人回覆主要 Agent 執行</li>
-    <li>Agent 改完跑 <code>pytest -q</code>、貼 <code>git diff --stat</code> 後停下</li>
-    <li>你們看 <code>git diff</code>：沒有計畫外檔案、沒動測試斷言</li>
+    <li>Agent 改完跑測試、列出改了哪些檔案後停下</li>
+    <li>你們看程式修改內容（Diff）：沒有計畫外檔案、沒動測試斷言</li>
   </ol>
   <p class="callout">Runbook › B1 › 檢查點 2 · 填「B1 修復摘要」根因～主要修改</p>
   <aside class="notes">
@@ -1999,8 +2002,8 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 3 / 4 · 第 49–51 分鐘 · 還有 3 分鐘</p>
   <h2 class="title">完整測試：停止擴充</h2>
   <ol class="steps">
-    <li>不再加新修改；執行<b>全套</b> <code>pytest -q</code>，不只跑單一測試</li>
-    <li>零失敗、無 Skip／XFail；原學生票相關失敗全部恢復</li>
+    <li>不再加新修改；執行<b>全套</b>測試，不只跑單一測試</li>
+    <li>零失敗，沒有略過（Skip）或標成預期失敗（XFail）的測試；原學生票相關失敗全部恢復</li>
     <li>成人與混合旅客通過：成人＋學生 <b>1225</b></li>
   </ol>
   <p class="callout warn">Runbook › B1 › 檢查點 3 · 填「B1 修復摘要」測試指令與實際結果</p>
@@ -2016,13 +2019,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 4 / 4 · 第 51–52 分鐘</p>
   <h2 class="title">審查與交付：人決定接受與否</h2>
   <ol class="steps">
-    <li><b>人</b>核對 Diff、規則、金額與 AC：接受／要求修正／拒絕</li>
+    <li><b>人</b>核對 Diff、規則、金額與 AC（Acceptance Criteria，驗收條件）：接受／要求修正／拒絕</li>
     <li>Agent 整理摘要；沒跑過的標「未驗證」，以你們的紀錄為準</li>
     <li>填完 AC 對照、審查結論與未完成事項</li>
   </ol>
   <p class="callout warn">第 52 分鐘停止；未完成也保留根因、影響分析、計畫與未完成事項。</p>
   <aside class="notes">
-    <p><b>說（00:07／第 51 分）</b>：「審查 Diff、AC 與原 Regression，產生交付摘要。只有實際完成驗收才能宣稱修復完成。」</p>
+    <p><b>說（00:07／第 51 分）</b>：「審查程式修改、驗收條件與原本的回歸測試，產生交付摘要。只有實際完成驗收才能宣稱修復完成。」</p>
     <p><b>看</b>：人核對 Diff、規則、金額與 AC 再接受或要求修正 → 介入訊號：Agent 說完成就直接交付。誠實交付：摘要含 Root Cause、Impact、結果及缺項，時間到收斂 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
     <p><b>停止（00:08／第 52 分）</b>：翻到「請先停手」頁，立即停止 B1 擴充；未完成就發 Hint 3，保留 Root Cause／Impact／計畫與缺項。</p>
   </aside>
@@ -2056,7 +2059,7 @@ body.is-presenter #dk-black { display: none !important; }
   <div class="cols-3">
     <div class="card fx fx-up">
       <div class="big-number">85</div>
-      <p class="muted"><code>STUDENT_FARE_RATE</code> 在 B0 的值</p>
+      <p class="muted">學生票率常數 <code>STUDENT_FARE_RATE</code> 在 B0 的值</p>
     </div>
     <div class="card teammate fx fx-up">
       <div class="big-number">75</div>
@@ -2064,11 +2067,11 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
     <div class="card fx fx-up">
       <div class="big-number">5</div>
-      <p class="muted">Manifest 預期失敗 · Unit → Service → HTTP</p>
+      <p class="muted">預期失敗清單（Manifest）· 單元 → 服務層 → HTTP API</p>
     </div>
   </div>
   <table class="table fx fx-fade">
-    <thead><tr><th>Manifest Node ID</th><th>期待值</th><th>B0 實際值</th></tr></thead>
+    <thead><tr><th>失敗的測試（Node ID）</th><th>期待值</th><th>B0 實際值</th></tr></thead>
     <tbody>
       <tr><td><code>unit/test_fare_policy.py::test_student_fare_is_seventy_five_percent</code></td><td><b>525</b></td><td>595</td></tr>
       <tr><td><code>unit/test_fare_policy.py::test_mixed_passenger_fares_sum_as_integers</code></td><td><b>1225</b></td><td>1295</td></tr>
@@ -2088,7 +2091,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b1" data-title="揭曉 · 因果鏈與最小修正" data-minute="52">
-  <p class="reveal-badge">揭曉 · B1 · Minimal Fix</p>
+  <p class="reveal-badge">揭曉 · B1 · 最小修正（Minimal Fix）</p>
   <h2 class="title">沿呼叫路徑追到單一常數</h2>
   <p class="fx fx-fade">
     <span class="chip"><code>api/routes.py::create_booking</code></span> →
@@ -2103,13 +2106,13 @@ body.is-presenter #dk-black { display: none !important; }
     <div class="card teammate fx fx-up">
       <h3>結果</h3>
       <ul>
-        <li><b>44 passed</b>，Manifest 五項全恢復</li>
-        <li>無 Skip／XFail、不刪測試、不改正確期待值</li>
-        <li>Business Rules 原已寫 75%，核對一致即可</li>
+        <li><b>44 passed</b>，預期失敗清單五項全恢復</li>
+        <li>無略過（Skip）／預期失敗（XFail）、不刪測試、不改正確期待值</li>
+        <li>業務規則文件原已寫 75%，核對一致即可</li>
       </ul>
     </div>
   </div>
-  <p class="callout fx fx-fade"><b>不改</b>：成人 100%、提前 85%、Corporate 95%、會員／Seed／Clock、改票／退款／通知／Audit、API／Seat 契約。</p>
+  <p class="callout fx fx-fade"><b>不改</b>：成人 100%、提前購票 85%、企業會員（Corporate）95%、會員／Seed Data（系統預設的測試資料）／時鐘（Clock）、改票／退款／通知／稽核（Audit）、API／座位契約。</p>
   <aside class="notes">
     <p><b>因果鏈（R1-1）</b>：<code>BookingService.create</code> 逐人加總；<code>DiscountPolicy.calculate</code> 依 member → advance → student → adult 第一匹配；<code>FarePolicy.calculate</code> 學生分支用 <code>STUDENT_FARE_RATE</code>。BookingResponse 只序列化總額，不另外計價。</p>
     <p>另將 <code>main.py</code> 版本 metadata 改為 B1，僅版本識別。</p>
@@ -2120,14 +2123,14 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b1" data-title="揭曉 · 好的分析" data-minute="52">
-  <p class="reveal-badge">揭曉 · B1 · Good Analysis</p>
+  <p class="reveal-badge">揭曉 · B1 · 好的分析</p>
   <h2 class="title">好的分析長什麼樣</h2>
   <ol class="steps">
     <li class="fx">認出五個失敗是<b>同一個原因</b>，沿呼叫路徑追到單一常數</li>
-    <li class="fx">修正範圍最小，不在 Router 另加一套計價</li>
-    <li class="fx">用<b>失敗集合比對</b>（node ID），不只比失敗數量</li>
-    <li class="fx">保留原 28 項 G1 測試的內容、斷言與測試資料，不刪除或弱化測試來壓低失敗數</li>
-    <li class="fx"><b>不提前實作 B2</b>：不把 AC 擴大成「所有學生永遠最低 75%」</li>
+    <li class="fx">修正範圍最小，不在 API 路由層（Router）另加一套計價</li>
+    <li class="fx">用<b>失敗集合比對</b>（逐一比對是哪幾個測試失敗），不只比失敗數量</li>
+    <li class="fx">保留原 28 項 Greenfield 完成版（G1）測試的內容、斷言與測試資料，不刪除或弱化測試來壓低失敗數</li>
+    <li class="fx"><b>不提前實作 B2</b>：不把驗收條件擴大成「所有學生永遠最低 75%」</li>
   </ol>
   <p class="quote fx fx-fade">多項失敗來自共同原因；依核實的失敗集合判讀，不以失敗數量猜 Bug 數。</p>
   <aside class="notes">
@@ -2161,7 +2164,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B2」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 11 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B2，從檢查點 1 開始。起點是你們已驗收的 B1。最重要的一件事：第 55 分鐘前，由人選方案、核准 Task Breakdown，主要 Agent 才開始做。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B2，從檢查點 1 開始。起點是你們已驗收的 B1。最重要的一件事：第 55 分鐘前，由人選方案、核准工作拆解（Task Breakdown），主要 Agent 才開始做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 11:00 段落計時（00:00＝第 52 分），翻頁時持續計時。本頁大字顯示 B2 解鎖碼；52 分鐘只解開 B2（含任務卡），完整碼表見講者視窗。</p>
     <p><b>起點</b>：第 52 分鐘才發 TASK-B2-001，並確認小組的起點是<b>已驗收的 B1</b> 與 Shared Context。來源沒有 B2 逐字台詞，只有此 Cue。</p>
     <p><b>B1 Recovery</b>：B1 未完成需接續時，只發<b>已驗收的正式 B1 Recovery Baseline</b>（私下提供獨立碼：<code data-code="recovery-b1"></code>），記錄原小組完成度、來源版本、切換原因與時間；B0 Evaluation 診斷副本不是已完成的 B1，也不是 Recovery 材料。</p>
@@ -2169,7 +2172,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b2" data-title="B2 分工改變" data-minute="52">
-  <p class="kicker">TASK-B2-001 · Agent = <span class="chip teammate">Teammate</span>→<span class="chip dw">Digital Worker</span> 過渡</p>
+  <p class="kicker">TASK-B2-001 · Agent 從隊友 <span class="chip teammate">Teammate</span> 過渡到數位員工 <span class="chip dw">Digital Worker</span></p>
   <h2 class="title">Agent 提出 2–3 個方案，人來選</h2>
   <ol class="stage-bar">
     <li class="tool">Tool</li>
@@ -2185,7 +2188,7 @@ body.is-presenter #dk-black { display: none !important; }
     <div class="card dw fx fx-up">
       <span class="chip dw">人</span>
       <h3>查證假設 · 選擇 · 核准 · 審查</h3>
-      <p>選方案與核准 Task Breakdown 是人的決定。</p>
+      <p>選方案與核准工作拆解（Task Breakdown）是人的決定。</p>
     </div>
   </div>
   <aside class="notes">
@@ -2196,17 +2199,17 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b2" data-title="B2 四個檢查點" data-minute="52" data-timer="11:00" data-gates="b2">
-  <p class="kicker">B2 · 52–63 · Agent = Teammate → Digital Worker</p>
+  <p class="kicker">B2 · 52–63 · Agent 從隊友（Teammate）過渡到數位員工（Digital Worker）</p>
   <h2 class="title">第 55 分鐘前，由人核准方案</h2>
   <p class="muted">未核准，主要 Agent 不動程式。每個檢查點 Agent 停下、你們填好 Runbook 的「確認」才繼續。</p>
   <ol class="timeline">
     <li data-seg="b2"><span class="tl-min">00:00</span><b>1 · 方案與核准（55 前核准）</b></li>
     <li data-seg="b2"><span class="tl-min">03:00</span><b>2 · 實作</b></li>
     <li data-seg="b2"><span class="tl-min">07:00</span><b>3 · 測試與文件</b></li>
-    <li data-seg="b2"><span class="tl-min">10:00</span><b>4 · Review 與交付</b></li>
+    <li data-seg="b2"><span class="tl-min">10:00</span><b>4 · 檢視（Review）與交付</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「B2 有 11 分鐘、四個檢查點。第 55 分鐘前，由你們選方案、核准 Task Breakdown；59 停止擴充，先測試和文件；62 Review；63 停止。要做什麼看 Runbook。」</p>
+    <p><b>說（約 20 秒）</b>：「B2 有 11 分鐘、四個檢查點。第 55 分鐘前，由你們選方案、核准工作拆解；59 停止擴充，先測試和文件；62 檢視成果；63 停止。要做什麼看 Runbook。」</p>
     <p><b>時間 Cue</b>：<b>52</b> 發任務、確認起點＝已驗收 B1＋Shared Context｜<b>52–55</b> Agent 提 2–3 個方案並附 Impact／取捨｜<b>55</b> 人選方案並核准 Task Breakdown（須在 55 前核准），主要 Agent 再執行｜<b>59</b> 停止擴充，優先測試與折扣文件｜<b>62</b> Review：Diff、Applied Discount 與 Regression（逐人優惠與改票）｜<b>63</b> 停止新增工作，收摘要。</p>
     <p><b>操作</b>：每到 Cue 翻到下一個檢查點頁；本頁時間軸依計時自動標示目前檢查點。</p>
     <p><b>不要說</b>：現行 B0 的優惠選擇方式（屬 DEBT-001，揭曉頁才談）；不示範金額計算或實作方式；不點名具體模組或檔案（揭曉頁才列）。</p>
@@ -2219,14 +2222,14 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 1 / 4 · 第 52–55 分鐘</p>
   <h2 class="title">方案與核准：Agent 先不改程式</h2>
   <ol class="steps">
-    <li>確認起點＝已驗收的 B1，補 Shared Context</li>
-    <li>貼 Runbook 提示：Agent 提 Impact Analysis 與 <b>2–3 個方案</b>，然後停下</li>
-    <li>人查證假設、選方案、核准 Task Breakdown：<b>只做到第 N 步，做完停下</b></li>
+    <li>確認起點＝已驗收的 B1，補共同脈絡（Shared Context）</li>
+    <li>貼 Runbook 提示：Agent 提影響分析（Impact Analysis）與 <b>2–3 個方案</b>，然後停下</li>
+    <li>人查證假設、選方案、核准工作拆解（Task Breakdown）：<b>只做到第 N 步，做完停下</b></li>
   </ol>
   <p class="callout warn"><b>第 55 分鐘前完成核准。</b>未核准，主要 Agent 不動程式。</p>
   <p class="callout">Runbook › B2 › 檢查點 1 · 填「Shared Context（B2）」與「方案選擇與核准」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 52 分）</b>：「先確認起點是已驗收的 B1，補 Shared Context。請 Agent 分析影響、提出 2–3 個方案，先不要改程式。第 55 分鐘前，由你們選方案、核准 Task Breakdown。」</p>
+    <p><b>說（00:00／第 52 分）</b>：「先確認起點是已驗收的 B1，補共同脈絡。請 Agent 分析影響、提出 2–3 個方案，先不要改程式。第 55 分鐘前，由你們選方案、核准工作拆解。」</p>
     <p><b>看</b>：起點是否為已驗收 B1（或已核准的 B1 Recovery Baseline）；Agent 有沒有比較 2–3 個方案（未比較 → 需要介入）；Agent 已開始改檔 → 請小組叫它停下，回到提案；是否記錄核准人、時間、結論與條件。</p>
     <p><b>介入・55</b>：第 55 分鐘仍未核准 → 提醒小組立刻選方案並核准，再讓主要 Agent 執行。主持人不替人選方案或核准計畫。</p>
     <p><b>提示・H1 方向</b>（仍沿用條件先後，未分析多資格）：「先列出每位旅客可能符合的優惠，與各自公開資格對照。」</p>
@@ -2239,13 +2242,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 2 / 4 · 第 55–59 分鐘</p>
   <h2 class="title">實作：主要 Agent 依核准計畫做，做完停下</h2>
   <ol class="steps">
-    <li>只做核准的步驟；看 Agent 貼出的<b>實際</b> <code>pytest -q</code> 輸出</li>
-    <li><code>git diff --stat</code>、<code>-- src</code>、<code>-- tests</code>：沒有超出核准範圍</li>
+    <li>只做核准的步驟；看 Agent 貼出的<b>實際</b>測試執行輸出</li>
+    <li>看程式與測試的修改內容（Diff）：沒有超出核准範圍</li>
     <li>建立訂票與改票用同一政策；挑一位多優惠旅客核對採用的優惠</li>
   </ol>
   <p class="callout">Runbook › B2 › 檢查點 2 · 填「檢查點 2 確認」</p>
   <aside class="notes">
-    <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准 Task Breakdown。已核准的，讓主要 Agent 依計畫做，做完停下，你們看測試和 Diff。」</p>
+    <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准工作拆解。已核准的，讓主要 Agent 依計畫做，做完停下，你們看測試和 Diff。」</p>
     <p><b>看 → 介入</b>：只改一個分支、忽略 Change、用全團共同優惠或疊乘計價、全面重構成 Engine → 需要介入。保留同步 Notification；折扣政策清楚化即足夠，不要求複雜的 Engine。</p>
     <p><b>立即停止並糾正</b>：規則疊乘、弱化 Regression、未經核准的外部套件、提前做團體功能 → 要求 Agent 停止該行為，回到核准範圍。</p>
     <p><b>提示・H2 證據</b>（疊乘或以整團共同優惠計算）：「折扣率越低對旅客越有利；比較學生／提前／企業代表組合，確認逐位評估。」</p>
@@ -2258,12 +2261,12 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">停止擴充：測試與折扣文件</h2>
   <ol class="steps">
     <li>不再加功能；請 Agent 補代表組合測試</li>
-    <li>執行完整 Regression <code>pytest -q</code>，保留指令與實際輸出</li>
+    <li>執行完整回歸測試（Regression：確認既有功能沒被改壞），保留指令與實際輸出</li>
     <li>依實際程式更新折扣文件與 API 範例</li>
   </ol>
   <p class="callout warn">Runbook › B2 › 檢查點 3 · 填「檢查點 3 確認」</p>
   <aside class="notes">
-    <p><b>說（00:07／第 59 分）</b>：「第 59 分鐘，停止擴充。優先跑代表組合與完整 Regression，再更新折扣文件。」</p>
+    <p><b>說（00:07／第 59 分）</b>：「第 59 分鐘，停止擴充。優先跑代表組合與完整回歸測試，再更新折扣文件。」</p>
     <p><b>看</b>：完整套件真實執行，不是只跑單一測試；沒有刪除或弱化斷言；文件依實際程式更新。</p>
     <p><b>提示・時間不足</b>（59 仍在擴充或還沒測試）：保存 Policy Design、代表 Test Cases 與文件清單，停止額外功能並如實交付缺項。</p>
     <p><b>立即停止並糾正</b>：弱化 Regression、提前做團體功能。</p>
@@ -2272,15 +2275,15 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="b2" data-title="檢查點 4 · Review 與交付" data-minute="62">
   <p class="kicker">檢查點 4 / 4 · 第 62–63 分鐘</p>
-  <h2 class="title">Review：Diff、實際採用優惠、Regression</h2>
+  <h2 class="title">檢視（Review）：程式修改、實際採用優惠、回歸測試</h2>
   <ol class="steps">
-    <li>看 Diff：建立訂票與改票都用新政策</li>
-    <li>每位旅客的<b>實際採用優惠</b>（Type／Rate）由程式算出，且符合規則</li>
-    <li>完整 Regression 實際輸出；填「B2 交付摘要」</li>
+    <li>看程式修改（Diff）：建立訂票與改票都用新政策</li>
+    <li>每位旅客的<b>實際採用優惠</b>（優惠類型／折扣率）由程式算出，且符合規則</li>
+    <li>完整回歸測試的實際輸出；填「B2 交付摘要」</li>
   </ol>
   <p class="callout warn">第 63 分鐘停止新增工作；未完成保留政策設計、測試案例、文件清單與缺項。</p>
   <aside class="notes">
-    <p><b>說（00:10／第 62 分）</b>：「第 62 分鐘，Review：核對 Diff、實際採用的優惠和 Regression，逐人優惠與改票都要看。請 Agent 整理摘要，用你們的確認紀錄核對後填交付摘要。」</p>
+    <p><b>說（00:10／第 62 分）</b>：「第 62 分鐘，檢視成果：核對程式修改、實際採用的優惠和回歸測試，逐人優惠與改票都要看。請 Agent 整理摘要，用你們的確認紀錄核對後填交付摘要。」</p>
     <p><b>看</b>：逐位旅客取最有利、不疊加、改票與建立一致、Applied Discount 真實、折扣文件同步、完整 Regression 保留；人真的 Review，而不是 Agent 說完成就交付。</p>
     <p><b>停止（00:11／第 63 分）</b>：翻到「請先停手 · B2」，說「停止新增工作，收摘要。」未完成時保留 Policy Design、Test Cases、文件清單與缺項，不宣稱完整交付。</p>
   </aside>
@@ -2306,16 +2309,16 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 候選取最低 rate" data-minute="63">
   <p class="reveal-badge">揭曉 · B2</p>
   <h2 class="title">每位旅客：列出符合的優惠 → 取最低折扣率</h2>
-  <p class="muted fx fx-fade">舊：首個符合（CORPORATE → ADVANCE → STUDENT → ADULT）　→　新：選最低折扣率、每人只用一項</p>
+  <p class="muted fx fx-fade">舊：首個符合（企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT）　→　新：選最低折扣率、每人只用一項</p>
   <div class="b2-lane">
-    <span class="b2-who">成人 <small>企業會員＋提前 · Base 700</small></span>
+    <span class="b2-who">成人 <small>企業會員＋提前 · 基本票價 700</small></span>
     <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
     <span class="b2-cand b2-win">ADVANCE<b>85</b></span>
     <span class="b2-arrow" aria-hidden="true">→</span>
     <span class="b2-result fx fx-up">ADVANCE · 85 · 595</span>
   </div>
   <div class="b2-lane">
-    <span class="b2-who">學生 <small>企業會員＋提前＋學生 · Base 700</small></span>
+    <span class="b2-who">學生 <small>企業會員＋提前＋學生 · 基本票價 700</small></span>
     <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
     <span class="b2-cand">ADVANCE<b>85</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
     <span class="b2-cand b2-win">STUDENT<b>75</b></span>
@@ -2323,10 +2326,10 @@ body.is-presenter #dk-black { display: none !important; }
     <span class="b2-result fx fx-up">STUDENT · 75 · 525</span>
   </div>
   <div class="b2-total fx fx-up">
-    <span class="muted">Booking Total（595 + 525）</span>
+    <span class="muted">訂票總額（595 + 525）</span>
     <span class="big-number">1120</span>
   </div>
-  <p class="callout fx fx-fade">amount = Base Fare × 單一 rate 整除 100；無疊乘、無團體功能。</p>
+  <p class="callout fx fx-fade">每人金額＝基本票價 × 單一折扣率 ÷ 100（取整數）；無疊乘、無團體功能。</p>
   <aside class="notes">
     <p><b>Policy 轉變（R2-1；evaluation 06 開頭段）</b>：第一匹配 → 建立所有符合的候選、選最低折扣率、每人只用一項。費率不變：學生 75%、提前 85%、Corporate 95%、成人 100%。</p>
     <p><b>本頁示例</b>＝AC-B2-007／008／009 的三資格混合案例：學生 STUDENT 75／525、成人 ADVANCE 85／595，總額 <b>1120</b>（09 acceptance map）。按 → 逐步：淘汰較高 rate → 顯示結果 → 總額。</p>
@@ -2337,21 +2340,21 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 代表組合" data-minute="63">
   <p class="reveal-badge">揭曉 · B2</p>
-  <h2 class="title">代表組合與實際數字（Base 700）</h2>
+  <h2 class="title">代表組合與實際數字（基本票價 700）</h2>
   <table class="table fx fx-fade">
-    <thead><tr><th>情境</th><th>Type／Rate／Amount</th><th>AC</th></tr></thead>
+    <thead><tr><th>情境</th><th>優惠類型／折扣率／金額</th><th>AC（驗收條件）</th></tr></thead>
     <tbody>
       <tr><td>成人無優惠</td><td><code>ADULT／100／700</code></td><td>AC-B2-001</td></tr>
       <tr><td>學生</td><td><code>STUDENT／75／525</code></td><td>AC-B2-002</td></tr>
       <tr><td>提前成人（≥14 天；13／14／15 天邊界）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
-      <tr><td>Corporate 成人</td><td><code>CORPORATE／95／665</code></td><td>AC-B2-004</td></tr>
+      <tr><td>企業會員成人</td><td><code>CORPORATE／95／665</code></td><td>AC-B2-004</td></tr>
       <tr><td>學生＋提前</td><td><code>STUDENT／75／525</code>（不疊乘 85%）</td><td>AC-B2-005</td></tr>
-      <tr><td>Corporate＋提前</td><td><code>ADVANCE／85／595</code>（舊測試 665 → 595）</td><td>AC-B2-006</td></tr>
+      <tr><td>企業會員＋提前</td><td><code>ADVANCE／85／595</code>（舊測試 665 → 595）</td><td>AC-B2-006</td></tr>
       <tr><td>三者同時符合</td><td>學生 75／525、成人 85／595</td><td>AC-B2-007</td></tr>
-      <tr><td>Corporate 學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
+      <tr><td>企業會員學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
     </tbody>
   </table>
-  <p class="muted fx fx-fade">改票（新基價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；Fare Difference <b>−26</b>；原 Order 仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ Unit 7 ＋ Integration 4 ＝ <b>55 passed</b></p>
+  <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
   <aside class="notes">
     <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
     <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
@@ -2366,11 +2369,11 @@ body.is-presenter #dk-black { display: none !important; }
   <table class="table fx fx-fade">
     <thead><tr><th>區域</th><th>核對行為</th></tr></thead>
     <tbody>
-      <tr><td>Domain <code>DiscountPolicy.calculate</code></td><td>候選資格（有效會員／固定 Clock／≥14 天／旅客型別），選最低 rate，回傳 amount、discount_type、整數 rate</td></tr>
+      <tr><td>Domain <code>DiscountPolicy.calculate</code></td><td>候選資格（有效會員／固定時鐘 Clock／≥14 天／旅客型別），選最低折扣率（rate），回傳 amount、discount_type、整數 rate</td></tr>
       <tr><td><code>BookingService.create</code></td><td>每人獨立選擇，總額＝每人 amount 加總；驗證後才寫 Booking／座位</td></tr>
       <tr><td><code>ChangeBookingService.change</code></td><td>目標 Trip＋當前 Clock 用同政策重新計價；同步 total_fare、fare_difference、applied_discounts；原 Order 付款金額不變</td></tr>
       <tr><td>Domain／Schema／API</td><td>Booking 根層 <code>applied_discounts</code>：passenger_id、discount_type、rate、amount；原 passengers 三欄不變</td></tr>
-      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API Examples；ADR 記錄候選選擇</td></tr>
+      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR（Architecture Decision Record，架構決策紀錄）記錄候選選擇</td></tr>
     </tbody>
   </table>
   <aside class="notes">
@@ -2391,7 +2394,7 @@ body.is-presenter #dk-black { display: none !important; }
         <li>ADR 記錄候選選擇的簡單設計</li>
         <li>唯一一項舊測試因新政策<b>明確遷移</b>（665 → 595）</li>
         <li>每案核對實際折扣率、優惠類型與金額</li>
-        <li>改票失敗時 Booking／Order／Seat／Audit／通知零部分變更</li>
+        <li>改票失敗時訂票／訂單／座位／稽核紀錄／通知都不留部分變更</li>
       </ul>
     </div>
     <div class="callout warn fx fx-up">
@@ -2416,10 +2419,11 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide slide-title" data-seg="b3" data-title="解鎖 B3 / Digital Worker" data-minute="63" data-unlock="b3">
   <p class="kicker">第 63 分鐘 · 解鎖</p>
   <h2 class="title">B3 團體訂票 · Digital Worker</h2>
+  <p class="subtitle">Agent 成為數位員工（Digital Worker）：在核准範圍內主導交付，人負責核准與審查</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B3 團體訂票：Digital Worker 流程」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 13 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、Work Order 和三個 Gate 表單都在 Runbook；投影只告訴你時間和現在是第幾個檢查點。」說完翻下一頁宣布規則改變。</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）和三個核准關卡（Gate）表單都在 Runbook；投影只告訴你時間和現在是第幾個檢查點。」說完翻下一頁宣布規則改變。</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼；完整碼表見講者視窗。</p>
     <p><b>解鎖內容</b>：B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、空白例外回應卡。必讀只有操作規則、Work Order、Approval Gates 與任務卡；Review／Delivery／Exception 卡按需使用。</p>
     <p><b>不可說</b>：空白範本不預發情境或答案。例外情境只在第 69–70 分由本簡報呈現，<b>不要在此提到例外內容</b>。</p>
@@ -2428,7 +2432,7 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b3" data-title="規則改變：人不直接改程式" data-minute="63" data-fragments="step">
-  <p class="kicker">規則改變 · 從 B3 開始 · Agent 角色 = <span class="chip dw">Digital Worker</span></p>
+  <p class="kicker">規則改變 · 從 B3 開始 · Agent 角色：數位員工 <span class="chip dw">Digital Worker</span></p>
   <h2 class="title">人不直接改程式</h2>
   <ol class="stage-bar">
     <li class="tool">Tool</li>
@@ -2446,7 +2450,7 @@ body.is-presenter #dk-black { display: none !important; }
       <p>主導分析、設計、實作、測試、文件及交付</p>
     </div>
   </div>
-  <p class="muted fx fx-fade">工具不支援自動修改時，Agent 可產生 Patch，由環境套用；人員仍不得自行補寫程式或測試。</p>
+  <p class="muted fx fx-fade">工具不支援自動修改時，Agent 可產生修補檔（Patch），由環境套用；人員仍不得自行補寫程式或測試。</p>
   <aside class="notes">
     <p><b>宣告（repo 無逐字口白稿；以下為最接近逐字的來源）</b></p>
     <ul>
@@ -2460,8 +2464,8 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b3" data-title="B3 六個檢查點" data-minute="63" data-timer="13:00" data-gates="b3">
-  <p class="kicker">B3 · 63–76 · Agent = Digital Worker</p>
-  <h2 class="title">13 分鐘，三個 Gate 不跳過</h2>
+  <p class="kicker">B3 · 63–76 · Agent 是數位員工（Digital Worker）</p>
+  <h2 class="title">13 分鐘，三個核准關卡（Gate）不跳過</h2>
   <p class="muted">每個檢查點 Agent 停下、人確認。Gate 由人填寫決策，核准後才進下一步。</p>
   <ol class="timeline">
     <li data-seg="b3"><span class="tl-min">00:00</span><b>1 · 交辦</b></li>
@@ -2473,7 +2477,7 @@ body.is-presenter #dk-black { display: none !important; }
   </ol>
   <p class="callout">每 Gate 控制 1–3 分鐘；例外判斷含在此時間，不額外加時。</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「13 分鐘、6 個檢查點，其中三個是 Gate。Agent 每到檢查點就停下，由你們填 Gate 決策才繼續。Gate 2 核准、條件解除前 Agent 不能改程式；人全程不改程式。」</p>
+    <p><b>說（約 20 秒）</b>：「13 分鐘、6 個檢查點，其中三個是核准關卡（Gate）。Agent 每到檢查點就停下，由你們填 Gate 決策才繼續。Gate 2 核准、條件解除前 Agent 不能改程式；人全程不改程式。」</p>
     <p><b>操作</b>：計時應已在解鎖頁啟動（沒有就在本頁按 T）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，第 69 分在檢查點 3 之後翻到例外事件頁。本頁時間軸會依計時自動標示目前檢查點，需要總覽時可翻回。</p>
     <p><b>巡場時看什麼</b>：Runbook 的 Gate 表單有沒有填、核准時間是否早於修改。Gate 表單空白但 Agent 已在改程式 → 介入觸發 #1。</p>
     <p><b>介入觸發（七項）</b>：#1 Agent 未等待 Gate 即修改程式｜#2 人員直接 Coding｜#3 Agent 刪除或弱化測試｜#4 小組核准 SQLite 越界｜#5 小組無視付款失敗補償｜#6 Agent 宣稱測試通過卻無實際證據｜#7 時間到仍持續擴充。</p>
@@ -2487,15 +2491,15 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="b3" data-title="檢查點 1 · 交辦" data-minute="63">
   <p class="kicker">檢查點 1 / 6 · 第 63–64 分鐘</p>
-  <h2 class="title">交辦：填 Approved Context，交給 Agent</h2>
+  <h2 class="title">交辦：填已核准背景（Approved Context），交給 Agent</h2>
   <ol class="steps">
     <li>讀操作規則與任務卡（目標 2 分鐘內讀完）</li>
-    <li>填 Work Order 的 Approved Context；未填資料由小組確認，不讓 Agent 猜</li>
-    <li>貼上交辦提示：<b>只交 Gate 1 Input，然後停下</b></li>
+    <li>填工作單（Work Order）的已核准背景（Approved Context）；未填資料由小組確認，不讓 Agent 猜</li>
+    <li>貼上交辦提示：<b>只交 Gate 1 要審的資料（Input），然後停下</b></li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 1 · 填「Work Order」的 Approved Context</p>
   <aside class="notes">
-    <p><b>說（00:00／第 63 分）</b>：「請照 Runbook 檢查點 1：讀操作規則，填 Work Order 的 Approved Context，交給主要 Agent。Agent 先只交 Gate 1 的需求理解，交完停下等你們決策。」</p>
+    <p><b>說（00:00／第 63 分）</b>：「請照 Runbook 檢查點 1：讀操作規則，填工作單 Work Order 的已核准背景（Approved Context），交給主要 Agent。Agent 先只交 Gate 1 的需求理解，交完停下等你們決策。」</p>
     <p><b>看</b>：第 64 分 Agent 應已開始 Gate 1（摘要、假設、缺口、Out of Scope）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。</p>
     <p><b>可回答</b>：操作規則、表單位置、Approved Context 欄位意思。操作規則 2 分鐘讀不完的組，可在 Agent 準備 Gate 1 時讀完（Runbook 已寫）。</p>
   </aside>
@@ -2505,13 +2509,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 2 / 6 · 第 64–66 分鐘</p>
   <h2 class="title">Gate 1：需求理解，由人決策</h2>
   <ol class="steps">
-    <li>Agent 交 Gate 1 Input：需求摘要、規則、假設、缺口、Out of Scope</li>
+    <li>Agent 交 Gate 1 資料：需求摘要、規則、假設、缺口、不做的範圍（Out of Scope）</li>
     <li>核對 5–20 人、同車廂連續、無部分成功、失敗全釋放、B2 逐人優惠</li>
     <li>第 66 分前填 Gate 1 決策：<b>核准需求才進入設計</b></li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 2 · 填「Gate Decision · GATE1」</p>
   <aside class="notes">
-    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 Input 後，請核對它的需求理解，回答它的問題。第 66 分前由人填 Gate 1 決策。」</p>
+    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 資料後，請核對它的需求理解，回答它的問題。第 66 分前由人填 Gate 1 決策。」</p>
     <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策；核准才進 Gate 2 設計，拒絕就要求修正。」</p>
     <p><b>看</b>：先 Review 再核准｜Challenge 假設、風險、邊界與替代方案｜不跳 Gate。Gate 決策由人填寫，Agent 不代填；無須電子簽章。學員表單為六欄短格式（含 Gate ID）。</p>
     <p><b>條件核准（逐字）</b>：「條件核准不等於可忽略條件直接執行：條件必須具體、可驗證且先解除」。條件須說明哪些活動已允許、哪些仍被阻擋，以及要回到哪個 Gate。</p>
@@ -2523,13 +2527,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 3 / 6 · 第 66–70 分鐘</p>
   <h2 class="title">Gate 2：影響與設計，核准後才改程式</h2>
   <ol class="steps">
-    <li>Agent 交 Gate 2 Input：影響模組、API、座位配置、Atomicity／補償、測試、預計修改檔案</li>
+    <li>Agent 交 Gate 2 資料：影響模組、API、座位配置、全有或全無（Atomicity）／失敗補償、測試、預計修改檔案</li>
     <li>核對範圍合理、不全面重寫、建立與付款失敗都有處理、無未核准外部依賴</li>
     <li>第 69 分前填 Gate 2 決策與 Work Order「Gate 2 核准範圍」</li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 3 · 填「Gate Decision · GATE2」</p>
   <aside class="notes">
-    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准的組，請 Agent 交 Gate 2：影響、API、座位、Atomicity、測試與風險。Gate 2 核准、條件解除前，不能改程式。」</p>
+    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准的組，請 Agent 交 Gate 2：影響、API、座位、全有或全無的處理、測試與風險。Gate 2 核准、條件解除前，不能改程式。」</p>
     <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件卡</b>（若 Agent 已自然提出 SQLite，見下一頁備註）。</p>
     <p><b>看</b>：「不以方案看似合理取代授權檢查。」條件未滿足的範圍先停止；偏差需補證或重新核准。Agent 在 Gate 2 決策前就改檔案 → 觸發 #1。</p>
     <p><b>可回答</b>：學員問座位演算法或完整 Response 細節 → 任務卡不規定完整 Response 或座位演算法，由 Agent 在 Gate 2 提案、人審查。</p>
@@ -2538,21 +2542,21 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b3" data-title="例外事件 EXCEPTION-DW-001" data-minute="69" data-countdown="60">
-  <p class="kicker"><span class="chip dw">INCOMING EXCEPTION</span> Gate 2 · 第 69 分鐘 · <code>EXCEPTION-DW-001</code></p>
+  <p class="kicker"><span class="chip dw">突發例外 INCOMING EXCEPTION</span> Gate 2 · 第 69 分鐘 · <code>EXCEPTION-DW-001</code></p>
   <h2 class="title">Agent 提出了一個新方案</h2>
-  <p class="quote fx fx-fade">假設主要 Agent 建議加入 SQLite，認為能簡化座位保留與付款失敗 Rollback。請依已核准 Constraint，在 60 秒內做 Gate 決策並回覆 Agent。</p>
+  <p class="quote fx fx-fade">假設主要 Agent 建議加入 SQLite，認為能簡化座位保留與付款失敗時的復原（Rollback）。請依已核准的限制（Constraint），在 60 秒內做 Gate 決策並回覆 Agent。</p>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">1 · 核對</span>
       <h3>在核准範圍內嗎？</h3>
       <p><span class="chip">YES</span> <span class="chip">NO</span> <span class="chip">UNCLEAR</span></p>
-      <p class="muted">提議內容、核准規則／Constraint、證據位置</p>
+      <p class="muted">是／否／不明確；寫下提議內容、核准規則／限制（Constraint）、證據位置</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">2 · 決策</span>
       <h3>決策</h3>
       <p><span class="chip">APPROVE</span> <span class="chip">APPROVE WITH CONDITIONS</span> <span class="chip">REJECT</span></p>
-      <p class="muted">決策者與分鐘</p>
+      <p class="muted">核准／有條件核准／退回；記下決策者與分鐘</p>
     </div>
     <div class="card dw fx fx-up">
       <span class="chip dw">3 · 回覆</span>
@@ -2560,7 +2564,7 @@ body.is-presenter #dk-black { display: none !important; }
       <p class="muted">下一步指令、允許範圍、仍需停止的動作、須回到的 Gate</p>
     </div>
   </div>
-  <p class="callout warn fx fx-fade">使用 Runbook 的 Exception 回應卡。時間緊可用 30 秒口頭判斷並留下簡短紀錄。</p>
+  <p class="callout warn fx fx-fade">使用 Runbook 的例外回應卡（Exception）。時間緊可用 30 秒口頭判斷並留下簡短紀錄。</p>
   <aside class="notes">
     <p><b>按 T 啟動 60 秒倒數。</b>時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
@@ -2585,7 +2589,7 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">執行：Agent 在核准範圍內做，人審查</h2>
   <ol class="steps">
     <li>Gate 2 核准、條件解除後，才請 Agent 按核准計畫執行</li>
-    <li>遇停止條件：Agent 停下，用 Escalation 短格式提出證據，人決策後才續行</li>
+    <li>遇停止條件：Agent 停下，用升級回報（Escalation）短格式提出證據，人決策後才續行</li>
     <li><b>人不寫程式、不補測試</b>；看修改檔案是否都在核准範圍</li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 4 · 填「檢查點 4 確認」</p>
@@ -2604,7 +2608,7 @@ body.is-presenter #dk-black { display: none !important; }
   <ol class="steps">
     <li>不再新增功能；已有修改就執行測試，記下實際命令與結果</li>
     <li>尚無修改或未執行：明記「無修改／未執行」與原因，不預填成功</li>
-    <li>Agent 交 Gate 3 Input 後停下</li>
+    <li>Agent 交 Gate 3 資料後停下</li>
   </ol>
   <p class="callout warn">Runbook › B3 › 檢查點 5 · 填「檢查點 5 確認」</p>
   <aside class="notes">
@@ -2619,13 +2623,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 6 / 6 · 第 75–76 分鐘</p>
   <h2 class="title">Gate 3：依實際證據決定交付</h2>
   <ol class="steps">
-    <li>審查 Gate 3 Input：有修改看 Diff，有實測核對結果與 Skip／XFail</li>
+    <li>審查 Gate 3 資料：有修改看程式修改（Diff），有實測就核對結果，並確認沒有用略過（Skip）或預期失敗（XFail）遮掩</li>
     <li>填 Gate 3 決策；未驗證保持未勾，不由 Agent 全勾</li>
-    <li>Agent 交 Delivery Summary 與 Level，<b>不自動選 Level 3</b></li>
+    <li>Agent 交交付摘要（Delivery Summary）與完成等級（Level 1 分析、2 核心流程、3 完整交付），<b>不自動選 Level 3</b></li>
   </ol>
   <p class="callout warn">第 76 分鐘停止新增；人不補程式或測試，缺項如實列出。</p>
   <aside class="notes">
-    <p><b>說（00:12／第 75 分）</b>：「Gate 3 Review：有修改的看 Diff、實際測試結果、Rule 與文件；還沒有程式的，審 Gate 1／2、影響分析、測試策略與缺項，不宣稱功能通過。」</p>
+    <p><b>說（00:12／第 75 分）</b>：「Gate 3 檢視：有修改的看程式修改、實際測試結果、規則與文件；還沒有程式的，審 Gate 1／2、影響分析、測試策略與缺項，不宣稱功能通過。」</p>
     <p><b>看（Human）</b>：要求測試（不只接受「已完成」摘要）｜檢查 Diff（不以摘要代替範圍審查）｜判斷交付（區分 Agent 完成宣稱與成果可接受）。</p>
     <p><b>Level 1</b>：無修改／未執行時審 Gate 1／2、合理 Impact、完整 Test Strategy 與缺項，明記「無修改／未執行」，不預填成功；不能將活動收件視為功能通過。</p>
     <p><b>核准 ≠ PASS</b>：三 Gate 是執行中的人員核准，不取代程式驗收；缺證據不得把核准當作測試通過。</p>
@@ -2636,7 +2640,7 @@ body.is-presenter #dk-black { display: none !important; }
 <!-- ===================== Delivery 76–80 ===================== -->
 
 <section class="slide" data-seg="delivery" data-title="交付與收件" data-minute="76" data-timer="04:00" data-gates="delivery">
-  <p class="kicker">Delivery · 76–80 · 停止新增，如實交付</p>
+  <p class="kicker">交付（Delivery）· 76–80 · 停止新增，如實交付</p>
   <h2 class="title">先交件，再揭曉</h2>
   <p class="muted">Runbook 打開「Delivery Summary 與交付」，從檢查點 1 開始。全員交件後，投影才翻到揭曉頁。</p>
   <ol class="timeline">
@@ -2663,13 +2667,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 1 / 2 · 第 76–78 分鐘</p>
   <h2 class="title">停止新增，定稿交付摘要</h2>
   <ol class="steps">
-    <li>停止擴充；Agent 依實際證據交 Delivery Summary，做完停下</li>
-    <li>審查者核對：Level 擇一有證據，<b>不自動選 Level 3</b>；未驗證不寫 PASS</li>
+    <li>停止擴充；Agent 依實際證據交交付摘要（Delivery Summary），做完停下</li>
+    <li>審查者核對：完成等級（Level 1–3）擇一並有證據，<b>不自動選 Level 3</b>；未驗證不寫通過（PASS）</li>
     <li>填「交付摘要」；Gate 3 還沒記錄的，補記人員決策</li>
   </ol>
   <p class="callout">Runbook › Delivery › 檢查點 1 · 填「交付摘要」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與 Level，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
+    <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與完成等級，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整｜Level 3 完整交付＝建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成。</p>
     <p><b>看</b>：Level 擇一並說明證據，不自動選 Level 3｜附真實測試命令與結果，未執行明記原因，未驗證不能寫 PASS｜附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）。</p>
     <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。</p>
@@ -2681,8 +2685,8 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 2 / 2 · 第 78–79 分鐘</p>
   <h2 class="title">匯出與交件，交完就停手</h2>
   <ol class="steps">
-    <li>逐一匯出 B3 表單：Work Order、Gate 1／2／3、有用到的 Review／例外卡</li>
-    <li>匯出 Delivery Summary，依指定方式交件</li>
+    <li>逐一匯出 B3 表單：工作單（Work Order）、Gate 1／2／3、有用到的檢視（Review）／例外卡</li>
+    <li>匯出交付摘要（Delivery Summary），依指定方式交件</li>
     <li>交件後不再修改，看投影</li>
   </ol>
   <p class="callout warn">Runbook › Delivery › 檢查點 2 · 填「檢查點 2 確認」</p>
@@ -2698,9 +2702,9 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="請先停手 · B3" data-minute="77">
   <div class="stop-screen">
-    <p class="kicker">B3 已截止 · Delivery 收件</p>
+    <p class="kicker">B3 已截止 · 交付收件</p>
     <h2 class="title">請先停手</h2>
-    <p class="lead">停止修改，Delivery Summary 與 Level 保持交付時的樣子。</p>
+    <p class="lead">停止修改，交付摘要與完成等級保持交付時的樣子。</p>
     <p class="muted">人不補寫程式或測試；未完成如實列為缺項。接下來揭曉參考內容。</p>
   </div>
   <aside class="notes">
@@ -2717,21 +2721,21 @@ body.is-presenter #dk-black { display: none !important; }
     <table class="table fx fx-fade">
       <thead><tr><th>模組</th><th>預期影響</th></tr></thead>
       <tbody>
-        <tr><td><code>GroupBookingService.create</code></td><td>共同 RLock 內驗證 Trip／5–20／容量／Member；<b>先計價＋完整 Plan，再一次寫入</b>；Audit <code>GROUP_BOOKING_CREATED</code></td></tr>
-        <tr><td><code>SeatService.plan_group</code></td><td>依 capacity 尋找完整連續空位區段</td></tr>
-        <tr><td>models／contracts</td><td>GROUP type；Assigned Seats；根 <code>applied_discounts</code> 沿 B2</td></tr>
+        <tr><td><code>GroupBookingService.create</code></td><td>在同一把鎖（RLock）內驗證班次／5–20 人／容量／會員；<b>先計價＋完整座位規劃，再一次寫入</b>；稽核紀錄 <code>GROUP_BOOKING_CREATED</code></td></tr>
+        <tr><td><code>SeatService.plan_group</code></td><td>依人數尋找完整連續空位區段</td></tr>
+        <tr><td>models／contracts</td><td>團體類型（GROUP）；已分配座位（Assigned Seats）；根層 <code>applied_discounts</code> 沿用 B2</td></tr>
         <tr><td><code>PaymentService.pay</code>／<code>pay_group</code></td><td>團體付款成功／失敗補償</td></tr>
-        <tr><td>Change／Refund</td><td>Group 改票暫不支援（409）；已付 Group 退款全釋放</td></tr>
+        <tr><td>改票／退款</td><td>團體改票暫不支援（409）；已付款團體退款時全部釋放座位</td></tr>
         <tr><td>API</td><td><code>POST /group-bookings</code>、<code>/group-bookings/{booking_id}/pay</code></td></tr>
       </tbody>
     </table>
     <div>
-      <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">Group Booking；一般 Booking 維持 1–4 人</p></div>
-      <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">Rule（原 40 ＋ 新 17）</p></div>
-      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">passed（原 55 ＋ 新增 20）</p></div>
+      <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">人團體訂票；一般訂票維持 1–4 人</p></div>
+      <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">條規則（原 40 ＋ 新 17）</p></div>
+      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（原 55 ＋ 新增 20）</p></div>
     </div>
   </div>
-  <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同 Trip、同車廂完整連續區段、無部分成立。</p>
+  <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段、無部分成立。</p>
   <aside class="notes">
     <p><b>來源</b>：evaluation <code>07-b3-expected-impact-analysis.md</code> 影響表；<code>10-b3-acceptance-test-map.md</code>（AC-B3-001～019、§57 Rule）。</p>
     <p>一般 Booking 維持原付款失敗 pending／保留座位語意；只有 GROUP 採取消（見 Atomicity 頁）。</p>
@@ -2741,10 +2745,10 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · 座位演算法" data-minute="77">
-  <p class="reveal-badge">揭曉 · Seat Algorithm</p>
+  <p class="reveal-badge">揭曉 · 座位演算法</p>
   <h2 class="title">找完整連續區段：不跨車廂，可跨排（row）</h2>
   <div class="card fx fx-up">
-    <h3><span class="chip teammate">成功</span> C001 positions 3–7（跨 row，同車廂）</h3>
+    <h3><span class="chip teammate">成功</span> C001 車廂座位位置 3–7（跨排，同車廂）</h3>
     <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0">
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">1</span>
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">2</span>
@@ -2759,7 +2763,7 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
   </div>
   <div class="card fx fx-up">
-    <h3><span class="chip dw">拒絕</span> positions 19–23（跨 carriage）</h3>
+    <h3><span class="chip dw">拒絕</span> 座位位置 19–23（跨車廂）</h3>
     <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0;align-items:center">
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">…</span>
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">18</span>
@@ -2772,7 +2776,7 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
   </div>
   <ol class="steps">
-    <li class="fx">每 carriage 20 個 position；依 capacity 尋找完整連續空位區段</li>
+    <li class="fx">每節車廂 20 個座位位置；依人數尋找完整連續空位區段</li>
     <li class="fx">第一車廂滿 → 搜尋第二車廂（C002 精確 1–5 成功）</li>
     <li class="fx">總空位足夠但碎片化、無完整區段 → <b>整筆拒絕</b></li>
   </ol>
@@ -2784,26 +2788,26 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · Atomicity／Compensation" data-minute="78">
-  <p class="reveal-badge">揭曉 · Atomicity 與 Compensation</p>
+  <p class="reveal-badge">揭曉 · 全有或全無（Atomicity）與失敗補償（Compensation）</p>
   <h2 class="title">全有或全無</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>建立時維持原子性（Atomicity）</h3>
-      <p>4 人／21 人、18 席不足 20 人、Trip／Member 不存在、空位碎片化、跨車廂 → <b>409</b></p>
-      <p class="muted">Booking／Order／Seat／Refund／Audit／Notify／全部 Trip 容量 snapshot <b>完全不變</b></p>
+      <p>4 人／21 人、18 席不足 20 人、班次／會員不存在、空位碎片化、跨車廂 → <b>409</b></p>
+      <p class="muted">訂票／訂單／座位／退款／稽核／通知／各班次容量<b>完全不變</b></p>
     </div>
     <table class="table fx fx-fade">
       <thead><tr><th>付款結果</th><th>行為</th></tr></thead>
       <tbody>
         <tr><td>成功</td><td>整筆 PAID、<b>唯一 Order</b>（重複付款 409 仍一筆）；通知 <code>GROUP_PAYMENT_COMPLETED</code></td></tr>
-        <tr><td>失敗</td><td><b>CANCELLED</b>、釋放全部座位、清除 Assigned Seats、<b>無 Order</b>；<code>GROUP_PAYMENT_FAILED</code>、通知 <code>GROUP_BOOKING_CANCELLED</code></td></tr>
-        <tr><td>防繞過</td><td>一般 pay 路由依 type 同樣補償；<code>group/pay</code> 拒 ordinary（<code>BOOKING_NOT_GROUP</code>）；取消後重試不成立、不重複釋放座位</td></tr>
+        <tr><td>失敗</td><td>取消（<b>CANCELLED</b>）、釋放全部座位、清除已分配座位、<b>不建訂單</b>；<code>GROUP_PAYMENT_FAILED</code>、通知 <code>GROUP_BOOKING_CANCELLED</code></td></tr>
+        <tr><td>防繞過</td><td>一般付款路由依訂票類型同樣補償；團體付款路由拒絕一般訂票（<code>BOOKING_NOT_GROUP</code>）；取消後重試不成立、不重複釋放座位</td></tr>
       </tbody>
     </table>
   </div>
   <div class="cols-2">
     <div class="card fx fx-up"><div class="big-number">2835</div><p class="muted">3 成人提前 85%（各 595）＋ 2 學生 75%（各 525）</p></div>
-    <p class="callout warn fx fx-fade">一般訂票付款失敗仍保留 pending，<b>僅 GROUP 採取消</b>；須分別保留兩種行為。</p>
+    <p class="callout warn fx fx-fade">一般訂票付款失敗仍保留待付款（pending），<b>僅團體訂票採取消</b>；須分別保留兩種行為。</p>
   </div>
   <aside class="notes">
     <p><b>來源</b>：<code>07-b3-expected-impact-analysis.md</code> §測試與實際證據；<code>10-b3-acceptance-test-map.md</code>。</p>
@@ -2813,24 +2817,24 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="78">
-  <p class="reveal-badge">揭曉 · EXCEPTION-DW-001</p>
-  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT AND REVISE</span></h2>
+  <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
+  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT AND REVISE</span> 退回並修改</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>
-      <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>；SQLite 提案與此限制衝突</p>
-      <p class="muted">即使 SQLite 可由標準函式庫使用，仍是<b>未核准資料庫變更</b>；不能安裝、實作或寫進 Conditional Approval</p>
+      <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>（資料只存在記憶體）；SQLite 提案與此限制衝突</p>
+      <p class="muted">即使 SQLite 可由標準函式庫使用，仍是<b>未核准資料庫變更</b>；不能安裝、實作或寫進有條件核准（Conditional Approval）</p>
     </div>
     <div class="card dw fx fx-up">
       <h3>必要修正</h3>
       <p>拒絕 SQLite 方案、<b>保留團體任務</b></p>
-      <p class="muted">重提 In-Memory Seat Reservation 與 Compensation 方案：完整連續區段、建立 atomic、付款失敗 CANCELLED／全 release／無 Order 的實測計畫</p>
+      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單的實測計畫</p>
     </div>
   </div>
   <ol class="steps">
-    <li class="fx">Reject 的是<b>超範圍方案，不是整個任務</b></li>
-    <li class="fx">允許方向：現有 Repository、先完整 Plan 再 Reserve、付款失敗明確 Compensation；必要時 In-Memory Snapshot、Reservation Token 或明確 Rollback Method</li>
-    <li class="fx">改提案尚缺證據可 APPROVE WITH CONDITIONS（僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
+    <li class="fx">退回（Reject）的是<b>超範圍方案，不是整個任務</b></li>
+    <li class="fx">允許方向：沿用現有資料存取層（Repository）、先完整規劃再保留座位、付款失敗有明確補償；必要時用記憶體快照、保留憑證（Reservation Token）或明確的復原方法</li>
+    <li class="fx">改提案尚缺證據可有條件核准（APPROVE WITH CONDITIONS，僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
     <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計 → 停止、說明阻擋並升級</li>
   </ol>
   <aside class="notes">
@@ -2843,15 +2847,15 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · 治理 Rubric" data-minute="79">
-  <p class="reveal-badge">揭曉 · Autonomy and Governance Rubric</p>
+  <p class="reveal-badge">揭曉 · 自主與治理五面向（Autonomy and Governance Rubric）</p>
   <h2 class="title">五面向 0–3：看治理，不看程式量</h2>
   <table class="table fx fx-fade">
     <thead><tr><th>面向</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>
     <tbody>
       <tr><td><b>A</b> 需求理解</td><td>未分析需求即修改</td><td>只重述需求</td><td>辨識主要規則與假設</td><td>完整辨識規則、缺口、範圍及風險</td></tr>
       <tr><td><b>B</b> 計畫與範圍控制</td><td>無計畫或大幅超出範圍</td><td>有計畫但範圍不清楚</td><td>計畫合理且大致遵守</td><td>計畫、修改與偏差均可追溯</td></tr>
-      <tr><td><b>C</b> 證據與品質</td><td>無測試證據</td><td>只有部分測試或口頭說明</td><td>主要測試及 Diff 可驗證</td><td>Acceptance、Regression、文件及風險均有證據</td></tr>
-      <tr><td><b>D</b> 人員監督</td><td>人員未審查即接受</td><td>形式性核准</td><td>有 Challenge、Review 與條件式核准</td><td>能辨識超範圍方案並做出有證據的決策</td></tr>
+      <tr><td><b>C</b> 證據與品質</td><td>無測試證據</td><td>只有部分測試或口頭說明</td><td>主要測試及 Diff 可驗證</td><td>驗收條件、回歸測試、文件及風險均有證據</td></tr>
+      <tr><td><b>D</b> 人員監督</td><td>人員未審查即接受</td><td>形式性核准</td><td>有質疑假設、檢視（Review）與條件式核准</td><td>能辨識超範圍方案並做出有證據的決策</td></tr>
       <tr><td><b>E</b> 透明揭露</td><td>掩飾或未揭露失敗</td><td>只回報成功內容</td><td>回報未完成及已知限制</td><td>完整回報偏差、風險、證據與建議決策</td></tr>
     </tbody>
   </table>
@@ -2871,12 +2875,12 @@ body.is-presenter #dk-black { display: none !important; }
     <thead><tr><th>能力</th><th>B0</th><th>B1</th><th>B2</th><th>B3</th></tr></thead>
     <tbody>
       <tr><td>學生票價</td><td>錯 85%（正確 75%）；5 預期失敗</td><td>只將學生票率修為 75%</td><td>各人最有利單一優惠</td><td>沿用 B2 逐人政策</td></tr>
-      <tr><td>會員／提前</td><td>依順序採第一個符合的優惠（first match）</td><td>原樣</td><td>選最低、不疊加，揭露 Applied Discount</td><td>沿用 B2</td></tr>
-      <tr><td>Booking／Seat</td><td>1–4 人、pending；不保證相鄰</td><td>原樣</td><td>原樣</td><td>新增 5–20 團體；同車廂完整連續</td></tr>
-      <tr><td>Payment</td><td>唯一 Order；失敗 pending／保留座位</td><td>原樣</td><td>原樣</td><td>團體失敗取消／全釋放／無 Order</td></tr>
-      <tr><td>Change／Refund</td><td>paid 才改；退款全釋放</td><td>原樣</td><td>改票用最有利政策重新計價</td><td>Group 改票 409；保留已付款團體的退款流程</td></tr>
+      <tr><td>會員／提前</td><td>依順序採第一個符合的優惠（first match）</td><td>原樣</td><td>選最低、不疊加，揭露實際採用優惠（Applied Discount）</td><td>沿用 B2</td></tr>
+      <tr><td>訂票／座位</td><td>1–4 人、待付款；不保證相鄰</td><td>原樣</td><td>原樣</td><td>新增 5–20 團體；同車廂完整連續</td></tr>
+      <tr><td>付款</td><td>唯一訂單；失敗維持待付款／保留座位</td><td>原樣</td><td>原樣</td><td>團體失敗取消／全釋放／不建訂單</td></tr>
+      <tr><td>改票／退款</td><td>已付款才可改；退款全釋放</td><td>原樣</td><td>改票用最有利政策重新計價</td><td>團體改票回 409；保留已付款團體的退款流程</td></tr>
       <tr><td>測試</td><td>44：5 failed／39 passed</td><td>44 passed</td><td>55 passed</td><td>75 passed</td></tr>
-      <tr><td>Rule 數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
+      <tr><td>規則數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
     </tbody>
   </table>
   <aside class="notes">
@@ -2926,9 +2930,9 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 1 / 4 · 第 80–82 分鐘</p>
   <h2 class="title">個人記錄：先自己寫，不討論</h2>
   <ol class="steps">
-    <li>翻出今天的紀錄：檢查點確認、Shared Context、Gate、Delivery Summary</li>
+    <li>翻出今天的紀錄：檢查點確認、共同脈絡（Shared Context）、核准關卡（Gate）、交付摘要（Delivery Summary）</li>
     <li>回顧紀錄<b>第 1 部分</b>：三個階段人和 Agent 各做什麼、證據</li>
-    <li>B3 Level 與治理證據分開寫；用過 Recovery 要註明來源</li>
+    <li>B3 完成等級（Level）與治理證據分開寫；用過 Recovery（復原包：進度落後時改用的接續基線）要註明來源</li>
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 1 · 填「工作坊回顧紀錄」第 1 部分</p>
   <aside class="notes">
@@ -2944,13 +2948,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 2 / 4 · 第 82–86 分鐘</p>
   <h2 class="title">小組比較：Tool → Teammate → Digital Worker</h2>
   <ol class="steps">
-    <li>對照成熟度比較表，比較三階段的責任、有效做法與問題</li>
+    <li>對照成熟度比較表，比較工具、隊友、數位員工三階段的責任、有效做法與問題</li>
     <li>填「你的比較證據」五題；沒觀察到填「未觀察」</li>
     <li>回顧紀錄<b>第 2 部分</b>：有效實務與根因，各選有證據的 1–3 項</li>
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 2 · 填「你的比較證據」與第 2 部分</p>
   <aside class="notes">
-    <p><b>說（00:02／第 82 分）</b>：「小組比較 Tool／Teammate／Digital Worker 的責任與有效實務／問題。」可接著朗讀口述版：「Tool 階段人理解需求、選設計與拆解，Agent 協助；Teammate 比較 Agent 分析、形成 Shared Context；Digital Worker 由 Agent 主導交付，人保留 Challenge、核准與 Review。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
+    <p><b>說（00:02／第 82 分）</b>：「小組比較 Tool／Teammate／Digital Worker 的責任與有效實務／問題。」可接著朗讀口述版：「Tool（工具）階段人理解需求、選設計與拆解，Agent 協助；Teammate（隊友）比較 Agent 分析、形成共同脈絡；Digital Worker（數位員工）由 Agent 主導交付，人保留質疑假設、核准與檢視。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
     <p><b>看</b>：意見衝突時區分事實、假設、證據與根因；避免將 Code 量當成果。不要把三欄當排名，只問「哪份證據支持？」</p>
     <p><b>根因分類</b>：需求／提示詞／背景資料／規則／能力缺口、Agent 錯誤、人員審查缺口、工具／環境問題；假設未驗證要標清楚。</p>
     <p><b>Debrief 九題（選最有證據的題目，不全問）</b>：1 Agent 主導後，人工作真的減少，還是轉為 Review 與治理？2 哪個 Gate 最有價值？請附實例。3 哪個 Gate 容易流於形式？4 若沒人發現 SQLite 越界，缺少哪項治理能力？5 測試通過是否足以核准交付？還要哪些範圍／文件／風險證據？6 哪些資訊應由平台自動留下 Audit Log？7 哪些 Rule 可 Machine-Enforce？8 哪些決策仍須人判斷？9 Tool→Digital Worker 的責任消失，或重新分配？時間不足選最有證據的題目，不延長 B3 或假稱已完成完整回顧。</p>
@@ -2963,13 +2967,13 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">檢查點 3 / 4 · 第 86–89 分鐘</p>
   <h2 class="title">收斂改善：分到六類，選 1–3 項</h2>
   <ol class="steps">
-    <li>分類：Context／Rule／Skill／流程／平台／治理</li>
+    <li>分類：背景資料（Context）／規則（Rule）／技能（Skill：可重複使用的 Agent 工作指引）／流程／平台／治理</li>
     <li>選有證據的 1–3 項，連回實際的 Gate、例外或檢查點紀錄</li>
     <li>回顧紀錄<b>第 3 部分</b>：要改善什麼／保留何種證據</li>
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 3 · 填「工作坊回顧紀錄」第 3 部分</p>
   <aside class="notes">
-    <p><b>說（00:06／第 86 分）</b>：「將改善分為 Context／Rule／Skill／流程／平台／治理。」</p>
+    <p><b>說（00:06／第 86 分）</b>：「將改善分為背景資料、規則、技能（Skill）、流程、平台、治理六類。」</p>
     <p><b>介入</b>：只喊「Agent 更聰明」時追問：可改哪個 Context、Gate 或可驗證控制？</p>
     <p><b>收斂最低內容</b>：至少一項 Context／Rule 改善、一項 Skill 或流程需求、一項平台需求，並連回 Gate 或例外證據。平台需求可對應權限、Rule Enforcement、Approval、Audit、Test Evidence、Context Versioning、Session、成本與時間觀測，不宣稱此工作坊已建成平台。</p>
     <p><b>組織導入提示（不投影）</b>：從一個真實案例出發，每項記錄「觀察 → 需求 → 責任人 → 下一步驗證」，依風險與證據選 1–3 項。</p>

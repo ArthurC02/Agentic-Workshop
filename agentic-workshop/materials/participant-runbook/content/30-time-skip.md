@@ -8,7 +8,7 @@ section: Time Skip
 
 # Time Skip：12 個月後
 
-Smart Ticket 已上線 12 個月。請在 **4 分鐘**內停止自己的 Greenfield 開發，改為接手主持人統一提供的 **B0 - Brownfield Baseline**，建好環境、跑過測試。Agent 的角色從 **Tool** 轉為 **Teammate**：先各自分析、比較判斷，再整合成小組 Shared Context。
+這是 Time Skip（時間快轉：專案假設已開發一段時間）：Smart Ticket 已上線 12 個月。請在 **4 分鐘**內停止自己的 Greenfield（從頭開始的新專案）開發，改為接手主持人統一提供的 **B0 - Brownfield Baseline**，建好環境、跑過測試。Brownfield 是已有程式碼的既有專案；B0 是它的起點版本，之後的 B1、B2、B3 是接在 B0 上的三段任務代號。Agent 的角色從 **Tool**（工具）轉為 **Teammate**（隊友）：先各自分析、比較判斷，再整合成小組的共同脈絡（Shared Context：小組整理出的共同事實）。
 
 ```callout warning
 本段只接手，不修改
@@ -36,7 +36,7 @@ Smart Ticket 已上線 12 個月。請在 **4 分鐘**內停止自己的 Greenfi
 ## 檢查點 1 · 停手（第 29–30 分鐘）
 
 - [ ] 停止修改自己的 Greenfield Repository，保留現況，不要刪除或覆寫。
-- [ ] 在自己啟動 Server 的終端機按 `Ctrl+C` 停止 G0 的 App。
+- [ ] 在自己啟動 Server 的終端機按 `Ctrl+C` 停止 G0（Greenfield 起始包）的 App。
 - [ ] 讀下方時間快轉公告與公司成長摘要。
 
 ### 時間快轉公告
@@ -75,7 +75,7 @@ unzip ~/Downloads/b0.zip -d ~/work/b0
 cd ~/work/b0/agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0
 ```
 
-- [ ] 在 `smart-ticket-b0` 開啟**新的** Agent Session。先不要交代任何工作。
+- [ ] 在 `smart-ticket-b0` 開啟**新的** Agent Session（與 Agent 的對話工作階段）。先不要交代任何工作。
 
 ```callout warning
 解壓縮到短路徑
@@ -96,7 +96,7 @@ B0 不是你的 Greenfield 成果延伸。請在新的資料夾開啟 B0，並�
 
 ## 檢查點 3 · 環境與版本（第 31–32 分鐘）
 
-依 B0 的 `README.md`，在 `smart-ticket-b0` 資料夾內**獨立**建立 venv，不要沿用 G0 的環境。
+依 B0 的 `README.md`，在 `smart-ticket-b0` 資料夾內**獨立**建立 venv（Python 虛擬環境），不要沿用 G0 的環境。
 
 - [ ] 建立 venv 並安裝依賴，執行 `pip check`。
 - [ ] 確認版本：App 版本為 `B0`。
@@ -118,7 +118,7 @@ PYTHONPATH=src .venv/bin/python -c 'from smart_ticket.main import app; print(app
 .venv/bin/python -m uvicorn smart_ticket.main:app --app-dir src --host 127.0.0.1 --port 8000
 ```
 
-App 啟動後，另開一個終端機確認 Health：
+App 啟動後，另開一個終端機確認 Health（健康檢查端點，用來確認服務有正常啟動）：
 
 ```cmd
 # powershell

@@ -14,7 +14,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ## 填寫：例外回應（Exception Response）
 
-先核對當時提議、授權與證據；60 秒內提出治理決策與給 Agent 的指令。時間緊可用 30 秒口頭判斷並留下簡短紀錄，不預填答案。
+先核對當時提議、授權與證據；60 秒內做出決策（同不同意 Agent 的提議、附什麼條件），並寫下給 Agent 的指令。時間緊可用 30 秒口頭判斷並留下簡短紀錄，不預填答案。
 
 ```form
 {"id": "exception-response", "title": "例外回應（例外 ID：EXCEPTION-DW-001）","fields":[
@@ -37,7 +37,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ## 填寫：停止與升級處理（Escalation）
 
-一般停止條件使用以下升級短格式；不等同新增第二個主持例外事件。Agent 提出證據，人做決策後才續行。觸發條件見 [Work Order](#b3-work-order) 的 Stop and Escalate Conditions。
+Agent 遇到一般停止條件時，用以下升級處理（Escalation：停下來把決策交給人）短格式；這不是主持人另外宣布的例外事件。Agent 提出證據，人做決策後才續行。觸發條件見 [Work Order](#b3-work-order) 的 Stop and Escalate Conditions。
 
 ```form
 {"id": "escalation", "title": "停止與升級處理","fields":[

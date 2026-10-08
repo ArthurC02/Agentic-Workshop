@@ -8,7 +8,7 @@ section: Brownfield｜Teammate
 
 # B1 Recovery：52 分鐘按需切換
 
-主持確認 B1 未完成且需接續 B2 後，才個別提供本頁解鎖碼。一般 B2 解鎖不會開啟本頁。只提供已結束階段的 B1 能力，不含後續能力；使用 Recovery 不代表本組自行完成 B1。
+本頁是 Recovery（復原包：進度落後時改用的接續基線）。B1（修復學生票折扣異常）沒做完、但要接著做 B2 的小組，經主持人確認後，才會個別拿到本頁解鎖碼；一般 B2 解鎖碼打不開本頁。復原包只含 B1 該完成的修改，不含之後任務的內容；使用復原包不代表本組自己完成了 B1。
 
 ```download
 id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
@@ -16,10 +16,10 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ## 保存與切換
 
-- [ ] 保存原 Repo、Diff、測試輸出、退出碼、Gate 與未完成事項，不覆寫原成果。
-- [ ] 在新目錄解壓，核對下載卡 SHA256 與包內 README、docs/context.md，確認起點 B1。
-- [ ] 在舊 Server 的終端按 Ctrl+C 停止自己啟動的服務；不可停止他人服務。
-- [ ] 在新目錄安裝並執行完整測試，預期 44 passed；結果不符停止切換並請主持確認。
+- [ ] 先保存原本的 Repo、Diff、測試輸出、退出碼（exit code）、核准關卡（Gate）紀錄與未完成事項，不要覆蓋原成果。
+- [ ] 解壓縮到新目錄，核對下載卡上的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同），並看包內 README 與 docs/context.md，確認這是 B1 完成後的版本。
+- [ ] 在原本啟動 Server 的終端機按 Ctrl+C，停止自己啟動的服務；不要停止別人的服務。
+- [ ] 在新目錄安裝並執行完整測試，預期 44 passed；結果不符就停止切換，請主持人確認。
 
 ```cmd
 # powershell
@@ -40,7 +40,7 @@ python3.13 -m venv .venv
 .venv/bin/python -m uvicorn smart_ticket.main:app --app-dir src --host 127.0.0.1 --port 8000
 ```
 
-另開終端驗證 Health；包內 Context、B1 能力與測試結果共同確認版本，不能只憑 Health 判定。
+另開一個終端機確認 `/health` 有回應。版本要用包內說明文件（README、docs/context.md）、B1 的修改是否存在與測試結果一起確認，不能只看 Health 檢查。
 
 ```cmd
 # powershell
@@ -49,13 +49,13 @@ Invoke-RestMethod http://127.0.0.1:8000/health
 curl --fail http://127.0.0.1:8000/health
 ```
 
-建立新 Agent Session，或明確重新輸入接手版本、原成果未完成事項、已確認規則與 B2 核准範圍；更新 Shared Context 後接續 [B2](#b2)。不提供 B3 實作起點。
+開一個新的 Agent 對話（Session），或在原對話中明確告訴 Agent：現在接手的是哪個版本、原成果還有哪些未完成、已確認的規則，以及 B2 已核准的範圍；更新共同脈絡（Shared Context）後，接續 [B2](#b2)。本頁不提供 B3 的起點。
 
 ```form
 {"id": "recovery-b1-record", "title": "B1 Recovery 紀錄","fields":[
-{"id": "decision", "label": "觸發／主持核准人／時間／提供來源", "type": "textarea", "suggestions": [{"label": "觸發範本", "text": "觸發：〈B1 未完成的原因〉\n主持核准人：〈姓名〉；時間：第〈 〉分鐘\n提供來源：recovery-52-b1.zip"}]},
-{"id": "preserved", "label": "原成果保存路徑／Diff／Gate／未完成", "type": "textarea", "suggestions": [{"label": "保存範本", "text": "原成果路徑：〈路徑〉\nDiff：〈已保存／路徑〉\nGate：〈狀態〉\n未完成：〈…〉"}]},
-{"id": "verification", "label": "新目錄／B1版本證據／安裝、44項測試及Health實際結果與退出碼", "type": "textarea", "suggestions": [{"label": "驗證範本", "text": "新目錄：〈路徑〉\nB1 版本證據：〈SHA256／README／docs/context.md〉\n安裝：〈結果〉，退出碼〈 〉\npytest -q：〈 〉 passed，退出碼〈 〉\nHealth：〈實際回應〉"}]},
-{"id": "context", "label": "新Session或Context／接續核准範圍／非自行完成能力", "type": "textarea", "suggestions": [{"label": "接續範本", "text": "〈新 Session／重新輸入 Context〉\n接續核准範圍：〈B2 範圍〉\n非自行完成：B1 能力由 Recovery 提供"}]}
+{"id": "decision", "label": "切換原因／核准的主持人／時間／復原包來源", "type": "textarea", "suggestions": [{"label": "觸發範本", "text": "觸發：〈B1 未完成的原因〉\n主持核准人：〈姓名〉；時間：第〈 〉分鐘\n提供來源：recovery-52-b1.zip"}]},
+{"id": "preserved", "label": "原成果保存路徑／Diff／Gate 狀態／未完成事項", "type": "textarea", "suggestions": [{"label": "保存範本", "text": "原成果路徑：〈路徑〉\nDiff：〈已保存／路徑〉\nGate：〈狀態〉\n未完成：〈…〉"}]},
+{"id": "verification", "label": "新目錄／確認是 B1 版本的證據／安裝、44 項測試與 Health 的實際結果及退出碼", "type": "textarea", "suggestions": [{"label": "驗證範本", "text": "新目錄：〈路徑〉\nB1 版本證據：〈SHA256／README／docs/context.md〉\n安裝：〈結果〉，退出碼〈 〉\npytest -q：〈 〉 passed，退出碼〈 〉\nHealth：〈實際回應〉"}]},
+{"id": "context", "label": "新對話（Session）或重新提供的背景／接續的核准範圍／哪些不是本組自己完成的", "type": "textarea", "suggestions": [{"label": "接續範本", "text": "〈新 Session／重新輸入 Context〉\n接續核准範圍：〈B2 範圍〉\n非自行完成：B1 能力由 Recovery 提供"}]}
 ]}
 ```

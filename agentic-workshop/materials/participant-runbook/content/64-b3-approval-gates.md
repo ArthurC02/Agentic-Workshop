@@ -16,7 +16,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ```callout info
 由人填寫決策
-由人填寫決策，Agent 不代填核准。無須電子簽章；條件須說明完成方式與需回到哪個 Gate。核准代表允許下一步，不代表驗收或測試 PASS；PASS 必須有實際驗證證據。
+由人填寫決策，Agent 不代填核准。無須電子簽章；條件須說明完成方式與需回到哪個 Gate。核准代表允許下一步，不代表驗收或測試 PASS（通過）；PASS 必須有實際驗證證據。
 ```
 
 ### Gate 1：需求理解（Requirement Understanding）｜檢查點 2 確認

@@ -37,9 +37,9 @@
   <p class="kicker">檢查點 1 / 4 · 第 80–82 分鐘</p>
   <h2 class="title">個人記錄：先自己寫，不討論</h2>
   <ol class="steps">
-    <li>翻出今天的紀錄：檢查點確認、Shared Context、Gate、Delivery Summary</li>
+    <li>翻出今天的紀錄：檢查點確認、共同脈絡（Shared Context）、核准關卡（Gate）、交付摘要（Delivery Summary）</li>
     <li>回顧紀錄<b>第 1 部分</b>：三個階段人和 Agent 各做什麼、證據</li>
-    <li>B3 Level 與治理證據分開寫；用過 Recovery 要註明來源</li>
+    <li>B3 完成等級（Level）與治理證據分開寫；用過 Recovery（復原包：進度落後時改用的接續基線）要註明來源</li>
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 1 · 填「工作坊回顧紀錄」第 1 部分</p>
   <aside class="notes">
@@ -55,13 +55,13 @@
   <p class="kicker">檢查點 2 / 4 · 第 82–86 分鐘</p>
   <h2 class="title">小組比較：Tool → Teammate → Digital Worker</h2>
   <ol class="steps">
-    <li>對照成熟度比較表，比較三階段的責任、有效做法與問題</li>
+    <li>對照成熟度比較表，比較工具、隊友、數位員工三階段的責任、有效做法與問題</li>
     <li>填「你的比較證據」五題；沒觀察到填「未觀察」</li>
     <li>回顧紀錄<b>第 2 部分</b>：有效實務與根因，各選有證據的 1–3 項</li>
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 2 · 填「你的比較證據」與第 2 部分</p>
   <aside class="notes">
-    <p><b>說（00:02／第 82 分）</b>：「小組比較 Tool／Teammate／Digital Worker 的責任與有效實務／問題。」可接著朗讀口述版：「Tool 階段人理解需求、選設計與拆解，Agent 協助；Teammate 比較 Agent 分析、形成 Shared Context；Digital Worker 由 Agent 主導交付，人保留 Challenge、核准與 Review。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
+    <p><b>說（00:02／第 82 分）</b>：「小組比較 Tool／Teammate／Digital Worker 的責任與有效實務／問題。」可接著朗讀口述版：「Tool（工具）階段人理解需求、選設計與拆解，Agent 協助；Teammate（隊友）比較 Agent 分析、形成共同脈絡；Digital Worker（數位員工）由 Agent 主導交付，人保留質疑假設、核准與檢視。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
     <p><b>看</b>：意見衝突時區分事實、假設、證據與根因；避免將 Code 量當成果。不要把三欄當排名，只問「哪份證據支持？」</p>
     <p><b>根因分類</b>：需求／提示詞／背景資料／規則／能力缺口、Agent 錯誤、人員審查缺口、工具／環境問題；假設未驗證要標清楚。</p>
     <p><b>Debrief 九題（選最有證據的題目，不全問）</b>：1 Agent 主導後，人工作真的減少，還是轉為 Review 與治理？2 哪個 Gate 最有價值？請附實例。3 哪個 Gate 容易流於形式？4 若沒人發現 SQLite 越界，缺少哪項治理能力？5 測試通過是否足以核准交付？還要哪些範圍／文件／風險證據？6 哪些資訊應由平台自動留下 Audit Log？7 哪些 Rule 可 Machine-Enforce？8 哪些決策仍須人判斷？9 Tool→Digital Worker 的責任消失，或重新分配？時間不足選最有證據的題目，不延長 B3 或假稱已完成完整回顧。</p>
@@ -74,13 +74,13 @@
   <p class="kicker">檢查點 3 / 4 · 第 86–89 分鐘</p>
   <h2 class="title">收斂改善：分到六類，選 1–3 項</h2>
   <ol class="steps">
-    <li>分類：Context／Rule／Skill／流程／平台／治理</li>
+    <li>分類：背景資料（Context）／規則（Rule）／技能（Skill：可重複使用的 Agent 工作指引）／流程／平台／治理</li>
     <li>選有證據的 1–3 項，連回實際的 Gate、例外或檢查點紀錄</li>
     <li>回顧紀錄<b>第 3 部分</b>：要改善什麼／保留何種證據</li>
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 3 · 填「工作坊回顧紀錄」第 3 部分</p>
   <aside class="notes">
-    <p><b>說（00:06／第 86 分）</b>：「將改善分為 Context／Rule／Skill／流程／平台／治理。」</p>
+    <p><b>說（00:06／第 86 分）</b>：「將改善分為背景資料、規則、技能（Skill）、流程、平台、治理六類。」</p>
     <p><b>介入</b>：只喊「Agent 更聰明」時追問：可改哪個 Context、Gate 或可驗證控制？</p>
     <p><b>收斂最低內容</b>：至少一項 Context／Rule 改善、一項 Skill 或流程需求、一項平台需求，並連回 Gate 或例外證據。平台需求可對應權限、Rule Enforcement、Approval、Audit、Test Evidence、Context Versioning、Session、成本與時間觀測，不宣稱此工作坊已建成平台。</p>
     <p><b>組織導入提示（不投影）</b>：從一個真實案例出發，每項記錄「觀察 → 需求 → 責任人 → 下一步驗證」，依風險與證據選 1–3 項。</p>

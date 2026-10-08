@@ -6,13 +6,13 @@ group: timeskip
 section: Brownfield｜Teammate
 ---
 
-# Shared Context：整理小組共同背景
+# Shared Context：整理小組共同脈絡
 
-這是 **5 分鐘的小組**任務。請比較每位成員的個人分析，整理出共同事實、證據與分歧，選定主要 Agent 與人員核准者，再把整理後的共同 Context 交給主要 Agent。
+這是 **5 分鐘的小組**任務。請比較每位成員的個人分析，整理出共同事實、證據與分歧，選定主要 Agent 與人員核准者，再把整理後的共同脈絡（Shared Context：小組整理出的共同事實）交給主要 Agent。
 
 ```callout warning
 B1 尚未揭露
-這時尚未揭露 B1，不要求提出或核准任務修改計畫，也不修改程式。共同背景記錄已確認的事實與待決事項；不代表已取得修改程式的授權。表單中「任務揭露後補填」的欄位留到第 44 分鐘取得 B1 後再填。本段分成 2 個檢查點，交給主要 Agent 後，Agent 必須停下等你們確認。
+這時尚未揭露 B1（Brownfield 第一段任務，第 44 分鐘發放），不要求提出或核准任務修改計畫，也不修改程式。共同脈絡記錄已確認的事實與待決事項；不代表已取得修改程式的授權。表單中「任務揭露後補填」的欄位留到第 44 分鐘取得 B1 後再填。本段分成 2 個檢查點，交給主要 Agent 後，Agent 必須停下等你們確認。
 ```
 
 ```callout info
@@ -67,7 +67,7 @@ zip=participant-39-shared-context.zip path=agentic-workshop/03-brownfield/partic
 前六個欄位在第 39–44 分鐘填寫。標示「任務揭露後補填」的欄位，請在第 44 分鐘取得 B1 任務後再填；沒有核准或證據仍不足時先補缺口，不修改程式。
 
 ```form
-{"id": "shared-context", "title": "Shared Context（小組共同背景）","fields":[
+{"id": "shared-context", "title": "Shared Context（小組共同脈絡）","fields":[
 {"id": "common-facts", "label": "共同事實與規則來源", "type": "textarea", "suggestions": [{"label": "Rule 與來源", "text": "Rule 〈Rule ID〉：〈規則內容〉（來源：〈文件路徑〉）"}, {"label": "模組責任", "text": "〈模組〉負責〈責任〉，依賴〈模組〉（來源：〈檔案〉）"}, {"label": "多人一致", "text": "〈結論〉：〈幾〉位成員的分析一致（來源：〈檔案／文件〉）"}]},
 {"id": "verified-evidence", "label": "已驗證證據（檔案／測試／輸出）", "type": "textarea", "suggestions": [{"label": "測試輸出", "text": "pytest -q：〈數字〉 passed、〈數字〉 failed（〈誰〉第〈分〉分實際執行）"}, {"label": "失敗測試", "text": "失敗測試〈測試名稱〉：期待〈值〉，實際〈值〉"}, {"label": "程式位置", "text": "〈檔案〉第〈行〉行：〈實際看到的內容〉"}]},
 {"id": "disagreements", "label": "仍有分歧的判斷及驗證方式", "type": "textarea", "suggestions": [{"label": "分歧與驗證", "text": "〈判斷〉：〈成員 A〉認為〈…〉，〈成員 B〉認為〈…〉；驗證方式：〈跑哪個測試／看哪個檔案〉"}, {"label": "文件與程式不一致", "text": "文件〈路徑〉寫〈…〉，程式〈檔案〉是〈…〉；以何者為準待驗證：〈方式〉"}, "目前沒有分歧"]},
@@ -90,4 +90,4 @@ zip=participant-39-shared-context.zip path=agentic-workshop/03-brownfield/partic
 
 - [ ] 已留下共同事實、來源、分歧、限制、主要 Agent 及待決事項。
 - [ ] 未確認的推論已清楚標示。
-- [ ] 在第39–44分鐘尚未提出或核准任務修改計畫，也未修改程式；第44分鐘任務揭露後，另補範圍、計畫與核准，不以共同背景代替授權。
+- [ ] 在第39–44分鐘尚未提出或核准任務修改計畫，也未修改程式；第44分鐘任務揭露後，另補範圍、計畫與核准，不以共同脈絡代替授權。

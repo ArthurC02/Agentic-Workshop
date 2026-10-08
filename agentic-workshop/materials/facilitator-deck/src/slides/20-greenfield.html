@@ -3,6 +3,7 @@
 <section class="slide" data-seg="greenfield" data-title="解鎖 Greenfield" data-minute="07" data-unlock="greenfield">
   <p class="kicker">第 07 分鐘 · 解鎖</p>
   <h2 class="title">Greenfield 開始</h2>
+  <p class="subtitle">Greenfield（從頭開始的新專案）：個人用 Agent 完成核心訂票 MVP（Minimum Viable Product，最小可行產品）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Greenfield 任務」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 22 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
@@ -13,7 +14,7 @@
 </section>
 
 <section class="slide" data-seg="greenfield" data-title="Greenfield 六個檢查點" data-minute="07" data-timer="22:00" data-gates="greenfield">
-  <p class="kicker">Greenfield · 07–29 · Agent = Tool</p>
+  <p class="kicker">Greenfield · 07–29 · Agent 是工具（Tool）</p>
   <h2 class="title">每個檢查點，Agent 停下、你確認</h2>
   <p class="muted">不要讓 Agent 一次做完全部。你填好 Runbook 該檢查點的「確認」表單，才交代下一段。</p>
   <ol class="timeline">
@@ -37,13 +38,13 @@
   <p class="kicker">檢查點 1 / 6 · 第 07–09 分鐘</p>
   <h2 class="title">準備：下載、起始測試、Git 基準</h2>
   <ol class="steps">
-    <li>下載 G0，解壓到短路徑，進入 <code>starter-repository</code></li>
-    <li>建 venv、安裝、<code>pytest -q</code> → <code>1 passed, 8 skipped</code></li>
-    <li><code>git init</code> → <code>git add -A</code> → <code>git commit</code>，在此資料夾開啟 Agent</li>
+    <li>下載 G0（Greenfield 起始包），解壓到短路徑，進入 <code>starter-repository</code> 資料夾</li>
+    <li>建立 Python 虛擬環境並安裝套件，跑一次起始測試，結果應為 <code>1 passed, 8 skipped</code></li>
+    <li>建立 Git 基準版本（第一次 commit），之後才看得出 Agent 改了什麼；在此資料夾開啟 Agent</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 1 · 填「檢查點 1 確認」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 07 分）</b>：「請確認任務、需求、AC 及 Repository 可開啟，照 Runbook 檢查點 1 建好環境與 Git 基準。」</p>
+    <p><b>說（00:00／第 07 分）</b>：「請確認任務、需求、驗收條件及程式庫可開啟，照 Runbook 檢查點 1 建好環境與 Git 基準。」</p>
     <p><b>看</b>：起始 <code>1 passed, 8 skipped</code>（以實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。</p>
     <p><b>常見卡點</b>：解壓到深層路徑、PowerShell 執行原則（直接用 venv 裡的 python.exe）、Git 要求姓名／Email、Agent 讀不到上一層需求文件（複製到 <code>docs/</code>）。</p>
     <p><b>環境阻擋</b>：可直接協助 Python、Import、依賴與測試命令；記錄耗時，不私下延長截止時間。</p>
@@ -54,7 +55,7 @@
   <p class="kicker">檢查點 2 / 6 · 第 09–11 分鐘</p>
   <h2 class="title">計畫：Agent 只提計畫，你核准</h2>
   <ol class="steps">
-    <li>貼上 Runbook 的起始提示：<b>先不要修改程式</b>，提出 5–8 步計畫並標 Rule ID</li>
+    <li>貼上 Runbook 的起始提示：<b>先不要修改程式</b>，提出 5–8 步計畫並標出規則編號（Rule ID）</li>
     <li>你調整順序、刪掉範圍外項目、回答 Agent 的問題</li>
     <li>用「核准回覆」格式回覆：<b>這次只做到第 N 步，做完停下等我</b></li>
   </ol>
@@ -71,9 +72,9 @@
   <p class="kicker">檢查點 3 / 6 · 第 11–19 分鐘</p>
   <h2 class="title">第一段：Agent 做完就停下，換你確認</h2>
   <ol class="steps">
-    <li>看 Agent 貼出的<b>實際</b> <code>pytest -q</code> 輸出</li>
-    <li><code>git diff --stat</code>、<code>git diff -- src</code>：說出一處變更對應哪條 Rule</li>
-    <li>手算 700 ＋ 525 ＝ <b>1225</b>，與程式結果對照；沒問題再 Commit</li>
+    <li>看 Agent 貼出的<b>實際</b>測試執行輸出</li>
+    <li>看程式修改內容（Diff）：說出一處變更對應哪條規則</li>
+    <li>手算 700 ＋ 525 ＝ <b>1225</b>，與程式結果對照；沒問題再 commit 存一版</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 3 · 填「檢查點 3 確認」</p>
   <aside class="notes">
@@ -90,8 +91,8 @@
   <h2 class="title">第二段：付款與訂單，同樣停下確認</h2>
   <ol class="steps">
     <li>交代第二段，做完停下；看實際測試輸出</li>
-    <li>核對付款：只有待付款可付、成功 <code>PAID</code> ＋唯一 Order、重複付款被拒</li>
-    <li><code>git diff -- tests</code>：沒有刪除或放寬既有斷言</li>
+    <li>核對付款：只有待付款可付、成功後為已付款（<code>PAID</code>）並只建立一筆訂單（Order）、重複付款被拒</li>
+    <li>看測試檔的修改：沒有刪除或放寬既有斷言（測試裡檢查結果的條件）</li>
   </ol>
   <p class="callout">Runbook › Greenfield › 檢查點 4 · 填「檢查點 4 確認」</p>
   <aside class="notes">
@@ -107,8 +108,8 @@
   <h2 class="title">驗證：不再加功能</h2>
   <ol class="steps">
     <li>請 Agent 補邊界測試並執行：0／5 人、座位不足、404、付款失敗、重複付款</li>
-    <li>自己在 <code>/docs</code> 走一次：查班次 → 訂票 1225 → 付款 → 查 Order</li>
-    <li>列出仍被 Skip 或未完成的項目</li>
+    <li>自己在 API 文件頁（<code>/docs</code>）走一次：查班次 → 訂票 1225 → 付款 → 查訂單</li>
+    <li>列出仍被略過（Skip）或未完成的項目</li>
   </ol>
   <p class="callout warn">Runbook › Greenfield › 檢查點 5 · 填「檢查點 5 確認」</p>
   <aside class="notes">
@@ -154,20 +155,20 @@
 
 <section class="slide slide-mvp-review" data-seg="reveal" data-reveal-of="greenfield" data-title="揭曉 · 預期 MVP 輪廓" data-minute="29">
   <p class="reveal-badge">揭曉 · Greenfield</p>
-  <h2 class="title">預期 MVP 輪廓與快速驗收</h2>
+  <h2 class="title">預期 MVP（最小可行產品）輪廓與快速驗收</h2>
   <div class="cols-2 mvp-review-layout">
     <table class="table fx fx-fade">
       <thead><tr><th>API</th><th>核心行為</th></tr></thead>
       <tbody>
         <tr><td><code>GET /health</code></td><td>200，<code>{"status":"ok"}</code></td></tr>
         <tr><td><code>GET /trips</code></td><td>僅可售座位 &gt; 0；站名精確篩選</td></tr>
-        <tr><td><code>POST /bookings</code></td><td>1–4 人且座位足夠；保留座位、<code>PENDING_PAYMENT</code>、逐人計價加總</td></tr>
-        <tr><td><code>POST …/pay</code></td><td>僅 <code>PENDING_PAYMENT</code> 可付；<code>PAID</code>＋唯一 Order；重複付款拒絕</td></tr>
-        <tr><td><code>GET /orders/{order_id}</code></td><td>讀取既有 Order；金額＝Booking 總額</td></tr>
+        <tr><td><code>POST /bookings</code></td><td>1–4 人且座位足夠；保留座位、狀態為待付款（<code>PENDING_PAYMENT</code>）、逐人計價加總</td></tr>
+        <tr><td><code>POST …/pay</code></td><td>僅待付款可付；成功為 <code>PAID</code>＋唯一訂單；重複付款拒絕</td></tr>
+        <tr><td><code>GET /orders/{order_id}</code></td><td>讀取既有訂單；金額＝訂票總額</td></tr>
       </tbody>
     </table>
     <ol class="steps">
-      <li class="fx"><span>依 README 載入程式，檢查 Health／OpenAPI<br>保留實際測試輸出</span></li>
+      <li class="fx"><span>依 README 啟動程式，檢查健康檢查（/health）與 API 文件頁<br>保留實際測試輸出</span></li>
       <li class="fx"><span>重設資料後查班次：T003 不出現<br>站名篩選符合固定資料</span></li>
       <li class="fx"><span>T001 成人＋學生：<b>1,225</b>，保留 2 座<br>訂票狀態：<code>PENDING_PAYMENT</code></span></li>
       <li class="fx"><span>付款後 <code>PAID</code>；唯一訂單金額 1,225<br>重複付款遭拒，不新增訂單</span></li>

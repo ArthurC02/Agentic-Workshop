@@ -31,8 +31,8 @@ python --version
 
 | 分鐘 | 取得內容 | 取得方式 |
 |---:|---|---|
-| 07 | G0 Starter Repository | 主持人公布解鎖碼後，在 [Greenfield 任務](#greenfield) 頁面下載 |
-| 29 | B0 Repository | 主持人公布解鎖碼後，在 Time Skip 章節下載 |
+| 07 | G0 Starter Repository（Greenfield 起始程式包） | 主持人公布解鎖碼後，在 [Greenfield 任務](#greenfield) 頁面下載 |
+| 29 | B0 Repository（Brownfield 起點：假設已上線 12 個月的既有程式） | 主持人公布解鎖碼後，在 Time Skip（時間快轉）章節下載 |
 
 兩份程式碼都以 ZIP 形式內嵌在本 Runbook 中。每一版都要在自己的資料夾內**獨立**建立 venv，不共用環境，也不跨版本 Import。
 
@@ -112,7 +112,7 @@ Port 8000 已被佔用
 
 ```callout info
 資料重啟會重置
-案例使用固定 Seed、可控的時鐘與付款模擬，資料存在記憶體中（In-Memory），重啟 App 就會回到初始狀態。這是設計行為，不是錯誤。
+案例使用固定的 Seed Data（系統預設的測試資料）、可控的時鐘與付款模擬，資料存在記憶體中（In-Memory），重啟 App 就會回到初始狀態。這是設計行為，不是錯誤。
 ```
 
 ```callout danger

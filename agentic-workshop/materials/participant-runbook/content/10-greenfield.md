@@ -8,9 +8,9 @@ section: Greenfield｜Tool
 
 # Greenfield 任務：核心訂票 MVP
 
-Smart Ticket 是剛開始開發的車票預訂服務。請在 **22 分鐘**內完成查詢班次、建立訂票、模擬付款與查詢付款後訂單，驗證完整流程。這是**個人**任務。
+Smart Ticket 是剛開始開發的車票預訂服務，屬於 Greenfield（從頭開始的新專案）。請在 **22 分鐘**內完成 MVP（Minimum Viable Product，最小可行產品）：查詢班次、建立訂票、模擬付款與查詢付款後訂單，驗證完整流程。這是**個人**任務。
 
-本階段 Agent 是 **Tool**：由你理解需求、決定方向、拆解工作及審查結果，Agent 協助產生程式、測試與文件。本段要練習的是**你如何掌控 Agent**，不是 Agent 多快寫完。
+本階段 Agent 是 **Tool（工具）**：由你理解需求、決定方向、拆解工作及審查結果，Agent 協助產生程式、測試與文件。本段要練習的是**你如何掌控 Agent**，不是 Agent 多快寫完。
 
 ```callout warning
 不要讓 Agent 一次做完全部
@@ -30,7 +30,7 @@ Smart Ticket 是剛開始開發的車票預訂服務。請在 **22 分鐘**內�
 |---|---:|---:|---|
 | 1 · 準備 | 07–09 | 00–02 | 下載、建環境、起始測試、建立 Git 基準 |
 | 2 · 計畫 | 09–11 | 02–04 | Agent 只提計畫；你調整並核准 |
-| 3 · 第一段實作 | 11–19 | 04–12 | Agent 做第一段後停下；你看測試、看 Diff、手算 1225 |
+| 3 · 第一段實作 | 11–19 | 04–12 | Agent 做第一段後停下；你看測試、看 Diff、手算票價 1225 |
 | 4 · 第二段實作 | 19–24 | 12–17 | Agent 做第二段後停下；你再看測試與 Diff |
 | 5 · 驗證 | 24–27 | 17–20 | 不再加功能；補邊界測試，自己走一次完整流程 |
 | 6 · 交付 | 27–29 | 20–22 | 填交付摘要；第 29 分鐘停止 |
@@ -67,7 +67,7 @@ python -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-- [ ] 建立 Git 基準。G0 不是 Git Repository；先記下起始狀態，之後才能用 `git diff` 看到 Agent 實際改了什麼。
+- [ ] 建立 Git 基準。G0（Greenfield 起始程式包）不是 Git Repository；先記下起始狀態，之後才能用 `git diff` 看到 Agent 實際改了什麼。
 
 ```cmd
 # powershell
@@ -86,7 +86,7 @@ git commit -m "G0 baseline"
 常見狀況
 - Git 要求設定姓名或 Email：執行 `git config user.name "你的名字"` 與 `git config user.email "you@example.com"`（不加 `--global` 時只寫入本資料夾），再重新 Commit。電腦沒有 Git 時，改用 Agent 或編輯器內建的變更檢視，並在交付摘要註明。
 - 需求文件在 `starter-repository` 的**上一層**（`..\02-business-requirements.md`、`..\03-acceptance-criteria.md`）。Agent 讀不到上一層時，把這兩份複製到 `starter-repository\docs\`。
-- G0 的四個業務 API 回應 501，初始 Skip 代表功能尚未實作，不是完成。
+- G0 的四個業務 API 回應 501，一開始被略過（Skip）的測試代表功能尚未實作，不是完成。
 - App 啟動、Health 檢查與其他疑難排解見 [環境準備](#environment)。
 ```
 
@@ -107,9 +107,9 @@ git commit -m "G0 baseline"
 先不要修改程式。請閱讀 `../02-business-requirements.md` 與 `../03-acceptance-criteria.md`，以及本 Repository 的 README.md 與 docs/architecture.md，搜尋 `TODO(GREENFIELD`，整理待完成工作、規則對應與風險，提出 5 至 8 步計畫。每一步標出對應的 Rule ID。列出需要我決定的問題，等待我確認。
 ```
 
-Agent 的計畫合格時，應該：找到 11 個 `TODO(GREENFIELD`、每一步標出 Rule ID、列出需要你決定的問題。若它沒讀到需求文件、跳過 Rule ID 或已經開始修改，請要求它重做計畫。
+Agent 的計畫合格時，應該：找到 11 個 `TODO(GREENFIELD`、每一步標出規則編號（Rule ID）、列出需要你決定的問題。若它沒讀到需求文件、跳過 Rule ID 或已經開始修改，請要求它重做計畫。
 
-- [ ] 核對計畫：每一步都對應到 Rule ID 或 AC；沒有前端、登入、會員、優惠、改退票、新套件等範圍外項目。
+- [ ] 核對計畫：每一步都對應到 Rule ID 或 AC（Acceptance Criteria，驗收條件）；沒有前端、登入、會員、優惠、改退票、新套件等範圍外項目。
 - [ ] 決定實作順序，並決定**第一段做到哪裡**。建議第一段做到能驗證 1225 為止：票價 → 班次查詢 → 建立訂票；第二段再做付款 → 查詢訂單。
 - [ ] 確認規則的位置：商業規則放在 `domain/` 或 `application/`，`api/routes.py` 只負責轉換請求與回應。
 - [ ] 回答 Agent 列出的每個問題。先查下方「需求澄清」與需求文件；查不到時舉手問主持人，不要讓 Agent 自行假設。
@@ -152,7 +152,7 @@ Agent 依核准計畫做第一段，做完停下。**它停下後，換你做下
 - [ ] 確認 Agent 貼的是**實際執行**的 `pytest -q` 輸出，且減少的 Skip 正好是這一段的功能。
 - [ ] 看 Diff（步驟見下方「如何看 Diff」）：改動有沒有超出這一段？規則是否放在 `domain/` 或 `application/`？
 - [ ] 挑一個主要變更，用自己的話說出它做什麼、對應哪個 Rule ID 與 AC。
-- [ ] 手算一次：T001 成人 700 ＋ 學生 525 ＝ **1225**，跟程式或測試結果對照。
+- [ ] 手算一次：班次 T001 成人 700 ＋ 學生 525 ＝ **1225**，跟程式或測試結果對照。
 - [ ] 有問題就要求 Agent 修正並重跑測試；沒問題就 Commit 這一段：`git add -A`、`git commit -m "第一段"`。
 
 ```callout info

@@ -8,7 +8,7 @@ section: Greenfield｜Tool
 
 > 本頁上半部取自 G0 參與者文件 `05-submission-checklist.md`，在最後 2 分鐘及提交之前使用。下方表單用來整理交付摘要，會自動暫存，可匯出或複製 Markdown 後依主持人指定方式交付。
 
-原文中的 AC 是驗收條件，Rule ID 是商業規則編號，Diff 是程式修改差異。請核對實際修改與測試證據，再勾選完成。
+原文中的 AC（Acceptance Criteria）是驗收條件，Rule ID 是商業規則編號，Diff 是程式修改差異。請核對實際修改與測試證據，再勾選完成。
 
 ```include
 zip=participant-07-g0.zip path=agentic-workshop/01-greenfield/participant/05-submission-checklist.md

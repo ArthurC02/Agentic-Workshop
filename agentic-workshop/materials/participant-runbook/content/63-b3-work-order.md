@@ -24,6 +24,6 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 {"id": "repository-version", "label": "接手的程式庫版本", "type": "text", "suggestions": [{"label": "B2 接手", "text": "B2 接手版本（〈commit／資料夾〉）"}, {"label": "B2 Recovery", "text": "B2 Recovery 版本（〈來源〉）"}]},
 {"id": "confirmed-assumptions", "label": "已確認假設／限制", "type": "textarea", "suggestions": [{"label": "假設與來源", "text": "〈假設〉：已確認（來源：〈任務卡／Rule ID／小組確認〉）"}, {"label": "限制", "text": "限制：〈不得做的事〉（來源：〈操作規則／任務卡〉）"}, "不新增未核准的外部套件、服務或資料庫"]},
 {"id": "pending-decisions", "label": "尚待決定事項", "type": "textarea", "hint": "未填資料由小組確認，不由 Agent 猜測。", "suggestions": [{"label": "待決事項", "text": "〈問題〉：待〈誰〉於〈Gate 1／Gate 2〉決定"}, "無"]},
-{"id": "gate2-scope", "label": "Gate 2 核准範圍", "type": "textarea", "hint": "Gate 2 範圍待設計核准時填寫。允許為團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件修改；每個預計檔案均須先提出影響理由。", "suggestions": [{"label": "核准檔案", "text": "〈檔案〉：允許修改，理由：〈影響理由〉"}, {"label": "不得修改", "text": "不得修改：〈檔案／模組〉"}, {"label": "附帶條件", "text": "條件：〈條件〉；解除前不得修改〈範圍〉"}]}
+{"id": "gate2-scope", "label": "Gate 2 核准範圍", "type": "textarea", "hint": "Gate 2 範圍待設計核准時填寫。允許為團體流程所需的 API、Domain（業務模型）、Application（應用服務層）、座位配置、付款補償、測試與文件修改；每個預計檔案均須先提出影響理由。", "suggestions": [{"label": "核准檔案", "text": "〈檔案〉：允許修改，理由：〈影響理由〉"}, {"label": "不得修改", "text": "不得修改：〈檔案／模組〉"}, {"label": "附帶條件", "text": "條件：〈條件〉；解除前不得修改〈範圍〉"}]}
 ]}
 ```

@@ -9,19 +9,19 @@
 ## 四個業務入口
 
 - `GET /trips`：只列有可售座位班次；origin／destination可選且精確符合固定站名。
-- `POST /bookings`：指定trip_id與1–4位ADULT／STUDENT旅客，驗證班次與容量、逐人計價、建立待付款Booking並立即保留座位。
-- `POST /bookings/{booking_id}/pay`：模擬付款成功後Booking為PAID並建立唯一Order；不得重複付款。
+- `POST /bookings`：指定trip_id與1–4位ADULT／STUDENT旅客，驗證班次與容量、逐人計價、建立待付款Booking（訂票）並立即保留座位。
+- `POST /bookings/{booking_id}/pay`：模擬付款成功後Booking為PAID（已付款）並建立唯一Order（訂單）；不得重複付款。
 - `GET /orders/{order_id}`：讀取Booking ID、金額與付款狀態；不存在回傳404。
 
 另保留 `GET /health`，回應 `{"status":"ok"}`。
 
 ## 固定規則
 
-| Rule ID | 規則 |
+| 規則編號（Rule ID） | 規則 |
 |---|---|
 | TRIP-001／002 | 只列可售座位大於0的班次；起訖站精確篩選。 |
 | BOOKING-001／002／003 | 至少1人、最多4人、不得超過可售座位。 |
-| BOOKING-004／005 | 訂票成功立即保留座位；初始狀態PENDING_PAYMENT。 |
+| BOOKING-004／005 | 訂票成功立即保留座位；初始狀態PENDING_PAYMENT（待付款）。 |
 | FARE-001／002 | 成人基本票價100%、學生75%。 |
 | FARE-003／004 | 每位計價後加總；金額為整數。 |
 | PAYMENT-001／002／003 | 僅待付款可付；成功PAID；拒絕重複付款。 |
@@ -31,7 +31,7 @@
 
 ## 固定資料
 
-| Trip | 起站 | 訖站 | 基本票價 | 可售座位 |
+| Trip（班次） | 起站 | 訖站 | 基本票價 | 可售座位 |
 |---|---|---|---:|---:|
 | T001 | 台北 | 台中 | 700 | 20 |
 | T002 | 台北 | 高雄 | 1500 | 8 |
@@ -40,7 +40,7 @@
 
 日期固定，測試每次重置資料；模擬付款預設成功，可明確指定失敗，不使用隨機結果。
 
-## 允收條件索引
+## 驗收條件（AC，Acceptance Criteria）索引
 
 | AC | 檢核 |
 |---|---|
@@ -48,15 +48,15 @@
 | AC-G-003／004／005 | T001成人700、學生525、混合1225且整數。 |
 | AC-G-006／007 | 0人與5人拒絕且不扣座位；4人容量足夠可建立。 |
 | AC-G-008 | 僅剩1座卻要求2人拒絕且座位不變；售罄不可訂。 |
-| AC-G-009 | T001兩人建立後pending、座位20→18，後續查詢反映。 |
+| AC-G-009 | T001兩人建立後為待付款（pending）、座位20→18，後續查詢反映。 |
 | AC-G-010／011／012 | 成功付款PAID、唯一Order且金額一致；重複付款不新增；Order查詢正確。 |
 | AC-G-013／014 | 不存在資源依上述要求拒絕；付款失敗不建立Order或標PAID。 |
 | AC-G-015 | 完整四API流程可執行，Health正常。 |
 
 ## 技術與範圍
 
-Python3.13、FastAPI、Pydantic2、pytest、Uvicorn；venv／pip／requirements.txt，src/smart_ticket layout。API、Schemas、Application、Domain、Infrastructure輕量分層；Domain不依賴FastAPI。只使用本機In-Memory、固定Seed與模擬付款。不需前端、登入、其他優惠、改退票、真實個資、外部API或資料庫。
+Python3.13、FastAPI、Pydantic2、pytest、Uvicorn；venv／pip／requirements.txt，src/smart_ticket layout。API、Schemas、Application、Domain、Infrastructure輕量分層；Domain不依賴FastAPI。只使用本機In-Memory（資料只存在記憶體）、固定Seed Data（系統預設的測試資料）與模擬付款。不需前端、登入、其他優惠、改退票、真實個資、外部API或資料庫。
 
 ## 完成條件
 
-先形成可追溯的文件與核准計畫；實作完成與測試通過須另有實際證據。本文件為第一階段課後準備演練的來源摘要，依據既有Greenfield需求、AC與G1 Delta；不替代正式G0任務文件。
+先形成可追溯的文件與核准計畫；實作完成與測試通過須另有實際證據。本文件為第一階段課後準備演練的來源摘要，依據既有Greenfield需求、AC與G1（G0補完後的版本）差異說明；不替代正式G0（Greenfield 起始包）任務文件。

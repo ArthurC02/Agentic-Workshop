@@ -8,18 +8,18 @@ section: B3｜Digital Worker
 
 # B3｜Digital Worker：由 Agent 主導交付
 
-本段共 **13 分鐘**（第 63–76 分鐘），任務是 `TASK-B3-001` 團體訂票。Agent 的角色是 **Digital Worker**：Agent 主導分析、設計、實作、測試、文件及交付；人設定邊界、核准、挑戰與驗證，承擔最終提交責任。
+本段共 **13 分鐘**（第 63–76 分鐘），任務是 `TASK-B3-001` 團體訂票。Agent 的角色是 **Digital Worker**（數位員工）：今天 Agent 從工具、隊友，走到這一段能獨立執行任務的數位員工。Agent 主導分析、設計、實作、測試、文件及交付；人設定邊界、核准、挑戰與驗證，承擔最終提交責任。
 
 ```callout danger
 人員不得直接修改程式
 人員不得直接修改程式，只能挑戰假設、審查、核准或拒絕，並要求補證或修正。Agent 負責分析、設計、實作、測試、文件與摘要。
 
-工具不支援自動修改時，Agent 可產生 Patch，由環境套用；人員仍不得自行補寫程式或測試。
+工具不支援自動修改時，Agent 可產生 Patch（修改檔），由環境套用；人員仍不得自行補寫程式或測試。
 ```
 
 ```callout warning
 不要讓 Agent 跳過 Gate
-本段分成 6 個檢查點，其中三個的「確認」就是人員核准 Gate（Gate 1、Gate 2、Gate 3）。每個檢查點結束時 Agent 必須停下；由人填好該檢查點的確認，才交代下一步。Gate 2 核准且相關條件解除前，Agent 不得修改程式。
+本段分成 6 個檢查點，其中三個的「確認」就是人員核准關卡（Gate 1、Gate 2、Gate 3）。每個檢查點結束時 Agent 必須停下；由人填好該檢查點的確認，才交代下一步。Gate 2 核准且相關條件解除前，Agent 不得修改程式。
 ```
 
 ```callout info
@@ -38,7 +38,7 @@ section: B3｜Digital Worker
 | 3 · Gate 2 影響分析與設計 | 66–70 | 03–07 | 審查影響與設計；第 69 分做 Gate 2 決策、填核准範圍 |
 | 4 · 依核准計畫執行 | 70–74 | 07–11 | Agent 在核准範圍內修改、測試、更新文件；人審查，不寫程式 |
 | 5 · 停止擴充、整理證據 | 74–75 | 11–12 | 停止新增；記錄實際測試命令與結果；Agent 交 Gate 3 Input |
-| 6 · Gate 3 與交付 | 75–76 | 12–13 | Gate 3 交付審查；Agent 交 Delivery Summary 與 Level |
+| 6 · Gate 3 與交付 | 75–76 | 12–13 | Gate 3 交付審查；Agent 交 Delivery Summary（交付摘要）與 Level（完成等級） |
 
 ## 本段文件
 
@@ -46,15 +46,15 @@ section: B3｜Digital Worker
 |---|---|---|
 | [B3 任務卡](#b3-task-card) | `TASK-B3-001` 需求、邊界與驗收條件（AC） | 必讀 |
 | [Digital Worker 操作規則](#b3-operating-rules) | 人與 Agent 的可以／不得 | 必讀，目標 2 分鐘內讀完 |
-| [Work Order](#b3-work-order) | 交給 Agent 的工作命令；填 Approved Context 與 Gate 2 核准範圍 | 必讀；檢查點 1、3 填寫 |
-| [Approval Gates](#b3-approval-gates) | 三個人員核准 Gate 與決策短格式 | 必讀；檢查點 2、3、6 填寫 |
-| [Review Checklist](#b3-review-checklist) | Gate 3 交付審查 | 按需使用（檢查點 6） |
+| [Work Order](#b3-work-order)（工作命令） | 交給 Agent 的工作命令；填 Approved Context（已核准的背景資料）與 Gate 2 核准範圍 | 必讀；檢查點 1、3 填寫 |
+| [Approval Gates](#b3-approval-gates)（核准關卡） | 三個人員核准關卡與決策短格式 | 必讀；檢查點 2、3、6 填寫 |
+| [Review Checklist](#b3-review-checklist)（交付審查檢核表） | Gate 3 交付審查 | 按需使用（檢查點 6） |
 | [Delivery Summary](#delivery) | Gate 3 及 B3 結束時的交付摘要 | 按需使用（檢查點 6） |
-| [Exception Response 卡](#b3-exception-card) | 例外回應與 Escalation 短格式 | 按需使用 |
+| [Exception Response 卡](#b3-exception-card)（例外回應卡） | 例外回應與 Escalation（升級處理：停下來交給人決定）短格式 | 按需使用 |
 
 ## 檢查點 1 · 交辦（第 63–64 分鐘）
 
-- [ ] 讀 [Digital Worker 操作規則](#b3-operating-rules) 與 [B3 任務卡](#b3-task-card)。操作規則目標 2 分鐘內讀完，可在 Agent 準備 Gate 1 Input 時讀完。
+- [ ] 讀 [Digital Worker 操作規則](#b3-operating-rules) 與 [B3 任務卡](#b3-task-card)。操作規則目標 2 分鐘內讀完，可在 Agent 準備 Gate 1 Input（Agent 交給 Gate 1 審查的資料）時讀完。
 
 本段人員可以做的事：
 
@@ -96,10 +96,10 @@ section: B3｜Digital Worker
 
 Agent 交出 Gate 1 Input 後停下。**換你審查並決策**，決策前不要讓它進入設計。
 
-- [ ] 確認 Agent 提交了 Gate 1 Input：需求摘要、規則清單、關鍵假設、資訊缺口、Out of Scope、需要人決定的問題。
-- [ ] 人員 Review：5–20 邊界、同 Trip／同車廂連續、無部分成功、失敗整筆取消及全釋放、B2 個別旅客優惠是否理解一致。
+- [ ] 確認 Agent 提交了 Gate 1 Input：需求摘要、規則清單、關鍵假設、資訊缺口、Out of Scope（不在範圍內的項目）、需要人決定的問題。
+- [ ] 人員檢視（Review）：5–20 人邊界、同班次（Trip）／同車廂連續、無部分成功、失敗整筆取消及全釋放、B2 個別旅客優惠是否理解一致。
 - [ ] 回答 Agent 列出的問題；查不到依據時由小組確認，不讓 Agent 自行假設。
-- [ ] 最晚全場第 66 分鐘，在 [Gate 1 表單](#b3-approval-gates) 記錄決策。核准需求才進入設計；拒絕時要求修正。條件核准需說明哪些活動已允許、哪些仍被阻擋。
+- [ ] 最晚全場第 66 分鐘，在 [Gate 1 表單](#b3-approval-gates) 記錄決策。核准需求才進入設計；拒絕時要求修正。條件核准需說明哪些活動已允許、哪些仍被阻擋。三種決策：APPROVE＝核准；APPROVE WITH CONDITIONS＝附條件核准；REJECT AND REVISE＝退回修正。
 - [ ] 用下方格式回覆 Agent。`〈 〉` 的內容由你填寫：
 
 ```text
@@ -123,7 +123,7 @@ Gate 1 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
 
 這一步 Agent **只提設計，不改程式**。
 
-- [ ] 確認 Agent 提交了 Gate 2 Input：受影響／不受影響模組、API Contract、Domain 變更、Seat Assignment 方案、Atomicity／Compensation 方案、測試策略、文件清單、主要風險與預計修改檔案。
+- [ ] 確認 Agent 提交了 Gate 2 Input：受影響／不受影響模組、API Contract（API 合約）、Domain 變更（業務模型變更）、Seat Assignment（座位分配）方案、Atomicity／Compensation（整筆成功或整筆失敗／失敗時復原已保留的座位等狀態）方案、測試策略、文件清單、主要風險與預計修改檔案。
 - [ ] 人員 Review：範圍是否合理、避免全面重寫、建立與付款失敗均處理、座位釋放、Regression 保留與未核准外部依賴；不以方案看似合理取代授權檢查。
 - [ ] 最晚全場第 69 分鐘，在 [Gate 2 表單](#b3-approval-gates) 記錄決策，並在 [Work Order](#b3-work-order) 填妥「Gate 2 核准範圍」。
 - [ ] 第 69–70 分鐘：主持人若宣布例外事件，用 [Exception Response 卡](#b3-exception-card) 在 60 秒內記錄提議、證據、決策與給 Agent 的指令。時間緊可用 30 秒口頭判斷並留下簡短紀錄。
@@ -151,7 +151,7 @@ Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS〉
 
 ```callout info
 例外與升級
-需要例外判斷時，使用 [Exception Response 卡](#b3-exception-card) 記錄提議、證據、決策與給 Agent 的指令；例外判斷含在 Timebox 內，不額外加時。一般停止條件使用同頁的 Escalation 短格式。
+需要例外判斷時，使用 [Exception Response 卡](#b3-exception-card) 記錄提議、證據、決策與給 Agent 的指令；例外判斷含在本段限定時間（Timebox）內，不額外加時。一般停止條件使用同頁的 Escalation 短格式。
 ```
 
 ```form
@@ -187,7 +187,7 @@ Gate 2 決策：〈APPROVE／APPROVE WITH CONDITIONS〉
 
 ## 檢查點 6 · Gate 3 與交付（第 75–76 分鐘）
 
-- [ ] 確認 Agent 提交了 Gate 3 Input：當前成果摘要、Acceptance Criteria 對照、Rule Traceability、未完成事項、已知風險及交付建議；有修改時附實際檔案，有測試時附命令與真實結果。
+- [ ] 確認 Agent 提交了 Gate 3 Input：當前成果摘要、驗收條件（Acceptance Criteria）對照、規則追溯（Rule Traceability：每條規則對到哪段程式、測試與文件）、未完成事項、已知風險及交付建議；有修改時附實際檔案，有測試時附命令與真實結果。
 - [ ] 人員審查（可用 [交付審查檢核表](#b3-review-checklist)）：是否越界、成果證據與未完成事項是否如實揭露。對照你在檢查點 4、5 的確認紀錄；不一致時以你的實際確認為準。
 - [ ] 在 [Gate 3 表單](#b3-approval-gates) 記錄決策：依實際成果核准、條件核准或拒絕並修正。
 - [ ] 要求 Agent 交付：
@@ -199,7 +199,7 @@ Gate 3 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
 請依 Delivery Summary 範本整理交付摘要。Completion Level 從 Level 1–3 擇一並說明證據，不要自動選 Level 3；沒有實際執行過的項目標為「未驗證」。交出後停止，不再新增功能。
 ```
 
-- [ ] Agent 交付 [Delivery Summary](#delivery) 與 Completion Level（Level 1–3 擇一並說明證據，不自動選 Level 3）。
+- [ ] Agent 交付 [Delivery Summary](#delivery) 與 Completion Level（完成等級：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付；擇一並說明證據，不自動選 Level 3）。
 - [ ] 全場第 76 分鐘到，停止擴充並列出缺項。
 
 ```callout warning
@@ -211,4 +211,4 @@ Gate 3 決策：〈APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE〉
 
 ## 必要時受控接續
 
-未完成前一段時，主持人只於進入本段時按需核准並提供獨立解鎖碼。到 [B2 Recovery](#recovery-b2) 下載及切換；保留原成果、未完成及來源，Recovery不算小組自行完成。B3開始後不再換版，改採分析／Review成果。
+未完成前一段時，主持人只於進入本段時按需核准並提供獨立解鎖碼。到 [B2 Recovery](#recovery-b2) 下載及切換；保留原成果、未完成及來源；Recovery（復原包：進度落後時改用的接續基線）不算小組自行完成。B3開始後不再換版，改交分析／檢視（Review）成果。

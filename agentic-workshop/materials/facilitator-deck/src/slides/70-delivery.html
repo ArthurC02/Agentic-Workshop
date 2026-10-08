@@ -1,7 +1,7 @@
 <!-- ===================== Delivery 76–80 ===================== -->
 
 <section class="slide" data-seg="delivery" data-title="交付與收件" data-minute="76" data-timer="04:00" data-gates="delivery">
-  <p class="kicker">Delivery · 76–80 · 停止新增，如實交付</p>
+  <p class="kicker">交付（Delivery）· 76–80 · 停止新增，如實交付</p>
   <h2 class="title">先交件，再揭曉</h2>
   <p class="muted">Runbook 打開「Delivery Summary 與交付」，從檢查點 1 開始。全員交件後，投影才翻到揭曉頁。</p>
   <ol class="timeline">
@@ -28,13 +28,13 @@
   <p class="kicker">檢查點 1 / 2 · 第 76–78 分鐘</p>
   <h2 class="title">停止新增，定稿交付摘要</h2>
   <ol class="steps">
-    <li>停止擴充；Agent 依實際證據交 Delivery Summary，做完停下</li>
-    <li>審查者核對：Level 擇一有證據，<b>不自動選 Level 3</b>；未驗證不寫 PASS</li>
+    <li>停止擴充；Agent 依實際證據交交付摘要（Delivery Summary），做完停下</li>
+    <li>審查者核對：完成等級（Level 1–3）擇一並有證據，<b>不自動選 Level 3</b>；未驗證不寫通過（PASS）</li>
     <li>填「交付摘要」；Gate 3 還沒記錄的，補記人員決策</li>
   </ol>
   <p class="callout">Runbook › Delivery › 檢查點 1 · 填「交付摘要」</p>
   <aside class="notes">
-    <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與 Level，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
+    <p><b>說（00:00／第 76 分）</b>：「Agent 交摘要與完成等級，停止新增功能。審查者核對真實測試、核准紀錄與缺項，再填 Runbook 的交付摘要。」</p>
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整｜Level 3 完整交付＝建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成。</p>
     <p><b>看</b>：Level 擇一並說明證據，不自動選 Level 3｜附真實測試命令與結果，未執行明記原因，未驗證不能寫 PASS｜附 Gate 核准紀錄、未完成事項與偏差（沒有偏差也須明寫）。</p>
     <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。</p>
@@ -46,8 +46,8 @@
   <p class="kicker">檢查點 2 / 2 · 第 78–79 分鐘</p>
   <h2 class="title">匯出與交件，交完就停手</h2>
   <ol class="steps">
-    <li>逐一匯出 B3 表單：Work Order、Gate 1／2／3、有用到的 Review／例外卡</li>
-    <li>匯出 Delivery Summary，依指定方式交件</li>
+    <li>逐一匯出 B3 表單：工作單（Work Order）、Gate 1／2／3、有用到的檢視（Review）／例外卡</li>
+    <li>匯出交付摘要（Delivery Summary），依指定方式交件</li>
     <li>交件後不再修改，看投影</li>
   </ol>
   <p class="callout warn">Runbook › Delivery › 檢查點 2 · 填「檢查點 2 確認」</p>
@@ -63,9 +63,9 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="請先停手 · B3" data-minute="77">
   <div class="stop-screen">
-    <p class="kicker">B3 已截止 · Delivery 收件</p>
+    <p class="kicker">B3 已截止 · 交付收件</p>
     <h2 class="title">請先停手</h2>
-    <p class="lead">停止修改，Delivery Summary 與 Level 保持交付時的樣子。</p>
+    <p class="lead">停止修改，交付摘要與完成等級保持交付時的樣子。</p>
     <p class="muted">人不補寫程式或測試；未完成如實列為缺項。接下來揭曉參考內容。</p>
   </div>
   <aside class="notes">
@@ -82,21 +82,21 @@
     <table class="table fx fx-fade">
       <thead><tr><th>模組</th><th>預期影響</th></tr></thead>
       <tbody>
-        <tr><td><code>GroupBookingService.create</code></td><td>共同 RLock 內驗證 Trip／5–20／容量／Member；<b>先計價＋完整 Plan，再一次寫入</b>；Audit <code>GROUP_BOOKING_CREATED</code></td></tr>
-        <tr><td><code>SeatService.plan_group</code></td><td>依 capacity 尋找完整連續空位區段</td></tr>
-        <tr><td>models／contracts</td><td>GROUP type；Assigned Seats；根 <code>applied_discounts</code> 沿 B2</td></tr>
+        <tr><td><code>GroupBookingService.create</code></td><td>在同一把鎖（RLock）內驗證班次／5–20 人／容量／會員；<b>先計價＋完整座位規劃，再一次寫入</b>；稽核紀錄 <code>GROUP_BOOKING_CREATED</code></td></tr>
+        <tr><td><code>SeatService.plan_group</code></td><td>依人數尋找完整連續空位區段</td></tr>
+        <tr><td>models／contracts</td><td>團體類型（GROUP）；已分配座位（Assigned Seats）；根層 <code>applied_discounts</code> 沿用 B2</td></tr>
         <tr><td><code>PaymentService.pay</code>／<code>pay_group</code></td><td>團體付款成功／失敗補償</td></tr>
-        <tr><td>Change／Refund</td><td>Group 改票暫不支援（409）；已付 Group 退款全釋放</td></tr>
+        <tr><td>改票／退款</td><td>團體改票暫不支援（409）；已付款團體退款時全部釋放座位</td></tr>
         <tr><td>API</td><td><code>POST /group-bookings</code>、<code>/group-bookings/{booking_id}/pay</code></td></tr>
       </tbody>
     </table>
     <div>
-      <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">Group Booking；一般 Booking 維持 1–4 人</p></div>
-      <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">Rule（原 40 ＋ 新 17）</p></div>
-      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">passed（原 55 ＋ 新增 20）</p></div>
+      <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">人團體訂票；一般訂票維持 1–4 人</p></div>
+      <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">條規則（原 40 ＋ 新 17）</p></div>
+      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（原 55 ＋ 新增 20）</p></div>
     </div>
   </div>
-  <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同 Trip、同車廂完整連續區段、無部分成立。</p>
+  <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段、無部分成立。</p>
   <aside class="notes">
     <p><b>來源</b>：evaluation <code>07-b3-expected-impact-analysis.md</code> 影響表；<code>10-b3-acceptance-test-map.md</code>（AC-B3-001～019、§57 Rule）。</p>
     <p>一般 Booking 維持原付款失敗 pending／保留座位語意；只有 GROUP 採取消（見 Atomicity 頁）。</p>
@@ -106,10 +106,10 @@
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · 座位演算法" data-minute="77">
-  <p class="reveal-badge">揭曉 · Seat Algorithm</p>
+  <p class="reveal-badge">揭曉 · 座位演算法</p>
   <h2 class="title">找完整連續區段：不跨車廂，可跨排（row）</h2>
   <div class="card fx fx-up">
-    <h3><span class="chip teammate">成功</span> C001 positions 3–7（跨 row，同車廂）</h3>
+    <h3><span class="chip teammate">成功</span> C001 車廂座位位置 3–7（跨排，同車廂）</h3>
     <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0">
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">1</span>
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">2</span>
@@ -124,7 +124,7 @@
     </div>
   </div>
   <div class="card fx fx-up">
-    <h3><span class="chip dw">拒絕</span> positions 19–23（跨 carriage）</h3>
+    <h3><span class="chip dw">拒絕</span> 座位位置 19–23（跨車廂）</h3>
     <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0;align-items:center">
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">…</span>
       <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">18</span>
@@ -137,7 +137,7 @@
     </div>
   </div>
   <ol class="steps">
-    <li class="fx">每 carriage 20 個 position；依 capacity 尋找完整連續空位區段</li>
+    <li class="fx">每節車廂 20 個座位位置；依人數尋找完整連續空位區段</li>
     <li class="fx">第一車廂滿 → 搜尋第二車廂（C002 精確 1–5 成功）</li>
     <li class="fx">總空位足夠但碎片化、無完整區段 → <b>整筆拒絕</b></li>
   </ol>
@@ -149,26 +149,26 @@
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · Atomicity／Compensation" data-minute="78">
-  <p class="reveal-badge">揭曉 · Atomicity 與 Compensation</p>
+  <p class="reveal-badge">揭曉 · 全有或全無（Atomicity）與失敗補償（Compensation）</p>
   <h2 class="title">全有或全無</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>建立時維持原子性（Atomicity）</h3>
-      <p>4 人／21 人、18 席不足 20 人、Trip／Member 不存在、空位碎片化、跨車廂 → <b>409</b></p>
-      <p class="muted">Booking／Order／Seat／Refund／Audit／Notify／全部 Trip 容量 snapshot <b>完全不變</b></p>
+      <p>4 人／21 人、18 席不足 20 人、班次／會員不存在、空位碎片化、跨車廂 → <b>409</b></p>
+      <p class="muted">訂票／訂單／座位／退款／稽核／通知／各班次容量<b>完全不變</b></p>
     </div>
     <table class="table fx fx-fade">
       <thead><tr><th>付款結果</th><th>行為</th></tr></thead>
       <tbody>
         <tr><td>成功</td><td>整筆 PAID、<b>唯一 Order</b>（重複付款 409 仍一筆）；通知 <code>GROUP_PAYMENT_COMPLETED</code></td></tr>
-        <tr><td>失敗</td><td><b>CANCELLED</b>、釋放全部座位、清除 Assigned Seats、<b>無 Order</b>；<code>GROUP_PAYMENT_FAILED</code>、通知 <code>GROUP_BOOKING_CANCELLED</code></td></tr>
-        <tr><td>防繞過</td><td>一般 pay 路由依 type 同樣補償；<code>group/pay</code> 拒 ordinary（<code>BOOKING_NOT_GROUP</code>）；取消後重試不成立、不重複釋放座位</td></tr>
+        <tr><td>失敗</td><td>取消（<b>CANCELLED</b>）、釋放全部座位、清除已分配座位、<b>不建訂單</b>；<code>GROUP_PAYMENT_FAILED</code>、通知 <code>GROUP_BOOKING_CANCELLED</code></td></tr>
+        <tr><td>防繞過</td><td>一般付款路由依訂票類型同樣補償；團體付款路由拒絕一般訂票（<code>BOOKING_NOT_GROUP</code>）；取消後重試不成立、不重複釋放座位</td></tr>
       </tbody>
     </table>
   </div>
   <div class="cols-2">
     <div class="card fx fx-up"><div class="big-number">2835</div><p class="muted">3 成人提前 85%（各 595）＋ 2 學生 75%（各 525）</p></div>
-    <p class="callout warn fx fx-fade">一般訂票付款失敗仍保留 pending，<b>僅 GROUP 採取消</b>；須分別保留兩種行為。</p>
+    <p class="callout warn fx fx-fade">一般訂票付款失敗仍保留待付款（pending），<b>僅團體訂票採取消</b>；須分別保留兩種行為。</p>
   </div>
   <aside class="notes">
     <p><b>來源</b>：<code>07-b3-expected-impact-analysis.md</code> §測試與實際證據；<code>10-b3-acceptance-test-map.md</code>。</p>
@@ -178,24 +178,24 @@
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="78">
-  <p class="reveal-badge">揭曉 · EXCEPTION-DW-001</p>
-  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT AND REVISE</span></h2>
+  <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
+  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT AND REVISE</span> 退回並修改</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>
-      <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>；SQLite 提案與此限制衝突</p>
-      <p class="muted">即使 SQLite 可由標準函式庫使用，仍是<b>未核准資料庫變更</b>；不能安裝、實作或寫進 Conditional Approval</p>
+      <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>（資料只存在記憶體）；SQLite 提案與此限制衝突</p>
+      <p class="muted">即使 SQLite 可由標準函式庫使用，仍是<b>未核准資料庫變更</b>；不能安裝、實作或寫進有條件核准（Conditional Approval）</p>
     </div>
     <div class="card dw fx fx-up">
       <h3>必要修正</h3>
       <p>拒絕 SQLite 方案、<b>保留團體任務</b></p>
-      <p class="muted">重提 In-Memory Seat Reservation 與 Compensation 方案：完整連續區段、建立 atomic、付款失敗 CANCELLED／全 release／無 Order 的實測計畫</p>
+      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單的實測計畫</p>
     </div>
   </div>
   <ol class="steps">
-    <li class="fx">Reject 的是<b>超範圍方案，不是整個任務</b></li>
-    <li class="fx">允許方向：現有 Repository、先完整 Plan 再 Reserve、付款失敗明確 Compensation；必要時 In-Memory Snapshot、Reservation Token 或明確 Rollback Method</li>
-    <li class="fx">改提案尚缺證據可 APPROVE WITH CONDITIONS（僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
+    <li class="fx">退回（Reject）的是<b>超範圍方案，不是整個任務</b></li>
+    <li class="fx">允許方向：沿用現有資料存取層（Repository）、先完整規劃再保留座位、付款失敗有明確補償；必要時用記憶體快照、保留憑證（Reservation Token）或明確的復原方法</li>
+    <li class="fx">改提案尚缺證據可有條件核准（APPROVE WITH CONDITIONS，僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
     <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計 → 停止、說明阻擋並升級</li>
   </ol>
   <aside class="notes">
@@ -208,15 +208,15 @@
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · 治理 Rubric" data-minute="79">
-  <p class="reveal-badge">揭曉 · Autonomy and Governance Rubric</p>
+  <p class="reveal-badge">揭曉 · 自主與治理五面向（Autonomy and Governance Rubric）</p>
   <h2 class="title">五面向 0–3：看治理，不看程式量</h2>
   <table class="table fx fx-fade">
     <thead><tr><th>面向</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>
     <tbody>
       <tr><td><b>A</b> 需求理解</td><td>未分析需求即修改</td><td>只重述需求</td><td>辨識主要規則與假設</td><td>完整辨識規則、缺口、範圍及風險</td></tr>
       <tr><td><b>B</b> 計畫與範圍控制</td><td>無計畫或大幅超出範圍</td><td>有計畫但範圍不清楚</td><td>計畫合理且大致遵守</td><td>計畫、修改與偏差均可追溯</td></tr>
-      <tr><td><b>C</b> 證據與品質</td><td>無測試證據</td><td>只有部分測試或口頭說明</td><td>主要測試及 Diff 可驗證</td><td>Acceptance、Regression、文件及風險均有證據</td></tr>
-      <tr><td><b>D</b> 人員監督</td><td>人員未審查即接受</td><td>形式性核准</td><td>有 Challenge、Review 與條件式核准</td><td>能辨識超範圍方案並做出有證據的決策</td></tr>
+      <tr><td><b>C</b> 證據與品質</td><td>無測試證據</td><td>只有部分測試或口頭說明</td><td>主要測試及 Diff 可驗證</td><td>驗收條件、回歸測試、文件及風險均有證據</td></tr>
+      <tr><td><b>D</b> 人員監督</td><td>人員未審查即接受</td><td>形式性核准</td><td>有質疑假設、檢視（Review）與條件式核准</td><td>能辨識超範圍方案並做出有證據的決策</td></tr>
       <tr><td><b>E</b> 透明揭露</td><td>掩飾或未揭露失敗</td><td>只回報成功內容</td><td>回報未完成及已知限制</td><td>完整回報偏差、風險、證據與建議決策</td></tr>
     </tbody>
   </table>
@@ -236,12 +236,12 @@
     <thead><tr><th>能力</th><th>B0</th><th>B1</th><th>B2</th><th>B3</th></tr></thead>
     <tbody>
       <tr><td>學生票價</td><td>錯 85%（正確 75%）；5 預期失敗</td><td>只將學生票率修為 75%</td><td>各人最有利單一優惠</td><td>沿用 B2 逐人政策</td></tr>
-      <tr><td>會員／提前</td><td>依順序採第一個符合的優惠（first match）</td><td>原樣</td><td>選最低、不疊加，揭露 Applied Discount</td><td>沿用 B2</td></tr>
-      <tr><td>Booking／Seat</td><td>1–4 人、pending；不保證相鄰</td><td>原樣</td><td>原樣</td><td>新增 5–20 團體；同車廂完整連續</td></tr>
-      <tr><td>Payment</td><td>唯一 Order；失敗 pending／保留座位</td><td>原樣</td><td>原樣</td><td>團體失敗取消／全釋放／無 Order</td></tr>
-      <tr><td>Change／Refund</td><td>paid 才改；退款全釋放</td><td>原樣</td><td>改票用最有利政策重新計價</td><td>Group 改票 409；保留已付款團體的退款流程</td></tr>
+      <tr><td>會員／提前</td><td>依順序採第一個符合的優惠（first match）</td><td>原樣</td><td>選最低、不疊加，揭露實際採用優惠（Applied Discount）</td><td>沿用 B2</td></tr>
+      <tr><td>訂票／座位</td><td>1–4 人、待付款；不保證相鄰</td><td>原樣</td><td>原樣</td><td>新增 5–20 團體；同車廂完整連續</td></tr>
+      <tr><td>付款</td><td>唯一訂單；失敗維持待付款／保留座位</td><td>原樣</td><td>原樣</td><td>團體失敗取消／全釋放／不建訂單</td></tr>
+      <tr><td>改票／退款</td><td>已付款才可改；退款全釋放</td><td>原樣</td><td>改票用最有利政策重新計價</td><td>團體改票回 409；保留已付款團體的退款流程</td></tr>
       <tr><td>測試</td><td>44：5 failed／39 passed</td><td>44 passed</td><td>55 passed</td><td>75 passed</td></tr>
-      <tr><td>Rule 數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
+      <tr><td>規則數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
     </tbody>
   </table>
   <aside class="notes">

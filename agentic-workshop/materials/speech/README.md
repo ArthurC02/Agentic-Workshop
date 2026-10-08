@@ -12,20 +12,22 @@
 
 ## 第一階段：Greenfield
 
-從「Greenfield 為什麼這麼順利？做了哪些準備？」出發，帶學員理解如何從空資料夾逐步建立開發依據：
+從「Greenfield（從空資料夾開始的新專案）為什麼這麼順利？做了哪些準備？」出發，帶學員理解如何從空資料夾逐步建立開發依據：
 
 1. 從空資料夾開始。
-2. 將專案 Idea 相關文件放入 `docs/`。
-3. 從文件細化 MVP 各階段應有的工作項目。
-4. 將工作項目轉為 User Story 或 Use Case。
-5. 定義允收準則（Acceptance Criteria）。
+2. 將專案構想（Idea）相關文件放入 `docs/`。
+3. 從文件細化 MVP（Minimum Viable Product，最小可行產品）各階段應有的工作項目。
+4. 將工作項目轉為使用者故事（User Story）或使用案例（Use Case）。
+5. 定義驗收條件（AC，Acceptance Criteria）。
 6. 理解業務情境與流程（Business Flow）。
-7. 使用 Gherkin 撰寫測試情境。
-8. 設計分層式架構。
+7. 使用 Gherkin（用 Given／When／Then 寫測試情境的格式）撰寫測試情境。
+8. 設計分層式架構（依責任把程式分成幾層）。
 
-第一階段採45分鐘完整操作與審查，詳見 [Greenfield操作說明](01-greenfield/README.md)。既有G0作為回看準備工作的案例，再由學員在新目錄重建文件流程。
+第一階段採45分鐘完整操作與審查，詳見 [Greenfield操作說明](01-greenfield/README.md)。既有G0（Greenfield 起始包）作為回看準備工作的案例，再由學員在新目錄重建文件流程。
 
-## 各階段獨立 Deck
+## 各階段獨立簡報（Deck）
+
+主題中的 Tool → Teammate → Digital Worker，指 Agent 從工具、隊友到能獨立執行任務的數位員工。
 
 | 存放位置 | 主題 | 狀態 |
 |---|---|---|
