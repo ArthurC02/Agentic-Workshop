@@ -61,8 +61,8 @@
     "notes": "訂票不存在Trip只要求明確錯誤；不要硬增特定HTTP狀態。不存在Booking付款與Order查詢須404。保留0人與5人均不消耗座位的要求。"
   },
   {
-    "id": "flow", "chapter": "06 業務流程", "title": "把功能串成狀態與資料變化", "lead": "業務流程（Business Flow）：依業務順序串起各功能，標出每一步的狀態與資料變化。今天畫查詢、訂票、付款與訂單；成功和失敗都要有出口。",
-    "flow": ["查詢可售班次（Trip）", "驗證旅客與容量", "逐人計價", "訂票（Booking）待付款＋保留座位", "模擬付款成功", "Booking已付款（PAID）＋唯一訂單（Order）"],
+    "id": "flow", "chapter": "06 業務流程", "title": "把功能串成狀態與資料變化", "lead": "業務流程（Business Flow）：串起查詢、訂票、付款與訂單；成功和失敗都要有出口。",
+    "flow": ["查詢可售班次（Trip）", "驗證旅客與容量", "逐人計價", "訂票（Booking）待付款＋保留座位", "模擬付款成功", "Booking已付款＋唯一訂單（Order）"],
     "cards": [["訂票拒絕", "不建立Booking，不扣座位；回傳明確錯誤。"], ["付款失敗", "不建立Order、不標PAID；Greenfield仍待付款且保留座位。"]],
     "prompt": "依03-stories.md與04-acceptance.md，建立docs/05-business-flow.md。用文字流程或Mermaid（用文字描述流程圖的語法）呈現查詢→訂票→付款→訂單，標示驗證點、狀態與資料變化；補上訂票失敗、付款失敗、重複付款。逐一核對Rule／AC，不確定的分支先列問題，不改規則。",
     "check": "付款前不能已有Order；付款成功只有一筆Order；失敗不誤標已付款。",
@@ -94,9 +94,9 @@
     "notes": "這段只示範情境到pytest的映射，非空專案直接可跑。實作後由fixture每次重置資料。來源：G1的test_mixed_booking_reserves_seats。票價計算可寫單元測試（unit）、訂票用例可寫服務層測試（service）、HTTP可寫整合測試（integration）。不要求安裝BDD套件。"
   },
   {
-    "id": "architecture", "chapter": "08 分層架構", "title": "讓規則與流程有清楚的落點", "lead": "分層架構：依責任把程式分成幾層，每層只做一類事，依賴方向固定。先分責任，再建目錄；Domain（業務核心）不依賴FastAPI。",
-    "flow": ["API／Schemas（介面層）：HTTP與輸入輸出格式", "Application（應用層）：協調訂票用例", "Domain（領域層）：模型與票價規則"],
-    "cards": [["Infrastructure（基礎設施層）", "In-Memory Repository（負責存取資料的元件）、固定Seed Data（系統預設的測試資料）、模擬付款；提供可替換的資料與外部介面實作。"], ["依賴方向", "API→Application→Domain；Application只依賴Repository契約（介面），實際的Infrastructure實作在程式入口組裝進來。"]],
+    "id": "architecture", "chapter": "08 分層架構", "title": "讓規則與流程有清楚的落點", "lead": "每層只做一類事；Domain（業務核心）不依賴FastAPI。",
+    "flow": ["API／Schemas（介面層）：HTTP與輸入輸出", "Application（應用層）：協調訂票用例", "Domain（領域層）：模型與票價規則"],
+    "cards": [["Infrastructure（基礎設施層）", "記憶體資料存取、預設測試資料（Seed）、模擬付款。"], ["依賴方向", "API→Application→Domain；實作在程式入口組裝。"]],
     "prompt": "依已確認的docs/01至06文件，建立docs/07-architecture.md。採API、Schemas、Application、Domain、Infrastructure輕量分層；列模組責任、依賴、入口組裝、Repository契約與測試方式。以訂票用例逐步說明在哪層驗證、計價、保存與轉HTTP回應。Domain不依賴FastAPI，不新增資料庫或外部服務；先不要寫業務程式。",
     "check": "學生75%在Domain的票價Policy（規則物件）；HTTP轉換在API；訂票協調在Application。",
     "notes": "Repository契約可用輕量Protocol或等價介面，不要求龐大抽象。分層圖是責任與依賴圖，不是每個請求依次穿過所有層。Schemas由API使用；Infrastructure的轉接實作（adapter）由程式入口注入。"

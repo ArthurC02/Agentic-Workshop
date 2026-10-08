@@ -140,9 +140,9 @@ TASK-GF-02：建立核心訂票
 
 ## 10. 把功能串成狀態與資料變化
 
-業務流程（Business Flow）：依業務順序串起各功能，標出每一步的狀態與資料變化。今天畫查詢、訂票、付款與訂單；成功和失敗都要有出口。
+業務流程（Business Flow）：串起查詢、訂票、付款與訂單；成功和失敗都要有出口。
 
-查詢可售班次（Trip） → 驗證旅客與容量 → 逐人計價 → 訂票（Booking）待付款＋保留座位 → 模擬付款成功 → Booking已付款（PAID）＋唯一訂單（Order）
+查詢可售班次（Trip） → 驗證旅客與容量 → 逐人計價 → 訂票（Booking）待付款＋保留座位 → 模擬付款成功 → Booking已付款＋唯一訂單（Order）
 
 - **訂票拒絕**：不建立Booking，不扣座位；回傳明確錯誤。
 
@@ -231,13 +231,13 @@ def test_mixed_booking(client, memory_store):
 
 ## 15. 讓規則與流程有清楚的落點
 
-分層架構：依責任把程式分成幾層，每層只做一類事，依賴方向固定。先分責任，再建目錄；Domain（業務核心）不依賴FastAPI。
+每層只做一類事；Domain（業務核心）不依賴FastAPI。
 
-API／Schemas（介面層）：HTTP與輸入輸出格式 → Application（應用層）：協調訂票用例 → Domain（領域層）：模型與票價規則
+API／Schemas（介面層）：HTTP與輸入輸出 → Application（應用層）：協調訂票用例 → Domain（領域層）：模型與票價規則
 
-- **Infrastructure（基礎設施層）**：In-Memory Repository（負責存取資料的元件）、固定Seed Data（系統預設的測試資料）、模擬付款；提供可替換的資料與外部介面實作。
+- **Infrastructure（基礎設施層）**：記憶體資料存取、預設測試資料（Seed）、模擬付款。
 
-- **依賴方向**：API→Application→Domain；Application只依賴Repository契約（介面），實際的Infrastructure實作在程式入口組裝進來。
+- **依賴方向**：API→Application→Domain；實作在程式入口組裝。
 
 ### 交給 Agent 的指令
 

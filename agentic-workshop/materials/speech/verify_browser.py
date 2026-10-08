@@ -52,8 +52,10 @@ setTimeout(async () => {
 source = (ROOT / '01-greenfield/greenfield-deck.html').read_text(encoding='utf-8')
 target = WORK / 'probe.html'
 target.write_text(source.replace('</body>', probe + '</body>'), encoding='utf-8')
-edge = Path('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe')
-command = [str(edge), '--headless', '--disable-gpu', '--no-first-run',
+# Edge headless on Windows writes nothing to stdout for --dump-dom; prefer Chrome.
+browser = next(p for p in (Path('C:/Program Files/Google/Chrome/Application/chrome.exe'),
+                           Path('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe')) if p.exists())
+command = [str(browser), '--headless', '--disable-gpu', '--no-first-run',
            '--no-default-browser-check', '--disable-background-networking',
            '--allow-file-access-from-files', '--window-size=1600,1000',
            '--virtual-time-budget=6000', '--dump-dom',
