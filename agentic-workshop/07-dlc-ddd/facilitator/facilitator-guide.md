@@ -72,66 +72,80 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 ## 2. 教室配置與分組
 
-- **兩人一組、一台機器**。選 D1 做得比較完整的那台；它的主人當 **Proposer**（提案、操作 Change Package，不得自己核准），另一人當 **Maintainer**（持簽章金鑰、核准、簽章 commit）。
+- **兩人一組、一台機器、兩個 Agent 對話**。選 D1 做得比較完整的那台；它的主人當 **Proposer**（提案者，用自己的 Agent 對話準備 Change Package，不得核准、不 commit），另一人當 **Maintainer**（夥伴，另開終端機啟動自己的 Agent 對話：持簽章金鑰、讀審查包後核准、簽章 commit、push）。Maintainer 的 Agent 對話開到課程結束：D3a–c 檢查點 5 與 D4 檢查點 3 的簽章 commit、回顧的刪除私鑰都在這個對話執行。
 - 開場第 7 分鐘（「找夥伴」頁）就配好對；D1 各人在自己的 Repo 做，D2 起兩人共用一台機器。開場有人環境裝不起來，D1 起先以夥伴的機器為主。
-- **人數奇數時組成三人組，第三人當 Observer**：對照 Runbook 的「D2 簽章流程清單」，確認每一步是對的人在做（proposer 不碰 `record-approval`、簽章 commit 由 Maintainer 執行），並核對 `verify-audit` 輸出。D3 起 Observer 負責對照決策卡與記錄 counterfactual 結果。
+- **人數奇數時組成三人組，第三人當 Observer**：看每一步是不是在對的人的 Agent 對話裡執行（核准、簽章 commit、push 只出現在 Maintainer 的對話；proposer 的 Agent 不碰 `record-approval`），並一起看 `verify-audit` 結果。D3 起 Observer 負責對照決策卡，並核對 Agent 回報的 counterfactual 結果。
 - D3 三段角色可以輪換，但 **Maintainer 的私鑰不換人**：只有持鑰人能簽觸及 Registry 的 commit。
 - 座位安排讓兩人能同時看同一個螢幕；助教巡堂路線要能看到螢幕上的終端機輸出。
 - 明講（規格 R3）：`record-approval` 只比對身分字串，同機雙身分仍可通過；今天的成對簽章是**教學示範，不是安全保證**。治理強度來自「誰持有簽章私鑰」。
 
 ## 3. 逐段腳本
 
-每段固定節奏：解鎖頁（大字解鎖碼）→ 檢查點總覽頁（按 `T` 開段落計時，時間軸自動標示目前檢查點）→ 每到時間點翻到下一個檢查點頁。投影只顯示時間、檢查點編號與一句話任務；指令、提示詞、表單都在 Runbook。各頁講者備註有「說／看／介入訊號／提示」，本節只列每段的骨架與決策點。
+每段固定節奏：解鎖頁（大字解鎖碼）→ 檢查點總覽頁（按 `T` 開段落計時，時間軸自動標示目前檢查點）→ 每到時間點翻到下一個檢查點頁。投影只顯示時間、檢查點編號與一句話任務；提示詞與表單都在 Runbook。各頁講者備註有「說／看／介入訊號／提示」，本節只列每段的骨架與決策點。
+
+**學員的操作方式（每段都一樣）**：複製 Runbook 的提示詞 → 學員的 Agent 執行 Plugin、輔助腳本與 Git 指令並白話回報 → 學員用短回覆做決定（「同意」「選 B」「第 3 項不要」）→ Agent 把結果寫進 `notes/<段落>.md` 或 `docs/handoffs/`。學員不自己打指令；表單每段最多一張，只記人的決定。巡堂時看的是這個循環有沒有轉起來：有沒有讀 Agent 的回報、有沒有在 Agent 停下時真的做決定、Agent 有沒有在學員同意前就寫入。卡住時給學員一段可直接貼的補救提示詞，例如「請解釋剛才的錯誤代表什麼，不要自己修改或重試，給我兩個做法讓我選」，不要替學員打指令。D2 核准的治理意義不變：由夥伴本人坐到鍵盤前、在自己的 Agent 對話裡讀過審查包後回「核准」，夥伴的 Agent 才簽章；提案人的 Agent 不可碰夥伴的金鑰或代替核准。DLC 兩人共用一台機器（D3 延續同一個 Repo 與金鑰），所以「自己的」指自己另開的終端機與 Agent 對話，不是另一台電腦。
 
 ### 3.1 開場與環境（0–10，群組 `dlc-opening`）
 
 | 分鐘 | 檢查點 | 你說／做 |
 |---|---|---|
-| 0 | 解鎖 | 公布開場解鎖碼；請學員下載 `participant-dlc-open.zip`、解壓到 `C:\dlc` |
-| 0–3 | 1 · 依賴安裝與測試 | `pip install -r requirements.txt`（約 50 秒），`pytest -q` 為 **76 passed**；不需要 `pip install -e .` |
+| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
+| 0–3 | 1 · 依賴安裝與測試 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
 | 1–2 | （等待安裝時） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁 |
-| 3–5 | 2 · Plugin 解出與 SHA 核對 | `SHA OK 130 files`、`"version": "0.2.2"` |
-| 5–8 | 3 · readiness 與 quality-gates | 經 `tools/dm.ps1`／`dm.sh`：`readiness` 說 brownfield，`quality-gates` 列 pytest |
+| 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 130 files`、`"version": "0.2.2"` |
+| 5–8 | 3 · 專案就緒與品質關卡檢查 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；小組口頭討論「哪些錯只能靠測試與人」 |
 | 7 | 找夥伴 | 配對；奇數時三人組，第三人 Observer |
-| 8–10 | 4 · 確認真實 Python | 啟用 venv，`python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；起始 commit；`doctor.py` 全 `[OK]` |
+| 8–10 | 4 · 確認真實 Python | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；起始 commit；`doctor.py` 全 `[OK]`；`notes/opening.md` 有四段結果 |
 
-降級：第 10 分鐘仍有人未過 → 兩人一機繼續，D1 以夥伴機器為主；記錄耗時，不延長本段。
+巡場看：學員是不是「貼提示詞 → 看回報 → 對照過關字樣」，而不是自己在終端機打指令。卡住時請學員貼該檢查點的「如果卡住」提示詞，讓 Agent 先解釋錯誤、列出處理方式，等學員同意再做；不要替學員改指令。最常見的是 Agent 沒經 `dm` 腳本（cp950 錯誤）或沒在同一個指令裡啟用 `.venv`（`python` 指到 `WindowsApps`）：請學員重貼工作規則。
+
+降級：第 10 分鐘仍有人未過 → 兩人一機繼續，D1 以夥伴機器為主；請 Agent 在 `notes/opening.md` 記下卡在哪一步，不延長本段。
 
 ### 3.2 D1 共同語言與邊界（10–35，群組 `dlc-d1`）
 
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
-| 10–13 | 1 · 人工選來源 | `discover-sources` 後**人工**勾選；必含 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`，排除 `**/__pycache__/**` |
-| 13–17 | 2 · 初始化與確認來源 | `init-domain-memory --storage-mode tracked --review-mode local-draft-only` ＋ `confirm-sources` |
-| 17–22 | 3 · 詞彙候選 | `make_record.py`（內部呼叫 `cite`）建 ≥ 5 個 vocabulary |
-| 22–27 | 4 · Context 與規則候選 | ≥ 2 個 contexts、≥ 2 條 rules |
-| 27–31 | 5 · coverage 與 resolve-terms | 用一句話查詢 |
-| 31–35 | 6 · get-context 與 analyze-boundary | 兩個不同 Context |
+| 10–13 | 1 · 人工選來源 | Agent 跑 `discover-sources` 並逐列建議；**學員回覆決定**。必含 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`，排除 `**/__pycache__/**` |
+| 13–17 | 2 · 初始化與確認來源 | Agent 依學員的決定跑 `init-domain-memory --storage-mode tracked --review-mode local-draft-only` ＋ `confirm-sources`；不 commit |
+| 17–22 | 3 · 詞彙候選 | Agent 先列名稱矛盾、再提詞彙草稿與證據原文；學員選 ≥ 5 個、改定義、選矛盾的處理方式；Agent 寫 `d1-records.json` 並試跑 `make_record.py`（內部呼叫 `cite`） |
+| 22–27 | 4 · Context 與規則候選 | 同樣由學員決定 ≥ 2 個 contexts、≥ 2 條 rules；Agent 一次登記為候選並跑 `validate`、`verify-evidence` |
+| 27–31 | 5 · 找缺口與查詞 | Agent 跑 `coverage` 與兩句 `resolve-terms`；學員選一個要記下的缺口 |
+| 31–35 | 6 · 查 Context 與檢查越界 | Agent 跑 `get-context`、兩個不同 Context 的 `analyze-boundary`，對照程式附證據；學員判斷是否洩漏，填「D1 決定」 |
 
-教學重點：名稱矛盾（Fare Policy／Discount Policy、Compensation 沒有對應程式）與 Context 邊界洩漏，**一定要讓學員在 `cite` 的證據裡親眼看到**，不要口頭告訴他們。
+教學重點：名稱矛盾（Fare Policy／Discount Policy、Compensation 沒有對應程式）與 Context 邊界洩漏，**一定要讓學員在 Agent 摘錄的 `cite` 證據裡親眼看到**，不要口頭告訴他們。Agent 會提草稿，但「哪些來源、哪些名詞、定義怎麼寫、是不是越界」必須是學員的回覆；學員對每個草稿一律回「同意」時，請他挑一個，要 Agent 把證據原文再念一次。
 
-Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo＋已確認 source map＋D1 候選集，全部為候選）。
+紀錄：Agent 把每個檢查點寫進 `notes/d1.md`，候選寫進 `d1-records.json`；學員只填一張「D1 決定」（三個選擇＋一個短文字）。看紀錄裡有沒有學員的決定與理由，不因少填表扣分。
+
+Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo＋已確認 source map＋D1 候選集，全部為候選）。切換後 `domain-memory/` 仍未追蹤；D2 夥伴在 `resume-d1` 開自己的 Agent 對話。
+
+收尾（第 35 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
 
 ### 3.3 D2 審查與核准，成對（35–60，群組 `dlc-d2`）
+
+開始時兩人各在自己的 Agent 對話貼一次 Runbook 的工作規則（提案者的規則明列不可執行核准、簽章、commit、push，也不可讀 `.dlc-keys`）。下表「誰」指在誰的 Agent 對話裡貼提示詞；表內指令都寫在提示詞裡，由該 Agent 執行並白話回報。
 
 | 分鐘 | 檢查點 | 誰 | 重點 |
 |---|---|---|---|
 | 35–38 | 1 · 夥伴建立簽章金鑰 | Maintainer | `init-signing-key --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit`（Git Bash：`"$HOME/.dlc-keys/maintainer/signing-key"`）；**先於第一個 Registry commit** |
 | 38–43 | 2 · 政策、hook、readiness | Maintainer | `amend-policy` 依序 `authorized_signers`（fingerprint）→ `review_trigger git-push` → `review_mode scm-verified --verifier git-signed-commit`；`install-git-hitl-hook`；`governance-readiness` ready |
-| 43–48 | 3 · Change Package 與提交 | Proposer | `fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；`submit-proposal` |
-| 48–53 | 4 · 核准與簽章 commit | Maintainer | `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S` |
+| 43–48 | 3 · Change Package 與提交 | Proposer | Agent 提 2–3 個 counterfactual 方案、學員選一個（只認 `killed`）；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal` |
+| 48–53 | 4 · 核准與簽章 commit | Maintainer | Agent 先讀審查包、貼一條規則的證據原文並停下；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S` |
 | 53–56 | 5 · attestation | Maintainer | `write_scm_attestation.py --commit HEAD`、`verify-git-governance --commit HEAD` |
-| 56–60 | 6 · finalize 與驗證 | 兩人 | `finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`；簽章 commit、`setup_remote.py`、push |
+| 56–60 | 6 · finalize 與驗證 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`） |
+
+巡堂看三件事：核准與簽章只出現在 Maintainer 的對話；Maintainer 回「核准」前說得出哪一行證據支持哪條規則；Agent 停下時學員真的做了決定。學員只填一張「D2 決定」（角色、審查決定、三項確認），其餘紀錄由 Agent 寫進 `notes/d2.md`。卡住時請學員貼 Runbook「卡住時」的補救提示詞（請 Agent 白話解釋錯誤、不改設定、不重做 commit、不繞過 hook），不要替學員打指令。
+
+收尾（第 60 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
 
 **Recovery 釋放規則（`dlc-rec-d2`）**：
 
 - 最早第 **45** 分鐘可用（規格 §3.2）。
 - 任一組在任一步**卡住 5 分鐘**即可私下提供；第 45 分多數組還沒 `submit-proposal` 時，對卡住的組提供。
-- 改用 Recovery 的組：對 reviewed Registry 跑 `validate --require-reviewed` 與 `verify-audit`，然後看你的簽章示範（下方）。要在 D3 之後繼續 push，照 `recovery/d2/RECOVERY.md` 第 4 節以自己的金鑰接手；**附加 maintainer 的 allowed_signers 那一行不能省**，否則歷史 commit 驗不過、push 被拒。
+- 改用 Recovery 的組照 Recovery 頁三步切換（與 `recovery/d2/RECOVERY.md` 第 1–3 節同一份指令，見 §4「Recovery 切換做法」）：提案者原對話保存原 Repo 狀態並複製成 `resume-d2`；**夥伴**在 `resume-d2` 新開自己的 Agent 對話，從 `repo.bundle` 還原簽章歷史、以自己的金鑰接手（`amend-policy authorized_signers`、hook、readiness ready），回「同意」後做簽章 commit；提案者在 `resume-d2` 新開對話建環境並跑 `validate --require-reviewed`、`verify-audit`。夥伴的接手簽章就是這組的簽章練習；有空再看你的簽章示範（下方）。
 
 **成對簽章示範腳本（約 4 分鐘，用 reference Registry 或自己的乾淨複本）**：
 
-1. 「Proposer 做完 Change Package，現在換 Maintainer 坐到鍵盤前。」示範 `record-approval --reviewer maintainer@example.com`。順便示範反例：以 `proposer@example.com` 當 reviewer 會被拒；再說明以另一個字串也能通過，**所以真正的保護是簽章**。
+1. 「Proposer 做完 Change Package，現在換 Maintainer 坐到鍵盤前，用自己的 Agent 對話。」示範 `record-approval --reviewer maintainer@example.com`。順便示範反例：以 `proposer@example.com` 當 reviewer 會被拒；再說明以另一個字串也能通過，**所以真正的保護是簽章**。
 2. `git -c user.name="DLC Maintainer" -c user.email=maintainer@example.com commit -S -m "..."`，接著 `git log --show-signature -1`，指出 `Good "git" signature for maintainer@example.com`。
 3. `write_scm_attestation.py --commit HEAD` → `verify-git-governance --commit HEAD`：「核准證據不是一行文字，是一個可驗證的已簽章 commit。」
 4. （有時間）做一個不簽章、觸及 `domain-memory/` 的 commit 再 push，給大家看 hook 拒絕的輸出。
@@ -145,12 +159,21 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 三個情境**全體依序、三個都做**，每段在前一段成果上累積。每段六個檢查點同一個節奏：
 
-1. 讀情境卡、`resolve-terms`／`get-context` 取 reviewed 事實，已知與未知分開寫。
-2. 由**人**寫 D3 決策卡：owner Context、不變量、外部系統、未知項。
-3. 決策卡交 Agent：先提計畫、等核准、做完停下；看**實際** `pytest -q`。
-4. 每條新規則各一次 `counterfactual`，只認 `killed`。
-5. 人 Review Diff；新事實用 `upsert-candidate` 登記，**仍是候選**。
-6. 停手 → 「請先停手」頁 → 兩頁揭曉 → 學員記一個差異與理由。
+1. 學員貼提示詞：Agent 存下需求卡、執行 `resolve-terms`／`get-context`，已知事實與知識缺口分開寫進 `notes/d3*.md`。
+2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；Agent 依選擇寫成 D3 決策卡（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
+3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
+4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。
+5. Agent 用 `git diff` 與測試回答四個審查問題；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
+6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
+
+**巡場看流程**：每組是否「貼提示詞 → 看 Agent 回報 → 自己做決定 → 讓 Agent 記錄」。決策點（檢查點 2、4）學員要自己選，回「你決定」就介入。卡住時給可直接貼的補救提示詞，不替學員決定：
+
+- Agent 替學員選了或開始改程式：「停下，不要再修改。如果你已經改了檔案，列出改了哪些。請回到只列選項與證據，等我們選擇。」
+- Agent 說「完成」但沒附實際輸出：「請貼出你實際執行的指令與輸出；沒有執行的標『未驗證』。」
+- counterfactual 只有亂碼或 ERROR：「這不算 killed，請說明原因，不要換字串。」
+- commit 遇到簽章錯誤：「不要修改 Git 設定、不要碰金鑰，貼出錯誤訊息後停下。」然後由主持人處理。
+
+評估以紀錄檔（`notes/d3*.md`、`docs/handoffs/d3*.md`、`cf-d3*.json`）裡的證據與「學員有沒有自己做決定」為準，不因表單欄位少而扣分。
 
 **解鎖時就宣布兩件事**（三段都一樣，講者備註有提示）：
 
@@ -210,21 +233,23 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
-| 155–158 | 1 · 驗證 | `verify-sources`、`verify-evidence`、`verify-audit`。D3 改過的檔案會是 `stale`、exit 1，這是預期，不准跳過 |
-| 158–161 | 2 · 更新已變動事實 | `upsert-candidate`，只到候選。參考：D3c 讓 `REFUND-004`、Booking 的「只能退一次」與 `ASIS-004` 不再成立 |
-| 161–165 | 3 · 寫 Handoff | 依 `implementation-handoff.md` 七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check），只引用 Registry 中存在的 id |
+| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。D3 改過的檔案會是 `stale`、exit 1，這是預期；要記下，不准跳過，也不讓 Agent 當場修 |
+| 158–161 | 2 · 更新已變動事實 | Agent 先列更新清單，學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選；reviewed 事實以新 id 候選取代。參考：D3c 讓 `REFUND-004`、Booking 的「只能退一次」與 `ASIS-004` 不再成立 |
+| 161–165 | 3 · 寫交接單並核對 id | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
 
-D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4。
+看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4。
+
+收尾（第 165 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再引用各段的答案。
 
 ### 3.10 回顧（165–180，群組 `dlc-retro`）
 
-四個檢查點：個人反思（165–169）、小組比較（169–174）、收斂與行動（174–178）、匯出與結束（178–180）。必問：
+四個檢查點：請 Agent 從紀錄整理證據（165–169，Agent 寫 `notes/retro.md`）、比較哪些核准步驟擋得住錯（169–174，Agent 列出核准步驟，小組口頭討論）、挑選提示詞與一項行動（174–178，Agent 起草、每人挑選，寫成 `notes/my-prompts-<名字>.md`）、匯出與結束（178–180，Maintainer 請自己的 Agent 刪除私鑰，全員匯出）。討論只用口頭，不要求寫下來；檢查點 2 請學員回想各段「完成後想一想」第 2 題的答案，對照哪個技巧真的擋住了錯。必談：
 
 1. 哪一個 reviewed 事實改變了 Agent 的輸出？
 2. 哪一個候選差點被當成事實？
 3. 自我核准的儀式感和真實治理差在哪裡？（直接回到 R3：`record-approval` 只比字串）
 
-最後提醒匯出 Runbook（`smart-ticket-dlc-runbook-<stamp>.zip`），以及課後刪除金鑰（§7）。
+看什麼：學員是否抽問 Agent「這句的證據在哪？」，把沒有證據的句子改成「未觀察」。最後提醒匯出 Runbook（`smart-ticket-dlc-runbook-<stamp>.zip`）並保存 `notes/`，以及刪除金鑰（§7）。
 
 ## 4. 解鎖碼與 Recovery 釋放規則
 
@@ -239,9 +264,10 @@ D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4。
 | `dlc-rec-d3c` | 155 | Recovery | **D3c 揭曉頁之後**才可提供 |
 
 - Recovery 碼與一般碼分開、只按需提供，不投影、不貼群組；Recovery 不作為小組成果評分。
-- 使用 Recovery 的組在 Runbook 表單如實記錄觸發原因與時間（Runbook 已有欄位）。
+- 使用 Recovery 的組如實記錄觸發原因與時間（依 Runbook 對應 Recovery 頁的做法）。
 - Recovery 包只含可接續的 Repo（含 `domain-memory/`），不含觀察指引、counterfactual 證據原稿或任何 `evaluation/` 檔案。
-- D3a／D3b／D3c 的 Recovery 還原後，`verify-evidence`／`verify-sources` 會對改過的檔案回報 `stale`、exit 1，屬預期，留到 D4 處理。最上面的「Recovery 參考實作」commit 是 `N`（未簽章），因為它不碰 Registry，hook 允許。
+- **Recovery 切換做法（五個 Recovery 頁共用，與各段 `recovery/<段>/RECOVERY.md` 同一份指令）**：原 Repo 不改名、不覆寫；Recovery 複製成同一層的 `resume-<段>`，從 `repo.bundle` 還原 Git 歷史（不重新 `git init` 出未簽章的起點 commit）。D1 只有一個不含 `domain-memory/` 的「起始 Repo」commit，兩步都由提案者的 Agent 做、沒有 commit。D2 起分三步：① 提案者原對話保存與解出；② **夥伴**在 `resume-<段>` 新開自己的 Agent 對話（先貼 D2【夥伴】規則）：還原歷史、`init-signing-key`（沿用 `.dlc-keys\maintainer\` 的 D2 金鑰，沒有就新建）、把 `keys/maintainer.allowed_signers` 附加到新的 allowed signers 檔、`amend-policy authorized_signers` 加入自己的 fingerprint、`install-git-hitl-hook`、`governance-readiness` ready，回「同意」後簽章 commit 並 `verify-git-governance --commit HEAD`；③ 提案者在 `resume-<段>` 新開對話建 venv、測試、`validate --require-reviewed`、`verify-audit`、`verify-evidence`。之後 D3、D4 的 commit 照常由夥伴簽章。
+- D3a／D3b／D3c 的 Recovery 還原後，`verify-evidence`／`verify-sources` 會對改過的檔案回報 `stale`、exit 1，屬預期，留到 D4 處理。`git log` 最上面的「Recovery 參考實作」commit 是 `N`（未簽章），因為它不碰 Registry，hook 允許；Registry 的三個 commit 是 `G maintainer@example.com`。
 
 ## 5. Windows 已知陷阱與修正
 
@@ -251,7 +277,7 @@ D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4。
 | 2 | `UnicodeDecodeError: 'cp950' codec ...` | 直接呼叫 `registry_tools.py`，缺 `-X utf8` | 一律經 `tools\dm.ps1`／`dm.sh`（固定 `py -3.13 -X utf8`） |
 | 3 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
 | 4 | push 時 hook 失敗、或跳出 Microsoft Store | pre-push hook 呼叫裸 `python`，`python` 是 Store 別名（路徑含 `WindowsApps`） | push 前啟用 Repo 的 `.venv`；或關閉「應用程式執行別名」。開場檢查點 4 就要攔下 |
-| 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照 RECOVERY.md 第 4 節附上 allowed_signers 那一行 |
+| 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit |
 | 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate` |
 | 7 | `ssh-keygen` 行為不同、金鑰路徑找不到 | Git Bash 與 PowerShell 的 `ssh-keygen` 不同 | 兩者皆可，但同一組全程用同一種 shell |
 | 8 | clone／還原後引用全部變成 `changed` | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；`doctor.py` 會檢查。不要刪它 |

@@ -14,7 +14,7 @@
 5. 情境卡為 `agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md`、`02-points-redemption.md`、`03-group-partial-refund.md`，由平行工作撰寫；本指令書只引用路徑，不得改寫其內容。
 6. D3 三個情境**全體依序進行、三個都做**（D3a → D3b → D3c），每段在前一段成果上累積。
 7. D2 為成對練習：每組一人當 proposer，夥伴持 maintainer 簽章金鑰並核准。主持人提供的 reviewed Registry 為預設降級與 Recovery。
-8. 每個 D 段沿用主課檢查點節奏：投影顯示時間與目前檢查點；Runbook 放指令、以「停下等我」結尾的提示詞、附建議膠囊的確認表單；每段有獨立解鎖碼與 Recovery 包。
+8. 每個 D 段沿用主課檢查點節奏：投影顯示時間與目前檢查點；每段有獨立解鎖碼與 Recovery 包。2026-10-09 已核准變更：Runbook 每個檢查點是「說明 → 可直接複製的提示詞 → 看到什麼算過關」，Plugin 與 Git 指令原樣寫進提示詞由 Agent 執行並白話回報，學員只用短回覆做決定；紀錄由 Agent 寫入檔案；表單每段最多一張、以下拉／勾選為主；小組討論用「討論一下」提示，不用表格。D2 核准仍須由夥伴本人在自己開的 Agent 對話中（同一台電腦、另一個終端機）、讀過審查包後下指令簽章；提案者的 Agent 不得執行簽章、核准、commit 或 push，也不得讀取金鑰。
 9. 學員輔助腳本由 Spike 衍生（以 `cite` 組 record、Change Package 填寫器、SCM attestation 寫入器），讓時間花在領域決策而不是手打 JSON。
 10. 建置走 edition 參數：`scripts/build_materials.py --edition dlc`，輸出 `agentic-workshop/materials-dlc/`；Runbook 儲存前綴 `stwdlc:`；打包獨立（`scripts/package-manifest-dlc.json`、`dist/dlc-candidate/<id>/`、獨立證據）。DLC 工作不得變更主課 `scripts/package-manifest.json` 與主課候選。
 11. Evaluation 素材（reference Registry、各情境參考解答、觀察指引／評分表）僅供主持人；揭曉前不得可由任何學員包或 Runbook 取得。
@@ -96,6 +96,8 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 4. proposer 不得 `record-approval`；`--reviewer` 必須是夥伴身分，簽章 commit 由持鑰夥伴執行。
 
 ## 4. 各段內容與驗收條件
+
+> 2026-10-09 已核准變更（見第 1 節第 8 點與 [00 總控指令書 §1](00_Agentic工作坊素材產製總控指令書.md#1-專案目標)）：本節「可複製指令」改為寫進提示詞由 Agent 執行，學員不自行輸入；確認表單每段最多一張、以下拉／勾選為主。
 
 每段 Runbook 必須有：目標一句、檢查點步驟（每步 ≤ 5 分鐘；例外見第 1 節第 13 項(d)）、提示詞（結尾固定「停下等我」）、確認表單（附建議膠囊選項）、卡關時的 Recovery 指引。投影只顯示時間、檢查點編號與一句話任務，不顯示主持專用內容。
 

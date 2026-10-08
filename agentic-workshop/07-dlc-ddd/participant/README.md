@@ -10,14 +10,20 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 
 | 段落 | 內容 | 用到的檔案 |
 |---|---|---|
-| D1 | 選定證據來源，找出 Context、詞彙與規則，登記為候選 | `worksheets/d1-source-selection.md`、`worksheets/d1-model-canvas.md` |
+| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選 | 格式說明 `worksheets/d1-source-selection.md`、`worksheets/d1-model-canvas.md`；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
 | D2 | 兩人一組：一人提案、一人審查核准並簽章，把候選升為已審查（reviewed）事實 | `worksheets/d2-role-cards.md`、`worksheets/d2-signing-checklist.md` |
 | D3a | 實作需求卡 01：電子發票 | `scenarios/01-e-invoice.md`、`worksheets/d3-decision-card.md` |
 | D3b | 實作需求卡 02：點數折抵 | `scenarios/02-points-redemption.md`、`worksheets/d3-decision-card.md` |
 | D3c | 實作需求卡 03：團體部分退款 | `scenarios/03-group-partial-refund.md`、`worksheets/d3-decision-card.md` |
 | D4 | 把今天的 Domain Memory 交接給下一個 Agent 或同事 | `worksheets/d4-handoff-template.md` |
 
-每段的操作步驟與「檢查點」（段內的小關卡）都在 Runbook 對應的頁面。
+每段的「檢查點」（段內的小關卡）都在 Runbook 對應的頁面。做法都一樣：
+
+1. 複製檢查點裡的提示詞，貼給你的 Coding Agent。Plugin 指令、輔助腳本、Git 與測試指令都寫在提示詞裡，由 Agent 執行並用白話回報；你不需要自己打指令。
+2. 需要決定時，Agent 會先列出選項或草稿並停下；你只要回「同意」「選 B」「第 3 項不要」這類短回覆。
+3. 紀錄由 Agent 寫進 Repo 的 `notes/` 與 `docs/handoffs/`。Runbook 的表單只記你的決定，以下拉與勾選為主。
+
+D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個終端機、用自己的 Agent 對話；建立金鑰、核准、簽章 commit 與 push 只在夥伴的對話裡、由夥伴讀過審查包後下指令。你的 Agent 不 commit、不 push、不碰夥伴的金鑰，也不能代替夥伴核准。D3、D4 的 commit 也由夥伴的對話執行。
 
 ## 資料夾內容
 
@@ -27,12 +33,14 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 | `scenarios/01-e-invoice.md` | 需求卡 01：接入外部電子發票服務 |
 | `scenarios/02-points-redemption.md` | 需求卡 02：會員點數折抵 |
 | `scenarios/03-group-partial-refund.md` | 需求卡 03：團體訂票部分取消退款 |
-| `worksheets/` | 各段要填寫的工作表（見上方段落表） |
-| `tools/` | 輔助腳本：代打 Plugin 長指令、產生 JSON、檢查環境（說明見 `tools/README.md`） |
+| `worksheets/` | 各段紀錄的格式範本，由 Agent 照格式寫進紀錄檔（見上方段落表） |
+| `tools/` | 輔助腳本：代打 Plugin 長指令、產生 JSON、檢查環境；由 Agent 依提示詞執行（說明見 `tools/README.md`） |
 
-程式庫的產品規則文件在 `docs/requirements/`，ADR（Architecture Decision Record，架構決策紀錄）在 `docs/adr/`。需求卡中的商業數字與驗收條件是唯一依據，不要自行補規則；卡片末尾的「待團隊決定的問題」由你和團隊決定，並記錄理由。
+程式庫的產品規則文件在 `docs/requirements/`，ADR（Architecture Decision Record，架構決策紀錄）在 `docs/adr/`。需求卡中的商業數字與驗收條件是唯一依據，不要自行補規則；卡片末尾的「待團隊決定的問題」由你們決定，Agent 把決定與理由記進紀錄檔。
 
 ## 執行程式庫
+
+開場時 Agent 會依 Runbook 的提示詞代你完成下面的安裝與測試；這裡列出步驟，供 Agent 與課後參考。
 
 需要 Python 3.13。本程式庫用 `pip install -r requirements.txt` 安裝依賴套件即可，不需要 `pip install -e .`。
 

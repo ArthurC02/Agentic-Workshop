@@ -6,7 +6,7 @@ Output (the folder is deleted and rebuilt; it is what build_delivery_dlc.py pack
     smart-ticket-dlc-base/   working tree, no .git (the package builder refuses .git)
     repo.bundle              git history of that tree (branch main); restore with init + fetch + reset
     keys/maintainer.allowed_signers   public only (d2 and later)
-    RECOVERY.md              restore / continue commands for participants
+    RECOVERY.md              the Runbook recovery-page steps (save, partner signing takeover, verify)
 
 Sources: participant starting repo, evaluation/reference-registry (bundle tag dlc-d2-reviewed, d1 inputs),
 evaluation/reference-solutions/<solution> minus evidence/ and SOLUTION-NOTES.md. Nothing else from
@@ -16,7 +16,6 @@ d1's domain-memory/ carries plugin timestamps (the plugin has no clock override)
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import shutil
 import subprocess
@@ -31,7 +30,6 @@ TOOLS = DLC / "participant/tools"
 REGISTRY = DLC / "evaluation/reference-registry"
 SOLUTIONS = DLC / "evaluation/reference-solutions"
 REVIEWED_TAG = "dlc-d2-reviewed"
-ATTESTED_COMMIT = "5538b6dbcba9e5c4468ceddec72b75b231f9688d"
 # segment -> (reference solution folder or None, commit message)
 SEGMENTS = {
     "d1": (None, None),
@@ -105,164 +103,159 @@ def build_reviewed(work: Path, solution: str | None, message: str | None) -> Non
     git(work, "commit", "-q", "-m", message)
 
 
-def maintainer_fingerprint() -> str:
-    policy = json.loads((REGISTRY / "domain-memory/domain-memory-policy.json").read_text(encoding="utf-8"))
-    return policy["review_governance"]["authorized_signers"][0]
+# Same commands as the Runbook "<SEG> Recovery 切換" pages (19/29/39/49/59-recovery-*.md); keep both in sync.
+# ponytail: str.format templates, so literal braces in commands/outputs are doubled.
+STEP_SAVE = r"""## 1. 保存原成果並解出 Recovery（提案者原本的 Agent 對話）
 
-
-RESTORE = """## 1. 還原（約 3 分鐘）
-
-先保存自己的成果：關掉開在舊 Repo 的編輯器，終端機 `deactivate` 後離開舊 Repo。以下在 `participant/repository/`（舊 Repo 的上一層）執行，`<REC>` 換成本包解壓後 `recovery-dlc-{seg}` 資料夾的完整路徑。
+原 Repo 不改名、不覆寫、不刪除，也不 commit。Agent 先把原 Repo 的 `git status`、`git log --oneline -3` 與學員回答的進度寫進原 Repo 的 `notes/{seg}.md`（標題「改用 Recovery 前的狀態」），再把 Recovery 複製成和原 Repo 同一層的 `resume-{seg}`（`..\..\tools` 才會指向學員包的工具）。
 
 ```powershell
-$rec = "<REC>"
-Rename-Item smart-ticket-dlc-base smart-ticket-dlc-base-mine-{seg}
-Copy-Item -Recurse "$rec\\smart-ticket-dlc-base" .
-Set-Location smart-ticket-dlc-base
-git init -q -b main
-git fetch -q "$rec\\repo.bundle" main
-git reset -q FETCH_HEAD
-git config --local user.name "DLC Proposer"
-git config --local user.email proposer@example.com
-git status --short
-py -3.13 -m venv .venv
-.\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt
-.\\.venv\\Scripts\\Activate.ps1
-python -m pytest -q
+Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
+Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-{seg}.zip" -DestinationPath C:\dlc-rec\{seg}
+$rec = Split-Path (Get-ChildItem C:\dlc-rec\{seg} -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-{seg}
 ```
 
 ```bash
-REC="<REC>"
-mv smart-ticket-dlc-base smart-ticket-dlc-base-mine-{seg}
-cp -r "$REC/smart-ticket-dlc-base" .
-cd smart-ticket-dlc-base
-git init -q -b main
-git fetch -q "$REC/repo.bundle" main
-git reset -q FETCH_HEAD
-git config --local user.name "DLC Proposer"
-git config --local user.email proposer@example.com
-git status --short
-py -3.13 -m venv .venv
-.venv/Scripts/python.exe -m pip install -r requirements.txt
-source .venv/Scripts/activate
-python -m pytest -q
+cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+unzip -q ~/Downloads/recovery-dlc-{seg}.zip -d /c/dlc-rec/{seg}
+rec=$(dirname "$(find /c/dlc-rec/{seg} -name repo.bundle | head -1)")
+cp -r "$rec/smart-ticket-dlc-base" ./resume-{seg}
 ```
-
-**看到什麼算成功**：{status}；pytest 全部 passed。
 """
 
-SIGNERS = """
-## 2. 讓 Git 能驗證歷史簽章
+RESTORE_PS = r"""$rec = Split-Path (Get-ChildItem C:\dlc-rec\{seg} -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+git init -q -b main
+git fetch -q "$rec\repo.bundle" main
+git reset -q FETCH_HEAD
+git config --local user.name "DLC Proposer"
+git config --local user.email proposer@example.com
+git status --short"""
 
-Registry commit 由 Maintainer 金鑰簽章；本包只附**公鑰**（`keys/maintainer.allowed_signers`），沒有私鑰。
+RESTORE_SH = r"""rec=$(dirname "$(find /c/dlc-rec/{seg} -name repo.bundle | head -1)")
+git init -q -b main
+git fetch -q "$rec/repo.bundle" main
+git reset -q FETCH_HEAD
+git config --local user.name "DLC Proposer"
+git config --local user.email proposer@example.com
+git status --short"""
+
+STEP_TAKEOVER = r"""## 2. 還原簽章歷史並接手簽章（夥伴在 `resume-{seg}` 新開的 Agent 對話）
+
+`repo.bundle` 是 Recovery 的 Git 歷史：Registry 的 commit 都由 Maintainer 金鑰簽章，所以「第一個含 `domain-memory/` 的 commit 是簽章 commit」在新資料夾仍然成立。`keys/maintainer.allowed_signers` 只有**公鑰**，讓 Git 驗得了這些簽章；私鑰不在包裡。所以由夥伴用自己的金鑰（已有 D2 金鑰就沿用，沒有就新建，一律放在 Repo 外的 `.dlc-keys\maintainer\`）接手：加入授權、裝回 pre-push hook，讀過回報、回「同意」後做一個簽章 commit。金鑰、簽章與 commit 只在夥伴自己的 Agent 對話執行；提案者的 Agent 不碰。
 
 ```powershell
-New-Item -ItemType Directory -Force "$HOME\\.dlc-keys" | Out-Null
-Copy-Item "$rec\\keys\\maintainer.allowed_signers" "$HOME\\.dlc-keys\\"
-git config --local gpg.format ssh
-git config --local gpg.ssh.allowedSignersFile "$HOME\\.dlc-keys\\maintainer.allowed_signers"
+""" + RESTORE_PS + r"""
+..\..\tools\dm.ps1 init-signing-key --principal maintainer@example.com --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit --save "$env:USERPROFILE\.dlc-keys\maintainer\signing.json"
+Get-Content "$rec\keys\maintainer.allowed_signers" | Add-Content (git config --local gpg.ssh.allowedSignersFile)
 git log --format='%h %G? %GS %s'
+$old = (Get-Content domain-memory\domain-memory-policy.json -Raw | ConvertFrom-Json).review_governance.authorized_signers -join ','
+$fp = (Get-Content "$env:USERPROFILE\.dlc-keys\maintainer\signing.json" -Raw | ConvertFrom-Json).fingerprint
+..\..\tools\dm.ps1 amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
+..\..\tools\dm.ps1 install-git-hitl-hook
+..\..\tools\dm.ps1 governance-readiness
 ```
 
 ```bash
-mkdir -p "$HOME/.dlc-keys" && cp "$REC/keys/maintainer.allowed_signers" "$HOME/.dlc-keys/"
-git config --local gpg.format ssh
-git config --local gpg.ssh.allowedSignersFile "$HOME/.dlc-keys/maintainer.allowed_signers"
+""" + RESTORE_SH + r"""
+../../tools/dm.sh init-signing-key --principal maintainer@example.com --key-file "$HOME/.dlc-keys/maintainer/signing-key" --sign-every-commit --save "$HOME/.dlc-keys/maintainer/signing.json"
+cat "$rec/keys/maintainer.allowed_signers" >> "$(git config --local gpg.ssh.allowedSignersFile)"
 git log --format='%h %G? %GS %s'
-```
-
-**看到什麼算成功**：三個 Registry commit 為 `G maintainer@example.com`；{log_note}
-
-## 3. 檢查 Registry
-
-```powershell
-..\\..\\tools\\dm.ps1 validate --require-reviewed
-..\\..\\tools\\dm.ps1 verify-evidence
-..\\..\\tools\\dm.ps1 verify-sources
-..\\..\\tools\\dm.ps1 verify-audit
-..\\..\\tools\\dm.ps1 verify-git-governance --commit {attested}
-```
-
-（Git Bash 改用 `../../tools/dm.sh`。）**看到什麼算成功**：`Registry is valid.`；{evidence_note}；verify-audit `valid`；`Git governance is valid.`。
-
-## 4. 接續簽章與 push（之後要 commit Registry 時才需要）
-
-歷史只授權 Maintainer 的 fingerprint `{fp}`，你們沒有那把私鑰。持鑰夥伴建立**本組自己的**金鑰並把它加入授權（金鑰放在 Repo 外的 `~/.dlc-keys/`；已經有 D2 金鑰的組也請另建一把，避免覆蓋）：
-
-```powershell
-..\\..\\tools\\dm.ps1 init-signing-key --principal maintainer@example.com --key-file "$HOME\\.dlc-keys\\recovery-{seg}\\signing-key" --sign-every-commit --save "$HOME\\.dlc-keys\\recovery-{seg}\\signing.json"
-Get-Content "$HOME\\.dlc-keys\\recovery-{seg}\\signing.json"     # 記下 fingerprint（SHA256:…）
-..\\..\\tools\\dm.ps1 amend-policy --field authorized_signers --value "{fp},<新 fingerprint>" --reason "Recovery 後由本組接手簽章"
-Get-Content "$HOME\\.dlc-keys\\maintainer.allowed_signers" | Add-Content (git config --local gpg.ssh.allowedSignersFile)
-..\\..\\tools\\dm.ps1 install-git-hitl-hook
-..\\..\\tools\\dm.ps1 governance-readiness
-git add domain-memory
-git commit -m "接手 Recovery：授權本組金鑰"
-```
-
-```bash
-../../tools/dm.sh init-signing-key --principal maintainer@example.com --key-file "$HOME/.dlc-keys/recovery-{seg}/signing-key" --sign-every-commit --save "$HOME/.dlc-keys/recovery-{seg}/signing.json"
-cat "$HOME/.dlc-keys/recovery-{seg}/signing.json"
-../../tools/dm.sh amend-policy --field authorized_signers --value "{fp},<新 fingerprint>" --reason "Recovery 後由本組接手簽章"
-cat "$HOME/.dlc-keys/maintainer.allowed_signers" >> "$(git config --local gpg.ssh.allowedSignersFile)"
+old=$(py -3.13 -c "import json;print(','.join(json.load(open('domain-memory/domain-memory-policy.json',encoding='utf-8'))['review_governance']['authorized_signers']))")
+fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf-8'))['fingerprint'])" "$HOME/.dlc-keys/maintainer/signing.json")
+../../tools/dm.sh amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
 ../../tools/dm.sh install-git-hitl-hook
 ../../tools/dm.sh governance-readiness
-git add domain-memory
-git commit -m "接手 Recovery：授權本組金鑰"
 ```
 
-- 第四行（把 Maintainer 公鑰附加到新的 allowed signers）不可省略：`init-signing-key` 會把 `gpg.ssh.allowedSignersFile` 改指向只含新金鑰的檔案，歷史上 Maintainer 簽的 commit 就驗不過，push 會被 hook 以「Git commit signature is invalid」拒絕。
-- `governance-readiness` 應為 ready。要 push 時先啟用 `.venv`（hook 呼叫裸 `python`），再 `py -3.13 -X utf8 ../../tools/setup_remote.py` 與 `git push -u origin HEAD`。
-- 私鑰永遠不要 commit、不要放進 ZIP 或截圖。
+Agent 把結果寫進 `notes/recovery-{seg}.md` 的「簽章接手」（fingerprint 只寫前 12 碼），夥伴回「同意」後：
+
+```powershell
+git add domain-memory notes
+git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "{up} Recovery：授權本組金鑰"
+git log --show-signature -1
+..\..\tools\dm.ps1 verify-git-governance --commit HEAD
+```
+
+（Git Bash 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。）
+
+**看到什麼算成功**：`git status --short` 沒有輸出；`git log` 中 Registry 的三個 commit 為 `G maintainer@example.com`{log_note}；`amend-policy` 回報 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 為 `{{"status": "ready", "blocks": []}}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
+
+- 附加 Maintainer 公鑰那一行不可省略：`init-signing-key` 會把 `gpg.ssh.allowedSignersFile` 指向只含夥伴金鑰的檔案，少了它，歷史上 Maintainer 簽的 commit 就驗不過，之後 push 會被 hook 以「Git commit signature is invalid」拒絕。
+- 之後 D3、D4 的 commit 照 Runbook 由夥伴的對話簽章。私鑰永遠不要 commit、不要放進 ZIP 或截圖。
+"""
+
+STEP_VERIFY = r"""## 3. 建環境並驗證（提案者在 `resume-{seg}` 新開的 Agent 對話）
+
+```powershell
+py -3.13 -m venv .venv
+& '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
+& '.\.venv\Scripts\python.exe' -m pytest -q
+..\..\tools\dm.ps1 validate --require-reviewed
+..\..\tools\dm.ps1 verify-audit
+..\..\tools\dm.ps1 verify-evidence
+```
+
+（Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`。）
+
+**看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；{evidence_note}。結果寫進 `notes/recovery-{seg}.md` 的「環境與驗證」，最後一行寫「{up} 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
 """
 
 INTRO = {
-    "d1": """# D1 Recovery
-
-內容：起始 Repo、已確認的 source map（`--review-mode local-draft-only`）、一組 D1 候選（5 Contexts、21 詞、16 規則等），全部為候選，沒有任何 reviewed 事實。依流程 D1 不 commit Registry：`repo.bundle` 只有一個未簽章的「起始 Repo」commit，`domain-memory/` 在工作目錄中尚未追蹤，等 D2 設好簽章後才 commit。
-
-使用 Recovery 不算自己完成 D1，請在 Runbook 表單如實記錄。""",
     "d2": """# D2 Recovery
 
-內容：已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer）。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。
-
-使用 Recovery 不算自己完成 D2，請在 Runbook 表單如實記錄。改用它之後，先對它執行 `validate --require-reviewed` 與 `verify-audit`（第 3 節），再觀看主持人示範簽章段落。""",
+內容：起始 Repo 加上已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer），以及它的 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。""",
 }
 INTRO_SOLUTION = """# {up} Recovery
 
-內容：D2 的 reviewed Registry，加上 {up} 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」。Registry 沒有新增候選：{up} 的新事實請依 Runbook 以 `make_record.py --allow-unclassified --upsert` 自行登記為候選；`verify-evidence` 回報的 stale 引用是實作改動了已審查事實所引用的檔案，留到 D4 以 `upsert-candidate` 更新。
+內容：D2 的 reviewed Registry，加上 {up} 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 引用是實作改動了已審查事實所引用的檔案，留到 D4 以新的候選更新。"""
 
-使用 Recovery 不算自己完成 {up}，請在 Runbook 表單如實記錄。"""
+USAGE = """使用 Recovery 不算自己完成 {up}。學員照 Runbook「{up} Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。"""
 
-D1_CHECK = """
-## 2. 檢查 Registry
+D1_INTRO = """# D1 Recovery
+
+內容：起始 Repo（`smart-ticket-dlc-base/`）、已確認的 source map（`--review-mode local-draft-only`）、一組 D1 候選（5 Contexts、21 詞、16 規則等），全部為候選，沒有任何 reviewed 事實。`repo.bundle` 只有一個未簽章、不含 `domain-memory/` 的「起始 Repo」commit：依流程 D1 不 commit Registry，`domain-memory/` 還原後是未追蹤，等 D2 夥伴設好簽章後才 commit。D1 沒有簽章，所以兩步都由提案者的 Agent 執行，沒有任何 commit。"""
+
+D1_RESTORE = r"""## 2. 還原並驗證（提案者在 `resume-d1` 新開的 Agent 對話）
 
 ```powershell
-..\\..\\tools\\dm.ps1 validate
-..\\..\\tools\\dm.ps1 verify-evidence
-..\\..\\tools\\dm.ps1 verify-sources
-..\\..\\tools\\dm.ps1 coverage
+""" + RESTORE_PS.replace("{seg}", "d1") + r"""
+py -3.13 -m venv .venv
+& '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
+& '.\.venv\Scripts\python.exe' -m pytest -q
+..\..\tools\dm.ps1 validate
+..\..\tools\dm.ps1 verify-evidence
 ```
 
-（Git Bash 改用 `../../tools/dm.sh`。）**看到什麼算成功**：`Registry is valid.`；verify-evidence 全部 `current`；verify-sources `current`／`developer-confirmed`。
+```bash
+""" + RESTORE_SH.replace("{seg}", "d1") + r"""
+py -3.13 -m venv .venv
+.venv/Scripts/python.exe -m pip install -r requirements.txt
+.venv/Scripts/python.exe -m pytest -q
+../../tools/dm.sh validate
+../../tools/dm.sh verify-evidence
+```
 
-## 3. 接續 D2
+**看到什麼算成功**：`git status --short` 只有 `?? domain-memory/`；pytest 全部 passed；`Registry is valid.`；verify-evidence 的 stale、missing、invalid 都是 0。結果寫進 `notes/recovery-d1.md`，開頭寫「D1 的成果由 Recovery 提供」。
 
-從 Runbook D2 檢查點 1（`init-signing-key --sign-every-commit`）開始照做。簽章必須在第一個 Registry commit 之前設好：**還原後不要先 `git add domain-memory`**。
+## 接續 D2
+
+從 Runbook D2 檢查點 1 開始，夥伴在 `resume-d1` 開自己的 Agent 對話。簽章必須在第一個 Registry commit 之前設好：**不要讓 Agent 先 `git add domain-memory`**。
 """
 
 
 def recovery_md(seg: str, solution: str | None, message: str | None) -> str:
+    up = seg.capitalize()
+    usage = USAGE.format(up=up)
     if seg == "d1":
-        return "\n\n".join([INTRO["d1"], RESTORE.format(seg=seg, status="`git status --short` 只顯示 `?? domain-memory/`")
-                            + D1_CHECK]).rstrip() + "\n"
-    intro = INTRO.get(seg) or INTRO_SOLUTION.format(up=seg.capitalize(), message=message)
-    log_note = ("最上面的「" + message + "」為 `N`（未簽章，不碰 Registry，hook 允許）。") if solution else "沒有其他 commit。"
-    evidence_note = ("verify-evidence 多數 `current`，實作改動過的檔案（如 `payment_service.py`、`store.py`）顯示 `stale`，"
-                     "exit 1 屬預期；verify-sources 同理回報 `stale`（來源快照已變），留到 D4 處理") if solution else "verify-evidence 全部 `current`"
-    return "\n\n".join([intro, RESTORE.format(seg=seg, status="`git status --short` 沒有輸出")
-                        + SIGNERS.format(seg=seg, fp=maintainer_fingerprint(), attested=ATTESTED_COMMIT,
-                                         log_note=log_note, evidence_note=evidence_note)])
+        return "\n\n".join([D1_INTRO, usage, STEP_SAVE.format(seg=seg) + "\n" + D1_RESTORE])
+    intro = INTRO.get(seg) or INTRO_SOLUTION.format(up=up, message=message)
+    log_note = ("，最上面的「" + message + "」為 `N`（未簽章，不碰 Registry，hook 允許）") if solution else ""
+    evidence_note = ("verify-evidence 多數 `current`，實作改動過的檔案顯示 `stale`、exit 1，屬預期，留到 D4 處理"
+                     if solution else "verify-evidence 全部 `current`")
+    return "\n\n".join([intro, usage, STEP_SAVE.format(seg=seg) + "\n"
+                        + STEP_TAKEOVER.format(seg=seg, up=up, log_note=log_note) + "\n"
+                        + STEP_VERIFY.format(seg=seg, up=up, evidence_note=evidence_note)])
 
 
 def generate(seg: str, plugin: str | None) -> Path:

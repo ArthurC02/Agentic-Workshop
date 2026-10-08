@@ -4,10 +4,10 @@
   <p class="kicker">第 35 分鐘 · 解鎖</p>
   <h2 class="title">D2 審查與核准 開始</h2>
   <p class="subtitle">一人當提案人（proposer），夥伴當審核人（maintainer），持金鑰、核准並簽章</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，打開「D2」，從<b>檢查點 1</b> 開始。找到你的夥伴。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開「D2」。兩人各開<b>自己的 Agent 對話</b>，先貼工作規則。</p>
   <p class="muted">接下來 25 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對），從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對）。同一台機器，但提案者和夥伴各用自己的 Agent 對話，先各貼一次工作規則。每段提示詞都標了該由誰貼。投影只有時間與目前的檢查點。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註按需私下提供。</p>
   </aside>
 </section>
@@ -15,7 +15,7 @@
 <section class="slide" data-seg="dlc-d2" data-title="D2 審查與核准 6 個檢查點" data-minute="35" data-timer="25:00" data-gates="dlc-d2">
   <p class="kicker">D2 審查與核准 · 35–60</p>
   <h2 class="title">D2：成對審查，簽章才算核准</h2>
-  <p class="muted">25 分鐘、六個檢查點。提案人不能核准自己的提案；要由夥伴用金鑰簽章提交（commit），才算核准。</p>
+  <p class="muted">25 分鐘、六個檢查點。提案者的 Agent 準備證據；夥伴在自己的 Agent 對話裡讀過審查包、回「核准」，才簽章提交（commit）。</p>
   <ol class="timeline">
     <li data-seg="dlc-d2"><span class="tl-min">00:00</span><b>1 · 夥伴建立簽章金鑰</b></li>
     <li data-seg="dlc-d2"><span class="tl-min">03:00</span><b>2 · 設定審查政策與推送檢查</b></li>
@@ -25,11 +25,11 @@
     <li data-seg="dlc-d2"><span class="tl-min">21:00</span><b>6 · 完成提案並全部驗證</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D2 兩人一組：proposer 操作機器、準備 Change Package；夥伴持簽章金鑰，核准並簽章。順序不能錯：先設金鑰，再改審查政策，最後才提交。卡 5 分鐘就舉手，我們有降級路線。」</p>
+    <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備 Change Package；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就舉手，我們有降級路線。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
-    <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，公布 <code data-code="dlc-rec-d2"></code>（reviewed Registry）：小組改對 reviewed Registry 跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>，並觀看主持人示範簽章段落。Recovery 不作為小組成果評分。</p>
-    <p><b>R3 要明講</b>：<code>record-approval</code> 只比對字串，同機雙身分仍可通過；今天是教學示範，不是安全保證。<b>奇數組</b>：第三人當 observer，核對 <code>verify-audit</code> 輸出。</p>
+    <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，公布 <code data-code="dlc-rec-d2"></code>（reviewed Registry＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
+    <p><b>R3 要明講</b>：<code>record-approval</code> 只比對字串，同機雙身分仍可通過；今天是教學示範，不是安全保證。<b>奇數組</b>：第三人當 observer，看核准與簽章是否只出現在夥伴的 Agent 對話，並一起看 <code>verify-audit</code> 結果。</p>
     <p><b>金鑰</b>：一律放 Repo 外的 <code>%USERPROFILE%\.dlc-keys\&lt;代號&gt;\</code>（Git Bash <code>~/.dlc-keys/&lt;代號&gt;/</code>）；不放 Repo 內（scan-secrets 會掃忽略目錄）、不放 <code>~/.ssh</code>。私鑰不得進 commit、ZIP 或截圖；課後刪除。</p>
   </aside>
 </section>
@@ -38,15 +38,16 @@
   <p class="kicker">檢查點 1 / 6 · 第 35–38 分鐘</p>
   <h2 class="title">夥伴建立簽章金鑰，要在第一次提交 Domain Memory 檔案（Registry）之前</h2>
   <ol class="steps">
-    <li>夥伴建立簽章金鑰，放在 Repo 外的 <code>%USERPROFILE%\.dlc-keys\&lt;代號&gt;\</code>，並設定每次提交都簽章（指令見 Runbook）</li>
-    <li>記下<b>金鑰指紋（fingerprint，辨識是哪一把金鑰，可公開）</b></li>
+    <li>夥伴把提示詞貼給<b>自己的 Agent</b>：建立簽章金鑰，放在 Repo 外的 <code>%USERPROFILE%\.dlc-keys\maintainer\</code>，每次提交都簽章</li>
+    <li>Agent 回報<b>金鑰指紋（fingerprint，辨識是哪一把金鑰，可公開）</b>；私鑰內容不讀、不貼</li>
     <li>同一組全程用同一個 shell（PowerShell 或 Git Bash）</li>
   </ol>
-  <p class="callout warn">Runbook › D2 審查與核准（成對） › 檢查點 1 · 填確認表單</p>
+  <p class="callout warn">Runbook › D2 審查與核准（成對） › 檢查點 1 · 夥伴貼提示詞</p>
   <aside class="notes">
     <p><b>說（00:00／第 35 分）</b>：「第 35 分。輸入解鎖碼，從檢查點 1 開始。夥伴先建簽章金鑰，而且一定要在第一個 Registry commit 之前，否則之後 push 會被拒。金鑰放使用者資料夾的 .dlc-keys，不要放進 Repo，也不要放 .ssh。」</p>
-    <p><b>看</b>：金鑰路徑是否在 <code>%USERPROFILE%\.dlc-keys\</code> 底下（不在 Repo 內）；是否用了 --sign-every-commit；兩人是否用同一種 shell。</p>
-    <p><b>介入訊號</b>：有人把金鑰放在會被 commit 的路徑 → 立即移走，確認 <code>git status</code> 乾淨。</p>
+    <p><b>看</b>：夥伴是否另開了自己的 Agent 對話並貼了工作規則；Agent 回報的金鑰路徑在 <code>%USERPROFILE%\.dlc-keys\</code> 底下（不在 Repo 內）、signs_every_commit 為 true；Agent 沒有打開私鑰檔；兩人用同一種 shell。</p>
+    <p><b>介入訊號</b>：在提案者的 Agent 對話裡建立金鑰 → 停下，改在夥伴的對話做；金鑰落在會被 commit 的路徑 → 立即移走，請 Agent 確認 <code>git status</code>。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>簽章 commit 與金鑰指紋</b>，花 30 秒講：私鑰簽名、公鑰驗證，fingerprint 可公開。</p>
   </aside>
 </section>
 
@@ -54,16 +55,16 @@
   <p class="kicker">檢查點 2 / 6 · 第 38–43 分鐘</p>
   <h2 class="title">設定審查政策、安裝推送檢查，確認治理就緒</h2>
   <ol class="steps">
-    <li>依 Runbook 順序修改審查政策三次：授權簽章者（填夥伴的金鑰指紋）→ push 時觸發審查 → 以簽章提交驗證核准</li>
+    <li>夥伴的 Agent 依序修改審查政策三次：授權簽章者（夥伴的金鑰指紋）→ push 時觸發審查 → 以簽章提交驗證核准</li>
     <li>安裝 pre-push hook（push 前 Git 自動執行的檢查腳本）</li>
     <li>治理就緒檢查（governance-readiness）必須回報 <b>ready</b></li>
   </ol>
-  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 2 · 填確認表單</p>
+  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 2 · 夥伴貼提示詞</p>
   <aside class="notes">
-    <p><b>說（03:00／第 38 分）</b>：「第 38 分。proposer 操作：policy 三次修改，順序照 Runbook，不要自己調換。之後安裝 hook，governance-readiness 要說 ready，否則後面都會失敗。」</p>
-    <p><b>看</b>：順序是否被調換；fingerprint 是否填的是夥伴的；readiness 是否 ready 而不是 warning。</p>
+    <p><b>說（03:00／第 38 分）</b>：「第 38 分。還是夥伴：把檢查點 2 的提示詞貼給你的 Agent，policy 三次修改的順序已寫好，不要讓 Agent 調換。governance-readiness 要說 ready，否則後面都會失敗。」</p>
+    <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready 而不是 warning。</p>
     <p><b>介入訊號</b>：readiness 不 ready → 看缺哪一項（signer、trigger、mode、hook）逐項補；卡 5 分鐘上報。</p>
-    <p><b>提示</b>：H1：「readiness 的輸出會告訴你缺哪一項，照那一行補。」</p>
+    <p><b>提示</b>：H1：請學員貼 Runbook「卡住時」的補救提示詞，讓 Agent 用白話解釋 blocks 缺哪一項，不要自己改設定。</p>
   </aside>
 </section>
 
@@ -71,15 +72,16 @@
   <p class="kicker">檢查點 3 / 6 · 第 43–48 分鐘</p>
   <h2 class="title">建立變更審查包（Change Package），驗證後送出提案</h2>
   <ol class="steps">
-    <li>提案人以 <code>fill_package.py</code> 填需求、提案、要通過的檢查與證據</li>
-    <li>測試結果必須<b>真的跑出來</b>，不能預先填「通過」</li>
-    <li>驗證審查包通過後送出提案</li>
+    <li>提案者的 Agent 先提反事實方案，提案者選一個；只認 <b>killed</b></li>
+    <li>Agent 以 <code>fill_package.py</code> 建審查包，測試<b>真的跑出來</b>，不預填「通過」</li>
+    <li>提案者看過回報，回「送出」才送出提案</li>
   </ol>
-  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 3 · 填確認表單</p>
+  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 3 · 提案者貼提示詞</p>
   <aside class="notes">
-    <p><b>說（08:00／第 43 分）</b>：「第 43 分。proposer 準備 Change Package，放在 domain-memory/changes 底下，這樣簽章 commit 會碰到 Registry 路徑，但不會改變 Registry digest。測試結果要真的跑出來，不能預填 PASS。第 45 分我會看大家進度。」</p>
-    <p><b>看</b>：Change Package 位置是否正確；是否真的跑 pytest；proposer 有沒有自己 record-approval（不可以）。</p>
+    <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提反事實方案，你選一個；只認 killed。Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry digest。第 45 分我會看大家進度。」</p>
+    <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 對卡住的組公布降級碼；任一步卡 5 分鐘即可公布 <code data-code="dlc-rec-d2"></code>。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>變更審查包</b>與<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。</p>
   </aside>
 </section>
 
@@ -87,15 +89,15 @@
   <p class="kicker">檢查點 4 / 6 · 第 48–53 分鐘</p>
   <h2 class="title">夥伴核准提案，並用金鑰簽章提交</h2>
   <ol class="steps">
-    <li>夥伴記錄核准，審核人填夥伴自己（不可是提案人）</li>
-    <li>驗證提案</li>
-    <li>夥伴執行<b>簽章提交</b>；用 <code>git log --show-signature</code> 看見簽章</li>
+    <li>夥伴的 Agent 讀審查包、貼出證據原文；<b>夥伴自己</b>決定核准或退回</li>
+    <li>夥伴回「核准」後，Agent 才記錄核准、驗證提案</li>
+    <li>夥伴的 Agent 做<b>簽章提交</b>；<code>git log --show-signature</code> 看見簽章</li>
   </ol>
-  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 4 · 填確認表單</p>
+  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 4 · 夥伴讀過審查包才回核准</p>
   <aside class="notes">
-    <p><b>說（13:00／第 48 分）</b>：「第 48 分。換夥伴：reviewer 一定是你，不是 proposer。核准之後，簽章 commit 也由持鑰的你執行。這是整段最容易出錯的地方：看 git log --show-signature 有沒有 Good signature。」</p>
-    <p><b>看</b>：reviewer 是不是夥伴；commit 有沒有簽；push 前是否已啟用 .venv（hook 呼叫裸 python）。</p>
-    <p><b>介入訊號</b>：commit 未簽章 → 不要硬 push，確認 sign-every-commit 設定與金鑰路徑。</p>
+    <p><b>說（13:00／第 48 分）</b>：「第 48 分。換夥伴，回到你自己的 Agent 對話。先讓 Agent 讀審查包、貼證據原文，你讀過再回核准或退回；只有你的回覆能讓簽章發生。看 git log --show-signature 有沒有 Good signature。做完討論一下：如果 Agent 能替自己的提案簽核准，會壞掉什麼？」</p>
+    <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；commit 有沒有簽。</p>
+    <p><b>介入訊號</b>：在提案者的對話裡核准或 commit → 停下，說明為什麼要換到夥伴的對話；commit 未簽章 → 不要硬 push，請 Agent 解釋 sign-every-commit 設定與金鑰路徑。</p>
   </aside>
 </section>
 
@@ -103,14 +105,14 @@
   <p class="kicker">檢查點 5 / 6 · 第 53–56 分鐘</p>
   <h2 class="title">寫出核准證明（attestation），再驗證簽章提交</h2>
   <ol class="steps">
-    <li>以 <code>write_scm_attestation.py</code> 把剛才的簽章提交寫成核准證明</li>
+    <li>夥伴的 Agent 以 <code>write_scm_attestation.py</code> 把剛才的簽章提交寫成核准證明</li>
     <li>讓 Plugin 驗證這次簽章提交</li>
-    <li>輸出 OK 才算數，填確認表單</li>
+    <li>看到 <code>Git governance is valid.</code> 才算數</li>
   </ol>
-  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 5 · 填確認表單</p>
+  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 5 · 夥伴貼提示詞</p>
   <aside class="notes">
-    <p><b>說（18:00／第 53 分）</b>：「第 53 分。把剛才的簽章 commit 寫成 attestation，再讓 Plugin 驗證。看到 OK 才往下，否則下一步 finalize 會拒絕。」</p>
-    <p><b>看</b>：是否指到正確的 commit hash；verify 是否 OK。</p>
+    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 把剛才的簽章 commit 寫成 attestation，再讓 Plugin 驗證。看到 Git governance is valid. 才往下，否則下一步 finalize 會拒絕。」</p>
+    <p><b>看</b>：Agent 回報的 commit 是剛才的簽章 commit；verify 是否 valid。</p>
     <p><b>介入訊號</b>：驗證失敗 → 先檢查是否簽章 commit、attestation 的 commit 是否同一個。</p>
   </aside>
 </section>
@@ -119,15 +121,16 @@
   <p class="kicker">檢查點 6 / 6 · 第 56–60 分鐘</p>
   <h2 class="title">完成提案、套用，並全部驗證</h2>
   <ol class="steps">
-    <li>完成提案 → 套用核准的更新</li>
-    <li>驗證內容都已審查（reviewed）：OK</li>
-    <li>驗證稽核紀錄：OK；到 60 分鐘停手</li>
+    <li>提案者的 Agent：完成提案 → 套用 → 驗證已審查（reviewed）與稽核紀錄</li>
+    <li>夥伴的 Agent：簽章提交 → push，hook 再驗一次簽章</li>
+    <li>填「D2 決定」；到 60 分鐘停手</li>
   </ol>
-  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 6 · 填確認表單</p>
+  <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 6 · 提案者 → 夥伴</p>
   <aside class="notes">
-    <p><b>說（21:00／第 56 分）</b>：「第 56 分。最後四步：finalize、apply、validate 要求 reviewed、verify-audit。四個都 OK，你們手上的才是已審查事實。第 60 分休息，沒完成的組，休息時間內我發降級碼。」</p>
-    <p><b>看</b>：是否出現 validate --require-reviewed OK 與 verify-audit OK；是否把候選與 reviewed 混為一談。</p>
+    <p><b>說（21:00／第 56 分）</b>：「第 56 分。先提案者的 Agent：finalize、apply、validate 要求 reviewed、verify-audit。四個都 OK，再換夥伴的 Agent 簽章提交並 push，最後填一張「D2 決定」。夥伴的 Agent 對話不要關，D3、D4 的 commit 都在那裡做。第 60 分休息，沒完成的組，休息時間內我發降級碼。」</p>
+    <p><b>看</b>：Agent 回報 Registry is valid.（帶 --require-reviewed）與 verify-audit valid；push 由夥伴的 Agent 執行、沒有用 --no-verify 繞過 hook；是否把候選與 reviewed 混為一談。</p>
     <p><b>介入訊號</b>：第 60 分仍未完成 → 休息時發 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
+    <p><b>收尾</b>：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。</p>
   </aside>
 </section>
 

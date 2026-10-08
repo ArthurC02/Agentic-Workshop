@@ -1,6 +1,15 @@
 # DDD DLC 素材（materials-dlc）
 
-> 其他段落（使用方式、解鎖碼位置、Preflight）由簡報／Runbook 作者補齊；本節只記錄打包與 edition 設定。
+本資料夾是 DDD DLC 的學員 Runbook（`participant-runbook/content/`）、主持簡報（`facilitator-deck/src/slides/`）、檢查點對照（`CHECKPOINTS.md`）與解鎖碼（`unlock-codes.json`）。下面記錄 Runbook 的寫法、打包與 edition 設定。
+
+## Runbook 的寫法（複製提示詞即可通關）
+
+- 每段頁首一張「現在在做什麼」卡（情境、目標、今天的技巧、完成的樣子），頁尾一句「這段學到的技巧」；檢查點總覽用條列（分鐘＋要做什麼），不用表格。
+- 每個檢查點：一兩句說明 → 一段可直接複製的提示詞 → 「看到什麼算過關」；需要時加「如果卡住」補救提示詞與「💬 討論一下」（口頭討論，不填表）。
+- Plugin、`make_record.py`、Git 與 pytest 指令原樣寫進提示詞，由學員的 Coding Agent 執行並白話回報；需要人決定時，Agent 先列選項或草稿並停下，學員只回「同意」「選 B」「第 3 項不要」這類短回覆。學員頁面不放要學員自己打的指令區塊。
+- 紀錄由 Agent 寫進學員 Repo：各段 `notes/<段落>.md`、決策卡與交接單在 `docs/handoffs/`。表單每段最多一張，只留人的決定，以下拉與勾選為主（最多 3 欄＋1 個短文字欄）。
+- D2 起兩人共用一台機器：夥伴另開終端機與自己的 Agent 對話，金鑰、`record-approval`、簽章 commit 與 push 只在那個對話裡、由夥伴讀過審查包後下指令（D3a–c 檢查點 5 與 D4 的 commit 也沿用它）；提案人的 Agent 不 commit、不 push、不讀 `.dlc-keys`，也不代替核准。
+- 檢查點名稱改動時，Runbook 標題、`CHECKPOINTS.md` 與簡報 `data-title`／時間軸要一起改。
 
 ## edition.json
 

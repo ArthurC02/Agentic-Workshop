@@ -39,14 +39,14 @@
   <p class="kicker">檢查點 1 / 6 · 第 95–98 分鐘</p>
   <h2 class="title">讀情境卡，向 Memory 取已審查事實</h2>
   <ol class="steps">
-    <li>讀情境卡：先用自己的話說出<b>要解決什麼</b></li>
-    <li>對卡上的名詞跑 <code>resolve-terms</code>，對相關 Context 跑 <code>get-context</code></li>
-    <li>把已審查事實與<b>未知項</b>分開寫下，填確認表單</li>
+    <li>兩人讀情境卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
+    <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
+    <li>看回報：事實都有「類別:id」，查不到的沒有被補</li>
   </ol>
-  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 1 · 填確認表單</p>
+  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 1 · 貼提示詞</p>
   <aside class="notes">
-    <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問已審查（reviewed）事實，哪些是已知、哪些是未知，分開寫。」</p>
-    <p><b>看</b>：有沒有直接把情境卡貼給 Agent 叫它做；有沒有用 reviewed 查詢，而不是憑記憶。留意現有三條計價路徑（一般、團體、改票）。</p>
+    <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完情境卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
+    <p><b>看</b>：有沒有跳過提示詞直接叫 Agent 實作；Agent 是否真的執行了查詢，而不是憑記憶回答。留意現有三條計價路徑（一般、團體、改票）。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」</p>
     <p><b>公告</b>：「先看『本次範圍』的核心／延伸，再看『API』小節。」</p>
@@ -57,13 +57,13 @@
   <p class="kicker">檢查點 2 / 6 · 第 98–103 分鐘</p>
   <h2 class="title">決策卡：負責的 Context、跨 Context 不變量</h2>
   <ol class="steps">
-    <li>決定<b>由哪個 Context 負責點數</b>（Membership／Loyalty／Pricing），寫下<b>理由</b></li>
-    <li>寫下不變量：餘額不為負、應付 ≥ 0 且為整數、先折扣後折抵、不超過 30% 上限</li>
-    <li>決定預留／歸還的邊界：誰預留、付款失敗或取消時誰歸還</li>
+    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，附 Registry 或程式證據</li>
+    <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
+    <li>Agent 寫成決策卡、列出不變量；確認後回「同意」</li>
   </ol>
-  <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 2 · 填確認表單</p>
+  <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 2 · 討論後回覆選擇</p>
   <aside class="notes">
-    <p><b>說（03:00／第 98 分）</b>：「第 98 分。這一段是今天的核心：先由人做設計決策，寫進 D3 決策卡，再讓 Agent 實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
+    <p><b>說（03:00／第 98 分）</b>：「第 98 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫成 D3 決策卡，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
     <p><b>看</b>：owner 是否有理由而非『放哪都行』；是否討論並發與重複歸還。</p>
     <p><b>介入訊號</b>：只改建立流程、忘了改票路徑 → 問：改票差額（Fare Difference）是用哪個金額算的？</p>
     <p><b>提示</b>：H2：「預留要不要成為獨立概念？直接扣餘額與保留紀錄，稽核與並發上差在哪？」</p>
@@ -75,13 +75,13 @@
   <p class="kicker">檢查點 3 / 6 · 第 103–111 分鐘</p>
   <h2 class="title">把決策卡交給 Agent，依交接單（Handoff）實作，做完停下</h2>
   <ol class="steps">
-    <li>以 Runbook 提示詞把決策卡交給 Agent：<b>先提計畫，等你核准</b>再改檔</li>
-    <li>核准後讓 Agent 實作；看它貼出的<b>實際</b> <code>pytest -q</code>（用 <code>.venv</code> 的 python）</li>
+    <li>貼提示詞：Agent 依交接單<b>先提計畫</b>，你們回「同意」才動手</li>
+    <li>分兩段實作；每段看<b>實際</b>測試結果再回「繼續」</li>
     <li>一般、團體、改票三條計價路徑都要有測試；付款失敗返點也要有測試</li>
   </ol>
-  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 3 · 填確認表單</p>
+  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 3 · 貼提示詞</p>
   <aside class="notes">
-    <p><b>說（08:00／第 103 分）</b>：「第 103 分。把決策卡交給 Agent。Handoff 要寫清楚事實、取捨、外部系統與未知項。Agent 先提計畫，你核准再做；每一輪做完停下，你看測試。」</p>
+    <p><b>說（08:00／第 103 分）</b>：「第 103 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
     <p><b>看</b>：Agent 是否沿用決策卡（owner、不變量），還是自己重新決定；測試是否真的執行。應付金額與 Order.amount 是否一致；一般訂票付款失敗不歸還（維持現行規則）。</p>
     <p><b>介入訊號</b>：Agent 為了讓測試過而改既有測試期待值 → 要求說明並對照決策卡。</p>
     <p><b>提示</b>：H3：「一般訂票付款失敗與團體訂票付款失敗，點數的下場一樣嗎？」</p>
@@ -93,16 +93,16 @@
   <p class="kicker">檢查點 4 / 6 · 第 111–116 分鐘</p>
   <h2 class="title">每條新規則，各做一次反事實檢查，要看到 killed</h2>
   <ol class="steps">
-    <li>對每條新規則：破壞實作的一處，用 <code>counterfactual --test-command</code> 跑對應測試</li>
-    <li>只認輸出中的 <b>killed</b> 字樣；只看到亂碼或 ERROR 都不算成功（多半是指令路徑錯了）</li>
-    <li>還原後整套 <code>pytest -q</code> 要再全綠</li>
+    <li>Agent 先列出每條新規則<b>要改壞哪裡</b>；你們同意才跑</li>
+    <li>只認回報中的 <b>killed</b>；亂碼或 ERROR 都不算</li>
+    <li>survived 就補測試、用同一組字串重跑；最後整套測試再全綠</li>
   </ol>
-  <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 4 · 填確認表單</p>
+  <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 4 · 討論後回「同意」</p>
   <aside class="notes">
     <p><b>說（16:00／第 111 分）</b>：「第 111 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
     <p><b>建議現場做的 4 個</b>：上限以優惠後總額計（改成原價；只有 M002 665 抓得到）、預留在寫入前（移到寫入之後）、團體付款失敗歸還（移除 restore）、退款現金＝Order.amount（改讀 <code>payable_amount</code>；沒有「改票後退票」的測試就會存活）。第一個與最後一個是「先 survived 再補測試」的好示範。</p>
-    <p><b>看</b>：是否每條新規則都有 killed；指令路徑是否用反斜線或絕對路徑；還原後是否重跑全套。</p>
-    <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
+    <p><b>看</b>：是否每條新規則都有 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
+    <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 請學員貼：「這不算 killed，請說明原因，不要換字串。」；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
   </aside>
 </section>
 
@@ -110,14 +110,14 @@
   <p class="kicker">檢查點 5 / 6 · 第 116–121 分鐘</p>
   <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>檢視程式差異（Diff）：設計符合決策卡嗎？有沒有偷改測試斷言</li>
-    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱已審查</li>
-    <li>填確認表單；第 121 分停手</li>
+    <li>Agent 用 <code>git diff</code> 與測試回答四個審查問題</li>
+    <li>你們同意後，Agent 用 <code>make_record.py</code> 登記，<b>仍是候選</b></li>
+    <li>夥伴在<b>自己的 Agent 對話</b>簽章 commit；第 121 分停手</li>
   </ol>
-  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 5 · 填確認表單</p>
+  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 5 · 看審查答案後回「同意」</p>
   <aside class="notes">
-    <p><b>說（21:00／第 116 分）</b>：「第 116 分。人 Review：看 Diff，看測試有沒有被弱化。新學到的事實登記成候選，注意它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
-    <p><b>看</b>：是否有人只看 Agent 的總結；候選的措辭是否仍保持候選。</p>
+    <p><b>說（21:00／第 116 分）</b>：「第 116 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
+    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原並重新核對 R8 允許改寫的範圍。</p>
   </aside>
 </section>
@@ -127,14 +127,15 @@
   <h2 class="title">停手，對照參考設計，記下差異</h2>
   <ol class="steps">
     <li>停止所有修改</li>
-    <li>看投影的參考設計，對照自己的決策卡</li>
-    <li>記下一個<b>差異</b>與其理由；不評分、不比誰對</li>
+    <li>Agent 整理決策摘要，對照投影的參考設計</li>
+    <li>填揭曉對照表單：一個差異與原因；不評分、不比誰對</li>
   </ol>
-  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 6 · 填確認表單</p>
+  <p class="callout">Runbook › D3b 點數折抵 › 檢查點 6 · 填揭曉對照表單</p>
   <aside class="notes">
     <p><b>說（26:00／第 121 分）</b>：「第 121 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
     <p><b>看</b>：停手後是否還有人在改；對照時是否討論理由而不是對錯。</p>
     <p><b>介入訊號</b>：還有人在改 → 請他停手保存現況，揭曉後可用 Recovery 接續。</p>
+    <p><b>收尾（揭曉後）</b>：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。</p>
   </aside>
 </section>
 

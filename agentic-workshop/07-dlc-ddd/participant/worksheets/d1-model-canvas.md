@@ -1,63 +1,39 @@
-# D1 模型畫布：Context、詞彙與規則候選
+# D1 候選紀錄格式：Context、詞彙與規則
 
-> 讀者：DDD（Domain-Driven Design，領域驅動設計）延伸課程學員。使用時機：D1 檢查點 3–6（D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求；檢查點步驟見 Runbook（課堂操作手冊） D1 頁），建立候選之前先在這裡寫下你的判斷。
+> 讀者：DDD（Domain-Driven Design，領域驅動設計）延伸課程學員與你的 Agent。使用時機：D1 檢查點 3–6（D1–D4 是今天四段的代號；步驟見 Runbook（課堂操作手冊）D1 頁）。Agent 提草稿與證據，你回一句話決定；Agent 再依這裡的格式寫紀錄。格式已寫在 Runbook 的提示詞裡，不用另外貼。
 
-候選（candidate）是「有證據的主張」，還不是事實。每一筆都要有至少一段 `路徑:起-迄` 證據（例如 `src/smart_ticket/domain/discounts.py:30-31`，表示該檔第 30 到 31 行），而且證據要落在你在來源選擇表確認過的路徑內：`docs/requirements/`、`docs/adr/`、`src/`，以及 `tests/` 底下的 `test_*.py`（`conftest.py` 不算）。數量下限：**詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2**。
+候選（candidate）是「有證據的主張」，還不是事實。每一筆都要有至少一段 `路徑:起-迄` 證據（例如 `src/smart_ticket/domain/discounts.py:30-31`，表示該檔第 30 到 31 行），而且證據要落在已確認的來源內：`docs/requirements/`、`docs/adr/`、`src/`，以及 `tests/` 底下的 `test_*.py`（`conftest.py` 不算）。數量下限：**詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2**。
 
-## 1. 先找矛盾，再寫定義
+## 要 Agent 先找的三種情況
 
-讀證據時，把下面這類情況記下來。它們是 Domain Memory 最有價值的地方，不要自己「修好」再寫進去：
+它們是 Domain Memory 最有價值的地方，不要讓 Agent 自己「修好」再寫進去：
 
-- **同一件事兩個名字**：比對 `docs/adr/` 與 `src/smart_ticket/domain/` 裡計價相關的命名，文件說的名字在程式裡是不是同一個東西？
-- **文件有、程式沒有**：在 `docs/requirements/business-rules.md` 與 ADR 裡出現的名詞，能不能在程式裡找到對應的類別或函式？（例如「Compensation／補償」）
+- **同一件事兩個名字**：文件說的名字，在程式裡是不是同一個東西？
+- **文件有、程式沒有**：需求文件或 ADR 裡的名詞，在程式裡找不到對應的類別或函式。
 - **邊界洩漏**：一個模組直接讀寫另一個模組該管的資料。
 
-| 發現 | 證據 A（路徑:起-迄） | 證據 B（路徑:起-迄） | 你的處理（記為候選／記為未知／不建模） |
-|---|---|---|---|
-| 〈發現〉 | 〈 〉 | 〈 〉 | 〈 〉 |
-| 〈發現〉 | 〈 〉 | 〈 〉 | 〈 〉 |
+處理方式由你選：記成兩個詞並互標「不是同一件事」（`not_same_as`）、記成同一個詞的別名（`synonyms`），或先記為未知、不建模。
 
-## 2. Context
+## `notes/d1.md`（Agent 寫）
 
-| id（小寫、連字號，例如 `pricing`） | 名稱 | 職責（一句話，說它決定什麼） | 證據 |
-|---|---|---|---|
-| 〈id〉 | 〈名稱〉 | 〈職責〉 | 〈路徑:起-迄〉 |
-| 〈id〉 | 〈名稱〉 | 〈職責〉 | 〈路徑:起-迄〉 |
+依檢查點分段：來源決定、初始化與確認來源、詞彙（採用的定義、沒採用的候選與理由、名稱矛盾與處理）、Context 與規則（含缺口）、缺口與查詢、Context 與邊界（含 D1 總結）。
 
-## 3. 詞彙（Ubiquitous Language）
+## `d1-records.json`（Agent 寫，放在 Repo 根目錄）
 
-| id | 名稱 | 定義（一句寫錯就能被文件或程式指出來的明確定義） | 所屬 Context | 證據 |
-|---|---|---|---|---|
-| 〈id〉 | 〈名稱〉 | 〈定義〉 | 〈context id〉 | 〈路徑:起-迄〉 |
-| 〈id〉 | 〈名稱〉 | 〈定義〉 | 〈context id〉 | 〈路徑:起-迄〉 |
-| 〈id〉 | 〈名稱〉 | 〈定義〉 | 〈context id〉 | 〈路徑:起-迄〉 |
-| 〈id〉 | 〈名稱〉 | 〈定義〉 | 〈context id〉 | 〈路徑:起-迄〉 |
-| 〈id〉 | 〈名稱〉 | 〈定義〉 | 〈context id〉 | 〈路徑:起-迄〉 |
-
-## 4. 規則
-
-| id（沿用文件的規則編號，例如 `FARE-005`） | 敘述（寫成可以被測試推翻的句子） | 所屬 Context | 證據（規則文件＋測試或程式） |
-|---|---|---|---|
-| 〈規則 id〉 | 〈敘述〉 | 〈context id〉 | 〈路徑:起-迄〉、〈路徑:起-迄〉 |
-| 〈規則 id〉 | 〈敘述〉 | 〈context id〉 | 〈路徑:起-迄〉、〈路徑:起-迄〉 |
-
-## 5. 轉成批次檔 `d1-records.json`
-
-在 Repo 根目錄（`repository/smart-ticket-dlc-base/`）建立 `d1-records.json`，把上面的表格逐列轉成下面的格式。**Context 放在最前面**，因為詞彙與規則會參照它。`evidence` 寫 `路徑:起-迄`，`make_record.py` 會替每一段呼叫 `cite`，記下那幾行內容的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同），之後內容被改就能發現。
+一個 JSON 陣列，**Context 放在最前面**，因為詞彙與規則會參照它。`make_record.py` 會替每一段 `evidence` 呼叫 `cite`，記下那幾行內容的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同），之後內容被改就能發現。
 
 ```json
 [
-  {"asset": "contexts", "id": "〈context id〉", "name": "〈名稱〉", "responsibility": "〈職責〉",
-   "evidence": ["〈路徑:起-迄〉"]},
-  {"asset": "contexts", "id": "〈context id〉", "name": "〈名稱〉", "responsibility": "〈職責〉",
-   "evidence": ["〈路徑:起-迄〉"]},
-  {"asset": "vocabulary", "id": "〈詞彙 id〉", "name": "〈名稱〉", "definition": "〈定義〉",
-   "context": "〈context id〉", "evidence": ["〈路徑:起-迄〉"]},
-  {"asset": "rules", "id": "〈規則 id〉", "statement": "〈敘述〉",
-   "context": "〈context id〉", "evidence": ["〈路徑:起-迄〉", "〈路徑:起-迄〉"]}
+  {"asset": "contexts", "id": "pricing", "name": "計價", "responsibility": "決定每位旅客的票價與適用優惠",
+   "evidence": ["src/smart_ticket/domain/discounts.py:30-31"]},
+  {"asset": "vocabulary", "id": "advance-purchase-discount", "name": "提前購票優惠",
+   "definition": "購票日至出發日至少 14 天時的 85% 票價資格",
+   "context": "pricing", "evidence": ["docs/requirements/business-rules.md:29-30"]},
+  {"asset": "rules", "id": "FARE-005", "statement": "購票日至出發日至少 14 天才有 85% 提前購票資格",
+   "context": "pricing", "evidence": ["docs/requirements/business-rules.md:29-30", "src/smart_ticket/domain/discounts.py:30-31"]}
 ]
 ```
 
-- 同義詞或「不是同一件事」可加欄位：`"synonyms": ["〈別名〉"]`、`"not_same_as": ["〈另一個詞彙 id〉"]`。
-- 一個詞跨兩個 Context 時，`"context": ["〈id〉", "〈id〉"]`。
-- 行號用編輯器左側的行號；證據段落越短越好，只框住支持這句話的那幾行。
+- 同義詞或「不是同一件事」可加欄位：`"synonyms": ["別名"]`、`"not_same_as": ["另一個詞彙 id"]`。
+- 一個詞跨兩個 Context 時：`"context": ["pricing", "booking"]`。
+- 證據段落越短越好，只框住支持這句話的那幾行。上例取自輔助工具說明，行號以實際檔案為準。

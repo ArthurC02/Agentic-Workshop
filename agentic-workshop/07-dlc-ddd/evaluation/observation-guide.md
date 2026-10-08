@@ -11,8 +11,8 @@
 | 主軸 | 看什麼 | 好的樣子 |
 |---|---|---|
 | **A. DDD 決策** | owner Context、不變量、一致性邊界、Port／Adapter 位置，是不是**人**先決定、寫下理由 | 決策卡在 Agent 動手前就寫好，Agent 的計畫沿用它；有人問「這條規則的家在哪」 |
-| **H. Human-in-the-loop** | 人有沒有在每個停點真的看過輸出、核准計畫、Review Diff；有沒有讓 Agent 自行宣稱完成 | 「先提計畫、停下等我」被遵守；人讀實際 `pytest -q` 而不是 Agent 的總結 |
-| **E. 證據與反事實紀律** | reviewed 事實與候選分得清；每條新規則有 `killed`；只認 `killed` 字樣；survived 時補測試而不是換字串 | 表單寫「未證明」而不是假裝完成；候選不自稱 reviewed |
+| **H. Human-in-the-loop** | 人有沒有在每個停點真的看過輸出、核准計畫、Review Diff；有沒有讓 Agent 自行宣稱完成 | 「先提計畫、停下等我」被遵守；人要 Agent 回報實際的 `pytest -q` 與指令結果，而不是只接受它的總結；Agent 停下時人真的回覆決定，Agent 沒有在人同意前寫入 |
+| **E. 證據與反事實紀律** | reviewed 事實與候選分得清；每條新規則有 `killed`；只認 `killed` 字樣；survived 時補測試而不是換字串 | 紀錄檔寫「未證明」而不是假裝完成；候選不自稱 reviewed |
 
 ## 2. 各段觀察項與介入訊號
 
@@ -22,46 +22,48 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | 看到 `76 passed`、`SHA OK 130 files`、`"version": "0.2.2"` 才往下 |
-| O2 | H | 所有 Plugin 指令經 `tools/dm.*`，沒有人直接呼叫 `registry_tools.py` |
-| O3 | E | `python` 路徑在 `.venv\Scripts\`，`doctor.py` 全 `[OK]` |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 130 files`、`"version": "0.2.2"`，學員對照過關字樣才往下 |
+| O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
+| O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
-介入訊號：解壓在桌面／OneDrive（之後會 WinError 206）→「這個路徑多長？」；`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」
+介入訊號：解壓在桌面／OneDrive（之後會 WinError 206）→「這個路徑多長？」；`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」；學員自己在終端機打指令或改指令 →「把 Runbook 的提示詞貼給 Agent，卡住就貼『如果卡住』那一段」。
 
 ### 2.2 D1 共同語言與邊界（10–35）
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | H | 來源是**人**從 `discover-sources` 結果勾選的，能說出為什麼排除某些來源 |
-| O2 | E | 每個候選至少一個 `cite` 證據，且證據在已確認來源內 |
+| O1 | H | 來源、詞彙、Context 與規則是**人**看過 Agent 的建議與證據後回覆決定的；`notes/d1.md` 記得到採用與不採用的理由，學員能說出為什麼排除某些來源 |
+| O2 | E | 每個候選至少一個 `cite` 證據，且證據在已確認來源內（Agent 回報 `validate` 通過、`verify-evidence` 全部 current） |
 | O3 | A | 發現名稱矛盾（Fare Policy／Discount Policy）或沒有對應程式的詞（Compensation），選擇記錄矛盾或「未建模」，而不是挑一個當答案 |
-| O4 | A | `analyze-boundary` 用兩個不同 Context，能說出一個邊界洩漏 |
+| O4 | A | `analyze-boundary` 用兩個不同 Context，學員能依 Agent 附的證據說出一個邊界洩漏 |
 
-介入訊號：Agent 憑空補 Compensation 實作或定義 →「證據在哪一行？」；全部詞彙由 Agent 一次產生、人沒讀 →「挑一個，給我看它的 cite」。
+評估看 `notes/d1.md` 的證據與學員的決定（「D1 決定」只有三個選擇＋一個短文字），不因少填表扣分。
+
+介入訊號：Agent 憑空補 Compensation 實作或定義 →「證據在哪一行？」；學員對 Agent 的草稿一律回「同意」、沒看證據 →「挑一個，請 Agent 把它的 cite 原文念給你聽，你同意這個定義嗎？」
 
 ### 2.3 D2 審查與核准（35–60）
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | H | 角色分清：proposer 不碰 `record-approval`，簽章 commit 由持鑰的 Maintainer 執行（三人組由 Observer 對照清單） |
-| O2 | E | 順序正確：簽章設定先於第一個 Registry commit；`amend-policy` 三次依序；`governance-readiness` ready |
-| O3 | E | Change Package 的測試結果來自實際執行（`fill_package.py`），沒有預填 PASS |
-| O4 | E | `git log --show-signature` 看得到 Maintainer 的簽章；私鑰不在 Repo、不在截圖、不貼給 Agent |
-| O5 | H | 能說出「`record-approval` 只比字串，真正擋得住的是簽章」 |
+| O1 | H | 兩個 Agent 對話分清：`record-approval`、簽章 commit、push 只出現在 Maintainer 自己的 Agent 對話；proposer 的 Agent 沒碰 `.dlc-keys`、沒 commit（三人組由 Observer 看） |
+| O2 | H | Maintainer 回「核准」前讀過 Agent 貼出的證據原文與測試結果，說得出一行證據支持哪條規則；不是 Agent 一停就回核准 |
+| O3 | E | counterfactual 方案由 proposer 選定，結果只認 `killed`；Change Package 的測試結果來自實際執行（`fill_package.py`），沒有預填 PASS |
+| O4 | E | `notes/d2.md` 有 Agent 寫下的 readiness `ready`、obligation 結果、審查摘要與核准決定、簽章行；私鑰不在 Repo、不在截圖、不貼給 Agent |
+| O5 | H | 能說出「`record-approval` 只比字串，真正擋得住的是簽章；Agent 不能替自己的提案核准」 |
 
-介入訊號：同一人包辦 proposer 與 reviewer →「誰持有私鑰？」；金鑰放在 Repo 內或 `.ssh` → 立刻移到 `%USERPROFILE%\.dlc-keys\`，確認 `git status`；卡 5 分鐘 → 依手冊提供 `dlc-rec-d2`。
+證據看 `notes/d2.md` 與學員有沒有在 Agent 停下時做決定，不看表單填了多少。介入訊號：核准或 commit 出現在 proposer 的對話 →「這個核准是誰決定的？」；Maintainer 直接回核准 →「哪一行證據支持這條規則？」；金鑰放在 Repo 內或 `.ssh` → 立刻請 Agent 移到 `%USERPROFILE%\.dlc-keys\` 並確認 `git status`；卡 5 分鐘 → 依手冊提供 `dlc-rec-d2`。
 
 ### 2.4 D3 共同（每段都看）
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| C1 | E | 先 `resolve-terms`／`get-context`，把 reviewed 事實與未知分開寫 |
-| C2 | A | 決策卡在 Agent 改檔前完成：owner、不變量、外部系統、未知項各有一句 |
-| C3 | H | Agent 先提計畫、人核准；人看實際 `pytest -q`；核心 AC 排在延伸之前、介面照卡上 API |
-| C4 | E | 每條登記的新規則有 `killed`；survived 時補測試再跑，不換字串交差；未證明的照實寫 |
-| C5 | E | 新事實用 `upsert-candidate` 登記，措辭仍是候選 |
+| C1 | E | 學員貼提示詞後，Agent 實際執行 `resolve-terms`／`get-context`，`notes/d3*.md` 把 reviewed 事實與知識缺口分開 |
+| C2 | A | Agent 每題提兩個選項＋證據，**學員自己選**（不是回「你決定」）；決策卡（`docs/handoffs/d3*.md`）在 Agent 改檔前完成，寫的是學員選的選項 |
+| C3 | H | Agent 先提計畫、學員回「同意」才動手；分段停下，學員看實際測試結果才回「繼續」；核心 AC 排在延伸之前、介面照卡上 API |
+| C4 | E | 學員看過 Agent 列的改壞方式才同意執行；每條登記的新規則有 `killed`；survived 時補測試用同一組字串重跑；未證明的在紀錄檔照實寫 |
+| C5 | E | 學員看過審查答案才同意登記；Agent 用 `make_record.py` 登記，措辭仍是候選；沒有執行 `record-approval`、`amend-policy` |
 
-共同介入訊號：直接把情境卡貼給 Agent 叫它做 →「決策卡呢？owner 是誰？」；Agent 改既有測試期待值讓測試過 →「規格 R8 允許改寫哪些？理由寫在哪？」；只看 exit code →「`killed` 在哪？」
+共同介入訊號：跳過選項直接叫 Agent 實作，或回「你決定」→「決策卡呢？owner 是誰選的？」；Agent 改既有測試期待值讓測試過 →「規格 R8 允許改寫哪些？理由寫在哪？」；只看 exit code →「`killed` 在哪？」
 
 ### 2.5 D3a 電子發票（70–95）
 
@@ -101,23 +103,25 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| D1 | E | 讀了 `verify-evidence`／`verify-sources` 的 `stale`，沒有跳過 |
-| D2 | E | 只更新真的改變的事實，而且是候選 |
-| D3 | H | Handoff 七段齊全，只引用 Registry 中存在的 id；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
+| D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 被記下並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修 |
+| D2 | H | Agent 先列更新清單，學員回覆後才登記；只更新真的改變的事實，而且是候選（reviewed 以新 id 候選取代） |
+| D3 | E | 交接單七段齊全，Agent 回報的 id 核對清單全部查得到；commit 由 Maintainer 自己的 Agent 對話執行；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
 
-介入訊號：想直接標 reviewed →「核准簽章在哪？」；Handoff 引用不存在的 id →「下一個 Agent 查得到它嗎？」
+介入訊號：想直接標 reviewed →「核准簽章在哪？」；Agent 沒等回覆就登記 → 請學員貼「先停下，列出你要寫入的內容等我同意」；交接單引用不存在的 id →「下一個 Agent 查得到它嗎？」
 
 ### 2.9 回顧（165–180）
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| R1 | E | 能舉出一個「reviewed 事實改變了 Agent 輸出」的具體例子 |
-| R2 | E | 能舉出一個差點被當成事實的候選 |
-| R3 | H | 能區分 `record-approval`（字串比對）與簽章（持鑰）的治理強度 |
+| R1 | E | `notes/retro.md` 有「reviewed 事實改變了 Agent 輸出」的具體例子與證據，或誠實寫「未觀察」；學員有抽問 Agent「證據在哪？」 |
+| R2 | E | 能指出一個差點被當成事實的候選 |
+| R3 | H | 口頭討論時能區分 `record-approval`（字串比對）與簽章（持鑰）的治理強度 |
+
+介入訊號：Agent 的回顧寫了紀錄裡沒有的事 →「這句的證據在哪？沒有就請它改成未觀察」；討論停在「很有用」→「哪一個 commit 或哪一段紀錄看得出來？」
 
 ## 3. 輕量評分表（不排名）
 
-每組每條主軸給一個等級，附一句**觀察到的具體證據**（指令輸出、決策卡句子、Diff 片段）。沒有總分、不跨組比較；用途是課後回饋與改進教材。使用 Recovery 的段落標「Recovery」，不評該段產出，只評之後的行為。
+每組每條主軸給一個等級，附一句**觀察到的具體證據**（Agent 回報的指令輸出、`notes/` 或 `docs/handoffs/` 的紀錄、Diff 片段）。依「紀錄檔裡的證據＋學員有沒有做決定」判斷，不因表單少填扣分。沒有總分、不跨組比較；用途是課後回饋與改進教材。使用 Recovery 的段落標「Recovery」，不評該段產出，只評之後的行為。
 
 | 等級 | A. DDD 決策 | H. Human-in-the-loop | E. 證據與反事實紀律 |
 |---|---|---|---|
