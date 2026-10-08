@@ -8,7 +8,7 @@ section: D2｜審查與核准
 
 # D2 Recovery：按需接續
 
-主持人確認需要接續時，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。內容是：起始 Repo，加上已審查、簽章並套用的 Registry（全部是 reviewed 事實）。使用 Recovery **不代表你們自己完成了 D2**，請在下方表單如實記錄。
+主持人確認需要接續時，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。內容是：起始 Repo，加上已審查、簽章並套用的 Registry（全部是已審查（reviewed）事實）。使用 Recovery **不代表你們自己完成了 D2**，請在下方表單如實記錄。
 
 ```download
 id=recovery-dlc-d2 zip=recovery-dlc-d2.zip label=下載 D2 Recovery
@@ -17,7 +17,6 @@ id=recovery-dlc-d2 zip=recovery-dlc-d2.zip label=下載 D2 Recovery
 ## 保存原成果
 
 - [ ] 不要覆寫或刪除原本的 Repo。在原 Repo 執行 `git status` 與 `git log --oneline -3`，把結果記在下方表單。
-- [ ] 若有自己啟動的 Server，在它的終端機按 `Ctrl+C` 停止；不要停止別人的程序。
 
 ## 切換到 Recovery
 
@@ -77,9 +76,9 @@ git commit -m "D2 Recovery 起點"
 
 **看到什麼算成功**：`Registry is valid.`（帶 `--require-reviewed`，表示全部是 reviewed）；`verify-audit` 回 `"status": "valid"`。
 
-這個新 Repo 沒有簽章設定也沒有 pre-push hook，之後的 commit 不會簽章、也不需要 push；本段只登記候選，不再做核准。
+這個新 Repo 沒有簽章設定也沒有 pre-push hook（push 前 Git 自動執行的檢查腳本），之後的 commit 不會簽章、也不需要 push；本段只登記候選，不再做核准。
 
-- [ ] 在 `resume-d2` 開一個**新的** Agent Session，告訴它：這是 Recovery 起點、Domain Memory 在 `domain-memory/`、只能用 `..\..\tools\dm.ps1`（Git Bash：`../../tools/dm.sh`）做唯讀查詢。然後回到 [D3a](#d3a) 接續。
+- [ ] 在 `resume-d2` 開一個**新的** Agent Session（結束目前的 Agent 對話，在 `resume-d2` 重新啟動 Agent），告訴它：這是 Recovery 起點、Domain Memory 在 `domain-memory/`、只能用 `..\..\tools\dm.ps1`（Git Bash：`../../tools/dm.sh`）做唯讀查詢。然後回到 [D3a](#d3a) 接續。
 
 ```form
 {"id": "recovery-d2-record", "title": "D2 Recovery 紀錄","fields":[

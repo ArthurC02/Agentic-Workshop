@@ -18,7 +18,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/README.md",
-          "sha256": "e65826741c45917867310df8a1429afd7a070f4127beb1bab44db45b603ec1ef"
+          "sha256": "ac1d2b991eeffe9f9dd8e5e8f54f0fdf4a019930eed5005d49dc9387632a16bc"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitattributes",
@@ -323,7 +323,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "sha256": "2dc7a639fd12eed9724c3f4cd0a74a3ddfdff1fa33577197f930e1c2e9d73ae5"
+          "sha256": "2148c07e747cc8592ac6291a6f7442e56c0f51993b3ad276539925e47a8c40e1"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -396,12 +396,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-model-canvas.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-model-canvas.md",
-          "sha256": "2e23e28da5012385590c32d7addc7890a84c80cfa11525374d1129638855d55a"
+          "sha256": "018b0372956cf521eec6d7a25b8f47c1b71003c94f76faf725dd811fa4badea3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-source-selection.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-source-selection.md",
-          "sha256": "dc92daa37248aaf3100f374c3a216cac58899a03dfd281db6e7580b0bee0ebb8"
+          "sha256": "bb34122674ca99f0424ed271522c8e86c3cdb286fc6ac6e13b29c04c868b201e"
         }
       ],
       "generated": {}
@@ -419,12 +419,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
-          "sha256": "a83cd5a1e81ef79eb49d63124d79afae7d201b602ba01b1452397c05d18fdede"
+          "sha256": "b96738c0533c50c3e5622d92bd355b207c1eb9fbd58c95aa2b743cec4df6213e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
-          "sha256": "31a0f968f1ef26c52515ec98400d84db90e13b1e080a115163828192d46e4051"
+          "sha256": "979b020fa0a1c2893f0049235e5f5a838cdcddcf33363783a593541a0e3a3076"
         }
       ],
       "generated": {}
@@ -443,12 +443,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md",
-          "sha256": "3cbf18b47e95bf76ca267a232b8c318b89c935ab520c1a9683b017c84006f39a"
+          "sha256": "c30bb0fddf6a11673e019f16bc67329b716724077dbc1484aadba19bb0078bcd"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
-          "sha256": "142096d9b87824c52b7cae001903a4f3f4a7580ac3fdee8339f20ccc4211e1bd"
+          "sha256": "c7e1df71058750f69c2711d259ed23266bb8907dfd8339a0614a3288b44a00ae"
         }
       ],
       "generated": {}
@@ -466,7 +466,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
-          "sha256": "b552a9b8a70e176712c0c9edf68b01127b9bb6c8a3e0d05277731a99bd58928e"
+          "sha256": "6c6e42c883a3dd8aefecdc7dbbb2654f1803488ba6da861bc031dfd1d61ac901"
         }
       ],
       "generated": {}
@@ -484,7 +484,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/03-group-partial-refund.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/03-group-partial-refund.md",
-          "sha256": "ba67483fd0569dee56313504063f6102402ccb369cb30194eff42b5eb5d67d13"
+          "sha256": "971af1bdba461fb3dae82af6b567d4d0cfcffcffa71950ca09646b233a1f7a8b"
         }
       ],
       "generated": {}
@@ -502,7 +502,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
-          "sha256": "e59ba5fcb7483273029d5b4c025266c050f657d4f689ee71c3af277d90fcea9c"
+          "sha256": "b5d5d0761196102707c2d540629e7ee0037bd526f40893b725da42e05c59e2dd"
         }
       ],
       "generated": {}

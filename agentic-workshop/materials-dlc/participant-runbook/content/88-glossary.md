@@ -8,49 +8,74 @@ section: 參考
 
 # 詞彙表
 
-本表整理這堂延伸課常用詞彙的意思。DDD 概念不另開理論課，這裡只寫到「今天操作時夠用」的程度；各需求的業務名詞，以該段解鎖後的需求卡為準。
+本表整理這堂延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）常用詞彙的意思。DDD（Domain-Driven Design，領域驅動設計）概念不另開理論課，這裡只寫到「今天操作時夠用」的程度；各需求的業務名詞，以該段解鎖後的需求卡為準。
 
 ## DDD 概念
 
 | 詞彙 | 今天的用法 |
 |---|---|
-| 通用語言（Ubiquitous Language） | 團隊、文件、程式與測試對同一件事使用同一個名字與定義。今天以 Registry 的 vocabulary（詞彙）記錄；同一件事兩個名字、或文件有而程式沒有，都是要記下的發現。 |
-| Bounded Context（Context） | 一個名詞或規則「在這個範圍內有一致意義」的邊界，通常對應一群負責同一類決定的程式。今天以 Registry 的 contexts 記錄，每個 Context 寫「它決定什麼」。 |
+| DDD（Domain-Driven Design，領域驅動設計） | 先把業務的名詞、規則與責任分清楚，再讓程式結構跟著業務邊界走的設計方法。今天只用到本節列出的幾個概念。 |
+| 通用語言（Ubiquitous Language） | 團隊、文件、程式與測試對同一件事使用同一個名字與定義。今天以 Registry 的 vocabulary（詞彙）記錄；同一件事兩個名字、或文件有而程式沒有，都是要記下的發現。例：D3b 要確認需求卡說的「優惠」和 Registry 裡的優惠詞彙是不是同一件事。 |
+| Bounded Context（限界上下文，簡稱 Context） | 一個名詞或規則「在這個範圍內意思一致」的邊界，通常對應一群負責同一類決定的程式。今天以 Registry 的 contexts 記錄，每個 Context 寫「它決定什麼」。例：「訂單」在付款和開發票時關心的欄位不同，可能屬於不同 Context。 |
+| owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的那個 Context。例：D3a 要決定「發票」由哪個 Context 負責；其他 Context 只能透過約定取用。 |
 | Context Map／邊界協作 | Context 之間誰提供、誰使用、交換什麼。`analyze-boundary` 列出已登記的協作；回 `no_registered_collaboration` 表示沒有登記，不代表程式裡沒有互相讀寫。 |
-| Aggregate | 一組必須**一起**保持一致的資料，外界只能透過一個入口（Aggregate root）修改它。用來回答「哪些資料要在同一次操作中同時成立」。 |
-| 不變量（Invariant） | 任何時刻都必須成立的條件，例如某個數量不得為負。好的不變量可以寫成一個會失敗的測試。 |
-| 一致性邊界 | 不變量必須立即成立的範圍。邊界內同步、全有或全無；邊界外可以事後處理。 |
-| Port／Adapter | Port 是 domain 對外需要的能力（用領域語言描述的介面）；Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。 |
-| 防腐層（ACL, Anti-Corruption Layer） | 把外部系統的資料格式與錯誤碼翻譯成自己領域語言的那一層，讓外部的命名與規則不滲進 domain。 |
-| 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。 |
+| Contract（約定） | Context 之間約定交換的資料或介面；另一方只能透過它取得資料，不直接碰對方內部。例：付款 Context 只透過約定好的「付款結果」通知發票 Context。 |
+| 邊界洩漏 | 一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式。例：計價程式直接改會員的點數欄位。 |
+| Aggregate（聚合）／Aggregate root（聚合根） | Aggregate 是必須**一起**保持一致的一組資料；外界只能從一個入口物件（Aggregate root）修改它。用來回答「哪些資料要在同一次操作中同時成立」。例：D3c 團體訂票的旅客、座位與退款紀錄必須一起改，只能透過訂票這個入口。 |
+| 不變量（Invariant，INV） | 任何時刻都必須成立的條件，好的不變量可以寫成一個會失敗的測試。例：會員點數餘額不得為負；一筆訂單最多一張已開立發票。表單裡的 INV-1、INV-2 由你們自己編號。 |
+| 一致性邊界 | 不變量必須立即成立的範圍。邊界內同步處理、全有或全無；邊界外可以事後處理。 |
+| Port／Adapter | Port 是領域程式需要的對外能力介面，用自己的業務用語描述；Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。例：「開立發票」是 Port，接某家發票服務商的程式是 Adapter。 |
+| 防腐層（ACL，Anti-Corruption Layer；不是存取控制清單） | 把外部系統的資料格式與錯誤碼翻譯成自己用語的那一層，讓外部的命名與規則不滲進領域程式。例：把服務商的各種錯誤碼翻成「暫時失敗」或「永久失敗」。 |
+| 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。例：同一筆訂單的開立發票請求重送，也不會開出第二張。 |
 
 ## domain-memory Plugin
 
 | 詞彙 | 今天的用法 |
 |---|---|
-| Domain Memory／Registry | 存在 Repo 的 `domain-memory/` 資料夾中、以 JSON 檔保存的領域知識：policy、source map、registry（各類 record）與 audit（稽核鏈）。 |
-| record | Registry 裡的一筆資料，例如一個 Context、一個詞彙、一條規則或一個 Aggregate。每筆都有 `id` 與 `evidence`。 |
-| 來源（source）／source map | 人確認過、可以當證據的路徑清單與它們的快照。之後新增、刪除或改名檔案，`verify-sources` 會回報 `stale`。 |
+| Plugin（外掛套件） | 裝進 Agent 的擴充工具組。今天的 domain-memory Plugin 提供查詢、登記與審查領域知識的指令；開場時以 ZIP 發給你，並核對 SHA256。 |
+| Domain Memory／Registry | 存在 Repo 的 `domain-memory/` 資料夾、以 JSON 檔保存的領域知識，包含：審查政策（policy）、可當證據的檔案清單（source map）、一筆筆紀錄（registry）與稽核紀錄（audit）。 |
+| record（紀錄）與 `asset:id` | Registry 裡的一筆資料，例如一個 Context、一個詞彙、一條規則或一個 Aggregate，每筆都有 `id` 與 `evidence`。引用時寫成 `asset:id`：前半是類別（`contexts`、`vocabulary`、`rules`、`aggregates`…），後半是編號，例如 `rules:〈規則 id〉`。 |
+| `usage`／working-memory | `get-context` 輸出開頭的欄位，說明這些內容能怎麼用。`working-memory` 表示還沒經人核准，Agent 只能參考、不能當成限制；核准成已審查之後就不再是這個值。 |
+| 來源（source）／source map | 人確認過、可以當證據的路徑清單與它們的快照。之後新增、刪除或改名檔案，`verify-sources` 會回報 `stale`。例：D3 在 `src/` 新增檔案後，來源就不再是 D1 確認的那一份。 |
+| agent-asserted／developer-confirmed | 來源清單的確認狀態。agent-asserted：Agent 自己認定、尚未經人確認；developer-confirmed：已由開發者確認（D1 做的事）。 |
 | 證據（evidence）／`cite` | 指向某個檔案第幾行到第幾行、並帶內容雜湊的引用。引用的行被改過，`verify-evidence` 會回報 `stale`。 |
+| 過期（stale）／不存在（missing）／格式錯誤（invalid） | 驗證指令的結果狀態。stale：內容和當初記錄的不同了；missing：引用的檔案已不存在；invalid：引用寫法不對。仍一致時顯示 current。stale 不一定是錯，常常只是「程式改了，紀錄還沒跟上」。 |
 | 候選（candidate） | 有證據、但還沒經過核准的主張。Agent 或任何人登記的新內容都是候選，不可當成限制或事實。 |
-| reviewed | 經 Change Package、他人核准、簽章 commit 與 `apply-approved-updates` 升級後的 record。不能直接覆寫，只能由下一個核准的提案取代。 |
-| local-draft-only／scm-verified | Registry 的審查模式。前者只能存候選；後者要求從套件外部驗證的核准證據（今天是簽章 commit）。 |
-| Change Package | 一次變更的審查包，放在 `domain-memory/changes/<id>/`：需求正規化、提案、測試 obligation 與證據包四個 JSON。 |
-| obligation | 一個驗收條件或規則對應的可觀察檢查。證據包記錄它實際執行的 exit code 與輸出雜湊。 |
-| attestation | 寫進證據包、指向簽章 commit 的外部核准證據。 |
-| counterfactual | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了；`survived`：沒有測試守住它；`inconclusive`：逾時。 |
-| Handoff | 交給 Coding Agent 的決策紀錄：Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check 七段。 |
-| audit／`verify-audit` | 每次 Registry 變動都附加一筆、以雜湊串起的稽核事件。能看出被竄改，但不是外部不可變的紀錄。 |
+| upsert | 「有就更新、沒有就新增」。`make_record.py --upsert` 把紀錄寫成候選；候選可以用同一個 id 再寫一次，已審查的不行。 |
+| 已審查（reviewed） | 已由另一人核准的正式事實，Agent 可以當成限制。要經過變更審查包、他人核准、簽章 commit 與 `apply-approved-updates` 才會升級；之後不能直接覆寫，只能由下一次核准的提案取代。 |
+| 成對核准 | 一人提案（Proposer）、另一人核准並做簽章 commit（Maintainer）的流程，D2 走過一次。候選要經過它才會變成已審查。 |
+| local-draft-only／scm-verified | Registry 的審查模式。local-draft-only：只能存候選；scm-verified：核准必須有版本控制（SCM）裡的證據，今天是簽章 commit。 |
+| SCM（Source Control Management，版本控制） | 管理程式版本的系統，這裡指 Git。 |
+| 變更審查包（Change Package，CP） | 一次變更的審查資料，放在 `domain-memory/changes/<id>/`，共四個 JSON：整理後的需求、修改提案、要通過的檢查、實際執行結果。例：D2 的 `CP-D2-001`。 |
+| obligation（OB，要通過的檢查） | 一個驗收條件或規則對應的可觀察檢查，通常是一個測試指令。證據包記錄它實際執行的 exit code 與輸出雜湊。 |
+| 核准證明（attestation） | 寫進證據包、指向簽章 commit 的核准證據，證明核准發生在 Plugin 之外（Git 裡）。 |
+| 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了；`survived`：沒有測試守住它；`inconclusive`：逾時。做法類似變異測試（mutation testing）。 |
+| 交接單（Handoff） | 交給下一個 Agent 或同事的決策紀錄，共七段：Domain facts（領域事實）、Forces（考量與限制）、Decision（決定）、External systems（外部系統）、Unknowns（未知項）、Proof obligations（必須用測試證明的事）、Counterfactual check（反事實檢查結果）。 |
+| Forces／Unknowns／Proof obligations | 交接單裡最容易寫錯的三段。Forces：影響這次決定的考量與限制，例如「發票失敗不能影響付款」；Unknowns：需求卡沒規定、還沒決定的事，例如「處理中太久怎麼辦」，不能讓 Agent 自己補；Proof obligations：每條規則要用哪個測試證明，例如「INV-1 → 某測試檔::某測試名稱」。 |
+| audit（稽核）／`verify-audit` | 每次 Registry 變動都附加一筆、以雜湊串起的稽核事件。能看出被竄改，但不是外部不可變的紀錄。 |
+| SHA256／雜湊 | 雜湊是由檔案內容算出的固定長度字串，像檔案的指紋；一個位元組被改，值就不同。SHA256 是常用的雜湊演算法。今天用它核對 Plugin 檔案、證據內容與稽核鏈。 |
+| HITL（Human-in-the-loop，人工把關） | 流程中一定要有人看過並同意才能往下走。今天指 push 時檢查是否有人核准並簽章。 |
 
 ## 角色與工具
 
 | 詞彙 | 今天的用法 |
 |---|---|
-| Proposer | D2 的提案人：整理 Change Package、送出提案、套用。不得核准自己的提案。 |
-| Maintainer | D2 的持鑰人：建立簽章金鑰、決定授權誰簽章、核准並做簽章 commit。 |
-| `dm.ps1`／`dm.sh` | 學員包 `tools/` 中的 Plugin 命令前綴，固定 `py -3.13 -X utf8`，並自動補 `--registry-root domain-memory` 與 `--repo-root .`；`--save 檔案` 以 UTF-8 存輸出。 |
+| DLC | 延伸課程。原指遊戲的追加內容，這裡指主課之後的 DDD 加課；Git 使用者名稱「DLC Proposer／DLC Maintainer」裡的 DLC 也是這個意思。 |
+| D1–D4 | 今天四段的代號：D1 共同語言與邊界、D2 審查與核准、D3 受治理的變更、D4 交接。D3 再分 a、b、c 三張需求（電子發票、點數折抵、團體部分退款）。 |
+| 編號前綴 | CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。EINV、PTS、PCR 分別是 D3a、D3b、D3c 需求卡的驗收條件編號。 |
+| ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件。D1 可以把它當成候選來源之一。 |
+| brownfield | 已有程式碼的既有專案（相對於從零開始的 greenfield）。今天的 Repo 是 brownfield，開場時 Plugin 會判定出這一點。 |
+| Proposer（提案人） | D2 的提案人：整理變更審查包、送出提案、套用。不得核准自己的提案。 |
+| Maintainer（持鑰人） | D2 的持鑰人：建立簽章金鑰、決定授權誰簽章、核准並做簽章 commit。 |
+| Observer（觀察員） | 三人一組時的第三人：對照 D2 簽章流程清單，確認每一步是對的人在做。 |
+| ed25519／金鑰指紋（fingerprint） | ed25519 是一種 SSH 金鑰類型，今天用來簽 commit。金鑰指紋用來辨識是哪一把金鑰，可以公開；私鑰不可外流。 |
+| 簽章 commit | 用 Maintainer 私鑰簽過名的 commit，證明是持鑰人提交的。今天以它作為核准證據。 |
+| Git hook／pre-push hook | Git hook 是 Git 在特定時機自動執行的腳本；pre-push hook 在 push 前執行，今天用它檢查有沒有核准與簽章。 |
+| bare repo（本機模擬的遠端倉庫） | 只存 Git 歷史、沒有工作檔案的倉庫。今天在本機建一個代替伺服器，用來練習 push 與 pre-push 檢查。 |
+| venv（Python 虛擬環境） | 每個專案自己的一套 Python 與套件，放在 `.venv` 資料夾，不影響電腦上的其他專案。 |
+| `dm.ps1`／`dm.sh` | 學員包 `tools/` 中呼叫 domain-memory Plugin 的捷徑腳本（PowerShell 用 `dm.ps1`，Git Bash 用 `dm.sh`）。它會自動補上 Python 版本、UTF-8 與 Registry 位置等參數；`--save 檔案` 以 UTF-8 存輸出。 |
 | `make_record.py` | 由 id、名稱、定義與「路徑:起-迄」產生帶 `cite` 證據的 record；`--upsert` 直接登記為候選，`--batch` 一次多筆。 |
-| `fill_package.py` | 由一份精簡描述 JSON 填寫 Change Package，並實際執行每個測試。 |
-| `write_scm_attestation.py` | 把已簽章的 commit 寫成 attestation。 |
+| `fill_package.py` | 由一份精簡描述 JSON 填寫變更審查包，並實際執行每個測試。 |
+| `write_scm_attestation.py` | 把已簽章的 commit 寫成核准證明（attestation）。 |
 | `doctor.py` | 檢查 Python、UTF-8、PATH 上的 python、Git、ssh-keygen 與 Plugin 版本等環境問題。 |
 | Recovery | 落後時由主持人個別提供的接續起點。使用 Recovery 不算自己完成前一段。 |

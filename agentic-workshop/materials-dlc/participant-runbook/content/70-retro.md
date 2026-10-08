@@ -8,7 +8,7 @@ section: 回顧
 
 # 回顧：Domain Memory 改變了什麼
 
-15 分鐘，用今天實際留下的紀錄回答：檔案化、經審查的領域知識，到底有沒有改變 Agent 的輸出？哪裡只是儀式？沒觀察到的就寫「未觀察」，不要推測。
+15 分鐘，用今天這堂延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）實際留下的紀錄回答：存成檔案、經過審查的領域知識，到底有沒有改變 Agent 的輸出？哪裡只是儀式？沒觀察到的就寫「未觀察」，不要推測。
 
 ## 檢查點總覽
 
@@ -25,17 +25,22 @@ section: 回顧
 
 ```form
 {"id": "retro-reflection", "title": "DLC 反思表","fields":[
-{"id": "fact-changed-output", "label": "哪一個 reviewed 事實改變了 Agent 的輸出？", "type": "textarea", "hint": "寫出 asset:id、Agent 原本會怎麼做、後來怎麼做。", "suggestions": [{"label": "例子範本", "text": "〈asset:id〉：Agent 原本〈 〉，查到這個事實後改為〈 〉（證據：〈表單／提示詞回覆〉）"}, "未觀察"]},
+{"id": "fact-changed-output", "label": "哪一個已審查（reviewed）事實改變了 Agent 的輸出？", "type": "textarea", "hint": "寫出 asset:id、Agent 原本會怎麼做、後來怎麼做。", "suggestions": [{"label": "例子範本", "text": "〈asset:id〉：Agent 原本〈 〉，查到這個事實後改為〈 〉（證據：〈表單／提示詞回覆〉）"}, "未觀察"]},
 {"id": "candidate-near-fact", "label": "哪一個候選差點被當成事實？", "type": "textarea", "hint": "誰差點這樣做（你、夥伴或 Agent），在哪個檢查點發現。", "suggestions": [{"label": "例子範本", "text": "〈asset:id〉（候選）：〈誰〉差點把它當成〈限制／已確認〉，在〈檢查點〉發現，因為〈 〉"}, "未觀察"]},
-{"id": "ritual-vs-governance", "label": "自我核准的「儀式感」和真實治理差在哪裡？", "type": "textarea", "hint": "今天兩個身分在同一台機器上，誰都能打出對方的名字。", "suggestions": [{"label": "比較範本", "text": "像儀式的步驟：〈 〉，因為〈 〉\n真的擋住錯誤的步驟：〈 〉，證據〈 〉\n真實團隊還需要：〈 〉"}]},
-{"id": "counterfactual-lesson", "label": "哪一次 counterfactual 結果讓你意外？", "type": "textarea", "suggestions": [{"label": "例子範本", "text": "〈規則 id〉：預期〈killed／survived〉，實際〈 〉；學到〈 〉"}, "未觀察"]},
+{"id": "ritual-vs-governance", "label": "今天哪些核准步驟只是走流程、其實擋不住錯誤？哪些真的擋住了？", "type": "textarea", "hint": "今天兩個身分在同一台機器上，誰都能打出對方的名字。", "suggestions": [{"label": "比較範本", "text": "像儀式的步驟：〈 〉，因為〈 〉\n真的擋住錯誤的步驟：〈 〉，證據〈 〉\n真實團隊還需要：〈 〉"}]},
+{"id": "counterfactual-lesson", "label": "哪一次反事實檢查（counterfactual）結果讓你意外？", "type": "textarea", "suggestions": [{"label": "例子範本", "text": "〈規則 id〉：預期〈killed／survived〉，實際〈 〉；學到〈 〉"}, "未觀察"]},
 {"id": "gap", "label": "哪個知識缺口（查不到的名詞或未決問題）影響最大？", "type": "textarea", "suggestions": [{"label": "缺口範本", "text": "〈名詞／問題〉：影響〈哪一段的哪個決定〉"}, "未觀察"]}
 ]}
 ```
 
 ```callout warning
 說清楚：今天的成對簽章是教學示範，不是安全保證
-今天 Proposer 與 Maintainer 在同一台機器上操作，`record-approval` 只比對身分字串，私鑰也在同一個使用者資料夾裡；任何一人都能冒用另一人的名字，pre-push hook 也能用 `--no-verify` 跳過。它讓你看見治理的每一步留下什麼證據，但**不能**證明真的有兩個不同的人審查過。真實團隊需要不同的人、不同的機器與金鑰，以及伺服器端（例如受保護分支與必要審查）的強制檢查。
+今天 Proposer（提案人）與 Maintainer（持鑰人）在同一台機器上操作，所以：
+- `record-approval` 只比對名字字串，任何一人都能打出另一人的名字；
+- 簽章私鑰在同一個使用者資料夾裡，誰都拿得到；
+- pre-push hook（push 前 Git 自動執行的檢查腳本）可以用 `--no-verify` 跳過。
+
+它讓你看見治理的每一步留下什麼證據，但**不能**證明真的有兩個不同的人審查過。真實團隊需要不同的人、不同的機器與金鑰，以及伺服器端的強制檢查，例如受保護分支（伺服器規定須經他人審查才能合併）。
 ```
 
 ## 檢查點 2 · 小組比較（第 169–174 分鐘）

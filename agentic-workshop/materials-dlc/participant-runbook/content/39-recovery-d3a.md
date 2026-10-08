@@ -38,7 +38,7 @@ cp -r "$src" ./resume-d3a
 cd resume-d3a
 ```
 
-- [ ] 在 `resume-d3a` 建 venv、安裝依賴、跑全部測試：
+- [ ] 在 `resume-d3a` 建虛擬環境（venv）、安裝依賴、跑全部測試：
 
 ```cmd
 # powershell
@@ -53,7 +53,7 @@ py -3.13 -m venv .venv
 
 **看到什麼算成功**：全部 `passed`，沒有 `failed` 或 `error`。結果不符就停止切換，請主持人確認。
 
-- [ ] 建立 Git 起點，並驗證 Registry：
+- [ ] 建立 Git 起點，並驗證 Registry。Git 使用者名稱裡的 DLC 指延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）。PowerShell 的 `Set-ExecutionPolicy` 只對目前這個視窗暫時允許執行 `dm.ps1`，關掉視窗就失效：
 
 ```cmd
 # powershell
@@ -77,9 +77,9 @@ git commit -m "D3a Recovery 起點"
 
 **看到什麼算成功**：`Registry is valid.`（Registry 含候選，所以不帶 `--require-reviewed`）；`verify-audit` 回 `"status": "valid"`。
 
-這個新 Repo 沒有簽章設定也沒有 pre-push hook，之後的 commit 不會簽章、也不需要 push；本段只登記候選，不再做核准。
+這個新 Repo 沒有簽章設定，也沒有 pre-push hook（push 前 Git 自動執行的檢查腳本），之後的 commit 不會簽章、也不需要 push；本段只登記候選，不再做核准。
 
-- [ ] 在 `resume-d3a` 開一個**新的** Agent Session，告訴它：這是 Recovery 起點、Domain Memory 在 `domain-memory/`、只能用 `..\..\tools\dm.ps1`（Git Bash：`../../tools/dm.sh`）做唯讀查詢。然後回到 [D3b](#d3b) 接續。
+- [ ] 結束目前的 Agent 對話，在 `resume-d3a` 資料夾重新啟動 Agent，開一個**新的**對話（Session），告訴它：這是 Recovery 起點、Domain Memory 在 `domain-memory/`、只能用 `..\..\tools\dm.ps1`（Git Bash：`../../tools/dm.sh`）做唯讀查詢。然後回到 [D3b](#d3b) 接續。
 
 ```form
 {"id": "recovery-d3a-record", "title": "D3a Recovery 紀錄","fields":[

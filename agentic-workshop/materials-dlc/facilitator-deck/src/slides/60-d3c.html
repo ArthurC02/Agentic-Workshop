@@ -3,7 +3,7 @@
 <section class="slide slide-title" data-seg="dlc-d3c" data-title="解鎖 D3c 團體部分退款" data-minute="125" data-unlock="dlc-d3c">
   <p class="kicker">第 125 分鐘 · 解鎖</p>
   <h2 class="title">D3c 團體部分退款 開始</h2>
-  <p class="subtitle">團體部分退款：一致性邊界</p>
+  <p class="subtitle">團體部分退款：一致性邊界（哪些資料必須一起成功或一起失敗）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「D3c 團體部分退款」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 30 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
@@ -14,14 +14,14 @@
 
 <section class="slide" data-seg="dlc-d3c" data-title="D3c 團體部分退款 6 個檢查點" data-minute="125" data-timer="30:00" data-gates="dlc-d3c">
   <p class="kicker">D3c 團體部分退款 · 125–155</p>
-  <h2 class="title">D3c 團體部分退款：Aggregate 的邊界畫在哪？</h2>
-  <p class="muted">30 分鐘、六個檢查點。每一條新規則都要證明；只做完 Aggregate 與兩條規則也算合格。</p>
+  <h2 class="title">D3c 團體部分退款：Aggregate（聚合）的邊界畫在哪？</h2>
+  <p class="muted">30 分鐘、六個檢查點。Aggregate：必須一起保持一致的一組資料，只能從 Aggregate root 這個入口修改。每一條新規則都要證明；只做完 Aggregate 與兩條規則也算合格。</p>
   <ol class="timeline">
-    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀情境卡與 reviewed 事實</b></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">03:00</span><b>2 · Aggregate 邊界與不變量</b></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · Handoff 與 Agent 實作</b></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">17:00</span><b>4 · Counterfactual 證明</b></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · Review 與登記候選</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">03:00</span><b>2 · Aggregate（聚合）邊界與不變量</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">17:00</span><b>4 · 反事實檢查</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · 檢視差異與登記候選</b></li>
     <li data-seg="dlc-d3c"><span class="tl-min">27:00</span><b>6 · 停手與揭曉對照</b></li>
   </ol>
   <aside class="notes">
@@ -36,17 +36,17 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3c" data-title="檢查點 1 · 讀情境卡與 reviewed 事實" data-minute="125">
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="125">
   <p class="kicker">檢查點 1 / 6 · 第 125–128 分鐘</p>
-  <h2 class="title">讀情境卡，向 Memory 取 reviewed 事實</h2>
+  <h2 class="title">讀情境卡，向 Memory 取已審查事實</h2>
   <ol class="steps">
     <li>讀情境卡：先用自己的話說出<b>要解決什麼</b></li>
     <li>對卡上的名詞跑 <code>resolve-terms</code>，對相關 Context 跑 <code>get-context</code></li>
-    <li>把 reviewed 事實與<b>未知項</b>分開寫下，填確認表單</li>
+    <li>把已審查事實與<b>未知項</b>分開寫下，填確認表單</li>
   </ol>
   <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 1 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（00:00／第 125 分）</b>：「第 125 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問 reviewed 事實，哪些是已知、哪些是未知，分開寫。」</p>
+    <p><b>說（00:00／第 125 分）</b>：「第 125 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問已審查（reviewed）事實，哪些是已知、哪些是未知，分開寫。」</p>
     <p><b>看</b>：有沒有直接把情境卡貼給 Agent 叫它做；有沒有用 reviewed 查詢，而不是憑記憶。留意 refunds 以 booking_id 為鍵、現行『只能退一次』。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「現在的退款紀錄，能表達『同一筆訂票退過兩次』嗎？」</p>
@@ -54,26 +54,26 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3c" data-title="檢查點 2 · Aggregate 邊界與不變量" data-minute="128">
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 2 · Aggregate（聚合）邊界與不變量" data-minute="128">
   <p class="kicker">檢查點 2 / 6 · 第 128–133 分鐘</p>
   <h2 class="title">決策卡：Aggregate root、不變量、邊界</h2>
   <ol class="steps">
     <li>決定 <b>Aggregate root</b> 與唯一入口（誰負責同時守住旅客、座位、退款）</li>
     <li>列出不變量：累計退款 ≤ 已付金額；座位數＝剩餘旅客數；同一旅客不得重複取消；全部取消＝整張退票</li>
-    <li>決定手續費規則歸屬與退款紀錄設計（取代以 booking_id 為鍵）</li>
+    <li>決定手續費規則歸屬與退款紀錄設計（現行一筆訂票只能存一筆退款紀錄，要改）</li>
   </ol>
   <p class="callout warn">Runbook › D3c 團體部分退款 › 檢查點 2 · 填確認表單</p>
   <aside class="notes">
     <p><b>說（03:00／第 128 分）</b>：「第 128 分。這一段是今天的核心：先由人做設計決策，寫進 D3 決策卡，再讓 Agent 實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
     <p><b>看</b>：是否真的有『唯一入口』；座位、退款是否被拆在不同服務各自更新。</p>
     <p><b>介入訊號</b>：座位與退款各改各的、沒有交易邊界 → 問：中途失敗，座位已釋放但退款沒記，怎麼辦？</p>
-    <p><b>提示</b>：H2：「PCR-008 的恆等式，誰負責在每次變更後保證它成立？」</p>
+    <p><b>提示</b>：H2：「PCR-008 的恆等式（退款＋手續費＋剩餘票價＝原訂單金額），誰負責在每次變更後保證它成立？」</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3c" data-title="檢查點 3 · Handoff 與 Agent 實作" data-minute="133">
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="133">
   <p class="kicker">檢查點 3 / 6 · 第 133–142 分鐘</p>
-  <h2 class="title">把決策卡交給 Agent，依 Handoff 實作，做完停下</h2>
+  <h2 class="title">把決策卡交給 Agent，依交接單（Handoff）實作，做完停下</h2>
   <ol class="steps">
     <li>以 Runbook 提示詞把決策卡交給 Agent：<b>先提計畫，等你核准</b>再改檔</li>
     <li>核准後讓 Agent 實作；看它貼出的<b>實際</b> <code>pytest -q</code>（用 <code>.venv</code> 的 python）</li>
@@ -89,29 +89,29 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3c" data-title="檢查點 4 · Counterfactual 證明" data-minute="142">
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 4 · 反事實檢查" data-minute="142">
   <p class="kicker">檢查點 4 / 6 · 第 142–148 分鐘</p>
-  <h2 class="title">每條新規則，各做一次 counterfactual，要看到 killed</h2>
+  <h2 class="title">每條新規則，各做一次反事實檢查，要看到 killed</h2>
   <ol class="steps">
     <li>對每條新規則：破壞實作的一處，用 <code>counterfactual --test-command</code> 跑對應測試</li>
-    <li>只認輸出中的 <b>killed</b> 字樣；路徑錯誤會印 Big5 亂碼加 ERROR: the tests do not pass before anything is broken（exit 1）</li>
+    <li>只認輸出中的 <b>killed</b> 字樣；只看到亂碼或 ERROR 都不算成功（多半是指令路徑錯了）</li>
     <li>還原後整套 <code>pytest -q</code> 要再全綠</li>
   </ol>
   <p class="callout warn">Runbook › D3c 團體部分退款 › 檢查點 4 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（17:00／第 142 分）</b>：「第 142 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算，亂碼加 exit 0 不是成功。」</p>
+    <p><b>說（17:00／第 142 分）</b>：「第 142 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
     <p><b>建議現場做的 4 個</b>：手續費逐位或以自己的票價（改成總額取整一次或平均分攤；全成人測試會存活，補成人＋學生混合團後 killed）、先決定再釋放（把釋放座位移到決定之前）、部分取消後不可整筆退（拿掉守門，多退 4,200）、只釋放被取消者的座位（改成整筆釋放）。</p>
     <p><b>看</b>：是否每條新規則都有 killed；指令路徑是否用反斜線或絕對路徑；還原後是否重跑全套。</p>
-    <p><b>介入訊號</b>：只看到亂碼或 ERROR（exit 1）而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
+    <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3c" data-title="檢查點 5 · Review 與登記候選" data-minute="148">
+<section class="slide" data-seg="dlc-d3c" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="148">
   <p class="kicker">檢查點 5 / 6 · 第 148–152 分鐘</p>
-  <h2 class="title">人 Review，並用 upsert-candidate 登記新事實</h2>
+  <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Review Diff：設計符合決策卡嗎？有沒有偷改測試斷言</li>
-    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱 reviewed</li>
+    <li>檢視程式差異（Diff）：設計符合決策卡嗎？有沒有偷改測試斷言</li>
+    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱已審查</li>
     <li>填確認表單；第 152 分停手</li>
   </ol>
   <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 5 · 填確認表單</p>
@@ -157,15 +157,15 @@
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">唯一入口</span>
-      <p><code>booking.cancel_passengers(ids, D)</code>：全部條件先檢查，通過才寫入；整筆退票也經 Booking 守門</p>
+      <p><code>booking.cancel_passengers(ids, D)</code>（D＝距離出發的天數）：全部條件先檢查，通過才寫入；整筆退票也經 Booking 守門</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">手續費一個家</span>
-      <p>費率帶 D ≥ 14／7–13／1–6 → 10／20／30%、D ≤ 0 不受理，放同一模組；逐位 ⌊票價 × 費率⌋</p>
+      <p>費率帶 D ≥ 14／7–13／1–6 → 10／20／30%、D ≤ 0 不受理，放同一模組；每人手續費＝自己的票價 × 費率，無條件捨去</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">座位與紀錄</span>
-      <p>只釋放被取消旅客的座位，其他人不重配；退款紀錄改為 append-only 清單，每次一筆</p>
+      <p>只釋放被取消旅客的座位，其他人不重配；退款紀錄改為只新增、不修改的清單（append-only），每次一筆</p>
     </div>
   </div>
   <aside class="notes">
@@ -182,7 +182,7 @@
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">恆等式</span>
-      <p>Σ退款＋Σ手續費＋Σ有效票價＝Order.amount；6 成人 4,200：490＋2,450＋210＋1,050＝4,200</p>
+      <p>退款總和＋手續費總和＋剩餘有效票價＝Order.amount（原訂單金額）；6 成人 4,200：490＋2,450＋210＋1,050＝4,200</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">部分 vs 整筆</span>
@@ -190,7 +190,7 @@
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；平均分攤與總額取整一次，只有混合團測試抓得到</p>
+      <p>每條規則各弄壞一次 → killed；手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團的測試抓得到</p>
     </div>
   </div>
   <aside class="notes">

@@ -17,7 +17,6 @@ id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
 ## 保存原成果
 
 - [ ] 不要覆寫或刪除原本的 Repo。在原 Repo 執行 `git status` 與 `git log --oneline -3`，把結果記在下方表單。
-- [ ] 若有自己啟動的 Server，在它的終端機按 `Ctrl+C` 停止；不要停止別人的程序。
 
 ## 切換到 Recovery
 
@@ -53,7 +52,7 @@ py -3.13 -m venv .venv
 
 **看到什麼算成功**：全部 `passed`，沒有 `failed` 或 `error`。結果不符就停止切換，請主持人確認。
 
-- [ ] 建立 Git 起點，並驗證 Registry：
+- [ ] 建立 Git 起點（第一個 commit 刻意不含 `domain-memory/`，原因見下方），並驗證 Registry：
 
 ```cmd
 # powershell
@@ -77,11 +76,11 @@ git commit -m "D1 Recovery 起點（不含 Registry）"
 ../../tools/dm.sh verify-evidence
 ```
 
-**看到什麼算成功**：`Registry is valid.`；`verify-evidence` 的 `stale`、`missing`、`invalid` 都是 0。
+**看到什麼算成功**：`Registry is valid.`；`verify-evidence` 的過期（stale）、不存在（missing）、格式錯誤（invalid）都是 0。
 
 第一個 commit **刻意不含** `domain-memory/`：D2 要先設定簽章，第一個包含 Registry 的 commit 必須是簽章 commit。`git status` 會看到 `domain-memory/` 是未追蹤，這是正確的。
 
-- [ ] 在 `resume-d1` 開一個**新的** Agent Session，告訴它：這是 Recovery 起點、Domain Memory 在 `domain-memory/`、只能用 `..\..\tools\dm.ps1`（Git Bash：`../../tools/dm.sh`）做唯讀查詢。然後回到 [D2](#d2) 接續。
+- [ ] 在 `resume-d1` 開一個**新的** Agent Session（結束目前的 Agent 對話，在 `resume-d1` 重新啟動 Agent），告訴它：這是 Recovery 起點、Domain Memory 在 `domain-memory/`、只能用 `..\..\tools\dm.ps1`（Git Bash：`../../tools/dm.sh`）做唯讀查詢。然後回到 [D2](#d2) 接續。
 
 ```form
 {"id": "recovery-d1-record", "title": "D1 Recovery 紀錄","fields":[

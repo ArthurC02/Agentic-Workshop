@@ -3,7 +3,7 @@
 <section class="slide slide-title" data-seg="dlc-d2" data-title="解鎖 D2 審查與核准" data-minute="35" data-unlock="dlc-d2">
   <p class="kicker">第 35 分鐘 · 解鎖</p>
   <h2 class="title">D2 審查與核准 開始</h2>
-  <p class="subtitle">一人當 proposer，夥伴持金鑰、核准並簽章</p>
+  <p class="subtitle">一人當提案人（proposer），夥伴當審核人（maintainer），持金鑰、核准並簽章</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「D2」，從<b>檢查點 1</b> 開始。找到你的夥伴。</p>
   <p class="muted">接下來 25 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
@@ -15,17 +15,17 @@
 <section class="slide" data-seg="dlc-d2" data-title="D2 審查與核准 6 個檢查點" data-minute="35" data-timer="25:00" data-gates="dlc-d2">
   <p class="kicker">D2 審查與核准 · 35–60</p>
   <h2 class="title">D2：成對審查，簽章才算核准</h2>
-  <p class="muted">25 分鐘、六個檢查點。proposer 不得自己 record-approval；夥伴的簽章 commit 才是核准。</p>
+  <p class="muted">25 分鐘、六個檢查點。提案人不能核准自己的提案；要由夥伴用金鑰簽章提交（commit），才算核准。</p>
   <ol class="timeline">
     <li data-seg="dlc-d2"><span class="tl-min">00:00</span><b>1 · 夥伴建立簽章金鑰</b></li>
-    <li data-seg="dlc-d2"><span class="tl-min">03:00</span><b>2 · 政策、hook 與 governance-readiness</b></li>
-    <li data-seg="dlc-d2"><span class="tl-min">08:00</span><b>3 · Change Package 與提交提案</b></li>
-    <li data-seg="dlc-d2"><span class="tl-min">13:00</span><b>4 · 核准與簽章 commit</b></li>
-    <li data-seg="dlc-d2"><span class="tl-min">18:00</span><b>5 · attestation 與 verify-git-governance</b></li>
-    <li data-seg="dlc-d2"><span class="tl-min">21:00</span><b>6 · finalize 與全部驗證</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">03:00</span><b>2 · 設定審查政策與推送檢查</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">08:00</span><b>3 · 建立變更審查包並送出提案</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">13:00</span><b>4 · 夥伴核准與簽章提交</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">18:00</span><b>5 · 寫出核准證明並驗證</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">21:00</span><b>6 · 完成提案並全部驗證</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D2 兩人一組：proposer 操作機器、準備 Change Package；夥伴持簽章金鑰，核准並簽章。順序不能錯：先簽章設定、再 policy、再 commit。卡 5 分鐘就舉手，我們有降級路線。」</p>
+    <p><b>說（約 20 秒）</b>：「D2 兩人一組：proposer 操作機器、準備 Change Package；夥伴持簽章金鑰，核准並簽章。順序不能錯：先設金鑰，再改審查政策，最後才提交。卡 5 分鐘就舉手，我們有降級路線。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
     <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，公布 <code data-code="dlc-rec-d2"></code>（reviewed Registry）：小組改對 reviewed Registry 跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>，並觀看主持人示範簽章段落。Recovery 不作為小組成果評分。</p>
@@ -36,10 +36,10 @@
 
 <section class="slide" data-seg="dlc-d2" data-title="檢查點 1 · 夥伴建立簽章金鑰" data-minute="35">
   <p class="kicker">檢查點 1 / 6 · 第 35–38 分鐘</p>
-  <h2 class="title">夥伴 init-signing-key，先於任何 Registry commit</h2>
+  <h2 class="title">夥伴建立簽章金鑰，要在第一次提交 Domain Memory 檔案（Registry）之前</h2>
   <ol class="steps">
-    <li>夥伴跑 <code>init-signing-key --key-file "$env:USERPROFILE\.dlc-keys\&lt;代號&gt;\signing-key" --sign-every-commit</code></li>
-    <li>金鑰檔在 Repo 外；記下 <b>fingerprint</b></li>
+    <li>夥伴建立簽章金鑰，放在 Repo 外的 <code>%USERPROFILE%\.dlc-keys\&lt;代號&gt;\</code>，並設定每次提交都簽章（指令見 Runbook）</li>
+    <li>記下<b>金鑰指紋（fingerprint，辨識是哪一把金鑰，可公開）</b></li>
     <li>同一組全程用同一個 shell（PowerShell 或 Git Bash）</li>
   </ol>
   <p class="callout warn">Runbook › D2 審查與核准（成對） › 檢查點 1 · 填確認表單</p>
@@ -50,13 +50,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d2" data-title="檢查點 2 · 政策、hook 與 governance-readiness" data-minute="38">
+<section class="slide" data-seg="dlc-d2" data-title="檢查點 2 · 設定審查政策與推送檢查" data-minute="38">
   <p class="kicker">檢查點 2 / 6 · 第 38–43 分鐘</p>
-  <h2 class="title">amend-policy 三次、安裝 hook，governance-readiness ready</h2>
+  <h2 class="title">設定審查政策、安裝推送檢查，確認治理就緒</h2>
   <ol class="steps">
-    <li>依序：<code>authorized_signers</code>（填 fingerprint）→ <code>review_trigger git-push</code> → <code>review_mode scm-verified --verifier git-signed-commit</code></li>
-    <li><code>install-git-hitl-hook</code></li>
-    <li><code>governance-readiness</code> 必須回報 <b>ready</b></li>
+    <li>依 Runbook 順序修改審查政策三次：授權簽章者（填夥伴的金鑰指紋）→ push 時觸發審查 → 以簽章提交驗證核准</li>
+    <li>安裝 pre-push hook（push 前 Git 自動執行的檢查腳本）</li>
+    <li>治理就緒檢查（governance-readiness）必須回報 <b>ready</b></li>
   </ol>
   <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 2 · 填確認表單</p>
   <aside class="notes">
@@ -67,13 +67,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d2" data-title="檢查點 3 · Change Package 與提交提案" data-minute="43">
+<section class="slide" data-seg="dlc-d2" data-title="檢查點 3 · 建立變更審查包並送出提案" data-minute="43">
   <p class="kicker">檢查點 3 / 6 · 第 43–48 分鐘</p>
-  <h2 class="title">fill_package.py 建 Change Package，validate 後 submit-proposal</h2>
+  <h2 class="title">建立變更審查包（Change Package），驗證後送出提案</h2>
   <ol class="steps">
-    <li>proposer 以 <code>fill_package.py</code> 填 requirement、proposal、obligations、evidence</li>
-    <li>測試結果來自<b>實際</b> pytest exit code 與輸出 sha256，不預填 PASS</li>
-    <li><code>validate-change-package</code> 通過後 <code>submit-proposal</code></li>
+    <li>提案人以 <code>fill_package.py</code> 填需求、提案、要通過的檢查與證據</li>
+    <li>測試結果必須<b>真的跑出來</b>，不能預先填「通過」</li>
+    <li>驗證審查包通過後送出提案</li>
   </ol>
   <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 3 · 填確認表單</p>
   <aside class="notes">
@@ -83,13 +83,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d2" data-title="檢查點 4 · 核准與簽章 commit" data-minute="48">
+<section class="slide" data-seg="dlc-d2" data-title="檢查點 4 · 夥伴核准與簽章提交" data-minute="48">
   <p class="kicker">檢查點 4 / 6 · 第 48–53 分鐘</p>
-  <h2 class="title">夥伴 record-approval、verify-proposal，並做簽章 commit</h2>
+  <h2 class="title">夥伴核准提案，並用金鑰簽章提交</h2>
   <ol class="steps">
-    <li>夥伴 <code>record-approval --reviewer &lt;夥伴身分&gt;</code>（不可是 proposer）</li>
-    <li><code>verify-proposal</code></li>
-    <li>夥伴執行<b>簽章 commit</b>；<code>git log --show-signature</code> 看見簽章</li>
+    <li>夥伴記錄核准，審核人填夥伴自己（不可是提案人）</li>
+    <li>驗證提案</li>
+    <li>夥伴執行<b>簽章提交</b>；用 <code>git log --show-signature</code> 看見簽章</li>
   </ol>
   <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 4 · 填確認表單</p>
   <aside class="notes">
@@ -99,12 +99,12 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d2" data-title="檢查點 5 · attestation 與 verify-git-governance" data-minute="53">
+<section class="slide" data-seg="dlc-d2" data-title="檢查點 5 · 寫出核准證明並驗證" data-minute="53">
   <p class="kicker">檢查點 5 / 6 · 第 53–56 分鐘</p>
-  <h2 class="title">write_scm_attestation 與 verify-git-governance --commit</h2>
+  <h2 class="title">寫出核准證明（attestation），再驗證簽章提交</h2>
   <ol class="steps">
-    <li>以 <code>write_scm_attestation.py</code> 對剛才的 commit 寫出 attestation</li>
-    <li><code>verify-git-governance --commit &lt;簽章 commit&gt;</code></li>
+    <li>以 <code>write_scm_attestation.py</code> 把剛才的簽章提交寫成核准證明</li>
+    <li>讓 Plugin 驗證這次簽章提交</li>
     <li>輸出 OK 才算數，填確認表單</li>
   </ol>
   <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 5 · 填確認表單</p>
@@ -115,19 +115,19 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d2" data-title="檢查點 6 · finalize 與全部驗證" data-minute="56">
+<section class="slide" data-seg="dlc-d2" data-title="檢查點 6 · 完成提案並全部驗證" data-minute="56">
   <p class="kicker">檢查點 6 / 6 · 第 56–60 分鐘</p>
-  <h2 class="title">finalize、apply、validate --require-reviewed、verify-audit</h2>
+  <h2 class="title">完成提案、套用，並全部驗證</h2>
   <ol class="steps">
-    <li><code>finalize-proposal</code> → <code>apply-approved-updates</code></li>
-    <li><code>validate --require-reviewed</code>：OK</li>
-    <li><code>verify-audit</code>：OK；到 60 分鐘停手</li>
+    <li>完成提案 → 套用核准的更新</li>
+    <li>驗證內容都已審查（reviewed）：OK</li>
+    <li>驗證稽核紀錄：OK；到 60 分鐘停手</li>
   </ol>
   <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 6 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（21:00／第 56 分）</b>：「第 56 分。最後四步：finalize、apply、validate 要求 reviewed、verify-audit。四個都 OK，你們手上的才是 reviewed 事實。第 60 分休息，沒完成的組，休息時間內我發降級碼。」</p>
+    <p><b>說（21:00／第 56 分）</b>：「第 56 分。最後四步：finalize、apply、validate 要求 reviewed、verify-audit。四個都 OK，你們手上的才是已審查事實。第 60 分休息，沒完成的組，休息時間內我發降級碼。」</p>
     <p><b>看</b>：是否出現 validate --require-reviewed OK 與 verify-audit OK；是否把候選與 reviewed 混為一談。</p>
-    <p><b>介入訊號</b>：第 60 分仍未完成 → 休息時發 Recovery，不延長；提醒 R3：自我核准只是教學示範。</p>
+    <p><b>介入訊號</b>：第 60 分仍未完成 → 休息時發 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
   </aside>
 </section>
 

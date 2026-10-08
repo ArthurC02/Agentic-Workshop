@@ -1,21 +1,21 @@
 # D2 角色卡：Proposer 與 Maintainer
 
-> 讀者：DDD 延伸課程學員。使用時機：D2 開始時，兩人決定角色後各自讀自己的卡。
+> 讀者：DDD（Domain-Driven Design，領域驅動設計）延伸課程學員。使用時機：D2（今天第二段）開始時，兩人決定角色後各自讀自己的卡。
 
 D2 兩人一組，**只用一台機器**（Proposer 的機器與 Repo）。兩人輪流坐到鍵盤前：輪到誰的步驟，就由誰親手輸入。三人一組時，第三人當 Observer。
 
 ## Proposer（提案人）
 
 - **身分**：`proposer@example.com`（開場時設定的 Git 使用者）。
-- **你負責**：把 D1 的候選整理成 Change Package、執行 counterfactual、填寫並驗證套件、送出提案（`submit-proposal`）、最後套用（`apply-approved-updates`）與驗證。
-- **你不可以**：執行 `record-approval`；碰 Maintainer 的私鑰；替 Maintainer 執行簽章 commit。Plugin 只比對身分字串，**它擋不住你冒用夥伴的名字**，所以這條規則靠你們兩人遵守。
+- **你負責**：把 D1 的候選整理成變更審查包（Change Package）、執行反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）、填寫並驗證套件、送出提案（`submit-proposal`）、最後套用（`apply-approved-updates`）與驗證。
+- **你不可以**：執行 `record-approval`；碰 Maintainer 的私鑰；替 Maintainer 執行簽章 commit。Plugin（課程提供的 domain-memory 命令列工具）只比對身分字串，**它擋不住你冒用夥伴的名字**，所以這條規則靠你們兩人遵守。
 - **你要準備給夥伴看的**：要升級哪些候選、每一條規則對應哪個測試、counterfactual 的 `killed` 輸出。
 
 ## Maintainer（維護者，持鑰人）
 
 - **身分**：`maintainer@example.com`。
 - **你負責**：建立自己的簽章金鑰（放在 Repo 外的 `%USERPROFILE%\.dlc-keys\maintainer\`）、決定授權誰簽章、審查提案並 `record-approval`、親手做簽章 commit、確認 `verify-git-governance`。
-- **你要問 Proposer 的**：這些候選的證據你看過了嗎？每條規則的測試真的有跑嗎？counterfactual 是 `killed` 還是只是 exit 0？
+- **你要問 Proposer 的**：這些候選的證據你看過了嗎？每條規則的測試真的有跑嗎？counterfactual 是 `killed`，還是指令只是沒報錯？
 - **你可以拒絕**：證據不足就不核准。退回比蓋章有價值。
 
 ## Observer（三人組才有）
@@ -24,7 +24,7 @@ D2 兩人一組，**只用一台機器**（Proposer 的機器與 Repo）。兩�
 
 ## 金鑰規則（兩人都要遵守）
 
-1. 私鑰只放在 `%USERPROFILE%\.dlc-keys\maintainer\`（Git Bash：`~/.dlc-keys/maintainer/`），不放進 Repo（即使是已忽略的資料夾也會被 `scan-secrets` 掃到）、不放 `.ssh`、不截圖、不貼到聊天或表單。
+1. 私鑰只放在 `%USERPROFILE%\.dlc-keys\maintainer\`（Git Bash：`~/.dlc-keys/maintainer/`），不放進 Repo（即使是已忽略的資料夾也會被祕密掃描檢查 `scan-secrets` 掃到）、不放 `.ssh`、不截圖、不貼到聊天或表單。
 2. 金鑰只為今天的練習產生。課程結束後刪除整個 `%USERPROFILE%\.dlc-keys\maintainer\` 資料夾。
 3. 同一組從頭到尾用同一種終端機（PowerShell 或 Git Bash），因為兩者的 `ssh-keygen` 不同。
 

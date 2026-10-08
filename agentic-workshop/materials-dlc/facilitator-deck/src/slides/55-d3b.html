@@ -15,13 +15,13 @@
 <section class="slide" data-seg="dlc-d3b" data-title="D3b 點數折抵 6 個檢查點" data-minute="95" data-timer="30:00" data-gates="dlc-d3b">
   <p class="kicker">D3b 點數折抵 · 95–125</p>
   <h2 class="title">D3b 點數折抵：誰擁有點數？誰守住不變量？</h2>
-  <p class="muted">30 分鐘、六個檢查點。三條計價路徑要一起守；reserve／restore 不可重複。</p>
+  <p class="muted">30 分鐘、六個檢查點。三條計價路徑要一起守；點數預留（reserve）／歸還（restore）不可重複。</p>
   <ol class="timeline">
-    <li data-seg="dlc-d3b"><span class="tl-min">00:00</span><b>1 · 讀情境卡與 reviewed 事實</b></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">03:00</span><b>2 · Owner Context 與不變量</b></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">08:00</span><b>3 · Handoff 與 Agent 實作</b></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">16:00</span><b>4 · Counterfactual 證明</b></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">21:00</span><b>5 · Review 與登記候選</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">03:00</span><b>2 · 決定負責的 Context 與不變量</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">16:00</span><b>4 · 反事實檢查</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">21:00</span><b>5 · 檢視差異與登記候選</b></li>
     <li data-seg="dlc-d3b"><span class="tl-min">26:00</span><b>6 · 停手與揭曉對照</b></li>
   </ol>
   <aside class="notes">
@@ -35,17 +35,17 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3b" data-title="檢查點 1 · 讀情境卡與 reviewed 事實" data-minute="95">
+<section class="slide" data-seg="dlc-d3b" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="95">
   <p class="kicker">檢查點 1 / 6 · 第 95–98 分鐘</p>
-  <h2 class="title">讀情境卡，向 Memory 取 reviewed 事實</h2>
+  <h2 class="title">讀情境卡，向 Memory 取已審查事實</h2>
   <ol class="steps">
     <li>讀情境卡：先用自己的話說出<b>要解決什麼</b></li>
     <li>對卡上的名詞跑 <code>resolve-terms</code>，對相關 Context 跑 <code>get-context</code></li>
-    <li>把 reviewed 事實與<b>未知項</b>分開寫下，填確認表單</li>
+    <li>把已審查事實與<b>未知項</b>分開寫下，填確認表單</li>
   </ol>
   <p class="callout">Runbook › D3b 點數折抵 › 檢查點 1 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問 reviewed 事實，哪些是已知、哪些是未知，分開寫。」</p>
+    <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問已審查（reviewed）事實，哪些是已知、哪些是未知，分開寫。」</p>
     <p><b>看</b>：有沒有直接把情境卡貼給 Agent 叫它做；有沒有用 reviewed 查詢，而不是憑記憶。留意現有三條計價路徑（一般、團體、改票）。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」</p>
@@ -53,27 +53,27 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3b" data-title="檢查點 2 · Owner Context 與不變量" data-minute="98">
+<section class="slide" data-seg="dlc-d3b" data-title="檢查點 2 · 決定負責的 Context 與不變量" data-minute="98">
   <p class="kicker">檢查點 2 / 6 · 第 98–103 分鐘</p>
-  <h2 class="title">決策卡：owner Context、跨 Context 不變量</h2>
+  <h2 class="title">決策卡：負責的 Context、跨 Context 不變量</h2>
   <ol class="steps">
-    <li>決定<b>點數 owner Context</b>（Membership／Loyalty／Pricing），寫下<b>理由</b></li>
+    <li>決定<b>由哪個 Context 負責點數</b>（Membership／Loyalty／Pricing），寫下<b>理由</b></li>
     <li>寫下不變量：餘額不為負、應付 ≥ 0 且為整數、先折扣後折抵、不超過 30% 上限</li>
-    <li>決定 reserve／restore 的邊界：誰預留、付款失敗或取消時誰歸還</li>
+    <li>決定預留／歸還的邊界：誰預留、付款失敗或取消時誰歸還</li>
   </ol>
   <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 2 · 填確認表單</p>
   <aside class="notes">
     <p><b>說（03:00／第 98 分）</b>：「第 98 分。這一段是今天的核心：先由人做設計決策，寫進 D3 決策卡，再讓 Agent 實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
     <p><b>看</b>：owner 是否有理由而非『放哪都行』；是否討論並發與重複歸還。</p>
-    <p><b>介入訊號</b>：只改建立流程、忘了改票路徑 → 問：Fare Difference 的基準是什麼？</p>
+    <p><b>介入訊號</b>：只改建立流程、忘了改票路徑 → 問：改票差額（Fare Difference）是用哪個金額算的？</p>
     <p><b>提示</b>：H2：「預留要不要成為獨立概念？直接扣餘額與保留紀錄，稽核與並發上差在哪？」</p>
     <p><b>巡堂重點</b>：最常見的錯是把點數當成優惠塞進 <code>DiscountPolicy</code>，或直接從 <code>total_fare</code> 扣掉；兩者都會破壞 PTS-006，之後改票差額、退款與 30% 上限全錯。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3b" data-title="檢查點 3 · Handoff 與 Agent 實作" data-minute="103">
+<section class="slide" data-seg="dlc-d3b" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="103">
   <p class="kicker">檢查點 3 / 6 · 第 103–111 分鐘</p>
-  <h2 class="title">把決策卡交給 Agent，依 Handoff 實作，做完停下</h2>
+  <h2 class="title">把決策卡交給 Agent，依交接單（Handoff）實作，做完停下</h2>
   <ol class="steps">
     <li>以 Runbook 提示詞把決策卡交給 Agent：<b>先提計畫，等你核准</b>再改檔</li>
     <li>核准後讓 Agent 實作；看它貼出的<b>實際</b> <code>pytest -q</code>（用 <code>.venv</code> 的 python）</li>
@@ -89,29 +89,29 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3b" data-title="檢查點 4 · Counterfactual 證明" data-minute="111">
+<section class="slide" data-seg="dlc-d3b" data-title="檢查點 4 · 反事實檢查" data-minute="111">
   <p class="kicker">檢查點 4 / 6 · 第 111–116 分鐘</p>
-  <h2 class="title">每條新規則，各做一次 counterfactual，要看到 killed</h2>
+  <h2 class="title">每條新規則，各做一次反事實檢查，要看到 killed</h2>
   <ol class="steps">
     <li>對每條新規則：破壞實作的一處，用 <code>counterfactual --test-command</code> 跑對應測試</li>
-    <li>只認輸出中的 <b>killed</b> 字樣；路徑錯誤會印 Big5 亂碼加 ERROR: the tests do not pass before anything is broken（exit 1）</li>
+    <li>只認輸出中的 <b>killed</b> 字樣；只看到亂碼或 ERROR 都不算成功（多半是指令路徑錯了）</li>
     <li>還原後整套 <code>pytest -q</code> 要再全綠</li>
   </ol>
   <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 4 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（16:00／第 111 分）</b>：「第 111 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算，亂碼加 exit 0 不是成功。」</p>
+    <p><b>說（16:00／第 111 分）</b>：「第 111 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
     <p><b>建議現場做的 4 個</b>：上限以優惠後總額計（改成原價；只有 M002 665 抓得到）、預留在寫入前（移到寫入之後）、團體付款失敗歸還（移除 restore）、退款現金＝Order.amount（改讀 <code>payable_amount</code>；沒有「改票後退票」的測試就會存活）。第一個與最後一個是「先 survived 再補測試」的好示範。</p>
     <p><b>看</b>：是否每條新規則都有 killed；指令路徑是否用反斜線或絕對路徑；還原後是否重跑全套。</p>
-    <p><b>介入訊號</b>：只看到亂碼或 ERROR（exit 1）而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
+    <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3b" data-title="檢查點 5 · Review 與登記候選" data-minute="116">
+<section class="slide" data-seg="dlc-d3b" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="116">
   <p class="kicker">檢查點 5 / 6 · 第 116–121 分鐘</p>
-  <h2 class="title">人 Review，並用 upsert-candidate 登記新事實</h2>
+  <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Review Diff：設計符合決策卡嗎？有沒有偷改測試斷言</li>
-    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱 reviewed</li>
+    <li>檢視程式差異（Diff）：設計符合決策卡嗎？有沒有偷改測試斷言</li>
+    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱已審查</li>
     <li>填確認表單；第 121 分停手</li>
   </ol>
   <p class="callout">Runbook › D3b 點數折抵 › 檢查點 5 · 填確認表單</p>
@@ -157,7 +157,7 @@
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">Membership（owner）</span>
-      <p>餘額、最低／單位、30% 上限（向下取整）都住在 Member；<code>reserve_points</code> 是餘額唯一會減少的地方</p>
+      <p>餘額、最低折抵點數與折抵單位、30% 上限（向下取整）都放在 Member；<code>reserve_points</code> 是餘額唯一會減少的地方</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">Pricing 不動</span>
@@ -165,7 +165,7 @@
     </div>
     <div class="card fx fx-up">
       <span class="chip">金額流向</span>
-      <p>Booking 記折抵點數、推導 <code>payable_amount</code> → 閘道扣款＝Order.amount → 發票 500＝476＋24</p>
+      <p>Booking 記折抵點數、推導 <code>payable_amount</code> → 閘道扣款＝Order.amount → 發票 500＝未稅 476＋稅 24</p>
     </div>
   </div>
   <aside class="notes">
@@ -181,7 +181,7 @@
   <h2 class="title">D3b 不變量與 counterfactual</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
-      <span class="chip">reserve／restore</span>
+      <span class="chip">預留／歸還</span>
       <p>建立時在鎖內、寫入前預留；團體付款失敗與整筆退票全數歸還；一般付款失敗與改票不動點數</p>
     </div>
     <div class="card fx fx-up">
@@ -190,7 +190,7 @@
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；有一個 mutant 殺不死，因為兩條規則其實是同一條</p>
+      <p>每條規則各弄壞一次 → killed；有一處改壞後行為完全不變（等價 mutant），因為那兩條規則實際上重複</p>
     </div>
   </div>
   <aside class="notes">

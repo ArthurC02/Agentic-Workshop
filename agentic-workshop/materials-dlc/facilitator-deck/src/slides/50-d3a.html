@@ -15,13 +15,13 @@
 <section class="slide" data-seg="dlc-d3a" data-title="D3a 電子發票 6 個檢查點" data-minute="70" data-timer="25:00" data-gates="dlc-d3a">
   <p class="kicker">D3a 電子發票 · 70–95</p>
   <h2 class="title">D3a 電子發票：誰擁有發票？外部系統怎麼擋？</h2>
-  <p class="muted">25 分鐘、六個檢查點。先設計再實作；每條新規則都要有 counterfactual。</p>
+  <p class="muted">25 分鐘、六個檢查點。先設計再實作；每條新規則都要做反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）。</p>
   <ol class="timeline">
-    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀情境卡與 reviewed 事實</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">03:00</span><b>2 · Port 與邊界決策</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · Handoff 與 Agent 實作</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">15:00</span><b>4 · Counterfactual 證明</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · Review 與登記候選</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">03:00</span><b>2 · 對外介面（Port）與邊界決策</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">15:00</span><b>4 · 反事實檢查</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · 檢視差異與登記候選</b></li>
     <li data-seg="dlc-d3a"><span class="tl-min">22:00</span><b>6 · 停手與揭曉對照</b></li>
   </ol>
   <aside class="notes">
@@ -35,17 +35,17 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3a" data-title="檢查點 1 · 讀情境卡與 reviewed 事實" data-minute="70">
+<section class="slide" data-seg="dlc-d3a" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="70">
   <p class="kicker">檢查點 1 / 6 · 第 70–73 分鐘</p>
-  <h2 class="title">讀情境卡，向 Memory 取 reviewed 事實</h2>
+  <h2 class="title">讀情境卡，向 Memory 取已審查事實</h2>
   <ol class="steps">
     <li>讀情境卡：先用自己的話說出<b>要解決什麼</b></li>
     <li>對卡上的名詞跑 <code>resolve-terms</code>，對相關 Context 跑 <code>get-context</code></li>
-    <li>把 reviewed 事實與<b>未知項</b>分開寫下，填確認表單</li>
+    <li>把已審查事實與<b>未知項</b>分開寫下，填確認表單</li>
   </ol>
   <p class="callout">Runbook › D3a 電子發票 › 檢查點 1 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問 reviewed 事實，哪些是已知、哪些是未知，分開寫。」</p>
+    <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：先讀情境卡，再向 Domain Memory 問已審查（reviewed）事實，哪些是已知、哪些是未知，分開寫。」</p>
     <p><b>看</b>：有沒有直接把情境卡貼給 Agent 叫它做；有沒有用 reviewed 查詢，而不是憑記憶。留意逾時＝結果未知，不是失敗。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「逾時代表什麼？對方可能已經開出發票了嗎？」</p>
@@ -53,13 +53,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3a" data-title="檢查點 2 · Port 與邊界決策" data-minute="73">
+<section class="slide" data-seg="dlc-d3a" data-title="檢查點 2 · 對外介面（Port）與邊界決策" data-minute="73">
   <p class="kicker">檢查點 2 / 6 · 第 73–78 分鐘</p>
-  <h2 class="title">決策卡：owner Context、不變量、邊界</h2>
+  <h2 class="title">決策卡：負責的 Context、不變量、邊界</h2>
   <ol class="steps">
-    <li>寫下<b>owner</b>：發票屬於哪個 Context，與 Order／Payment 交換什麼</li>
-    <li>寫下<b>不變量</b>：付款成功不被發票失敗影響；一筆 Order 最多一張發票</li>
-    <li>寫下<b>邊界決策</b>：Port 放哪層、Adapter 放哪層、誰把 Order 翻成發票請求（ACL）</li>
+    <li>寫下<b>負責者</b>：發票屬於哪個 Context，與 Order／Payment 交換什麼</li>
+    <li>寫下<b>不變量</b>（任何時候都必須成立的條件）：付款成功不被發票失敗影響；一筆 Order 最多一張發票</li>
+    <li>寫下<b>邊界決策</b>：Port（領域程式需要的對外能力介面）放哪層、Adapter（接真實外部系統的實作）放哪層、誰把 Order 翻成發票請求（防腐層，ACL，Anti-Corruption Layer；不是存取控制清單）</li>
   </ol>
   <p class="callout warn">Runbook › D3a 電子發票 › 檢查點 2 · 填確認表單</p>
   <aside class="notes">
@@ -70,13 +70,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3a" data-title="檢查點 3 · Handoff 與 Agent 實作" data-minute="78">
+<section class="slide" data-seg="dlc-d3a" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="78">
   <p class="kicker">檢查點 3 / 6 · 第 78–85 分鐘</p>
-  <h2 class="title">把決策卡交給 Agent，依 Handoff 實作，做完停下</h2>
+  <h2 class="title">把決策卡交給 Agent，依交接單（Handoff）實作，做完停下</h2>
   <ol class="steps">
     <li>以 Runbook 提示詞把決策卡交給 Agent：<b>先提計畫，等你核准</b>再改檔</li>
     <li>核准後讓 Agent 實作；看它貼出的<b>實際</b> <code>pytest -q</code>（用 <code>.venv</code> 的 python）</li>
-    <li>Fake Adapter 要能注入暫時性與永久性失敗，兩者各一個測試</li>
+    <li>測試用的假外部服務（Fake Adapter）要能模擬暫時性與永久性失敗，兩者各一個測試</li>
   </ol>
   <p class="callout">Runbook › D3a 電子發票 › 檢查點 3 · 填確認表單</p>
   <aside class="notes">
@@ -88,29 +88,29 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3a" data-title="檢查點 4 · Counterfactual 證明" data-minute="85">
+<section class="slide" data-seg="dlc-d3a" data-title="檢查點 4 · 反事實檢查" data-minute="85">
   <p class="kicker">檢查點 4 / 6 · 第 85–89 分鐘</p>
-  <h2 class="title">每條新規則，各做一次 counterfactual，要看到 killed</h2>
+  <h2 class="title">每條新規則，各做一次反事實檢查，要看到 killed</h2>
   <ol class="steps">
     <li>對每條新規則：破壞實作的一處，用 <code>counterfactual --test-command</code> 跑對應測試</li>
-    <li>只認輸出中的 <b>killed</b> 字樣；路徑錯誤會印 Big5 亂碼加 ERROR: the tests do not pass before anything is broken（exit 1）</li>
+    <li>只認輸出中的 <b>killed</b> 字樣；只看到亂碼或 ERROR 都不算成功（多半是指令路徑錯了）</li>
     <li>還原後整套 <code>pytest -q</code> 要再全綠</li>
   </ol>
   <p class="callout warn">Runbook › D3a 電子發票 › 檢查點 4 · 填確認表單</p>
   <aside class="notes">
-    <p><b>說（15:00／第 85 分）</b>：「第 85 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算，亂碼加 exit 0 不是成功。」</p>
+    <p><b>說（15:00／第 85 分）</b>：「第 85 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
     <p><b>建議現場做的 3 個</b>：重試上限（<code>MAX_ISSUE_ATTEMPTS</code> 5 → 6）、鎖外呼叫（把 Port 呼叫包回 <code>with self.store.lock:</code>）、冪等鍵（<code>merchant_order_no</code> 改成每次隨機）。參考解答三個都 killed。</p>
     <p><b>看</b>：是否每條新規則都有 killed；指令路徑是否用反斜線或絕對路徑；還原後是否重跑全套。</p>
-    <p><b>介入訊號</b>：只看到亂碼或 ERROR（exit 1）而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
+    <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 提醒找 killed；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d3a" data-title="檢查點 5 · Review 與登記候選" data-minute="89">
+<section class="slide" data-seg="dlc-d3a" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="89">
   <p class="kicker">檢查點 5 / 6 · 第 89–92 分鐘</p>
-  <h2 class="title">人 Review，並用 upsert-candidate 登記新事實</h2>
+  <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Review Diff：設計符合決策卡嗎？有沒有偷改測試斷言</li>
-    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱 reviewed</li>
+    <li>檢視程式差異（Diff）：設計符合決策卡嗎？有沒有偷改測試斷言</li>
+    <li>新事實用 <code>upsert-candidate</code> 登記，<b>仍是候選</b>，不自稱已審查</li>
     <li>填確認表單；第 92 分停手</li>
   </ol>
   <p class="callout">Runbook › D3a 電子發票 › 檢查點 5 · 填確認表單</p>
@@ -156,7 +156,7 @@
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">Invoicing（新 Context）</span>
-      <p>擁有 Invoice（以 order_id 識別）：PENDING／ISSUED／FAILED、稅額拆分、5 次上限；金額只讀 Order.amount</p>
+      <p>擁有 Invoice（以 order_id 識別）：處理中／已開立／失敗（PENDING／ISSUED／FAILED）、稅額拆分、最多嘗試 5 次；金額只讀 Order.amount</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">Port（Domain）</span>
@@ -164,13 +164,13 @@
     </div>
     <div class="card fx fx-up">
       <span class="chip">Adapter（Infrastructure）</span>
-      <p>服務商欄位、代碼 2001／1001／1002／9001、3 秒逾時與連線失敗，全在這裡翻成三種結果</p>
+      <p>服務商欄位、回應代碼（2001／1001／1002／9001）、3 秒逾時與連線失敗，全在這裡翻成三種結果</p>
     </div>
   </div>
   <aside class="notes">
     <p><b>說</b>：參考設計的核心是<b>依賴方向</b>：領域只認識 Port，不認識服務商。請讓學員說出自己的邊界落在哪一層，再比較。</p>
     <p><b>兩段翻譯（ACL）</b>：Invoicing Application 把 Order／Booking／Trip 翻成自己的 <code>InvoiceRequest</code>；Adapter 再把 <code>InvoiceRequest</code> 翻成服務商欄位。發票資訊存在 Invoice，不寫進 Order／Booking。證據：<code>grep -rn "merchant_order_no\|9001\|2001" src</code> 只命中 Adapter 檔。</p>
-    <p><b>刻意不做</b>：付款閘道不一起 Port 化（這張卡沒有給它新的失敗語意，見參考解答 ADR 005）；不引入 Queue（ADR 003）。有組做了，問「哪條 AC 需要它？」</p>
+    <p><b>刻意不做</b>：付款閘道不一起 Port 化（這張卡沒有給它新的失敗語意，見參考解答 ADR 005）；不引入 Queue（ADR 003）。有組做了，問「哪一條驗收條件（AC）需要它？」</p>
     <p>依據：參考解答 d3a-e-invoice 的 SOLUTION-NOTES 第 1–2 節。只講設計判斷，不現場補寫答案程式。</p>
     <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
   </aside>
@@ -182,15 +182,15 @@
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">鎖外呼叫</span>
-      <p>鎖內只做扣款、Order、PAID、建 PENDING 發票；釋放鎖後才呼叫 Port。發票任何結果，付款仍 200</p>
+      <p>鎖內只做扣款、Order、PAID、建 PENDING（處理中）發票；釋放鎖後才呼叫 Port。發票任何結果，付款仍回成功（200）</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">冪等</span>
-      <p><code>merchant_order_no</code>＝order_id；逾時＝結果未知，重試用同一號；2001 以原號碼 ISSUED</p>
+      <p><code>merchant_order_no</code>＝order_id；逾時＝結果未知，重試用同一號；服務商回 2001 時以原號碼視為已開立</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；有一個 mutant 怎麼補測試都殺不死：為什麼？</p>
+      <p>每條規則各弄壞一次 → killed；有一個故意改壞的版本（mutant）行為跟原本完全一樣，怎麼補測試都抓不到：為什麼？</p>
     </div>
   </div>
   <aside class="notes">
