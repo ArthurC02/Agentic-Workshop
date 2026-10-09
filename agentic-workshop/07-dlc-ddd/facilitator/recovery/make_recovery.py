@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import os
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -95,10 +96,17 @@ def build_reviewed(work: Path, solution: str | None, message: str | None) -> Non
     if solution is None:
         return
     source = SOLUTIONS / solution
+    crlf = {}  # tracked file -> had CRLF; the overlay keeps each file's line endings (D3 work rule 9)
     for name in git(work, "ls-files", "-z").split("\0"):
         if name and not name.startswith("domain-memory/") and name not in (".gitignore", ".gitattributes"):
+            crlf[name] = b"\r\n" in (work / name).read_bytes()
             (work / name).unlink()
     shutil.copytree(source, work, ignore=SOLUTION_SKIP, dirs_exist_ok=True)
+    for name, was_crlf in crlf.items():
+        path = work / name
+        if path.exists():
+            data = path.read_bytes().replace(b"\r\n", b"\n")
+            path.write_bytes(data.replace(b"\n", b"\r\n") if was_crlf else data)
     git(work, "add", "-A")
     git(work, "commit", "-q", "-m", message)
 
@@ -236,6 +244,27 @@ INTRO_SOLUTION = """# {up} Recovery
 
 USAGE = """使用 Recovery 不算自己完成 {up}。學員照 Runbook「{up} Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。"""
 
+STEP_PUSH = r"""## 4. （選做）push 檢查（夥伴的 Agent 對話，步驟 3 建好 `.venv` 之後）
+
+Recovery 沒有 CP-D2-001，D2 檢查點 6 的 push 在這裡補做；hook 逐一檢查碰到 Registry 的 commit。不 commit。
+
+```powershell
+py -3.13 -X utf8 ..\..\tools\setup_remote.py
+.\.venv\Scripts\Activate.ps1
+$env:PYTHONUTF8 = '1'
+git push -u origin HEAD
+```
+
+```bash
+py -3.13 -X utf8 ../../tools/setup_remote.py
+source .venv/Scripts/activate
+export PYTHONUTF8=1
+git push -u origin HEAD
+```
+
+**看到什麼算成功**：hook 共印出四行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的三個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。被拒時不要用 `--no-verify` 繞過。
+"""
+
 D1_INTRO = """# D1 Recovery
 
 內容：起始 Repo（`smart-ticket-dlc-base/`）、已確認的 source map（`--review-mode local-draft-only`）、一組 D1 候選（5 Contexts、21 詞、16 規則等），全部為候選，沒有任何 reviewed 事實。`repo.bundle` 只有一個未簽章、不含 `domain-memory/` 的「起始 Repo」commit：依流程 D1 不 commit Registry，`domain-memory/` 還原後是未追蹤，等 D2 夥伴設好簽章後才 commit。D1 沒有簽章，所以兩步都由提案者的 Agent 執行，沒有任何 commit。"""
@@ -281,7 +310,14 @@ def recovery_md(seg: str, solution: str | None, message: str | None) -> str:
                      if solution else "verify-evidence 全部 `current`")
     return "\n\n".join([intro, usage, STEP_SAVE.format(seg=seg) + "\n"
                         + STEP_TAKEOVER.format(seg=seg, up=up, log_note=log_note) + "\n"
-                        + STEP_VERIFY.format(seg=seg, up=up, evidence_note=evidence_note)])
+                        + STEP_VERIFY.format(seg=seg, up=up, evidence_note=evidence_note)]
+                       + ([STEP_PUSH] if seg == "d2" else []))
+
+
+def _writable_retry(func, path, _exc) -> None:
+    """OneDrive marks folders read-only; clear the flag and retry the delete."""
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
 
 
 def generate(seg: str, plugin: str | None) -> Path:
@@ -295,7 +331,7 @@ def generate(seg: str, plugin: str | None) -> Path:
         else:
             build_reviewed(work, solution, message)
         if out.exists():
-            shutil.rmtree(out)
+            shutil.rmtree(out, onexc=_writable_retry)
         out.mkdir(parents=True)
         git(work, "bundle", "create", "-q", str(out / "repo.bundle"), "main")
         shutil.copytree(work, out / "smart-ticket-dlc-base", ignore=shutil.ignore_patterns(".git"))

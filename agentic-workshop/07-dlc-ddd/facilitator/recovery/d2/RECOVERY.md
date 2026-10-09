@@ -107,3 +107,24 @@ py -3.13 -m venv .venv
 （Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`。）
 
 **看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 全部 `current`。結果寫進 `notes/recovery-d2.md` 的「環境與驗證」，最後一行寫「D2 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
+
+
+## 4. （選做）push 檢查（夥伴的 Agent 對話，步驟 3 建好 `.venv` 之後）
+
+Recovery 沒有 CP-D2-001，D2 檢查點 6 的 push 在這裡補做；hook 逐一檢查碰到 Registry 的 commit。不 commit。
+
+```powershell
+py -3.13 -X utf8 ..\..\tools\setup_remote.py
+.\.venv\Scripts\Activate.ps1
+$env:PYTHONUTF8 = '1'
+git push -u origin HEAD
+```
+
+```bash
+py -3.13 -X utf8 ../../tools/setup_remote.py
+source .venv/Scripts/activate
+export PYTHONUTF8=1
+git push -u origin HEAD
+```
+
+**看到什麼算成功**：hook 共印出四行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的三個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。被拒時不要用 `--no-verify` 繞過。

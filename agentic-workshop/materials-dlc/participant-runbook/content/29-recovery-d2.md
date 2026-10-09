@@ -151,4 +151,26 @@ git log --show-signature -1
 
 - 測試全部 `passed`，沒有 `failed` 或 `error`。結果不符就停止切換，請主持人確認。
 - `Registry is valid.`（帶 `--require-reviewed`：Recovery 裡全部是已審查事實）；`verify-audit` 回 `"status": "valid"`。
-- `notes/recovery-d2.md` 寫明 D2 的成果由 Recovery 提供。看到這些後，回到 [D3a](#d3a) 接續。
+- `verify-evidence` 的過期（stale）、不存在（missing）、格式錯誤（invalid）都是 0。
+- `notes/recovery-d2.md` 寫明 D2 的成果由 Recovery 提供。看到這些後，回到 [D3a](#d3a) 接續；有時間再做步驟 4。
+
+## 步驟 4 ·（選做）【夥伴】push 檢查
+
+Recovery 沒有 CP-D2-001，D2 檢查點 6 的 push 在這裡補做。步驟 3 建好 `.venv` 之後，夥伴在自己的 Agent 對話貼：
+
+```text
+【夥伴的 Agent】Recovery 的 push 檢查：建立本機的遠端倉庫（bare repo，模擬伺服器）後 push。push 時 hook 會直接呼叫 python，所以 venv 要在「同一次執行」內啟用；PYTHONUTF8=1 讓 hook 正確處理中文。不要 commit。依終端機執行，參數一字不改：
+PowerShell：
+py -3.13 -X utf8 ..\..\tools\setup_remote.py
+.\.venv\Scripts\Activate.ps1
+$env:PYTHONUTF8 = '1'
+git push -u origin HEAD
+Git Bash：
+py -3.13 -X utf8 ../../tools/setup_remote.py
+source .venv/Scripts/activate
+export PYTHONUTF8=1
+git push -u origin HEAD
+回報：hook 印出幾次 Git governance is valid.、push 是否出現 [new branch]。被拒時貼出拒絕訊息並用白話解釋原因，不要用 --no-verify 或任何方式繞過 hook。把結果補進 notes/recovery-d2.md，然後停下。
+```
+
+**看到什麼算過關**：hook 共印出四行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的三個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。

@@ -151,4 +151,5 @@ git log --show-signature -1
 
 - 測試全部 `passed`，沒有 `failed` 或 `error`。結果不符就停止切換，請主持人確認。
 - `Registry is valid.`（帶 `--require-reviewed`：Recovery 裡全部是已審查事實）；`verify-audit` 回 `"status": "valid"`。
+- `verify-evidence` 大多是 `current`（約 99 個），少數 `stale`（約 63 個）、exit 1 是預期：參考實作改過已審查事實引用的那幾行，留到 D4 處理；missing 與 invalid 都是 0。
 - `notes/recovery-d3c.md` 寫明 D3c 的成果由 Recovery 提供。看到這些後，回到 [D4](#d4) 接續。
