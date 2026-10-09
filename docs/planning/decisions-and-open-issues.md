@@ -199,3 +199,5 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 ## 程式包修正授權（2026-10-09）
 
 使用者授權「全部修復」原本鎖定的程式包問題，並授權 Commit 與 Push：Greenfield／B0／參考解答 README 的虛擬環境啟用說明（Windows Git Bash 路徑錯誤）、Brownfield Recovery 包補齊 docs（ADR、改票指南、優惠說明、API 範例）、DLC 程式庫與 Recovery bundle 統一 LF 行尾並鎖定 anyio 版本以消除 DeprecationWarning。修正後重新量測頁面引用的數字並以候選包實跑驗證。D2 檢查點 6 夥伴推送改在沙箱內推送到本機 bare repo 驗證。
+
+結果與已知限制：DLC 起始 Repo 改 LF、釘選 anyio 4.9.0／starlette 0.46.2；`make_recovery.py` 重建 d1–d3c（d3 參考實作疊加時保留每個檔案原本的行尾，d3c verify-evidence 由 93／69 變為 99／63），D2 Recovery 新增選做的 push 檢查（步驟 4）。d2 Recovery 與 d2／d3 的 Registry 歷史來自 Maintainer 已簽章的 bundle，改行尾或釘選需要原私鑰重簽，維持原樣（d2 Recovery 可能出現一個無害的 DeprecationWarning）。
