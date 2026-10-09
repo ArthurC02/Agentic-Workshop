@@ -1,5 +1,5 @@
 {
-  "executed_utc": "2026-10-09T08:19:03.015791+00:00",
+  "executed_utc": "2026-10-09T12:04:31.670753+00:00",
   "checks": [
     {
       "id": "C-01-02",
@@ -10,7 +10,7 @@
         "scripts/build_delivery.py"
       ],
       "details": {
-        "zip": "dist/p11-candidate/524731ecda74e827/participant-29-b0.zip",
+        "zip": "dist/p11-candidate/b5a7b6954e768bad/participant-29-b0.zip",
         "zip_sha256": "c6f1a92f8030805a5fd7c38386a294537209c517c19514a1f8cc7ed3a17ef656",
         "controlled_files": [
           "docs/change-booking-guide.md",
@@ -108,7 +108,7 @@
   "documents": {
     "status": "PASS",
     "markdown_files": 401,
-    "relative_links": 891,
+    "relative_links": 890,
     "errors": [],
     "existing_utf8_bom_files": [
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -717,7 +717,7 @@
       {
         "file": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
         "historical_sha256": "68ea10a8a07757b910bf3464f6642040abb34da2cbaafdb69ef97fe1a6d0629a",
-        "current_sha256": "57551ca850d09b833fd07c5860ed773601b52f59a5b06fcbd3a9c0524d96d4b9"
+        "current_sha256": "b730cabaebd3860b56015e21ee1e33a8d4459c6ca20dfee8cab28e591d970938"
       },
       {
         "file": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
@@ -749,7 +749,7 @@
     "interpretation": "Prior PASS describes prior files; changed documents have new current semantic evidence here. Historical JSON is not rewritten."
   },
   "current_checked_sha256": {
-    "agentic-workshop/01-greenfield/participant/01-mission-brief.md": "502e480c91564be275934a7192cfe807fd1a055a9ad0a7de62eea01d575364de",
+    "agentic-workshop/01-greenfield/participant/01-mission-brief.md": "ba6fb3d53480db73f93f43766bfd42d90ca5929f5a92d215034fa9ad3d60f779",
     "agentic-workshop/03-brownfield/evaluation/11-b0-to-b3-version-matrix.md": "b49ce95d7a49329d2bc827f2a90b3a02a0c743609c61b16284c22f64bfc70652",
     "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md": "7d85bbe2614b14116ffd30edca2002fff090b83b9674e0afd6c42877ecc9e9d5",
     "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/domain/discounts.py": "ca437bdf58cab41c4ab630a7f20731ca7dd8f44b32df2c1b68da054804993258",
@@ -762,10 +762,10 @@
     "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "8935417d2890def9d703c8d60b7c1d485a522d1d2745861f7be65ec427459232",
     "agentic-workshop/04-digital-worker/participant/05-delivery-template.md": "4dc9372ba8622f7dc695407dc03ff93df54991df2798a888bbd6c26577258a8a",
     "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md": "ff27750b67ce3a46adf0ab88ff6aab2af8466e22b89727359f6b1c8a8f5d10e5",
-    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "57551ca850d09b833fd07c5860ed773601b52f59a5b06fcbd3a9c0524d96d4b9",
+    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "b730cabaebd3860b56015e21ee1e33a8d4459c6ca20dfee8cab28e591d970938",
     "agentic-workshop/06-runbook/workshop-runbook.md": "10017cd10fdb33998a6ea53a52e357d8eaf1654d7ff3557d5ed62c99b7c98cad",
     "scripts/build_delivery.py": "d74a3972d931303107fa44ca59b943e8b99a8a7941bbf6a579ac1f5a841a597f",
-    "scripts/package-manifest.json": "524731ecda74e827d5cdcd801920e9e49dd20771619d125394fcf92ca795c31c"
+    "scripts/package-manifest.json": "b5a7b6954e768baddccbd8ae904578ed42a3b50331827f5807c477c17225675e"
   },
   "app_suite_rerun": "NOT RUN: exact frozen source comparison; prior actual technical evidence retained",
   "human_rehearsal": "NOT RUN",

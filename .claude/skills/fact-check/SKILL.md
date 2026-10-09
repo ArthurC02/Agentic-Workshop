@@ -10,6 +10,13 @@ description: Verify that every knowledge point and technical term in the course 
 ## What to check
 - Every row of `materials/participant-runbook/content/88-glossary.md` and `materials-dlc/participant-runbook/content/88-glossary.md`.
 - Every ```callout titled 技巧／新概念 in both Runbooks.
+- Everything learners and facilitators read outside the Runbook:
+  - facilitator deck slides and notes (`materials*/facilitator-deck/src/slides/`);
+  - speech decks (`materials/speech/`);
+  - participant handouts, scenario cards and worksheets;
+  - facilitator guides and RECOVERY.md files.
+
+  These must also agree with the corrected Runbook and glossary.
 - Technical claims in the 「現在在做什麼」 cards and prompts. Examples: what a command does, HTTP status meanings, Git or pytest behaviour, signing and hash facts, DDD definitions, model, effort and token facts.
 
 ## How

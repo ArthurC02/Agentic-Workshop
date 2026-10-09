@@ -1,6 +1,6 @@
 # Greenfield Mission Brief
 
-> 讀者：工作坊參與者。時機：第7分鐘Greenfield開始時發放。前置：Starter Repository 已取得且環境可用。可見性：Participant。
+> 讀者：工作坊參與者。時機：第 7 分鐘 Greenfield 開始時發放。前置：Starter Repository 已取得且環境可用。可見性：Participant。
 
 Smart Ticket 是剛開始開發的車票預訂服務。請在 **22 分鐘**內完成查詢班次、建立訂票、模擬付款與查詢付款後訂單，驗證完整流程。
 

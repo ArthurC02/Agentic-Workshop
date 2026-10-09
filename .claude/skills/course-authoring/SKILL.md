@@ -14,7 +14,7 @@ Audience: very junior engineers who may not know Python. They **never write or r
 
 ## Every segment page
 - Top: a 「現在在做什麼」 callout with four lines: 情境 / 你的目標 / 今天的技巧 / 完成的樣子.
-- Checkpoints: at most 3 (Greenfield and B3: at most 4). Use the title format `## 檢查點 N · 〈動詞句〉（第 a–b 分鐘）`. The overview is a short list, not a table.
+- Checkpoints: at most 3 (Greenfield and B3: at most 4; DLC segments run 15–25 min, so at most 6). Use the title format `## 檢查點 N · 〈動詞句〉（第 a–b 分鐘）`. The overview is a short list, not a table.
 - Each checkpoint follows this order:
   1. One or two sentences on what to do and why.
   2. A ```text prompt the learner can copy, which runs the step to completion.
@@ -27,7 +27,7 @@ Audience: very junior engineers who may not know Python. They **never write or r
   - Name the record file (main course: `notes/<段落>.md`).
   - Never leave `〈 〉` blanks for learners. If the Agent needs information, it asks for it.
   - At decision points, the Agent proposes options with evidence and the learner replies briefly: 「同意」, 「選 B」, 「第 3 個不要」.
-- **Forms**: at most one per segment, recording only the human's decision. Use select, checklist or checkbox fields, at most 3, plus at most 1 short text field. No form if there is no decision.
+- **Forms**: at most one per segment, recording only the human's decision. Use select, checklist or checkbox fields, at most 3, plus at most 1 short text field. No form if there is no decision. Exception: B3 has two (Gate decisions, and the minute-69 exception decision).
 - End of page:
   - A 「## 完成後想一想」 section with 3 specific questions: observation → technique → extension toward the next segment or real work. Follow it with a 💬 callout and no form.
   - Then a 「這段學到的技巧」 callout.
@@ -47,9 +47,9 @@ Audience: very junior engineers who may not know Python. They **never write or r
 ## The six Agent techniques (main course) and where they first appear
 | Technique | First use |
 |---|---|
-| Prompt structure | Greenfield plan |
+| Prompt structure | Greenfield plan; deepened in B3 (the Work Order is the five parts at task scale) |
 | Structured Output | Greenfield acceptance table; then B2 comparison, B3 Gate report, delivery summary |
-| Model choice / reasoning effort | Greenfield (high to plan, low for small steps); analysis; B2; B3 |
+| Model choice / reasoning effort | First taught in analysis checkpoint 1 (Greenfield only says 「先仔細想過再回答」 in the prompt); deepened in B2 (high to compare, low to implement) and B3 |
 | Token saving | Time Skip (new conversation), analysis (named files, summaries) |
 | Skill | Shared context creates `skills/team-rules.md`; B1 `skills/fix-bug-with-test.md`; B3 Work Order as `skills/b3-work-order.md`; retro: the learner's own skill |
 

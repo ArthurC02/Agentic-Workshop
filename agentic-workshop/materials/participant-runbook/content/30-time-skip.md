@@ -13,7 +13,7 @@ section: Time Skip
 - **情境**：Smart Ticket 已上線 12 個月（Time Skip：時間快轉）。你被調去接手同事維護的既有系統 B0（Brownfield Baseline：既有專案的起點版本，之後的 B1、B2、B3 都接在它上面）。
 - **你的目標**：4 分鐘內停下 Greenfield，在 B0 開一個新的 Agent 對話，讓 Agent 把環境跑起來並記下起點。
 - **今天的技巧**：**開新對話先給規則與脈絡**。換專案就開新對話，第一件事貼規則、說明背景；Agent 不記得上一個專案，沒給規則它就照自己的習慣做。這也是 Token 節費：不把舊對話帶過來。
-- **完成的樣子**：Agent 複述得出規則與背景；它回報版本是 B0、健康檢查正常，並把測試結果與 Git 起點寫進 `notes/time-skip.md`。
+- **完成的樣子**：Agent 複述得出規則與背景；它回報版本是 B0，並把測試結果與 Git 起點寫進 `notes/time-skip.md`。
 ```
 
 ```callout warning
@@ -27,7 +27,7 @@ section: Time Skip
 
 - **29–31 · 檢查點 1 停手並取得 B0**：請 Greenfield 的 Agent 停掉 App，下載 B0 並解壓到短路徑。
 - **31–32 · 檢查點 2 開新對話先貼規則與背景**：在 B0 開新的 Agent 對話，貼一段規則與背景，請它複述，複述完就開始安裝環境。
-- **32–33 · 檢查點 3 請 Agent 建好環境並記下起點**：Agent 跑測試、確認版本與健康檢查、建立 Git 起點，寫進 `notes/time-skip.md`。
+- **32–33 · 檢查點 3 請 Agent 建好環境並記下起點**：Agent 跑測試、確認版本、建立 Git 起點，寫進 `notes/time-skip.md`。
 
 ## 檢查點 1 · 停手並取得 B0（第 29–31 分鐘）
 
@@ -105,20 +105,18 @@ Token（詞元）是 Agent 讀寫文字的計費與記憶單位：對話越長�
 環境裝好後，請執行 pytest -q，用白話告訴我測試有幾個通過／失敗／跳過。遇到錯誤時先說明原因，不要自行修改程式。
 接著請：
 1. 告訴我這個 App 的名稱與版本號（app.title 與 app.version 的實際值），確認 app.version 是 B0。
-2. 在背景啟動這個專案的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 回傳 status=ok，然後告訴我 /docs 的網址。之後要換版本或結束時，先停止你啟動的伺服器。
-3. 建立 Git 起點：git init；如果專案裡沒有 .gitignore，先建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（讓執行測試產生的暫存檔不會被記進版本，之後的變更內容才乾淨）；再把目前所有檔案 Commit 成「B0 baseline」。除了新增 .gitignore，不要修改任何檔案。如果 Git 要求設定姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」；電腦沒有 Git 就告訴我你改用什麼方式記錄起始狀態。
-4. 把版本、健康檢查結果、測試數字（通過／失敗／跳過）與 Commit 是否成功寫進 notes/time-skip.md。
+2. 建立 Git 起點：git init；如果專案裡沒有 .gitignore，先建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（讓執行測試產生的暫存檔不會被記進版本，之後的變更內容才乾淨）；再把目前所有檔案 Commit 成「B0 baseline」。除了新增 .gitignore，不要修改任何檔案。如果 Git 要求設定姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」；電腦沒有 Git 就告訴我你改用什麼方式記錄起始狀態。
+3. 把版本、測試數字（通過／失敗／跳過）與 Commit 是否成功寫進 notes/time-skip.md。
 做完停下等我。
 ```
 
 **看到什麼算過關**：
 
-- 版本是 B0；瀏覽器打開 Agent 給的 `/docs` 網址看得到 API 清單。
-- `notes/time-skip.md` 裡有測試數字與 Commit 結果。目前有若干測試失敗是正常的，**先不要修改**，第 33 分鐘起由個人分析處理。
+- Agent 回報的 `app.version` 是 B0。
+- `notes/time-skip.md` 裡有測試數字與 Commit 結果。目前有若干測試失敗是正常的，**先不要修改**，第 33 分鐘起由個人分析找原因，B1 才修改。
 
 ```callout tip
 常見狀況
-- 埠號 8000 被佔用：多半是 Greenfield 的 App 沒停，回檢查點 1 請舊對話的 Agent 停掉。
 - 環境建不起來：貼 [環境準備](#environment) 頁「疑難排解」的提示詞，請 Agent 先用白話說明原因與建議做法，你決定後再讓它處理；仍無法啟動請立即告知主持人，不要改用其他版本。
 ```
 
@@ -126,14 +124,6 @@ Token（詞元）是 Agent 讀寫文字的計費與記憶單位：對話越長�
 
 ```include
 zip=participant-29-time-skip.zip path=agentic-workshop/02-time-skip/participant/03-brownfield-handover.md
-```
-
-```form
-{"id": "time-skip-check", "title": "Time Skip 確認","fields":[
-{"id": "rules-first", "label": "新對話的第一件事是貼規則與背景，Agent 複述正確", "type": "select", "options": ["是", "否", "不確定"]},
-{"id": "b0-ready", "label": "版本是 B0、健康檢查正常、Git 起點與測試數字已寫進 notes/time-skip.md", "type": "select", "options": ["是", "否", "不確定"]},
-{"id": "blocker", "label": "卡住的地方（選填，一句話）", "type": "text", "suggestions": ["沒有"]}
-]}
 ```
 
 ## 完成後想一想
@@ -149,6 +139,9 @@ zip=participant-29-time-skip.zip path=agentic-workshop/02-time-skip/participant/
 先自己想 30 秒，再跟旁邊的人各說一個答案：你們的 Agent 複述規則時，漏掉的是同一條嗎？
 ```
 
-這段學到的技巧：**換專案就開新對話，第一件事貼規則與背景，並請 Agent 複述確認。** 進入 Teammate 階段，對話會越來越長，從這裡開始練 Token 節費：一個任務一個新對話，只給需要的規則與檔案。
+```callout tip
+這段學到的技巧
+換專案就開新對話，第一件事貼規則與背景，並請 Agent 複述確認。進入 Teammate 階段，對話會越來越長，從這裡開始練 Token 節費：一個任務一個新對話，只給需要的規則與檔案。
+```
 
 下一步（第 33 分鐘）：[B0 系統 Context](#b0-context)，接著 [個人 Agent 分析](#individual-analysis)。

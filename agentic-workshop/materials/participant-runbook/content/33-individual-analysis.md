@@ -18,7 +18,7 @@ section: Brownfield｜Teammate
 
 ```callout warning
 這段不修改程式
-Agent 只讀、跑測試、寫 `notes/analysis.md`；不要讓它修改、刪除或弱化任何程式與測試。它若開始改檔案，請它立刻停下並還原。本段內容已在第 29 分鐘解鎖，用的是第 31 分鐘開的同一個 Agent 對話；如果開了新對話，先貼 [Time Skip 檢查點 2](#time-skip) 的規則與背景。
+Agent 只讀、跑測試、啟動伺服器、寫 `notes/analysis.md`；不要讓它修改、刪除或弱化任何程式與測試。它若開始改檔案，請它立刻停下並還原。本段內容已在第 29 分鐘解鎖，用的是第 31 分鐘開的同一個 Agent 對話；如果開了新對話，先貼 [Time Skip 檢查點 2](#time-skip) 的規則與背景。
 ```
 
 ## 檢查點總覽
@@ -49,6 +49,7 @@ Time Skip 學過 Token 節費，這次多加一招：不要叫它「讀整個專
 1. 系統地圖：從 README.md、docs/architecture.md 與 docs/adr 開始讀，用白話說明系統分成哪些部分、各負責什麼業務、彼此怎麼依賴（不要只列檔名）。
 2. 規則在哪：商業規則寫在哪些文件、對應到程式的哪一部分（用白話說，不用貼程式）。
 3. 測試現況：執行 pytest -q，只給摘要、不要貼完整輸出，告訴我通過、失敗、跳過各幾個；列出失敗測試的名稱，各用一句話說明它檢查什麼業務行為。先不要推論失敗原因。
+4. 在背景啟動這個專案的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 回傳 status=ok，告訴我 /docs 的網址。之後要換版本或結束時，先停止你啟動的伺服器。
 請依照下方固定格式寫進 notes/analysis.md 的前三節，附上你實際執行的指令，做完停下等我。
 固定格式：## 系統地圖／## 規則在哪／## 測試現況／## 文件與程式不一致處／## 還不確定的事；每個結論後面標「事實（來源）」「假設（依據）」或「缺口（缺什麼）」。
 ```
@@ -56,7 +57,7 @@ Time Skip 學過 Token 節費，這次多加一招：不要叫它「讀整個專
 **看到什麼算過關**：
 
 - 系統地圖說得出「誰負責什麼、依賴誰」，不是一串檔名。
-- 測試數字和 `notes/time-skip.md` 記下的一致。
+- 測試數字和 `notes/time-skip.md` 記下的一致；瀏覽器打開 Agent 給的 `/docs` 網址看得到 API 清單。
 - Agent 列得出它讀了哪些檔，而不是「讀了整個專案」。
 
 **如果卡住**：聽不懂就貼這段：
@@ -89,14 +90,6 @@ Agent 寫完會列出編號，你只要回「追問第 N 個」。時間不夠�
 zip=participant-33-analysis.zip path=agentic-workshop/03-brownfield/participant/03-individual-analysis-sheet.md
 ```
 
-```form
-{"id": "individual-analysis", "title": "個人分析確認","fields":[
-{"id": "map-ok", "label": "系統地圖說得出各部分負責什麼、彼此怎麼依賴（不只是檔名）", "type": "select", "options": ["是", "否", "不確定"]},
-{"id": "evidence-ok", "label": "每個結論都標了事實／假設／缺口，事實都附得出來源", "type": "select", "options": ["是", "否", "不確定"]},
-{"id": "challenge", "label": "我追問的那個結論，Agent 拿得出證據嗎？", "type": "select", "options": ["拿得出", "拿不出，已改標假設", "還沒追問"]}
-]}
-```
-
 第 39 分鐘停止，帶著 `notes/analysis.md` 進 [Shared Context](#shared-context)。
 
 ## 完成後想一想
@@ -116,4 +109,7 @@ zip=participant-33-analysis.zip path=agentic-workshop/03-brownfield/participant/
 先自己想 30 秒，再跟旁邊的人各說一個答案：你的 Agent 標成「假設」或「缺口」最多的是哪一塊？
 ```
 
-這段學到的技巧：**讓 Agent 帶你讀陌生專案：要地圖、要規則位置、要不一致清單，每個結論都要來源。** Teammate 階段的 Agent 技巧：分析時用強模型、高推論強度，但只讀重點檔省 Token；結論用固定標題寫進 notes，下一段小組才比得起來。
+```callout tip
+這段學到的技巧
+讓 Agent 帶你讀陌生專案：要地圖、要規則位置、要不一致清單，每個結論都要來源。Teammate 階段的 Agent 技巧：分析時用強模型、高推論強度，但只讀重點檔省 Token；結論用固定標題寫進 notes，下一段小組才比得起來。
+```

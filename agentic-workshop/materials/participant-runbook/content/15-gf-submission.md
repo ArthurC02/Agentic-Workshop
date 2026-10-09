@@ -6,7 +6,7 @@ group: greenfield
 section: Greenfield｜Tool
 ---
 
-> 本頁上半部取自 G0 參與者文件 `05-submission-checklist.md`，在提交之前使用。交付摘要由 Agent 寫進 `notes/greenfield.md`；你不用逐項勾，貼下方提示詞請 Agent 依清單自我檢查，你只核對它的回報，再在表單選交付決定。回報用固定欄位的表格（技巧：結構化輸出），缺項一眼就看得到。
+> 本頁上半部取自 G0 參與者文件 `05-submission-checklist.md`，在提交之前使用。交付摘要由 Agent 寫進 `notes/greenfield.md`；你不用逐項勾。（有時間再做）貼下方提示詞請 Agent 依清單自我檢查，你只核對它的回報，再在表單選交付決定；第 29 分鐘快到時跳過自我檢查，直接選交付決定。回報用固定欄位的表格（技巧：結構化輸出），缺項一眼就看得到。
 
 ```text
 請讀上一層資料夾（或 docs\ 副本）的 05-submission-checklist.md（提交清單），依清單逐項檢查 notes/greenfield.md、README 與 docs/，用固定三欄的表格回報：清單編號、結果（有證據／缺）、證據在哪一段或缺什麼。缺的項目先不要補，列給我看，等我決定。不要修改程式。

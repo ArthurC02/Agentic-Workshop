@@ -19,26 +19,28 @@ section: 回顧
 用 **10 分鐘**：Agent 先依今天的紀錄整理九段技巧與六個 Agent 技巧（Prompt 結構、結構化輸出、Skill、Token 節費、模型選擇、推論強度）用在哪、效果如何，你挑 3 個；Agent 寫成提示詞，你改到順手；最後小組口頭討論，留下一項行動。
 
 ```callout warning
-用證據回顧，不排名、不編數據
+用證據回顧，不排名、不編造數字
 - 「今天的例子」只寫本次實際發生的事；沒觀察到就寫「未觀察」。
 - 不排名、不比程式碼量。成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。
 - 沒有活動計時，不編造效率或 Agent 自主完成的比例。
 ```
 
-**檢查點一覽**（時間是最晚完成的時間，提早完成就往下走）
+## 檢查點總覽
 
-- 第 80–82 分 · 檢查點 1：Agent 依 `notes/` 與 `skills/` 整理今天的技巧並推薦，你挑 3 個
-- 第 82–86 分 · 檢查點 2：Agent 把 3 個技巧寫進 `notes/my-prompts.md`，你改到順手
-- 第 86–90 分 · 檢查點 3：小組討論盲點，留下一項行動，匯出所有表單
+時間是**最晚**完成的時間；提早完成就直接進入下一個檢查點。
+
+- **80–82 · 檢查點 1 選出三個要帶走的技巧**：Agent 依 `notes/` 與 `skills/` 整理今天的技巧並推薦，你挑 3 個。
+- **82–86 · 檢查點 2 請 Agent 寫成你的提示詞**：Agent 把 3 個技巧寫進 `notes/my-prompts.md`，你改到順手。
+- **86–90 · 檢查點 3 小組討論盲點，留下一項行動**：留下一項行動，匯出所有表單。
 
 ## 檢查點 1 · 選出三個要帶走的技巧（第 80–82 分鐘）
 
-先自己想，不討論。回想各段「完成後想一想」第 2 題（技巧題）你的答案：哪一段你最常想到「回到工作就要這樣做」，那就是候選。用你自己的 Agent（任何一個 Agent 對話都可以）。複製下方提示詞，再按下方「我的提示詞清單」文件上方的「複製 Markdown」，接在後面一起貼上。
+先自己想，不討論。回想各段「完成後想一想」第 2 題（技巧題）你的答案：哪一段你最常想到「回到工作就要這樣做」，那就是候選。用你自己的 Agent（任何一個 Agent 對話都可以）。複製下方提示詞，在第一行之前補一句「今天的資料夾都在：」加上這些資料夾共同的上層資料夾路徑（例如 `C:\work`），再按下方「我的提示詞清單」文件上方的「複製 Markdown」，接在後面一起貼上。
 
-今天的紀錄分散在幾個專案資料夾裡（Greenfield 的 `starter-repository`、Brownfield 的 `smart-ticket-b0`、用過復原包的還有 `recovery-b1`／`recovery-b2`），小組段落的紀錄只在主要 Agent 那台電腦。你不是主要 Agent 的使用者時，先請那位同學把他的 `notes/` 資料夾傳給你，放在你的 Agent 讀得到的地方。
+今天的紀錄分散在幾個專案資料夾裡（Greenfield 的 `starter-repository`、Brownfield 的 `smart-ticket-b0`、用過復原包的還有 `recovery-b1`／`recovery-b2`），小組段落的紀錄只在主要 Agent 那台電腦。你不是主要 Agent 的使用者時，先請那位同學把他的 `notes/` 資料夾傳給你，放在同一個上層資料夾裡。
 
 ```text
-我今天參加了 Agentic Coding 工作坊，附在這段後面的文件列了今天九段各練的一個技巧，以及六個 Agent 技巧。今天的紀錄分散在幾個專案資料夾：Greenfield 的 starter-repository、Brownfield 的 smart-ticket-b0、復原包的 recovery-b1 或 recovery-b2，以及同學傳給我的 notes 資料夾。先問我這些資料夾在哪（或請我給一個上層資料夾，由你搜尋裡面所有的 notes/ 與 skills/），再讀今天的紀錄；全部找不到就問我今天哪幾段印象最深，不要猜：
+我今天參加了 Agentic Coding 工作坊，附在這段後面的文件列了今天九段各練的一個技巧，以及六個 Agent 技巧。今天的紀錄分散在幾個專案資料夾：Greenfield 的 starter-repository、Brownfield 的 smart-ticket-b0、復原包的 recovery-b1 或 recovery-b2，以及同學傳給我的 notes 資料夾。請在我給的上層資料夾裡搜尋所有的 notes/ 與 skills/，讀今天的紀錄；我沒給或全部找不到，就問我今天哪幾段印象最深，不要猜：
 1. 用簡短條列列出九段技巧，每個一行：今天在哪個 notes 檔、哪一段用過，結果如何。
 2. 再列六個 Agent 技巧，每個一行：今天哪一步用了它（提示詞、skills 檔或 notes 的哪一段）、效果如何。模型與推論強度先看 notes/b3.md 的「已核准背景」，沒記錄就問我。
 找不到紀錄的寫「未觀察」，不要編。
@@ -115,6 +117,19 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 
 ```include
 zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/participant/maturity-comparison.md
+```
+
+## 完成後想一想
+
+不用填表、不用寫下來，自己想一想就好：
+
+1. **觀察**：今天哪一段 Agent 的回報最讓你放心？靠的是哪一種證據？
+2. **技巧**：你帶走的 3 段提示詞，哪一段明天就用得上？用在哪件工作？
+3. **延伸**：回到團隊後，誰會讀你的 Skill 檔？要補什麼，他才照著做得出來？
+
+```callout tip
+💬 討論一下
+先自己想 30 秒，再跟旁邊的人各說一個答案：你明天第一個要用的是哪一段提示詞？
 ```
 
 ```callout tip

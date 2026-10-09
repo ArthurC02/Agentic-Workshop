@@ -47,7 +47,7 @@ section: 參考
 | Regression（回歸問題） | 修改後，原本正常的功能被改壞。Regression 測試就是確認既有功能沒被改壞：不移除既有測試，也不把正確的期待值改掉；因規則改變而過時的期待值，須列出規則編號（Rule ID）並經人核准後才更新。 | B1 修好學生票後，成人票相關測試仍要通過。 | B1 任務卡 | ISTQB〈Glossary〉 |
 | PASS／FAIL／NOT VERIFIED | 通過／失敗／未驗證。沒有實際執行就只能寫未驗證，不能寫 PASS。 | 交付摘要的驗收結果欄。 | B3 三道 Gate | 本課程〈Digital Worker Delivery Summary〉 |
 | 驗收對照表 | Agent 用來回報測試結果的表：每條驗收條件或規則一列，寫編號、白話內容、通過／失敗／未驗證，以及依據的測試名稱；最後一行是通過、失敗、跳過各幾個。你看這張表判斷結果，不看原始輸出或程式。 | B3 第 74 分鐘請 Agent 把驗收對照表寫進 `notes/b3.md`。 | Greenfield 檢查點 3 | 本課程〈Greenfield Acceptance Criteria〉 |
-| 變更審查 | 取代自己讀變更內容（Diff）：請 Agent 用白話說明改了哪些檔案與原因，並以「是／否／不確定」回答三題：改的檔案都在核准範圍內？測試數沒有變少也沒有新增跳過？沒有刪測試，改過的期待值都附規則編號與核准紀錄？任何一題是「否」或「不確定」就不核准。 | B3 Gate 3 前的變更審查三題。 | Greenfield 檢查點 3 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
+| 變更審查 | 取代自己讀變更內容（Diff）：請 Agent 用白話說明改了哪些檔案與原因，並以「是／否／不確定」回答固定的審查題（Greenfield／B1 四題、B3 三題）：改的檔案都在核准範圍內？測試數沒有變少也沒有新增跳過？沒有刪測試，改過的期待值都附規則編號與核准紀錄？任何一題是「否」或「不確定」就不核准。 | B3 Gate 3 前的變更審查三題。 | Greenfield 檢查點 3 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
 | /docs（Swagger 介面） | 伺服器啟動後在瀏覽器開 `http://127.0.0.1:8000/docs` 看到的 API 測試頁面：點開 API → 按「Try it out」→ 在 Request body 貼上範例 → 按「Execute」→ 看 Response 的狀態碼和內容。不用打指令就能試 API。狀態碼 201 是成功、404 找不到、422 輸入資料驗證失敗（FastAPI 預設）；不符商業規則時，Greenfield 依它的提示詞約定回 400（例如人數 0 人或超過 4 人），既有的 Smart Ticket 程式（B0 起，B3 團體訂票沿用）則回 409，與「和目前狀態衝突」同一個碼（例如團體人數不在 5–20 人）。 | B3 Gate 3 前在 /docs 試團體訂票。 | Greenfield 檢查點 4 | FastAPI 官方文件〈First Steps〉；IETF〈RFC 9110 HTTP Semantics〉 |
 | notes 資料夾（紀錄檔） | 學員 Repo 裡的 `notes/` 資料夾，由 Agent 把分析、計畫、核准決策原文、驗收對照表與交付摘要寫成檔案；你只做決定與核對，不用把內容抄進表單。 | `notes/b1.md`、`notes/b3.md`、`notes/delivery.md`。 | 歡迎與使用方式 | 本課程〈歡迎與使用方式〉 |
 | SHA256 雜湊 | 檔案的指紋：檔案只要有一個位元組被改，算出的值就不同；用來確認下載的檔案是原版、沒有損壞。 | 使用復原包時，核對下載卡上的 SHA256。 | B1 Recovery | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
@@ -70,13 +70,13 @@ section: 參考
 |---|---|---|---|---|
 | Root Cause（根因） | 問題真正的原因；尚未驗證的說法應標為假設。 | B1 請 Agent 找出學生票折扣錯在哪裡，並用白話說明。 | B1 任務卡 | ISTQB〈Glossary〉 |
 | Impact Analysis（影響分析） | 區分必須修改、可能受影響與不應修改的範圍。 | B2 請 Agent 比較方案時列出的影響範圍。 | B2 任務卡 | ISTQB〈Glossary〉 |
-| Task Breakdown（工作拆解） | 把方案拆成可逐步核准、逐步執行的步驟。 | Greenfield 的 5–8 步計畫，一次只放行一小步。 | B2 檢查點 1 | 本課程〈TASK-B2-001：導入不可疊加的最有利優惠政策〉；Claude Code 官方文件〈Best practices for Claude Code〉 |
+| Task Breakdown（工作拆解） | 把方案拆成可逐步核准、逐步執行的步驟。 | Greenfield 的 5–8 步計畫，一次只放行一小步。 | Greenfield 檢查點 2 | 本課程〈TASK-B2-001：導入不可疊加的最有利優惠政策〉；Claude Code 官方文件〈Best practices for Claude Code〉 |
 | Gate（核准關卡） | 人員做決定的檢查點；核准是決策，不等於功能已通過驗收。 | B3 的 Gate 1 需求理解、Gate 2 影響分析與設計、Gate 3 交付審查。 | 歡迎與使用方式（預告）；B3 | 本課程〈B3 人員核准 Gate〉；Anthropic Engineering〈Building effective agents〉 |
 | APPROVE／APPROVE WITH CONDITIONS／REJECT | 核准／附條件核准／拒絕（REJECT AND REVISE 是退回修正）。附條件核准時，條件解除後才可續行。 | Gate 決策與例外回應表單的選項。 | B3 流程 | 本課程〈B3 人員核准 Gate〉 |
 | Review（檢視） | 審查實際證據，核對需求、範圍與未完成事項。 | 看驗收對照表、變更審查答案與文件是否一致。 | Agent 工作方式與安全規則 | Google Engineering Practices〈Google's Code Review Guidelines〉 |
 | Delivery（交付）／Delivery Summary（交付摘要） | 把成果與證據整理成可審查的摘要交出去；交付不等於完整軟體上線。 | 第 76–80 分鐘請 Agent 把交付摘要寫進 `notes/delivery.md`，人核對證據。 | 交付 | 本課程〈Digital Worker Delivery Summary〉 |
-| Level（完成等級） | B3 的完成程度：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付。依證據擇一，不自動選 Level 3。 | 只完成 Gate 1／2 的分析與設計時，如實交付 Level 1。 | B3 檢查點 4 | 本課程〈B3 人員核准 Gate〉 |
-| Work Order（工作命令） | 交給 Agent 的正式工作說明，含範圍、限制與停止條件；就是給 Agent 的 Skill。 | B3 第 63 分鐘交給主要 Agent，存成 `skills/b3-work-order.md`。 | B3 | 本課程〈Digital Worker Work Order〉 |
+| Level（完成等級） | B3 的完成程度：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付。依證據擇一，不自動選 Level 3。 | 只完成 Gate 1／2 的分析與設計時，如實交付 Level 1。 | B3 檢查點 4 | 本課程〈B3 任務卡 TASK-B3-001〉；本課程〈Tool → Teammate → Digital Worker比較〉 |
+| Work Order（工作單） | 交給 Agent 的正式工作說明，含範圍、限制與停止條件；就是給 Agent 的 Skill。 | B3 第 63 分鐘交給主要 Agent，存成 `skills/b3-work-order.md`。 | B3 | 本課程〈Digital Worker Work Order〉 |
 | Escalation（升級處理） | Agent 遇到停止條件時停下，提出證據與選項，交給人決定。 | Agent 想加入外部資料庫時，停下來請人決定。 | B3 例外回應卡 | 本課程〈Exception Response 與 Escalation〉 |
 | Exception Response（例外回應） | 主持人宣布例外事件時，Agent 先停下整理提議與證據，人判斷是否在核准範圍內並回一句決定。 | 第 69–70 分鐘的例外事件。 | B3 檢查點 3 | 本課程〈Exception Response 與 Escalation〉 |
 | 提示詞清單 | 把今天用過的技巧寫成可直接貼給 Agent 的提示詞，會變的部分用〈 〉標出，並寫明做完要看什麼證據。 | 回顧時每人請 Agent 寫進 `notes/my-prompts.md` 的 3 段提示詞，最常用的一段另存成 Skill 檔。 | 回顧 | 本課程〈回顧：把今天的技巧變成自己的提示詞清單〉 |

@@ -108,4 +108,7 @@ zip=participant-39-shared-context.zip path=agentic-workshop/03-brownfield/partic
 先自己想 30 秒，再跟旁邊的人各說一個答案：你們的「仍有分歧」裡，哪一條最可能影響接下來的任務？
 ```
 
-這段學到的技巧：**把共識寫成檔案給 Agent，之後每段都先請它讀，而不是靠口頭重講。** 把反覆要用的規則寫成 Skill 檔，是從 Teammate 走向 Digital Worker 的準備：到 B3，整份工作單就是交給 Agent 的 Skill。
+```callout tip
+這段學到的技巧
+把共識寫成檔案給 Agent，之後每段都先請它讀，而不是靠口頭重講。把反覆要用的規則寫成 Skill 檔，是從 Teammate 走向 Digital Worker 的準備：到 B3，整份工作單就是交給 Agent 的 Skill。
+```

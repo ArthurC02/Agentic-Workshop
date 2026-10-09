@@ -26,11 +26,13 @@ section: Delivery
 - 交件後，交付摘要與 Level 保持交件時的樣子；人不補寫程式或測試。
 ```
 
-**檢查點一覽**（時間是最晚完成的時間，提早完成就往下走）
+## 檢查點總覽
 
-- 第 76–78 分 · 檢查點 1：Agent 寫 `notes/delivery.md`，你抽查三個結論的證據
-- 第 78–79 分 · 檢查點 2：匯出表單，連同 `notes/` 資料夾交件
-- 第 79–80 分 · 看投影；第 80 分進入回顧
+時間是**最晚**完成的時間；提早完成就直接進入下一個檢查點。
+
+- **76–78 · 檢查點 1 請 Agent 寫交付摘要，你來核對**：Agent 寫 `notes/delivery.md`，你抽查三個結論的證據。
+- **78–79 · 檢查點 2 匯出與交件**：匯出表單，連同 `notes/` 資料夾交件。
+- **79–80**：看投影；第 80 分進入回顧。
 
 ## 檢查點 1 · 請 Agent 寫交付摘要，你來核對（第 76–78 分鐘）
 
@@ -79,7 +81,7 @@ Agent 建議的 Level，小組同意嗎？如果只看驗收對照表會選哪�
 
 ```form
 {"id": "delivery-check", "title": "交付核對（任務 ID：TASK-B3-001）","fields":[
-{"id": "level", "label": "核對後的完成等級", "type": "select", "options": ["Level 1：分析完成（Analysis Complete）", "Level 2：核心流程完成（Core Flow Complete）", "Level 3：交付完成（Delivery Complete）"], "hint": "依 notes/delivery.md 的證據擇一，不自動選 Level 3。"},
+{"id": "level", "label": "核對後的完成等級", "type": "select", "options": ["Level 1：分析完成（Analysis Complete）", "Level 2：核心流程完成（Core Flow Complete）", "Level 3：完整交付（Delivery Complete）"], "hint": "依 notes/delivery.md 的證據擇一，不自動選 Level 3。"},
 {"id": "evidence-cited", "label": "抽查的三句都指得出證據嗎？", "type": "select", "options": ["是", "否，已請 Agent 改成未驗證", "不確定"]},
 {"id": "handed-in", "label": "已匯出表單並連同 notes 資料夾交件", "type": "checkbox"}
 ]}

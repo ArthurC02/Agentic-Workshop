@@ -84,12 +84,12 @@
   <ol class="steps">
     <li>開新對話（可選較強模型），貼交辦提示詞，再用「複製 Markdown」接上任務卡、操作規則、工作單（Work Order）、三道 Gate</li>
     <li>Agent 先 Commit「B3 起點」，把工作單存成 Skill <code>skills/b3-work-order.md</code>，已核准背景（含起點測試數、模型）寫進 <code>notes/b3.md</code>，查不到的不猜</li>
-    <li><b>只交 Gate 1 資料，然後停下</b></li>
+    <li><b>交出 Gate 1 決策卡（5 個是非題），然後停下</b></li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 1 · 把工作單交給 Agent</p>
   <aside class="notes">
-    <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。請照 Runbook 檢查點 1，把工作單和四頁文件整份貼給主要 Agent。它先 Commit 一個「B3 起點」（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 的需求理解就停下。」</p>
-    <p><b>看</b>：第 64 分 Agent 應已交 Gate 1（摘要、假設、缺口、Out of Scope）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。只口頭交代、沒貼工作單 → 提醒技巧：「範圍和停止條件要寫給 Agent，它才知道何時停。」</p>
+    <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。請照 Runbook 檢查點 1，把工作單和四頁文件整份貼給主要 Agent。它先 Commit 一個「B3 起點」（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」</p>
+    <p><b>看</b>：第 64 分 Agent 應已交 Gate 1（摘要、假設、缺口、Out of Scope 寫進 notes，對話是 5 個是非題的決策卡）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。只口頭交代、沒貼工作單 → 提醒技巧：「範圍和停止條件要寫給 Agent，它才知道何時停。」</p>
     <p><b>可回答</b>：操作規則與工作單的意思。操作規則 2 分鐘讀不完的組，可在 Agent 準備 Gate 1 時讀完。</p>
   </aside>
 </section>
@@ -98,13 +98,13 @@
   <p class="kicker">檢查點 2 / 4 · 第 64–66 分鐘</p>
   <h2 class="title">Gate 1：確認 Agent 懂需求</h2>
   <ol class="steps">
-    <li>貼提示詞：Agent 用 Gate 回報格式整理成 5 個是非題與建議決策</li>
+    <li>看檢查點 1 的決策卡：5 個是非題與建議決策</li>
     <li>對照任務卡回答；查不到依據由小組確認，不讓 Agent 猜</li>
-    <li>第 66 分前做 Gate 1 決策：<b>核准需求才進入設計</b>；Agent 照原文記進 notes</li>
+    <li>第 66 分前貼提示詞說出 Gate 1 決策：<b>核准需求才進入設計</b>；Agent 照原文記進 notes</li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 2 · Gate 1：確認 Agent 懂需求</p>
   <aside class="notes">
-    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 資料後，請核對它的需求理解，回答它的問題。需求理解錯了，後面做得再快都白做。」</p>
+    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照任務卡回答那 5 個是非題。需求理解錯了，後面做得再快都白做。」</p>
     <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策；核准才進 Gate 2 設計，退回就要求修正。Agent 問你時回一句話（例如『核准，核准人某某，第 66 分』），它會照原文記進 notes/b3.md。」</p>
     <p><b>看</b>：先 Review 再核准｜Challenge 假設、風險、邊界與替代方案｜不跳 Gate。Gate 決策由人說，Agent 只照抄、不代填；學員在 Runbook 的 Gate 決策表只選一欄。</p>
     <p><b>條件核准（逐字）</b>：「條件核准不等於可忽略條件直接執行：條件必須具體、可驗證且先解除」。條件須說明哪些活動已允許、哪些仍被阻擋，以及要回到哪個 Gate。</p>
@@ -188,7 +188,7 @@
   <ol class="steps">
     <li>70：條件解除後才說「開始執行」；Agent 只改核准範圍，遇停止條件停下升級</li>
     <li>74：<b>停止擴充</b>；Agent 把驗收對照表、變更審查答案、Gate 3 資料寫進 notes</li>
-    <li>75：Gate 3 只看答案、不看程式；可在 <code>/docs</code> 試一筆；Level 不自動選 3</li>
+    <li>75：Gate 3 只看決策卡答案、不看程式；再貼第二段提示詞重啟伺服器並記決策；可在 <code>/docs</code> 試一筆；Level 不自動選 3</li>
   </ol>
   <p class="callout warn">第 76 分鐘停止新增；人不補程式或測試，缺項如實列出。</p>
   <aside class="notes">
