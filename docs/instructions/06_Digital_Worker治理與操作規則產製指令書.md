@@ -383,7 +383,7 @@ Agent 升級時使用：
 
 ## Recommended Decision
 
-APPROVE | CONDITIONAL APPROVAL | REJECT
+APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
 ```
 
 Agent 必須根據實際完成度填寫，不得自動勾選 Level 3。

@@ -171,6 +171,7 @@ uvicorn smart_ticket.main:app --app-dir src --reload
 - Skill `plain-language-review`：學員文字白話化與縮寫展開的共用規範（`wording-spec.md`）。
 - Workflow `wording-pass`：依 `scope`（main／dlc）分組平行審視並修改，再做跨組一致性檢查。
 - Skill `curriculum-review`：教材的內外兩個迴圈。外迴圈審視整體規劃是否循序漸進（知識點在首次需要處介紹、難易度合理、螺旋加深）；內迴圈審視每個任務的設定與內文（提示詞可執行、過關條件可觀察、事實與 Repo 一致、無答案洩漏）。
+- Skill／Workflow `rehearsal`：以候選包建立沙箱，由 Agent 扮演學員與學員的 Agent，依序貼上 Runbook 提示詞實跑，回報哪裡跑不動、過關條件沒出現或知識點未介紹先使用；是證明「複製提示詞即可通關」的唯一方法。
 - Workflow `curriculum-review`：依 `scope`（main／dlc）同時跑外迴圈審查與各段內迴圈審查，逐段驗證發現後修正，再做跨段一致性檢查。內容改版後、發布前執行。
 - Hook `guard_generated.py`：禁止直接修改建置產物（Runbook／簡報 HTML、Speech Deck 與講義），改由原稿重建。
 

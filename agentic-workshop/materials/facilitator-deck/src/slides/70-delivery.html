@@ -45,7 +45,7 @@
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝建立及連續座位完成，主要單元測試通過，付款補償或文件尚未完整｜Level 3 完整交付＝建立、付款成功與失敗補償完成，回歸測試通過，文件與交付摘要完成。</p>
     <p><b>看</b>：Level 擇一並說明證據｜附 Agent 實際執行的測試命令與驗收對照表，未執行明記原因，未驗證不能寫 PASS｜偏差（沒有偏差也須明寫）。</p>
     <p><b>介入</b>：測試全過就選 Level 3 → 問「範圍、AC、文件與風險核對了嗎？」宣稱 Level 3 仍須完整功能、Regression、文件與 Review 證據，不降低原驗收門檻。學習成果可為 Level 1／2，不必硬拚 Level 3。學員自己動手寫摘要 → 提醒技巧：「交給 Agent 寫，你只核對證據。」</p>
-    <p><b>Delivery Summary 十二欄</b>：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜CONDITIONAL APPROVAL｜REJECT；人員最後決策以 Gate 3 為準）。</p>
+    <p><b>Delivery Summary 十二欄</b>：Mission Result、Completion Level、Implemented Scope、Not Implemented、Files Changed、Business Rules Covered、Acceptance Criteria Results、Test Command and Actual Result、Documentation Updated、Risks and Limitations、Deviations from Approved Plan、Recommended Decision（APPROVE｜APPROVE WITH CONDITIONS｜REJECT AND REVISE，與 Gate 用詞一致；人員最後決策以 Gate 3 為準）。</p>
   </aside>
 </section>
 
@@ -101,7 +101,7 @@
     <div>
       <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">人團體訂票；一般訂票維持 1–4 人</p></div>
       <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">條規則（原 40 ＋ 新 17）</p></div>
-      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（原 55 ＋ 新增 20）</p></div>
+      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（參考版本：原 55 ＋ 新增 20；各組數字不同屬正常）</p></div>
     </div>
   </div>
   <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段、無部分成立。</p>
@@ -248,10 +248,11 @@
       <tr><td>訂票／座位</td><td>1–4 人、待付款；不保證相鄰</td><td>原樣</td><td>原樣</td><td>新增 5–20 團體；同車廂完整連續</td></tr>
       <tr><td>付款</td><td>唯一訂單；失敗維持待付款／保留座位</td><td>原樣</td><td>原樣</td><td>團體失敗取消／全釋放／不建訂單</td></tr>
       <tr><td>改票／退款</td><td>已付款才可改；退款全釋放</td><td>原樣</td><td>改票用最有利政策重新計價</td><td>團體改票回 409；保留已付款團體的退款流程</td></tr>
-      <tr><td>測試</td><td>44：5 failed／39 passed</td><td>44 passed</td><td>55 passed</td><td>75 passed</td></tr>
+      <tr><td>測試</td><td>44：5 failed／39 passed</td><td>44 passed</td><td>55 passed</td><td>75 passed（參考版本）</td></tr>
       <tr><td>規則數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
     </tbody>
   </table>
+  <p class="callout fx fx-fade">B3 的 75 是參考版本的數字；各組測試數不同屬正常，看的是有沒有比 B3 起點變少。</p>
   <aside class="notes">
     <p><b>來源</b>：<code>03-brownfield/evaluation/11-b0-to-b3-version-matrix.md</code> 主表（畫面為精簡版）。</p>
     <p>省略列：FARE-007～010（B0 無｜B1 未提前改政策｜B2 實作逐人最低 rate＋Type／Rate／Amount 明細｜B3 團體逐位明細驗證）；債務／文件落差（B0 3 債／2 落差｜B1 不以 BugFix 清債｜B2 折扣文件同步，通知及改票指南舊落差保留｜B3 同步團體與 Change 邊界）。測試時間：B2 1.21s、B3 0.58s。</p>

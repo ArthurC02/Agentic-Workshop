@@ -33,21 +33,7 @@ ZIP 內的資料夾層級較深。請解壓縮到短路徑，例如 `C:\work\g0`
 
 ## 每一版的準備步驟
 
-解壓縮後，在該版 Repository 的根目錄（含 `requirements.txt` 的資料夾）開啟你的 Agent，先貼上該段的「Agent 工作規則」，再依序貼上下面兩段提示詞：
-
-- [ ] 請 Agent 準備環境並執行起始測試，記下它回報的測試結果
-
-```text
-請幫我準備這個專案的執行環境：確認 Python 版本是 3.13，在專案資料夾建立 .venv 虛擬環境並安裝 requirements.txt，接著執行 pytest -q。用白話告訴我：環境是否建好、測試有幾個通過／失敗／跳過，以及下一步要做什麼。遇到錯誤時先說明原因，不要自行修改程式。
-```
-
-- [ ] 請 Agent 啟動 App，確認健康檢查正常並取得 `/docs` 網址
-
-```text
-請在背景啟動這個專案的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 回傳 status=ok，然後告訴我 /docs 的網址。之後要換版本或結束時，先停止你啟動的伺服器。
-```
-
-- [ ] 用瀏覽器開 Agent 給你的 `/docs` 網址，看得到 API 清單就代表 App 正常運作。
+現在還沒有程式碼，不用做任何準備。建環境、跑起始測試的提示詞在 [Greenfield 任務](#greenfield) 檢查點 1，啟動伺服器的提示詞在檢查點 4；B0 的準備在 Time Skip 章節。到時候照該頁貼給 Agent 即可，這裡只放出錯時用的疑難排解。
 
 ## 疑難排解
 
@@ -60,6 +46,11 @@ ZIP 內的資料夾層級較深。請解壓縮到短路徑，例如 `C:\work\g0`
 ```callout tip
 Agent 回報無法啟用 venv
 Windows 的 PowerShell 可能因執行原則限制無法啟用 venv。請 Agent 不要啟用，直接用 `.venv` 裡的 Python 執行即可。
+```
+
+```callout tip
+Git 回報檔名太長（Filename too long）
+多半是解壓縮的路徑太深。請 Agent 只在這個專案設定 `core.longpaths` 為 true（不要用 --global），或把 ZIP 重新解壓縮到更短的路徑，例如 `C:\work\g0`。
 ```
 
 ```callout tip

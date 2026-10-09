@@ -72,4 +72,4 @@ Stay tool-neutral: no vendor product names, commands or config paths as requirem
 - Delete content made obsolete, contradictory or duplicated by your edit. Do not only add.
 - Facilitator notes: situation and technique first, what to watch for, paste-ready hint prompts. Evaluation judges technique use plus evidence in `notes/` and `skills/`, never the number of form fields filled.
 - Plain Traditional Chinese with full-width punctuation (see `plain-language-review`). Preserve each file's line endings.
-- After editing, run `curriculum-review` for broad changes, then `release-materials`.
+- After editing, run `curriculum-review` for broad changes and `rehearsal` for changed prompts, then `release-materials`.

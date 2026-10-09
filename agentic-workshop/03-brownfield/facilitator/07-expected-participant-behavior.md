@@ -20,7 +20,7 @@
 
 技巧：請Agent提2–3個方案並比較，人來選。Agent主動分析規則交互作用、跨模組影響，把2–3方案及影響、風險的比較寫進`notes/b2.md`；人不接受第一個答案，至少Challenge一個假設、選方案、核准Task Breakdown，選擇理由寫得出來。Agent技巧證據：比較表欄位固定（方案／改動範圍／風險／測試影響／建議，結構化輸出），比較時調高推論強度、實作時調回低。主要Agent在核准後主導實作、測試與文件，人透過變更審查回答、驗收對照表與/docs試用確認Rule／AC，並決定接受或修正。
 
-觀察是否逐旅客最有利、不疊加、改票與建立一致、Applied Discount真實、折扣文件同步且完整Regression保留。只改一個分支、忽略Change、未比較方案、以全團共同優惠或疊乘計价、全面Engine重構均需介入。記錄核准、提示、實際結果與未完成，不把Recovery視為原小組完成。
+觀察是否逐旅客最有利、不疊加、改票與建立一致、Applied Discount真實、折扣文件同步且完整Regression保留。舊第一匹配測試（`test_corporate_first_match_precedes_more_favorable_advance`，665）與FARE-008衝突：預期Agent先停下列出測試名稱、舊期待與Rule ID，由人核准後才改成新規則的結果（595）；直接改期待值未經核准、或改到其他期待值，需介入。只改一個分支、忽略Change、未比較方案、以全團共同優惠或疊乘計价、全面Engine重構均需介入。記錄核准、提示、實際結果與未完成，不把Recovery視為原小組完成。
 
 本段是Teammate→Digital Worker過渡；B3正式操作限制待下一階段材料，不把後續答案提前加入。
 

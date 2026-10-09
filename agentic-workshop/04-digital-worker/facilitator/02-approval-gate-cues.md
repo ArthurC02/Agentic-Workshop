@@ -4,7 +4,7 @@
 
 | B3相對分鐘 | 活動分鐘 | Cue與決策 |
 |---|---|---|
-| 0 | 63 | 發B3與Operating Rules，先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員在新對話把工作單整份交給Agent，Agent存成`skills/b3-work-order.md`（Skill）；工具有模型選單的選較強模型。 |
+| 0 | 63 | 發B3與Operating Rules，先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員在新對話把工作單整份交給Agent，Agent先Commit「B3 起點」（沒有Git就git init並建.gitignore），再把工作單存成`skills/b3-work-order.md`（Skill），並在`notes/b3.md`記下起點測試數與所用模型／推論強度；工具有模型選單的選較強模型。 |
 | 1 | 64 | Agent開始Gate1：摘要、假設、缺口、Out of Scope。 |
 | 3 | 66 | 人做Gate1決策；核准才進Gate2設計。 |
 | 3 | 66 | Agent開始Gate2：Impact、API／Seat／Atomicity、測試及風險。 |

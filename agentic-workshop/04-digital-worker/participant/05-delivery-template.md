@@ -56,7 +56,7 @@ Gate 2 計畫與實際差異：____；升級與人員決策：____。沒有偏�
 
 ## Recommended Decision
 
-APPROVE | CONDITIONAL APPROVAL | REJECT
+APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
 
 Agent 建議與理由：____；人員最後決策由 Gate 3 記錄，摘要中的 Gate 決策必須和 `notes/b3.md` 的原文一致。測試通過還須核對需求、範圍、文件及未完成事項。
 

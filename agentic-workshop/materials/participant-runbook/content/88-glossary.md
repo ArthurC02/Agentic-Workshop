@@ -37,18 +37,18 @@ section: 參考
 | Shared Context（共同脈絡） | 小組整理出的共同事實：比較各自分析後，記錄共同事實、分歧與待決事項；任務揭露後仍須另外取得範圍與計畫的核准。 | 第 39–44 分鐘由 Agent 寫成的 `notes/shared-context.md`。 | 共同脈絡 | 本課程〈Shared Context：把共識寫成檔案給 Agent〉 |
 | Approved Context（已核准的背景資料） | 經人確認、可以交給 Agent 當依據的背景資料。 | B3 開始時 Agent 寫進 `notes/b3.md` 的版本與已確認假設。 | B3 工作單 | 本課程〈Digital Worker Work Order〉 |
 | Seed Data（預設測試資料） | 系統啟動時就放好的固定資料，用來開發與測試。 | Greenfield 需求文件中的固定班次與站名。 | 環境準備 | 本課程〈Greenfield Business Requirements〉 |
-| Rule ID（規則編號） | 商業規則的編號。交付時列出商業規則與驗收條件的對應，逐項核對。 | `FARE-002`：學生為基礎票價的 75%。 | Greenfield 檢查點 2 | 本課程〈Rule Traceability Baseline〉 |
-| AC（Acceptance Criteria，驗收條件） | 說明功能必須符合什麼要求；AC ID 是其編號。每項以 API 或核心邏輯測試提供證據。 | `AC-B1-001`：單一學生旅客票價為基礎票價 75%。 | Greenfield 檢查點 2 | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
+| Rule ID（規則編號） | 商業規則的編號。交付時列出商業規則與驗收條件的對應，逐項核對。 | `FARE-002`：學生為基礎票價的 75%。 | Greenfield 檢查點 2（一句帶過，給 Agent 對照用） | 本課程〈Rule Traceability Baseline〉 |
+| AC（Acceptance Criteria，驗收條件） | 說明功能必須符合什麼要求；AC ID 是其編號。每項以 API 或核心邏輯測試提供證據。 | `AC-B1-001`：單一學生旅客票價為基礎票價 75%。 | Greenfield 檢查點 2（一句帶過，給 Agent 對照用） | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
 | Rule Traceability（規則追溯） | 每條規則都能對到哪段程式、哪個測試與哪份文件。 | B3 的 Gate 3 Input 要列出規則對照。 | B3 檢查點 4 | ISTQB〈Glossary〉；本課程〈Rule Traceability Baseline〉 |
 | ADR（Architecture Decision Record，架構決策紀錄） | 說明採用某項設計的原因與取捨。 | B0 的 `docs/adr/001-use-in-memory-repositories.md`。 | B0 系統 Context | Michael Nygard〈Documenting Architecture Decisions〉 |
-| Diff（變更內容） | 修改前後的差異。你不用自己讀；改請 Agent 回答變更審查問題，用白話說明改了什麼。 | Agent 用 `git diff` 檢查後，告訴你改了哪些檔案。 | Greenfield 檢查點 3 | Git 官方文件〈git-diff〉；Google Engineering Practices〈Code Review Developer Guide〉 |
-| Git 基準 | 修改前先請 Agent Commit 一次，之後 Agent 才說得出這次改了什麼。 | 請 Agent 執行 `git commit -m "B0 baseline"`。 | Greenfield 檢查點 1 | Pro Git〈About Version Control〉；Git 官方文件〈git-commit〉 |
+| Diff（變更內容） | 修改前後的差異。你不用自己讀；改請 Agent 回答變更審查問題，用白話說明改了什麼。 | Agent 用 `git diff` 檢查後，告訴你改了哪些檔案。 | Greenfield 檢查點 3（結構化輸出小卡） | Git 官方文件〈git-diff〉；Google Engineering Practices〈Code Review Developer Guide〉 |
+| Git 基準 | 修改前先請 Agent Commit 一次，之後 Agent 才說得出這次改了什麼。 | 請 Agent 執行 `git commit -m "B0 baseline"`。 | Greenfield 檢查點 1（由 Agent 代做） | Pro Git〈About Version Control〉；Git 官方文件〈git-commit〉 |
 | Skip／XFail | Agent 回報中可能出現的詞：Skip 是略過測試；XFail 是把測試標成預期會失敗。兩者都不代表功能已完成，不得用來隱藏失敗。 | G0 初始的 Skip 代表功能尚未實作。 | Greenfield 檢查點 1（Skip）、檢查點 3（XFail） | pytest 官方文件〈How to use skip and xfail to deal with tests that cannot succeed〉 |
-| Regression（既有功能沒被改壞） | 確認修改後既有功能仍符合要求；不移除既有測試，也不改既有測試的期待值。 | B1 修好學生票後，成人票相關測試仍要通過。 | B1 任務卡 | ISTQB〈Glossary〉 |
+| Regression（既有功能沒被改壞） | 確認修改後既有功能仍符合要求；不移除既有測試，也不把正確的期待值改掉；因規則改變而過時的期待值，須列出規則編號（Rule ID）並經人核准後才更新。 | B1 修好學生票後，成人票相關測試仍要通過。 | B1 任務卡 | ISTQB〈Glossary〉 |
 | PASS／FAIL／NOT VERIFIED | 通過／失敗／未驗證。沒有實際執行就只能寫未驗證，不能寫 PASS。 | 交付摘要的驗收結果欄。 | B3 三道 Gate | 本課程〈Digital Worker Delivery Summary〉 |
 | 驗收對照表 | Agent 用來回報測試結果的表：每條驗收條件或規則一列，寫編號、白話內容、通過／失敗／未驗證，以及依據的測試名稱；最後一行是通過、失敗、跳過各幾個。你看這張表判斷結果，不看原始輸出或程式。 | B3 第 74 分鐘請 Agent 把驗收對照表寫進 `notes/b3.md`。 | Greenfield 檢查點 3 | 本課程〈Greenfield Acceptance Criteria〉 |
-| 變更審查 | 取代自己讀變更內容（Diff）：請 Agent 用白話回答改了哪些檔案與原因、測試數有沒有變少或新增跳過、有沒有刪測試或改既有期待值；你逐題判斷，任何一題是「否」或「不確定」就不核准。 | B3 Gate 3 前的變更審查三題。 | Greenfield 檢查點 3 | Google Engineering Practices〈Code Review Developer Guide〉；本課程〈Coding Agent Usage Guide〉 |
-| /docs（Swagger 介面） | 伺服器啟動後在瀏覽器開 `http://127.0.0.1:8000/docs` 看到的 API 測試頁面：點開 API → 按「Try it out」→ 在 Request body 貼上範例 → 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、400 輸入錯誤、404 找不到）和內容。不用打指令就能試 API。 | B3 Gate 3 前在 /docs 試團體訂票。 | 環境準備 | FastAPI 官方文件〈First Steps〉 |
+| 變更審查 | 取代自己讀變更內容（Diff）：請 Agent 用白話說明改了哪些檔案與原因，並以「是／否／不確定」回答三題：改的檔案都在核准範圍內？測試數沒有變少也沒有新增跳過？沒有刪測試，改過的期待值都附規則編號與核准紀錄？任何一題是「否」或「不確定」就不核准。 | B3 Gate 3 前的變更審查三題。 | Greenfield 檢查點 3 | Google Engineering Practices〈Code Review Developer Guide〉；本課程〈Coding Agent Usage Guide〉 |
+| /docs（Swagger 介面） | 伺服器啟動後在瀏覽器開 `http://127.0.0.1:8000/docs` 看到的 API 測試頁面：點開 API → 按「Try it out」→ 在 Request body 貼上範例 → 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、400 不符規則、404 找不到）和內容。不用打指令就能試 API。 | B3 Gate 3 前在 /docs 試團體訂票。 | Greenfield 檢查點 4 | FastAPI 官方文件〈First Steps〉 |
 | notes 資料夾（紀錄檔） | 學員 Repo 裡的 `notes/` 資料夾，由 Agent 把分析、計畫、核准決策原文、驗收對照表與交付摘要寫成檔案；你只做決定與核對，不用把內容抄進表單。 | `notes/b1.md`、`notes/b3.md`、`notes/delivery.md`。 | 歡迎與使用方式 | 本課程〈歡迎與使用方式〉 |
 | SHA256 雜湊 | 檔案的指紋：檔案只要有一個位元組被改，算出的值就不同；用來確認下載的檔案是原版、沒有損壞。 | 使用復原包時，核對下載卡上的 SHA256。 | B1 Recovery | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
 
@@ -61,8 +61,8 @@ section: 參考
 | Structured Output（結構化輸出） | 要求 Agent 用固定格式回報（固定欄位的表格、固定標題或 JSON），人看得快、能比對，也能交給下一個 Agent 或程式處理。 | 驗收對照表、B2 方案比較表、B3 Gate 回報格式、交付摘要十二欄。 | Greenfield 檢查點 3 | Anthropic〈Structured outputs〉；OpenAI〈Structured Outputs〉 |
 | Skill（可重複使用的工作說明） | 把一套反覆要用的做法寫成 Markdown 檔，之後只要說「請先讀 skills/… 並照做」。工具若支援 Skill／自訂指令功能，可放到工具指定的位置；不支援也一樣能用。 | `skills/team-rules.md`、`skills/fix-bug-with-test.md`、B3 的 `skills/b3-work-order.md`。 | 共同脈絡 檢查點 2 | Anthropic〈Agent Skills〉 |
 | Token（詞元）與節費 | Token 是 Agent 讀寫文字的計費與記憶單位；對話越長、貼越多，越貴也越容易忘。節費做法：一個任務一個新對話、只讀指定的檔、要摘要不要整段輸出、把共識寫成檔案。 | B1 只讀 `skills/team-rules.md` 與任務卡；B3 細節寫進 `notes/b3.md`，對話只回摘要。 | Time Skip 檢查點 2 | Anthropic〈Context windows〉；Anthropic〈Token counting〉 |
-| 模型選擇 | 簡單、機械性的工作（跑測試、整理格式、改文字）用快速、便宜的模型；分析陌生程式、設計取捨、自主執行用推理能力較強的模型。 | B3 自主執行時，主要 Agent 選較強的模型。 | Greenfield 檢查點 2 | Anthropic〈Choosing the right model〉 |
-| 推論強度（Reasoning Effort） | 同一個模型可以調「想多深」：計畫、找 Bug 根因、比較方案、Gate 審查調高；小步、明確的修改調低。想越深越慢、越耗 Token。工具沒有這個設定時，在提示詞寫「先仔細想過再回答，列出你考慮過的可能」。 | B2 比較方案時調高，核准後實作調回低。 | Greenfield 檢查點 2 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
+| 模型選擇 | 簡單、機械性的工作（跑測試、整理格式、改文字）用快速、便宜的模型；分析陌生程式、設計取捨、自主執行用推理能力較強的模型。 | 個人分析陌生程式時選較強的模型；B3 自主執行時，主要 Agent 也選較強的模型。 | 個人分析 檢查點 1 | Anthropic〈Choosing the right model〉 |
+| 推論強度（Reasoning Effort） | 同一個模型可以調「想多深」：計畫、找 Bug 根因、比較方案、Gate 審查調高；小步、明確的修改調低。想越深越慢、越耗 Token。工具沒有這個設定時，在提示詞寫「先仔細想過再回答，列出你考慮過的可能」。 | 個人分析時調高；B2 比較方案時調高，核准後實作調回低。 | 個人分析 檢查點 1 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
 
 ## 常用工作術語
 

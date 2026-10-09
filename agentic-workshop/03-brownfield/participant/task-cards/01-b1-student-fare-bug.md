@@ -22,8 +22,8 @@
 | AC-B1-001 | 單一學生旅客票價為Base Fare75%。 |
 | AC-B1-002 | 成人票價不受影響。 |
 | AC-B1-003 | 成人加學生Booking Total正確，例如700基價為1225。 |
-| AC-B1-004 | 全部28項原G1 Regression（Greenfield 完成版留下、現在必須繼續通過的既有測試）保留正確斷言並通過；28不是全套測試數。 |
-| AC-B1-005 | 原學生票相關失敗全部恢復通過，包括各測試層與新增案例。 |
+| AC-B1-004 | 全部28項原G1 Regression（Greenfield 完成版留下、現在必須繼續通過的既有測試，就是 `tests/test_health.py`、`tests/unit/test_fare_policy.py`、`tests/unit/test_services.py`、`tests/integration/test_features.py` 四個檔裡的測試）保留正確斷言並通過；28不是全套測試數。 |
+| AC-B1-005 | 原學生票相關失敗全部恢復通過，包括各測試層與新增案例（若有）。 |
 | AC-B1-006 | 全套原測試及新增測試完整執行並通過，零失敗、無Skip／XFail。 |
 | AC-B1-007 | Business Rules仍記75%，與程式一致。 |
 
