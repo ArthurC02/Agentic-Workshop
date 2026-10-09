@@ -62,7 +62,7 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/README.md",
           "destination": "agentic-workshop/01-greenfield/participant/starter-repository/README.md",
-          "sha256": "0d7bb71dc3c29154860e65f1d38a009ffc47a39bdf3fd4d4a14e412e6624ed21"
+          "sha256": "aecb93975a8b211adf0523e5aca384256d2c42400c7b96d1db5563183ce9c6f5"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/requirements.txt",
@@ -581,6 +581,31 @@
       "source_commit": "a1c1d45a26875feb2635f211059db5e8980035f7",
       "files": [
         {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/adr/001-use-in-memory-repositories.md",
+          "destination": "recovery-b1/docs/adr/001-use-in-memory-repositories.md",
+          "sha256": "181b0d3fad761999977ca3977933948a0ba3385656c701e6cef0ddeca63bec95"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/adr/002-introduce-discount-policy.md",
+          "destination": "recovery-b1/docs/adr/002-introduce-discount-policy.md",
+          "sha256": "79f66248cf1017d0ed923484d06a354657989266044c5ee354beb23ab648ad32"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/adr/003-record-notifications-synchronously.md",
+          "destination": "recovery-b1/docs/adr/003-record-notifications-synchronously.md",
+          "sha256": "27fc1b968e2263a82b5ff487d9c98dd23648d111af51b883b4e87a2cbccb4f05"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/change-booking-guide.md",
+          "destination": "recovery-b1/docs/change-booking-guide.md",
+          "sha256": "d306e7ce559b73960edc83e7c9b91be76a1fe31d5572c1698cf190cec1fbd2ef"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/discount-overview.md",
+          "destination": "recovery-b1/docs/discount-overview.md",
+          "sha256": "026772cd1c3b2e15eaf254df10982f57fd7283e82ab0a0f8e69ef5e0eb8795cf"
+        },
+        {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/pyproject.toml",
           "destination": "recovery-b1/pyproject.toml",
           "sha256": "d80cc83d8aa6ebb676e6d9e5b9a73b3dc134d1c165ea02c87daf240a28c411fe"
@@ -789,7 +814,7 @@
       "generated": {
         "recovery-b1/docs/business-rules.md": "# B0 Business Rules\n\n\n以下是公開正確商業規則，不代表目前程式的每個案例均已通過。一般訂票保留Greenfield語意；多個優惠符合時的歷史政策需以程式與測試核對，不把新的最有利政策自行加入。\n\n| Rule ID | 公開規則 |\n|---|---|\n| `TRIP-001` | 只可回傳仍有至少一個可售座位的班次。 |\n| `TRIP-002` | Origin 與 Destination 是可選篩選條件；若提供，必須精確符合 Seed Data 中的站點名稱。 |\n| `BOOKING-001` | 每筆訂票至少包含一位旅客。 |\n| `BOOKING-002` | 單筆 Greenfield 訂票最多 4 位旅客。 |\n| `BOOKING-003` | 旅客數不得超過班次剩餘座位數。 |\n| `BOOKING-004` | 成功建立訂票後立即保留對應座位數。 |\n| `BOOKING-005` | 建立後狀態為 `PENDING_PAYMENT`。 |\n| `FARE-001` | 成人票為 Base Fare 的 100%。 |\n| `FARE-002` | 學生票為 Base Fare 的 75%。 |\n| `FARE-003` | 每位旅客個別計價後加總為 Booking Total Fare。 |\n| `FARE-004` | 所有金額以整數表示，不處理小數與幣別換算。 |\n| `PAYMENT-001` | 只有 `PENDING_PAYMENT` Booking 可以付款。 |\n| `PAYMENT-002` | 付款成功後 Booking 狀態改為 `PAID`。 |\n| `PAYMENT-003` | 同一 Booking 不得重複付款。 |\n| `ORDER-001` | 付款成功後建立唯一 Order。 |\n| `ORDER-002` | Order建立時amount等於付款時Booking Total Fare；改票後保留原付款快照，不執行差額金流。 |\n| `MEMBER-001` | Booking 可以不綁定 Member。 |\n| `MEMBER-002` | 有效 Member ID 可被附加至 Booking。 |\n| `MEMBER-003` | Corporate Member 的企業優惠率為 95%。 |\n| `FARE-005` | 購票日至出發日相差至少 14 天時，具備 85% 提前購票優惠資格。 |\n| `FARE-006` | 未滿 14 天不得取得提前購票優惠。 |\n| `CHANGE-001` | 只有已付款 Booking 可改票。 |\n| `CHANGE-002` | 新 Trip 必須有足夠座位。 |\n| `CHANGE-003` | 改票成功後釋放原 Trip 座位並保留新 Trip 座位。 |\n| `CHANGE-004` | B0 只記錄 Fare Difference，不執行補價或退款。 |\n| `REFUND-001` | 只有已付款 Booking 可退票。 |\n| `REFUND-002` | 退票後 Booking 狀態為 `REFUNDED`。 |\n| `REFUND-003` | 退票成功後釋放座位。 |\n| `REFUND-004` | 退票建立唯一 Refund Record。 |\n| `NOTIFY-001` | 付款成功建立通知紀錄。 |\n| `NOTIFY-002` | 改票成功建立通知紀錄。 |\n| `NOTIFY-003` | 退票成功建立通知紀錄。 |\n| `SEAT-001` | 同一 Trip 內 Seat ID 不可重複配置。 |\n| `SEAT-002` | 一般 Booking 不保證相鄰座位。 |\n| `AUDIT-001` | Booking Created 必須留存 Audit Entry。 |\n| `AUDIT-002` | Payment、Change、Refund 成功後必須留存 Audit Entry。 |\n\n退票釋放原座位並建立Refund Record；一般付款失敗不取消訂票，仍為PENDING_PAYMENT且保留座位。改票使用最新票價，Fare Difference=new-old，Order保留原付款。通知與Audit僅本機紀錄。\n\n固定Seed包含T001–T004及T005台北→台中750／6座、T006台北→高雄1400／18座、T007台中→台北700／10座、T008高雄→台中800／4座。會員M001/M003 STANDARD、M002 CORPORATE；非會員可訂票。\n\n## 完成條件\n\n規則來源、Rule ID與測試／程式可交叉核對；衝突與不確定事項列為資訊缺口，不擅自更改公開規則。\n",
         "recovery-b1/docs/architecture.md": "# B0 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n",
-        "recovery-b1/README.md": "# B1 受控接手版本\n\n讀者：學員與其Agent。發放：第52分鐘後，主持核准才接手。來源案例Commit：a1c1d45a26875feb2635f211059db5e8980035f7。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n",
+        "recovery-b1/README.md": "# B1 受控接手版本\n\n讀者：學員與其Agent。發放：第52分鐘後，主持核准才接手。來源案例Commit：a1c1d45a26875feb2635f211059db5e8980035f7。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b1/docs/context.md": "# B1 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB1只恢復學生票75%，仍先匹配企業、提前、學生。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
         "recovery-b1/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n"
       }
@@ -801,6 +826,36 @@
       "source_version": "B2",
       "source_commit": "cee098acc303398bfa1db0e130e09effeee25828",
       "files": [
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/001-use-in-memory-repositories.md",
+          "destination": "recovery-b2/docs/adr/001-use-in-memory-repositories.md",
+          "sha256": "181b0d3fad761999977ca3977933948a0ba3385656c701e6cef0ddeca63bec95"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/002-introduce-discount-policy.md",
+          "destination": "recovery-b2/docs/adr/002-introduce-discount-policy.md",
+          "sha256": "8c2609d397766639aa3aaa11f30464a88f3609f2d765b26c591b94a4c9b36224"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/003-record-notifications-synchronously.md",
+          "destination": "recovery-b2/docs/adr/003-record-notifications-synchronously.md",
+          "sha256": "27fc1b968e2263a82b5ff487d9c98dd23648d111af51b883b4e87a2cbccb4f05"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/api-examples.md",
+          "destination": "recovery-b2/docs/api-examples.md",
+          "sha256": "b4c74d41b2ce969d971267a97d38458093de127f789d26ddb9827396db92f436"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/change-booking-guide.md",
+          "destination": "recovery-b2/docs/change-booking-guide.md",
+          "sha256": "d306e7ce559b73960edc83e7c9b91be76a1fe31d5572c1698cf190cec1fbd2ef"
+        },
+        {
+          "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/discount-overview.md",
+          "destination": "recovery-b2/docs/discount-overview.md",
+          "sha256": "283cb884ce85b2dda01b6b8c47fc8a68d7d13834e10afe280e9aefd27944be3d"
+        },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/pyproject.toml",
           "destination": "recovery-b2/pyproject.toml",
@@ -1019,8 +1074,8 @@
       ],
       "generated": {
         "recovery-b2/docs/business-rules.md": "# B2 Business Rules\n\n\n以下是公開正確商業規則，不代表目前程式的每個案例均已通過。一般訂票保留既有邊界；B2逐位評估全部優惠資格並採最低rate單一優惠，不疊加。成人100%、學生75%、提前至少14天85%、企業95%為候選資格，實際結果記錄Type、Rate與Amount。\n\n| Rule ID | 公開規則 |\n|---|---|\n| `TRIP-001` | 只可回傳仍有至少一個可售座位的班次。 |\n| `TRIP-002` | Origin 與 Destination 是可選篩選條件；若提供，必須精確符合 Seed Data 中的站點名稱。 |\n| `BOOKING-001` | 每筆訂票至少包含一位旅客。 |\n| `BOOKING-002` | 單筆 Greenfield 訂票最多 4 位旅客。 |\n| `BOOKING-003` | 旅客數不得超過班次剩餘座位數。 |\n| `BOOKING-004` | 成功建立訂票後立即保留對應座位數。 |\n| `BOOKING-005` | 建立後狀態為 `PENDING_PAYMENT`。 |\n| `FARE-001` | 成人 Base Fare 100%；仍評估其他可用優惠資格。 |\n| `FARE-002` | 學生資格對應 Base Fare 75%，由最有利單一優惠政策決定實際結果。 |\n| `FARE-003` | 每位旅客個別計價後加總為 Booking Total Fare。 |\n| `FARE-004` | 所有金額以整數表示，不處理小數與幣別換算。 |\n| `PAYMENT-001` | 只有 `PENDING_PAYMENT` Booking 可以付款。 |\n| `PAYMENT-002` | 付款成功後 Booking 狀態改為 `PAID`。 |\n| `PAYMENT-003` | 同一 Booking 不得重複付款。 |\n| `ORDER-001` | 付款成功後建立唯一 Order。 |\n| `ORDER-002` | Order建立時amount等於付款時Booking Total Fare；改票後保留原付款快照，不執行差額金流。 |\n| `MEMBER-001` | Booking 可以不綁定 Member。 |\n| `MEMBER-002` | 有效 Member ID 可被附加至 Booking。 |\n| `MEMBER-003` | Corporate Member 具備95%優惠資格。 |\n| `FARE-005` | 購票日至出發日相差至少 14 天時，具備 85% 提前購票優惠資格。 |\n| `FARE-006` | 未滿 14 天不得取得提前購票優惠。 |\n| `CHANGE-001` | 只有已付款 Booking 可改票。 |\n| `CHANGE-002` | 新 Trip 必須有足夠座位。 |\n| `CHANGE-003` | 改票成功後釋放原 Trip 座位並保留新 Trip 座位。 |\n| `CHANGE-004` | B0 只記錄 Fare Difference，不執行補價或退款。 |\n| `REFUND-001` | 只有已付款 Booking 可退票。 |\n| `REFUND-002` | 退票後 Booking 狀態為 `REFUNDED`。 |\n| `REFUND-003` | 退票成功後釋放座位。 |\n| `REFUND-004` | 退票建立唯一 Refund Record。 |\n| `NOTIFY-001` | 付款成功建立通知紀錄。 |\n| `NOTIFY-002` | 改票成功建立通知紀錄。 |\n| `NOTIFY-003` | 退票成功建立通知紀錄。 |\n| `SEAT-001` | 同一 Trip 內 Seat ID 不可重複配置。 |\n| `SEAT-002` | 一般 Booking 不保證相鄰座位。 |\n| `AUDIT-001` | Booking Created 必須留存 Audit Entry。 |\n| `AUDIT-002` | Payment、Change、Refund 成功後必須留存 Audit Entry。 |\n| `FARE-007` | 多項優惠不可疊加。 |\n| `FARE-008` | 同時符合多項優惠時採數值最低的單一折扣率。 |\n| `FARE-009` | 每位Passenger獨立決定優惠。 |\n| `FARE-010` | Fare Result記錄實際Discount Type及Rate，並包含Amount。 |\n\n退票釋放原座位並建立Refund Record；一般付款失敗不取消訂票，仍為PENDING_PAYMENT且保留座位。改票使用最新票價，Fare Difference=new-old，Order保留原付款。通知與Audit僅本機紀錄。\n\n固定Seed包含T001–T004及T005台北→台中750／6座、T006台北→高雄1400／18座、T007台中→台北700／10座、T008高雄→台中800／4座。會員M001/M003 STANDARD、M002 CORPORATE；非會員可訂票。\n\n## 完成條件\n\n規則來源、Rule ID與測試／程式可交叉核對；衝突與不確定事項列為資訊缺口，不擅自更改公開規則。\n",
-        "recovery-b2/docs/architecture.md": "# B2 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## B2計價演化\n\nDiscount Policy收集各Passenger符合的候選，加入FULL_FARE，再選rate最低的單一優惠；Fare Result包含Type／Rate／Amount。Booking建立與Change使用同一路徑，個別金額加總且回傳根層Applied Discounts；Schemas保留原Passenger三欄。DEBT-001以簡單候選政策改善，不導入Rule Engine；同步Notification仍保留，非計價服務不重寫。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n",
-        "recovery-b2/README.md": "# B2 受控接手版本\n\n讀者：學員與其Agent。發放：第63分鐘後，主持核准才接手。來源案例Commit：cee098acc303398bfa1db0e130e09effeee25828。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n",
+        "recovery-b2/docs/architecture.md": "# B2 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## B2計價演化\n\nDiscount Policy收集各Passenger符合的候選，加入ADULT全額預設候選，再選rate最低的單一優惠；Fare Result包含Type／Rate／Amount。Booking建立與Change使用同一路徑，個別金額加總且回傳根層Applied Discounts；Schemas保留原Passenger三欄。DEBT-001以簡單候選政策改善，不導入Rule Engine；同步Notification仍保留，非計價服務不重寫。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n",
+        "recovery-b2/README.md": "# B2 受控接手版本\n\n讀者：學員與其Agent。發放：第63分鐘後，主持核准才接手。來源案例Commit：cee098acc303398bfa1db0e130e09effeee25828。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)、[API範例](docs/api-examples.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b2/docs/context.md": "# B2 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB2逐旅客選最低rate單一優惠，建立與改票共用政策，回傳Applied Discounts。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
         "recovery-b2/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n"
       }
@@ -1090,7 +1145,7 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
-          "sha256": "ecd0287057b42261328460da5c5c6e153ad97bff5ed9ee7e682912bb0049cbdc"
+          "sha256": "02a2b5f24c276002c0559e157061133777f8f60e2c16bf08949dfcbf69a994ac"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/04-expected-mvp-outline.md",
@@ -1120,7 +1175,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/03-controlled-debt-map.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/03-controlled-debt-map.md",
-          "sha256": "6d00e047ab0e79961cab33413471ffdb9d41a67811f8f7c022d00fa422b11244"
+          "sha256": "30094ba4608114e6eeb836ba61bb96cf44b00c775749dc510da6a29b1fd8eb4a"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/04-task-reveal-sequence.md",
@@ -1185,12 +1240,12 @@
         {
           "source": "agentic-workshop/06-runbook/preflight-checklist.md",
           "destination": "agentic-workshop/06-runbook/preflight-checklist.md",
-          "sha256": "f3625d69f541c9fddeb984f871eeece05f5f5ae172573aa52bf83a61cd3984e9"
+          "sha256": "8164dd6ea73f277251eb249b4945d1210eab57ca20aa2d438b767f6d614ab5ea"
         },
         {
           "source": "agentic-workshop/06-runbook/recovery-plan.md",
           "destination": "agentic-workshop/06-runbook/recovery-plan.md",
-          "sha256": "7187ac5bd5c3b62f96da7ea6a35e8a0a09ce490d3b3a8b4664c50f8526820662"
+          "sha256": "58dd85f307e16e0f54086d501a1e9a8b31cba4e7438d103a3ac352327484eb91"
         },
         {
           "source": "agentic-workshop/06-runbook/rehearsal-record.md",
@@ -1315,7 +1370,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "a10ed28632e0d54b8006fac1ba3272e3c1878537e83cf81a024a191b609de358"
+          "sha256": "78fe1601a30bce39d3bed727fb49c2619c9509e800871b6ab06016ac0a8588a2"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -1385,7 +1440,7 @@
         {
           "source": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md",
           "destination": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md",
-          "sha256": "e3b0d623794b0e7dac9a733255b1d2af7b324e3377661fd987d9786ac3b45ef7"
+          "sha256": "2c89148a103be321679fcafd041c1e8c138bd16d9a12763a37c1657e75817a68"
         },
         {
           "source": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -1650,7 +1705,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md",
-          "sha256": "7d85bbe2614b14116ffd30edca2002fff090b83b9674e0afd6c42877ecc9e9d5"
+          "sha256": "e6cc37bfbef98c1728215d11b3ad76bd80b46f158f105b439ad3d7d90835e11e"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/b0-case-history.bundle",
@@ -1680,7 +1735,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/README.md",
-          "sha256": "7556bf78fbe1450ff24f7d1b7a2680380414a141693fbd11f1ffa2cec3829d0c"
+          "sha256": "998bbd6f72e395204ed275ff608ff32dca8d399bb435c34afea2a33345877d22"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/docs/adr/001-use-in-memory-repositories.md",
@@ -1940,7 +1995,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/README.md",
-          "sha256": "7556bf78fbe1450ff24f7d1b7a2680380414a141693fbd11f1ffa2cec3829d0c"
+          "sha256": "998bbd6f72e395204ed275ff608ff32dca8d399bb435c34afea2a33345877d22"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/docs/adr/001-use-in-memory-repositories.md",
@@ -2200,7 +2255,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/README.md",
-          "sha256": "3b3a11e75191c1e2aaa8b04e15e616d0df9333ca7ad4b03456b3423fb2eecc63"
+          "sha256": "7461fed003dd81f13658aa81eb7fcf0574361158033ef430b7b29f1324157cf1"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/adr/001-use-in-memory-repositories.md",
@@ -2460,32 +2515,32 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/README.md",
-          "sha256": "8332cf7dfeccf34dac65b7c0791ce097f3b0077bce5a90452b5a06e0101f07b5"
+          "sha256": "4742875fbfc2ac30e808a697a15f64acc70b52da7813ca29a1c698fde92fb71f"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/001-use-in-memory-repositories.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/001-use-in-memory-repositories.md",
-          "sha256": "a48104ceb05534998f9108afdce2b054ec7f840b40cd9409b97ec23e3c2e5dea"
+          "sha256": "181b0d3fad761999977ca3977933948a0ba3385656c701e6cef0ddeca63bec95"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/002-introduce-discount-policy.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/002-introduce-discount-policy.md",
-          "sha256": "3d34590fa303142811a10a62db2947a3e809e18dc6780d1000f4b3e920d06de9"
+          "sha256": "8c2609d397766639aa3aaa11f30464a88f3609f2d765b26c591b94a4c9b36224"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/003-record-notifications-synchronously.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/003-record-notifications-synchronously.md",
-          "sha256": "5750d43626286f78de5c02728730e1f709724c8df7b3fb0263cb93a13275dcf0"
+          "sha256": "27fc1b968e2263a82b5ff487d9c98dd23648d111af51b883b4e87a2cbccb4f05"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/api-examples.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/api-examples.md",
-          "sha256": "18e832c37cd48e0989066208829e42d4f41601c468ee2c6f14e4086d9b2dedc3"
+          "sha256": "b4c74d41b2ce969d971267a97d38458093de127f789d26ddb9827396db92f436"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/architecture.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/architecture.md",
-          "sha256": "225681ded21550ac573d51f71e9728c0c39ae7f4395c9f2b92b4899e4b136d5c"
+          "sha256": "cfa9beef13850b9004d99d27de5dc5deec52aa261b2c341a81d8ef728ea2db89"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/business-rules.md",
@@ -2495,12 +2550,12 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/change-booking-guide.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/change-booking-guide.md",
-          "sha256": "59245ee18ab23721a7fe505a3be7626d4a32d95fba8ee0a0d4d993c34eb5fe24"
+          "sha256": "d306e7ce559b73960edc83e7c9b91be76a1fe31d5572c1698cf190cec1fbd2ef"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/discount-overview.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/discount-overview.md",
-          "sha256": "67b08306cc4fcf453f20fe218f6953e391bfb6556486e2002ca0cdf7f1e095d4"
+          "sha256": "283cb884ce85b2dda01b6b8c47fc8a68d7d13834e10afe280e9aefd27944be3d"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/version-history.md",
@@ -2730,7 +2785,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/README.md",
-          "sha256": "b7cd5b2abecb59704b59a686122fb3a8ce18acc11db015853176bc633fdc22c3"
+          "sha256": "9871d4003a302ea6b42b422c77fcc762a2de1fec344ad3e9a61f3468ae1af92f"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/docs/adr/001-use-in-memory-repositories.md",
@@ -3095,7 +3150,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
-          "sha256": "0d58bf2f8c159199ecb8b31f1f29ea94610303762dbe1a46e1d66590b0d53ff0"
+          "sha256": "8dca9eebd14fec6a98cbb96d48a1ddfcee6cf2a3d6341d62b95c937fb922a6a6"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-core_smoke.log",
@@ -3115,12 +3170,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.log",
-          "sha256": "2ecfcefd965a89185950a88d3a95471fb51aa75c77905b903a0692988fd677b7"
+          "sha256": "c2cc63a1afbdb776e94e703d09d4232160915f7ef4cda46998ed004db8ec2527"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.xml",
-          "sha256": "7ce2fba4d03f1364956de46f888e3c6da4f088d61b6bc37c72f5ec6313ddc9c3"
+          "sha256": "fd003c6cfdf0d906498b537b222495f9aaf4b859e3d6bbc4dc72601a7089e080"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-python.log",
@@ -3150,12 +3205,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.log",
-          "sha256": "b7d37e63a1ed136e0d941fba4935f90c9709f0b75f066608432750980c8bf134"
+          "sha256": "7fef3763d4f3fccbcf3680d2d256cbce9ab04c9b33ef76dd6f96bf7c28304758"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.xml",
-          "sha256": "4fb55c8afdfeb151b9f5780c868468dfd7f21953f88ab05d70927b561add4d0d"
+          "sha256": "8852914b1a9a3a5f72eb3ebc50b159ffd135c7fa81be10902bfeef8e8622cdc0"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-python.log",
@@ -3185,12 +3240,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.log",
-          "sha256": "dec4805c873b839dd2f09bedd52300157aec9e5931634a88534bd631a1739940"
+          "sha256": "e579c045e0452eda0cb3d872562d1bf6feaa08a6d4cea3c4fe9f5553a6d96786"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.xml",
-          "sha256": "6f4a341a4395773d92f01b097cfef44fd839330359d11af7ed89b81bf2ee9650"
+          "sha256": "7b2bffb26a090f3eba966cf09dde37d825e88ef890d4b3cbd644861295fd3eb9"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-python.log",
@@ -3220,12 +3275,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.log",
-          "sha256": "b3bc732a39554f507542a71d4fc3834eb26fdc1556e6e80445e6027d88f96f55"
+          "sha256": "69645fc54086a8f15f855ee220263e54c8918a931f9588b5c335621cb1f918a4"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.xml",
-          "sha256": "646ac61a1163f79d6d780d542fba70a63f10f7a095fd8e0bb01006dbf5839825"
+          "sha256": "3d57ce86b1606d2c0c5ef50e82692caf6054b05e53a1dbcf18f247f5fd66bed1"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-python.log",
@@ -3255,12 +3310,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.log",
-          "sha256": "77dc5802cb4709d8621cf20187af0b51c14ce447c27603cd48c3de490b281ed3"
+          "sha256": "d83b3b13f45fd805797ee77081605275875975013abf708c0e2d95a9d3b77c67"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.xml",
-          "sha256": "f251827a182ac191531a83291862b0309665e0cd1da406452fe60d497e1b9251"
+          "sha256": "c0fc3775db0c5ee5c9c5d94e1175de0268901f1bc1bade3a3e474311fedfbdc9"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-python.log",
@@ -3290,12 +3345,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.log",
-          "sha256": "77f1c7b7566b90169980520c9099bf76675b00394594c9874d308ee6e1fef1e2"
+          "sha256": "7a7d08657b34b8fc29a7ebbb20a8f648a4ab86969338bf8b909f82bd2fd67187"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.xml",
-          "sha256": "0a7a72bfe76bcfd0ae10ea95934533ae5434a3e3102e587e88db4cd6a0f817f2"
+          "sha256": "2d921c3e594044f559cb659e28c716dedc2bec82819ef7661dd23c4ded50b2aa"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-python.log",
@@ -3330,7 +3385,7 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "81cee0c3e0d91905b90fa5c03ba7d74ddf0a5ccf99fc2fe87ecc8bdeaaa1a817"
+          "sha256": "49355646e0f0e1a5883ceee92eaca6c3aa6b7cc5b8345cff55c34b92d6105845"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",

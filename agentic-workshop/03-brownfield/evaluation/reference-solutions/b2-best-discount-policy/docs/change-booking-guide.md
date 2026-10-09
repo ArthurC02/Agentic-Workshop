@@ -1,6 +1,6 @@
 # 改票使用指南
 
-> 讀者：參與者與Agent。時機：了解一般改票。前置：已付款Booking與目標Trip存在。可見性：Evaluation／Agent Production。
+> 讀者：參與者與Agent。時機：了解一般改票。前置：已付款Booking與目標Trip存在。可見性：Participant。
 
 以POST /bookings/{booking_id}/change提供target_trip_id。一般改票保留旅客數，目標需有足夠座位；成功時釋放原班次座位、保留新班次座位。此本機示例不處理金額差異，不執行補款或退款。
 

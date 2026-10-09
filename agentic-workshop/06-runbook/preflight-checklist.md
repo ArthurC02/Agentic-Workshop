@@ -27,7 +27,7 @@ B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可
 
 - [ ] G0／統一B0／B1／B2／B3及治理材料按時點分包，不提前揭露。
 - [ ] 學員包無Evaluation／Facilitator、答案連結、Bundle／Git歷史、未來解答；來源及白名單有記錄。
-- [ ] 29分鐘初始B0摘要不指出學生票Bug或優惠答案順序；保留兩份受控落差指南及三份當時B0安全ADR，與分析指引一致。Recovery另按原排除規則，不套用初始B0例外。
+- [ ] 29分鐘初始B0摘要不指出學生票Bug或優惠答案順序；保留兩份受控落差指南及三份當時B0安全ADR，與分析指引一致。Recovery包從各自參考版附上同樣的兩份指南與三份ADR（B2另附API範例），B1包不出現B2規則。
 - [ ] B1 Recovery只於52分鐘接續B2，B2 Recovery只於63分鐘接續B3，包已驗證且保留原成果／Context。
 - [ ] 若包未備妥，分析／Review降級可用，不分享Evaluation目錄。
 - [ ] Agent可用；個人分析、小組Shared Context及主要Agent／人員核准者已確認。

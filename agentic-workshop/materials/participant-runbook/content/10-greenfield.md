@@ -64,7 +64,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ```text
 請幫我把這個專案準備好，做完用白話回報，不要修改任何程式：
-1. 用 py -3.13 -m venv .venv 建立虛擬環境（macOS 用 python3.13 -m venv .venv）。不要照 README 的 activate（啟用）步驟，之後一律直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe；macOS 寫 .venv/bin/python），例如 .venv\Scripts\python.exe --version、.venv\Scripts\python.exe -m pip install -r requirements.txt、.venv\Scripts\python.exe -m pytest -q。版本不是 3.13 或找不到 3.13 就停下告訴我，不要改用其他版本。安裝完執行 pytest -q，告訴我測試有幾個通過／失敗／跳過。
+1. 用 py -3.13 -m venv .venv 建立虛擬環境（macOS 用 python3.13 -m venv .venv）。不必啟用 venv，之後一律直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe；macOS 寫 .venv/bin/python），例如 .venv\Scripts\python.exe --version、.venv\Scripts\python.exe -m pip install -r requirements.txt、.venv\Scripts\python.exe -m pytest -q。版本不是 3.13 或找不到 3.13 就停下告訴我，不要改用其他版本。安裝完執行 pytest -q，告訴我測試有幾個通過／失敗／跳過。
 2. 確認你讀得到上一層資料夾的 01 到 05 開頭的五份 .md 文件；讀不到就把這五份都複製到 docs\ 資料夾，之後提到上一層的文件都改讀 docs\ 裡的副本。
 3. 建立 Git 基準：初始化 Git，把目前所有檔案 Commit 成「G0 baseline」。如果 Git 要求姓名或 Email，只在本資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。電腦沒有 Git 就告訴我你改用什麼方式記錄起始狀態。
 4. 建立 notes/greenfield.md，第一段「起點」寫下測試數字與 Git 基準是否建立。

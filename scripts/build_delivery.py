@@ -24,6 +24,9 @@ B0_CONTEXT_FILES = ("docs/change-booking-guide.md", "docs/discount-overview.md",
                     "docs/adr/001-use-in-memory-repositories.md", "docs/adr/002-introduce-discount-policy.md",
                     "docs/adr/003-record-notifications-synchronously.md")
 B0_ADR_DESTINATIONS = {B0_ROOT + "/" + name for name in B0_CONTEXT_FILES if "/adr/" in name}
+# Recovery packages carry the same context docs a normal group has, taken from the reference solution itself.
+RECOVERY = {"recovery-52-b1": ("b1-student-fare-fixed", "recovery-b1", B0_CONTEXT_FILES),
+            "recovery-63-b2": ("b2-best-discount-policy", "recovery-b2", B0_CONTEXT_FILES + ("docs/api-examples.md",))}
 
 
 def package_schema(package: dict) -> None:
@@ -37,6 +40,9 @@ def package_schema(package: dict) -> None:
 def destination_check(package: dict, name: str) -> str:
     name = safe_path(name).as_posix()
     safe_b0_adr = package["id"] == "participant-29-b0" and name in B0_ADR_DESTINATIONS
+    if package["id"] in RECOVERY:
+        _, root, context = RECOVERY[package["id"]]
+        safe_b0_adr = name in {root + "/" + n for n in context if "/adr/" in n}
     denied = {"evaluation", "facilitator", "instructions"}
     if not safe_b0_adr:
         denied.add("adr")
@@ -47,6 +53,10 @@ def destination_check(package: dict, name: str) -> str:
 
 def content_policy(package: dict, contents: dict[str, bytes]) -> None:
     """Apply pedagogical policy to both prepared files and actual ZIP bytes."""
+    if package["id"] == "recovery-52-b1":
+        for name, body in contents.items():
+            if name.endswith(".md") and re.search(r"FARE-0(?:0[7-9]|10)|applied_discounts|最低rate", body.decode("utf-8"), re.I):
+                raise ValueError("B1 recovery material discloses B2 rules: " + name)
     if package["id"] != "participant-29-b0":
         return
     for relative in B0_CONTEXT_FILES:
@@ -129,16 +139,16 @@ def build() -> dict:
             source = ROOT / safe_path(entry["source"])
             if package["role"] == "participant":
                 source_parts = safe_path(entry["source"]).parts
-                is_recovery = package["id"] in {"recovery-52-b1", "recovery-63-b2"}
+                is_recovery = package["id"] in RECOVERY
                 if "participant" not in source_parts and not is_recovery:
                     raise ValueError(f"Unapproved participant source: {entry['source']}")
                 if is_recovery:
-                    expected = "b1-student-fare-fixed" if package["id"] == "recovery-52-b1" else "b2-best-discount-policy"
-                    if expected not in source_parts or source.relative_to(ROOT).parts[-1] in {"README.md", "api-examples.md"}:
+                    expected, _, context = RECOVERY[package["id"]]
+                    if expected not in source_parts or source.name == "README.md":
                         raise ValueError(f"Unapproved recovery source: {entry['source']}")
                     index = source_parts.index(expected)
                     relative = "/".join(source_parts[index+1:])
-                    if not (relative.startswith("src/smart_ticket/") or relative.startswith("tests/") or relative in {"requirements.txt", "pyproject.toml"}):
+                    if not (relative.startswith("src/smart_ticket/") or relative.startswith("tests/") or relative in {"requirements.txt", "pyproject.toml", *context}):
                         raise ValueError(f"Unapproved recovery file: {relative}")
                 if package["id"] == "participant-29-b0":
                     relative = source.relative_to(ROOT / B0_ROOT).as_posix()

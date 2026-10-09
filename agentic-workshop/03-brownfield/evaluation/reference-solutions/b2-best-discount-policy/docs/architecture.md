@@ -12,7 +12,7 @@ Change僅處理已付款Booking，檢查目標容量後釋放原座位、保留�
 
 ## B2計價演化
 
-Discount Policy收集各Passenger符合的候選，加入FULL_FARE，再選rate最低的單一優惠；Fare Result包含Type／Rate／Amount。Booking建立與Change使用同一路徑，個別金額加總且回傳根層Applied Discounts；Schemas保留原Passenger三欄。DEBT-001以簡單候選政策改善，不導入Rule Engine；同步Notification仍保留，非計價服務不重寫。
+Discount Policy收集各Passenger符合的候選，加入ADULT全額預設候選，再選rate最低的單一優惠；Fare Result包含Type／Rate／Amount。Booking建立與Change使用同一路徑，個別金額加總且回傳根層Applied Discounts；Schemas保留原Passenger三欄。DEBT-001以簡單候選政策改善，不導入Rule Engine；同步Notification仍保留，非計價服務不重寫。
 
 ## 完成條件
 

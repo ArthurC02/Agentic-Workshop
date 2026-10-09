@@ -1,6 +1,6 @@
 # ADR 003：同步記錄通知
 
-> 讀者：參與者與Agent。時機：理解流程依賴。前置：閱讀架構。可見性：Evaluation／Agent Production。
+> 讀者：參與者與Agent。時機：理解流程依賴。前置：閱讀架構。可見性：Participant。
 
 ## Context
 

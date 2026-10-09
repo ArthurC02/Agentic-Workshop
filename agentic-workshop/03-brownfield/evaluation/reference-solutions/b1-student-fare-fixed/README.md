@@ -6,18 +6,21 @@ Smart Ticket上線12個月後，延續查詢、訂票、付款及Order，新增�
 
 ## 安裝、啟動與測試
 
-在本目錄操作：
+在本目錄操作，建議使用 Python 3.13。先建立並啟用虛擬環境（venv）：
+
+- macOS／Linux：`python3.13 -m venv .venv`，再 `source .venv/bin/activate`。
+- Windows：建議用 `py -3.13 -m venv .venv` 建立。Git Bash 用 `source .venv/Scripts/activate` 啟用；PowerShell 用 `.venv\Scripts\Activate.ps1` 啟用。
+
+啟用後執行：
 
 ```bash
 python --version
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -r requirements.txt
-uvicorn smart_ticket.main:app --app-dir src --reload
-pytest -q
+python -m uvicorn smart_ticket.main:app --app-dir src --reload
+python -m pytest -q
 ```
 
-Windows PowerShell：`.\.venv\Scripts\Activate.ps1`；啟用受限時可直接執行 `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`、`.\.venv\Scripts\python.exe -m uvicorn smart_ticket.main:app --app-dir src --reload` 與 `.\.venv\Scripts\python.exe -m pytest -q`。
+也可以跳過啟用，直接呼叫虛擬環境裡的 Python（PowerShell 執行原則擋下啟用時也這樣做）：Windows 用 `.venv\Scripts\python.exe -m pytest -q`（Git Bash 寫 `.venv/Scripts/python.exe`），macOS／Linux 用 `.venv/bin/python -m pytest -q`；安裝與啟動指令同理，把開頭的 `python` 換掉即可。
 
 本版本完整測試預期全部通過、無 Skip／XFail 或未知失敗；實際結果與 exit code 以 B1 Validation Report 為準。既有Starlette／AnyIO相容性Warning需保留紀錄；如有其他Warning也應核實原因。不得刪弱測試、改正確期待值或以Skip／XFail隱藏。
 

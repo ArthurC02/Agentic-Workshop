@@ -15,4 +15,4 @@ SKIPPED [1] tests\integration\test_features.py:30: G0 PAYMENT-002, PAYMENT-003, 
 SKIPPED [1] tests\integration\test_features.py:36: G0 ORDER-001, ORDER-002: implement order query
 SKIPPED [1] tests\unit\test_fare_policy.py:5: G0 FARE-001: implement adult fare
 SKIPPED [1] tests\unit\test_fare_policy.py:9: G0 FARE-002: implement student fare
-1 passed, 8 skipped, 1 warning in 0.16s
+1 passed, 8 skipped, 1 warning in 0.55s

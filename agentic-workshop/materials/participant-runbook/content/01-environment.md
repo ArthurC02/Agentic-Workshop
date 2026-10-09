@@ -44,8 +44,8 @@ ZIP 內的資料夾層級較深。請解壓縮到短路徑，例如 `C:\work\g0`
 ```
 
 ```callout tip
-venv 一律不啟用，直接呼叫裡面的 Python
-Starter 的 README 寫的 `source .venv/bin/activate` 在 Windows 不適用（Windows 是 `.venv\Scripts`），啟用失敗時套件會裝進電腦上其他版本的 Python。檢查點 1 的提示詞已要求 Agent 用 `py -3.13 -m venv .venv` 建立環境，之後直接呼叫 `.venv\Scripts\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`），不照 README 啟用；Python 不是 3.13 時 Agent 會停下，請告知主持人。
+Agent 直接呼叫 venv 裡的 Python
+檢查點 1 的提示詞要求 Agent 用 `py -3.13 -m venv .venv` 建立環境，之後直接呼叫 `.venv\Scripts\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`），不必啟用，也不會裝錯 Python；Python 不是 3.13 時 Agent 會停下，請告知主持人。
 ```
 
 ```callout tip

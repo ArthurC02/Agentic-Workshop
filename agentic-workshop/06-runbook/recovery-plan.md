@@ -26,13 +26,13 @@
 
 ## Recovery包白名單與排除
 
-P11生成包時，逐版只取`src/smart_ticket/**`、`tests/**`、`requirements.txt`、`pyproject.toml`及已審查的`docs/business-rules.md`／`docs/architecture.md`。測試呈現本階段起點的既有規則，不加入未來版本案例。主持另生成角色安全README、操作與Context摘要，不直接複製原Evaluation版README。
+P11生成包時，逐版只取`src/smart_ticket/**`、`tests/**`、`requirements.txt`、`pyproject.toml`，以及與一般組相同的`docs/adr/`三份ADR、`docs/change-booking-guide.md`、`docs/discount-overview.md`（B2另含`docs/api-examples.md`），全取自該版參考答案本身。B1包的文件不得描述B2規則。測試呈現本階段起點的既有規則，不加入未來版本案例。主持另生成角色安全README、操作與Context摘要，不直接複製原Evaluation版README。
 
-不直接複製`docs/api-examples.md`；B2原例曾使用FULL_FARE但實際enum為ADULT，摘要應依已驗證Contract與測試生成並核對，舊快照不在本階段修改。文件不是自動正確的事實；程式、規則與Test需交叉確認。
+B2參考版的`docs/api-examples.md`、`docs/discount-overview.md`原寫FULL_FARE，已更正為實際enum ADULT後才納入。文件不是自動正確的事實；程式、規則與Test需交叉確認。
 
-排除版本歷史、ADR、案例Bundle、Evaluation報告／影響分析／AC Map／答案索引、產製指令、Facilitator、`.git`、隱藏歷史、venv、Python／pytest cache及未來版本。白名單是候選，不代表跳過內容審查；生成後檢查每檔、相對連結與隱藏檔，移除或改寫指向未納入／內部內容的連結。
+排除版本歷史、案例Bundle、Evaluation報告／影響分析／AC Map／答案索引、產製指令、Facilitator、`.git`、隱藏歷史、venv、Python／pytest cache及未來版本。白名單是候選，不代表跳過內容審查；生成後檢查每檔、相對連結與隱藏檔，移除或改寫指向未納入／內部內容的連結。
 
-現場注意（2026-10-09演練）：Recovery包依白名單不含`docs/adr`等文件，Agent回報「找不到ADR」屬正常，不需補發；`recovery-52-b1`的`docs/context.md`寫有B1當時的優惠選擇順序，切換組在B2比較方案時可能直接引用，這是現況描述而非B2答案，不另外提示也不更換包。
+現場注意（2026-10-09演練）：`recovery-52-b1`的`docs/context.md`寫有B1當時的優惠選擇順序，切換組在B2比較方案時可能直接引用，這是現況描述而非B2答案，不另外提示也不更換包。
 
 保留來源Tag／Hash、輸出檔清單、文件轉換、角色／階段及驗證結果。再於乾淨目錄確認安裝、Health／OpenAPI、版本Gate及Smoke。P10只完成此計畫，尚未生成或驗證Recovery包，不能聲稱已可直接發放。
 

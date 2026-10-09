@@ -5,3 +5,6 @@ __pycache__/
 .pytest_cache/
 pytest-cache-files-*/
 dist/
+
+# PowerShell module cache written when an agent runs with a redirected profile
+/Microsoft/

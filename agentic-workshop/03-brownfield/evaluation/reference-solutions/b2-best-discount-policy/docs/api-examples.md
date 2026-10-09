@@ -1,6 +1,6 @@
 # B2 API Examples
 
-> 讀者：參與者與Agent。時機：操作驗證與Contract查證。前置：本機App已啟動、乾淨Seed。可見性：Evaluation／Agent Production。
+> 讀者：參與者與Agent。時機：操作驗證與Contract查證。前置：本機App已啟動、乾淨Seed。可見性：Participant。
 
 範例base URL為http://127.0.0.1:8000；Windows使用curl.exe。下列ID佔位符應換成回應所得值，範例不是已執行結果。
 
@@ -52,7 +52,7 @@ curl -X POST "http://127.0.0.1:8000/bookings/<booking_id>/refund"
 Booking建立／查詢／改票回應根層增加 `applied_discounts`，原 `passengers` 不擴充。每個明細含passenger_id／discount_type／rate／amount。T001（700）在非提前購票、STANDARD會員情境，成人與學生各一位：
 
 ```json
-{"total_fare":1225,"applied_discounts":[{"passenger_id":"P001","discount_type":"FULL_FARE","rate":100,"amount":700},{"passenger_id":"P002","discount_type":"STUDENT","rate":75,"amount":525}]}
+{"total_fare":1225,"applied_discounts":[{"passenger_id":"P001","discount_type":"ADULT","rate":100,"amount":700},{"passenger_id":"P002","discount_type":"STUDENT","rate":75,"amount":525}]}
 ```
 
 此片段只展示新增欄位，完整回應仍保留既有Booking欄位。企業成人無提前採CORPORATE95%，企業且提前採ADVANCE85%，學生與提前／企業同時符合仍STUDENT75%，不疊乘。提前資格以可注入Clock控制，預設2030-01-14距2030-01-15僅1天，不應把預設請求當作提前案例。

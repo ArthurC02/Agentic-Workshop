@@ -15,6 +15,6 @@
 | Agent 一口氣做完好幾步 | 小步執行、每步驗收（結構化輸出） | 「先停下，不要再修改。請列出你這次做了哪幾步。」 | 「請逐步補上驗收對照表與變更審查答案，寫進 notes/greenfield.md。」 | 「之後一次只做一步，做完停下等我。」 |
 | 時間不足 | 小步執行、每步驗收 | 「請列出已完成、未驗證與尚未開始的項目。」 | 停止擴充，先驗證已做流程，再請 Agent 補最少文件與限制。 | 17 分鐘收斂、20 分鐘摘要、22 分鐘停止；請 Agent 依 Runbook 提示把交付摘要寫進 notes，未完成如實標記。 |
 
-環境問題可請學員貼Runbook「環境準備」頁疑難排解的提示詞，把錯誤交給 Agent 診斷，主持也可直接協助。常見的是 Agent 照 Starter README 執行 `source .venv/bin/activate`，在 Windows 失敗後把套件裝進其他版本的 Python：請學員貼「請不要啟用 venv，用 py -3.13 -m venv .venv 重建，之後直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe）；版本不是 3.13 就停下告訴我。」商業決策仍由人員主導。記錄卡點與已給級別，以便交接而不重複洩漏更多提示。
+環境問題可請學員貼Runbook「環境準備」頁疑難排解的提示詞，把錯誤交給 Agent 診斷，主持也可直接協助。常見的是 Agent 用錯 Python 版本建立 venv，或啟用失敗後把套件裝進其他版本的 Python：請學員貼「請不要啟用 venv，用 py -3.13 -m venv .venv 重建，之後直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe）；版本不是 3.13 就停下告訴我。」商業決策仍由人員主導。記錄卡點與已給級別，以便交接而不重複洩漏更多提示。
 
 完成條件：六項卡點皆具三級提示，逐級使用且無完整解答；學員仍能說明需求、自己決定修改，並依驗收對照表與 /docs 試用結果接受或退回。

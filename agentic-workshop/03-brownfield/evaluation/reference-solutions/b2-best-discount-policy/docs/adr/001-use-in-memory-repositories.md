@@ -1,6 +1,6 @@
 # ADR 001：採用 In-Memory Repositories
 
-> 讀者：參與者與Agent。時機：架構理解。前置：閱讀架構。可見性：Evaluation／Agent Production。
+> 讀者：參與者與Agent。時機：架構理解。前置：閱讀架構。可見性：Participant。
 
 ## Context
 

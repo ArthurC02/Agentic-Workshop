@@ -195,3 +195,7 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 2026-10-09 以候選包實跑主課與 DLC 開場～D2 提示詞（`.claude/skills/rehearsal`），依結果修正教材。DLC 工具原屬不修改範圍；使用者授權調整後修正：工具說明與 `--help` 路徑改為 `../../tools/`（實際相對 Repo 根目錄）、`dm.sh` 在 py launcher 沒有 3.13 時改用 python3、`write_scm_attestation.py` 的下一步提示標明 finalize-proposal 由提案者執行。程式庫（repository）與 recovery bundle 內的 README 未改。
 
 未驗證：D2 檢查點 6 夥伴的 `git push`（演練環境安全檢查擋下本機 bare repo 推送），需在實機補跑一次。
+
+## 程式包修正授權（2026-10-09）
+
+使用者授權「全部修復」原本鎖定的程式包問題，並授權 Commit 與 Push：Greenfield／B0／參考解答 README 的虛擬環境啟用說明（Windows Git Bash 路徑錯誤）、Brownfield Recovery 包補齊 docs（ADR、改票指南、優惠說明、API 範例）、DLC 程式庫與 Recovery bundle 統一 LF 行尾並鎖定 anyio 版本以消除 DeprecationWarning。修正後重新量測頁面引用的數字並以候選包實跑驗證。D2 檢查點 6 夥伴推送改在沙箱內推送到本機 bare repo 驗證。

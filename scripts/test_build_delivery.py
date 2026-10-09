@@ -67,5 +67,18 @@ class B0PackagingPolicyTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Role violation'):destination_check(package,B0_ROOT+'/'+B0_CONTEXT_FILES[2])
         with self.assertRaisesRegex(ValueError,'Role violation'):destination_check(self.package,B0_ROOT+'/docs/adr/future-answer.md')
 
+    def test_recovery_ships_context_docs_and_b1_hides_b2_rules(self):
+        packages={p['id']:p for p in json.loads(MANIFEST.read_text(encoding='utf-8'))['packages']}
+        for pid,root,extra in (('recovery-52-b1','recovery-b1',()),('recovery-63-b2','recovery-b2',('docs/api-examples.md',))):
+            package=packages[pid]
+            destinations={e['destination'] for e in package['files']}
+            for name in (*B0_CONTEXT_FILES,*extra):self.assertIn(root+'/'+name,destinations)
+            for name in destinations:destination_check(package,name)
+            with self.assertRaisesRegex(ValueError,'Role violation'):destination_check(package,root+'/docs/adr/future-answer.md')
+            payload={e['destination']:(ROOT/e['source']).read_bytes() for e in package['files']}
+            payload.update({name:body.encode('utf-8') for name,body in package['generated'].items()})
+            content_policy(package,payload)
+        with self.assertRaisesRegex(ValueError,'discloses B2'):content_policy(packages['recovery-52-b1'],{'recovery-b1/docs/x.md':'FARE-007'.encode()})
+
 
 if __name__=='__main__':unittest.main()

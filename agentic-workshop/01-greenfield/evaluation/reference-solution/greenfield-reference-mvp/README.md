@@ -6,16 +6,21 @@ Smart Ticket 的標準 MVP：查詢班次、1–4 人訂票、模擬付款及訂
 
 ## 安裝、啟動與測試
 
+在本目錄操作，建議使用 Python 3.13。先建立並啟用虛擬環境（venv）：
+
+- macOS／Linux：`python3.13 -m venv .venv`，再 `source .venv/bin/activate`。
+- Windows：建議用 `py -3.13 -m venv .venv` 建立。Git Bash 用 `source .venv/Scripts/activate` 啟用；PowerShell 用 `.venv\Scripts\Activate.ps1` 啟用。
+
+啟用後執行：
+
 ```bash
 python --version
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -r requirements.txt
-uvicorn smart_ticket.main:app --app-dir src --reload
-pytest -q
+python -m uvicorn smart_ticket.main:app --app-dir src --reload
+python -m pytest -q
 ```
 
-Windows PowerShell 啟用環境：`.\.venv\Scripts\Activate.ps1`。若執行原則限制啟用，可直接使用 `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`、`.\.venv\Scripts\python.exe -m uvicorn smart_ticket.main:app --app-dir src --reload` 及 `.\.venv\Scripts\python.exe -m pytest -q`。
+也可以跳過啟用，直接呼叫虛擬環境裡的 Python（PowerShell 執行原則擋下啟用時也這樣做）：Windows 用 `.venv\Scripts\python.exe -m pytest -q`（Git Bash 寫 `.venv/Scripts/python.exe`），macOS／Linux 用 `.venv/bin/python -m pytest -q`；安裝與啟動指令同理，把開頭的 `python` 換掉即可。
 
 測試必須實際執行並保留報告，G1 要求無 Fail、Skip 或 XFail；本 README 不代表驗證已通過。
 

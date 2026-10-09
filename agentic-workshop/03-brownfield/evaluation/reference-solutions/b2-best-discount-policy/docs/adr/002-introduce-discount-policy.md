@@ -1,6 +1,6 @@
 # ADR 002：引入 Discount Policy
 
-> 讀者：參與者與Agent。時機：理解計價成長。前置：閱讀主要規則及架構。可見性：Evaluation／Agent Production。
+> 讀者：參與者與Agent。時機：理解計價成長。前置：閱讀主要規則及架構。可見性：Participant。
 
 ## Context
 
