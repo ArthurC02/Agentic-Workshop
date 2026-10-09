@@ -95,7 +95,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 - 建議依序拆成小步：票價 → 班次查詢 → 建立訂票 → 付款 → 查詢訂單。
 - 每一步都要替這一步對應的驗收條件補上測試（例如建立訂票那步要有 1225 的測試，付款那步要有付款失敗不建立 Order 的測試），不能只靠移除 skip。
 - 不要放進前端、登入、會員、優惠、改退票或新套件等範圍外項目。
-- 下列事項需求文件沒有逐字寫明，請照這樣處理並寫進計畫：付款失敗時 Booking 維持 PENDING_PAYMENT、座位不釋放、不建立 Order、之後仍可再付款；找不到 Trip／Booking／Order 回 404；人數不符（0 人、超過 4 人）回 400，要在 domain／application 檢查，不要寫成輸入格式限制；座位不足、重複付款、付款失敗回 409；輸入格式錯誤沿用 422；錯誤內容沿用 {"error":{"code":"...","message":"..."}}；測試要能指定付款失敗，不用隨機結果（把 MockPaymentGateway.next_result 設為 PaymentStatus.FAILED）。
+- 下列事項需求文件沒有逐字寫明，請照這樣處理並寫進計畫：付款失敗時 Booking 維持 PENDING_PAYMENT、座位不釋放、不建立 Order、之後仍可再付款；找不到 Trip／Booking／Order 回 404；人數不符（0 人、超過 4 人）回 400，要在 domain／application 檢查，不要寫成輸入格式限制；座位不足、重複付款、付款失敗回 409；輸入格式錯誤沿用 422（回應內容用 FastAPI 預設，不另外包裝）；其他錯誤內容沿用 {"error":{"code":"...","message":"..."}}；測試要能指定付款失敗，不用隨機結果（把 MockPaymentGateway.next_result 設為 PaymentStatus.FAILED）。
 【輸出格式】寫進 notes/greenfield.md 的「計畫」段落。開頭寫你在 .py 檔找到幾個 TODO(GREENFIELD 標記。每一步固定四項：第幾步、完成後使用者能做什麼（白話）、對應的規則編號（Rule ID）與驗收條件（AC）、預計修改的檔案。最後列出還需要我決定的問題，每題附上你建議的答案。
 【停止條件】寫完就停下等我，不要開始修改。
 ```

@@ -3090,7 +3090,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "8891ab4119fdf8b830ad0ea5dc272b93b233f83c78f853abf6eb35e21e179135"
+          "sha256": "7e767eac9784f9cf07cfa542ff4ef6827d6c190828618b07c76154853a2e4394"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3330,7 +3330,7 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "5390c7464d72403e16bb2dc7c9ffef65c906b8a762fdec1ef10d92b5d98cc4a1"
+          "sha256": "787be2359d2b1e3fb52175287c384ff1c02794487302580a4c872ef8d81c389f"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",

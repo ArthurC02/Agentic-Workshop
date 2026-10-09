@@ -14,7 +14,7 @@ description: Dry-run the workshop the way a learner would. An agent pastes each 
 
 ## Brief every rehearsal agent gets
 - **Never edit the repo.** Work in `<scratchpad>/dryrun-<segment>/` and delete it afterwards.
-- Build the sandbox from the **current candidate packages** (`dist/p11-candidate/<id>/*.zip`, `dist/dlc-candidate/<id>/*.zip`), not from repo sources. Learners only ever see packages. Use Python 3.13 via uv. For the DLC, set HOME and USERPROFILE to a sandbox folder so real keys and git config stay untouched.
+- Build the sandbox from the **current candidate packages** (`dist/p11-candidate/<id>/*.zip`, `dist/dlc-candidate/<id>/*.zip`), not from repo sources. Learners only ever see packages. Use Python 3.13 via uv. Set HOME, USERPROFILE, GIT_CONFIG_GLOBAL, LOCALAPPDATA and APPDATA to sandbox folders, so real keys and git config stay untouched and PowerShell does not write a `Microsoft/` cache folder into the repo. Use a global git config with no identity, to catch commits that fail on a fresh machine.
 - **Play two roles:**
   - **The learner.** Copies each ```text prompt in page order (resolving the `include`s) and gives only the short replies the page asks for.
   - **The learner's Coding Agent.** Does exactly what each prompt says.
