@@ -141,7 +141,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 - 最早第 **45** 分鐘可用（規格 §3.2）。
 - 任一組在任一步**卡住 5 分鐘**即可私下提供；第 45 分多數組還沒 `submit-proposal` 時，對卡住的組提供。
-- 改用 Recovery 的組照 Recovery 頁三步切換（與 `recovery/d2/RECOVERY.md` 第 1–3 節同一份指令，見 §4「Recovery 切換做法」）：提案者原對話保存原 Repo 狀態並複製成 `resume-d2`；**夥伴**在 `resume-d2` 新開自己的 Agent 對話，從 `repo.bundle` 還原簽章歷史、以自己的金鑰接手（`amend-policy authorized_signers`、hook、readiness ready），回「同意」後做簽章 commit；提案者在 `resume-d2` 新開對話建環境並跑 `validate --require-reviewed`、`verify-audit`。夥伴的接手簽章就是這組的簽章練習；有空再看你的簽章示範（下方）。
+- 改用 Recovery 的組照 Recovery 頁三步切換（與 `recovery/d2/RECOVERY.md` 第 1–3 節同一份指令，見 §4「Recovery 切換做法」）：提案者原對話解出 Recovery 並複製成 `resume-d2`，原 Repo 的 `notes/`、`docs/handoffs/` 一併複製，原狀態寫進 `resume-d2` 的 `notes/d2.md`（不寫原 Repo）；**夥伴**在 `resume-d2` 新開自己的 Agent 對話，從 `repo.bundle` 還原簽章歷史、以自己的金鑰接手（`amend-policy authorized_signers`、hook、readiness ready），回「同意」後做簽章 commit；提案者在 `resume-d2` 新開對話建環境並跑 `validate --require-reviewed`、`verify-audit`。夥伴的接手簽章就是這組的簽章練習；有空再看你的簽章示範（下方）。
 
 **成對簽章示範腳本（約 4 分鐘，用 reference Registry 或自己的乾淨複本）**：
 
@@ -163,7 +163,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；Agent 依選擇寫成 D3 決策卡（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
 3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
 4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。
-5. Agent 用 `git diff` 與測試回答四個審查問題；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
+5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
 6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
 
 **巡場看流程**：每組是否「貼提示詞 → 看 Agent 回報 → 自己做決定 → 讓 Agent 記錄」。決策點（檢查點 2、4）學員要自己選，回「你決定」就介入。卡住時給可直接貼的補救提示詞，不替學員決定：
@@ -233,8 +233,8 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
-| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。D3 改過的檔案會是 `stale`、exit 1，這是預期；要記下，不准跳過，也不讓 Agent 當場修 |
-| 158–161 | 2 · 更新已變動事實 | Agent 先列更新清單，學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選；reviewed 事實以新 id 候選取代。參考：D3c 讓 `REFUND-004`、Booking 的「只能退一次」與 `ASIS-004` 不再成立 |
+| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。D3 改過的檔案會是 `stale`、exit 1，這是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-evidence` 只印 stale 的路徑，只要求數量與依檔案分組，不讓 Agent 自寫腳本對 id |
+| 158–161 | 2 · 更新已變動事實 | Agent 先列更新清單，學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選；reviewed 事實以新 id 候選取代；只是行號移動的 reviewed 事實維持 stale、不登記。參考：D3c 讓 `REFUND-004`、Booking 的「只能退一次」與 `ASIS-004` 不再成立 |
 | 161–165 | 3 · 寫交接單並核對 id | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
 
 看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4。
@@ -266,7 +266,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 - Recovery 碼與一般碼分開、只按需提供，不投影、不貼群組；Recovery 不作為小組成果評分。
 - 使用 Recovery 的組如實記錄觸發原因與時間（依 Runbook 對應 Recovery 頁的做法）。
 - Recovery 包只含可接續的 Repo（含 `domain-memory/`），不含觀察指引、counterfactual 證據原稿或任何 `evaluation/` 檔案。
-- **Recovery 切換做法（五個 Recovery 頁共用，與各段 `recovery/<段>/RECOVERY.md` 同一份指令）**：原 Repo 不改名、不覆寫；Recovery 複製成同一層的 `resume-<段>`，從 `repo.bundle` 還原 Git 歷史（不重新 `git init` 出未簽章的起點 commit）。D1 只有一個不含 `domain-memory/` 的「起始 Repo」commit，兩步都由提案者的 Agent 做、沒有 commit。D2 起分三步：① 提案者原對話保存與解出；② **夥伴**在 `resume-<段>` 新開自己的 Agent 對話（先貼 D2【夥伴】規則）：還原歷史、`init-signing-key`（沿用 `.dlc-keys\maintainer\` 的 D2 金鑰，沒有就新建）、把 `keys/maintainer.allowed_signers` 附加到新的 allowed signers 檔、`amend-policy authorized_signers` 加入自己的 fingerprint、`install-git-hitl-hook`、`governance-readiness` ready，回「同意」後簽章 commit 並 `verify-git-governance --commit HEAD`；③ 提案者在 `resume-<段>` 新開對話建 venv、測試、`validate --require-reviewed`、`verify-audit`、`verify-evidence`。之後 D3、D4 的 commit 照常由夥伴簽章。
+- **Recovery 切換做法（五個 Recovery 頁共用，與各段 `recovery/<段>/RECOVERY.md` 同一份指令）**：原 Repo 不改名、不覆寫；Recovery 複製成同一層的 `resume-<段>`，從 `repo.bundle` 還原 Git 歷史（不重新 `git init` 出未簽章的起點 commit）。D1 只有一個不含 `domain-memory/` 的「起始 Repo」commit，兩步都由提案者的 Agent 做、沒有 commit。D2 起分三步：① 提案者原對話解出 Recovery、把原 Repo 的 `notes/`、`docs/handoffs/` 複製進 `resume-<段>`，原狀態寫進 `resume-<段>` 的 `notes/<段>.md`（原 Repo 什麼都不寫）；② **夥伴**在 `resume-<段>` 新開自己的 Agent 對話（先貼 D2【夥伴】規則）：還原歷史、`init-signing-key`（沿用 `.dlc-keys\maintainer\` 的 D2 金鑰，沒有就新建）、把 `keys/maintainer.allowed_signers` 附加到新的 allowed signers 檔、`amend-policy authorized_signers` 加入自己的 fingerprint、`install-git-hitl-hook`、`governance-readiness` ready，回「同意」後簽章 commit 並 `verify-git-governance --commit HEAD`；③ 提案者在 `resume-<段>` 新開對話建 venv、測試、`validate --require-reviewed`、`verify-audit`、`verify-evidence`。之後 D3、D4 的 commit 照常由夥伴簽章。
 - D3a／D3b／D3c 的 Recovery 還原後，`verify-evidence`／`verify-sources` 會對改過的檔案回報 `stale`、exit 1，屬預期，留到 D4 處理。`git log` 最上面的「Recovery 參考實作」commit 是 `N`（未簽章），因為它不碰 Registry，hook 允許；Registry 的三個 commit 是 `G maintainer@example.com`。
 
 ## 5. Windows 已知陷阱與修正

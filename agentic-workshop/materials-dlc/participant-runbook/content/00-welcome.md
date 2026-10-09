@@ -14,7 +14,7 @@ section: 開始之前
 
 DDD（Domain-Driven Design，領域驅動設計）的概念不另開理論課，全部透過 Plugin 的操作來學：查得到的才是事實，查不到的就是知識缺口。這裡只先給路線圖，每個概念在**第一次用到的那一步**才會出現「新概念」說明框，框的最後一行「📖 延伸閱讀」指向書籍章節、Git 官方文件或 Plugin 自帶的說明檔：
 
-- **D1**：通用語言（Ubiquitous Language）、證據與候選、Bounded Context、邊界洩漏。
+- **D1**：通用語言（Ubiquitous Language）、證據與候選、Bounded Context（檢查點 6 再加深到邊界洩漏）。
 - **D2**：簽章 commit、審查政策、變更審查包、反事實檢查、已審查（reviewed）。
 - **D3a**：冪等、不變量、Port／Adapter 與防腐層。**D3b**：跨 Context 的不變量。**D3c**：Aggregate 與一致性邊界。
 - **D4**：驗證記憶、交接單。

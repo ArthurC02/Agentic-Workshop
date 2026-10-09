@@ -106,10 +106,11 @@ Agent 找的證據你們同意嗎？有沒有哪一題，你們記得的和紀�
 簽章私鑰只在今天的練習用，離開前要刪掉。由**持鑰的 Maintainer** 在自己的 Agent 對話（D2 起用的那一個）貼這段：
 
 ```text
-請刪除今天練習用的簽章私鑰資料夾，只刪這一個，不要動其他檔案。
+請刪除今天練習用的簽章私鑰資料夾（只刪這一個，不要動其他檔案），再關掉這個 Repo 的「每個 commit 都要簽章」設定。
 PowerShell 執行：Remove-Item -Recurse -Force "$env:USERPROFILE\.dlc-keys\maintainer"
 Git Bash 執行：rm -rf "$HOME/.dlc-keys/maintainer"
-執行後確認這個資料夾已經不存在，用一句話回報。
+再到 Repo 根目錄執行 git config --local --unset commit.gpgsign：金鑰刪掉後，這個 Repo 若仍要求每個 commit 都簽章，之後的 commit 都會失敗。
+執行後確認這個資料夾已經不存在、這個 Repo 不再要求簽章，用一句話回報。
 ```
 
 ### 填寫：回顧

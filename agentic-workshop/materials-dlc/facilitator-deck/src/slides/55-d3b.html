@@ -110,7 +110,7 @@
   <p class="kicker">檢查點 5 / 6 · 第 116–121 分鐘</p>
   <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Agent 用 <code>git diff</code> 與測試回答四個審查問題</li>
+    <li>Agent 用 <code>git status</code>、<code>git diff</code> 與測試回答四個審查問題</li>
     <li>你們同意後，Agent 用 <code>make_record.py</code> 登記，<b>仍是候選</b></li>
     <li>夥伴在<b>自己的 Agent 對話</b>簽章 commit；第 121 分停手</li>
   </ol>
@@ -118,6 +118,7 @@
   <aside class="notes">
     <p><b>說（21:00／第 116 分）</b>：「第 116 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
+    <p><b>看</b>：新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3b-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原並重新核對 R8 允許改寫的範圍。</p>
   </aside>
 </section>

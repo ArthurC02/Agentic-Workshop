@@ -30,25 +30,32 @@ Recovery 附上 Git 歷史（`repo.bundle`）：Registry 的 commit 都由 Maint
 
 ```text
 我們要改用 D3b Recovery 接續。不要修改或刪除目前的 Repo，也不要 git commit；任何一步失敗就停下，不要自己繞過：
-1. 在目前 Repo 執行 git status 與 git log --oneline -3，然後問我們：D3b 做到第幾個檢查點、為什麼沒完成。把回答、這兩個指令的結果與目前 Repo 的完整路徑寫進 notes/d3b.md 的「改用 Recovery 前的狀態」，註明「D3b 的成果由 Recovery 提供，不是我們自己完成」。
-2. 把 Recovery 解到 C:\dlc-rec\d3b，再把裡面的 smart-ticket-dlc-base 複製成 repository 資料夾裡的 resume-d3b（和原 Repo 同一層，..\..\tools 才會指向學員包的工具）。這一步不碰 Git：
+1. 在目前 Repo 執行 git status 與 git log --oneline -3，然後問我們：D3b 做到第幾個檢查點、為什麼沒完成。先記在對話裡，不要寫進目前這個 Repo。
+2. 把 Recovery 解到 C:\dlc-rec\d3b，再把裡面的 smart-ticket-dlc-base 複製成 repository 資料夾裡的 resume-d3b（和原 Repo 同一層，..\..\tools 才會指向學員包的工具）；原 Repo 有 notes 與 docs\handoffs 資料夾時一併複製過去，後面的段落要讀。這一步不碰 Git。下面的指令要在原 Repo 根目錄開始執行，任何一行失敗都會自動停下：
 PowerShell：
+$ErrorActionPreference = 'Stop'
+$orig = git rev-parse --show-toplevel; if ($LASTEXITCODE) { throw "not in the original Repo" }
 Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
 Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-d3b.zip" -DestinationPath C:\dlc-rec\d3b
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\d3b -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
 if (-not $rec) { throw "repo.bundle not found" }
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d3b
+foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d3b\$d" } }
 Git Bash：
+set -e
+orig=$(git rev-parse --show-toplevel)
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
 mkdir -p /c/dlc-rec/d3b
 unzip -q ~/Downloads/recovery-dlc-d3b.zip -d /c/dlc-rec/d3b
 rec=$(find /c/dlc-rec/d3b -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || exit 1
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d3b
-3. 用白話告訴我 resume-d3b 的完整路徑，以及原 Repo 是否原封不動。做完停下。
+for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./resume-d3b/$d"; fi; done
+3. 在 resume-d3b 的 notes/d3b.md 檔尾加上「改用 Recovery 前的狀態」：第 1 步的回答、兩個指令的結果與原 Repo 的完整路徑，註明「D3b 的成果由 Recovery 提供，不是我們自己完成」。不要覆蓋從原 Repo 複製過來的內容。
+4. 用白話告訴我 resume-d3b 的完整路徑、從原 Repo 複製了哪些資料夾，以及原 Repo 是否原封不動。做完停下。
 ```
 
-**看到什麼算過關**：原 Repo 的 `notes/d3b.md` 有「改用 Recovery 前的狀態」；`resume-d3b` 已建立，原 Repo 沒有被改動。
+**看到什麼算過關**：`resume-d3b` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d3b` 的 `notes/d3b.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。
 
 ## 步驟 2 · 【夥伴】在 resume-d3b 開新的 Agent 對話，接手簽章
 
@@ -58,23 +65,25 @@ cp -r "$rec/smart-ticket-dlc-base" ./resume-d3b
 ```text
 【夥伴的 Agent】這是 D3b Recovery，Repo 根目錄現在是 resume-d3b。依終端機選一組，在「同一次執行」裡依序跑（rec、old、fp 變數要在同一次執行內才有值），參數一字不改；任何一步失敗就停下貼出錯誤，不要自己改設定或換寫法：
 PowerShell：
+$ErrorActionPreference = 'Stop'
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\d3b -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
 if (-not $rec) { throw "repo.bundle not found" }
-git init -q -b main
-git fetch -q "$rec\repo.bundle" main
-git reset -q FETCH_HEAD
+git init -q -b main; if ($LASTEXITCODE) { throw "git init failed" }
+git fetch -q "$rec\repo.bundle" main; if ($LASTEXITCODE) { throw "git fetch failed" }
+git reset -q FETCH_HEAD; if ($LASTEXITCODE) { throw "git reset failed" }
 git config --local user.name "DLC Proposer"
 git config --local user.email proposer@example.com
 git status --short
-..\..\tools\dm.ps1 init-signing-key --principal maintainer@example.com --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit --save "$env:USERPROFILE\.dlc-keys\maintainer\signing.json"
+..\..\tools\dm.ps1 init-signing-key --principal maintainer@example.com --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit --save "$env:USERPROFILE\.dlc-keys\maintainer\signing.json"; if ($LASTEXITCODE) { throw "init-signing-key failed" }
 Get-Content "$rec\keys\maintainer.allowed_signers" | Add-Content (git config --local gpg.ssh.allowedSignersFile)
 git log --format='%h %G? %GS %s'
 $old = (Get-Content domain-memory\domain-memory-policy.json -Raw | ConvertFrom-Json).review_governance.authorized_signers -join ','
 $fp = (Get-Content "$env:USERPROFILE\.dlc-keys\maintainer\signing.json" -Raw | ConvertFrom-Json).fingerprint
-..\..\tools\dm.ps1 amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
-..\..\tools\dm.ps1 install-git-hitl-hook
+..\..\tools\dm.ps1 amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"; if ($LASTEXITCODE) { throw "amend-policy failed" }
+..\..\tools\dm.ps1 install-git-hitl-hook; if ($LASTEXITCODE) { throw "install-git-hitl-hook failed" }
 ..\..\tools\dm.ps1 governance-readiness
 Git Bash：
+set -e
 rec=$(find /c/dlc-rec/d3b -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || exit 1
 git init -q -b main
@@ -91,7 +100,7 @@ fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf
 ../../tools/dm.sh amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
 ../../tools/dm.sh install-git-hitl-hook
 ../../tools/dm.sh governance-readiness
-用白話回報：git status 有沒有輸出；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d3b.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
+用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d3b.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
 我同意後執行（Git Bash 把 ..\..\tools\dm.ps1 換成 ../../tools/dm.sh）：
 git add domain-memory notes
 git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "D3b Recovery：授權本組金鑰"
@@ -102,7 +111,7 @@ git log --show-signature -1
 
 **看到什麼算過關**：
 
-- `git status` 沒有輸出；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`，最上面的「D3b：點數折抵（Recovery 參考實作）」是 `N`（未簽章、不碰 Registry，允許）。
+- `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`，最上面的「D3b：點數折抵（Recovery 參考實作）」是 `N`（未簽章、不碰 Registry，允許）。
 - `amend-policy` 的 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
 - 簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
 

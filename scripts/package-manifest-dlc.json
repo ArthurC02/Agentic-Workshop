@@ -328,7 +328,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
-          "sha256": "a2b100d0538641adf7c4282b658b0bd0bf703a3906ec211d3a264dd86a561985"
+          "sha256": "7ce016bb3a2f5fd4527e23051542a4414c2639b8691b23223963945185eb3b13"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.sh",
@@ -524,7 +524,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
           "destination": "recovery-dlc-d1/RECOVERY.md",
-          "sha256": "647cab3ad63b13ffcf15ef56d18163e466aa6cf9637d190e1aa590e82728a039"
+          "sha256": "57bed0756d08126d54c2a6bf9c7797022f6202d3e62da3af3c7e620221812849"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
@@ -931,7 +931,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "recovery-dlc-d2/RECOVERY.md",
-          "sha256": "146480682cb7f61a56ec1d440f98ea5cc2a607b730329d4d5c806d39ad186c46"
+          "sha256": "98d98b1fd97f46baac7a2006363d26485f2c82f8985774042b2615749c3c0c57"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -1368,7 +1368,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "recovery-dlc-d3a/RECOVERY.md",
-          "sha256": "216247dc6232cc4885603989c0137ce64e9951fc56c079c7b5cb2276ce6a933f"
+          "sha256": "9195e68878248885cf8eca3093d3f9b0a0105224495c4f2576889397cea0232f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -1830,7 +1830,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "recovery-dlc-d3b/RECOVERY.md",
-          "sha256": "408e40761991581266c7f1b392c87009d82f317dbfe98f640dae7f0a98a81f25"
+          "sha256": "7b3511162a578274489f016a984339991c85fb58febe7037bfd3da2754fb06b2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -2302,7 +2302,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "recovery-dlc-d3c/RECOVERY.md",
-          "sha256": "ff5fe63d12399814859331e2ed6a7340c33afe5a73a2381486140d412cded84f"
+          "sha256": "28396bb39ad27ef46b331a2dd6178f512203d557f67bf2b27d3aa66bc93c234d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -2785,12 +2785,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "bb0a8d70e233d90180b6e2bcbb32708886922dca06f687f3b12958e94c11edc1"
+          "sha256": "295fa367702a47555443790d333b0cc6743377f0894981f3c7b384eedec460eb"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
-          "sha256": "647cab3ad63b13ffcf15ef56d18163e466aa6cf9637d190e1aa590e82728a039"
+          "sha256": "57bed0756d08126d54c2a6bf9c7797022f6202d3e62da3af3c7e620221812849"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
@@ -3180,7 +3180,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
-          "sha256": "146480682cb7f61a56ec1d440f98ea5cc2a607b730329d4d5c806d39ad186c46"
+          "sha256": "98d98b1fd97f46baac7a2006363d26485f2c82f8985774042b2615749c3c0c57"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -3600,7 +3600,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
-          "sha256": "216247dc6232cc4885603989c0137ce64e9951fc56c079c7b5cb2276ce6a933f"
+          "sha256": "9195e68878248885cf8eca3093d3f9b0a0105224495c4f2576889397cea0232f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -4045,7 +4045,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
-          "sha256": "408e40761991581266c7f1b392c87009d82f317dbfe98f640dae7f0a98a81f25"
+          "sha256": "7b3511162a578274489f016a984339991c85fb58febe7037bfd3da2754fb06b2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -4500,7 +4500,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
-          "sha256": "ff5fe63d12399814859331e2ed6a7340c33afe5a73a2381486140d412cded84f"
+          "sha256": "28396bb39ad27ef46b331a2dd6178f512203d557f67bf2b27d3aa66bc93c234d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -4970,7 +4970,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
-          "sha256": "2570c9acebc634c4f419111bc6035e7cbd1a49a9f6afffa9d18d141c1b23e898"
+          "sha256": "06c27fb2936264a0699615ae723669740b08c4c59f57edf1a10e8f2c73f4b332"
         }
       ],
       "generated": {}

@@ -40,7 +40,7 @@
   <p class="callout">Runbook › D4 交接 › 檢查點 1 · 貼提示詞</p>
   <aside class="notes">
     <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 動了程式，證據行號可能已經過期：先請 Agent 驗證，再交接。stale 是預期的，記下來，不要叫 Agent 當場修。」</p>
-    <p><b>看</b>：學員是否讀了 Agent 的回報；stale 的每一筆是否分清候選或 reviewed；Agent 有沒有自己動手修。</p>
+    <p><b>看</b>：學員是否讀了 Agent 的回報；stale 是否依檔案分組列出（工具只印路徑，不要求逐筆 asset:id）；Agent 有沒有自己寫腳本或動手修。</p>
     <p><b>介入訊號</b>：Agent 開始改檔 → 請學員貼「停下，只回報，不要修改」；stale 被略過 →「下一個 Agent 會把哪一筆當成限制？」</p>
   </aside>
 </section>
@@ -56,7 +56,7 @@
   <p class="callout">Runbook › D4 交接 › 檢查點 2 · 貼提示詞</p>
   <aside class="notes">
     <p><b>說（03:00／第 158 分）</b>：「第 158 分。請 Agent 先列出 D3 改變了哪些事實，你們同意後它才登記，登記的都是候選，不是 reviewed。reviewed 要走 D2 那套審查。」</p>
-    <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫。</p>
+    <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動的 reviewed 事實維持 stale、不登記。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
     <p><b>介入訊號</b>：有人想直接標成 reviewed → 提醒：沒有核准簽章就不是。</p>
   </aside>
 </section>
