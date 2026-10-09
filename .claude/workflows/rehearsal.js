@@ -11,7 +11,7 @@ export const meta = {
 const SKILL = '.claude/skills/rehearsal/SKILL.md'
 const GROUPS = {
   main: ['greenfield', 'brownfield', 'b3-delivery-retro'],
-  dlc: ['open-d1-d2', 'd3', 'd4-retro'],
+  dlc: ['open-d1-d2', 'd3a', 'd3b', 'd3c', 'd4-retro'],
 }
 const scope = (args && args.scope) || 'main'
 const groups = GROUPS[scope]

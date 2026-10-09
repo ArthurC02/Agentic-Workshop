@@ -51,8 +51,8 @@ section: B3｜Digital Worker
 ```text
 請先讀 skills/team-rules.md 並遵守。
 請依附在這段後面的任務卡、Digital Worker 操作規則、工作單（Work Order）與三道 Gate，執行 TASK-B3-001 團體訂票：
-0. 建立 B3 起點：這個資料夾還沒有 Git 就執行 git init；沒有 .gitignore 就建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/。執行 pytest -q，再把目前狀態 Commit，訊息寫「B3 起點」。之後的變更審查都和這個 Commit 比。
-1. 只把工作單原文，加上三道 Gate 文件裡的「Gate 回報格式」，存成 skills/b3-work-order.md，這是你這次的工作說明（Skill）。任務卡、操作規則與三道 Gate 的其他內容不要重抄，在檔案開頭寫一行「任務卡、操作規則與三道 Gate 全文在這個對話的第一則訊息」。之後我只會說「依 skills/b3-work-order.md」，不再重貼。
+0. 建立 B3 起點：這個資料夾還沒有 Git 就執行 git init；沒有 .gitignore 就建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/。執行 pytest -q，再把目前狀態 Commit，訊息寫「B3 起點」；如果 Git 要求姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。之後的變更審查都和這個 Commit 比。
+1. 只把工作單原文，加上三道 Gate 文件裡的「Gate 回報格式」，以及 Escalation 格式（依序六個標題：Trigger、Evidence、Impact、Options、Recommendation、Decision Needed），存成 skills/b3-work-order.md，這是你這次的工作說明（Skill）。任務卡、操作規則與三道 Gate 的其他內容不要重抄，在檔案開頭寫一行「任務卡、操作規則與三道 Gate 全文在這個對話的第一則訊息」。之後我只會說「依 skills/b3-work-order.md」，不再重貼。
 2. 讀 notes/shared-context.md，在 notes/b3.md 建立「已核准背景」：小組、接手的程式版本（B2 接手版本或 B2 復原包）、B3 起點的測試結果（通過／失敗／跳過各幾個）、這次對話用的模型與推論強度（不知道就問我；工具沒有這個設定就寫「預設」）、已確認的假設與限制、尚待決定的事項。查不到的寫「待小組確認」，不要猜。
 3. 提交 Gate 1 資料：需求摘要、規則清單、關鍵假設、資訊缺口、不做的範圍（Out of Scope）、需要我決定的問題。寫進 notes/b3.md 的「Gate 1」段落，並在對話用白話摘要。
 4. 每過一道 Gate 才進下一步：Gate 1 核准才設計；Gate 2 核准且條件解除才改程式；Gate 3 由我決定是否交付。
@@ -82,7 +82,7 @@ section: B3｜Digital Worker
 ```callout tip
 技巧：結構化輸出（Gate 回報格式，加深一層）
 Greenfield 用固定欄位回報結果、B2 用固定欄位比較方案；這次每道 Gate 都用同一組固定標題（Gate、建議結論、證據、風險、需要人決定的事），你才能在 1–3 分鐘內看完，並和上一道 Gate 比對。完整內容寫進 `notes/b3.md`，對話只給這個摘要。
-📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured Outputs〉；你所用工具的官方文件通常有同名章節。
+📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured model outputs〉；你所用工具的官方文件通常有同名章節。
 ```
 
 ```text
@@ -158,10 +158,10 @@ Gate 3 時 Agent 會建議一個完成等級：Level 1 分析完成、Level 2 �
 
 ```text
 停止擴充，不要再新增功能，也不要再修改。請完成下列三件事，全部寫進 notes/b3.md：
-1. 驗收對照表：每條驗收條件（或規則）一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」。最後一行寫測試總數：通過幾個、失敗幾個、跳過幾個。附上你實際執行的指令。尚無修改或未執行測試時，明記「無修改／未執行」、原因與未驗證範圍，不要預填成功。
+1. 驗收對照表：每條驗收條件（或規則）一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」。最後一行寫測試總數：通過幾個、失敗幾個、跳過幾個。附上你實際執行的指令。尚無修改或未執行測試時，明記「無修改／未執行」、原因與未驗證範圍，不要預填成功。AC-B3-019（文件、API 範例與規則一致）沒有對應的自動測試：請實際執行 docs/ 裡的團體訂票 API 範例（api-examples.md 或 api-summary.md），並確認文件提到的規則編號都在 docs/business-rules.md，用這兩項結果當它的依據。
 2. 變更審查：先列出改了哪些檔案、每個檔案改了什麼、為什麼（用 git status 與 git diff 對照「B3 起點」Commit，新增、還沒 Commit 的檔案也要列；notes/ 與 skills/ 是紀錄，不用列）。再回答下列三題，每題附上你實際執行的指令與輸出：
    (1) 改的檔案都在 Gate 2 核准範圍內？
-   (2) 測試總數沒有比 B3 起點少，也沒有新增 skip 或 xfail？
+   (2) 測試總數沒有比 B3 起點少，也沒有新增 skip 或 xfail？（git diff 看不到還沒 Commit 的新測試檔，請用 pytest -q --collect-only 比較 B3 起點與現在的測試數）
    (3) 沒有刪除任何測試，也沒有修改既有測試的期待值？（請用 git diff 檢查 tests 資料夾後回答）
 3. Gate 3 資料：成果摘要、規則追溯（每條規則對到程式、測試與文件）、未完成事項、已知風險，以及建議的完成等級（Level 1–3 擇一並附證據，不要自動選 Level 3）。
 最後在對話用 Gate 回報格式給我 Gate 3 決策卡（先摘要，不要貼完整輸出）：「證據」是上面 (1)(2)(3) 三題各用「是／否／不確定」回答，「風險」列驗收對照表裡還失敗或未驗證的項目，「建議結論」是你的建議決策。停止先前在埠號 8000 執行的伺服器（包括之前對話啟動的），重新在背景啟動，確認 /docs 看得到團體訂票的 API，告訴我 /docs 的網址，並給我一筆可以直接貼上的團體訂票範例：班次 T001、5 位旅客（還沒有團體訂票 API 就直說，不要編範例）。然後問我：Gate 3 決策、條件、/docs 有沒有實測、核准人、現在第幾分鐘。我回答後照原文記進 notes/b3.md 的「Gate 3」段落，然後停止，不再新增功能。
@@ -173,7 +173,7 @@ Gate 3 時 Agent 會建議一個完成等級：Level 1 分析完成、Level 2 �
 - 驗收對照表裡的失敗與未驗證項目都列出來了；建議的 Level 有證據支持。
 - 任何一題是「否」或「不確定」→ 不核准，請 Agent 解釋或修正。想逐項核對時，到 [交付審查清單](#b3-review-checklist) 貼那頁的提示詞，請 Agent 自評，你抽查。
 
-時間允許時，用瀏覽器試一次團體訂票：打開 Agent 給的 /docs 網址 → 點開團體訂票的 API → 按「Try it out」→ 貼上 Agent 提供的 5 人範例 → 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、400 輸入錯誤、404 找不到）和內容。沒時間試，就告訴 Agent「/docs 未實測（未驗證）」。
+時間允許時，用瀏覽器試一次團體訂票：打開 Agent 給的 /docs 網址 → 點開團體訂票的 API → 按「Try it out」→ 貼上 Agent 提供的 5 人範例 → 按「Execute」→ 看 Response 的狀態碼（201 成功；409 不符商業規則或與目前狀態衝突（例如人數不在 5–20 人）；404 找不到；422 輸入資料驗證失敗）和內容。沒時間試，就告訴 Agent「/docs 未實測（未驗證）」。
 
 在頁尾選 Gate 3 的決策。全場第 76 分鐘到，停止擴充並列出缺項；交付摘要在下一段整理。
 

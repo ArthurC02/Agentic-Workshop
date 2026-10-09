@@ -208,12 +208,12 @@
       <tr><td>企業會員學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
     </tbody>
   </table>
-  <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
+  <p class="muted fx fx-fade">改票（新基本票價 750；改票時 Clock 2030-01-01）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
   <aside class="notes">
     <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
     <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
     <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
-    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。凍結的 B2 api-examples.md 第 55 行、architecture.md 第 15 行、discount-overview.md 第 5 行寫成 FULL_FARE；B3 已修正。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
+    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。凍結的 B2 api-examples.md、architecture.md、discount-overview.md 的優惠段落寫成 FULL_FARE；B3 已修正。B2 Recovery 包沒有 api-examples.md 與 discount-overview.md，FULL_FARE 在 architecture.md 的 Discount Policy 段落；請依內容搜尋 FULL_FARE 定位，不要依行號。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
   </aside>
 </section>
 
@@ -227,7 +227,7 @@
       <tr><td><code>BookingService.create</code></td><td>每人獨立選擇，總額＝每人 amount 加總；驗證後才寫 Booking／座位</td></tr>
       <tr><td><code>ChangeBookingService.change</code></td><td>目標 Trip＋當前 Clock 用同政策重新計價；同步 total_fare、fare_difference、applied_discounts；原 Order 付款金額不變</td></tr>
       <tr><td>Domain／Schema／API</td><td>Booking 根層 <code>applied_discounts</code>：passenger_id、discount_type、rate、amount；原 passengers 三欄不變</td></tr>
-      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR（Architecture Decision Record，架構決策紀錄）記錄候選選擇</td></tr>
+      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR（Architecture Decision Record，架構決策紀錄）記錄候選選擇。Recovery 包沒有 docs/adr/、discount-overview.md（B2 Recovery 也沒有 api-examples.md）：改在 business-rules.md／architecture.md 的優惠段落同步即可，AC-B2-013 以這些段落為文件證據</td></tr>
     </tbody>
   </table>
   <aside class="notes">

@@ -12,9 +12,7 @@ section: 開始之前
 
 ## 工作節奏
 
-```text
-Plan → Human Review → Execute → Test → Explain
-```
+**Plan → Human Review → Execute → Test → Explain**
 
 - **計畫（Plan）**：Agent 讀需求與 Repository，提出分步計畫並列出要你決定的問題；它先不修改。你核對範圍、回答問題。
 - **人員審查（Human Review）**：你確認後才核准；Agent 等你確認，不自行開始。

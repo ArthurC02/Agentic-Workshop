@@ -25,6 +25,8 @@ description: Dry-run the workshop the way a learner would. An agent pastes each 
   - Did the learner have to type more than a short reply?
   - Is the step realistic for its minutes?
   - Is any answer leaked?
+- **Coverage is mandatory.** Run every ```text prompt **and** every command block on the pages, including both the PowerShell and the Git Bash variant where a page gives both. Compare the real output with every 「看到什麼算過關」 line and every expected string quoted in the page text, slide notes or facilitator docs. Return a coverage list: `page:block → ran | blocked (by what) | not run (why)`. "Read only" or "spot-checked" is not coverage.
+- **Sandbox artefacts are not findings:** a `py -3.13` shim to uv's Python, `core.longpaths` for the long scratchpad path, a drive mapped with `subst`. Note them once. If a permission check blocks a step (for example `git push`, even to a local bare repo), do not work around it; list it as blocked.
 - **Report:** numbered findings with page:heading, severity (blocker/major/minor), what happened, and a one-line fix, plus a short "worked well" list.
 
 ## Segment groups and packages
@@ -34,5 +36,7 @@ description: Dry-run the workshop the way a learner would. An agent pastes each 
 | main | brownfield | 30–52 (+53, 67 recovery check) | `participant-29-b0.zip`; task cards from `participant-44-b1.zip`, `participant-52-b2.zip` |
 | main | b3-delivery-retro | 60–80 | `recovery-63-b2.zip` (post-B2 baseline), `participant-63-b3-governance.zip`; the exception text is on the deck slide 例外事件 |
 | dlc | open-d1-d2 | 00–29 | `participant-dlc-open.zip`, `-d1`, `-d2` |
-| dlc | d3 | 30–59 | D2 end state or the d3a/d3b/d3c recovery packages |
+| dlc | d3a | 30–39 | D2 end state (build it with the page-29 Recovery D2 flow) |
+| dlc | d3b | 40–49 | `recovery-dlc-d3a.zip` via page 39 |
+| dlc | d3c | 50–59 | `recovery-dlc-d3b.zip` via page 49 |
 | dlc | d4-retro | 60–70 | D3c end state |

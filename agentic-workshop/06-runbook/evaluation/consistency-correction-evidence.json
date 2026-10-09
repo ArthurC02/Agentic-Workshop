@@ -1,5 +1,5 @@
 {
-  "executed_utc": "2026-10-09T06:09:31.902816+00:00",
+  "executed_utc": "2026-10-09T08:19:03.015791+00:00",
   "checks": [
     {
       "id": "C-01-02",
@@ -10,7 +10,7 @@
         "scripts/build_delivery.py"
       ],
       "details": {
-        "zip": "dist/p11-candidate/7d0adac1e0b63087/participant-29-b0.zip",
+        "zip": "dist/p11-candidate/524731ecda74e827/participant-29-b0.zip",
         "zip_sha256": "c6f1a92f8030805a5fd7c38386a294537209c517c19514a1f8cc7ed3a17ef656",
         "controlled_files": [
           "docs/change-booking-guide.md",
@@ -108,7 +108,7 @@
   "documents": {
     "status": "PASS",
     "markdown_files": 401,
-    "relative_links": 890,
+    "relative_links": 891,
     "errors": [],
     "existing_utf8_bom_files": [
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -632,7 +632,7 @@
       {
         "file": "agentic-workshop/04-digital-worker/evaluation/04-exception-reference-answer.md",
         "historical_sha256": "a8459d41f52f1970ab11a7d00421bb65c8f8278ed9ba95a164686b1f511cbb13",
-        "current_sha256": "88f90fb3540f030c9eb8a4efcd3f3c13d931aa9019f02d4ce5c334fe94c777b3"
+        "current_sha256": "f4ada21a1dbf47a2a9b92c5707b9dad1cd69805d53d063062af6a7c1f44d69c0"
       },
       {
         "file": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
@@ -652,7 +652,7 @@
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
         "historical_sha256": "abc6fe14f7684c2e9f94353021d239ef17e67c9da075c8629cd0be54535e143b",
-        "current_sha256": "0dbf5d5d15bf797a2bdfecbeb053fe851c48c3d0f55dd56724b4812c09595b8a"
+        "current_sha256": "81ea1abc0636d81bb6bf1922398b76c06666c86a9f5ddc9361cfa47ec96f7736"
       },
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -732,7 +732,7 @@
       {
         "file": "agentic-workshop/06-runbook/preflight-checklist.md",
         "historical_sha256": "31718da19058433174f2324ffd8f1f0d53b9a1226a4a4b7de902bbc8809a2e01",
-        "current_sha256": "352db50a01a5f54ba2eebf82a4fd61c386fe100f6ac96136a8ebfc4a6e9b8ad7"
+        "current_sha256": "f3625d69f541c9fddeb984f871eeece05f5f5ae172573aa52bf83a61cd3984e9"
       },
       {
         "file": "agentic-workshop/06-runbook/recovery-plan.md",
@@ -756,7 +756,7 @@
     "agentic-workshop/03-brownfield/participant/04-shared-context-template.md": "79074084e546bbecf4b9044a9ca57e9749571de21825f2cb37b9103bc62f09c2",
     "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md": "b05cfadc155d82423c5952862614010dd8cef0c8dba97536c3b8748c2e986b14",
     "agentic-workshop/04-digital-worker/evaluation/03-digital-worker-audit-template.md": "ed1be562110190cdfdd4a7777ad00099361503a0c84c51d681a0f1815e33c982",
-    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "0dbf5d5d15bf797a2bdfecbeb053fe851c48c3d0f55dd56724b4812c09595b8a",
+    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "81ea1abc0636d81bb6bf1922398b76c06666c86a9f5ddc9361cfa47ec96f7736",
     "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md": "e4f0a51829bbcca3127672855864b215eeb583ae1523669d1be416c751ce98e9",
     "agentic-workshop/04-digital-worker/participant/03-approval-gates.md": "0a43722439b7d428e2315efe9acb30ec8e7ff604b0fac9200bfcf3da5cf0d471",
     "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "8935417d2890def9d703c8d60b7c1d485a522d1d2745861f7be65ec427459232",
@@ -765,7 +765,7 @@
     "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "57551ca850d09b833fd07c5860ed773601b52f59a5b06fcbd3a9c0524d96d4b9",
     "agentic-workshop/06-runbook/workshop-runbook.md": "10017cd10fdb33998a6ea53a52e357d8eaf1654d7ff3557d5ed62c99b7c98cad",
     "scripts/build_delivery.py": "d74a3972d931303107fa44ca59b943e8b99a8a7941bbf6a579ac1f5a841a597f",
-    "scripts/package-manifest.json": "7d0adac1e0b6308708d1f9b27b7869760af1038b6654832fa2f283e3d867da60"
+    "scripts/package-manifest.json": "524731ecda74e827d5cdcd801920e9e49dd20771619d125394fcf92ca795c31c"
   },
   "app_suite_rerun": "NOT RUN: exact frozen source comparison; prior actual technical evidence retained",
   "human_rehearsal": "NOT RUN",

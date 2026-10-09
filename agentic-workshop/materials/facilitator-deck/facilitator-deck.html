@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 220c68fc2fd3f9d2 inputs-sha256 220c68fc2fd3f9d243dbf0a921ecb7884b0481fe3f9246641e3dd8afb77db8d0 -->
+<!-- 主持人專用，不發給學員。build c59188c6931dc29e inputs-sha256 c59188c6931dc29e7d0804131f21b37e22edc8035493235d0fa8fbc5752cc01d -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1690,7 +1690,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>評估判讀值（EVAL）</b>：符合／部分符合／未符合／未驗證；空白或 Agent 自述不能代替實際驗證。Agentic Behavior 看是否用上本段技巧：先貼規則｜先要計畫、由人核准｜小步放行，每步有驗收對照表與變更審查答案（記在 notes）｜親自在 /docs 驗證並如實標示未驗證。不因學員沒讀程式、沒自己打指令或表單少填而扣分。</p>
     <p><b>Debrief 訊息（EVAL）</b>：此階段 Agent 是 Tool，不評自主率高低、不以提示次數、程式碼量或速度競賽。</p>
     <p>G0 是可啟動但未完成的骨架；G0 的未實作 Feature Skip 是骨架設計，不得因 G0 骨架通過判定學員 MVP 已完成（EMO／EVAL）。</p>
-    <p>注意：快速驗收第 4 步 Order 金額 1,225 為混合訂票情境；ATM 的 AC-G-010／012 測試以 700（單人）驗證，情境不同，非矛盾。</p>
+    <p>注意：快速驗收第 4 步 Order 金額 1,225 為混合訂票情境；AC-G-010／012 的測試以 700（單人）驗證，情境不同，非矛盾。</p>
     <p><b>不要</b>在此頁揭露 Time Skip 或 B0／B1 內容；下一段由 Time Skip 解鎖頁開始。</p>
   </aside>
 </section>
@@ -2422,12 +2422,12 @@ body.is-presenter #dk-black { display: none !important; }
       <tr><td>企業會員學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
     </tbody>
   </table>
-  <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
+  <p class="muted fx fx-fade">改票（新基本票價 750；改票時 Clock 2030-01-01）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
   <aside class="notes">
     <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
     <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
     <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
-    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。凍結的 B2 api-examples.md 第 55 行、architecture.md 第 15 行、discount-overview.md 第 5 行寫成 FULL_FARE；B3 已修正。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
+    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。凍結的 B2 api-examples.md、architecture.md、discount-overview.md 的優惠段落寫成 FULL_FARE；B3 已修正。B2 Recovery 包沒有 api-examples.md 與 discount-overview.md，FULL_FARE 在 architecture.md 的 Discount Policy 段落；請依內容搜尋 FULL_FARE 定位，不要依行號。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
   </aside>
 </section>
 
@@ -2441,7 +2441,7 @@ body.is-presenter #dk-black { display: none !important; }
       <tr><td><code>BookingService.create</code></td><td>每人獨立選擇，總額＝每人 amount 加總；驗證後才寫 Booking／座位</td></tr>
       <tr><td><code>ChangeBookingService.change</code></td><td>目標 Trip＋當前 Clock 用同政策重新計價；同步 total_fare、fare_difference、applied_discounts；原 Order 付款金額不變</td></tr>
       <tr><td>Domain／Schema／API</td><td>Booking 根層 <code>applied_discounts</code>：passenger_id、discount_type、rate、amount；原 passengers 三欄不變</td></tr>
-      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR（Architecture Decision Record，架構決策紀錄）記錄候選選擇</td></tr>
+      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR（Architecture Decision Record，架構決策紀錄）記錄候選選擇。Recovery 包沒有 docs/adr/、discount-overview.md（B2 Recovery 也沒有 api-examples.md）：改在 business-rules.md／architecture.md 的優惠段落同步即可，AC-B2-013 以這些段落為文件證據</td></tr>
     </tbody>
   </table>
   <aside class="notes">
@@ -2682,7 +2682,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>看 → 介入</b>：條件未解除仍在改 Code → #1，依序：提醒 Rule → 要求證據 → 回 Gate｜人伸手改程式 → #2｜Agent 刪除或弱化測試 → #3｜小組無視付款失敗補償 → #5｜宣稱測試通過卻無實際證據 → #6，要求證據｜時間到仍擴充 → #7。人一直逐步下指令 → 提醒技巧：「範圍已核准，讓它自己做，只在停止條件和 Gate 3 介入。」</p>
     <p><b>停止與升級十項（Work Order 已列）</b>：衝突（需求與 Rule ID 衝突；文件與程式衝突且測試無法判定）｜範圍（需改核准範圍外 API Contract；需新增外部服務或套件；需移除既有 Regression Test；修改檔案數顯著超過 Gate 2 預估）｜設計（無法確認付款失敗的正確狀態；找不到同時滿足座位與 Atomicity 的方案）｜品質／時間（與任務無關的新失敗；剩餘時間不足完成承諾交付）。Escalation 寫進 notes/b3.md，不等同第二件主持例外；本場只有一件主持例外。</p>
     <p><b>Level 1</b>：無修改／未執行時審 Gate 1／2、合理 Impact、完整 Test Strategy 與缺項，明記「無修改／未執行」，不預填成功。<b>核准 ≠ PASS</b>：三 Gate 是執行中的人員核准，不取代程式驗收。</p>
-    <p><b>時間不足（逐字）</b>：「13 分鐘內保留三 Gate 與真實證據；時間不足保留 Gate 1／2，Gate 3 至少審查測試及未完成事項，例外可縮短為 30 秒判斷。依 Level 1–3 如實交付，不強求完整程式量。」</p>
+    <p><b>時間不足（Runbook 逐字）</b>：「13 分鐘內保留三個核准關卡與真實證據；時間不足保留 Gate 1／2，Gate 3 至少看驗收對照表及未完成事項，例外可縮短為 30 秒判斷。」</p>
     <p><b>停止（00:13／第 76 分）</b>：「停止新增功能，交付摘要下一段請 Agent 整理。」→ 翻到 Delivery 頁。</p>
     <p><b>首次介紹</b>：第 74 分前第一次正式介紹完成等級（Level 1–3），花約 30 秒，指著 Runbook 的「新概念：完成等級（Level）」小卡講。</p><p><b>收尾：</b>請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。</p>
   </aside>
@@ -2840,7 +2840,7 @@ body.is-presenter #dk-black { display: none !important; }
   </ol>
   <aside class="notes">
     <p><b>來源</b>：<code>07-b3-expected-impact-analysis.md</code>；<code>10-b3-acceptance-test-map.md</code> AC-B3-005／006。</p>
-    <p>42 容量的第三車廂截斷保留，不改正式 Seed 容量。</p>
+    <p>正式 Seed 沒有 42 座的班次（最多 T001 的 20 座）；42 是參考測試裡暫時把容量調成 42，用來驗證第二車廂與「不跨到第三車廂」，Reset 後還原，不改正式 Seed 容量。</p>
     <p>TC 學員版「不在本卡規定完整Response或座位演算法」——這是一種可接受設計，不是唯一答案；F04「合理但不同的In-Memory設計」不應被判錯。對照重點是：不跨車廂、無部分成立、碎片化拒絕。</p>
   </aside>
 </section>

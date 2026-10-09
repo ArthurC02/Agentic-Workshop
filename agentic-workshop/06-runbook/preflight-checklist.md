@@ -31,7 +31,7 @@ B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可
 - [ ] B1 Recovery只於52分鐘接續B2，B2 Recovery只於63分鐘接續B3，包已驗證且保留原成果／Context。
 - [ ] 若包未備妥，分析／Review降級可用，不分享Evaluation目錄。
 - [ ] Agent可用；個人分析、小組Shared Context及主要Agent／人員核准者已確認。
-- [ ] 每台學員電腦：貼上環境準備提示後，Agent能代為建立.venv、安裝依賴並回報pytest結果；能在背景啟動伺服器（埠號8000）、確認/health為status=ok；瀏覽器能開http://127.0.0.1:8000/docs並用Try it out執行一次。學員全程不需自己打指令。
+- [ ] 每台學員電腦：貼上環境準備提示後，Agent能代為建立.venv、安裝依賴並回報pytest結果；能在背景啟動伺服器（埠號8000）、確認/health為status=ok；瀏覽器能開http://127.0.0.1:8000/docs並用Try it out執行一次（/docs的畫面從cdn.jsdelivr.net載入，需要網路；沒有網路時頁面空白，改請Agent用httpx實際呼叫API並列出狀態碼與回應）。學員全程不需自己打指令。
 - [ ] Agent能停止自己啟動的伺服器並換版重啟；Port佔用時Agent能改埠並告知新網址。
 - [ ] 三Gate與條件結案、唯一EXCEPTION-DW-001、60秒含69–70／可縮30秒已準備。
 - [ ] 90分鐘計時、觀察／提示／停止、收件與回顧材料可用；不排名、不強求Level3。

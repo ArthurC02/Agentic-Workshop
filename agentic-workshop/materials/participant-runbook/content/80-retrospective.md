@@ -58,12 +58,13 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 
 ```text
 請依附件裡的「提示詞格式」，把我們剛選定的 3 個技巧各寫成一段我回到自己的專案可以直接貼上的提示詞，寫進 notes/my-prompts.md：
+- notes/my-prompts.md 與新的 Skill 檔寫在我自己電腦上任一專案資料夾（例如 smart-ticket-b0）的 notes/ 與 skills/；先問我要放哪個資料夾，我沒意見就用 smart-ticket-b0。
 - 不要綁定今天的 Smart Ticket 專案；每次會變的部分用〈 〉標出。
 - 每段都要寫「看什麼證據」：Agent 做完後我要檢查什麼。
 - 「今天的例子」只寫 notes 裡真的有的事；找不到就寫「未觀察」，不要編。
 - 每段都用附件的提示詞結構：目標、背景／要讀的檔、限制、輸出格式、停止條件。
 - 挑最常用的一段，另存成 Skill 檔：放在 skills/ 資料夾，檔名由你取一個簡短的英文名稱，內容寫什麼時候用、步驟、要交的證據、回報格式；notes/my-prompts.md 那一段改成一行「請先讀 skills/〈檔名〉.md 並照做」。
-寫完把 3 段提示詞與 Skill 檔名貼在對話給我看，問我要不要調整。
+寫完把 3 段提示詞、Skill 檔名和兩個檔案的完整路徑貼在對話給我看，問我要不要調整。
 ```
 
 **看到什麼算過關**：`notes/my-prompts.md` 有 3 段提示詞，每段都有「什麼時候用」「看什麼證據」；`skills/` 多了一個你的 Skill 檔。讀一遍；不像你會說的話，就回一句「第 2 段改成我平常講話的方式」之類，改到你願意直接用為止。

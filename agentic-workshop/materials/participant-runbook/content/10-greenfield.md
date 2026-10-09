@@ -64,7 +64,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ```text
 請幫我把這個專案準備好，做完用白話回報，不要修改任何程式：
-1. 確認 Python 版本是 3.13，在專案資料夾建立 .venv 虛擬環境並安裝 requirements.txt，接著執行 pytest -q，告訴我測試有幾個通過／失敗／跳過。
+1. 用 py -3.13 -m venv .venv 建立虛擬環境（macOS 用 python3.13 -m venv .venv）。不要照 README 的 activate（啟用）步驟，之後一律直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe；macOS 寫 .venv/bin/python），例如 .venv\Scripts\python.exe --version、.venv\Scripts\python.exe -m pip install -r requirements.txt、.venv\Scripts\python.exe -m pytest -q。版本不是 3.13 或找不到 3.13 就停下告訴我，不要改用其他版本。安裝完執行 pytest -q，告訴我測試有幾個通過／失敗／跳過。
 2. 確認你讀得到上一層資料夾的 01 到 05 開頭的五份 .md 文件；讀不到就把這五份都複製到 docs\ 資料夾，之後提到上一層的文件都改讀 docs\ 裡的副本。
 3. 建立 Git 基準：初始化 Git，把目前所有檔案 Commit 成「G0 baseline」。如果 Git 要求姓名或 Email，只在本資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。電腦沒有 Git 就告訴我你改用什麼方式記錄起始狀態。
 4. 建立 notes/greenfield.md，第一段「起點」寫下測試數字與 Git 基準是否建立。
@@ -90,25 +90,25 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ```text
 【目標】先不要修改程式。提出 5 至 8 步的實作計畫。先仔細想過再回答，列出你考慮過的拆法。
-【背景／要讀的檔】只讀這些：上一層資料夾（或 docs\ 副本）的商業需求（02-business-requirements.md）與驗收條件（03-acceptance-criteria.md）、這個專案的 README 與 docs/，以及所有標示 TODO(GREENFIELD 的地方。
+【背景／要讀的檔】只讀這些：上一層資料夾（或 docs\ 副本）的商業需求（02-business-requirements.md）與驗收條件（03-acceptance-criteria.md）、這個專案的 README 與 docs/，以及程式碼（.py）中標示 TODO(GREENFIELD 的地方。
 【限制】
 - 建議依序拆成小步：票價 → 班次查詢 → 建立訂票 → 付款 → 查詢訂單。
 - 每一步都要替這一步對應的驗收條件補上測試（例如建立訂票那步要有 1225 的測試，付款那步要有付款失敗不建立 Order 的測試），不能只靠移除 skip。
 - 不要放進前端、登入、會員、優惠、改退票或新套件等範圍外項目。
 - 下列事項需求文件沒有逐字寫明，請照這樣處理並寫進計畫：付款失敗時 Booking 維持 PENDING_PAYMENT、座位不釋放、不建立 Order、之後仍可再付款；找不到 Trip／Booking／Order 回 404；人數不符（0 人、超過 4 人）回 400，要在 domain／application 檢查，不要寫成輸入格式限制；座位不足、重複付款、付款失敗回 409；輸入格式錯誤沿用 422；錯誤內容沿用 {"error":{"code":"...","message":"..."}}；測試要能指定付款失敗，不用隨機結果（把 MockPaymentGateway.next_result 設為 PaymentStatus.FAILED）。
-【輸出格式】寫進 notes/greenfield.md 的「計畫」段落。開頭寫你找到幾個 TODO(GREENFIELD 標記。每一步固定四項：第幾步、完成後使用者能做什麼（白話）、對應的規則編號（Rule ID）與驗收條件（AC）、預計修改的檔案。最後列出還需要我決定的問題，每題附上你建議的答案。
+【輸出格式】寫進 notes/greenfield.md 的「計畫」段落。開頭寫你在 .py 檔找到幾個 TODO(GREENFIELD 標記。每一步固定四項：第幾步、完成後使用者能做什麼（白話）、對應的規則編號（Rule ID）與驗收條件（AC）、預計修改的檔案。最後列出還需要我決定的問題，每題附上你建議的答案。
 【停止條件】寫完就停下等我，不要開始修改。
 ```
 
 **看到什麼算過關**：
 
-- Agent 回報找到 11 個 `TODO(GREENFIELD` 待完成工作（程式裡標記「這裡還沒做」的註記）。
+- Agent 回報在程式碼（.py）找到 11 個 `TODO(GREENFIELD` 待完成工作（程式裡標記「這裡還沒做」的註記）。
 - 每一步都標了編號（例如 `FARE-002`、`AC-G-005`：需求文件裡規則與驗收條件的編號，給 Agent 對照用）和預計修改的檔案；沒有範圍外項目，它還沒開始改程式。
 - 每個問題都附了建議答案。
 
 ```callout info
 需求澄清（全場一致）
-提示詞裡「需求文件沒有逐字寫明」那一點，就是全場一致的需求澄清（付款失敗、錯誤回應、怎麼測付款失敗）。其中 4xx 是「請求被拒」的狀態碼：400 不符規則、404 找不到、409 和目前狀態衝突、422 輸入格式錯誤。其他查不到答案的問題舉手問主持人，不要讓 Agent 自行假設。
+提示詞裡「需求文件沒有逐字寫明」那一點，就是全場一致的需求澄清（付款失敗、錯誤回應、怎麼測付款失敗）。其中 4xx 是「請求被拒」的狀態碼，Greenfield 的約定寫在上面的提示詞：400 不符商業規則（人數 0 人或超過 4 人）、404 找不到、409 和目前狀態衝突（座位不足、重複付款、付款失敗）、422 輸入資料驗證失敗（FastAPI 預設）。Brownfield 的既有程式另有約定，不符商業規則回 409。其他查不到答案的問題舉手問主持人，不要讓 Agent 自行假設。
 ```
 
 看完計畫，回覆下面這段。不同意某個建議答案，就在第一行後面加上「第 N 題改成…」：
@@ -130,8 +130,8 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ```callout tip
 技巧：Structured Output（結構化輸出）
-要求 Agent 用固定格式回報（固定欄位的表格、固定標題，或 JSON 這種程式讀得懂的格式），人才看得快、能前後比對，也能交給下一個 Agent 或程式處理。工作規則已要它每步附兩樣固定格式：驗收對照表（編號、白話內容、結果、依據的測試名稱）和四題審查答案。審查答案就是**變更審查**：你不讀變更內容（Diff：修改前後的差異），改看它用白話回答固定問題；題目裡的 skip 是「略過測試」、xfail 是「把測試標成預期會失敗」，兩者都會把問題藏起來。
-📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured Outputs〉、Google Engineering Practices〈Code Review Developer Guide〉；你所用工具的官方文件通常有同名章節。
+要求 Agent 用固定格式回報（固定欄位的表格、固定標題，或 JSON 這種程式讀得懂的格式），人才看得快、能前後比對，也能交給下一個 Agent 或程式處理。工作規則已要它每步附兩樣固定格式：驗收對照表（編號、白話內容、結果、依據的測試名稱）和四題審查答案。審查答案就是**變更審查**：你不讀變更內容（Diff：修改前後的差異），改看它用白話回答固定問題；題目裡的 skip 是「略過測試」、xfail 是「把測試標成預期會失敗」，兩者都會把問題藏起來。今天是用提示詞要求格式，Agent 仍可能漏欄，要檢查；官方文件中的 Structured Outputs 是程式呼叫模型時，用 JSON Schema 強制輸出格式的功能。
+📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured model outputs〉、Google Engineering Practices〈Google's Code Review Guidelines〉；你所用工具的官方文件通常有同名章節。
 ```
 
 Agent 每做完一步，看它附的審查答案，自己判斷三件事：改的檔案都在計畫裡嗎（notes/ 不算）？測試數沒有變少、沒有新增跳過嗎？沒有刪除測試或改既有期待值嗎？三題都是「是」，就貼放行提示詞（每一步都貼同一段）：
@@ -176,7 +176,7 @@ Agent 每做完一步，看它附的審查答案，自己判斷三件事：改�
 ```text
 不要再加新功能。對照驗收條件 AC-G-001 到 AC-G-015，凡是還沒有測試的（常漏的是 AC-G-001、002、009、013），用測試用的 TestClient 補上最少的測試並執行 pytest -q；需要實際呼叫 API 時用 Python 的 httpx，不要用 curl（Windows 的 curl 會弄亂中文）。
 再把最終驗收對照表寫進 notes/greenfield.md 的「最終驗收」段落：涵蓋所有驗收條件，欄位與每一步相同，最後一行寫測試總數，附上你實際執行的指令。
-最後在背景啟動這個專案的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 回傳 status=ok，然後告訴我 /docs 的網址。之後要換版本或結束時，先停止你啟動的伺服器。
+最後在背景啟動這個專案的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 回傳 status=ok，把 /health 的結果與實際使用的埠號也寫進「最終驗收」，然後告訴我 /docs 的網址。之後要換版本或結束時，先停止你啟動的伺服器。
 ```
 
 - [ ] 自己走一次完整流程。在瀏覽器開 `http://127.0.0.1:8000/docs` → 點開要試的 API → 按「Try it out」→ 填入參數或在 Request body 貼上下方範例 → 按「Execute」→ 看 Response 的狀態碼（例如 201 成功、404 找不到、409 狀態衝突）和內容。依序試：

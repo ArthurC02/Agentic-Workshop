@@ -44,8 +44,13 @@ ZIP 內的資料夾層級較深。請解壓縮到短路徑，例如 `C:\work\g0`
 ```
 
 ```callout tip
-Agent 回報無法啟用 venv
-Windows 的 PowerShell 可能因執行原則限制無法啟用 venv。請 Agent 不要啟用，直接用 `.venv` 裡的 Python 執行即可。
+venv 一律不啟用，直接呼叫裡面的 Python
+Starter 的 README 寫的 `source .venv/bin/activate` 在 Windows 不適用（Windows 是 `.venv\Scripts`），啟用失敗時套件會裝進電腦上其他版本的 Python。檢查點 1 的提示詞已要求 Agent 用 `py -3.13 -m venv .venv` 建立環境，之後直接呼叫 `.venv\Scripts\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`），不照 README 啟用；Python 不是 3.13 時 Agent 會停下，請告知主持人。
+```
+
+```callout tip
+/docs 頁面一片空白
+/docs 的畫面要從網路載入，沒有網路時會是空白頁。請 Agent 改用 Python 的 httpx 實際呼叫同一組 API，把每一步的狀態碼和回應重點列給你看，並在 notes 註明「/docs 無法載入，改由 Agent 呼叫 API」。
 ```
 
 ```callout tip

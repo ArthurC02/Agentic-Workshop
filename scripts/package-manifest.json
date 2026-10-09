@@ -1035,7 +1035,7 @@
         {
           "source": "Agent.md",
           "destination": "Agent.md",
-          "sha256": "42670f73db19f5d893c323b183e27f7b43f12dfbed78c3094f30928ca2170cec"
+          "sha256": "5bf18fee7e5ef47ff52769cc93ba72d317d30b4744adc48775a4abca85014a2b"
         },
         {
           "source": "docs/planning/agent-work-history.md",
@@ -1090,7 +1090,7 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
-          "sha256": "20b7ca63f5ff4af0a35f06498f70963b21a53effe26ff408ff9e9236b16a25eb"
+          "sha256": "ecd0287057b42261328460da5c5c6e153ad97bff5ed9ee7e682912bb0049cbdc"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/04-expected-mvp-outline.md",
@@ -1120,7 +1120,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/03-controlled-debt-map.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/03-controlled-debt-map.md",
-          "sha256": "c813d74f27d1e536d0c44c0fbfd9eb311875ce18af510fa225b3c577a7527a1e"
+          "sha256": "6d00e047ab0e79961cab33413471ffdb9d41a67811f8f7c022d00fa422b11244"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/04-task-reveal-sequence.md",
@@ -1185,7 +1185,7 @@
         {
           "source": "agentic-workshop/06-runbook/preflight-checklist.md",
           "destination": "agentic-workshop/06-runbook/preflight-checklist.md",
-          "sha256": "352db50a01a5f54ba2eebf82a4fd61c386fe100f6ac96136a8ebfc4a6e9b8ad7"
+          "sha256": "f3625d69f541c9fddeb984f871eeece05f5f5ae172573aa52bf83a61cd3984e9"
         },
         {
           "source": "agentic-workshop/06-runbook/recovery-plan.md",
@@ -3090,7 +3090,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "5ea585d89c20d5d1257303440fd170f8a57c22a49a7c0007dcd94ddb78f05ec5"
+          "sha256": "8891ab4119fdf8b830ad0ea5dc272b93b233f83c78f853abf6eb35e21e179135"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3330,17 +3330,17 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "ae27205cb25d6223de780d7830114e66cbcef6ac5e879f9b179dcedc27c1f77d"
+          "sha256": "5390c7464d72403e16bb2dc7c9ffef65c906b8a762fdec1ef10d92b5d98cc4a1"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "f836d33eb2a2eee76d644a8f79bd292d9d924d39cf2e722cf0f1c7618f478e44"
+          "sha256": "2b778b57bac1c26a0ee9228a7f9be21c4a882a39643e92b58108170f47c10a42"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "45c29016590111e281cb2783d02943500deeedc168b2742900f841647989ae37"
+          "sha256": "c96781ebf6ed020fe473b4fbd47c2c6085e027287fe68ec96b9ae560c2919567"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
