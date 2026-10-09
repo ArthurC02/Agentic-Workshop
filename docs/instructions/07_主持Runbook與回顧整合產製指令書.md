@@ -20,7 +20,7 @@
 1. 主流程十段為00–07、07–29、29–33、33–39、39–44、44–52、52–63、63–76、76–80、80–90，無缺口或重疊，加總90分鐘。
 2. Greenfield個人；Brownfield先個人Agent分析再小組整合；Time Skip統一B0，不以個人G1作小組起點。
 3. B1／B2／B3分批揭露；B3先宣布人不Coding，再發Work Order與三Gate。唯一SQLite事件包含在69–70分鐘，不另加時，不真安裝。
-4. 每段列Cue、觀察、提示条件與停止／降級；時間不足保留理解／設計Gate及最低交付Review，不以人補程式救場。
+4. 每段列Cue、觀察、提示條件與停止／降級；時間不足保留理解／設計Gate及最低交付Review，不以人補程式救場。
 5. 環境Python3.13／venv／pip／固定依賴，PowerShell與一般shell啟動方式可操作；`src` Import Path正確，無必要前端、DB、外部服務／真實金流。Agent服務可用性與本機案例不需外部API分開說明。
 6. Preflight明列G0受控Skip、G1全通過、B0核實Manifest失敗集合且零未知、B1／B2／B3全通過；既知Warning可識別，未知失敗不得放行。空勾選表不當已執行證據。
 7. Recovery明列切換觸發、已驗收版本來源、保留原成果／失敗／切換時間、新Session與Context確認，以及按發放時點只提供必要前版能力。

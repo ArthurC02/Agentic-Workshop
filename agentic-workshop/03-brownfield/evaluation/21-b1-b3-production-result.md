@@ -1,17 +1,17 @@
 # Brownfield任務卡與B1–B3產製結果
 
 > 讀者：Evaluation、主持人與素材維護者。時機：P6–P8累積驗收與進入P9。
-> 前置：已验收B0、B1、B2及[B3報告](18-b3-validation-report.md)。可見性：Evaluation限定。
+> 前置：已驗收B0、B1、B2及[B3報告](18-b3-validation-report.md)。可見性：Evaluation限定。
 
 ## 產製檔案與任務揭露順序
 
 三張Participant任務卡、四份分階段Facilitator指南、各版影響分析／AC Map、[版本矩陣](11-b0-to-b3-version-matrix.md)、三份獨立Reference Solution及分版Validation／History證據均已建立。
 
-揭露順序：Shared Context完成→B1→B2→宣布Digital Worker操作規則→B3→交付摘要。任务分批，Recovery保留原成果及缺項；Evaluation與Bundle不整份交给學員。
+揭露順序：Shared Context完成→B1→B2→宣布Digital Worker操作規則→B3→交付摘要。任務分批，Recovery保留原成果及缺項；Evaluation與Bundle不整份交給學員。
 
 ## B1摘要與驗證結果
 
-学生率85→75最小安全修復；不改首個匹配政策。Python3.13.15獨立安裝／啟動／Smoke，44 passed、無Skip／XFail，五個Manifest失敗全部恢復；原13測試檔不變，1既知Warning。見[正式報告](12-b1-validation-report.md)。
+學生率85→75最小安全修復；不改首個匹配政策。Python3.13.15獨立安裝／啟動／Smoke，44 passed、無Skip／XFail，五個Manifest失敗全部恢復；原13測試檔不變，1既知Warning。見[正式報告](12-b1-validation-report.md)。
 
 ## B2摘要與驗證結果
 

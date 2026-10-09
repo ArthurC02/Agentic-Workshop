@@ -13,7 +13,7 @@ B3 從凍結B2延續：一般Booking維持1–4人及原付款失敗pending／�
 | application/payment_service.py::pay／pay_group | Group成功PAID／單一Order；失敗CANCELLED、全release、清Assigned Seats、無Order，記GROUP_PAYMENT_FAILED與GROUP_BOOKING_CANCELLED通知。一般pay路由依type同樣補償，group/pay拒ordinary |
 | Change／Refund | Group改票暫不支援且409；已付Group沿退款全釋放，普通改票退款不變 |
 | Store／Reset／Gateway | 原固定Clock與8Trip容量不變；reset清所有交易／座位／Audit／Notify，恢復Clock／gateway及capacity |
-| API | 新POST /group-bookings、/group-bookings/{booking_id}/pay；原HTTP錯誤與一般API兼容 |
+| API | 新POST /group-bookings、/group-bookings/{booking_id}/pay；原HTTP錯誤與一般API相容 |
 | 文件 | 原40Rule＋新17＝57Rule；API範例、團體連續定義／補償、架構、版本／來源同步 |
 
 ## 測試與實際證據

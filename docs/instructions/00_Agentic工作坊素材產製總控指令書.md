@@ -115,7 +115,7 @@ Agent 的定位是 **Tool**。
 
 ### Act 2：Time Skip
 
-主持人宣布時間快轉。Smart Ticket Platform 已運行一段時間，功能及程式規模均已成長。
+主持人宣布時間快轉。Smart Ticket Platform 已執行一段時間，功能及程式規模均已成長。
 
 參與者停止使用自己的 Greenfield Repository，改為接手主持人統一提供的 Brownfield Repository。
 

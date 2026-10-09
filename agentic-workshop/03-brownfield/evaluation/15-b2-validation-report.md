@@ -9,7 +9,7 @@
 
 獨立`.codex-tmp/b2-env`，Python3.13.15。依`requirements.txt`安裝FastAPI0.115.12、Uvicorn0.34.2、Pydantic2.11.4、pytest8.3.5、httpx0.28.1成功；Starlette0.46.2、AnyIO4.15.1。
 
-從B2根目錄設定`PYTHONPATH=src`，以獨立環境執行pytest，收集逐案例結果：**55 passed、0 failed、0 skipped、0 XFail，exit0，1.21秒**。未过滤Warning：唯一既知Starlette引用`anyio.abc.BlockingPortal`的DeprecationWarning，與B1相同，未影響測試。機器可讀结果與54來源檔SHA256見[證據](16-b2-validation-evidence.json)。
+從B2根目錄設定`PYTHONPATH=src`，以獨立環境執行pytest，收集逐案例結果：**55 passed、0 failed、0 skipped、0 XFail，exit0，1.21秒**。未過濾Warning：唯一既知Starlette引用`anyio.abc.BlockingPortal`的DeprecationWarning，與B1相同，未影響測試。機器可讀結果與54來源檔SHA256見[證據](16-b2-validation-evidence.json)。
 
 | 實測項目 | 結果與證據 |
 |---|---|

@@ -23,6 +23,8 @@ Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並
 
 一次執行全部步驟（檢查知識點出處、偵測漂移、驗證、釘選、建置、驗證候選、重建教材與測試）：`scripts/release_materials.py`。
 
+台灣繁體中文檢查：`scripts/check_zh_tw.py`。課程素材、docs/ 與 .claude 的文字必須是繁體字並使用台灣詞彙；發布流程會先執行。
+
 知識點出處檢查：`scripts/check_references.py`。每個「技巧／新概念」說明框和詞彙表的每一列，都必須引用 `.claude/skills/course-authoring/references.md` 中已查證的出處；Plugin 章節與本課程文件標題也必須真的存在。
 
 ## 全域技術驗證

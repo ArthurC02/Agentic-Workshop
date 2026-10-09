@@ -23,6 +23,6 @@
 | AC-B2-012 | B1／G1 Regression通過 | 原28 G1；其餘B1／B0測試；唯一政策遷移見AC-B2-006 | 原28未改body／assert；原44僅一項新規則遷移，新增7＋4＝55；完整實測55 passed，零failed／skip／xfail |
 | AC-B2-013 | 折扣文件與Code同步 | docs/business-rules.md、discount-overview.md、api-examples.md、architecture.md／ADR；Code／文件Diff審查 | 政策／規則集合已核對；原文件FULL_FARE名稱誤文未被舊審查發現，依[勘誤](22-b2-documentation-errata.md)採ADULT，不宣稱凍結文件完全同步 |
 
-所有對應檔案與函數已核對，AC Map引用的10個不同函數均存在；Unit七個param ID亦一致。B2 business-rules.md含40個唯一Rule ID，集合完全等於B0原36＋FARE-007–010，AC-B2-013的文件規則集合檢查通過。本表交叉引用正式實測證據，不因param總數推定規則通過。資料Fixture延續固定Clock、完整B0Seed與原G1限定上下文；原本正確學生75%期待不改。既有相容性Warning記於本版報告。
+所有對應檔案與函式已核對，AC Map引用的10個不同函式均存在；Unit七個param ID亦一致。B2 business-rules.md含40個唯一Rule ID，集合完全等於B0原36＋FARE-007–010，AC-B2-013的文件規則集合檢查通過。本表交叉引用正式實測證據，不因param總數推定規則通過。資料Fixture延續固定Clock、完整B0Seed與原G1限定上下文；原本正確學生75%期待不改。既有相容性Warning記於本版報告。
 
 完成條件：13 AC均有真實測試或文件審查證據，正式B2完整執行、收集數與結果可核對，唯一政策遷移可追溯、B1快照保持凍結。AC-B2-013規則集合通過不等於所有文字無誤；本輪以外置勘誤修正使用說明，保留原文件／Tag／Hash。

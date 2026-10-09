@@ -7,7 +7,7 @@
 
 正式版本位於 `reference-solutions/b1-student-fare-fixed/`，從正式B0複製，不把P5診斷副本改名當成完成。案例歷史延續B0 `392d920`，B1 Tag `b1-student-fare-fixed`＝`a1c1d45a26875feb2635f211059db5e8980035f7`。Bundle驗證、Clone、B0祖先與52檔快照比對通過，11個真實案例Commit，無B2／B3。詳見[來源／Delta](14-b1-case-history-and-delta.md)。
 
-與B0來源清單相同，僅五檔不同：FarePolicy學生率85→75一行商業邏輯、main App版本B1、pyproject版本0.2.1、README與version-history版本識別／狀態。全部13個Test Python檔逐位元相同、DiscountPolicy与其餘Source不變；主要Business Rules本來正確，無無意義改写。兩項B0受控文件落差保留，不在此階段修成額外工作。
+與B0來源清單相同，僅五檔不同：FarePolicy學生率85→75一行商業邏輯、main App版本B1、pyproject版本0.2.1、README與version-history版本識別／狀態。全部13個Test Python檔逐位元相同、DiscountPolicy与其餘Source不變；主要Business Rules本來正確，無無意義改寫。兩項B0受控文件落差保留，不在此階段修成額外工作。
 
 ## Environment／Dependency Installation
 
@@ -28,7 +28,7 @@ Windows／Python **3.13.15**。獨立工作區 `.codex-tmp/b1-env/`，實際建�
 exit code 0
 ```
 
-原28項G1与16項B0新增測試均通過、無Skip／XFail、零失敗。完整node結果核對B0 Manifest五項均為passed，不只比較總數。唯一已知Warning為Starlette TestClient使用AnyIO BlockingPortal棄用別名，保留紀錄、不影響執行，无未知Warning。未重寫／弱化／刪除測試。
+原28項G1与16項B0新增測試均通過、無Skip／XFail、零失敗。完整node結果核對B0 Manifest五項均為passed，不只比較總數。唯一已知Warning為Starlette TestClient使用AnyIO BlockingPortal棄用別名，保留紀錄、不影響執行，無未知Warning。未重寫／弱化／刪除測試。
 
 ## API Smoke與優惠範圍
 
@@ -46,9 +46,9 @@ AC-B1-001–007全部有實測或檔案比對證據，見[AC Map](08-b1-acceptan
 
 ## 時間與限制
 
-B1活動44–52分鐘，共8分鐘；Shared Context後才揭露。主持文件具核准、最小Diff Review、三级提示、停工及Recovery界線。測試1秒支持短回饋，但尚未做真實普通工程師8分鐘演練，不能將產製或自動執行時間當作學員完成時間。
+B1活動44–52分鐘，共8分鐘；Shared Context後才揭露。主持文件具核准、最小Diff Review、三級提示、停工及Recovery界線。測試1秒支持短回饋，但尚未做真實普通工程師8分鐘演練，不能將產製或自動執行時間當作學員完成時間。
 
-In-Memory、Mock付款、單程序鎖與固定Clock边界保留；B0兩項受控文件落差不變，後續任務不能把它們當成本次新Bug。B2／B3未產製或驗證，沒有宣稱B1–B3整套 `PASS FOR WORKSHOP USE`。
+In-Memory、Mock付款、單程序鎖與固定Clock邊界保留；B0兩項受控文件落差不變，後續任務不能把它們當成本次新Bug。B2／B3未產製或驗證，沒有宣稱B1–B3整套 `PASS FOR WORKSHOP USE`。
 
 ## Final Decision
 

@@ -16,7 +16,7 @@
 | B2完整Commit | `cee098acc303398bfa1db0e130e09effeee25828` |
 | 歷史總數 | 14個Commit，包含G0→G1→B0→B1→B2 |
 | Bundle | [b2-case-history.bundle](b2-case-history.bundle)，62,064 bytes |
-| 驗證 | Bundle verify、Clone、Tag checkout及B1祖先檢查exit0；54来源檔雙向清單與內容比對零差異（僅正規化LF／CRLF） |
+| 驗證 | Bundle verify、Clone、Tag checkout及B1祖先檢查exit0；54來源檔雙向清單與內容比對零差異（僅正規化LF／CRLF） |
 
 所有Refs与歷史均無B3。來源檔排除`.git`、venv与pytest／Python cache；原B1的52檔SHA256完整保留，B2來源雜湊見[JSON證據](16-b2-validation-evidence.json)。
 

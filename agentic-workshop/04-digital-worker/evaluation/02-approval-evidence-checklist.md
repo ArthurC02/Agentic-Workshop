@@ -16,9 +16,9 @@ Gate 1 Requirement Understanding → Gate 2 Impact and Design → Gate 3 Deliver
 | Human Decision | 待填；APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE |
 | Conditions | 待填；條件、負責人、證據、截止／復核；無條件須明記 |
 | Observed Deviation | 待填；偏差、處理、是否停止；未觀察到則明記 |
-| Final Status | 待填；未核准／待條件／已閉環可前進／退回修正／交付接受或拒絕 |
+| Final Status | 待填；未核准／待條件／已結案可前進／退回修正／交付接受或拒絕 |
 
-Approver：待填。Timestamp／Workshop Minute：待填。Approved Context Version／Work Order ID：待填。條件閉環證據與復核人／時間：待填。
+Approver：待填。Timestamp／Workshop Minute：待填。Approved Context Version／Work Order ID：待填。條件結案證據與復核人／時間：待填。
 
 - [ ] 核准針對當前提交及Context；修改需求、API或範圍須重新升級審查。
 - [ ] APPROVE WITH CONDITIONS的前置條件由人員復核完成才進入下一階段；不能先Coding後補核准。
@@ -27,4 +27,4 @@ Approver：待填。Timestamp／Workshop Minute：待填。Approved Context Vers
 - [ ] 未執行命令／測試明記未執行；已執行保留Agent實際執行的指令、退出碼、summary及證據連結。
 - [ ] 人員證據不要求讀程式或自己打指令；看是否用上技巧（工作單整份交付、只在Gate介入）、核准後才動、檢查驗收對照表與變更審查答案、用/docs驗證行為。
 
-完成條件：三Gate七欄與核准人／時間／版本可核對，所有條件閉環、不跳Gate，最終交付決定有證據；本表尚未填入真實工作坊紀錄。
+完成條件：三Gate七欄與核准人／時間／版本可核對，所有條件結案、不跳Gate，最終交付決定有證據；本表尚未填入真實工作坊紀錄。

@@ -22,7 +22,7 @@
 | §15 Injection | facilitator/03-exception-injection.md | Gate2相對6–7分鐘；60秒可縮30秒，一件事件、剔除SQLite、先解除條件才開工 |
 | §16 介入 | facilitator/04-intervention-rules.md | 越界／人Coding／跳Gate／核准SQLite／假通過／超時介入；正常選項比較不代解 |
 | §17 Rubric | evaluation/01-autonomy-and-governance-rubric.md | A–E各0–3完整anchor、總15只回顧、不排名、不以程式量為唯一成功 |
-| §18 Approval Evidence | evaluation/02-approval-evidence-checklist.md | 七欄＋Approver／時間／Context；條件閉環證據可核對，未核准不前進 |
+| §18 Approval Evidence | evaluation/02-approval-evidence-checklist.md | 七欄＋Approver／時間／Context；條件結案證據可核對，未核准不前進 |
 | §19 Audit | evaluation/03-digital-worker-audit-template.md | 13heading，Session／Context／Rules／Gates／Files／Commands／Tests／Exceptions／Interventions／Decision／Risk皆待真實填寫 |
 | §20 Exception Reference | evaluation/04-exception-reference-answer.md | Reject方案非Reject任務；In-Memory Reservation／Compensation，可選Snapshot／Token／Rollback，不強制通用框架 |
 | §21 Debrief | facilitator/05-digital-worker-debrief-notes.md | Review負擔、Gate價值、證據／平台Audit、自動約束與人的責任；不以自主率競賽 |
@@ -35,9 +35,9 @@
 - 必要輸出為Participant六檔＋Facilitator五檔＋Evaluation四檔，15個來源要求檔名皆已建立；本映射與後續Validation Report為附加Evaluation文件。
 - Work Order列出的17個GROUP／GROUP-PAY／GROUP-FARE／GROUP-AUDIT／GROUP-NOTIFY ID，與Rule Registry的17項集合精確一致、沒有遺漏或額外ID；B2 FARE-007–010與四票率及資格不改。
 - Participant六檔唯讀檢查未出現SQLite標準回應、Reference Solution／Evaluation答案連結或完整Python實作；Exception Card是空白判讀，完整SQLite答案留在Evaluation。
-- 三Gate與短格式、七欄核准證據、唯一事件、13分鐘Cue與條件閉環可在各文件定位。Rubric與Audit為空模板，未造作實際學員核准、命令、分數或Session。
+- 三Gate與短格式、七欄核准證據、唯一事件、13分鐘Cue與條件結案可在各文件定位。Rubric與Audit為空模板，未造作實際學員核准、命令、分數或Session。
 - 真實2分鐘閱讀／13分鐘演練、參與者是否遵守Gate、Level1–3分布及Rubric得分尚未執行；文件靜態通過不能代替活動實證。
 
-需要在真實演練記錄：核准Context、每Gate Approver／時間／Evidence／Conditions閉環、唯一事件來源、Agent偏差／停止、實際Test與交付範圍。最終文件驗收結果由[治理驗證報告](06-governance-validation-report.md)統一記錄。
+需要在真實演練記錄：核准Context、每Gate Approver／時間／Evidence／Conditions結案、唯一事件來源、Agent偏差／停止、實際Test與交付範圍。最終文件驗收結果由[治理驗證報告](06-governance-validation-report.md)統一記錄。
 
-完成條件：§3–24可對到文件及可判定檢查，15必要檔存在、17Rule集合一致、Participant無答案；實際演練未做明確揭露，所有條件未閉環不得開始對應受阻動作。
+完成條件：§3–24可對到文件及可判定檢查，15必要檔存在、17Rule集合一致、Participant無答案；實際演練未做明確揭露，所有條件未結案不得開始對應受阻動作。

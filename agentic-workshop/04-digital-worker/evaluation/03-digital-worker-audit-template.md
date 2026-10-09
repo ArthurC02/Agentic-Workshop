@@ -26,7 +26,7 @@
 
 ## Gate Decisions
 
-待填：Gate 1／2／3提交、已Review證據、Decision、Approver、時間、Conditions及閉環狀態。
+待填：Gate 1／2／3提交、已Review證據、Decision、Approver、時間、Conditions及結案狀態。
 
 ## Files Changed
 
@@ -42,7 +42,7 @@
 
 ## Exceptions Raised
 
-待填：EXCEPTION-DW-001是否注入、時間、提案／Constraint衝突、Decision、修正及Gate閉環；其他自發阻擋另記，不能再增加設計注入事件。
+待填：EXCEPTION-DW-001是否注入、時間、提案／Constraint衝突、Decision、修正及Gate結案；其他自發阻擋另記，不能再增加設計注入事件。
 
 ## Human Interventions
 
@@ -54,6 +54,6 @@
 
 ## Unresolved Risks
 
-待填：未完成、未驗證、條件未閉環、風險、負責人與下一步；無已知風險也須有判定依據。
+待填：未完成、未驗證、條件未結案、風險、負責人與下一步；無已知風險也須有判定依據。
 
 完成條件：13個固定heading皆保留，實際活動後才能填真實證據；本範本用來萃取Audit Log／Context Versioning／Session／成本與時間觀測需求，不要求本輪建立治理平台或編造演練結果。

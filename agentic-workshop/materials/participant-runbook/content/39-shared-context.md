@@ -33,7 +33,7 @@ B1（Brownfield 第一段任務）第 44 分鐘才發放。這段只整理共識
 每個人的 Agent 只看過自己那份分析。先請它濃縮成 5 行，小組才比得起來；比的是摘要，不是整段對話。
 
 ```callout tip
-技巧：Token 節費
+技巧：Token 節費（加深一層）
 Time Skip 學過 Token 節費的「要摘要、不要全文」，這次用在小組之間：5 行摘要貼給主要 Agent，比整段對話或整份分析省下大量 Token，主要 Agent 也不會被細節淹沒。
 📖 延伸閱讀：Anthropic Engineering 文章〈Effective context engineering for AI agents〉、Anthropic 官方文件〈Context windows〉；你所用工具的官方文件通常有同名章節。
 ```

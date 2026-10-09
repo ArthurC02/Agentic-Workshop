@@ -17,11 +17,12 @@
 每道Gate學員貼Runbook提示詞，Agent先用固定的「Gate回報格式」（Gate、建議結論、證據、風險、需要人決定的事）整理成是非題、附證據與建議決策再問人，對話只給摘要；人回一句話（決策、條件、核准人、分鐘），Agent照原文以下列短格式寫進`notes/b3.md`，學員只在Runbook的「B3 Gate決策」選決策。人只說「照你的建議」時，追問「你核對了哪一題？」：
 
 ```text
-Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
-Evidence Reviewed:
-Conditions / Required Corrections:
-Approver:
-Timestamp / Workshop Minute:
+Gate：
+決策：APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
+審查過的證據：
+條件／要修正的事：
+核准人：
+時間（全場第幾分鐘）：
 ```
 
 條件核准不等於可忽略條件直接執行：條件必須具體、可驗證且先解除；若SQLite仍在方案，不能改Code。例外處理占相對6–7分鐘內最多60秒，必要縮為30秒但不刪事件或再注入。若Gate或條件未完成，仍維持停止線與誠實成果分級，不假核准趕進度。

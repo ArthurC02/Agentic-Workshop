@@ -21,7 +21,7 @@ B1、B2、B3正式標準實作均已獨立驗收；B3 75項通過，B1–B3標�
 | GROUP-001–007／GROUP-PAY-001–005／GROUP-FARE-001–002／GROUP-AUDIT-001／GROUP-NOTIFY-001–002 | 無團體功能 | 無團體功能 | 無團體功能 | 5–20人、同廂完整區段、建立失敗無殘留、成功唯一Order、失敗取消／全釋放／Audit與通知，沿用B2計價 | tests/integration/test_group_creation.py、tests/integration/test_group_payment.py | business-rules.md、api-examples.md、ADR004 |
 | 受控債／文件落差 | 3債／2落差；核心規則正確 | 不以BugFix全面重構或清債 | 折扣文件已同步最低rate；同步通知及改票指南舊落差保留 | 同步團體與Change邊界；改票指南明示Fare Difference，保留同步通知 | Source／文件Diff審查 | B0 Debt／Delta及ADR |
 | 測試預期 | 44＝28原＋16新增；5 Manifest失敗其餘39過 | 全44通過、Manifest5項恢復 | 全套實測55 passed（28原G1＋16B0＋11B2），0 failed／Skip／XFail，1已知Warning，1.21s | 75 passed＝55原＋20新增，0failed／Skip／XFail，1已知Warning，0.58s | 全tests；Manifest集合 | validation report／AC map |
-| 來源與交付 | 正式B0＋clean-copy／Bundle | 獨立正式B1，非B0診斷副本 | B2独立54檔快照；b2-best-single-discount Tag／Bundle驗證通過 | B3獨立59檔快照，b3-group-booking Tag／Bundle與Clone比對通過 | 快照／Tag／Bundle比對 | version-history.md／來源證據 |
+| 來源與交付 | 正式B0＋clean-copy／Bundle | 獨立正式B1，非B0診斷副本 | B2獨立54檔快照；b2-best-single-discount Tag／Bundle驗證通過 | B3獨立59檔快照，b3-group-booking Tag／Bundle與Clone比對通過 | 快照／Tag／Bundle比對 | version-history.md／來源證據 |
 | 本次狀態 | 實際前版結果見[報告](01-b0-validation-report.md)，本次來源核對由主代理確認 | PASS：正式獨立環境44項通過，五項失敗恢復；見12-b1-validation-report.md | **個別B2 Gate PASS**：55項通過、API Smoke與來源核對；見15-b2-validation-report.md | **個別B3 Gate PASS**：75項與API Smoke通過；見18-b3-validation-report.md | 不由文件推定實測PASS | 主代理本版驗證報告 |
 
 B0 `PASS AS BROWNFIELD BASELINE` 依 Manifest Gate，不能等同 pytest 全通過。B1 必須零失敗，B1–B3標準素材判定 `PASS FOR WORKSHOP USE`，詳見21-b1-b3-production-result.md；此名稱只驗收標準案例。P9與候選包的後續成果另有報告，活動演練及正式放行仍待驗收。學員時間到可在指定52／63分鐘用已驗收Recovery推進，但不等於Reference Solution AC豁免。B2原名稱誤文以[勘誤](22-b2-documentation-errata.md)查證。

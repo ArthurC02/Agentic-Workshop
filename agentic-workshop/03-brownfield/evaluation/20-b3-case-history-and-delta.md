@@ -5,7 +5,7 @@
 
 ## 真實演化與來源
 
-從B2案例Bundle建立獨立Repository，checkout正式B2 Tag後，以核心／測試／文件分批真實提交。來源祖先為`cee098acc303398bfa1db0e130e09effeee25828`（b2-best-single-discount）。B3 Tag固定`b3-group-booking`，歷史延續G0→G1→B0→B1→B2→B3；不虛構產品過去12個月的實際开发時間。
+從B2案例Bundle建立獨立Repository，checkout正式B2 Tag後，以核心／測試／文件分批真實提交。來源祖先為`cee098acc303398bfa1db0e130e09effeee25828`（b2-best-single-discount）。B3 Tag固定`b3-group-booking`，歷史延續G0→G1→B0→B1→B2→B3；不虛構產品過去12個月的實際開發時間。
 
 | 項目 | 實際證據 |
 |---|---|
@@ -24,7 +24,7 @@
 
 新增GroupBookingService、座位幾何與完整連續區段規劃；Booking Type及Assigned Seats根層欄位。先驗證／計價／規劃，再在共同RLock一次寫入Booking及全座位保留。
 
-共享PaymentService依GROUP type實施失败補償：全部釋放、清座位欄位、CANCELLED、無Order、Audit與取消通知。group專用入口拒絕一般訂票，一般付款入口也不能繞過團體補償。原一般付款失敗保持pending與預留座位。
+共享PaymentService依GROUP type實施失敗補償：全部釋放、清座位欄位、CANCELLED、無Order、Audit與取消通知。group專用入口拒絕一般訂票，一般付款入口也不能繞過團體補償。原一般付款失敗保持pending與預留座位。
 
 團體改票明確409；已付款團體退票沿用既有流程並全釋放。普通改票／退款、會員、B2優惠、通知／Audit與種子容量不變。App版本B3、專案0.2.3。
 

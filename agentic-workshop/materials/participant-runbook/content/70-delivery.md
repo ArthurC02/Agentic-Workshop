@@ -51,7 +51,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 ```
 
 ```callout tip
-技巧：Structured Output（結構化輸出）
+技巧：Structured Output（結構化輸出，加深一層）
 前面你用固定格式看結果（驗收對照表）、比方案（B2）、做 Gate 決定（B3）；這次多加一層：每一句都要附證據位置。交付摘要固定十二個標題，主管能逐欄比對、跟上一次交付對照，下一個 Agent 或程式也讀得懂。你只要一欄一欄問「證據在哪？」。
 📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured Outputs〉；你所用工具的官方文件通常有同名章節。
 ```

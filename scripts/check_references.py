@@ -2,7 +2,8 @@
 
 Rules (see .claude/skills/course-authoring/references.md):
 - every ```callout whose title starts with 技巧／新概念 contains a 📖 line;
-- every 〈title〉 in a 📖 line appears in references.md, and no retired title is used.
+- every 〈title〉 in a 📖 line appears in references.md, and no retired title is used;
+- a page introduces at most MAX_NEW knowledge points.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_references.py
 """
 import re
@@ -16,6 +17,7 @@ CONTENT = [ROOT / "agentic-workshop/materials/participant-runbook/content",
            ROOT / "agentic-workshop/materials-dlc/participant-runbook/content"]
 TITLE = re.compile(r"〈([^〉]+)〉")
 PLUGIN_ZIP = next((ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor").glob("domain-memory-*.zip"), None)
+MAX_NEW = 3  # course-authoring: at most 3 new points per page; 加深一層 callouts revisit and don't count
 PLUGIN_DOC = re.compile(r"`(?:vendor/)?domain-memory/references/([\w-]+\.md)`")
 
 
@@ -60,10 +62,15 @@ def problems() -> list[str]:
         for page in sorted(folder.glob("*.md")):
             text = page.read_text(encoding="utf-8")
             where = page.relative_to(ROOT).as_posix()
+            new_points = []
             for m in re.finditer(r"```callout[^\n]*\n(.*?)```", text, re.S):
                 title = m.group(1).split("\n", 1)[0].strip()
                 if re.match(r"(技巧|新概念)", title) and "📖" not in m.group(1):
                     out.append(f"{where}: 「{title}」 has no 📖 reference")
+                if re.match(r"(技巧|新概念)", title) and "加深一層" not in title:
+                    new_points.append(title)
+            if len(new_points) > MAX_NEW:
+                out.append(f"{where}: {len(new_points)} new knowledge points (max {MAX_NEW}): {'、'.join(new_points)}")
             for line in re.findall(r"📖[^\n]*", text):
                 docs = PLUGIN_DOC.findall(line)
                 for doc in docs:

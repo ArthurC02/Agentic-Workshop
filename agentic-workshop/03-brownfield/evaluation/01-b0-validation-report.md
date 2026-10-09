@@ -31,7 +31,7 @@ Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正�
 
 | 版本 | 最終實際結果 | pytest exit | 判定 |
 |---|---|---|---|
-| 正式B0 | **5 failed, 39 passed, 1 warning in 0.44s** | 1 | 五项受控影響与manifest完全一致；零非預期 |
+| 正式B0 | **5 failed, 39 passed, 1 warning in 0.44s** | 1 | 五項受控影響与manifest完全一致；零非預期 |
 | 隔離只修學生率 | **44 passed, 1 warning in 0.32s** | 0 | 全部28原G1与16新增恢復 |
 
 原始首次結果正式1.57秒、診斷0.68秒；補足新增測試的付款／改票通知与改票Audit斷言後，以上為最終重驗。全部低於8秒，無Skip／XFail。唯一已知Warning來自Starlette TestClient的 `anyio.abc.BlockingPortal`棄用別名；已記錄，不影響執行，不過濾，無未知Warning。
@@ -56,7 +56,7 @@ Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正�
 
 ## G1 Regression
 
-原Health／Fare／Service／Feature四檔文字比對一致，全部28測試body／assert未改；仅conftest限定原T001–T004＋非提前Clock背景。學生仍走正式B0Policy。正式結果23passed／5受控failed，隔離修復28passed。完整B0 Seed／優惠／會員另由新增16案例驗證，沒有使用fixture避開學生Bug。
+原Health／Fare／Service／Feature四檔文字比對一致，全部28測試body／assert未改；僅conftest限定原T001–T004＋非提前Clock背景。學生仍走正式B0Policy。正式結果23passed／5受控failed，隔離修復28passed。完整B0 Seed／優惠／會員另由新增16案例驗證，沒有使用fixture避開學生Bug。
 
 ## Rule Traceability
 
@@ -72,13 +72,13 @@ Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正�
 
 ## Participant Leakage Check
 
-Participant Markdown／Python掃描未含Evaluation解答連結、診斷路徑、BUG／DEBT地圖或學生率修復常數；沒有內嵌`.git`。Time Skip交接不揭根因位置／失敗數；三級提示只在Facilitator。Bundle仅供Evaluation，10個可達Commit截至G0／G1／B0，無未來解答或診斷Commit。最终學員打包仍須允許清單，目錄分層不等於權限。
+Participant Markdown／Python掃描未含Evaluation解答連結、診斷路徑、BUG／DEBT地圖或學生率修復常數；沒有內嵌`.git`。Time Skip交接不揭根因位置／失敗數；三級提示只在Facilitator。Bundle僅供Evaluation，10個可達Commit截至G0／G1／B0，無未來解答或診斷Commit。最終學員打包仍須允許清單，目錄分層不等於權限。
 
 原要求 `reference-baseline/smart-ticket-b0-clean-copy/`已實際建立；52檔清單与內容／SHA256完全相同，仍含85%Bug。O-06來源與防漂移方案已落實。
 
 ## 難度與時間校正
 
-本機啟動2.23秒、測試0.44秒，程式38實質檔，資料／API／ADR与三級提示足以提供調查入口；不需外部網路服务才能運行。依規模與單一計價來源評估3分鐘啟動、5分鐘初析／候選、8分鐘B1具有可行性。**未完成普通工程師實際演練**，不把Agent產製與自動測試時間當作學員時間；真實3／5／8分鐘與90分鐘校正留待Runbook／最終演練驗收。
+本機啟動2.23秒、測試0.44秒，程式38實質檔，資料／API／ADR与三級提示足以提供調查入口；不需外部網路服務才能執行。依規模與單一計價來源評估3分鐘啟動、5分鐘初析／候選、8分鐘B1具有可行性。**未完成普通工程師實際演練**，不把Agent產製與自動測試時間當作學員時間；真實3／5／8分鐘與90分鐘校正留待Runbook／最終演練驗收。
 
 ## Final Decision
 

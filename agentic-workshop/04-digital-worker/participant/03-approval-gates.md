@@ -1,10 +1,10 @@
 # B3 人員核准 Gate
 
 > 讀者：小組審查者與主要 Coding Agent。
-> 使用時機：需求、設計與交付三個決策點。
-> 前置條件：已有 [Work Order](02-agent-work-order.md)；人員仍承擔責任。
+> 什麼時候用：需求、設計、交付三個決策點。
+> 開始前要有：[工作單（Work Order）](02-agent-work-order.md)。責任仍由人承擔。
 
-每 Gate 使用 1–3 分鐘與下方短格式，記錄真實審查證據。三 Gate 是執行中的人員核准，不取代程式驗收。
+三道核准關卡（Gate）是執行過程中由人做的核准，不能取代對程式的驗收。每道 Gate 用 1–3 分鐘，照下方短格式記錄真實的審查證據。
 
 ## Gate 回報格式（Agent 每道 Gate 提交時使用）
 
@@ -18,51 +18,59 @@ Gate：Gate 1／Gate 2／Gate 3
 需要人決定的事：每題附建議答案；查不到依據的標「待小組確認」
 ```
 
-## Gate 1：Requirement Understanding
+三種結論：APPROVE＝核准；APPROVE WITH CONDITIONS＝附條件核准（條件解除後才可續行）；REJECT AND REVISE＝退回修正。
 
-Agent Input：需求摘要、規則清單、關鍵假設、資訊缺口、Out of Scope、需要人決定的問題。
+## Gate 1：Requirement Understanding（需求理解）
 
-Human Review：5–20 邊界、同 Trip／同車廂連續、無部分成功、失敗整筆取消及全釋放、B2 個別旅客優惠是否理解一致。
+Agent 提交：需求摘要、規則清單、關鍵假設、資訊缺口、不做的範圍（Out of Scope）、需要人決定的問題。
 
-Decision：核准需求才進入設計；拒絕時要求修正。條件核准需說明哪些活動已允許及仍被阻擋。
+人審查：5–20 人邊界、同一班次（Trip）與同一車廂連續座位、不允許部分成功、失敗時整筆取消並釋放全部座位、每位旅客各自沿用 B2 優惠，雙方理解是否一致。
 
-Evidence：需求摘要版本、所審規則與假設、未解問題與實際人員決策。
+決策：核准需求才進入設計；退回時要求 Agent 修正。附條件核准時，要說清楚哪些工作已經允許、哪些仍被擋住。
 
-## Gate 2：Impact and Design
+證據：需求摘要的版本、審查過的規則與假設、還沒解決的問題，以及人的實際決策。
 
-Agent Input：受影響／不受影響模組、API Contract、Domain 變更、Seat Assignment 方案、Atomicity／Compensation 方案、測試策略、文件清單、主要風險與預計修改檔案。
+## Gate 2：Impact and Design（影響分析與設計）
 
-Human Review：範圍是否合理、避免全面重寫、建立與付款失敗均處理、座位釋放、既有功能沒被改壞（既有測試保留）與未核准外部依賴；不以方案看似合理取代授權檢查。
+Agent 提交：受影響與不受影響的模組、API 合約（API Contract）、業務模型（Domain）的變更、座位分配方案、「整筆成功或整筆失敗」（Atomicity）與失敗復原（Compensation）方案、測試策略、要更新的文件、主要風險與預計修改的檔案。
 
-Decision：此 Gate 核准後才可改程式。條件未滿足的範圍先停止；偏差需補證或重新核准。
+人審查：範圍是否合理、有沒有避免全面重寫、建立失敗與付款失敗是否都有處理、座位是否全部釋放、既有功能沒被改壞（既有測試保留），以及有沒有未核准的外部依賴。不能因為方案「看起來合理」就省略範圍檢查。
 
-Evidence：核准方案、修改範圍、風險／測試對應、條件及回覆；例外時使用 [Response Card](06-exception-response-card.md)。
+決策：這道 Gate 核准後才可以改程式。條件還沒滿足的範圍先停止；做法和計畫有偏差時，要補證據或重新核准。
 
-## Gate 3：Delivery Review
+證據：核准的方案、修改範圍、風險與測試的對應、條件與回覆；發生例外事件時使用 [例外回應卡](06-exception-response-card.md)。
 
-Agent Input：當前成果摘要、Acceptance Criteria 對照、Rule Traceability、未完成事項、已知風險及交付建議；有修改時附實際檔案，有測試時附命令與真實結果。Level 1 附需求／設計與完整測試策略，無修改或未執行明記，不預填成功。
+## Gate 3：Delivery Review（交付審查）
 
-Human Review：是否越界、成果證據與未完成是否誠實揭露。人不看程式：有修改時請 Agent 回答變更審查問題（改了哪些檔案與原因、測試數有沒有變少或新增跳過、有沒有刪測試或改既有期待值），已執行測試時看驗收對照表核對結果、跳過或未知失敗，並在 /docs 試主要行為；完整軟體交付仍需付款補償、Regression與文件。Level 1 Review分析／Gate／完整測試策略與未驗證範圍，不能將活動收件視為功能通過。
+Agent 提交：目前成果摘要、驗收條件（Acceptance Criteria）對照、規則追溯（每條規則對到程式、測試與文件）、還沒完成的事、已知風險與交付建議。有修改時附實際檔案；有測試時附指令與真實結果；不預先填「成功」。
 
-Decision：依實際成果核准、條件核准或拒絕並修正；Level 1／2 可如實作為活動成果，但不得冒稱完整程式交付。
+人審查：人不看程式，只看有沒有超出範圍、成果證據是否可靠、沒完成的事有沒有誠實寫出。
 
-Evidence：實際成果／對照表、審查結論與 [Delivery Summary](05-delivery-template.md)；有修改或實測時附變更審查答案、驗收對照表與 /docs 實測結果。Level 1 尚無修改或未執行測試時，審核Gate1／2、合理Impact、完整Test Strategy、未驗證範圍與未完成原因，明記「無修改／未執行」，不能宣稱功能PASS。時間不足仍審已有證據與缺項，不因缺少程式排除合法分析成果。
+- 有修改時，請 Agent 回答變更審查問題：改了哪些檔案、為什麼；測試數有沒有變少、有沒有新增跳過；有沒有刪除測試或改既有期待值。
+- 已執行測試時，看驗收對照表核對結果、跳過的測試與原因不明的失敗，並在 /docs 試主要行為。
+- 完整的軟體交付還需要付款失敗的復原、回歸測試（Regression）與文件。
 
-## Gate Decision
+決策：依實際成果核准、附條件核准，或退回修正。Level 1／2 可以如實當作活動成果，但不得冒稱完整程式交付。
+
+證據：實際成果與驗收對照表、審查結論與 [交付摘要（Delivery Summary）](05-delivery-template.md)；有修改或實測時，附變更審查答案、驗收對照表與 /docs 實測結果。
+
+Level 1（分析完成）時，可能尚無修改、也未執行測試。這時審查 Gate 1／2、影響分析是否合理、測試策略是否完整、哪些範圍未驗證、為什麼沒完成，並明記「無修改／未執行」，不能宣稱功能 PASS（通過）。時間不夠時，仍審查已有的證據與缺少的項目，不因為沒有程式就不收合理的分析成果。
+
+## Gate 決策紀錄（Gate Decision）
 
 人說出決策後，Agent 依此格式把原文寫進 `notes/b3.md` 對應的 Gate 段落：
 
 ```text
-Gate ID:
-Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
-Evidence Reviewed:
-Conditions / Required Corrections:
-Approver:
-Timestamp / Workshop Minute:
+Gate：
+決策：APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
+審查過的證據：
+條件／要修正的事：
+核准人：
+時間（全場第幾分鐘）：
 ```
 
-由人決定，Agent 只照原文記錄，不代填核准。無須電子簽章；條件含完成方式與需回到哪個 Gate。缺證據不得把核准當作測試通過。
+由人決定，Agent 只照原文記錄，不代人填核准。不需要電子簽章；有條件時，寫出怎樣算完成條件，以及要回到哪一道 Gate。證據不足時，不能把核准當成測試通過。
 
 ## 完成條件
 
-三 Gate 均有 Input、Review、Decision 與實際 Evidence；先核准再執行，偏差可追查，未完成與風險留在交付紀錄。
+三道 Gate 都有 Agent 提交的資料、人的審查、決策與實際證據；先核准再執行，偏差查得到來源，沒完成的事與風險留在交付紀錄。

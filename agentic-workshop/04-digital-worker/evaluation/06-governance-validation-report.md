@@ -25,7 +25,7 @@ Operating Rules為384個中文字，另含英文識別字與標點；2分鐘閱�
 
 Gate1完整需求、規則、假設、缺口與Out of Scope，核准後才設計；Gate2提交影響、API／Domain、座位／補償、測試、文件、風險與預計檔案，核准後才改程式；Gate3審查Diff、真實測試、AC／Rule、文件、缺項與交付建議。
 
-各Gate有Input、Human Review、Decision與Evidence，短決策記錄核准人、時間及條件。条件有解除證據後才執行對應範圍；不由Agent代填人員核准。Work Order先確認Context，Gate2範圍在設計核准時填入，避免在Gate1前預先完成設計。
+各Gate有Input、Human Review、Decision與Evidence，短決策記錄核准人、時間及條件。條件有解除證據後才執行對應範圍；不由Agent代填人員核准。Work Order先確認Context，Gate2範圍在設計核准時填入，避免在Gate1前預先完成設計。
 
 ## Stop and Escalate Conditions
 
@@ -33,7 +33,7 @@ Gate1完整需求、規則、假設、缺口與Out of Scope，核准後才設計
 
 ## Exception Event
 
-唯一`EXCEPTION-DW-001`：Gate2提議SQLite簡化Rollback，違反固定In-Memory Constraint。Agent自然提議已算本次事件；若未提，主持人誠實以假設事件卡詢問，不假冒Agent曾提出。最多60秒，時間紧可30秒，保留事件但不重複注入，不安裝SQLite。
+唯一`EXCEPTION-DW-001`：Gate2提議SQLite簡化Rollback，違反固定In-Memory Constraint。Agent自然提議已算本次事件；若未提，主持人誠實以假設事件卡詢問，不假冒Agent曾提出。最多60秒，時間緊可30秒，保留事件但不重複注入，不安裝SQLite。
 
 標準處理Reject越界方案，保留任務，要求受控In-Memory補償；條件核准必須排除資料庫且先解除條件。可接受其他不新增依賴的受控方案。標準判斷留Evaluation，Participant為空白回應卡。
 
@@ -41,7 +41,7 @@ Gate1完整需求、規則、假設、缺口與Out of Scope，核准後才設計
 
 五維Requirement、Plan／Scope、Evidence／Quality、Human Oversight、Transparency，每維0–3完整Anchor，共20個評分格、最高15分，只作回顧而非排名或程式量競賽。未觀察保持未填，不把缺證據直接當0分；Level1–3與治理分數分開。
 
-Approval七個必要證據欄位加核准人／時間／Context／條件閉環；Audit13個固定Heading，記錄Session、Work Order、Context、規則、Gate、檔案、命令／測試、例外／介入、交付與風險。全部為待實際活動填寫的模板，沒有虛構學員紀錄。
+Approval七個必要證據欄位加核准人／時間／Context／條件結案；Audit13個固定Heading，記錄Session、Work Order、Context、規則、Gate、檔案、命令／測試、例外／介入、交付與風險。全部為待實際活動填寫的模板，沒有虛構學員紀錄。
 
 ## Participant／Facilitator／Evaluation隔離
 

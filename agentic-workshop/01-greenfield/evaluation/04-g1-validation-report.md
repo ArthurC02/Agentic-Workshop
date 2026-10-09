@@ -34,7 +34,7 @@ TestClient 實際完成：Health 200 → Trip 查詢三班 → T001 學生訂票
 
 ## Rule Traceability
 
-全部16項 Greenfield Rule ID 與15項 AC 有 Requirement／Code／Test／Document 對應，見 [Acceptance Test Map](06-acceptance-test-map.md)。來源語意、Seed ID／票價／初始容量未改；新能力、完成TODO與移除Skip见 [Delta](05-g0-to-g1-delta.md)。
+全部16項 Greenfield Rule ID 與15項 AC 有 Requirement／Code／Test／Document 對應，見 [Acceptance Test Map](06-acceptance-test-map.md)。來源語意、Seed ID／票價／初始容量未改；新能力、完成TODO與移除Skip見 [Delta](05-g0-to-g1-delta.md)。
 
 ## Skip / XFail / Warning
 

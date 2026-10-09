@@ -36,7 +36,7 @@ Audience: very junior engineers who may not know Python. They **never write or r
 - Introduce each concept, term, file convention, or report field at its **first need**. Use a `技巧：〈名稱〉` or `新概念：〈名稱〉` callout of 1–3 sentences.
 - The opening is a roadmap only.
 - Never require a point that has not been introduced. Text addressed only to the Agent gets the note 「這段是給 Agent 的，不需要看懂」.
-- When a concept recurs, deepen it and say so. A page introduces at most 3 new points.
+- When a concept recurs, deepen it and put 「（加深一層）」 in the callout title. A page introduces at most 3 new points; `check_references.py` enforces this and does not count 加深一層 callouts.
 - **Every knowledge point** gets a reference at its first introduction:
   - Techniques and general concepts: `📖 延伸閱讀：…` with titles only, never URLs, because the build rejects external URLs on learner pages.
   - Course-defined concepts: `📖 定義出處：本課程〈…〉`.

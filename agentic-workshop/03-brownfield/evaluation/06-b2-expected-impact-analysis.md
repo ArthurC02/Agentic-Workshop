@@ -24,6 +24,6 @@ B2 從凍結的正式 B1 延續，將會員 → 提前 → 學生 → 成人的�
 
 主代理於2026-10-05使用獨立Python3.13.15環境完成正式B2安裝、Import、Health、OpenAPI（11個paths）、uvicorn Health及API Smoke，混合優惠、改票、退款、通知／Audit均通過；完整pytest為 `55 passed, 1 warning in 1.21s`，零failed／skip／xfail。詳見[正式B2報告](15-b2-validation-report.md)與[機器可讀證據](16-b2-validation-evidence.json)。Warning及來源／版本metadata／Tag／Bundle依本版報告記錄，不以B1報告替代。
 
-唯讀文件核對：B2 business-rules.md共有40個唯一Rule ID，集合完全等於B0原36＋FARE-007／008／009／010；未遺漏或重編。AC Map引用的10個不同函數均存在於B2測試，七個Unit param ID及新增API路徑與正式程式相符。
+唯讀文件核對：B2 business-rules.md共有40個唯一Rule ID，集合完全等於B0原36＋FARE-007／008／009／010；未遺漏或重編。AC Map引用的10個不同函式均存在於B2測試，七個Unit param ID及新增API路徑與正式程式相符。
 
 完成條件：新政策及唯一舊測試遷移有明確原因，原28及其他B1測試保留；[13項AC映射](09-b2-acceptance-test-map.md)與正式B2實測吻合，零失敗、無Skip／XFail，文件及API明細同步，不提前實作B3。

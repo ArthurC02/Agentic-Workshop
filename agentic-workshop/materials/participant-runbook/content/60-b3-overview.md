@@ -80,7 +80,7 @@ section: B3｜Digital Worker
 第一道關卡：需求理解錯了，後面做得再快都是白做。讓 Agent 把要核對的事整理成是非題，你對照任務卡回答，最晚第 66 分做決策。
 
 ```callout tip
-技巧：結構化輸出（Gate 回報格式）
+技巧：結構化輸出（Gate 回報格式，加深一層）
 Greenfield 用固定欄位回報結果、B2 用固定欄位比較方案；這次每道 Gate 都用同一組固定標題（Gate、建議結論、證據、風險、需要人決定的事），你才能在 1–3 分鐘內看完，並和上一道 Gate 比對。完整內容寫進 `notes/b3.md`，對話只給這個摘要。
 📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured Outputs〉；你所用工具的官方文件通常有同名章節。
 ```
@@ -141,7 +141,7 @@ Greenfield 用固定欄位回報結果、B2 用固定欄位比較方案；這次
 ```
 
 ```callout tip
-技巧：Token 節費
+技巧：Token 節費（加深一層）
 放手執行是最耗 Token 的一段：Agent 自己讀檔、跑測試、改檔，對話越拉越長。前面學過「要摘要、把共識寫成檔案」，這次用在長時間自主執行：要它把細節寫進 `notes/b3.md`、對話只回 5 行摘要；下一段交付直接讀 notes，不必回頭翻對話。
 📖 延伸閱讀：Anthropic Engineering 文章〈Effective context engineering for AI agents〉、Anthropic 官方文件〈Context windows〉；你所用工具的官方文件通常有同名章節。
 ```

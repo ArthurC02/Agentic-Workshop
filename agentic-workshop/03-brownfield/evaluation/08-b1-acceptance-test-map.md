@@ -15,7 +15,7 @@
 | AC-B1-006 | 全套 G1＋B0、零失敗、無Skip／XFail | 本版 requirements／pytest／Fixture | 原28＋新增16＝44；完整 output、退出碼0；禁止用診斷副本代替 | PASS（正式B1實測） |
 | AC-B1-007 | 文件75%且與程式一致 | docs/business-rules.md FARE-002／src/smart_ticket/domain/fare_policy.py | 文件與常數／呼叫路徑審查，並交叉核對 AC-B1-001 | PASS（文件75%与正式Source／測試一致） |
 
-新增 16 項原 B0 Regression：以下八檔各兩函數，全部延續且必須通過。`tests/integration/test_members.py`、`test_advance.py`、`test_changes.py`、`test_refunds.py`、`test_records.py`、`test_seats.py`、`test_b0_api.py`、`test_seed.py`。真實函數與 B0 Rule 對應見[36 Rule 矩陣](04-b0-rule-traceability.md)。B1 不增加新政策、不改 `test_corporate_first_match_precedes_more_favorable_advance` 的665第一匹配期待值。
+新增 16 項原 B0 Regression：以下八檔各兩函式，全部延續且必須通過。`tests/integration/test_members.py`、`test_advance.py`、`test_changes.py`、`test_refunds.py`、`test_records.py`、`test_seats.py`、`test_b0_api.py`、`test_seed.py`。真實函式與 B0 Rule 對應見[36 Rule 矩陣](04-b0-rule-traceability.md)。B1 不增加新政策、不改 `test_corporate_first_match_precedes_more_favorable_advance` 的665第一匹配期待值。
 
 28 是 G1 Regression 數，44 是目前 B1 完整套件數；pytest warnings 另記原因與接受範圍，不能只以總數推定 AC。App版本、獨立環境及API Smoke證據亦須本版取得。
 

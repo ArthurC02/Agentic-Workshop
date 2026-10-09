@@ -257,19 +257,12 @@ Agent 必須提交：
 為避免 13 分鐘 B3 任務被長篇討論消耗，每個 Gate 使用短格式：
 
 ```markdown
-## Gate Decision
-
-Decision: APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
-
-Evidence Reviewed:
-- 
-
-Conditions / Required Corrections:
-- 
-
-Approver:
-
-Timestamp / Workshop Minute:
+Gate：
+決策：APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
+審查過的證據：
+條件／要修正的事：
+核准人：
+時間（全場第幾分鐘）：
 ```
 
 不要求真實電子簽章。

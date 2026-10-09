@@ -34,7 +34,7 @@ helper自身exit0只表示預期的5項失敗實驗吻合；pytest exit1表示�
 | tests/integration/test_features.py | test_student_booking | FARE-002／AC-G-004 | 525 | 595 |
 | tests/integration/test_features.py | test_mixed_booking_reserves_seats | FARE-003／004、BOOKING-004／005／AC-G-005／009 | 1225 | 1295 |
 
-同一Bug造成五項失敗，不是五個Bug。B0新增學生相關測試若也受影響，須在交付前以實際結果補入明確node ID清單；不把任意學生相关失敗自動接受為預期。
+同一Bug造成五項失敗，不是五個Bug。B0新增學生相關測試若也受影響，須在交付前以實際結果補入明確node ID清單；不把任意學生相關失敗自動接受為預期。
 
 ## 可選方案
 
@@ -85,7 +85,7 @@ helper自身exit0只表示預期的5項失敗實驗吻合；pytest exit1表示�
 | agentic-workshop/00-governance/acceptance-gates.md、consistency-rules.md、technical-baseline.md、version-validation-requirements.md、rule-traceability-baseline.md、workshop-manifest.md | B0預期失敗集合／B1恢复／O-04狀態 |
 | docs/planning/decisions-and-open-issues.md、production-roadmap.md、repository-structure.md | 核准紀錄、P5Gate與來源；歷史證據保留為當時事實 |
 
-已完成上述規格同步；後續P5為Time Skip學員3／主持2文件、B0完整程式与接手學員4／主持3／評估4文件，及要求的clean-copy。B0需35–45實質Python與測試檔、約30–45測試、三項債／兩項文件落差；延續G1 Tag歷史，clean-copy從同一固定B0来源產生並比對。不得提前建立B1–B3答案。
+已完成上述規格同步；後續P5為Time Skip學員3／主持2文件、B0完整程式与接手學員4／主持3／評估4文件，及要求的clean-copy。B0需35–45實質Python與測試檔、約30–45測試、三項債／兩項文件落差；延續G1 Tag歷史，clean-copy從同一固定B0來源產生並比對。不得提前建立B1–B3答案。
 
 ## 完成與核准條件
 

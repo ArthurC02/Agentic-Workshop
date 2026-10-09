@@ -15,7 +15,7 @@ P0–P4已完成，G0／G1程式與學員素材已有實測證據；G0→G1案�
 
 ## 2. 已採用的規劃安排
 
-| 編號 | 安排 | 來源與依據 | 影響與落地條件 |
+| 編號 | 安排 | 來源與依據 | 影響與實施條件 |
 |---|---|---|---|
 | D-01 | 既有概念與產製規格留在 `docs/contents/`、`docs/instructions/`；規劃留在 `docs/planning/`；正式素材放在 `agentic-workshop/` | [總控 §6](../instructions/00_Agentic工作坊素材產製總控指令書.md)、[Agent §4](../../Agent.md) | 維持規格來源單一，避免把指令書複製到學員包；後續依階段建立素材，P0 僅建立規劃文件；P1 進度另見本次適用紀錄。 |
 | D-02 | 採 `00-governance` 至 `06-runbook` 主線，以及 `participant`、`facilitator`、`evaluation` 可見性分層 | [總控 §5.4、§6](../instructions/00_Agentic工作坊素材產製總控指令書.md) | 階段規格指定的詳細檔名與子目錄仍須保留；總控的概要樹不能用來省略階段交付物。 |
@@ -48,7 +48,7 @@ P0–P4已完成，G0／G1程式與學員素材已有實測證據；G0→G1案�
 - **處理與依據**：使用者要求啟動下一個目標（P2），在其已定義的編號協調範圍內沿用G0／G1詳細規格；屬文件識別對齊，不改商業語意、優惠、API或測試門檻，也不宣稱其他政策變更已核准。
 - **完成證據／後續**：已建立[57項 Rule Registry](../../agentic-workshop/00-governance/rule-traceability-baseline.md)，同步技術標準、治理與Agent／規劃紀錄。002只限一般最多4人，B3團體採GROUP規則；舊座位限制引用映射003。後續實際Code／Test／Document仍待產製驗證，O-04–O-07不因此解除。
 
-### O-04：B0 失敗数與G1 Regression（規格衝突已解除）
+### O-04：B0 失敗數與G1 Regression（規格衝突已解除）
 
 - **核准紀錄**：2026-10-05，使用者於具體提案後回覆「套用」，核准[方案A](b0-regression-gate-proposal.md)。原規格與治理、Agent／規劃同步完成。
 - **原始衝突與證據**：B0原要求85%學生Bug、精確一項失敗且全部G1 Regression通過；不寫source的記憶體實驗為5 failed／23 passed／1已知Warning（0.28s）。實驗後原G1仍28passed（0.11s）。詳見提案五項影響矩陣。
@@ -97,9 +97,9 @@ P0–P4已完成，G0／G1程式與學員素材已有實測證據；G0→G1案�
 
 ### 2026-10-05 P4 落實紀錄
 
-- **O-05：G0／G1已落實，後续延續待驗證。** 在使用者授權P4範圍內採純實作策略：獨立案例Repo→真實Commit／Tag→Evaluation限定Bundle→獨立版本快照。`g0-starter=ee5c126`、`g1-greenfield-reference=361bf00`；Bundle驗證、Clone與30檔內容比對0差異。共五個實際提交，明示是本次按成果階段組裝歷史，不虛構過去開發時程。詳見[G1 Case History](../../agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/case-history.md)。B0必須承接G1祖先並另驗證安全可見歷史；尚未聲稱B0或學員包已存在。
+- **O-05：G0／G1已落實，後續延續待驗證。** 在使用者授權P4範圍內採純實作策略：獨立案例Repo→真實Commit／Tag→Evaluation限定Bundle→獨立版本快照。`g0-starter=ee5c126`、`g1-greenfield-reference=361bf00`；Bundle驗證、Clone與30檔內容比對0差異。共五個實際提交，明示是本次按成果階段組裝歷史，不虛構過去開發時程。詳見[G1 Case History](../../agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/case-history.md)。B0必須承接G1祖先並另驗證安全可見歷史；尚未聲稱B0或學員包已存在。
 - **O-07：G1前置條件已滿足。** [G1報告](../../agentic-workshop/01-greenfield/evaluation/04-g1-validation-report.md)為PASS：28passed／無Skip／XFail，僅規格允許且已記錄的第三方相容Warning。未修改原Gate；本次案例固定邊界不代表未完成功能。
-- **O-04：仍阻擋B0 Bug注入，已有具體影響清單。** 75%改85%會破壞五项G1測試：`test_student_fare_is_seventy_five_percent`、`test_mixed_passenger_fares_sum_as_integers`、`test_successful_mixed_booking_reserves_seats_and_starts_pending`、`test_student_booking`、`test_mixed_booking_reserves_seats`。525→595、1225→1295；不得弱化這些Regression以湊一項失敗。此為實作路徑與斷言盤點，尚未注入B0 Bug或取得B0測試結果。
+- **O-04：仍阻擋B0 Bug注入，已有具體影響清單。** 75%改85%會破壞五項G1測試：`test_student_fare_is_seventy_five_percent`、`test_mixed_passenger_fares_sum_as_integers`、`test_successful_mixed_booking_reserves_seats_and_starts_pending`、`test_student_booking`、`test_mixed_booking_reserves_seats`。525→595、1225→1295；不得弱化這些Regression以湊一項失敗。此為實作路徑與斷言盤點，尚未注入B0 Bug或取得B0測試結果。
 - **O-06：保留原交付要求，待B0實際生成及比對。** O-01／O-02的後續教材對齊与真實時間演練仍未完成。
 
 後續每次解除待協調事項，記錄決策日期、決策者／核准者、採納方案、受影響文件與驗證證據；保留未採納建議的狀態，不把「已提出」寫成「已核准」。純實作方式的選擇可依授權範圍落實；原規格變更則遵守明確核准要求。
