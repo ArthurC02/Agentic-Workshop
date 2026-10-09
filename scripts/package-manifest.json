@@ -62,12 +62,12 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/README.md",
           "destination": "agentic-workshop/01-greenfield/participant/starter-repository/README.md",
-          "sha256": "aecb93975a8b211adf0523e5aca384256d2c42400c7b96d1db5563183ce9c6f5"
+          "sha256": "484d2ae9af81c56f3734fe00cdaba4c38ad654df5423e1487000b3b50dc49f49"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/requirements.txt",
           "destination": "agentic-workshop/01-greenfield/participant/starter-repository/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/src/smart_ticket/__init__.py",
@@ -232,7 +232,7 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/requirements.txt",
           "destination": "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/src/smart_ticket/__init__.py",
@@ -613,7 +613,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/requirements.txt",
           "destination": "recovery-b1/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/src/smart_ticket/__init__.py",
@@ -864,7 +864,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/requirements.txt",
           "destination": "recovery-b2/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/__init__.py",
@@ -1205,7 +1205,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "81ea1abc0636d81bb6bf1922398b76c06666c86a9f5ddc9361cfa47ec96f7736"
+          "sha256": "dabab200f97faa809b84d357176e3826b4719dfa324eb4f4ad346bdbe911e178"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -1440,7 +1440,7 @@
         {
           "source": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md",
           "destination": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md",
-          "sha256": "2c89148a103be321679fcafd041c1e8c138bd16d9a12763a37c1657e75817a68"
+          "sha256": "b5bf1dd73cca637f67f9d2f83e7740431b5e39efe80df90119bb0c3c5d334ad7"
         },
         {
           "source": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -1475,7 +1475,7 @@
         {
           "source": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/requirements.txt",
           "destination": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/src/smart_ticket/__init__.py",
@@ -1735,7 +1735,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/README.md",
-          "sha256": "998bbd6f72e395204ed275ff608ff32dca8d399bb435c34afea2a33345877d22"
+          "sha256": "2101031245de1fbf560d7b7d2a79ebb75e7ed2d9f2e01df0a908adb48af05cc2"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/docs/adr/001-use-in-memory-repositories.md",
@@ -1790,7 +1790,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/requirements.txt",
           "destination": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/diagnostic-repair/smart-ticket-b0-student-rate-check/src/smart_ticket/__init__.py",
@@ -1995,7 +1995,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/README.md",
-          "sha256": "998bbd6f72e395204ed275ff608ff32dca8d399bb435c34afea2a33345877d22"
+          "sha256": "2101031245de1fbf560d7b7d2a79ebb75e7ed2d9f2e01df0a908adb48af05cc2"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/docs/adr/001-use-in-memory-repositories.md",
@@ -2050,7 +2050,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/requirements.txt",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-baseline/smart-ticket-b0-clean-copy/src/smart_ticket/__init__.py",
@@ -2255,7 +2255,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/README.md",
-          "sha256": "7461fed003dd81f13658aa81eb7fcf0574361158033ef430b7b29f1324157cf1"
+          "sha256": "c8ed1c9d9cdf3c23de4ba1c52c272991d1c0e173063dd881fcf14666b0ac5d2a"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/docs/adr/001-use-in-memory-repositories.md",
@@ -2310,7 +2310,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/requirements.txt",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/src/smart_ticket/__init__.py",
@@ -2515,7 +2515,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/README.md",
-          "sha256": "4742875fbfc2ac30e808a697a15f64acc70b52da7813ca29a1c698fde92fb71f"
+          "sha256": "50583ff38ebe43003a69f2eca579b4bfb35be8945df38e1c58a96237bfcefab5"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/docs/adr/001-use-in-memory-repositories.md",
@@ -2570,7 +2570,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/requirements.txt",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/__init__.py",
@@ -2785,7 +2785,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/README.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/README.md",
-          "sha256": "9871d4003a302ea6b42b422c77fcc762a2de1fec344ad3e9a61f3468ae1af92f"
+          "sha256": "a7960a0de3bb7c8b96796a42a5a80dfc69baf631fa3bdb2924a676f5ea4b4a5a"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/docs/adr/001-use-in-memory-repositories.md",
@@ -2845,7 +2845,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/requirements.txt",
           "destination": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/requirements.txt",
-          "sha256": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a"
+          "sha256": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/reference-solutions/b3-group-booking/src/smart_ticket/__init__.py",
@@ -3150,7 +3150,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
-          "sha256": "8dca9eebd14fec6a98cbb96d48a1ddfcee6cf2a3d6341d62b95c937fb922a6a6"
+          "sha256": "c14e3925a3cc87e57a25e44f50005453c2e3ee516166f158530afbd2001aefe7"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-core_smoke.log",
@@ -3170,12 +3170,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.log",
-          "sha256": "c2cc63a1afbdb776e94e703d09d4232160915f7ef4cda46998ed004db8ec2527"
+          "sha256": "d3cb1955076fe06ae6f9b1f105136415d46e8ce1493a0398ce7fec488e731250"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-pytest.xml",
-          "sha256": "fd003c6cfdf0d906498b537b222495f9aaf4b859e3d6bbc4dc72601a7089e080"
+          "sha256": "2ffcae3feb3572848ef2f422a19c485a8c89009b70e4a04709326cb29f36e854"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b0-python.log",
@@ -3205,12 +3205,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.log",
-          "sha256": "7fef3763d4f3fccbcf3680d2d256cbce9ab04c9b33ef76dd6f96bf7c28304758"
+          "sha256": "041016ae478d47968ebf9e2858e333b8d08e1c4f4d0a6cef360bfb91622e7b69"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-pytest.xml",
-          "sha256": "8852914b1a9a3a5f72eb3ebc50b159ffd135c7fa81be10902bfeef8e8622cdc0"
+          "sha256": "25fc6af87fa17536d47c2f2702f3f8b03a9b8f1dd5e22681f1098f72ae21f8fb"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b1-python.log",
@@ -3240,12 +3240,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.log",
-          "sha256": "e579c045e0452eda0cb3d872562d1bf6feaa08a6d4cea3c4fe9f5553a6d96786"
+          "sha256": "1a57a974bfccb785a45babd859b7e150f28fccfa3325dca6303cf7d11a582bae"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-pytest.xml",
-          "sha256": "7b2bffb26a090f3eba966cf09dde37d825e88ef890d4b3cbd644861295fd3eb9"
+          "sha256": "c948dd85da653339fbf7d3191c164e9458657a2423de457d7f49b1d8c7d56f37"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b2-python.log",
@@ -3275,12 +3275,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.log",
-          "sha256": "69645fc54086a8f15f855ee220263e54c8918a931f9588b5c335621cb1f918a4"
+          "sha256": "7d87e4ac79ce154b54e824916566326c91e2560c1688b5c2c2a1f5268cc62c61"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-pytest.xml",
-          "sha256": "3d57ce86b1606d2c0c5ef50e82692caf6054b05e53a1dbcf18f247f5fd66bed1"
+          "sha256": "18f712bc16e510bc66becddd3ef28b39dc31e30f4e3d2355e3001906d1d1fee8"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/b3-python.log",
@@ -3310,12 +3310,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.log",
-          "sha256": "d83b3b13f45fd805797ee77081605275875975013abf708c0e2d95a9d3b77c67"
+          "sha256": "77dc5802cb4709d8621cf20187af0b51c14ce447c27603cd48c3de490b281ed3"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-pytest.xml",
-          "sha256": "c0fc3775db0c5ee5c9c5d94e1175de0268901f1bc1bade3a3e474311fedfbdc9"
+          "sha256": "6998fd0d7a923497792f09009f5836ddec5ea0dfb58f909692d1dffedfc6501b"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g0-python.log",
@@ -3345,12 +3345,12 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.log",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.log",
-          "sha256": "7a7d08657b34b8fc29a7ebbb20a8f648a4ab86969338bf8b909f82bd2fd67187"
+          "sha256": "2e15f11234857050210140793bb618a616796ef0ad4a09e31bd4619ab68e83de"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.xml",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-pytest.xml",
-          "sha256": "2d921c3e594044f559cb659e28c716dedc2bec82819ef7661dd23c4ded50b2aa"
+          "sha256": "4d87a5422130d249ff45d9c8ed09cf31e2be3f62578bc728048a926d674dc4ae"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-logs/g1-python.log",
@@ -3385,7 +3385,7 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "49355646e0f0e1a5883ceee92eaca6c3aa6b7cc5b8345cff55c34b92d6105845"
+          "sha256": "b2d782adc5998d4c353b6a7e79f58ff9a27e84a4c388d67fe2b35549ef3997b9"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",

@@ -16,9 +16,11 @@ Smart Ticket上線12個月後，延續查詢、訂票、付款及Order，新增�
 ```bash
 python --version
 python -m pip install -r requirements.txt
-python -m uvicorn smart_ticket.main:app --app-dir src --reload
 python -m pytest -q
+python -m uvicorn smart_ticket.main:app --app-dir src --reload
 ```
+
+最後一行啟動伺服器後，這個視窗會被佔用；要停止按 Ctrl+C，要做別的事就另開一個視窗。
 
 也可以跳過啟用，直接呼叫虛擬環境裡的 Python（PowerShell 執行原則擋下啟用時也這樣做）：Windows 用 `.venv\Scripts\python.exe -m pytest -q`（Git Bash 寫 `.venv/Scripts/python.exe`），macOS／Linux 用 `.venv/bin/python -m pytest -q`；安裝與啟動指令同理，把開頭的 `python` 換掉即可。
 

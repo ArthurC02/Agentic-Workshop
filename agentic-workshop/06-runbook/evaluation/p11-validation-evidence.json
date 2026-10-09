@@ -1,5 +1,5 @@
 {
-  "executed_utc": "2026-10-09T13:03:29.760658+00:00",
+  "executed_utc": "2026-10-09T14:31:39.860688+00:00",
   "installation": "NOT RUN: existing independent environments; pip check executed",
   "human_rehearsal": "NOT RUN",
   "agent_service_availability": "NOT RUN",
@@ -206,7 +206,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\participant\\starter-repository",
           "returncode": 0,
-          "elapsed_seconds": 0.112,
+          "elapsed_seconds": 0.069,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g0-python.log",
           "log_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
@@ -221,7 +221,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\participant\\starter-repository",
           "returncode": 0,
-          "elapsed_seconds": 1.838,
+          "elapsed_seconds": 1.713,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g0-pip_check.log",
           "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
@@ -234,7 +234,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\participant\\starter-repository",
           "returncode": 0,
-          "elapsed_seconds": 3.686,
+          "elapsed_seconds": 2.213,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g0-core_smoke.log",
           "log_sha256": "7671379144adf712e9e381f2cd2163378d6ca73ca4837f2afc1bf5b704d4f93a"
         },
@@ -247,7 +247,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\participant\\starter-repository",
           "returncode": 0,
-          "elapsed_seconds": 6.54,
+          "elapsed_seconds": 3.973,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g0-uvicorn_health_openapi.log",
           "log_sha256": "dfffc7f2a6311b05479e1f11b4e20da2121a3401b29f4c2030bc371b36f90c15"
         },
@@ -267,9 +267,9 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\participant\\starter-repository",
           "returncode": 0,
-          "elapsed_seconds": 4.452,
+          "elapsed_seconds": 3.063,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g0-pytest.log",
-          "log_sha256": "d83b3b13f45fd805797ee77081605275875975013abf708c0e2d95a9d3b77c67"
+          "log_sha256": "77dc5802cb4709d8621cf20187af0b51c14ce447c27603cd48c3de490b281ed3"
         }
       },
       "test_counts": {
@@ -338,8 +338,8 @@
         "docs/architecture.md": "311c3513fad3bd6fa82976aee8d190d6b6097ddfa6f2acec701b7f8af9419c58",
         "docs/business-rules.md": "6c6d10dbc4d14bff1dc50a6641fe6854e7cba76d7a715effec3b565fec60ec6d",
         "pyproject.toml": "1958af0e43027639bb4b2b132935c92ddee84d102da91ed05be898f5b059e5cd",
-        "README.md": "aecb93975a8b211adf0523e5aca384256d2c42400c7b96d1db5563183ce9c6f5",
-        "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+        "README.md": "484d2ae9af81c56f3734fe00cdaba4c38ad654df5423e1487000b3b50dc49f49",
+        "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
         "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
         "src/smart_ticket/api/dependencies.py": "98a719152cdd3c14a2fef25917606af279112b7f5ad9ae3e51c406da855f77c6",
         "src/smart_ticket/api/routes.py": "bda7d183d1a9c31dc2fe62b0af0b9918fa37afc5ed116d61d6254c94b8dc8c61",
@@ -374,7 +374,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\evaluation\\reference-solution\\greenfield-reference-mvp",
           "returncode": 0,
-          "elapsed_seconds": 0.182,
+          "elapsed_seconds": 0.071,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g1-python.log",
           "log_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
@@ -389,7 +389,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\evaluation\\reference-solution\\greenfield-reference-mvp",
           "returncode": 0,
-          "elapsed_seconds": 2.554,
+          "elapsed_seconds": 1.648,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g1-pip_check.log",
           "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
@@ -402,7 +402,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\evaluation\\reference-solution\\greenfield-reference-mvp",
           "returncode": 0,
-          "elapsed_seconds": 2.961,
+          "elapsed_seconds": 2.032,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g1-core_smoke.log",
           "log_sha256": "58302077921d5cc835c9c6a03bb58d5548693c861df4f0b4ac4805d9e0746d4b"
         },
@@ -415,7 +415,7 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\evaluation\\reference-solution\\greenfield-reference-mvp",
           "returncode": 0,
-          "elapsed_seconds": 4.385,
+          "elapsed_seconds": 3.993,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g1-uvicorn_health_openapi.log",
           "log_sha256": "fd29a09c3a474c90aa98e7487626ed8ce2fc819ea297dfca7aa1f1707832d03c"
         },
@@ -435,9 +435,9 @@
           ],
           "cwd": "agentic-workshop\\01-greenfield\\evaluation\\reference-solution\\greenfield-reference-mvp",
           "returncode": 0,
-          "elapsed_seconds": 4.213,
+          "elapsed_seconds": 3.557,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\g1-pytest.log",
-          "log_sha256": "7a7d08657b34b8fc29a7ebbb20a8f648a4ab86969338bf8b909f82bd2fd67187"
+          "log_sha256": "2e15f11234857050210140793bb618a616796ef0ad4a09e31bd4619ab68e83de"
         }
       },
       "test_counts": {
@@ -494,8 +494,8 @@
         "docs/case-history.md": "fbbcd7465ff9891dba2d7a27495075f8f2cb58f1340a60729087be52e0f17177",
         "docs/version-history.md": "eea60c824f566dc386690058f62488d6915ccef67b01a9a441321d204d384fd4",
         "pyproject.toml": "143d5f20af8dcd95e871480038171554f0f37b2f885b8aa5fbae51708c6c26a0",
-        "README.md": "2c89148a103be321679fcafd041c1e8c138bd16d9a12763a37c1657e75817a68",
-        "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+        "README.md": "b5bf1dd73cca637f67f9d2f83e7740431b5e39efe80df90119bb0c3c5d334ad7",
+        "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
         "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
         "src/smart_ticket/api/dependencies.py": "98a719152cdd3c14a2fef25917606af279112b7f5ad9ae3e51c406da855f77c6",
         "src/smart_ticket/api/routes.py": "292fb8820fb34978470bb4944c1bcb9f81982b39e99cde304df1a0fc872586d3",
@@ -532,7 +532,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\participant\\repository\\smart-ticket-b0",
           "returncode": 0,
-          "elapsed_seconds": 0.127,
+          "elapsed_seconds": 0.075,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b0-python.log",
           "log_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
@@ -547,7 +547,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\participant\\repository\\smart-ticket-b0",
           "returncode": 0,
-          "elapsed_seconds": 1.882,
+          "elapsed_seconds": 1.933,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b0-pip_check.log",
           "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
@@ -560,7 +560,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\participant\\repository\\smart-ticket-b0",
           "returncode": 0,
-          "elapsed_seconds": 3.144,
+          "elapsed_seconds": 1.914,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b0-core_smoke.log",
           "log_sha256": "d69a3df2ffc1edfb1184da3548f4fc165eb8552d4aedf9f16e641b020dcac912"
         },
@@ -573,7 +573,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\participant\\repository\\smart-ticket-b0",
           "returncode": 0,
-          "elapsed_seconds": 4.122,
+          "elapsed_seconds": 4.428,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b0-uvicorn_health_openapi.log",
           "log_sha256": "ae18b5ade20f4a37368f91871793dbbd6aed46bf4e6f98bbc09f46a82db066db"
         },
@@ -593,9 +593,9 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\participant\\repository\\smart-ticket-b0",
           "returncode": 1,
-          "elapsed_seconds": 4.612,
+          "elapsed_seconds": 4.778,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b0-pytest.log",
-          "log_sha256": "c2cc63a1afbdb776e94e703d09d4232160915f7ef4cda46998ed004db8ec2527"
+          "log_sha256": "d3cb1955076fe06ae6f9b1f105136415d46e8ce1493a0398ce7fec488e731250"
         }
       },
       "test_counts": {
@@ -678,8 +678,8 @@
         "docs/discount-overview.md": "026772cd1c3b2e15eaf254df10982f57fd7283e82ab0a0f8e69ef5e0eb8795cf",
         "docs/version-history.md": "e098db44727999569560d61a8181fa9d19be220130f7d28546a169a1104ad638",
         "pyproject.toml": "143d5f20af8dcd95e871480038171554f0f37b2f885b8aa5fbae51708c6c26a0",
-        "README.md": "998bbd6f72e395204ed275ff608ff32dca8d399bb435c34afea2a33345877d22",
-        "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+        "README.md": "2101031245de1fbf560d7b7d2a79ebb75e7ed2d9f2e01df0a908adb48af05cc2",
+        "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
         "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
         "src/smart_ticket/api/dependencies.py": "478f9addbaf590f480940f915e9979392cc14026461ba4fb1f6b10493af4c4a0",
         "src/smart_ticket/api/routes.py": "5bfe57408748bf41d2c9d6c6c3f045c5daed054f45138d5e9ef1a2ba02591159",
@@ -734,7 +734,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b1-student-fare-fixed",
           "returncode": 0,
-          "elapsed_seconds": 0.375,
+          "elapsed_seconds": 0.168,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b1-python.log",
           "log_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
@@ -749,7 +749,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b1-student-fare-fixed",
           "returncode": 0,
-          "elapsed_seconds": 1.872,
+          "elapsed_seconds": 1.78,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b1-pip_check.log",
           "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
@@ -762,7 +762,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b1-student-fare-fixed",
           "returncode": 0,
-          "elapsed_seconds": 2.487,
+          "elapsed_seconds": 2.633,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b1-core_smoke.log",
           "log_sha256": "4d4b885dd1c11ed98b0ed1094f79dee2056c5fc223549573654434c16118a6c0"
         },
@@ -775,7 +775,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b1-student-fare-fixed",
           "returncode": 0,
-          "elapsed_seconds": 4.641,
+          "elapsed_seconds": 4.126,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b1-uvicorn_health_openapi.log",
           "log_sha256": "db40a4189881fe87e8bc17aee12460bc2ccbae8453d1738d04a1430dd808813e"
         },
@@ -795,9 +795,9 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b1-student-fare-fixed",
           "returncode": 0,
-          "elapsed_seconds": 4.427,
+          "elapsed_seconds": 3.689,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b1-pytest.log",
-          "log_sha256": "7fef3763d4f3fccbcf3680d2d256cbce9ab04c9b33ef76dd6f96bf7c28304758"
+          "log_sha256": "041016ae478d47968ebf9e2858e333b8d08e1c4f4d0a6cef360bfb91622e7b69"
         }
       },
       "test_counts": {
@@ -874,8 +874,8 @@
         "docs/discount-overview.md": "026772cd1c3b2e15eaf254df10982f57fd7283e82ab0a0f8e69ef5e0eb8795cf",
         "docs/version-history.md": "828df03b9d02d6b1ad44da8966973303d06ac2b213fd06984890f178318b0e89",
         "pyproject.toml": "d80cc83d8aa6ebb676e6d9e5b9a73b3dc134d1c165ea02c87daf240a28c411fe",
-        "README.md": "7461fed003dd81f13658aa81eb7fcf0574361158033ef430b7b29f1324157cf1",
-        "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+        "README.md": "c8ed1c9d9cdf3c23de4ba1c52c272991d1c0e173063dd881fcf14666b0ac5d2a",
+        "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
         "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
         "src/smart_ticket/api/dependencies.py": "478f9addbaf590f480940f915e9979392cc14026461ba4fb1f6b10493af4c4a0",
         "src/smart_ticket/api/routes.py": "5bfe57408748bf41d2c9d6c6c3f045c5daed054f45138d5e9ef1a2ba02591159",
@@ -930,7 +930,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b2-best-discount-policy",
           "returncode": 0,
-          "elapsed_seconds": 0.078,
+          "elapsed_seconds": 0.159,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b2-python.log",
           "log_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
@@ -945,7 +945,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b2-best-discount-policy",
           "returncode": 0,
-          "elapsed_seconds": 1.667,
+          "elapsed_seconds": 1.828,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b2-pip_check.log",
           "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
@@ -958,7 +958,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b2-best-discount-policy",
           "returncode": 0,
-          "elapsed_seconds": 2.652,
+          "elapsed_seconds": 2.228,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b2-core_smoke.log",
           "log_sha256": "7cc2e86eed078ced9c5e8f1bcef4954140709ea008788411bb6ce61d2a1fed03"
         },
@@ -971,7 +971,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b2-best-discount-policy",
           "returncode": 0,
-          "elapsed_seconds": 4.381,
+          "elapsed_seconds": 4.291,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b2-uvicorn_health_openapi.log",
           "log_sha256": "328b55aa8e3e1bb6c887f4fa5f9b26ad8407956c286c8c4f9ea928dec9d22329"
         },
@@ -991,9 +991,9 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b2-best-discount-policy",
           "returncode": 0,
-          "elapsed_seconds": 4.604,
+          "elapsed_seconds": 4.345,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b2-pytest.log",
-          "log_sha256": "e579c045e0452eda0cb3d872562d1bf6feaa08a6d4cea3c4fe9f5553a6d96786"
+          "log_sha256": "1a57a974bfccb785a45babd859b7e150f28fccfa3325dca6303cf7d11a582bae"
         }
       },
       "test_counts": {
@@ -1081,8 +1081,8 @@
         "docs/discount-overview.md": "283cb884ce85b2dda01b6b8c47fc8a68d7d13834e10afe280e9aefd27944be3d",
         "docs/version-history.md": "47e94e616d1fc86fd5b66f4e2f733ccf11df5750b595e3bb17a7d54a589c7514",
         "pyproject.toml": "1875e7ae12de6b0e9457886e5251f34cc0be7e850f6728d5faee31c20d52b0a7",
-        "README.md": "4742875fbfc2ac30e808a697a15f64acc70b52da7813ca29a1c698fde92fb71f",
-        "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+        "README.md": "50583ff38ebe43003a69f2eca579b4bfb35be8945df38e1c58a96237bfcefab5",
+        "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
         "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
         "src/smart_ticket/api/dependencies.py": "478f9addbaf590f480940f915e9979392cc14026461ba4fb1f6b10493af4c4a0",
         "src/smart_ticket/api/routes.py": "5bfe57408748bf41d2c9d6c6c3f045c5daed054f45138d5e9ef1a2ba02591159",
@@ -1139,7 +1139,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b3-group-booking",
           "returncode": 0,
-          "elapsed_seconds": 0.125,
+          "elapsed_seconds": 0.068,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b3-python.log",
           "log_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849"
         },
@@ -1154,7 +1154,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b3-group-booking",
           "returncode": 0,
-          "elapsed_seconds": 2.153,
+          "elapsed_seconds": 1.561,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b3-pip_check.log",
           "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
         },
@@ -1167,7 +1167,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b3-group-booking",
           "returncode": 0,
-          "elapsed_seconds": 2.596,
+          "elapsed_seconds": 2.383,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b3-core_smoke.log",
           "log_sha256": "e629f81d6267f976aae9adb63126f19aeeee81a074243bc00afab32f92703d5d"
         },
@@ -1180,7 +1180,7 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b3-group-booking",
           "returncode": 0,
-          "elapsed_seconds": 4.655,
+          "elapsed_seconds": 5.406,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b3-uvicorn_health_openapi.log",
           "log_sha256": "8eac96d14371b1968f1b90535f6354ffe525c3d291491bee6f84fa12d3e0b59b"
         },
@@ -1200,9 +1200,9 @@
           ],
           "cwd": "agentic-workshop\\03-brownfield\\evaluation\\reference-solutions\\b3-group-booking",
           "returncode": 0,
-          "elapsed_seconds": 5.663,
+          "elapsed_seconds": 5.224,
           "log": "agentic-workshop\\06-runbook\\evaluation\\p11-validation-logs\\b3-pytest.log",
-          "log_sha256": "69645fc54086a8f15f855ee220263e54c8918a931f9588b5c335621cb1f918a4"
+          "log_sha256": "7d87e4ac79ce154b54e824916566326c91e2560c1688b5c2c2a1f5268cc62c61"
         }
       },
       "test_counts": {
@@ -1311,8 +1311,8 @@
         "docs/discount-overview.md": "b4027a7c5d7570704c9ed08c518a322a3954b10ef179f3ac5d96d8f0e0fb45c2",
         "docs/version-history.md": "1dd74878377840f357d322e505c2eca1bc4b8f2c039695a4974235dc2cf3ce59",
         "pyproject.toml": "b2a6cbb533a039059956617a381e17fa9fd675f6f7540abd1f9366bfabd2c2d9",
-        "README.md": "9871d4003a302ea6b42b422c77fcc762a2de1fec344ad3e9a61f3468ae1af92f",
-        "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+        "README.md": "a7960a0de3bb7c8b96796a42a5a80dfc69baf631fa3bdb2924a676f5ea4b4a5a",
+        "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
         "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
         "src/smart_ticket/api/dependencies.py": "ed9f414e6a59402f4d5db2a0d4577d9a7a588be96f7edf7bd920c687251dcc08",
         "src/smart_ticket/api/routes.py": "5db43d95c2263f8832ad9b9cd69f1ec946309a13e79babbdb471e7c257f8f7b1",

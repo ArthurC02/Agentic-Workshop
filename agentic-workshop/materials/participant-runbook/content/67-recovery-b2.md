@@ -31,7 +31,7 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 ```text
 我們要切換到 B2 復原基線。請依序做，不要修改任何程式：
 1. 把目前狀態 Commit，並把目前的變更內容、最後一次測試結果與退出碼（exit code）、未完成事項寫進 notes/b2.md。如果 Git 要求姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。
-2. 停止你在背景啟動的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 已經連不上；只停止這個專案的伺服器（uvicorn smart_ticket）；8000 被其他程式佔用就停下告訴我是哪個程式，不要停它。
+2. 停止你在背景啟動的伺服器（埠號 8000），確認 http://127.0.0.1:8000/health 已經連不上；只停止這個專案的伺服器（uvicorn smart_ticket，連同它開出的子程序一起停）；停止後 /health 若還連得上，告訴我是哪個程式在用 8000，不要停它。
 3. 在下載資料夾找到 recovery-63-b2.zip（找不到就問我位置），計算它的 SHA256 並貼出來。
 4. 把它解壓縮到原成果旁邊的新資料夾 resume-b2-63（不要覆蓋原成果），告訴我裡面 recovery-b2 資料夾的完整路徑，以及原成果資料夾的完整路徑。
 ```
@@ -47,7 +47,7 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 1. 問我原成果資料夾的路徑（上一個 Agent 對話告訴過我），把那裡的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，我會貼規則給你。
 2. 閱讀 README 與 docs/context.md，用白話告訴我這是不是 B2 完成後的版本。
 3. 用 py -3.13 -m venv .venv 建立虛擬環境（不必啟用，之後直接呼叫 .venv\Scripts\python.exe，Git Bash 寫 .venv/Scripts/python.exe；版本不是 3.13 就停下告訴我），並安裝 requirements.txt，執行 pytest -q，只回報通過／失敗／跳過各幾個。如果這裡沒有 .gitignore，建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（之後 Commit 才不會混進測試產生的暫存檔）。
-4. 在背景啟動伺服器（埠號 8000；8000 被其他程式佔用就停下告訴我是哪個程式，不要停它），確認 http://127.0.0.1:8000/health 回傳 status=ok，告訴我 /docs 的網址。
+4. 在背景啟動伺服器（埠號 8000；啟動前先確認 8000 沒有其他程式在用，有的話就停下告訴我是哪個程式，不要停它），確認 http://127.0.0.1:8000/health 回傳 status=ok，告訴我 /docs 的網址。
 5. 讀 notes/b2.md，告訴我原成果還有哪些未完成。
 6. 把切換原因與時間、原成果保存位置、SHA256／測試數／health 的實際結果與退出碼，以及「B2 的政策由 Recovery 提供，不是本組自己完成」寫進 notes/recovery-b2.md。
 ```

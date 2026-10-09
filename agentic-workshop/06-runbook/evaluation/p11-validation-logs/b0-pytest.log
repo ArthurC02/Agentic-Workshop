@@ -2,7 +2,7 @@
 ================================== FAILURES ===================================
 ____________________________ test_student_booking _____________________________
 
-client = <starlette.testclient.TestClient object at 0x0000022689B04F30>
+client = <starlette.testclient.TestClient object at 0x0000019EFBED8F30>
 
     def test_student_booking(client):
         response = client.post('/bookings', json=payload(student=True))
@@ -13,8 +13,8 @@ E        +  where 201 = <Response [201 Created]>.status_code
 tests\integration\test_features.py:38: AssertionError
 ______________________ test_mixed_booking_reserves_seats ______________________
 
-client = <starlette.testclient.TestClient object at 0x0000022689B045A0>
-memory_store = <smart_ticket.infrastructure.store.InMemoryStore object at 0x00000226898B8D70>
+client = <starlette.testclient.TestClient object at 0x0000019EFBED85A0>
+memory_store = <smart_ticket.infrastructure.store.InMemoryStore object at 0x0000019EFBC18D70>
 
     def test_mixed_booking_reserves_seats(client, memory_store):
         response = client.post('/bookings', json=payload(2))
@@ -30,8 +30,8 @@ __________________ test_student_fare_is_seventy_five_percent __________________
 >       assert FarePolicy().calculate(700, PassengerType.STUDENT) == 525
 E       AssertionError: assert 595 == 525
 E        +  where 595 = calculate(700, <PassengerType.STUDENT: 'STUDENT'>)
-E        +    where calculate = <smart_ticket.domain.fare_policy.FarePolicy object at 0x0000022689BB9BF0>.calculate
-E        +      where <smart_ticket.domain.fare_policy.FarePolicy object at 0x0000022689BB9BF0> = FarePolicy()
+E        +    where calculate = <smart_ticket.domain.fare_policy.FarePolicy object at 0x0000019EFBEE5BF0>.calculate
+E        +      where <smart_ticket.domain.fare_policy.FarePolicy object at 0x0000019EFBEE5BF0> = FarePolicy()
 E        +    and   <PassengerType.STUDENT: 'STUDENT'> = PassengerType.STUDENT
 
 tests\unit\test_fare_policy.py:10: AssertionError
@@ -48,7 +48,7 @@ E        +  where 1295 = sum([700, 595])
 tests\unit\test_fare_policy.py:17: AssertionError
 _______ test_successful_mixed_booking_reserves_seats_and_starts_pending _______
 
-memory_store = <smart_ticket.infrastructure.store.InMemoryStore object at 0x00000226898B8D70>
+memory_store = <smart_ticket.infrastructure.store.InMemoryStore object at 0x0000019EFBC18D70>
 
     def test_successful_mixed_booking_reserves_seats_and_starts_pending(memory_store):
         group = [Passenger("A", "Adult", PassengerType.ADULT), Passenger("S", "Student", PassengerType.STUDENT)]
@@ -56,7 +56,7 @@ memory_store = <smart_ticket.infrastructure.store.InMemoryStore object at 0x0000
         assert booking.status == BookingStatus.PENDING_PAYMENT
 >       assert booking.total_fare == 1225
 E       AssertionError: assert 1295 == 1225
-E        +  where 1295 = Booking(booking_id='9da27c82-9daa-41ef-ba01-7b597f41aeda', trip_id='T001', passengers=[Passenger(passenger_id='A', nam...tatus=<BookingStatus.PENDING_PAYMENT: 'PENDING_PAYMENT'>, member_id=None, seat_ids=['S001', 'S002'], fare_difference=0).total_fare
+E        +  where 1295 = Booking(booking_id='30a767ba-27aa-41ad-bf5c-5001f72de27a', trip_id='T001', passengers=[Passenger(passenger_id='A', nam...tatus=<BookingStatus.PENDING_PAYMENT: 'PENDING_PAYMENT'>, member_id=None, seat_ids=['S001', 'S002'], fare_difference=0).total_fare
 
 tests\unit\test_services.py:66: AssertionError
 ============================== warnings summary ===============================
@@ -72,4 +72,4 @@ FAILED tests/integration/test_features.py::test_mixed_booking_reserves_seats
 FAILED tests/unit/test_fare_policy.py::test_student_fare_is_seventy_five_percent
 FAILED tests/unit/test_fare_policy.py::test_mixed_passenger_fares_sum_as_integers
 FAILED tests/unit/test_services.py::test_successful_mixed_booking_reserves_seats_and_starts_pending
-5 failed, 39 passed, 1 warning in 1.19s
+5 failed, 39 passed, 1 warning in 1.63s

@@ -34,7 +34,7 @@ section: Time Skip
 先把舊專案收好：保留 Greenfield 現況（不刪除、不覆寫），讓原本的 Agent 停掉它啟動的 App，避免之後兩個版本搶同一個埠號。在原本 Greenfield 的 Agent 對話貼上：
 
 ```text
-請停止你在背景啟動的伺服器（埠號 8000；只停止這個專案的伺服器（uvicorn smart_ticket）；8000 被其他程式佔用就停下告訴我是哪個程式，不要停它），確認 http://127.0.0.1:8000/health 已經連不上，然後用白話告訴我結果。不要修改任何檔案。
+請停止你在背景啟動的伺服器（埠號 8000；只停止這個專案的伺服器（uvicorn smart_ticket，連同它開出的子程序一起停）；停止後 /health 若還連得上，告訴我是哪個程式在用 8000，不要停它），確認 http://127.0.0.1:8000/health 已經連不上，然後用白話告訴我結果。不要修改任何檔案。
 ```
 
 接著下載 B0，用檔案總管（右鍵「全部解壓縮」）或 Finder 解壓縮到短路徑，例如 `C:\work\b0`，找到 `smart-ticket-b0` 資料夾（路徑是 `agentic-workshop\03-brownfield\participant\repository\smart-ticket-b0`，裡面有 `README.md`）。
