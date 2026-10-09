@@ -162,7 +162,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 1. 學員貼提示詞：Agent 存下需求卡、執行 `resolve-terms`／`get-context`，已知事實與知識缺口分開寫進 `notes/d3*.md`。
 2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；`analyze-boundary` 的 source 填提供資料或能力的一方、target 填使用的一方，回 `no_registered_collaboration` 就對調再查一次；Agent 依選擇寫成 D3 決策卡（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
 3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
-4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出另一段程式也擋住同一件事（等價，沒有測試分辨得出）時，學員確認後標「未證明」。`--test-command` 帶 `-W ignore::DeprecationWarning`，免得套件警告把失敗訊息擠出 `failing_evidence`；結束碼不是 0 的那次留下的 cf 檔，重跑前先刪掉。
+4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 帶 `-W ignore::DeprecationWarning`，免得套件警告把失敗訊息擠出 `failing_evidence`；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
 5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
 6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
 

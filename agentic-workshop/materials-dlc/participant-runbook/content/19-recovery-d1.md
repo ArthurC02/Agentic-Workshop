@@ -29,17 +29,18 @@ PowerShell：
 $ErrorActionPreference = 'Stop'
 $orig = git rev-parse --show-toplevel; if ($LASTEXITCODE) { throw "not in the original Repo" }
 Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
-Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-d1.zip" -DestinationPath C:\dlc-rec\d1
-$rec = Split-Path (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
-if (-not $rec) { throw "repo.bundle not found" }
+if (Test-Path .\resume-d1) { throw "resume-d1 already exists: delete C:\dlc-rec\d1 and resume-d1, then rerun" }
+Expand-Archive -Force -LiteralPath "$HOME\Downloads\recovery-dlc-d1.zip" -DestinationPath C:\dlc-rec\d1
+$b = (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d1
 foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d1\$d" } }
 Git Bash：
 ( set -e
 orig=$(git rev-parse --show-toplevel)
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+[ ! -e ./resume-d1 ] || { echo "resume-d1 already exists: delete /c/dlc-rec/d1 and resume-d1, then rerun" >&2; exit 1; }
 mkdir -p /c/dlc-rec/d1
-unzip -q ~/Downloads/recovery-dlc-d1.zip -d /c/dlc-rec/d1
+unzip -o -q ~/Downloads/recovery-dlc-d1.zip -d /c/dlc-rec/d1
 rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d1
@@ -51,6 +52,12 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 
 **看到什麼算過關**：`resume-d1` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d1` 的 `notes/d1.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。
 
+**如果卡住**（步驟 1 中途失敗、要重跑）：
+
+```text
+步驟 1 中途失敗了。重跑前先刪除 C:\dlc-rec\d1 與 repository 資料夾裡的 resume-d1（只刪這兩個，原 Repo 不動），再重跑第 2 步同一組指令；仍失敗就停下貼出錯誤。
+```
+
 ## 步驟 2 · 在 resume-d1 開新的 Agent 對話，還原並驗證
 
 - [ ] 結束目前的 Agent 對話，在 `resume-d1` 資料夾重新開啟 Agent。
@@ -60,8 +67,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 這是 D1 Recovery 起點，Repo 根目錄是 resume-d1：Domain Memory 在 domain-memory/，裡面全部是候選。不要 git add 或 commit domain-memory/。依終端機選一組，在「同一次執行」裡依序跑（rec 變數要在同一次執行內才有值），任何一步失敗就停下：
 PowerShell：
 $ErrorActionPreference = 'Stop'
-$rec = Split-Path (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
-if (-not $rec) { throw "repo.bundle not found" }
+$b = (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 git init -q -b main; if ($LASTEXITCODE) { throw "git init failed" }
 git fetch -q "$rec\repo.bundle" main; if ($LASTEXITCODE) { throw "git fetch failed" }
 git reset -q FETCH_HEAD; if ($LASTEXITCODE) { throw "git reset failed" }

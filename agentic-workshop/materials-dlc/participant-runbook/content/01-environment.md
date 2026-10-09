@@ -188,7 +188,7 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 **看到什麼算過關**：
 
 - `python --version` 為 `Python 3.13.x`，路徑在 `smart-ticket-dlc-base\.venv\Scripts\` 底下，**不含** `WindowsApps`。
-- `doctor.py` 最後一行為「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）。
+- `doctor.py` 最後一行為「全部必要項目通過。」（`[--]` 只是提醒，不算失敗；健檢時還沒 `git init`，所以會看到 `[--] git repo：目前目錄不是 git repo…`，這是預期，下一步就建立 commit）。
 - 起始 commit 已建立，裡面沒有 `domain-memory/`；`git status --short` 是空的（`notes/opening.md` 已一起 commit）。
 
 **如果卡住**（`python` 指向 `WindowsApps` 或 doctor 有 `[!!]`）：

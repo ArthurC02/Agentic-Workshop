@@ -110,7 +110,7 @@ Agent 找的證據你們同意嗎？有沒有哪一題，你們記得的和紀�
 PowerShell 執行：Remove-Item -Force "$env:USERPROFILE\.dlc-keys\maintainer\signing-key"
 Git Bash 執行：rm -f "$HOME/.dlc-keys/maintainer/signing-key"
 同一個資料夾的 signing-key.allowed_signers 要留著：它只有公鑰，Git 驗證今天的簽章 commit 時要讀它；刪了，git log 會把今天的簽章都顯示成無法驗證。signing-key.pub 與 signing.json 也只有可公開的內容，可以留著。
-再到 Repo 根目錄執行 git config --local --unset commit.gpgsign：金鑰刪掉後，這個 Repo 若仍要求每個 commit 都簽章，之後的 commit 都會失敗。
+再到 Repo 根目錄執行 git config --local --unset commit.gpgsign：金鑰刪掉後，這個 Repo 若仍要求每個 commit 都簽章，之後的 commit 都會失敗。repository 資料夾裡若還有其他 resume- 開頭的 Repo（用過 Recovery 才有），也到每一個的根目錄執行同一行。
 執行後確認 signing-key 已經不存在、signing-key.allowed_signers 還在、這個 Repo 不再要求簽章，用一句話回報。
 ```
 

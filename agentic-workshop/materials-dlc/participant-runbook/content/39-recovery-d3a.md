@@ -36,17 +36,18 @@ PowerShell：
 $ErrorActionPreference = 'Stop'
 $orig = git rev-parse --show-toplevel; if ($LASTEXITCODE) { throw "not in the original Repo" }
 Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
-Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-d3a.zip" -DestinationPath C:\dlc-rec\d3a
-$rec = Split-Path (Get-ChildItem C:\dlc-rec\d3a -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
-if (-not $rec) { throw "repo.bundle not found" }
+if (Test-Path .\resume-d3a) { throw "resume-d3a already exists: delete C:\dlc-rec\d3a and resume-d3a, then rerun" }
+Expand-Archive -Force -LiteralPath "$HOME\Downloads\recovery-dlc-d3a.zip" -DestinationPath C:\dlc-rec\d3a
+$b = (Get-ChildItem C:\dlc-rec\d3a -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d3a
 foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d3a\$d" } }
 Git Bash：
 ( set -e
 orig=$(git rev-parse --show-toplevel)
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+[ ! -e ./resume-d3a ] || { echo "resume-d3a already exists: delete /c/dlc-rec/d3a and resume-d3a, then rerun" >&2; exit 1; }
 mkdir -p /c/dlc-rec/d3a
-unzip -q ~/Downloads/recovery-dlc-d3a.zip -d /c/dlc-rec/d3a
+unzip -o -q ~/Downloads/recovery-dlc-d3a.zip -d /c/dlc-rec/d3a
 rec=$(find /c/dlc-rec/d3a -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d3a
@@ -58,6 +59,12 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 
 **看到什麼算過關**：`resume-d3a` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d3a` 的 `notes/d3a.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。
 
+**如果卡住**（步驟 1 中途失敗、要重跑）：
+
+```text
+步驟 1 中途失敗了。重跑前先刪除 C:\dlc-rec\d3a 與 repository 資料夾裡的 resume-d3a（只刪這兩個，原 Repo 不動），再重跑第 2 步同一組指令；仍失敗就停下貼出錯誤。
+```
+
 ## 步驟 2 · 【夥伴】在 resume-d3a 開新的 Agent 對話，接手簽章
 
 - [ ] 夥伴結束原 Repo 裡自己的 Agent 對話，在 `resume-d3a` 另開一個終端機，啟動自己的**新**對話。
@@ -67,8 +74,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 【夥伴的 Agent】這是 D3a Recovery，Repo 根目錄現在是 resume-d3a。依終端機選一組，在「同一次執行」裡依序跑（rec、old、fp 變數要在同一次執行內才有值），參數一字不改；任何一步失敗就停下貼出錯誤，不要自己改設定或換寫法：
 PowerShell：
 $ErrorActionPreference = 'Stop'
-$rec = Split-Path (Get-ChildItem C:\dlc-rec\d3a -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
-if (-not $rec) { throw "repo.bundle not found" }
+$b = (Get-ChildItem C:\dlc-rec\d3a -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 git init -q -b main; if ($LASTEXITCODE) { throw "git init failed" }
 git fetch -q "$rec\repo.bundle" main; if ($LASTEXITCODE) { throw "git fetch failed" }
 git reset -q FETCH_HEAD; if ($LASTEXITCODE) { throw "git reset failed" }
