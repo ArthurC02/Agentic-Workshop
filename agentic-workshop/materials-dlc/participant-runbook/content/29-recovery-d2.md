@@ -25,7 +25,6 @@ Recovery 附上 Git 歷史（`repo.bundle`）：Registry 的 commit 都由 Maint
 ## 步驟 1 · 【提案者】保存原成果並解出 Recovery
 
 - [ ] 按上方按鈕下載 `recovery-dlc-d2.zip`，存到「下載」資料夾。
-- [ ] 如果有自己啟動的 Server，在它的終端機按 `Ctrl+C` 停止；不要停止別人的程序。
 - [ ] 在**原本**的提案者 Agent 對話貼：
 
 ```text
@@ -117,7 +116,7 @@ git log --show-signature -1
 回報 commit 編號、簽章那一行、verify-git-governance 的結果，以及 commit 後的 git status --short（應該是空的），然後停下。
 ```
 
-**看到什麼算過關**：
+**看到什麼算過關**
 
 - `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`，最下面的「Smart Ticket DLC base」（起始程式）是 `N`（未簽章、不碰 Registry，允許）。
 - `amend-policy` 的 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。

@@ -8,7 +8,7 @@ section: D3｜受治理的變更
 
 # D3c Recovery：按需接續
 
-主持人揭曉之後，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。內容是：D3c 完成後的 Repo 與 Registry（含團體部分退款的實作與測試）。使用 Recovery **不代表你們自己完成了 D3c**，Agent 會在紀錄中如實寫明。
+主持人揭曉之後，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。內容是：D2 的已審查 Registry，加上 D3c 參考實作（團體部分退款的程式與測試；Registry 沒有 D3c 的候選）。使用 Recovery **不代表你們自己完成了 D3c**，Agent 會在紀錄中如實寫明。
 
 ```download
 id=recovery-dlc-d3c zip=recovery-dlc-d3c.zip label=下載 D3c Recovery
@@ -25,7 +25,6 @@ Recovery 附上 Git 歷史（`repo.bundle`）：Registry 的 commit 都由 Maint
 ## 步驟 1 · 【提案者】保存原成果並解出 Recovery
 
 - [ ] 按上方按鈕下載 `recovery-dlc-d3c.zip`，存到「下載」資料夾。
-- [ ] 如果有自己啟動的 Server，在它的終端機按 `Ctrl+C` 停止；不要停止別人的程序。
 - [ ] 在**原本**的提案者 Agent 對話貼：
 
 ```text
@@ -117,7 +116,7 @@ git log --show-signature -1
 回報 commit 編號、簽章那一行、verify-git-governance 的結果，以及 commit 後的 git status --short（應該是空的），然後停下。
 ```
 
-**看到什麼算過關**：
+**看到什麼算過關**
 
 - `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`，最上面的「D3c：團體部分退款（Recovery 參考實作）」與最下面的「Smart Ticket DLC base」（起始程式）是 `N`（未簽章、不碰 Registry，允許）。
 - `amend-policy` 的 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
@@ -128,7 +127,7 @@ git log --show-signature -1
 ## 步驟 3 · 【提案者】在 resume-d3c 開新的 Agent 對話，建環境並驗證
 
 - [ ] 結束原本的提案者 Agent 對話，在 `resume-d3c` 重新啟動 Agent，開一個**新的**對話。
-- [ ] 先貼 [D3a](#d3a) 的「Agent 工作規則」，再貼：
+- [ ] 先貼 [開場與環境](#environment) 的工作規則，再貼 [D3a](#d3a) 的「Agent 工作規則」，最後貼：
 
 ```text
 這是 D3c Recovery 起點，Repo 根目錄是 resume-d3c。D3c 的成果由 Recovery 提供；夥伴已在自己的對話還原簽章歷史並接手簽章（見 notes/recovery-d3c.md）。依序做，任何一步失敗就停下：
@@ -145,7 +144,7 @@ git log --show-signature -1
    ..\..\tools\dm.ps1 validate --require-reviewed
    ..\..\tools\dm.ps1 verify-audit
    ..\..\tools\dm.ps1 verify-evidence
-3. 用白話回報：pytest 最後一行；validate 結果；verify-audit 的 status；verify-evidence 的 current、stale、missing、invalid 各幾個（Recovery 的參考實作改過部分被引用的檔案，出現 stale 與 exit 1 是預期，留到 D4，不要修）。寫進 notes/recovery-d3c.md 的「環境與驗證」，最後一行寫「D3c 的成果由 Recovery 提供，不是我們自己完成」。不要 commit，做完停下。
+3. 用白話回報：pytest 最後一行；validate 結果；verify-audit 的 status；verify-evidence 的 current、stale、missing、invalid 各幾個（Recovery 的參考實作改過部分已審查事實所引用的那幾行，那些證據出現 stale 與 exit 1 是預期，留到 D4，不要修）。寫進 notes/recovery-d3c.md 的「環境與驗證」，最後一行寫「D3c 的成果由 Recovery 提供，不是我們自己完成」。不要 commit，做完停下。
 ```
 
 **看到什麼算過關**

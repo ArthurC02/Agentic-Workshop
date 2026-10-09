@@ -1,6 +1,6 @@
 # D3b Recovery
 
-內容：D2 的 reviewed Registry，加上 D3b 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「D3b：點數折抵（Recovery 參考實作）」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 引用是實作改動了已審查事實所引用的檔案，留到 D4 以新的候選更新。
+內容：D2 的 reviewed Registry，加上 D3b 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「D3b：點數折抵（Recovery 參考實作）」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。
 
 使用 Recovery 不算自己完成 D3b。學員照 Runbook「D3b Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。
 
@@ -106,4 +106,4 @@ py -3.13 -m venv .venv
 
 （Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`。）
 
-**看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 多數 `current`，實作改動過的檔案顯示 `stale`、exit 1，屬預期，留到 D4 處理。結果寫進 `notes/recovery-d3b.md` 的「環境與驗證」，最後一行寫「D3b 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
+**看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 多數 `current`，引用行內容被實作改過的證據顯示 `stale`、exit 1，屬預期，留到 D4 處理。結果寫進 `notes/recovery-d3b.md` 的「環境與驗證」，最後一行寫「D3b 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。

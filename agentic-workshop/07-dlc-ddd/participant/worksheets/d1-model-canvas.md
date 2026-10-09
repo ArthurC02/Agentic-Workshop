@@ -35,5 +35,5 @@
 ```
 
 - 同義詞或「不是同一件事」可加欄位：`"synonyms": ["別名"]`、`"not_same_as": ["另一個詞彙 id"]`。
-- 一個詞跨兩個 Context 時：`"context": ["pricing", "booking"]`。
+- 同一個詞在兩個 Context 意思不同時，各登記一筆（不同 id），並用 `not_same_as` 互相標示；只有兩個 Context 確實共用同一個定義時，才在 context 列兩個：`"context": ["pricing", "booking"]`。
 - 證據段落越短越好，只框住支持這句話的那幾行。上例取自輔助工具說明，行號以實際檔案為準。

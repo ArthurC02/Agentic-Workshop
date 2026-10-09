@@ -1,6 +1,6 @@
 # DDD 延伸課程：Smart Ticket 領域建模
 
-本延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）約 3 小時，主題是 DDD（Domain-Driven Design，領域驅動設計）。你會先用 domain-memory Plugin（課程提供的命令列工具）為 Smart Ticket 建立 Domain Registry：一組存在程式庫 `domain-memory/` 資料夾裡、記錄領域知識的 JSON 檔，內容包括 Bounded Context（名詞與規則意義一致的範圍）、通用語言（團隊共用的名詞定義）、Aggregate（聚合：必須一起保持一致的一組資料，只能從 Aggregate root 這個入口修改）與商業規則。接著再用 DDD 的方式實作三個新需求。
+本延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）約 3 小時，主題是 DDD（Domain-Driven Design，領域驅動設計）。你會先用 domain-memory Plugin（課程提供的命令列工具）為 Smart Ticket 建立 Domain Registry：一組存在程式庫 `domain-memory/` 資料夾裡、記錄領域知識的 JSON 檔，內容包括 Bounded Context（名詞與規則意義一致的範圍）、通用語言（在同一個 Context 內共用的名詞與定義；不同 Context 可以用同一個詞指不同的東西）、Aggregate（聚合：必須一起保持一致的一組資料，只能從 Aggregate root 這個入口修改）與商業規則。接著再用 DDD 的方式實作三個新需求。
 
 名詞不熟請看 Runbook（課堂操作手冊）的〈詞彙表〉頁。
 

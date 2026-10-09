@@ -81,7 +81,7 @@ Plugin 更新 Registry 時會在 `domain-memory/` 底下建立很長的暫存資
 做完停下等我。
 ```
 
-**看到什麼算過關**：
+**看到什麼算過關**
 
 - Agent 回報測試最後一行是 `76 passed`（可能附帶 `1 warning`），沒有 `failed` 或 `error`。
 - Repo 路徑在 `C:\dlc\` 底下。
@@ -146,7 +146,7 @@ bash：
 在 notes/opening.md 加上標題「檢查點 3 · 專案就緒與品質關卡」，寫入上面三題的答案與關鍵輸出原文。做完停下等我。
 ```
 
-**看到什麼算過關**：
+**看到什麼算過關**
 
 - `readiness` 為 `"state": "brownfield"`、`"confidence": "high"`。
 - `quality-gates` 只有一項 `"tool": "pytest"`，`"standard": "none"`（沒有 lint、型別或架構檢查，這是事實，不是錯誤）。
@@ -185,7 +185,7 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 做完停下等我。
 ```
 
-**看到什麼算過關**：
+**看到什麼算過關**
 
 - `python --version` 為 `Python 3.13.x`，路徑在 `smart-ticket-dlc-base\.venv\Scripts\` 底下，**不含** `WindowsApps`。
 - `doctor.py` 最後一行為「全部必要項目通過。」（`[--]` 只是提醒，不算失敗；健檢時還沒 `git init`，所以會看到 `[--] git repo：目前目錄不是 git repo…`，這是預期，下一步就建立 commit）。
@@ -199,7 +199,7 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 
 ```callout tip
 為什麼 Git 使用者叫 DLC Proposer
-今天只在本機練習，每個人先以 `proposer@example.com` 身分工作；D2 時夥伴會以 `maintainer@example.com` 身分核准與簽章。這兩個字串會出現在稽核紀錄裡，讓你看清楚「誰做了什麼」。
+今天只在本機練習，每個人先以 `proposer@example.com` 身分工作。第 7 分鐘主持人會請你找一位夥伴，D2 起兩人一組：夥伴（Maintainer，持鑰人）會以 `maintainer@example.com` 身分核准與簽章。這兩個字串會出現在稽核紀錄裡，讓你看清楚「誰做了什麼」。
 ```
 
 ```callout danger

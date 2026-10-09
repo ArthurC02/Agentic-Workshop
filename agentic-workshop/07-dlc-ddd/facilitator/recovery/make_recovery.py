@@ -232,7 +232,7 @@ INTRO = {
 }
 INTRO_SOLUTION = """# {up} Recovery
 
-內容：D2 的 reviewed Registry，加上 {up} 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 引用是實作改動了已審查事實所引用的檔案，留到 D4 以新的候選更新。"""
+內容：D2 的 reviewed Registry，加上 {up} 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。"""
 
 USAGE = """使用 Recovery 不算自己完成 {up}。學員照 Runbook「{up} Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。"""
 
@@ -277,7 +277,7 @@ def recovery_md(seg: str, solution: str | None, message: str | None) -> str:
     base_note = "最下面的「Smart Ticket DLC base」（起始程式）"
     log_note = ("，最上面的「" + message + "」與" + base_note + "為 `N`（未簽章，不碰 Registry，hook 允許）"
                 if solution else "，" + base_note + "為 `N`（未簽章，不碰 Registry，hook 允許）")
-    evidence_note = ("verify-evidence 多數 `current`，實作改動過的檔案顯示 `stale`、exit 1，屬預期，留到 D4 處理"
+    evidence_note = ("verify-evidence 多數 `current`，引用行內容被實作改過的證據顯示 `stale`、exit 1，屬預期，留到 D4 處理"
                      if solution else "verify-evidence 全部 `current`")
     return "\n\n".join([intro, usage, STEP_SAVE.format(seg=seg) + "\n"
                         + STEP_TAKEOVER.format(seg=seg, up=up, log_note=log_note) + "\n"

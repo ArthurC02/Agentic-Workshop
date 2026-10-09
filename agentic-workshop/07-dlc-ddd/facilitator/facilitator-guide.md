@@ -83,7 +83,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 每段固定節奏：解鎖頁（大字解鎖碼）→ 檢查點總覽頁（按 `T` 開段落計時，時間軸自動標示目前檢查點）→ 每到時間點翻到下一個檢查點頁。投影只顯示時間、檢查點編號與一句話任務；提示詞與表單都在 Runbook。各頁講者備註有「說／看／介入訊號／提示」，本節只列每段的骨架與決策點。
 
-**學員的操作方式（每段都一樣）**：複製 Runbook 的提示詞 → 學員的 Agent 執行 Plugin、輔助腳本與 Git 指令並白話回報 → 學員用短回覆做決定（「同意」「選 B」「第 3 項不要」）→ Agent 把結果寫進 `notes/<段落>.md` 或 `docs/handoffs/`。學員不自己打指令；表單每段最多一張，只記人的決定。巡堂時看的是這個循環有沒有轉起來：有沒有讀 Agent 的回報、有沒有在 Agent 停下時真的做決定、Agent 有沒有在學員同意前就寫入。卡住時給學員一段可直接貼的補救提示詞，例如「請解釋剛才的錯誤代表什麼，不要自己修改或重試，給我兩個做法讓我選」，不要替學員打指令。D2 核准的治理意義不變：由夥伴本人坐到鍵盤前、在自己的 Agent 對話裡讀過審查包後回「核准」，夥伴的 Agent 才簽章；提案人的 Agent 不可碰夥伴的金鑰或代替核准。DLC 兩人共用一台機器（D3 延續同一個 Repo 與金鑰），所以「自己的」指自己另開的終端機與 Agent 對話，不是另一台電腦。
+**學員的操作方式（每段都一樣）**：複製 Runbook 的提示詞 → 學員的 Agent 執行 Plugin、輔助腳本與 Git 指令並白話回報 → 學員用短回覆做決定（「同意」「選 B」「第 3 項不要」）→ Agent 把結果寫進 `notes/<段落>.md` 或 `docs/handoffs/`。學員不自己打指令；表單每段最多一張，只記人的決定。巡堂時看的是這個循環有沒有轉起來：有沒有讀 Agent 的回報、有沒有在 Agent 停下時真的做決定、Agent 有沒有在學員同意前就寫入。卡住時給學員一段可直接貼的補救提示詞，例如「請解釋剛才的錯誤代表什麼，不要自己修改或重試，給我兩個做法讓我選」，不要替學員打指令。D2 核准的治理意義不變：由夥伴本人坐到鍵盤前、在自己的 Agent 對話裡讀過審查包後回「核准」，夥伴的 Agent 才簽章；提案者的 Agent 不可碰夥伴的金鑰或代替核准。DLC 兩人共用一台機器（D3 延續同一個 Repo 與金鑰），所以「自己的」指自己另開的終端機與 Agent 對話，不是另一台電腦。
 
 ### 3.1 開場與環境（0–10，群組 `dlc-opening`）
 
@@ -177,7 +177,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 **解鎖時就宣布兩件事**（三段都一樣，講者備註有提示）：
 
-- **核心／延伸**：情境卡「本次範圍」已把每條 AC 標成［核心］或［延伸］。先做完核心；延伸只在時間允許時做。沒做延伸時，核心行為仍須完整可用。
+- **核心／延伸**：需求卡「本次範圍」已把每條 AC 標成［核心］或［延伸］。先做完核心；延伸只在時間允許時做。沒做延伸時，核心行為仍須完整可用。
 - **API 小節**：卡上已定義路徑、欄位與錯誤碼。叫學員先看，並在 Handoff 中要求 Agent 照卡做，不准自己發明介面。這省下的時間要留給 Review 與 counterfactual。
 
 各情境核心／延伸：
@@ -233,7 +233,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
-| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。D3 改過的檔案會是 `stale`、exit 1，這是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-evidence` 只印 stale 的路徑，只要求數量與依檔案分組（每個檔案大約幾筆即可），不讓 Agent 自寫腳本對 id |
+| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 只有引用行被改過的證據是 `stale`、exit 1。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-evidence` 只印 stale 的路徑，只要求數量與依檔案分組（每個檔案大約幾筆即可），不讓 Agent 自寫腳本對 id |
 | 158–161 | 2 · 更新已變動事實 | Agent 先列更新清單（stale 候選的 id 從 D3 notes「審查與候選」取出，用 `get-record` 查；decisions 看 `review_status`，其他看 `status`），學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選；reviewed 事實以新 id 候選取代；只是行號移動的 reviewed 事實維持 stale、不登記。參考：D3c 讓 `REFUND-004`、Booking 的「只能退一次」與 `ASIS-004` 不再成立 |
 | 161–165 | 3 · 寫交接單並核對 id | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
 
@@ -280,10 +280,10 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit |
 | 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate` |
 | 7 | `ssh-keygen` 行為不同、金鑰路徑找不到 | Git Bash 與 PowerShell 的 `ssh-keygen` 不同 | 兩者皆可，但同一組全程用同一種 shell |
-| 8 | clone／還原後引用全部變成 `changed` | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；`doctor.py` 會檢查。不要刪它 |
+| 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；`doctor.py` 會檢查。不要刪它 |
 | 9 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
 | 10 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
-| 11 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被忽略的資料夾；scan-secrets 會掃）或 `.ssh` | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0 |
+| 11 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
 | 12 | PowerShell 說「已停用指令碼」 | 執行原則 | `Set-ExecutionPolicy -Scope Process Bypass -Force`（只影響目前視窗） |
 
 ## 6. 時間風險

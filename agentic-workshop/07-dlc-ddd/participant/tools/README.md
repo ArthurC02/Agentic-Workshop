@@ -9,7 +9,7 @@
 | `dm.ps1`、`dm.sh` | 代打 Plugin 長指令：自動用 Python 3.13、UTF-8 編碼（`py -3.13 -X utf8`）執行，並補上 `--registry-root domain-memory` 與 `--repo-root .`；`--save 檔案` 以 UTF-8 存輸出 |
 | `make_record.py` | 由 id、名稱、定義與 `路徑:起-迄` 呼叫 `cite`，寫出完整 record JSON；`--upsert` 直接登記為候選；`--batch` 一次多筆 |
 | `fill_package.py` | 由一份精簡描述 JSON 建立並填寫 Change Package；測試**實際執行**，記錄真實 exit code 與輸出的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同） |
-| `write_scm_attestation.py` | 把夥伴的已簽章 commit 寫成 `git-signed-commit` 核准證明（attestation）；檔名中的 SCM（Source Control Management，版本控制，這裡指 Git） |
+| `write_scm_attestation.py` | 把夥伴的已簽章 commit 寫成 `git-signed-commit` 核准證明（attestation）；檔名中的 SCM（Source Code Management，原始碼管理，也就是版本控制，這裡指 Git） |
 | `setup_remote.py` | 在本機建立一個模擬的遠端倉庫（bare remote）並設為 `origin`，讓 pre-push hook（push 前 Git 自動執行的檢查腳本）有地方 push |
 | `doctor.py` | 檢查 Windows 常見的環境問題（Python 版本、編碼、Git、ssh-keygen 等）並列出修正方式 |
 | `dmlib.py` | 共用模組（dm 前綴本體） |
@@ -19,22 +19,22 @@
 
 ## Plugin 位置
 
-依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `../vendor/domain-memory/`（把 `vendor/domain-memory-0.2.2.zip` 解壓到這裡）。
+依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.2.2.zip` 解壓到這裡）。
 
 ## 常用指令
 
 ```powershell
 # PowerShell（若顯示已停用指令碼：Set-ExecutionPolicy -Scope Process Bypass）
-py -3.13 -X utf8 ..\tools\doctor.py
-..\tools\dm.ps1 readiness
-..\tools\dm.ps1 validate
-py -3.13 -X utf8 ..\tools\make_record.py --asset rules --id FARE-005 --context pricing `
+py -3.13 -X utf8 ..\..\tools\doctor.py
+..\..\tools\dm.ps1 readiness
+..\..\tools\dm.ps1 validate
+py -3.13 -X utf8 ..\..\tools\make_record.py --asset rules --id FARE-005 --context pricing `
   --statement "購票日至出發日至少 14 天才有 85% 提前購票資格" `
   --evidence docs/requirements/business-rules.md:29-30 --evidence src/smart_ticket/domain/discounts.py:30-31 --upsert
-..\tools\dm.ps1 counterfactual --file src/smart_ticket/domain/discounts.py --find ".days >= 14" --replace ".days > 14" `
+..\..\tools\dm.ps1 counterfactual --file src/smart_ticket/domain/discounts.py --find ".days >= 14" --replace ".days > 14" `
   --test-command ".venv\Scripts\python.exe -m pytest -q tests/integration/test_advance.py" --save cf.json
-py -3.13 -X utf8 ..\tools\fill_package.py package-spec.json
-py -3.13 -X utf8 ..\tools\write_scm_attestation.py --package domain-memory/changes/CP-001 --commit HEAD
+py -3.13 -X utf8 ..\..\tools\fill_package.py package-spec.json
+py -3.13 -X utf8 ..\..\tools\write_scm_attestation.py --package domain-memory/changes/CP-001 --commit HEAD
 ```
 
 ```bash

@@ -26,7 +26,7 @@ section: 參考
 | 一致性邊界 | 每次操作結束時，不變量都必須成立的那一組資料的範圍。邊界內的資料在同一次操作中一起修改、全有或全無；邊界外的資料可以事後再同步，所以一條不變量牽涉的資料要放在同一個邊界內。首次出現：D3c 檢查點 2。 | Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | Port／Adapter | Port 是領域程式需要的對外能力介面，用自己的業務用語描述；Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。例：「開立發票」是 Port，接某家發票服務商的程式是 Adapter。首次出現：D3a 檢查點 2。 | Vernon《Implementing Domain-Driven Design》〈Architecture〉；`vendor/domain-memory/references/ports-and-adapters.md`〈Ports and adapters〉 |
 | 防腐層（ACL，Anti-Corruption Layer；不是存取控制清單） | 把外部系統的資料格式與錯誤碼翻譯成自己用語的那一層，讓外部的命名與規則不滲進領域程式。例：把服務商的各種錯誤碼翻成「暫時失敗」或「永久失敗」。首次出現：D3a 檢查點 2。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
-| 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。例：同一筆訂單的開立發票請求重送，也不會開出第二張。首次出現：D3a 檢查點 1。 | Hohpe & Woolf《Enterprise Integration Patterns》〈Idempotent Receiver〉；`vendor/domain-memory/references/pattern-verification.md`〈Verification questions〉 |
+| 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。例：同一筆訂單的開立發票請求重送，也不會開出第二張。首次出現：D3a 檢查點 2。 | Hohpe & Woolf《Enterprise Integration Patterns》〈Idempotent Receiver〉；`vendor/domain-memory/references/pattern-verification.md`〈Verification questions〉 |
 
 ## domain-memory Plugin
 
@@ -51,7 +51,7 @@ section: 參考
 | 核准證明（attestation） | 寫進證據包、指向簽章 commit 的核准證據，證明核准發生在 Plugin 之外（Git 裡）。首次出現：D2 檢查點 5。 | `vendor/domain-memory/references/reliability-architecture.md`〈Approval and test attestations〉 |
 | 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了；`survived`：沒有測試守住它；`inconclusive`：逾時。做法類似變異測試（mutation testing）。首次出現：D2 檢查點 3。 | `vendor/domain-memory/references/script-api.md`〈Checks on the code being written〉 |
 | 交接單（Handoff） | 交給下一個 Agent 或同事的決策紀錄，共七段：Domain facts（領域事實）、Forces（考量與限制）、Decision（決定）、External systems（外部系統）、Unknowns（未知項）、Proof obligations（必須用測試證明的事）、Counterfactual check（反事實檢查結果）。首次出現：D3a（決策卡）；七段格式在 D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
-| Forces／Unknowns／Proof obligations | 交接單裡最容易寫錯的三段。Forces：影響這次決定的考量與限制，例如「發票失敗不能影響付款」；Unknowns：需求卡沒規定、還沒決定的事，例如「處理中太久怎麼辦」，不能讓 Agent 自己補；Proof obligations：每條規則要用哪個測試證明，例如「INV-1 → 某測試檔::某測試名稱」。首次出現：D3a 檢查點 2（決策卡）；D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
+| Forces／Unknowns／Proof obligations | 交接單裡最容易寫錯的三段。Forces：影響這次決定的考量與限制，例如「發票失敗不能影響付款」；Unknowns：需求卡沒規定、還沒決定的事，例如「處理中太久怎麼辦」，不能讓 Agent 自己補；Proof obligations：每條規則要用哪個測試證明，例如「INV-1 → 某測試檔::某測試名稱」。首次出現：Unknowns、Proof obligations 在 D3a 檢查點 2（決策卡）；Forces 在 D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
 | audit（稽核）／`verify-audit` | 每次 Registry 變動都附加一筆、以雜湊串起的稽核事件。能看出被竄改，但不是外部不可變的紀錄。首次出現：D2 檢查點 6。 | `vendor/domain-memory/references/reliability-architecture.md`〈Update protocol〉 |
 | SHA256／雜湊 | 雜湊是由檔案內容算出的固定長度字串，像檔案的指紋；一個位元組被改，值就不同。SHA256 是常用的雜湊演算法。今天用它核對 Plugin 檔案、證據內容與稽核鏈。首次出現：開場與環境 檢查點 2。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
 | HITL（Human-in-the-loop，人工把關） | 流程中一定要有人看過並同意才能往下走。今天指 push 時檢查是否有人核准並簽章。首次出現：D2 檢查點 2。 | Anthropic Engineering〈Building effective agents〉 |
@@ -65,8 +65,8 @@ section: 參考
 | 編號前綴 | CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。EINV、PTS、PCR 分別是 D3a、D3b、D3c 需求卡的驗收條件編號。首次出現：D2 簽章流程清單。 | 本課程〈D2 簽章流程清單〉 |
 | ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件。D1 可以把它當成候選來源之一。首次出現：歡迎與使用方式。 | Michael Nygard〈Documenting Architecture Decisions〉 |
 | brownfield | 已有程式碼的既有專案（相對於從零開始的 greenfield）。今天的 Repo 是 brownfield，開場時 Plugin 會判定出這一點。首次出現：開場與環境 檢查點 3。 | Feathers《Working Effectively with Legacy Code》；`vendor/domain-memory/references/readiness.md`〈Project readiness〉 |
-| Proposer（提案人） | D2 的提案人：用自己的 Agent 對話整理變更審查包、送出提案、套用。不得核准自己的提案；提案人的 Agent 不 commit、不 push、不碰金鑰。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
-| Maintainer（持鑰人） | D2 的持鑰人：在同一台機器另開終端機與自己的 Agent 對話，建立簽章金鑰、決定授權誰簽章、核准並做簽章 commit 與 push。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
+| 提案者（Proposer） | D2 起的提案者：用自己的 Agent 對話整理變更審查包、送出提案、套用。不得核准自己的提案；提案者的 Agent 不 commit、不 push、不碰金鑰。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
+| 夥伴（Maintainer，持鑰人） | D2 起的夥伴、持鑰人：在同一台機器另開終端機與自己的 Agent 對話，建立簽章金鑰、決定授權誰簽章、核准並做簽章 commit 與 push。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
 | Observer（觀察員） | 三人一組時的第三人：看 D2 每一步是在誰的 Agent 對話裡執行，確認核准與簽章只發生在夥伴自己的對話。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
 | ed25519／金鑰指紋（fingerprint） | ed25519 是一種數位簽章演算法（EdDSA 的一種），也是 SSH 常用的金鑰類型（新版 OpenSSH 的預設），今天用來簽 commit。金鑰指紋用來辨識是哪一把金鑰，可以公開；私鑰不可外流。首次出現：D2 檢查點 1。 | IETF〈RFC 8032 Edwards-Curve Digital Signature Algorithm (EdDSA)〉；OpenSSH 官方文件〈ssh-keygen〉 |
 | 簽章 commit | 用 Maintainer 私鑰簽過名的 commit，證明是持鑰人提交的。今天以它作為核准證據。首次出現：D2 檢查點 1。 | Git 官方文件〈git-commit〉 |

@@ -98,7 +98,7 @@ py -3.13 -m venv .venv
 用白話告訴我：git status 列了什麼、pytest 最後一行、validate 結果、verify-evidence 的 stale／missing／invalid 各幾個。把結果寫進 notes/recovery-d1.md，開頭註明「D1 的成果由 Recovery 提供；原 Repo 的狀態記在 notes/d1.md」。不要 commit，做完停下。
 ```
 
-**看到什麼算過關**：
+**看到什麼算過關**
 
 - `git status` 只列出 `?? domain-memory/` 與從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`），都是未追蹤，這是正確的。
 - pytest 全部 `passed`，沒有 `failed` 或 `error`。

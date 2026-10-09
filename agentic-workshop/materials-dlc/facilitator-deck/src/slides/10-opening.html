@@ -130,13 +130,13 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="找夥伴" data-minute="7">
   <p class="kicker">D2 預告</p>
-  <h2 class="title">兩人一組：提案人（proposer）與審核人（maintainer）</h2>
+  <h2 class="title">兩人一組：提案者（Proposer）與夥伴（Maintainer，持鑰人）</h2>
   <div class="cols-2">
-    <div class="card fx fx-up"><span class="chip">proposer</span><h3>操作者</h3><p>準備變更審查包（Change Package），提交提案；不得自己核准。</p></div>
-    <div class="card fx fx-up"><span class="chip">maintainer</span><h3>夥伴 · 持簽章金鑰</h3><p>核准，並用金鑰簽章提交（commit）。人數為奇數時，第三人當觀察員（observer）。</p></div>
+    <div class="card fx fx-up"><span class="chip">Proposer</span><h3>提案者</h3><p>準備變更審查包（Change Package），提交提案；不得自己核准。</p></div>
+    <div class="card fx fx-up"><span class="chip">Maintainer</span><h3>夥伴 · 持鑰人</h3><p>核准，並用金鑰簽章提交（commit）。人數為奇數時，第三人當觀察員（observer）。</p></div>
   </div>
   <aside class="notes">
-    <p><b>說</b>：「D2 兩人一組，一人當 proposer，另一人當 maintainer，持金鑰、核准、簽章。兩人共用一台機器，maintainer 另開終端機和自己的 Agent 對話。現在找好夥伴。」</p>
+    <p><b>說</b>：「D2 兩人一組，一人當提案者，另一人當夥伴（Maintainer，持鑰人），持金鑰、核准、簽章。兩人共用一台機器，夥伴另開終端機和自己的 Agent 對話。現在找好夥伴。」</p>
     <p><b>注意</b>：同機雙身分仍可通過 <code>record-approval</code>（只比對字串）；明講這是教學示範而非安全保證。三人組時第三人當 Observer：看每一步在誰的 Agent 對話執行（核准、簽章、push 只能在夥伴的對話），並核對 <code>verify-audit</code> 輸出。</p>
   </aside>
 </section>

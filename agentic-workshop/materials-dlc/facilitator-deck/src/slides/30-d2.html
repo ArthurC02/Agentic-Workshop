@@ -3,7 +3,7 @@
 <section class="slide slide-title" data-seg="dlc-d2" data-title="解鎖 D2 審查與核准" data-minute="35" data-unlock="dlc-d2">
   <p class="kicker">第 35 分鐘 · 解鎖</p>
   <h2 class="title">D2 審查與核准 開始</h2>
-  <p class="subtitle">一人當提案人（proposer），夥伴當審核人（maintainer），持金鑰、核准並簽章</p>
+  <p class="subtitle">一人當提案者（Proposer），另一人當夥伴（Maintainer，持鑰人），持金鑰、核准並簽章</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「D2」。兩人各開<b>自己的 Agent 對話</b>，先貼工作規則。</p>
   <p class="muted">接下來 25 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
@@ -62,8 +62,8 @@
   <p class="callout">Runbook › D2 審查與核准（成對） › 檢查點 2 · 夥伴貼提示詞</p>
   <aside class="notes">
     <p><b>說（03:00／第 38 分）</b>：「第 38 分。還是夥伴：把檢查點 2 的提示詞貼給你的 Agent，policy 三次修改的順序已寫好，不要讓 Agent 調換。governance-readiness 要說 ready，否則後面都會失敗。」</p>
-    <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready 而不是 warning。</p>
-    <p><b>介入訊號</b>：readiness 不 ready → 看缺哪一項（signer、trigger、mode、hook）逐項補；卡 5 分鐘上報。</p>
+    <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready（其他狀態是 needs-setup 或 working-memory）。</p>
+    <p><b>介入訊號</b>：readiness 是 needs-setup → 看 blocks 缺授權簽章者還是 hook；是 working-memory → review_mode 還沒改成 scm-verified；卡 5 分鐘上報。</p>
     <p><b>提示</b>：H1：請學員貼 Runbook「卡住時」的補救提示詞，讓 Agent 用白話解釋 blocks 缺哪一項，不要自己改設定。</p>
   </aside>
 </section>

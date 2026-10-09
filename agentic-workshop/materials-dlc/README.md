@@ -8,7 +8,7 @@
 - 每個檢查點：一兩句說明 → 一段可直接複製的提示詞 → 「看到什麼算過關」；需要時加「如果卡住」補救提示詞與「💬 討論一下」（口頭討論，不填表）。
 - Plugin、`make_record.py`、Git 與 pytest 指令原樣寫進提示詞，由學員的 Coding Agent 執行並白話回報；需要人決定時，Agent 先列選項或草稿並停下，學員只回「同意」「選 B」「第 3 項不要」這類短回覆。學員頁面不放要學員自己打的指令區塊。
 - 紀錄由 Agent 寫進學員 Repo：各段 `notes/<段落>.md`、決策卡與交接單在 `docs/handoffs/`。表單每段最多一張，只留人的決定，以下拉與勾選為主（最多 3 欄＋1 個短文字欄）。
-- D2 起兩人共用一台機器：夥伴另開終端機與自己的 Agent 對話，金鑰、`record-approval`、簽章 commit 與 push 只在那個對話裡、由夥伴讀過審查包後下指令（D3a–c 檢查點 5 與 D4 的 commit 也沿用它）；提案人的 Agent 不 commit、不 push、不讀 `.dlc-keys`，也不代替核准。
+- D2 起兩人共用一台機器：夥伴另開終端機與自己的 Agent 對話，金鑰、`record-approval`、簽章 commit 與 push 只在那個對話裡、由夥伴讀過審查包後下指令（D3a–c 檢查點 5 與 D4 的 commit 也沿用它）；提案者的 Agent 不 commit、不 push、不讀 `.dlc-keys`，也不代替核准。
 - 檢查點名稱改動時，Runbook 標題、`CHECKPOINTS.md` 與簡報 `data-title`／時間軸要一起改。
 
 ## edition.json
