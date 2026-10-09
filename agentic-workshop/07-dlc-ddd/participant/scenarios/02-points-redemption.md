@@ -49,7 +49,7 @@
 | M001，T001 成人 5 位（團體） | 3,500 | 1,050 | 1,000 | 2,500 |
 | M001，T001 成人 1 位 + 學生 1 位 | 1,225 | 367 | 300 | 925 |
 | M003，任何訂票 | — | — | 0（無點數） | — |
-| M001 或任何會員，T002 成人 2 位 | 3,000 | 900 | 900（點數足夠時） | 2,100 |
+| M001 或任何 STANDARD 會員，T002 成人 2 位 | 3,000 | 900 | 900（點數足夠時） | 2,100 |
 
 被拒絕的例子（皆不建立 Booking、不扣點）：
 
@@ -98,7 +98,7 @@
 | `POST /bookings` | 一般訂票，可帶 `redeemed_points` |
 | `POST /group-bookings` | 團體訂票，可帶 `redeemed_points` |
 
-訂票回應（建立與 `GET /bookings/{booking_id}`）新增 `redeemed_points`（折抵點數）與 `payable_amount`（應付金額）；`total_fare` 維持優惠後總額。`redeemed_points` 不是整數（例如字串或小數）時回 422，其餘規則失敗回 409，錯誤碼見驗收條件。
+訂票回應（建立與 `GET /bookings/{booking_id}`）新增 `redeemed_points`（折抵點數）與 `payable_amount`（應付金額）；`total_fare` 維持優惠後總額。`redeemed_points` 不是整數數值（例如 `"abc"` 或 `150.5`）時回 422，其餘規則失敗回 409，錯誤碼見驗收條件。
 
 ## 不在本期範圍
 

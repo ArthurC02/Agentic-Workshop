@@ -42,20 +42,21 @@ if (-not $rec) { throw "repo.bundle not found" }
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d2
 foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d2\$d" } }
 Git Bash：
-set -e
+( set -e
 orig=$(git rev-parse --show-toplevel)
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
 mkdir -p /c/dlc-rec/d2
 unzip -q ~/Downloads/recovery-dlc-d2.zip -d /c/dlc-rec/d2
 rec=$(find /c/dlc-rec/d2 -name repo.bundle -exec dirname {} \; | head -1)
-[ -n "$rec" ] || exit 1
+[ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d2
 for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./resume-d2/$d"; fi; done
+)
 3. 在 resume-d2 的 notes/d2.md 檔尾加上「改用 Recovery 前的狀態」：第 1 步的回答、兩個指令的結果與原 Repo 的完整路徑，註明「D2 的成果由 Recovery 提供，不是我們自己完成」。不要覆蓋從原 Repo 複製過來的內容。
 4. 用白話告訴我 resume-d2 的完整路徑、從原 Repo 複製了哪些資料夾，以及原 Repo 是否原封不動。做完停下。
 ```
 
-**看到什麼算過關**：`resume-d2` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d2` 的 `notes/d2.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。
+**看到什麼算過關**：`resume-d2` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d2` 的 `notes/d2.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。
 
 ## 步驟 2 · 【夥伴】在 resume-d2 開新的 Agent 對話，接手簽章
 
@@ -83,9 +84,9 @@ $fp = (Get-Content "$env:USERPROFILE\.dlc-keys\maintainer\signing.json" -Raw | C
 ..\..\tools\dm.ps1 install-git-hitl-hook; if ($LASTEXITCODE) { throw "install-git-hitl-hook failed" }
 ..\..\tools\dm.ps1 governance-readiness
 Git Bash：
-set -e
+( set -e
 rec=$(find /c/dlc-rec/d2 -name repo.bundle -exec dirname {} \; | head -1)
-[ -n "$rec" ] || exit 1
+[ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main
 git reset -q FETCH_HEAD
@@ -100,20 +101,21 @@ fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf
 ../../tools/dm.sh amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
 ../../tools/dm.sh install-git-hitl-hook
 ../../tools/dm.sh governance-readiness
+)
 用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d2.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
-我同意後執行（Git Bash 把 ..\..\tools\dm.ps1 換成 ../../tools/dm.sh）：
-git add domain-memory notes
+我同意後執行（Git Bash 把 ..\..\tools\dm.ps1 換成 ../../tools/dm.sh；docs 只會加入從原 Repo 複製來的 docs/handoffs/，沒有就不加）：
+git add domain-memory notes docs
 git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "D2 Recovery：授權本組金鑰"
 git log --show-signature -1
 ..\..\tools\dm.ps1 verify-git-governance --commit HEAD
-回報 commit 編號、簽章那一行與 verify-git-governance 的結果，然後停下。
+回報 commit 編號、簽章那一行、verify-git-governance 的結果，以及 commit 後的 git status --short（應該是空的），然後停下。
 ```
 
 **看到什麼算過關**：
 
-- `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`。
+- `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`，最下面的「Smart Ticket DLC base」（起始程式）是 `N`（未簽章、不碰 Registry，允許）。
 - `amend-policy` 的 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
-- 簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
+- 簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`；commit 後 `git status --short` 是空的（複製來的 `notes/` 與 `docs/handoffs/` 都已 commit）。
 
 這個夥伴對話開到課程結束：D3a–D3c 檢查點 5 與 D4 的簽章 commit 都在這裡執行。
 

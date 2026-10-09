@@ -3,7 +3,7 @@
 <section class="slide slide-title" data-seg="dlc-d3b" data-title="解鎖 D3b 點數折抵" data-minute="95" data-unlock="dlc-d3b">
   <p class="kicker">第 95 分鐘 · 解鎖</p>
   <h2 class="title">D3b 點數折抵 開始</h2>
-  <p class="subtitle">點數折抵：跨 Context 的不變量歸誰</p>
+  <p class="subtitle">點數折抵：不變量由哪個 Context 負責、被其他 Context 呼叫時也要守住</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「D3b 點數折抵」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 30 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
@@ -25,7 +25,7 @@
     <li data-seg="dlc-d3b"><span class="tl-min">26:00</span><b>6 · 停手與揭曉對照</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D3b 點數折抵：30 分鐘、六個檢查點，在 D3a 成果上累積。這次最大的決定是：點數歸誰管？跨 Membership、Pricing、Payment 的不變量誰守住？」</p>
+    <p><b>說（約 20 秒）</b>：「D3b 點數折抵：30 分鐘、六個檢查點，在 D3a 成果上累積。這次最大的決定是：點數歸誰管？Membership、Pricing、Payment 都會碰到的不變量，由哪一個 Context 守住？」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>重點</b>：先決定 owner Context 並記錄理由；餘額不為負、折抵後應付 ≥ 0 且為整數、先折扣後折抵；建立時 reserve、付款失敗或取消時 restore，不重複扣點。</p>
     <p><b>驗收</b>：一般、團體、改票三條計價路徑都有測試，付款失敗返點有測試。改票（PTS-013）在卡上是延伸，參考解答完全沒改改票程式，只補測試。</p>
@@ -55,7 +55,7 @@
 
 <section class="slide" data-seg="dlc-d3b" data-title="檢查點 2 · 決定負責的 Context 與不變量" data-minute="98">
   <p class="kicker">檢查點 2 / 6 · 第 98–103 分鐘</p>
-  <h2 class="title">決策卡：負責的 Context、跨 Context 不變量</h2>
+  <h2 class="title">決策卡：負責的 Context 與它守住的不變量</h2>
   <ol class="steps">
     <li>貼提示詞：Agent 每題提<b>兩個選項</b>，附 Registry 或程式證據</li>
     <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
@@ -119,7 +119,7 @@
     <p><b>說（21:00／第 116 分）</b>：「第 116 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
     <p><b>看</b>：新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3b-*.json</code> 會進 commit，屬預期。</p>
-    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原並重新核對 R8 允許改寫的範圍。</p>
+    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
   </aside>
 </section>
 
@@ -197,7 +197,7 @@
   </div>
   <aside class="notes">
     <p><b>說</b>：請學員報告：哪條規則的 counterfactual 最難寫？難寫通常代表規則歸屬不清。</p>
-    <p><b>教學 mutant</b>：最低 100 → 1 是<b>等價 mutant</b>：正的 100 倍數本來就 ≥ 100，最低值只多擋負數（−100 % 100 == 0），所以拿掉整個最低檢查會被 −100 殺死，但 100 → 1 不會。另外：四個試算中只有 665（上限 199.5）對上限敏感；上限的等號只有 T002 3,000 → 900 抓得到；退款讀 <code>payable_amount</code> 只有「改票後退票」抓得到。</p>
+    <p><b>教學 mutant</b>：最低 100 → 1 是<b>等價 mutant</b>：正的 100 倍數本來就 ≥ 100，最低值只多擋負數（−100 % 100 == 0），所以拿掉整個最低檢查會被 −100 殺死，但 100 → 1 不會。另外：四個試算中只有 665（上限 199.5）對上限敏感；上限的等號只有 STANDARD 會員的 T002 3,000 → 900 抓得到（CORPORATE 會員打 95 折後是 2,850，折抵 900 會回 409 <code>POINTS_EXCEED_LIMIT</code>）；退款讀 <code>payable_amount</code> 只有「改票後退票」抓得到。</p>
     <p>參考解答 23／24 killed，1 個等價 mutant 存活紀錄。</p>
     <p>揭曉後才可公布 <code data-code="dlc-rec-d3b"></code>。</p>
     <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>

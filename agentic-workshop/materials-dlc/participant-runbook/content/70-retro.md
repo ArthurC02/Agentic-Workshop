@@ -106,11 +106,12 @@ Agent 找的證據你們同意嗎？有沒有哪一題，你們記得的和紀�
 簽章私鑰只在今天的練習用，離開前要刪掉。由**持鑰的 Maintainer** 在自己的 Agent 對話（D2 起用的那一個）貼這段：
 
 ```text
-請刪除今天練習用的簽章私鑰資料夾（只刪這一個，不要動其他檔案），再關掉這個 Repo 的「每個 commit 都要簽章」設定。
-PowerShell 執行：Remove-Item -Recurse -Force "$env:USERPROFILE\.dlc-keys\maintainer"
-Git Bash 執行：rm -rf "$HOME/.dlc-keys/maintainer"
+請刪除今天練習用的簽章私鑰 signing-key（只刪這一個檔案，同一個資料夾裡的其他檔案不要動），再關掉這個 Repo 的「每個 commit 都要簽章」設定。
+PowerShell 執行：Remove-Item -Force "$env:USERPROFILE\.dlc-keys\maintainer\signing-key"
+Git Bash 執行：rm -f "$HOME/.dlc-keys/maintainer/signing-key"
+同一個資料夾的 signing-key.allowed_signers 要留著：它只有公鑰，Git 驗證今天的簽章 commit 時要讀它；刪了，git log 會把今天的簽章都顯示成無法驗證。signing-key.pub 與 signing.json 也只有可公開的內容，可以留著。
 再到 Repo 根目錄執行 git config --local --unset commit.gpgsign：金鑰刪掉後，這個 Repo 若仍要求每個 commit 都簽章，之後的 commit 都會失敗。
-執行後確認這個資料夾已經不存在、這個 Repo 不再要求簽章，用一句話回報。
+執行後確認 signing-key 已經不存在、signing-key.allowed_signers 還在、這個 Repo 不再要求簽章，用一句話回報。
 ```
 
 ### 填寫：回顧
@@ -120,7 +121,7 @@ Git Bash 執行：rm -rf "$HOME/.dlc-keys/maintainer"
 {"id": "memory-changed-output", "label": "已審查的事實有沒有改變 Agent 的輸出？", "type": "select", "options": ["有，notes/retro.md 有證據", "沒有觀察到", "不確定，證據不足"]},
 {"id": "action-category", "label": "我們帶回團隊的行動屬於哪一類？", "type": "select", "options": ["Domain Memory 內容", "來源選擇", "審查流程", "工具", "Agent 提示詞", "人員責任", "待研究"]},
 {"id": "action", "label": "這項行動：誰、何時、用什麼證據確認", "type": "text", "hint": "一句話；細節已由 Agent 寫進 notes/retro.md。", "suggestions": ["待研究"]},
-{"id": "done", "label": "離開前", "type": "checklist", "items": ["notes/my-prompts 已寫好，我會帶走", "簽章私鑰資料夾已刪除", "已匯出所有表單"]}
+{"id": "done", "label": "離開前", "type": "checklist", "items": ["notes/my-prompts 已寫好，我會帶走", "簽章私鑰 signing-key 已刪除", "已匯出所有表單"]}
 ]}
 ```
 
@@ -132,7 +133,7 @@ Git Bash 執行：rm -rf "$HOME/.dlc-keys/maintainer"
 ```exportall
 ```
 
-下載後打開 ZIP 內的 `README.md`，確認各段的表單都在（未填寫的會列在最後）；有使用 Recovery 時，對應的 Recovery 紀錄也要在。
+下載後打開 ZIP 內的 `README.md`，確認各段的表單都在（未填寫的會列在最後）。Recovery 頁沒有表單：有使用 Recovery 時，紀錄在 Repo 的 `notes/recovery-<段>.md`，和 `notes/` 一起保存。
 
 Agent 會忘記，但檔案不會；只有經過人審查、有證據、能被測試推翻的知識，才值得讓 Agent 當成事實。
 

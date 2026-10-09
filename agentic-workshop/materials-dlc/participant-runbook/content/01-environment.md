@@ -171,25 +171,25 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 1. 在同一個指令裡啟用 venv 並確認 python 的版本與路徑：
    PowerShell：.\.venv\Scripts\Activate.ps1; python --version; (Get-Command python).Source
    bash：source .venv/Scripts/activate && python --version && command -v python
-2. 在 notes/opening.md 加上標題「檢查點 4 · 真實 Python 與環境健檢」，寫入 python 版本與路徑原文。
-3. 建立起始 commit（這時還沒有 domain-memory/，所以不需要簽章）。Git 使用者只設在本 Repo，不要用 --global：
+2. 執行環境健檢（它會檢查 PATH 上的 python，所以同一個指令裡要先啟用 venv）：
+   PowerShell：.\.venv\Scripts\Activate.ps1; py -3.13 -X utf8 ..\..\tools\doctor.py
+   bash：source .venv/Scripts/activate && py -3.13 -X utf8 ../../tools/doctor.py
+3. 在 notes/opening.md 加上標題「檢查點 4 · 真實 Python 與環境健檢」，寫入 python 版本與路徑原文、doctor.py 的最後一行，以及有沒有 [!!]（[--] 只是提醒）。這份紀錄要在下一步 commit 之前寫完。
+4. 建立起始 commit（這時還沒有 domain-memory/，所以不需要簽章）。Git 使用者只設在本 Repo，不要用 --global：
    git init
    git config --local user.name "DLC Proposer"
    git config --local user.email proposer@example.com
    git add -A
    git commit -m "起始 Repo"
-4. 執行環境健檢（它會檢查 PATH 上的 python，所以同一個指令裡要先啟用 venv）：
-   PowerShell：.\.venv\Scripts\Activate.ps1; py -3.13 -X utf8 ..\..\tools\doctor.py
-   bash：source .venv/Scripts/activate && py -3.13 -X utf8 ../../tools/doctor.py
-5. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv\Scripts 底下且不含 WindowsApps；起始 commit 是否建立、裡面有沒有 domain-memory/；doctor.py 哪些是 [OK]、有沒有 [!!]（[--] 只是提醒）。把結果補進 notes/opening.md。
+5. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv\Scripts 底下且不含 WindowsApps；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
 做完停下等我。
 ```
 
 **看到什麼算過關**：
 
 - `python --version` 為 `Python 3.13.x`，路徑在 `smart-ticket-dlc-base\.venv\Scripts\` 底下，**不含** `WindowsApps`。
-- 起始 commit 已建立，裡面沒有 `domain-memory/`。
-- `doctor.py` 最後一行為「全部必要項目通過。」。
+- `doctor.py` 最後一行為「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）。
+- 起始 commit 已建立，裡面沒有 `domain-memory/`；`git status --short` 是空的（`notes/opening.md` 已一起 commit）。
 
 **如果卡住**（`python` 指向 `WindowsApps` 或 doctor 有 `[!!]`）：
 

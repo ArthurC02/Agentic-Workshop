@@ -18,7 +18,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/README.md",
-          "sha256": "dd01046dd5efadbc494bbd8216462316272b37ba9b071e412c61ac65e878fba3"
+          "sha256": "9a8aca666f8410341ad68fae7e0a02ab770206ce3def185fec4c50a161f4a7a0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitattributes",
@@ -448,7 +448,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
-          "sha256": "ffda51c37ebaf331a9d7e3f6843d816b4fcde30cac639a6809b57d4bc6eff619"
+          "sha256": "0d4cccda39ef1103cb2b03eb2bedbebb0cc4a2c9bfeee5c632d45e5a4e052ed8"
         }
       ],
       "generated": {}
@@ -466,7 +466,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
-          "sha256": "6c6e42c883a3dd8aefecdc7dbbb2654f1803488ba6da861bc031dfd1d61ac901"
+          "sha256": "24b438ca83d23582858e1f2ff2b8f16bc83dd052bffbefecbee4ead6252af16c"
         }
       ],
       "generated": {}
@@ -524,7 +524,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
           "destination": "recovery-dlc-d1/RECOVERY.md",
-          "sha256": "57bed0756d08126d54c2a6bf9c7797022f6202d3e62da3af3c7e620221812849"
+          "sha256": "8b7ba449e2b39ce70758d6889c3bd46e040b0d381ac5359693314cbf08ef4d1b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
@@ -931,7 +931,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "recovery-dlc-d2/RECOVERY.md",
-          "sha256": "98d98b1fd97f46baac7a2006363d26485f2c82f8985774042b2615749c3c0c57"
+          "sha256": "87e45794294b9dbe87f15d326583bf4ce965862a260bf2581991487c1a292227"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -1368,7 +1368,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "recovery-dlc-d3a/RECOVERY.md",
-          "sha256": "9195e68878248885cf8eca3093d3f9b0a0105224495c4f2576889397cea0232f"
+          "sha256": "dcdcdcccb713d762dc6a26c083ebda73d0592511e374fb34f7904a1b0f647a86"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -1830,7 +1830,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "recovery-dlc-d3b/RECOVERY.md",
-          "sha256": "7b3511162a578274489f016a984339991c85fb58febe7037bfd3da2754fb06b2"
+          "sha256": "4877b13906a6ba4190cbf81c628ad215bc1c24c0426b897ab4df2df10ea3ee2b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -2302,7 +2302,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "recovery-dlc-d3c/RECOVERY.md",
-          "sha256": "28396bb39ad27ef46b331a2dd6178f512203d557f67bf2b27d3aa66bc93c234d"
+          "sha256": "5a31641c9b0638ab41e6a5c1939805af29ca44f3bb18d0d66a0f242333981b70"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -2785,12 +2785,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "295fa367702a47555443790d333b0cc6743377f0894981f3c7b384eedec460eb"
+          "sha256": "7a791a92f760b220ae6b368750bffa1e7b659a018bebbd6e32abd4a2ccbaea8c"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
-          "sha256": "57bed0756d08126d54c2a6bf9c7797022f6202d3e62da3af3c7e620221812849"
+          "sha256": "8b7ba449e2b39ce70758d6889c3bd46e040b0d381ac5359693314cbf08ef4d1b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
@@ -3180,7 +3180,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
-          "sha256": "98d98b1fd97f46baac7a2006363d26485f2c82f8985774042b2615749c3c0c57"
+          "sha256": "87e45794294b9dbe87f15d326583bf4ce965862a260bf2581991487c1a292227"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -3600,7 +3600,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
-          "sha256": "9195e68878248885cf8eca3093d3f9b0a0105224495c4f2576889397cea0232f"
+          "sha256": "dcdcdcccb713d762dc6a26c083ebda73d0592511e374fb34f7904a1b0f647a86"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -4045,7 +4045,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
-          "sha256": "7b3511162a578274489f016a984339991c85fb58febe7037bfd3da2754fb06b2"
+          "sha256": "4877b13906a6ba4190cbf81c628ad215bc1c24c0426b897ab4df2df10ea3ee2b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -4500,7 +4500,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
-          "sha256": "28396bb39ad27ef46b331a2dd6178f512203d557f67bf2b27d3aa66bc93c234d"
+          "sha256": "5a31641c9b0638ab41e6a5c1939805af29ca44f3bb18d0d66a0f242333981b70"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -4970,7 +4970,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
-          "sha256": "06c27fb2936264a0699615ae723669740b08c4c59f57edf1a10e8f2c73f4b332"
+          "sha256": "df6cee10031377a15077426d24feeffe00c77f407251113277d8471bea7aa4f2"
         }
       ],
       "generated": {}

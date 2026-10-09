@@ -27,7 +27,7 @@
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定讀哪些來源，再建詞彙、Context 與規則候選，最後跑 coverage 和邊界分析。Agent 幫你找證據、組 JSON、跑指令，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
-    <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy、Compensation 無對應程式）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
+    <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
     <p><b>Recovery</b>：第 35 分鐘 D1 未完成者，私下發 <code data-code="dlc-rec-d1"></code>（Repo＋已確認 source map＋D1 候選集），記錄原因與時間；Recovery 不作為小組成果評分。</p>
   </aside>
 </section>
@@ -70,12 +70,13 @@
   <h2 class="title">附上證據（cite），建立至少 5 個詞彙候選</h2>
   <ol class="steps">
     <li>Agent 先列名稱矛盾，再提 6–8 個詞彙草稿，附 <code>路徑:起-迄</code> 證據與原文</li>
-    <li>你決定至少 <b>5</b> 個詞與定義，含 <b>Fare Policy／Discount Policy</b> 這組疑問</li>
+    <li>你決定至少 <b>5</b> 個詞與定義，以及每處名稱矛盾怎麼處理</li>
     <li>Agent 寫 <code>d1-records.json</code>，試跑 cite；做到這裡停下</li>
   </ol>
   <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 3 · 貼提示詞，回覆決定</p>
   <aside class="notes">
-    <p><b>說（07:00／第 17 分）</b>：「第 17 分。建詞彙候選，至少 5 個。請把 Fare Policy 和 Discount Policy 放進來，看證據時想想它們是同一件事還是兩件事。每個詞都要有證據行號。」</p>
+    <p><b>說（07:00／第 17 分）</b>：「第 17 分。建詞彙候選，至少 5 個。Agent 會先列名稱矛盾，看證據時想想兩個名字是同一件事還是兩件事。每個詞都要有證據行號。」</p>
+    <p><b>可選提示</b>：Agent 的矛盾清單沒有 Fare Policy／Discount Policy 時，請學員補一句「也比對 Fare Policy 和 Discount Policy」；Runbook 的提示詞不會主動指向這組。</p>
     <p><b>看</b>：學員是不是看了 Agent 摘錄的證據原文才回覆；有沒有改過任何一個定義；有沒有人發現 Fare／Discount 在程式與文件用法不同。</p>
     <p><b>介入訊號</b>：22 分仍不到 3 個 → 請學員直接回「採用前 5 個」，其餘留到 coverage 補；學員全部回「同意」沒看證據 →「挑一個，請 Agent 再把證據原文念給你聽」。</p>
     <p><b>提示</b>：H2：「同一個概念在文件與程式用不同名字，要記成一個詞的別名，還是兩個詞？先看證據再決定。」</p>
@@ -93,7 +94,7 @@
   </ol>
   <p class="callout">Runbook › D1 共同語言與邊界 › 檢查點 4 · 貼提示詞，回覆決定</p>
   <aside class="notes">
-    <p><b>說（12:00／第 22 分）</b>：「第 22 分。Context 兩個以上，規則兩條以上。規則的證據一定要在剛才確認的來源裡。Compensation 這個詞文件有、程式找不到，請如實記錄。」</p>
+    <p><b>說（12:00／第 22 分）</b>：「第 22 分。Context 兩個以上，規則兩條以上。規則的證據一定要在剛才確認的來源裡。Compensation／補償在 ADR 有、只出現在一個測試名稱裡、沒有對應類別，請如實記錄。」</p>
     <p><b>看</b>：學員能不能說出採用的 Context 各自決定什麼；規則草稿是否有規則文件＋測試或程式兩段證據；Agent 有沒有為了湊數寫出程式沒有的行為。</p>
     <p><b>介入訊號</b>：有人憑空補上 Compensation 實作 → 請對照證據，退回『未建模』。</p>
     <p><b>新概念</b>：這裡第一次介紹 <b>Bounded Context</b>，花 30 秒講：「在這個範圍內，名詞的意思一致；每個 Context 說得出它決定什麼。」</p>

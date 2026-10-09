@@ -35,20 +35,21 @@ if (-not $rec) { throw "repo.bundle not found" }
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d1
 foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d1\$d" } }
 Git Bash：
-set -e
+( set -e
 orig=$(git rev-parse --show-toplevel)
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
 mkdir -p /c/dlc-rec/d1
 unzip -q ~/Downloads/recovery-dlc-d1.zip -d /c/dlc-rec/d1
 rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
-[ -n "$rec" ] || exit 1
+[ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d1
 for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./resume-d1/$d"; fi; done
+)
 3. 在 resume-d1 的 notes/d1.md 檔尾加上「改用 Recovery 前的狀態」：第 1 步的回答、兩個指令的結果與原 Repo 的完整路徑，註明「D1 的成果由 Recovery 提供，不是自己完成」。不要覆蓋從原 Repo 複製過來的內容。
 4. 用白話告訴我 resume-d1 的完整路徑、從原 Repo 複製了哪些資料夾，以及原 Repo 是否原封不動。做完停下。
 ```
 
-**看到什麼算過關**：`resume-d1` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d1` 的 `notes/d1.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。
+**看到什麼算過關**：`resume-d1` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d1` 的 `notes/d1.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。
 
 ## 步驟 2 · 在 resume-d1 開新的 Agent 對話，還原並驗證
 
@@ -73,9 +74,9 @@ py -3.13 -m venv .venv; if ($LASTEXITCODE) { throw "venv failed" }
 ..\..\tools\dm.ps1 validate; if ($LASTEXITCODE) { throw "validate failed" }
 ..\..\tools\dm.ps1 verify-evidence
 Git Bash：
-set -e
+( set -e
 rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
-[ -n "$rec" ] || exit 1
+[ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main
 git reset -q FETCH_HEAD
@@ -87,6 +88,7 @@ py -3.13 -m venv .venv
 .venv/Scripts/python.exe -m pytest -q
 ../../tools/dm.sh validate
 ../../tools/dm.sh verify-evidence
+)
 用白話告訴我：git status 列了什麼、pytest 最後一行、validate 結果、verify-evidence 的 stale／missing／invalid 各幾個。把結果寫進 notes/recovery-d1.md，開頭註明「D1 的成果由 Recovery 提供；原 Repo 的狀態記在 notes/d1.md」。不要 commit，做完停下。
 ```
 

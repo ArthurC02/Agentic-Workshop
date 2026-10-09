@@ -36,6 +36,8 @@ D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個�
 | `worksheets/` | 各段紀錄的格式範本，由 Agent 照格式寫進紀錄檔（見上方段落表） |
 | `tools/` | 輔助腳本：代打 Plugin 長指令、產生 JSON、檢查環境；由 Agent 依提示詞執行（說明見 `tools/README.md`） |
 
+開場學員包裡還沒有 `worksheets/` 與 `scenarios/`：D1 的兩份格式說明直接放在 Runbook 的 D1 頁面，其餘範本與需求卡隨後面各段的學員包提供（該段解鎖後在 Runbook 下載）。
+
 程式庫的產品規則文件在 `docs/requirements/`，ADR（Architecture Decision Record，架構決策紀錄）在 `docs/adr/`。需求卡中的商業數字與驗收條件是唯一依據，不要自行補規則；卡片末尾的「待團隊決定的問題」由你們決定，Agent 把決定與理由記進紀錄檔。
 
 ## 執行程式庫
