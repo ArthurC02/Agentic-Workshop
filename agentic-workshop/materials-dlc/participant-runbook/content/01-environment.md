@@ -76,14 +76,14 @@ Plugin 更新 Registry 時會在 `domain-memory/` 底下建立很長的暫存資
      .venv/Scripts/python.exe -m pip install -r requirements.txt
      .venv/Scripts/python.exe -m pytest -q
    本 Repo 只用 pip install -r requirements.txt，不要執行 pip install -e .（測試設定已包含 src 路徑）。
-2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，可能附帶 1 warning）、有沒有 failed 或 error。
+2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，沒有 warning）、有沒有 failed 或 error。
 3. 建立 notes/opening.md，寫入標題「檢查點 1 · 依賴安裝與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
 做完停下等我。
 ```
 
 **看到什麼算過關**
 
-- Agent 回報測試最後一行是 `76 passed`（可能附帶 `1 warning`），沒有 `failed` 或 `error`。
+- Agent 回報測試最後一行是 `76 passed`，沒有 `warning`、`failed` 或 `error`。
 - Repo 路徑在 `C:\dlc\` 底下。
 
 **如果卡住**（安裝失敗或測試不是全過）：

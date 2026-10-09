@@ -16,7 +16,7 @@ pytest -q
 
 Windows PowerShell：`.\.venv\Scripts\Activate.ps1`；若無法啟用 venv，可直接執行 `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`、`.\.venv\Scripts\python.exe -m uvicorn smart_ticket.main:app --app-dir src --reload` 與 `.\.venv\Scripts\python.exe -m pytest -q`。
 
-本專案不需要 `pip install -e .`；測試透過 `pyproject.toml` 的 `pythonpath = ["src"]` 載入程式。測試應全部通過；Starlette／AnyIO 的 DeprecationWarning 為既有已知警告。
+本專案不需要 `pip install -e .`；測試透過 `pyproject.toml` 的 `pythonpath = ["src"]` 載入程式。測試應全部通過，沒有警告。
 
 ## API 一覽
 
