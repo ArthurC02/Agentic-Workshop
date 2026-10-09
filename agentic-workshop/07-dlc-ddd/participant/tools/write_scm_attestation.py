@@ -1,6 +1,6 @@
 """把已簽章 commit 寫成 git-signed-commit SCM attestation，放進 Change Package 的 evidence-bundle.json。
 
-  py -3.13 -X utf8 ../tools/write_scm_attestation.py --package domain-memory/changes/CP-CORE-001 --commit HEAD
+  py -3.13 -X utf8 ../../tools/write_scm_attestation.py --package domain-memory/changes/CP-CORE-001 --commit HEAD
 
 前提：夥伴（maintainer）已 record-approval、verify-proposal，並以自己的金鑰 `git commit -S` 提交了這個套件。
 本工具只寫 attestation；簽章是否被授權由 `dm verify-git-governance --commit <sha>` 與 finalize-proposal 判定。
@@ -55,7 +55,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     attestation = write(Path(args.package), args.commit)
     print(f"已寫入 attestation：commit {attestation['commit']}")
-    print(f"下一步：dm verify-git-governance --commit {attestation['commit']}，再 finalize-proposal。")
+    print(f"下一步（夥伴）：dm verify-git-governance --commit {attestation['commit']}；finalize-proposal 由提案者執行。")
     return 0
 
 

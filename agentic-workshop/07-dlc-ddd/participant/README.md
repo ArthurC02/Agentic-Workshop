@@ -48,7 +48,7 @@ Windows PowerShell（主要方式）：
 
 ```powershell
 cd repository/smart-ticket-dlc-base
-python -m venv .venv
+py -3.13 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 pytest -q                           # 開始前應全部通過
@@ -61,7 +61,7 @@ Git Bash／macOS／Linux：
 
 ```bash
 cd repository/smart-ticket-dlc-base
-python -m venv .venv
+py -3.13 -m venv .venv            # macOS／Linux：python3.13 -m venv .venv
 source .venv/bin/activate          # Git Bash on Windows：source .venv/Scripts/activate
 python -m pip install -r requirements.txt
 pytest -q

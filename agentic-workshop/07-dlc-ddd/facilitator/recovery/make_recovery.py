@@ -113,18 +113,22 @@ STEP_SAVE = r"""## 1. 保存原成果並解出 Recovery（提案者原本的 Age
 Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
 Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-{seg}.zip" -DestinationPath C:\dlc-rec\{seg}
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\{seg} -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+if (-not $rec) {{ throw "repo.bundle not found" }}
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-{seg}
 ```
 
 ```bash
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+mkdir -p /c/dlc-rec/{seg}
 unzip -q ~/Downloads/recovery-dlc-{seg}.zip -d /c/dlc-rec/{seg}
-rec=$(dirname "$(find /c/dlc-rec/{seg} -name repo.bundle | head -1)")
+rec=$(find /c/dlc-rec/{seg} -name repo.bundle -exec dirname {{}} \; | head -1)
+[ -n "$rec" ] || exit 1
 cp -r "$rec/smart-ticket-dlc-base" ./resume-{seg}
 ```
 """
 
 RESTORE_PS = r"""$rec = Split-Path (Get-ChildItem C:\dlc-rec\{seg} -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+if (-not $rec) {{ throw "repo.bundle not found" }}
 git init -q -b main
 git fetch -q "$rec\repo.bundle" main
 git reset -q FETCH_HEAD
@@ -132,7 +136,8 @@ git config --local user.name "DLC Proposer"
 git config --local user.email proposer@example.com
 git status --short"""
 
-RESTORE_SH = r"""rec=$(dirname "$(find /c/dlc-rec/{seg} -name repo.bundle | head -1)")
+RESTORE_SH = r"""rec=$(find /c/dlc-rec/{seg} -name repo.bundle -exec dirname {{}} \; | head -1)
+[ -n "$rec" ] || exit 1
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main
 git reset -q FETCH_HEAD
@@ -219,7 +224,7 @@ D1_INTRO = """# D1 Recovery
 D1_RESTORE = r"""## 2. 還原並驗證（提案者在 `resume-d1` 新開的 Agent 對話）
 
 ```powershell
-""" + RESTORE_PS.replace("{seg}", "d1") + r"""
+""" + RESTORE_PS.format(seg="d1") + r"""
 py -3.13 -m venv .venv
 & '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
 & '.\.venv\Scripts\python.exe' -m pytest -q
@@ -228,7 +233,7 @@ py -3.13 -m venv .venv
 ```
 
 ```bash
-""" + RESTORE_SH.replace("{seg}", "d1") + r"""
+""" + RESTORE_SH.format(seg="d1") + r"""
 py -3.13 -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.txt
 .venv/Scripts/python.exe -m pytest -q

@@ -2,7 +2,7 @@
 
 本資料夾是延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）的輔助腳本，讓時間花在領域決策，而不是手打 JSON。腳本只用 Python 標準函式庫，代你呼叫 domain-memory Plugin（課程提供的命令列工具），不修改 Plugin。
 
-**所有指令都在 Repo 根目錄（`smart-ticket-dlc-base/`）執行。** 下面以 `../tools/` 表示本資料夾。
+**所有指令都在 Repo 根目錄（`smart-ticket-dlc-base/`）執行。** 下面以 `../../tools/` 表示本資料夾。
 
 | 檔案 | 用途 |
 |---|---|
@@ -13,7 +13,7 @@
 | `setup_remote.py` | 在本機建立一個模擬的遠端倉庫（bare remote）並設為 `origin`，讓 pre-push hook（push 前 Git 自動執行的檢查腳本）有地方 push |
 | `doctor.py` | 檢查 Windows 常見的環境問題（Python 版本、編碼、Git、ssh-keygen 等）並列出修正方式 |
 | `dmlib.py` | 共用模組（dm 前綴本體） |
-| `test_tools.py` | 自檢：`py -3.13 -X utf8 -m unittest discover -s ../tools -p "test_*.py"` |
+| `test_tools.py` | 自檢：`py -3.13 -X utf8 -m unittest discover -s ../../tools -p "test_*.py"` |
 
 每支腳本都有 `--help`（繁體中文）。
 
@@ -39,8 +39,8 @@ py -3.13 -X utf8 ..\tools\write_scm_attestation.py --package domain-memory/chang
 
 ```bash
 # Git Bash
-../tools/dm.sh readiness
-../tools/dm.sh get-context --id pricing
+../../tools/dm.sh readiness
+../../tools/dm.sh get-context --id pricing
 ```
 
 ## 注意

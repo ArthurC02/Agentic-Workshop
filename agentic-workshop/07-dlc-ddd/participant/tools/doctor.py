@@ -1,6 +1,6 @@
 """環境健檢：逐項檢查 DLC 會踩到的 Windows 陷阱，並印出修正方式。在 Repo 根目錄執行：
 
-  py -3.13 -X utf8 ../tools/doctor.py
+  py -3.13 -X utf8 ../../tools/doctor.py
 
 [OK] 通過、[!!] 必須修正、[--] 提醒。任何 [!!] 時 exit 1。
 """

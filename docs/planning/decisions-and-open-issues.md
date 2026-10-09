@@ -189,3 +189,9 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 ## 由淺入深、知識點於首次需要處介紹
 
 2026-10-09 使用者要求：工作坊以由淺入深引導為核心，新知識點必須在真正需要處出現並附官方資訊引導，不得要求學員使用未介紹過的知識點。做法：依 Runbook 順序稽核「首次介紹 vs 首次使用」，開場只留路線圖，完整說明搬到首次使用處；技巧類 callout 附「延伸閱讀」出處名稱（多家廠商官方文件、DDD 經典書目、Plugin 自帶說明），因安全檢查禁止學員頁外部網址，只列名稱不列網址。主課與 DLC 都適用。
+
+## 實跑演練（rehearsal）與 DLC 工具修正授權
+
+2026-10-09 以候選包實跑主課與 DLC 開場～D2 提示詞（`.claude/skills/rehearsal`），依結果修正教材。DLC 工具原屬不修改範圍；使用者授權調整後修正：工具說明與 `--help` 路徑改為 `../../tools/`（實際相對 Repo 根目錄）、`dm.sh` 在 py launcher 沒有 3.13 時改用 python3、`write_scm_attestation.py` 的下一步提示標明 finalize-proposal 由提案者執行。程式庫（repository）與 recovery bundle 內的 README 未改。
+
+未驗證：D2 檢查點 6 夥伴的 `git push`（演練環境安全檢查擋下本機 bare repo 推送），需在實機補跑一次。

@@ -19,7 +19,7 @@
 
 ## 2. Change Package 描述檔 `cp-d2.json`
 
-提案者的 Agent 在 Repo 根目錄（`repository/smart-ticket-dlc-base/`）依下列格式建立 `cp-d2.json`，`〈 〉` 依 D1 的 Registry 與反事實結果填入。編號前綴：CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。`promote` 要列出 D1 的**全部**候選，否則 `validate --require-reviewed`（檢查是否全部已審查）不會通過。
+提案者的 Agent 在 Repo 根目錄（`repository/smart-ticket-dlc-base/`）依下列格式建立 `cp-d2.json`，`〈 〉` 依 D1 的 Registry 與反事實結果填入。編號前綴：CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。`promote` 要列出 Registry 的**全部**候選：`domain-memory/registry/` 底下每個有候選的 JSON 檔（`manifest.json` 除外）都要有一個同名的鍵。自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
 
 ```json
 {
@@ -38,7 +38,10 @@
   "promote": {
     "contexts": ["〈context id〉", "〈context id〉"],
     "vocabulary": ["〈詞彙 id〉", "〈詞彙 id〉", "〈詞彙 id〉", "〈詞彙 id〉", "〈詞彙 id〉"],
-    "rules": ["〈規則 id〉", "〈規則 id〉"]
+    "rules": ["〈規則 id〉", "〈規則 id〉"],
+    "aggregates": ["〈aggregate id；這個檔沒有候選就刪掉這一行〉"],
+    "interactions": ["〈interaction id；沒有候選就刪掉這一行〉"],
+    "decisions": ["〈decision id；沒有候選就刪掉這一行〉"]
   },
   "owner_context": "〈主要 context id〉",
   "invariant": "〈這次升級要守住的一條不變量〉",

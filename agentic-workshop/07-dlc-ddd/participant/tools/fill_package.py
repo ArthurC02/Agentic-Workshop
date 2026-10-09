@@ -1,6 +1,6 @@
 """從一份精簡描述 JSON 建立並填寫 Change Package（requirement／proposal／obligations／evidence）。
 
-  py -3.13 -X utf8 ../tools/fill_package.py package-spec.json
+  py -3.13 -X utf8 ../../tools/fill_package.py package-spec.json
 
 - 套件不存在時先執行 init-change-package；只會改寫 status 為 draft 的套件。
 - 每條驗收條件（acceptance_criteria）與規則（rules）各產生一個 obligation（OB-<id>），

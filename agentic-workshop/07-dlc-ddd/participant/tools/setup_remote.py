@@ -1,7 +1,7 @@
 """建立本機 bare remote，讓 pre-push hook 有地方可以 push（不需要 GitHub）。
 
-  py -3.13 -X utf8 ../tools/setup_remote.py                # 建 ../<repo 名>-remote.git 並設為 origin
-  py -3.13 -X utf8 ../tools/setup_remote.py --path D:/x.git --name origin
+  py -3.13 -X utf8 ../../tools/setup_remote.py                # 建 ../<repo 名>-remote.git 並設為 origin
+  py -3.13 -X utf8 ../../tools/setup_remote.py --path D:/x.git --name origin
 
 之後：先啟用 .venv（hook 會呼叫裸 python），再 `git push -u origin HEAD`。
 """

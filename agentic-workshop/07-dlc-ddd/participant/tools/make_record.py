@@ -1,13 +1,13 @@
 """以 cite 證據組出一筆完整的 Domain Registry record JSON，可直接交給 upsert-candidate。
 
 單筆（在 Repo 根目錄執行）：
-  py -3.13 -X utf8 ../tools/make_record.py --asset vocabulary --id advance-purchase-discount \\
+  py -3.13 -X utf8 ../../tools/make_record.py --asset vocabulary --id advance-purchase-discount \\
       --name "提前購票優惠" --definition "購票日至出發日至少 14 天時的 85% 票價資格" \\
       --context pricing --evidence docs/requirements/business-rules.md:29-30 \\
       --evidence src/smart_ticket/domain/discounts.py:30-31 --upsert
 
 批次（一個 JSON 陣列，每個物件用同樣的鍵；evidence 為 "路徑:起-迄" 字串陣列）：
-  py -3.13 -X utf8 ../tools/make_record.py --batch d1-records.json --upsert
+  py -3.13 -X utf8 ../../tools/make_record.py --batch d1-records.json --upsert
 
 主要文字欄位：contexts 用 --responsibility，vocabulary 用 --definition，rules/decisions 用 --statement；
 其他欄位用 --set 欄位=值（值若是 JSON 會被解析，例如 --set 'invariants=["..."]'）。

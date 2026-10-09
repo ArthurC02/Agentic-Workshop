@@ -36,11 +36,14 @@ PowerShell：
 Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
 Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-d3b.zip" -DestinationPath C:\dlc-rec\d3b
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\d3b -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+if (-not $rec) { throw "repo.bundle not found" }
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d3b
 Git Bash：
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+mkdir -p /c/dlc-rec/d3b
 unzip -q ~/Downloads/recovery-dlc-d3b.zip -d /c/dlc-rec/d3b
-rec=$(dirname "$(find /c/dlc-rec/d3b -name repo.bundle | head -1)")
+rec=$(find /c/dlc-rec/d3b -name repo.bundle -exec dirname {} \; | head -1)
+[ -n "$rec" ] || exit 1
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d3b
 3. 用白話告訴我 resume-d3b 的完整路徑，以及原 Repo 是否原封不動。做完停下。
 ```
@@ -56,6 +59,7 @@ cp -r "$rec/smart-ticket-dlc-base" ./resume-d3b
 【夥伴的 Agent】這是 D3b Recovery，Repo 根目錄現在是 resume-d3b。依終端機選一組，在「同一次執行」裡依序跑（rec、old、fp 變數要在同一次執行內才有值），參數一字不改；任何一步失敗就停下貼出錯誤，不要自己改設定或換寫法：
 PowerShell：
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\d3b -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+if (-not $rec) { throw "repo.bundle not found" }
 git init -q -b main
 git fetch -q "$rec\repo.bundle" main
 git reset -q FETCH_HEAD
@@ -71,7 +75,8 @@ $fp = (Get-Content "$env:USERPROFILE\.dlc-keys\maintainer\signing.json" -Raw | C
 ..\..\tools\dm.ps1 install-git-hitl-hook
 ..\..\tools\dm.ps1 governance-readiness
 Git Bash：
-rec=$(dirname "$(find /c/dlc-rec/d3b -name repo.bundle | head -1)")
+rec=$(find /c/dlc-rec/d3b -name repo.bundle -exec dirname {} \; | head -1)
+[ -n "$rec" ] || exit 1
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main
 git reset -q FETCH_HEAD

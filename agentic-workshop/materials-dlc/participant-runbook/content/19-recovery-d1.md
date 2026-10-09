@@ -29,11 +29,14 @@ PowerShell：
 Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
 Expand-Archive -LiteralPath "$HOME\Downloads\recovery-dlc-d1.zip" -DestinationPath C:\dlc-rec\d1
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+if (-not $rec) { throw "repo.bundle not found" }
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d1
 Git Bash：
 cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+mkdir -p /c/dlc-rec/d1
 unzip -q ~/Downloads/recovery-dlc-d1.zip -d /c/dlc-rec/d1
-rec=$(dirname "$(find /c/dlc-rec/d1 -name repo.bundle | head -1)")
+rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
+[ -n "$rec" ] || exit 1
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d1
 3. 用白話告訴我 resume-d1 的完整路徑，以及原 Repo 是否原封不動。做完停下。
 ```
@@ -49,6 +52,7 @@ cp -r "$rec/smart-ticket-dlc-base" ./resume-d1
 這是 D1 Recovery 起點，Repo 根目錄是 resume-d1：Domain Memory 在 domain-memory/，裡面全部是候選。不要 git add 或 commit domain-memory/。依終端機選一組，在「同一次執行」裡依序跑（rec 變數要在同一次執行內才有值），任何一步失敗就停下：
 PowerShell：
 $rec = Split-Path (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName
+if (-not $rec) { throw "repo.bundle not found" }
 git init -q -b main
 git fetch -q "$rec\repo.bundle" main
 git reset -q FETCH_HEAD
@@ -61,7 +65,8 @@ py -3.13 -m venv .venv
 ..\..\tools\dm.ps1 validate
 ..\..\tools\dm.ps1 verify-evidence
 Git Bash：
-rec=$(dirname "$(find /c/dlc-rec/d1 -name repo.bundle | head -1)")
+rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
+[ -n "$rec" ] || exit 1
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main
 git reset -q FETCH_HEAD
