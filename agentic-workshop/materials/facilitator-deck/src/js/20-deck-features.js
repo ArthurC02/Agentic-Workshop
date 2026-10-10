@@ -325,8 +325,10 @@
       });
       var chip = $('#dk-chrome .dk-timer-chip') || $('.dk-timer-chip');
       if (chip) {
-        var seg = segOf(curIndex()), t = tmr(seg), st = timerState(t);
-        var show = !!t && st !== 'idle';
+        var seg = segOf(curIndex()), t = tmr(seg), st = timerState(t), cs = curSlide();
+        // Slides that already show the segment timer or Gates clock do not need the corner chip.
+        var inSlide = !!cs && (cs.hasAttribute('data-timer') || cs.hasAttribute('data-gates'));
+        var show = !!t && st !== 'idle' && !inSlide;
         if (chip.hidden === show) chip.hidden = !show;
         if (show) {
           setState(chip, st);

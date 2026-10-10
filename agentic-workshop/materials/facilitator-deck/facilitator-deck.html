@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 0be30584a37989df inputs-sha256 0be30584a37989df7dfe3a18401c1ec41606032192a45803adc9a9260fa311a4 -->
+<!-- 主持人專用，不發給學員。build 42db4f5151053140 inputs-sha256 42db4f5151053140e2e4889c030783872ad115f0981caf613ea7edfd7f785c25 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -22,7 +22,7 @@
   --white: #FFFFFF;
   --ink: #1B2433;
   --ink-2: #3D4757;
-  --muted: #6B7685;
+  --muted: #4F5B6B;
   --line: #D5DADE;
   --primary: #0093C1;
   --primary-soft: #E2F3F9;
@@ -32,6 +32,10 @@
   --orange-soft: #FEEDE6;
   --danger: #EB4751;
   --danger-soft: #FDE7E9;
+  /* text-on-light variants of the accents (>= 5:1 on their soft fills; projectors wash out colour) */
+  --primary-ink: #00668A;
+  --teal-ink: #006B66;
+  --dw-ink: #A93A14;
   --tool: var(--primary);
   --tool-soft: var(--primary-soft);
   --teammate: var(--teal);
@@ -48,7 +52,7 @@
   --stage-h: 1080px;
   --pad-x: 96px;
   --pad-top: 80px;
-  --pad-bottom: 72px;
+  --pad-bottom: 48px;
   --agenda-h: 44px;
 
   --fs-body: 36px;
@@ -115,7 +119,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 20px;
   padding: var(--pad-top) var(--pad-x) calc(var(--pad-bottom) + var(--agenda-h)) var(--pad-x);
   background: var(--bg);
   color: var(--ink);
@@ -194,7 +198,7 @@ aside.notes { display: none !important; }
   letter-spacing: .14em;
   text-transform: uppercase;
   font-variant: small-caps;
-  color: var(--primary);
+  color: var(--primary-ink);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -258,6 +262,8 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
   color: var(--deep);
 }
 .slide-title :not(pre) > code { background: rgba(255, 255, 255, .14); color: #CFEFFA; }
+/* Code inside small labels would drop below 24px at the usual .86em. */
+.slide .kicker code, .slide .chip code, .slide .reveal-badge code, .slide .draw-card-tag code { font-size: 1em; }
 .slide[data-seg="reveal"] table.table code { font-size: 24px; }
 
 /* Seat diagram (B3 reveal): one box per seat position. */
@@ -351,9 +357,9 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
 .card.tool     { --c: var(--tool); }
 .card.teammate { --c: var(--teammate); }
 .card.dw       { --c: var(--dw); }
-.card.tool h3     { color: #006E91; }
-.card.teammate h3 { color: #00807A; }
-.card.dw h3       { color: #C9481F; }
+.card.tool h3     { color: var(--primary-ink); }
+.card.teammate h3 { color: var(--teal-ink); }
+.card.dw h3       { color: var(--dw-ink); }
 .card .chip { align-self: flex-start; }
 .slide-title .card {
   background: rgba(255, 255, 255, .08);
@@ -380,9 +386,9 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
   border: 1px solid var(--line);
   vertical-align: middle;
 }
-.chip.tool     { background: var(--tool-soft); color: #006E91; border-color: #B5E0EF; }
-.chip.teammate { background: var(--teammate-soft); color: #00807A; border-color: #ABE3DE; }
-.chip.dw       { background: var(--dw-soft); color: #C9481F; border-color: #F9C8B6; }
+.chip.tool     { background: var(--tool-soft); color: var(--primary-ink); border-color: #B5E0EF; }
+.chip.teammate { background: var(--teammate-soft); color: var(--teal-ink); border-color: #ABE3DE; }
+.chip.dw       { background: var(--dw-soft); color: var(--dw-ink); border-color: #F9C8B6; }
 .kicker .chip, .title .chip { font-variant: normal; text-transform: none; letter-spacing: .02em; }
 .slide-title .chip { background: rgba(255, 255, 255, .12); color: var(--white); border-color: rgba(255, 255, 255, .22); }
 .slide-title .chip.tool     { background: rgba(0, 147, 193, .28); border-color: rgba(0, 147, 193, .7); }
@@ -442,6 +448,11 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
   line-height: 1.4;
 }
 
+/* Compact stat column beside a table (B3 impact reveal). */
+.stat-stack { display: grid; gap: 12px; align-content: start; }
+.stat-stack .card { padding: 18px 28px; gap: 4px; }
+.stat-stack .big-number { font-size: 80px; }
+
 /* ---------- 8. Steps (numbered) ---------- */
 ol.steps {
   list-style: none;
@@ -450,7 +461,7 @@ ol.steps {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 ol.steps > li {
   counter-increment: step;
@@ -777,7 +788,7 @@ ol.stage-bar > li.active::after {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 18px 72px 22px;
+  padding: 12px 64px 16px;
   border-radius: var(--radius-lg);
   background: var(--navy);
   color: var(--white);
@@ -787,7 +798,7 @@ ol.stage-bar > li.active::after {
 }
 .dk-timer-time {
   font-family: var(--mono);
-  font-size: 168px;
+  font-size: 140px;
   line-height: 1;
   font-weight: 700;
   letter-spacing: .04em;
@@ -861,15 +872,15 @@ ol.stage-bar > li.active::after {
 /* ---------- 17. Gates clock ---------- */
 .dk-gates-clock {
   position: absolute;
-  top: var(--pad-top);
+  top: 14px;
   right: var(--pad-x);
   z-index: 3;
-  padding: 10px 28px;
+  padding: 6px 24px;
   border-radius: 99px;
   background: var(--navy);
   color: var(--white);
   font-family: var(--mono);
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: .04em;
   font-variant-numeric: tabular-nums;
@@ -915,6 +926,10 @@ ol.stage-bar > li.active::after {
   width: 220px; height: 220px; margin: 0;
 }
 .slide[data-countdown] > .dk-countdown .dk-count-num { font-size: 84px; }
+/* Rows below the ring may use the full width again. */
+.slide[data-countdown] > .cols-3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr); }
+.slide[data-countdown] > .cols-3 > .card { padding: 20px 28px; gap: 6px; }
+.slide[data-countdown] > .cols-2, .slide[data-countdown] > .cols-3, .slide[data-countdown] > .callout { margin-right: -250px; }
 .slide-title .dk-count-num { color: var(--white); }
 .dk-countdown[data-state="idle"] .dk-ring-fg { stroke: var(--muted); }
 .dk-countdown[data-state="running"] .dk-ring-fg { stroke: var(--primary); }
@@ -939,7 +954,7 @@ ol.stage-bar > li.active::after {
   gap: 8px;
   padding: 5px 14px 5px 10px;
   border-radius: 99px;
-  font-size: 13px;
+  font-size: max(13px, calc(20px * var(--dk-scale, 1)));
   font-weight: 700;
   letter-spacing: .06em;
   color: var(--white);
@@ -972,7 +987,7 @@ ol.stage-bar > li.active::after {
   background: var(--navy);
   color: var(--white);
   font-family: var(--mono);
-  font-size: 15px;
+  font-size: max(15px, calc(26px * var(--dk-scale, 1)));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
@@ -988,18 +1003,19 @@ ol.stage-bar > li.active::after {
   left: 0;
   right: 0;
   bottom: 0;
-  height: var(--agenda-h);
+  height: calc(var(--agenda-h) * var(--dk-scale, 1));
+  min-height: 32px;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 0 16px;
-  background: linear-gradient(180deg, rgba(11, 20, 36, 0) 0%, rgba(11, 20, 36, .55) 100%);
+  background: rgba(11, 20, 36, .88); /* solid strip: labels stay readable over light slides */
 }
 .dk-agenda {
   flex: 1 1 auto;
   display: flex;
   gap: 3px;
-  height: 22px;
+  height: 75%;
   min-width: 0;
 }
 .dk-agenda-seg {
@@ -1012,7 +1028,9 @@ ol.stage-bar > li.active::after {
   border-radius: 4px;
   background: rgba(255, 255, 255, .22);
   color: rgba(255, 255, 255, .9);
-  font-size: 11px;
+  pointer-events: auto; /* click a segment to jump to its first slide */
+  cursor: pointer;
+  font-size: max(12px, calc(17px * var(--dk-scale, 1)));
   font-weight: 600;
   overflow: hidden;
   transition: background .3s, color .3s;
@@ -1033,7 +1051,7 @@ ol.stage-bar > li.active::after {
   min-width: 64px;
   text-align: right;
   color: rgba(255, 255, 255, .9);
-  font-size: 13px;
+  font-size: max(13px, calc(20px * var(--dk-scale, 1)));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
@@ -1074,7 +1092,7 @@ ol.stage-bar > li.active::after {
 .dk-thumb-frame { border-radius: 6px; background: var(--bg); }
 .dk-thumb-slide { opacity: 1 !important; visibility: visible !important; transition: none !important; }
 .dk-thumb-slide .fx { opacity: 1; visibility: visible; transform: none; transition: none; }
-.dk-thumb-cap { display: flex; gap: 8px; align-items: baseline; font-size: 13px; padding: 0 4px; min-width: 0; }
+.dk-thumb-cap { display: flex; gap: 8px; align-items: baseline; font-size: 15px; padding: 0 4px; min-width: 0; }
 .dk-thumb-num { font-weight: 800; color: #7FD3EE; font-variant-numeric: tabular-nums; }
 .dk-thumb-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: rgba(255, 255, 255, .85); }
 
@@ -1089,7 +1107,7 @@ ol.stage-bar > li.active::after {
 }
 #dk-help[hidden], #dk-overview[hidden], #dk-black[hidden] { display: none; }
 .dk-help-box {
-  width: min(640px, 92vw);
+  width: min(900px, 92vw);
   max-height: 88vh;
   overflow: auto;
   background: var(--white);
@@ -1098,14 +1116,14 @@ ol.stage-bar > li.active::after {
   padding: 28px 36px;
   border-top: 6px solid var(--primary);
   color: var(--ink);
-  font-size: 15px;
+  font-size: max(15px, calc(24px * var(--dk-scale, 1)));
 }
-.dk-help-title { margin: 0 0 16px; font-size: 22px; color: var(--navy); }
+.dk-help-title { margin: 0 0 16px; font-size: 1.4em; color: var(--navy); }
 .dk-help-keys { display: grid; grid-template-columns: max-content 1fr; gap: 10px 20px; margin: 0; }
 .dk-help-keys dt {
   font-family: var(--mono);
   font-weight: 700;
-  font-size: 13px;
+  font-size: .85em;
   padding: 3px 10px;
   border-radius: 6px;
   background: var(--bg);
@@ -1115,7 +1133,7 @@ ol.stage-bar > li.active::after {
   justify-self: start;
 }
 .dk-help-keys dd { margin: 0; align-self: center; color: var(--ink-2); }
-.dk-help-foot { margin: 18px 0 0; color: var(--muted); font-size: 13px; }
+.dk-help-foot { margin: 18px 0 0; color: var(--muted); font-size: .85em; }
 
 #dk-black { position: fixed; inset: 0; z-index: 50; background: #000; cursor: none; }
 body.dk-black-on #dk-chrome { visibility: hidden; }
@@ -1132,12 +1150,12 @@ body.is-presenter #dk-black { display: none !important; }
   position: fixed;
   inset: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  grid-template-rows: auto auto auto auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .6fr) minmax(0, 1.05fr);
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
   gap: 14px;
   padding: 14px;
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 17px;
   color: #E6ECF2;
   background: #0E1626;
 }
@@ -1149,14 +1167,16 @@ body.is-presenter #dk-black { display: none !important; }
   min-width: 0;
   min-height: 0;
 }
-.pv-current  { grid-column: 1; grid-row: 1; }
-.pv-next     { grid-column: 2; grid-row: 1; align-self: start; opacity: .92; }
-.pv-notes    { grid-column: 1; grid-row: 2 / 6; overflow: auto; }
-.pv-controls { grid-column: 1; grid-row: 6; }
-.pv-timer    { grid-column: 2; grid-row: 2; }
-.pv-clock    { grid-column: 2; grid-row: 3; }
-.pv-plan     { grid-column: 2; grid-row: 4; }
-.pv-codes    { grid-column: 2; grid-row: 5 / 7; }
+/* Previews sit side by side beside the timer stack, so the notes get the full width and the
+   whole unlock-code table (13 rows in the DLC) fits a 1400x850 window without scrolling. */
+.pv-current  { grid-column: 1; grid-row: 1 / 4; }
+.pv-next     { grid-column: 2; grid-row: 1 / 4; align-self: start; opacity: .92; }
+.pv-timer    { grid-column: 3; grid-row: 1; }
+.pv-clock    { grid-column: 3; grid-row: 2; }
+.pv-plan     { grid-column: 3; grid-row: 3; }
+.pv-notes    { grid-column: 1 / 3; grid-row: 4; overflow: auto; }
+.pv-controls { grid-column: 1 / 3; grid-row: 5; }
+.pv-codes    { grid-column: 3; grid-row: 4 / 6; }
 
 /* slide clones inside presenter panels */
 .pv-current, .pv-next { position: relative; overflow: hidden; }
@@ -1172,23 +1192,24 @@ body.is-presenter #dk-black { display: none !important; }
 .pv-current::before, .pv-next::before {
   display: block;
   margin-bottom: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: .14em;
   color: #7FD3EE;
 }
 .pv-current::before { content: "CURRENT · 目前"; }
 .pv-next::before    { content: "NEXT · 下一頁"; color: rgba(255, 255, 255, .55); }
-.pv-next-title, .pv-title { margin-top: 8px; font-weight: 700; font-size: 15px; color: #E6ECF2; }
+.pv-next-title, .pv-title { margin-top: 8px; font-weight: 700; font-size: 18px; color: #E6ECF2; }
 
-.pv-notes { font-size: 22px; line-height: 1.6; color: #F1F5F9; }
+.pv-notes { font-size: 24px; line-height: 1.6; color: #F1F5F9; }
 .pv-notes p { margin: 0 0 .7em; }
 .pv-notes ul, .pv-notes ol { margin: 0 0 .7em; padding-left: 1.3em; }
 .pv-notes b, .pv-notes strong { color: #FFC9B5; }
 .pv-notes code { font-family: var(--mono); font-size: .88em; background: rgba(255, 255, 255, .08); padding: .05em .35em; border-radius: 4px; }
 
 .pv-timer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
-.pv-timer .pv-time, .pv-timer [class*="time"] {
+.pv-timer-label { flex: 1 1 100%; font-weight: 600; color: #CFE6F2; }
+.pv-timer .pv-timer-time {
   font-family: var(--mono);
   font-size: 48px;
   font-weight: 800;
@@ -1196,38 +1217,43 @@ body.is-presenter #dk-black { display: none !important; }
   line-height: 1;
 }
 .pv-timer[data-state="warn"]    { border-color: var(--orange); background: #3A2418; }
-.pv-timer[data-state="warn"] [class*="time"] { color: var(--orange); }
+.pv-timer[data-state="warn"] .pv-timer-time { color: var(--orange); }
 .pv-timer[data-state="over"]    { border-color: var(--danger); background: #3A1820; animation: dk-chip-pulse 1.1s ease-in-out infinite; }
-.pv-timer[data-state="over"] [class*="time"] { color: #FF8A92; }
+.pv-timer[data-state="over"] .pv-timer-time { color: #FF8A92; }
 .pv-timer[data-state="running"] { border-color: var(--primary); }
 
 .pv-clock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
   font-family: var(--mono);
   font-size: 30px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: #CFE6F2;
 }
-.pv-plan { font-size: 17px; font-weight: 600; color: #CFE6F2; }
+.pv-plan { font-size: 20px; font-weight: 600; color: #CFE6F2; }
 .pv-now { margin-top: 8px; padding-top: 8px; border-top: 1px solid #263452; }
-.pv-now-title { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: #7FD3EE; margin-bottom: 4px; }
-.pv-now-row { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
-.pv-now-row code { font-family: var(--mono); font-weight: 800; letter-spacing: .12em; color: #FFFFFF; font-size: 18px; }
+.pv-now-title { font-size: 14px; font-weight: 700; letter-spacing: .08em; color: #7FD3EE; margin-bottom: 4px; }
+.pv-now-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 17px; }
+.pv-now-row code { font-family: var(--mono); font-weight: 800; letter-spacing: .12em; color: #FFFFFF; font-size: 26px; }
 .pv-codes tr.is-current td { background: #22345A; }
 .pv-plan[data-state="late"], .pv-plan.is-late { color: var(--orange); }
 
-.pv-codes { overflow: auto; max-height: 34vh; }
-.pv-codes table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.pv-codes th, .pv-codes td { padding: 5px 8px; text-align: left; border-bottom: 1px solid #263452; }
-.pv-codes th { color: #7FD3EE; font-weight: 700; font-size: 12px; letter-spacing: .08em; }
-.pv-codes td code, .pv-codes code { font-family: var(--mono); font-weight: 800; letter-spacing: .12em; color: #FFFFFF; }
+.pv-codes { overflow: auto; }
+.pv-codes table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.25; }
+.pv-codes th, .pv-codes td { padding: 3px 8px; text-align: left; border-bottom: 1px solid #263452; }
+.pv-codes th { color: #7FD3EE; font-weight: 700; font-size: 13px; letter-spacing: .08em; }
+.pv-codes td code, .pv-codes code { font-family: var(--mono); font-weight: 800; letter-spacing: .04em; color: #FFFFFF; white-space: nowrap; }
+.pv-codes th, .pv-code-min { white-space: nowrap; }
 
 .pv-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 #pv-root button {
   appearance: none;
   font: inherit;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
   padding: 8px 18px;
   border-radius: 99px;
   border: 1px solid #36507A;
@@ -1260,7 +1286,7 @@ body.is-presenter #dk-black { display: none !important; }
 .draw-card-back { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; }
 .draw-card-back span { color: var(--white); font-size: 64px; font-weight: 700; letter-spacing: .2em; }
 .draw-card-tag { display: flex; gap: 16px; align-items: center; margin: 0 0 12px; font-size: 28px; }
-.draw-card-text { margin: 0; font-size: 40px; line-height: 1.45; font-weight: 600; color: var(--navy); }
+.draw-card-text { margin: 0; font-size: 36px; line-height: 1.45; font-weight: 600; color: var(--navy); }
 
 .slide.is-active .draw-card-inner { animation: dk-card-slide 1.4s var(--ease) both; }
 .slide.is-active .draw-card-back  { animation: dk-back-flip 1.4s linear both; }
@@ -1297,8 +1323,23 @@ body.is-presenter #dk-black { display: none !important; }
   ol.timeline > li.is-current { transform: none; }
 }
 
+/* Print / Save as PDF: one 16:9 page per slide, every fragment shown, no chrome or overlays. */
+@page { size: 1920px 1080px; margin: 0; }
 @media print {
-  .notes { display: none !important; }
+  html, body { width: auto; height: auto; overflow: visible; background: var(--bg); }
+  #dk-viewport { position: static; overflow: visible; background: none; }
+  #dk-stage { position: static !important; transform: none !important; height: auto !important; box-shadow: none; overflow: visible; }
+  .slide, .slide.is-active, .slide.is-past, .slide.is-future {
+    position: relative; inset: auto; width: 1920px; height: 1080px;
+    opacity: 1; visibility: visible; transition: none; break-after: page; page-break-after: always;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .slide .fx { opacity: 1; visibility: visible; transform: none; }
+  .slide *, .slide *::before, .slide *::after { animation: none !important; }
+  .stop-screen::after { opacity: .92; transform: translateY(-50%); }
+  .draw-card-back { opacity: 0; }
+  .slide-title .big-number { background: none; -webkit-text-fill-color: currentColor; }
+  #dk-chrome, #dk-overview, #dk-help, #dk-black, .notes, .dk-countdown, .dk-timer-big .dk-timer-hint { display: none !important; }
 }
 
 </style>
@@ -1721,10 +1762,10 @@ body.is-presenter #dk-black { display: none !important; }
     .ts-jump .ts-cal-body { padding: .6rem 0 .9rem; transform-origin: top center; animation: ts-flip .2s ease-in-out 12 .2s; }
     .ts-jump .ts-cal-num { display: block; font-size: 5.2rem; line-height: 1; font-weight: 700; color: #014865; --ts-n: 12; counter-reset: tsm var(--ts-n); animation: ts-count 2.4s steps(12, end) .2s both; }
     .ts-jump .ts-cal-num::after { content: counter(tsm); }
-    .ts-jump .ts-cal-unit { display: block; font-size: 1.4rem; color: #494A57; }
+    .ts-jump .ts-cal-unit { display: block; font-size: 1.6rem; color: #494A57; }
     .ts-jump .ts-months { display: grid; grid-template-columns: repeat(12, 1fr); gap: .45rem; width: 100%; max-width: 46rem; margin: 0 auto .4rem; }
     .ts-jump .ts-months span { height: .7rem; border-radius: 99px; background: var(--c-teal, #00A59B); animation: ts-fill .2s ease-out both; animation-delay: calc(var(--i) * .2s + .2s); }
-    .ts-jump .ts-axis { display: flex; justify-content: space-between; width: 100%; max-width: 46rem; margin: 0 auto; font-size: 1.4rem; opacity: .8; }
+    .ts-jump .ts-axis { display: flex; justify-content: space-between; width: 100%; max-width: 46rem; margin: 0 auto; font-size: 1.6rem; opacity: .9; }
     .ts-jump .ts-big { font-size: 4.4rem; font-weight: 700; letter-spacing: .04em; margin: .2rem 0 0; }
     @keyframes ts-spin-min { from { transform: rotate(0deg); } to { transform: rotate(4320deg); } }
     @keyframes ts-spin-hr { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -2386,7 +2427,7 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 候選取最低 rate" data-minute="63">
   <p class="reveal-badge">揭曉 · B2</p>
   <h2 class="title">每位旅客：列出符合的優惠 → 取最低折扣率</h2>
-  <p class="muted fx fx-fade">舊：首個符合（企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT）　→　新：選最低折扣率、每人只用一項</p>
+  <p class="muted fx fx-fade">舊：取第一個符合的優惠　→　新：選最低折扣率、每人只用一項</p>
   <div class="b2-lane">
     <span class="b2-who">成人 <small>企業會員＋提前 · 基本票價 700</small></span>
     <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
@@ -2412,6 +2453,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>本頁範例</b>＝AC-B2-007／008／009 的三資格混合案例：學生 STUDENT 75／525、成人 ADVANCE 85／595，總額 <b>1120</b>（09 acceptance map）。按 → 逐步：淘汰較高 rate → 顯示結果 → 總額。</p>
     <p><b>C4 揭露要點</b>：B2 取代 DEBT-001 的「首個符合」政策；Booking 建立與 Booking Change 共用同一政策，回應明細與文件同步；不要求複雜的 Engine，保留同步 Notification。</p>
     <p>來源沒有 B2 標準實作 Code；只講觀察準則，<b>不現場補寫答案 Code</b>。</p>
+    <p><b>從投影移到備註</b>：舊政策依序比對企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT，取第一個符合的。</p>
   </aside>
 </section>
 
@@ -2423,7 +2465,7 @@ body.is-presenter #dk-black { display: none !important; }
     <tbody>
       <tr><td>成人無優惠</td><td><code>ADULT／100／700</code></td><td>AC-B2-001</td></tr>
       <tr><td>學生</td><td><code>STUDENT／75／525</code></td><td>AC-B2-002</td></tr>
-      <tr><td>提前成人（≥14 天；13／14／15 天邊界）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
+      <tr><td>提前成人（≥14 天）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
       <tr><td>企業會員成人</td><td><code>CORPORATE／95／665</code></td><td>AC-B2-004</td></tr>
       <tr><td>學生＋提前</td><td><code>STUDENT／75／525</code>（不疊乘 85%）</td><td>AC-B2-005</td></tr>
       <tr><td>企業會員＋提前</td><td><code>ADVANCE／85／595</code>（舊測試 665 → 595）</td><td>AC-B2-006</td></tr>
@@ -2432,12 +2474,12 @@ body.is-presenter #dk-black { display: none !important; }
     </tbody>
   </table>
   <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍是 <b>1225</b>（AC-B2-011）</p>
-  <p class="muted fx fx-fade">測試：原有 44 個（43 個不變、1 個依新規則更新）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
   <aside class="notes">
     <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
     <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
     <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
     <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。原 B2 參考版的 api-examples.md、architecture.md、discount-overview.md 曾寫成 FULL_FARE，已更正為 ADULT；B2 復原包內的文件也已是 ADULT。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
+    <p><b>從投影移到備註</b>：AC-B2-003 驗 13／14／15 天邊界。測試：原有 44 個（43 個不變、1 個依新規則更新）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b>。</p>
   </aside>
 </section>
 
@@ -2642,13 +2684,11 @@ body.is-presenter #dk-black { display: none !important; }
       <span class="chip">1 · 核對</span>
       <h3>在核准範圍內嗎？</h3>
       <p><span class="chip">YES</span> <span class="chip">NO</span> <span class="chip">UNCLEAR</span></p>
-      <p class="muted">是／否／不明確；Agent 整理提議、規則與證據</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">2 · 決策</span>
       <h3>決策</h3>
       <p><span class="chip">APPROVE</span> <span class="chip">APPROVE WITH CONDITIONS</span> <span class="chip">REJECT</span></p>
-      <p class="muted">核准／有條件核准／退回；Agent 照原文記錄</p>
     </div>
     <div class="card dw fx fx-up">
       <span class="chip dw">3 · 回覆</span>
@@ -2658,6 +2698,7 @@ body.is-presenter #dk-black { display: none !important; }
   </div>
   <p class="callout warn fx fx-fade">貼例外回應卡的提示詞；Agent 問事件時照抄這一行：<b>事件：建議加 SQLite</b>。60 秒內一行回答；時間緊可 30 秒口頭判斷。</p>
   <aside class="notes">
+    <p><b>從投影移到備註</b>：1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
     <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
@@ -2785,22 +2826,22 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · B3 預期影響" data-minute="77">
   <p class="reveal-badge">揭曉 · B3 團體訂票</p>
   <h2 class="title">預期影響：新增，而非重寫</h2>
-  <div class="cols-2" style="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)">
+  <div class="cols-2 impact-layout" style="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)">
     <table class="table fx fx-fade">
       <thead><tr><th>模組</th><th>預期影響</th></tr></thead>
       <tbody>
-        <tr><td><code>GroupBookingService.create</code></td><td>在同一把鎖（RLock）內驗證班次／5–20 人／容量／會員；<b>先計價＋完整座位規劃，再一次寫入</b>；稽核紀錄 <code>GROUP_BOOKING_CREATED</code></td></tr>
+        <tr><td><code>GroupBookingService.create</code></td><td>在同一把鎖（RLock）內驗證；<b>先計價＋完整座位規劃，再一次寫入</b></td></tr>
         <tr><td><code>SeatService.plan_group</code></td><td>依人數尋找完整連續空位區段</td></tr>
-        <tr><td>models／contracts</td><td>團體類型（GROUP）；已分配座位（Assigned Seats）；根層 <code>applied_discounts</code> 沿用 B2</td></tr>
-        <tr><td><code>PaymentService.pay</code>／<code>pay_group</code></td><td>團體付款成功／失敗補償</td></tr>
+        <tr><td>models／contracts</td><td>團體類型（GROUP）；已分配座位（Assigned Seats）</td></tr>
+        <tr><td><code>PaymentService</code></td><td>團體付款成功／失敗補償</td></tr>
         <tr><td>改票／退款</td><td>團體改票暫不支援（409）；已付款團體退款時全部釋放座位</td></tr>
-        <tr><td>API</td><td><code>POST /group-bookings</code>、<code>/group-bookings/{booking_id}/pay</code></td></tr>
+        <tr><td>API</td><td><code>POST /group-bookings</code> 與團體付款端點</td></tr>
       </tbody>
     </table>
-    <div>
+    <div class="stat-stack">
       <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">人團體訂票；一般訂票維持 1–4 人</p></div>
       <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">條規則（原 40 ＋ 新 17）</p></div>
-      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（參考版本：原 55 ＋ 新增 20；各組數字不同屬正常）</p></div>
+      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（參考版本；各組不同屬正常）</p></div>
     </div>
   </div>
   <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段，不會只成立一部分。</p>
@@ -2809,6 +2850,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p>一般 Booking 維持原付款失敗 pending／保留座位語意；只有 GROUP 採取消（見 Atomicity 頁）。</p>
     <p>Assigned Seats 欄位：seat_id／carriage_id／row_number／seat_number／position。文件同步團體與 Change 邊界。</p>
     <p>學習成功不是只有 Level 3；Reference Solution 須達全部 AC，不受學員分級豁免。用本頁對照各組 Gate 2 Impact，而非比程式量。</p>
+    <p><b>從投影移到備註</b>：<code>GroupBookingService.create</code> 驗證班次／5–20 人／容量／會員，稽核紀錄 <code>GROUP_BOOKING_CREATED</code>；models 根層 <code>applied_discounts</code> 沿用 B2；付款為 <code>PaymentService.pay</code>／<code>pay_group</code>；API 為 <code>POST /group-bookings</code>、<code>/group-bookings/{booking_id}/pay</code>；75 個測試＝原 55 ＋ 新增 20。</p>
   </aside>
 </section>
 
@@ -2886,17 +2928,17 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="78">
   <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
-  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT</span>（拒絕 SQLite 提議，回 Gate 2 重提 In-Memory 方案）</h2>
+  <h2 class="title">拒絕 SQLite 提議 <span class="chip dw">REJECT</span>：回 Gate 2 重提 In-Memory 方案</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>
       <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>（資料只存在記憶體）；SQLite 提案與此限制衝突</p>
-      <p class="muted">即使 SQLite 可由標準函式庫使用，仍是<b>未核准資料庫變更</b>；不能安裝、實作或寫進有條件核准（Conditional Approval）</p>
+      <p class="muted">SQLite 屬<b>未核准資料庫變更</b>，不能安裝或實作</p>
     </div>
     <div class="card dw fx fx-up">
       <h3>必要修正</h3>
       <p>拒絕 SQLite 方案、<b>保留團體任務</b></p>
-      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單的實測計畫</p>
+      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案，附實測計畫</p>
     </div>
   </div>
   <ol class="steps">
@@ -2912,6 +2954,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>不可接受（F03）</b>：直接 Approve SQLite｜含糊條件後開始 Coding｜長篇討論或實際安裝。</p>
     <p><b>判讀重點</b>：是否指出 Constraint、Challenge 提議、選擇 Reject／重提、要求全團體補償與測試，並保留 Decision／Approver／時間／Context。不要求學員說出參考答案原文；本頁是範例，不是真實核准紀錄（Approver／Timestamp 需實際填寫）。不要求通用 Transaction Framework。</p>
     <p><b>Debrief Q4（F05）</b>：「若沒人發現SQLite越界，缺少哪項治理能力？」</p>
+    <p><b>從投影移到備註</b>：即使 SQLite 可由標準函式庫使用，仍是未核准資料庫變更；不能安裝、實作或寫進有條件核准（Conditional Approval）。重提方案的實測計畫要涵蓋：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單。</p>
   </aside>
 </section>
 
@@ -2952,13 +2995,13 @@ body.is-presenter #dk-black { display: none !important; }
       <tr><td>規則數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
     </tbody>
   </table>
-  <p class="callout fx fx-fade">B3 的 75 是參考版本的數字；各組測試數不同屬正常，看的是有沒有比 B3 起點變少。</p>
   <aside class="notes">
     <p><b>來源</b>：<code>03-brownfield/evaluation/11-b0-to-b3-version-matrix.md</code> 主表（畫面為精簡版）。</p>
     <p>省略列：FARE-007～010（B0 無｜B1 未提前改政策｜B2 實作逐人最低 rate＋Type／Rate／Amount 明細｜B3 團體逐位明細驗證）；債務／文件落差（B0 3 債／2 落差｜B1 不以 BugFix 清債｜B2 折扣文件同步，通知及改票指南舊落差保留｜B3 同步團體與 Change 邊界）。測試時間：B2 1.21s、B3 0.58s。</p>
     <p>B0 <code>PASS AS BROWNFIELD BASELINE</code> 依 Manifest Gate，不等於 pytest 全通過；B1 必須零失敗。B1–B3 標準素材判定 <code>PASS FOR WORKSHOP USE</code>；真實 13 分鐘／90 分鐘演練與正式放行仍待驗收。</p>
     <p>學員時間到可在 52／63 分鐘用已驗收的復原包（Recovery）推進，但不等於 Reference Solution AC 豁免。</p>
     <p>80 分鐘 → 翻到回顧解鎖頁。不追加 Demo 美化或修 Code。</p>
+    <p><b>從投影移到備註</b>：B3 的 75 是參考版本的數字；各組測試數不同屬正常，看的是有沒有比 B3 起點變少。</p>
   </aside>
 </section>
 <!-- ===================== Retrospective 80–90 ===================== -->
@@ -3129,12 +3172,13 @@ body.is-presenter #dk-black { display: none !important; }
   };
 
   var HELP_KEYS = [
-    ["→ / Space / PageDown", "下一步（片段或下一頁）"],
-    ["← / PageUp", "上一步"],
+    ["→ / ↓ / Space / PageDown", "下一步（片段或下一頁；簡報筆可用）"],
+    ["← / ↑ / PageUp", "上一步"],
     ["Home / End", "第一頁 / 最後一頁"],
+    ["頁碼 + Enter", "跳到該頁（例如 1 2 Enter）"],
     ["O", "總覽（點選縮圖跳頁）"],
     ["F", "全螢幕"],
-    ["B", "黑屏"],
+    ["B / .", "黑屏"],
     ["T", "開始 / 暫停本段計時（或倒數）"],
     ["R", "重設本段計時"],
     ["P", "開啟主持人視窗"],
@@ -3534,6 +3578,9 @@ body.is-presenter #dk-black { display: none !important; }
     return !!t.isContentEditable;
   }
 
+  var jumpBuf = "";
+  var jumpAt = 0;
+
   function onKeyDown(e) {
     if (e.defaultPrevented) { return; }
     if (e.ctrlKey || e.metaKey || e.altKey) { return; }
@@ -3542,8 +3589,26 @@ body.is-presenter #dk-black { display: none !important; }
     var code = e.code || "";
     var handled = true;
 
+    /* number jump: digits then Enter (buffer expires after 2 s) */
+    if (/^[0-9]$/.test(key)) {
+      jumpBuf = (Date.now() - jumpAt < 2000 ? jumpBuf : "") + key;
+      jumpAt = Date.now();
+      e.preventDefault();
+      return;
+    }
+    if (key === "Enter" && jumpBuf && Date.now() - jumpAt < 2000) {
+      var n = parseInt(jumpBuf, 10);
+      jumpBuf = "";
+      closeOverlays();
+      if (n >= 1) { go(n - 1, 0); }
+      e.preventDefault();
+      return;
+    }
+    jumpBuf = "";
+
     switch (key) {
       case "ArrowRight":
+      case "ArrowDown":
       case "PageDown":
         next();
         break;
@@ -3552,6 +3617,7 @@ body.is-presenter #dk-black { display: none !important; }
         if (e.shiftKey) { prev(); } else { next(); }
         break;
       case "ArrowLeft":
+      case "ArrowUp":
       case "PageUp":
         prev();
         break;
@@ -3579,7 +3645,7 @@ body.is-presenter #dk-black { display: none !important; }
       var k = key.toLowerCase();
       if (k === "o" && !isPresenter) { toggleOverview(); handled = true; }
       else if (k === "f") { toggleFullscreen(); handled = true; }
-      else if (k === "b" && !isPresenter) { toggleBlack(); handled = true; }
+      else if ((k === "b" || k === ".") && !isPresenter) { toggleBlack(); handled = true; }
       else if (k === "/" && e.shiftKey && !isPresenter) { toggleHelp(); handled = true; }
       /* t / r / p: left to 20-deck-features.js - no preventDefault here. */
     } else if (!handled && code === "Slash" && e.shiftKey && !isPresenter) {
@@ -3994,8 +4060,10 @@ body.is-presenter #dk-black { display: none !important; }
       });
       var chip = $('#dk-chrome .dk-timer-chip') || $('.dk-timer-chip');
       if (chip) {
-        var seg = segOf(curIndex()), t = tmr(seg), st = timerState(t);
-        var show = !!t && st !== 'idle';
+        var seg = segOf(curIndex()), t = tmr(seg), st = timerState(t), cs = curSlide();
+        // Slides that already show the segment timer or Gates clock do not need the corner chip.
+        var inSlide = !!cs && (cs.hasAttribute('data-timer') || cs.hasAttribute('data-gates'));
+        var show = !!t && st !== 'idle' && !inSlide;
         if (chip.hidden === show) chip.hidden = !show;
         if (show) {
           setState(chip, st);

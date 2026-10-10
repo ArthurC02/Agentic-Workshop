@@ -228,6 +228,7 @@
     if (!toastsBox) return;
     var t = el('div', 'rb-toast rb-toast-' + (kind || 'info'), msg);
     toastsBox.appendChild(t);
+    while (toastsBox.children.length > 3) toastsBox.removeChild(toastsBox.firstChild);   // never bury the page
     setTimeout(function () { t.classList.add('is-leaving'); }, 2800);
     setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 3300);
   }
@@ -262,6 +263,7 @@
    * shown at a time and listed as sub-items under the page in the left nav. */
   var STEP_RE = /^檢查點\s*(\d+)\s*[·・]\s*(.*?)\s*（第\s*([0-9–-]+)\s*分鐘）\s*$/;
   var steps = {};             // pageId -> [{ id, label, min, el }]
+  var stepMem = {};           // pageId -> current step id (works without localStorage)
 
   function buildSteps(art) {
     var pid = art.getAttribute('data-page'), body = art.querySelector('.rb-page-body');
@@ -292,7 +294,7 @@
   function stepIndex(id) {
     var list = steps[id];
     if (!list) return -1;
-    var want = store.get('{{STORAGE_PREFIX}}step:' + id);
+    var want = stepMem[id] || store.get('{{STORAGE_PREFIX}}step:' + id);
     for (var i = 0; i < list.length; i++) if (list[i].id === want) return i;
     return 0;
   }
@@ -301,6 +303,7 @@
     var list = steps[id];
     if (!list) return;
     list.forEach(function (s, k) { s.el.hidden = k !== i; });
+    stepMem[id] = list[i].id;
     store.set('{{STORAGE_PREFIX}}step:' + id, list[i].id);
   }
 
@@ -343,6 +346,7 @@
       if (p.minute !== undefined && p.minute !== '') metaEl.appendChild(el('span', 'rb-meta-item rb-meta-min', String(p.minute)));
       var idx = order.indexOf(id);
       metaEl.appendChild(el('span', 'rb-meta-item', '第 ' + (idx + 1) + ' / ' + order.length + ' 章'));
+      if (steps[id] && !locked) metaEl.appendChild(el('span', 'rb-meta-item rb-meta-step', '第 ' + (stepIndex(id) + 1) + ' / ' + steps[id].length + ' 步'));
       if (pageGroup(id) !== 'open') {
         metaEl.appendChild(el('span', 'rb-meta-item ' + (locked ? 'is-locked' : 'is-unlocked'), locked ? '尚未解鎖' : '已解鎖'));
       }
@@ -980,6 +984,17 @@
 
   function initForms(ctx) { $$('.rb-form', ctx).forEach(initForm); }
 
+  // Wide tables: flag the wrapper while it overflows so CSS can show the scroll hint.
+  function markScroll(w) { w.classList.toggle('is-scrollable', w.scrollWidth > w.clientWidth + 2); }
+  var tableRO = 'ResizeObserver' in window ? new ResizeObserver(function (es) { es.forEach(function (e) { markScroll(e.target); }); }) : null;
+  function initTables(ctx) {
+    $$('.rb-table-wrap', ctx).forEach(function (w) {
+      if (w.getAttribute('data-rb-init')) return;
+      w.setAttribute('data-rb-init', '1');
+      if (tableRO) tableRO.observe(w); else markScroll(w);
+    });
+  }
+
   function initComponents(ctx) {
     initCopy(ctx);
     initIncludes(ctx);
@@ -987,6 +1002,7 @@
     initChecks(ctx);
     initForms(ctx);
     initExportAll(ctx);
+    initTables(ctx);
     initDownloads(ctx);
   }
 
@@ -1006,7 +1022,7 @@
     icon.innerHTML = LOCK_SVG;
     card.appendChild(icon);
     card.appendChild(el('h2', 'rb-lock-title', (g.label || gid) + ' · 尚未解鎖'));
-    var metaTxt = (g.minute != null && g.minute !== '' ? '第 ' + g.minute + ' 分鐘揭露 · ' : '') + '主持人會在揭露時點公布解鎖碼';
+    var metaTxt = (g.minute != null && g.minute !== '' ? '到第 ' + g.minute + ' 分鐘時，' : '') + '主持人會公布解鎖碼，輸入後就能看到這一段';
     card.appendChild(el('p', 'rb-lock-meta', metaTxt));
     var form = el('form', 'rb-lock-form');
     form.setAttribute('autocomplete', 'off');
@@ -1046,7 +1062,8 @@
       unlock(gid, input.value).then(function (ok) {
         btn.disabled = false;
         btn.classList.remove('is-busy');
-        if (!ok) fail('解鎖碼不正確，請確認後再試一次。');
+        if (!ok) { fail('解鎖碼不正確，請確認後再試一次。'); return; }
+        try { $('#rb-main').focus({ preventScroll: true }); } catch (e) { /* ignore */ }   // the form is gone; keep keyboard focus on the page
       });
     });
     on(input, 'input', function () { err.hidden = true; card.classList.remove('is-error'); form.classList.remove('is-error'); });
@@ -1247,6 +1264,8 @@
     doc.body.classList.add('is-nav-open');
     if (scrim) scrim.hidden = false;
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+    var cur = $('.rb-nav-link.is-current', sidebar) || $('.rb-nav-link', sidebar);
+    if (cur) cur.focus();             // keyboard lands in the menu, scrolled to where you are
   }
   function closeSidebar() {
     if (!sidebar) return;
@@ -1267,7 +1286,12 @@
     on(doc, 'keydown', function (ev) {
       var t = ev.target, tag = t && t.tagName;
       var typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable);
-      if (ev.key === 'Escape') { closeSidebar(); closeSearch(); return; }
+      if (ev.key === 'Escape') {
+        var wasOpen = sidebar && sidebar.classList.contains('is-open');
+        closeSidebar(); closeSearch();
+        if (wasOpen && menuBtn) menuBtn.focus();
+        return;
+      }
       if (typing || ev.ctrlKey || ev.metaKey || ev.altKey) return;
       if (ev.key === '/' && searchInput) { ev.preventDefault(); searchInput.focus(); searchInput.select(); }
       else if ((ev.key === '[' || ev.key === ']') && currentId) {

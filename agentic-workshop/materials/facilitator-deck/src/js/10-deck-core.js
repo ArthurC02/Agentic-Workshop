@@ -40,12 +40,13 @@
   };
 
   var HELP_KEYS = [
-    ["→ / Space / PageDown", "下一步（片段或下一頁）"],
-    ["← / PageUp", "上一步"],
+    ["→ / ↓ / Space / PageDown", "下一步（片段或下一頁；簡報筆可用）"],
+    ["← / ↑ / PageUp", "上一步"],
     ["Home / End", "第一頁 / 最後一頁"],
+    ["頁碼 + Enter", "跳到該頁（例如 1 2 Enter）"],
     ["O", "總覽（點選縮圖跳頁）"],
     ["F", "全螢幕"],
-    ["B", "黑屏"],
+    ["B / .", "黑屏"],
     ["T", "開始 / 暫停本段計時（或倒數）"],
     ["R", "重設本段計時"],
     ["P", "開啟主持人視窗"],
@@ -445,6 +446,9 @@
     return !!t.isContentEditable;
   }
 
+  var jumpBuf = "";
+  var jumpAt = 0;
+
   function onKeyDown(e) {
     if (e.defaultPrevented) { return; }
     if (e.ctrlKey || e.metaKey || e.altKey) { return; }
@@ -453,8 +457,26 @@
     var code = e.code || "";
     var handled = true;
 
+    /* number jump: digits then Enter (buffer expires after 2 s) */
+    if (/^[0-9]$/.test(key)) {
+      jumpBuf = (Date.now() - jumpAt < 2000 ? jumpBuf : "") + key;
+      jumpAt = Date.now();
+      e.preventDefault();
+      return;
+    }
+    if (key === "Enter" && jumpBuf && Date.now() - jumpAt < 2000) {
+      var n = parseInt(jumpBuf, 10);
+      jumpBuf = "";
+      closeOverlays();
+      if (n >= 1) { go(n - 1, 0); }
+      e.preventDefault();
+      return;
+    }
+    jumpBuf = "";
+
     switch (key) {
       case "ArrowRight":
+      case "ArrowDown":
       case "PageDown":
         next();
         break;
@@ -463,6 +485,7 @@
         if (e.shiftKey) { prev(); } else { next(); }
         break;
       case "ArrowLeft":
+      case "ArrowUp":
       case "PageUp":
         prev();
         break;
@@ -490,7 +513,7 @@
       var k = key.toLowerCase();
       if (k === "o" && !isPresenter) { toggleOverview(); handled = true; }
       else if (k === "f") { toggleFullscreen(); handled = true; }
-      else if (k === "b" && !isPresenter) { toggleBlack(); handled = true; }
+      else if ((k === "b" || k === ".") && !isPresenter) { toggleBlack(); handled = true; }
       else if (k === "/" && e.shiftKey && !isPresenter) { toggleHelp(); handled = true; }
       /* t / r / p: left to 20-deck-features.js - no preventDefault here. */
     } else if (!handled && code === "Slash" && e.shiftKey && !isPresenter) {

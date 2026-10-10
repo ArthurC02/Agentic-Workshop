@@ -163,7 +163,7 @@
 <section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 候選取最低 rate" data-minute="63">
   <p class="reveal-badge">揭曉 · B2</p>
   <h2 class="title">每位旅客：列出符合的優惠 → 取最低折扣率</h2>
-  <p class="muted fx fx-fade">舊：首個符合（企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT）　→　新：選最低折扣率、每人只用一項</p>
+  <p class="muted fx fx-fade">舊：取第一個符合的優惠　→　新：選最低折扣率、每人只用一項</p>
   <div class="b2-lane">
     <span class="b2-who">成人 <small>企業會員＋提前 · 基本票價 700</small></span>
     <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
@@ -189,6 +189,7 @@
     <p><b>本頁範例</b>＝AC-B2-007／008／009 的三資格混合案例：學生 STUDENT 75／525、成人 ADVANCE 85／595，總額 <b>1120</b>（09 acceptance map）。按 → 逐步：淘汰較高 rate → 顯示結果 → 總額。</p>
     <p><b>C4 揭露要點</b>：B2 取代 DEBT-001 的「首個符合」政策；Booking 建立與 Booking Change 共用同一政策，回應明細與文件同步；不要求複雜的 Engine，保留同步 Notification。</p>
     <p>來源沒有 B2 標準實作 Code；只講觀察準則，<b>不現場補寫答案 Code</b>。</p>
+    <p><b>從投影移到備註</b>：舊政策依序比對企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT，取第一個符合的。</p>
   </aside>
 </section>
 
@@ -200,7 +201,7 @@
     <tbody>
       <tr><td>成人無優惠</td><td><code>ADULT／100／700</code></td><td>AC-B2-001</td></tr>
       <tr><td>學生</td><td><code>STUDENT／75／525</code></td><td>AC-B2-002</td></tr>
-      <tr><td>提前成人（≥14 天；13／14／15 天邊界）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
+      <tr><td>提前成人（≥14 天）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
       <tr><td>企業會員成人</td><td><code>CORPORATE／95／665</code></td><td>AC-B2-004</td></tr>
       <tr><td>學生＋提前</td><td><code>STUDENT／75／525</code>（不疊乘 85%）</td><td>AC-B2-005</td></tr>
       <tr><td>企業會員＋提前</td><td><code>ADVANCE／85／595</code>（舊測試 665 → 595）</td><td>AC-B2-006</td></tr>
@@ -209,12 +210,12 @@
     </tbody>
   </table>
   <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍是 <b>1225</b>（AC-B2-011）</p>
-  <p class="muted fx fx-fade">測試：原有 44 個（43 個不變、1 個依新規則更新）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
   <aside class="notes">
     <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
     <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
     <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
     <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。原 B2 參考版的 api-examples.md、architecture.md、discount-overview.md 曾寫成 FULL_FARE，已更正為 ADULT；B2 復原包內的文件也已是 ADULT。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
+    <p><b>從投影移到備註</b>：AC-B2-003 驗 13／14／15 天邊界。測試：原有 44 個（43 個不變、1 個依新規則更新）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b>。</p>
   </aside>
 </section>
 

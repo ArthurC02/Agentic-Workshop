@@ -273,8 +273,8 @@ class BlockquoteTests(unittest.TestCase):
                          '<blockquote>\n<h2 id="pg--h1">T</h2>\n<ul>\n<li>x</li>\n</ul>\n</blockquote>')
 
 
-def table(head, body=""):
-    return ('<div class="rb-table-wrap"><table class="rb-table">\n<thead>\n<tr>\n' + head
+def table(head, body="", cls="rb-table"):
+    return (f'<div class="rb-table-wrap"><table class="{cls}">\n<thead>\n<tr>\n' + head
             + "\n</tr>\n</thead>\n<tbody>\n" + body + "</tbody>\n</table></div>")
 
 
@@ -283,9 +283,28 @@ class TableTests(unittest.TestCase):
         out = render("| a | b | c | d |\n|---|:---|:---:|---:|\n| 1 | 2 | 3 | 4 |")
         head = ('<th>a</th>\n<th style="text-align:left">b</th>\n<th style="text-align:center">c</th>\n'
                 '<th style="text-align:right">d</th>')
-        body = ('<tr>\n<td>1</td>\n<td style="text-align:left">2</td>\n<td style="text-align:center">3</td>\n'
-                '<td style="text-align:right">4</td>\n</tr>\n')
-        self.assertEqual(out, table(head, body))
+        body = ('<tr>\n<td data-label="a">1</td>\n<td style="text-align:left" data-label="b">2</td>\n'
+                '<td style="text-align:center" data-label="c">3</td>\n'
+                '<td style="text-align:right" data-label="d">4</td>\n</tr>\n')
+        self.assertEqual(out, table(head, body, "rb-table rb-table-stack"))
+
+    def test_stack_labels_are_plain_escaped_header_text(self):
+        out = render('| **名稱** | `x"y` | a&b | [M](#gf-mission) |\n|---|---|---|---|\n| 1 | 2 | 3 | 4 |')
+        self.assertIn('<table class="rb-table rb-table-stack">', out)
+        self.assertIn('<td data-label="名稱">1</td>', out)
+        self.assertIn('<td data-label="x&quot;y">2</td>', out)
+        self.assertIn('<td data-label="a&amp;b">3</td>', out)
+        self.assertIn('<td data-label="M">4</td>', out)
+
+    def test_three_columns_stack(self):
+        out = render("| a | b | c |\n|---|---|---|\n| 1 | 2 | 3 |")
+        self.assertIn('<table class="rb-table rb-table-stack">', out)
+        self.assertIn('<td data-label="c">3</td>', out)
+
+    def test_narrow_tables_have_no_labels(self):
+        out = render("| a | b |\n|---|---|\n| 1 | 2 |")
+        self.assertNotIn("data-label", out)
+        self.assertIn('<table class="rb-table">', out)
 
     def test_header_only(self):
         self.assertEqual(render("| a | b |\n|---|---|"), table("<th>a</th>\n<th>b</th>"))

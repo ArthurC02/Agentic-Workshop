@@ -831,18 +831,25 @@ class _BlockParser:
             rows.append(_split_row(line))
             i += 1
 
-        def cell(tag, text, align):
+        def cell(tag, text, align, label=""):
             style = f' style="text-align:{align}"' if align else ""
-            return f"<{tag}{style}>{self.inline.render(text)}</{tag}>"
+            return f"<{tag}{style}{label}>{self.inline.render(text)}</{tag}>"
 
         width = len(aligns)
-        out = ['<div class="rb-table-wrap"><table class="rb-table">', "<thead>", "<tr>"]
+        # 3+ columns: each <td> carries its header as data-label so phones can show rows as cards.
+        stack = width >= 3
+        labels = [""] * width
+        if stack:
+            labels = [' data-label="' + html.escape(html.unescape(re.sub(r"<[^>]+>", "", self.inline.render(
+                header[c] if c < len(header) else ""))).strip(), quote=True) + '"' for c in range(width)]
+        cls = "rb-table rb-table-stack" if stack else "rb-table"
+        out = [f'<div class="rb-table-wrap"><table class="{cls}">', "<thead>", "<tr>"]
         out += [cell("th", header[c], aligns[c]) for c in range(width)]
         out += ["</tr>", "</thead>", "<tbody>"]
         for row in rows:
             row = (row + [""] * width)[:width]
             out.append("<tr>")
-            out += [cell("td", row[c], aligns[c]) for c in range(width)]
+            out += [cell("td", row[c], aligns[c], labels[c]) for c in range(width)]
             out.append("</tr>")
         out += ["</tbody>", "</table></div>"]
         blocks.append(("html", "\n".join(out)))

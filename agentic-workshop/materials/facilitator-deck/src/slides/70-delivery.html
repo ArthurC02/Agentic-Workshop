@@ -86,22 +86,22 @@
 <section class="slide" data-seg="reveal" data-reveal-of="b3" data-title="揭曉 · B3 預期影響" data-minute="77">
   <p class="reveal-badge">揭曉 · B3 團體訂票</p>
   <h2 class="title">預期影響：新增，而非重寫</h2>
-  <div class="cols-2" style="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)">
+  <div class="cols-2 impact-layout" style="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)">
     <table class="table fx fx-fade">
       <thead><tr><th>模組</th><th>預期影響</th></tr></thead>
       <tbody>
-        <tr><td><code>GroupBookingService.create</code></td><td>在同一把鎖（RLock）內驗證班次／5–20 人／容量／會員；<b>先計價＋完整座位規劃，再一次寫入</b>；稽核紀錄 <code>GROUP_BOOKING_CREATED</code></td></tr>
+        <tr><td><code>GroupBookingService.create</code></td><td>在同一把鎖（RLock）內驗證；<b>先計價＋完整座位規劃，再一次寫入</b></td></tr>
         <tr><td><code>SeatService.plan_group</code></td><td>依人數尋找完整連續空位區段</td></tr>
-        <tr><td>models／contracts</td><td>團體類型（GROUP）；已分配座位（Assigned Seats）；根層 <code>applied_discounts</code> 沿用 B2</td></tr>
-        <tr><td><code>PaymentService.pay</code>／<code>pay_group</code></td><td>團體付款成功／失敗補償</td></tr>
+        <tr><td>models／contracts</td><td>團體類型（GROUP）；已分配座位（Assigned Seats）</td></tr>
+        <tr><td><code>PaymentService</code></td><td>團體付款成功／失敗補償</td></tr>
         <tr><td>改票／退款</td><td>團體改票暫不支援（409）；已付款團體退款時全部釋放座位</td></tr>
-        <tr><td>API</td><td><code>POST /group-bookings</code>、<code>/group-bookings/{booking_id}/pay</code></td></tr>
+        <tr><td>API</td><td><code>POST /group-bookings</code> 與團體付款端點</td></tr>
       </tbody>
     </table>
-    <div>
+    <div class="stat-stack">
       <div class="card fx fx-up"><div class="big-number">5–20</div><p class="muted">人團體訂票；一般訂票維持 1–4 人</p></div>
       <div class="card fx fx-up"><div class="big-number">57</div><p class="muted">條規則（原 40 ＋ 新 17）</p></div>
-      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（參考版本：原 55 ＋ 新增 20；各組數字不同屬正常）</p></div>
+      <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（參考版本；各組不同屬正常）</p></div>
     </div>
   </div>
   <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段，不會只成立一部分。</p>
@@ -110,6 +110,7 @@
     <p>一般 Booking 維持原付款失敗 pending／保留座位語意；只有 GROUP 採取消（見 Atomicity 頁）。</p>
     <p>Assigned Seats 欄位：seat_id／carriage_id／row_number／seat_number／position。文件同步團體與 Change 邊界。</p>
     <p>學習成功不是只有 Level 3；Reference Solution 須達全部 AC，不受學員分級豁免。用本頁對照各組 Gate 2 Impact，而非比程式量。</p>
+    <p><b>從投影移到備註</b>：<code>GroupBookingService.create</code> 驗證班次／5–20 人／容量／會員，稽核紀錄 <code>GROUP_BOOKING_CREATED</code>；models 根層 <code>applied_discounts</code> 沿用 B2；付款為 <code>PaymentService.pay</code>／<code>pay_group</code>；API 為 <code>POST /group-bookings</code>、<code>/group-bookings/{booking_id}/pay</code>；75 個測試＝原 55 ＋ 新增 20。</p>
   </aside>
 </section>
 
@@ -187,17 +188,17 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="78">
   <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
-  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT</span>（拒絕 SQLite 提議，回 Gate 2 重提 In-Memory 方案）</h2>
+  <h2 class="title">拒絕 SQLite 提議 <span class="chip dw">REJECT</span>：回 Gate 2 重提 In-Memory 方案</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>
       <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>（資料只存在記憶體）；SQLite 提案與此限制衝突</p>
-      <p class="muted">即使 SQLite 可由標準函式庫使用，仍是<b>未核准資料庫變更</b>；不能安裝、實作或寫進有條件核准（Conditional Approval）</p>
+      <p class="muted">SQLite 屬<b>未核准資料庫變更</b>，不能安裝或實作</p>
     </div>
     <div class="card dw fx fx-up">
       <h3>必要修正</h3>
       <p>拒絕 SQLite 方案、<b>保留團體任務</b></p>
-      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單的實測計畫</p>
+      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案，附實測計畫</p>
     </div>
   </div>
   <ol class="steps">
@@ -213,6 +214,7 @@
     <p><b>不可接受（F03）</b>：直接 Approve SQLite｜含糊條件後開始 Coding｜長篇討論或實際安裝。</p>
     <p><b>判讀重點</b>：是否指出 Constraint、Challenge 提議、選擇 Reject／重提、要求全團體補償與測試，並保留 Decision／Approver／時間／Context。不要求學員說出參考答案原文；本頁是範例，不是真實核准紀錄（Approver／Timestamp 需實際填寫）。不要求通用 Transaction Framework。</p>
     <p><b>Debrief Q4（F05）</b>：「若沒人發現SQLite越界，缺少哪項治理能力？」</p>
+    <p><b>從投影移到備註</b>：即使 SQLite 可由標準函式庫使用，仍是未核准資料庫變更；不能安裝、實作或寫進有條件核准（Conditional Approval）。重提方案的實測計畫要涵蓋：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單。</p>
   </aside>
 </section>
 
@@ -253,12 +255,12 @@
       <tr><td>規則數</td><td>36</td><td>36</td><td>40</td><td>57</td></tr>
     </tbody>
   </table>
-  <p class="callout fx fx-fade">B3 的 75 是參考版本的數字；各組測試數不同屬正常，看的是有沒有比 B3 起點變少。</p>
   <aside class="notes">
     <p><b>來源</b>：<code>03-brownfield/evaluation/11-b0-to-b3-version-matrix.md</code> 主表（畫面為精簡版）。</p>
     <p>省略列：FARE-007～010（B0 無｜B1 未提前改政策｜B2 實作逐人最低 rate＋Type／Rate／Amount 明細｜B3 團體逐位明細驗證）；債務／文件落差（B0 3 債／2 落差｜B1 不以 BugFix 清債｜B2 折扣文件同步，通知及改票指南舊落差保留｜B3 同步團體與 Change 邊界）。測試時間：B2 1.21s、B3 0.58s。</p>
     <p>B0 <code>PASS AS BROWNFIELD BASELINE</code> 依 Manifest Gate，不等於 pytest 全通過；B1 必須零失敗。B1–B3 標準素材判定 <code>PASS FOR WORKSHOP USE</code>；真實 13 分鐘／90 分鐘演練與正式放行仍待驗收。</p>
     <p>學員時間到可在 52／63 分鐘用已驗收的復原包（Recovery）推進，但不等於 Reference Solution AC 豁免。</p>
     <p>80 分鐘 → 翻到回顧解鎖頁。不追加 Demo 美化或修 Code。</p>
+    <p><b>從投影移到備註</b>：B3 的 75 是參考版本的數字；各組測試數不同屬正常，看的是有沒有比 B3 起點變少。</p>
   </aside>
 </section>

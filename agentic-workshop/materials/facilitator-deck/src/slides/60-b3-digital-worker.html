@@ -148,13 +148,11 @@
       <span class="chip">1 · 核對</span>
       <h3>在核准範圍內嗎？</h3>
       <p><span class="chip">YES</span> <span class="chip">NO</span> <span class="chip">UNCLEAR</span></p>
-      <p class="muted">是／否／不明確；Agent 整理提議、規則與證據</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">2 · 決策</span>
       <h3>決策</h3>
       <p><span class="chip">APPROVE</span> <span class="chip">APPROVE WITH CONDITIONS</span> <span class="chip">REJECT</span></p>
-      <p class="muted">核准／有條件核准／退回；Agent 照原文記錄</p>
     </div>
     <div class="card dw fx fx-up">
       <span class="chip dw">3 · 回覆</span>
@@ -164,6 +162,7 @@
   </div>
   <p class="callout warn fx fx-fade">貼例外回應卡的提示詞；Agent 問事件時照抄這一行：<b>事件：建議加 SQLite</b>。60 秒內一行回答；時間緊可 30 秒口頭判斷。</p>
   <aside class="notes">
+    <p><b>從投影移到備註</b>：1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
     <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
