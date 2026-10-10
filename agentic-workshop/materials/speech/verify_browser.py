@@ -19,7 +19,9 @@ setTimeout(async () => {
       const c=el('content'), st=el('stage');
       result.slides.push({id:slides[i].id, contentOverflow:c.scrollHeight-c.clientHeight,
         horizontalOverflow:c.scrollWidth-c.clientWidth,
-        stageOverflow:st.scrollHeight-st.clientHeight, promptVisible:!el('prompt-box').hidden});
+        stageOverflow:st.scrollHeight-st.clientHeight, promptVisible:!el('prompt-box').hidden,
+        clipped:[...st.querySelectorAll('*')].filter(n=>getComputedStyle(n).overflowY!=='visible'&&n.scrollHeight>n.clientHeight+1)
+          .map(n=>(n.id||n.tagName.toLowerCase())+':'+(n.scrollHeight-n.clientHeight))});
     }
     index=4;render();let clipboardValue='';
     Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async value=>{clipboardValue=value;}}});
@@ -73,5 +75,5 @@ report = json.loads(html.unescape(match.group(1)))
 print(json.dumps(report, ensure_ascii=False, indent=2))
 if report['errors'] or not all(value for key,value in report['actions'].items()):
     raise RuntimeError('Browser smoke check failed')
-if any(s['stageOverflow']>1 or s['horizontalOverflow']>1 or s['contentOverflow']>1 for s in report['slides']):
+if any(s['stageOverflow']>1 or s['horizontalOverflow']>1 or s['contentOverflow']>1 or s['clipped'] for s in report['slides']):
     raise RuntimeError('Slide overflow')

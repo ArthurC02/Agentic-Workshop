@@ -19,7 +19,7 @@
 9. Tool→Digital Worker的責任消失，或重新分配？
 10. 只看證據不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？（例：測試全過但寫法有問題時，誰會發現）
 
-收斂紀錄至少包含一項Context／Rule改善、一項Skill或流程需求、一項平台需求，並連回Gate或例外證據。Level1分析、Level2核心與Level3完整交付分開說明；學員治理學習與標準實作驗收不可混為一談。
+收斂紀錄至少包含一項帶回團隊的行動，並連回Gate或例外證據。Level1分析、Level2核心與Level3完整交付分開說明；學員治理學習與標準實作驗收不可混為一談。
 
 平台需求可對應權限、Rule Enforcement、Approval、Audit、Test Evidence、Context Versioning、Session、成本與時間觀測，不宣稱此工作坊已建成平台。
 

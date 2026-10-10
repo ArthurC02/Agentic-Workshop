@@ -6,17 +6,17 @@
 
 ## 1. 從 Idea 到可開發的專案
 
-第一階段 · Greenfield（從空資料夾開始的新專案）／Tool（把 Agent 當工具使用） · 操作教學
+第一階段 · Greenfield（從頭開始的新專案）／Tool（把 Agent 當工具使用） · 操作教學
 
 - **今天要完成**：在自己的新資料夾，留下一套開發依據：需求、MVP（Minimum Viable Product，最小可行產品）、使用者故事、驗收條件、業務流程、Gherkin（用 Given／When／Then 寫測試情境的格式）與架構文件。
 
 - **工作方式**：你確認問題與規則；Agent 協助整理與細化。每一步審查後才繼續。
 
-**人工確認**：完成條件：一個核心訂票情境可從需求追到測試與模組責任。
+**人工確認**：完成時，一個核心訂票情境可以從需求一路追到測試與模組責任。
 
 ## 2. 剛才的順利，哪些來自事先準備？
 
-打開剛才的 G0（Greenfield 起始包）：先找到文件，再找到程式入口。
+打開剛才的 G0（Greenfield 起始程式包）：先找到文件，再找到程式入口。
 
 - **需求已明確**：四個 API、16 項商業規則、15 項驗收條件；限制了第一版範圍。
 
@@ -90,7 +90,7 @@ MVP：用最少功能完整走完核心流程的第一版；今天就是查詢�
 
 ### 交給 Agent 的指令
 
-依已確認的docs/idea.md與01-project-brief.md，產生docs/02-mvp-plan.md。將本次MVP拆為M1查詢、M2訂票、M3付款與訂單、M4整合交付；每階段列目標、工作ID、依賴、可驗證產出及不處理項目。每個工作應可獨立審查；不要引入新功能。等我確認優先順序。
+依已確認的docs/idea.md與01-project-brief.md，產生docs/02-mvp-plan.md。將本次MVP拆為M1查詢、M2訂票、M3付款與訂單、M4完整交付；每階段列目標、工作ID、依賴、可驗證產出及不處理項目。每個工作應可獨立審查；不要引入新功能。等我確認優先順序。
 
 **人工確認**：M1–M4是同一版MVP的工作階段；只有查詢完成時，仍是部分成果。
 
@@ -103,7 +103,7 @@ TASK-GF-02：建立核心訂票
 輸入：Trip ID、1–4位旅客與旅客類型
 依據：BOOKING-001～005、FARE-001～004
 工作：驗證 → 逐人計價 → 建立待付款訂票 → 保留座位
-產出：用例、票價Policy、API與測試
+產出：使用案例、票價Policy、API與測試
 驗證：T001成人＋學生＝1225，座位20→18
 失敗：0／5人、班次不存在、容量不足；無部分寫入
 ```
@@ -126,7 +126,7 @@ TASK-GF-02：建立核心訂票
 
 ## 9. 把「正確」寫成可判定的結果
 
-驗收條件（AC）：事先寫好、能明確判定符合或不符合的完成標準。先手算：700＋700×75%＝1225。
+驗收條件（AC，Acceptance Criteria）：事先寫好、能明確判定符合或不符合的完成標準。先手算：700＋700×75%＝1225。
 
 - **AC-G-005／009**：成人＋學生訂票：總額1225、整數、PENDING_PAYMENT（待付款）、座位20→18。
 
@@ -146,7 +146,7 @@ TASK-GF-02：建立核心訂票
 
 - **訂票拒絕**：不建立Booking，不扣座位；回傳明確錯誤。
 
-- **付款失敗**：不建立Order、不標PAID；Greenfield仍待付款且保留座位。
+- **付款失敗**：不建立Order、不標PAID；訂票維持待付款，座位仍保留。
 
 ### 交給 Agent 的指令
 
@@ -179,8 +179,7 @@ Feature: 核心訂票
     Given 狀態已重置，T001基本票價700且剩餘20座
     When 為T001建立一位成人與一位學生的訂票
     Then 訂票總額為1225且為整數
-    And 訂票狀態為PENDING_PAYMENT
-    And T001剩餘18座
+    And 訂票狀態為PENDING_PAYMENT，T001剩餘18座
 ```
 
 ### 交給 Agent 的指令
@@ -231,17 +230,17 @@ def test_mixed_booking(client, memory_store):
 
 ## 15. 讓規則與流程有清楚的落點
 
-每層只做一類事；Domain（業務核心）不依賴FastAPI。
+每層只做一類事；Domain（領域層：業務核心）不依賴FastAPI。
 
-API／Schemas（介面層）：HTTP與輸入輸出 → Application（應用層）：協調訂票用例 → Domain（領域層）：模型與票價規則
+API／Schemas（介面層）：HTTP與輸入輸出 → Application（應用層）：協調訂票使用案例 → Domain：模型與票價規則
 
 - **Infrastructure（基礎設施層）**：記憶體資料存取、預設測試資料（Seed）、模擬付款。
 
-- **依賴方向**：API→Application→Domain；實作在程式入口組裝。
+- **依賴方向**：API→Application→Domain；各層的實作在程式入口（main.py）串接起來。
 
 ### 交給 Agent 的指令
 
-依已確認的docs/01至06文件，建立docs/07-architecture.md。採API、Schemas、Application、Domain、Infrastructure輕量分層；列模組責任、依賴、入口組裝、Repository契約與測試方式。以訂票用例逐步說明在哪層驗證、計價、保存與轉HTTP回應。Domain不依賴FastAPI，不新增資料庫或外部服務；先不要寫業務程式。
+依已確認的docs/01至06文件，建立docs/07-architecture.md。採API、Schemas、Application、Domain、Infrastructure輕量分層；列模組責任、依賴、入口組裝、Repository契約與測試方式。以訂票使用案例逐步說明在哪層驗證、計價、保存與轉HTTP回應。Domain不依賴FastAPI，不新增資料庫或外部服務；先不要寫業務程式。
 
 **人工確認**：學生75%在Domain的票價Policy（規則物件）；HTTP轉換在API；訂票協調在Application。
 
@@ -253,13 +252,11 @@ API／Schemas（介面層）：HTTP與輸入輸出 → Application（應用層�
 docs/                         # 已確認的開發依據
 src/smart_ticket/
   main.py                     # App與依賴組裝
-  api/                        # Router、HTTP錯誤轉換
-  schemas/                    # Request／Response
-  application/                # 查詢、訂票、付款、訂單用例
+  api/、schemas/              # Router、HTTP錯誤轉換；Request／Response
+  application/                # 查詢、訂票、付款、訂單使用案例
   domain/                     # 模型、票價Policy、Repository契約
   infrastructure/             # In-Memory、Seed、Mock Payment
-tests/unit/                   # Policy與用例
-tests/integration/            # HTTP與完整流程
+tests/unit/、integration/     # 規則與使用案例；HTTP與完整流程
 ```
 
 ### 交給 Agent 的指令
@@ -272,7 +269,7 @@ tests/integration/            # HTTP與完整流程
 
 追溯鏈：從工作項目一路連到規則、驗收條件、測試情境與程式模組，每一環都找得到依據。選混合訂票情境，親手走一遍。
 
-TASK-GF-02 → 同行成人與學生的使用者故事 → FARE-002／003 → AC-G-005／009 → 混合訂票情境（Scenario） → FarePolicy＋Booking用例＋測試
+TASK-GF-02 → 同行成人與學生的使用者故事 → FARE-002／003 → AC-G-005／009 → 混合訂票情境（Scenario） → FarePolicy＋Booking使用案例＋測試
 
 ### 交給 Agent 的指令
 

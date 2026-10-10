@@ -10,7 +10,7 @@
 
 文件落差精確兩項：上列改票指南未記Fare Difference，以及 `docs/discount-overview.md` 未清楚定義多優惠優先順序。實際目前Policy為CORPORATE→ADVANCE→STUDENT→ADULT首個符合，不是最有利政策。這兩處以外的README、Contract、核心與主要Business Rules不得刻意寫錯。
 
-刻意放入的落差只有上面兩項。使用Recovery包的組（包內同樣有上面兩份文件，另附 `docs/api-summary.md`、`docs/context.md`；B2 Recovery的 `discount-overview.md` 已寫明最有利單一優惠，那份不再算落差），Agent常另外指出下列兩點，都算可接受的額外發現（看它有沒有附檔名與依據），不必糾正：`docs/api-summary.md` 沒寫回應裡有沒有Discount Type（B0回應沒有）；`docs/context.md` 寫「優惠不疊加」，但B1程式是取第一個符合的優惠，不是最有利的那一個。
+刻意放入的落差只有上面兩項。B0 包與 Recovery 包都另附 `docs/api-summary.md`、`docs/context.md`（Recovery 包內同樣有上面兩份文件；B2 Recovery的 `discount-overview.md` 已寫明最有利單一優惠，那份不再算落差），Agent常另外指出下列兩點，都算可接受的額外發現（看它有沒有附檔名與依據），不必糾正：`docs/api-summary.md` 沒寫回應裡有沒有Discount Type（B0回應沒有）；`docs/context.md` 寫「優惠不疊加」，但B0／B1程式是取第一個符合的優惠，不是最有利的那一個。
 
 唯一Bug `BUG-B0-001` 為學生率85%而非正確75%；其失敗Manifest與因果驗證在Evaluation，不是技術債追加項。禁止把Bug、文件落差與三項債混計。
 

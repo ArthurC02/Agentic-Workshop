@@ -4,7 +4,7 @@
 
 本輪已修正 Time Skip 解鎖頁為29分鐘；60秒例外倒數支援開始／暫停／繼續／重設，講者控制同一倒數，B3段落計時持續。
 
-單檔Runbook內嵌G0／B0及兩份受控Recovery；Recovery只於52／63分鐘由主持人按需提供獨立碼，一般B2／B3碼不開Recovery。切換頁包含保存成果、新目錄、停Server、Python3.13環境、44／55測試、Health及新Session／Context紀錄；不以接續基線當小組完成，不發B3解答。
+單檔Runbook內嵌G0／B0及兩份受控Recovery；Recovery只於52／63分鐘由主持人視需要提供獨立碼，一般B2／B3碼不開Recovery。切換頁包含保存成果、新目錄、停Server、Python3.13環境、44／55測試、Health及新Session／Context紀錄；不以接續基線當小組完成，不發B3解答。
 
 安全交付包由`python -X utf8 scripts/package_materials.py`產生於`dist/materials/participant-materials.zip`，精確只含`runbook.html`。不要自行打包原稿資料夾。
 

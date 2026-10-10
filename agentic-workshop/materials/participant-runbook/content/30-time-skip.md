@@ -34,7 +34,7 @@ section: Time Skip
 先把舊專案收好：保留 Greenfield 現況（不刪除、不覆寫），讓原本的 Agent 停掉它啟動的 App，避免之後兩個版本搶同一個埠號。在原本 Greenfield 的 Agent 對話貼上：
 
 ```text
-請停止你在背景啟動的伺服器（埠號 8000；只停止這個專案的伺服器（uvicorn smart_ticket，連同它開出的子程序一起停）；停止後 /health 若還連得上，告訴我是哪個程式在用 8000，不要停它），確認 http://127.0.0.1:8000/health 已經連不上，然後用白話告訴我結果。不要修改任何檔案。
+請停止你在背景啟動的這個專案的伺服器（uvicorn smart_ticket，埠號 8000），連同它開出的子程序一起停。接著確認 http://127.0.0.1:8000/health 已經連不上；如果還連得上，表示有別的程式在用 8000，告訴我是哪個程式，但不要停它。最後用白話告訴我結果。不要修改任何檔案。
 ```
 
 接著下載 B0，用檔案總管（右鍵「全部解壓縮」）或 Finder 解壓縮到短路徑，例如 `C:\work\b0`，找到 `smart-ticket-b0` 資料夾（路徑是 `agentic-workshop\03-brownfield\participant\repository\smart-ticket-b0`，裡面有 `README.md`）。
@@ -44,6 +44,8 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 ```
 
 **看到什麼算過關**：Greenfield 的 Agent 回報 /health 已連不上；`smart-ticket-b0` 資料夾裡看得到 `README.md`。
+
+第 39 分鐘起和旁邊 2–3 位組成小組，現在可以先看好要和誰一組。
 
 ```callout warning
 解壓縮到短路徑
@@ -86,10 +88,10 @@ Token（詞元）是 Agent 讀寫文字的計費與記憶單位：對話越長�
 - 這是已上線 12 個月的訂票系統 Smart Ticket，版本 B0。我剛接手，還不熟。
 - 這一段只接手：建好環境、跑測試、記下起點；先不要分析，也不要修改任何程式。
 - 之後的紀錄都寫在專案裡的 notes 資料夾；notes 只放紀錄，不算程式修改。
-請用三句話複述你理解的規則與背景。複述完直接準備執行環境：用 py -3.13 -m venv .venv 建立虛擬環境（不必啟用，之後直接呼叫 .venv\Scripts\python.exe，Git Bash 寫 .venv/Scripts/python.exe；版本不是 3.13 就停下告訴我），並安裝 requirements.txt。遇到錯誤先說明原因，不要自行修改程式。裝好後告訴我環境是否建好，然後停下等我。
+請用三句話複述你理解的規則與背景。複述完直接準備執行環境：用 py -3.13 -m venv .venv 建立虛擬環境（macOS 用 python3.13 -m venv .venv，之後呼叫 .venv/bin/python）。不必啟用，之後直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe）；版本不是 3.13 就停下告訴我。接著安裝 requirements.txt。遇到錯誤先說明原因，不要自行修改程式。裝好後告訴我環境是否建好，然後停下等我。
 ```
 
-**看到什麼算過關**：Agent 的複述有提到「不自己改程式、先計畫再核准、沒執行過的標未驗證」與「這段只接手、不修改」；接著它開始安裝環境（安裝要一點時間，可以先往下讀檢查點 3）。
+**看到什麼算過關**：Agent 的複述有提到「不自己改程式、先計畫再核准、沒執行過的標未驗證」與「這段只接手、不修改」；接著它開始安裝環境（安裝要一點時間，可以先往下讀檢查點 3；安裝可延到第 33 分；個人分析檢查點 1 會再跑一次測試）。
 
 **如果卡住**：複述漏了重點，貼這段：
 

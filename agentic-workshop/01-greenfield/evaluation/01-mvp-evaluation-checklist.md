@@ -19,8 +19,8 @@
 | Test | 不刪除／弱化測試來湊通過；已完成功能無 Feature Skip | 變更審查第 2、3 題回答（含 Agent 附的 git diff 輸出）、Skip 待辦清單 |
 | Documentation | README 可讓 Agent 重現安裝／啟動／測試；業務規則與 API 範例一致 | 文件路徑、實際範例與 Rule ID |
 | Documentation | 交付摘要列完成／未完成／已知限制與下一步 | 摘要與可驗證證據連結 |
-| Agentic Behavior | 開工先貼 Agent 工作規則；修改前先請 Agent Plan（五段式提示詞，計畫時較強模型／高推論強度），由人確認任務順序與範圍 | notes 的計畫（每步固定三項）與核准紀錄、人的調整；模型／推論強度的選擇以口述為準，工具沒有此設定不扣分 |
-| Agentic Behavior | 小步放行：一次只核准一步，每步要求變更審查並判斷後才放行 | notes 中逐步的變更審查答案與核准分鐘 |
+| Agentic Behavior | 開工先貼 Agent 工作規則；修改前先請 Agent Plan（五段式提示詞），由人確認任務順序與範圍 | notes 的計畫（每步固定四項）與核准紀錄、人的調整 |
+| Agentic Behavior | 小步放行：一次只核准一步，每步要求變更審查並判斷後才放行 | notes 中逐步的變更審查答案與核准時間 |
 | Agentic Behavior | 人要求驗收對照表（固定欄位的結構化輸出），並在 /docs 試過行為後接受或要求修正；未驗證項如實標示 | notes 的驗收對照表、交付表單的 /docs 試用與接受決定 |
 | Agentic Behavior | 能說明人做什麼、Agent 做什麼，仍由人主導驗收 | notes 交付摘要的人機分工／簡短口述記錄 |
 

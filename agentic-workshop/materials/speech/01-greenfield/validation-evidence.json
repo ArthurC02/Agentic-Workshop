@@ -5,126 +5,144 @@
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "why",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "chain",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "folder",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "idea",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "mvp",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "task",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "story",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "acceptance",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "flow",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "flow-review",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "gherkin",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "gherkin-boundary",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "tests",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": false
+      "promptVisible": false,
+      "clipped": []
     },
     {
       "id": "architecture",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "layout",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "trace",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     },
     {
       "id": "handover",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
-      "promptVisible": true
+      "promptVisible": true,
+      "clipped": []
     }
   ],
   "errors": [],

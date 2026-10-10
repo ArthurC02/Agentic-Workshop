@@ -16,7 +16,7 @@ section: Delivery
 - **完成的樣子**：`notes/delivery.md` 有附證據來源的交付摘要與完成等級（Level）；你選了 Level、勾了交件。
 ```
 
-全場第 76 分鐘停止擴充，接下來 **3 分鐘**定稿交付摘要（Delivery Summary）並交件。Agent 的建議不等於人員決策，人員最後決策以 B3 的 Gate 3 為準。
+B3 已於第 74 分停止擴充；第 76 分停止一切修改，接下來 **3 分鐘**定稿交付摘要（Delivery Summary）並交件。Agent 建議的 Level 只是建議；你們的最後決定以 B3 Gate 3 選的為準。
 
 ```callout warning
 如實交付，交件後不再修改

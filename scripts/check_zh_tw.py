@@ -25,7 +25,10 @@ MAINLAND = {
     "質量": "品質", "賬號": "帳號", "高效": "有效率", "落地": "實施", "閉環": "結案", "賦能": "協助",
     "抓手": "切入點", "打通": "串接", "激活": "啟用", "項目組": "專案團隊",
     "缺省": "預設", "操作系統": "作業系統", "程序員": "程式設計師", "寬帶": "寬頻", "博客": "部落格", "並發": "同時處理",
+    "用例": "使用案例", "回滾": "撤銷", "接入": "串接",
 }
+# Regex terms: 按需 must skip 按需求卡; 技術棧 must skip the instruction-file name 01_技術棧與Repository標準指令書.
+MAINLAND_RE = {re.compile("按需(?!求)"): "視需要", re.compile("(?<![_ ])技術棧(?! ?與 ?Repository)"): "技術組合"}
 CJK = re.compile(r"[一-鿿]")
 
 
@@ -44,6 +47,7 @@ def problems(text: str) -> list[str]:
         except UnicodeEncodeError:
             out.append(f"非台灣繁體字「{ch}」")
     out += [f"「{m}」→「{t}」" for m, t in MAINLAND.items() if m in text]
+    out += [f"「{rx.pattern}」→「{t}」" for rx, t in MAINLAND_RE.items() if rx.search(text)]
     return out
 
 

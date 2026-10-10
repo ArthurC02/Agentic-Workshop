@@ -77,6 +77,6 @@
 
 ## 本輪補充：Recovery與安全發放
 
-2026-10-05使用者授權補齊審查問題。單檔Runbook另內嵌凍結候選的兩份已驗收Recovery ZIP，只於52／63分鐘由主持人按需提供獨立碼，與一般B2／B3任務碼分開；不得以Recovery當小組成果，不含B3接續解答。僅此兩份基線例外允許內嵌，仍禁止Evaluation原稿／完整參考答案目錄。
+2026-10-05使用者授權補齊審查問題。單檔Runbook另內嵌凍結候選的兩份已驗收Recovery ZIP，只於52／63分鐘由主持人視需要提供獨立碼，與一般B2／B3任務碼分開；不得以Recovery當小組成果，不含B3接續解答。僅此兩份基線例外允許內嵌，仍禁止Evaluation原稿／完整參考答案目錄。
 
 解鎖頁統一29分鐘；60秒倒數支援開始／暫停／繼續／重設且保持B3段落計時。package_materials.py生成只含runbook.html的ZIP，不發content／template原稿。瀏覽器下載與真人演練仍依實際Preflight驗收。

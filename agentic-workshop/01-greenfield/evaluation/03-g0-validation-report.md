@@ -27,7 +27,7 @@ Seed T001–T004票價／座位與固定路線正確，Arrival晚於Departure。
 
 8項Skip：班次查詢、訂票保留座位、一般人數上限、剩餘容量、付款與重複付款、Order查詢、成人計價、學生計價。每項原因引用Rule ID；無Fail／XFail／未知錯誤。完成MVP必須移除相應Skip並補測試。
 
-已知Warning：Starlette0.46.2使用anyio.abc.BlockingPortal別名，anyio4.15.1標記deprecated；不影響本次Health、OpenAPI或啟動。未過濾Warning。首次沙箱執行另有pytest快取權限Warning，允許寫入後重跑已消除，以上為重跑實際結果。
+已知Warning：Starlette0.46.2使用anyio.abc.BlockingPortal別名，anyio4.15.1標記deprecated；不影響本次Health、OpenAPI或啟動。未過濾Warning。首次沙箱執行另有pytest快取權限Warning，允許寫入後重跑已消除，以上為重跑實際結果。2026-10-09 起 requirements 釘選 AnyIO 4.9.0，這個 Warning 已不再出現。
 
 ## 規格與隔離
 
@@ -37,4 +37,4 @@ Participant、Facilitator、Evaluation分目錄，學員素材不連向標準答
 
 ## 限制與完成條件
 
-22分鐘活動採4＋12＋4＋2配置，11主要實作點作範圍校正；尚未進行真實學員時間演練，不宣稱已測得完成時間。本次完成G0環境、框架、初始測試與文件驗證；不代表MVP業務功能已完成。已知相容Warning如上留存，學員仍須補上實作、完整單元／整合測試及規則／API文件。
+22分鐘活動採2＋2＋13＋5配置，11主要實作點作範圍校正；尚未進行真實學員時間演練，不宣稱已測得完成時間。本次完成G0環境、框架、初始測試與文件驗證；不代表MVP業務功能已完成。已知相容Warning如上留存（2026-10-09 釘選 AnyIO 4.9.0 後已消除），學員仍須補上實作、完整單元／整合測試及規則／API文件。

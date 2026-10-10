@@ -2,7 +2,7 @@
 
 > 讀者：主持人。時機：Gate2相對第6–7分鐘／活動69–70分鐘。前置：既定In-Memory Constraint可查。可見性：Facilitator，事件內容按時機口頭發放。
 
-唯一例外為主要Agent提議以SQLite簡化座位交易與Rollback，與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不修改技術棧。
+唯一例外為主要Agent提議以SQLite簡化座位交易與Rollback，與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不修改技術組合。
 
 若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議：
 

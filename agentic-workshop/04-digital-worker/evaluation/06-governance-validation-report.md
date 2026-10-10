@@ -17,7 +17,7 @@
 
 ## Operating Rules摘要
 
-Agent負責需求、設計、實作、測試、文件與交付；人員設定邊界、Challenge、Review及核准，不能補Code或Test。無自動修改能力的工具可產生Patch由環境套用，人員不自行補寫。必讀僅Operating Rules、Work Order、Approval Gates與B3 Task Card，其餘表單按需使用。
+Agent負責需求、設計、實作、測試、文件與交付；人員設定邊界、Challenge、Review及核准，不能補Code或Test。無自動修改能力的工具可產生Patch由環境套用，人員不自行補寫。必讀僅Operating Rules、Work Order、Approval Gates與B3 Task Card，其餘表單視需要使用。
 
 Operating Rules為384個中文字，另含英文識別字與標點；2分鐘閱讀是設計目標，沒有以字數估算冒稱真人實測通過。素材保持工具中立，不要求特定Plan Mode、設定檔、CLI或Subagent。
 

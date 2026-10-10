@@ -6,7 +6,7 @@ group: b3
 section: B3｜Digital Worker
 ---
 
-> 本頁上半部取自 B3 參與者文件 `06-exception-response-card.md`，是空白範本，按需使用。例外發生時，人只做決定；提議內容、證據與風險由 Agent 寫進 `notes/b3.md`。
+> 本頁上半部取自 B3 參與者文件 `06-exception-response-card.md`，是空白範本，視需要使用。例外發生時，人只做決定；提議內容、證據與風險由 Agent 寫進 `notes/b3.md`。
 
 ```include
 zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/participant/06-exception-response-card.md
@@ -33,7 +33,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ## Agent 自己停下來時（Escalation）
 
-Agent 遇到 [Work Order](#b3-work-order) 的停止條件時會自己停下，這不是主持人宣布的例外事件。它會依上方 Escalation 範本把觸發原因、證據、影響、可選方案、建議與需要你決定的事寫進 `notes/b3.md`；你讀完回一句決定（例如「照建議做」），不需要另外填表。
+Agent 遇到 [工作單](#b3-work-order) 的停止條件時會自己停下，這不是主持人宣布的例外事件。它會依上方 Escalation 範本把觸發原因、證據、影響、可選方案、建議與需要你決定的事寫進 `notes/b3.md`；你讀完回一句決定（例如「照建議做」），不需要另外填表。
 
 ```callout tip
 這段學到的技巧

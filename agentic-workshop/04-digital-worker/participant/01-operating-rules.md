@@ -15,7 +15,7 @@
 
 順序：先過 Gate 1 核准需求，再過 Gate 2 核准影響分析與設計；Gate 2 核准後才改程式。Gate 3 看驗收對照表與變更審查答案（不看程式），核對還沒完成的事後，決定是否交付。遇到衝突、資訊不足或超出權限，立即停止並升級，條件見 [工作單](02-agent-work-order.md)。
 
-工具不支援自動修改檔案時，Agent 可以產生修改檔（Patch），由環境套用；人仍不得自己補寫程式或測試。
+工具不支援直接修改檔案時，Agent 產生修改檔（Patch）並用工具指令自行套用，再回報套用結果；人仍不得自己補寫程式或測試。
 
 必讀只有本規則、[工作單（Work Order）](02-agent-work-order.md)、[三道 Gate](03-approval-gates.md) 與 B3 任務卡。[交付審查檢核表](04-review-checklist.md)、[交付摘要範本](05-delivery-template.md) 與 [例外回應卡](06-exception-response-card.md) 需要時再用。
 

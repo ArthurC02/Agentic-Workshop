@@ -10,7 +10,7 @@
 
 ```text
 Gate：Gate 2
-決策：REJECT AND REVISE
+決策：REJECT（拒絕 SQLite 提議，回 Gate 2 重提 In-Memory 方案）
 審查過的證據：Work Order Persistence＝In-Memory；Gate 2 SQLite提案與此限制衝突。
 條件／要修正的事：拒絕SQLite方案，保留團體任務；重提In-Memory Seat Reservation與Compensation方案，說明完整連續區段、建立atomic、付款失敗CANCELLED／全release／無Order的實測計畫。
 核准人：真實人員待填

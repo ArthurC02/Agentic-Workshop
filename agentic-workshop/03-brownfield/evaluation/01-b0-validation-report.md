@@ -9,7 +9,7 @@
 
 ## Environment
 
-Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正式B0、clean-copy与診斷均是同一B0來源的獨立目錄；G0／G1檔案未改。
+Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正式B0、clean-copy與診斷均是同一B0來源的獨立目錄；G0／G1檔案未改。
 
 ## File Count
 
@@ -31,10 +31,10 @@ Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正�
 
 | 版本 | 最終實際結果 | pytest exit | 判定 |
 |---|---|---|---|
-| 正式B0 | **5 failed, 39 passed, 1 warning in 0.44s** | 1 | 五項受控影響与manifest完全一致；零非預期 |
-| 隔離只修學生率 | **44 passed, 1 warning in 0.32s** | 0 | 全部28原G1与16新增恢復 |
+| 正式B0 | **5 failed, 39 passed, 1 warning in 0.44s** | 1 | 五項受控影響與manifest完全一致；零非預期 |
+| 隔離只修學生率 | **44 passed, 1 warning in 0.32s** | 0 | 全部28原G1與16新增恢復 |
 
-原始首次結果正式1.57秒、診斷0.68秒；補足新增測試的付款／改票通知与改票Audit斷言後，以上為最終重驗。全部低於8秒，無Skip／XFail。唯一已知Warning來自Starlette TestClient的 `anyio.abc.BlockingPortal`棄用別名；已記錄，不影響執行，不過濾，無未知Warning。
+原始首次結果正式1.57秒、診斷0.68秒；補足新增測試的付款／改票通知與改票Audit斷言後，以上為最終重驗。全部低於8秒，無Skip／XFail。唯一已知Warning來自Starlette TestClient的 `anyio.abc.BlockingPortal`棄用別名；已記錄，不影響執行，不過濾，無未知Warning。
 
 ## Intentional Failure Verification
 
@@ -42,17 +42,17 @@ Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正�
 
 ## Intentional Failure Manifest and Set Equality
 
-[Manifest](06-intentional-failure-manifest.md)與[JSON node清單](06-intentional-failure-manifest.json)列完整五項node ID、Rule／AC、expected／actual、Diff／呼叫路徑因果。以實測 failed集合與manifest雙向相等核對，不只比較失敗數量；結果 **PASS**。機器驗證摘要与52檔SHA256見[validation-evidence.json](validation-evidence.json)。
+[Manifest](06-intentional-failure-manifest.md)與[JSON node清單](06-intentional-failure-manifest.json)列完整五項node ID、Rule／AC、expected／actual、Diff／呼叫路徑因果。以實測 failed集合與manifest雙向相等核對，不只比較失敗數量；結果 **PASS**。機器驗證摘要與52檔SHA256見[validation-evidence.json](validation-evidence.json)。
 
 ## Isolated Diagnostic Repair Verification
 
-`diagnostic-repair/smart-ticket-b0-student-rate-check/`為Evaluation限定副本。與正式B0雙向52檔清單一致，只差 `src/smart_ticket/domain/fare_policy.py`一行 `STUDENT_FARE_RATE = 85`→`75`；其他Code／Test／Document完全一致，44全通過。正式B0与clean-copy仍85且五項受控失敗。此副本不供Participant、不進案例History、不代表B1正式版本已製作。
+`diagnostic-repair/smart-ticket-b0-student-rate-check/`為Evaluation限定副本。與正式B0雙向52檔清單一致，只差 `src/smart_ticket/domain/fare_policy.py`一行 `STUDENT_FARE_RATE = 85`→`75`；其他Code／Test／Document完全一致，44全通過。正式B0與clean-copy仍85且五項受控失敗。此副本不供Participant、不進案例History、不代表B1正式版本已製作。
 
 ## API Smoke Tests
 
-在正式B0使用TestClient實測：Health／七班可售Trip／企業M002→成人訂票665与唯一Seat→付款Order665→改T005總712、差47、原T001回20座／T005剩5→退票REFUNDED／T005回6座→三通知与四Audit事件查詢。Order仍保留原付款665。
+在正式B0使用TestClient實測：Health／七班可售Trip／企業M002→成人訂票665與唯一Seat→付款Order665→改T005總712、差47、原T001回20座／T005剩5→退票REFUNDED／T005回6座→三通知與四Audit事件查詢。Order仍保留原付款665。
 
-另將Clock設2030-01-01，距出發14天，非會員成人提前價595；Reset恢復固定Seed与全部ledger。輸出 `IMPORT HEALTH OPENAPI MEMBER BOOK PAY CHANGE REFUND NOTIFY AUDIT ADVANCE RESET: PASS`。新端點missing404、格式422与業務409亦由Integration測試覆蓋。
+另將Clock設2030-01-01，距出發14天，非會員成人提前價595；Reset恢復固定Seed與全部ledger。輸出 `IMPORT HEALTH OPENAPI MEMBER BOOK PAY CHANGE REFUND NOTIFY AUDIT ADVANCE RESET: PASS`。新端點missing404、格式422與業務409亦由Integration測試覆蓋。
 
 ## G1 Regression
 
@@ -74,11 +74,11 @@ Windows、Python **3.13.15**，使用工作區獨立 `.codex-tmp/b0-env/`。正�
 
 Participant Markdown／Python掃描未含Evaluation解答連結、診斷路徑、BUG／DEBT地圖或學生率修復常數；沒有內嵌`.git`。Time Skip交接不揭根因位置／失敗數；三級提示只在Facilitator。Bundle僅供Evaluation，10個可達Commit截至G0／G1／B0，無未來解答或診斷Commit。最終學員打包仍須允許清單，目錄分層不等於權限。
 
-原要求 `reference-baseline/smart-ticket-b0-clean-copy/`已實際建立；52檔清單与內容／SHA256完全相同，仍含85%Bug。O-06來源與防漂移方案已落實。
+原要求 `reference-baseline/smart-ticket-b0-clean-copy/`已實際建立；52檔清單與內容／SHA256完全相同，仍含85%Bug。O-06來源與防漂移方案已落實。
 
 ## 難度與時間校正
 
-本機啟動2.23秒、測試0.44秒，程式38實質檔，資料／API／ADR与三級提示足以提供調查入口；不需外部網路服務才能執行。依規模與單一計價來源評估3分鐘啟動、5分鐘初析／候選、8分鐘B1具有可行性。**未完成普通工程師實際演練**，不把Agent產製與自動測試時間當作學員時間；真實3／5／8分鐘與90分鐘校正留待Runbook／最終演練驗收。
+本機啟動2.23秒、測試0.44秒，程式38實質檔，資料／API／ADR與三級提示足以提供調查入口；不需外部網路服務才能執行。依規模與單一計價來源評估3分鐘啟動、5分鐘初析／候選、8分鐘B1具有可行性。**未完成普通工程師實際演練**，不把Agent產製與自動測試時間當作學員時間；真實3／5／8分鐘與90分鐘校正留待Runbook／最終演練驗收。
 
 ## Final Decision
 

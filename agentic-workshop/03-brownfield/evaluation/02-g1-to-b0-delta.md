@@ -9,11 +9,11 @@ G1四個核心API與Health、原T001–T004、75%公開規則及全部28項原�
 | 區域 | 新增／變更檔 | 主要變更 |
 |---|---|---|
 | Domain | members.py、discounts.py、records.py、models.py | MemberType／Member、DiscountType／Result、SeatAssignment／RefundRecord／NotificationRecord／AuditEntry；Booking member／seats／difference與REFUNDED |
-| Application | 六新增Service及Booking／Payment | Member、ChangeBooking、Refund、Seat、Notification、Audit；計價、座位与成功事件串接 |
-| Infrastructure | clock.py、store.py、seed_data.py | 可注入固定Clock、8Trip／3Member、全部ledger与完整Reset |
+| Application | 六新增Service及Booking／Payment | Member、ChangeBooking、Refund、Seat、Notification、Audit；計價、座位與成功事件串接 |
+| Infrastructure | clock.py、store.py、seed_data.py | 可注入固定Clock、8Trip／3Member、全部ledger與完整Reset |
 | API／Schema | routes.py、dependencies.py、contracts.py | 原API相容、會員可選，新增會員／改退票／通知／Audit與Booking查詢六API |
 | Tests | conftest.py、新增8 integration檔 | 原28 body／assert不改；G1限定Seed背景與完整B0背景分別驗證，新增16項，合計44 |
-| Documents | README、架構／規則／API／歷史、兩guide／overview与3ADR | 公開36項規則、API、合理決策、兩受控文件落差 |
+| Documents | README、架構／規則／API／歷史、兩guide／overview與3ADR | 公開36項規則、API、合理決策、兩受控文件落差 |
 | Workshop | Time Skip5文件、Brownfield學員4／主持3文件 | 12個月快轉、停止個人Repo、統一B0、獨立分析與Shared Context |
 
 ## 商業規則與付款快照
@@ -24,7 +24,7 @@ G1四個核心API與Health、原T001–T004、75%公開規則及全部28項原�
 
 ## 唯一Bug、三項債與兩項落差
 
-`BUG-B0-001`只在FarePolicy學生率常數設定85%，Domain／Application／API共用同一來源。不是合法政策變更。正式B0五項學生相關失敗与manifest相等；只修該常數至75%的隔離副本全部44通過。詳見[Manifest](06-intentional-failure-manifest.md)與[驗證報告](01-b0-validation-report.md)。
+`BUG-B0-001`只在FarePolicy學生率常數設定85%，Domain／Application／API共用同一來源。不是合法政策變更。正式B0五項學生相關失敗與manifest相等；只修該常數至75%的隔離副本全部44通過。詳見[Manifest](06-intentional-failure-manifest.md)與[驗證報告](01-b0-validation-report.md)。
 
 - DEBT-001：discount順序分支，是政策演化痕跡；不強制全面重寫。
 - DEBT-002：Payment／Change／Refund同步呼叫Notification；本機規模可接受，不導入Queue。
@@ -42,6 +42,6 @@ G1四個核心API與Health、原T001–T004、75%公開規則及全部28項原�
 
 ## 後續演化邊界
 
-B1只修學生率並全套恢復；B2才決定最有利單一优惠；B3才加入5–20團體、連續完整座位與失敗補償。本版未加入這些功能。只以當前副本與驗證作基線，後續版本仍須各自來源、Delta及實測。
+B1只修學生率並全套恢復；B2才決定最有利單一優惠；B3才加入5–20團體、連續完整座位與失敗補償。本版未加入這些功能。只以當前副本與驗證作基線，後續版本仍須各自來源、Delta及實測。
 
 完成條件：G1保留與B0變更可追溯，Bug／債／落差明確，驗證與來源證據完整且不洩漏學員答案。

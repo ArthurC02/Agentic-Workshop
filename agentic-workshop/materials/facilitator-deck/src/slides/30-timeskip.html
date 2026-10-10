@@ -17,10 +17,10 @@
     .ts-jump .ts-cal-body { padding: .6rem 0 .9rem; transform-origin: top center; animation: ts-flip .2s ease-in-out 12 .2s; }
     .ts-jump .ts-cal-num { display: block; font-size: 5.2rem; line-height: 1; font-weight: 700; color: #014865; --ts-n: 12; counter-reset: tsm var(--ts-n); animation: ts-count 2.4s steps(12, end) .2s both; }
     .ts-jump .ts-cal-num::after { content: counter(tsm); }
-    .ts-jump .ts-cal-unit { display: block; font-size: 1.05rem; color: #494A57; }
-    .ts-jump .ts-months { display: grid; grid-template-columns: repeat(12, 1fr); gap: .45rem; max-width: 46rem; margin: 0 auto .4rem; }
+    .ts-jump .ts-cal-unit { display: block; font-size: 1.4rem; color: #494A57; }
+    .ts-jump .ts-months { display: grid; grid-template-columns: repeat(12, 1fr); gap: .45rem; width: 100%; max-width: 46rem; margin: 0 auto .4rem; }
     .ts-jump .ts-months span { height: .7rem; border-radius: 99px; background: var(--c-teal, #00A59B); animation: ts-fill .2s ease-out both; animation-delay: calc(var(--i) * .2s + .2s); }
-    .ts-jump .ts-axis { display: flex; justify-content: space-between; max-width: 46rem; margin: 0 auto; font-size: .95rem; opacity: .8; }
+    .ts-jump .ts-axis { display: flex; justify-content: space-between; width: 100%; max-width: 46rem; margin: 0 auto; font-size: 1.4rem; opacity: .8; }
     .ts-jump .ts-big { font-size: 4.4rem; font-weight: 700; letter-spacing: .04em; margin: .2rem 0 0; }
     @keyframes ts-spin-min { from { transform: rotate(0deg); } to { transform: rotate(4320deg); } }
     @keyframes ts-spin-hr { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -93,6 +93,7 @@
   <aside class="notes">
     <p><b>說（00:00／第 29 分）</b>：「請停止使用自己的 Greenfield 程式庫，接手主持人統一提供的既有系統 B0。你現在要先理解既有系統與證據，再決定如何修改。Agent 的角色從工具轉為隊友：你不再逐步下指令，而是讓 Agent 一起分析、提出計畫，由你核准。各自分析、比較判斷，再整合成小組的共同脈絡。一樣不寫、不讀程式。」</p>
     <p><b>看</b>（整段）：是否仍使用自己的 MVP、是否提前修程式、是否有環境阻塞。</p>
+    <p><b>分組</b>：請 3–4 人一組坐在一起，第 39 分鐘起以小組比較分析。</p>
     <p>只回答操作與活動範圍的問題；不揭露學生票率錯誤、檔案位置、失敗數量或文件落差位置。說完翻到解鎖頁。</p>
   </aside>
 </section>
@@ -105,7 +106,7 @@
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Time Skip，從檢查點 1 開始。接下來要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
     <p><b>操作</b>：計時已在「時間快轉」頁按 T 啟動；若還沒啟動，在本頁按 <b>T</b>（04:00，00:00＝第 29 分）。</p>
-    <p>本頁大字顯示 Time Skip 解鎖碼（解開 Time Skip 公告與交接、B0 下載、個人分析、Shared Context）；完整碼表見講者視窗。</p>
+    <p>本頁大字顯示 Time Skip 解鎖碼（解開 Time Skip 公告與交接、B0 下載、個人分析、共同脈絡）；完整碼表見講者視窗。</p>
     <p><b>Recovery（B0 來源或啟動異常）</b>：正式 B0 或同源 clean-copy，保留 Bug；全員統一 B0；不可發診斷修復副本或 B1 替代初始分析。</p>
   </aside>
 </section>
@@ -117,8 +118,8 @@
     <tbody>
       <tr><td><b>情境</b></td><td>上線 12 個月，你接手同事維護的既有系統 B0</td></tr>
       <tr><td><b>你的目標</b></td><td>4 分鐘內停下 Greenfield，在 B0 開新對話，把環境跑起來</td></tr>
-      <tr><td><b>今天的技巧</b></td><td>換專案就開新對話，第一件事貼規則、說明背景（Token 節費）</td></tr>
-      <tr><td><b>完成的樣子</b></td><td>Agent 複述得出規則；版本 B0，起點寫進 <code>notes/time-skip.md</code></td></tr>
+      <tr><td><b>今天的技巧</b></td><td>換專案就開新對話，第一件事貼規則、說明背景（Token 節費：Token 是 Agent 讀寫文字的計費單位，對話越長越貴）</td></tr>
+      <tr><td><b>完成的樣子</b></td><td>Agent 能複述規則；確認版本是 B0，起點已寫進 <code>notes/time-skip.md</code></td></tr>
     </tbody>
   </table>
   <ol class="timeline">
@@ -139,13 +140,13 @@
   <h2 class="title">停手並取得 B0</h2>
   <ol class="steps">
     <li>保留 Greenfield 現況；請舊對話的 Agent 停掉它啟動的伺服器</li>
-    <li>從 Runbook 下載 B0，解壓到短路徑，例如 <code>C:\work\b0</code></li>
+    <li>從 Runbook 下載 B0，解壓縮到短路徑，例如 <code>C:\work\b0</code></li>
     <li>找到 <code>smart-ticket-b0</code>（含 <code>README.md</code>）</li>
   </ol>
   <p class="callout">Runbook › Time Skip › 檢查點 1</p>
   <aside class="notes">
-    <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，請原本的 Agent 停掉 App。B0 已發放，從 Runbook 下載，解壓到短路徑。公告裡寫了：系統上線 12 個月，增加了會員、優惠、改退票、通知、座位與稽核。」</p>
-    <p><b>看</b>：是否仍在改自己的 MVP；解壓到深層路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；用自己的 G1 代替 B0。</p>
+    <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，請原本的 Agent 停掉伺服器。B0 已發放，從 Runbook 下載，解壓縮到短路徑。公告裡寫了：系統上線 12 個月，增加了會員、優惠、改退票、通知、座位與稽核。」</p>
+    <p><b>看</b>：是否仍在改自己的 MVP；解壓縮到深層路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；用自己的 G1 代替 B0。</p>
     <p><b>介入</b>：不能用個人 G1 或已修 B1 代替 B0；下載失敗時由主持人提供同一份已驗收的 B0，不讓學員各自找替代版本。</p>
     <p><b>回答背景問題</b>：公開說明只描述模組與歷史成長；不得把內部原因、修正方法、文件落差的具體位置或後續任務解法帶進轉場。B0 延續 G1 的分層、Domain、四個核心業務 API、Health、固定資料與測試；演化重點是讓「理解與影響分析」成為必要能力，不是全面重建另一個產品。</p>
   </aside>

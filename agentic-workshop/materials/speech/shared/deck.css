@@ -10,7 +10,7 @@ header{display:flex;justify-content:space-between;font-size:21px;color:var(--mut
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:10px;padding:16px 24px}
 .card h2{font-size:28px;margin:0 0 8px}.card p{font-size:25px;line-height:1.4;margin:0;color:#34485d}
 .flow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.flow span{font-size:24px;padding:13px 18px;background:#dff3f0;border-radius:8px;line-height:1.35}.flow b{color:var(--teal);font-size:25px}
-pre{margin:0;padding:22px 27px;border-radius:10px;background:#152c43;color:#f2f6f7;font:23px/1.45 Consolas,"Microsoft JhengHei",monospace;white-space:pre-wrap;overflow:auto}
+pre{margin:0;padding:16px 22px;border-radius:10px;background:#152c43;color:#f2f6f7;font:20px/1.35 Consolas,"Microsoft JhengHei",monospace;white-space:pre-wrap;overflow:auto}
 #prompt-box{padding:20px 26px;background:#e2f3f9;border-radius:10px;border-left:6px solid var(--blue);flex-shrink:0}
 .label{display:flex;justify-content:space-between;align-items:center;font-size:24px}.label button{font-size:19px}
 #prompt{font-size:25px;line-height:1.5;margin:10px 0 0;white-space:pre-wrap}#check{margin:0;padding:17px 23px;background:#fff0e7;border-left:6px solid var(--orange);font-size:24px;line-height:1.45;border-radius:5px;flex-shrink:0}

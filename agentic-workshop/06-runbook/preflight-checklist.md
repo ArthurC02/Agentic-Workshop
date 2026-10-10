@@ -15,7 +15,7 @@
 | B2 | 55 passed、逐人最有利不疊加，無Skip／XFail。 | [B2報告](../03-brownfield/evaluation/15-b2-validation-report.md) |
 | B3 | 75 passed、完整連續與付款補償，無Skip／XFail。 | [B3報告](../03-brownfield/evaluation/18-b3-validation-report.md) |
 
-B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可接受，不以「剛好五個失敗」判定；不接受新增失敗或刪弱正確測試。唯一既知Starlette／AnyIO BlockingPortal DeprecationWarning已記錄，新Warning先核實。
+B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可接受，不以「剛好五個失敗」判定；不接受新增失敗或刪弱正確測試。2026-10-09釘選AnyIO4.9.0後，原本的Starlette／AnyIO BlockingPortal DeprecationWarning已消除，pytest不應再有Warning；出現任何Warning先核實。
 
 - [ ] 六版獨立安裝、pip check、Import及Python3.13可核對。
 - [ ] Health200／status=ok、OpenAPI及正確App版本可核對，未讀舊Server。

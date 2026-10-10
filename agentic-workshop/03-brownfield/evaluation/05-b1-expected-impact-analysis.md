@@ -23,6 +23,6 @@ B1 不提前實作 B2 最有利單一優惠。Corporate 學生或同時提前購
 
 先比較正式 B0／B1 source 差異、44個測試案例／13個測試Python檔與原 28 body／assert；保留 conftest 的 G1 Seed／固定 Clock 適配。正式 B1 須獨立環境完成 Import／Health／OpenAPI／完整 pytest／API Smoke，再確認全部 Manifest node ID 恢復、零失敗、無 Skip／XFail。B0 的隔離診斷副本不是正式 B1 驗證證據。
 
-唯讀確認 B1 rate 已是 75，44 測試函式可辨識；App metadata 須識別 B1，並納入最終來源比對。正式B1獨立環境已44通過（1.00秒），五項恢復，App版本B1；52檔來源与B0祖先／Bundle比對通過，詳見12-b1-validation-report.md及14-b1-case-history-and-delta.md。
+唯讀確認 B1 rate 已是 75，44 測試函式可辨識；App metadata 須識別 B1，並納入最終來源比對。正式B1獨立環境已44通過（1.00秒），五項恢復，App版本B1；52檔來源與B0祖先／Bundle比對通過，詳見12-b1-validation-report.md及14-b1-case-history-and-delta.md。
 
 完成條件：最小業務 Diff、版本識別與來源可核對，七項 AC 在[測試映射](08-b1-acceptance-test-map.md)有證據，正式 B1 全 44 通過及五項恢復，不改 B0 第一匹配政策、不提供後續階段答案。

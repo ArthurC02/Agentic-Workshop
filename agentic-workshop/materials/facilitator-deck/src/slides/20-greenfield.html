@@ -42,7 +42,7 @@
   <p class="kicker">檢查點 1 / 4 · 第 07–09 分鐘</p>
   <h2 class="title">交給 Agent 規則並備好環境</h2>
   <ol class="steps">
-    <li>下載 G0（Greenfield 起始包），解壓到短路徑，在 <code>starter-repository</code> 資料夾開啟 Agent</li>
+    <li>下載 G0（Greenfield 起始程式包），解壓縮到短路徑，在 <code>starter-repository</code> 資料夾開啟 Agent</li>
     <li>先貼 Agent 工作規則，再請 Agent 建好環境、跑起始測試：應為 <code>1 passed, 8 skipped</code></li>
     <li>Agent 會順手用 Git 存一版起點，之後才說得出改了什麼</li>
   </ol>
@@ -50,7 +50,7 @@
   <aside class="notes">
     <p><b>說（00:00／第 07 分）</b>：「第一個技巧：給 Agent 一份規則。先把 Runbook 的工作規則整段貼給 Agent，之後就不用每次叮嚀『先計畫、做完停下、附測試結果』。接著請 Agent 建好環境、記下起點，這些指令都由 Agent 打，你看它的白話回報。」</p>
     <p><b>看</b>：有沒有先貼規則；起始 <code>1 passed, 8 skipped</code>（以 Agent 回報的實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。學員自己在終端機打指令 → 提醒改請 Agent 執行。</p>
-    <p><b>常見卡點</b>（先請學員把錯誤貼給 Agent 說明；Agent 處理不了再由主持人協助）：解壓到深層路徑、Git 回報 Filename too long（只在本專案設 <code>core.longpaths</code> 或改短路徑）、PowerShell 執行原則（直接用 venv 裡的 python.exe）、Git 要求姓名／Email、Agent 讀不到上一層文件（把 01–05 五份複製到 <code>docs/</code>）。起始測試可能另有 1 個第三方套件 warning，不影響。</p>
+    <p><b>常見卡點</b>（先請學員把錯誤貼給 Agent 說明；Agent 處理不了再由主持人協助）：解壓縮到深層路徑、Git 回報 Filename too long（只在本專案設 <code>core.longpaths</code> 或改短路徑）、PowerShell 執行原則（直接用 venv 裡的 python.exe）、Git 要求姓名／Email、Agent 讀不到上一層文件（把 01–05 五份複製到 <code>docs/</code>）。</p>
     <p><b>環境阻擋</b>：可直接協助 Python、Import、依賴與測試命令；記錄耗時，不私下延長截止時間。</p>
     <p><b>首次介紹</b>：這裡第一次介紹「給 Agent 一份工作規則」，花約 30 秒，指著 Runbook 的「技巧：給 Agent 一份工作規則」小卡講。Git 基準由 Agent 代做，Runbook 只一句帶過，不另外講。</p>
   </aside>
@@ -69,8 +69,8 @@
     <p><b>說（00:02／第 09 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 先讀需求、掃 TODO、提出計畫並寫進 notes，先不要修改。它會在每個問題附上建議答案，你只要回「同意」或「改成…」，然後核准最前面兩小步（票價、班次查詢都很小，一起做省一輪來回）。」</p>
     <p><b>示範 Agent 技巧</b>：指著 Runbook 計畫提示詞的五個標籤【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件】說「這就是 Prompt 結構」。巡場看：學員有沒有自己刪掉某個部分。模型選擇與推論強度留到個人分析才講，這裡不提。</p>
     <p><b>看</b>：Agent 是否已開始改檔案（→ 請學員貼 Runbook 檢查點 2「如果卡住」的提示詞）；學員是否看過建議答案再回「同意」、是否只核准最前面兩小步（直接說「全部做完」→ 提醒本段技巧是小步放行）。</p>
-    <p><b>需求澄清（Runbook 已寫）</b>：付款失敗 → Booking 維持 <code>PENDING_PAYMENT</code>、座位不釋放、不建立 Order、可再付款；不存在資源 404，人數不符 400（在 domain／application 檢查，不寫成輸入格式限制），座位不足、重複付款、付款失敗 409，格式錯誤保留 422；失敗以 <code>MockPaymentGateway.next_result = PaymentStatus.FAILED</code> 模擬。學員版 AC-G-013 不要求特定錯誤碼。學員提問時指向該段。</p>
-    <p><b>提示・找不到入口</b>（一次一級，提醒技巧＋給可貼的提示詞）：H1 提醒「先要計畫」，請學員貼「請列出所有 <code>TODO(GREENFIELD</code> 和對應的 Rule ID，用白話說明」｜H2 貼「請用白話說明一個請求從進來到存資料經過哪幾層、各負責什麼」｜H3 貼「請依 TODO 群組提出分段計畫，讓我決定先做哪段」（主持參考：<code>main.py</code>、<code>api/</code>、<code>application/</code>）。</p>
+    <p><b>需求澄清（Runbook 已寫）</b>：付款失敗 → Booking 維持 <code>PENDING_PAYMENT</code>、座位不釋放、不建立 Order、可再付款；不存在資源 404；人數不符 409（在 domain／application 檢查，不寫成輸入格式限制），座位不足、重複付款、付款失敗也是 409；格式錯誤保留 422；失敗以 <code>MockPaymentGateway.next_result = PaymentStatus.FAILED</code> 模擬。AC-G-013 要求 Booking／Order 不存在回 404；Trip 不存在依需求澄清也回 404。學員提問時指向該段。</p>
+    <p><b>提示・找不到入口</b>（一次一級，提醒技巧＋給可貼的提示詞）：H1 提醒「先要計畫」，請學員貼「先仔細想過再回答。請列出所有 Greenfield TODO 與 Rule ID，用固定兩欄（TODO、對應需求的白話說明）回報，列完停下。」｜H2 貼「請用白話說明一個請求從進來到存資料經過哪幾層、各負責什麼。」｜H3 貼「請依 TODO 群組提出分段計畫寫進 notes/greenfield.md，讓我決定先做哪段。」（主持參考：<code>main.py</code>、<code>api/</code>、<code>application/</code>）。</p>
     <p><b>首次介紹</b>：這裡第一次介紹 Prompt 結構（開場只念過名稱），花約 30 秒，指著 Runbook 的「技巧：Prompt 結構」小卡講；小卡最後一行是官方文件的延伸閱讀，提醒學員課後可查。Rule ID／AC 只一句帶過：需求文件裡的編號，給 Agent 對照用。</p>
   </aside>
 </section>
@@ -80,18 +80,18 @@
   <h2 class="title">小步做、每步驗收</h2>
   <ol class="steps">
     <li>Agent 做完一小步就停：附上<b>驗收對照表</b>與變更審查答案</li>
-    <li>你看三題；有「否」或「不確定」就不放行</li>
+    <li>看審查答案判斷三件事；三件都成立才放行</li>
     <li>沒問題：貼放行提示，Agent 記進 notes、更新文件、存一版，再做下一步</li>
   </ol>
-  <p class="callout">手算 700 ＋ 525 ＝ <b>1225</b>；做到付款時核對重複付款被拒</p>
+  <p class="callout">手算：成人 700 ＋ 學生 525 ＝ <b>1225</b>；做到付款時，核對重複付款會被拒絕</p>
   <aside class="notes">
-    <p><b>說（00:04／第 11 分）</b>：「第三個技巧：小步執行、每步驗收。每次只放行一小步，Agent 停下後會附上驗收對照表和變更審查答案，你看三題，沒問題才請它記進 notes、更新文件、存一版、做下一步。一步出錯只要退回這一步。回報格式每一步都一樣，這就是結構化輸出。」</p>
+    <p><b>說（00:04／第 11 分）</b>：「第三個技巧：小步執行、每步驗收。每次只放行一小步，Agent 停下後會附上驗收對照表和變更審查答案，你判斷三件事是否成立，都成立才請它記進 notes、更新文件、存一版、做下一步。一步出錯只要退回這一步。回報格式每一步都一樣，這就是結構化輸出。」</p>
     <p><b>巡場看技巧</b>：驗收對照表欄位是否固定（Agent 自己換格式 → 請學員要求照工作規則第 5 條）｜回報沒附審查答案 → 請學員貼「請依工作規則第 6 條補上四題審查答案」｜建立訂票時回應轉換出錯（起始程式的回應模型讀不到旅客資料，已知小問題）→ 請學員貼 Runbook 檢查點 3「如果卡住」的提示詞，Agent 做最小修改、不改測試。</p>
     <p><b>說（00:12／第 19 分）</b>：「還有 10 分鐘。還沒做到付款的，下一小步就做付款，同樣停下驗收。」</p>
     <p><b>看 → 介入</b>：Agent 一口氣做好幾步 → 請學員叫它停下，補這幾步的驗收對照表與審查答案｜看到「全部通過」就接受 → 「請 Agent 用驗收對照表列出每條結果和測試名稱」｜Agent 只貼原始輸出 → 要求改用驗收對照表｜notes 沒有逐步紀錄 → 請學員貼 Runbook 的放行提示詞｜規則寫進 Router → 現場不直接糾正，回顧時以分層原則帶過。</p>
-    <p><b>提示・票價不正確</b>（提醒「每步驗收」＋可貼的提示詞）：H1 「請列出 FARE-001–004 的手算結果並與實際結果對照」｜H2 「請對照規則確認：每位先計價再加總、學生 75%」｜H3 「請在驗收對照表列出票價各條規則與對應測試，用白話說明差在哪」（主持參考：Fare Policy、Booking 用例及 Fare 單元測試）。</p>
-    <p><b>提示・測試資料無法重置</b>：H1 「請單獨重跑失敗的測試，說明是否依賴執行順序」｜H2 「請確認每個測試前是否重置資料」｜H3 「請提出最小修正計畫，並說明不會改既有測試期待值」（主持參考：<code>tests/conftest.py</code>、Store／Seed／Reset）。</p>
-    <p><b>提示・付款／訂單</b>：H1 「請對照 PAYMENT-001–003、ORDER-001–002 列驗收對照表」｜H2 「請說明付款成功、重複付款、付款失敗各會發生什麼」｜H3 「請說明付款失敗時會不會產生 Order 或誤轉 PAID，並附測試名稱」（主持參考：付款用例、Mock Gateway、整合測試）。</p>
+    <p><b>提示・票價不正確</b>（提醒「每步驗收」＋可貼的提示詞）：H1 學員手算成人＋學生總額，貼「請實際呼叫 API 建一筆 T001 成人加學生的訂票，告訴我總價。」｜H2 「請對照 FARE-001–004 逐條說明目前怎麼算，哪條不符。」｜H3 「請在驗收對照表列出票價各條規則與對應測試，說明乘率、整數與總額怎麼驗。」（主持參考：Fare Policy、Booking 使用案例及 Fare 單元測試）。</p>
+    <p><b>提示・測試資料無法重置</b>：H1 「請單獨重跑失敗的測試，用白話說明結果是否依賴執行順序。」｜H2 「請對照『每個測試前重置資料』的要求，說明目前有沒有共享資料。」｜H3 「請提出最小修正計畫，並說明不會改既有測試期待值，等我核准。」（主持參考：<code>tests/conftest.py</code>、Store／Seed／Reset）。</p>
+    <p><b>提示・付款／訂單</b>：H1 學員用白話描述成功與重複付款應該發生什麼，在 /docs 付款兩次看結果｜H2 「請對照 PAYMENT-001–003、ORDER-001–002 逐條說明目前行為。」｜H3 「請說明付款失敗時會不會產生 Order 或誤轉 PAID，並附測試名稱。」（主持參考：付款使用案例、Mock Gateway、整合測試）。</p>
     <p>不可用刪除測試或放寬期待值讓測試通過；看到時請學員問 Agent「這個測試原本在檢查哪條規則？」</p>
     <p><b>進度判讀</b>：第 19 分做完訂票算正常；第 24 分還沒做到付款 → 停在已核准的那一步，直接進檢查點 4。</p>
     <p><b>首次介紹</b>：這裡第一次介紹結構化輸出，變更審查是它的一部分（含 skip／xfail 是什麼），合計約 30 秒，指著 Runbook 的「技巧：Structured Output」小卡講。Token 要到 Time Skip 才介紹，這裡先不用這個詞。</p>
@@ -104,7 +104,7 @@
   <ol class="steps">
     <li>不再加功能：請 Agent 替還沒有測試的驗收條件補測試、整理最終驗收對照表</li>
     <li>你在 <code>/docs</code> 按「Try it out」走一次：查班次 → 訂票 1225 → 付款 → 查訂單</li>
-    <li>Agent 把交付摘要寫進 notes；你在交付表單選兩個下拉並匯出</li>
+    <li>Agent 把交付摘要寫進 notes；你在交付表單選兩個下拉</li>
   </ol>
   <p class="callout warn">第 29 分鐘停止修改；未完成也交付現況與限制。</p>
   <aside class="notes">
@@ -157,12 +157,12 @@
       <li class="fx"><span>核對業務規則、API 範例與變更審查答案<br>說明人與 Agent 各自負責的工作</span></li>
     </ol>
   </div>
-  <p class="callout fx fx-fade"><b>功能完成度、人機協作分開判讀。</b>保留計畫與驗證紀錄；流程跑通仍需人員審查。</p>
+  <p class="callout fx fx-fade"><b>功能做到哪裡、和 Agent 合作得好不好，分開看。</b>保留計畫與驗證紀錄；流程跑得通，仍要由人審查。</p>
   <aside class="notes">
     <p><b>來源</b>：EMO（預期 MVP 輪廓、快速驗收順序）；EVAL（Debrief 關鍵訊息）。不提供參考解答或完整實作。</p>
     <p><b>不可偏離（EMO）</b>：學生 75%、每筆最多 4 人、成功保留座位、付款狀態、唯一 Order、精確站名篩選及錯誤一致性；不得加入會員、早鳥、團體或其他後續功能。</p>
     <p><b>可接受的簡化（EMO）</b>：固定範例日期、整數金額、In-Memory 儲存、Mock 付款、無身份驗證與前端；標準輕量分層。</p>
-    <p><b>分層（EMO）</b>：API 處理 HTTP／Schema／錯誤轉換；Application 串接用例；Domain 提供模型與 Fare Policy；Infrastructure 提供 In-Memory Repository、Seed／Reset 與 Mock Payment。Domain 不依賴 FastAPI 或測試框架。</p>
+    <p><b>分層（EMO）</b>：API 處理 HTTP／Schema／錯誤轉換；Application 串接使用案例；Domain 提供模型與 Fare Policy；Infrastructure 提供 In-Memory Repository、Seed／Reset 與 Mock Payment。Domain 不依賴 FastAPI 或測試框架。</p>
     <p><b>評估判讀值（EVAL）</b>：符合／部分符合／未符合／未驗證；空白或 Agent 自述不能代替實際驗證。Agentic Behavior 看是否用上本段技巧：先貼規則｜先要計畫、由人核准｜小步放行，每步有驗收對照表與變更審查答案（記在 notes）｜親自在 /docs 驗證並如實標示未驗證。不因學員沒讀程式、沒自己打指令或表單少填而扣分。</p>
     <p><b>Debrief 訊息（EVAL）</b>：此階段 Agent 是 Tool，不評自主率高低、不以提示次數、程式碼量或速度競賽。</p>
     <p>G0 是可啟動但未完成的骨架；G0 的未實作 Feature Skip 是骨架設計，不得因 G0 骨架通過判定學員 MVP 已完成（EMO／EVAL）。</p>

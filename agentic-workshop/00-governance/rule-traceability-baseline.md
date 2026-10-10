@@ -103,6 +103,6 @@
 - G0／G1、B0、B2、B3 的每個來源 Rule ID 均在 Registry；B1 明確是學生票修復版本。
 - 一般與團體訂票人數適用範圍分明，舊 BOOKING-002 座位語意有映射紀錄。
 - Code Area 及驗證意圖清楚標為預期，不宣稱已有程式或測試成果。
-- 商業語意、來源連結及版本差異可追溯，O-04 規格核准與 O-05／O-07 現有證據明確，B0實測与O-06已依各自Gate驗收，後續版本仍須獨立證據。
+- 商業語意、來源連結及版本差異可追溯，O-04 規格核准與 O-05／O-07 現有證據明確，B0實測與O-06已依各自Gate驗收，後續版本仍須獨立證據。
 
 2026-10-05 P5實測紀錄：B0為38實質Python／測試檔、44項測試；正式5failed／39passed符合完整manifest且零非預期，隔離一行學生率修復44passed。52檔clean-copy雜湊一致、B0 Tag392d920與Bundle續G1，已知相容Warning保留。詳見[B0 Validation Report](../03-brownfield/evaluation/01-b0-validation-report.md)。B1正式版本、真實學員與90分鐘演練仍未完成。

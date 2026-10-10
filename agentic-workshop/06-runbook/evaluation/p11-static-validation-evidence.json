@@ -1,5 +1,5 @@
 {
-  "executed_utc": "2026-10-10T07:20:04.923140+00:00",
+  "executed_utc": "2026-10-10T09:11:07.693019+00:00",
   "installation": "NOT RUN: static checks only",
   "human_rehearsal": "NOT RUN",
   "agent_service_availability": "NOT RUN",
@@ -7,7 +7,7 @@
   "documents": {
     "status": "PASS",
     "markdown_files": 401,
-    "relative_links": 890,
+    "relative_links": 889,
     "errors": [],
     "existing_utf8_bom_files": [
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",

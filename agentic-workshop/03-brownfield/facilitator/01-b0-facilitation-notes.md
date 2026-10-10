@@ -16,4 +16,4 @@ API／Schemas處理Contract，Application協調Domain、Repository及Clock／Gat
 
 ## 完成條件
 
-提示、介入與時間紀錄可追查，答案不流入學員包，Shared Context有核准與證據。
+提示、介入與時間紀錄可追查，答案不流入學員包，Shared Context有證據；任務揭露後才核准修改計畫。

@@ -13,7 +13,7 @@
     .b2-arrow{font-size:1.5em;color:var(--c-ink-2,#494A57)}
     .b2-result{margin-left:auto;padding:.4rem 1.1rem;border-radius:99px;background:var(--c-teal,#00A59B);color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
     .b2-total{display:flex;align-items:baseline;justify-content:flex-end;gap:.8rem;margin-top:.4rem}
-    .b2-total .big-number{color:var(--c-teal,#00A59B)}
+    .b2-total .big-number{color:#00807A}
   </style>
   <p class="kicker">第 52 分鐘 · 解鎖</p>
   <h2 class="title">B2 開始</h2>
@@ -23,8 +23,8 @@
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B2，從檢查點 1 開始。起點是你們已驗收的 B1。這段練的技巧：不要接受 Agent 的第一個答案，請它提 2–3 個方案並比較，由你們來選。第 55 分鐘前，由人選方案、核准工作拆解（Task Breakdown），主要 Agent 才開始做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 11:00 段落計時（00:00＝第 52 分），翻頁時持續計時。本頁大字顯示 B2 解鎖碼；52 分鐘只解開 B2（含任務卡），完整碼表見講者視窗。</p>
-    <p><b>起點</b>：第 52 分鐘才發 TASK-B2-001，並確認小組的起點是<b>已驗收的 B1</b> 與 Shared Context。來源沒有 B2 逐字台詞，只有此 Cue。</p>
-    <p><b>B1 Recovery</b>：B1 未完成需接續時，只發<b>已驗收的正式 B1 Recovery Baseline</b>（私下提供獨立碼：<code data-code="recovery-b1"></code>），記錄原小組完成度、來源版本、切換原因與時間；B0 Evaluation 診斷副本不是已完成的 B1，也不是 Recovery 材料。</p>
+    <p><b>起點</b>：第 52 分鐘才發 TASK-B2-001，並確認小組的起點是<b>已驗收的 B1</b> 與共同脈絡。來源沒有 B2 逐字台詞，只有此 Cue。</p>
+    <p><b>B1 復原包（Recovery）</b>：B1 未完成需接續時，只發<b>已驗收的正式 B1 復原包</b>（私下提供復原包解鎖碼：<code data-code="recovery-b1"></code>），記錄原小組完成度、來源版本、切換原因與時間；B0 Evaluation 診斷副本不是已完成的 B1，也不是復原包。</p>
   </aside>
 </section>
 
@@ -95,7 +95,7 @@
   <aside class="notes">
     <p><b>說（00:00／第 52 分）</b>：「先確認起點是已驗收的 B1。請 Agent 提 2–3 個方案、用表格比較，先不要改程式。不要接受第一個答案：挑一個假設要它拿依據。第 55 分鐘前，由你們選方案；貼核准提示詞後，Agent 會問你們選哪個、理由和做到第幾步，用一句話回答就好；核准人與時間它自己從共同脈絡檔和電腦時間記下。」</p>
     <p><b>💬 討論</b>：Runbook 有兩題口頭討論（挑一個最沒把握的假設；推薦方案的最大風險能不能接受），不用寫下來。小組沒討論就直接選 → 問「哪一個假設你們最沒把握？」</p>
-    <p><b>看（技巧）</b>：起點是否為已驗收 B1（或已核准的 B1 Recovery Baseline）；Agent 有沒有比較 2–3 個方案（只有一個 → 需要介入）；人有沒有質疑至少一個假設；Agent 已開始改檔 → 請小組叫它停下，回到提案；核准人與時間有沒有寫進 notes/b2.md。</p>
+    <p><b>看（技巧）</b>：起點是否為已驗收 B1（或已核准的 B1 復原包）；Agent 有沒有比較 2–3 個方案（只有一個 → 需要介入）；人有沒有質疑至少一個假設；Agent 已開始改檔 → 請小組叫它停下，回到提案；核准人與時間有沒有寫進 notes/b2.md。</p>
     <p><b>介入・55</b>：第 55 分鐘仍未核准 → 提醒小組立刻選方案並核准，再讓主要 Agent 執行。主持人不替人選方案或核准計畫。</p>
     <p><b>提示・沒有比較</b>（Agent 只給一個做法，小組直接接受）：提醒技巧「不接受第一個答案」與結構化輸出。可直接貼：「先仔細想過再回答。請再提至少一個不同的做法，和剛才的方案用固定欄位（方案、改動範圍、風險、測試影響、建議）的表格比較，寫進 notes/b2.md。」</p>
     <p><b>提示・H1 方向</b>（仍沿用條件先後，未分析多資格）：提醒技巧「先比較再選」。可直接貼：「先列出每位旅客可能符合的優惠，與任務卡上各自的公開資格對照，再說明每個方案怎麼處理同時符合多項的旅客。」</p>
@@ -109,10 +109,10 @@
   <h2 class="title">依選定方案分段實作，做完停下</h2>
   <ol class="steps">
     <li>只做核准的步驟；Agent 停下後回答變更審查問題</li>
-    <li>建立訂票與改票用同一政策；沒有計畫外檔案</li>
+    <li>建立訂票和改票都用同一套優惠規則計價；沒有計畫外檔案</li>
     <li>在 <code>/docs</code> 用一位多優惠旅客試，核對採用的優惠</li>
   </ol>
-  <p class="callout">Runbook › B2 › 檢查點 2 · 審查任一題「否／不確定」就不放行</p>
+  <p class="callout">Runbook › B2 › 檢查點 2 · 審查五題全部是「是」才放行</p>
   <aside class="notes">
     <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准工作拆解。已核准的，讓主要 Agent 只做第一段，做完停下，你們請它回答變更審查問題，再到 /docs 試一位多優惠旅客。」</p>
     <p><b>看 → 介入</b>：只改一個分支、忽略 Change、用全團共同優惠或疊乘計價、全面重構成 Engine → 需要介入。實作是否真的照選定方案（偏離時請 Agent 說明為何改用別的做法）。保留同步 Notification；折扣政策清楚化即足夠，不要求複雜的 Engine。</p>
@@ -153,9 +153,9 @@
     <p class="muted">未完成時保留政策設計、測試案例、文件清單與未完成事項。</p>
   </div>
   <aside class="notes">
-    <p><b>Cue 63（BF4 P7）</b>：停止新增工作，收摘要。<b>RB 52–63 停止</b>：「63分鐘停止；缺完成保留方案／Test Cases，按B2 Recovery接續。」</p>
+    <p><b>Cue 63（BF4 P7）</b>：停止新增工作，收摘要。<b>RB 52–63 停止</b>：「63分鐘停止；缺完成保留方案／Test Cases，按 B2 復原包接續。」</p>
     <p><b>停止規則（BF6 P7）</b>：未完成時保留 Policy Design、Test Cases、文件更新清單、實際結果與缺項；不以方案文件冒稱程式已完成。</p>
-    <p><b>Recovery（BF6 P7）</b>：若接續 B3，可發<b>已驗收的正式 B2 Recovery Baseline</b>，並記錄來源、原因與原小組完成度；主持人按需核准後，私下提供獨立 Recovery 碼（碼：<code data-code="recovery-b2"></code>），一般活動碼不開放此基線，不在投影或群組公開 Recovery 碼。沒有可用的正式基線時，不以未驗證的快照或其他階段的診斷副本代替。不把 Recovery 視為原小組的成果（BF7 P7）。B3 開始後卡點不再切換版本。</p>
+    <p><b>復原包（Recovery）（BF6 P7）</b>：若接續 B3，可發<b>已驗收的正式 B2 復原包</b>，並記錄來源、原因與原小組完成度；主持人視需要核准後，私下提供復原包解鎖碼（碼：<code data-code="recovery-b2"></code>），一般解鎖碼打不開復原包，不在投影或群組公開復原包解鎖碼。沒有可用的正式基線時，不以未驗證的快照或其他階段的診斷副本代替。不把 Recovery 視為原小組的成果（BF7 P7）。B3 開始後卡點不再切換版本。</p>
     <p>確認全員停手後才翻到揭曉頁。B3 於 63 分鐘開始，揭曉頁只短暫展示；延遲不增加總 90 分鐘。</p>
   </aside>
 </section>
@@ -208,12 +208,13 @@
       <tr><td>企業會員學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
     </tbody>
   </table>
-  <p class="muted fx fx-fade">改票（新基本票價 750；改票時 Clock 2030-01-01）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍 <b>1225</b>（AC-B2-011）· 測試：原 44（43 保留＋1 遷移）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
+  <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍是 <b>1225</b>（AC-B2-011）</p>
+  <p class="muted fx fx-fade">測試：原有 44 個（43 個不變、1 個依新規則更新）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b></p>
   <aside class="notes">
     <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
     <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
     <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
-    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。原 B2 參考版的 api-examples.md、architecture.md、discount-overview.md 曾寫成 FULL_FARE，已更正為 ADULT；B2 Recovery 包內的文件也已是 ADULT。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
+    <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。原 B2 參考版的 api-examples.md、architecture.md、discount-overview.md 曾寫成 FULL_FARE，已更正為 ADULT；B2 復原包內的文件也已是 ADULT。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
   </aside>
 </section>
 
@@ -248,7 +249,7 @@
         <li>ADR 記錄候選選擇的簡單設計</li>
         <li>唯一一項舊測試因新政策<b>明確遷移</b>（665 → 595）</li>
         <li>每案核對實際折扣率、優惠類型與金額</li>
-        <li>改票失敗時訂票／訂單／座位／稽核紀錄／通知都不留部分變更</li>
+        <li>改票失敗時，訂票、訂單、座位、稽核紀錄與通知都整筆還原，不留下改一半的資料</li>
       </ul>
     </div>
     <div class="callout warn fx fx-up">
@@ -256,7 +257,7 @@
       <ul>
         <li>疊乘多項優惠</li>
         <li>引入複雜規則引擎</li>
-        <li>刪除覆蓋、降低要求、為湊通過改鬆測試期待值</li>
+        <li>刪掉測試、降低檢查標準，或為了通過而放寬期待值</li>
         <li>只核對總額</li>
         <li>改票部分寫入；提前實作 B3 團體</li>
       </ul>
@@ -265,6 +266,6 @@
   <aside class="notes">
     <p><b>來源</b>：R2-2 可接受 vs 不可接受表（evaluation 06 §一項合法的政策測試遷移、完成條件）。</p>
     <p><b>Debrief 提問</b>：Agent 一開始給了幾個方案？你們質疑了哪個假設、因此改變選擇了嗎？誰選了方案、誰核准 Task Breakdown？核准紀錄、政策、實際測試與文件是否一致（TC2 完成條件）？只記錄觀察到的核准、提示與實際結果，不排名。</p>
-    <p><b>Recovery 提醒</b>：未完成小組若接續 B3，只發已驗收的正式 B2 Recovery Baseline 並記錄來源、原因與原小組完成度（BF6 P7）；Recovery 不算原小組成果。</p>
+    <p><b>復原包提醒</b>：未完成小組若接續 B3，只發已驗收的正式 B2 復原包（Recovery）並記錄來源、原因與原小組完成度（BF6 P7）；用復原包不算原小組成果。</p>
   </aside>
 </section>

@@ -7,7 +7,7 @@
 
 正式版本位於 `reference-solutions/b1-student-fare-fixed/`，從正式B0複製，不把P5診斷副本改名當成完成。案例歷史延續B0 `392d920`，B1 Tag `b1-student-fare-fixed`＝`a1c1d45a26875feb2635f211059db5e8980035f7`。Bundle驗證、Clone、B0祖先與52檔快照比對通過，11個真實案例Commit，無B2／B3。詳見[來源／Delta](14-b1-case-history-and-delta.md)。
 
-與B0來源清單相同，僅五檔不同：FarePolicy學生率85→75一行商業邏輯、main App版本B1、pyproject版本0.2.1、README與version-history版本識別／狀態。全部13個Test Python檔逐位元相同、DiscountPolicy与其餘Source不變；主要Business Rules本來正確，無無意義改寫。兩項B0受控文件落差保留，不在此階段修成額外工作。
+與B0來源清單相同，僅五檔不同：FarePolicy學生率85→75一行商業邏輯、main App版本B1、pyproject版本0.2.1、README與version-history版本識別／狀態。全部13個Test Python檔逐位元相同、DiscountPolicy與其餘Source不變；主要Business Rules本來正確，無無意義改寫。兩項B0受控文件落差保留，不在此階段修成額外工作。
 
 ## Environment／Dependency Installation
 
@@ -28,13 +28,13 @@ Windows／Python **3.13.15**。獨立工作區 `.codex-tmp/b1-env/`，實際建�
 exit code 0
 ```
 
-原28項G1与16項B0新增測試均通過、無Skip／XFail、零失敗。完整node結果核對B0 Manifest五項均為passed，不只比較總數。唯一已知Warning為Starlette TestClient使用AnyIO BlockingPortal棄用別名，保留紀錄、不影響執行，無未知Warning。未重寫／弱化／刪除測試。
+原28項G1與16項B0新增測試均通過、無Skip／XFail、零失敗。完整node結果核對B0 Manifest五項均為passed，不只比較總數。唯一已知Warning為Starlette TestClient使用AnyIO BlockingPortal棄用別名，保留紀錄、不影響執行，無未知Warning。未重寫／弱化／刪除測試。
 
 ## API Smoke與優惠範圍
 
-正式B1 TestClient實測T001單學生525、成人＋學生1225、成功付款Order1225与查詢一致。企業學生仍665，符合原企業firstmatch；距出發14天的非會員學生仍595，符合原advancefirstmatch，不提前加入B2最有利政策。
+正式B1 TestClient實測T001單學生525、成人＋學生1225、成功付款Order1225與查詢一致。企業學生仍665，符合原企業firstmatch；距出發14天的非會員學生仍595，符合原advancefirstmatch，不提前加入B2最有利政策。
 
-另驗證B0完整流程：會員→成人訂票665→付款→改T005712／差額47→退票REFUNDED→通知三事件／Audit四事件→原Order665快照保留。可售Trip、Clock提前價与全部Reset通過。輸出：`B1 STUDENT 525 MIXED 1225 ORDER AND UNCHANGED FIRST-MATCH: PASS`及完整API流程PASS。
+另驗證B0完整流程：會員→成人訂票665→付款→改T005712／差額47→退票REFUNDED→通知三事件／Audit四事件→原Order665快照保留。可售Trip、Clock提前價與全部Reset通過。輸出：`B1 STUDENT 525 MIXED 1225 ORDER AND UNCHANGED FIRST-MATCH: PASS`及完整API流程PASS。
 
 ## Acceptance Criteria／影響分析
 
@@ -52,4 +52,4 @@ In-Memory、Mock付款、單程序鎖與固定Clock邊界保留；B0兩項受控
 
 ## Final Decision
 
-**B1 個別 Gate：PASS**。學生率最小修復、44全通過／五失敗恢復、優惠順序不變、API Smoke、完整追溯、獨立環境、歷史与隔離均通過。B2可從本正式B1基線啟動，須另授權新目標；B1–B3整體Final Decision留待後續完整驗收。
+**B1 個別 Gate：PASS**。學生率最小修復、44全通過／五失敗恢復、優惠順序不變、API Smoke、完整追溯、獨立環境、歷史與隔離均通過。B2可從本正式B1基線啟動，須另授權新目標；B1–B3整體Final Decision留待後續完整驗收。

@@ -9,9 +9,9 @@
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）、三個核准關卡（Gate）和一張 Gate 決策表都在 Runbook，其餘紀錄請 Agent 寫進 notes/b3.md；投影只告訴你時間和現在是第幾個檢查點。」說完翻下一頁宣布規則改變。</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼；完整碼表見講者視窗。</p>
-    <p><b>解鎖內容</b>：B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、空白例外回應卡。必讀只有操作規則、Work Order、Approval Gates 與任務卡；Review／Delivery／Exception 卡按需使用。</p>
+    <p><b>解鎖內容</b>：B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、空白例外回應卡。必讀只有操作規則、Work Order、Approval Gates 與任務卡；Review／Delivery／Exception 卡視需要使用。</p>
     <p><b>不可說</b>：空白範本不預發情境或答案。例外情境只在第 69–70 分由本簡報呈現，<b>不要在此提到例外內容</b>。</p>
-    <p><b>B2 Recovery</b>：只於第 63 分進 B3 時按需提供（碼：<code data-code="recovery-b2"></code>）（受控切換，保留原成果、未完成、來源與切換原因，不算小組自行完成）。<b>B3 開始後卡點不再切換版本</b>，改採降級流程（見總覽頁備註）。</p>
+    <p><b>B2 復原包（Recovery）</b>：只於第 63 分進 B3 時視需要提供（碼：<code data-code="recovery-b2"></code>）（受控切換，保留原成果、未完成、來源與切換原因，不算小組自行完成）。<b>B3 開始後卡點不再切換版本</b>，改採降級流程（見總覽頁備註）。</p>
   </aside>
 </section>
 
@@ -23,7 +23,7 @@
     <li class="teammate">Teammate</li>
     <li class="dw active">Digital Worker</li>
   </ol>
-  <p class="quote fx fx-fade">人從開場就不寫、不讀程式；到 B3，人也不再逐步核准每一步，只在三道 Gate（需求理解、影響與設計、交付）質疑假設、核准／退回、要求補證或修正。Gate 之間由 Agent 自主分析、設計、實作、測試、文件與摘要。</p>
+  <p class="quote fx fx-fade">到 B3，人不再逐步核准，只在三道 Gate（需求理解、影響與設計、交付）做決定；Gate 之間由 Agent 自己完成分析、設計、實作、測試與文件。</p>
   <div class="cols-2">
     <div class="card teammate fx fx-up">
       <h3>人</h3>
@@ -34,7 +34,7 @@
       <p>在 Gate 之間自主執行分析、設計、實作、測試、文件及交付</p>
     </div>
   </div>
-  <p class="muted fx fx-fade">工具不支援自動修改時，Agent 可產生修補檔（Patch），由環境套用；人仍不自行補寫程式或測試。</p>
+  <p class="muted fx fx-fade">工具不能直接改檔時，Agent 可產生修補檔（Patch），交給工具套用；人仍不自己補寫程式或測試。</p>
   <aside class="notes">
     <p><b>說</b>：「從開場開始，你們就沒有寫或讀程式。前面幾段，你們逐步核准 Agent 的每一步、每次都看驗收對照表與變更審查；到 B3，連核准方式也變了：人只透過三道 Gate 管 Agent，Gate 之間由 Agent 自主執行。人仍然不寫、不讀程式，也不自己打指令。」</p>
     <p>本頁仍是原素材「宣布人不 Coding」的時點；依「全程人不碰程式」改版，「人不 Coding」改說成「連核准方式也變」，因為不碰程式已從開場就適用。</p>
@@ -68,7 +68,7 @@
   <aside class="notes">
     <p><b>說（約 20 秒，先情境與技巧，再步驟）</b>：「這段練的是委派整件任務。你們把工作單（範圍、禁止事項、停止條件）交給 Agent，它就自己做；你們只在三道 Gate 做決定：第 66 分需求、第 69 分設計、第 75 分交付。Gate 2 核准、條件解除前 Agent 不能改程式。每道 Gate 貼 Runbook 的提示詞，Agent 會整理成是非題和建議決策來問你，你回一句話；所有紀錄請 Agent 寫進 notes/b3.md，表單只選三個 Gate 的決策。」</p>
     <p><b>操作</b>：計時應已在解鎖頁啟動（沒有就在本頁按 T）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，第 69 分在檢查點 3 之後翻到例外事件頁。檢查點 4 涵蓋 70–76：第 74 分口頭喊「停止擴充」，第 75 分喊「Gate 3」。</p>
-    <p><b>Agent 技巧（怎麼示範，約 15 秒）</b>：「B3 開新對話；工具有模型選單的，選推理能力較強的模型，因為接下來 Agent 要長時間自己做。工作單就是給 Agent 的 Skill，它會存成 skills/b3-work-order.md。每道 Gate 它都用同一個固定格式回報：Gate、建議結論、證據、風險、需要人決定的事。放手執行最耗 Token，所以細節寫進 notes，對話只給摘要。」不點名任何工具、模型名稱或設定位置。</p>
+    <p><b>Agent 技巧（怎麼示範，約 15 秒）</b>：「B3 開新對話；工具有模型選單的，選推論能力較強的模型，因為接下來 Agent 要長時間自己做。工作單就是給 Agent 的 Skill，它會存成 skills/b3-work-order.md。每道 Gate 它都用同一個固定格式回報：Gate、建議結論、證據、風險、需要人決定的事。放手執行最耗 Token，所以細節寫進 notes，對話只給摘要。」不點名任何工具、模型名稱或設定位置。</p>
     <p><b>巡場看技巧有沒有用上</b>：工作單和四頁文件是否整份交給 Agent（不是口頭交代）、有沒有存成 <code>skills/b3-work-order.md</code>｜Gate 回報是否每次同一組標題｜對話是否只有摘要、細節在 notes｜Agent 是否在 Gate 停下等人、核准時間是否早於修改｜人是否只在 Gate 和停止條件介入，而不是逐步下指令｜<code>notes/b3.md</code> 是否有決策原文、驗收對照表與變更審查答案。不因學員沒讀程式、沒自己打指令或表單少填而判失敗。</p>
     <p><b>介入觸發（七項）</b>：#1 Agent 未等待 Gate 即修改程式｜#2 人員直接 Coding｜#3 Agent 刪除或弱化測試｜#4 小組核准 SQLite 越界｜#5 小組無視付款失敗補償｜#6 Agent 宣稱測試通過卻無實際證據｜#7 時間到仍持續擴充。</p>
     <p><b>不應介入</b>：命名不同｜合理但不同的 In-Memory 設計｜選擇 Level 1 或 Level 2｜拒絕不必要重構｜文件表達不同但內容正確。</p>
@@ -83,7 +83,7 @@
   <h2 class="title">把工作單交給 Agent</h2>
   <ol class="steps">
     <li>開新對話（可選較強模型），貼交辦提示詞，再用「複製 Markdown」接上任務卡、操作規則、工作單（Work Order）、三道 Gate</li>
-    <li>Agent 先 Commit「B3 起點」，把工作單存成 Skill <code>skills/b3-work-order.md</code>，已核准背景（含起點測試數、模型）寫進 <code>notes/b3.md</code>，查不到的不猜</li>
+    <li>Agent 先存一版「B3 起點」，把工作單存成 Skill <code>skills/b3-work-order.md</code>，背景寫進 <code>notes/b3.md</code>；查不到的不猜</li>
     <li><b>交出 Gate 1 決策卡（5 個是非題），然後停下</b></li>
   </ol>
   <p class="callout">Runbook › B3 › 檢查點 1 · 把工作單交給 Agent</p>
@@ -126,7 +126,7 @@
     <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件卡</b>（若 Agent 已自然提出 SQLite，見下一頁備註）。</p>
     <p><b>看</b>：「不以方案看似合理取代授權檢查。」核准範圍有沒有寫明（允許／不得修改）並記進 notes/b3.md｜條件未滿足的範圍先停止；偏差需補證或重新核准。Agent 在 Gate 2 決策前就改檔案 → 觸發 #1。</p>
     <p><b>可回答</b>：學員問每節車廂幾個座位 → 由 Agent 在 Gate 1 依程式現有資料提議、小組核准。學員問座位演算法或完整 Response 細節 → 任務卡不規定完整 Response 或座位演算法，由 Agent 在 Gate 2 提案、人審查。</p>
-    <p><b>允許／禁止範圍（Work Order 已寫）</b>：允許團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件，每個預計檔案先提出影響理由；禁止全面重寫一般 Booking、改不相關 API、移除既有功能／Regression、引入外部服務、資料庫或第三方規則引擎，不自行改商業規則、技術棧或既定容量。</p>
+    <p><b>允許／禁止範圍（Work Order 已寫）</b>：允許團體流程所需的 API、Domain、Application、座位配置、付款補償、測試與文件，每個預計檔案先提出影響理由；禁止全面重寫一般 Booking、改不相關 API、移除既有功能／Regression、引入外部服務、資料庫或第三方規則引擎，不自行改商業規則、改用其他技術或改既定容量。</p>
   </aside>
 </section>
 
@@ -166,7 +166,7 @@
   <aside class="notes">
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
-    <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不修改技術棧。</p>
+    <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
     <p><b>60 秒規則（F03 逐字）</b>：「這60秒包含於相對6–7分鐘，不額外延長；時間不足縮為30秒，不刪事件、不再注入。到時停止長篇資料庫架構討論，留下可追查決策。」</p>
     <p><b>判讀（F03，僅主持人可見；學員於 Debrief 才揭曉）</b></p>
     <ul>
@@ -186,9 +186,9 @@
   <p class="kicker">檢查點 4 / 4 · 第 70–76 分鐘</p>
   <h2 class="title">放手執行，Gate 3 決定交付</h2>
   <ol class="steps">
-    <li>70：條件解除後才說「開始執行」；Agent 只改核准範圍，遇停止條件停下升級</li>
+    <li>70：條件解除後才說「開始執行」；Agent 只改核准範圍，遇到停止條件就停下來交給人決定</li>
     <li>74：<b>停止擴充</b>；Agent 把驗收對照表、變更審查答案、Gate 3 資料寫進 notes</li>
-    <li>75：Gate 3 只看決策卡答案、不看程式；再貼第二段提示詞重啟伺服器並記決策；可在 <code>/docs</code> 試一筆；Level 不自動選 3</li>
+    <li>75：Gate 3 看決策卡答案決定是否交付，不看程式；再貼第二段提示詞重啟伺服器並記決策；可在 <code>/docs</code> 試一筆；完成等級（Level）不預設選 3</li>
   </ol>
   <p class="callout warn">第 76 分鐘停止新增；人不補程式或測試，缺項如實列出。</p>
   <aside class="notes">

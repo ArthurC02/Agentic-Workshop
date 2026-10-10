@@ -1,25 +1,15 @@
 {
-  "executed_utc": "2026-10-09T12:04:31.670753+00:00",
+  "executed_utc": "2026-10-10T09:03:49.084550+00:00",
   "checks": [
     {
       "id": "C-01-02",
-      "criterion": "Actual B0 ZIP hides generated bug/priority answers and preserves two controlled gap documents plus three safe ADRs",
-      "status": "PASS",
+      "criterion": "Actual B0 ZIP content policy",
+      "status": "FAIL",
       "files": [
         "scripts/package-manifest.json",
         "scripts/build_delivery.py"
       ],
-      "details": {
-        "zip": "dist/p11-candidate/b5a7b6954e768bad/participant-29-b0.zip",
-        "zip_sha256": "c6f1a92f8030805a5fd7c38386a294537209c517c19514a1f8cc7ed3a17ef656",
-        "controlled_files": [
-          "docs/change-booking-guide.md",
-          "docs/discount-overview.md",
-          "docs/adr/001-use-in-memory-repositories.md",
-          "docs/adr/002-introduce-discount-policy.md",
-          "docs/adr/003-record-notifications-synchronously.md"
-        ]
-      }
+      "details": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\a8022\\\\OneDrive\\\\Desktop\\\\Agentic-Workshop\\\\dist\\\\p11-candidate\\\\3ec0eb97c16d69dc\\\\participant-29-b0.zip'"
     },
     {
       "id": "C-03",
@@ -108,7 +98,7 @@
   "documents": {
     "status": "PASS",
     "markdown_files": 401,
-    "relative_links": 890,
+    "relative_links": 889,
     "errors": [],
     "existing_utf8_bom_files": [
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
@@ -306,8 +296,8 @@
           "docs/architecture.md": "311c3513fad3bd6fa82976aee8d190d6b6097ddfa6f2acec701b7f8af9419c58",
           "docs/business-rules.md": "6c6d10dbc4d14bff1dc50a6641fe6854e7cba76d7a715effec3b565fec60ec6d",
           "pyproject.toml": "1958af0e43027639bb4b2b132935c92ddee84d102da91ed05be898f5b059e5cd",
-          "README.md": "0d7bb71dc3c29154860e65f1d38a009ffc47a39bdf3fd4d4a14e412e6624ed21",
-          "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+          "README.md": "484d2ae9af81c56f3734fe00cdaba4c38ad654df5423e1487000b3b50dc49f49",
+          "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
           "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
           "src/smart_ticket/api/dependencies.py": "98a719152cdd3c14a2fef25917606af279112b7f5ad9ae3e51c406da855f77c6",
           "src/smart_ticket/api/routes.py": "bda7d183d1a9c31dc2fe62b0af0b9918fa37afc5ed116d61d6254c94b8dc8c61",
@@ -340,8 +330,8 @@
           "docs/case-history.md": "fbbcd7465ff9891dba2d7a27495075f8f2cb58f1340a60729087be52e0f17177",
           "docs/version-history.md": "eea60c824f566dc386690058f62488d6915ccef67b01a9a441321d204d384fd4",
           "pyproject.toml": "143d5f20af8dcd95e871480038171554f0f37b2f885b8aa5fbae51708c6c26a0",
-          "README.md": "e3b0d623794b0e7dac9a733255b1d2af7b324e3377661fd987d9786ac3b45ef7",
-          "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+          "README.md": "b5bf1dd73cca637f67f9d2f83e7740431b5e39efe80df90119bb0c3c5d334ad7",
+          "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
           "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
           "src/smart_ticket/api/dependencies.py": "98a719152cdd3c14a2fef25917606af279112b7f5ad9ae3e51c406da855f77c6",
           "src/smart_ticket/api/routes.py": "292fb8820fb34978470bb4944c1bcb9f81982b39e99cde304df1a0fc872586d3",
@@ -380,8 +370,8 @@
           "docs/discount-overview.md": "026772cd1c3b2e15eaf254df10982f57fd7283e82ab0a0f8e69ef5e0eb8795cf",
           "docs/version-history.md": "e098db44727999569560d61a8181fa9d19be220130f7d28546a169a1104ad638",
           "pyproject.toml": "143d5f20af8dcd95e871480038171554f0f37b2f885b8aa5fbae51708c6c26a0",
-          "README.md": "7556bf78fbe1450ff24f7d1b7a2680380414a141693fbd11f1ffa2cec3829d0c",
-          "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+          "README.md": "2101031245de1fbf560d7b7d2a79ebb75e7ed2d9f2e01df0a908adb48af05cc2",
+          "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
           "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
           "src/smart_ticket/api/dependencies.py": "478f9addbaf590f480940f915e9979392cc14026461ba4fb1f6b10493af4c4a0",
           "src/smart_ticket/api/routes.py": "5bfe57408748bf41d2c9d6c6c3f045c5daed054f45138d5e9ef1a2ba02591159",
@@ -438,8 +428,8 @@
           "docs/discount-overview.md": "026772cd1c3b2e15eaf254df10982f57fd7283e82ab0a0f8e69ef5e0eb8795cf",
           "docs/version-history.md": "828df03b9d02d6b1ad44da8966973303d06ac2b213fd06984890f178318b0e89",
           "pyproject.toml": "d80cc83d8aa6ebb676e6d9e5b9a73b3dc134d1c165ea02c87daf240a28c411fe",
-          "README.md": "3b3a11e75191c1e2aaa8b04e15e616d0df9333ca7ad4b03456b3423fb2eecc63",
-          "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+          "README.md": "c8ed1c9d9cdf3c23de4ba1c52c272991d1c0e173063dd881fcf14666b0ac5d2a",
+          "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
           "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
           "src/smart_ticket/api/dependencies.py": "478f9addbaf590f480940f915e9979392cc14026461ba4fb1f6b10493af4c4a0",
           "src/smart_ticket/api/routes.py": "5bfe57408748bf41d2c9d6c6c3f045c5daed054f45138d5e9ef1a2ba02591159",
@@ -486,18 +476,18 @@
         "files": 54,
         "source_sha256": {
           ".gitignore": "b0b18f5bf7184f205a45032e7a3034fffc852f9c6ad28ae26bb839e2893b5ddd",
-          "docs/adr/001-use-in-memory-repositories.md": "a48104ceb05534998f9108afdce2b054ec7f840b40cd9409b97ec23e3c2e5dea",
-          "docs/adr/002-introduce-discount-policy.md": "3d34590fa303142811a10a62db2947a3e809e18dc6780d1000f4b3e920d06de9",
-          "docs/adr/003-record-notifications-synchronously.md": "5750d43626286f78de5c02728730e1f709724c8df7b3fb0263cb93a13275dcf0",
-          "docs/api-examples.md": "18e832c37cd48e0989066208829e42d4f41601c468ee2c6f14e4086d9b2dedc3",
-          "docs/architecture.md": "225681ded21550ac573d51f71e9728c0c39ae7f4395c9f2b92b4899e4b136d5c",
+          "docs/adr/001-use-in-memory-repositories.md": "181b0d3fad761999977ca3977933948a0ba3385656c701e6cef0ddeca63bec95",
+          "docs/adr/002-introduce-discount-policy.md": "8c2609d397766639aa3aaa11f30464a88f3609f2d765b26c591b94a4c9b36224",
+          "docs/adr/003-record-notifications-synchronously.md": "27fc1b968e2263a82b5ff487d9c98dd23648d111af51b883b4e87a2cbccb4f05",
+          "docs/api-examples.md": "b4c74d41b2ce969d971267a97d38458093de127f789d26ddb9827396db92f436",
+          "docs/architecture.md": "cfa9beef13850b9004d99d27de5dc5deec52aa261b2c341a81d8ef728ea2db89",
           "docs/business-rules.md": "dc7dd8f36fd5e20b7272677bacae3b5a67c79b6aa3bd040ca2a309721b18125a",
-          "docs/change-booking-guide.md": "59245ee18ab23721a7fe505a3be7626d4a32d95fba8ee0a0d4d993c34eb5fe24",
-          "docs/discount-overview.md": "67b08306cc4fcf453f20fe218f6953e391bfb6556486e2002ca0cdf7f1e095d4",
+          "docs/change-booking-guide.md": "d306e7ce559b73960edc83e7c9b91be76a1fe31d5572c1698cf190cec1fbd2ef",
+          "docs/discount-overview.md": "283cb884ce85b2dda01b6b8c47fc8a68d7d13834e10afe280e9aefd27944be3d",
           "docs/version-history.md": "47e94e616d1fc86fd5b66f4e2f733ccf11df5750b595e3bb17a7d54a589c7514",
           "pyproject.toml": "1875e7ae12de6b0e9457886e5251f34cc0be7e850f6728d5faee31c20d52b0a7",
-          "README.md": "8332cf7dfeccf34dac65b7c0791ce097f3b0077bce5a90452b5a06e0101f07b5",
-          "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+          "README.md": "50583ff38ebe43003a69f2eca579b4bfb35be8945df38e1c58a96237bfcefab5",
+          "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
           "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
           "src/smart_ticket/api/dependencies.py": "478f9addbaf590f480940f915e9979392cc14026461ba4fb1f6b10493af4c4a0",
           "src/smart_ticket/api/routes.py": "5bfe57408748bf41d2c9d6c6c3f045c5daed054f45138d5e9ef1a2ba02591159",
@@ -557,8 +547,8 @@
           "docs/discount-overview.md": "b4027a7c5d7570704c9ed08c518a322a3954b10ef179f3ac5d96d8f0e0fb45c2",
           "docs/version-history.md": "1dd74878377840f357d322e505c2eca1bc4b8f2c039695a4974235dc2cf3ce59",
           "pyproject.toml": "b2a6cbb533a039059956617a381e17fa9fd675f6f7540abd1f9366bfabd2c2d9",
-          "README.md": "b7cd5b2abecb59704b59a686122fb3a8ce18acc11db015853176bc633fdc22c3",
-          "requirements.txt": "bac5a8e1be716a16bfee784b434d9e83e0dfd8a70135d27fe0de50383da2e49a",
+          "README.md": "a7960a0de3bb7c8b96796a42a5a80dfc69baf631fa3bdb2924a676f5ea4b4a5a",
+          "requirements.txt": "4a80c5b5e6a5252ffae0afea5e2f7d2a1fd74c04ff086f965c8b4e107bf3aa3b",
           "src/smart_ticket/__init__.py": "5dc391a1dfc7561e7387f2a03edb73a7e3d53e3ad8f54f43972debdaeb039a80",
           "src/smart_ticket/api/dependencies.py": "ed9f414e6a59402f4d5db2a0d4577d9a7a588be96f7edf7bd920c687251dcc08",
           "src/smart_ticket/api/routes.py": "5db43d95c2263f8832ad9b9cd69f1ec946309a13e79babbdb471e7c257f8f7b1",
@@ -632,7 +622,7 @@
       {
         "file": "agentic-workshop/04-digital-worker/evaluation/04-exception-reference-answer.md",
         "historical_sha256": "a8459d41f52f1970ab11a7d00421bb65c8f8278ed9ba95a164686b1f511cbb13",
-        "current_sha256": "f4ada21a1dbf47a2a9b92c5707b9dad1cd69805d53d063062af6a7c1f44d69c0"
+        "current_sha256": "628629bd5fb9ecb21f517deedf8063548660808b23a4cf5c6f3c70e417dd4dd7"
       },
       {
         "file": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
@@ -652,7 +642,7 @@
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
         "historical_sha256": "abc6fe14f7684c2e9f94353021d239ef17e67c9da075c8629cd0be54535e143b",
-        "current_sha256": "81ea1abc0636d81bb6bf1922398b76c06666c86a9f5ddc9361cfa47ec96f7736"
+        "current_sha256": "e771e46cc7b3428d0501c0e99075193c28fdde4cf2e27ecedba4cfc0d4f206ec"
       },
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -667,32 +657,32 @@
       {
         "file": "agentic-workshop/04-digital-worker/facilitator/05-digital-worker-debrief-notes.md",
         "historical_sha256": "94ba54f62cf819b034001a6c347d1ab53d7a410babc537cb17a66266ff579832",
-        "current_sha256": "a780cecfd69b574c6bec04caa19490ee4b4831c0b4455437757ef2924c6b9171"
+        "current_sha256": "e673505810dd6a646c3e65a15718259dd22cb20c7a35316916cfa60a1b929370"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/01-operating-rules.md",
         "historical_sha256": "320565cd5309c9c6d2d2432b715285a8ca26e81fbc4adbc9b2ddb48d58e9697f",
-        "current_sha256": "ac2172d79d3c9d18892a68eb08f100c4679ff8cb5490a822aa9c0516d8027af8"
+        "current_sha256": "a3d5b2b6b915b0ab4b026f73e6455e3e16c128033df71bf868cb000db3ddec75"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/02-agent-work-order.md",
         "historical_sha256": "3d39b4fd60a833bfd2625e3ddedc2a5d64ece73d79244b2907ac111bba3cb65c",
-        "current_sha256": "6c4a057bfc8652e41f12c60ab46572cb750fd9e3e766d4850e85306a2461ca90"
+        "current_sha256": "4398e34d8efbdc63fefecc1f39c30c4d748b17a85874f3b4d2d4e8f5b3088f1d"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
         "historical_sha256": "1249e7df7806f31e7df47d4f385c8260d38fe74a9119523500b10f9190bff950",
-        "current_sha256": "0a43722439b7d428e2315efe9acb30ec8e7ff604b0fac9200bfcf3da5cf0d471"
+        "current_sha256": "4184a21702e8bc21ea34b48164c4878600db964940df3390536f5b8c5fc99db1"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
         "historical_sha256": "a6f8af2e328b86d1d26406fe773c7ebbc010a8ecf8b1f96af3a9ecb59c4a4ff0",
-        "current_sha256": "8935417d2890def9d703c8d60b7c1d485a522d1d2745861f7be65ec427459232"
+        "current_sha256": "d2f8bde531fc3a927b9121e3736fcffa9d98242696aaa096d3672b3d4c367f30"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
         "historical_sha256": "5b7314141313f135a4c121385f75ae80eaa5d5e4b4f2463c14303c9048b591b6",
-        "current_sha256": "4dc9372ba8622f7dc695407dc03ff93df54991df2798a888bbd6c26577258a8a"
+        "current_sha256": "2df4ee9ce3e223f37c48a7b020a78766ef771997bd1027961ebf914b1b6cadea"
       },
       {
         "file": "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md",
@@ -707,7 +697,7 @@
       {
         "file": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
         "historical_sha256": "b02204a93b69803a8527910cd25a949ef9f8d69a3e17f1bcee93d980949b0478",
-        "current_sha256": "b99ff186897c7a0e62df9155bbd4ef72a0a24d29e7fcbb1f31356aa46366d42c"
+        "current_sha256": "851b9e90457d305ea6d818ae0cf381da266baf285ea62814411133ad922d4e3c"
       },
       {
         "file": "agentic-workshop/05-retrospective/facilitator/organization-adoption-prompts.md",
@@ -717,58 +707,58 @@
       {
         "file": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
         "historical_sha256": "68ea10a8a07757b910bf3464f6642040abb34da2cbaafdb69ef97fe1a6d0629a",
-        "current_sha256": "b730cabaebd3860b56015e21ee1e33a8d4459c6ca20dfee8cab28e591d970938"
+        "current_sha256": "06f18a4d59d04761843d1698f349713de1f7ec46aaa0a9d94dcf8f3e24b62220"
       },
       {
         "file": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
         "historical_sha256": "a4702801a60736adc174ef6c109db53f9e450407411d27ce38482d1723a3e41c",
-        "current_sha256": "6a2bcce128d20140207c8b68b0088b2711756c7982854501b87b629e959de278"
+        "current_sha256": "584ce982d9d829149af4ba92ada440ba663c66e37cce607d4fae580a5080a3ed"
       },
       {
         "file": "agentic-workshop/06-runbook/environment-setup.md",
         "historical_sha256": "9c17c4a14f5497a78c677f7f66705c9f14472d80d8985ed4bf20a02f909ede77",
-        "current_sha256": "5e40442eddc64a4bce36bc649e391ef7ad8f2672ae1118bcfa954f02a69a01e4"
+        "current_sha256": "9f642dcc2968b11ff4b2803ba76acc389d1a95450b825af98848b9e2a74009c9"
       },
       {
         "file": "agentic-workshop/06-runbook/preflight-checklist.md",
         "historical_sha256": "31718da19058433174f2324ffd8f1f0d53b9a1226a4a4b7de902bbc8809a2e01",
-        "current_sha256": "f3625d69f541c9fddeb984f871eeece05f5f5ae172573aa52bf83a61cd3984e9"
+        "current_sha256": "8c671aa529a883e68a7c914ff3436d17194998fd567c584d9c610780404c64e3"
       },
       {
         "file": "agentic-workshop/06-runbook/recovery-plan.md",
         "historical_sha256": "d38b24c61910deeced2391f8fcd803b5a26713f03a540945afa180e75160f9ee",
-        "current_sha256": "7187ac5bd5c3b62f96da7ea6a35e8a0a09ce490d3b3a8b4664c50f8526820662"
+        "current_sha256": "339899dee6291685846255e8b632095e6b83edb027b389646ec7552de309acf1"
       },
       {
         "file": "agentic-workshop/06-runbook/workshop-runbook.md",
         "historical_sha256": "216006a52a20e454f7f894106adc110244cb083948073fedaa2e034d182db3b5",
-        "current_sha256": "10017cd10fdb33998a6ea53a52e357d8eaf1654d7ff3557d5ed62c99b7c98cad"
+        "current_sha256": "3dea3d539ace2ad801a15130b7cd9c4b9833f01b0252e5269a567843582cc80e"
       }
     ],
     "unchanged_document_count": 1,
     "interpretation": "Prior PASS describes prior files; changed documents have new current semantic evidence here. Historical JSON is not rewritten."
   },
   "current_checked_sha256": {
-    "agentic-workshop/01-greenfield/participant/01-mission-brief.md": "ba6fb3d53480db73f93f43766bfd42d90ca5929f5a92d215034fa9ad3d60f779",
+    "agentic-workshop/01-greenfield/participant/01-mission-brief.md": "dcb5aa4a4224d596470e54b1eb91fc370bda733bc48cb28dfde297c2949cfc57",
     "agentic-workshop/03-brownfield/evaluation/11-b0-to-b3-version-matrix.md": "b49ce95d7a49329d2bc827f2a90b3a02a0c743609c61b16284c22f64bfc70652",
-    "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md": "7d85bbe2614b14116ffd30edca2002fff090b83b9674e0afd6c42877ecc9e9d5",
+    "agentic-workshop/03-brownfield/evaluation/22-b2-documentation-errata.md": "e6cc37bfbef98c1728215d11b3ad76bd80b46f158f105b439ad3d7d90835e11e",
     "agentic-workshop/03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/src/smart_ticket/domain/discounts.py": "ca437bdf58cab41c4ab630a7f20731ca7dd8f44b32df2c1b68da054804993258",
-    "agentic-workshop/03-brownfield/participant/04-shared-context-template.md": "79074084e546bbecf4b9044a9ca57e9749571de21825f2cb37b9103bc62f09c2",
+    "agentic-workshop/03-brownfield/participant/04-shared-context-template.md": "aba15c84a8b91207e892e1b16f4838f1770b06fe249c40acf50f451b3c37b064",
     "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md": "b05cfadc155d82423c5952862614010dd8cef0c8dba97536c3b8748c2e986b14",
     "agentic-workshop/04-digital-worker/evaluation/03-digital-worker-audit-template.md": "ed1be562110190cdfdd4a7777ad00099361503a0c84c51d681a0f1815e33c982",
-    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "81ea1abc0636d81bb6bf1922398b76c06666c86a9f5ddc9361cfa47ec96f7736",
+    "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md": "e771e46cc7b3428d0501c0e99075193c28fdde4cf2e27ecedba4cfc0d4f206ec",
     "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md": "e4f0a51829bbcca3127672855864b215eeb583ae1523669d1be416c751ce98e9",
-    "agentic-workshop/04-digital-worker/participant/03-approval-gates.md": "0a43722439b7d428e2315efe9acb30ec8e7ff604b0fac9200bfcf3da5cf0d471",
-    "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "8935417d2890def9d703c8d60b7c1d485a522d1d2745861f7be65ec427459232",
-    "agentic-workshop/04-digital-worker/participant/05-delivery-template.md": "4dc9372ba8622f7dc695407dc03ff93df54991df2798a888bbd6c26577258a8a",
+    "agentic-workshop/04-digital-worker/participant/03-approval-gates.md": "4184a21702e8bc21ea34b48164c4878600db964940df3390536f5b8c5fc99db1",
+    "agentic-workshop/04-digital-worker/participant/04-review-checklist.md": "d2f8bde531fc3a927b9121e3736fcffa9d98242696aaa096d3672b3d4c367f30",
+    "agentic-workshop/04-digital-worker/participant/05-delivery-template.md": "2df4ee9ce3e223f37c48a7b020a78766ef771997bd1027961ebf914b1b6cadea",
     "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md": "ff27750b67ce3a46adf0ab88ff6aab2af8466e22b89727359f6b1c8a8f5d10e5",
-    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "b730cabaebd3860b56015e21ee1e33a8d4459c6ca20dfee8cab28e591d970938",
-    "agentic-workshop/06-runbook/workshop-runbook.md": "10017cd10fdb33998a6ea53a52e357d8eaf1654d7ff3557d5ed62c99b7c98cad",
-    "scripts/build_delivery.py": "d74a3972d931303107fa44ca59b943e8b99a8a7941bbf6a579ac1f5a841a597f",
-    "scripts/package-manifest.json": "b5a7b6954e768baddccbd8ae904578ed42a3b50331827f5807c477c17225675e"
+    "agentic-workshop/05-retrospective/participant/maturity-comparison.md": "06f18a4d59d04761843d1698f349713de1f7ec46aaa0a9d94dcf8f3e24b62220",
+    "agentic-workshop/06-runbook/workshop-runbook.md": "3dea3d539ace2ad801a15130b7cd9c4b9833f01b0252e5269a567843582cc80e",
+    "scripts/build_delivery.py": "2db9bbd2aa29d2bf413b52f3de498b3ef5a10d62dd1c02c0eb3bb68ed795fcf5",
+    "scripts/package-manifest.json": "3ec0eb97c16d69dc418423ed6dc8e18163745cbc7ec428a30153a933108a650a"
   },
   "app_suite_rerun": "NOT RUN: exact frozen source comparison; prior actual technical evidence retained",
   "human_rehearsal": "NOT RUN",
   "limits": "Explicit review issue checks and actual B0 ZIP policy; not general semantic proof or human rehearsal.",
-  "status": "PASS"
+  "status": "FAIL"
 }

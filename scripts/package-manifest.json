@@ -12,22 +12,22 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/01-mission-brief.md",
           "destination": "agentic-workshop/01-greenfield/participant/01-mission-brief.md",
-          "sha256": "ba6fb3d53480db73f93f43766bfd42d90ca5929f5a92d215034fa9ad3d60f779"
+          "sha256": "dcb5aa4a4224d596470e54b1eb91fc370bda733bc48cb28dfde297c2949cfc57"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/02-business-requirements.md",
           "destination": "agentic-workshop/01-greenfield/participant/02-business-requirements.md",
-          "sha256": "06d4e03705e32ae1150ade77c0abc21faa11ea6ebd4e094855d220965f82aa25"
+          "sha256": "d8288667d47cfd44a2cfa318f36878230b855ba89470f6bc2902160ff1da46af"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/03-acceptance-criteria.md",
           "destination": "agentic-workshop/01-greenfield/participant/03-acceptance-criteria.md",
-          "sha256": "715b77394f081e2696d0f1955b54addc4cf3c22146dddbab2fab157c16f45774"
+          "sha256": "39a63295c57033b187da1d6d898e110ad186a7ee8df5fc341c21da8217da291a"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
           "destination": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
-          "sha256": "72ea39f0275df0a53a1a8785d8ba0f6d859685c7affc7e05705ad8a739b6bc16"
+          "sha256": "008952a7469132046dc986958f12dbcb3f7200720fd0c57a4300bdf4faae685d"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/05-submission-checklist.md",
@@ -177,17 +177,17 @@
         {
           "source": "agentic-workshop/02-time-skip/participant/01-time-skip-announcement.md",
           "destination": "agentic-workshop/02-time-skip/participant/01-time-skip-announcement.md",
-          "sha256": "964f69754cff917b38d846eff9c535108284fe78965617c9d071d28b5fba5d55"
+          "sha256": "95bdbdce6bc1fde1a23844840be998727a0417fc0eb6a6fdcc4b76ae4e9a59c8"
         },
         {
           "source": "agentic-workshop/02-time-skip/participant/02-company-growth-summary.md",
           "destination": "agentic-workshop/02-time-skip/participant/02-company-growth-summary.md",
-          "sha256": "b454076a35b38e6c849a130ea94411241bc28a991d531d6cbe4f92bc0b02cea1"
+          "sha256": "acba0eb9094918833f11e695f829b85186bc7b1aa0e737c0db5d0afdead141f7"
         },
         {
           "source": "agentic-workshop/02-time-skip/participant/03-brownfield-handover.md",
           "destination": "agentic-workshop/02-time-skip/participant/03-brownfield-handover.md",
-          "sha256": "41a0a31d50839313a4f966c24ad62ed910f9a0f420c0e1e96490dd838398911a"
+          "sha256": "c735a669c295f242545e6111749471d78f0c4368f86395a5d2b7b14f227aca48"
         }
       ],
       "generated": {}
@@ -433,7 +433,7 @@
       "generated": {
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/business-rules.md": "# B0 Business Rules\n\n\n以下是公開正確商業規則，不代表目前程式的每個案例均已通過。一般訂票保留Greenfield語意；多個優惠符合時的歷史政策需以程式與測試核對，不把新的最有利政策自行加入。\n\n| Rule ID | 公開規則 |\n|---|---|\n| `TRIP-001` | 只可回傳仍有至少一個可售座位的班次。 |\n| `TRIP-002` | Origin 與 Destination 是可選篩選條件；若提供，必須精確符合 Seed Data 中的站點名稱。 |\n| `BOOKING-001` | 每筆訂票至少包含一位旅客。 |\n| `BOOKING-002` | 單筆 Greenfield 訂票最多 4 位旅客。 |\n| `BOOKING-003` | 旅客數不得超過班次剩餘座位數。 |\n| `BOOKING-004` | 成功建立訂票後立即保留對應座位數。 |\n| `BOOKING-005` | 建立後狀態為 `PENDING_PAYMENT`。 |\n| `FARE-001` | 成人票為 Base Fare 的 100%。 |\n| `FARE-002` | 學生票為 Base Fare 的 75%。 |\n| `FARE-003` | 每位旅客個別計價後加總為 Booking Total Fare。 |\n| `FARE-004` | 所有金額以整數表示，不處理小數與幣別換算。 |\n| `PAYMENT-001` | 只有 `PENDING_PAYMENT` Booking 可以付款。 |\n| `PAYMENT-002` | 付款成功後 Booking 狀態改為 `PAID`。 |\n| `PAYMENT-003` | 同一 Booking 不得重複付款。 |\n| `ORDER-001` | 付款成功後建立唯一 Order。 |\n| `ORDER-002` | Order建立時amount等於付款時Booking Total Fare；改票後保留原付款快照，不執行差額金流。 |\n| `MEMBER-001` | Booking 可以不綁定 Member。 |\n| `MEMBER-002` | 有效 Member ID 可被附加至 Booking。 |\n| `MEMBER-003` | Corporate Member 的企業優惠率為 95%。 |\n| `FARE-005` | 購票日至出發日相差至少 14 天時，具備 85% 提前購票優惠資格。 |\n| `FARE-006` | 未滿 14 天不得取得提前購票優惠。 |\n| `CHANGE-001` | 只有已付款 Booking 可改票。 |\n| `CHANGE-002` | 新 Trip 必須有足夠座位。 |\n| `CHANGE-003` | 改票成功後釋放原 Trip 座位並保留新 Trip 座位。 |\n| `CHANGE-004` | B0 只記錄 Fare Difference，不執行補價或退款。 |\n| `REFUND-001` | 只有已付款 Booking 可退票。 |\n| `REFUND-002` | 退票後 Booking 狀態為 `REFUNDED`。 |\n| `REFUND-003` | 退票成功後釋放座位。 |\n| `REFUND-004` | 退票建立唯一 Refund Record。 |\n| `NOTIFY-001` | 付款成功建立通知紀錄。 |\n| `NOTIFY-002` | 改票成功建立通知紀錄。 |\n| `NOTIFY-003` | 退票成功建立通知紀錄。 |\n| `SEAT-001` | 同一 Trip 內 Seat ID 不可重複配置。 |\n| `SEAT-002` | 一般 Booking 不保證相鄰座位。 |\n| `AUDIT-001` | Booking Created 必須留存 Audit Entry。 |\n| `AUDIT-002` | Payment、Change、Refund 成功後必須留存 Audit Entry。 |\n\n退票釋放原座位並建立Refund Record；一般付款失敗不取消訂票，仍為PENDING_PAYMENT且保留座位。改票使用最新票價，Fare Difference=new-old，Order保留原付款。通知與Audit僅本機紀錄。\n\n固定Seed包含T001–T004及T005台北→台中750／6座、T006台北→高雄1400／18座、T007台中→台北700／10座、T008高雄→台中800／4座。會員M001/M003 STANDARD、M002 CORPORATE；非會員可訂票。\n\n## 完成條件\n\n規則來源、Rule ID與測試／程式可交叉核對；衝突與不確定事項列為資訊缺口，不擅自更改公開規則。\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/architecture.md": "# B0 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n\n## 本版既有架構決策\n\n- [001-use-in-memory-repositories](adr/001-use-in-memory-repositories.md)\n- [002-introduce-discount-policy](adr/002-introduce-discount-policy.md)\n- [003-record-notifications-synchronously](adr/003-record-notifications-synchronously.md)\n",
-        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/README.md": "# B0 受控接手版本\n\n讀者：學員與其Agent。發放：第29分鐘後，主持核准才接手。來源案例Commit：392d920ce4510e5c2dd5df5ae2db25e9ab3b87e6。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n公開操作Context：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)。保留本版既有文件，內容與程式及測試需交叉確認，不預設文件已完全同步。\n",
+        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/README.md": "# B0 接手版本\n\n第 29 分鐘發放，全員同一份。先建環境、跑測試、記下起點，不修改程式。\n來源案例Commit：392d920ce4510e5c2dd5df5ae2db25e9ab3b87e6。在B0開新的Agent對話。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試與Health，起點寫進notes/time-skip.md。\n\n公開操作Context：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)。保留本版既有文件，內容與程式及測試需交叉確認，不預設文件已完全同步。\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/context.md": "# B0 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nContext來自本版程式、測試與既有文件；先個人獨立分析，將不一致與資訊缺口記錄後再由小組交叉確認。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n"
       }
@@ -448,12 +448,12 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/01-system-context.md",
           "destination": "agentic-workshop/03-brownfield/participant/01-system-context.md",
-          "sha256": "a6b7a7a59105d8472f69a5df1696325dd65807b7bafb4f9db8a9efedb1210b0e"
+          "sha256": "c2f2fe823a157c73ad6a571689df5600899083e1f2cd10978ced9fbe581358ba"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/02-known-constraints.md",
           "destination": "agentic-workshop/03-brownfield/participant/02-known-constraints.md",
-          "sha256": "03eb4283f2f18d5fbe71ae6f5e2ca6ccd2704216eaca0397af384f360c84aa0b"
+          "sha256": "f04d0d3f7bbab022114b83d4511d8a43831cf059942139b90be1816648d09925"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/03-individual-analysis-sheet.md",
@@ -473,7 +473,7 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/04-shared-context-template.md",
           "destination": "agentic-workshop/03-brownfield/participant/04-shared-context-template.md",
-          "sha256": "79074084e546bbecf4b9044a9ca57e9749571de21825f2cb37b9103bc62f09c2"
+          "sha256": "aba15c84a8b91207e892e1b16f4838f1770b06fe249c40acf50f451b3c37b064"
         }
       ],
       "generated": {}
@@ -488,7 +488,7 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/01-b1-student-fare-bug.md",
           "destination": "agentic-workshop/03-brownfield/participant/task-cards/01-b1-student-fare-bug.md",
-          "sha256": "1c67bc65a2d55c482dfdae1b2b9862fccf9c2dd709b5120192b5fa3e9ad65330"
+          "sha256": "c26975e73f3ff2aa7c6355031dc00665dc551598a46f8f462c92bfc55cc60b06"
         }
       ],
       "generated": {}
@@ -503,7 +503,7 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/02-b2-discount-policy-change.md",
           "destination": "agentic-workshop/03-brownfield/participant/task-cards/02-b2-discount-policy-change.md",
-          "sha256": "f5d3394564ce4e76ae2067f6c6b3b5cbab30bec87433ca5ed2e404a8004e691d"
+          "sha256": "c7f92eb01f13ac9a21939155208316993dc3bffe955173d0328e76ade748080f"
         }
       ],
       "generated": {}
@@ -523,27 +523,27 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/01-operating-rules.md",
           "destination": "agentic-workshop/04-digital-worker/participant/01-operating-rules.md",
-          "sha256": "ac2172d79d3c9d18892a68eb08f100c4679ff8cb5490a822aa9c0516d8027af8"
+          "sha256": "a3d5b2b6b915b0ab4b026f73e6455e3e16c128033df71bf868cb000db3ddec75"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/02-agent-work-order.md",
           "destination": "agentic-workshop/04-digital-worker/participant/02-agent-work-order.md",
-          "sha256": "6c4a057bfc8652e41f12c60ab46572cb750fd9e3e766d4850e85306a2461ca90"
+          "sha256": "4398e34d8efbdc63fefecc1f39c30c4d748b17a85874f3b4d2d4e8f5b3088f1d"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
           "destination": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
-          "sha256": "0a43722439b7d428e2315efe9acb30ec8e7ff604b0fac9200bfcf3da5cf0d471"
+          "sha256": "4184a21702e8bc21ea34b48164c4878600db964940df3390536f5b8c5fc99db1"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
           "destination": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
-          "sha256": "8935417d2890def9d703c8d60b7c1d485a522d1d2745861f7be65ec427459232"
+          "sha256": "d2f8bde531fc3a927b9121e3736fcffa9d98242696aaa096d3672b3d4c367f30"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
           "destination": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
-          "sha256": "4dc9372ba8622f7dc695407dc03ff93df54991df2798a888bbd6c26577258a8a"
+          "sha256": "2df4ee9ce3e223f37c48a7b020a78766ef771997bd1027961ebf914b1b6cadea"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md",
@@ -563,12 +563,12 @@
         {
           "source": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
           "destination": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
-          "sha256": "b730cabaebd3860b56015e21ee1e33a8d4459c6ca20dfee8cab28e591d970938"
+          "sha256": "06f18a4d59d04761843d1698f349713de1f7ec46aaa0a9d94dcf8f3e24b62220"
         },
         {
           "source": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
           "destination": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
-          "sha256": "6a2bcce128d20140207c8b68b0088b2711756c7982854501b87b629e959de278"
+          "sha256": "584ce982d9d829149af4ba92ada440ba663c66e37cce607d4fae580a5080a3ed"
         }
       ],
       "generated": {}
@@ -812,7 +812,7 @@
         }
       ],
       "generated": {
-        "recovery-b1/docs/business-rules.md": "# B0 Business Rules\n\n\n以下是公開正確商業規則，不代表目前程式的每個案例均已通過。一般訂票保留Greenfield語意；多個優惠符合時的歷史政策需以程式與測試核對，不把新的最有利政策自行加入。\n\n| Rule ID | 公開規則 |\n|---|---|\n| `TRIP-001` | 只可回傳仍有至少一個可售座位的班次。 |\n| `TRIP-002` | Origin 與 Destination 是可選篩選條件；若提供，必須精確符合 Seed Data 中的站點名稱。 |\n| `BOOKING-001` | 每筆訂票至少包含一位旅客。 |\n| `BOOKING-002` | 單筆 Greenfield 訂票最多 4 位旅客。 |\n| `BOOKING-003` | 旅客數不得超過班次剩餘座位數。 |\n| `BOOKING-004` | 成功建立訂票後立即保留對應座位數。 |\n| `BOOKING-005` | 建立後狀態為 `PENDING_PAYMENT`。 |\n| `FARE-001` | 成人票為 Base Fare 的 100%。 |\n| `FARE-002` | 學生票為 Base Fare 的 75%。 |\n| `FARE-003` | 每位旅客個別計價後加總為 Booking Total Fare。 |\n| `FARE-004` | 所有金額以整數表示，不處理小數與幣別換算。 |\n| `PAYMENT-001` | 只有 `PENDING_PAYMENT` Booking 可以付款。 |\n| `PAYMENT-002` | 付款成功後 Booking 狀態改為 `PAID`。 |\n| `PAYMENT-003` | 同一 Booking 不得重複付款。 |\n| `ORDER-001` | 付款成功後建立唯一 Order。 |\n| `ORDER-002` | Order建立時amount等於付款時Booking Total Fare；改票後保留原付款快照，不執行差額金流。 |\n| `MEMBER-001` | Booking 可以不綁定 Member。 |\n| `MEMBER-002` | 有效 Member ID 可被附加至 Booking。 |\n| `MEMBER-003` | Corporate Member 的企業優惠率為 95%。 |\n| `FARE-005` | 購票日至出發日相差至少 14 天時，具備 85% 提前購票優惠資格。 |\n| `FARE-006` | 未滿 14 天不得取得提前購票優惠。 |\n| `CHANGE-001` | 只有已付款 Booking 可改票。 |\n| `CHANGE-002` | 新 Trip 必須有足夠座位。 |\n| `CHANGE-003` | 改票成功後釋放原 Trip 座位並保留新 Trip 座位。 |\n| `CHANGE-004` | B0 只記錄 Fare Difference，不執行補價或退款。 |\n| `REFUND-001` | 只有已付款 Booking 可退票。 |\n| `REFUND-002` | 退票後 Booking 狀態為 `REFUNDED`。 |\n| `REFUND-003` | 退票成功後釋放座位。 |\n| `REFUND-004` | 退票建立唯一 Refund Record。 |\n| `NOTIFY-001` | 付款成功建立通知紀錄。 |\n| `NOTIFY-002` | 改票成功建立通知紀錄。 |\n| `NOTIFY-003` | 退票成功建立通知紀錄。 |\n| `SEAT-001` | 同一 Trip 內 Seat ID 不可重複配置。 |\n| `SEAT-002` | 一般 Booking 不保證相鄰座位。 |\n| `AUDIT-001` | Booking Created 必須留存 Audit Entry。 |\n| `AUDIT-002` | Payment、Change、Refund 成功後必須留存 Audit Entry。 |\n\n退票釋放原座位並建立Refund Record；一般付款失敗不取消訂票，仍為PENDING_PAYMENT且保留座位。改票使用最新票價，Fare Difference=new-old，Order保留原付款。通知與Audit僅本機紀錄。\n\n固定Seed包含T001–T004及T005台北→台中750／6座、T006台北→高雄1400／18座、T007台中→台北700／10座、T008高雄→台中800／4座。會員M001/M003 STANDARD、M002 CORPORATE；非會員可訂票。\n\n## 完成條件\n\n規則來源、Rule ID與測試／程式可交叉核對；衝突與不確定事項列為資訊缺口，不擅自更改公開規則。\n",
+        "recovery-b1/docs/business-rules.md": "# B1 Business Rules\n\n\n以下是公開正確商業規則，不代表目前程式的每個案例均已通過。一般訂票保留Greenfield語意；多個優惠符合時的既有選擇順序以程式與測試核對。\n\n| Rule ID | 公開規則 |\n|---|---|\n| `TRIP-001` | 只可回傳仍有至少一個可售座位的班次。 |\n| `TRIP-002` | Origin 與 Destination 是可選篩選條件；若提供，必須精確符合 Seed Data 中的站點名稱。 |\n| `BOOKING-001` | 每筆訂票至少包含一位旅客。 |\n| `BOOKING-002` | 單筆 Greenfield 訂票最多 4 位旅客。 |\n| `BOOKING-003` | 旅客數不得超過班次剩餘座位數。 |\n| `BOOKING-004` | 成功建立訂票後立即保留對應座位數。 |\n| `BOOKING-005` | 建立後狀態為 `PENDING_PAYMENT`。 |\n| `FARE-001` | 成人票為 Base Fare 的 100%。 |\n| `FARE-002` | 學生票為 Base Fare 的 75%。 |\n| `FARE-003` | 每位旅客個別計價後加總為 Booking Total Fare。 |\n| `FARE-004` | 所有金額以整數表示，不處理小數與幣別換算。 |\n| `PAYMENT-001` | 只有 `PENDING_PAYMENT` Booking 可以付款。 |\n| `PAYMENT-002` | 付款成功後 Booking 狀態改為 `PAID`。 |\n| `PAYMENT-003` | 同一 Booking 不得重複付款。 |\n| `ORDER-001` | 付款成功後建立唯一 Order。 |\n| `ORDER-002` | Order建立時amount等於付款時Booking Total Fare；改票後保留原付款快照，不執行差額金流。 |\n| `MEMBER-001` | Booking 可以不綁定 Member。 |\n| `MEMBER-002` | 有效 Member ID 可被附加至 Booking。 |\n| `MEMBER-003` | Corporate Member 的企業優惠率為 95%。 |\n| `FARE-005` | 購票日至出發日相差至少 14 天時，具備 85% 提前購票優惠資格。 |\n| `FARE-006` | 未滿 14 天不得取得提前購票優惠。 |\n| `CHANGE-001` | 只有已付款 Booking 可改票。 |\n| `CHANGE-002` | 新 Trip 必須有足夠座位。 |\n| `CHANGE-003` | 改票成功後釋放原 Trip 座位並保留新 Trip 座位。 |\n| `CHANGE-004` | 本版（B1）只記錄 Fare Difference，不執行補價或退款。 |\n| `REFUND-001` | 只有已付款 Booking 可退票。 |\n| `REFUND-002` | 退票後 Booking 狀態為 `REFUNDED`。 |\n| `REFUND-003` | 退票成功後釋放座位。 |\n| `REFUND-004` | 退票建立唯一 Refund Record。 |\n| `NOTIFY-001` | 付款成功建立通知紀錄。 |\n| `NOTIFY-002` | 改票成功建立通知紀錄。 |\n| `NOTIFY-003` | 退票成功建立通知紀錄。 |\n| `SEAT-001` | 同一 Trip 內 Seat ID 不可重複配置。 |\n| `SEAT-002` | 一般 Booking 不保證相鄰座位。 |\n| `AUDIT-001` | Booking Created 必須留存 Audit Entry。 |\n| `AUDIT-002` | Payment、Change、Refund 成功後必須留存 Audit Entry。 |\n\n退票釋放原座位並建立Refund Record；一般付款失敗不取消訂票，仍為PENDING_PAYMENT且保留座位。改票使用最新票價，Fare Difference=new-old，Order保留原付款。通知與Audit僅本機紀錄。\n\n固定Seed包含T001–T004及T005台北→台中750／6座、T006台北→高雄1400／18座、T007台中→台北700／10座、T008高雄→台中800／4座。會員M001/M003 STANDARD、M002 CORPORATE；非會員可訂票。\n\n## 完成條件\n\n規則來源、Rule ID與測試／程式可交叉核對；衝突與不確定事項列為資訊缺口，不擅自更改公開規則。\n",
         "recovery-b1/docs/architecture.md": "# B0 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n",
         "recovery-b1/README.md": "# B1 受控接手版本\n\n讀者：學員與其Agent。發放：第52分鐘後，主持核准才接手。來源案例Commit：a1c1d45a26875feb2635f211059db5e8980035f7。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b1/docs/context.md": "# B1 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB1只恢復學生票75%，仍先匹配企業、提前、學生。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
@@ -1090,7 +1090,7 @@
         {
           "source": "Agent.md",
           "destination": "Agent.md",
-          "sha256": "5bf18fee7e5ef47ff52769cc93ba72d317d30b4744adc48775a4abca85014a2b"
+          "sha256": "3086808504b1257e81e2ec2e5cdbbfe63a98d6582862bf5ef326861e0d720eb9"
         },
         {
           "source": "docs/planning/agent-work-history.md",
@@ -1100,7 +1100,7 @@
         {
           "source": "agentic-workshop/00-governance/acceptance-gates.md",
           "destination": "agentic-workshop/00-governance/acceptance-gates.md",
-          "sha256": "3c882ce3da86914e195be5aaefa198a8c5d138dfad3e04a9087f795e30e31d21"
+          "sha256": "233ca443b56c5520c92e78bc9572d7e010002817f8cb6426d0882f569104dd37"
         },
         {
           "source": "agentic-workshop/00-governance/consistency-rules.md",
@@ -1110,32 +1110,32 @@
         {
           "source": "agentic-workshop/00-governance/glossary.md",
           "destination": "agentic-workshop/00-governance/glossary.md",
-          "sha256": "5c5a4129d455a97a9e3a3df1997cdce5558117bea6df872f1e4a5b78bcaa05cf"
+          "sha256": "24a899c53831cb4022f330f13c3c2dc7805fb386c39ca795f5a32f5cc9283c07"
         },
         {
           "source": "agentic-workshop/00-governance/rule-traceability-baseline.md",
           "destination": "agentic-workshop/00-governance/rule-traceability-baseline.md",
-          "sha256": "fe8ef2fd705da257f88ecfc9581775fe215674b9f209623d00decf82b0162b7a"
+          "sha256": "ea436f5b568c0d2202f20c732aa2c57a3cf2881500024019becc3ea376cf8380"
         },
         {
           "source": "agentic-workshop/00-governance/technical-baseline.md",
           "destination": "agentic-workshop/00-governance/technical-baseline.md",
-          "sha256": "0841067c7af6463042bd16d17a6d6df54320d3921de4eaf15063882875cb5f99"
+          "sha256": "2fc8b022e268cdddb09f2c1b16f46bfcb6d0a9f1f5fcdfdd5235c345803d5832"
         },
         {
           "source": "agentic-workshop/00-governance/version-validation-requirements.md",
           "destination": "agentic-workshop/00-governance/version-validation-requirements.md",
-          "sha256": "d1979461cd01d7c96ffd37fd37cdf4ffcd81e0439161281795cae2be5fe2cf55"
+          "sha256": "784bd990c92ba7f9a2902ca88c42245df0096f4dbde41d713ef02df7e7b2f884"
         },
         {
           "source": "agentic-workshop/00-governance/workshop-manifest.md",
           "destination": "agentic-workshop/00-governance/workshop-manifest.md",
-          "sha256": "899ed017e69822b53d1dbebc72bdce529832311fd166a4063a12d9a1c11fb6da"
+          "sha256": "1e2f37bb1b31a2f77a3afdc371ea6f1966e2a92fb3ecf0a27d5ff12d6082eb16"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
-          "sha256": "d55b784a266236a1f42dc9fefdf37f0c968dcb05c3d8615d9d56953841d15928"
+          "sha256": "734a7c53c115ebbb4645dcbca1b52bf97714dcfda92e7e0c4164afc12724851c"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
@@ -1145,17 +1145,17 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
-          "sha256": "02a2b5f24c276002c0559e157061133777f8f60e2c16bf08949dfcbf69a994ac"
+          "sha256": "3f4824903cde44236605fcda54abf4e468f2ecbc1dabad386bf182da48c91a4c"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/04-expected-mvp-outline.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/04-expected-mvp-outline.md",
-          "sha256": "a8217d13ad14d4a1c7625308e83fc9b1836683f6e127c0953c9d67cf41d78b42"
+          "sha256": "29e21d156ad3c10180d030cf87a7728219f3dd766556f2da8c450d043a9693f2"
         },
         {
           "source": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
           "destination": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
-          "sha256": "89b790866cd5023edbc689378faed9c81642fc699b754e1542a40ecd759e7b75"
+          "sha256": "15f4507060573fcdf9d476dca097e162250a1991e78514a7afd2a4716d006668"
         },
         {
           "source": "agentic-workshop/02-time-skip/facilitator/02-repository-delta-explanation.md",
@@ -1165,7 +1165,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/01-b0-facilitation-notes.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/01-b0-facilitation-notes.md",
-          "sha256": "e85871331b56c329edcb2b79dee527f3cf9db46b0c7521b94bde3e6808a22aa9"
+          "sha256": "b5fa26aa5ee70b6f3b2756d2d05078d016545fbce617960abfe05d3e47ab652d"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/02-progressive-repository-hints.md",
@@ -1175,7 +1175,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/03-controlled-debt-map.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/03-controlled-debt-map.md",
-          "sha256": "30094ba4608114e6eeb836ba61bb96cf44b00c775749dc510da6a29b1fd8eb4a"
+          "sha256": "e6a5115e4817c17c68fd555c700a280c95c7839e86577d1c00df5d54319c2e35"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/04-task-reveal-sequence.md",
@@ -1190,12 +1190,12 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
-          "sha256": "e8eccaedcdc4a1d92a71bcf7d1ba59a3eebe8216fe7e3f3910c874efc1406dc6"
+          "sha256": "3750b773687b084f286e8e4b59267eb5a7a4de5c52442569f26fd53312e381e5"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/07-expected-participant-behavior.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/07-expected-participant-behavior.md",
-          "sha256": "c8515ffbc0a33210ce50d96012fcf2b2e6615a022a55989fd02687ea7b10a897"
+          "sha256": "5ac3313484a7fef6d224df39fddaecd1f510605772c699483f81402df423805c"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
@@ -1205,12 +1205,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "dabab200f97faa809b84d357176e3826b4719dfa324eb4f4ad346bdbe911e178"
+          "sha256": "e771e46cc7b3428d0501c0e99075193c28fdde4cf2e27ecedba4cfc0d4f206ec"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
-          "sha256": "a51fb2d49fea26068e057b98b59240e078234b2a47b6fd00aba8e753fc7efcc6"
+          "sha256": "a11f793571f32adfb03c65dc9b0e6ad6e42a78e414eb4f700d2ef94f54907856"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/04-intervention-rules.md",
@@ -1220,12 +1220,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/05-digital-worker-debrief-notes.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/05-digital-worker-debrief-notes.md",
-          "sha256": "a780cecfd69b574c6bec04caa19490ee4b4831c0b4455437757ef2924c6b9171"
+          "sha256": "e673505810dd6a646c3e65a15718259dd22cb20c7a35316916cfa60a1b929370"
         },
         {
           "source": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
           "destination": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
-          "sha256": "b99ff186897c7a0e62df9155bbd4ef72a0a24d29e7fcbb1f31356aa46366d42c"
+          "sha256": "851b9e90457d305ea6d818ae0cf381da266baf285ea62814411133ad922d4e3c"
         },
         {
           "source": "agentic-workshop/05-retrospective/facilitator/organization-adoption-prompts.md",
@@ -1235,22 +1235,22 @@
         {
           "source": "agentic-workshop/06-runbook/environment-setup.md",
           "destination": "agentic-workshop/06-runbook/environment-setup.md",
-          "sha256": "5e40442eddc64a4bce36bc649e391ef7ad8f2672ae1118bcfa954f02a69a01e4"
+          "sha256": "9f642dcc2968b11ff4b2803ba76acc389d1a95450b825af98848b9e2a74009c9"
         },
         {
           "source": "agentic-workshop/06-runbook/preflight-checklist.md",
           "destination": "agentic-workshop/06-runbook/preflight-checklist.md",
-          "sha256": "8164dd6ea73f277251eb249b4945d1210eab57ca20aa2d438b767f6d614ab5ea"
+          "sha256": "8c671aa529a883e68a7c914ff3436d17194998fd567c584d9c610780404c64e3"
         },
         {
           "source": "agentic-workshop/06-runbook/recovery-plan.md",
           "destination": "agentic-workshop/06-runbook/recovery-plan.md",
-          "sha256": "58dd85f307e16e0f54086d501a1e9a8b31cba4e7438d103a3ac352327484eb91"
+          "sha256": "339899dee6291685846255e8b632095e6b83edb027b389646ec7552de309acf1"
         },
         {
           "source": "agentic-workshop/06-runbook/rehearsal-record.md",
           "destination": "agentic-workshop/06-runbook/rehearsal-record.md",
-          "sha256": "6e5fff0f1acf9330cbba0427bbcc881f3238db400db8c2039e56a146843c6fcf"
+          "sha256": "a191e2936250385b2661fb5bc04ab0b4e7a8aed0417d60258730abcd34806cb2"
         },
         {
           "source": "agentic-workshop/06-runbook/release-checklist.md",
@@ -1260,7 +1260,7 @@
         {
           "source": "agentic-workshop/06-runbook/workshop-runbook.md",
           "destination": "agentic-workshop/06-runbook/workshop-runbook.md",
-          "sha256": "10017cd10fdb33998a6ea53a52e357d8eaf1654d7ff3557d5ed62c99b7c98cad"
+          "sha256": "3dea3d539ace2ad801a15130b7cd9c4b9833f01b0252e5269a567843582cc80e"
         },
         {
           "source": "docs/contents/00_README_文件導覽.md",
@@ -1280,7 +1280,7 @@
         {
           "source": "docs/contents/03_角色分工與治理原則.md",
           "destination": "docs/contents/03_角色分工與治理原則.md",
-          "sha256": "90e2c42e46cd3aa7cc3843e4b93f1d7043ed770881a6d043acb2a02cf2661db0"
+          "sha256": "8f93ec5391e4d4d736812b7d4fca47fba18d88aff8c768805a883d53e44ea8d5"
         },
         {
           "source": "docs/contents/04_工作坊前置準備.md",
@@ -1290,7 +1290,7 @@
         {
           "source": "docs/contents/05_工作坊執行流程.md",
           "destination": "docs/contents/05_工作坊執行流程.md",
-          "sha256": "5f7cce42d32b9dff0312a2a096a09808fc17d5525bc3e2cd2bcc4521d2e55545"
+          "sha256": "9397157c9a09ab2cccf97dad4b3251dfbedb445dbd2186685b5621e4e6cddf5f"
         },
         {
           "source": "docs/contents/06_成果物與驗收標準.md",
@@ -1305,7 +1305,7 @@
         {
           "source": "docs/contents/08_時程安排與主持指南.md",
           "destination": "docs/contents/08_時程安排與主持指南.md",
-          "sha256": "0e12ef8f69ca4951011606a83beaadf92ca830d9afbca685ff423dcf92ba596b"
+          "sha256": "abe80601d8a603612784d31ba443e0f968ab3038364782a476994d4ef36e8eb7"
         },
         {
           "source": "docs/contents/09_範本與檢核表.md",
@@ -1320,12 +1320,12 @@
         {
           "source": "docs/instructions/01_技術棧與Repository標準指令書.md",
           "destination": "docs/instructions/01_技術棧與Repository標準指令書.md",
-          "sha256": "c540940234641ae85fc6a93a90796f97c5a90e5908e292287d8373de675c2040"
+          "sha256": "97f861fa09903e493a2ff12ae42a284fe6cc76222a5badda243efa295ca160cc"
         },
         {
           "source": "docs/instructions/02_Greenfield_Starter_Kit產製指令書.md",
           "destination": "docs/instructions/02_Greenfield_Starter_Kit產製指令書.md",
-          "sha256": "a2fad2c26ababbba9a1c122a1d6cb939b8f7ff81755662e8bfba250c4d28d1b4"
+          "sha256": "b57900179a58f5e38e6bdf59cbaa9fc3cd9caaab8f96dedd3bf18cfec083ba98"
         },
         {
           "source": "docs/instructions/03_G1_Greenfield_Reference_MVP產製指令書.md",
@@ -1345,7 +1345,7 @@
         {
           "source": "docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md",
           "destination": "docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md",
-          "sha256": "0d2417b3b01fc4c8c7661f766eb20eb0b23a0bf8539a60ed68d5e5344d58ace1"
+          "sha256": "373f75536c1a77170f0eb02c373e3e19998420df9264bb619d9f9571111a85d9"
         },
         {
           "source": "docs/instructions/07_主持Runbook與回顧整合產製指令書.md",
@@ -1370,7 +1370,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "c97e23fd6cfb947d6cc093ad1ca6487690cfbfadf55a9086b13d07b8d298579e"
+          "sha256": "ce4a6f0951d0398ccbe04d49d8ed9bdad7d1e44d2b41dde28dd97b0d69a6a7a4"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -1380,7 +1380,7 @@
         {
           "source": "docs/planning/repository-structure.md",
           "destination": "docs/planning/repository-structure.md",
-          "sha256": "36cf28d29a1dced5200a180b91b3bfdef166fbf98e5ab3d2f57b535257b06164"
+          "sha256": "90836173375767fce65c723b092a14020e46e4f30dbc248c66905597d826b495"
         },
         {
           "source": "scripts/README.md",
@@ -1400,7 +1400,7 @@
         {
           "source": "agentic-workshop/01-greenfield/evaluation/01-mvp-evaluation-checklist.md",
           "destination": "agentic-workshop/01-greenfield/evaluation/01-mvp-evaluation-checklist.md",
-          "sha256": "a53ed2b87ab32e89d9a27b1923cd6ddcd5e10ddcdbd068f6ce479cbd348cdcf1"
+          "sha256": "5de48ad9b42f305a2706c1de4f751ce089a8e7ab4a04608925b4b2aa7fbcda25"
         },
         {
           "source": "agentic-workshop/01-greenfield/evaluation/02-rule-traceability-matrix.md",
@@ -1410,7 +1410,7 @@
         {
           "source": "agentic-workshop/01-greenfield/evaluation/03-g0-validation-report.md",
           "destination": "agentic-workshop/01-greenfield/evaluation/03-g0-validation-report.md",
-          "sha256": "55b186ad4f105cefa793babcd5501d9d559dd4cf8ab7bfe7002da9d51819fca3"
+          "sha256": "28237c1f994435394f862b9755c449645145a748a8500015c574ac9193919c0d"
         },
         {
           "source": "agentic-workshop/01-greenfield/evaluation/04-g1-validation-report.md",
@@ -1585,17 +1585,17 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/01-b0-validation-report.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/01-b0-validation-report.md",
-          "sha256": "79b5018ed2322c5b09c16febd9007b23e15cd27f7d4456d22a72c393e0e601df"
+          "sha256": "0ebb85fb98914beb15b464efea1cbbfe817fe0adf7185ec012d43cb3549c07ce"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/02-g1-to-b0-delta.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/02-g1-to-b0-delta.md",
-          "sha256": "6bca3f22296529ef17b670337393eca1569dca4535dc03574391799b1427930b"
+          "sha256": "90153880ccf605803557d021c1980847f818cce6a91c675a27550e0b8826c3fb"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/03-b0-module-map.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/03-b0-module-map.md",
-          "sha256": "c786c1eb4a898055b6f2b3397ebcee6715462deee292b1a9c18110ece6261b82"
+          "sha256": "69e5bff5a0de4fb9b337be29530d472c1fa67904d99f0e2ec8d1b82895fe702b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/04-b0-rule-traceability.md",
@@ -1605,7 +1605,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/05-b1-expected-impact-analysis.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/05-b1-expected-impact-analysis.md",
-          "sha256": "229b6c5179497069a69d751843e94ba987d633097147e43f1394034da42cbb59"
+          "sha256": "f97226e9ab9c0bc96a3c08605bf3482366957aa6e4de0bcd0c6e49c7d62acea9"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/05-case-history-and-copy-evidence.md",
@@ -1635,7 +1635,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/08-b1-acceptance-test-map.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/08-b1-acceptance-test-map.md",
-          "sha256": "ec3ddcf6ff5abfbcb3b09adaf6eb552c1630799272210d18cfa016310f617f5d"
+          "sha256": "7c2f66b334b70c2927c0c3f21021faa0866f384d00eecacbd67f1e5ebd8fc15b"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/09-b2-acceptance-test-map.md",
@@ -1655,7 +1655,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/12-b1-validation-report.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/12-b1-validation-report.md",
-          "sha256": "4f71a02e4b72fee10d4adefb4a15861e5f88e7cc921d50ec1c216763662324e7"
+          "sha256": "be8ef923b743d429b65b9c1579dd77f52d82d08ffbebe57972ade1c9c3219044"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/13-b1-validation-evidence.json",
@@ -1680,7 +1680,7 @@
         {
           "source": "agentic-workshop/03-brownfield/evaluation/17-b2-case-history-and-delta.md",
           "destination": "agentic-workshop/03-brownfield/evaluation/17-b2-case-history-and-delta.md",
-          "sha256": "227afb53d4e1b75b6ccd5b04c211c801d46c9121e54a5d21969a811b88a595c5"
+          "sha256": "5b9d0aad3e7029dd1141f774f09e979576ead7df758e40585f2c01643a2358a3"
         },
         {
           "source": "agentic-workshop/03-brownfield/evaluation/18-b3-validation-report.md",
@@ -3095,17 +3095,17 @@
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/04-exception-reference-answer.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/04-exception-reference-answer.md",
-          "sha256": "f4ada21a1dbf47a2a9b92c5707b9dad1cd69805d53d063062af6a7c1f44d69c0"
+          "sha256": "628629bd5fb9ecb21f517deedf8063548660808b23a4cf5c6f3c70e417dd4dd7"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
-          "sha256": "227565a09ee6493205af57f1335f981c54c9469b7529cb0ba04e147fe53e8344"
+          "sha256": "ed5b3e3f3520c5b8edca88c6f6a3319b01e1143ad2d1899ad989b8f30cd87023"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/06-governance-validation-report.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/06-governance-validation-report.md",
-          "sha256": "a6bc73319f201fbd5b5feae31848dc08635a153c1f2bf850f4457b3617d80261"
+          "sha256": "c368af305f081ae2d757272bea7b1b7b24e35315df35876850f7049c2f7e03ff"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/07-governance-validation-evidence.json",
@@ -3115,7 +3115,7 @@
         {
           "source": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
           "destination": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
-          "sha256": "9ac9cb59200563c348b38663593545d9ac2dda524ea640403bbcf1f84a5e3b8f"
+          "sha256": "189ea0cc5ba013e5c5457cea73d1513e281ead21a4bb3a26ed704325481ddba0"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/consistency-correction-report.md",
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "e24794da4008b5fb4e1fd921e1b5040bef58cb52d0d23eae480f21fea748e9b0"
+          "sha256": "9b6a324f48167c2761a7fcf7b53423e03047d534638f64eeca3fe1ec6467002d"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3370,7 +3370,7 @@
         {
           "source": "agentic-workshop/materials/README.md",
           "destination": "agentic-workshop/materials/README.md",
-          "sha256": "fc00a50959957d958e7c42b7f67dd4279ae6b09fd5b8388128c4cdf723efa37c"
+          "sha256": "a610aae8463e8b1f2e64c7aa53c15cf2281ff7b910248110bb983603f53d4282"
         },
         {
           "source": "agentic-workshop/materials/cross-review-2026-10-06.json",
@@ -3380,22 +3380,22 @@
         {
           "source": "agentic-workshop/materials/cross-review-2026-10-06.md",
           "destination": "agentic-workshop/materials/cross-review-2026-10-06.md",
-          "sha256": "783b5b7b1e33ef90f15763133024ac303b54cae825b20e3f2d30c24703ed60cb"
+          "sha256": "5af867a59bcbc29ef763acbc38395eff8eef99e7f891c434d36c1a68447f1f2c"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "b2d782adc5998d4c353b6a7e79f58ff9a27e84a4c388d67fe2b35549ef3997b9"
+          "sha256": "60d60c4245f0296518e5a8967b3e22caae83b91094323c16f65e0fa7dfbc9eec"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "a42f4cdd99bb78ccaed6581e227bed793dbc87897c5280ddc2141b6d8a34b2eb"
+          "sha256": "e9bbec679de1809ff4b9853bd61fb7ffb9a7ed885fbe3083e81ac5c881d186f0"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "c1190f38c361cb58e8c702743c7f59e3d60cd3c9dc1f44f7c5a45b82d4994b65"
+          "sha256": "0dca8f8c6b42dcb8a60a157ec20e2f7689f5ecf199832c61a96e6dcabec566be"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
@@ -3420,22 +3420,22 @@
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/README.md",
           "destination": "agentic-workshop/materials/speech/01-greenfield/README.md",
-          "sha256": "f7b89c7ff43730f886806dff154ddcb8e3057eee25ab862ea49cfcead744d1e9"
+          "sha256": "f4e999c19176847db283bf73f54bd7d513a40b7e7a1f4f0a0d4cb15a6427e4a1"
         },
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
           "destination": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
-          "sha256": "195e6f5a29f6bcd9cc048caf96ce6ab556308abb9f8a43c12825a80237a59cb0"
+          "sha256": "e41a26e2f63d7a8b830c53d63771477157287c2510251cf8d6da98744c0a854c"
         },
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/validation-report.md",
           "destination": "agentic-workshop/materials/speech/01-greenfield/validation-report.md",
-          "sha256": "e9faaab4df58caa408da2689b4fb2030e11c1068916411d882933325b09173f2"
+          "sha256": "54aebaf6ad79def341a9e3ea3322127de90559872e378ad9103e874eddede13c"
         },
         {
           "source": "agentic-workshop/materials/speech/README.md",
           "destination": "agentic-workshop/materials/speech/README.md",
-          "sha256": "b06bdcbe93b924a148fde25bbb08b6f89f1d2d2d8e8c51556a01b62585f40022"
+          "sha256": "3e2d11c2aa20e8d5bf4eb67f1b1f97c2cd9f3eee831e25020b90a41e33a474ef"
         },
         {
           "source": "agentic-workshop/materials/validation-evidence.json",
@@ -3445,12 +3445,12 @@
         {
           "source": "agentic-workshop/materials/validation-report.md",
           "destination": "agentic-workshop/materials/validation-report.md",
-          "sha256": "3fdacd418c49e193806afd1305d3fe80680ae4ca8b661f567154af39cdd9d1a3"
+          "sha256": "95613f7979db13f8e26a845910cd163242299e3d77fbf06d3d92feba4b519e4d"
         },
         {
           "source": "docs/instructions/10_主持簡報與學員Runbook產製指令書.md",
           "destination": "docs/instructions/10_主持簡報與學員Runbook產製指令書.md",
-          "sha256": "656c1bd13fea9069863e37beaf2d630039c33cd585d4c4acdc5dcf8d8b25e34a"
+          "sha256": "5e6dd1aea477a4bd648b0161f26d572d6eca14151d7b1b60548dc23bab09bcc8"
         }
       ],
       "generated": {}

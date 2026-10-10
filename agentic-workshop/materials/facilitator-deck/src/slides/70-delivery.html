@@ -8,7 +8,7 @@
     <p><b>你的目標</b>：Agent 寫交付摘要，你逐項核對後交件</p>
     <p><b>今天的技巧</b>：整理交給 Agent；人只問「證據在哪？」，未驗證如實標示</p>
     <p><b>Agent 技巧</b>：結構化輸出：固定十二個標題，每句附證據位置</p>
-    <p><b>完成的樣子</b>：<code>notes/delivery.md</code> 附證據來源；選好 Level、匯出交件</p>
+    <p><b>完成的樣子</b>：<code>notes/delivery.md</code> 附證據來源；選好完成等級（Level）、匯出交件</p>
   </div>
   <ol class="timeline">
     <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 請 Agent 寫交付摘要，你來核對</b></li>
@@ -36,7 +36,7 @@
   <h2 class="title">請 Agent 寫交付摘要，你來核對</h2>
   <ol class="steps">
     <li>貼提示詞：Agent 讀 <code>notes/b3.md</code>，把摘要寫進 <code>notes/delivery.md</code>，每欄附證據</li>
-    <li>Agent 列出 Level、測試結果、修改範圍三句，各引用證據原文</li>
+    <li>Agent 列出完成等級（Level）、測試結果、修改範圍三句，各引用證據原文</li>
     <li>引用不出的改成未驗證；<b>不自動選 Level 3</b></li>
   </ol>
   <p class="callout">Runbook › Delivery › 檢查點 1 · 請 Agent 寫交付摘要，你來核對</p>
@@ -104,7 +104,7 @@
       <div class="card fx fx-up"><div class="big-number">75</div><p class="muted">個測試通過（參考版本：原 55 ＋ 新增 20；各組數字不同屬正常）</p></div>
     </div>
   </div>
-  <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段、無部分成立。</p>
+  <p class="callout fx fx-fade">沿用 B2 逐人最有利單一優惠，不新增折扣率；同班次、同車廂完整連續區段，不會只成立一部分。</p>
   <aside class="notes">
     <p><b>來源</b>：evaluation <code>07-b3-expected-impact-analysis.md</code> 影響表；<code>10-b3-acceptance-test-map.md</code>（AC-B3-001～019、§57 Rule）。</p>
     <p>一般 Booking 維持原付款失敗 pending／保留座位語意；只有 GROUP 採取消（見 Atomicity 頁）。</p>
@@ -118,30 +118,30 @@
   <h2 class="title">找完整連續區段：不跨車廂，可跨排（row）</h2>
   <div class="card fx fx-up">
     <h3><span class="chip teammate">成功</span> C001 車廂座位位置 3–7（跨排，同車廂）</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0">
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">1</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">2</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-teal);color:#fff;font-weight:700">3</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-teal);color:#fff;font-weight:700">4</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-teal);color:#fff;font-weight:700">5</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-teal);color:#fff;font-weight:700">6</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-teal);color:#fff;font-weight:700">7</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">8</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">…</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">20</span>
+    <div class="seats">
+      <span class="seat">1</span>
+      <span class="seat">2</span>
+      <span class="seat ok">3</span>
+      <span class="seat ok">4</span>
+      <span class="seat ok">5</span>
+      <span class="seat ok">6</span>
+      <span class="seat ok">7</span>
+      <span class="seat">8</span>
+      <span class="seat">…</span>
+      <span class="seat">20</span>
     </div>
   </div>
   <div class="card fx fx-up">
     <h3><span class="chip dw">拒絕</span> 座位位置 19–23（跨車廂）</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0;align-items:center">
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">…</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:1px solid var(--c-line);background:var(--c-surface)">18</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-danger);color:#fff;font-weight:700">19</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;background:var(--c-danger);color:#fff;font-weight:700">20</span>
-      <span style="padding:0 .4rem;font-weight:700;color:var(--c-danger)">｜C001 結束｜</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:2px dashed var(--c-danger);color:var(--c-danger);font-weight:700">21</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:2px dashed var(--c-danger);color:var(--c-danger);font-weight:700">22</span>
-      <span style="min-width:2.2rem;text-align:center;padding:.3rem 0;border-radius:.35rem;border:2px dashed var(--c-danger);color:var(--c-danger);font-weight:700">23</span>
+    <div class="seats">
+      <span class="seat">…</span>
+      <span class="seat">18</span>
+      <span class="seat bad">19</span>
+      <span class="seat bad">20</span>
+      <span class="seat-gap">｜C001 結束｜</span>
+      <span class="seat miss">21</span>
+      <span class="seat miss">22</span>
+      <span class="seat miss">23</span>
     </div>
   </div>
   <ol class="steps">
@@ -180,14 +180,14 @@
   </div>
   <aside class="notes">
     <p><b>來源</b>：<code>07-b3-expected-impact-analysis.md</code> §測試與實際證據；<code>10-b3-acceptance-test-map.md</code>。</p>
-    <p>2835 為測試中的混合群組；主代理 API Smoke 用不同組成為 2905，兩者不混淆。AC-B3-012 為一筆 3500 Order；重複付款 409 仍只有一筆。</p>
+    <p>2835 為測試中的混合群組；主要 Agent 的 API 快速檢查用不同組成為 2905，兩者不混淆。AC-B3-012 為一筆 3500 Order；重複付款 409 仍只有一筆。</p>
     <p>對照各組 Gate 2：是否同時處理「建立失敗無殘留」與「付款失敗補償」？F04 介入觸發 #5「小組無視付款失敗補償」可在此回看。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="78">
   <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
-  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT AND REVISE</span> 退回並修改</h2>
+  <h2 class="title">SQLite 提議：<span class="chip dw">REJECT</span>（拒絕 SQLite 提議，回 Gate 2 重提 In-Memory 方案）</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>
@@ -202,9 +202,10 @@
   </div>
   <ol class="steps">
     <li class="fx">退回（Reject）的是<b>超範圍方案，不是整個任務</b></li>
-    <li class="fx">允許方向：沿用現有資料存取層（Repository）、先完整規劃再保留座位、付款失敗有明確補償；必要時用記憶體快照、保留憑證（Reservation Token）或明確的復原方法</li>
+    <li class="fx">允許：沿用現有資料存取層（Repository）；先規劃好全部座位再保留；付款失敗有明確補償</li>
+    <li class="fx">可用：記憶體快照、保留憑證（Reservation Token）或明確的復原方法</li>
     <li class="fx">改提案尚缺證據可有條件核准（APPROVE WITH CONDITIONS，僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
-    <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計 → 停止、說明阻擋並升級</li>
+    <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計就停下，說明卡在哪，交給人決定</li>
   </ol>
   <aside class="notes">
     <p><b>來源</b>：<code>04-digital-worker/evaluation/04-exception-reference-answer.md</code>；F03 判讀表。</p>
@@ -228,7 +229,7 @@
       <tr><td><b>E</b> 透明揭露</td><td>掩飾或未揭露失敗</td><td>只回報成功內容</td><td>回報未完成及已知限制</td><td>完整回報偏差、風險、證據與建議決策</td></tr>
     </tbody>
   </table>
-  <p class="callout fx fx-fade">合計最高 15，<b>僅供回顧與平台需求萃取，不作競賽排名</b>；缺證據記「未觀察」，未觀察 ≠ 0 分；與 Level 1／2／3 分開記錄。</p>
+  <p class="callout fx fx-fade">合計最高 15，<b>只用於回顧和找出平台需求，不排名</b>；缺證據記「未觀察」，未觀察 ≠ 0 分；與 Level 1／2／3 分開記錄。</p>
   <aside class="notes">
     <p><b>來源</b>：<code>04-digital-worker/evaluation/01-autonomy-and-governance-rubric.md</code>。</p>
     <p>不以程式量、工具操作數或自主率評分；程式通過不代表治理通過。不因學員沒讀程式或沒自己打指令而扣分；改看是否先要計畫、核准後才動、是否要求並檢查驗收對照表與變更審查答案、是否用 <code>/docs</code> 驗證行為、是否把未驗證如實標示。C 面向的「變更審查」原為「Diff」，改版後由 Agent 回答審查問題取代人讀 Diff。</p>
@@ -257,7 +258,7 @@
     <p><b>來源</b>：<code>03-brownfield/evaluation/11-b0-to-b3-version-matrix.md</code> 主表（畫面為精簡版）。</p>
     <p>省略列：FARE-007～010（B0 無｜B1 未提前改政策｜B2 實作逐人最低 rate＋Type／Rate／Amount 明細｜B3 團體逐位明細驗證）；債務／文件落差（B0 3 債／2 落差｜B1 不以 BugFix 清債｜B2 折扣文件同步，通知及改票指南舊落差保留｜B3 同步團體與 Change 邊界）。測試時間：B2 1.21s、B3 0.58s。</p>
     <p>B0 <code>PASS AS BROWNFIELD BASELINE</code> 依 Manifest Gate，不等於 pytest 全通過；B1 必須零失敗。B1–B3 標準素材判定 <code>PASS FOR WORKSHOP USE</code>；真實 13 分鐘／90 分鐘演練與正式放行仍待驗收。</p>
-    <p>學員時間到可在 52／63 分鐘用已驗收 Recovery 推進，但不等於 Reference Solution AC 豁免。B2、B3 實測各有 1 個已知相容性 Warning。</p>
+    <p>學員時間到可在 52／63 分鐘用已驗收的復原包（Recovery）推進，但不等於 Reference Solution AC 豁免。</p>
     <p>80 分鐘 → 翻到回顧解鎖頁。不追加 Demo 美化或修 Code。</p>
   </aside>
 </section>

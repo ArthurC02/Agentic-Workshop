@@ -83,4 +83,4 @@ O-07：G1 已取得 `PASS`，B0 前置滿足；`PASS WITH DOCUMENTED LIMITATION`
 
 2026-10-05 P5實測紀錄：B0為38實質Python／測試檔、44項測試；正式5failed／39passed符合完整manifest且零非預期，隔離一行學生率修復44passed。52檔clean-copy雜湊一致、B0 Tag392d920與Bundle續G1，已知相容Warning保留。詳見[B0 Validation Report](../03-brownfield/evaluation/01-b0-validation-report.md)。B1正式版本、真實學員與90分鐘演練仍未完成。
 
-2026-10-05 P6正式B1驗收：獨立環境44passed／1已知Warning（1.00s），全部28G1与16B0新增通過、五Manifest失敗全部恢復，原測試／優惠順序不變。案例Tag a1c1d45与52檔來源核對通過，個別B1 Gate PASS；詳見[B1 Validation Report](../03-brownfield/evaluation/12-b1-validation-report.md)。B2／B3與B1–B3整體驗收、真實8分鐘／90分鐘演練仍待完成。
+2026-10-05 P6正式B1驗收：獨立環境44passed／1已知Warning（1.00s），全部28G1與16B0新增通過、五Manifest失敗全部恢復，原測試／優惠順序不變。案例Tag a1c1d45與52檔來源核對通過，個別B1 Gate PASS；詳見[B1 Validation Report](../03-brownfield/evaluation/12-b1-validation-report.md)。B2／B3與B1–B3整體驗收、真實8分鐘／90分鐘演練仍待完成。

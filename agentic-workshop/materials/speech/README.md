@@ -12,7 +12,7 @@
 
 ## 第一階段：Greenfield
 
-從「Greenfield（從空資料夾開始的新專案）為什麼這麼順利？做了哪些準備？」出發，帶學員理解如何從空資料夾逐步建立開發依據：
+從「Greenfield（從頭開始的新專案）為什麼這麼順利？做了哪些準備？」出發，帶學員理解如何從空資料夾逐步建立開發依據：
 
 1. 從空資料夾開始。
 2. 將專案構想（Idea）相關文件放入 `docs/`。
@@ -23,7 +23,7 @@
 7. 使用 Gherkin（用 Given／When／Then 寫測試情境的格式）撰寫測試情境。
 8. 設計分層式架構（依責任把程式分成幾層）。
 
-第一階段採45分鐘完整操作與審查，詳見 [Greenfield操作說明](01-greenfield/README.md)。既有G0（Greenfield 起始包）作為回看準備工作的案例，再由學員在新目錄重建文件流程。
+第一階段採45分鐘完整操作與審查，詳見 [Greenfield操作說明](01-greenfield/README.md)。既有G0（Greenfield 起始程式包）作為回看準備工作的案例，再由學員在新目錄重建文件流程。
 
 ## 各階段獨立簡報（Deck）
 
@@ -33,7 +33,7 @@
 |---|---|---|
 | `01-greenfield/` | 從Idea到可開發專案；Greenfield／Tool | 本輪產製 |
 | `02-time-skip/` | 系統演化與接手 | 預留，尚未產製 |
-| `03-brownfield/` | 既有系統理解、共同背景與變更；Teammate | 預留，尚未產製 |
+| `03-brownfield/` | 既有系統理解、共同脈絡與變更；Teammate | 預留，尚未產製 |
 | `04-digital-worker/` | 工作授權、審查與治理；Digital Worker | 預留，尚未產製 |
 | `05-retrospective/` | 回顧與組織導入 | 預留，尚未產製 |
 

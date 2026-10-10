@@ -8,7 +8,7 @@
 
 ## 1. 目標與固定條件
 
-以 **Smart Ticket Platform** 的演化呈現 **Tool → Teammate → Digital Worker**。目標依序是體驗 Agentic SDLC、萃取組織導入方法與控制點及平台需求、練習通用 Coding Agent 使用方式。
+以 **Smart Ticket Platform** 的演化呈現 **Tool → Teammate → Digital Worker**。目標依序是練習 Agentic Coding 技巧、體驗 Tool → Teammate → Digital Worker、由 Agent 留下證據；組織導入在回顧時討論（2026-10-09 已核准變更）。
 
 活動長度 90 分鐘，對象為一般工程師。Greenfield 一人一組；Brownfield 多人一組，個人先用自己的 Agent 分析，小組整合後由主要 Agent 執行。不採角色扮演型競賽，不以程式量或自主率作唯一成功指標。
 
@@ -78,7 +78,7 @@ B1 為 Bug Fix 暖身；B2 為 Business Rule Change 與 Teammate→Digital Worke
 
 [待協調清單](../../docs/planning/decisions-and-open-issues.md) O-01／O-02 在本基線中按總控與專屬任務規格界定適用範圍：一日／半日與角色輪轉是參考內容；通用完整 DoD 不作為學員活動成功的唯一門檻。原 `contents` 文件沒有改寫，後續主持／評估素材仍要驗證對齊。
 
-O-03 規則編號已於 P2 完成對齊與來源同步，見[技術基線](technical-baseline.md)。2026-10-05 使用者以「套用」核准[方案 A](../../docs/planning/b0-regression-gate-proposal.md)，O-04 規格衝突解除：B0 僅一個 `BUG-B0-001`，保留全部 28 項 G1 Regression 與正確斷言，完整實測失敗 node ID 集合須與已核實 Intentional Failure Manifest 完全一致、零非預期失敗，其餘全通過，無 Skip／XFail／未知 Warning；B1 修復後全部 G1 及 B0 新增測試恢復通過。Manifest 以 Diff／呼叫路徑及修復驗證證明因果，B0已按方案A實測驗收。O-05 的 G1 案例歷史／Tag 與 Bundle 已建立，B0 須延續並驗證隔離；O-07 的 G1 已 PASS 前置滿足，含限制通過不等於 PASS 的一般門檻保留。O-06 clean-copy已建立与核對，B0 必須保留原基線副本要求。文件完成不等於後續程式可驗收。
+O-03 規則編號已於 P2 完成對齊與來源同步，見[技術基線](technical-baseline.md)。2026-10-05 使用者以「套用」核准[方案 A](../../docs/planning/b0-regression-gate-proposal.md)，O-04 規格衝突解除：B0 僅一個 `BUG-B0-001`，保留全部 28 項 G1 Regression 與正確斷言，完整實測失敗 node ID 集合須與已核實 Intentional Failure Manifest 完全一致、零非預期失敗，其餘全通過，無 Skip／XFail／未知 Warning；B1 修復後全部 G1 及 B0 新增測試恢復通過。Manifest 以 Diff／呼叫路徑及修復驗證證明因果，B0已按方案A實測驗收。O-05 的 G1 案例歷史／Tag 與 Bundle 已建立，B0 須延續並驗證隔離；O-07 的 G1 已 PASS 前置滿足，含限制通過不等於 PASS 的一般門檻保留。O-06 clean-copy已建立與核對，B0 必須保留原基線副本要求。文件完成不等於後續程式可驗收。
 
 ## 完成條件
 
@@ -86,7 +86,7 @@ O-03 規則編號已於 P2 完成對齊與來源同步，見[技術基線](techn
 
 2026-10-05 P5實測紀錄：B0為38實質Python／測試檔、44項測試；正式5failed／39passed符合完整manifest且零非預期，隔離一行學生率修復44passed。52檔clean-copy雜湊一致、B0 Tag392d920與Bundle續G1，已知相容Warning保留。詳見[B0 Validation Report](../03-brownfield/evaluation/01-b0-validation-report.md)。B1正式版本、真實學員與90分鐘演練仍未完成。
 
-2026-10-05 P6正式B1驗收：獨立環境44passed／1已知Warning（1.00s），全部28G1与16B0新增通過、五Manifest失敗全部恢復，原測試／優惠順序不變。案例Tag a1c1d45与52檔來源核對通過，個別B1 Gate PASS；詳見[B1 Validation Report](../03-brownfield/evaluation/12-b1-validation-report.md)。B2／B3與B1–B3整體驗收、真實8分鐘／90分鐘演練仍待完成。
+2026-10-05 P6正式B1驗收：獨立環境44passed／1已知Warning（1.00s），全部28G1與16B0新增通過、五Manifest失敗全部恢復，原測試／優惠順序不變。案例Tag a1c1d45與52檔來源核對通過，個別B1 Gate PASS；詳見[B1 Validation Report](../03-brownfield/evaluation/12-b1-validation-report.md)。B2／B3與B1–B3整體驗收、真實8分鐘／90分鐘演練仍待完成。
 
 2026-10-05 P7 B2實測完成、個別B2 Gate PASS：獨立Python3.13.15環境依賴安裝成功，55 passed／0 failed／0 Skip／0 XFail，1項既有BlockingPortal相容Warning（1.21s）。Health／11個OpenAPI路徑、企業＋提前混合成人595／學生525／Total1120、付款、改票至T005新價1199／差額79、退票、通知3／Audit4及Reset Smoke通過。B1原52檔雜湊不變；B2快照54檔，保留原28項G1正確斷言，原13測試檔只有test_advance政策案例遷移，新增11項B2測試。逐旅客最低rate、不疊加、Applied Discounts、改票共用政策與折扣文件同步；TASK-B2-001、13項AC及主持材料已建立。案例Tag `b2-best-single-discount`與Bundle已驗證：14個真實Commit，54檔Clone比對零差異，B1為祖先且無B3歷史。詳見 [B2 Validation Report](../03-brownfield/evaluation/15-b2-validation-report.md) 與 [案例歷史／Delta](../03-brownfield/evaluation/17-b2-case-history-and-delta.md)。此為P7當時範圍與證據；目前B3與B1–B3素材驗收見下方P8紀錄，真實演練及最終交付仍待完成。
 

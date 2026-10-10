@@ -54,7 +54,7 @@ B1–B3 詳細 AC 與 API 以[任務指令](../../docs/instructions/05_Brownfiel
 
 決策使用 `APPROVE`／`APPROVE WITH CONDITIONS`／`REJECT AND REVISE`，短格式記錄已審證據、條件、核准者與時間。這三關不是 Gate A–E，也不等同標準實作驗收。
 
-唯一例外 `EXCEPTION-DW-001` 在 Gate 2 提議 SQLite；與 In-Memory 邊界衝突。人員應辨識越界、拒絕或要求修正，不真的安裝或更改技術棧。Agent 發現未核准需求／API範圍變更、規則矛盾、未知測試失敗、外部依賴或時間不足需停止升級。完整條件沿用治理指令。
+唯一例外 `EXCEPTION-DW-001` 在 Gate 2 提議 SQLite；與 In-Memory 邊界衝突。人員應辨識越界、拒絕或要求修正，不真的安裝或更改技術組合。Agent 發現未核准需求／API範圍變更、規則矛盾、未知測試失敗、外部依賴或時間不足需停止升級。完整條件沿用治理指令。
 
 ## 5. 學員完成度與完整交付
 
@@ -91,7 +91,7 @@ B1–B3 詳細 AC 與 API 以[任務指令](../../docs/instructions/05_Brownfiel
 
 2026-10-05 P5實測紀錄：B0為38實質Python／測試檔、44項測試；正式5failed／39passed符合完整manifest且零非預期，隔離一行學生率修復44passed。52檔clean-copy雜湊一致、B0 Tag392d920與Bundle續G1，已知相容Warning保留。詳見[B0 Validation Report](../03-brownfield/evaluation/01-b0-validation-report.md)。B1正式版本、真實學員與90分鐘演練仍未完成。
 
-2026-10-05 P6正式B1驗收：獨立環境44passed／1已知Warning（1.00s），全部28G1与16B0新增通過、五Manifest失敗全部恢復，原測試／優惠順序不變。案例Tag a1c1d45与52檔來源核對通過，個別B1 Gate PASS；詳見[B1 Validation Report](../03-brownfield/evaluation/12-b1-validation-report.md)。B2／B3與B1–B3整體驗收、真實8分鐘／90分鐘演練仍待完成。
+2026-10-05 P6正式B1驗收：獨立環境44passed／1已知Warning（1.00s），全部28G1與16B0新增通過、五Manifest失敗全部恢復，原測試／優惠順序不變。案例Tag a1c1d45與52檔來源核對通過，個別B1 Gate PASS；詳見[B1 Validation Report](../03-brownfield/evaluation/12-b1-validation-report.md)。B2／B3與B1–B3整體驗收、真實8分鐘／90分鐘演練仍待完成。
 
 2026-10-05 P7 B2實測完成、個別B2 Gate PASS：獨立Python3.13.15環境依賴安裝成功，55 passed／0 failed／0 Skip／0 XFail，1項既有BlockingPortal相容Warning（1.21s）。Health／11個OpenAPI路徑、企業＋提前混合成人595／學生525／Total1120、付款、改票至T005新價1199／差額79、退票、通知3／Audit4及Reset Smoke通過。B1原52檔雜湊不變；B2快照54檔，保留原28項G1正確斷言，原13測試檔只有test_advance政策案例遷移，新增11項B2測試。逐旅客最低rate、不疊加、Applied Discounts、改票共用政策與折扣文件同步；TASK-B2-001、13項AC及主持材料已建立。案例Tag `b2-best-single-discount`與Bundle已驗證：14個真實Commit，54檔Clone比對零差異，B1為祖先且無B3歷史。詳見 [B2 Validation Report](../03-brownfield/evaluation/15-b2-validation-report.md) 與 [案例歷史／Delta](../03-brownfield/evaluation/17-b2-case-history-and-delta.md)。此為P7當時範圍與證據；目前B3與B1–B3素材驗收見下方P8紀錄，真實演練及最終交付仍待完成。
 

@@ -411,7 +411,7 @@ EXCEPTION-DW-001：主要 Agent 在 Gate 2 提議新增 SQLite，以簡化座位
 - Agent 自己已提出超範圍方案，主持人直接要求小組處理。
 - 若 Agent 未提出，主持人在 Gate 2 後以事件卡詢問：「若 Agent 建議 SQLite，你們是否核准？」
 
-不得真的要求參與者安裝 SQLite 套件或修改技術棧。
+不得真的要求參與者安裝 SQLite 套件或修改技術組合。
 
 ---
 
@@ -759,7 +759,7 @@ Coding Agent 產製後必須確認：
 
 - B3 Rule ID 與任務指令書一致。
 - Gate 內容與 B3 Acceptance Criteria 一致。
-- SQLite 例外確實違反技術棧規格。
+- SQLite 例外確實違反技術組合規格。
 - Participant 文件沒有例外標準答案。
 - Facilitator 文件沒有進入 Participant Package。
 - Evaluation Rubric 不把完成程式量當成唯一成功指標。

@@ -18,7 +18,7 @@
 
 | 來源 | 作者Repo內部位置 | 案例識別 |
 |---|---|---|
-| B0 | `03-brownfield/participant/repository/smart-ticket-b0/`；clean-copy在Evaluation/reference-baseline | b0：`392d920ce4510e5c2dd5df5ae2db25e9ab3b87e6` |
+| B0 | `03-brownfield/participant/repository/smart-ticket-b0/`；clean-copy在Evaluation/reference-baseline；學員實際內容以 participant-29-b0.zip 為準 | b0：`392d920ce4510e5c2dd5df5ae2db25e9ab3b87e6` |
 | B1 | `03-brownfield/evaluation/reference-solutions/b1-student-fare-fixed/` | b1-student-fare-fixed：`a1c1d45a26875feb2635f211059db5e8980035f7` |
 | B2 | `03-brownfield/evaluation/reference-solutions/b2-best-discount-policy/` | b2-best-single-discount：`cee098acc303398bfa1db0e130e09effeee25828` |
 
@@ -34,7 +34,7 @@ B2參考版的`docs/api-examples.md`、`docs/discount-overview.md`原寫FULL_FAR
 
 現場注意（2026-10-09演練）：`recovery-52-b1`的`docs/context.md`寫有B1當時的優惠選擇順序，切換組在B2比較方案時可能直接引用，這是現況描述而非B2答案，不另外提示也不更換包。
 
-保留來源Tag／Hash、輸出檔清單、文件轉換、角色／階段及驗證結果。再於乾淨目錄確認安裝、Health／OpenAPI、版本Gate及Smoke。P10只完成此計畫，尚未生成或驗證Recovery包，不能聲稱已可直接發放。
+保留來源Tag／Hash、輸出檔清單、文件轉換、角色／階段及驗證結果。再於乾淨目錄確認安裝、Health／OpenAPI、版本Gate及Smoke。（歷史紀錄：P10當時只完成此計畫、尚未生成或驗證Recovery包；之後的包驗證結果見文末一致性修正報告。）
 
 ## 切換與紀錄
 
@@ -46,4 +46,4 @@ B2參考版的`docs/api-examples.md`、`docs/discount-overview.md`原寫FULL_FAR
 
 若Server、Agent或包仍不可用，以現有材料完成需求、Impact、測試策略或證據Review並列缺項。時間不足仍保留三Gate最低要求與唯一例外，停止擴充，不延長90分鐘。
 
-完成條件：來源、白名單、角色安全內容、實際包驗證與切換紀錄齊備才可發放。包與Recovery技術結果見[一致性修正報告](evaluation/consistency-correction-report.md)；真人切換、新Session／Context及現場可用性仍待演練。初始B0的兩份受控指南與三份安全ADR例外不套用於Recovery。
+完成條件：來源、白名單、角色安全內容、實際包驗證與切換紀錄齊備才可發放。包與Recovery技術結果見[一致性修正報告](evaluation/consistency-correction-report.md)；真人切換、新Session／Context及現場可用性仍待演練。

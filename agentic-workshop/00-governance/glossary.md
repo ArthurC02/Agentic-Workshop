@@ -48,7 +48,7 @@ Domain 來源：[技術標準](../../docs/instructions/01_技術棧與Repository
 | Task／Task Breakdown | 可執行工作項目及其依賴、輸入、輸出與完成條件 |
 | Prompt | 單次要求 Agent 工作的指令，不是永久規格來源 |
 | Context | 完成目前任務所需的最小充分背景；結論需交叉驗證 |
-| Shared Context | 小組比較獨立分析後整理的共同事實、證據、分歧、範圍、測試與核准計畫 |
+| Shared Context | 小組比較獨立分析後整理的共同事實、證據、分歧、範圍與測試；任務揭露後才核准修改計畫 |
 | Session | 特定工作期間的互動脈絡；結束前轉成可交接摘要 |
 | Memory | 經確認且跨 Session 有價值的知識；不存未驗證推論或敏感資訊 |
 | Rule／Rule ID | 持續遵守的限制與標準及其固定識別碼；不是實作建議 |
@@ -64,7 +64,7 @@ Domain 來源：[技術標準](../../docs/instructions/01_技術棧與Repository
 | Review／Challenge | 審查證據與變更／挑戰假設和方案；不能只接受 Agent 自信摘要 |
 | Approve／Reject／Escalation | 依證據核准／要求修正或拒絕／遇到缺口、衝突、越界時提交待決策問題 |
 | Reference Solution | 完整且驗證過的標準實作；學員可有合理變體，不等於只能照抄 |
-| Baseline／Recovery Baseline | 任務開始的固定版本／主持人按需提供的續接版本；Recovery 不計為學員自行完成 |
+| Baseline／Recovery Baseline | 任務開始的固定版本／主持人視需要提供的續接版本；Recovery 不計為學員自行完成 |
 | Validation Report | 實際執行環境、命令、結果與限制的證據；預期值不等於已驗證 |
 | Participant／Facilitator／Evaluation／Agent Production | 學員／主持／評估／素材產製的不同受眾與可見性，依 Manifest 分包 |
 

@@ -18,14 +18,14 @@
 | Bundle | [b2-case-history.bundle](b2-case-history.bundle)，62,064 bytes |
 | 驗證 | Bundle verify、Clone、Tag checkout及B1祖先檢查exit0；54來源檔雙向清單與內容比對零差異（僅正規化LF／CRLF） |
 
-所有Refs与歷史均無B3。來源檔排除`.git`、venv与pytest／Python cache；原B1的52檔SHA256完整保留，B2來源雜湊見[JSON證據](16-b2-validation-evidence.json)。
+所有Refs與歷史均無B3。來源檔排除`.git`、venv與pytest／Python cache；原B1的52檔SHA256完整保留，B2來源雜湊見[JSON證據](16-b2-validation-evidence.json)。
 
 ## 差異範圍
 
 - Domain建立所有合格候選，採最低整數rate單次計價；新增DiscountResult.rate及逐旅客AppliedDiscount。
 - Booking／Change共用政策與明細，先完成計算再修改座位與狀態；Schema根層增加applied_discounts，原passengers合約保持。
 - App標示B2，套件版本0.2.2；新增兩測試檔共11案例，原test_advance只遷移與新規則衝突的一項期待。
-- README、業務規則、優惠文件、API、架構、ADR与歷史同步。同步通知及既有改票文件指定落差保留。
+- README、業務規則、優惠文件、API、架構、ADR與歷史同步。同步通知及既有改票文件指定落差保留。
 
 沒有團體API、5–20人、連續座位或B3付款失敗補償。案例Bundle與標準解答均僅Evaluation使用；主持Recovery應另按發放時間輸出受控起點。
 

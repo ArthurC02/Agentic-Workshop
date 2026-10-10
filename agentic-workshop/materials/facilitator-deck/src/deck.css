@@ -249,6 +249,15 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
   color: var(--deep);
 }
 .slide-title :not(pre) > code { background: rgba(255, 255, 255, .14); color: #CFEFFA; }
+.slide[data-seg="reveal"] table.table code { font-size: 24px; }
+
+/* Seat diagram (B3 reveal): one box per seat position. */
+.seats { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; margin: .4rem 0; }
+.seat { min-width: 2.2rem; text-align: center; padding: .3rem 0; border-radius: .35rem; border: 1px solid var(--line); background: var(--white); color: var(--ink); }
+.seat.ok { background: var(--teal); border-color: var(--teal); color: var(--white); font-weight: 700; }
+.seat.bad { background: var(--danger); border-color: var(--danger); color: var(--white); font-weight: 700; }
+.seat.miss { background: var(--white); border: 2px dashed var(--danger); color: var(--danger); font-weight: 700; }
+.seat-gap { padding: 0 .4rem; font-weight: 700; color: var(--danger); }
 
 .slide ul, .slide ol:not(.timeline):not(.stage-bar):not(.steps) {
   padding-left: 1.3em;
@@ -446,8 +455,7 @@ ol.steps > li {
   box-shadow: 0 1px 3px rgba(20, 35, 60, .05);
   font-size: 32px;
   line-height: 1.4;
-  display: flex;
-  align-items: center;
+  display: block; /* flex would split text runs around <code> and drop their spaces */
 }
 ol.steps > li::before {
   content: counter(step);
@@ -562,7 +570,7 @@ ol.timeline {
 }
 ol.timeline > li {
   flex: var(--len, 1) 1 0;
-  min-width: 128px;
+  min-width: 168px;
   margin: 0;
   position: relative;
   display: flex;
@@ -581,14 +589,14 @@ ol.timeline > li {
 }
 ol.timeline > li .tl-min {
   font-family: var(--mono);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--muted);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 ol.timeline > li b { font-size: 25px; color: var(--navy); overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-ol.timeline > li .chip { font-size: 17px; padding: 3px 10px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; }
+ol.timeline > li .chip { font-size: 20px; padding: 3px 10px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; overflow-wrap: anywhere; }
 
 ol.timeline > li[data-seg="opening"],
 ol.timeline > li[data-seg="greenfield"] { --seg-c: var(--tool); }

@@ -48,15 +48,15 @@
 | AC-G-003／004／005 | T001成人700、學生525、混合1225且整數。 |
 | AC-G-006／007 | 0人與5人拒絕且不扣座位；4人容量足夠可建立。 |
 | AC-G-008 | 僅剩1座卻要求2人拒絕且座位不變；售罄不可訂。 |
-| AC-G-009 | T001兩人建立後為待付款（pending）、座位20→18，後續查詢反映。 |
+| AC-G-009 | T001兩人建立後為待付款（PENDING_PAYMENT）、座位20→18，後續查詢反映。 |
 | AC-G-010／011／012 | 成功付款PAID、唯一Order且金額一致；重複付款不新增；Order查詢正確。 |
 | AC-G-013／014 | 不存在資源依上述要求拒絕；付款失敗不建立Order或標PAID。 |
 | AC-G-015 | 完整四API流程可執行，Health正常。 |
 
 ## 技術與範圍
 
-Python3.13、FastAPI、Pydantic2、pytest、Uvicorn；venv／pip／requirements.txt，src/smart_ticket layout。API、Schemas、Application、Domain、Infrastructure輕量分層；Domain不依賴FastAPI。只使用本機In-Memory（資料只存在記憶體）、固定Seed Data（系統預設的測試資料）與模擬付款。不需前端、登入、其他優惠、改退票、真實個資、外部API或資料庫。
+Python3.13、FastAPI、Pydantic2、pytest、Uvicorn；venv／pip／requirements.txt，src/smart_ticket 目錄結構。API、Schemas、Application、Domain、Infrastructure輕量分層；Domain不依賴FastAPI。只使用本機In-Memory（資料只存在記憶體）、固定Seed Data（系統預設的測試資料）與模擬付款。不需前端、登入、其他優惠、改退票、真實個資、外部API或資料庫。
 
 ## 完成條件
 
-先形成可追溯的文件與核准計畫；實作完成與測試通過須另有實際證據。本文件為第一階段課後準備演練的來源摘要，依據既有Greenfield需求、AC與G1（G0補完後的版本）差異說明；不替代正式G0（Greenfield 起始包）任務文件。
+先形成可追溯的文件與核准計畫；實作完成與測試通過須另有實際證據。本文件是第一階段課後練習用的需求摘要，內容取自 Greenfield 需求、驗收條件與 G1（G0 補完後的版本）。正式任務仍以 G0（Greenfield 起始程式包）的文件為準。

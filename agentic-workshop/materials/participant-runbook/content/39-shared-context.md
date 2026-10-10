@@ -55,11 +55,11 @@ Time Skip 學過 Token 節費的「要摘要、不要全文」，這次用在小
 
 ## 檢查點 2 · 請主要 Agent 寫成共同脈絡檔（第 42–44 分鐘）
 
-口頭共識 Agent 下次就忘了，寫成檔案才會留下來。在**主要 Agent** 的對話**一次貼完**：先複製下面這段，接著在後面用一兩句話打上小組的分工與共識（主要 Agent 在誰的電腦、核准者是誰、口頭討論的共識與分歧），最後貼上其他成員的 5 行摘要（從聊天室複製即可），一起送出。
+口頭共識 Agent 下次就忘了，寫成檔案才會留下來。在**主要 Agent** 的對話裡**一次貼完**以下三樣再送出：① 下面這段提示詞；② 一兩句小組分工與共識（主要 Agent 在誰的電腦、核准者是誰、口頭討論的共識與分歧）；③ 其他成員的 5 行摘要（從聊天室複製即可）。
 
 ```callout tip
 技巧：Skill（可重複使用的工作說明）
-Skill 是把一套反覆要用的做法寫成一個 Markdown 檔，放在專案的 `skills/` 資料夾；之後只要說「請先讀 skills/… 並照做」，不必重教。檔案由 Agent 建立，你不用手寫。這裡的 `skills/team-rules.md` 寫的是：開工先讀什麼、要守的規則（就是你在 Greenfield 和 Time Skip 貼過的工作規則）、回報用什麼格式。寫好之後，B1、B2、B3 的提示詞只要一句「請先讀 skills/team-rules.md」，不用每段重貼整段規則，省時間也省 Token。這裡的 Skill 是一般 Markdown 檔，靠你在提示詞說「先讀它」才會用到；工具內建的 Skill 功能（例如 Agent Skills）有固定的資料夾、檔名與開頭欄位，放對位置後 Agent 會在相關時自動讀取。
+Skill 是把一套反覆要用的做法寫成一個 Markdown 檔，放在專案的 `skills/` 資料夾；之後只要說「請先讀 skills/… 並照做」，不必重教。檔案由 Agent 建立，你不用手寫。這裡的 `skills/team-rules.md` 寫的是：開工先讀什麼、要守的規則（就是你在 Time Skip 貼過的 7 條工作規則）、回報用什麼格式。寫好之後，B1、B2、B3 的提示詞只要一句「請先讀 skills/team-rules.md」，不用每段重貼整段規則，省時間也省 Token。這裡的 Skill 是一般 Markdown 檔，靠你在提示詞說「先讀它」才會用到；工具內建的 Skill 功能（例如 Agent Skills）有固定的資料夾、檔名與開頭欄位，放對位置後 Agent 會在相關時自動讀取。
 📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件 Copilot〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。
 ```
 

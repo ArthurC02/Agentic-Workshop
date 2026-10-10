@@ -12,7 +12,7 @@
 | `POST /bookings/{booking_id}/pay` | 僅 PENDING_PAYMENT 可付；成功 PAID 且唯一 Order，重複付款拒絕 |
 | `GET /orders/{order_id}` | 讀取已建立 Order；金額等於 Booking 總額 |
 
-分層：API 處理 HTTP／Schema／錯誤轉換；Application 串接 Trip 查詢、Booking、Payment、Order 用例；Domain 提供 PassengerType、BookingStatus、PaymentStatus、Trip／Booking／Order 與 Fare Policy；Infrastructure 提供 In-Memory Repository、固定 Seed／Reset 與 Mock Payment。Domain 不依賴 FastAPI 或測試框架。
+分層：API 處理 HTTP／Schema／錯誤轉換；Application 串接 Trip 查詢、Booking、Payment、Order 使用案例；Domain 提供 PassengerType、BookingStatus、PaymentStatus、Trip／Booking／Order 與 Fare Policy；Infrastructure 提供 In-Memory Repository、固定 Seed／Reset 與 Mock Payment。Domain 不依賴 FastAPI 或測試框架。
 
 預期測試：Health、Fare 單元測試（成人 100%、學生 75%、混合加總）、Booking 人數／座位邊界、可售 Trip／篩選、建立與付款至 Order 的整合流程、重複付款、不存在 ID，以及建立／付款失敗的狀態與座位一致性。每個測試前 Reset；不以改測試預期換取通過。
 

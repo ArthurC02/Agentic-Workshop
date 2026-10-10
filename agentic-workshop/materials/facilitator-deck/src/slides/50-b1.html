@@ -67,9 +67,9 @@
     <li>Agent 改完重跑測試，接著回答變更審查問題後停下</li>
     <li>看答案：沒有計畫外檔案、沒刪測試、沒改既有期待值</li>
   </ol>
-  <p class="callout">Runbook › B1 › 檢查點 2 · 審查任一題「否／不確定」就不放行</p>
+  <p class="callout">Runbook › B1 › 檢查點 2 · 審查三題全部是「是」才放行</p>
   <aside class="notes">
-    <p><b>說（00:02／第 46 分）</b>：「核准了的組，貼檢查點 2 的提示詞：Agent 從 notes/shared-context.md 記下核准人、用電腦時間記核准時間（不再問學員），只照計畫做最小修正，改完直接回答變更審查問題，答案也寫進 notes/b1.md。你們只看答案是『是』還是『否』。」</p>
+    <p><b>說（00:02／第 46 分）</b>：「核准了的組，貼檢查點 2 的提示詞：Agent 從 notes/shared-context.md 記下核准人、用電腦時間記核准時間（不再問學員），只照計畫做最小修正，改完直接回答變更審查問題，答案也寫進 notes/b1.md。你們只看三題答案，全部是『是』才放行。」</p>
     <p><b>看</b>：人是否核准範圍與計畫、選主要 Agent 執行 → 介入訊號：未核准即修改；只接受結果不審查。最小安全修復：針對學生計價，維持成人與既有優惠／順序。</p>
     <p><b>不可順手修改</b>：成人、提前優惠、企業會員與既有順序。</p>
     <p><b>立即介入</b>：刪除或弱化斷言、修改正確的期待值、用 Skip／XFail 隱藏、全面重寫、未經核准的 API 或外部依賴、虛報測試結果 → 要求 Agent 停止該行為，回到規則與範圍；時間壓力不能豁免驗收。不可用刪除測試的方式減少失敗數。</p>
@@ -82,16 +82,16 @@
   <h2 class="title">用同一個測試證明修好</h2>
   <ol class="steps">
     <li>同一批測試：修前失敗 → 修後通過</li>
-    <li>全套測試零失敗、零跳過；在 <code>/docs</code> 試成人＋學生 <b>1225</b></li>
+    <li>全套測試零失敗、零跳過；有時間可在 <code>/docs</code> 試成人＋學生 <b>1225</b></li>
     <li><b>人</b>決定：接受／要求修正／未完成；Agent 把做法存成 Skill</li>
   </ol>
   <p class="callout warn">Runbook › B1 › 檢查點 3 · 在「B1 決定」選第 52 分的決定 · 第 52 分鐘停止</p>
   <aside class="notes">
-    <p><b>說（00:05／第 49 分）</b>：「停止新增工作。請 Agent 用檢查點 1 那批失敗測試證明修好，再跑全套測試、交驗收對照表；你們在 /docs 試一筆，然後決定接受與否。只有實際完成驗收才能宣稱修復完成。」</p>
-    <p><b>看（技巧）</b>：小組是否要求「同一批測試修前修後對照」，不是只看最後總數；正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。人是否看完變更審查答案、驗收對照表與 /docs 金額才接受 → 介入訊號：Agent 說完成就直接交付。誠實交付：<code>notes/b1.md</code> 含原因、結果及缺項 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
+    <p><b>說（00:05／第 49 分）</b>：「停止新增工作。請 Agent 用檢查點 1 那批失敗測試證明修好，再跑全套測試、交驗收對照表；有時間可以在 /docs 試一筆，然後決定接受與否。只有實際完成驗收才能宣稱修復完成。」</p>
+    <p><b>看（技巧）</b>：小組是否要求「同一批測試修前修後對照」，不是只看最後總數；正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。人是否看完變更審查答案與驗收對照表（有試的話再加 /docs 金額）才接受 → 介入訊號：Agent 說完成就直接交付。誠實交付：<code>notes/b1.md</code> 含原因、結果及缺項 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
     <p><b>提示・時間不足</b>（第 49 分仍在擴充或大幅重構）：提醒技巧「先證明，再擴充」。可直接貼：「停止修改。請把目前的原因、核准計畫、已做的修改與實際測試結果寫進 notes/b1.md，列出未完成事項。」</p>
     <p>不刪除或弱化測試、不改正確期待值、不用 Skip／XFail 隱藏；看到時同樣立即介入。</p>
-    <p><b>停止（00:08／第 52 分）</b>：翻到「請先停手」頁，立即停止 B1 擴充；未完成就發 Hint 3，保留 <code>notes/b1.md</code> 的原因、計畫與缺項。</p>
+    <p><b>停止（00:08／第 52 分）</b>：翻到「請先停手」頁，立即停止 B1 擴充；第 52 分鐘未完成就不再給提示，保留 <code>notes/b1.md</code> 的原因、計畫與缺項。</p>
     <p><b>收尾：</b>請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。</p>
   </aside>
 </section>
@@ -106,11 +106,11 @@
     <p class="muted">未完成也請保留根因、影響分析、計畫與未完成事項。</p>
   </div>
   <aside class="notes">
-    <p><b>52 分鐘（BF6）</b>：立即停止 B1 擴充；未完成就發 Hint 3，保留 Root Cause／Impact／計畫與缺項。RB：52 分鐘停止。</p>
+    <p><b>52 分鐘（BF6）</b>：立即停止 B1 擴充；第 52 分鐘未完成就不再給提示，保留 Root Cause／Impact／計畫與缺項。RB：52 分鐘停止。</p>
     <p><b>Recovery 切換（RB；BF4／BF6；Recovery Plan）</b></p>
     <ul>
       <li>B1 時間到仍未修好：接受 Root Cause／Impact／計畫作為當前學習成果。</li>
-      <li>需接續 B2 時，只發<b>已驗收的正式 B1 Recovery Baseline</b>：只提供已結束 B1 能力，不含 B2／B3；原 B1 成果另留，不算自行修復。主持人按需核准後，私下提供獨立 Recovery 碼（碼：<code data-code="recovery-b1"></code>）；一般活動碼不開放此基線，不在投影或群組公開 Recovery 碼。</li>
+      <li>需接續 B2 時，只發<b>已驗收的正式 B1 復原包（Recovery）</b>：只提供已結束 B1 能力，不含 B2／B3；原 B1 成果另留，不算自行修復。主持人視需要核准後，私下提供復原包解鎖碼（碼：<code data-code="recovery-b1"></code>）；一般解鎖碼打不開復原包，不在投影或群組公開復原包解鎖碼。</li>
       <li>記錄原小組完成度、來源版本、切換原因與時間。</li>
       <li>B0 Evaluation 診斷副本／隔離診斷副本只用來證明 Bug 因果，<b>不是</b>已完成的 B1，也<b>不是</b>學員 Recovery 材料；沒有正式可用基線時，不以診斷結果冒充完成。版本缺失或 Hash 不符先停止，不能用不明副本。</li>
     </ul>
@@ -136,7 +136,7 @@
     </div>
   </div>
   <table class="table fx fx-fade">
-    <thead><tr><th>失敗的測試（Node ID）</th><th>期待值</th><th>B0 實際值</th></tr></thead>
+    <thead><tr><th>失敗的測試（pytest 測試路徑）</th><th>期待值</th><th>B0 實際值</th></tr></thead>
     <tbody>
       <tr><td><code>unit/test_fare_policy.py::test_student_fare_is_seventy_five_percent</code></td><td><b>525</b></td><td>595</td></tr>
       <tr><td><code>unit/test_fare_policy.py::test_mixed_passenger_fares_sum_as_integers</code></td><td><b>1225</b></td><td>1295</td></tr>
@@ -177,13 +177,13 @@
       </ul>
     </div>
   </div>
-  <p class="callout fx fx-fade"><b>不改</b>：成人 100%、提前購票 85%、企業會員（Corporate）95%、會員／Seed Data（系統預設的測試資料）／時鐘（Clock）、改票／退款／通知／稽核（Audit）、API／座位契約。</p>
+  <p class="callout fx fx-fade"><b>不改</b>：成人 100%、提前購票 85%、企業會員 95% 等其他票價；也不動會員、測試資料、時鐘、改退票、通知、稽核與 API 格式。</p>
   <aside class="notes">
     <p><b>講法</b>：投影上的程式片段只是揭曉用，學員不需要讀懂；重點是「五個失敗來自同一個原因，修改只有一行」，以及他們是否靠 Agent 的說明與證據找到它。</p>
     <p><b>因果鏈（R1-1）</b>：<code>BookingService.create</code> 逐人加總；<code>DiscountPolicy.calculate</code> 依 member → advance → student → adult 第一匹配；<code>FarePolicy.calculate</code> 學生分支用 <code>STUDENT_FARE_RATE</code>。BookingResponse 只序列化總額，不另外計價。</p>
     <p>另將 <code>main.py</code> 版本 metadata 改為 B1，僅版本識別。</p>
     <p><b>版本對照（R6）</b>：B0 = 44（28＋16）測試：5 failed／39 passed、Rule 36 ｜ B1 = 只修學生 75%、44 passed、Rule 36；會員／提前、Booking／Seat、Payment、Change／Refund 原樣；不以 BugFix 清債。</p>
-    <p>28 是 G1 Regression 數；44 = 28 原 + 16 B0 新增，是完整套件數。1 個 Warning 為既有 AnyIO BlockingPortal alias deprecated 相容警告。</p>
+    <p>28 是 G1 Regression 數；44 = 28 原 + 16 B0 新增，是完整套件數。</p>
     <p><b>不要</b>在此揭露 Controlled Debt Map 或文件落差位置（DEBT-003 等仍保留到後續段落）。</p>
   </aside>
 </section>
@@ -198,11 +198,11 @@
     <li class="fx">保留原 28 項 Greenfield 完成版（G1）測試的內容、期待值與測試資料，不刪除或弱化測試來壓低失敗數</li>
     <li class="fx"><b>不提前實作 B2</b>：不把驗收條件擴大成「所有學生永遠最低 75%」</li>
   </ol>
-  <p class="quote fx fx-fade">多項失敗來自共同原因；依核實的失敗集合判讀，不以失敗數量猜 Bug 數。</p>
+  <p class="quote fx fx-fade">多個測試失敗可能是同一個原因；要逐一比對是哪些測試失敗，不要用失敗數量猜有幾個 Bug。</p>
   <aside class="notes">
     <p><b>來源</b>：R1-2 Good Analysis（05-b1-expected-impact-analysis §最小修改與邊界；06-intentional-failure-manifest §驗收判定；08-b1-acceptance-test-map）。</p>
     <p>第 5 點細節：Corporate 學生或同時提前購票的學生，在 B1 仍可能由較早分支取得 95%／85%；<code>test_corporate_first_match_precedes_more_favorable_advance</code>（665 第一匹配）保留為 Regression。</p>
-    <p>學員時間到可在 52 分鐘用已驗收 Recovery 推進，但不等於 Reference Solution AC 豁免（R6 Speaker Notes）。</p>
+    <p>學員時間到可在 52 分鐘用已驗收的復原包（Recovery）推進，但不等於 Reference Solution AC 豁免（R6 Speaker Notes）。</p>
     <p>B1 學習成功包含有效的分析與協作，不以速度評分（BF7）。結尾 quote 摘自 C1（BF1；TS-F2）。</p>
     <p>下一頁進入 52 分鐘 B2 解鎖。</p>
   </aside>

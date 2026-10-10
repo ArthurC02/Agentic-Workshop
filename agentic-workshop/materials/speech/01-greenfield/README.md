@@ -1,6 +1,6 @@
 # 第一階段：Greenfield 講解簡報（Speech Deck）
 
-> 讀者：講者與教材維護者。時機：Greenfield（從空資料夾開始的新專案）Workshop後的45分鐘操作教學。前置：學員已體驗G0（Greenfield 起始包）、備妥編輯器與通用Coding Agent（能讀寫檔案、協助寫程式的 AI 助手）；每人使用獨立練習目錄。
+> 讀者：講者與教材維護者。時機：Greenfield（從頭開始的新專案）Workshop後的45分鐘操作教學。前置：學員已體驗G0（Greenfield 起始程式包）、備妥編輯器與通用Coding Agent（能讀寫檔案、協助寫程式的 AI 助手）；每人使用獨立練習目錄。
 
 ## 成品與操作
 
@@ -38,7 +38,7 @@
 - [G0架構](../../../01-greenfield/participant/starter-repository/docs/architecture.md)
 - [G0至G1差異說明（Delta）](../../../01-greenfield/evaluation/05-g0-to-g1-delta.md)
 
-M1–M4與TASK-GF-02為Speech教學拆分，不是新案例版本或正式任務登錄表（Registry）改動。Idea提供既有需求摘要；付款失敗仍待付款且保留座位。Gherkin參考只涵蓋選定情境，不宣稱完整15項AC覆蓋。pytest程式為映射示意，空資料夾尚無App或fixture（pytest的測試前置準備）。文件審查與MVP程式驗收分開。
+M1–M4 與 TASK-GF-02 只是本講解課拆的練習單位，不是新版本，也沒有改正式任務清單。Idea提供既有需求摘要；付款失敗仍待付款且保留座位。Gherkin參考只涵蓋選定情境，不宣稱完整15項AC覆蓋。pytest 程式只示範情境怎麼對應到測試，空資料夾尚無App或fixture（pytest的測試前置準備）。文件審查與MVP程式驗收分開。
 
 ## 維護
 

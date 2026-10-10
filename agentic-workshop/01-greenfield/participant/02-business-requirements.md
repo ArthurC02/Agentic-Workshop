@@ -1,6 +1,6 @@
 # Greenfield Business Requirements
 
-> 讀者：參與者與其 Coding Agent。時機：Plan 與需求核對。前置：閱讀 [任務](01-mission-brief.md)，已取得 Starter Repository。可見性：Participant。
+> 讀者：參與者與其 Coding Agent。時機：擬計畫與核對需求時。前置：閱讀 [任務](01-mission-brief.md)，已下載 G0。可見性：Participant。
 
 ## MVP 與 API
 
@@ -8,7 +8,7 @@
 |---|---|
 | `GET /trips` | 可選 `origin`、`destination` 精確篩選；未提供時列出所有有可售座位班次。回傳班次基本資訊、票價、剩餘座位。 |
 | `POST /bookings` | 指定 `trip_id` 及 1–4 位旅客，支援 `ADULT`／`STUDENT`；驗證班次存在與容量，逐位計價並建立待付款訂票、保留座位。 |
-| `POST /bookings/{booking_id}/pay` | 使用預設成功的 Mock Payment Gateway；成功改為已付款並建立唯一 Order；拒絕重複付款。 |
+| `POST /bookings/{booking_id}/pay` | 使用預設成功的模擬付款閘道（Mock Payment Gateway）；成功後改為已付款，並建立唯一的訂單（Order）；拒絕重複付款。 |
 | `GET /orders/{order_id}` | 回傳 Booking ID、金額及付款狀態；不存在回傳 404。 |
 
 `GET /health` 已提供，不需修改。不存在的 Booking 應回傳 404；無效請求回傳明確錯誤。付款測試可控制失敗結果，不使用隨機失敗；失敗不得建立 Order 或錯誤標為已付款。
@@ -18,13 +18,13 @@
 | Rule ID | 規則 |
 |---|---|
 | TRIP-001 | 只回傳至少有一個可售座位的班次。 |
-| TRIP-002 | 起訖站篩選可選；提供時精確符合 Seed 站名。 |
+| TRIP-002 | 起訖站篩選可選；提供時須與預設測試資料（Seed Data）的站名完全相同。 |
 | BOOKING-001 | 至少一位旅客。 |
 | BOOKING-002 | 單筆最多 4 位旅客。 |
 | BOOKING-003 | 旅客數不得超過班次剩餘座位。 |
 | BOOKING-004 | 成功建立後立即保留對應座位數。 |
 | BOOKING-005 | 新訂票狀態為 `PENDING_PAYMENT`。 |
-| FARE-001 | 成人為 Base Fare 的 100%。 |
+| FARE-001 | 成人為基本票價（Base Fare）的 100%。 |
 | FARE-002 | 學生為 Base Fare 的 75%。 |
 | FARE-003 | 逐位旅客計價後加總為 Booking Total Fare。 |
 | FARE-004 | 所有金額採整數，不處理小數與幣別換算。 |

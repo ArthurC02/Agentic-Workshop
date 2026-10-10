@@ -8,7 +8,7 @@ section: Brownfield｜Teammate
 
 # B0 系統 Context 與已知限制
 
-這頁是 B0 的背景資料（Context：分析所需的背景），花 1 分鐘瀏覽即可，不需要讀程式。詳細內容在 B0 Repository 的 `README.md`、`docs/` 與 ADR（Architecture Decision Record，架構決策紀錄：說明當時的選擇與取捨）裡，下一頁會請 Agent 帶你讀。
+這頁是 B0 的背景資料（Context：交給 Agent 參考的資料，Time Skip 讀過），花 1 分鐘瀏覽即可，不需要讀程式。詳細內容在 B0 Repository 的 `README.md`、`docs/` 與 ADR（Architecture Decision Record，架構決策紀錄：說明當時的選擇與取捨）裡，下一頁會請 Agent 帶你讀。
 
 ```callout info
 文件是線索，不是結論

@@ -27,7 +27,7 @@
 | §20 Exception Reference | evaluation/04-exception-reference-answer.md | Reject方案非Reject任務；In-Memory Reservation／Compensation，可選Snapshot／Token／Rollback，不強制通用框架 |
 | §21 Debrief | facilitator/05-digital-worker-debrief-notes.md | Review負擔、Gate價值、證據／平台Audit、自動約束與人的責任；不以自主率競賽 |
 | §22 工具中立 | 全15必要文件 | 無特定產品必要流程，Agent／Tool／Session為通用角色 |
-| §23 時間壓力 | participant/01-operating-rules.md、02-agent-work-order.md；facilitator/02-approval-gate-cues.md | 必讀僅Operating／Work Order／Gates／B3任務卡；其他按需；每Gate1–3分鐘，時間不足保留Gate1／2及Gate3最小Review，例外不刪 |
+| §23 時間壓力 | participant/01-operating-rules.md、02-agent-work-order.md；facilitator/02-approval-gate-cues.md | 必讀僅Operating／Work Order／Gates／B3任務卡；其他視需要；每Gate1–3分鐘，時間不足保留Gate1／2及Gate3最小Review，例外不刪 |
 | §24 一致性 | 本表；participant/02-agent-work-order.md | 17 B3新增Rule與Registry精確一致、三Gate與AC對齊、材料角色隔離、Level1–3、責任不消失 |
 
 ## 已完成的靜態核對

@@ -2,7 +2,7 @@
 
 <section class="slide slide-title" data-seg="opening" data-title="工作坊開場" data-minute="00">
   <p class="kicker">Hands-on Workshop · 本機案例</p>
-  <h1 class="title">Agentic Software Development Evolution Workshop</h1>
+  <h1 class="title">Agentic Software Development 實作工作坊</h1>
   <p class="subtitle">以 Smart Ticket 訂票平台，練習人與 Agent 的協作</p>
   <div class="cols-3">
     <div class="card fx fx-up">
@@ -11,7 +11,7 @@
     </div>
     <div class="card fx fx-up">
       <div class="big-number">1</div>
-      <p class="muted">個 Runbook 檔案</p>
+      <p class="muted">個 Runbook 檔案（學員操作手冊）</p>
     </div>
     <div class="card fx fx-up">
       <div class="big-number">3</div>
@@ -69,11 +69,11 @@
     <li data-seg="greenfield" style="--len:22"><span class="tl-min">07–29</span><b>Greenfield MVP</b><span class="chip tool">Tool</span></li>
     <li data-seg="timeskip" style="--len:4"><span class="tl-min">29–33</span><b>Time Skip</b></li>
     <li data-seg="analysis" style="--len:6"><span class="tl-min">33–39</span><b>個人分析</b><span class="chip teammate">Teammate</span></li>
-    <li data-seg="shared" style="--len:5"><span class="tl-min">39–44</span><b>Shared Context</b><span class="chip teammate">Teammate</span></li>
+    <li data-seg="shared" style="--len:5"><span class="tl-min">39–44</span><b>共同脈絡</b><span class="chip teammate">Teammate</span></li>
     <li data-seg="b1" style="--len:8"><span class="tl-min">44–52</span><b>B1</b><span class="chip teammate">Teammate</span></li>
-    <li data-seg="b2" style="--len:11"><span class="tl-min">52–63</span><b>B2</b><span class="chip teammate">Teammate→Digital Worker</span></li>
+    <li data-seg="b2" style="--len:11"><span class="tl-min">52–63</span><b>B2</b><span class="chip teammate">Teammate →<wbr> Digital Worker</span></li>
     <li data-seg="b3" style="--len:13"><span class="tl-min">63–76</span><b>B3</b><span class="chip dw">Digital Worker</span></li>
-    <li data-seg="delivery" style="--len:4"><span class="tl-min">76–80</span><b>交付（Delivery）</b></li>
+    <li data-seg="delivery" style="--len:4"><span class="tl-min">76–80</span><b>交付</b></li>
     <li data-seg="retro" style="--len:10"><span class="tl-min">80–90</span><b>回顧</b></li>
   </ol>
   <p class="lead fx fx-fade">Greenfield（從頭開始的新專案）採個人練習；Brownfield（已有程式碼的既有專案）先各自分析，再整合小組判斷。</p>
@@ -113,12 +113,12 @@
   <h2 class="title">今天會用到的六個 Agent 技巧</h2>
   <table class="table">
     <tbody>
-      <tr><td>Prompt 結構</td><td>Greenfield 檢查點 2 第一次學</td></tr>
+      <tr><td>提示詞（Prompt）結構</td><td>Greenfield 檢查點 2 第一次學；B3 加深</td></tr>
       <tr><td>模型選擇</td><td>個人分析檢查點 1 第一次學；B3 再用</td></tr>
       <tr><td>推論強度</td><td>個人分析檢查點 1 第一次學；B2 再用</td></tr>
       <tr><td>結構化輸出</td><td>Greenfield 檢查點 3 第一次學；B2、B3、交付加深</td></tr>
-      <tr><td>Token 節費</td><td>Time Skip 檢查點 2 第一次學</td></tr>
-      <tr><td>Skill</td><td>共同脈絡檢查點 2 第一次學；B1、B3 加深</td></tr>
+      <tr><td>Token 節費（少讓 Agent 讀不必要的文字）</td><td>Time Skip 檢查點 2 第一次學</td></tr>
+      <tr><td>Skill（存成檔案、可重複使用的工作說明）</td><td>共同脈絡檢查點 2 第一次學；B1、B3 加深</td></tr>
     </tbody>
   </table>
   <aside class="notes">
@@ -169,7 +169,7 @@
     <ol class="steps">
       <li class="fx">開啟 <code>runbook.html</code>（離線即可）</li>
       <li class="fx">其他章節：輸入主持人公布的解鎖碼；有程式碼的章節可下載 ZIP</li>
-      <li class="fx">投影只顯示時間與第幾個<b>檢查點</b>；<b>要做什麼看 Runbook</b></li>
+      <li class="fx">投影只顯示時間、解鎖碼與目前<b>檢查點</b>；<b>要做什麼看 Runbook</b></li>
       <li class="fx">每個檢查點：<b>複製提示詞</b>貼給 Agent → 看回報 → 回「同意」或「改成…」</li>
     </ol>
     <div class="card fx fx-fade">
@@ -182,13 +182,13 @@
         <span class="chip dw">63 B3</span>
         <span class="chip">80 回顧</span>
       </p>
-      <p class="muted">活動碼於各段開始時投影；復原基線碼由主持人按需個別提供。輸入時不分大小寫，空白與連字號可忽略。</p>
+      <p class="muted">各段的解鎖碼在該段開始時投影；進度落後需要復原包（Recovery）時，主持人會個別提供另一組碼。輸入時不分大小寫，空白與連字號可忽略。</p>
     </div>
   </div>
   <aside class="notes">
-    <p><b>已核准變更（指令書 §1）</b>：學員只發一次單一 runbook.html；G0／B0 以 ZIP 內嵌供下載；B1／B2 受控復原基線另用獨立碼，只於52／63分鐘按需提供，不向全場公布；鎖定章節以「編碼隱藏＋寫死解鎖碼」落實，只防隨手偷看，不是密碼學保護。</p>
-    <p>§3：00 不鎖＝開始之前、環境準備、Runbook 使用方式、開場、詞彙表。07 Greenfield／29 Time Skip／44 B1／52 B2／63 B3／80 回顧。</p>
-    <p>本頁<b>不顯示</b>任何解鎖碼；一般活動碼在對應解鎖頁顯示；復原基線碼只在講者視窗按需提供。完整碼表不發學員。</p>
+    <p><b>已核准變更（指令書 §1）</b>：學員只發一次單一 runbook.html；G0／B0 以 ZIP 內嵌供下載；B1／B2 復原包（Recovery）另用獨立碼，只於52／63分鐘視需要提供，不向全場公布；鎖定章節以「編碼隱藏＋寫死解鎖碼」落實，只防隨手偷看，不是密碼學保護。</p>
+    <p>§3：00 不鎖＝歡迎與使用方式、環境準備、Agent 工作方式與安全規則、詞彙表。07 Greenfield／29 Time Skip／44 B1／52 B2／63 B3／80 回顧。</p>
+    <p>本頁<b>不顯示</b>任何解鎖碼；一般解鎖碼在對應解鎖頁顯示；復原包解鎖碼只在講者視窗視需要提供。完整碼表不發學員。</p>
     <p><b>說</b>：「接下來每一段，投影只顯示時間和現在第幾個檢查點；要做什麼、要貼給 Agent 的提示詞，都在 Runbook。每個檢查點都有一段可複製的提示詞，貼給 Agent 就能跑完這一步；要你決定時，Agent 會先列選項或建議答案，你只要回「同意」或「改成…」。紀錄請 Agent 寫進 notes 資料夾，你不用抄；表單每段最多一張，大多是下拉選單，只記你的決定。我換頁時，請跟著跳到 Runbook 對應的檢查點。」（表單自動暫存已寫在 Runbook「如何使用」。）</p>
     <p>唯一例外事件情境不在 Runbook，只由主持簡報在指定時點呈現——不要提前提及。</p>
   </aside>
@@ -201,17 +201,17 @@
     <div class="card fx fx-up">
       <span class="chip">1</span>
       <h3>Runbook</h3>
-      <p>開放章節可開啟、可翻頁</p>
+      <p>Runbook 能開，開放章節可翻頁</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">2</span>
       <h3>環境</h3>
-      <p>依「環境準備」請 Agent 確認 Python 3.13</p>
+      <p>Agent 能讀寫本機資料夾；Python 3.13 在 Greenfield 檢查點 1 由 Agent 確認</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">3</span>
       <h3>Agent</h3>
-      <p>你自己的 Agent 已可使用</p>
+      <p>你自己的 Agent 能對話</p>
     </div>
   </div>
   <p class="callout fx fx-fade">任務文件於第 <b>7</b> 分鐘統一解鎖。</p>
