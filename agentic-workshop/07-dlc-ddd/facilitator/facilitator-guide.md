@@ -90,7 +90,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 分鐘 | 檢查點 | 你說／做 |
 |---|---|---|
 | 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
-| 0–3 | 1 · 依賴安裝與測試 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
+| 0–3 | 1 · 安裝相依套件與測試 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
 | 1–2 | （等待安裝時） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁 |
 | 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 71 files`、`"version": "0.10.15"` |
 | 5–8 | 3 · 專案就緒與品質關卡檢查 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；小組口頭討論「哪些錯只能靠測試與人」 |

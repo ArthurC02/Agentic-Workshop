@@ -22,7 +22,7 @@ section: 開始之前
 
 時間是**最晚**完成的時間；提早完成就直接進入下一個。
 
-- **檢查點 1 · 依賴安裝與測試（0–3）**：下載、解壓到短路徑；Agent 建 venv（Python 虛擬環境）、安裝相依套件、測試全部通過。
+- **檢查點 1 · 安裝相依套件與測試（0–3）**：下載、解壓到短路徑；Agent 建 venv（Python 虛擬環境）、安裝相依套件、測試全部通過。
 - **檢查點 2 · 解出 Plugin 並核對 SHA256（3–5）**：Agent 解出 Plugin 0.10.15，逐檔核對 SHA256 雜湊（檔案的指紋）。
 - **檢查點 3 · 專案就緒與品質關卡檢查（5–8）**：Agent 確認 Plugin 判定 brownfield（已有程式碼的既有專案），並找到 pytest。
 - **檢查點 4 · 確認真實 Python（8–10）**：Agent 確認 `python` 是 venv 裡的真實直譯器、建立起始 commit、環境健檢全部通過。
@@ -33,7 +33,7 @@ section: 開始之前
 - Git for Windows 2.34 以上（D2 的 SSH 簽章需要）。
 - 一個可讀寫本機資料夾、能執行終端機指令的 Coding Agent（主課用過的那一個即可）。
 
-## 檢查點 1 · 依賴安裝與測試（第 0–3 分鐘）
+## 檢查點 1 · 安裝相依套件與測試（第 0–3 分鐘）
 
 ```download
 id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起始 Repo、輔助工具、domain-memory Plugin）
@@ -77,7 +77,7 @@ Plugin 更新 Registry（`domain-memory/` 裡記錄領域知識的 JSON 檔）�
      .venv/Scripts/python.exe -m pytest -q
    本 Repo 只用 pip install -r requirements.txt，不要執行 pip install -e .（測試設定已包含 src 路徑）。
 2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，沒有 warning）、有沒有 failed 或 error。
-3. 建立 notes/opening.md，寫入標題「檢查點 1 · 依賴安裝與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
+3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
 做完停下等我。
 ```
 

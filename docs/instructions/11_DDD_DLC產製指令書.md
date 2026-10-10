@@ -19,7 +19,7 @@
 10. 建置走 edition 參數：`scripts/build_materials.py --edition dlc`，輸出 `agentic-workshop/materials-dlc/`；Runbook 儲存前綴 `stwdlc:`；打包獨立（`scripts/package-manifest-dlc.json`、`dist/dlc-candidate/<id>/`、獨立證據）。DLC 工作不得變更主課 `scripts/package-manifest.json` 與主課候選。
 11. Evaluation 素材（reference Registry、各情境參考解答、觀察指引／評分表）僅供主持人；揭曉前不得可由任何學員包或 Runbook 取得。
 12. 2026-10-07 追加核准：(a) 起始 Repo 允許新增 `.gitattributes`（`* -text`），測試數為 76；(b) DLC 學員簽章金鑰放在 Repo 外 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），不放 Repo 內 `.dlc-keys/`（scan-secrets 會掃忽略目錄）也不放 `~/.ssh`，故 `scan-secrets` 預期 exit 0。
-13. 2026-10-07 依最終驗證報告（`evaluation/dlc-final-report.md`）對齊已建成設計，不放寬任何安全要求：(a) **D3 參考解答**的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實以**候選**（`upsert-candidate`）登記；D3 不產出已 finalize 的 Change Package（受治理的晉升是 D2 的課題，D4 負責交接）。驗證改為對各參考解答的 `domain-memory/` 執行 `validate`、`verify-audit`、`coverage`；已變動檔案上的 stale evidence 為預期並須列出。(b) **開場**：環境／下載頁屬解鎖群組 `dlc-opening`（第 0 分鐘，碼寫在第一張解鎖投影片），因為開放頁不得提供下載；只有開始之前、Runbook 用法、詞彙表為 `open`。開場有四個檢查點（見 `materials-dlc/CHECKPOINTS.md`）：依賴安裝與測試／Plugin 解出與 SHA 核對／readiness 與 quality-gates／確認真實 Python。(c) **實際檔名**：DLC 建置測試為 `scripts/test_build_materials.py`（`EditionTests`）與 `scripts/test_build_delivery_dlc.py`；DLC 包驗證器為 `scripts/build_delivery_dlc.py --verify <dir>`；Plugin 封裝為 `scripts/vendor_dlc_plugin.py`；Recovery 產生器為 `agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py`（資料夾 d1、d2、d3a、d3b、d3c）；不存在 `scripts/test_build_materials_dlc.py`、`scripts/validate_dlc.py`。(d) **檢查點時窗例外**：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分（d3a／d3b／d3c）、D3c 步驟 4 為 6 分，超過每步 5 分鐘，列為已接受例外；緩解：情境卡把 AC 分成核心與延伸，時間不足只做核心。(e) **RECOVERY 接手**會把維護者**公鑰**（allowed-signers 一行）複製到學員的 `~/.dlc-keys`；僅公鑰，可接受，私鑰仍不得出現在任何包內。
+13. 2026-10-07 依最終驗證報告（`evaluation/dlc-final-report.md`）對齊已建成設計，不放寬任何安全要求：(a) **D3 參考解答**的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實以**候選**（`upsert-candidate`）登記；D3 不產出已 finalize 的 Change Package（受治理的晉升是 D2 的課題，D4 負責交接）。驗證改為對各參考解答的 `domain-memory/` 執行 `validate`、`verify-audit`、`coverage`；已變動檔案上的 stale evidence 為預期並須列出。(b) **開場**：環境／下載頁屬解鎖群組 `dlc-opening`（第 0 分鐘，碼寫在第一張解鎖投影片），因為開放頁不得提供下載；只有開始之前、Runbook 用法、詞彙表為 `open`。開場有四個檢查點（見 `materials-dlc/CHECKPOINTS.md`）：安裝相依套件與測試／Plugin 解出與 SHA 核對／readiness 與 quality-gates／確認真實 Python。(c) **實際檔名**：DLC 建置測試為 `scripts/test_build_materials.py`（`EditionTests`）與 `scripts/test_build_delivery_dlc.py`；DLC 包驗證器為 `scripts/build_delivery_dlc.py --verify <dir>`；Plugin 封裝為 `scripts/vendor_dlc_plugin.py`；Recovery 產生器為 `agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py`（資料夾 d1、d2、d3a、d3b、d3c）；不存在 `scripts/test_build_materials_dlc.py`、`scripts/validate_dlc.py`。(d) **檢查點時窗例外**：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分（d3a／d3b／d3c）、D3c 步驟 4 為 6 分，超過每步 5 分鐘，列為已接受例外；緩解：情境卡把 AC 分成核心與延伸，時間不足只做核心。(e) **RECOVERY 接手**會把維護者**公鑰**（allowed-signers 一行）複製到學員的 `~/.dlc-keys`；僅公鑰，可接受，私鑰仍不得出現在任何包內。
 
 ## 2. 產出
 
@@ -103,7 +103,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 
 ### 4.1 開場與環境（0–10）
 
-- 檢查點（四個，對應 `materials-dlc/CHECKPOINTS.md`）：依賴安裝與測試（76 passed）；Plugin 解出與 SHA 核對；`readiness`（brownfield）與 `quality-gates`（列出 pytest）；確認真實 Python（非 Store 別名）。環境／下載頁屬 `dlc-opening` 群組。
+- 檢查點（四個，對應 `materials-dlc/CHECKPOINTS.md`）：安裝相依套件與測試（76 passed）；Plugin 解出與 SHA 核對；`readiness`（brownfield）與 `quality-gates`（列出 pytest）；確認真實 Python（非 Store 別名）。環境／下載頁屬 `dlc-opening` 群組。
 - 驗收：四點都有可複製指令（PowerShell 與 bash 兩版），且每點有「看到什麼算成功」的輸出片段。
 
 ### 4.2 D1 共同語言與邊界（10–35）

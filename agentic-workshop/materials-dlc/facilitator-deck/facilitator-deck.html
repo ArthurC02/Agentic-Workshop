@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build e63bd7976dfa291f inputs-sha256 e63bd7976dfa291f4760e0806140d2902977a555e633cfabe3272a917735da4c -->
+<!-- 主持人專用，不發給學員。build 77572e2807803f42 inputs-sha256 77572e2807803f4295d07bbebc4b37151b860a965f2103df7e8b3a7258cfc299 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1303,7 +1303,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">開場 10 分鐘：環境就緒</h2>
   <p class="muted">四個檢查點：把 Runbook 的提示詞貼給 Agent 執行，Agent 的回報對得上「看到什麼算過關」才往下。</p>
   <ol class="timeline">
-    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 依賴安裝與測試</b></li>
+    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 安裝相依套件與測試</b></li>
     <li data-seg="dlc-opening"><span class="tl-min">03:00</span><b>2 · 解出 Plugin 並核對 SHA256</b></li>
     <li data-seg="dlc-opening"><span class="tl-min">05:00</span><b>3 · 專案就緒與品質關卡檢查</b></li>
     <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>4 · 確認真實 Python</b></li>
@@ -1316,7 +1316,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-opening" data-title="檢查點 1 · 依賴安裝與測試" data-minute="0">
+<section class="slide" data-seg="dlc-opening" data-title="檢查點 1 · 安裝相依套件與測試" data-minute="0">
   <p class="kicker">檢查點 1 / 4 · 第 0–3 分鐘</p>
   <h2 class="title">安裝依賴，起始 Repo 測試 76 passed</h2>
   <ol class="steps">
@@ -2436,9 +2436,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li data-seg="dlc-retro"><span class="tl-min">13:00</span><b>4 · 匯出與結束</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「15 分鐘回顧：請 Agent 從今天的紀錄找證據，你們判斷站不站得住；小組口頭討論哪些核准步驟只是走流程；最後每人挑一份自己的提示詞清單，小組選一項行動。」</p>
+    <p><b>說（約 20 秒）</b>：「15 分鐘回顧：請 Agent 從今天的紀錄找證據，你們判斷站不站得住；小組口頭討論哪些核准步驟只是照流程做完；最後每人挑一份自己的提示詞清單，小組選一項行動。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
-    <p><b>回顧至少要談到</b>：哪個已審查事實改變了 Agent 的輸出；哪個候選差點被當成事實；自己核准自己只是走流程，和真正由他人審查差在哪裡。討論只用口頭，不用寫下來。</p>
+    <p><b>回顧至少要談到</b>：哪個已審查事實改變了 Agent 的輸出；哪個候選差點被當成事實；自己核准自己只是照流程做完，和真正由他人審查差在哪裡。討論只用口頭，不用寫下來。</p>
     <p><b>課後</b>：提醒刪除簽章金鑰；Recovery 不作為小組成果評分。</p>
   </aside>
 </section>
@@ -2469,7 +2469,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="callout">Runbook › 回顧 › 檢查點 2 · 貼提示詞，然後討論</p>
   <aside class="notes">
-    <p><b>說（04:00／第 169 分）</b>：「第 169 分。請 Agent 把今天的核准流程一步步列出來，標出哪一步一個人就能完成。然後口頭討論：record-approval 只比對字串、同機雙身分也能過，自己核准自己只是走流程，這和真正由他人審查差在哪？」</p>
+    <p><b>說（04:00／第 169 分）</b>：「第 169 分。請 Agent 把今天的核准流程一步步列出來，標出哪一步一個人就能完成。然後口頭討論：record-approval 只比對字串、同機雙身分也能過，自己核准自己只是照流程做完，這和真正由他人審查差在哪？」</p>
     <p><b>看</b>：是否討論到簽章只證明『誰簽了』，不證明『審得夠不夠』。</p>
     <p><b>介入訊號</b>：偏向工具比較 → 拉回今天的證據。</p>
   </aside>
@@ -2514,7 +2514,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="lead">Agent 的領域記憶：先有證據，再有審查，才有可以信任的事實。</p>
   <p class="callout warn">簽章私鑰還沒刪的，離開前刪除。</p>
   <aside class="notes">
-    <p><b>說</b>：「今天你們看到 Domain Memory 如何改變 Agent 的輸出，也看到自己核准自己只是走流程，和真正由他人審查差在哪裡。簽章私鑰還沒刪的，離開前刪掉，謝謝。」</p>
+    <p><b>說</b>：「今天你們看到 Domain Memory 如何改變 Agent 的輸出，也看到自己核准自己只是照流程做完，和真正由他人審查差在哪裡。簽章私鑰還沒刪的，離開前刪掉，謝謝。」</p>
     <p><b>課後</b>：收集 Runbook 匯出、學員的 <code>notes/</code> 與主持人觀察記錄；Recovery 使用情形另行記錄，不作為評分。</p>
   </aside>
 </section>
