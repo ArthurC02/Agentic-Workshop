@@ -29,7 +29,7 @@ from build_delivery import ROOT, digest, link_check, safe_path
 MANIFEST = ROOT / "scripts/package-manifest-dlc.json"
 OUT_ROOT = ROOT / "dist/dlc-candidate"
 DLC = "agentic-workshop/07-dlc-ddd"
-VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-0.2.2.zip"
+VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-0.10.15.zip"
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
     "participant-dlc-open": ("participant", 0), "participant-dlc-d1": ("participant", 10),

@@ -4,7 +4,7 @@ Usage:
     py -3.13 -X utf8 scripts/vendor_dlc_plugin.py [--source <plugin dir>] [--check]
 
 Writes agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-<version>.zip (top folder
-domain-memory/, caches excluded, sorted members, fixed timestamps) and <zip>.SHA256SUMS with one
+domain-memory/, runtime files only: development files and caches excluded, sorted members, fixed timestamps) and <zip>.SHA256SUMS with one
 line per member file plus a final line for the ZIP itself (sha256sum format).
 --check rebuilds in memory and exits 1 when the vendored files differ.
 """
@@ -19,10 +19,12 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = Path("C:/Users/a8022/Desktop/SkillHub/.claude/skills/domain-memory")
+DEFAULT_SOURCE = Path("C:/Users/a8022/OneDrive/Desktop/SkillHub/.claude/skills/domain-memory")
 VENDOR = ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor"
 EXCLUDED_DIRS = {".pytest_cache", ".ruff_cache", "__pycache__", ".git", ".venv"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
+# The plugin README: everything except evals/ and scripts/test_*.py ships; README.md and ruff.toml are developer-only.
+EXCLUDED_TOP = {"evals", "README.md", "ruff.toml"}
 TOP = "domain-memory"
 
 
@@ -30,7 +32,8 @@ def plugin_files(source: Path) -> list[tuple[str, bytes]]:
     files = []
     for path in source.rglob("*"):
         rel = path.relative_to(source)
-        if path.is_dir() or EXCLUDED_DIRS & set(rel.parts) or path.suffix in EXCLUDED_SUFFIXES:
+        if (path.is_dir() or EXCLUDED_DIRS & set(rel.parts) or path.suffix in EXCLUDED_SUFFIXES
+                or rel.parts[0] in EXCLUDED_TOP or (rel.parts[0] == "scripts" and rel.name.startswith("test_"))):
             continue
         if path.is_symlink():
             raise ValueError(f"Symlink not allowed in vendored plugin: {rel.as_posix()}")

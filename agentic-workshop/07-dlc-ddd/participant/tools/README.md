@@ -19,7 +19,7 @@
 
 ## Plugin 位置
 
-依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.2.2.zip` 解壓到這裡）。
+依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.10.15.zip` 解壓到這裡）。
 
 ## 常用指令
 

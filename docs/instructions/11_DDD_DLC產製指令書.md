@@ -2,14 +2,14 @@
 
 > 讀者：產製 DDD DLC 教材、參考解答、建置與打包工具的 Coding Agent，以及驗收者。
 > 時機：主課 P12 素材完成之後；與 edition-aware 建置（`scripts/build_materials.py --edition dlc`）平行進行。
-> 前置：00 總控、05、06、10 指令書；起始 Repo `agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/`；domain-memory Plugin 0.2.2（`SKILL.md`、`AGENTS.md`、`references/script-api.md`、`references/seven-step-workflow.md`、`references/implementation-handoff.md`、`references/ports-and-adapters.md`、`references/pattern-verification.md`）。
+> 前置：00 總控、05、06、10 指令書；起始 Repo `agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/`；domain-memory Plugin 0.10.15（`SKILL.md`、`AGENTS.md`、`references/script-api.md`、`references/seven-step-workflow.md`、`references/implementation-handoff.md`、`references/ports-and-adapters.md`、`references/pattern-verification.md`）。
 > 主課候選以程式為準：`scripts/build_materials.py` 的 `CANDIDATE_ID`。
 
 ## 1. 已核准變更（2026-10-07，使用者於對話中核准）
 
 1. 新增獨立產品「DDD DLC」：180 分鐘加課，對象為已完成主課（Tool → Teammate → Digital Worker）的學員。不改主課 90 分鐘時程、商業規則、版本、測試期待值或任何凍結候選。
 2. 主題：**Agent 的領域記憶**。把領域知識轉成經審查、以檔案保存的 Domain Memory，並用它驅動受治理的變更。DDD 概念（Ubiquitous Language、Bounded Context、Context Map、Aggregate／invariant／一致性邊界、Port／Adapter／ACL）一律透過 domain-memory Plugin 操作來教，不另開理論講堂。
-3. Plugin 版本固定為 0.2.2，原樣內嵌於 DLC 學員包，附 SHA256 清單；不得修改 Plugin 任何位元組。
+3. Plugin 版本固定為 0.10.15，只內嵌執行用的檔案（依 Plugin README，排除 `evals/`、`scripts/test_*.py` 與開發用的 `README.md`、`ruff.toml`；由 `scripts/vendor_dlc_plugin.py` 產生），附 SHA256 清單；內嵌的檔案不得修改任何位元組。
 4. 起始 Repo 為 B3 團體訂票解答的清理複本 `smart-ticket-dlc-base`。設計洩漏（貧血模型、三處複製計價、具體 Gateway 無 Port、三份座位真相、退款以 booking_id 為鍵）刻意保留作為教材；產品規則放在 `docs/requirements/`，因為 Plugin 只自動分類該類資料夾。
 5. 情境卡為 `agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md`、`02-points-redemption.md`、`03-group-partial-refund.md`，由平行工作撰寫；本指令書只引用路徑，不得改寫其內容。
 6. D3 三個情境**全體依序進行、三個都做**（D3a → D3b → D3c），每段在前一段成果上累積。
@@ -28,7 +28,7 @@
 | `agentic-workshop/07-dlc-ddd/README.md` | DLC 總覽、三分目錄說明、建置與驗證指令 | 維護者 |
 | `07-dlc-ddd/participant/repository/smart-ticket-dlc-base/` | 起始 Repo（已存在；僅允許第 5.3 節列出的補強） | 學員 |
 | `07-dlc-ddd/participant/scenarios/01–03-*.md` | 情境卡（平行工作產出，本指令書只驗收引用） | 學員 |
-| `07-dlc-ddd/participant/vendor/domain-memory-0.2.2.zip`、`domain-memory-0.2.2.SHA256SUMS` | Plugin 原樣封裝與逐檔／整包雜湊 | 學員 |
+| `07-dlc-ddd/participant/vendor/domain-memory-0.10.15.zip`、`domain-memory-0.10.15.SHA256SUMS` | Plugin 原樣封裝與逐檔／整包雜湊 | 學員 |
 | `07-dlc-ddd/participant/tools/` | `dm.ps1`、`dm.sh`（固定 `-X utf8` 與 `--registry-root domain-memory` 的命令前綴）、`make_record.py`、`fill_package.py`、`write_scm_attestation.py`、`setup_remote.py`（建本機 bare remote）、`dmlib.py`（共用函式）、`doctor.py`（環境自檢） | 學員 |
 | `07-dlc-ddd/participant/worksheets/` | D1 來源選擇表、D2 角色卡、D3 決策卡、D4 Handoff 範本（純 Markdown，供 Runbook include） | 學員 |
 | `07-dlc-ddd/facilitator/facilitator-guide.md` | 逐段 cue、檢查點、提示條件、降級規則、成對簽章示範腳本 | 主持人 |
@@ -179,7 +179,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 
 所有指令於 Repo 根以 Python 3.13 執行，實際輸出摘要寫入 `dlc-validation-evidence.json`。
 
-1. **Plugin 完整性**：解出的 Plugin 每檔 SHA256 與 `SHA256SUMS` 一致；`plugin.json` 版本為 0.2.2。
+1. **Plugin 完整性**：解出的 Plugin 每檔 SHA256 與 `SHA256SUMS` 一致；`plugin.json` 版本為 0.10.15。
 2. **起始 Repo**：全新 venv 安裝後 `pytest -q` 為 76 passed，無 Skip／XFail；第 5.1 節 grep 結果已審查。
 3. **Reference Registry**：`validate --require-reviewed`、`verify-evidence`、`verify-sources`、`verify-audit`、`governance-readiness` 全部 OK；`coverage` 輸出已審查並記錄刻意未建模的缺口。
 4. **參考解答（d3a、d3b、d3c 各自）**：pytest 全綠且無 Skip／XFail，記錄實際 passed 數；對各自 `domain-memory/` 執行 `validate`、`verify-audit`、`coverage` 皆 OK；已變動檔案上的 stale evidence 為預期，須列出（`verify-evidence`／`verify-sources` 可 exit 1，留到 D4）。
@@ -256,7 +256,7 @@ Final Decision 僅可為 `PASS FOR WORKSHOP USE` 或 `FAIL`；任何第 7 節項
 ## 完成條件
 
 - 第 2 節產出齊備，且未新增表外頂層資料夾。
-- Plugin 0.2.2 原樣封裝，SHA 清單核對通過。
+- Plugin 0.10.15 原樣封裝，SHA 清單核對通過。
 - 時程連續、合計 180 分鐘，九段與第 3.1 節一致；每個 D 段有檢查點、「停下等我」提示詞、確認表單、獨立解鎖碼與 Recovery。
 - 第 3.3 節操作順序與第 5.2 節 Windows 陷阱在 Runbook 與參考解答中一致處理。
 - 三個參考解答測試全綠；其 `domain-memory/` 的 `validate`、`verify-audit`、`coverage` OK（stale evidence 已列出）；reference Registry（D2）`validate --require-reviewed` 與 `verify-audit` OK；每條新規則有 killed counterfactual。

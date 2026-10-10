@@ -32,20 +32,23 @@ class VendorPluginTests(unittest.TestCase):
         self.src = Path(self.tmp.name) / "plugin"
         for name, body in {".claude-plugin/plugin.json": '{"version": "9.9.9"}', "SKILL.md": "skill",
                            "scripts/tool.py": "x = 1\r\n", "scripts/__pycache__/tool.cpython-313.pyc": "junk",
-                           ".pytest_cache/v/x": "junk", ".ruff_cache/x": "junk", "scripts/stray.pyc": "junk"}.items():
+                           ".pytest_cache/v/x": "junk", ".ruff_cache/x": "junk", "scripts/stray.pyc": "junk",
+                           "evals/case.json": "dev", "scripts/test_tool.py": "dev", "README.md": "dev",
+                           "ruff.toml": "dev", "CHANGELOG.md": "log"}.items():
             (self.src / name).parent.mkdir(parents=True, exist_ok=True)
             (self.src / name).write_bytes(body.encode())
 
     def tearDown(self):
         self.tmp.cleanup()
 
-    def test_deterministic_zip_without_caches_and_verifiable_sums(self):
+    def test_deterministic_runtime_zip_without_dev_files_and_verifiable_sums(self):
         name, data, sums = vendor.build(self.src)
         self.assertEqual((name, data, sums), vendor.build(self.src))
         self.assertEqual(name, "domain-memory-9.9.9.zip")
         with zipfile.ZipFile(io.BytesIO(data)) as archive:
             self.assertEqual(archive.namelist(), ["domain-memory/.claude-plugin/plugin.json",
-                                                  "domain-memory/SKILL.md", "domain-memory/scripts/tool.py"])
+                                                  "domain-memory/CHANGELOG.md", "domain-memory/SKILL.md",
+                                                  "domain-memory/scripts/tool.py"])
             self.assertEqual(archive.read("domain-memory/scripts/tool.py"), b"x = 1\r\n")  # bytes untouched
             self.assertTrue(all(i.date_time == (2026, 1, 1, 0, 0, 0) for i in archive.infolist()))
         out = Path(self.tmp.name) / name
@@ -53,12 +56,12 @@ class VendorPluginTests(unittest.TestCase):
         out.with_name(name + ".SHA256SUMS").write_bytes(sums)
         self.assertEqual(vendor.verify(out), [])
         self.assertEqual(dlc.vendor_check({dlc.VENDOR_ZIP: data, dlc.VENDOR_ZIP + ".SHA256SUMS":
-                                           sums.replace(name.encode(), b"domain-memory-0.2.2.zip")}), True)
+                                           sums.replace(name.encode(), b"domain-memory-0.10.15.zip")}), True)
         out.write_bytes(data + b"x")
         self.assertTrue(vendor.verify(out))
 
     def test_vendored_repo_copy_matches_its_sums(self):
-        target = vendor.VENDOR / "domain-memory-0.2.2.zip"
+        target = vendor.VENDOR / "domain-memory-0.10.15.zip"
         if not target.exists():
             self.skipTest("plugin not vendored yet")
         self.assertEqual(vendor.verify(target), [])
@@ -77,7 +80,7 @@ class DlcBuilderTests(unittest.TestCase):
         self.write("agentic-workshop/07-dlc-ddd/evaluation/answer.md", "# private\n")
         plugin = self.root / "plugin"
         (plugin / ".claude-plugin").mkdir(parents=True)
-        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "0.2.2"}')
+        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "0.10.15"}')
         _name, data, sums = vendor.build(plugin)
         (self.root / dlc.VENDOR_ZIP).parent.mkdir(parents=True)
         (self.root / dlc.VENDOR_ZIP).write_bytes(data)

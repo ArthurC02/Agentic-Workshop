@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
-PLUGIN_VERSION = "0.2.2"
+PLUGIN_VERSION = "0.10.15"
 
 
 def run(*command: str) -> tuple[int, str]:

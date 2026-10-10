@@ -36,7 +36,7 @@
 
 ## 還原（D2 Recovery）
 
-需求：Git ≥ 2.34、Python 3.13、domain-memory Plugin 0.2.2（下以 `tools/` 指學員包的 `participant/tools/`，Plugin 依 tools README 的位置規則尋找）。
+需求：Git ≥ 2.34、Python 3.13、domain-memory Plugin 0.10.15（下以 `tools/` 指學員包的 `participant/tools/`，Plugin 依 tools README 的位置規則尋找）。
 
 PowerShell：
 
@@ -88,5 +88,5 @@ git add domain-memory && git commit -m "接手 Recovery：授權本組金鑰"
 
 - `record-approval` 只比對身分字串：proposer 字串完全相同才會被拒，同機雙身分仍可通過。治理強度來自「誰持有簽章私鑰」，不是 `record-approval`。
 - 單機成對時，`--sign-every-commit` 讓夥伴的金鑰簽每一個 commit（含 proposer 的）；commit 作者可以是 proposer，但簽章者一定是持鑰夥伴。
-- Plugin 以原始位元組計算引用雜湊。本 bundle 保留產製時起始 Repo 的原始位元組（23 個檔案 CRLF、其餘 LF；學員包的起始 Repo 之後已統一為 LF，重簽需要 Maintainer 私鑰，所以 bundle 未跟著改），Plugin 在 Windows 寫出的 Registry JSON 是 CRLF。本 Repo 以 `.gitattributes`（`* -text`）停用換行轉換，否則在 `core.autocrlf=true` 的機器上 clone 後引用會全部變成 changed。
+- Plugin 以原始位元組計算引用雜湊。本 bundle 保留產製時起始 Repo 的原始位元組（23 個檔案 CRLF、其餘 LF；學員包的起始 Repo 之後已統一為 LF，重簽需要 Maintainer 私鑰，所以 bundle 未跟著改），本 bundle 的 Registry JSON 由 Plugin 0.2.2 在 Windows 寫出，是 CRLF（0.10.15 之後新寫的是 LF；兩者都能驗證）。本 Repo 以 `.gitattributes`（`* -text`）停用換行轉換，否則在 `core.autocrlf=true` 的機器上 clone 後引用會全部變成 changed。
 - `scan-secrets` 掃的是工作目錄（含已忽略的資料夾）。金鑰放在 Repo 外的 `~/.dlc-keys/`（`%USERPROFILE%\.dlc-keys\`），所以 `scan-secrets` 預期 exit 0；不要把金鑰放進 Repo 內。

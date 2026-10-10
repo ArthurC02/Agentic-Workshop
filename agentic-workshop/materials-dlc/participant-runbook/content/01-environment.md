@@ -12,7 +12,7 @@ section: 開始之前
 現在在做什麼
 - **情境**：你接手 Smart Ticket 的訂票後端，今天要替它建立 Agent 用得上的 Domain Memory。先把環境備好。
 - **你的目標**：10 分鐘內讓 Agent 把起始 Repo 測試跑綠、原樣解出 Plugin 並核對雜湊、確認專案狀態與真正的 Python。
-- **今天的技巧**：先講好「看到什麼算成功」，再讓 Agent 執行並回報。每個提示詞都寫明成功的樣子（例如 `76 passed`、`SHA OK 130 files`），Agent 的回報對得上才往下；你不用看懂指令，只看結果。
+- **今天的技巧**：先講好「看到什麼算成功」，再讓 Agent 執行並回報。每個提示詞都寫明成功的樣子（例如 `76 passed`、`SHA OK 71 files`），Agent 的回報對得上才往下；你不用看懂指令，只看結果。
 - **完成的樣子**：`notes/opening.md` 有 Agent 寫的四個檢查點結果；起始 commit 已建立，還沒有 `domain-memory/`。
 ```
 
@@ -23,7 +23,7 @@ section: 開始之前
 時間是**最晚**完成的時間；提早完成就直接進入下一個。
 
 - **檢查點 1 · 依賴安裝與測試（0–3）**：下載、解壓到短路徑；Agent 建 venv（Python 虛擬環境）、安裝依賴、測試全綠。
-- **檢查點 2 · 解出 Plugin 並核對 SHA256（3–5）**：Agent 解出 Plugin 0.2.2，逐檔核對 SHA256。
+- **檢查點 2 · 解出 Plugin 並核對 SHA256（3–5）**：Agent 解出 Plugin 0.10.15，逐檔核對 SHA256。
 - **檢查點 3 · 專案就緒與品質關卡檢查（5–8）**：Agent 確認 Plugin 判定 brownfield（已有程式碼的既有專案），並找到 pytest。
 - **檢查點 4 · 確認真實 Python（8–10）**：Agent 確認 `python` 是 venv 裡的真實直譯器、建立起始 commit、環境健檢全部通過。
 
@@ -94,7 +94,7 @@ Plugin 更新 Registry 時會在 `domain-memory/` 底下建立很長的暫存資
 
 ## 檢查點 2 · 解出 Plugin 並核對 SHA256（第 3–5 分鐘）
 
-Plugin 必須**原樣**使用：今天的 Registry 規則與各種檢查都由它判定，任何一個位元組被改過，結果就不可信。這一步讓 Agent 逐檔比對雜湊，你只看它回報的一行結論。
+Plugin 必須**原樣**使用：學員包只放執行時需要的檔案（開發用的測試已拿掉），每個檔案都沒有改過。今天的 Registry 規則與各種檢查都由它判定，任何一個位元組被改過，結果就不可信。這一步讓 Agent 逐檔比對雜湊，你只看它回報的一行結論。
 
 ```callout info
 新概念：SHA256 雜湊
@@ -107,14 +107,14 @@ Plugin 必須**原樣**使用：今天的 Registry 規則與各種檢查都由�
 1. 到 ..\..\vendor（bash：../../vendor）資料夾，解出 Plugin、逐檔核對清單、顯示版本，再回到 Repo 根目錄。
    PowerShell：
      Set-Location ..\..\vendor
-     Expand-Archive -LiteralPath .\domain-memory-0.2.2.zip -DestinationPath .
-     py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-0.2.2.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
+     Expand-Archive -LiteralPath .\domain-memory-0.10.15.zip -DestinationPath .
+     py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-0.10.15.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
      Select-String '"version"' .\domain-memory\.claude-plugin\plugin.json
      Set-Location ..\repository\smart-ticket-dlc-base
    bash：
      cd ../../vendor
-     unzip -q domain-memory-0.2.2.zip
-     py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-0.2.2.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
+     unzip -q domain-memory-0.10.15.zip
+     py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-0.10.15.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
      grep '"version"' domain-memory/.claude-plugin/plugin.json
      cd ../repository/smart-ticket-dlc-base
 2. 用白話告訴我核對結果與版本。如果出現 SHA MISMATCH，立刻停下，不要使用這份 Plugin，也不要嘗試修正。
@@ -122,7 +122,7 @@ Plugin 必須**原樣**使用：今天的 Registry 規則與各種檢查都由�
 做完停下等我。
 ```
 
-**看到什麼算過關**：Agent 回報 `SHA OK 130 files`（129 個 Plugin 檔案加 ZIP 本身），以及 `"version": "0.2.2"`。出現 `SHA MISMATCH` 就停下，請主持人協助。
+**看到什麼算過關**：Agent 回報 `SHA OK 71 files`（70 個 Plugin 檔案加 ZIP 本身），以及 `"version": "0.10.15"`。出現 `SHA MISMATCH` 就停下，請主持人協助。
 
 ## 檢查點 3 · 專案就緒與品質關卡檢查（第 5–8 分鐘）
 

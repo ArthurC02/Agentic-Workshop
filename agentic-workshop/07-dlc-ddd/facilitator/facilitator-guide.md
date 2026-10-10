@@ -1,7 +1,7 @@
 # DDD DLC 主持人手冊
 
 > 對象：DDD DLC（180 分鐘加課）的主持人與助教。學員已完成主課（Tool → Teammate → Digital Worker）。
-> 主題：**Agent 的領域記憶**。把領域知識做成經審查、以檔案保存的 Domain Memory，再用它驅動受治理的變更。DDD 概念全部透過 domain-memory Plugin 0.2.2 的操作來教，不開理論講堂。
+> 主題：**Agent 的領域記憶**。把領域知識做成經審查、以檔案保存的 Domain Memory，再用它驅動受治理的變更。DDD 概念全部透過 domain-memory Plugin 0.10.15 的操作來教，不開理論講堂。
 > 依據：`docs/instructions/11_DDD_DLC產製指令書.md`（以下稱「規格」）。檢查點以 `agentic-workshop/materials-dlc/CHECKPOINTS.md` 為準，解鎖碼在 `agentic-workshop/materials-dlc/unlock-codes.json`（本手冊不重抄碼，避免兩份不一致）。
 > 本手冊與 `evaluation/` 底下所有檔案只給主持人，**不得**放進學員包、Runbook 或投影。
 
@@ -55,9 +55,9 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 ### 1.3 Plugin SHA
 
-- Plugin 固定 0.2.2，原樣封裝於 `participant/vendor/domain-memory-0.2.2.zip`，逐檔清單 `domain-memory-0.2.2.zip.SHA256SUMS`（129 個 Plugin 檔案＋ZIP 本身＝130 行）。
+- Plugin 固定 0.10.15，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.10.15.zip`，逐檔清單 `domain-memory-0.10.15.zip.SHA256SUMS`（70 個 Plugin 檔案＋ZIP 本身＝71 行）。
 - 目前 ZIP 的 SHA256：`de6aad75f86ce4fe534271d62f7cf21ce09876cc127e68dbc96416c9c31c89dc`（重新封裝後以 SHA256SUMS 最後一行為準）。
-- 學員在開場檢查點 2 應看到 `SHA OK 130 files` 與 `"version": "0.2.2"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
+- 學員在開場檢查點 2 應看到 `SHA OK 71 files` 與 `"version": "0.10.15"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
 
 ### 1.4 主持人自己的機器（課前 30 分鐘）
 
@@ -92,7 +92,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
 | 0–3 | 1 · 依賴安裝與測試 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
 | 1–2 | （等待安裝時） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁 |
-| 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 130 files`、`"version": "0.2.2"` |
+| 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 71 files`、`"version": "0.10.15"` |
 | 5–8 | 3 · 專案就緒與品質關卡檢查 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；小組口頭討論「哪些錯只能靠測試與人」 |
 | 7 | 找夥伴 | 配對；奇數時三人組，第三人 Observer |
 | 8–10 | 4 · 確認真實 Python | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的 |

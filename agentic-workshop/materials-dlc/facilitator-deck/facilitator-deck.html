@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 799b038ab311b032 inputs-sha256 799b038ab311b032f80d46e1a909c1e4d0f8d4e35780a6e6c91601c231c5c0c9 -->
+<!-- 主持人專用，不發給學員。build 817b9baac46a9523 inputs-sha256 817b9baac46a952385a6e9ef121f1104293f17e8afe3de7c4cb6d8d0a98494fa -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1369,14 +1369,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="kicker">檢查點 2 / 4 · 第 3–5 分鐘</p>
   <h2 class="title">解出 Plugin，SHA256 雜湊核對通過</h2>
   <ol class="steps">
-    <li>Agent 解出 domain-memory 0.2.2 ZIP</li>
+    <li>Agent 解出 domain-memory 0.10.15 ZIP</li>
     <li>逐檔核對 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同）</li>
-    <li>Agent 回報：<b>SHA OK 130 files</b>、版本 0.2.2</li>
+    <li>Agent 回報：<b>SHA OK 71 files</b>、版本 0.10.15</li>
   </ol>
   <p class="callout">Runbook › 開場與環境 › 檢查點 2 · 貼提示詞</p>
   <aside class="notes">
     <p><b>說（03:00／第 3 分）</b>：「第 3 分。檢查點 2：解出 Plugin，核對雜湊。我們不改 Plugin 一個位元組，核對是為了確定大家手上是同一份。」</p>
-    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 130 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
+    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 71 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
     <p><b>介入訊號</b>：<code>SHA MISMATCH</code> → 重新下載學員包再請 Agent 重跑，不要讓 Agent 修改 Plugin 檔案。</p>
   </aside>
 </section>
