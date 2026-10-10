@@ -50,7 +50,7 @@ section: Greenfield｜Tool
 - **11–24 · 檢查點 3 小步做、每步驗收**：每次只放行一小步；Agent 停下附上驗收對照表與審查答案，沒問題才放行下一步。
 - **24–29 · 檢查點 4 親自走一次流程並交付**：不再加功能；你在 /docs 走完流程，Agent 寫交付摘要，你選交付決定。
 
-需要時再查：[任務說明](#gf-mission)、[商業需求](#gf-requirements)、[驗收條件](#gf-acceptance)、[Starter Repository 文件](#gf-starter-docs)。
+需要時再查：[商業需求](#gf-requirements)（API、規則編號與測試資料）、[驗收條件](#gf-acceptance)（核對 Agent 的驗收對照表用）。
 
 ## 檢查點 1 · 交給 Agent 規則並備好環境（第 07–09 分鐘）
 

@@ -1,6 +1,6 @@
 ---
 id: gf-requirements
-title: 商業需求 Business Requirements
+title: 商業需求
 minute: 07-29
 group: greenfield
 section: Greenfield｜Tool

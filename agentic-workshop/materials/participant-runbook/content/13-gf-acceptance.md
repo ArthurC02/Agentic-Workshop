@@ -1,6 +1,6 @@
 ---
 id: gf-acceptance
-title: 驗收條件 Acceptance Criteria
+title: 驗收條件
 minute: 07-29
 group: greenfield
 section: Greenfield｜Tool
