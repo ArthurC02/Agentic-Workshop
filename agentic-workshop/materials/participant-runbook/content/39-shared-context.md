@@ -12,29 +12,27 @@ section: Brownfield｜Teammate
 現在在做什麼
 - **情境**：每個人的 Agent 都讀過 B0，但看法不完全一樣；接下來小組要一起改同一份系統。
 - **你的目標**：5 分鐘內比較大家的分析，選出主要 Agent，讓它把小組共識寫成 `notes/shared-context.md`（Shared Context：小組共同脈絡），並把小組規則寫成一個 Skill 檔 `skills/team-rules.md`。
-- **今天的技巧**：**把共識寫成檔案給 Agent**。口頭講過的 Agent 下次就忘了；寫成檔案，之後每一段開始先請它讀，Agent 就從同一份共識出發。提示詞示範兩個 Agent 技巧：Skill（可重複使用的工作說明）與 Token 節費。
+- **今天的技巧**：**把共識寫成檔案給 Agent**。口頭講過的 Agent 下次就忘了；寫成檔案，之後每段先請它讀。
 - **完成的樣子**：主要 Agent 的專案裡有 `notes/shared-context.md` 與 `skills/team-rules.md`，它複述的共識沒有把假設說成事實，也沒有自己加修改計畫。
 ```
 
 ```callout warning
 B1 尚未揭露
-B1（Brownfield 第一段任務）第 44 分鐘才發放。這段只整理共識：不提出或核准修改計畫，不修改程式。本段內容已在第 29 分鐘解鎖。
+B1 第 44 分鐘才發放。這段只整理共識：不提出或核准修改計畫，不修改程式。
 ```
 
 ## 檢查點總覽
 
-時間是**最晚**完成的時間；提早完成就直接進入下一個檢查點。
-
-- **39–42 · 檢查點 1 比較各自的分析，選出主要 Agent**：每人請自己的 Agent 把分析濃縮成 5 行；小組口頭比較，選主要 Agent 與核准者。
-- **42–44 · 檢查點 2 請主要 Agent 寫成共同脈絡檔**：主要 Agent 收齊大家的摘要，寫成 `notes/shared-context.md` 與 `skills/team-rules.md`，複述後停下。
+- **39–42 · 檢查點 1 比較各自的分析，選出主要 Agent**
+- **42–44 · 檢查點 2 請主要 Agent 寫成共同脈絡檔**
 
 ## 檢查點 1 · 比較各自的分析，選出主要 Agent（第 39–42 分鐘）
 
-每個人的 Agent 只看過自己那份分析。先請它濃縮成 5 行，小組才比得起來；比的是摘要，不是整段對話。
+先請自己的 Agent 把分析濃縮成 5 行，小組才比得起來。
 
 ```callout tip
 技巧：Token 節費（加深一層）
-Time Skip 學過 Token 節費的「要摘要、不要全文」，這次用在小組之間：5 行摘要貼給主要 Agent，比整段對話或整份分析省下大量 Token，主要 Agent 也不會被細節淹沒。
+要摘要、不要全文：5 行摘要貼給主要 Agent，比整段對話省下大量 Token，主要 Agent 也不會被細節淹沒。
 📖 延伸閱讀：Anthropic Engineering 文章〈Effective context engineering for AI agents〉、Anthropic 官方文件〈Context windows〉；你所用工具的官方文件通常有同名章節。
 ```
 
@@ -55,11 +53,11 @@ Time Skip 學過 Token 節費的「要摘要、不要全文」，這次用在小
 
 ## 檢查點 2 · 請主要 Agent 寫成共同脈絡檔（第 42–44 分鐘）
 
-口頭共識 Agent 下次就忘了，寫成檔案才會留下來。在**主要 Agent** 的對話裡**一次貼完**以下三樣再送出：① 下面這段提示詞；② 一兩句小組分工與共識（主要 Agent 在誰的電腦、核准者是誰、口頭討論的共識與分歧）；③ 其他成員的 5 行摘要（從聊天室複製即可）。
+在**主要 Agent** 的對話裡**一次貼完**以下三樣再送出：① 下面這段提示詞；② 一兩句小組分工與共識（主要 Agent 在誰的電腦、核准者是誰、口頭討論的共識與分歧）；③ 其他成員的 5 行摘要（從聊天室複製即可）。
 
 ```callout tip
 技巧：Skill（可重複使用的工作說明）
-Skill 是把一套反覆要用的做法寫成一個 Markdown 檔，放在專案的 `skills/` 資料夾；之後只要說「請先讀 skills/… 並照做」，不必重教。檔案由 Agent 建立，你不用手寫。這裡的 `skills/team-rules.md` 寫的是：開工先讀什麼、要守的規則（就是你在 Time Skip 貼過的 7 條工作規則）、回報用什麼格式。寫好之後，B1、B2、B3 的提示詞只要一句「請先讀 skills/team-rules.md」，不用每段重貼整段規則，省時間也省 Token。這裡的 Skill 是一般 Markdown 檔，靠你在提示詞說「先讀它」才會用到；工具內建的 Skill 功能（例如 Agent Skills）有固定的資料夾、檔名與開頭欄位，放對位置後 Agent 會在相關時自動讀取。
+Skill 是把一套反覆要用的做法寫成 Markdown 檔，放在專案的 `skills/` 資料夾，由 Agent 建立（工具內建的 Skill 功能另有固定格式，今天不需要）。之後只要說「請先讀 skills/… 並照做」，不必重貼：B1 起每段提示詞第一句都是「請先讀 skills/team-rules.md」。
 📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件 Copilot〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。
 ```
 
@@ -76,15 +74,7 @@ Skill 是把一套反覆要用的做法寫成一個 Markdown 檔，放在專案�
 - 主要 Agent 的專案裡有 `notes/shared-context.md`，五節都有內容；`skills/team-rules.md` 有開工先讀、工作規則、回報格式三節。
 - 複述沒有把分歧或假設說成事實，也沒有自己加修改計畫；有就請它修正檔案。
 
-之後每一段開始（B1、B2、B3，或開了新的 Agent 對話），不用再貼整段規則，第一句改成：
-
-```text
-請先讀 skills/team-rules.md 並照做，用三句話告訴我你理解的小組共識與規則，再等我交代任務。
-```
-
-```include
-zip=participant-39-shared-context.zip path=agentic-workshop/03-brownfield/participant/04-shared-context-template.md
-```
+小組確認過主要 Agent 的複述後，把你們的結論記下來：
 
 ```form
 {"id": "shared-context", "title": "Shared Context 確認","fields":[
@@ -93,22 +83,12 @@ zip=participant-39-shared-context.zip path=agentic-workshop/03-brownfield/partic
 ]}
 ```
 
-第 44 分鐘停止。B1 揭露後，任務範圍、計畫與核准由 Agent 寫進 `notes/b1.md`，不再填在本頁。
+第 44 分鐘停止。
 
 ## 完成後想一想
 
-不用填表、不用寫下來，自己想一想就好：
+先自己想 30 秒，再和旁邊的人聊；主持人會請 1–2 位分享第 2 題。
 
 1. **觀察**：比較 5 行摘要時，哪一條大家說法不一樣？最後是靠什麼證據（文件位置、測試名稱或實際執行結果）決定寫成事實還是分歧？
 2. **技巧**：如果不寫 `notes/shared-context.md` 和 `skills/team-rules.md`，只靠口頭講好，下一段換人或開新對話時會發生什麼？你的團隊有哪些「每次都要重講一次」的規則，值得寫成 Skill？
 3. **延伸**：主要 Agent 只有一個，但小組有好幾個人。接下來要真的改程式時，誰說了算、怎麼避免大家各自叫 Agent 改？
-
-```callout tip
-💬 討論一下
-先自己想 30 秒，再跟旁邊的人各說一個答案：你們的「仍有分歧」裡，哪一條最可能影響接下來的任務？
-```
-
-```callout tip
-這段學到的技巧
-把共識寫成檔案給 Agent，之後每段都先請它讀，而不是靠口頭重講。把反覆要用的規則寫成 Skill 檔，是從 Teammate 走向 Digital Worker 的準備：到 B3，整份工作單就是交給 Agent 的 Skill。
-```

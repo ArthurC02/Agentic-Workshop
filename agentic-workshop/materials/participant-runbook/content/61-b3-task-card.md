@@ -6,7 +6,7 @@ group: b3
 section: B3｜Digital Worker
 ---
 
-> 本頁內容取自 B3 參與者文件 `task-cards/03-b3-group-booking.md`，為必讀文件。操作步驟請見 [B3 流程](#b3)。
+> 在 [B3 流程](#b3) 檢查點 1 按「複製 Markdown」交給 Agent；Gate 1 用它核對 Agent 的需求理解，Gate 3 用它的「完成條件」判斷 Level。
 
 ```include
 zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md

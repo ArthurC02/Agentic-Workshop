@@ -8,17 +8,15 @@ section: Brownfield｜Teammate
 
 # B1 Recovery：第 52 分鐘，必要時才切換
 
-本頁是復原包（Recovery：進度落後時改用的接續基線）。B1（修復學生票折扣異常）沒做完、但要接著做 B2 的小組，經主持人確認後，才會個別拿到本頁解鎖碼；一般 B2 解鎖碼打不開本頁。復原包只含 B1 該完成的修改，不含之後任務的內容；使用復原包不代表本組自己完成了 B1。
-
 ```callout info
 現在在做什麼
 - **情境**：B1 還沒修好，但時間到了，要換到已修好 B1 的版本接著做 B2。
 - **你的目標**：保存原成果、換到復原包，確認版本正確後接續 B2。
-- **今天的技巧**：開新對話先給規則與脈絡（加深一層）：Time Skip 是貼規則；這次把 notes 與 skills 交給 Agent 讀。換資料夾就開新的 Agent 對話，第一件事把原成果的 `notes/` 與 `skills/` 交給它，Agent 才知道之前發生什麼；規則與脈絡從檔案接上、不重講，也省 Token。
+- **今天的技巧**：開新對話先給規則與脈絡（加深一層）：這次把原成果的 `notes/` 與 `skills/` 交給新對話讀，不用重講。
 - **完成的樣子**：雜湊值相符、測試 44 passed、`/health` 正常；`notes/recovery-b1.md` 記下切換紀錄。
 ```
 
-先按下方按鈕下載復原包（存在瀏覽器預設的下載資料夾即可），記下下載卡上的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同）。
+先下載復原包（存在瀏覽器預設的下載資料夾即可），記下下載卡上的 SHA256 雜湊（檔案的指紋，用來確認檔案沒被改過）。
 
 ```download
 id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
@@ -26,7 +24,7 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ## 步驟 1 · 保存原成果並解開復原包
 
-在**原本的** Agent 對話貼上下方提示詞。它會保存成果、停掉舊伺服器，並把復原包解到新資料夾，不覆蓋原成果。
+在**原本的** Agent 對話貼上：
 
 ```text
 我們要切換到 B1 復原包。請依序做，不要修改任何程式：
@@ -40,7 +38,7 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ## 步驟 2 · 在復原包開新對話，接上脈絡
 
-在 `recovery-b1` 資料夾開一個**新的** Agent 對話（Session），貼上下方提示詞。復原包裡沒有你們的 `notes/` 與 `skills/`，所以第一步請 Agent 從原成果複製過來：
+在 `recovery-b1` 資料夾開一個**新的** Agent 對話（Session），貼上：
 
 ```text
 這個資料夾是 B1 的復原包。請依序做，遇到錯誤先說明原因，不要自行修改程式：
@@ -72,16 +70,11 @@ Agent 說「沒有 skills/team-rules.md」時，才貼這段規則：
 - 測試 44 passed；`/health` 回傳 status=ok。
 - `notes/recovery-b1.md` 已寫好。任何一項不符就停止，請主持人確認。
 
-完成後接續 [B2](#b2)。本頁不提供 B3 的起點。
+完成後接續 [B2](#b2)。
 
 ```form
 {"id": "recovery-b1-record", "title": "B1 Recovery 紀錄","fields":[
 {"id": "verified", "label": "1. 雜湊值、44 passed、/health 三項都相符嗎？", "type": "select", "options": ["都相符", "有不符，已停止並請主持人確認"]},
 {"id": "preserved", "label": "2. 原成果已 Commit 並保留在原資料夾", "type": "checkbox"}
 ]}
-```
-
-```callout tip
-這段學到的技巧
-換資料夾或換版本就開新對話：把 notes 與 skills 交給 Agent 讀，它就接得上之前的脈絡與規則，不必重講。
 ```

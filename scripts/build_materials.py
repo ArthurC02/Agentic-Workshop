@@ -32,7 +32,7 @@ if str(SCRIPTS) not in sys.path:
 import build_delivery  # noqa: E402  (pure helpers only; never build()/repin)
 
 MATERIALS = ROOT / "agentic-workshop" / "materials"
-CANDIDATE_ID = "4813c0355ab3b43d"
+CANDIDATE_ID = "62af22a7130c8065"
 CANDIDATE = ROOT / "dist" / "p11-candidate" / CANDIDATE_ID
 
 SEGMENTS = ("opening", "greenfield", "timeskip", "analysis", "shared", "b1", "b2", "b3",
@@ -60,7 +60,7 @@ RECOVERY_GROUPS = {group: minute for group, minute in RECOVERY_DOWNLOADS.values(
 # - b3-exception-card: frozen candidate text (participant-63-b3-governance,
 #   04-digital-worker/participant/06-exception-response-card.md) that states the blank card does NOT
 #   pre-release the scenario or the answer. Remove this entry to make the build strict again.
-MARKER_EXEMPTIONS = (("b3-exception-card", "空白範本不預發情境或標準答案"),)
+MARKER_EXEMPTIONS = ()
 TOTAL_MINUTES = 90
 STORAGE_PREFIX_TOKEN = "{{STORAGE_PREFIX}}"
 

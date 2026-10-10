@@ -12,6 +12,9 @@ Audience: very junior engineers who may not know Python. They **never write or r
 2. Experience the flow: Tool → Teammate → Digital Worker. The stages differ in **how the human intervenes**: step by step, by approving a plan, or only at Gates.
 3. Evidence for organizational adoption. The Agent writes it into files; learners do not fill it in.
 
+## Absolutely necessary (user rule, 2026-10-10)
+Every page, section, callout and sentence must pass: "would the learner fail or hesitate at a step without this?" If not, cut it. Never re-host a document that ships in the learner's download unless learners must paste it to the Agent with 「複製 Markdown」 (the Agent reads files from the folder). Pages ending in a form lead with a short pair/group discussion and frame the form as recording its conclusions, not cold form-filling.
+
 ## Every segment page
 - Top: a 「現在在做什麼」 callout with four lines: 情境 / 你的目標 / 今天的技巧 / 完成的樣子.
 - Checkpoints: at most 3 (Greenfield and B3: at most 4; DLC segments run 15–25 min, so at most 6). Use the title format `## 檢查點 N · 〈動詞句〉（第 a–b 分鐘）`. The overview is a short list, not a table.
@@ -29,8 +32,7 @@ Audience: very junior engineers who may not know Python. They **never write or r
   - At decision points, the Agent proposes options with evidence and the learner replies briefly: 「同意」, 「選 B」, 「第 3 個不要」.
 - **Forms**: at most one per segment, recording only the human's decision. Use select, checklist or checkbox fields, at most 3, plus at most 1 short text field. No form if there is no decision. Exception: B3 has two (Gate decisions, and the minute-69 exception decision).
 - End of page:
-  - A 「## 完成後想一想」 section with 3 specific questions: observation → technique → extension toward the next segment or real work. Follow it with a 💬 callout and no form.
-  - Then a 「這段學到的技巧」 callout.
+  - A 「## 完成後想一想」 section with 3 specific questions: observation → technique → extension toward the next segment or real work, introduced as 「先自己想 30 秒，再和旁邊的人聊」. On a form page it comes right before the form. No closing 💬 or 「這段學到的技巧」 callout (they repeated 「今天的技巧」).
 
 ## Knowledge points (progressive scaffolding)
 - Introduce each concept, term, file convention, or report field at its **first need**. Use a `技巧：〈名稱〉` or `新概念：〈名稱〉` callout of 1–3 sentences.
