@@ -22,11 +22,11 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 71 files`、`"version": "0.10.15"`，學員對照過關字樣才往下 |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 71 files`、`"version": "0.10.15"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
 | O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
-介入訊號：解壓在桌面／OneDrive（之後會 WinError 206）→「這個路徑多長？」；`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」；學員自己在終端機打指令或改指令 →「把 Runbook 的提示詞貼給 Agent，卡住就貼『如果卡住』那一段」。
+介入訊號：解壓在桌面／OneDrive（之後會 WinError 206）→「這個路徑多長？」；`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」；學員自己在終端機打指令或改指令 →「把 Runbook 的提示詞貼給 Agent，③ 回「失敗」就貼『失敗時』那一段」。
 
 ### 2.2 D1 共同語言與邊界（10–35）
 

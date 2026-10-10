@@ -202,6 +202,13 @@ class DlcBuilderTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "SHA256 differs"):
             dlc.verify(run)
 
+    def test_shell_scripts_are_executable_for_unix_unzip(self):
+        path = Path(self.tmp.name) / "t.zip"
+        dlc.write_zip(path, {"tools/dm.sh": b"#!/bin/sh\n", "tools/README.md": b"x"})
+        with zipfile.ZipFile(path) as archive:
+            modes = {i.filename: (i.create_system, i.external_attr >> 16) for i in archive.infolist()}
+        self.assertEqual(modes, {"tools/dm.sh": (3, 0o100755), "tools/README.md": (3, 0o100644)})
+
 
 class RealDlcManifestTests(unittest.TestCase):
     def test_manifest_matches_release_plan_and_role_rules(self):

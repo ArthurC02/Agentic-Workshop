@@ -192,7 +192,9 @@ def write_zip(path: Path, contents: dict[str, bytes]) -> None:
         for name, data in sorted(contents.items()):
             info = zipfile.ZipInfo(name, date_time=ZIP_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o100644 << 16
+            # Unix host + exec bit on .sh so macOS unzip keeps dm.sh runnable.
+            info.create_system = 3
+            info.external_attr = (0o100755 if name.endswith(".sh") else 0o100644) << 16
             archive.writestr(info, data)
 
 

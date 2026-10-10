@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 691c0cc627297b94 inputs-sha256 691c0cc627297b942e8f2e87286735ef5a7e175e67d3fcd8f2894e74d64cb824 -->
+<!-- 主持人專用，不發給學員。build 4c4de0cd761b2c95 inputs-sha256 4c4de0cd761b2c951869f7e540553dc2126067165c4b976bff7cdd5e07be2385 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1327,7 +1327,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">開場與環境 開始</h2>
   <p class="subtitle">下載學員包、解出 Plugin、確認環境就緒</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「開場與環境」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 10 分鐘，提示詞都在 Runbook：複製給 Agent，看它回報，對得上「看到什麼算過關」才往下。</p>
+  <p class="muted">接下來 10 分鐘，提示詞都在 Runbook：② 貼給 Agent，再請它跑 ③ 確認結果，回「成功」才往下。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。」</p>
     <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，先貼工作規則。</p>
@@ -1337,7 +1337,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide" data-seg="dlc-opening" data-title="開場與環境 4 個檢查點" data-minute="0" data-timer="10:00" data-gates="dlc-opening">
   <p class="kicker">開場與環境 · 0–10</p>
   <h2 class="title">開場 10 分鐘：環境就緒</h2>
-  <p class="muted">四個檢查點：把 Runbook 的提示詞貼給 Agent 執行，Agent 的回報對得上「看到什麼算過關」才往下。</p>
+  <p class="muted">四個檢查點：每個都把 ② 貼給 Agent 執行，再跑 ③ 確認結果；回「成功」才往下，「失敗」就貼「失敗時」。</p>
   <ol class="timeline">
     <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 安裝相依套件與測試</b></li>
     <li data-seg="dlc-opening"><span class="tl-min">03:00</span><b>2 · 解出 Plugin 並核對 SHA256</b></li>
@@ -1345,7 +1345,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>4 · 確認真實 Python</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都有『看到什麼算過關』。提示詞都在 Runbook，Agent 執行、你看回報，投影只顯示時間與目前的檢查點。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼做這一步、② 貼給 Agent、③ 確認結果、④ 補充。請 Agent 跑 ③ 確認結果，回成功就往下；失敗就貼『失敗時』。提示詞都在 Runbook，Agent 執行、你看回報，投影只顯示時間與目前的檢查點。」</p>
+    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 71 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>操作</b>：第一頁就按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說明頁（為什麼、怎麼進行、分組）穿插在安裝等待時說，不另佔時間。</p>
     <p><b>降級</b>：第 10 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
@@ -1364,7 +1365,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓到 C 槽的 dlc 資料夾，在 Repo 根目錄開 Agent，先貼工作規則，再貼提示詞讓 Agent 安裝依賴、跑測試，要看到 76 passed。安裝約 50 秒，我趁這段先說明今天為什麼要學 Domain Memory。」</p>
     <p><b>看</b>：學員有沒有先貼工作規則；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
-    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 的「如果卡住」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源、路徑）；不要全場等。</p>
+    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 檢查點 1 的「失敗時」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源、路徑）；不要全場等。</p>
   </aside>
 </section>
 
@@ -1458,7 +1459,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它直接呼叫 python；這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。順便找好夥伴，D2 兩人一組。」</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
-    <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼「如果卡住」提示詞，讓 Agent 在同一個指令裡先啟用 .venv（或關閉 App 執行別名）；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
+    <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（在同一個指令裡先啟用 .venv，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
   </aside>
 </section>
 
@@ -1666,7 +1667,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（03:00／第 38 分）</b>：「第 38 分。還是夥伴：把檢查點 2 的提示詞貼給你的 Agent，policy 三次修改的順序已寫好，不要讓 Agent 調換。governance-readiness 要說 ready，否則後面都會失敗。」</p>
     <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready（其他狀態是 needs-setup 或 working-memory）。</p>
     <p><b>介入訊號</b>：readiness 是 needs-setup → 看 blocks 缺授權簽章者還是 hook；是 working-memory → review_mode 還沒改成 scm-verified；卡 5 分鐘上報。</p>
-    <p><b>提示</b>：H1：請學員貼 Runbook「卡住時」的補救提示詞，讓 Agent 用白話解釋 blocks 缺哪一項，不要自己改設定。</p>
+    <p><b>提示</b>：H1：請學員貼 Runbook 檢查點 2 的「失敗時」提示詞，讓 Agent 用白話解釋 blocks 缺哪一項，不要自己改設定。</p>
   </aside>
 </section>
 
@@ -1792,7 +1793,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="steps">
     <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
     <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
-    <li>看回報：事實都有「類別:id」，查不到的沒有被補</li>
+    <li>③ 確認結果：事實都有「類別:id」，查不到的沒有被補</li>
   </ol>
   <p class="callout">Runbook › D3a 電子發票 › 檢查點 1 · 貼提示詞</p>
   <aside class="notes">
@@ -2000,7 +2001,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="steps">
     <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
     <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
-    <li>看回報：事實都有「類別:id」，查不到的沒有被補</li>
+    <li>③ 確認結果：事實都有「類別:id」，查不到的沒有被補</li>
   </ol>
   <p class="callout">Runbook › D3b 點數折抵 › 檢查點 1 · 貼提示詞</p>
   <aside class="notes">
@@ -2206,7 +2207,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="steps">
     <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
     <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
-    <li>看回報：事實都有「類別:id」，查不到的沒有被補</li>
+    <li>③ 確認結果：事實都有「類別:id」，查不到的沒有被補</li>
   </ol>
   <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 1 · 貼提示詞</p>
   <aside class="notes">

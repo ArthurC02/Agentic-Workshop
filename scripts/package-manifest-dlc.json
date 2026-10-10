@@ -2785,7 +2785,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "b661109889e1daeb617a30fda881e5659693a1311c4bad68406caa839d97886d"
+          "sha256": "6d20d8ca9afeb9ef0fc524912cd3aa1f81be935f2ecdc4c9b859368f3e620793"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -4998,7 +4998,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "bde3e0c5b11500c8fa9fe8e15b7d7a365631d3b82ecd93b8e7809366be6d3b26"
+          "sha256": "93d4f6c6cede1934d91a7a2683fcc8e26dc5abb199fbb409a3c014f7fd2334ce"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",

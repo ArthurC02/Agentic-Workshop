@@ -1,7 +1,7 @@
 # DLC 檢查點對照（簡報與 Runbook 共用）
 
 每個檢查點在 Runbook 的標題格式：`檢查點 N · 名稱（第 a–b 分鐘）`，分鐘為絕對分鐘。簡報 `agentic-workshop/materials-dlc/facilitator-deck/src/slides/` 依此產生。
-解鎖碼與時點見 `unlock-codes.json`；投影只顯示時間、解鎖碼與檢查點。Runbook 每個檢查點是「說明 → 可複製的提示詞 → 看到什麼算過關」：學員把提示詞貼給 Agent，Agent 執行指令、白話回報並寫紀錄（`notes/<段落>.md`、`docs/handoffs/`），學員只用短回覆做決定，不自己打指令。
+解鎖碼與時點見 `unlock-codes.json`；投影只顯示時間、解鎖碼與檢查點。Runbook 每個檢查點分四塊「① 為什麼做這一步 → ② 貼給 Agent（含 OS 指令時分 Windows／macOS 分頁）→ ③ 確認結果（Agent 只回成功或失敗，附失敗時的提示詞）→ ④ 補充」：學員把提示詞貼給 Agent，Agent 執行指令、白話回報並寫紀錄（`notes/<段落>.md`、`docs/handoffs/`），學員只用短回覆做決定，不自己打指令。
 
 ## 開場與環境（段落 `dlc-opening`，第 0–10 分鐘，群組 `dlc-opening`（第 0 分鐘解鎖碼；詞彙表與 Runbook 用法為 `open`））
 
