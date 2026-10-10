@@ -11,9 +11,9 @@ section: Brownfield｜Teammate
 ```callout info
 現在在做什麼
 - **情境**：每個人的 Agent 都讀過 B0，但看法不完全一樣；接下來小組要一起改同一份系統。
-- **你的目標**：5 分鐘內比較大家的分析，選出主要 Agent，讓它把小組共識寫成 `notes/shared-context.md`（Shared Context：小組共同脈絡），並把小組規則寫成一個 Skill 檔 `skills/team-rules.md`。
+- **你的目標**：5 分鐘內比較大家的分析、選出主要 Agent，讓它把小組共識（Shared Context）與規則寫成檔案。
 - **今天的技巧**：**把共識寫成檔案給 Agent**。口頭講過的 Agent 下次就忘了；寫成檔案，之後每段先請它讀。
-- **完成的樣子**：主要 Agent 的專案裡有 `notes/shared-context.md` 與 `skills/team-rules.md`，它複述的共識沒有把假設說成事實，也沒有自己加修改計畫。
+- **完成的樣子**：有 `notes/shared-context.md` 與 Skill 檔 `skills/team-rules.md`；共識沒把假設說成事實。
 ```
 
 ```callout warning
@@ -62,9 +62,11 @@ B1 第 44 分鐘才發放。這段只整理共識：不提出或核准修改計�
 
 ```callout tip
 💬 討論一下
-1. 把每個人的 5 行放在一起（念出來或傳到小組聊天室）：哪幾行大家說的一樣、而且都附得出來源？那就是共同事實。說法不同或沒證據的，是分歧——要重跑哪個測試或對照哪條規則才分得出對錯？
-2. 誰的電腦當**主要 Agent**？誰當**人員核准者**？
-口頭講就好，不用寫下來；下一步由主要 Agent 記錄。
+**口頭講就好，不用寫下來；下一步由主要 Agent 記錄。**
+1. 把每個人的 5 行放在一起（念出來或傳到小組聊天室）
+2. 大家說的一樣、而且都附得出來源的，就是共同事實
+3. 說法不同或沒證據的是分歧：要重跑哪個測試或對照哪條規則，才分得出對錯？
+4. 誰的電腦當**主要 Agent**？誰當**人員核准者**？
 ```
 
 ## 檢查點 2 · 請主要 Agent 寫成共同脈絡檔（第 42–44 分鐘）
@@ -101,7 +103,10 @@ B1 第 44 分鐘才發放。這段只整理共識：不提出或核准修改計�
 
 ```callout tip
 技巧：Skill（可重複使用的工作說明）
-Skill 是把一套反覆要用的做法寫成 Markdown 檔，放在專案的 `skills/` 資料夾，由 Agent 建立（工具內建的 Skill 功能另有固定格式，今天不需要）。之後只要說「請先讀 skills/… 並照做」，不必重貼：B1 起每段提示詞第一句都是「請先讀 skills/team-rules.md」。
+**Skill 是把反覆要用的做法寫成 Markdown 檔，放在專案的 `skills/` 資料夾。**
+- 由 Agent 建立；之後只要說「請先讀 skills/… 並照做」，不必重貼
+- B1 起每段提示詞第一句都是「請先讀 skills/team-rules.md」
+- 工具內建的 Skill 功能另有固定格式，今天不需要
 📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件 Copilot〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。
 ```
 

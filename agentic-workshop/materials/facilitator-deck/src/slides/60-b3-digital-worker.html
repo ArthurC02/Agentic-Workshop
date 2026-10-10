@@ -5,9 +5,8 @@
   <h2 class="title">B3 團體訂票 · Digital Worker</h2>
   <p class="subtitle">Agent 成為數位員工（Digital Worker）：在核准範圍內主導交付，人負責核准與審查</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B3 團體訂票：Digital Worker 流程」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 13 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）、三個核准關卡（Gate）和一張 Gate 決策表都在 Runbook，其餘紀錄請 Agent 寫進 notes/b3.md；投影只告訴你時間和現在是第幾個檢查點。」說完翻下一頁宣布規則改變。</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）、三個核准關卡（Gate）和一張 Gate 決策表都在 Runbook，其餘紀錄請 Agent 寫進 notes/b3.md；投影會提示每個檢查點貼哪段、要決定什麼。」說完翻下一頁宣布規則改變。</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼；完整碼表見講者視窗。</p>
     <p><b>解鎖內容</b>：B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、例外回應卡（只有提示詞與決定表單）。檢查點 1 要用「複製 Markdown」交給 Agent 的只有任務卡、操作規則、Work Order、Approval Gates；交付審查清單在 Gate 3 想逐項核對時才看，Delivery 範本在交付段用，例外回應卡第 69 分才用。</p>
     <p><b>不可說</b>：例外回應卡不寫情境，也不預發情境或答案。例外情境只在第 69–70 分由本簡報呈現，<b>不要在此提到例外內容</b>。</p>
@@ -52,21 +51,20 @@
 <section class="slide" data-seg="b3" data-title="B3 · 現在在做什麼" data-minute="63" data-timer="13:00" data-gates="b3">
   <p class="kicker">B3 · 63–76 · 今天的技巧：委派整件任務：工作單 + 三道關卡</p>
   <h2 class="title">寫清楚範圍與停止條件，只在 Gate 介入</h2>
-  <div class="card dw">
-    <p><b>情境</b>：旅行社要一次訂 5–20 人同車廂連號座位，付款失敗整團取消</p>
-    <p><b>你的目標</b>：整件任務交給 Agent，你只在三道 Gate 做決定</p>
-    <p><b>今天的技巧</b>：工作單寫清範圍與停止條件，Agent 才能自己往前走</p>
-    <p><b>Agent 技巧</b>：工作單＝Skill · Gate 回報固定格式 · 選較強模型 · Gate 先摘要省 Token</p>
-    <p><b>完成的樣子</b>：<code>notes/b3.md</code> 有 Gate 決策、驗收對照表、變更審查答案</p>
-  </div>
+  <ul>
+    <li><b>情境</b>：旅行社要一次訂 5–20 人同車廂連號座位，付款失敗整團取消</li>
+    <li><b>目標</b>：整件任務交給 Agent，你只在三道 Gate 做決定</li>
+    <li><b>技巧</b>：工作單存成 Skill；每道 Gate 用同一個固定格式回報</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="b3"><span class="tl-min">00:00</span><b>1 · 把工作單交給 Agent</b></li>
-    <li data-seg="b3"><span class="tl-min">01:00</span><b>2 · Gate 1：確認 Agent 懂需求</b></li>
-    <li data-seg="b3"><span class="tl-min">03:00</span><b>3 · Gate 2：核准設計與修改範圍</b></li>
-    <li data-seg="b3"><span class="tl-min">07:00</span><b>4 · 放手執行，Gate 3 決定交付</b></li>
+    <li data-seg="b3"><span class="tl-min">00:00</span><b>1 · 把工作單交給 Agent</b><span class="tl-due">第 64 分前</span></li>
+    <li data-seg="b3"><span class="tl-min">01:00</span><b>2 · Gate 1：確認 Agent 懂需求</b><span class="tl-due">第 66 分決策</span></li>
+    <li data-seg="b3"><span class="tl-min">03:00</span><b>3 · Gate 2：核准設計與修改範圍</b><span class="tl-due">第 69 分決策</span></li>
+    <li data-seg="b3"><span class="tl-min">07:00</span><b>4 · 放手執行，Gate 3 決定交付</b><span class="tl-due">第 75 分 Gate 3</span></li>
   </ol>
+  <p class="callout">從 Runbook『B3 團體訂票：Digital Worker 流程』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 20 秒，先情境與技巧，再步驟）</b>：「這段練的是委派整件任務。你們把工作單（範圍、禁止事項、停止條件）交給 Agent，它就自己做；你們只在三道 Gate 做決定：第 66 分需求、第 69 分設計、第 75 分交付。Gate 2 核准、條件解除前 Agent 不能改程式。每道 Gate 貼 Runbook 的提示詞，Agent 會整理成是非題和建議決策來問你，你回一句話；所有紀錄請 Agent 寫進 notes/b3.md，表單只選三個 Gate 的決策。」</p>
+    <p><b>說（約 20 秒，先情境與技巧，再步驟）</b>：「這段練的是委派整件任務。你們把工作單（範圍、禁止事項、停止條件）交給 Agent，它就自己做；你們只在三道 Gate 做決定：第 66 分需求、第 69 分設計、第 75 分交付。Gate 2 核准、條件解除前 Agent 不能改程式。每道 Gate 貼 Runbook 的提示詞，Agent 會整理成是非題和建議決策來問你，你回一句話；所有紀錄請 Agent 寫進 notes/b3.md，表單只選三個 Gate 的決策。」完成的樣子（口頭帶過）：notes/b3.md 有 Gate 決策、驗收對照表、變更審查答案。</p>
     <p><b>操作</b>：計時應已在解鎖頁啟動（沒有就在本頁按 T）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，第 69 分在檢查點 3 之後翻到例外事件頁。檢查點 4 涵蓋 70–76：第 74 分口頭喊「停止擴充」，第 75 分喊「Gate 3」。</p>
     <p><b>Agent 技巧（怎麼示範，約 15 秒）</b>：「B3 開新對話；工具有模型選單的，選推論能力較強的模型，因為接下來 Agent 要長時間自己做。工作單就是給 Agent 的 Skill，它會存成 skills/b3-work-order.md。每道 Gate 它都用同一個固定格式回報：Gate、建議結論、證據、風險、需要人決定的事。放手執行最耗 Token，所以細節寫進 notes，對話只給摘要。」不點名任何工具、模型名稱或設定位置。</p>
     <p><b>巡場看技巧有沒有用上</b>：工作單和四頁文件是否整份交給 Agent（不是口頭交代）、有沒有存成 <code>skills/b3-work-order.md</code>｜Gate 回報是否每次同一組標題｜對話是否只有摘要、細節在 notes｜Agent 是否在 Gate 停下等人、核准時間是否早於修改｜人是否只在 Gate 和停止條件介入，而不是逐步下指令｜<code>notes/b3.md</code> 是否有決策原文、驗收對照表與變更審查答案。不因學員沒讀程式、沒自己打指令或表單少填而判失敗。</p>
@@ -81,12 +79,14 @@
 <section class="slide" data-seg="b3" data-title="檢查點 1 · 把工作單交給 Agent" data-minute="63">
   <p class="kicker">檢查點 1 / 4 · 第 63–64 分鐘</p>
   <h2 class="title">把工作單交給 Agent</h2>
+  <p class="cp-why"><b>為什麼</b>一次交代清楚：做什麼、能動哪裡、何時停下、在哪裡等你決定</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>開新對話（可選較強模型），貼交辦提示詞，再用「複製 Markdown」接上任務卡、操作規則、工作單（Work Order）、三道 Gate</li>
-    <li>Agent 先存一版「B3 起點」，把工作單存成 Skill <code>skills/b3-work-order.md</code>，背景寫進 <code>notes/b3.md</code>；查不到的不猜</li>
-    <li><b>交出 Gate 1 決策卡（5 個是非題），然後停下</b></li>
+    <li>主要 Agent <b>開新對話</b>；工具有模型選單就選較強的</li>
+    <li>貼 ②，再依序「複製 Markdown」接上任務卡、操作規則、工作單、三道 Gate，一起送出</li>
+    <li>Agent 交出 Gate 1 決策卡後，貼 ③ 確認結果；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B3 › 檢查點 1 · 把工作單交給 Agent</p>
+  <p class="cp-next">第 64 分前完成 → 下一步：檢查點 2 回答 Gate 1</p>
   <aside class="notes">
     <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。請照 Runbook 檢查點 1，把工作單和四頁文件整份貼給主要 Agent。它先 Commit 一個「B3 起點」（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」</p>
     <p><b>看</b>：第 64 分 Agent 應已交 Gate 1（摘要、假設、缺口、Out of Scope 寫進 notes，對話是 5 個是非題的決策卡）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。只口頭交代、沒貼工作單 → 提醒技巧：「範圍和停止條件要寫給 Agent，它才知道何時停。」</p>
@@ -97,12 +97,15 @@
 <section class="slide" data-seg="b3" data-title="檢查點 2 · Gate 1：確認 Agent 懂需求" data-minute="64">
   <p class="kicker">檢查點 2 / 4 · 第 64–66 分鐘</p>
   <h2 class="title">Gate 1：確認 Agent 懂需求</h2>
+  <p class="cp-why"><b>為什麼</b>需求理解錯了，後面做得再快都白做</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>看檢查點 1 的決策卡：5 個是非題與建議決策</li>
-    <li>對照任務卡回答；查不到依據由小組確認，不讓 Agent 猜</li>
-    <li>第 66 分前貼提示詞說出 Gate 1 決策：<b>核准需求才進入設計</b>；Agent 照原文記進 notes</li>
+    <li>對照任務卡回答決策卡的 5 個是非題，小組說好 Gate 1 決策</li>
+    <li>Runbook › 檢查點 2：貼 ②「記錄 Gate 1」，說出決策</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B3 › 檢查點 2 · Gate 1：確認 Agent 懂需求</p>
+  <p class="cp-judge"><b>你要判斷</b>每題都對得上任務卡才核准；「待小組確認」的由你們決定，不讓 Agent 猜</p>
+  <p class="cp-next">第 66 分前決策 → 下一步：檢查點 3 Gate 2</p>
   <aside class="notes">
     <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照任務卡回答那 5 個是非題。需求理解錯了，後面做得再快都白做。」</p>
     <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策；核准才進 Gate 2 設計，退回就要求修正。Agent 問你時回一句話（例如『核准，核准人某某，第 66 分』），它會照原文記進 notes/b3.md。」</p>
@@ -115,12 +118,15 @@
 <section class="slide" data-seg="b3" data-title="檢查點 3 · Gate 2：核准設計與修改範圍" data-minute="66">
   <p class="kicker">檢查點 3 / 4 · 第 66–70 分鐘</p>
   <h2 class="title">Gate 2：核准設計與修改範圍</h2>
+  <p class="cp-why"><b>為什麼</b>Agent 只提設計、不改程式；你核准的範圍，就是它接下來能自己動手的邊界</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 把設計整理成是非題、預計修改檔案與建議決策</li>
-    <li>核對範圍合理、不全面重寫、失敗都有處理、無未核准外部依賴</li>
-    <li>第 69 分前做 Gate 2 決策：<b>核准的範圍就是 Agent 能自己動手的邊界</b></li>
+    <li>Runbook › 檢查點 3：貼 ②「整理 Gate 2 決策卡」</li>
+    <li>回答是非題，說出 Gate 2 決策，Agent 照原文記下</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B3 › 檢查點 3 · Gate 2：核准設計與修改範圍</p>
+  <p class="cp-judge"><b>你要判斷</b>答案都在工作單允許範圍內；不以「看起來合理」取代範圍檢查</p>
+  <p class="cp-next">第 69 分前決策 → 下一步：看投影的例外事件</p>
   <aside class="notes">
     <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准的組，請 Agent 交 Gate 2：影響、API、座位、全有或全無的處理、測試與風險。你們核准的範圍，就是 Agent 接下來能自己動手的邊界；Gate 2 核准、條件解除前，不能改程式。」</p>
     <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件卡</b>（若 Agent 已自然提出 SQLite，見下一頁備註）。</p>
@@ -160,9 +166,9 @@
       <p class="muted">仍需停止的動作、允許範圍、須回到的 Gate</p>
     </div>
   </div>
-  <p class="callout warn fx fx-fade">貼例外回應卡的提示詞；Agent 問事件時照抄這一行：<b>事件：建議加 SQLite</b>。60 秒內一行回答；時間緊可 30 秒口頭判斷。</p>
+  <p class="callout warn fx fx-fade">Runbook『例外回應卡』貼 ②；Agent 問時照抄：<b>事件：建議加 SQLite</b>，一行回答後貼 ③</p>
   <aside class="notes">
-    <p><b>從投影移到備註</b>：1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
+    <p><b>從投影移到備註</b>：時間緊可縮為 30 秒口頭判斷（例外回應卡 ① 已寫）。1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
     <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
@@ -184,12 +190,15 @@
 <section class="slide" data-seg="b3" data-title="檢查點 4 · 放手執行，Gate 3 決定交付" data-minute="70">
   <p class="kicker">檢查點 4 / 4 · 第 70–76 分鐘</p>
   <h2 class="title">放手執行，Gate 3 決定交付</h2>
+  <p class="cp-why"><b>為什麼</b>這段 Agent 自己做；你只在它停下升級時，和第 75 分的 Gate 3 介入</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>70：條件解除後才說「開始執行」；Agent 只改核准範圍，遇到停止條件就停下來交給人決定</li>
-    <li>74：<b>停止擴充</b>；Agent 把驗收對照表、變更審查答案、Gate 3 資料寫進 notes</li>
-    <li>75：Gate 3 看決策卡答案決定是否交付，不看程式；再貼第二段提示詞重啟伺服器並記決策；可在 <code>/docs</code> 試一筆；完成等級（Level）不預設選 3</li>
+    <li>條件解除後貼 ②「開始執行」；Agent 停下時回一句決定</li>
+    <li>第 74 分貼「停止擴充」；看決策卡做 Gate 3，貼「記下 Gate 3」</li>
+    <li>有時間在 <code>/docs</code> 試一筆；再貼 ③ 確認結果，「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">第 76 分鐘停止新增；人不補程式或測試，缺項如實列出。</p>
+  <p class="cp-judge"><b>你要判斷</b>審查三題都「是」、失敗與未驗證都列出、建議的 Level 有證據；不預設選 3</p>
+  <p class="cp-next">第 76 分停止新增 → 下一步：Runbook『Delivery Summary 與交付』</p>
   <aside class="notes">
     <p><b>說（00:07／第 70 分）</b>：「例外與條件已解除的組，請 Agent 開始執行。這段你們放手：不盯每一步，只在 Agent 停下升級時做決定。人不寫程式、不補測試。」</p>
     <p><b>說（00:11／第 74 分）</b>：「停止擴充。請貼 Runbook 檢查點 4 的停止提示：Agent 執行測試，把驗收對照表、變更審查答案和 Gate 3 資料寫進 notes/b3.md；還沒有程式的，明記未執行及原因。」</p>

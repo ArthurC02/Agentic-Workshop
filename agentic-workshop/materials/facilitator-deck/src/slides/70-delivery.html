@@ -3,18 +3,17 @@
 <section class="slide" data-seg="delivery" data-title="交付 · 現在在做什麼" data-minute="76" data-timer="04:00" data-gates="delivery">
   <p class="kicker">交付（Delivery）· 76–80 · 今天的技巧：請 Agent 整理交付摘要，人核對</p>
   <h2 class="title">摘要交給 Agent 寫，每一句都要附證據</h2>
-  <div class="card dw">
-    <p><b>情境</b>：B3 時間到，主管要知道做了什麼、證據在哪、還缺什麼</p>
-    <p><b>你的目標</b>：Agent 寫交付摘要，你逐項核對後交件</p>
-    <p><b>今天的技巧</b>：整理交給 Agent；人只問「證據在哪？」，未驗證如實標示</p>
-    <p><b>Agent 技巧</b>：結構化輸出：固定十二個標題，每句附證據位置</p>
-    <p><b>完成的樣子</b>：<code>notes/delivery.md</code> 附證據來源；選好完成等級（Level）、匯出交件</p>
-  </div>
+  <ul>
+    <li><b>情境</b>：B3 時間到，主管要知道做了什麼、證據在哪、還缺什麼</li>
+    <li><b>目標</b>：Agent 寫交付摘要，你逐項核對後交件</li>
+    <li><b>技巧</b>：整理交給 Agent；你只問「證據在哪？」，未驗證如實標示</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 請 Agent 寫交付摘要，你來核對</b></li>
-    <li data-seg="delivery"><span class="tl-min">02:00</span><b>2 · 匯出與交件</b></li>
-    <li data-seg="delivery"><span class="tl-min">03:00</span><b>揭曉（看投影）</b></li>
+    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 請 Agent 寫交付摘要，你來核對</b><span class="tl-due">第 78 分前</span></li>
+    <li data-seg="delivery"><span class="tl-min">02:00</span><b>2 · 匯出與交件</b><span class="tl-due">第 79 分前</span></li>
+    <li data-seg="delivery"><span class="tl-min">03:00</span><b>揭曉（看投影）</b><span class="tl-due">第 80 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『Delivery Summary 與交付』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>操作</b>：B3 結束（第 76 分）翻到本頁，按 <b>T</b> 啟動 04:00 段落計時（00:00＝第 76 分）。說完翻到檢查點 1。</p>
     <p><b>說（約 15 秒，先情境與技巧）</b>：「76 分鐘到，停止新增功能。交付摘要不用自己寫：請 Agent 依證據寫進 notes/delivery.md，你們只問它『這句的證據在哪？』，指不出來的改成未驗證。然後匯出交件；全員交件後我才揭曉 B3 的對照內容。」</p>
@@ -34,12 +33,15 @@
 <section class="slide" data-seg="delivery" data-title="檢查點 1 · 請 Agent 寫交付摘要，你來核對" data-minute="76">
   <p class="kicker">檢查點 1 / 2 · 第 76–78 分鐘</p>
   <h2 class="title">請 Agent 寫交付摘要，你來核對</h2>
+  <p class="cp-why"><b>為什麼</b>第 76 分停止一切修改；主管要的是做了什麼、證據在哪、還缺什麼</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 讀 <code>notes/b3.md</code>，把摘要寫進 <code>notes/delivery.md</code>，每欄附證據</li>
-    <li>Agent 列出完成等級（Level）、測試結果、修改範圍三句，各引用證據原文</li>
-    <li>引用不出的改成未驗證；<b>不自動選 Level 3</b></li>
+    <li>Runbook『Delivery Summary 與交付』› 檢查點 1：貼 ② ＋ 範本「複製 Markdown」</li>
+    <li>看 Agent 為三句結論引用的證據原文</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › Delivery › 檢查點 1 · 請 Agent 寫交付摘要，你來核對</p>
+  <p class="cp-judge"><b>你要判斷</b>Level、測試結果、修改範圍都引用得出證據，引用不出的已改成「未驗證」；Gate 決策和 <code>notes/b3.md</code> 一致</p>
+  <p class="cp-next">第 78 分前完成 → 下一步：檢查點 2 匯出與交件</p>
   <aside class="notes">
     <p><b>說（00:00／第 76 分）</b>：「請貼 Runbook 的提示詞，讓 Agent 寫交付摘要。它會挑三句結論引用證據給你們看，引用不出的改成未驗證。Level 同不同意，下一個檢查點再一起聊。」</p>
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整，程式尚未完成；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝團體建立與連續座位完成、主要單元測試通過，付款失敗的補償（Compensation）或文件仍有缺項｜Level 3 完整交付＝建立、付款成功與付款失敗的補償都完成，回歸測試（Regression）通過，文件與交付摘要都完整。</p>
@@ -51,13 +53,16 @@
 
 <section class="slide" data-seg="delivery" data-title="檢查點 2 · 匯出與交件" data-minute="78">
   <p class="kicker">檢查點 2 / 2 · 第 78–79 分鐘</p>
-  <h2 class="title">匯出與交件，交完就停手</h2>
+  <h2 class="title">匯出與交件</h2>
+  <p class="cp-why"><b>為什麼</b>要匯出才算交件；交件後就不再修改</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>💬 小組聊 1 分鐘：同意 Agent 建議的 Level 嗎？說好再在「交付核對」選 Level，一鍵匯出所有表單（ZIP）</li>
-    <li>連同主要 Agent 電腦上的 <code>notes/</code> 資料夾，依指定方式交件</li>
-    <li>交件後不再修改，看投影</li>
+    <li>💬 小組聊 1 分鐘：同意 Agent 建議的 Level 嗎？</li>
+    <li>貼 ②「notes 在哪」，再貼 ③ 確認結果；「失敗」貼「失敗時」</li>
+    <li>在「交付核對」選 Level、匯出所有表單，連同 <code>notes/</code> 交件</li>
   </ol>
-  <p class="callout warn">Runbook › Delivery › 檢查點 2 · 匯出與交件</p>
+  <p class="cp-judge"><b>你要判斷</b>只看驗收對照表會選哪一級？加上 Gate 紀錄與缺項後還一樣嗎？</p>
+  <p class="cp-next">第 79 分前交件 → 下一步：停手，看投影揭曉</p>
   <aside class="notes">
     <p><b>說（00:02／第 78 分）</b>：「小組先花 1 分鐘聊：Agent 建議的 Level 你們同意嗎？只看驗收對照表會選哪一級，加上 Gate 紀錄與缺項後還一樣嗎？說好後在表單記下結論，匯出，連同 notes 資料夾依指定方式交件。交件後不再修改，接下來看投影。」</p>
     <p><b>收件</b>：notes/b3.md（Gate 決策原文、驗收對照表、變更審查答案）、notes/delivery.md、匯出的表單。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
@@ -204,8 +209,7 @@
   <ol class="steps">
     <li class="fx">退回（Reject）的是<b>超範圍方案，不是整個任務</b></li>
     <li class="fx">允許：沿用現有資料存取層（Repository）；先規劃好全部座位再保留；付款失敗有明確補償</li>
-    <li class="fx">可用：記憶體快照、保留憑證（Reservation Token）或明確的復原方法</li>
-    <li class="fx">改提案尚缺證據可有條件核准（APPROVE WITH CONDITIONS，僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
+    <li class="fx">改提案還缺證據時，可在 In-Memory 範圍內有條件核准；條件解除且 Gate 2 核准後才改程式</li>
     <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計就停下，說明卡在哪，交給人決定</li>
   </ol>
   <aside class="notes">
@@ -214,7 +218,7 @@
     <p><b>不可接受（F03）</b>：直接 Approve SQLite｜含糊條件後開始 Coding｜長篇討論或實際安裝。</p>
     <p><b>判讀重點</b>：是否指出 Constraint、Challenge 提議、選擇 Reject／重提、要求全團體補償與測試，並保留 Decision／Approver／時間／Context。不要求學員說出參考答案原文；本頁是範例，不是真實核准紀錄（Approver／Timestamp 需實際填寫）。不要求通用 Transaction Framework。</p>
     <p><b>Debrief Q4（F05）</b>：「若沒人發現SQLite越界，缺少哪項治理能力？」</p>
-    <p><b>從投影移到備註</b>：即使 SQLite 可由標準函式庫使用，仍是未核准資料庫變更；不能安裝、實作或寫進有條件核准（Conditional Approval）。重提方案的實測計畫要涵蓋：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單。</p>
+    <p><b>從投影移到備註</b>：In-Memory 內可用的做法：記憶體快照、保留憑證（Reservation Token）或明確的復原方法。即使 SQLite 可由標準函式庫使用，仍是未核准資料庫變更；不能安裝、實作或寫進有條件核准（Conditional Approval）。重提方案的實測計畫要涵蓋：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單。</p>
   </aside>
 </section>
 

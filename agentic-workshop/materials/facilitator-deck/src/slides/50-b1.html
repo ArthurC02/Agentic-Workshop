@@ -5,9 +5,8 @@
   <h2 class="title">TASK-B1-001</h2>
   <p class="subtitle">修復學生票折扣異常 · Agent 是隊友（Teammate）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B1 修復學生票折扣異常」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 8 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。客服回報學生票價好像算錯了。這段練一個技巧：先讓 Agent 用失敗測試證明 Bug 存在，你們核准最小修正計畫後才修，修完用同一個測試證明修好。要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。客服回報學生票價好像算錯了。這段練一個技巧：先讓 Agent 用失敗測試證明 Bug 存在，你們核准最小修正計畫後才修，修完用同一個測試證明修好。提示詞都在 Runbook，投影會提示每個檢查點貼哪段。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 08:00 段落計時（00:00＝第 44 分），翻頁時持續計時。本頁大字顯示 B1 解鎖碼；只解開「B1 任務卡」，完整碼表見講者視窗。</p>
     <p><b>Cue（RB 44–52）</b>：只發 B1 任務；Agent 先重現與定位、人核准最小修正計畫，核准後才修改。說明 Teammate：人核准計畫再執行。來源沒有 B1 的逐字宣布台詞；以 Cue 口述，不自行補充任務細節或提示。</p>
     <p><b>不可說</b>：不指出檔案位置、錯誤數值或失敗數量。「多個失敗可能源自同一個 Bug」是主持原則，不可當第一個提示直接說出位置或常數。</p>
@@ -20,15 +19,14 @@
   <ul>
     <li><b>情境</b>：客服回報學生票價好像算錯了</li>
     <li><b>目標</b>：找出原因、只做最小修正、證明修好</li>
-    <li><b>技巧</b>：先讓 Agent 用失敗測試證明 Bug 存在，修完用同一個測試證明修好</li>
-    <li><b>Agent 技巧</b>：Skill（做法存成 <code>skills/fix-bug-with-test.md</code>）· Token 節費（讀 <code>skills/team-rules.md</code> 不重貼規則、要摘要）</li>
-    <li><b>完成</b>：修前失敗、修後通過；紀錄在 <code>notes/b1.md</code></li>
+    <li><b>技巧</b>：先用失敗測試證明 Bug 存在，修完用同一個測試證明修好</li>
   </ul>
   <ol class="timeline">
-    <li data-seg="b1"><span class="tl-min">00:00</span><b>1 · 重現並找出原因</b></li>
-    <li data-seg="b1"><span class="tl-min">02:00</span><b>2 · 只做最小修正</b></li>
-    <li data-seg="b1"><span class="tl-min">05:00</span><b>3 · 用同一個測試證明修好</b></li>
+    <li data-seg="b1"><span class="tl-min">00:00</span><b>1 · 重現並找出原因</b><span class="tl-due">第 46 分前</span></li>
+    <li data-seg="b1"><span class="tl-min">02:00</span><b>2 · 只做最小修正</b><span class="tl-due">第 49 分前</span></li>
+    <li data-seg="b1"><span class="tl-min">05:00</span><b>3 · 用同一個測試證明修好</b><span class="tl-due">第 52 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『B1 修復學生票折扣異常』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>說（約 30 秒；先講情境與技巧，再講步驟）</b>：「8 分鐘。客服說學生票價怪怪的。這段練一個技巧：不要一開始就叫 Agent 修，先叫它用失敗測試把 Bug 重現出來、說出原因與證據；你們核准最小修正計畫後才修；修完用同一批測試證明它從失敗變通過。每一步都是貼 Runbook 的提示詞、看 Agent 回報、回一句決定；紀錄都請 Agent 寫進 notes/b1.md，表單只要選兩個決定。第 49 分停止擴充，第 52 分停止。」</p>
     <p><b>Agent 技巧（怎麼示範，約 15 秒）</b>：「提示詞第一句都是『請先讀 skills/team-rules.md』，不用再貼規則，這是省 Token：只讓 Agent 讀指定的檔、測試只要摘要。修完最後一步，Agent 會把這套做法寫成 skills/fix-bug-with-test.md，這就是 Skill，下次遇到 Bug 直接叫它照做。」</p>
@@ -41,13 +39,16 @@
 
 <section class="slide" data-seg="b1" data-title="檢查點 1 · 用失敗測試重現並找出原因" data-minute="44">
   <p class="kicker">檢查點 1 / 3 · 第 44–46 分鐘</p>
-  <h2 class="title">用失敗測試重現並找出原因：先不改程式</h2>
+  <h2 class="title">用失敗測試重現並找出原因</h2>
+  <p class="cp-why"><b>為什麼</b>先別叫 Agent「修好」：先用失敗測試證明 Bug 存在、說出原因，再提最小修正計畫</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 跑測試，列出失敗測試：期待多少、實際多少</li>
-    <li>Agent 指出原因，分開「有證據」和「推論」，提最多 3 步的最小修正計畫</li>
-    <li><b>人</b>看 <code>notes/b1.md</code> 的證據，決定核准或退回補證據</li>
+    <li>Runbook『B1』› 檢查點 1：貼 ②，再接任務卡「複製 Markdown」給主要 Agent</li>
+    <li>證據夠就在「B1 決定」選核准；不夠就選退回，貼「補證據」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B1 › 檢查點 1 · 在「B1 決定」選核准或退回</p>
+  <p class="cp-judge"><b>你要判斷</b>原因分成「有證據的事實」和「推論」；計畫最多 3 步，寫了不改哪些地方</p>
+  <p class="cp-next">第 46 分前核准 → 下一步：檢查點 2 只做最小修正</p>
   <aside class="notes">
     <p><b>說（00:00／第 44 分）</b>：「先別叫 Agent 修。請它用失敗測試把 Bug 重現出來，說出原因和證據，提最小修正計畫；你們核准之前，Agent 不改程式。」</p>
     <p><b>看（技巧）</b>：小組是否先要 Agent 重現（失敗測試名稱、期待值與實際值）→ 介入訊號：一開始就叫 Agent「把 Bug 修好」。是否比較各自 Agent 的結果、要求規則及測試證據 → 介入訊號：直接採最肯定的摘要、未查來源。是否核對公開的 75% 與相關失敗、是否擴大範圍。未核准或證據不足時只補缺口，不修改程式。Runbook 的「💬 討論一下」先比較各自 Agent 找到的原因；「B1 決定」在小組口頭說好後才選，記的是結論。</p>
@@ -61,13 +62,16 @@
 
 <section class="slide" data-seg="b1" data-title="檢查點 2 · 只做最小修正" data-minute="46">
   <p class="kicker">檢查點 2 / 3 · 第 46–49 分鐘</p>
-  <h2 class="title">只做最小修正：照核准的計畫改</h2>
+  <h2 class="title">只做最小修正</h2>
+  <p class="cp-why"><b>為什麼</b>Agent 只照核准的計畫改；你不讀程式，只看變更審查三題答案</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼核准提示詞：Agent 只依 <code>notes/b1.md</code> 的計畫修改</li>
-    <li>Agent 改完重跑測試，接著回答變更審查問題後停下</li>
-    <li>看答案：沒有計畫外檔案、沒刪測試、沒改既有期待值</li>
+    <li>Runbook › 檢查點 2：貼 ②「計畫核准」</li>
+    <li>Agent 改完、重跑測試，回答變更審查三題後停下</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B1 › 檢查點 2 · 審查三題全部是「是」才放行</p>
+  <p class="cp-judge"><b>你要判斷</b>三題全部是「是」才放行；有「否」或「不確定」就貼「失敗時」</p>
+  <p class="cp-next">第 49 分前完成 → 下一步：停止擴充，檢查點 3 證明修好</p>
   <aside class="notes">
     <p><b>說（00:02／第 46 分）</b>：「核准了的組，貼檢查點 2 的提示詞：Agent 從 notes/shared-context.md 記下核准人、用電腦時間記核准時間（不再問學員），只照計畫做最小修正，改完直接回答變更審查問題，答案也寫進 notes/b1.md。你們只看三題答案，全部是『是』才放行。」</p>
     <p><b>看</b>：人是否核准範圍與計畫、選主要 Agent 執行 → 介入訊號：未核准即修改；只接受結果不審查。最小安全修復：針對學生計價，維持成人與既有優惠／順序。</p>
@@ -78,17 +82,20 @@
 </section>
 
 <section class="slide" data-seg="b1" data-title="檢查點 3 · 用同一個測試證明修好" data-minute="49">
-  <p class="kicker">檢查點 3 / 3 · 第 49–52 分鐘 · 停止擴充</p>
+  <p class="kicker">檢查點 3 / 3 · 第 49–52 分鐘</p>
   <h2 class="title">用同一個測試證明修好</h2>
+  <p class="cp-why"><b>為什麼</b>停止擴充；用檢查點 1 的同一批測試證明修好，不因 Agent 說「完成」就接受</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>同一批測試：修前失敗 → 修後通過</li>
-    <li>全套測試零失敗、零跳過；有時間可在 <code>/docs</code> 試成人＋學生 <b>1225</b></li>
-    <li><b>人</b>決定：接受／要求修正／未完成；Agent 把做法存成 Skill</li>
+    <li>Runbook › 檢查點 3：貼 ②「證明修好」</li>
+    <li>看修前、修後對照；Agent 也把做法存成 <code>skills/fix-bug-with-test.md</code></li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">Runbook › B1 › 檢查點 3 · 在「B1 決定」選第 52 分的決定 · 第 52 分鐘停止</p>
+  <p class="cp-judge"><b>你要判斷</b>同一批測試修前失敗、修後通過；失敗 0、跳過 0；AC 每列都寫得出測試名稱</p>
+  <p class="cp-next">第 52 分停止 → 下一步：在「B1 決定」選第 52 分的決定</p>
   <aside class="notes">
-    <p><b>說（00:05／第 49 分）</b>：「停止新增工作。請 Agent 用檢查點 1 那批失敗測試證明修好，再跑全套測試、交驗收對照表；有時間可以在 /docs 試一筆，然後決定接受與否。只有實際完成驗收才能宣稱修復完成。」</p>
-    <p><b>看（技巧）</b>：小組是否要求「同一批測試修前修後對照」，不是只看最後總數；正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。人是否看完變更審查答案與驗收對照表（有試的話再加 /docs 金額）才接受 → 介入訊號：Agent 說完成就直接交付。誠實交付：<code>notes/b1.md</code> 含原因、結果及缺項 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
+    <p><b>說（00:05／第 49 分）</b>：「停止新增工作。請 Agent 用檢查點 1 那批失敗測試證明修好，再跑全套測試、交驗收對照表，把做法存成 skills/fix-bug-with-test.md，然後決定接受與否。只有實際完成驗收才能宣稱修復完成。」</p>
+    <p><b>看（技巧）</b>：小組是否要求「同一批測試修前修後對照」，不是只看最後總數；正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。人是否看完變更審查答案與驗收對照表才接受 → 介入訊號：Agent 說完成就直接交付。誠實交付：<code>notes/b1.md</code> 含原因、結果及缺項 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
     <p><b>提示・時間不足</b>（第 49 分仍在擴充或大幅重構）：提醒技巧「先證明，再擴充」。可直接貼：「停止修改。請把目前的原因、核准計畫、已做的修改與實際測試結果寫進 notes/b1.md，列出未完成事項。」</p>
     <p>不刪除或弱化測試、不改正確期待值、不用 Skip／XFail 隱藏；看到時同樣立即介入。</p>
     <p><b>停止（00:08／第 52 分）</b>：翻到「請先停手」頁，立即停止 B1 擴充；第 52 分鐘未完成就不再給提示，保留 <code>notes/b1.md</code> 的原因、計畫與缺項。</p>

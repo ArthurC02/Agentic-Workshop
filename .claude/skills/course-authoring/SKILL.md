@@ -33,6 +33,18 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
 - End of page:
   - A 「## 完成後想一想」 section with 3 specific questions: observation → technique → extension toward the next segment or real work, introduced as 「先自己想 30 秒，再和旁邊的人聊」. On a form page it comes right before the form. No closing 💬 or 「這段學到的技巧」 callout (they repeated 「今天的技巧」).
 
+## Facilitator deck (user rule, 2026-10-11)
+The projected slide does two jobs: pace the room, and tell learners exactly what to do next. Everything only the facilitator needs goes in `<aside class="notes">`.
+- **Segment opening slide**: 情境／目標／今天的技巧 in three short lines, the checkpoint roadmap with deadlines, and where to start in the Runbook (page name). Unlock code only where the segment unlocks.
+- **Checkpoint slide**, top to bottom:
+  - kicker `檢查點 n / N · 第 a–b 分鐘` and the verb-phrase title (must match the Runbook heading and `data-title`);
+  - one 「為什麼」 line (from ①);
+  - 「現在做」 numbered steps mirroring the Runbook blocks: open Runbook › page › 檢查點 n → paste ② (name the prompt in a few words) → paste ③ 確認結果: 「成功」 go on, 「失敗」 paste 「失敗時」;
+  - 「你要判斷」 one line when the checkpoint has a human decision (same criterion as ①);
+  - a footer line 「第 b 分前完成 → 下一步：…」.
+- Never put full prompts on slides (learners copy from the Runbook). Max ~6 projected lines of text per slide; body ≥ 24px at 1080p.
+- Notes keep: what to say (with timing), what to watch, intervention prompts, first-introduction cues.
+
 ## Knowledge points (progressive scaffolding)
 - Introduce each concept, term, file convention, or report field at its **first need**. Use a `技巧：〈名稱〉` or `新概念：〈名稱〉` callout of 1–3 sentences.
 - The opening is a roadmap only.

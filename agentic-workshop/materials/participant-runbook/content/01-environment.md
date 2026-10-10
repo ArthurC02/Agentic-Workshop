@@ -32,17 +32,24 @@ Agent 說 Python 不是 3.13
 
 ```callout tip
 /docs 頁面一片空白
-/docs 的畫面要從網路載入，沒有網路時會是空白頁。請 Agent 改用 Python 的 httpx 實際呼叫同一組 API，把每一步的狀態碼和回應重點列給你看，並在 notes 註明「/docs 無法載入，改由 Agent 呼叫 API」。
+**/docs 的畫面要從網路載入，沒有網路就是空白頁。**
+- 請 Agent 改用 Python 的 httpx 實際呼叫同一組 API
+- 每一步的狀態碼和回應重點列給你看
+- 在 notes 註明「/docs 無法載入，改由 Agent 呼叫 API」
 ```
 
 ```callout tip
 Git 回報檔名太長（Filename too long）
-多半是解壓縮的路徑太深。把 ZIP 重新解壓縮到短路徑，例如 `C:\work\g0`；或請 Agent 只在這個專案設定 `core.longpaths` 為 true（不要用 --global）。
+**多半是解壓縮的路徑太深。**
+- 把 ZIP 重新解壓縮到短路徑，例如 `C:\work\g0`
+- 或請 Agent 只在這個專案設定 `core.longpaths` 為 true（不要用 --global）
 ```
 
 ```callout tip
 Port 8000 已被佔用
-請 Agent 改用其他未使用的埠號（Port，例如 8001），告訴你新的 `/docs` 網址，並在 notes 寫下實際使用的 Port。
+**請 Agent 改用其他未使用的埠號（Port），例如 8001。**
+- 它要告訴你新的 `/docs` 網址
+- 在 notes 寫下實際使用的 Port
 ```
 
 ```callout danger

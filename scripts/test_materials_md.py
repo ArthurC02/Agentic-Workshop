@@ -18,7 +18,7 @@ from materials_md import (  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "agentic-workshop" / "materials" / "participant-runbook" / "content"
-DIST = ROOT / "dist" / "p11-candidate" / "a1ac3bc5dbc35794"
+DIST = ROOT / "dist" / "p11-candidate" / "670633e86fb37945"
 
 
 class Recorder:
@@ -441,16 +441,38 @@ class BlockLabelTests(unittest.TestCase):
 
 class CalloutTests(unittest.TestCase):
     def test_every_kind(self):
-        for kind in ("info", "tip", "warning", "danger"):
+        for kind in ("info", "warning", "danger"):
             out = render(fence("callout " + kind, "Title `t`", "Body **b**", "", "- item"))
             self.assertEqual(out, f'<div class="rb-callout rb-callout-{kind}"><div class="rb-callout-title">'
                                   "Title <code>t</code></div><div class=\"rb-callout-body\"><p>Body <strong>b</strong>"
                                   "</p>\n<ul>\n<li>item</li>\n</ul></div></div>")
 
     def test_title_only_and_escaping(self):
-        self.assertEqual(render(fence("callout tip", "", "<T>")),
-                         '<div class="rb-callout rb-callout-tip"><div class="rb-callout-title">&lt;T&gt;</div>'
+        self.assertEqual(render(fence("callout info", "", "<T>")),
+                         '<div class="rb-callout rb-callout-info"><div class="rb-callout-title">&lt;T&gt;</div>'
                          '<div class="rb-callout-body"></div></div>')
+
+    def test_which_callouts_fold(self):
+        cases = [("tip", "💬 討論一下", False), ("tip", "時間不夠時的最低完成線", False), ("tip", "Port 8000 已被佔用", True),
+                 ("info", "技巧：Prompt 結構", True),
+                 ("info", "新概念：Gate（核准關卡，加深一層）", True), ("info", "現在在做什麼", False),
+                 ("info", "B1 尚未揭露", False), ("warning", "技巧：X", False), ("danger", "新概念：X", False)]
+        for kind, title, folds in cases:
+            out = render(fence("callout " + kind, title, "body"))
+            self.assertEqual(out.startswith("<details "), folds, (kind, title))
+            self.assertEqual("rb-callout-fold" in out, folds, (kind, title))
+
+    def test_folded_callout_markup_and_lead_preview(self):
+        out = render(fence("callout tip", "技巧：T", "**重點 `x`。**", "- a"))
+        self.assertTrue(out.startswith('<details class="rb-callout rb-callout-tip rb-callout-fold">'
+                                       '<summary class="rb-callout-title"><span class="rb-callout-name">技巧：T</span>'
+                                       '<span class="rb-callout-lead">重點 <code>x</code>。</span>'
+                                       '<span class="rb-callout-toggle"><span class="rb-sr">展開／收合</span></span>'
+                                       '</summary><div class="rb-callout-body"><p><strong>重點'), out)
+        self.assertTrue(out.endswith("</ul></div></details>"), out)
+        self.assertNotIn(" open", out.split(">", 1)[0])
+        for body in (("plain **b**",), ("**a** and **b**",), ("- **a**",)):
+            self.assertNotIn("rb-callout-lead", render(fence("callout tip", "T", *body)), body)
 
     def test_body_headings_tasks_and_links_use_page_counters(self):
         rec = Recorder()
@@ -458,6 +480,17 @@ class CalloutTests(unittest.TestCase):
         self.assertIn('<h3 id="x--h2">B</h3>', out)
         self.assertIn('data-check="x:1"', out)
         self.assertIn('href="#p-environment"', out)
+
+    def test_reference_line_gets_own_paragraph_class(self):
+        out = render(fence("callout tip", "技巧：T", "**重點。**", "- a", "📖 延伸閱讀：〈X〉"))
+        self.assertIn('<li>a</li>\n</ul>\n<p class="rb-callout-ref">📖 延伸閱讀：〈X〉</p>', out)
+        out = render(fence("callout tip", "T", "body", "📖 定義出處：本課程〈Y〉"))
+        self.assertIn('<p>body</p>\n<p class="rb-callout-ref">📖 定義出處', out)
+
+    def test_reference_class_only_inside_callouts(self):
+        self.assertEqual(render("📖 延伸閱讀：〈X〉"), "<p>📖 延伸閱讀：〈X〉</p>")
+        out = render(fence("callout info", "T", "x") + "\n📖 r")
+        self.assertTrue(out.endswith("<p>📖 r</p>"), out)
 
     def test_errors(self):
         for md in (fence("callout", "T"), fence("callout note", "T"), fence("callout info extra", "T"),
@@ -695,7 +728,7 @@ class RealChapterSmokeTests(unittest.TestCase):
                 self.assertTrue(all(h.startswith("#p-") for h in hrefs), hrefs)
                 tags = set(re.findall(r"<([a-z][a-z0-9]*)", out))
                 allowed = {"h2", "h3", "h4", "h5", "h6", "p", "strong", "em", "code", "a", "ul", "ol", "li",
-                           "label", "input", "span", "blockquote", "hr", "br", "div", "table", "thead", "tbody",
+                           "label", "input", "span", "blockquote", "hr", "br", "div", "details", "summary", "table", "thead", "tbody",
                            "tr", "th", "td", "pre", "button", "section", "script"}
                 self.assertLessEqual(tags, allowed)
                 self.assertEqual(out.count("<script"), out.count('<script type="application/json" class="rb-form-def">')

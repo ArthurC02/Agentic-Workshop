@@ -4,7 +4,7 @@
   <p class="kicker">第 80 分鐘 · 解鎖</p>
   <h2 class="title">Retrospective 回顧</h2>
   <p class="subtitle">在 Runbook 輸入解鎖碼，打開「工作坊回顧」，從<b>檢查點 1</b> 開始</p>
-  <p class="lead fx fx-fade">接下來 10 分鐘，要做什麼都看 Runbook；投影只顯示時間與目前的檢查點。</p>
+  <p class="lead fx fx-fade">10 分鐘：帶走 3 段你自己的提示詞，小組留下一項行動。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的工作坊回顧，從檢查點 1 開始。今天最後一個技巧，是把今天學到的變成你自己的提示詞清單。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 80 分），翻頁時持續計時。本頁大字顯示回顧解鎖碼（解開回顧頁與「我的提示詞清單」文件）；完整碼表見講者視窗。</p>
@@ -15,20 +15,19 @@
 <section class="slide" data-seg="retro" data-title="回顧 · 現在在做什麼" data-minute="80" data-timer="10:00" data-gates="retro">
   <p class="kicker">Retrospective · 80–90 · 今天的技巧：把今天的技巧變成自己的提示詞清單</p>
   <h2 class="title">每人帶走 3 段自己會再用的提示詞</h2>
-  <div class="card">
-    <p><b>情境</b>：回到自己的專案，身邊沒有 Runbook</p>
-    <p><b>你的目標</b>：帶走 3 段提示詞，小組留下一項帶回團隊的行動</p>
-    <p><b>今天的技巧</b>：技巧寫成可直接貼上的提示詞，下次打開 Agent 就用得上</p>
-    <p><b>Agent 技巧</b>：回顧六個技巧用在哪；至少一段存成自己的 Skill 檔</p>
-    <p><b>完成的樣子</b>：<code>notes/my-prompts.md</code> 有 3 段提示詞、<code>skills/</code> 有你的 Skill；勾 3 個技巧、留一項行動並匯出</p>
-  </div>
+  <ul>
+    <li><b>情境</b>：回到自己的專案，身邊沒有 Runbook</li>
+    <li><b>目標</b>：帶走 3 段提示詞，小組留下一項帶回團隊的行動</li>
+    <li><b>技巧</b>：寫成可直接貼上的提示詞，最常用的一段存成 Skill</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 選出三個要帶走的技巧</b></li>
-    <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 請 Agent 寫成你的提示詞</b></li>
-    <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 小組討論盲點，留下一項行動</b></li>
+    <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 選出三個要帶走的技巧</b><span class="tl-due">第 82 分前</span></li>
+    <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 請 Agent 寫成你的提示詞</b><span class="tl-due">第 86 分前</span></li>
+    <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 小組討論盲點，留下一項行動</b><span class="tl-due">第 90 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『工作坊回顧』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先自己挑 3 個今天最有用的技巧，請 Agent 改寫成你回去能直接貼的提示詞；最後小組討論一個盲點，留下一項帶回團隊的行動。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先自己挑 3 個今天最有用的技巧，請 Agent 改寫成你回去能直接貼的提示詞；最後小組討論一個盲點，留下一項帶回團隊的行動。」完成的樣子（口頭帶過）：notes/my-prompts.md 有 3 段提示詞、skills/ 有自己的 Skill；勾 3 個技巧、留一項行動並匯出。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>主持重點</b>：每段提示詞要有「看什麼證據」；「今天的例子」只寫實際發生的事，沒有就寫未觀察。</p>
     <p><b>不可</b>：討論偏向產品比較、完整架構設計或找責任歸咎時，回到本次證據與可改流程；不得公開完整 Evaluation 或未來解答。不排名，不以 pytest 秒數代替人員活動時間。</p>
@@ -38,12 +37,14 @@
 <section class="slide" data-seg="retro" data-title="檢查點 1 · 選出三個要帶走的技巧" data-minute="80">
   <p class="kicker">檢查點 1 / 3 · 第 80–82 分鐘</p>
   <h2 class="title">選出三個要帶走的技巧</h2>
+  <p class="cp-why"><b>為什麼</b>先自己想、不討論：哪一段讓你想到「回到工作就要這樣做」</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 讀 <code>notes/</code>、<code>skills/</code>，列出 9 個流程技巧與 6 個 Agent 技巧各用在哪一步</li>
-    <li>Agent 推薦 3 個；你回「同意」或換一個</li>
-    <li>在回顧表勾選你的 3 個技巧</li>
+    <li>不是主要 Agent 的人，先拿到主要 Agent 的 <code>notes/</code> 資料夾</li>
+    <li>貼「今天的資料夾都在：」＋路徑、②、提示詞清單「複製 Markdown」</li>
+    <li>貼 ③ 確認結果；Agent 推薦 3 個，你回「同意」或換一個，在表單勾選</li>
   </ol>
-  <p class="callout">Runbook › 回顧 › 檢查點 1 · 選出三個要帶走的技巧</p>
+  <p class="cp-next">第 82 分前完成 → 下一步：檢查點 2 寫成你的提示詞</p>
   <aside class="notes">
     <p><b>說（00:00／第 80 分）</b>：「先自己想，不討論：貼 Runbook 的提示詞，讓 Agent 從你今天的 notes 推薦 3 個技巧，你決定要不要換。不是主要 Agent 的同學，先請主要 Agent 那位把 notes 資料夾傳給你。」</p>
     <p><b>提醒</b>：notes 分散在 starter-repository、smart-ticket-b0、recovery-b1／recovery-b2 等資料夾，小組段落的紀錄只在主要 Agent 電腦；學員在提示詞第一行補上這些資料夾的上層資料夾路徑，Agent 直接搜尋，避免整排「未觀察」。</p>
@@ -55,12 +56,15 @@
 <section class="slide" data-seg="retro" data-title="檢查點 2 · 請 Agent 寫成你的提示詞" data-minute="82">
   <p class="kicker">檢查點 2 / 3 · 第 82–86 分鐘</p>
   <h2 class="title">請 Agent 寫成你的提示詞</h2>
+  <p class="cp-why"><b>為什麼</b>寫成可直接貼上的提示詞，回到工作才用得上</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>同一對話貼提示詞：Agent 依格式寫進 <code>notes/my-prompts.md</code></li>
-    <li>不綁今天的專案；會變的部分用〈 〉；每段寫「看什麼證據」</li>
-    <li>最常用的一段存成 Skill 檔；讀一遍，改到你願意直接用為止</li>
+    <li>同一對話貼 ②，Agent 寫進 <code>notes/my-prompts.md</code>，一段存成 Skill</li>
+    <li>讀一遍；不像你會說的話，回「第 2 段改成我平常講話的方式」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 回顧 › 檢查點 2 · 請 Agent 寫成你的提示詞</p>
+  <p class="cp-judge"><b>你要判斷</b>每段都寫了「看什麼證據」，不綁今天的專案，你願意直接拿去用</p>
+  <p class="cp-next">第 86 分前完成 → 下一步：檢查點 3 小組討論</p>
   <aside class="notes">
     <p><b>說（00:02／第 82 分）</b>：「在同一個對話貼檢查點 2 的提示詞，讓 Agent 把 3 個技巧寫成提示詞清單；讀一遍，不順手就回一句請它改。」</p>
     <p><b>看</b>：提示詞是否可重用（不寫死 Smart Ticket）｜有沒有「看什麼證據」｜<code>skills/</code> 有沒有多一個學員自己的 Skill 檔｜「今天的例子」有沒有編造。Agent 寫得像範本、不像本人用語 → 「請它改成你平常講話的方式。」</p>
@@ -73,12 +77,15 @@
 <section class="slide" data-seg="retro" data-title="檢查點 3 · 小組討論盲點，留下一項行動" data-minute="86">
   <p class="kicker">檢查點 3 / 3 · 第 86–90 分鐘</p>
   <h2 class="title">小組討論盲點，留下一項行動</h2>
+  <p class="cp-why"><b>為什麼</b>今天全程只看證據、不看程式；這個盲點要帶回團隊補</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？</li>
-    <li>組織導入的第一步：誰、何時、用什麼證據確認</li>
-    <li>Agent 提 3 個行動候選，選一個填入回顧表，<b>匯出所有表單</b></li>
+    <li>💬 口頭討論 Runbook 上的題目：風險在哪？組織導入第一步做什麼？</li>
+    <li>請一位成員的 Agent 貼 ②，提 3 個行動候選，選一個</li>
+    <li>貼 ③ 確認結果；填回顧表，<b>匯出所有表單</b></li>
   </ol>
-  <p class="callout warn">Runbook › 回顧 › 檢查點 3 · 小組討論盲點，留下一項行動</p>
+  <p class="cp-judge"><b>你要判斷</b>選定的行動說得出誰、何時、用什麼證據確認</p>
+  <p class="cp-next">第 89 分停止新議題 → 第 90 分結束：離開前匯出表單</p>
   <aside class="notes">
     <p><b>說（00:06／第 86 分）</b>：「小組口頭討論，不用寫：先各自說一句交付段『完成後想一想』第 3 題的答案（誰該替交付負責），再想今天全程只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？再想組織導入的第一步。討論完請一位成員的 Agent 提 3 個行動候選，選一個。」</p>
     <p><b>這題的代價要講明</b>：只看驗收對照表、變更審查與 /docs 行為，抓不到「測試全過但寫法有問題」的程式（例如規則寫錯層、重複邏輯、日後難維護）。可引導到：程式審查角色（懂程式的審查者或資深工程師抽查）、自動化檢查（靜態分析、架構規則檢查）、平台留痕（Audit Log、Test Evidence）。</p>

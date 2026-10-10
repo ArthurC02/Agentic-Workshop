@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 54acd455e2f9fe0c inputs-sha256 54acd455e2f9fe0c6c94c8c73dc41e26df0877fdd3be8dd014bf2b2410c03aa7 -->
+<!-- 主持人專用，不發給學員。build 05efc5bf9476229d inputs-sha256 05efc5bf9476229d479fce99f20fd0517175360b188ade00b95eb8a4448f1a6d -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -495,6 +495,31 @@ ol.steps > li::before {
 }
 .slide-title ol.steps > li { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .16); color: var(--white); }
 
+/* Checkpoint slide: 為什麼 → 現在做 (ol.steps) → 你要判斷 → 第 b 分前完成 → 下一步. */
+.cp-why, .cp-judge { font-size: 32px; line-height: 1.45; color: var(--ink); }
+.cp-why > b:first-child, .cp-judge > b:first-child, .cp-label {
+  display: inline-block;
+  margin-right: 16px;
+  padding: 2px 16px;
+  border-radius: 99px;
+  font-size: 26px;
+  font-weight: 700;
+  background: var(--primary-soft);
+  color: var(--primary-ink);
+}
+.cp-judge > b:first-child { background: var(--orange-soft); color: var(--dw-ink); }
+.slide .cp-label { align-self: flex-start; margin: 4px 0 -6px; }
+.slide .cp-next {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 2px solid var(--line);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--navy);
+}
+ol.timeline > li .tl-due { font-size: 24px; color: var(--muted); }
+ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
+
 /* Keep the MVP review readable within the stage, including its closing note. */
 .slide-mvp-review { gap: 16px; }
 .slide-mvp-review .mvp-review-layout {
@@ -616,7 +641,7 @@ ol.timeline > li .tl-min {
   font-variant-numeric: tabular-nums;
 }
 ol.timeline > li b { font-size: 25px; color: var(--navy); overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-ol.timeline > li .chip { font-size: 20px; padding: 3px 10px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; overflow-wrap: anywhere; }
+ol.timeline > li .chip { font-size: 24px; padding: 3px 8px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; letter-spacing: 0; }
 
 ol.timeline > li[data-seg="opening"],
 ol.timeline > li[data-seg="greenfield"] { --seg-c: var(--tool); }
@@ -1518,7 +1543,7 @@ body.is-presenter #dk-black { display: none !important; }
     <ol class="steps">
       <li class="fx">開啟 <code>runbook.html</code>（離線即可）</li>
       <li class="fx">其他章節：輸入主持人公布的解鎖碼；有程式碼的章節可下載 ZIP</li>
-      <li class="fx">投影只顯示時間、解鎖碼與目前<b>檢查點</b>；<b>要做什麼看 Runbook</b></li>
+      <li class="fx">投影顯示時間、解鎖碼，和每個<b>檢查點</b>要貼哪段；<b>提示詞都在 Runbook</b></li>
       <li class="fx">每個檢查點：② <b>複製提示詞</b>貼給 Agent → ③ 請 Agent 確認結果，回「成功」才往下；「失敗」就貼「失敗時」</li>
     </ol>
     <div class="card fx fx-fade">
@@ -1538,7 +1563,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>已核准變更（指令書 §1）</b>：學員只發一次單一 runbook.html；G0／B0 以 ZIP 內嵌供下載；B1／B2 復原包（Recovery）另用獨立碼，只於52／63分鐘視需要提供，不向全場公布；鎖定章節以「編碼隱藏＋寫死解鎖碼」落實，只防隨手偷看，不是密碼學保護。</p>
     <p>§3：00 不鎖＝歡迎與使用方式、環境準備、詞彙表。07 Greenfield／29 Time Skip／44 B1／52 B2／63 B3／80 回顧。</p>
     <p>本頁<b>不顯示</b>任何解鎖碼；一般解鎖碼在對應解鎖頁顯示；復原包解鎖碼只在講者視窗視需要提供。完整碼表不發學員。</p>
-    <p><b>說</b>：「接下來每一段，投影只顯示時間和現在第幾個檢查點；要做什麼、要貼給 Agent 的提示詞，都在 Runbook。每個檢查點分四塊：① 為什麼做這一步，要你判斷的事也寫在這裡；② 貼給 Agent 的提示詞；③ 確認結果，再貼一段，Agent 只回『成功』或『失敗』，失敗就貼它下面『失敗時』那段；④ 補充。要你決定時，Agent 會先列選項或建議答案，你只要回「同意」或「改成…」。紀錄請 Agent 寫進 notes 資料夾，你不用抄；表單每段最多一張，大多是下拉選單，只記你的決定。我換頁時，請跟著跳到 Runbook 對應的檢查點。」（表單自動暫存已寫在 Runbook「如何使用」。）</p>
+    <p><b>說</b>：「接下來每一段，投影會顯示時間、現在第幾個檢查點、這一步貼哪段和要判斷什麼；提示詞本身都在 Runbook，複製貼上就好。每個檢查點分四塊：① 為什麼做這一步，要你判斷的事也寫在這裡；② 貼給 Agent 的提示詞；③ 確認結果，再貼一段，Agent 只回『成功』或『失敗』，失敗就貼它下面『失敗時』那段；④ 補充。要你決定時，Agent 會先列選項或建議答案，你只要回「同意」或「改成…」。紀錄請 Agent 寫進 notes 資料夾，你不用抄；表單每段最多一張，大多是下拉選單，只記你的決定。我換頁時，請跟著跳到 Runbook 對應的檢查點。」（表單自動暫存已寫在 Runbook「如何使用」。）</p>
     <p>唯一例外事件情境不在 Runbook，只由主持簡報在指定時點呈現——不要提前提及。</p>
   </aside>
 </section>
@@ -1563,7 +1588,7 @@ body.is-presenter #dk-black { display: none !important; }
       <p>你自己的 Agent 能對話</p>
     </div>
   </div>
-  <p class="callout fx fx-fade">任務文件於第 <b>7</b> 分鐘統一解鎖。</p>
+  <p class="callout fx fx-fade">現在：打開 Runbook『歡迎與使用方式』，再看『環境準備』清單；第 <b>07</b> 分鐘統一解鎖 Greenfield</p>
   <aside class="notes">
     <p><b>觀察（RB 00–07）</b>：確認環境與 Agent 可用，不比較 Coding 速度。</p>
     <p><b>停止／降級（RB 00–07）</b>：第7分鐘進任務；環境未備妥則協助排除，仍受阻時保留需求分析與計畫，不以未驗證程式宣稱完成。</p>
@@ -1578,9 +1603,9 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">Greenfield 開始</h2>
   <p class="subtitle">Greenfield（從頭開始的新專案）：個人用 Agent 完成核心訂票 MVP（Minimum Viable Product，最小可行產品）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Greenfield 任務」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 22 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
+  <p class="muted">每個檢查點，投影會提示這一步貼哪段、看什麼；提示詞都在 Runbook。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Greenfield 任務，從檢查點 1 開始。接下來要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Greenfield 任務，從檢查點 1 開始。每到一個檢查點，投影會告訴你這一步要貼哪段、要判斷什麼、幾分前做完；提示詞都在 Runbook，複製貼上就好。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 22:00 段落計時（00:00＝第 07 分），翻頁時持續計時。</p>
     <p>本頁大字顯示 Greenfield 解鎖碼。</p>
   </aside>
@@ -1590,19 +1615,19 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">Greenfield · 07–29 · Agent 是工具（Tool）</p>
   <h2 class="title">先要計畫再動手；小步執行、每步驗收</h2>
   <ul>
-    <li><b>情境</b>：新的訂票服務，22 分鐘交出第一版</li>
-    <li><b>目標</b>：查班次 → 訂票 → 付款 → 查訂單</li>
-    <li><b>技巧</b>：先給 Agent 規則、要計畫；每次只放行一小步，看證據才繼續（Prompt 結構、結構化輸出）</li>
-    <li><b>完成</b>：你在 <code>/docs</code> 走完流程；紀錄在 <code>notes/greenfield.md</code></li>
+    <li><b>情境</b>：全新的訂票服務，22 分鐘交出第一版</li>
+    <li><b>目標</b>：帶 Agent 做出 查班次 → 訂票 → 付款 → 查訂單</li>
+    <li><b>技巧</b>：給 Agent 規則；先要計畫；每次只放行一小步</li>
   </ul>
   <ol class="timeline">
-    <li data-seg="greenfield"><span class="tl-min">00:00</span><b>1 · 規則與環境</b></li>
-    <li data-seg="greenfield"><span class="tl-min">02:00</span><b>2 · 先要計畫</b></li>
-    <li data-seg="greenfield"><span class="tl-min">04:00</span><b>3 · 小步驗收</b></li>
-    <li data-seg="greenfield"><span class="tl-min">17:00</span><b>4 · 親自驗證交付</b></li>
+    <li data-seg="greenfield"><span class="tl-min">00:00</span><b>1 · 規則與環境</b><span class="tl-due">第 09 分前</span></li>
+    <li data-seg="greenfield"><span class="tl-min">02:00</span><b>2 · 先要計畫</b><span class="tl-due">第 11 分前</span></li>
+    <li data-seg="greenfield"><span class="tl-min">04:00</span><b>3 · 小步驗收</b><span class="tl-due">第 24 分前</span></li>
+    <li data-seg="greenfield"><span class="tl-min">17:00</span><b>4 · 親自驗證交付</b><span class="tl-due">第 29 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『Greenfield 任務』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 30 秒，學員邊聽邊下載；先講情境與技巧，再講步驟）</b>：「你有 22 分鐘做出訂票服務的第一版。這段要練的不是 Agent 寫多快，而是三個技巧：第一，先給 Agent 一份工作規則；第二，先要計畫，你核准後才動手；第三，每次只放行一小步，它停下後你看驗收對照表和變更審查答案，沒問題才放行下一步。每一步的提示詞都在 Runbook，複製貼上就好；紀錄都請 Agent 寫進 notes/greenfield.md，你只在最後選兩個下拉的交付決定。你不寫、不讀程式，也不自己打指令。」</p>
+    <p><b>說（約 30 秒，學員邊聽邊下載；先講情境與技巧，再講步驟）</b>：「你有 22 分鐘做出訂票服務的第一版。這段要練的不是 Agent 寫多快，而是三個技巧：第一，先給 Agent 一份工作規則；第二，先要計畫，你核准後才動手；第三，每次只放行一小步，它停下後你看驗收對照表和變更審查答案，沒問題才放行下一步。每一步的提示詞都在 Runbook，複製貼上就好；紀錄都請 Agent 寫進 notes/greenfield.md，你只在最後選兩個下拉的交付決定。你不寫、不讀程式，也不自己打指令。」完成的樣子（口頭帶過）：你在 /docs 走完流程，notes/greenfield.md 有計畫、每步驗收對照表和交付摘要。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點，需要總覽時可翻回。</p>
     <p><b>檢查點四塊（之後每段都一樣）</b>：Runbook 每個檢查點分 ① 為什麼做這一步（學員要判斷什麼寫在這裡）、② 貼給 Agent、③ 確認結果（Agent 只回「成功」或「失敗：原因」，不改檔案）、④ 補充。巡場口令：「請 Agent 跑 ③ 確認結果，回成功就往下；失敗就貼『失敗時』。」各檢查點頁備註的「看」裡，學員自己判斷的項目對應 ①，Agent 回報的測試數字與檔案對應 ③。</p>
     <p><b>可回答</b>：時間、交付方式、已寫明的規則、環境與 Agent 操作問題（先請學員把錯誤貼給 Agent 用白話說明，Agent 處理不了再協助）。需求歧義先指向 Runbook 檢查點 2 計畫提示詞【限制】的最後一點（需求文件沒有逐字寫明的事項），再對全場一致說明。</p>
@@ -1615,12 +1640,14 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="greenfield" data-title="檢查點 1 · 交給 Agent 規則並備好環境" data-minute="07">
   <p class="kicker">檢查點 1 / 4 · 第 07–09 分鐘</p>
   <h2 class="title">交給 Agent 規則並備好環境</h2>
+  <p class="cp-why"><b>為什麼</b>規則先講好，再用 Git 記下起點，之後 Agent 才說得出改了什麼</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>下載 G0（Greenfield 起始程式包），解壓縮到短路徑，在 <code>starter-repository</code> 資料夾開啟 Agent</li>
-    <li>先貼 Agent 工作規則，再請 Agent 建好環境、跑起始測試：應為 <code>1 passed, 8 skipped</code></li>
-    <li>Agent 會順手用 Git 存一版起點，之後才說得出改了什麼</li>
+    <li>Runbook『Greenfield 任務』› 檢查點 1：下載 G0，解壓縮到短路徑</li>
+    <li>在 <code>starter-repository</code> 開 Agent，貼 ②：工作規則 ＋「準備專案」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › Greenfield › 檢查點 1</p>
+  <p class="cp-next">第 09 分前完成 → 下一步：檢查點 2 先要計畫</p>
   <aside class="notes">
     <p><b>說（00:00／第 07 分）</b>：「第一個技巧：給 Agent 一份規則。先把 Runbook 的工作規則整段貼給 Agent，之後就不用每次叮嚀『先計畫、做完停下、附測試結果』。接著請 Agent 建好環境、記下起點，這些指令都由 Agent 打，你看它的白話回報。」</p>
     <p><b>看</b>：有沒有先貼規則；起始 <code>1 passed, 8 skipped</code>（以 Agent 回報的實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。學員自己在終端機打指令 → 提醒改請 Agent 執行。</p>
@@ -1633,12 +1660,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="greenfield" data-title="檢查點 2 · 先要計畫，再核准" data-minute="09">
   <p class="kicker">檢查點 2 / 4 · 第 09–11 分鐘</p>
   <h2 class="title">先要計畫，再核准</h2>
+  <p class="cp-why"><b>為什麼</b>先看計畫，才能在動手前抓出範圍外的項目；這一步 Agent 不改程式</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼上 Runbook 提示：<b>先不要修改程式</b>，提 5–8 步計畫並寫進 <code>notes/greenfield.md</code></li>
-    <li>看證據：每步標出需求編號與預計修改的檔案、沒有範圍外項目</li>
-    <li>Agent 每題附建議答案：你回「同意」或「第 N 題改成…」，核准<b>最前面兩小步</b></li>
+    <li>Runbook › 檢查點 2：貼 ②「要計畫」，Agent 寫進 <code>notes/greenfield.md</code></li>
+    <li>看完計畫貼「計畫核准」；不同意就加一句「第 N 題改成…」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › Greenfield › 檢查點 2</p>
+  <p class="cp-judge"><b>你要判斷</b>每步都標了需求編號和要改的檔案、沒有範圍外項目、每題附建議答案</p>
+  <p class="cp-next">第 11 分前完成 → 下一步：檢查點 3 小步做、每步驗收</p>
   <aside class="notes">
     <p><b>說（00:02／第 09 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 先讀需求、掃 TODO、提出計畫並寫進 notes，先不要修改。它會在每個問題附上建議答案，你只要回「同意」或「改成…」，然後核准最前面兩小步（票價、班次查詢都很小，一起做省一輪來回）。」</p>
     <p><b>示範 Agent 技巧</b>：指著 Runbook 計畫提示詞的五個標籤【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件】說「這就是 Prompt 結構」。巡場看：學員有沒有自己刪掉某個部分。模型選擇與推論強度留到個人分析才講，這裡不提。</p>
@@ -1652,12 +1682,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="greenfield" data-title="檢查點 3 · 小步做、每步驗收" data-minute="11">
   <p class="kicker">檢查點 3 / 4 · 第 11–24 分鐘</p>
   <h2 class="title">小步做、每步驗收</h2>
+  <p class="cp-why"><b>為什麼</b>每次只放行一小步，錯了只要退一小步</p>
+  <p class="cp-label">現在做（每一小步重複）</p>
   <ol class="steps">
-    <li>Agent 做完一小步就停：附上<b>驗收對照表</b>與變更審查答案</li>
-    <li>看審查答案判斷三件事；三件都成立才放行</li>
-    <li>沒問題：貼放行提示，Agent 記進 notes、更新文件、存一版，再做下一步</li>
+    <li>Agent 做完一步就停，附驗收對照表與審查答案</li>
+    <li>三件都成立貼 ②「放行」；有疑問貼「先不核准」</li>
+    <li>放行後貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">手算：成人 700 ＋ 學生 525 ＝ <b>1225</b>；做到付款時，核對重複付款會被拒絕</p>
+  <p class="cp-judge"><b>你要判斷</b>改的檔案都在計畫裡、測試沒變少也沒新增跳過、沒刪測試或改期待值；訂票自己手算 700 ＋ 525 ＝ 1225</p>
+  <p class="cp-next">第 24 分前完成 → 下一步：檢查點 4，沒做到付款也照樣進</p>
   <aside class="notes">
     <p><b>說（00:04／第 11 分）</b>：「第三個技巧：小步執行、每步驗收。每次只放行一小步，Agent 停下後會附上驗收對照表和變更審查答案，你判斷三件事是否成立，都成立才請它記進 notes、更新文件、存一版、做下一步。一步出錯只要退回這一步。回報格式每一步都一樣，這就是結構化輸出。」</p>
     <p><b>巡場看技巧</b>：驗收對照表欄位是否固定（Agent 自己換格式 → 請學員要求照工作規則第 5 條）｜回報沒附審查答案 → 請學員貼「請依工作規則第 6 條補上四題審查答案」｜建立訂票時回應轉換出錯（起始程式的回應模型讀不到旅客資料，已知小問題）→ 請學員貼 Runbook 檢查點 3 ④ 補充裡「把訂票結果轉成回應時出錯」那段提示詞，Agent 做最小修改、不改測試。</p>
@@ -1675,12 +1708,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="greenfield" data-title="檢查點 4 · 親自走一次流程並交付" data-minute="24">
   <p class="kicker">檢查點 4 / 4 · 第 24–29 分鐘</p>
   <h2 class="title">親自走一次流程並交付</h2>
+  <p class="cp-why"><b>為什麼</b>不再加新功能；最後一步驗收由你親自在 <code>/docs</code> 操作</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>不再加功能：請 Agent 替還沒有測試的驗收條件補測試、整理最終驗收對照表</li>
-    <li>你在 <code>/docs</code> 按「Try it out」走一次：查班次 → 訂票 1225 → 付款 → 查訂單</li>
-    <li>Agent 把交付摘要寫進 notes；你在交付表單選兩個下拉</li>
+    <li>Runbook › 檢查點 4：貼 ②「補測試、啟動 App」</li>
+    <li>在 <code>/docs</code> 走一次：查班次 → 訂票 1225 → 付款 → 查訂單 → 再付一次被拒</li>
+    <li>貼「寫交付摘要」，再貼 ③ 確認結果；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">第 29 分鐘停止修改；未完成也交付現況與限制。</p>
+  <p class="cp-judge"><b>你要判斷</b>交付摘要寫的人工驗證結果，和你在 <code>/docs</code> 看到的一致</p>
+  <p class="cp-next">第 29 分停止修改 → 下一步：Runbook『Greenfield 回顧與交付決定』</p>
   <aside class="notes">
     <p><b>說（00:17／第 24 分）</b>：「不再加新功能。請 Agent 替還沒有測試的驗收條件補測試、整理最終驗收對照表；最後一步驗收由你親自在 /docs 操作，不只看報告。」</p>
     <p><b>說（00:20／第 27 分）</b>：「請 Agent 把交付摘要寫進 notes：完成／未完成、測試結果、限制，以及人和 Agent 各做什麼。你核對後在交付表單選接受與否。」</p>
@@ -1848,9 +1884,9 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">第 29 分鐘 · 解鎖</p>
   <h2 class="title">Time Skip 開始</h2>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Time Skip：12 個月後」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 4 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。全員使用同一份 B0，請先不要修改程式。</p>
+  <p class="muted">全員使用同一份 B0，請先不要修改程式。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Time Skip，從檢查點 1 開始。接下來要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Time Skip，從檢查點 1 開始。」</p>
     <p><b>操作</b>：計時已在「時間快轉」頁按 T 啟動；若還沒啟動，在本頁按 <b>T</b>（04:00，00:00＝第 29 分）。</p>
     <p>本頁大字顯示 Time Skip 解鎖碼（解開 Time Skip、B0 下載、個人分析、共同脈絡）；完整碼表見講者視窗。</p>
     <p><b>Recovery（B0 來源或啟動異常）</b>：正式 B0 或同源 clean-copy，保留 Bug；全員統一 B0；不可發診斷修復副本或 B1 替代初始分析。</p>
@@ -1859,22 +1895,20 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="timeskip" data-title="Time Skip · 現在在做什麼" data-minute="29" data-timer="04:00" data-gates="timeskip">
   <p class="kicker">Time Skip · 29–33 · 技巧：開新對話先給規則與脈絡</p>
-  <h2 class="title">現在在做什麼</h2>
-  <table class="table fx fx-fade">
-    <tbody>
-      <tr><td><b>情境</b></td><td>上線 12 個月，你接手同事維護的既有系統 B0</td></tr>
-      <tr><td><b>你的目標</b></td><td>4 分鐘內停下 Greenfield，在 B0 開新對話，把環境跑起來</td></tr>
-      <tr><td><b>今天的技巧</b></td><td>換專案就開新對話，第一件事貼規則、說明背景（Token 節費：Token 是 Agent 讀寫文字的計費單位，對話越長越貴）</td></tr>
-      <tr><td><b>完成的樣子</b></td><td>Agent 能複述規則；確認版本是 B0，起點已寫進 <code>notes/time-skip.md</code></td></tr>
-    </tbody>
-  </table>
+  <h2 class="title">換專案就開新對話，先貼規則與背景</h2>
+  <ul>
+    <li><b>情境</b>：上線 12 個月，你接手同事維護的既有系統 B0</li>
+    <li><b>目標</b>：停下 Greenfield，在 B0 開新對話，把環境跑起來</li>
+    <li><b>技巧</b>：舊對話留在 Greenfield；新對話先給規則，再請 Agent 複述</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="timeskip"><span class="tl-min">00:00</span><b>1 · 停手並取得 B0</b></li>
-    <li data-seg="timeskip"><span class="tl-min">02:00</span><b>2 · 開新對話先貼規則與背景</b></li>
-    <li data-seg="timeskip"><span class="tl-min">03:00</span><b>3 · 請 Agent 建好環境並記下起點</b></li>
+    <li data-seg="timeskip"><span class="tl-min">00:00</span><b>1 · 停手並取得 B0</b><span class="tl-due">第 31 分前</span></li>
+    <li data-seg="timeskip"><span class="tl-min">02:00</span><b>2 · 開新對話先貼規則與背景</b><span class="tl-due">第 32 分前</span></li>
+    <li data-seg="timeskip"><span class="tl-min">03:00</span><b>3 · 請 Agent 建好環境並記下起點</b><span class="tl-due">第 33 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『Time Skip：12 個月後』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 15 秒，先講技巧再講步驟）</b>：「這段的技巧是：換專案就開新對話，第一件事貼規則、說明背景，再請 Agent 複述。Agent 不記得上一個專案，沒給規則它就照自己的習慣做。步驟三個：停手並取得 B0、開新對話貼規則與背景、請 Agent 建環境並記下起點。不修改程式，分析從第 33 分鐘開始。」</p>
+    <p><b>說（約 15 秒，先講技巧再講步驟）</b>：「這段的技巧是：換專案就開新對話，第一件事貼規則、說明背景，再請 Agent 複述。Agent 不記得上一個專案，沒給規則它就照自己的習慣做。步驟三個：停手並取得 B0、開新對話貼規則與背景、請 Agent 建環境並記下起點。不修改程式，分析從第 33 分鐘開始。」完成的樣子（口頭帶過）：Agent 能複述規則，版本是 B0，起點寫進 notes/time-skip.md。</p>
     <p><b>操作</b>：說完翻到檢查點 1。本頁時間軸依計時自動標示目前檢查點，需要總覽時可翻回。</p>
     <p><b>可回答</b>：操作與活動範圍、環境安裝／啟動／測試命令。<b>不可揭露</b>：B1／B2／B3 任務、Bug 根因、學生票率錯誤、檔案位置、失敗數量或文件落差位置。</p>
     <p><b>巡場時看什麼</b>：B0 是不是開了新對話、第一件事有沒有貼規則與背景（本段技巧）；是否仍在改自己的 MVP、是否已叫 Agent 修程式、是否卡在環境。不因表單少填扣分。</p>
@@ -1884,12 +1918,14 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="timeskip" data-title="檢查點 1 · 停手並取得 B0" data-minute="29">
   <p class="kicker">檢查點 1 / 3 · 第 29–31 分鐘</p>
   <h2 class="title">停手並取得 B0</h2>
+  <p class="cp-why"><b>為什麼</b>Greenfield 成果保留不動；先停掉舊 App，免得兩個版本搶同一個埠號</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>保留 Greenfield 現況；請舊對話的 Agent 停掉它啟動的伺服器</li>
-    <li>從 Runbook 下載 B0，解壓縮到短路徑，例如 <code>C:\work\b0</code></li>
-    <li>找到 <code>smart-ticket-b0</code>（含 <code>README.md</code>）</li>
+    <li>Runbook『Time Skip：12 個月後』› 檢查點 1：在<b>原本</b>的對話貼 ②「停掉伺服器」</li>
+    <li>下載 B0，解壓縮到短路徑，找到 <code>smart-ticket-b0</code></li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › Time Skip › 檢查點 1</p>
+  <p class="cp-next">第 31 分前完成 → 下一步：在 B0 開新對話</p>
   <aside class="notes">
     <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，請原本的 Agent 停掉伺服器。B0 已發放，從 Runbook 下載，解壓縮到短路徑。這 12 個月系統增加了會員、優惠、改退票、通知、座位與稽核；細節在 B0 的文件裡，個人分析時再請 Agent 讀。」</p>
     <p><b>看</b>：是否仍在改自己的 MVP；解壓縮到深層路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；用自己的 G1 代替 B0。</p>
@@ -1901,12 +1937,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="timeskip" data-title="檢查點 2 · 開新對話先貼規則與背景" data-minute="31">
   <p class="kicker">檢查點 2 / 3 · 第 31–32 分鐘</p>
   <h2 class="title">開新對話先貼規則與背景</h2>
+  <p class="cp-why"><b>為什麼</b>換專案就開新對話，第一件事貼規則與背景；再請 Agent 複述，確認它讀進去了</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>在 <code>smart-ticket-b0</code> 開<b>新的</b> Agent 對話，不沿用 Greenfield</li>
-    <li>第一件事：貼 Runbook 那一段「規則＋背景」</li>
-    <li>請 Agent 用三句話複述，接著開始安裝環境</li>
+    <li>在 <code>smart-ticket-b0</code> 開<b>新的</b> Agent 對話</li>
+    <li>Runbook › 檢查點 2：貼 ②「規則＋背景」整段，Agent 複述後開始裝環境</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › Time Skip › 檢查點 2</p>
+  <p class="cp-judge"><b>你要判斷</b>複述有提到：不自己改程式、先計畫再核准、沒執行過的標未驗證、這段只接手不修改</p>
+  <p class="cp-next">第 32 分前完成 → 下一步：檢查點 3 記下起點</p>
   <aside class="notes">
     <p><b>說（00:02／第 31 分）</b>：「這就是本段的技巧：新專案、新對話，第一件事貼規則和背景，再請 Agent 複述。舊對話裡的規則和背景都是 Greenfield 的，不適用。這也是 Token 節費：舊對話很長，帶過來每一句 Agent 都要重讀，越貴也越容易忘；需要的舊資訊已經在 notes 檔裡。」</p>
     <p><b>看</b>：沿用 Greenfield 的對話（沒用上 Token 節費）；沒貼規則就直接叫 Agent 做事；Agent 複述漏了「不自己改程式、先計畫再核准、沒執行過的標未驗證」卻沒人追問。同一段提示詞在複述後就請 Agent 建 .venv 並安裝套件，安裝與學員讀檢查點 3 同時進行，32–33 分只剩跑測試與記錄起點。</p>
@@ -1917,12 +1956,14 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="timeskip" data-title="檢查點 3 · 請 Agent 建好環境並記下起點" data-minute="32">
   <p class="kicker">檢查點 3 / 3 · 第 32–33 分鐘</p>
   <h2 class="title">請 Agent 建好環境並記下起點</h2>
+  <p class="cp-why"><b>為什麼</b>先確認版本是 B0、記下 Git 起點和測試數字，之後才說得清每段改了什麼</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 跑測試、確認版本是 B0</li>
-    <li>Agent 建立 Git 起點，結果寫進 <code>notes/time-skip.md</code></li>
-    <li><b>請先不要修改程式</b>；伺服器與 <code>/docs</code> 在個人分析才啟動</li>
+    <li>同一個對話貼 ②「跑測試、記下起點」</li>
+    <li>有若干測試失敗是正常的：<b>先不要修改程式</b></li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">目前有若干測試失敗；文件是線索，要和程式、測試交叉驗證。</p>
+  <p class="cp-next">第 33 分前完成 → 下一步：Runbook『個人 Agent 分析』</p>
   <aside class="notes">
     <p><b>說（00:03／第 32 分）</b>：「環境裝好後，請 Agent 跑測試、確認版本、建 Git 起點，結果寫進 notes。目前有若干測試失敗，需要小組分析是否有共同原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式。」</p>
     <p><b>嚴禁揭露</b>：失敗的原因、檔案位置、失敗數量或文件落差位置；只說「若干」。學員問「是不是一個 Bug」→ 回到「請小組分析是否具有共同原因」。</p>
@@ -1936,21 +1977,19 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="analysis" data-title="個人分析 · 現在在做什麼" data-minute="33" data-timer="06:00" data-gates="analysis">
   <p class="kicker">個人分析 · 33–39 · 技巧：讓 Agent 帶你讀陌生專案 <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">現在在做什麼</h2>
-  <table class="table fx fx-fade">
-    <tbody>
-      <tr><td><b>情境</b></td><td>B0 有若干測試沒過，文件不保證和程式一致</td></tr>
-      <tr><td><b>你的目標</b></td><td>各自讓 Agent 帶你看懂 B0，先不改程式</td></tr>
-      <tr><td><b>今天的技巧</b></td><td>請 Agent 畫系統地圖、指出規則在哪、標出文件與程式不一致處；只讀重點檔（Token 節費）、選較強模型並調高推論強度、固定標題回報</td></tr>
-      <tr><td><b>完成的樣子</b></td><td><code>notes/analysis.md</code> 每個結論都標了事實、假設或缺口</td></tr>
-    </tbody>
-  </table>
+  <h2 class="title">讓 Agent 帶你讀陌生專案</h2>
+  <ul>
+    <li><b>情境</b>：B0 有若干測試沒過，文件不保證和程式一致</li>
+    <li><b>目標</b>：各自讓 Agent 帶你看懂 B0，先不改程式</li>
+    <li><b>技巧</b>：先要系統地圖、只讀重點檔，每個結論都要附來源</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 請 Agent 畫系統地圖、指出規則在哪</b></li>
-    <li data-seg="analysis"><span class="tl-min">03:00</span><b>2 · 請 Agent 標出文件與程式不一致處</b></li>
+    <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 請 Agent 畫系統地圖、指出規則在哪</b><span class="tl-due">第 36 分前</span></li>
+    <li data-seg="analysis"><span class="tl-min">03:00</span><b>2 · 請 Agent 標出文件與程式不一致處</b><span class="tl-due">第 39 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『個人 Agent 分析』› 檢查點 1 開始（不用解鎖碼）</p>
   <aside class="notes">
-    <p><b>說（約 20 秒，先講技巧再講步驟）</b>：「接手陌生專案，不用自己讀程式，讓 Agent 帶你讀：先要一張系統地圖，再問規則寫在哪，最後請它標出文件和程式說法不一致的地方。每個結論都要它附來源，結果寫進 notes/analysis.md。每個人用自己的 Agent，先不要修改程式。分析陌生程式最需要想，這段第一次學模型選擇與推論強度：工具可設定就選較強模型、調高推論強度；但不要叫它讀整個專案，提示詞已經請它先列目錄、只讀重點檔，這是 Token 節費。紀錄照固定標題寫，下一段小組才比得起來。」</p>
+    <p><b>說（約 20 秒，先講技巧再講步驟）</b>：「接手陌生專案，不用自己讀程式，讓 Agent 帶你讀：先要一張系統地圖，再問規則寫在哪，最後請它標出文件和程式說法不一致的地方。每個結論都要它附來源，結果寫進 notes/analysis.md。每個人用自己的 Agent，先不要修改程式。分析陌生程式最需要想，這段第一次學模型選擇與推論強度：工具可設定就選較強模型、調高推論強度；但不要叫它讀整個專案，提示詞已經請它先列目錄、只讀重點檔，這是 Token 節費。紀錄照固定標題寫，下一段小組才比得起來。」完成的樣子（口頭帶過）：notes/analysis.md 每個結論都標了事實、假設或缺口。</p>
     <p><b>操作</b>：本段沒有解鎖頁（內容已在第 29 分隨 Time Skip 解鎖）。在本頁按 <b>T</b> 啟動 6:00 段落計時（00:00＝第 33 分）。說完翻到檢查點 1；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>系統 Context</b>：分層 API／Schemas → Application → Domain；Infrastructure 提供 In-Memory Repository、固定 Seed、Clock、模擬付款。流程：查詢讀 Trip；訂票驗證旅客與容量、計價並保留座位；付款建立 Order；改退票協調班次容量與紀錄；相關事件留下通知與 Audit。</p>
     <p><b>可接受／不接受</b>：一般工程師應能在 Agent 協助下理解，不以隱晦知識設障。可接受不同調查順序與地圖格式；不接受無證據的結論或弱化測試。不因表單少填扣分，看 <code>notes/analysis.md</code> 與是否用上本段技巧。</p>
@@ -1961,12 +2000,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="33">
   <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
   <h2 class="title">請 Agent 畫系統地圖、指出規則在哪</h2>
+  <p class="cp-why"><b>為什麼</b>不要一開口就問「Bug 在哪」；先要一張地圖：分幾塊、規則在哪、測試現況</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>系統分哪幾塊、各負責什麼、彼此怎麼依賴</li>
-    <li>商業規則寫在哪些文件、對應到程式哪一部分</li>
-    <li>測試現況：通過／失敗／跳過，寫進 <code>notes/analysis.md</code>；啟動伺服器、打開 <code>/docs</code></li>
+    <li>工具可以選模型就選較強的；Runbook『個人 Agent 分析』› 檢查點 1</li>
+    <li>貼 ②「帶我讀這個專案」，Agent 寫進 <code>notes/analysis.md</code> 後停下</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 個人 Agent 分析 › 檢查點 1</p>
+  <p class="cp-judge"><b>你要判斷</b>地圖說得出誰負責什麼、依賴誰，不是一串檔名；Agent 列得出讀了哪些檔</p>
+  <p class="cp-next">第 36 分前完成 → 下一步：檢查點 2 標出不一致處</p>
   <aside class="notes">
     <p><b>說（00:00／第 33 分）</b>：「貼檢查點 1 的提示詞，請 Agent 畫系統地圖、指出規則在哪、跑一次測試並啟動伺服器，寫進 notes 後停下。你看它的說明就好，不用讀程式。」</p>
     <p><b>看 → 介入</b>：是否用上技巧（要地圖、要規則位置）｜Agent 說「讀了整個專案」→ 請學員要它列出實際讀了哪些檔（Token 節費）｜只列檔名 →「這個部分負責什麼？依賴誰？」｜Agent 提前修改、刪除或弱化測試 → 請學員叫它停下並還原｜版本／環境錯誤 → 先協助，確認是同一份 B0｜Port 8000 被佔用 → 多半是 G0 的 App 沒停，請學員叫 Greenfield 的 Agent 停掉它｜分析停滯 → 用下方提示。</p>
@@ -1979,12 +2021,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="36">
   <p class="kicker">檢查點 2 / 2 · 第 36–39 分鐘</p>
   <h2 class="title">請 Agent 標出文件與程式不一致處</h2>
+  <p class="cp-why"><b>為什麼</b>文件是線索，不是結論；挑一個「事實」追問證據，是這段最重要的動作</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>對照文件規則、測試期待、程式實際行為</li>
-    <li>每個結論標事實（附來源）、假設或缺口</li>
-    <li>Agent 列出結論編號，回「追問第 N 個」；拿不出證據就改標假設</li>
+    <li>Runbook › 檢查點 2：貼 ②「對照文件、測試、程式」</li>
+    <li>Agent 列出結論編號，你回「追問第 N 個」；到第 39 分就跳過</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">Runbook › 個人 Agent 分析 › 檢查點 2 · 第 39 分鐘停止</p>
+  <p class="cp-judge"><b>你要判斷</b>「事實」都附得出來源；用「可能」「應該」的地方已標成假設</p>
+  <p class="cp-next">第 39 分停止 → 下一步：Runbook『Shared Context：小組比較分析』</p>
   <aside class="notes">
     <p><b>說（00:03／第 36 分）</b>：「請 Agent 對照文件、測試和程式，標出不一致的地方，每個結論標事實、假設或缺口。寫完它會列出結論編號，你回「追問第 N 個」就好，同一段提示詞已經包含追問；到第 39 分還沒追問就跳過。查不清的寫進『還不確定的事』，不要寫成已證實。」</p>
     <p><b>看</b>：是否追問過至少一個結論的證據（本段技巧的關鍵）；事實是否附來源。完成條件：<code>notes/analysis.md</code> 可供小組比較；不把未執行的測試或未驗證的根因描述成已證實。</p>
@@ -1999,21 +2044,19 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="shared" data-title="Shared Context · 現在在做什麼" data-minute="39" data-timer="05:00" data-gates="shared">
   <p class="kicker">共同脈絡（Shared Context）· 39–44 · 技巧：把共識寫成檔案給 Agent <span class="chip teammate">Teammate</span></p>
-  <h2 class="title">現在在做什麼</h2>
-  <table class="table fx fx-fade">
-    <tbody>
-      <tr><td><b>情境</b></td><td>每個人的 Agent 看法不完全一樣，接下來要一起改同一份系統</td></tr>
-      <tr><td><b>你的目標</b></td><td>比較分析、選主要 Agent，寫成 <code>notes/shared-context.md</code> 與 <code>skills/team-rules.md</code></td></tr>
-      <tr><td><b>今天的技巧</b></td><td>口頭講過 Agent 會忘；寫成檔案與 Skill（可重複使用的工作說明），之後每段先請它讀</td></tr>
-      <tr><td><b>完成的樣子</b></td><td>主要 Agent 複述共識，沒把假設說成事實、沒加修改計畫</td></tr>
-    </tbody>
-  </table>
+  <h2 class="title">把共識寫成檔案給 Agent</h2>
+  <ul>
+    <li><b>情境</b>：每個人的 Agent 看法不完全一樣，接下來要一起改同一份系統</li>
+    <li><b>目標</b>：比較分析、選出主要 Agent，寫成共同脈絡檔</li>
+    <li><b>技巧</b>：口頭講過 Agent 會忘；寫成檔案與 Skill，之後每段先請它讀</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較各自的分析，選出主要 Agent</b></li>
-    <li data-seg="shared"><span class="tl-min">03:00</span><b>2 · 請主要 Agent 寫成共同脈絡檔</b></li>
+    <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較各自的分析，選出主要 Agent</b><span class="tl-due">第 42 分前</span></li>
+    <li data-seg="shared"><span class="tl-min">03:00</span><b>2 · 請主要 Agent 寫成共同脈絡檔</b><span class="tl-due">第 44 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『Shared Context：小組比較分析』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 20 秒，先講技巧再講步驟）</b>：「這段的技巧是把共識寫成檔案給 Agent。口頭講過的，Agent 下一段就忘了；寫成 notes/shared-context.md，再把小組規則寫成 Skill 檔 skills/team-rules.md，之後每一段只說「請先讀 skills/team-rules.md」，不用重貼整段規則。比的是 5 行摘要，不是整段對話，這是 Token 節費。步驟兩個：先各自請 Agent 把分析濃縮成 5 行、小組比較並選主要 Agent；再請主要 Agent 寫成共同脈絡檔並複述。B1 還沒揭露，這段不提修改計畫、不改程式。」</p>
+    <p><b>說（約 20 秒，先講技巧再講步驟）</b>：「這段的技巧是把共識寫成檔案給 Agent。口頭講過的，Agent 下一段就忘了；寫成 notes/shared-context.md，再把小組規則寫成 Skill 檔 skills/team-rules.md，之後每一段只說「請先讀 skills/team-rules.md」，不用重貼整段規則。比的是 5 行摘要，不是整段對話，這是 Token 節費。步驟兩個：先各自請 Agent 把分析濃縮成 5 行、小組比較並選主要 Agent；再請主要 Agent 寫成共同脈絡檔並複述。B1 還沒揭露，這段不提修改計畫、不改程式。」完成的樣子（口頭帶過）：主要 Agent 複述共識，沒把假設說成事實、沒加修改計畫。</p>
     <p><b>操作</b>：本段沒有解鎖頁。在本頁按 <b>T</b> 啟動 5:00 段落計時（00:00＝第 39 分）。說完翻到檢查點 1。</p>
     <p><b>看</b>：核對共同事實、來源、限制與待決事項；尚未揭露 B1，不核准任務修改。<b>本階段不發 B1 答案。</b></p>
     <p><b>巡場時看什麼</b>：小組是否在拼接每個人的完整對話（→ 請他們改用各人 5 行摘要）；是否已經在討論怎麼改程式（→ 拉回共同事實與分歧）。</p>
@@ -2023,12 +2066,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 1 · 比較各自的分析，選出主要 Agent" data-minute="39">
   <p class="kicker">檢查點 1 / 2 · 第 39–42 分鐘</p>
   <h2 class="title">比較各自的分析，選出主要 Agent</h2>
+  <p class="cp-why"><b>為什麼</b>每個人的 Agent 先把分析濃縮成 5 行，小組才比得起來</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>每人請自己的 Agent 把分析濃縮成 5 行</li>
-    <li>💬 口頭比較：多人一致且有來源 → 共同事實；說法不同 → 分歧</li>
-    <li>💬 選定主要 Agent，以及由誰負責核准</li>
+    <li>Runbook『Shared Context』› 檢查點 1：每人對自己的 Agent 貼 ②「濃縮成 5 行」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+    <li>💬 口頭比較 5 行摘要，選出主要 Agent 與人員核准者</li>
   </ol>
-  <p class="callout">Runbook › Shared Context › 檢查點 1 · 口頭討論，不用寫</p>
+  <p class="cp-judge"><b>你要判斷</b>說得出至少一條附來源的共同事實、一個分歧</p>
+  <p class="cp-next">第 42 分前完成 → 下一步：主要 Agent 寫共同脈絡檔</p>
   <aside class="notes">
     <p><b>說（00:00／第 39 分）</b>：「請各自的 Agent 把 notes/analysis.md 濃縮成 5 行，放在一起比較，找出共同事實與分歧，選定主要 Agent。不要把每個人的完整對話直接拼起來。」</p>
     <p><b>看</b>：小組是否真的開口比較（Runbook 有「💬 討論一下」兩題，口頭即可，不用寫）；共同事實是否附來源；分歧有沒有說出驗證方式。</p>
@@ -2039,12 +2085,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="42">
   <p class="kicker">檢查點 2 / 2 · 第 42–44 分鐘</p>
   <h2 class="title">請主要 Agent 寫成共同脈絡檔</h2>
+  <p class="cp-why"><b>為什麼</b>口頭講過的 Agent 下次就忘；寫成檔案，之後每段先請它讀</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>一次貼上：提示詞＋分工與共識一兩句＋大家的 5 行摘要</li>
-    <li>寫成 <code>notes/shared-context.md</code>，複述後停下</li>
-    <li>也寫 Skill 檔 <code>skills/team-rules.md</code>；之後每段只說「請先讀 skills/team-rules.md」</li>
+    <li>在主要 Agent 一次貼：② 提示詞 ＋ 分工與共識一兩句 ＋ 大家的 5 行摘要</li>
+    <li>Agent 寫好 <code>notes/shared-context.md</code> 與 <code>skills/team-rules.md</code> 後複述</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">Runbook › Shared Context › 檢查點 2 · B1 尚未揭露，不提修改計畫</p>
+  <p class="cp-judge"><b>你要判斷</b>複述沒把分歧或假設說成事實、沒自己加修改計畫；有就請它修正</p>
+  <p class="cp-next">第 44 分前在「共同脈絡確認」記下結論 → 下一步：B1 解鎖</p>
   <aside class="notes">
     <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘。在主要 Agent 的對話貼檢查點 2 的提示詞，後面接著打一兩句分工與共識，再貼上大家的 5 行摘要，一次送出；它就寫成 notes/shared-context.md 和 skills/team-rules.md 並複述，不用來回問答。skills/team-rules.md 是一份 Skill：開工先讀什麼、工作規則、回報格式。從 B1 開始，每一段第一句都是「請先讀 skills/team-rules.md」，不用再重貼整段規則。B1 還沒揭露，不提修改計畫。」</p>
     <p><b>看</b>：Agent 的複述有沒有把分歧或假設說成事實、有沒有自己加修改計畫；「已知限制」只記錄系統限制，不預先核准修改。不以共同脈絡代替任務授權。表單在小組一起確認主要 Agent 的複述後才選，記的是討論結論，不是各自填。</p>
@@ -2061,9 +2110,8 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">TASK-B1-001</h2>
   <p class="subtitle">修復學生票折扣異常 · Agent 是隊友（Teammate）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B1 修復學生票折扣異常」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 8 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。客服回報學生票價好像算錯了。這段練一個技巧：先讓 Agent 用失敗測試證明 Bug 存在，你們核准最小修正計畫後才修，修完用同一個測試證明修好。要做什麼都在 Runbook，投影只告訴你時間和現在是第幾個檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。客服回報學生票價好像算錯了。這段練一個技巧：先讓 Agent 用失敗測試證明 Bug 存在，你們核准最小修正計畫後才修，修完用同一個測試證明修好。提示詞都在 Runbook，投影會提示每個檢查點貼哪段。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 08:00 段落計時（00:00＝第 44 分），翻頁時持續計時。本頁大字顯示 B1 解鎖碼；只解開「B1 任務卡」，完整碼表見講者視窗。</p>
     <p><b>Cue（RB 44–52）</b>：只發 B1 任務；Agent 先重現與定位、人核准最小修正計畫，核准後才修改。說明 Teammate：人核准計畫再執行。來源沒有 B1 的逐字宣布台詞；以 Cue 口述，不自行補充任務細節或提示。</p>
     <p><b>不可說</b>：不指出檔案位置、錯誤數值或失敗數量。「多個失敗可能源自同一個 Bug」是主持原則，不可當第一個提示直接說出位置或常數。</p>
@@ -2076,15 +2124,14 @@ body.is-presenter #dk-black { display: none !important; }
   <ul>
     <li><b>情境</b>：客服回報學生票價好像算錯了</li>
     <li><b>目標</b>：找出原因、只做最小修正、證明修好</li>
-    <li><b>技巧</b>：先讓 Agent 用失敗測試證明 Bug 存在，修完用同一個測試證明修好</li>
-    <li><b>Agent 技巧</b>：Skill（做法存成 <code>skills/fix-bug-with-test.md</code>）· Token 節費（讀 <code>skills/team-rules.md</code> 不重貼規則、要摘要）</li>
-    <li><b>完成</b>：修前失敗、修後通過；紀錄在 <code>notes/b1.md</code></li>
+    <li><b>技巧</b>：先用失敗測試證明 Bug 存在，修完用同一個測試證明修好</li>
   </ul>
   <ol class="timeline">
-    <li data-seg="b1"><span class="tl-min">00:00</span><b>1 · 重現並找出原因</b></li>
-    <li data-seg="b1"><span class="tl-min">02:00</span><b>2 · 只做最小修正</b></li>
-    <li data-seg="b1"><span class="tl-min">05:00</span><b>3 · 用同一個測試證明修好</b></li>
+    <li data-seg="b1"><span class="tl-min">00:00</span><b>1 · 重現並找出原因</b><span class="tl-due">第 46 分前</span></li>
+    <li data-seg="b1"><span class="tl-min">02:00</span><b>2 · 只做最小修正</b><span class="tl-due">第 49 分前</span></li>
+    <li data-seg="b1"><span class="tl-min">05:00</span><b>3 · 用同一個測試證明修好</b><span class="tl-due">第 52 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『B1 修復學生票折扣異常』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>說（約 30 秒；先講情境與技巧，再講步驟）</b>：「8 分鐘。客服說學生票價怪怪的。這段練一個技巧：不要一開始就叫 Agent 修，先叫它用失敗測試把 Bug 重現出來、說出原因與證據；你們核准最小修正計畫後才修；修完用同一批測試證明它從失敗變通過。每一步都是貼 Runbook 的提示詞、看 Agent 回報、回一句決定；紀錄都請 Agent 寫進 notes/b1.md，表單只要選兩個決定。第 49 分停止擴充，第 52 分停止。」</p>
     <p><b>Agent 技巧（怎麼示範，約 15 秒）</b>：「提示詞第一句都是『請先讀 skills/team-rules.md』，不用再貼規則，這是省 Token：只讓 Agent 讀指定的檔、測試只要摘要。修完最後一步，Agent 會把這套做法寫成 skills/fix-bug-with-test.md，這就是 Skill，下次遇到 Bug 直接叫它照做。」</p>
@@ -2097,13 +2144,16 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="b1" data-title="檢查點 1 · 用失敗測試重現並找出原因" data-minute="44">
   <p class="kicker">檢查點 1 / 3 · 第 44–46 分鐘</p>
-  <h2 class="title">用失敗測試重現並找出原因：先不改程式</h2>
+  <h2 class="title">用失敗測試重現並找出原因</h2>
+  <p class="cp-why"><b>為什麼</b>先別叫 Agent「修好」：先用失敗測試證明 Bug 存在、說出原因，再提最小修正計畫</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 跑測試，列出失敗測試：期待多少、實際多少</li>
-    <li>Agent 指出原因，分開「有證據」和「推論」，提最多 3 步的最小修正計畫</li>
-    <li><b>人</b>看 <code>notes/b1.md</code> 的證據，決定核准或退回補證據</li>
+    <li>Runbook『B1』› 檢查點 1：貼 ②，再接任務卡「複製 Markdown」給主要 Agent</li>
+    <li>證據夠就在「B1 決定」選核准；不夠就選退回，貼「補證據」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B1 › 檢查點 1 · 在「B1 決定」選核准或退回</p>
+  <p class="cp-judge"><b>你要判斷</b>原因分成「有證據的事實」和「推論」；計畫最多 3 步，寫了不改哪些地方</p>
+  <p class="cp-next">第 46 分前核准 → 下一步：檢查點 2 只做最小修正</p>
   <aside class="notes">
     <p><b>說（00:00／第 44 分）</b>：「先別叫 Agent 修。請它用失敗測試把 Bug 重現出來，說出原因和證據，提最小修正計畫；你們核准之前，Agent 不改程式。」</p>
     <p><b>看（技巧）</b>：小組是否先要 Agent 重現（失敗測試名稱、期待值與實際值）→ 介入訊號：一開始就叫 Agent「把 Bug 修好」。是否比較各自 Agent 的結果、要求規則及測試證據 → 介入訊號：直接採最肯定的摘要、未查來源。是否核對公開的 75% 與相關失敗、是否擴大範圍。未核准或證據不足時只補缺口，不修改程式。Runbook 的「💬 討論一下」先比較各自 Agent 找到的原因；「B1 決定」在小組口頭說好後才選，記的是結論。</p>
@@ -2117,13 +2167,16 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="b1" data-title="檢查點 2 · 只做最小修正" data-minute="46">
   <p class="kicker">檢查點 2 / 3 · 第 46–49 分鐘</p>
-  <h2 class="title">只做最小修正：照核准的計畫改</h2>
+  <h2 class="title">只做最小修正</h2>
+  <p class="cp-why"><b>為什麼</b>Agent 只照核准的計畫改；你不讀程式，只看變更審查三題答案</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼核准提示詞：Agent 只依 <code>notes/b1.md</code> 的計畫修改</li>
-    <li>Agent 改完重跑測試，接著回答變更審查問題後停下</li>
-    <li>看答案：沒有計畫外檔案、沒刪測試、沒改既有期待值</li>
+    <li>Runbook › 檢查點 2：貼 ②「計畫核准」</li>
+    <li>Agent 改完、重跑測試，回答變更審查三題後停下</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B1 › 檢查點 2 · 審查三題全部是「是」才放行</p>
+  <p class="cp-judge"><b>你要判斷</b>三題全部是「是」才放行；有「否」或「不確定」就貼「失敗時」</p>
+  <p class="cp-next">第 49 分前完成 → 下一步：停止擴充，檢查點 3 證明修好</p>
   <aside class="notes">
     <p><b>說（00:02／第 46 分）</b>：「核准了的組，貼檢查點 2 的提示詞：Agent 從 notes/shared-context.md 記下核准人、用電腦時間記核准時間（不再問學員），只照計畫做最小修正，改完直接回答變更審查問題，答案也寫進 notes/b1.md。你們只看三題答案，全部是『是』才放行。」</p>
     <p><b>看</b>：人是否核准範圍與計畫、選主要 Agent 執行 → 介入訊號：未核准即修改；只接受結果不審查。最小安全修復：針對學生計價，維持成人與既有優惠／順序。</p>
@@ -2134,17 +2187,20 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b1" data-title="檢查點 3 · 用同一個測試證明修好" data-minute="49">
-  <p class="kicker">檢查點 3 / 3 · 第 49–52 分鐘 · 停止擴充</p>
+  <p class="kicker">檢查點 3 / 3 · 第 49–52 分鐘</p>
   <h2 class="title">用同一個測試證明修好</h2>
+  <p class="cp-why"><b>為什麼</b>停止擴充；用檢查點 1 的同一批測試證明修好，不因 Agent 說「完成」就接受</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>同一批測試：修前失敗 → 修後通過</li>
-    <li>全套測試零失敗、零跳過；有時間可在 <code>/docs</code> 試成人＋學生 <b>1225</b></li>
-    <li><b>人</b>決定：接受／要求修正／未完成；Agent 把做法存成 Skill</li>
+    <li>Runbook › 檢查點 3：貼 ②「證明修好」</li>
+    <li>看修前、修後對照；Agent 也把做法存成 <code>skills/fix-bug-with-test.md</code></li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">Runbook › B1 › 檢查點 3 · 在「B1 決定」選第 52 分的決定 · 第 52 分鐘停止</p>
+  <p class="cp-judge"><b>你要判斷</b>同一批測試修前失敗、修後通過；失敗 0、跳過 0；AC 每列都寫得出測試名稱</p>
+  <p class="cp-next">第 52 分停止 → 下一步：在「B1 決定」選第 52 分的決定</p>
   <aside class="notes">
-    <p><b>說（00:05／第 49 分）</b>：「停止新增工作。請 Agent 用檢查點 1 那批失敗測試證明修好，再跑全套測試、交驗收對照表；有時間可以在 /docs 試一筆，然後決定接受與否。只有實際完成驗收才能宣稱修復完成。」</p>
-    <p><b>看（技巧）</b>：小組是否要求「同一批測試修前修後對照」，不是只看最後總數；正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。人是否看完變更審查答案與驗收對照表（有試的話再加 /docs 金額）才接受 → 介入訊號：Agent 說完成就直接交付。誠實交付：<code>notes/b1.md</code> 含原因、結果及缺項 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
+    <p><b>說（00:05／第 49 分）</b>：「停止新增工作。請 Agent 用檢查點 1 那批失敗測試證明修好，再跑全套測試、交驗收對照表，把做法存成 skills/fix-bug-with-test.md，然後決定接受與否。只有實際完成驗收才能宣稱修復完成。」</p>
+    <p><b>看（技巧）</b>：小組是否要求「同一批測試修前修後對照」，不是只看最後總數；正確斷言保留、完整套件真實執行、原相關失敗全部恢復 → 介入訊號：只跑單一測試、改期待值或 Skip／XFail。人是否看完變更審查答案與驗收對照表才接受 → 介入訊號：Agent 說完成就直接交付。誠實交付：<code>notes/b1.md</code> 含原因、結果及缺項 → 介入訊號：把診斷或 Recovery 算作自行完成。</p>
     <p><b>提示・時間不足</b>（第 49 分仍在擴充或大幅重構）：提醒技巧「先證明，再擴充」。可直接貼：「停止修改。請把目前的原因、核准計畫、已做的修改與實際測試結果寫進 notes/b1.md，列出未完成事項。」</p>
     <p>不刪除或弱化測試、不改正確期待值、不用 Skip／XFail 隱藏；看到時同樣立即介入。</p>
     <p><b>停止（00:08／第 52 分）</b>：翻到「請先停手」頁，立即停止 B1 擴充；第 52 分鐘未完成就不再給提示，保留 <code>notes/b1.md</code> 的原因、計畫與缺項。</p>
@@ -2284,7 +2340,6 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">B2 開始</h2>
   <p class="subtitle">TASK-B2-001：導入不可疊加的最有利優惠政策</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B2」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 11 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B2，從檢查點 1 開始。起點是你們已驗收的 B1。這段練的技巧：不要接受 Agent 的第一個答案，請它提 2–3 個方案並比較，由你們來選。第 55 分鐘前，由人選方案、核准工作拆解（Task Breakdown），主要 Agent 才開始做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 11:00 段落計時（00:00＝第 52 分），翻頁時持續計時。本頁大字顯示 B2 解鎖碼；52 分鐘只解開 B2（含任務卡），完整碼表見講者視窗。</p>
@@ -2314,7 +2369,7 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
   </div>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「B2 的分工變了：Agent 先分析規則交互作用與跨模組影響，提出 2–3 個方案和取捨；由你們質疑假設、選方案、核准工作拆解，主要 Agent 才主導實作；最後由人用驗收對照表、變更審查和 /docs 實際試，審查規則、測試與文件。」</p>
+    <p><b>說（約 20 秒）</b>：「B2 的分工變了：Agent 先分析規則交互作用與跨模組影響，提出 2–3 個方案和取捨；由你們質疑假設、選方案、核准工作拆解，主要 Agent 才主導實作；最後由人用驗收對照表和變更審查，審查規則、測試與文件。」</p>
     <p><b>任務卡原文</b>：「先要求Agent分析規則交互作用與跨模組影響，提出2–3個可行方案、取捨與風險。由人Challenge假設、選方案並核准Task Breakdown，再由主要Agent主導實作；人審查規則、測試、文件與Diff。」</p>
     <p><b>預期</b>：Agent 主動分析並提出 2–3 個方案及取捨；人 Challenge、選方案、核准 Task Breakdown；主要 Agent 核准後主導實作、測試與文件；人看變更審查答案、Rule 與驗收對照表，決定接受或要求修正（任務卡原文的「審查 Diff」，在全程不碰程式下改由請 Agent 回答審查問題完成）。</p>
   </aside>
@@ -2326,19 +2381,18 @@ body.is-presenter #dk-black { display: none !important; }
   <ul>
     <li><b>情境</b>：優惠政策要改：多項優惠只給一項最有利的</li>
     <li><b>目標</b>：選定做法、實作，證明每位旅客的優惠符合規則</li>
-    <li><b>技巧</b>：不接受第一個答案；比較影響與風險，<b>第 55 分鐘前</b>由人選</li>
-    <li><b>Agent 技巧</b>：結構化輸出（固定欄位比較表）· 推論強度（比較時調高、實作調回低）</li>
-    <li><b>完成</b>：方案比較與驗收證據都在 <code>notes/b2.md</code></li>
+    <li><b>技巧</b>：比較表欄位固定；比較時調高推論強度，實作時調回</li>
   </ul>
   <ol class="timeline">
-    <li data-seg="b2"><span class="tl-min">00:00</span><b>1 · 提方案並比較，人來選</b></li>
-    <li data-seg="b2"><span class="tl-min">03:00</span><b>2 · 依選定方案分段實作</b></li>
-    <li data-seg="b2"><span class="tl-min">07:00</span><b>3 · 補測試、更新文件並交付</b></li>
+    <li data-seg="b2"><span class="tl-min">00:00</span><b>1 · 提方案並比較，人來選</b><span class="tl-due">第 55 分前核准</span></li>
+    <li data-seg="b2"><span class="tl-min">03:00</span><b>2 · 依選定方案分段實作</b><span class="tl-due">第 59 分前</span></li>
+    <li data-seg="b2"><span class="tl-min">07:00</span><b>3 · 補測試、更新文件並交付</b><span class="tl-due">第 63 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『B2 導入不可疊加的最有利優惠政策』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>說（約 30 秒；先講情境與技巧，再講步驟）</b>：「公司要改優惠政策：一位旅客同時符合多項優惠時，只給一項對他最有利的。這段練的技巧是：不要接受 Agent 的第一個答案，請它提 2–3 個方案，用表格比較影響與風險，你們挑一個假設要它拿出依據，再由你們選。第 55 分鐘前選定並核准；59 停止擴充，補測試和文件；63 停止。紀錄都請 Agent 寫進 notes/b2.md，表單只要選方案和最後接受與否。」</p>
     <p><b>Agent 技巧（怎麼示範）</b>：「比較表欄位固定：方案、改動範圍、風險、測試影響、建議，這是結構化輸出，幾個方案才能並排比。比較時，工具有推論強度設定就調高，沒有就靠提示詞裡的『先仔細想過再回答』；核准後實作是小步修改，調回低，比較快也省 Token。B1 的對話很長，建議開新對話，讀 skills 和 notes 就接得上。」不點名任何工具或設定位置。</p>
-    <p><b>時間 Cue</b>：<b>52</b> 發任務、確認起點＝已驗收 B1＋<code>notes/shared-context.md</code>｜<b>52–55</b> Agent 把 2–3 個方案的比較寫進 notes/b2.md｜<b>55</b> 人選方案並核准 Task Breakdown（須在 55 前核准），主要 Agent 再執行｜<b>59</b> 停止擴充，優先測試與折扣文件｜<b>62</b> 提醒檢視：變更審查、Applied Discount（可在 /docs 試）與 Regression（逐人優惠與改票）｜<b>63</b> 停止新增工作，收摘要。</p>
+    <p><b>時間 Cue</b>：<b>52</b> 發任務、確認起點＝已驗收 B1＋<code>notes/shared-context.md</code>｜<b>52–55</b> Agent 把 2–3 個方案的比較寫進 notes/b2.md｜<b>55</b> 人選方案並核准 Task Breakdown（須在 55 前核准），主要 Agent 再執行｜<b>59</b> 停止擴充，優先測試與折扣文件｜<b>62</b> 提醒檢視：變更審查、Applied Discount（Agent 實際驗證的多優惠旅客）與 Regression（逐人優惠與改票）｜<b>63</b> 停止新增工作，收摘要。</p>
     <p><b>操作</b>：每到 Cue 翻到下一個檢查點頁；本頁時間軸依計時自動標示目前檢查點。</p>
     <p><b>不要說</b>：現行 B0 的優惠選擇方式（屬 DEBT-001，揭曉頁才談）；不示範金額計算或實作方式；不點名具體模組或檔案（揭曉頁才列）。</p>
     <p><b>巡場時看什麼（有沒有用上技巧）</b>：notes/b2.md 是否真的有 2–3 個方案的比較表、欄位固定（不是一個方案配兩個陪襯）｜比較時有沒有調高推論強度、實作時調回｜人有沒有挑假設要 Agent 拿依據｜選方案的是人、理由寫得出來｜核准前 Agent 沒動程式｜學員是否貼提示詞、看回報、用一句話回覆決定（不是自己打字寫長篇）。不因沒讀程式、沒自己打指令或表單少填而判失敗。</p>
@@ -2350,13 +2404,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b2" data-title="檢查點 1 · 請 Agent 提方案並比較，人來選" data-minute="52">
   <p class="kicker">檢查點 1 / 3 · 第 52–55 分鐘</p>
   <h2 class="title">請 Agent 提方案並比較，人來選</h2>
+  <p class="cp-why"><b>為什麼</b>不接受 Agent 的第一個答案；這一步它只比較方案，不改任何檔案</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 用固定欄位把 <b>2–3 個方案</b>的改動範圍、風險、測試影響比較寫進 <code>notes/b2.md</code>（推論強度調高）</li>
-    <li>挑一個假設，要 Agent 拿出依據</li>
-    <li><b>人</b>選方案、核准工作拆解：<b>這一段做完就停下</b></li>
+    <li>Runbook『B2』› 檢查點 1：貼 ②，再接任務卡「複製 Markdown」給主要 Agent</li>
+    <li>💬 挑最沒把握的假設貼「追問假設」；說好再貼「核准方案」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn"><b>第 55 分鐘前完成核准。</b>未核准，主要 Agent 不動程式。</p>
-  <p class="callout">Runbook › B2 › 檢查點 1 · 💬 討論一個假設，再選方案</p>
+  <p class="cp-judge"><b>你要判斷</b>2–3 個真的可行的方案、都對照過禁止事項；每個假設標了依據或「未確認」</p>
+  <p class="cp-next">第 55 分前核准 → 下一步：檢查點 2 分段實作</p>
   <aside class="notes">
     <p><b>說（00:00／第 52 分）</b>：「先確認起點是已驗收的 B1。請 Agent 提 2–3 個方案、用表格比較，先不要改程式。不要接受第一個答案：挑一個假設要它拿依據。第 55 分鐘前，由你們選方案；貼核准提示詞後，Agent 會問你們選哪個、理由和做到第幾步，用一句話回答就好；核准人與時間它自己從共同脈絡檔和電腦時間記下。」</p>
     <p><b>💬 討論</b>：Runbook 有兩題口頭討論（挑一個最沒把握的假設；推薦方案的最大風險能不能接受），不用寫下來。小組沒討論就直接選 → 問「哪一個假設你們最沒把握？」</p>
@@ -2371,13 +2427,16 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="b2" data-title="檢查點 2 · 依選定方案分段實作" data-minute="55">
   <p class="kicker">檢查點 2 / 3 · 第 55–59 分鐘</p>
-  <h2 class="title">依選定方案分段實作，做完停下</h2>
+  <h2 class="title">依選定方案分段實作</h2>
+  <p class="cp-why"><b>為什麼</b>主要 Agent 做完一段就停下，換你們看證據再放行下一段</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>只做核准的步驟；Agent 停下後回答變更審查問題</li>
-    <li>建立訂票和改票都用同一套優惠規則計價；沒有計畫外檔案</li>
-    <li>Agent 挑一位多優惠旅客實際驗證；你核對他採用的優惠</li>
+    <li>Runbook › 檢查點 2：Agent 停下後貼 ②「變更審查」</li>
+    <li>五題都是「是」才貼「下一段」；做完再審一次</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B2 › 檢查點 2 · 審查五題全部是「是」才放行</p>
+  <p class="cp-judge"><b>你要判斷</b>多優惠旅客每人只採一項、而且最有利；要改舊期待值，附了 Rule ID 才回「核准更新」</p>
+  <p class="cp-next">第 59 分停止擴充 → 下一步：檢查點 3 補測試、更新文件</p>
   <aside class="notes">
     <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准工作拆解。已核准的，讓主要 Agent 只做第一段，做完停下，你們請它回答變更審查問題；第 5 題它會挑一位多優惠旅客實際驗證，你們核對每人只採一項、而且是最有利的那一項。」</p>
     <p><b>看 → 介入</b>：只改一個分支、忽略 Change、用全團共同優惠或疊乘計價、全面重構成 Engine → 需要介入。實作是否真的照選定方案（偏離時請 Agent 說明為何改用別的做法）。保留同步 Notification；折扣政策清楚化即足夠，不要求複雜的 Engine。</p>
@@ -2389,14 +2448,17 @@ body.is-presenter #dk-black { display: none !important; }
 </section>
 
 <section class="slide" data-seg="b2" data-title="檢查點 3 · 補測試、更新文件並交付" data-minute="59">
-  <p class="kicker">檢查點 3 / 3 · 第 59–63 分鐘 · 停止擴充</p>
+  <p class="kicker">檢查點 3 / 3 · 第 59–63 分鐘</p>
   <h2 class="title">補測試、更新文件並交付</h2>
+  <p class="cp-why"><b>為什麼</b>停止擴充，不再加新功能；把證據補齊再交付</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>代表組合測試＋全套測試：零失敗、零跳過</li>
-    <li>每位旅客的<b>實際採用優惠</b>符合規則，不只核對總額</li>
-    <li>折扣文件同步；<b>人</b>決定接受／要求修正／未完成</li>
+    <li>Runbook › 檢查點 3：貼 ②「補測試、更新文件」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+    <li>💬 小組說好接受與否，在「B2 決定」記下</li>
   </ol>
-  <p class="callout warn">Runbook › B2 › 檢查點 3 · 在「B2 決定」選第 63 分的決定 · 第 63 分鐘停止</p>
+  <p class="cp-judge"><b>你要判斷</b>每位旅客的優惠類型與折扣率符合任務卡，不只核對總額；改過的期待值都有 Rule ID 與核准紀錄</p>
+  <p class="cp-next">第 63 分停止 → 下一步：等 B3 解鎖</p>
   <aside class="notes">
     <p><b>說（00:07／第 59 分）</b>：「第 59 分鐘，停止擴充。請 Agent 補代表組合測試、跑全套測試、更新折扣文件，結果和交付摘要寫進 notes/b2.md。你們看驗收對照表與實際採用的優惠，逐人優惠與改票都要看，再決定接受與否。」</p>
     <p><b>看</b>：完整套件真實執行，不是只跑單一測試；沒有刪除或弱化斷言；改過的既有期待值只有因新規則過時、列了 Rule ID 且經核准的那一項；文件依實際程式更新。逐位旅客取最有利、不疊加、改票與建立一致、Applied Discount 真實；人真的檢視（要求並檢查驗收對照表與變更審查答案、核對多優惠旅客的實際驗證結果），而不是 Agent 說完成就交付。不因沒讀程式而判失敗。</p>
@@ -2542,9 +2604,8 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">B3 團體訂票 · Digital Worker</h2>
   <p class="subtitle">Agent 成為數位員工（Digital Worker）：在核准範圍內主導交付，人負責核准與審查</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B3 團體訂票：Digital Worker 流程」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 13 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）、三個核准關卡（Gate）和一張 Gate 決策表都在 Runbook，其餘紀錄請 Agent 寫進 notes/b3.md；投影只告訴你時間和現在是第幾個檢查點。」說完翻下一頁宣布規則改變。</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）、三個核准關卡（Gate）和一張 Gate 決策表都在 Runbook，其餘紀錄請 Agent 寫進 notes/b3.md；投影會提示每個檢查點貼哪段、要決定什麼。」說完翻下一頁宣布規則改變。</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼；完整碼表見講者視窗。</p>
     <p><b>解鎖內容</b>：B3 任務卡、Digital Worker 操作規則、Work Order、三個 Gate、Review、Delivery、例外回應卡（只有提示詞與決定表單）。檢查點 1 要用「複製 Markdown」交給 Agent 的只有任務卡、操作規則、Work Order、Approval Gates；交付審查清單在 Gate 3 想逐項核對時才看，Delivery 範本在交付段用，例外回應卡第 69 分才用。</p>
     <p><b>不可說</b>：例外回應卡不寫情境，也不預發情境或答案。例外情境只在第 69–70 分由本簡報呈現，<b>不要在此提到例外內容</b>。</p>
@@ -2589,21 +2650,20 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b3" data-title="B3 · 現在在做什麼" data-minute="63" data-timer="13:00" data-gates="b3">
   <p class="kicker">B3 · 63–76 · 今天的技巧：委派整件任務：工作單 + 三道關卡</p>
   <h2 class="title">寫清楚範圍與停止條件，只在 Gate 介入</h2>
-  <div class="card dw">
-    <p><b>情境</b>：旅行社要一次訂 5–20 人同車廂連號座位，付款失敗整團取消</p>
-    <p><b>你的目標</b>：整件任務交給 Agent，你只在三道 Gate 做決定</p>
-    <p><b>今天的技巧</b>：工作單寫清範圍與停止條件，Agent 才能自己往前走</p>
-    <p><b>Agent 技巧</b>：工作單＝Skill · Gate 回報固定格式 · 選較強模型 · Gate 先摘要省 Token</p>
-    <p><b>完成的樣子</b>：<code>notes/b3.md</code> 有 Gate 決策、驗收對照表、變更審查答案</p>
-  </div>
+  <ul>
+    <li><b>情境</b>：旅行社要一次訂 5–20 人同車廂連號座位，付款失敗整團取消</li>
+    <li><b>目標</b>：整件任務交給 Agent，你只在三道 Gate 做決定</li>
+    <li><b>技巧</b>：工作單存成 Skill；每道 Gate 用同一個固定格式回報</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="b3"><span class="tl-min">00:00</span><b>1 · 把工作單交給 Agent</b></li>
-    <li data-seg="b3"><span class="tl-min">01:00</span><b>2 · Gate 1：確認 Agent 懂需求</b></li>
-    <li data-seg="b3"><span class="tl-min">03:00</span><b>3 · Gate 2：核准設計與修改範圍</b></li>
-    <li data-seg="b3"><span class="tl-min">07:00</span><b>4 · 放手執行，Gate 3 決定交付</b></li>
+    <li data-seg="b3"><span class="tl-min">00:00</span><b>1 · 把工作單交給 Agent</b><span class="tl-due">第 64 分前</span></li>
+    <li data-seg="b3"><span class="tl-min">01:00</span><b>2 · Gate 1：確認 Agent 懂需求</b><span class="tl-due">第 66 分決策</span></li>
+    <li data-seg="b3"><span class="tl-min">03:00</span><b>3 · Gate 2：核准設計與修改範圍</b><span class="tl-due">第 69 分決策</span></li>
+    <li data-seg="b3"><span class="tl-min">07:00</span><b>4 · 放手執行，Gate 3 決定交付</b><span class="tl-due">第 75 分 Gate 3</span></li>
   </ol>
+  <p class="callout">從 Runbook『B3 團體訂票：Digital Worker 流程』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 20 秒，先情境與技巧，再步驟）</b>：「這段練的是委派整件任務。你們把工作單（範圍、禁止事項、停止條件）交給 Agent，它就自己做；你們只在三道 Gate 做決定：第 66 分需求、第 69 分設計、第 75 分交付。Gate 2 核准、條件解除前 Agent 不能改程式。每道 Gate 貼 Runbook 的提示詞，Agent 會整理成是非題和建議決策來問你，你回一句話；所有紀錄請 Agent 寫進 notes/b3.md，表單只選三個 Gate 的決策。」</p>
+    <p><b>說（約 20 秒，先情境與技巧，再步驟）</b>：「這段練的是委派整件任務。你們把工作單（範圍、禁止事項、停止條件）交給 Agent，它就自己做；你們只在三道 Gate 做決定：第 66 分需求、第 69 分設計、第 75 分交付。Gate 2 核准、條件解除前 Agent 不能改程式。每道 Gate 貼 Runbook 的提示詞，Agent 會整理成是非題和建議決策來問你，你回一句話；所有紀錄請 Agent 寫進 notes/b3.md，表單只選三個 Gate 的決策。」完成的樣子（口頭帶過）：notes/b3.md 有 Gate 決策、驗收對照表、變更審查答案。</p>
     <p><b>操作</b>：計時應已在解鎖頁啟動（沒有就在本頁按 T）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，第 69 分在檢查點 3 之後翻到例外事件頁。檢查點 4 涵蓋 70–76：第 74 分口頭喊「停止擴充」，第 75 分喊「Gate 3」。</p>
     <p><b>Agent 技巧（怎麼示範，約 15 秒）</b>：「B3 開新對話；工具有模型選單的，選推論能力較強的模型，因為接下來 Agent 要長時間自己做。工作單就是給 Agent 的 Skill，它會存成 skills/b3-work-order.md。每道 Gate 它都用同一個固定格式回報：Gate、建議結論、證據、風險、需要人決定的事。放手執行最耗 Token，所以細節寫進 notes，對話只給摘要。」不點名任何工具、模型名稱或設定位置。</p>
     <p><b>巡場看技巧有沒有用上</b>：工作單和四頁文件是否整份交給 Agent（不是口頭交代）、有沒有存成 <code>skills/b3-work-order.md</code>｜Gate 回報是否每次同一組標題｜對話是否只有摘要、細節在 notes｜Agent 是否在 Gate 停下等人、核准時間是否早於修改｜人是否只在 Gate 和停止條件介入，而不是逐步下指令｜<code>notes/b3.md</code> 是否有決策原文、驗收對照表與變更審查答案。不因學員沒讀程式、沒自己打指令或表單少填而判失敗。</p>
@@ -2618,12 +2678,14 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b3" data-title="檢查點 1 · 把工作單交給 Agent" data-minute="63">
   <p class="kicker">檢查點 1 / 4 · 第 63–64 分鐘</p>
   <h2 class="title">把工作單交給 Agent</h2>
+  <p class="cp-why"><b>為什麼</b>一次交代清楚：做什麼、能動哪裡、何時停下、在哪裡等你決定</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>開新對話（可選較強模型），貼交辦提示詞，再用「複製 Markdown」接上任務卡、操作規則、工作單（Work Order）、三道 Gate</li>
-    <li>Agent 先存一版「B3 起點」，把工作單存成 Skill <code>skills/b3-work-order.md</code>，背景寫進 <code>notes/b3.md</code>；查不到的不猜</li>
-    <li><b>交出 Gate 1 決策卡（5 個是非題），然後停下</b></li>
+    <li>主要 Agent <b>開新對話</b>；工具有模型選單就選較強的</li>
+    <li>貼 ②，再依序「複製 Markdown」接上任務卡、操作規則、工作單、三道 Gate，一起送出</li>
+    <li>Agent 交出 Gate 1 決策卡後，貼 ③ 確認結果；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B3 › 檢查點 1 · 把工作單交給 Agent</p>
+  <p class="cp-next">第 64 分前完成 → 下一步：檢查點 2 回答 Gate 1</p>
   <aside class="notes">
     <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。請照 Runbook 檢查點 1，把工作單和四頁文件整份貼給主要 Agent。它先 Commit 一個「B3 起點」（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」</p>
     <p><b>看</b>：第 64 分 Agent 應已交 Gate 1（摘要、假設、缺口、Out of Scope 寫進 notes，對話是 5 個是非題的決策卡）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。只口頭交代、沒貼工作單 → 提醒技巧：「範圍和停止條件要寫給 Agent，它才知道何時停。」</p>
@@ -2634,12 +2696,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b3" data-title="檢查點 2 · Gate 1：確認 Agent 懂需求" data-minute="64">
   <p class="kicker">檢查點 2 / 4 · 第 64–66 分鐘</p>
   <h2 class="title">Gate 1：確認 Agent 懂需求</h2>
+  <p class="cp-why"><b>為什麼</b>需求理解錯了，後面做得再快都白做</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>看檢查點 1 的決策卡：5 個是非題與建議決策</li>
-    <li>對照任務卡回答；查不到依據由小組確認，不讓 Agent 猜</li>
-    <li>第 66 分前貼提示詞說出 Gate 1 決策：<b>核准需求才進入設計</b>；Agent 照原文記進 notes</li>
+    <li>對照任務卡回答決策卡的 5 個是非題，小組說好 Gate 1 決策</li>
+    <li>Runbook › 檢查點 2：貼 ②「記錄 Gate 1」，說出決策</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B3 › 檢查點 2 · Gate 1：確認 Agent 懂需求</p>
+  <p class="cp-judge"><b>你要判斷</b>每題都對得上任務卡才核准；「待小組確認」的由你們決定，不讓 Agent 猜</p>
+  <p class="cp-next">第 66 分前決策 → 下一步：檢查點 3 Gate 2</p>
   <aside class="notes">
     <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照任務卡回答那 5 個是非題。需求理解錯了，後面做得再快都白做。」</p>
     <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策；核准才進 Gate 2 設計，退回就要求修正。Agent 問你時回一句話（例如『核准，核准人某某，第 66 分』），它會照原文記進 notes/b3.md。」</p>
@@ -2652,12 +2717,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b3" data-title="檢查點 3 · Gate 2：核准設計與修改範圍" data-minute="66">
   <p class="kicker">檢查點 3 / 4 · 第 66–70 分鐘</p>
   <h2 class="title">Gate 2：核准設計與修改範圍</h2>
+  <p class="cp-why"><b>為什麼</b>Agent 只提設計、不改程式；你核准的範圍，就是它接下來能自己動手的邊界</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 把設計整理成是非題、預計修改檔案與建議決策</li>
-    <li>核對範圍合理、不全面重寫、失敗都有處理、無未核准外部依賴</li>
-    <li>第 69 分前做 Gate 2 決策：<b>核准的範圍就是 Agent 能自己動手的邊界</b></li>
+    <li>Runbook › 檢查點 3：貼 ②「整理 Gate 2 決策卡」</li>
+    <li>回答是非題，說出 Gate 2 決策，Agent 照原文記下</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › B3 › 檢查點 3 · Gate 2：核准設計與修改範圍</p>
+  <p class="cp-judge"><b>你要判斷</b>答案都在工作單允許範圍內；不以「看起來合理」取代範圍檢查</p>
+  <p class="cp-next">第 69 分前決策 → 下一步：看投影的例外事件</p>
   <aside class="notes">
     <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准的組，請 Agent 交 Gate 2：影響、API、座位、全有或全無的處理、測試與風險。你們核准的範圍，就是 Agent 接下來能自己動手的邊界；Gate 2 核准、條件解除前，不能改程式。」</p>
     <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件卡</b>（若 Agent 已自然提出 SQLite，見下一頁備註）。</p>
@@ -2697,9 +2765,9 @@ body.is-presenter #dk-black { display: none !important; }
       <p class="muted">仍需停止的動作、允許範圍、須回到的 Gate</p>
     </div>
   </div>
-  <p class="callout warn fx fx-fade">貼例外回應卡的提示詞；Agent 問事件時照抄這一行：<b>事件：建議加 SQLite</b>。60 秒內一行回答；時間緊可 30 秒口頭判斷。</p>
+  <p class="callout warn fx fx-fade">Runbook『例外回應卡』貼 ②；Agent 問時照抄：<b>事件：建議加 SQLite</b>，一行回答後貼 ③</p>
   <aside class="notes">
-    <p><b>從投影移到備註</b>：1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
+    <p><b>從投影移到備註</b>：時間緊可縮為 30 秒口頭判斷（例外回應卡 ① 已寫）。1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
     <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
@@ -2721,12 +2789,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="b3" data-title="檢查點 4 · 放手執行，Gate 3 決定交付" data-minute="70">
   <p class="kicker">檢查點 4 / 4 · 第 70–76 分鐘</p>
   <h2 class="title">放手執行，Gate 3 決定交付</h2>
+  <p class="cp-why"><b>為什麼</b>這段 Agent 自己做；你只在它停下升級時，和第 75 分的 Gate 3 介入</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>70：條件解除後才說「開始執行」；Agent 只改核准範圍，遇到停止條件就停下來交給人決定</li>
-    <li>74：<b>停止擴充</b>；Agent 把驗收對照表、變更審查答案、Gate 3 資料寫進 notes</li>
-    <li>75：Gate 3 看決策卡答案決定是否交付，不看程式；再貼第二段提示詞重啟伺服器並記決策；可在 <code>/docs</code> 試一筆；完成等級（Level）不預設選 3</li>
+    <li>條件解除後貼 ②「開始執行」；Agent 停下時回一句決定</li>
+    <li>第 74 分貼「停止擴充」；看決策卡做 Gate 3，貼「記下 Gate 3」</li>
+    <li>有時間在 <code>/docs</code> 試一筆；再貼 ③ 確認結果，「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout warn">第 76 分鐘停止新增；人不補程式或測試，缺項如實列出。</p>
+  <p class="cp-judge"><b>你要判斷</b>審查三題都「是」、失敗與未驗證都列出、建議的 Level 有證據；不預設選 3</p>
+  <p class="cp-next">第 76 分停止新增 → 下一步：Runbook『Delivery Summary 與交付』</p>
   <aside class="notes">
     <p><b>說（00:07／第 70 分）</b>：「例外與條件已解除的組，請 Agent 開始執行。這段你們放手：不盯每一步，只在 Agent 停下升級時做決定。人不寫程式、不補測試。」</p>
     <p><b>說（00:11／第 74 分）</b>：「停止擴充。請貼 Runbook 檢查點 4 的停止提示：Agent 執行測試，把驗收對照表、變更審查答案和 Gate 3 資料寫進 notes/b3.md；還沒有程式的，明記未執行及原因。」</p>
@@ -2744,18 +2815,17 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="delivery" data-title="交付 · 現在在做什麼" data-minute="76" data-timer="04:00" data-gates="delivery">
   <p class="kicker">交付（Delivery）· 76–80 · 今天的技巧：請 Agent 整理交付摘要，人核對</p>
   <h2 class="title">摘要交給 Agent 寫，每一句都要附證據</h2>
-  <div class="card dw">
-    <p><b>情境</b>：B3 時間到，主管要知道做了什麼、證據在哪、還缺什麼</p>
-    <p><b>你的目標</b>：Agent 寫交付摘要，你逐項核對後交件</p>
-    <p><b>今天的技巧</b>：整理交給 Agent；人只問「證據在哪？」，未驗證如實標示</p>
-    <p><b>Agent 技巧</b>：結構化輸出：固定十二個標題，每句附證據位置</p>
-    <p><b>完成的樣子</b>：<code>notes/delivery.md</code> 附證據來源；選好完成等級（Level）、匯出交件</p>
-  </div>
+  <ul>
+    <li><b>情境</b>：B3 時間到，主管要知道做了什麼、證據在哪、還缺什麼</li>
+    <li><b>目標</b>：Agent 寫交付摘要，你逐項核對後交件</li>
+    <li><b>技巧</b>：整理交給 Agent；你只問「證據在哪？」，未驗證如實標示</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 請 Agent 寫交付摘要，你來核對</b></li>
-    <li data-seg="delivery"><span class="tl-min">02:00</span><b>2 · 匯出與交件</b></li>
-    <li data-seg="delivery"><span class="tl-min">03:00</span><b>揭曉（看投影）</b></li>
+    <li data-seg="delivery"><span class="tl-min">00:00</span><b>1 · 請 Agent 寫交付摘要，你來核對</b><span class="tl-due">第 78 分前</span></li>
+    <li data-seg="delivery"><span class="tl-min">02:00</span><b>2 · 匯出與交件</b><span class="tl-due">第 79 分前</span></li>
+    <li data-seg="delivery"><span class="tl-min">03:00</span><b>揭曉（看投影）</b><span class="tl-due">第 80 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『Delivery Summary 與交付』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>操作</b>：B3 結束（第 76 分）翻到本頁，按 <b>T</b> 啟動 04:00 段落計時（00:00＝第 76 分）。說完翻到檢查點 1。</p>
     <p><b>說（約 15 秒，先情境與技巧）</b>：「76 分鐘到，停止新增功能。交付摘要不用自己寫：請 Agent 依證據寫進 notes/delivery.md，你們只問它『這句的證據在哪？』，指不出來的改成未驗證。然後匯出交件；全員交件後我才揭曉 B3 的對照內容。」</p>
@@ -2775,12 +2845,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="delivery" data-title="檢查點 1 · 請 Agent 寫交付摘要，你來核對" data-minute="76">
   <p class="kicker">檢查點 1 / 2 · 第 76–78 分鐘</p>
   <h2 class="title">請 Agent 寫交付摘要，你來核對</h2>
+  <p class="cp-why"><b>為什麼</b>第 76 分停止一切修改；主管要的是做了什麼、證據在哪、還缺什麼</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 讀 <code>notes/b3.md</code>，把摘要寫進 <code>notes/delivery.md</code>，每欄附證據</li>
-    <li>Agent 列出完成等級（Level）、測試結果、修改範圍三句，各引用證據原文</li>
-    <li>引用不出的改成未驗證；<b>不自動選 Level 3</b></li>
+    <li>Runbook『Delivery Summary 與交付』› 檢查點 1：貼 ② ＋ 範本「複製 Markdown」</li>
+    <li>看 Agent 為三句結論引用的證據原文</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › Delivery › 檢查點 1 · 請 Agent 寫交付摘要，你來核對</p>
+  <p class="cp-judge"><b>你要判斷</b>Level、測試結果、修改範圍都引用得出證據，引用不出的已改成「未驗證」；Gate 決策和 <code>notes/b3.md</code> 一致</p>
+  <p class="cp-next">第 78 分前完成 → 下一步：檢查點 2 匯出與交件</p>
   <aside class="notes">
     <p><b>說（00:00／第 76 分）</b>：「請貼 Runbook 的提示詞，讓 Agent 寫交付摘要。它會挑三句結論引用證據給你們看，引用不出的改成未驗證。Level 同不同意，下一個檢查點再一起聊。」</p>
     <p><b>Level 定義</b>：Level 1 分析完成＝Gate 1／2 完成，影響分析合理、測試策略完整，程式尚未完成；可無程式修改或未執行測試，須明記原因｜Level 2 核心流程完成＝團體建立與連續座位完成、主要單元測試通過，付款失敗的補償（Compensation）或文件仍有缺項｜Level 3 完整交付＝建立、付款成功與付款失敗的補償都完成，回歸測試（Regression）通過，文件與交付摘要都完整。</p>
@@ -2792,13 +2865,16 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="delivery" data-title="檢查點 2 · 匯出與交件" data-minute="78">
   <p class="kicker">檢查點 2 / 2 · 第 78–79 分鐘</p>
-  <h2 class="title">匯出與交件，交完就停手</h2>
+  <h2 class="title">匯出與交件</h2>
+  <p class="cp-why"><b>為什麼</b>要匯出才算交件；交件後就不再修改</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>💬 小組聊 1 分鐘：同意 Agent 建議的 Level 嗎？說好再在「交付核對」選 Level，一鍵匯出所有表單（ZIP）</li>
-    <li>連同主要 Agent 電腦上的 <code>notes/</code> 資料夾，依指定方式交件</li>
-    <li>交件後不再修改，看投影</li>
+    <li>💬 小組聊 1 分鐘：同意 Agent 建議的 Level 嗎？</li>
+    <li>貼 ②「notes 在哪」，再貼 ③ 確認結果；「失敗」貼「失敗時」</li>
+    <li>在「交付核對」選 Level、匯出所有表單，連同 <code>notes/</code> 交件</li>
   </ol>
-  <p class="callout warn">Runbook › Delivery › 檢查點 2 · 匯出與交件</p>
+  <p class="cp-judge"><b>你要判斷</b>只看驗收對照表會選哪一級？加上 Gate 紀錄與缺項後還一樣嗎？</p>
+  <p class="cp-next">第 79 分前交件 → 下一步：停手，看投影揭曉</p>
   <aside class="notes">
     <p><b>說（00:02／第 78 分）</b>：「小組先花 1 分鐘聊：Agent 建議的 Level 你們同意嗎？只看驗收對照表會選哪一級，加上 Gate 紀錄與缺項後還一樣嗎？說好後在表單記下結論，匯出，連同 notes 資料夾依指定方式交件。交件後不再修改，接下來看投影。」</p>
     <p><b>收件</b>：notes/b3.md（Gate 決策原文、驗收對照表、變更審查答案）、notes/delivery.md、匯出的表單。Level 1／2 照收，不要求補成 Level 3；Gate 紀錄、條件與未完成事項本身就是交付的一部分。</p>
@@ -2945,8 +3021,7 @@ body.is-presenter #dk-black { display: none !important; }
   <ol class="steps">
     <li class="fx">退回（Reject）的是<b>超範圍方案，不是整個任務</b></li>
     <li class="fx">允許：沿用現有資料存取層（Repository）；先規劃好全部座位再保留；付款失敗有明確補償</li>
-    <li class="fx">可用：記憶體快照、保留憑證（Reservation Token）或明確的復原方法</li>
-    <li class="fx">改提案尚缺證據可有條件核准（APPROVE WITH CONDITIONS，僅限 In-Memory 邊界內），條件解除且 Gate 2 核准後才能改程式</li>
+    <li class="fx">改提案還缺證據時，可在 In-Memory 範圍內有條件核准；條件解除且 Gate 2 核准後才改程式</li>
     <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計就停下，說明卡在哪，交給人決定</li>
   </ol>
   <aside class="notes">
@@ -2955,7 +3030,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>不可接受（F03）</b>：直接 Approve SQLite｜含糊條件後開始 Coding｜長篇討論或實際安裝。</p>
     <p><b>判讀重點</b>：是否指出 Constraint、Challenge 提議、選擇 Reject／重提、要求全團體補償與測試，並保留 Decision／Approver／時間／Context。不要求學員說出參考答案原文；本頁是範例，不是真實核准紀錄（Approver／Timestamp 需實際填寫）。不要求通用 Transaction Framework。</p>
     <p><b>Debrief Q4（F05）</b>：「若沒人發現SQLite越界，缺少哪項治理能力？」</p>
-    <p><b>從投影移到備註</b>：即使 SQLite 可由標準函式庫使用，仍是未核准資料庫變更；不能安裝、實作或寫進有條件核准（Conditional Approval）。重提方案的實測計畫要涵蓋：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單。</p>
+    <p><b>從投影移到備註</b>：In-Memory 內可用的做法：記憶體快照、保留憑證（Reservation Token）或明確的復原方法。即使 SQLite 可由標準函式庫使用，仍是未核准資料庫變更；不能安裝、實作或寫進有條件核准（Conditional Approval）。重提方案的實測計畫要涵蓋：完整連續區段、建立時全有或全無、付款失敗取消／全部釋放座位／不建訂單。</p>
   </aside>
 </section>
 
@@ -3011,7 +3086,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">第 80 分鐘 · 解鎖</p>
   <h2 class="title">Retrospective 回顧</h2>
   <p class="subtitle">在 Runbook 輸入解鎖碼，打開「工作坊回顧」，從<b>檢查點 1</b> 開始</p>
-  <p class="lead fx fx-fade">接下來 10 分鐘，要做什麼都看 Runbook；投影只顯示時間與目前的檢查點。</p>
+  <p class="lead fx fx-fade">10 分鐘：帶走 3 段你自己的提示詞，小組留下一項行動。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的工作坊回顧，從檢查點 1 開始。今天最後一個技巧，是把今天學到的變成你自己的提示詞清單。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 80 分），翻頁時持續計時。本頁大字顯示回顧解鎖碼（解開回顧頁與「我的提示詞清單」文件）；完整碼表見講者視窗。</p>
@@ -3022,20 +3097,19 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="retro" data-title="回顧 · 現在在做什麼" data-minute="80" data-timer="10:00" data-gates="retro">
   <p class="kicker">Retrospective · 80–90 · 今天的技巧：把今天的技巧變成自己的提示詞清單</p>
   <h2 class="title">每人帶走 3 段自己會再用的提示詞</h2>
-  <div class="card">
-    <p><b>情境</b>：回到自己的專案，身邊沒有 Runbook</p>
-    <p><b>你的目標</b>：帶走 3 段提示詞，小組留下一項帶回團隊的行動</p>
-    <p><b>今天的技巧</b>：技巧寫成可直接貼上的提示詞，下次打開 Agent 就用得上</p>
-    <p><b>Agent 技巧</b>：回顧六個技巧用在哪；至少一段存成自己的 Skill 檔</p>
-    <p><b>完成的樣子</b>：<code>notes/my-prompts.md</code> 有 3 段提示詞、<code>skills/</code> 有你的 Skill；勾 3 個技巧、留一項行動並匯出</p>
-  </div>
+  <ul>
+    <li><b>情境</b>：回到自己的專案，身邊沒有 Runbook</li>
+    <li><b>目標</b>：帶走 3 段提示詞，小組留下一項帶回團隊的行動</li>
+    <li><b>技巧</b>：寫成可直接貼上的提示詞，最常用的一段存成 Skill</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 選出三個要帶走的技巧</b></li>
-    <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 請 Agent 寫成你的提示詞</b></li>
-    <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 小組討論盲點，留下一項行動</b></li>
+    <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 選出三個要帶走的技巧</b><span class="tl-due">第 82 分前</span></li>
+    <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 請 Agent 寫成你的提示詞</b><span class="tl-due">第 86 分前</span></li>
+    <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 小組討論盲點，留下一項行動</b><span class="tl-due">第 90 分前</span></li>
   </ol>
+  <p class="callout">從 Runbook『工作坊回顧』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先自己挑 3 個今天最有用的技巧，請 Agent 改寫成你回去能直接貼的提示詞；最後小組討論一個盲點，留下一項帶回團隊的行動。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先自己挑 3 個今天最有用的技巧，請 Agent 改寫成你回去能直接貼的提示詞；最後小組討論一個盲點，留下一項帶回團隊的行動。」完成的樣子（口頭帶過）：notes/my-prompts.md 有 3 段提示詞、skills/ 有自己的 Skill；勾 3 個技巧、留一項行動並匯出。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>主持重點</b>：每段提示詞要有「看什麼證據」；「今天的例子」只寫實際發生的事，沒有就寫未觀察。</p>
     <p><b>不可</b>：討論偏向產品比較、完整架構設計或找責任歸咎時，回到本次證據與可改流程；不得公開完整 Evaluation 或未來解答。不排名，不以 pytest 秒數代替人員活動時間。</p>
@@ -3045,12 +3119,14 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="retro" data-title="檢查點 1 · 選出三個要帶走的技巧" data-minute="80">
   <p class="kicker">檢查點 1 / 3 · 第 80–82 分鐘</p>
   <h2 class="title">選出三個要帶走的技巧</h2>
+  <p class="cp-why"><b>為什麼</b>先自己想、不討論：哪一段讓你想到「回到工作就要這樣做」</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 讀 <code>notes/</code>、<code>skills/</code>，列出 9 個流程技巧與 6 個 Agent 技巧各用在哪一步</li>
-    <li>Agent 推薦 3 個；你回「同意」或換一個</li>
-    <li>在回顧表勾選你的 3 個技巧</li>
+    <li>不是主要 Agent 的人，先拿到主要 Agent 的 <code>notes/</code> 資料夾</li>
+    <li>貼「今天的資料夾都在：」＋路徑、②、提示詞清單「複製 Markdown」</li>
+    <li>貼 ③ 確認結果；Agent 推薦 3 個，你回「同意」或換一個，在表單勾選</li>
   </ol>
-  <p class="callout">Runbook › 回顧 › 檢查點 1 · 選出三個要帶走的技巧</p>
+  <p class="cp-next">第 82 分前完成 → 下一步：檢查點 2 寫成你的提示詞</p>
   <aside class="notes">
     <p><b>說（00:00／第 80 分）</b>：「先自己想，不討論：貼 Runbook 的提示詞，讓 Agent 從你今天的 notes 推薦 3 個技巧，你決定要不要換。不是主要 Agent 的同學，先請主要 Agent 那位把 notes 資料夾傳給你。」</p>
     <p><b>提醒</b>：notes 分散在 starter-repository、smart-ticket-b0、recovery-b1／recovery-b2 等資料夾，小組段落的紀錄只在主要 Agent 電腦；學員在提示詞第一行補上這些資料夾的上層資料夾路徑，Agent 直接搜尋，避免整排「未觀察」。</p>
@@ -3062,12 +3138,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="retro" data-title="檢查點 2 · 請 Agent 寫成你的提示詞" data-minute="82">
   <p class="kicker">檢查點 2 / 3 · 第 82–86 分鐘</p>
   <h2 class="title">請 Agent 寫成你的提示詞</h2>
+  <p class="cp-why"><b>為什麼</b>寫成可直接貼上的提示詞，回到工作才用得上</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>同一對話貼提示詞：Agent 依格式寫進 <code>notes/my-prompts.md</code></li>
-    <li>不綁今天的專案；會變的部分用〈 〉；每段寫「看什麼證據」</li>
-    <li>最常用的一段存成 Skill 檔；讀一遍，改到你願意直接用為止</li>
+    <li>同一對話貼 ②，Agent 寫進 <code>notes/my-prompts.md</code>，一段存成 Skill</li>
+    <li>讀一遍；不像你會說的話，回「第 2 段改成我平常講話的方式」</li>
+    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 回顧 › 檢查點 2 · 請 Agent 寫成你的提示詞</p>
+  <p class="cp-judge"><b>你要判斷</b>每段都寫了「看什麼證據」，不綁今天的專案，你願意直接拿去用</p>
+  <p class="cp-next">第 86 分前完成 → 下一步：檢查點 3 小組討論</p>
   <aside class="notes">
     <p><b>說（00:02／第 82 分）</b>：「在同一個對話貼檢查點 2 的提示詞，讓 Agent 把 3 個技巧寫成提示詞清單；讀一遍，不順手就回一句請它改。」</p>
     <p><b>看</b>：提示詞是否可重用（不寫死 Smart Ticket）｜有沒有「看什麼證據」｜<code>skills/</code> 有沒有多一個學員自己的 Skill 檔｜「今天的例子」有沒有編造。Agent 寫得像範本、不像本人用語 → 「請它改成你平常講話的方式。」</p>
@@ -3080,12 +3159,15 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide" data-seg="retro" data-title="檢查點 3 · 小組討論盲點，留下一項行動" data-minute="86">
   <p class="kicker">檢查點 3 / 3 · 第 86–90 分鐘</p>
   <h2 class="title">小組討論盲點，留下一項行動</h2>
+  <p class="cp-why"><b>為什麼</b>今天全程只看證據、不看程式；這個盲點要帶回團隊補</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？</li>
-    <li>組織導入的第一步：誰、何時、用什麼證據確認</li>
-    <li>Agent 提 3 個行動候選，選一個填入回顧表，<b>匯出所有表單</b></li>
+    <li>💬 口頭討論 Runbook 上的題目：風險在哪？組織導入第一步做什麼？</li>
+    <li>請一位成員的 Agent 貼 ②，提 3 個行動候選，選一個</li>
+    <li>貼 ③ 確認結果；填回顧表，<b>匯出所有表單</b></li>
   </ol>
-  <p class="callout warn">Runbook › 回顧 › 檢查點 3 · 小組討論盲點，留下一項行動</p>
+  <p class="cp-judge"><b>你要判斷</b>選定的行動說得出誰、何時、用什麼證據確認</p>
+  <p class="cp-next">第 89 分停止新議題 → 第 90 分結束：離開前匯出表單</p>
   <aside class="notes">
     <p><b>說（00:06／第 86 分）</b>：「小組口頭討論，不用寫：先各自說一句交付段『完成後想一想』第 3 題的答案（誰該替交付負責），再想今天全程只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？再想組織導入的第一步。討論完請一位成員的 Agent 提 3 個行動候選，選一個。」</p>
     <p><b>這題的代價要講明</b>：只看驗收對照表、變更審查與 /docs 行為，抓不到「測試全過但寫法有問題」的程式（例如規則寫錯層、重複邏輯、日後難維護）。可引導到：程式審查角色（懂程式的審查者或資深工程師抽查）、自動化檢查（靜態分析、架構規則檢查）、平台留痕（Audit Log、Test Evidence）。</p>

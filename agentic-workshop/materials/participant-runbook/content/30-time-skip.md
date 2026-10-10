@@ -10,15 +10,18 @@ section: Time Skip
 
 ```callout info
 現在在做什麼
-- **情境**：Smart Ticket 已上線 12 個月（Time Skip：時間快轉）。你被調去接手同事維護的既有系統 B0（Brownfield Baseline：既有專案的起點版本，之後的 B1、B2、B3 都接在它上面）。
-- **你的目標**：4 分鐘內停下 Greenfield，在 B0 開一個新的 Agent 對話，讓 Agent 把環境跑起來並記下起點。
+- **情境**：Smart Ticket 已上線 12 個月（Time Skip：時間快轉），你接手同事維護的既有系統 B0。
+- **你的目標**：4 分鐘內停下 Greenfield，在 B0 開新的 Agent 對話，讓它把環境跑起來並記下起點。
 - **今天的技巧**：**開新對話先給規則與脈絡**。換專案就開新對話，第一件事貼規則、說明背景。
-- **完成的樣子**：Agent 複述得出規則與背景；它回報版本是 B0，並把測試結果與 Git 起點寫進 `notes/time-skip.md`。
+- **完成的樣子**：Agent 複述得出規則與背景；版本 B0、測試結果與 Git 起點已寫進 `notes/time-skip.md`。
 ```
 
 ```callout warning
 本段只接手，不修改
-全場使用同一份 B0，不要用自己的 Greenfield 成果代替。**不要修改 B0 的程式**，也先不要叫 Agent 分析；分析從第 33 分鐘開始。
+**全場使用同一份 B0，本段只接手、不修改。**
+- 不要用自己的 Greenfield 成果代替 B0
+- **不要修改 B0 的程式**
+- 先不要叫 Agent 分析；分析從第 33 分鐘開始
 ```
 
 ## 檢查點總覽
@@ -122,7 +125,9 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ```callout tip
 技巧：Token 節費
-Token（詞元）是 Agent 讀寫文字的計費與記憶單位：對話越長、貼越多，越貴，也越容易忘記前面講過的事。所以換專案就開新對話，只給規則、背景與要讀的檔案，不把舊對話帶過來。
+**換專案就開新對話，只給規則、背景與要讀的檔案，不帶舊對話。**
+- Token（詞元）是 Agent 讀寫文字的計費與記憶單位
+- 對話越長、貼越多，越貴，也越容易忘記前面講過的事
 📖 延伸閱讀：Anthropic 官方文件〈Context windows〉與〈Token counting〉、Anthropic Engineering 文章〈Effective context engineering for AI agents〉；你所用工具的官方文件通常有同名章節。
 ```
 

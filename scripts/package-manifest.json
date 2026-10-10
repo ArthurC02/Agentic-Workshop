@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "3fe9d3575379065cb9f6b1e93131f5809085a0b0c64f6aa4404a045cb2b496f9"
+          "sha256": "adf0a0a84a435998a3d0c8b9040cb1be8327593ab9ce712c43214533c479ce4a"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3370,7 +3370,7 @@
         {
           "source": "agentic-workshop/materials/README.md",
           "destination": "agentic-workshop/materials/README.md",
-          "sha256": "a610aae8463e8b1f2e64c7aa53c15cf2281ff7b910248110bb983603f53d4282"
+          "sha256": "cdd1ff07df3d4ee592f72b07306b053a32b3125625f7077eec30ebfdf514b28c"
         },
         {
           "source": "agentic-workshop/materials/cross-review-2026-10-06.json",
@@ -3385,17 +3385,17 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "826fc7d00ea139e190a91a6ceb0e03ea0b407cf0f2628f29a37644e0d717228d"
+          "sha256": "e450de6154e8112a681cbf2fb42024a28c8cafc56224c71e6b133e88b0c7e1af"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "b755b7f87c4b2bf216d82518382cdf0eee31af10c790a5608aab0c7e7b4806be"
+          "sha256": "b7fb8e755d0ddb6a194109c6110b78c7c139a7bee81a49aabee3be395400521c"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "ec2297cbcda085e9515be9c1768bb469024b9c3e0c66dea92385c958b78f5cfa"
+          "sha256": "19d58c6350533706b8a2e3630bd8b21df86affe7bc2b03e5d240980c8f560bb6"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",

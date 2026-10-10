@@ -42,8 +42,19 @@ MAX_INCLUDE_DEPTH = 8
 # Source documents open with "> 讀者：… 使用時機：… 前置條件：…" right under the title; that
 # authoring metadata is noise for learners, so includes drop it (page and copy/export alike).
 READER_NOTE_RE = re.compile(r"\A(\ufeff?#[^\n]*?(\r?\n))(?:[ \t]*\r?\n)*>[ \t]*(?:目標)?讀者：[^\n]*\n(?:>[^\n]*\n)*(?:[ \t]*\r?\n)*")
+REF_MARK = "📖"  # a line opening 📖 starts its own paragraph; inside a callout it renders as rb-callout-ref
 BLOCK_LABELS = "①②③④"  # a paragraph opening "① " is a checkpoint block label
 CALLOUT_KINDS = ("info", "tip", "warning", "danger")
+_LEAD_RE = re.compile(r"<strong>(?:(?!</?strong>).)+</strong>", re.S)
+
+
+def callout_folds(kind: str, title: str) -> bool:
+    """Tips and 技巧／新概念 callouts collapse; 現在在做什麼, warnings, dangers, 💬 discussions and
+    時間不夠時 lines always stay open (learners must see them without clicking)."""
+    title = title.strip()
+    if title.startswith(("💬", "時間不夠")):
+        return False
+    return kind == "tip" or (kind == "info" and title.startswith(("技巧", "新概念")))
 EXTENSIONS = ("cmd", "prompt", "callout", "include", "download", "form", "gate", "exportall")
 FIELD_TYPES = ("text", "textarea", "select", "checkbox", "checklist")
 FORM_KEYS = {"id", "title", "kind", "fields"}
@@ -684,6 +695,7 @@ class _BlockParser:
         self.shift = shift
         self.source = source
         self.inline = _InlineRenderer(ctx, source)
+        self.in_callout = False
 
     # Each block is ("p", inline_html) or ("html", html).
     def parse(self, lines: list[str]) -> list[tuple[str, str]]:
@@ -725,7 +737,7 @@ class _BlockParser:
         line = lines[i]
         if _is_blank(line) or _fence_open(line) or _ATX_RE.match(line) or _HR_RE.match(line):
             return True
-        if _BQ_RE.match(line):
+        if _BQ_RE.match(line) or line.lstrip(" ").startswith(REF_MARK):
             return True
         marker = _list_marker(line)
         if marker and marker[3].strip():
@@ -742,6 +754,8 @@ class _BlockParser:
         num = BLOCK_LABELS.find(para[0][:1]) + 1
         if num and para[0][1:2] == " ":
             blocks.append(("html", f'<p class="rb-block-label" data-block="{num}">{inner}</p>'))
+        elif self.in_callout and para[0].startswith(REF_MARK):
+            blocks.append(("html", f'<p class="rb-callout-ref">{inner}</p>'))
         else:
             blocks.append(("p", inner))
         return i
@@ -939,9 +953,23 @@ class _BlockParser:
         if not content:
             raise MarkdownError(f"```callout {kind}: missing title line")
         title = self.inline.render(content[0].strip())
-        inner = "\n".join(_render_blocks(self.parse(content[1:])))
-        return (f'<div class="rb-callout rb-callout-{kind}"><div class="rb-callout-title">{title}</div>'
-                f'<div class="rb-callout-body">{inner}</div></div>')
+        outer, self.in_callout = self.in_callout, True
+        try:
+            blocks = self.parse(content[1:])
+        finally:
+            self.in_callout = outer
+        inner = "\n".join(_render_blocks(blocks))
+        if not callout_folds(kind, content[0]):
+            return (f'<div class="rb-callout rb-callout-{kind}"><div class="rb-callout-title">{title}</div>'
+                    f'<div class="rb-callout-body">{inner}</div></div>')
+        # Tips and knowledge points fold (native <details>, closed); a bold lead paragraph previews when closed.
+        lead = ""
+        if blocks and blocks[0][0] == "p" and _LEAD_RE.fullmatch(blocks[0][1]):
+            lead = f'<span class="rb-callout-lead">{blocks[0][1][8:-9]}</span>'
+        return (f'<details class="rb-callout rb-callout-{kind} rb-callout-fold"><summary class="rb-callout-title">'
+                f'<span class="rb-callout-name">{title}</span>{lead}'
+                f'<span class="rb-callout-toggle"><span class="rb-sr">展開／收合</span></span></summary>'
+                f'<div class="rb-callout-body">{inner}</div></details>')
 
     def _ext_include(self, words, body) -> str:
         kv = _parse_kv(_single_line(body, "```include"), ("zip", "path"), "```include")
