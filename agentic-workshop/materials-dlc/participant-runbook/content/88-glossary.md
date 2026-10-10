@@ -8,7 +8,7 @@ section: 參考
 
 # 詞彙表
 
-本表整理這堂延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）常用詞彙的意思。DDD（Domain-Driven Design，領域驅動設計）概念不另開理論課，這裡只寫到「今天操作時夠用」的程度；每個詞第一次真正用到時，該檢查點有「新概念」說明框，這裡標出「首次出現」的位置，方便回頭找；各需求的業務名詞，以該段解鎖後的需求卡為準。
+本表整理這堂延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）常用詞彙的意思。DDD（Domain-Driven Design，領域驅動設計）概念不另開理論課，這裡只寫到「今天操作時夠用」的程度。每個詞第一次真正用到時，該檢查點有「新概念」說明框；表中的「首次出現」標出那個位置，方便回頭找。各需求的業務名詞，以該段解鎖後的需求卡為準。
 
 ## DDD 概念
 
@@ -17,7 +17,7 @@ section: 參考
 | DDD（Domain-Driven Design，領域驅動設計） | 先把業務的名詞、規則與責任分清楚，再讓程式結構跟著業務邊界走的設計方法。今天只用到本節列出的幾個概念。首次出現：歡迎與使用方式。 | Evans《Domain-Driven Design》；Vernon《Implementing Domain-Driven Design》〈Getting Started with DDD〉 |
 | 通用語言（Ubiquitous Language） | 在同一個 Context 內，團隊、文件、程式與測試對同一件事使用同一個名字與定義；不同 Context 可以用同一個詞指不同的東西。今天以 Registry 的 vocabulary（詞彙）記錄；同一件事兩個名字、或文件有而程式沒有，都是要記下的發現。例：D3b 要確認需求卡說的「優惠」和 Registry 裡的優惠詞彙是不是同一件事。首次出現：D1 檢查點 3。 | Evans《Domain-Driven Design》〈Communication and the Use of Language〉 |
 | Bounded Context（限界上下文，簡稱 Context） | 一個名詞或規則「在這個範圍內意思一致」的邊界，通常對應一群負責同一類決定的程式。今天以 Registry 的 contexts 記錄，每個 Context 寫「它決定什麼」。例：「訂單」在付款和開發票時關心的欄位不同，可能屬於不同 Context。首次出現：D1 檢查點 4。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
-| owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的那個 Context。例：D3a 要決定「發票」由哪個 Context 負責；其他 Context 只能透過約定取用。首次出現：D3a 檢查點 2。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
+| Owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的那個 Context。例：D3a 要決定「發票」由哪個 Context 負責；其他 Context 只能透過約定取用。首次出現：D3a 檢查點 2。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
 | Context Map／邊界協作 | Context 之間誰提供、誰使用、交換什麼。`analyze-boundary` 列出已登記的協作；回 `no_registered_collaboration` 表示沒有登記，不代表程式裡沒有互相讀寫。首次出現：D1 檢查點 6。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
 | Contract（約定） | Context 之間約定交換的資料或介面；另一方只能透過它取得資料，不直接碰對方內部。例：付款 Context 只透過約定好的「付款結果」通知發票 Context。首次出現：D1 檢查點 5。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
 | 邊界洩漏 | 一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式。例：計價程式直接改會員的點數欄位。首次出現：D1 檢查點 6。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
@@ -32,27 +32,27 @@ section: 參考
 
 | 詞彙 | 今天的用法 | 出處 |
 |---|---|---|
-| Plugin（外掛套件） | 裝進 Agent 的擴充工具組。今天的 domain-memory Plugin 提供查詢、登記與審查領域知識的指令；開場時以 ZIP 發給你，並核對 SHA256。首次出現：開場與環境 檢查點 2。 | `vendor/domain-memory/references/packaging.md`〈Packaging modes〉 |
-| Domain Memory／Registry | 存在 Repo 的 `domain-memory/` 資料夾、以 JSON 檔保存的領域知識，包含：審查政策（policy）、可當證據的檔案清單（source map）、一筆筆紀錄（registry）與稽核紀錄（audit）。首次出現：D1 檢查點 2。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
+| Plugin（外掛套件） | 裝進 Agent 的擴充工具組。今天的 domain-memory Plugin 提供查詢、登記與審查領域知識的指令；開場時以 ZIP 發給你，並核對 SHA256。首次出現：開始之前（歡迎與使用方式）。 | `vendor/domain-memory/references/packaging.md`〈Packaging modes〉 |
+| Domain Memory／Registry | Domain Memory 是經人審查、存在 Repo 裡的領域知識；Registry 是它的資料檔，放在 `domain-memory/` 資料夾、以 JSON 檔保存，包含：審查政策（policy）、可當證據的檔案清單（source map）、一筆筆紀錄（registry）與稽核紀錄（audit）。首次出現：開始之前（歡迎與使用方式）；資料夾在 D1 檢查點 2 建立。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | record（紀錄）與 `asset:id` | Registry 裡的一筆資料，例如一個 Context、一個詞彙、一條規則或一個 Aggregate，每筆都有 `id` 與 `evidence`。引用時寫成 `asset:id`：前半是類別（`contexts`、`vocabulary`、`rules`、`aggregates`…），後半是編號，例如 `rules:FARE-005`。首次出現：D1 檢查點 3。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
-| `usage`／working-memory | `get-context` 輸出開頭的欄位，反映 Registry 的審查模式：`local-draft-only` 時是 `working-memory`（整份只能參考），改成 `scm-verified` 後是 `constraint`。它不代表每筆紀錄都已核准；某一筆是候選還是已審查，要看那筆紀錄自己的 `status`。首次出現：D1 檢查點 6。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
+| `usage`／working-memory | `get-context` 輸出開頭的欄位，反映 Registry 的審查模式：`local-draft-only` 時是 `working-memory`（整份只能參考），改成 `scm-verified` 後是 `constraint`（限制：已審查的紀錄可以當成必須遵守的規則）。它不代表每筆紀錄都已核准；某一筆是候選還是已審查，要看那筆紀錄自己的 `status`。首次出現：D1 檢查點 6。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
 | 來源（source）／source map | 人確認過、可以當證據的路徑清單與它們的快照。之後新增、刪除或改名檔案，`verify-sources` 會回報 `stale`。例：D3 在 `src/` 新增檔案後，來源就不再是 D1 確認的那一份。首次出現：D1 檢查點 1。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Before Step 0: Map repository sources〉 |
 | agent-asserted／developer-confirmed | 來源清單的確認狀態。agent-asserted：Agent 自己認定、尚未經人確認；developer-confirmed：已由開發者確認（D1 做的事）。首次出現：D1 檢查點 2。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
 | 證據（evidence）／`cite` | 指向某個檔案第幾行到第幾行、並帶內容雜湊的引用。引用的行被改過，`verify-evidence` 會回報 `stale`。首次出現：D1 檢查點 3。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 過期（stale）／不存在（missing）／格式錯誤（invalid） | 驗證指令的結果狀態。stale：引用的那幾行內容和當初記錄的不同了（檔案其他地方改動不算）；missing：引用的檔案已不存在；invalid：引用寫法不對，或行號超出檔案現在的長度。仍一致時顯示 current。`verify-sources` 的 stale 意思不同：表示來源資料夾裡有檔案被新增、刪除或改名。stale 不一定是錯，常常只是「程式改了，紀錄還沒跟上」。首次出現：D1 檢查點 3。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 候選（candidate） | 有證據、但還沒經過核准的主張。Agent 或任何人登記的新內容都是候選，不可當成限制或事實。首次出現：D1 檢查點 3。 | `vendor/domain-memory/references/reliability-architecture.md`〈State model〉 |
 | upsert | 「有就更新、沒有就新增」。`make_record.py --upsert` 把紀錄寫成候選；候選可以用同一個 id 再寫一次，已審查的不行。首次出現：D1 檢查點 4。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
-| 已審查（reviewed） | 已由另一人核准的正式事實，Agent 可以當成限制。要經過變更審查包、他人核准、簽章 commit 與 `apply-approved-updates` 才會升級；之後不能直接覆寫，只能由下一次核准的提案取代。首次出現：D2 檢查點 6。 | `vendor/domain-memory/references/proposal-lifecycle.md`〈Proposal lifecycle〉 |
+| 已審查（reviewed） | 已由另一人核准的正式事實，Agent 可以當成限制。要經過變更審查包、他人核准、簽章 commit 與 `apply-approved-updates` 才會升級；之後不能直接覆寫，只能由下一次核准的提案取代。首次出現：D2 檢查點 3。 | `vendor/domain-memory/references/proposal-lifecycle.md`〈Proposal lifecycle〉 |
 | 成對核准 | 一人提案（Proposer）、另一人核准並做簽章 commit（Maintainer）的流程，D2 走過一次。候選要經過它才會變成已審查。首次出現：D2 開始前。 | 本課程〈D2 審查與核准（成對）〉 |
 | local-draft-only／scm-verified | Registry 的審查模式。local-draft-only：只能存候選；scm-verified：核准必須有版本控制（SCM）裡的證據，今天是簽章 commit。首次出現：D1 檢查點 2（scm-verified：D2 檢查點 2）。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
-| SCM（Source Code Management，原始碼管理，也就是版本控制） | 管理程式版本的系統，這裡指 Git。首次出現：D2 檢查點 5。 | Pro Git〈About Version Control〉 |
+| SCM（Source Control Management，版本控制，這裡指 Git） | 管理程式版本的系統，這裡指 Git。首次出現：D2 檢查點 5。 | Pro Git〈About Version Control〉 |
 | 變更審查包（Change Package，CP） | 一次變更的審查資料，放在 `domain-memory/changes/<id>/`，共四個 JSON：整理後的需求、修改提案、要通過的檢查、實際執行結果。例：D2 的 `CP-D2-001`。首次出現：D2 檢查點 3。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Step 7: Prepare, verify, and review the package〉 |
 | obligation（OB，要通過的檢查） | 一個驗收條件或規則對應的可觀察檢查，通常是一個測試指令。證據包記錄它實際執行的 exit code 與輸出雜湊。首次出現：D2 檢查點 3。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Step 6: Derive test obligations〉 |
 | 核准證明（attestation） | 寫進證據包、指向簽章 commit 的核准證據，證明核准發生在 Plugin 之外（Git 裡）。首次出現：D2 檢查點 5。 | `vendor/domain-memory/references/reliability-architecture.md`〈Approval and test attestations〉 |
-| 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了；`survived`：沒有測試守住它；`inconclusive`：逾時。做法類似變異測試（mutation testing）。首次出現：D2 檢查點 3。 | `vendor/domain-memory/references/script-api.md`〈Checks on the code being written〉 |
-| 交接單（Handoff） | 交給下一個 Agent 或同事的決策紀錄，共七段：Domain facts（領域事實）、Forces（考量與限制）、Decision（決定）、External systems（外部系統）、Unknowns（未知項）、Proof obligations（必須用測試證明的事）、Counterfactual check（反事實檢查結果）。首次出現：D3a（決策卡）；七段格式在 D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
-| Forces／Unknowns／Proof obligations | 交接單裡最容易寫錯的三段。Forces：影響這次決定的考量與限制，例如「發票失敗不能影響付款」；Unknowns：需求卡沒規定、還沒決定的事，例如「處理中太久怎麼辦」，不能讓 Agent 自己補；Proof obligations：每條規則要用哪個測試證明，例如「INV-1 → 某測試檔::某測試名稱」。首次出現：Unknowns、Proof obligations 在 D3a 檢查點 2（決策卡）；Forces 在 D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
-| audit（稽核）／`verify-audit` | 每次 Registry 變動都附加一筆、以雜湊串起的稽核事件。能看出被竄改，但不是外部不可變的紀錄。首次出現：D2 檢查點 6。 | `vendor/domain-memory/references/reliability-architecture.md`〈Update protocol〉 |
+| 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了；`survived`：沒有測試守住它；`inconclusive`：逾時（不算 killed 也不算 survived，縮小測試範圍後重跑）。改壞後沒有任何輸入分辨得出差別，叫等價，經人確認後標「未證明」；只是現有測試碰不到（例如測試的時鐘固定在某個時刻），不算等價，要補測試。做法類似變異測試（mutation testing）。首次出現：D2 檢查點 3。 | `vendor/domain-memory/references/script-api.md`〈Checks on the code being written〉 |
+| 交接單（Handoff）／D3 決策卡 | 交接單是交給 Agent 或同事的決策紀錄，存在 `docs/handoffs/`。D3 各段由 Agent 依「D3 決策卡」格式寫成交接單（需求卡、Domain facts、Owner Context、不變量、邊界與協作、Unknowns、Proof obligations 等段）。D4 的交接單給下一個 Agent，共七段：Domain facts（領域事實）、Forces（考量與限制）、Decision（決定）、External systems（外部系統）、Unknowns（未知事項）、Proof obligations（必須用測試證明的事）、Counterfactual check（反事實檢查結果）。首次出現：D3a 檢查點 2；七段格式在 D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
+| Forces／Unknowns（未知事項）／Proof obligations（必須用測試證明的事） | 交接單裡最容易寫錯的三段。Forces：影響這次決定的考量與限制，例如「發票失敗不能影響付款」；Unknowns：需求卡沒規定、還沒決定的事，例如「處理中太久怎麼辦」，不能讓 Agent 自己補；Proof obligations：每條規則要用哪個測試證明，例如「INV-1 → 某測試檔::某測試名稱」。首次出現：Unknowns、Proof obligations 在 D3a 檢查點 2（交接單）；Forces 在 D4 檢查點 3。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
+| 稽核紀錄（audit）／`verify-audit` | 每次 Registry 變動都附加一筆、以雜湊串起的稽核事件；`verify-audit` 回 `valid` 代表這條鏈沒被竄改。它只能發現竄改，不是放在別處、改不掉的紀錄。首次出現：D2 檢查點 6（說明框在 D4 檢查點 1）。 | `vendor/domain-memory/references/reliability-architecture.md`〈Update protocol〉 |
 | SHA256／雜湊 | 雜湊是由檔案內容算出的固定長度字串，像檔案的指紋；一個位元組被改，值就不同。SHA256 是常用的雜湊演算法。今天用它核對 Plugin 檔案、證據內容與稽核鏈。首次出現：開場與環境 檢查點 2。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
 | HITL（Human-in-the-loop，人工把關） | 流程中一定要有人看過並同意才能往下走。今天指 push 時檢查是否有人核准並簽章。首次出現：D2 檢查點 2。 | Anthropic Engineering〈Building effective agents〉 |
 
@@ -65,13 +65,13 @@ section: 參考
 | 編號前綴 | CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。EINV、PTS、PCR 分別是 D3a、D3b、D3c 需求卡的驗收條件編號。首次出現：D2 簽章流程清單。 | 本課程〈D2 簽章流程清單〉 |
 | ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件。D1 可以把它當成候選來源之一。首次出現：歡迎與使用方式。 | Michael Nygard〈Documenting Architecture Decisions〉 |
 | brownfield | 已有程式碼的既有專案（相對於從零開始的 greenfield）。今天的 Repo 是 brownfield，開場時 Plugin 會判定出這一點。首次出現：開場與環境 檢查點 3。 | Feathers《Working Effectively with Legacy Code》；`vendor/domain-memory/references/readiness.md`〈Project readiness〉 |
-| 提案者（Proposer） | D2 起的提案者：用自己的 Agent 對話整理變更審查包、送出提案、套用。不得核准自己的提案；提案者的 Agent 不 commit、不 push、不碰金鑰。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
-| 夥伴（Maintainer，持鑰人） | D2 起的夥伴、持鑰人：在同一台機器另開終端機與自己的 Agent 對話，建立簽章金鑰、決定授權誰簽章、核准並做簽章 commit 與 push。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
+| 提案者（Proposer） | D2 起的提案者：用自己的 Agent 對話整理變更審查包、送出提案、套用。不得核准自己的提案；提案者的 Agent 不 commit、不 push、不碰金鑰。首次出現：開場與環境 檢查點 4 之後的「為什麼 Git 使用者叫 DLC Proposer」說明框；分工見 D2 角色卡。 | 本課程〈D2 角色卡〉 |
+| 夥伴（Maintainer，持鑰人） | D2 起的夥伴、持鑰人：在同一台機器另開終端機與自己的 Agent 對話，建立簽章金鑰、決定授權誰簽章、核准並做簽章 commit 與 push。首次出現：開場與環境 檢查點 4 之後的「為什麼 Git 使用者叫 DLC Proposer」說明框；分工見 D2 角色卡。 | 本課程〈D2 角色卡〉 |
 | Observer（觀察員） | 三人一組時的第三人：看 D2 每一步是在誰的 Agent 對話裡執行，確認核准與簽章只發生在夥伴自己的對話。首次出現：D2 角色卡。 | 本課程〈D2 角色卡〉 |
-| ed25519／金鑰指紋（fingerprint） | ed25519 是一種數位簽章演算法（EdDSA 的一種），也是 SSH 常用的金鑰類型（新版 OpenSSH 的預設），今天用來簽 commit。金鑰指紋用來辨識是哪一把金鑰，可以公開；私鑰不可外流。首次出現：D2 檢查點 1。 | IETF〈RFC 8032 Edwards-Curve Digital Signature Algorithm (EdDSA)〉；OpenSSH 官方文件〈ssh-keygen〉 |
+| ed25519／金鑰指紋（fingerprint） | ed25519 是一種數位簽章演算法，也是 SSH 常用的金鑰類型（新版 OpenSSH 的預設），今天用來簽 commit。金鑰指紋用來辨識是哪一把金鑰，可以公開；私鑰不可外流。首次出現：D2 檢查點 1。 | IETF〈RFC 8032 Edwards-Curve Digital Signature Algorithm (EdDSA)〉；OpenSSH 官方文件〈ssh-keygen〉 |
 | 簽章 commit | 用 Maintainer 私鑰簽過名的 commit，證明是持鑰人提交的。今天以它作為核准證據。首次出現：D2 檢查點 1。 | Git 官方文件〈git-commit〉 |
 | Git hook／pre-push hook | Git hook 是 Git 在特定時機自動執行的腳本；pre-push hook 在 push 前執行，今天用它檢查有沒有核准與簽章。首次出現：開場與環境 檢查點 4。 | Git 官方文件〈githooks〉 |
-| bare repo（本機模擬的遠端倉庫） | 只存 Git 歷史、沒有工作檔案的倉庫。今天在本機建一個代替伺服器，用來練習 push 與 pre-push 檢查。首次出現：D2 檢查點 6。 | Git 官方文件〈git-init〉 |
+| bare repo（本機模擬的遠端儲存庫） | 只存 Git 歷史、沒有工作檔案的儲存庫。今天在本機建一個代替伺服器，用來練習 push 與 pre-push 檢查。首次出現：D2 檢查點 6。 | Git 官方文件〈git-init〉 |
 | venv（Python 虛擬環境） | 以電腦上已安裝的 Python 為基礎、每個專案各自獨立的一套套件，放在 `.venv` 資料夾，不影響其他專案。首次出現：開場與環境 檢查點 1。 | Python 官方文件〈venv — Creation of virtual environments〉 |
 | 提示詞／紀錄檔（`notes/`） | 今天每個檢查點都給一段可直接複製的提示詞：貼給 Agent，它執行指令、白話回報，需要決定時停下等你短短回一句。結果由 Agent 寫進 Repo 的紀錄檔：各段 `notes/<段落>.md`，決策卡與交接單在 `docs/handoffs/`。首次出現：歡迎與使用方式。 | 本課程〈歡迎與使用方式〉 |
 | `dm.ps1`／`dm.sh` | 學員包 `tools/` 中呼叫 domain-memory Plugin 的捷徑腳本（PowerShell 用 `dm.ps1`，Git Bash 用 `dm.sh`），由 Agent 依提示詞執行。它會自動補上 Python 版本、UTF-8 與 Registry 位置等參數；`--save 檔案` 以 UTF-8 存輸出。首次出現：開場與環境 檢查點 3。 | 本課程〈延伸課程輔助工具〉（`tools/README.md`） |
@@ -79,4 +79,11 @@ section: 參考
 | `fill_package.py` | 由一份精簡描述 JSON 填寫變更審查包，並實際執行每個測試。首次出現：D2 檢查點 3。 | 本課程〈延伸課程輔助工具〉（`tools/README.md`） |
 | `write_scm_attestation.py` | 把已簽章的 commit 寫成核准證明（attestation）。首次出現：D2 檢查點 5。 | 本課程〈延伸課程輔助工具〉（`tools/README.md`） |
 | `doctor.py` | 檢查 Python、UTF-8、PATH 上的 python、Git、ssh-keygen 與 Plugin 版本等環境問題。首次出現：開場與環境 檢查點 4。 | 本課程〈延伸課程輔助工具〉（`tools/README.md`） |
-| Recovery | 落後時由主持人個別提供的接續起點。使用 Recovery 不算自己完成前一段。首次出現：歡迎與使用方式。 | 本課程〈歡迎與使用方式〉 |
+| Recovery（復原包） | 進度落後時改用的接續基線，由主持人個別提供解鎖碼；內容是前一段做完時的 Repo 與 Registry，另開一個 `resume-` 資料夾接續。使用 Recovery 不算自己完成前一段。首次出現：歡迎與使用方式。 | 本課程〈歡迎與使用方式〉 |
+| `repo.bundle` | Recovery 附上的 Git 歷史，把整個 Repo 的 commit 打包成一個檔案；還原時用 `git fetch` 取回，D2 起的簽章 commit 也在裡面。首次出現：D1 Recovery 切換。 | Git 官方文件〈git-bundle〉 |
+| `amend-policy`／`authorized_signers` | `amend-policy` 修改審查政策的一個欄位，並留下稽核事件；`authorized_signers` 是政策裡「誰的簽章算數」的清單，今天只放夥伴金鑰的指紋。首次出現：D2 檢查點 2。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
+| `record-approval` | 記錄夥伴核准決定的 Plugin 指令：寫下審查者角色、身分與範圍，拒絕自己核准自己。今天只由夥伴的 Agent 執行。首次出現：D2 開始前。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
+| `governance-readiness` | 回報核准機制還缺什麼（例如還沒授權簽章者、這台機器還沒裝 pre-push hook）；`ready` 才算設好。首次出現：D2 檢查點 2。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
+| `verify-git-governance` | 檢查一個 commit 的簽章有效、而且簽章者在審查政策的授權清單裡；通過時印 `Git governance is valid.`。首次出現：D2 檢查點 5。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
+| `get-record`／`resolve-terms` | `get-record` 依類別與 id 取出一筆紀錄，查不到就失敗，用來確認某個 id 真的存在；`resolve-terms` 用一句話查詞彙，句子裡要有詞彙的完整名稱或 id 才會命中。首次出現：D1 檢查點 5（resolve-terms）、D2 檢查點 4（get-record）。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
+| reach 提醒（`NOTE: … That is reach, not an error.`） | `make_record.py` 的英文提醒：證據檔不在 D1 確認過的來源清單裡，不是錯誤，照樣登記為候選；之後要把那個檔案記進交接單的 Unknowns。首次出現：D3a 檢查點 5。 | 本課程〈延伸課程輔助工具〉（`tools/README.md`） |

@@ -2,11 +2,11 @@
 
 > 讀者：DDD（Domain-Driven Design，領域驅動設計）延伸課程學員與你的 Agent。使用時機：D1 檢查點 3–6（D1–D4 是今天四段的代號；步驟見 Runbook（課堂操作手冊）D1 頁）。Agent 提草稿與證據，你回一句話決定；Agent 再依這裡的格式寫紀錄。格式已寫在 Runbook 的提示詞裡，不用另外貼。
 
-候選（candidate）是「有證據的主張」，還不是事實。每一筆都要有至少一段 `路徑:起-迄` 證據（例如 `src/smart_ticket/domain/discounts.py:30-31`，表示該檔第 30 到 31 行），而且證據要落在已確認的來源內：`docs/requirements/`、`docs/adr/`、`src/`，以及 `tests/` 底下的 `test_*.py`（`conftest.py` 不算）。數量下限：**詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2**。
+這頁的 Context 是 Bounded Context（名詞與規則意思一致的範圍）的簡稱。候選（candidate）是「有證據的主張」，還不是事實。每一筆都要有至少一段 `路徑:起-迄` 證據（例如 `src/smart_ticket/domain/discounts.py:30-31`，表示該檔第 30 到 31 行），而且證據要落在已確認的來源內：`docs/requirements/`、`docs/adr/`、`src/`，以及 `tests/` 底下的 `test_*.py`（`conftest.py` 不算）。數量下限：**詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2**。
 
 ## 要 Agent 先找的三種情況
 
-它們是 Domain Memory 最有價值的地方，不要讓 Agent 自己「修好」再寫進去：
+它們是 Domain Memory（`domain-memory/` 資料夾裡記下的領域知識）最有價值的地方，不要讓 Agent 自己「修好」再寫進去：
 
 - **同一件事兩個名字**：文件說的名字，在程式裡是不是同一個東西？
 - **文件有、程式沒有**：需求文件或 ADR 裡的名詞，在程式裡找不到對應的類別或函式。
@@ -20,7 +20,7 @@
 
 ## `d1-records.json`（Agent 寫，放在 Repo 根目錄）
 
-一個 JSON 陣列，**Context 放在最前面**，因為詞彙與規則會參照它。`make_record.py` 會替每一段 `evidence` 呼叫 `cite`，記下那幾行內容的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同），之後內容被改就能發現。
+一個 JSON 陣列，**Context 放在最前面**，因為詞彙與規則會參照它。`make_record.py` 會替每一段 `evidence` 呼叫 Plugin 的 `cite` 指令，記下那幾行內容的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同），之後內容被改就能發現。
 
 ```json
 [
@@ -35,5 +35,5 @@
 ```
 
 - 同義詞或「不是同一件事」可加欄位：`"synonyms": ["別名"]`、`"not_same_as": ["另一個詞彙 id"]`。
-- 同一個詞在兩個 Context 意思不同時，各登記一筆（不同 id），並用 `not_same_as` 互相標示；只有兩個 Context 確實共用同一個定義時，才在 context 列兩個：`"context": ["pricing", "booking"]`。
-- 證據段落越短越好，只框住支持這句話的那幾行。上例取自輔助工具說明，行號以實際檔案為準。
+- 同一個詞在兩個 Context 意思不同時，各登記一筆（不同 id），並用 `not_same_as` 互相標示。只有兩個 Context 確實共用同一個定義時，才在 context 列兩個：`"context": ["pricing", "booking"]`。
+- 證據段落越短越好，只框住佐證這句話的那幾行。上例取自輔助工具說明，行號以實際檔案為準。

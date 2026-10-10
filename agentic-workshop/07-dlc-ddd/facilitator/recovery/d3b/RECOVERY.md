@@ -1,6 +1,6 @@
 # D3b Recovery
 
-內容：D2 的 reviewed Registry，加上 D3b 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「D3b：點數折抵（Recovery 參考實作）」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。
+內容：D2 的 reviewed Registry，加上 D3a＋D3b 的參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「D3b：點數折抵（Recovery 參考實作）」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。
 
 使用 Recovery 不算自己完成 D3b。學員照 Runbook「D3b Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。
 

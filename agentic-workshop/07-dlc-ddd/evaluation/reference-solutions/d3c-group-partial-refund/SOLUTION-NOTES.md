@@ -122,7 +122,7 @@ D3b 原有的 156 個測試一個都沒改，全部通過（含 `test_refunds.py
 
 ## 4. 反事實檢查（counterfactual）
 
-每條新規則各破壞一次、跑聚焦測試、還原。37／38 killed，`failing_evidence` 皆為斷言失敗（不是 import／語法錯誤），`restoration_result.restored` 皆為 true；1 個是可證明的等價 mutant（在 Seed 下）。JSON 在 `evidence/counterfactual/`，重跑用 `evidence/run_counterfactuals.py`。
+每條新規則各破壞一次、跑聚焦測試、還原。37／38 killed，`failing_evidence` 皆為斷言失敗（不是 import／語法錯誤），`restoration_result.restored` 皆為 true；1 個存活（D 用 datetime 相減），依 D3 工作規則第 11 條判定為測試不足，不是等價 mutant（見下）。JSON 在 `evidence/counterfactual/`，重跑用 `evidence/run_counterfactuals.py`。
 
 | AC | 規則 | 破壞方式 | 結果 |
 |---|---|---|---|
@@ -142,7 +142,7 @@ D3b 原有的 156 個測試一個都沒改，全部通過（含 `test_refunds.py
 | PCR-004 | 逐位取整 | `sum(fee(f))` → `fee(sum(f))` | killed（**只有兩位學生 314 vs 315** 抓到） |
 | PCR-004 | 以自己的票價 | 改為 `total_fare // 人數` 平均 | killed（**只有成人＋學生混合團**抓到） |
 | PCR-004 | D 的計算 | `.days` → `.days + 1` | killed |
-| PCR-004 | D 以日期計 | 改為 `(departure_time − clock.now()).days` | **survived，等價**（見下） |
+| PCR-004 | D 以日期計 | 改為 `(departure_time − clock.now()).days` | **survived，測試不足**（見下） |
 | PCR-005 | 剩 0 人可以 | 移除 `0 <` | killed |
 | PCR-005 | 下限 5 | `MIN_GROUP_SIZE = 5` → `4` | killed |
 | PCR-005 | 鎖內檢查並標記 | `cancel_passengers` 的 `with self.store.lock:` → `if True:` | killed（並發 6 筆全成功） |
@@ -165,7 +165,7 @@ D3b 原有的 156 個測試一個都沒改，全部通過（含 `test_refunds.py
 
 教學提示（值得在 Review 時拿出來討論「測試證明的是什麼」）：
 
-- **D 用日期還是 datetime 是 Seed 下的等價 mutant**（`days-by-datetime-EQUIVALENT-survived.json`，23 個 PCR 測試全過）。Clock 的 `now()` 固定 09:00、所有班次 09:00 出發，所以「日期相減」與「時間差取整天」對所有可設定的 Clock 都相同。卡片的定義（台灣日期相減）是對的；只是現有 Clock 無法設定時刻，測試不可能區分。改成 UTC 日期計算同理。這是「規則對、但無法被觀察」的好例子，不是測試漏洞。
+- **D 用日期還是 datetime 的 mutant 存活，是測試不足**（23 個 PCR 測試全過）。現有 FixedClock 的 `now()` 固定 09:00、只能設日期，所有班次 09:00 出發，所以現有測試分辨不出「日期相減」與「時間差取整天」；但測試把 `clock.now` 換成出發時刻之後（例如 09:01）就分辨得出，所以不是等價 mutant（依 D3 工作規則第 11 條）。卡片的定義（台灣日期相減）是對的，缺的是一個調整時刻的測試；改成 UTC 日期計算同理。證據檔名 `days-by-datetime-EQUIVALENT-survived.json` 反映的是先前的判定，為了可追溯而保留原名。
 - **卡片範例全是成人團（或單人）**：6 成人 × 700 × 30% = 1,050 剛好整除，平均票價也等於每人票價。所以「在總額上取整一次」與「以 `total_fare` 平均分攤」兩個最常見的錯誤，**只測卡片範例時都會存活**。只有混合團（成人＋學生）與「兩位學生一起取消」（157.5 × 2）能抓到。
 - **整筆退票路徑是本卡最容易漏的地方**：沒有任何 AC 直接說「整筆退票要把旅客記為已取消」，但沒有它，PCR-008「任何時刻」在整筆退票後就不成立；沒有 PCR-012 的守門，「先取消 1 位退 490，再整筆退 4,200」會多退錢。
 - **`refunds-of-this-booking`** 在只有一個團體有退款時會存活；測試必須讓另一筆訂票也有退款紀錄。

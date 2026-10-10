@@ -6,11 +6,11 @@ group: dlc-rec-d1
 section: D1｜共同語言與邊界
 ---
 
-# D1 Recovery：按需接續
+# D1 Recovery：視需要接續
 
-主持人確認需要接續時，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。內容是：起始 Repo，加上已確認的來源與一組 D1 候選（仍是候選，尚未審查）。使用 Recovery **不代表你們自己完成了 D1**，下方提示詞會請 Agent 如實記錄：拿到 Recovery 的分鐘、原因、自己完成到哪裡。本頁沒有表單。
+主持人確認需要接續時，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。Recovery（復原包：進度落後時改用的接續基線）的內容是：起始 Repo，加上已確認的來源與一組 D1 候選（仍是候選，尚未審查）。使用 Recovery **不代表你們自己完成了 D1**，下方提示詞會請 Agent 如實記錄：拿到 Recovery 的分鐘、原因、自己完成到哪裡。本頁沒有表單。
 
-切換分兩步：先在原本的 Agent 對話保存成果並解出 Recovery，再到新資料夾開一個新的 Agent 對話接續。原本的 Repo 不改名、不覆寫、不刪除。D1 還沒有簽章，兩步都沒有 commit：Recovery 附上的 Git 歷史只有一個不含 `domain-memory/` 的「起始 Repo」commit，`domain-memory/` 還原後仍未追蹤，留給 D2 先設好簽章再 commit。
+切換分兩步：先在原本的 Agent 對話保存成果並解出 Recovery，再到新資料夾開一個新的 Agent 對話接續。原本的 Repo 不改名、不覆寫、不刪除。D1 還沒有簽章，所以兩步都不 commit。Recovery 附上的 Git 歷史只有一個「起始 Repo」commit，不含 `domain-memory/`。`domain-memory/` 還原後仍未追蹤，留到 D2 先設好簽章再 commit。
 
 ```download
 id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
@@ -50,7 +50,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 4. 用白話告訴我 resume-d1 的完整路徑、從原 Repo 複製了哪些資料夾，以及原 Repo 是否原封不動。做完停下。
 ```
 
-**看到什麼算過關**：`resume-d1` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d1` 的 `notes/d1.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。
+**看到什麼算過關**：`resume-d1` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d1` 的 `notes/d1.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是正常的。
 
 **如果卡住**（步驟 1 中途失敗、要重跑）：
 

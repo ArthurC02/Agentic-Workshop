@@ -83,7 +83,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 | 125 | `dlc-rec-d3b` | D3b 參考解答清理版（揭曉後） | Recovery |
 | 155 | `dlc-rec-d3c` | D3c 參考解答清理版（揭曉後） | Recovery |
 
-- Recovery 碼與一般碼分開、只按需公布；Recovery 不得作為小組成果評分。`dlc-rec-d3*` 只能在對應段揭曉頁之後公布。
+- Recovery 碼與一般碼分開、只視需要公布；Recovery 不得作為小組成果評分。`dlc-rec-d3*` 只能在對應段揭曉頁之後公布。
 - RECOVERY 接手會把維護者公鑰（allowed-signers 一行）複製到學員 `~/.dlc-keys`：僅公鑰，可接受。
 - Recovery 包只含可接續的 Repo（含 `domain-memory/`），不含觀察指引、評分表、counterfactual 證據原稿或任何 `evaluation/` 檔案。
 - 同一瀏覽器可同時開主課與 DLC Runbook：所有 localStorage 鍵必須以 `stwdlc:` 開頭，匯出檔名改為 `smart-ticket-dlc-runbook-<stamp>.zip`。
@@ -124,7 +124,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 每個情境依同一節奏：讀情境卡 → `get-context`／`resolve-terms` 取得 reviewed 事實 → 寫 D3 決策卡（owner Context、不變量、外部系統、未知項）→ 交 Agent 實作 → 測試 → 每條新規則跑 `counterfactual` → 以 `upsert-candidate` 登記新事實（候選，不得自稱 reviewed）。參考解答的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實候選；D3 不 finalize Change Package（見第 1 節第 13 項）。
 - 檢查點時窗：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分、D3c 步驟 4 為 6 分，屬已接受例外；緩解為情境卡 AC 的核心／延伸切分。
 
-- **D3a 電子發票（70–95）**：`InvoiceIssuer` 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；ACL 把 Order 翻譯為發票語言；付款成功不得因發票失敗回滾；以 order_id 冪等；不得持鎖做外部呼叫。驗收：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。
+- **D3a 電子發票（70–95）**：`InvoiceIssuer` 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；ACL 把 Order 翻譯為發票語言；付款成功不得因發票失敗撤銷；以 order_id 冪等；不得持鎖做外部呼叫。驗收：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。
 - **D3b 點數折抵（95–125）**：先決定 owner Context 並記錄理由；餘額不為負、折抵後應付 ≥ 0 且為整數、先折扣後折抵；建立時 reserve、付款失敗或取消時 restore，不重複扣點。驗收：一般、團體、改票三條計價路徑都有測試，付款失敗返點有測試。
 - **D3c 團體部分退款（125–155）**：Booking 為 Aggregate root，`cancel_passengers` 為唯一入口；累計退款 ≤ 已付金額；座位數 = 剩餘旅客數；同一旅客不得重複取消；全部取消等同整張退票。驗收：**每一條**新規則都有一次 killed 的 counterfactual 紀錄。
 

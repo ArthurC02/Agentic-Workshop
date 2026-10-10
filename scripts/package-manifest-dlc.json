@@ -18,7 +18,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/README.md",
-          "sha256": "195c88c798ec2fc24ce99100197b8325cd960ddd2b123b66079b3bc0df5c3d40"
+          "sha256": "922c769c7b227d789dca798faa478714117968854ad76a9790e67737d0b8bbf8"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitattributes",
@@ -323,7 +323,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "sha256": "af45bdcc6506974e93529abb37c56522594f226ff5f5db0b34510e9c1680c1db"
+          "sha256": "d83f7491526669c8111fc82c8b0f7321791f0d0cf38e9342836704459b4a5743"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -396,12 +396,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-model-canvas.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-model-canvas.md",
-          "sha256": "971d715a04152e8e57548a19c7dde87c12ef91d444019659d58148a0c3e0c7bd"
+          "sha256": "369e813f0a92db8762abc7af7f8db0ea7d10354e1f36a7b2bd7a227901dd8e78"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-source-selection.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d1-source-selection.md",
-          "sha256": "39064486bc416e0c514c14603055fbd5ff13bf81f8036562669761508ab16fbb"
+          "sha256": "a7b0cda79a5c3acc75af7cb5c10564c21c52404017441f289f9d563abd63cc75"
         }
       ],
       "generated": {}
@@ -419,12 +419,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
-          "sha256": "efaa2b7c24b07d7fe2afe8b9de039ca37671dae729cf899c9ce7e7ad934d876a"
+          "sha256": "89e02c3a728b578d5a6024d8b0c563028bdd0f96ca36453ab7577640540426f8"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
-          "sha256": "ffc68630f8c4663493832f17f313edbf3369177fb839ff1aed6ab64217c7b611"
+          "sha256": "1a1383bedc989eda5362cb3cbced654d8a7892b2043368ac9a6f62b6e7570847"
         }
       ],
       "generated": {}
@@ -443,12 +443,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md",
-          "sha256": "3ca61e5829e26a5cbc9925f3c40cbd0dcd9efc712801459ccdda09393eaca178"
+          "sha256": "697501cb287bf13749ca7e65e318d681a27e5757e49c643712277cc056d36b39"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
-          "sha256": "0cdaf0a6ca41d8e18afb880c7b4652c03bc9372971222096f505590db14fa989"
+          "sha256": "95fb10cbbf13fecd2d374cf9fa6653f365af4fb8a9a010157062fa1d02d4be2c"
         }
       ],
       "generated": {}
@@ -466,7 +466,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
-          "sha256": "0ef74d3dc6df296e32e8d07eb2e0003f860432512abc25ab920d9b1f33d32906"
+          "sha256": "50ac461941671b5e4baa7ecb5b421033f5f1ab58870f6b024d46eb9d456fb834"
         }
       ],
       "generated": {}
@@ -484,7 +484,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/03-group-partial-refund.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/03-group-partial-refund.md",
-          "sha256": "971af1bdba461fb3dae82af6b567d4d0cfcffcffa71950ca09646b233a1f7a8b"
+          "sha256": "aac1e82addec26004b13ad1c446252d5c4b6dc52cc2d2eb84826c60637712322"
         }
       ],
       "generated": {}
@@ -502,7 +502,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
-          "sha256": "f2580182d05eb21983b161ea3e856a21810f814e2c9a35dfb48e52bbf39ae513"
+          "sha256": "367a7a85372a8f49191acd25ad0abc50406221deba3fda9e76b3c6ce8f398cc7"
         }
       ],
       "generated": {}
@@ -1830,7 +1830,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "recovery-dlc-d3b/RECOVERY.md",
-          "sha256": "29449a385e29110f751a44679c4d0213b40b33fdcba34b0452770be7437d95c3"
+          "sha256": "0013b89b15810bc0c42938086e06a000b75418d7999582965f79c64e9317a39f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -2302,7 +2302,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "recovery-dlc-d3c/RECOVERY.md",
-          "sha256": "041a3d7b4dc3fc4e8d2171fb49bf627b0d2b399847699dc0b625afc28d194b06"
+          "sha256": "9d756abc3b51513fae538897e3ff966bde9376bafa2c2519ecd65f5747648405"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -2785,7 +2785,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "52ef9ea36333c04d6098b53d13244447a32b80bbe1ef60efd93985d4efc841ce"
+          "sha256": "df6919cbf55b6457e69d4440b43633a545c895387480bd702c32e0cd5631561b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -4045,7 +4045,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
-          "sha256": "29449a385e29110f751a44679c4d0213b40b33fdcba34b0452770be7437d95c3"
+          "sha256": "0013b89b15810bc0c42938086e06a000b75418d7999582965f79c64e9317a39f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -4500,7 +4500,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
-          "sha256": "041a3d7b4dc3fc4e8d2171fb49bf627b0d2b399847699dc0b625afc28d194b06"
+          "sha256": "9d756abc3b51513fae538897e3ff966bde9376bafa2c2519ecd65f5747648405"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -4970,7 +4970,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
-          "sha256": "20ad1751f885933248f4216abf89422a539b82e92bdb0d4feafbb60551b132d0"
+          "sha256": "d697e329574e9d518caf2860c206d3d93cfbf524fb6726aa05c679726d017c99"
         }
       ],
       "generated": {}
@@ -4988,7 +4988,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
-          "sha256": "68e70659890d02648e532a84e1816f730505784a68f642dcc8725d6acd3a8efe"
+          "sha256": "0cbcb7eb27830611d741b9747ff41eb7c0da79ad106bb8891e149fb1181f74bd"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
@@ -4998,7 +4998,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "dafa4a67b457fe8569d5c2ad785296f0bdf0ac33bd9a77962bee217877f551f1"
+          "sha256": "bde3e0c5b11500c8fa9fe8e15b7d7a365631d3b82ecd93b8e7809366be6d3b26"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -6313,7 +6313,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
-          "sha256": "443cf83cdb768c8db10efed8745681560f763bf5d465c56da423c4c9f53ec425"
+          "sha256": "f17c29ea11ea780c48b419c08e20336a9ba834a6f029b208ad7559b4c3e852bf"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/docs/adr/001-use-in-memory-repositories.md",

@@ -1,6 +1,6 @@
 ---
 id: d3-decision-card
-title: D3 決策卡（實作 Handoff）
+title: D3 決策卡（交接單格式）
 minute: 70-155
 group: dlc-d3a
 section: D3｜受治理的變更

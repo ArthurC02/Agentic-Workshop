@@ -8,7 +8,7 @@
   <p class="muted">接下來 30 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註按需私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
   </aside>
 </section>
 
@@ -25,20 +25,20 @@
     <li data-seg="dlc-d3c"><span class="tl-min">27:00</span><b>6 · 停手與揭曉對照</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D3c 團體部分退款：30 分鐘、六個檢查點。這次主題是 Aggregate：一致性邊界畫在哪？每一條新規則都要有 counterfactual。時間不夠就先做 Aggregate 與兩條規則。」</p>
+    <p><b>說（約 20 秒）</b>：「D3c 團體部分退款：30 分鐘、六個檢查點。這次主題是 Aggregate：一致性邊界畫在哪？每一條新規則都要做反事實檢查。時間不夠就先做 Aggregate 與兩條規則。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>重點</b>：Booking 為 Aggregate root，<code>cancel_passengers</code> 為唯一入口；累計退款 ≤ 已付金額；座位數 = 剩餘旅客數；同一旅客不得重複取消；全部取消等同整張退票。</p>
-    <p><b>驗收</b>：<b>每一條</b>新規則都有一次 killed 的 counterfactual 紀錄。</p>
-    <p><b>降級</b>：允許只完成 Aggregate 與兩條規則（R2）。手續費與時間門檻以需求卡為準，不自創。</p>
+    <p><b>驗收</b>：<b>每一條</b>新規則都有一次 killed 的反事實檢查紀錄。</p>
+    <p><b>時間不夠時</b>：只完成 Aggregate 與兩條規則也算合格。手續費與時間門檻以需求卡為準，不自創。</p>
     <p><b>範圍（解鎖時就宣布）</b>：核心 PCR-001、003～009、011、012；延伸 PCR-002 完整驗證、010、013、014 與 passenger_id 唯一性。卡上的「API」小節先講（<code>cancel-passengers</code> 路徑、<code>cancelled_passenger_ids</code>、退款紀錄查詢）。</p>
-    <p><b>時間（三張卡最重）</b>：參考解答 +141 行、唯一需要改既有資料結構的一張；核心切片勉強放得下。第 142 分沒做完也進 counterfactual，第 148–152 分的 Review 不可壓縮，本卡的教學重點全在 Review。</p>
-    <p><b>Recovery</b>：參考設計揭曉之後，才可公布 <code data-code="dlc-rec-d3c"></code>（D3c 參考解答清理版）。</p>
+    <p><b>時間（三張卡最重）</b>：參考解答 +141 行、唯一需要改既有資料結構的一張；核心切片勉強放得下。第 142 分沒做完也進反事實檢查，第 148–152 分的 Review 不可壓縮，本卡的教學重點全在 Review。</p>
+    <p><b>Recovery</b>：參考設計揭曉之後，才可視需要私下提供 <code data-code="dlc-rec-d3c"></code>（D3c 參考解答清理版）。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-d3c" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="125">
   <p class="kicker">檢查點 1 / 6 · 第 125–128 分鐘</p>
-  <h2 class="title">讀需求卡，向 Memory 取已審查事實</h2>
+  <h2 class="title">讀需求卡，向 Domain Memory 查已審查事實</h2>
   <ol class="steps">
     <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
     <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
@@ -58,9 +58,9 @@
   <p class="kicker">檢查點 2 / 6 · 第 128–133 分鐘</p>
   <h2 class="title">決策卡：Aggregate root、不變量、邊界</h2>
   <ol class="steps">
-    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，附 Registry 或程式證據</li>
+    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，各附 Domain Memory 或程式的證據</li>
     <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
-    <li>Agent 寫成決策卡、列出不變量；確認後回「同意」</li>
+    <li>Agent 寫成決策卡，列出不變量（任何時候都必須成立的規則）；確認後回「同意」</li>
   </ol>
   <p class="callout warn">Runbook › D3c 團體部分退款 › 檢查點 2 · 討論後回覆選擇</p>
   <aside class="notes">
@@ -78,7 +78,7 @@
   <ol class="steps">
     <li>貼提示詞：Agent 依交接單<b>先提計畫</b>，你們回「同意」才動手</li>
     <li>分兩段實作；每段看<b>實際</b>測試結果再回「繼續」</li>
-    <li>每條新規則各寫測試；既有『只能退一次』測試改寫要記錄理由</li>
+    <li>每條新規則各寫測試；只能改寫交接單列出的既有測試，每個都要寫理由</li>
   </ol>
   <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 3 · 貼提示詞</p>
   <aside class="notes">
@@ -111,8 +111,8 @@
   <p class="kicker">檢查點 5 / 6 · 第 148–152 分鐘</p>
   <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Agent 用 <code>git status</code>、<code>git diff</code> 與測試回答四個審查問題</li>
-    <li>你們同意後，Agent 用 <code>make_record.py</code> 登記，<b>仍是候選</b></li>
+    <li>Agent 對照程式差異與測試結果，回答四個審查問題</li>
+    <li>你們同意後，Agent 把新事實登記為<b>候選</b>（還不是已審查）</li>
     <li>夥伴在<b>自己的 Agent 對話</b>簽章 commit；第 152 分停手</li>
   </ol>
   <p class="callout">Runbook › D3c 團體部分退款 › 檢查點 5 · 看審查答案後回「同意」</p>
@@ -150,7 +150,7 @@
   </div>
   <aside class="notes">
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
-    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可按需私下提供 Recovery 碼（<code data-code="dlc-rec-d3c"></code>）；不在投影或群組公開。</p>
+    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可視需要私下提供 Recovery 碼（<code data-code="dlc-rec-d3c"></code>）；不在投影或群組公開。</p>
   </aside>
 </section>
 
@@ -181,7 +181,7 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3c" data-title="揭曉 · D3c 不變量與 counterfactual" data-minute="154">
   <p class="reveal-badge">揭曉 · D3c 團體部分退款</p>
-  <h2 class="title">D3c 不變量與每條規則的 counterfactual</h2>
+  <h2 class="title">D3c 不變量與每條規則的反事實檢查</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">恆等式</span>
@@ -199,8 +199,8 @@
   <aside class="notes">
     <p><b>說</b>：請學員報告哪些規則已有 killed、哪些還沒有；沒有的就是還沒被證明。</p>
     <p><b>教學 mutant</b>：卡上範例全是成人（6 × 700 × 30% 整除，平均票價＝每人票價），所以「總額上取整一次」只有兩位學生一起取消（314 vs 315）抓得到，「以 <code>total_fare</code> 平均分攤」只有成人＋學生混合團抓得到。D 用 datetime 相減在 Seed Clock（09:00、班次 09:00）下會存活，但它不是等價 mutant：只要測試把 Clock 調到出發時刻之後（例如 09:01），就分辨得出改壞前後；08:59 仍分辨不出來（取整後的天數相同）。這是測試不足，應補一個調整 Clock 的測試；來不及就標「未證明」。</p>
-    <p>參考解答 37／38 killed，1 個存活紀錄（上述 datetime 相減：測試不足，不是等價）。</p>
-    <p>揭曉後才可公布 <code data-code="dlc-rec-d3c"></code>。</p>
+    <p>參考解答 37／38 killed，1 個存活紀錄（datetime 相減：測試不足）。</p>
+    <p>揭曉後才可視需要私下提供 <code data-code="dlc-rec-d3c"></code>。</p>
     <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
   </aside>
 </section>

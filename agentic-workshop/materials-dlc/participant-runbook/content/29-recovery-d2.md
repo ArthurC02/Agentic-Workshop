@@ -6,9 +6,9 @@ group: dlc-rec-d2
 section: D2｜審查與核准
 ---
 
-# D2 Recovery：按需接續
+# D2 Recovery：視需要接續
 
-主持人確認需要接續時，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。內容是：起始 Repo，加上已審查、簽章並套用的 Registry（全部是已審查（reviewed）事實）。使用 Recovery **不代表你們自己完成了 D2**，下面的提示詞會請 Agent 如實記錄。夥伴在步驟 2 會用自己的金鑰做一次真正的簽章 commit，等於補上 D2 最關鍵的那一步。
+主持人確認需要接續時，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。Recovery（復原包：進度落後時改用的接續基線）的內容是起始 Repo，加上已經審查、簽章並套用的 Registry（全部是已審查（reviewed）事實）。使用 Recovery **不代表你們自己完成了 D2**，下面的提示詞會請 Agent 如實記錄。夥伴在步驟 2 會用自己的金鑰做一次真正的簽章 commit，等於補上 D2 最關鍵的那一步。
 
 ```download
 id=recovery-dlc-d2 zip=recovery-dlc-d2.zip label=下載 D2 Recovery
@@ -18,8 +18,8 @@ id=recovery-dlc-d2 zip=recovery-dlc-d2.zip label=下載 D2 Recovery
 
 ```callout info
 新概念：Recovery 怎麼保住簽章規則
-Recovery 附上 Git 歷史（`repo.bundle`）：Registry 的 commit 都由 Maintainer 金鑰簽章，所以 D2「第一個含 `domain-memory/` 的 commit 必須簽章」在新資料夾仍然成立。包裡只有可公開的 Maintainer 公鑰（讓 Git 驗得了舊簽章），沒有私鑰；之後的 commit 由夥伴用自己的金鑰接手：像 D2 檢查點 2 一樣把自己的金鑰加入授權，再做一個簽章 commit。
-📖 延伸閱讀：Git 官方文件〈git-commit〉的 -S 選項說明；學員包 `tools/README.md`（金鑰位置與 pre-push hook）。
+Recovery 附上 Git 歷史（`repo.bundle`，把 Git 歷史打包成一個檔案）。裡面碰到 Registry 的 commit 都已用課程準備的 Maintainer 金鑰簽章，所以 D2 的規則「第一個含 `domain-memory/` 的 commit 必須簽章」在新資料夾仍然成立。包裡只有那把金鑰可公開的公鑰（讓 Git 能驗證舊簽章），沒有私鑰。之後由夥伴用自己的金鑰接手：像 D2 檢查點 2 一樣，把自己的金鑰加入授權，再做一個簽章 commit。
+📖 延伸閱讀：Git 官方文件〈git-commit〉的 -S 選項說明；學員包 `tools/README.md`（金鑰位置，以及 pre-push hook：push 前 Git 自動執行的檢查腳本）。
 ```
 
 ## 步驟 1 · 【提案者】保存原成果並解出 Recovery
@@ -56,7 +56,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 4. 用白話告訴我 resume-d2 的完整路徑、從原 Repo 複製了哪些資料夾，以及原 Repo 是否原封不動。做完停下。
 ```
 
-**看到什麼算過關**：`resume-d2` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d2` 的 `notes/d2.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。
+**看到什麼算過關**：`resume-d2` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d2` 的 `notes/d2.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是正常的。
 
 **如果卡住**（步驟 1 中途失敗、要重跑）：
 
@@ -108,18 +108,18 @@ fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf
 ../../tools/dm.sh governance-readiness
 )
 用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d2.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
-我同意後執行（Git Bash 把 ..\..\tools\dm.ps1 換成 ../../tools/dm.sh；docs 只會加入從原 Repo 複製來的 docs/handoffs/，沒有就不加）：
+我同意後執行（Git Bash 把 ..\..\tools\dm.ps1 換成 ../../tools/dm.sh；git add 裡的 docs 照寫：它只會加入從原 Repo 複製來的 docs/handoffs/，沒有複製就不會多加檔案）：
 git add domain-memory notes docs
 git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "D2 Recovery：授權本組金鑰"
 git log --show-signature -1
 ..\..\tools\dm.ps1 verify-git-governance --commit HEAD
-回報 commit 編號、簽章那一行、verify-git-governance 的結果，以及 commit 後的 git status --short（應該是空的），然後停下。
+回報 commit 編號、簽章那一行、verify-git-governance 的結果，以及 commit 後的 git status --short（應該是空的），然後停下。commit 後的回報只顯示在對話，不要再寫入 notes/（下一段會一起 commit）。
 ```
 
 **看到什麼算過關**
 
-- `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 是 `G maintainer@example.com`，最下面的「Smart Ticket DLC base」（起始程式）是 `N`（未簽章、不碰 Registry，允許）。
-- `amend-policy` 的 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
+- `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 每個 commit 前有一個字母：`G` 表示簽章有效，`N` 表示未簽章。Registry 的三個 commit 是 `G maintainer@example.com`；最下面的「Smart Ticket DLC base」（起始程式）是 `N`，它不碰 Registry，所以允許不簽章。
+- `amend-policy` 的 `authorized_signers` 從一個金鑰指紋（fingerprint，辨識是哪一把金鑰，可公開）變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
 - 簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`；commit 後 `git status --short` 是空的（複製來的 `notes/` 與 `docs/handoffs/` 都已 commit）。
 
 這個夥伴對話開到課程結束：D3a–D3c 檢查點 5 與 D4 的簽章 commit 都在這裡執行。
@@ -131,7 +131,7 @@ git log --show-signature -1
 
 ```text
 這是 D2 Recovery 起點，Repo 根目錄是 resume-d2。D2 的成果由 Recovery 提供；夥伴已在自己的對話還原簽章歷史並接手簽章（見 notes/recovery-d2.md）。依序做，任何一步失敗就停下：
-1. 建 venv、安裝依賴、跑全部測試：
+1. 建 venv、安裝相依套件、跑全部測試：
    PowerShell：
      py -3.13 -m venv .venv
      & '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
@@ -156,10 +156,10 @@ git log --show-signature -1
 
 ## 步驟 4 ·（選做）【夥伴】push 檢查
 
-Recovery 沒有 CP-D2-001，D2 檢查點 6 的 push 在這裡補做。步驟 3 建好 `.venv` 之後，夥伴在自己的 Agent 對話貼：
+Recovery 沒有 CP-D2-001，也沒有做過 D2 檢查點 6 的 push，可以在這裡補做。步驟 3 建好 `.venv` 之後，夥伴在自己的 Agent 對話貼：
 
 ```text
-【夥伴的 Agent】Recovery 的 push 檢查：建立本機的遠端倉庫（bare repo，模擬伺服器）後 push。push 時 hook 會直接呼叫 python，所以 venv 要在「同一次執行」內啟用；PYTHONUTF8=1 讓 hook 正確處理中文。不要 commit。依終端機執行，參數一字不改：
+【夥伴的 Agent】Recovery 的 push 檢查：建立本機的遠端儲存庫（bare repo，模擬伺服器）後 push。push 時 hook 會直接呼叫 python，所以 venv 要在「同一次執行」內啟用；PYTHONUTF8=1 讓 hook 正確處理中文。不要 commit。依終端機執行，參數一字不改：
 PowerShell：
 py -3.13 -X utf8 ..\..\tools\setup_remote.py
 .\.venv\Scripts\Activate.ps1

@@ -8,7 +8,7 @@
   <p class="muted">接下來 25 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票，從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註按需私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
   </aside>
 </section>
 
@@ -27,17 +27,17 @@
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D3a 電子發票：25 分鐘、六個檢查點。先讀卡、查事實，再由人做設計決策，交給 Agent 實作，證明測試守得住，Review，最後看參考設計。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
-    <p><b>重點</b>：外部系統隔離。<code>InvoiceIssuer</code> 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；ACL 把 Order 翻譯成發票語言；付款成功不因發票失敗回滾；以 order_id 冪等；不持鎖做外部呼叫。</p>
+    <p><b>重點</b>：外部系統隔離。<code>InvoiceIssuer</code> 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；防腐層（ACL，Anti-Corruption Layer；不是存取控制清單）把 Order 翻譯成發票語言；付款成功不因發票失敗而撤銷；以 order_id 冪等；不持鎖做外部呼叫。</p>
     <p><b>驗收</b>：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。</p>
     <p><b>範圍（解鎖時就宣布）</b>：需求卡已標［核心］／［延伸］。核心 EINV-001、002、003、005～011、015；延伸 EINV-004、012、013、014，時間允許才做。卡上的「API」小節先講：介面照卡做，不讓 Agent 自己發明。</p>
-    <p><b>時間</b>：參考解答完整 15 條 AC 約 340 行程式＋320 行測試，25 分鐘只夠核心切片。第 85 分 Agent 還沒做完核心也要進 counterfactual 與 Review，不延長。</p>
-    <p><b>Recovery</b>：參考設計揭曉之後，才可公布 <code data-code="dlc-rec-d3a"></code>（D3a 參考解答清理版）。記錄原因與時間，不作為小組成果評分。</p>
+    <p><b>時間</b>：參考解答完整 15 條驗收條件約 340 行程式＋320 行測試，25 分鐘只夠核心切片。第 85 分 Agent 還沒做完核心也要進 counterfactual 與 Review，不延長。</p>
+    <p><b>Recovery</b>：參考設計揭曉之後，才可視需要私下提供 <code data-code="dlc-rec-d3a"></code>（D3a 參考解答清理版）。記錄原因與時間，不作為小組成果評分。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="70">
   <p class="kicker">檢查點 1 / 6 · 第 70–73 分鐘</p>
-  <h2 class="title">讀需求卡，向 Memory 取已審查事實</h2>
+  <h2 class="title">讀需求卡，向 Domain Memory 查已審查事實</h2>
   <ol class="steps">
     <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
     <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
@@ -58,9 +58,9 @@
   <p class="kicker">檢查點 2 / 6 · 第 73–78 分鐘</p>
   <h2 class="title">決策卡：負責的 Context、不變量、邊界</h2>
   <ol class="steps">
-    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，附 Registry 或程式證據</li>
+    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，各附 Domain Memory 或程式的證據</li>
     <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
-    <li>Agent 寫成決策卡、列出不變量；確認後回「同意」</li>
+    <li>Agent 寫成決策卡，列出不變量（任何時候都必須成立的規則）；確認後回「同意」</li>
   </ol>
   <p class="callout warn">Runbook › D3a 電子發票 › 檢查點 2 · 討論後回覆選擇</p>
   <aside class="notes">
@@ -68,7 +68,7 @@
     <p><b>看</b>：owner 是否有理由；是否把『呼叫服務商』直接寫進付款流程；是否提到不持鎖外呼。</p>
     <p><b>介入訊號</b>：沒有 Port 就直接 import 具體 Client → 問：測試要怎麼模擬逾時？</p>
     <p><b>提示</b>：H2：「現有付款 Gateway 沒有 Port，這次要照做還是改？決策卡上寫下理由。」</p>
-    <p><b>新概念</b>：這裡第一次介紹 <b>Port／Adapter 與防腐層</b>、<b>Owner Context 與不變量</b>，各花 30 秒講（Runbook 有兩個「新概念」框）。</p>
+    <p><b>新概念</b>：這裡第一次介紹 <b>Port／Adapter</b>、<b>防腐層</b>、<b>Owner Context 與不變量</b>，各花 30 秒講（冪等已在檢查點 1 介紹；Runbook 有「新概念」框）。</p>
   </aside>
 </section>
 
@@ -84,7 +84,7 @@
   <aside class="notes">
     <p><b>說（08:00／第 78 分）</b>：「第 78 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
     <p><b>看</b>：Agent 是否沿用決策卡（owner、不變量），還是自己重新決定；測試是否真的執行。冪等是否以 order_id；是否把發票失敗吞掉卻沒有狀態紀錄。</p>
-    <p><b>介入訊號</b>：Agent 直接改付款回應碼或讓失敗回滾付款 → 要求停止並回到不變量。</p>
+    <p><b>介入訊號</b>：Agent 直接改付款回應碼或讓失敗撤銷付款 → 要求停止並回到不變量。</p>
     <p><b>提示</b>：H3：「付款已成功，發票失敗時，Order 與 Booking 應該長什麼樣？」</p>
     <p><b>巡堂重點</b>：只在 <code>pay</code> 內把呼叫移出鎖，卻沒發現 <code>pay_group</code> 持有 RLock 時呼叫 <code>pay</code>，團體路徑仍在鎖內；在付款請求內同步重試 5 次；發票金額用 <code>booking.total_fare</code> 而不是 Order.amount（D3b 之後會錯）。</p>
   </aside>
@@ -111,8 +111,8 @@
   <p class="kicker">檢查點 5 / 6 · 第 89–92 分鐘</p>
   <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Agent 用 <code>git status</code>、<code>git diff</code> 與測試回答四個審查問題</li>
-    <li>你們同意後，Agent 用 <code>make_record.py</code> 登記，<b>仍是候選</b></li>
+    <li>Agent 對照程式差異與測試結果，回答四個審查問題</li>
+    <li>你們同意後，Agent 把新事實登記為<b>候選</b>（還不是已審查）</li>
     <li>夥伴在<b>自己的 Agent 對話</b>簽章 commit；第 92 分停手</li>
   </ol>
   <p class="callout">Runbook › D3a 電子發票 › 檢查點 5 · 看審查答案後回「同意」</p>
@@ -150,7 +150,7 @@
   </div>
   <aside class="notes">
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
-    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可按需私下提供 Recovery 碼（<code data-code="dlc-rec-d3a"></code>）；不在投影或群組公開。</p>
+    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可視需要私下提供 Recovery 碼（<code data-code="dlc-rec-d3a"></code>）；不在投影或群組公開。</p>
   </aside>
 </section>
 
@@ -182,7 +182,7 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3a" data-title="揭曉 · D3a 不變量與 counterfactual" data-minute="94">
   <p class="reveal-badge">揭曉 · D3a 電子發票</p>
-  <h2 class="title">D3a 不變量與 counterfactual</h2>
+  <h2 class="title">D3a 不變量與反事實檢查</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">鎖外呼叫</span>
@@ -201,8 +201,8 @@
     <p><b>說</b>：每條新規則都對應一個『弄壞它就失敗』的測試。請學員報告自己哪條規則還沒有被證明。</p>
     <p><b>鎖的陷阱</b>：<code>pay_group</code> 原本在持有 RLock 時呼叫 <code>pay</code>；參考解答讓 <code>pay_group</code> 先釋放鎖，並以 <code>test_einv_002_provider_is_called_outside_the_store_lock[False/True]</code> 兩條路徑各證明一次。</p>
     <p><b>兩個教學 mutant</b>：(1) 單價 <code>round(amount / quantity)</code>：只有 1,225 ÷ 2 時 Python 銀行家捨入剛好得 612，存活；補 1,925 ÷ 3（641 vs 642）後 killed，示範「survived → 補測試 → 再跑」。(2) 稅額四捨五入邊界 <code>&gt;=</code> → <code>&gt;</code> 是<b>等價 mutant</b>：5% 下整數總額永遠不會剛好落在 .5（總額 × 200 是偶數，105 × (2n+1) 是奇數），所以 Agent 寫 <code>round(total / 1.05)</code> 也全過，「不用浮點數」只能靠 Code Review。</p>
-    <p>參考解答 21／21 killed，另 1 個等價 mutant 存活紀錄。</p>
-    <p>揭曉後才可公布 <code data-code="dlc-rec-d3a"></code>。</p>
+    <p>參考解答 25／25 killed，另 1 個等價 mutant 存活紀錄。</p>
+    <p>揭曉後才可視需要私下提供 <code data-code="dlc-rec-d3a"></code>。</p>
     <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
   </aside>
 </section>

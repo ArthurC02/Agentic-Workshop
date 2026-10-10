@@ -1,7 +1,7 @@
 # DDD DLC 主持人手冊
 
 > 對象：DDD DLC（180 分鐘加課）的主持人與助教。學員已完成主課（Tool → Teammate → Digital Worker）。
-> 主題：**Agent 的領域記憶**。把領域知識做成經審查、以檔案保存的 Domain Memory，再用它驅動受治理的變更。DDD 概念全部透過 domain-memory Plugin 0.10.15 的操作來教，不開理論講堂。
+> 主題：**Agent 的領域記憶**。把領域知識做成經審查、以檔案保存的 Domain Memory，再用它約束之後的每一次程式變更（要有證據、經過審查）。DDD 概念全部透過 domain-memory Plugin 0.10.15 的操作來教，不開理論講堂。
 > 依據：`docs/instructions/11_DDD_DLC產製指令書.md`（以下稱「規格」）。檢查點以 `agentic-workshop/materials-dlc/CHECKPOINTS.md` 為準，解鎖碼在 `agentic-workshop/materials-dlc/unlock-codes.json`（本手冊不重抄碼，避免兩份不一致）。
 > 本手冊與 `evaluation/` 底下所有檔案只給主持人，**不得**放進學員包、Runbook 或投影。
 
@@ -11,18 +11,18 @@
 |---|---|---|---|
 | 0–10 | 開場與環境 | 解鎖頁 → 4 個檢查點 | 盯 C:\dlc 短路徑、Store 別名、SHA 核對；第 7 分配對 |
 | 10–35 | D1 共同語言與邊界 | 6 個檢查點 | 名稱矛盾與邊界洩漏要讓學員在 `cite` 證據中親眼看到 |
-| 35–60 | D2 審查與核准（成對） | 6 個檢查點 | 第 45 分或卡 5 分鐘公布 `dlc-rec-d2`；示範簽章 |
+| 35–60 | D2 審查與核准（成對） | 6 個檢查點 | 第 45 分或卡 5 分鐘把 `dlc-rec-d2` 私下提供給該組；示範簽章 |
 | 60–70 | 休息 | 休息頁 | 巡 D2 落後組，確認大家都有可接續的 reviewed Registry |
 | 70–95 | D3a 電子發票 | 6 個檢查點 → 停手 → 2 頁揭曉 | 解鎖時宣布核心／延伸與 API 小節；揭曉後才可發 `dlc-rec-d3a` |
 | 95–125 | D3b 點數折抵 | 同上 | 同上；`dlc-rec-d3b` |
 | 125–155 | D3c 團體部分退款 | 同上 | **最重的一段**：保住 Review 時間；`dlc-rec-d3c` |
 | 155–165 | D4 交接 | 3 個檢查點 | stale 證據不准跳過；更新事實只到候選 |
-| 165–180 | 回顧 | 4 個檢查點 | 討論「自我核准的儀式感 vs 真實治理」 |
+| 165–180 | 回顧 | 4 個檢查點 | 討論「走過場的自我核准」和「真的擋得住錯的核准」差在哪裡 |
 
 三條不可破的規則：
 
 1. **不延長段落**。落後就用 Recovery 接續，記錄原因與時間。
-2. **Recovery 不作為小組成果評分**，只按需私下提供（Recovery 碼只在講者備註 `data-code`，不投影、不貼群組）。
+2. **Recovery 不作為小組成果評分**，只視需要私下提供（Recovery 碼只在講者備註 `data-code`，不投影、不貼群組）。
 3. **`dlc-rec-d3*` 只能在對應段的揭曉頁之後**提供。
 
 ## 1. 課前檢查清單
@@ -34,7 +34,7 @@
 - [ ] **Git for Windows ≥ 2.34**（SSH 簽章需要）：`git --version`。
 - [ ] 每台機器一個可讀寫本機資料夾、能執行終端指令的通用 Coding Agent。
 - [ ] 通知學員：學員包一律解壓到 **`C:\dlc`**（不要放桌面、OneDrive、深層資料夾）。原因見 §5 陷阱 1（WinError 206）。
-- [ ] 建置並驗證候選包（維護者）：
+- [ ] 建置並驗證候選包（課程維護人員）：
 
 ```powershell
 py -3.13 -X utf8 scripts/vendor_dlc_plugin.py --check
@@ -56,7 +56,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 ### 1.3 Plugin SHA
 
 - Plugin 固定 0.10.15，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.10.15.zip`，逐檔清單 `domain-memory-0.10.15.zip.SHA256SUMS`（70 個 Plugin 檔案＋ZIP 本身＝71 行）。
-- 目前 ZIP 的 SHA256：`de6aad75f86ce4fe534271d62f7cf21ce09876cc127e68dbc96416c9c31c89dc`（重新封裝後以 SHA256SUMS 最後一行為準）。
+- 目前 ZIP 的 SHA256 以 `domain-memory-0.10.15.zip.SHA256SUMS` 最後一行為準。
 - 學員在開場檢查點 2 應看到 `SHA OK 71 files` 與 `"version": "0.10.15"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
 
 ### 1.4 主持人自己的機器（課前 30 分鐘）
@@ -74,8 +74,8 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 - **兩人一組、一台機器、兩個 Agent 對話**。選 D1 做得比較完整的那台；它的主人當 **Proposer**（提案者，用自己的 Agent 對話準備 Change Package，不得核准、不 commit），另一人當 **Maintainer**（夥伴，另開終端機啟動自己的 Agent 對話：持簽章金鑰、讀審查包後核准、簽章 commit、push）。Maintainer 的 Agent 對話開到課程結束：D3a–c 檢查點 5 與 D4 檢查點 3 的簽章 commit、回顧的刪除私鑰都在這個對話執行。
 - 開場第 7 分鐘（「找夥伴」頁）就配好對；D1 各人在自己的 Repo 做，D2 起兩人共用一台機器。開場有人環境裝不起來，D1 起先以夥伴的機器為主。
-- **人數奇數時組成三人組，第三人當 Observer**：看每一步是不是在對的人的 Agent 對話裡執行（核准、簽章 commit、push 只出現在 Maintainer 的對話；proposer 的 Agent 不碰 `record-approval`），並一起看 `verify-audit` 結果。D3 起 Observer 負責對照決策卡，並核對 Agent 回報的 counterfactual 結果。
-- D3 三段角色可以輪換，但 **Maintainer 的私鑰不換人**：只有持鑰人能簽觸及 Registry 的 commit。
+- **人數奇數時組成三人組，第三人當觀察員（Observer）**：看每一步是不是在對的人的 Agent 對話裡執行（核准、簽章 commit、push 只出現在 Maintainer 的對話；proposer 的 Agent 不碰 `record-approval`），並一起看 `verify-audit` 結果。D3 起 Observer 負責對照決策卡，並核對 Agent 回報的 counterfactual 結果。
+- D3 三段可以換人操作鍵盤與發言，但提案者與夥伴的 Agent 對話不換；簽章 commit 一律在持鑰夥伴的對話。**Maintainer 的私鑰不換人**：只有持鑰人能簽觸及 Registry 的 commit。
 - 座位安排讓兩人能同時看同一個螢幕；助教巡堂路線要能看到螢幕上的終端機輸出。
 - 明講（規格 R3）：`record-approval` 只比對身分字串，同機雙身分仍可通過；今天的成對簽章是**教學示範，不是安全保證**。治理強度來自「誰持有簽章私鑰」。
 
@@ -94,7 +94,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 1–2 | （等待安裝時） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁 |
 | 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 71 files`、`"version": "0.10.15"` |
 | 5–8 | 3 · 專案就緒與品質關卡檢查 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；小組口頭討論「哪些錯只能靠測試與人」 |
-| 7 | 找夥伴 | 配對；奇數時三人組，第三人 Observer |
+| 7 | 找夥伴 | 配對；奇數時三人組，第三人當觀察員 |
 | 8–10 | 4 · 確認真實 Python | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的 |
 
 巡場看：學員是不是「貼提示詞 → 看回報 → 對照過關字樣」，而不是自己在終端機打指令。卡住時請學員貼該檢查點的「如果卡住」提示詞，讓 Agent 先解釋錯誤、列出處理方式，等學員同意再做；不要替學員改指令。最常見的是 Agent 沒經 `dm` 腳本（cp950 錯誤）或沒在同一個指令裡啟用 `.venv`（`python` 指到 `WindowsApps`）：請學員重貼工作規則。
@@ -127,11 +127,11 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 分鐘 | 檢查點 | 誰 | 重點 |
 |---|---|---|---|
 | 35–38 | 1 · 夥伴建立簽章金鑰 | Maintainer | `init-signing-key --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit`（Git Bash：`"$HOME/.dlc-keys/maintainer/signing-key"`）；**先於第一個 Registry commit** |
-| 38–43 | 2 · 政策、hook、readiness | Maintainer | `amend-policy` 依序 `authorized_signers`（fingerprint）→ `review_trigger git-push` → `review_mode scm-verified --verifier git-signed-commit`；`install-git-hitl-hook`；`governance-readiness` ready |
-| 43–48 | 3 · Change Package 與提交 | Proposer | 學員按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 提 2–3 個 counterfactual 方案、學員選一個（只認 `killed`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal` |
-| 48–53 | 4 · 核准與簽章 commit | Maintainer | Agent 先讀審查包、貼一條規則的證據原文並停下；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S` |
-| 53–56 | 5 · attestation | Maintainer | `write_scm_attestation.py --commit HEAD`、`verify-git-governance --commit HEAD`；輸出提到的 `finalize-proposal` 是 Proposer 在 CP6 的步驟，Maintainer 的 Agent 不執行 |
-| 56–60 | 6 · finalize 與驗證 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`） |
+| 38–43 | 2 · 設定審查政策與推送檢查 | Maintainer | `amend-policy` 依序 `authorized_signers`（fingerprint）→ `review_trigger git-push` → `review_mode scm-verified --verifier git-signed-commit`；`install-git-hitl-hook`；`governance-readiness` ready |
+| 43–48 | 3 · 建立變更審查包並送出提案 | Proposer | 學員按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 提 2–3 個 counterfactual 方案、學員選一個（只認 `killed`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal` |
+| 48–53 | 4 · 夥伴核准與簽章提交 | Maintainer | Agent 先讀審查包、貼一條規則的證據原文並停下；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S` |
+| 53–56 | 5 · 寫出核准證明並驗證 | Maintainer | `write_scm_attestation.py --commit HEAD`、`verify-git-governance --commit HEAD`；輸出提到的 `finalize-proposal` 是 Proposer 在 CP6 的步驟，Maintainer 的 Agent 不執行 |
+| 56–60 | 6 · 完成提案並全部驗證 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`） |
 
 巡堂看三件事：核准與簽章只出現在 Maintainer 的對話；Maintainer 回「核准」前說得出哪一行證據支持哪條規則；Agent 停下時學員真的做了決定。學員只填一張「D2 決定」（角色、審查決定、三項確認），其餘紀錄由 Agent 寫進 `notes/d2.md`。卡住時請學員貼 Runbook「卡住時」的補救提示詞（請 Agent 白話解釋錯誤、不改設定、不重做 commit、不繞過 hook），不要替學員打指令。
 
@@ -149,7 +149,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 2. `git -c user.name="DLC Maintainer" -c user.email=maintainer@example.com commit -S -m "..."`，接著 `git log --show-signature -1`，指出 `Good "git" signature for maintainer@example.com`。
 3. `write_scm_attestation.py --commit HEAD` → `verify-git-governance --commit HEAD`：「核准證據不是一行文字，是一個可驗證的已簽章 commit。」
 4. （有時間）做一個不簽章、觸及 `domain-memory/` 的 commit 再 push，給大家看 hook 拒絕的輸出。
-5. 收尾：「私鑰在 `%USERPROFILE%\.dlc-keys\`，不在 Repo、不在 `.ssh`、不截圖。課後刪掉。」
+5. 收尾：「私鑰在 `%USERPROFILE%\.dlc-keys\`，不在 Repo、不在 `.ssh`、不截圖。回顧檢查點 4 只刪私鑰 `signing-key`，`signing-key.allowed_signers` 保留；公用電腦課後再刪整個 `.dlc-keys` 資料夾。」
 
 ### 3.4 休息（60–70）
 
@@ -162,7 +162,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 1. 學員貼提示詞：Agent 存下需求卡、執行 `resolve-terms`／`get-context`，已知事實與知識缺口分開寫進 `notes/d3*.md`。
 2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；`analyze-boundary` 的 source 填提供資料或能力的一方、target 填使用的一方，回 `no_registered_collaboration` 就對調再查一次；Agent 依選擇寫成 D3 決策卡（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
 3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
-4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 帶 `-W ignore::DeprecationWarning`，免得套件警告把失敗訊息擠出 `failing_evidence`；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
+4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 帶 `-W ignore::DeprecationWarning`：萬一有套件過時警告（例如用 D2 Recovery 時），它會把真正的失敗訊息擠出 `failing_evidence`；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
 5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
 6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
 
@@ -194,12 +194,12 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 決策點 |
 |---|---|---|
-| 70–73 | 1 · 讀卡與 reviewed 事實 | 宣布核心／延伸與 API 小節。H1：「逾時代表什麼？對方可能已經開出發票了嗎？」 |
-| 73–78 | 2 · Port 與邊界決策 | 發票歸哪個 Context？Port 放哪層？誰把 Order 翻成發票語言？H2：「付款 Gateway 沒有 Port，這次要照做還是改？」 |
-| 78–85 | 3 · Handoff 與 Agent 實作 | 盯鎖：`pay_group` 持有 RLock 時呼叫 `pay`；盯「付款請求內同步重試 5 次」 |
-| 85–89 | 4 · Counterfactual | 先做建議的 3 個 |
-| 89–92 | 5 · Review 與候選 | 有沒有供應商代碼（`9001`、`2001`）出現在 Domain／Service |
-| 92–95 | 6 · 停手與揭曉 | 揭曉：新的 Invoicing Context；Port `InvoiceIssuer` 只回 ISSUED／REJECTED／UNAVAILABLE；Adapter 翻譯代碼、逾時、連線失敗；鎖內只建 PENDING，鎖外呼叫一次；冪等鍵＝order_id |
+| 70–73 | 1 · 讀情境卡與已審查事實 | 宣布核心／延伸與 API 小節。H1：「逾時代表什麼？對方可能已經開出發票了嗎？」 |
+| 73–78 | 2 · 對外介面（Port）與邊界決策 | 發票歸哪個 Context？Port 放哪層？誰把 Order 翻成發票語言？H2：「付款 Gateway 沒有 Port，這次要照做還是改？」 |
+| 78–85 | 3 · 交接單與 Agent 實作 | 盯鎖：`pay_group` 持有 RLock 時呼叫 `pay`；盯「付款請求內同步重試 5 次」 |
+| 85–89 | 4 · 反事實檢查 | 先做建議的 3 個 |
+| 89–92 | 5 · 檢視差異與登記候選 | 有沒有供應商代碼（`9001`、`2001`）出現在 Domain／Service |
+| 92–95 | 6 · 停手與揭曉對照 | 揭曉：新的 Invoicing Context；Port `InvoiceIssuer` 只回 ISSUED／REJECTED／UNAVAILABLE；Adapter 翻譯代碼、逾時、連線失敗；鎖內只建 PENDING，鎖外呼叫一次；冪等鍵＝order_id |
 
 時間判斷：參考解答完整 15 條 AC 約 340 行程式＋320 行測試，25 分鐘只夠核心切片。第 85 分 Agent 還沒做完核心也要進 counterfactual。
 
@@ -207,12 +207,12 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 決策點 |
 |---|---|---|
-| 95–98 | 1 · 讀卡與 reviewed 事實 | 宣布核心／延伸與 API 小節。H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」 |
-| 98–103 | 2 · Owner Context 與不變量 | 點數歸誰、理由；30% 上限歸誰；reserve／restore 的時機。H2：「預留要不要成為獨立概念？」 |
-| 103–111 | 3 · Handoff 與 Agent 實作 | 盯「點數塞進 `DiscountPolicy`」與「從 `total_fare` 扣點」；扣點位置要在座位規劃之後、寫入之前 |
-| 111–116 | 4 · Counterfactual | 建議的 4 個，其中「上限以優惠後總額」「退款＝Order.amount」是先 survived 再補測試的好示範 |
-| 116–121 | 5 · Review 與候選 | 商業數字（30、100）是否只有一個家 |
-| 121–125 | 6 · 停手與揭曉 | 揭曉：Membership 擁有點數與折抵規則（含 30% 上限）；Pricing 與三條計價迴圈一行不改；Booking 記折抵點數、推導 `payable_amount`；閘道扣 `payable_amount`＝Order.amount；發票自動是 500 → 476＋24 |
+| 95–98 | 1 · 讀情境卡與已審查事實 | 宣布核心／延伸與 API 小節。H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」 |
+| 98–103 | 2 · 決定負責的 Context 與不變量 | 點數歸誰、理由；30% 上限歸誰；reserve／restore 的時機。H2：「預留要不要成為獨立概念？」 |
+| 103–111 | 3 · 交接單與 Agent 實作 | 盯「點數塞進 `DiscountPolicy`」與「從 `total_fare` 扣點」；扣點位置要在座位規劃之後、寫入之前 |
+| 111–116 | 4 · 反事實檢查 | 建議的 4 個，其中「上限以優惠後總額」「退款＝Order.amount」是先 survived 再補測試的好示範 |
+| 116–121 | 5 · 檢視差異與登記候選 | 商業數字（30、100）是否只有一個家 |
+| 121–125 | 6 · 停手與揭曉對照 | 揭曉：Membership 擁有點數與折抵規則（含 30% 上限）；Pricing 與三條計價迴圈一行不改；Booking 記折抵點數、推導 `payable_amount`；閘道扣 `payable_amount`＝Order.amount；發票自動是 500 → 476＋24 |
 
 時間判斷：程式只約 +80 行，核心切片可行；省下的時間給 Review。D3a 未完成的組，揭曉 D3a 後已可用 `dlc-rec-d3a` 接續，本段不用從頭補 D3a。
 
@@ -220,12 +220,12 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 決策點 |
 |---|---|---|
-| 125–128 | 1 · 讀卡與 reviewed 事實 | 宣布核心／延伸與 API 小節，並明講「本段最緊，延伸一律最後」。H1：「現在的退款紀錄能表達『同一筆訂票退過兩次』嗎？」 |
-| 128–133 | 2 · Aggregate 邊界與不變量 | Aggregate root、唯一入口、恆等式誰保證、手續費歸誰、退款紀錄結構 |
-| 133–142 | 3 · Handoff 與 Agent 實作 | Handoff 要有「四份座位資料」「先拒絕再修改」「不要動 `total_fare`」與混合團範例 |
-| 142–148 | 4 · Counterfactual | 建議的 4 個；第 142 分沒做完也進來 |
-| 148–152 | 5 · Review 與候選 | **不可壓縮**。看整筆退票路徑、恆等式在哪裡成立、座位四份是否一致 |
-| 152–155 | 6 · 停手與揭曉 | 揭曉：團體 Booking 擁有旅客取消（`cancel_passengers` 唯一入口，全部檢查完才寫入）；費率帶與 D ≤ 0 不受理在同一模組、逐位向下取整；只釋放被取消旅客的座位；退款紀錄改 append-only 清單；部分取消過不可整筆退 |
+| 125–128 | 1 · 讀情境卡與已審查事實 | 宣布核心／延伸與 API 小節，並明講「本段最緊，延伸一律最後」。H1：「現在的退款紀錄能表達『同一筆訂票退過兩次』嗎？」 |
+| 128–133 | 2 · Aggregate（聚合）邊界與不變量 | Aggregate root、唯一入口、恆等式誰保證、手續費歸誰、退款紀錄結構 |
+| 133–142 | 3 · 交接單與 Agent 實作 | Handoff 要有「四份座位資料」「先拒絕再修改」「不要動 `total_fare`」與混合團範例 |
+| 142–148 | 4 · 反事實檢查 | 建議的 4 個；第 142 分沒做完也進來 |
+| 148–152 | 5 · 檢視差異與登記候選 | **不可壓縮**。看整筆退票路徑、恆等式在哪裡成立、座位四份是否一致 |
+| 152–155 | 6 · 停手與揭曉對照 | 揭曉：團體 Booking 擁有旅客取消（`cancel_passengers` 唯一入口，全部檢查完才寫入）；費率帶與 D ≤ 0 不受理在同一模組、逐位向下取整；只釋放被取消旅客的座位；退款紀錄改 append-only 清單；部分取消過不可整筆退 |
 
 **時間風險：這是三張卡最重的一張**。參考解答 +141 行、是唯一需要改既有資料結構的一張；核心切片勉強放得下，前提是學員從第 125 分就照卡上的 API 做。規格 R2 允許只完成 Aggregate 與兩條規則。寧可少做 AC，也不要吃掉第 148–152 分的 Review：本段教學重點全在 Review。
 
@@ -247,7 +247,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 1. 哪一個 reviewed 事實改變了 Agent 的輸出？
 2. 哪一個候選差點被當成事實？
-3. 自我核准的儀式感和真實治理差在哪裡？（直接回到 R3：`record-approval` 只比字串）
+3. 走過場的自我核准，和真的擋得住錯的核准差在哪裡？（直接回到 R3：`record-approval` 只比字串）
 
 看什麼：學員是否抽問 Agent「這句的證據在哪？」，把沒有證據的句子改成「未觀察」。最後提醒匯出 Runbook（`smart-ticket-dlc-runbook-<stamp>.zip`）並保存 `notes/`，以及刪除金鑰（§7）。
 
@@ -263,7 +263,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | `dlc-rec-d3b` | 125 | Recovery | **D3b 揭曉頁之後**才可提供 |
 | `dlc-rec-d3c` | 155 | Recovery | **D3c 揭曉頁之後**才可提供 |
 
-- Recovery 碼與一般碼分開、只按需提供，不投影、不貼群組；Recovery 不作為小組成果評分。
+- Recovery 碼與一般碼分開、只視需要提供，不投影、不貼群組；Recovery 不作為小組成果評分。
 - 使用 Recovery 的組如實記錄觸發原因與時間（依 Runbook 對應 Recovery 頁的做法）。
 - Recovery 包只含可接續的 Repo（含 `domain-memory/`），不含觀察指引、counterfactual 證據原稿或任何 `evaluation/` 檔案。
 - **Recovery 切換做法（五個 Recovery 頁共用，與各段 `recovery/<段>/RECOVERY.md` 同一份指令）**：原 Repo 不改名、不覆寫；Recovery 複製成同一層的 `resume-<段>`，從 `repo.bundle` 還原 Git 歷史（不重新 `git init` 出未簽章的起點 commit）。D1 只有一個不含 `domain-memory/` 的「起始 Repo」commit，兩步都由提案者的 Agent 做、沒有 commit。D2 起分三步：① 提案者原對話解出 Recovery、把原 Repo 的 `notes/`、`docs/handoffs/` 複製進 `resume-<段>`，原狀態寫進 `resume-<段>` 的 `notes/<段>.md`（原 Repo 什麼都不寫）；② **夥伴**在 `resume-<段>` 新開自己的 Agent 對話（先貼 D2【夥伴】規則）：還原歷史、`init-signing-key`（沿用 `.dlc-keys\maintainer\` 的 D2 金鑰，沒有就新建）、把 `keys/maintainer.allowed_signers` 附加到新的 allowed signers 檔、`amend-policy authorized_signers` 加入自己的 fingerprint、`install-git-hitl-hook`、`governance-readiness` ready，回「同意」後以 `git add domain-memory notes docs` 把複製來的 `notes/`、`docs/handoffs/` 一起簽章 commit（commit 後 `git status --short` 是空的）並 `verify-git-governance --commit HEAD`；③ 提案者在 `resume-<段>` 新開對話建 venv、測試、`validate --require-reviewed`、`verify-audit`、`verify-evidence`。之後 D3、D4 的 commit 照常由夥伴簽章。Git Bash 區塊整段包在 `( set -e … )` 子 shell 裡，任何一行失敗只結束這一段，不會關掉 Agent 的終端機。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，查不到是預期。
@@ -280,7 +280,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
 | 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate` |
 | 7 | `ssh-keygen` 行為不同、金鑰路徑找不到 | Git Bash 與 PowerShell 的 `ssh-keygen` 不同 | 兩者皆可，但同一組全程用同一種 shell |
-| 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；`doctor.py` 會檢查。不要刪它 |
+| 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它 |
 | 9 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
 | 10 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
 | 11 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
@@ -300,7 +300,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 ## 7. 課後清理
 
-- [ ] 確認每組已在回顧檢查點 4 刪除私鑰 `signing-key`。`signing-key.allowed_signers` 刻意保留：它只有公鑰，留著 Repo 裡今天的簽章才驗得過。公用電腦連同 `C:\dlc` 一起刪除整個金鑰資料夾：PowerShell `Remove-Item -Recurse -Force "$env:USERPROFILE\.dlc-keys"`；Git Bash `rm -rf ~/.dlc-keys`。主持人示範金鑰同樣刪除。
+- [ ] 確認每組已在回顧檢查點 4 只刪除私鑰 `signing-key`。同一個資料夾裡的 `signing-key.allowed_signers` 刻意保留：它只有公鑰，Git 驗證今天的簽章要用它。公用電腦由主持人課後連同 `C:\dlc` 一起刪除整個金鑰資料夾：PowerShell `Remove-Item -Recurse -Force "$env:USERPROFILE\.dlc-keys"`；Git Bash `rm -rf ~/.dlc-keys`。主持人示範金鑰同樣刪除。
 - [ ] 確認沒有人把 `signing-key`（無副檔名的私鑰檔）複製進 Repo、貼到 Agent、表單或聊天、或出現在截圖。
 - [ ] 公用電腦：刪除 `C:\dlc`、`C:\dlc-rec`；清除瀏覽器中 `stwdlc:` 開頭的 Runbook 暫存（或請學員在 Runbook 內清除）。
 - [ ] 收回學員匯出的 Runbook ZIP（若有收集），存放時視為個人資料。

@@ -17,4 +17,4 @@
 
 ## Agent 寫進紀錄的內容
 
-最後選入的路徑、排除規則、沒選的路徑與一句理由、確認人（固定的練習身分 `DLC Proposer <proposer@example.com>`；名稱中的 DLC 指延伸課程，原指遊戲的追加內容，這裡指主課之後的加課）。
+最後選入的路徑、排除規則、沒選的路徑與一句理由、確認人（固定的練習身分 `DLC Proposer <proposer@example.com>`；DLC 就是本延伸課程）。

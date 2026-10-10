@@ -1,6 +1,6 @@
 # DDD 延伸課程：Smart Ticket 領域建模
 
-本延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）約 3 小時，主題是 DDD（Domain-Driven Design，領域驅動設計）。你會先用 domain-memory Plugin（課程提供的命令列工具）為 Smart Ticket 建立 Domain Registry：一組存在程式庫 `domain-memory/` 資料夾裡、記錄領域知識的 JSON 檔，內容包括 Bounded Context（名詞與規則意義一致的範圍）、通用語言（在同一個 Context 內共用的名詞與定義；不同 Context 可以用同一個詞指不同的東西）、Aggregate（聚合：必須一起保持一致的一組資料，只能從 Aggregate root 這個入口修改）與商業規則。接著再用 DDD 的方式實作三個新需求。
+本延伸課程（DLC，原指遊戲的追加內容；這裡指主課之後的加課）約 3 小時，主題是 DDD（Domain-Driven Design，領域驅動設計）。你會先用 domain-memory Plugin（課程提供的命令列工具）為 Smart Ticket 建立 Domain Registry（`domain-memory/` 裡記錄領域知識的 JSON 檔）。Registry 記四種知識：Bounded Context（名詞與規則意思一致的範圍）／通用語言（在同一個 Context 內共用的名詞與定義；不同 Context 可以用同一個詞指不同的東西）／Aggregate（聚合：必須一起保持一致的一組資料，只能從 Aggregate root 這個入口修改）／商業規則。接著再用 DDD 的方式實作三個新需求。
 
 名詞不熟請看 Runbook（課堂操作手冊）的〈詞彙表〉頁。
 
@@ -10,12 +10,12 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 
 | 段落 | 內容 | 用到的檔案 |
 |---|---|---|
-| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選 | 格式說明 `worksheets/d1-source-selection.md`、`worksheets/d1-model-canvas.md`；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
+| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選（有證據、但還沒審查的紀錄） | Runbook『D1 來源選擇原則』與『D1 候選紀錄格式』兩頁（不在 `worksheets/`）；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
 | D2 | 兩人一組：一人提案、一人審查核准並簽章，把候選升為已審查（reviewed）事實 | `worksheets/d2-role-cards.md`、`worksheets/d2-signing-checklist.md` |
 | D3a | 實作需求卡 01：電子發票 | `scenarios/01-e-invoice.md`、`worksheets/d3-decision-card.md` |
 | D3b | 實作需求卡 02：點數折抵 | `scenarios/02-points-redemption.md`、`worksheets/d3-decision-card.md` |
 | D3c | 實作需求卡 03：團體部分退款 | `scenarios/03-group-partial-refund.md`、`worksheets/d3-decision-card.md` |
-| D4 | 把今天的 Domain Memory 交接給下一個 Agent 或同事 | `worksheets/d4-handoff-template.md` |
+| D4 | 把今天累積的 Domain Memory（`domain-memory/` 資料夾的全部內容：Registry、來源清單與稽核紀錄）交接給下一個 Agent 或同事 | `worksheets/d4-handoff-template.md` |
 
 每段的「檢查點」（段內的小關卡）都在 Runbook 對應的頁面。做法都一樣：
 
@@ -23,14 +23,14 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 2. 需要決定時，Agent 會先列出選項或草稿並停下；你只要回「同意」「選 B」「第 3 項不要」這類短回覆。
 3. 紀錄由 Agent 寫進 Repo 的 `notes/` 與 `docs/handoffs/`。Runbook 的表單只記你的決定，以下拉與勾選為主。
 
-D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個終端機、用自己的 Agent 對話；建立金鑰、核准、簽章 commit 與 push 只在夥伴的對話裡、由夥伴讀過審查包後下指令。你的 Agent 不 commit、不 push、不碰夥伴的金鑰，也不能代替夥伴核准。D3、D4 的 commit 也由夥伴的對話執行。
+D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個終端機、用自己的 Agent 對話。建立金鑰、核准、簽章 commit 與 push 只在夥伴的對話裡進行，由夥伴讀過變更審查包（Change Package）後下指令。你的 Agent 不 commit、不 push、不碰夥伴的金鑰，也不能代替夥伴核准。D3、D4 的 commit 也由夥伴的對話執行。
 
 ## 資料夾內容
 
 | 路徑 | 內容 |
 |---|---|
 | `repository/smart-ticket-dlc-base/` | 起始程式庫：上線 12 個月的 Smart Ticket 訂票後端 |
-| `scenarios/01-e-invoice.md` | 需求卡 01：接入外部電子發票服務 |
+| `scenarios/01-e-invoice.md` | 需求卡 01：串接外部電子發票服務 |
 | `scenarios/02-points-redemption.md` | 需求卡 02：會員點數折抵 |
 | `scenarios/03-group-partial-refund.md` | 需求卡 03：團體訂票部分取消退款 |
 | `worksheets/` | 各段紀錄的格式範本，由 Agent 照格式寫進紀錄檔（見上方段落表） |
@@ -44,7 +44,7 @@ D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個�
 
 開場時 Agent 會依 Runbook 的提示詞代你完成下面的安裝與測試；這裡列出步驟，供 Agent 與課後參考。
 
-需要 Python 3.13。本程式庫用 `pip install -r requirements.txt` 安裝依賴套件即可，不需要 `pip install -e .`。
+需要 Python 3.13。本程式庫用 `pip install -r requirements.txt` 安裝相依套件即可，不需要 `pip install -e .`。
 
 Windows PowerShell（主要方式）：
 

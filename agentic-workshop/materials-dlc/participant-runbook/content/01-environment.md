@@ -11,7 +11,7 @@ section: 開始之前
 ```callout info
 現在在做什麼
 - **情境**：你接手 Smart Ticket 的訂票後端，今天要替它建立 Agent 用得上的 Domain Memory。先把環境備好。
-- **你的目標**：10 分鐘內讓 Agent 把起始 Repo 測試跑綠、原樣解出 Plugin 並核對雜湊、確認專案狀態與真正的 Python。
+- **你的目標**：10 分鐘內讓 Agent 把起始 Repo 的測試全部跑過、原樣解出 Plugin 並核對雜湊、確認專案狀態，以及 `python` 是 venv 裡的真實 Python。
 - **今天的技巧**：先講好「看到什麼算成功」，再讓 Agent 執行並回報。每個提示詞都寫明成功的樣子（例如 `76 passed`、`SHA OK 71 files`），Agent 的回報對得上才往下；你不用看懂指令，只看結果。
 - **完成的樣子**：`notes/opening.md` 有 Agent 寫的四個檢查點結果；起始 commit 已建立，還沒有 `domain-memory/`。
 ```
@@ -22,8 +22,8 @@ section: 開始之前
 
 時間是**最晚**完成的時間；提早完成就直接進入下一個。
 
-- **檢查點 1 · 依賴安裝與測試（0–3）**：下載、解壓到短路徑；Agent 建 venv（Python 虛擬環境）、安裝依賴、測試全綠。
-- **檢查點 2 · 解出 Plugin 並核對 SHA256（3–5）**：Agent 解出 Plugin 0.10.15，逐檔核對 SHA256。
+- **檢查點 1 · 依賴安裝與測試（0–3）**：下載、解壓到短路徑；Agent 建 venv（Python 虛擬環境）、安裝相依套件、測試全部通過。
+- **檢查點 2 · 解出 Plugin 並核對 SHA256（3–5）**：Agent 解出 Plugin 0.10.15，逐檔核對 SHA256 雜湊（檔案的指紋）。
 - **檢查點 3 · 專案就緒與品質關卡檢查（5–8）**：Agent 確認 Plugin 判定 brownfield（已有程式碼的既有專案），並找到 pytest。
 - **檢查點 4 · 確認真實 Python（8–10）**：Agent 確認 `python` 是 venv 裡的真實直譯器、建立起始 commit、環境健檢全部通過。
 
@@ -45,7 +45,7 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 
 ```callout warning
 一定要解壓到 C:\dlc 這種短路徑
-Plugin 更新 Registry 時會在 `domain-memory/` 底下建立很長的暫存資料夾名稱。放在桌面、OneDrive 或深層資料夾，會在 D1 出現「檔名或副檔名太長」（WinError 206）。不要放在同步資料夾。
+Plugin 更新 Registry（`domain-memory/` 裡記錄領域知識的 JSON 檔）時，會在 `domain-memory/` 底下建立名稱很長的暫存資料夾。放在桌面、OneDrive 或深層資料夾，會在 D1 出現「檔名或副檔名太長」（WinError 206）。不要放在同步資料夾。
 ```
 
 **工作規則**（整場只貼一次；之後開新的 Agent 對話時再貼一次）。規則先講好，之後每個提示詞就不用重複「用哪個終端機」「做完停下」。這段是給 Agent 的，不需要看懂：
@@ -54,7 +54,7 @@ Plugin 更新 Registry 時會在 `domain-memory/` 底下建立很長的暫存資
 以下是今天這堂延伸課程的工作規則，請在整段對話中遵守：
 1. 你負責所有指令操作與檔案編輯；我不自己打指令、不讀程式。每次做完用白話告訴我結果，並引用關鍵的實際輸出字樣（例如「76 passed」「Registry is valid.」），不要只貼原始輸出。
 2. 每一步做完就停下等我。需要我決定的地方，先列出選項或草稿，每項附證據（路徑:起-迄，行號要實際打開檔案核對），然後等我回覆「同意」或「改成…」。
-3. 除非我另外說明，所有指令都在目前的 Repo 根目錄（smart-ticket-dlc-base）執行。先判斷你執行指令用的是哪一種終端機：PowerShell 就用提示詞裡的 PowerShell 寫法（Plugin 一律經 ..\..\tools\dm.ps1，每個新的 PowerShell 程序先執行 Set-ExecutionPolicy -Scope Process Bypass -Force）；bash（例如 Git Bash）就用 bash 寫法（Plugin 一律經 ../../tools/dm.sh）。不要直接執行 registry_tools.py，也不要手動修改 domain-memory/ 底下的檔案。
+3. 除非我另外說明，所有指令都在目前的 Repo 根目錄（你開啟 Agent 的資料夾，例如 smart-ticket-dlc-base；改用 Recovery 時是 resume-d1 或 resume-d2）執行。先判斷你執行指令用的是哪一種終端機：PowerShell 就用提示詞裡的 PowerShell 寫法（Plugin 一律經 ..\..\tools\dm.ps1，每個新的 PowerShell 程序先執行 Set-ExecutionPolicy -Scope Process Bypass -Force）；bash（例如 Git Bash）就用 bash 寫法（Plugin 一律經 ../../tools/dm.sh）。不要直接執行 registry_tools.py，也不要手動修改 domain-memory/ 底下的檔案。
 4. 你的每個指令可能在新的終端機程序執行，啟用過的 venv 不會延續：需要 python 時，在同一個指令裡先啟用 .venv（PowerShell：.\.venv\Scripts\Activate.ps1；bash：source .venv/Scripts/activate），或直接用 .venv 裡的 python.exe。
 5. 你或我新增到 Domain Memory 的內容一律是候選（candidate），不要寫成「已確認」，也不要當成限制。
 6. 沒有我的指示，不要 git commit 或 git push；不要讀取、複製或顯示任何私鑰檔。
@@ -66,7 +66,7 @@ Plugin 更新 Registry 時會在 `domain-memory/` 底下建立很長的暫存資
 
 ```text
 請準備起始 Repo 的執行環境，不要修改任何程式：
-1. 在 Repo 根目錄建立 venv、安裝依賴、執行全部測試。
+1. 在 Repo 根目錄建立 venv、安裝相依套件、執行全部測試。
    PowerShell：
      py -3.13 -m venv .venv
      & '.\.venv\Scripts\python.exe' -m pip install -r requirements.txt
@@ -126,7 +126,7 @@ Plugin 必須**原樣**使用：學員包只放執行時需要的檔案（開發
 
 ## 檢查點 3 · 專案就緒與品質關卡檢查（第 5–8 分鐘）
 
-`readiness` 只觀察檔案系統，告訴你這個 Repo 處於什麼狀態（`state`：例如 brownfield，已有程式碼的既有專案）以及判斷有多確定（`confidence`）；`quality-gates` 列出 Repo 自己已有的檢查。兩者都是唯讀。這一步也讓 Agent 第一次經過 `dm` 腳本呼叫 Plugin，之後所有 Plugin 指令都走同一條路。
+`readiness` 只看檔案，不改任何東西。它回報兩件事：這個 Repo 處於什麼狀態（`state`：例如 brownfield，已有程式碼的既有專案），以及判斷有多確定（`confidence`）。`quality-gates` 列出 Repo 本來就有的檢查，同樣不改任何東西。這一步也讓 Agent 第一次經過 `dm` 腳本呼叫 Plugin，之後所有 Plugin 指令都走同一條路。
 
 📖 延伸閱讀：學員包 `vendor/domain-memory/references/readiness.md`（Plugin 自帶，列出每一種 state 的意思）。
 
@@ -204,7 +204,7 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 
 ```callout danger
 第 10 分鐘仍未通過
-不要在活動中更換 Python 版本或改用其他語言或工具。告知主持人，D1 起先和夥伴共用一台已通過的機器，並請 Agent 在 `notes/opening.md` 記下卡在哪一步。
+不要在活動中更換 Python 版本或改用其他語言或工具。告知主持人，從 D1 開始，先和夥伴共用一台已通過的機器，並請 Agent 在 `notes/opening.md` 記下卡在哪一步。
 ```
 
 ```callout tip

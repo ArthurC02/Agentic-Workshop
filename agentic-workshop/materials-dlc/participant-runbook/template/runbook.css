@@ -780,7 +780,7 @@ kbd {
   align-items: center;
   gap: .3rem;
   color: var(--c-muted);
-  font-size: .76rem;
+  font-size: max(.76rem, 12px);
   font-weight: 600;
   letter-spacing: .03em;
 }
@@ -931,6 +931,8 @@ pre.rb-code code {
   font: inherit;
   white-space: pre;
 }
+/* Prose prompts wrap inside their column; shell/JSON blocks keep horizontal scroll. Copy reads textContent, so wrapping never changes the copied text. */
+pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
 .rb-copy {
   position: absolute;
   top: .18rem;
@@ -945,7 +947,7 @@ pre.rb-code code {
   border-radius: var(--pill);
   background: transparent;
   color: #A9B9D0;
-  font-size: .72rem;
+  font-size: max(.72rem, 12px);
   font-weight: 600;
   line-height: 1;
   transition: background-color .12s, color .12s;
@@ -1117,6 +1119,7 @@ pre.rb-code code {
 .rb-table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--c-surface-2) 55%, transparent); }
 .rb-table tbody tr:hover td { background: var(--c-tint); }
 .rb-table code { white-space: nowrap; }
+@media (max-width: 959.98px) { .rb-table code { white-space: normal; overflow-wrap: anywhere; } }
 
 /* ---------- 14. Include section (embedded source document) ----------- */
 .rb-include {

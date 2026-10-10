@@ -3,12 +3,12 @@
 <section class="slide slide-title" data-seg="dlc-d3b" data-title="解鎖 D3b 點數折抵" data-minute="95" data-unlock="dlc-d3b">
   <p class="kicker">第 95 分鐘 · 解鎖</p>
   <h2 class="title">D3b 點數折抵 開始</h2>
-  <p class="subtitle">點數折抵：不變量由哪個 Context 負責、被其他 Context 呼叫時也要守住</p>
+  <p class="subtitle">點數折抵：「餘額不得為負」這類不變量由哪個 Context 負責，從哪條路徑呼叫都要成立</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「D3b 點數折抵」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">接下來 30 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3b 點數折抵，從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 95 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註按需私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 95 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
   </aside>
 </section>
 
@@ -31,13 +31,13 @@
     <p><b>驗收</b>：一般、團體、改票三條計價路徑都有測試，付款失敗返點有測試。改票（PTS-013）在卡上是延伸，參考解答完全沒改改票程式，只補測試。</p>
     <p><b>範圍（解鎖時就宣布）</b>：核心 PTS-001、003～010、012、014；延伸 PTS-002、011、013、015。卡上的「API」小節先講（<code>redeemed_points</code>、<code>payable_amount</code>），不讓 Agent 自己發明欄位。</p>
     <p><b>時間</b>：程式只約 +80 行，核心切片 30 分鐘可行；把省下的時間留給 Review 與 counterfactual。</p>
-    <p><b>Recovery</b>：參考設計揭曉之後，才可公布 <code data-code="dlc-rec-d3b"></code>（D3b 參考解答清理版）。D3a 未完成的組，可先用 D3a Recovery 接續。</p>
+    <p><b>Recovery</b>：參考設計揭曉之後，才可視需要私下提供 <code data-code="dlc-rec-d3b"></code>（D3b 參考解答清理版）。D3a 未完成的組，可先用 D3a Recovery 接續。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-d3b" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="95">
   <p class="kicker">檢查點 1 / 6 · 第 95–98 分鐘</p>
-  <h2 class="title">讀需求卡，向 Memory 取已審查事實</h2>
+  <h2 class="title">讀需求卡，向 Domain Memory 查已審查事實</h2>
   <ol class="steps">
     <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
     <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
@@ -57,9 +57,9 @@
   <p class="kicker">檢查點 2 / 6 · 第 98–103 分鐘</p>
   <h2 class="title">決策卡：負責的 Context 與它守住的不變量</h2>
   <ol class="steps">
-    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，附 Registry 或程式證據</li>
+    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，各附 Domain Memory 或程式的證據</li>
     <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
-    <li>Agent 寫成決策卡、列出不變量；確認後回「同意」</li>
+    <li>Agent 寫成決策卡，列出不變量（任何時候都必須成立的規則）；確認後回「同意」</li>
   </ol>
   <p class="callout warn">Runbook › D3b 點數折抵 › 檢查點 2 · 討論後回覆選擇</p>
   <aside class="notes">
@@ -77,7 +77,7 @@
   <ol class="steps">
     <li>貼提示詞：Agent 依交接單<b>先提計畫</b>，你們回「同意」才動手</li>
     <li>分兩段實作；每段看<b>實際</b>測試結果再回「繼續」</li>
-    <li>一般、團體、改票三條計價路徑都要有測試；付款失敗返點也要有測試</li>
+    <li>一般與團體兩條計價路徑都要有測試；改票（PTS-013，延伸）時間允許再補；團體付款失敗歸還點數也要有測試</li>
   </ol>
   <p class="callout">Runbook › D3b 點數折抵 › 檢查點 3 · 貼提示詞</p>
   <aside class="notes">
@@ -110,8 +110,8 @@
   <p class="kicker">檢查點 5 / 6 · 第 116–121 分鐘</p>
   <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
   <ol class="steps">
-    <li>Agent 用 <code>git status</code>、<code>git diff</code> 與測試回答四個審查問題</li>
-    <li>你們同意後，Agent 用 <code>make_record.py</code> 登記，<b>仍是候選</b></li>
+    <li>Agent 對照程式差異與測試結果，回答四個審查問題</li>
+    <li>你們同意後，Agent 把新事實登記為<b>候選</b>（還不是已審查）</li>
     <li>夥伴在<b>自己的 Agent 對話</b>簽章 commit；第 121 分停手</li>
   </ol>
   <p class="callout">Runbook › D3b 點數折抵 › 檢查點 5 · 看審查答案後回「同意」</p>
@@ -142,20 +142,20 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3b" data-title="請先停手 · D3b 點數折抵" data-minute="122">
   <div class="stop-screen">
-    <p class="kicker">D3b 點數折抵 · 第 122 分鐘</p>
+    <p class="kicker">D3b 點數折抵 · 第 121 分鐘</p>
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
     <p class="muted">不評分、不比誰對；差異代表不同取捨。</p>
   </div>
   <aside class="notes">
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
-    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可按需私下提供 Recovery 碼（<code data-code="dlc-rec-d3b"></code>）；不在投影或群組公開。</p>
+    <p>確認全員停手後才翻到揭曉頁。揭曉之後，才可視需要私下提供 Recovery 碼（<code data-code="dlc-rec-d3b"></code>）；不在投影或群組公開。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3b" data-title="揭曉 · D3b 參考設計：Membership 擁有點數" data-minute="123">
   <p class="reveal-badge">揭曉 · D3b 點數折抵</p>
-  <h2 class="title">D3b 參考設計：Membership 擁有點數，Pricing 一行不改</h2>
+  <h2 class="title">D3b 參考設計：點數歸 Membership，Pricing 不改</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">Membership（owner）</span>
@@ -180,7 +180,7 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3b" data-title="揭曉 · D3b 不變量與 counterfactual" data-minute="124">
   <p class="reveal-badge">揭曉 · D3b 點數折抵</p>
-  <h2 class="title">D3b 不變量與 counterfactual</h2>
+  <h2 class="title">D3b 不變量與反事實檢查</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">預留／歸還</span>
@@ -192,14 +192,14 @@
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；有一處改壞後行為完全不變（等價 mutant）：最低 100 改成 1 後，1～99 仍被「必須是 100 的倍數」擋下，沒有任何輸入分辨得出改壞前後</p>
+      <p>每條規則各弄壞一次 → killed；有一處改壞後行為完全不變（等價 mutant：對任何輸入都和原程式一樣，補再多測試也抓不到）：最低 100 改成 1 後，1～99 仍被「必須是 100 的倍數」擋下，沒有任何輸入分辨得出改壞前後</p>
     </div>
   </div>
   <aside class="notes">
-    <p><b>說</b>：請學員報告：哪條規則的 counterfactual 最難寫？難寫通常代表規則歸屬不清。</p>
+    <p><b>說</b>：請學員報告：哪條規則的反事實檢查最難寫？難寫通常代表規則歸屬不清。</p>
     <p><b>教學 mutant</b>：最低 100 → 1 是<b>等價 mutant</b>：正的 100 倍數本來就 ≥ 100，最低值只多擋負數（−100 % 100 == 0），所以拿掉整個最低檢查會被 −100 殺死，但 100 → 1 不會。另外：四個試算中只有 665（上限 199.5）對上限敏感；上限的等號只有 STANDARD 會員的 T002 3,000 → 900 抓得到（CORPORATE 會員打 95 折後是 2,850，折抵 900 會回 409 <code>POINTS_EXCEED_LIMIT</code>）；退款讀 <code>payable_amount</code> 只有「改票後退票」抓得到。</p>
     <p>參考解答 23／24 killed，1 個等價 mutant 存活紀錄。</p>
-    <p>揭曉後才可公布 <code data-code="dlc-rec-d3b"></code>。</p>
+    <p>揭曉後才可視需要私下提供 <code data-code="dlc-rec-d3b"></code>。</p>
     <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
   </aside>
 </section>

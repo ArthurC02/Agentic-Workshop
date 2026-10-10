@@ -238,9 +238,11 @@ INTRO = {
 
 內容：起始 Repo 加上已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer），以及它的 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。""",
 }
+# segment -> which reference implementations the snapshot holds (each solution includes the earlier segments)
+SOLUTION_SCOPE = {"d3a": "D3a ", "d3b": "D3a＋D3b 的", "d3c": "D3a～D3c 的"}
 INTRO_SOLUTION = """# {up} Recovery
 
-內容：D2 的 reviewed Registry，加上 {up} 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。"""
+內容：D2 的 reviewed Registry，加上 {scope}參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。"""
 
 USAGE = """使用 Recovery 不算自己完成 {up}。學員照 Runbook「{up} Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。"""
 
@@ -302,7 +304,7 @@ def recovery_md(seg: str, solution: str | None, message: str | None) -> str:
     usage = USAGE.format(up=up)
     if seg == "d1":
         return "\n\n".join([D1_INTRO, usage, STEP_SAVE.format(seg=seg) + "\n" + D1_RESTORE])
-    intro = INTRO.get(seg) or INTRO_SOLUTION.format(up=up, message=message)
+    intro = INTRO.get(seg) or INTRO_SOLUTION.format(up=up, message=message, scope=SOLUTION_SCOPE[seg])
     base_note = "最下面的「Smart Ticket DLC base」（起始程式）"
     log_note = ("，最上面的「" + message + "」與" + base_note + "為 `N`（未簽章，不碰 Registry，hook 允許）"
                 if solution else "，" + base_note + "為 `N`（未簽章，不碰 Registry，hook 允許）")

@@ -446,8 +446,7 @@ ol.steps > li {
   box-shadow: 0 1px 3px rgba(20, 35, 60, .05);
   font-size: 32px;
   line-height: 1.4;
-  display: flex;
-  align-items: center;
+  display: block;
 }
 ol.steps > li::before {
   content: counter(step);
@@ -581,7 +580,7 @@ ol.timeline > li {
 }
 ol.timeline > li .tl-min {
   font-family: var(--mono);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--muted);
   white-space: nowrap;
@@ -995,7 +994,7 @@ ol.stage-bar > li.active::after {
   border-radius: 4px;
   background: rgba(255, 255, 255, .22);
   color: rgba(255, 255, 255, .9);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   overflow: hidden;
   transition: background .3s, color .3s;
