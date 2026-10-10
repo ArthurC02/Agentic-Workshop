@@ -24,6 +24,12 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ## 步驟 1 · 保存原成果並解開復原包
 
+① 為什麼做這一步
+
+先把原成果 Commit 並停掉伺服器，換版本時才不會遺失或搶埠號。你判斷 Agent 貼的 SHA256 前 12 碼與下載卡上的值相同（大小寫不同不算不同）；值不同就停止切換，請主持人確認。
+
+② 貼給 Agent
+
 在**原本的** Agent 對話貼上：
 
 ```text
@@ -34,21 +40,60 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 4. 把它解壓縮到原成果旁邊的新資料夾 resume-b1-52（不要覆蓋原成果），告訴我裡面 recovery-b1 資料夾的完整路徑，以及原成果資料夾的完整路徑。
 ```
 
-**看到什麼算過關**：Agent 貼的 SHA256 前 12 碼與下載卡上的值相同（大小寫不同不算不同）；它告訴你兩個資料夾路徑。值不同就停止切換，請主持人確認。
+③ 確認結果
+
+```text
+請檢查下列三件事，不要修改任何檔案：1. 原成果已 Commit，notes/b1.md 寫了變更內容、最後一次測試結果與未完成事項；2. http://127.0.0.1:8000/health 連不上；3. resume-b1-52 裡有 recovery-b1 資料夾。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+```
+
+失敗時：
+
+```text
+請用白話說明哪一項不符、為什麼，只補做那一項；不要修改任何程式，也不要停止不是你啟動的程式。補完告訴我。
+```
 
 ## 步驟 2 · 在復原包開新對話，接上脈絡
 
+① 為什麼做這一步
+
+新對話讀原成果的 `notes/` 與 `skills/` 就接得上脈絡，不用重講。你判斷 Agent 說明這是 B1 完成後的版本（依包內說明文件與測試結果，不能只看 Health 檢查）；任何一項不符就停止，請主持人確認。
+
+② 貼給 Agent
+
 在 `recovery-b1` 資料夾開一個**新的** Agent 對話（Session），貼上：
 
-```text
+```prompt
+# windows
 這個資料夾是 B1 的復原包。請依序做，遇到錯誤先說明原因，不要自行修改程式：
 1. 問我原成果資料夾的路徑（上一個 Agent 對話告訴過我），把那裡的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，我會貼規則給你。
 2. 閱讀 README 與 docs/context.md，用白話告訴我這是不是 B1 完成後的版本。
-3. 用 py -3.13 -m venv .venv 建立虛擬環境（macOS 用 python3.13 -m venv .venv，之後呼叫 .venv/bin/python）。不必啟用，之後直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe）；版本不是 3.13 就停下告訴我。接著安裝 requirements.txt，執行 pytest -q，只回報通過／失敗／跳過各幾個。如果這裡沒有 .gitignore，建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（之後 Commit 才不會混進測試產生的暫存檔）。
+3. 用 py -3.13 -m venv .venv 建立虛擬環境。不必啟用，之後直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe）；版本不是 3.13 就停下告訴我。接著安裝 requirements.txt，執行 pytest -q，只回報通過／失敗／跳過各幾個。如果這裡沒有 .gitignore，建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（之後 Commit 才不會混進測試產生的暫存檔）。
+4. 在背景啟動伺服器（埠號 8000；啟動前先確認 8000 沒有其他程式在用，有的話就停下告訴我是哪個程式，不要停它），確認 http://127.0.0.1:8000/health 回傳 status=ok，告訴我 /docs 的網址。
+5. 讀 notes/b1.md，告訴我原成果還有哪些未完成。
+6. 把切換原因與時間、原成果保存位置、SHA256 比對結果（問我，上一個對話算過）、測試數與 health 的實際結果與結束碼，以及「B1 的修正由 Recovery 提供，不是本組自己完成」寫進 notes/recovery-b1.md。做完停下等我。
+# macos
+這個資料夾是 B1 的復原包。請依序做，遇到錯誤先說明原因，不要自行修改程式：
+1. 問我原成果資料夾的路徑（上一個 Agent 對話告訴過我），把那裡的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，我會貼規則給你。
+2. 閱讀 README 與 docs/context.md，用白話告訴我這是不是 B1 完成後的版本。
+3. 用 python3.13 -m venv .venv 建立虛擬環境。不必啟用，之後直接呼叫 .venv/bin/python；版本不是 3.13 就停下告訴我。接著安裝 requirements.txt，執行 pytest -q，只回報通過／失敗／跳過各幾個。如果這裡沒有 .gitignore，建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（之後 Commit 才不會混進測試產生的暫存檔）。
 4. 在背景啟動伺服器（埠號 8000；啟動前先確認 8000 沒有其他程式在用，有的話就停下告訴我是哪個程式，不要停它），確認 http://127.0.0.1:8000/health 回傳 status=ok，告訴我 /docs 的網址。
 5. 讀 notes/b1.md，告訴我原成果還有哪些未完成。
 6. 把切換原因與時間、原成果保存位置、SHA256 比對結果（問我，上一個對話算過）、測試數與 health 的實際結果與結束碼，以及「B1 的修正由 Recovery 提供，不是本組自己完成」寫進 notes/recovery-b1.md。做完停下等我。
 ```
+
+③ 確認結果
+
+```text
+請檢查下列三件事，不要修改任何檔案：1. pytest -q 的結果是 44 passed；2. http://127.0.0.1:8000/health 回傳 status=ok；3. notes/recovery-b1.md 寫了切換原因與時間、原成果位置、SHA256 比對結果、測試數與 health 結果，以及「B1 的修正由 Recovery 提供」。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+```
+
+失敗時：
+
+```text
+剛才的步驟出錯了。請先不要修改任何檔案，用白話告訴我：哪一項不符、可能的原因、你建議怎麼處理（列 1–2 個做法），然後停下等我決定。
+```
+
+④ 補充
 
 Agent 說「沒有 skills/team-rules.md」時，才貼這段規則：
 
@@ -63,12 +108,6 @@ Agent 說「沒有 skills/team-rules.md」時，才貼這段規則：
 7. 你沒有實際執行的事情，一律標「未驗證」。
 請把以上規則存成 skills/team-rules.md，之後我會說「請先讀 skills/team-rules.md」。
 ```
-
-**看到什麼算過關**
-
-- Agent 說明這是 B1 完成後的版本（依包內說明文件與測試結果，不能只看 Health 檢查）。
-- 測試 44 passed；`/health` 回傳 status=ok。
-- `notes/recovery-b1.md` 已寫好。任何一項不符就停止，請主持人確認。
 
 完成後接續 [B2](#b2)。
 

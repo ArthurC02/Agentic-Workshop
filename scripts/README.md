@@ -27,6 +27,8 @@ Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並
 
 知識點出處檢查：`scripts/check_references.py`。每個「技巧／新概念」說明框和詞彙表的每一列，都必須引用 `.claude/skills/course-authoring/references.md` 中已查證的出處；Plugin 章節與本課程文件標題也必須真的存在。
 
+檢查點四塊檢查：`scripts/check_blocks.py`。主課與 DLC Runbook 的每個「檢查點／步驟」都要依序有 ① 為什麼做這一步、② 貼給 Agent、③ 確認結果（Agent 只回「成功」或「失敗」的提示詞，加上「失敗時」補救提示詞），④ 補充可省略；發布流程會先執行。
+
 ## 全域技術驗證
 
 ```powershell

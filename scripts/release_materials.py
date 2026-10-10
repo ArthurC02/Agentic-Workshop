@@ -102,6 +102,7 @@ def prune(kind: str, keep: str) -> None:
 def main() -> None:
     run("scripts/check_references.py")  # every knowledge point cites a verified source
     run("scripts/check_zh_tw.py")  # Taiwan Traditional Chinese characters and vocabulary
+    run("scripts/check_blocks.py")  # every checkpoint uses the four blocks ①②③(④)
     main_id = main_candidate()
     dlc_id = dlc_candidate()
     for edition in ("main", "dlc"):

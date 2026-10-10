@@ -578,40 +578,58 @@
     });
   }
 
-  function defaultShell() {
-    var s = store.get('{{STORAGE_PREFIX}}shell');
-    if (s === 'powershell' || s === 'bash') return s;
+  // Tabbed blocks: ```cmd (shell: powershell/bash) and ```prompt (os: windows/macos).
+  // The choice is remembered per kind and applied to every block of that kind on all pages.
+  var tabMem = {};  // fallback when localStorage is unavailable
+  function tabKind(box) { return box.classList.contains('rb-prompt') ? 'os' : 'shell'; }
+  function defaultTab(kind) {
+    var s = store.get('{{STORAGE_PREFIX}}' + kind) || tabMem[kind];
+    if (kind === 'os' ? (s === 'windows' || s === 'macos') : (s === 'powershell' || s === 'bash')) return s;
     var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    if (kind === 'os') return /mac/i.test(plat) ? 'macos' : 'windows';
     return /win/i.test(plat) ? 'powershell' : 'bash';
   }
-  function applyShell(shell, ctx) {
+  function applyTab(kind, value, ctx) {
     $$('.rb-cmd', ctx).forEach(function (box) {
+      if (tabKind(box) !== kind) return;
       var tabs = $$('.rb-cmd-tab', box);
       if (!tabs.length) return;
-      var has = tabs.some(function (t) { return t.getAttribute('data-shell') === shell; });
-      var use = has ? shell : tabs[0].getAttribute('data-shell');
+      var has = tabs.some(function (t) { return t.getAttribute('data-shell') === value; });
+      var use = has ? value : tabs[0].getAttribute('data-shell');
       tabs.forEach(function (t) {
         var act = t.getAttribute('data-shell') === use;
         t.classList.toggle('is-active', act);
         t.setAttribute('aria-selected', act ? 'true' : 'false');
         t.setAttribute('role', 'tab');
+        t.tabIndex = act ? 0 : -1;
       });
       $$('pre[data-shell]', box).forEach(function (p) { p.hidden = p.getAttribute('data-shell') !== use; });
     });
+  }
+  function chooseTab(kind, value) {
+    tabMem[kind] = value;
+    store.set('{{STORAGE_PREFIX}}' + kind, value);
+    applyTab(kind, value, doc);
   }
   function initCmd(ctx) {
     $$('.rb-cmd', ctx).forEach(function (box) {
       if (box.getAttribute('data-rb-init')) return;
       box.setAttribute('data-rb-init', '1');
-      $$('.rb-cmd-tab', box).forEach(function (t) {
-        on(t, 'click', function () {
-          var sh = t.getAttribute('data-shell');
-          store.set('{{STORAGE_PREFIX}}shell', sh);
-          applyShell(sh, doc);
+      var kind = tabKind(box), tabs = $$('.rb-cmd-tab', box);
+      tabs.forEach(function (t, i) {
+        on(t, 'click', function () { chooseTab(kind, t.getAttribute('data-shell')); });
+        on(t, 'keydown', function (ev) {
+          var j = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[ev.key];
+          if (j === undefined) return;
+          ev.preventDefault();
+          var next = tabs[(j + tabs.length) % tabs.length];
+          chooseTab(kind, next.getAttribute('data-shell'));
+          next.focus();
         });
       });
     });
-    applyShell(defaultShell(), ctx);
+    applyTab('shell', defaultTab('shell'), ctx);
+    applyTab('os', defaultTab('os'), ctx);
   }
 
   function initChecks(ctx) {

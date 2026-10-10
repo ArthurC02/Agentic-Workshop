@@ -1024,6 +1024,20 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 .rb-cmd:not(:has(.rb-cmd-tab.is-active)) > pre.rb-code[data-shell] ~ pre.rb-code[data-shell],
 .rb-cmd:not(:has(.rb-cmd-tab.is-active)) > .rb-code-wrap ~ .rb-code-wrap { display: none; }
 
+/* ---------- Checkpoint block labels (paragraphs opening ① ② ③ ④) ------ */
+.rb-page-body p.rb-block-label {
+  margin: 1.6rem 0 .5rem;
+  padding-top: .55rem;
+  border-top: 1px solid var(--c-line);
+  color: var(--c-primary-700);
+  font-size: .86rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.4;
+}
+.rb-page-body p.rb-block-label[data-block="3"] { color: var(--c-teal-700); }
+.rb-page-body :is(h1, h2, h3, h4, h5, h6) + p.rb-block-label { margin-top: .75rem; padding-top: 0; border-top: 0; }
+
 /* ---------- 12. Task lists ------------------------------------------- */
 .rb-page-body ul.rb-tasks { list-style: none; padding-left: 0; }
 .rb-tasks .rb-task { margin: .35rem 0; }

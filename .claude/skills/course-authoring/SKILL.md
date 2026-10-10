@@ -18,12 +18,11 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
 ## Every segment page
 - Top: a 「現在在做什麼」 callout with four lines: 情境 / 你的目標 / 今天的技巧 / 完成的樣子.
 - Checkpoints: at most 3 (Greenfield and B3: at most 4; DLC segments run 15–25 min, so at most 6). Use the title format `## 檢查點 N · 〈動詞句〉（第 a–b 分鐘）`. The overview is a short list, not a table.
-- Each checkpoint follows this order:
-  1. One or two sentences on what to do and why.
-  2. A ```text prompt the learner can copy, which runs the step to completion.
-  3. 「看到什麼算過關」, with 1–3 things that appear in the Agent's report.
-  4. Optionally 「如果卡住」, a paste-ready rescue prompt.
-  5. Optionally a 💬 討論一下 callout, discussed out loud with nothing written.
+- Every checkpoint uses four blocks, in this order, each starting with its label line (user rule, 2026-10-10):
+  1. `① 為什麼做這一步`: the precondition and the meaning in 1–3 sentences. Where the step needs a human judgment (approve a plan, review an acceptance table, decide at a Gate, approve as partner), say here what the learner judges and how.
+  2. `② 貼給 Agent`: the prompt that runs the step. If it contains OS-specific commands or paths, use a ```prompt block with `# windows` and `# macos` sections (rendered as Windows／macOS tabs, choice remembered); otherwise ```text.
+  3. `③ 確認結果`: a short ```text prompt asking the Agent to check the step's 1–3 completion conditions (files, test counts, recorded decisions) and reply **only** 「成功」 or 「失敗：〈一句原因〉」, changing nothing. Then 「失敗時」 with one paste-ready rescue prompt.
+  4. `④ 補充`: optional — 技巧／新概念 callouts, 💬 discussion, warnings. Keep only what passes the absolutely-necessary test.
 - **Prompts**:
   - Use the five parts: 目標 / 背景・要讀的檔 / 限制 / 輸出格式 / 停止條件.
   - Put commands and arguments in the prompt verbatim, for the Agent to run.
@@ -60,6 +59,7 @@ Stay tool-neutral: no vendor product names, commands or config paths as requirem
 ## Canonical live texts (copy from these, don't re-invent)
 - Agent work rules: the rules block in `materials/participant-runbook/content/10-greenfield.md` (Greenfield) and `30-time-skip.md` (Brownfield). From shared context onward, use 「請先讀 skills/team-rules.md」.
 - Acceptance table, change review, and the `/docs` Try-it-out flow: `10-greenfield.md`, `44-b1.md`.
+- Four-block checkpoint and ```prompt Windows／macOS tabs: `materials/participant-runbook/content/10-greenfield.md` checkpoint 1.
 - DLC work rules: `materials-dlc/participant-runbook/content/01-environment.md`, `20-d2.md` (proposer and partner), `30-d3a.md`.
 - DLC D2 and later: one shared machine. The partner opens their own terminal and Agent conversation. Only that conversation runs keys, `record-approval`, signed commits and push. The proposer's Agent never commits, pushes, reads `.dlc-keys`, or approves.
 

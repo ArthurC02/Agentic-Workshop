@@ -18,7 +18,7 @@ from materials_md import (  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "agentic-workshop" / "materials" / "participant-runbook" / "content"
-DIST = ROOT / "dist" / "p11-candidate" / "62af22a7130c8065"
+DIST = ROOT / "dist" / "p11-candidate" / "a1ac3bc5dbc35794"
 
 
 class Recorder:
@@ -395,6 +395,48 @@ class CmdTests(unittest.TestCase):
         for md in bad:
             with self.assertRaises(MarkdownError, msg=md):
                 render(md)
+
+
+PROMPT_TABS = ('<div class="rb-cmd-tabs" role="tablist"><button type="button" class="rb-cmd-tab" '
+               'data-shell="windows">Windows</button><button type="button" class="rb-cmd-tab" '
+               'data-shell="macos">macOS</button></div>')
+
+
+class PromptTests(unittest.TestCase):
+    def test_tabs_exact_markup(self):
+        out = render(fence("prompt", "# macos", "請在 ~/x 建立 <a>", "", "# windows", r"請在 C:\x 建立", ""))
+        self.assertEqual(out, '<div class="rb-cmd rb-prompt">' + PROMPT_TABS
+                         + r'<pre class="rb-code" data-lang="text" data-shell="windows"><code>請在 C:\x 建立</code></pre>'
+                         + '<pre class="rb-code" data-lang="text" data-shell="macos"><code>請在 ~/x 建立 &lt;a&gt;</code></pre>'
+                         + "</div>")
+
+    def test_no_markers_same_as_text(self):
+        self.assertEqual(render(fence("prompt", "", "請幫我 # 整理", "")), render(fence("text", "請幫我 # 整理")))
+
+    def test_errors(self):
+        bad = [
+            fence("prompt", "hi", "# windows", "a", "# macos", "b"),
+            fence("prompt", "# windows", "a"),
+            fence("prompt", "# windows", "a", "# macos", "b", "# macos", "c"),
+            fence("prompt", "# windows", "a", "# macos", " "),
+            fence("prompt x", "# windows", "a", "# macos", "b"),
+            "```prompt\n# windows\na\n# macos\nb\n",
+        ]
+        for md in bad:
+            with self.assertRaises(MarkdownError, msg=md):
+                render(md)
+
+
+class BlockLabelTests(unittest.TestCase):
+    def test_labels(self):
+        for n, mark in enumerate("①②③④", 1):
+            self.assertEqual(render(f"{mark} 為什麼做這一步"),
+                             f'<p class="rb-block-label" data-block="{n}">{mark} 為什麼做這一步</p>')
+
+    def test_not_label(self):
+        self.assertEqual(render("①不是標籤"), "<p>①不是標籤</p>")
+        self.assertEqual(render("⑤ 不是標籤"), "<p>⑤ 不是標籤</p>")
+        self.assertEqual(render("文字 ① 中間"), "<p>文字 ① 中間</p>")
 
 
 class CalloutTests(unittest.TestCase):

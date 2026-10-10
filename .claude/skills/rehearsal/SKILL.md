@@ -20,12 +20,12 @@ description: Dry-run the workshop the way a learner would. An agent pastes each 
   - **The learner's Coding Agent.** Does exactly what each prompt says.
 - **Record for every checkpoint:**
   - Is it executable as written?
-  - Do the 「看到什麼算過關」 items actually appear? Give real test counts and output strings.
+  - Does every ③ 確認結果 prompt answer 「成功」 on a correct run (no false 失敗) and 「失敗」 on a broken one? Give real test counts and output strings.
   - Is any concept used before it was introduced?
   - Did the learner have to type more than a short reply?
   - Is the step realistic for its minutes?
   - Is any answer leaked?
-- **Coverage is mandatory.** Run every ```text prompt **and** every command block on the pages, including both the PowerShell and the Git Bash variant where a page gives both. Compare the real output with every 「看到什麼算過關」 line and every expected string quoted in the page text, slide notes or facilitator docs. Return a coverage list: `page:block → ran | blocked (by what) | not run (why)`. "Read only" or "spot-checked" is not coverage.
+- **Coverage is mandatory.** Run every ```text prompt **and** every command block on the pages, including both the PowerShell and the Git Bash variant where a page gives both, and the ③ 確認結果 and 「失敗時」 prompts. ```prompt blocks have Windows／macOS tabs; macOS lines that cannot run here must be listed as statically checked only. Compare the real output with every ③ condition and every expected string quoted in the page text, slide notes or facilitator docs. Return a coverage list: `page:block → ran | blocked (by what) | not run (why)`. "Read only" or "spot-checked" is not coverage.
 - **Sandbox artefacts are not findings:** a `py -3.13` shim to uv's Python, `core.longpaths` for the long scratchpad path, a drive mapped with `subst`. Note them once. If a permission check blocks a step (for example `git push`, even to a local bare repo), do not work around it; list it as blocked.
 - **Report:** numbered findings with page:heading, severity (blocker/major/minor), what happened, and a one-line fix, plus a short "worked well" list.
 

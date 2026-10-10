@@ -23,7 +23,13 @@ section: Delivery
 
 ## 檢查點 1 · 請 Agent 寫交付摘要，你來核對（第 76–78 分鐘）
 
-第 76 分停止一切修改。複製下方提示詞，再按下方 Delivery Summary 範本的「複製 Markdown」，接在後面一起貼給主要 Agent。
+① 為什麼做這一步
+
+第 76 分停止一切修改，主管要的是「做了什麼、證據在哪、還缺什麼」。你核對 Agent 給的三句話（Level、測試結果、修改範圍）都引用得出證據原文，引用不出的已改成「未驗證」；Level 有證據支持，Gate 決策和 `notes/b3.md` 一致。
+
+② 貼給 Agent
+
+複製下方提示詞，再按下方 Delivery Summary 範本的「複製 Markdown」，接在後面一起貼給主要 Agent。
 
 ```text
 停止新增功能與測試，不要再修改任何程式。請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
@@ -39,29 +45,53 @@ section: Delivery
 zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/participant/05-delivery-template.md
 ```
 
+③ 確認結果
+
+```text
+請檢查下列三件事，不要修改任何檔案：1. notes/delivery.md 有範本的十二欄，標題與順序不變；2. 每一欄都附了證據來源，沒有證據的都寫「未驗證」及原因；3. 這段沒有修改任何程式：git status 列出的變動，除了 notes/ 與 skills/，都已記在 notes/b3.md 的變更審查裡。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+```
+
+失敗時（或看不懂某句、覺得證據對不上）：
+
+```text
+不要修改程式。摘要裡這幾句我看不懂或覺得證據對不上：請用白話重新解釋，並引用 notes/b3.md 的原文。對不上的，在 notes/delivery.md 改成「未驗證」並寫原因。
+```
+
+④ 補充
+
 ```callout tip
 技巧：Structured Output（結構化輸出，加深一層）
 這次多加一層：每一句都要附證據位置。交付摘要固定十二個標題，你只要一欄一欄問「證據在哪？」。
 📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured model outputs〉；你所用工具的官方文件通常有同名章節。
 ```
 
-**看到什麼算過關**
-
-- 三句話都引用得出證據原文；引用不出的已改成「未驗證」。
-- Level 有證據支持，Gate 決策和 `notes/b3.md` 一致。
-- Agent 沒有在這段修改程式。
-
-**如果卡住**（看不懂某句，或覺得證據對不上）
-
-```text
-不要修改程式。摘要裡這幾句我看不懂或覺得證據對不上：請用白話重新解釋，並引用 notes/b3.md 的原文。對不上的，在 notes/delivery.md 改成「未驗證」並寫原因。
-```
-
 ## 檢查點 2 · 匯出與交件（第 78–79 分鐘）
 
-小組先花 1 分鐘聊：Agent 建議的 Level 你們同意嗎？只看驗收對照表會選哪一級，加上 Gate 紀錄與缺項後還一樣嗎？如果主管只看一欄，你們希望他看哪一欄？
+① 為什麼做這一步
 
-說好後，把結論記在下方表單，再按按鈕一次下載所有已填寫的表單；要匯出才算交件。
+要匯出才算交件。小組先花 1 分鐘聊：Agent 建議的 Level 你們同意嗎？只看驗收對照表會選哪一級，加上 Gate 紀錄與缺項後還一樣嗎？如果主管只看一欄，你們希望他看哪一欄？
+
+② 貼給 Agent
+
+請主要 Agent 告訴你要交的 `notes/` 在哪裡：
+
+```text
+請告訴我這個專案 notes 資料夾的完整路徑，並列出裡面的檔案。不要修改任何檔案。
+```
+
+③ 確認結果
+
+```text
+請檢查你剛才給我的 notes 資料夾，不要修改任何檔案：裡面有 b3.md 與 delivery.md，而且 delivery.md 寫了 Completion Level。符合只回「成功」；不符只回「失敗：」加一句原因。
+```
+
+失敗時：
+
+```text
+不要修改任何檔案。請找出 notes/b3.md 與 notes/delivery.md 實際在哪個資料夾，告訴我完整路徑；delivery.md 沒有 Completion Level，就告訴我缺了什麼。
+```
+
+說好後，把結論記在下方表單，再按按鈕一次下載所有已填寫的表單。
 
 ```form
 {"id": "delivery-check", "title": "交付核對（任務 ID：TASK-B3-001）","fields":[

@@ -1,7 +1,7 @@
 """Deterministic Markdown renderer for the participant runbook (stdlib only).
 
 Implements the CommonMark-ish subset and the runbook extension blocks defined in
-Component Spec v2, section A3 (cmd, callout, include, download, form, gate).
+Component Spec v2, section A3 (cmd, prompt, callout, include, download, form, gate).
 All text is HTML-escaped; raw HTML is never passed through.
 """
 from __future__ import annotations
@@ -42,8 +42,9 @@ MAX_INCLUDE_DEPTH = 8
 # Source documents open with "> 讀者：… 使用時機：… 前置條件：…" right under the title; that
 # authoring metadata is noise for learners, so includes drop it (page and copy/export alike).
 READER_NOTE_RE = re.compile(r"\A(\ufeff?#[^\n]*?(\r?\n))(?:[ \t]*\r?\n)*>[ \t]*(?:目標)?讀者：[^\n]*\n(?:>[^\n]*\n)*(?:[ \t]*\r?\n)*")
+BLOCK_LABELS = "①②③④"  # a paragraph opening "① " is a checkpoint block label
 CALLOUT_KINDS = ("info", "tip", "warning", "danger")
-EXTENSIONS = ("cmd", "callout", "include", "download", "form", "gate", "exportall")
+EXTENSIONS = ("cmd", "prompt", "callout", "include", "download", "form", "gate", "exportall")
 FIELD_TYPES = ("text", "textarea", "select", "checkbox", "checklist")
 FORM_KEYS = {"id", "title", "kind", "fields"}
 FIELD_KEYS = {"id", "label", "type", "options", "items", "hint", "value", "readonly", "suggestions"}
@@ -624,6 +625,40 @@ def _code_pre(code: str, lang: str, shell: str | None = None) -> str:
     return f'<pre class="rb-code"{attrs}><code>{_esc(code)}</code></pre>'
 
 
+def _tabbed(name: str, body: list[str], tabs: tuple, shell_lang: bool) -> str:
+    """```cmd / ```prompt: '# <key>' sections rendered as tabs; no markers -> a plain text block."""
+    keys = [k for k, _ in tabs]
+    sections: dict[str, list[str]] = {}
+    before: list[str] = []
+    current = None
+    for line in body:
+        mark = line.strip()
+        if mark[:2] == "# " and mark[2:] in keys:
+            key = mark[2:]
+            if key in sections:
+                raise MarkdownError(f"```{name}: duplicate '# {key}' section")
+            sections[key] = []
+            current = key
+            continue
+        (before if current is None else sections[current]).append(line)
+    if not sections:
+        return _code_pre("\n".join(_trim_blank(before)), "text")
+    if any(line.strip() for line in before):
+        raise MarkdownError(f"```{name}: text before the first " + " / ".join(f"'# {k}'" for k in keys) + " marker")
+    missing = [k for k in keys if k not in sections]
+    if missing:
+        raise MarkdownError(f"```{name}: missing section(s) {missing}")
+    pres = []
+    for key in keys:
+        code = _trim_blank(sections[key])
+        if not code:
+            raise MarkdownError(f"```{name}: empty '# {key}' section")
+        pres.append(_code_pre("\n".join(code), key if shell_lang else "text", key))
+    buttons = "".join(f'<button type="button" class="rb-cmd-tab" data-shell="{k}">{label}</button>' for k, label in tabs)
+    cls = "rb-cmd" if name == "cmd" else f"rb-cmd rb-{name}"
+    return f'<div class="{cls}"><div class="rb-cmd-tabs" role="tablist">{buttons}</div>' + "".join(pres) + "</div>"
+
+
 def _join_paragraph(lines: list[str]) -> str:
     parts = []
     last = len(lines) - 1
@@ -703,7 +738,12 @@ class _BlockParser:
         while i < len(lines) and not self._interrupts(lines, i):
             para.append(lines[i].lstrip(" "))
             i += 1
-        blocks.append(("p", self.inline.render(_join_paragraph(para))))
+        inner = self.inline.render(_join_paragraph(para))
+        num = BLOCK_LABELS.find(para[0][:1]) + 1
+        if num and para[0][1:2] == " ":
+            blocks.append(("html", f'<p class="rb-block-label" data-block="{num}">{inner}</p>'))
+        else:
+            blocks.append(("p", inner))
         return i
 
     def _heading(self, hashes: int, raw: str) -> str:
@@ -886,36 +926,10 @@ class _BlockParser:
         return end
 
     def _ext_cmd(self, words, body) -> str:
-        sections: dict[str, list[str]] = {}
-        before: list[str] = []
-        current = None
-        for line in body:
-            mark = line.strip()
-            if mark in ("# powershell", "# bash"):
-                shell = mark[2:]
-                if shell in sections:
-                    raise MarkdownError(f"```cmd: duplicate '# {shell}' section")
-                sections[shell] = []
-                current = shell
-                continue
-            (before if current is None else sections[current]).append(line)
-        if not sections:
-            return _code_pre("\n".join(_trim_blank(before)), "text")
-        if any(line.strip() for line in before):
-            raise MarkdownError("```cmd: text before the first '# powershell' / '# bash' marker")
-        missing = [s for s in ("powershell", "bash") if s not in sections]
-        if missing:
-            raise MarkdownError(f"```cmd: missing section(s) {missing}")
-        pres = []
-        for shell in ("powershell", "bash"):
-            code = _trim_blank(sections[shell])
-            if not code:
-                raise MarkdownError(f"```cmd: empty '# {shell}' section")
-            pres.append(_code_pre("\n".join(code), shell, shell))
-        tabs = ('<div class="rb-cmd-tabs" role="tablist">'
-                '<button type="button" class="rb-cmd-tab" data-shell="powershell">PowerShell</button>'
-                '<button type="button" class="rb-cmd-tab" data-shell="bash">bash</button></div>')
-        return '<div class="rb-cmd">' + tabs + "".join(pres) + "</div>"
+        return _tabbed("cmd", body, (("powershell", "PowerShell"), ("bash", "bash")), shell_lang=True)
+
+    def _ext_prompt(self, words, body) -> str:
+        return _tabbed("prompt", body, (("windows", "Windows"), ("macos", "macOS")), shell_lang=False)
 
     def _ext_callout(self, words, body) -> str:
         if len(words) != 2 or words[1] not in CALLOUT_KINDS:
