@@ -18,7 +18,7 @@
   --c-danger-700: #C42F39;
   --c-ink: #0C0E1F;
   --c-ink-2: #494A57;
-  --c-muted: #8A8B93;
+  --c-muted: #6B6C75; /* >= 4.5:1 on surface and page background */
   --c-line: #D7D6DB;
   --c-line-soft: #E6E7EA;
   --c-bg: #EEF0F0;
@@ -80,7 +80,7 @@
   --c-danger-700: #FF8C93;
   --c-ink: #EEF0F0;
   --c-ink-2: #AEAFB4;
-  --c-muted: #7D8092;
+  --c-muted: #8A8DA0; /* >= 4.5:1 on dark surfaces */
   --c-line: #2B3048;
   --c-line-soft: #232842;
   --c-bg: #0C0E1F;
@@ -148,7 +148,7 @@ kbd {
   z-index: 100;
   padding: .55rem 1.1rem;
   border-radius: var(--pill);
-  background: var(--c-accent);
+  background: #C9481F; /* fixed: white text keeps >= 4.5:1 in both themes */
   color: #fff;
   font-weight: 700;
   text-decoration: none;
@@ -467,7 +467,7 @@ kbd {
 .rb-nav-section-title {
   padding: 0 .75rem .4rem;
   color: var(--c-muted);
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -499,7 +499,7 @@ kbd {
   background: var(--c-surface-2);
   border: 1px solid var(--c-line-soft);
   color: var(--c-ink-2);
-  font-size: .7rem;
+  font-size: .75rem;
   font-weight: 600;
   line-height: 1.5;
   white-space: nowrap;
@@ -595,7 +595,7 @@ kbd {
   border-top: 1px solid var(--c-line-soft);
   color: var(--c-muted);
   font-family: var(--mono);
-  font-size: .68rem;
+  font-size: .75rem;
   line-height: 1.5;
   word-break: break-all;
 }
@@ -668,8 +668,9 @@ kbd {
 .rb-page-meta .rb-meta-min { font-family: var(--mono); color: var(--c-primary-700); border-color: rgba(0, 147, 193, .3); background: var(--c-tint); }
 .rb-page-meta .is-locked { color: var(--c-ink-2); }
 .rb-page-meta .is-unlocked { color: var(--c-teal-700); border-color: rgba(0, 165, 155, .35); background: var(--c-tint-teal); }
-.rb-page-meta .is-done { color: #fff; border-color: var(--c-teal); background: var(--c-teal); }
+.rb-page-meta .is-done { color: #fff; border-color: var(--c-teal-700); background: var(--c-teal-700); }
 :root[data-theme="dark"] .rb-page-meta .is-done { color: var(--c-bg); }
+:root:not([data-theme="dark"]) .rb-page-meta .is-unlocked { color: #006A63; }
 
 /* ---------- 7. Page + rendered markdown ------------------------------ */
 .rb-page { animation: rb-page-in .22s var(--ease); }
@@ -780,7 +781,7 @@ kbd {
   align-items: center;
   gap: .3rem;
   color: var(--c-muted);
-  font-size: max(.76rem, 12px);
+  font-size: .76rem;
   font-weight: 600;
   letter-spacing: .03em;
 }
@@ -831,7 +832,7 @@ kbd {
 .rb-toc-list ol a { padding-left: .85rem; font-size: .78rem; color: var(--c-muted); }
 .rb-toc-list ol { list-style: none; margin: 0; padding: 0; }
 .rb-toc-list a.is-active,
-.rb-toc-list a[aria-current="true"] { color: var(--c-primary); font-weight: 700; }
+.rb-toc-list a[aria-current="true"] { color: var(--c-primary-700); font-weight: 700; }
 .rb-toc-list a.is-active::before,
 .rb-toc-list a[aria-current="true"]::before {
   content: "";
@@ -931,7 +932,7 @@ pre.rb-code code {
   font: inherit;
   white-space: pre;
 }
-/* Prose prompts wrap inside their column; shell/JSON blocks keep horizontal scroll. Copy reads textContent, so wrapping never changes the copied text. */
+/* Prompts (```text) wrap so they read without sideways scrolling; shell blocks keep their scroll. */
 pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
 .rb-copy {
   position: absolute;
@@ -943,11 +944,11 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   gap: .3rem;
   height: 1.4rem;
   padding: 0 .6rem;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, .16);
   border-radius: var(--pill);
-  background: transparent;
-  color: #A9B9D0;
-  font-size: max(.72rem, 12px);
+  background: rgba(255, 255, 255, .06);
+  color: #C9D5E6;
+  font-size: .75rem;
   font-weight: 600;
   line-height: 1;
   transition: background-color .12s, color .12s;
@@ -1118,8 +1119,43 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 .rb-table tbody tr:last-child td { border-bottom: 0; }
 .rb-table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--c-surface-2) 55%, transparent); }
 .rb-table tbody tr:hover td { background: var(--c-tint); }
-.rb-table code { white-space: nowrap; }
-@media (max-width: 959.98px) { .rb-table code { white-space: normal; overflow-wrap: anywhere; } }
+/* Inline code in cells wraps at every width so long identifiers never force sideways scrolling. */
+.rb-table code { white-space: normal; overflow-wrap: anywhere; }
+/* Scroll hint: JS adds .is-scrollable only while the table is wider than its box. */
+.rb-table-wrap.is-scrollable::before {
+  content: "左右滑動看更多 →";
+  position: sticky;
+  left: 0;
+  display: block;
+  padding: .3rem .85rem;
+  border-bottom: 1px solid var(--c-line-soft);
+  background: var(--c-tint);
+  color: var(--c-primary-700);
+  font-size: .75rem;
+  font-weight: 600;
+}
+/* Phones: tables with 3+ columns become one card per row; each cell shows its header (data-label). */
+@media (max-width: 599.98px) {
+  .rb-table-wrap:has(> .rb-table-stack) { overflow: visible; border: 0; background: transparent; }
+  .rb-table-wrap:has(> .rb-table-stack)::before { content: none; }
+  .rb-table.rb-table-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .rb-table.rb-table-stack, .rb-table.rb-table-stack tbody, .rb-table.rb-table-stack tr, .rb-table.rb-table-stack td { display: block; width: auto; }
+  .rb-table.rb-table-stack tr {
+    margin: 0 0 .75rem;
+    overflow: hidden;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-sm);
+    background: var(--c-surface);
+  }
+  .rb-table.rb-table-stack td,
+  .rb-table.rb-table-stack tbody tr:nth-child(even) td,
+  .rb-table.rb-table-stack tbody tr:hover td { min-width: 0; padding: .45rem .75rem; border: 0; border-bottom: 1px solid var(--c-line-soft); background: transparent; text-align: left !important; }
+  .rb-table.rb-table-stack td:first-child { background: var(--c-surface-2); font-weight: 600; }
+  .rb-table.rb-table-stack td:last-child { border-bottom: 0; }
+  .rb-table.rb-table-stack td:empty { display: none; }
+  .rb-table.rb-table-stack td::before { content: attr(data-label); display: block; color: var(--c-ink-2); font-size: .75rem; font-weight: 700; }
+  .rb-table.rb-table-stack td[data-label=""]::before { content: none; }
+}
 
 /* ---------- 14. Include section (embedded source document) ----------- */
 .rb-include {
@@ -1158,6 +1194,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 .rb-include-actions { margin-left: auto; display: inline-flex; gap: .4rem; }
 .rb-include-actions .rb-chip::before { content: none; }
 .rb-page-body .rb-include-meta code {
+  font-size: max(.86em, 12px);
   background: var(--c-surface);
   border: 1px solid var(--c-line-soft);
   font-weight: 500;
@@ -1215,7 +1252,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   padding: .45rem 1.2rem;
   border: 0;
   border-radius: var(--pill);
-  background: var(--c-primary);
+  background: var(--c-primary-700);
   color: #fff;
   font-size: .92rem;
   font-weight: 700;
@@ -1233,11 +1270,11 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   -webkit-mask: var(--i-download) center / contain no-repeat;
   mask: var(--i-download) center / contain no-repeat;
 }
-.rb-download:hover { background: var(--c-primary-700); }
+.rb-download:hover { background: var(--c-primary-900); }
 .rb-download:active { transform: translateY(1px); }
 :root[data-theme="dark"] .rb-download { color: #06202B; }
 :root[data-theme="dark"] .rb-download:hover { background: #4BBDE3; }
-.rb-download.is-done { background: var(--c-teal); }
+.rb-download.is-done { background: var(--c-teal-700); }
 .rb-download.is-done::before { -webkit-mask-image: var(--i-check); mask-image: var(--i-check); }
 .rb-download:disabled, .rb-download.is-busy { opacity: .6; cursor: progress; }
 .rb-download-meta {
@@ -1354,13 +1391,13 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   padding: 0 1.5rem;
   border: 0;
   border-radius: var(--pill);
-  background: var(--c-primary);
+  background: var(--c-primary-700);
   color: #fff;
   font-weight: 700;
   letter-spacing: .04em;
   transition: background-color .15s, transform .1s;
 }
-.rb-lock-btn:hover { background: var(--c-primary-700); }
+.rb-lock-btn:hover { background: var(--c-primary-900); }
 .rb-lock-btn:active { transform: translateY(1px); }
 .rb-lock-btn:disabled, .rb-lock-btn.is-busy { opacity: .65; cursor: progress; }
 :root[data-theme="dark"] .rb-lock-btn { color: #06202B; }
@@ -1401,15 +1438,15 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 .rb-btn:hover { border-color: var(--c-primary); color: var(--c-primary-700); }
 .rb-btn:active { transform: translateY(1px); }
 .rb-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-.rb-btn-primary { border-color: var(--c-primary); background: var(--c-primary); color: #fff; }
-.rb-btn-primary:hover { border-color: var(--c-primary-700); background: var(--c-primary-700); color: #fff; }
+.rb-btn-primary { border-color: var(--c-primary-700); background: var(--c-primary-700); color: #fff; }
+.rb-btn-primary:hover { border-color: var(--c-primary-900); background: var(--c-primary-900); color: #fff; }
 :root[data-theme="dark"] .rb-btn-primary,
 :root[data-theme="dark"] .rb-btn-primary:hover { color: #06202B; }
 :root[data-theme="dark"] .rb-btn-primary:hover { background: #4BBDE3; border-color: #4BBDE3; }
 .rb-btn-ghost { border-color: transparent; background: transparent; color: var(--c-primary-700); }
 .rb-btn-ghost:hover { border-color: transparent; background: var(--c-tint); }
-.rb-btn-danger { border-color: transparent; background: transparent; color: var(--c-danger); margin-left: auto; }
-.rb-btn-danger:hover { border-color: rgba(235, 71, 81, .4); background: var(--c-tint-danger); color: var(--c-danger); }
+.rb-btn-danger { border-color: transparent; background: transparent; color: var(--c-danger-700); margin-left: auto; }
+.rb-btn-danger:hover { border-color: rgba(235, 71, 81, .4); background: var(--c-tint-danger); color: var(--c-danger-700); }
 .rb-btn-danger.is-confirm,
 .rb-btn-danger[data-confirm="1"] { border-color: var(--c-danger); background: var(--c-danger); color: #fff; }
 .rb-btn-danger.is-confirm:hover { background: var(--c-danger-700); border-color: var(--c-danger-700); color: #fff; }
@@ -1469,7 +1506,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   border-radius: var(--pill);
   background: var(--c-navy);
   color: #fff;
-  font-size: .68rem;
+  font-size: .75rem;
   letter-spacing: .1em;
   -webkit-mask: none;
   mask: none;
@@ -1480,7 +1517,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   border-radius: var(--pill);
   background: var(--c-navy);
   color: #fff;
-  font-size: .68rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .1em;
 }
@@ -1783,8 +1820,18 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   .rb-pager-prev, .rb-pager-next { grid-column: 1; }
   .rb-toasts { left: .75rem; right: .75rem; bottom: .75rem; align-items: stretch; }
   .rb-toast { max-width: none; }
+  /* Tap targets >= 40px on phones */
+  .rb-icon-btn, .rb-brand-mark { width: 2.5rem; height: 2.5rem; }
+  .rb-search-input { height: 2.5rem; }
+  .rb-btn, .rb-chip { min-height: 2.5rem; }
+  .rb-download { min-height: 2.75rem; }
+  .rb-cmd-tab { min-height: 2.5rem; }
+  pre.rb-code { padding-top: 3.4rem; background-size: 100% 2.9rem, auto; }
+  pre.rb-code::before { top: .85rem; }
+  .rb-copy { top: .2rem; height: 2.5rem; padding: 0 .9rem; }
+  .rb-cmd .rb-copy { top: .3rem; }
 }
-@media (max-width: 379.98px) {
+@media (max-width: 479.98px) {
   .rb-progress-track { display: none; }
 }
 
