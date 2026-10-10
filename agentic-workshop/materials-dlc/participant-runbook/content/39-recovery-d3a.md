@@ -8,18 +8,10 @@ section: D3｜受治理的變更
 
 # D3a Recovery：視需要接續
 
-主持人揭曉之後，才會個別提供本頁解鎖碼；一般解鎖碼不會開啟本頁。Recovery（復原包：進度落後時改用的接續基線）的內容是：D2 的已審查 Registry，加上 D3a 參考實作（電子發票的程式、測試與 ADR；會取代你們自己的 D3a 程式；Registry 沒有 D3a 的候選）。使用 Recovery **不代表你們自己完成了 D3a**，Agent 會在紀錄中如實寫明。`docs/adr/` 新增的 ADR 是參考實作的決定，不是你們的；D4 交接以 `docs/handoffs/` 與 `notes/` 為準。
+Recovery 的內容是 D2 的已審查 Registry，加上 D3a 參考實作（電子發票的程式、測試與 ADR；會取代你們自己的 D3a 程式）。原 Repo 保留不動；Agent 會如實記錄這段由 Recovery 提供。
 
 ```download
 id=recovery-dlc-d3a zip=recovery-dlc-d3a.zip label=下載 D3a Recovery
-```
-
-切換分三步，和 D2 的分工一樣：提案者的 Agent 搬檔案、建環境；**金鑰、簽章與 commit 只在夥伴自己的 Agent 對話**。原本的 Repo 不改名、不覆寫、不刪除。
-
-```callout info
-Recovery 怎麼保住簽章規則（同 D2 Recovery）
-Recovery 附上 Git 歷史（`repo.bundle`，把 Git 歷史打包成一個檔案）。裡面碰到 Registry 的 commit 都已用課程準備的 Maintainer 金鑰簽章，所以 D2 的規則「第一個含 `domain-memory/` 的 commit 必須簽章」在新資料夾仍然成立。包裡只有那把金鑰可公開的公鑰（讓 Git 能驗證舊簽章），沒有私鑰。之後由夥伴用自己的金鑰接手：像 D2 檢查點 2 一樣，把自己的金鑰加入授權，再做一個簽章 commit。
-📖 延伸閱讀：Git 官方文件〈git-commit〉的 -S 選項說明；學員包 `tools/README.md`（金鑰位置，以及 pre-push hook：push 前 Git 自動執行的檢查腳本）。
 ```
 
 ## 步驟 1 · 【提案者】保存原成果並解出 Recovery
@@ -56,7 +48,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 4. 用白話告訴我 resume-d3a 的完整路徑、從原 Repo 複製了哪些資料夾，以及原 Repo 是否原封不動。做完停下。
 ```
 
-**看到什麼算過關**：`resume-d3a` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`resume-d3a` 的 `notes/d3a.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是正常的。
+**看到什麼算過關**：`resume-d3a` 已建立，原 Repo 的 `notes/`（與 `docs/handoffs/`，如果有）已複製進去，`notes/d3a.md` 有「改用 Recovery 前的狀態」；原 Repo 沒有被改動。
 
 **如果卡住**（步驟 1 中途失敗、要重跑）：
 
@@ -67,7 +59,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 ## 步驟 2 · 【夥伴】在 resume-d3a 開新的 Agent 對話，接手簽章
 
 - [ ] 夥伴結束原 Repo 裡自己的 Agent 對話，在 `resume-d3a` 另開一個終端機，啟動自己的**新**對話。
-- [ ] 先貼 [D2](#d2)「開始前」的【夥伴】規則，再貼下方提示詞。這段的指令是給 Agent 的，不需要看懂；你只看回報與「看到什麼算過關」。
+- [ ] 先貼 [D2](#d2)「開始前」的【夥伴】規則，再貼下方提示詞（給 Agent 的，不需要看懂）。
 
 ```text
 【夥伴的 Agent】這是 D3a Recovery，Repo 根目錄現在是 resume-d3a。依終端機選一組，在「同一次執行」裡依序跑（rec、old、fp 變數要在同一次執行內才有值），參數一字不改；任何一步失敗就停下貼出錯誤，不要自己改設定或換寫法：
@@ -118,11 +110,11 @@ git log --show-signature -1
 
 **看到什麼算過關**
 
-- `git status` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 每個 commit 前有一個字母：`G` 表示簽章有效，`N` 表示未簽章。Registry 的三個 commit 是 `G maintainer@example.com`；最上面的「D3a：電子發票（Recovery 參考實作）」與最下面的「Smart Ticket DLC base」（起始程式）是 `N`，它們不碰 Registry，所以允許不簽章。
-- `amend-policy` 的 `authorized_signers` 從一個金鑰指紋（fingerprint，辨識是哪一把金鑰，可公開）變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
-- 簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`；commit 後 `git status --short` 是空的（複製來的 `notes/` 與 `docs/handoffs/` 都已 commit）。
+- `git log` 裡碰到 Registry 的三個 commit 是 `G maintainer@example.com`（簽章有效），其他是 `N`（未簽章，它們不碰 Registry，允許）。
+- `authorized_signers` 從一個金鑰指紋變成兩個；`governance-readiness` 是 `{"status": "ready", "blocks": []}`。
+- 簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`；commit 後 `git status --short` 是空的。
 
-這個夥伴對話開到課程結束：D3b、D3c 檢查點 5 與 D4 的簽章 commit 都在這裡執行。
+**這個夥伴對話開到課程結束**：D3b、D3c 檢查點 5 與 D4 的簽章 commit 都在這裡執行。
 
 ## 步驟 3 · 【提案者】在 resume-d3a 開新的 Agent 對話，建環境並驗證
 
@@ -149,7 +141,7 @@ git log --show-signature -1
 
 **看到什麼算過關**
 
-- 測試全部 `passed`，沒有 `failed` 或 `error`。結果不符就停止切換，請主持人確認。
-- `Registry is valid.`（帶 `--require-reviewed`：Recovery 裡全部是已審查事實）；`verify-audit` 回 `"status": "valid"`。
-- `verify-evidence` 大多是 `current`（仍一致，約 147 個），約 15 個是過期（`stale`：引用的那幾行內容已改變），結束碼 1 是預期的：參考實作改過已審查事實引用的那幾行，留到 D4 處理；missing 與 invalid 都是 0。
-- `notes/recovery-d3a.md` 寫明 D3a 的成果由 Recovery 提供。看到這些後，回到 [D3b](#d3b) 接續。
+- 測試全部 `passed`。結果不符就停止切換，請主持人確認。
+- `Registry is valid.`；`verify-audit` 回 `"status": "valid"`。
+- `verify-evidence`：約 147 個 `current`、約 15 個 `stale`（參考實作改過引用的那幾行），結束碼 1 是預期的，留到 D4；missing 與 invalid 都是 0。
+看到這些後，回到 [D3b](#d3b) 接續。

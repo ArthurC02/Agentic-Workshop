@@ -56,25 +56,25 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 2 · 對外介面（Port）與邊界決策" data-minute="73">
   <p class="kicker">檢查點 2 / 6 · 第 73–78 分鐘</p>
-  <h2 class="title">決策卡：負責的 Context、不變量、邊界</h2>
+  <h2 class="title">交接單：負責的 Context、不變量、邊界</h2>
   <ol class="steps">
     <li>貼提示詞：Agent 每題提<b>兩個選項</b>，各附 Domain Memory 或程式的證據</li>
     <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
-    <li>Agent 寫成決策卡，列出不變量（任何時候都必須成立的規則）；確認後回「同意」</li>
+    <li>Agent 把選擇寫進交接單，列出不變量（任何時候都必須成立的規則）；確認後回「同意」</li>
   </ol>
   <p class="callout warn">Runbook › D3a 電子發票 › 檢查點 2 · 討論後回覆選擇</p>
   <aside class="notes">
-    <p><b>說（03:00／第 73 分）</b>：「第 73 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫成 D3 決策卡，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
+    <p><b>說（03:00／第 73 分）</b>：「第 73 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫進交接單 docs/handoffs/d3a-e-invoice.md，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
     <p><b>看</b>：owner 是否有理由；是否把『呼叫服務商』直接寫進付款流程；是否提到不持鎖外呼。</p>
     <p><b>介入訊號</b>：沒有 Port 就直接 import 具體 Client → 問：測試要怎麼模擬逾時？</p>
-    <p><b>提示</b>：H2：「現有付款 Gateway 沒有 Port，這次要照做還是改？決策卡上寫下理由。」</p>
+    <p><b>提示</b>：H2：「現有付款 Gateway 沒有 Port，這次要照做還是改？交接單上寫下理由。」</p>
     <p><b>新概念</b>：這裡第一次介紹 <b>Port／Adapter</b>、<b>防腐層</b>、<b>Owner Context 與不變量</b>，各花 30 秒講（冪等已在檢查點 1 介紹；Runbook 有「新概念」框）。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="78">
   <p class="kicker">檢查點 3 / 6 · 第 78–85 分鐘</p>
-  <h2 class="title">把決策卡交給 Agent，依交接單（Handoff）實作，做完停下</h2>
+  <h2 class="title">Agent 依交接單（Handoff）實作，做完停下</h2>
   <ol class="steps">
     <li>貼提示詞：Agent 依交接單<b>先提計畫</b>，你們回「同意」才動手</li>
     <li>分兩段實作；每段看<b>實際</b>測試結果再回「繼續」</li>
@@ -83,7 +83,7 @@
   <p class="callout">Runbook › D3a 電子發票 › 檢查點 3 · 貼提示詞</p>
   <aside class="notes">
     <p><b>說（08:00／第 78 分）</b>：「第 78 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
-    <p><b>看</b>：Agent 是否沿用決策卡（owner、不變量），還是自己重新決定；測試是否真的執行。冪等是否以 order_id；是否把發票失敗吞掉卻沒有狀態紀錄。</p>
+    <p><b>看</b>：Agent 是否沿用交接單（owner、不變量），還是自己重新決定；測試是否真的執行。冪等是否以 order_id；是否把發票失敗吞掉卻沒有狀態紀錄。</p>
     <p><b>介入訊號</b>：Agent 直接改付款回應碼或讓失敗撤銷付款 → 要求停止並回到不變量。</p>
     <p><b>提示</b>：H3：「付款已成功，發票失敗時，Order 與 Booking 應該長什麼樣？」</p>
     <p><b>巡堂重點</b>：只在 <code>pay</code> 內把呼叫移出鎖，卻沒發現 <code>pay_group</code> 持有 RLock 時呼叫 <code>pay</code>，團體路徑仍在鎖內；在付款請求內同步重試 5 次；發票金額用 <code>booking.total_fare</code> 而不是 Order.amount（D3b 之後會錯）。</p>
@@ -130,14 +130,14 @@
   <ol class="steps">
     <li>停止所有修改</li>
     <li>Agent 整理決策摘要，對照投影的參考設計</li>
-    <li>填揭曉對照表單：一個差異與原因；不評分、不比誰對</li>
+    <li>兩人一起聊對照的三題，再把結論記進揭曉對照表單；不評分、不比誰對</li>
   </ol>
-  <p class="callout">Runbook › D3a 電子發票 › 檢查點 6 · 填揭曉對照表單</p>
+  <p class="callout">Runbook › D3a 電子發票 › 檢查點 6 · 聊完再記揭曉對照</p>
   <aside class="notes">
     <p><b>說（22:00／第 92 分）</b>：「第 92 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
     <p><b>看</b>：停手後是否還有人在改；對照時是否討論理由而不是對錯。</p>
     <p><b>介入訊號</b>：還有人在改 → 請他停手保存現況，揭曉後可用 Recovery 接續。</p>
-    <p><b>收尾（揭曉後）</b>：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。</p>
+    <p><b>收尾（揭曉後）</b>：Runbook 檢查點 6 有三題，請兩人對照參考設計時一起聊，再把結論記進「D3a 揭曉對照」；挑第 3 題請 1–2 組分享（約 1 分鐘）。</p>
   </aside>
 </section>
 

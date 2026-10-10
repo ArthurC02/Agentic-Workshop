@@ -10,28 +10,17 @@ section: 開始之前
 
 ```callout info
 現在在做什麼
-- **情境**：你接手 Smart Ticket 的訂票後端，今天要替它建立 Agent 用得上的 Domain Memory。先把環境備好。
-- **你的目標**：10 分鐘內讓 Agent 把起始 Repo 的測試全部跑過、原樣解出 Plugin 並核對雜湊、確認專案狀態，以及 `python` 是 venv 裡的真實 Python。
-- **今天的技巧**：先講好「看到什麼算成功」，再讓 Agent 執行並回報。每個提示詞都寫明成功的樣子（例如 `76 passed`、`SHA OK 71 files`），Agent 的回報對得上才往下；你不用看懂指令，只看結果。
-- **完成的樣子**：`notes/opening.md` 有 Agent 寫的四個檢查點結果；起始 commit 已建立，還沒有 `domain-memory/`。
+- **情境**：你接手 Smart Ticket 的訂票後端，今天要替它建立 Agent 用得上的 Domain Memory。
+- **你的目標**：10 分鐘內讓 Agent 跑過全部測試、核對 Plugin、確認專案狀態與真實 Python。
+- **今天的技巧**：先講好「看到什麼算成功」，Agent 的回報對得上才往下；你不用看懂指令。
+- **完成的樣子**：`notes/opening.md` 有四個檢查點的結果；起始 commit 已建立。
 ```
-
-本段沒有需要你決定的事，所以沒有表單。四個檢查點的指令都已寫進提示詞，由 Agent 執行。
-
-## 檢查點總覽
-
-時間是**最晚**完成的時間；提早完成就直接進入下一個。
-
-- **檢查點 1 · 安裝相依套件與測試（0–3）**：下載、解壓到短路徑；Agent 建 venv（Python 虛擬環境）、安裝相依套件、測試全部通過。
-- **檢查點 2 · 解出 Plugin 並核對 SHA256（3–5）**：Agent 解出 Plugin 0.10.15，逐檔核對 SHA256 雜湊（檔案的指紋）。
-- **檢查點 3 · 專案就緒與品質關卡檢查（5–8）**：Agent 確認 Plugin 判定 brownfield（已有程式碼的既有專案），並找到 pytest。
-- **檢查點 4 · 確認真實 Python（8–10）**：Agent 確認 `python` 是 venv 裡的真實直譯器、建立起始 commit、環境健檢全部通過。
 
 ## 前置需求
 
-- Windows 上的 Python **3.13**，而且有 `py` launcher（Python 啟動器）。
-- Git for Windows 2.34 以上（D2 的 SSH 簽章需要）。
-- 一個可讀寫本機資料夾、能執行終端機指令的 Coding Agent（主課用過的那一個即可）。
+- Windows 上的 Python **3.13**（含 `py` 啟動器）。
+- Git for Windows 2.34 以上。
+- 一個能讀寫本機資料夾、執行終端機指令的 Coding Agent（主課用過的即可）。
 
 ## 檢查點 1 · 安裝相依套件與測試（第 0–3 分鐘）
 
@@ -44,11 +33,11 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 - [ ] 先貼下方的「工作規則」，再貼本檢查點的提示詞。
 
 ```callout warning
-一定要解壓到 C:\dlc 這種短路徑
-Plugin 更新 Registry（`domain-memory/` 裡記錄領域知識的 JSON 檔）時，會在 `domain-memory/` 底下建立名稱很長的暫存資料夾。放在桌面、OneDrive 或深層資料夾，會在 D1 出現「檔名或副檔名太長」（WinError 206）。不要放在同步資料夾。
+一定要解壓到 C:\dlc
+放在桌面、OneDrive 或深層資料夾，D1 會出現「檔名或副檔名太長」（WinError 206）。
 ```
 
-**工作規則**（整場只貼一次；之後開新的 Agent 對話時再貼一次）。規則先講好，之後每個提示詞就不用重複「用哪個終端機」「做完停下」。這段是給 Agent 的，不需要看懂：
+**工作規則**（整場只貼一次；之後開新的 Agent 對話時再貼一次）。這段是給 Agent 的，不需要看懂：
 
 ```text
 以下是今天這堂延伸課程的工作規則，請在整段對話中遵守：
@@ -94,11 +83,11 @@ Plugin 更新 Registry（`domain-memory/` 裡記錄領域知識的 JSON 檔）�
 
 ## 檢查點 2 · 解出 Plugin 並核對 SHA256（第 3–5 分鐘）
 
-Plugin 必須**原樣**使用：學員包只放執行時需要的檔案（開發用的測試已拿掉），每個檔案都沒有改過。今天的 Registry 規則與各種檢查都由它判定，任何一個位元組被改過，結果就不可信。這一步讓 Agent 逐檔比對雜湊，你只看它回報的一行結論。
+Plugin 必須原樣使用：今天的各種檢查都由它判定，檔案被改過，結果就不可信。
 
 ```callout info
 新概念：SHA256 雜湊
-雜湊是由檔案內容算出的一串固定長度的字，像檔案的指紋：內容改了一個位元組，雜湊就完全不同。SHA256 是常用的一種。學員包附了每個 Plugin 檔案的「正確指紋」清單，Agent 重算一次、逐檔比對，全部相同才印 `SHA OK`。D1 起 Plugin 也用同樣的方法記住你引用的證據內容。
+雜湊是由檔案內容算出的一串字，像檔案的指紋：內容改一個位元組就完全不同。Agent 逐檔重算並和清單比對，全部相同才印 `SHA OK`。
 📖 延伸閱讀：NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉。
 ```
 
@@ -122,13 +111,11 @@ Plugin 必須**原樣**使用：學員包只放執行時需要的檔案（開發
 做完停下等我。
 ```
 
-**看到什麼算過關**：Agent 回報 `SHA OK 71 files`（70 個 Plugin 檔案加 ZIP 本身），以及 `"version": "0.10.15"`。出現 `SHA MISMATCH` 就停下，請主持人協助。
+**看到什麼算過關**：`SHA OK 71 files` 與 `"version": "0.10.15"`。出現 `SHA MISMATCH` 就停下，請主持人協助。
 
 ## 檢查點 3 · 專案就緒與品質關卡檢查（第 5–8 分鐘）
 
-`readiness` 只看檔案，不改任何東西。它回報兩件事：這個 Repo 處於什麼狀態（`state`：例如 brownfield，已有程式碼的既有專案），以及判斷有多確定（`confidence`）。`quality-gates` 列出 Repo 本來就有的檢查，同樣不改任何東西。這一步也讓 Agent 第一次經過 `dm` 腳本呼叫 Plugin，之後所有 Plugin 指令都走同一條路。
-
-📖 延伸閱讀：學員包 `vendor/domain-memory/references/readiness.md`（Plugin 自帶，列出每一種 state 的意思）。
+兩個唯讀檢查：`readiness` 判斷 Repo 狀態，`quality-gates` 列出 Repo 已有的檢查。
 
 ```text
 請用 dm 腳本執行兩個唯讀檢查，不要修改任何檔案：
@@ -148,23 +135,12 @@ bash：
 
 **看到什麼算過關**
 
-- `readiness` 為 `"state": "brownfield"`、`"confidence": "high"`。
-- `quality-gates` 只有一項 `"tool": "pytest"`，`"standard": "none"`（沒有 lint、型別或架構檢查，這是事實，不是錯誤）。
-- 每次執行前 `dm` 會先印一行 `[dm] registry_tools.py ...`，顯示實際送給 Plugin 的完整指令；Agent 可以引用它。
-
-```callout info
-為什麼一定要經過 dm.ps1／dm.sh
-繁體中文 Windows 的預設編碼是 cp950（不是 UTF-8）。Plugin 讀寫的 JSON 與文件含中文，少了 `-X utf8` 會出現 `UnicodeDecodeError`。`dm` 固定用 `py -3.13 -X utf8` 執行 Plugin，並自動補上 Registry 與 Repo 的路徑參數。工作規則第 3 條已要求 Agent 一律經過它。
-```
-
-```callout tip
-💬 討論一下
-這個 Repo 沒有任何程式風格、型別或架構檢查。Agent 之後改程式時，哪一類錯誤最可能溜過去？
-```
+- `readiness` 為 `"state": "brownfield"`（已有程式碼的既有專案）、`"confidence": "high"`。
+- `quality-gates` 只有一項 `"tool": "pytest"`，`"standard": "none"`：沒有 lint、型別或架構檢查，這是事實，不是錯誤。
 
 ## 檢查點 4 · 確認真實 Python（第 8–10 分鐘）
 
-D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳本）會直接呼叫 `python`。教室電腦上的 `python` 常常是 Microsoft Store 的別名（路徑含 `WindowsApps`），會讓 push 失敗。啟用 Repo 的 venv 後，`python` 才是 venv 裡的真實直譯器。這一步也建立起始 commit，之後 Agent 才說得清楚改了什麼。
+D2 推送（push）時 Git 會直接呼叫 `python`；教室電腦上的 `python` 常是 Microsoft Store 的別名（路徑含 `WindowsApps`），會讓 push 失敗。這一步也建立起始 commit。
 
 ```text
 請確認真實 Python、建立起始 commit，並執行環境健檢：
@@ -187,9 +163,9 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 
 **看到什麼算過關**
 
-- `python --version` 為 `Python 3.13.x`，路徑在 `smart-ticket-dlc-base\.venv\Scripts\` 底下，**不含** `WindowsApps`。
-- `doctor.py` 最後一行為「全部必要項目通過。」（`[--]` 只是提醒，不算失敗；健檢時還沒 `git init`，所以會看到 `[--] git repo：目前目錄不是 git repo…`，這是預期，下一步就建立 commit）。
-- 起始 commit 已建立，裡面沒有 `domain-memory/`；`git status --short` 是空的（`notes/opening.md` 已一起 commit）。
+- `Python 3.13.x`，路徑在 `smart-ticket-dlc-base\.venv\Scripts\` 底下，**不含** `WindowsApps`。
+- `doctor.py` 最後一行為「全部必要項目通過。」（`[--]` 只是提醒，例如還沒 `git init` 的那一行）。
+- 起始 commit 已建立，沒有 `domain-memory/`；`git status --short` 是空的。
 
 **如果卡住**（`python` 指向 `WindowsApps` 或 doctor 有 `[!!]`）：
 
@@ -197,17 +173,9 @@ D2 推送（push）時，pre-push hook（push 前 Git 自動執行的檢查腳�
 請不要修改程式。用白話解釋 doctor.py 每一個 [!!] 項目或 python 路徑不對的原因，以及它建議的修正方式；只列出來，等我同意再做。
 ```
 
-```callout tip
-為什麼 Git 使用者叫 DLC Proposer
-今天只在本機練習，每個人先以 `proposer@example.com` 身分工作。第 7 分鐘主持人會請你找一位夥伴，D2 起兩人一組：夥伴（Maintainer，持鑰人）會以 `maintainer@example.com` 身分核准與簽章。這兩個字串會出現在稽核紀錄裡，讓你看清楚「誰做了什麼」。
-```
-
 ```callout danger
 第 10 分鐘仍未通過
-不要在活動中更換 Python 版本或改用其他語言或工具。告知主持人，從 D1 開始，先和夥伴共用一台已通過的機器，並請 Agent 在 `notes/opening.md` 記下卡在哪一步。
+不要在活動中更換 Python 版本或工具。告知主持人，從 D1 起先和夥伴共用一台已通過的機器。
 ```
 
-```callout tip
-這段學到的技巧
-交給 Agent 執行之前，先寫好「看到什麼算成功」；Agent 的回報對得上這幾個字樣才往下。你不用看懂指令，也能判斷環境是不是真的好了。
-```
+第 7 分鐘主持人會請你找一位夥伴，D2 起兩人一組。
