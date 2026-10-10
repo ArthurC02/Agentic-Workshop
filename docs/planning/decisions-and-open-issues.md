@@ -201,3 +201,7 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 使用者授權「全部修復」原本鎖定的程式包問題，並授權 Commit 與 Push：Greenfield／B0／參考解答 README 的虛擬環境啟用說明（Windows Git Bash 路徑錯誤）、Brownfield Recovery 包補齊 docs（ADR、改票指南、優惠說明、API 範例）、DLC 程式庫與 Recovery bundle 統一 LF 行尾並鎖定 anyio 版本以消除 DeprecationWarning。修正後重新量測頁面引用的數字並以候選包實跑驗證。D2 檢查點 6 夥伴推送改在沙箱內推送到本機 bare repo 驗證。
 
 結果與已知限制：DLC 起始 Repo 改 LF、釘選 anyio 4.9.0／starlette 0.46.2；`make_recovery.py` 重建 d1–d3c（d3 參考實作疊加時保留每個檔案原本的行尾，d3c verify-evidence 由 93／69 變為 99／63），D2 Recovery 新增選做的 push 檢查（步驟 4）。d2 Recovery 與 d2／d3 的 Registry 歷史來自 Maintainer 已簽章的 bundle，改行尾或釘選需要原私鑰重簽，維持原樣（d2 Recovery 可能出現一個無害的 DeprecationWarning）。
+
+## domain-memory Plugin 升級 0.10.15（2026-10-10）
+
+由 0.2.2 升級到 0.10.15。相容性評估：沒有移除或改名的指令與參數、預設值不變；簽章的參考 Registry、d1–d3c Recovery 與 D1→D2 全流程在兩版結果一致；頁面引用的輸出字串都還在。帶來的修正：Plugin 寫檔改 LF、OneDrive 唯讀資料夾不再讓 apply 失敗、檔案系統錯誤只印一行 ERROR、scan-secrets 讀不到檔案時不再中斷、核准證明必須對應同一個 Change Package。學員包只放執行用的檔案：依 Plugin README 排除 `evals/`、`scripts/test_*.py` 與開發用的 `README.md`、`ruff.toml`（由 `scripts/vendor_dlc_plugin.py` 產生，70 個檔案、`SHA OK 71 files`；0.2.2 是 129 個檔案）。另外撤回起始 Repo `.gitignore` 的 `records/`：被忽略的路徑會讓 `git add -A -- . ':!records'` 結束碼為 1。
