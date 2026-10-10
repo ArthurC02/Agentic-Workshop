@@ -18,7 +18,9 @@ id=recovery-dlc-d3a zip=recovery-dlc-d3a.zip label=下載 D3a Recovery
 
 ① 為什麼做這一步
 
-先記下原 Repo 做到哪裡，再把 Recovery 解成和原 Repo 同一層的 `resume-d3a`，原 Repo 不動。按上方按鈕下載 `recovery-dlc-d3a.zip`，存到「下載」資料夾，再把下方提示詞貼到**原本**的提案者 Agent 對話。
+先記下原 Repo 做到哪裡，再把 Recovery 解成和原 Repo 同一層的 `resume-d3a`；原 Repo 不動。
+- 按上方按鈕下載 `recovery-dlc-d3a.zip`，存到「下載」資料夾。
+- 把下方提示詞貼到**原本**的提案者 Agent 對話。
 
 ② 貼給 Agent
 
@@ -92,7 +94,10 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 
 ① 為什麼做這一步
 
-Recovery 的簽章歷史來自另一把金鑰；夥伴還原歷史後用自己的金鑰接手簽章，之後的 commit 才通得過推送檢查。夥伴結束原 Repo 裡自己的 Agent 對話，在 `resume-d3a` 另開一個終端機，啟動自己的**新**對話，先貼 [D2](#d2)「開始前」的【夥伴】規則，再貼下方提示詞（給 Agent 的，不需要看懂）。讀過回報、確認要 commit 的檔案後回「同意」。
+Recovery 的簽章歷史來自另一把金鑰；夥伴還原歷史後用自己的金鑰接手簽章，之後的 commit 才通得過推送檢查。
+- 夥伴結束原 Repo 裡自己的 Agent 對話，在 `resume-d3a` 另開一個終端機，啟動自己的**新**對話。
+- 先貼 [D2](#d2)「開始前」的【夥伴】規則，再貼下方提示詞（給 Agent 的，不需要看懂）。
+- 讀過回報、確認要 commit 的檔案後回「同意」。
 
 ② 貼給 Agent
 
@@ -197,7 +202,9 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
 
 ① 為什麼做這一步
 
-提案者在 `resume-d3a` 建好環境，確認測試、Registry 與稽核紀錄都可用，才接續下一段。結束原本的提案者 Agent 對話，在 `resume-d3a` 重新啟動 Agent，開一個**新的**對話，先貼 [開場與環境](#environment) 的工作規則，再貼 [D3a](#d3a) 的「Agent 工作規則」，最後貼下方提示詞。
+提案者在 `resume-d3a` 建好環境，確認測試、Registry 與稽核紀錄都可用，才接續下一段。
+- 結束原本的提案者 Agent 對話，在 `resume-d3a` 重新啟動 Agent，開一個**新的**對話。
+- 先貼 [開場與環境](#environment) 的工作規則，再貼 [D3a](#d3a) 的「Agent 工作規則」，最後貼下方提示詞。
 
 ② 貼給 Agent
 

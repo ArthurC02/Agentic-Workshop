@@ -32,8 +32,12 @@ section: 開始之前
 id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起始 Repo、輔助工具、domain-memory Plugin）
 ```
 
-- [ ] 按上方按鈕下載 `participant-dlc-open.zip`。Windows：在檔案上按右鍵選「全部解壓縮」，目的地輸入 `C:\dlc`。macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/agentic-workshop`。
-- [ ] 在 Repo 根目錄開啟你的 Agent：Windows 是 `C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository\smart-ticket-dlc-base`，macOS 是 `~/dlc/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`。
+- [ ] 按上方按鈕下載 `participant-dlc-open.zip`，再解壓縮：
+  - Windows：在檔案上按右鍵選「全部解壓縮」，目的地輸入 `C:\dlc`。
+  - macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/agentic-workshop`。
+- [ ] 在 Repo 根目錄開啟你的 Agent：
+  - Windows：`C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository\smart-ticket-dlc-base`
+  - macOS：`~/dlc/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`
 - [ ] 依序貼下方兩段。
 
 ② 貼給 Agent
@@ -234,7 +238,9 @@ Git Bash：
 
 ① 為什麼做這一步
 
-D2 推送（push）時 Git 會直接呼叫 `python`；Windows 教室電腦上的 `python` 常是 Microsoft Store 的別名（路徑含 `WindowsApps`），會讓 push 失敗。這一步也建立起始 commit。
+D2 推送（push）時 Git 會直接呼叫 `python`。
+- Windows 教室電腦上的 `python` 常是 Microsoft Store 的別名（路徑含 `WindowsApps`），會讓 push 失敗。
+- 這一步也建立起始 commit。
 
 ② 貼給 Agent
 

@@ -4,25 +4,29 @@
   <p class="kicker">第 70 分鐘 · 解鎖</p>
   <h2 class="title">D3a 電子發票 開始</h2>
   <p class="subtitle">電子發票：把外部服務擋在領域之外</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，打開「D3a 電子發票」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 25 分鐘，要做什麼都看 Runbook；投影畫面只顯示時間與目前的檢查點。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』。提案者的對話先貼「Agent 工作規則」，再從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票，從檢查點 1 開始。要做什麼都在 Runbook，投影只有時間與目前的檢查點。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提示詞都貼到提案者的 Agent 對話，先貼頁面上的 D3 工作規則，再從檢查點 1 開始；commit 還是由夥伴在自己的對話做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-d3a" data-title="D3a 電子發票 6 個檢查點" data-minute="70" data-timer="25:00" data-gates="dlc-d3a">
-  <p class="kicker">D3a 電子發票 · 70–95</p>
-  <h2 class="title">D3a 電子發票：誰擁有發票？外部系統怎麼擋？</h2>
-  <p class="muted">25 分鐘、六個檢查點。先設計再實作；每條新規則都要做反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）。</p>
+  <p class="kicker">D3a 電子發票 · 第 70–95 分鐘</p>
+  <h2 class="title">D3a：誰擁有發票？外部服務怎麼擋？</h2>
+  <ul>
+    <li><b>情境</b>：付款成功後要開電子發票；服務商可能逾時、拒絕或暫時連不上</li>
+    <li><b>目標</b>：決定發票歸誰管、服務商擋在哪道邊界後；每條新規則有測試守著</li>
+    <li><b>今天的技巧</b>：Agent 提兩個選項與證據，人來選，寫成交接單；Agent 只照它做</li>
+    <li><b>從這裡開始</b>：提案者的對話貼「Agent 工作規則」，再到 Runbook『D3a 電子發票』› 檢查點 1</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">03:00</span><b>2 · 對外介面（Port）與邊界決策</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">15:00</span><b>4 · 反事實檢查</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · 檢視差異與登記候選</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">22:00</span><b>6 · 停手與揭曉對照</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b><span class="tl-due">第 73 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">03:00</span><b>2 · 對外介面（Port）與邊界決策</b><span class="tl-due">第 78 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 85 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">15:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 89 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · 檢視差異與登記候選</b><span class="tl-due">第 92 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">22:00</span><b>6 · 停手與揭曉對照</b><span class="tl-due">第 95 分前</span></li>
   </ol>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D3a 電子發票：25 分鐘、六個檢查點。先讀卡、查事實，再由人做設計決策，交給 Agent 實作，證明測試守得住，Review，最後看參考設計。」</p>
@@ -37,13 +41,15 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="70">
   <p class="kicker">檢查點 1 / 6 · 第 70–73 分鐘</p>
-  <h2 class="title">讀需求卡，向 Domain Memory 查已審查事實</h2>
+  <h2 class="title">讀情境卡與已審查事實</h2>
+  <p class="cp-why"><b>為什麼</b>先查已審查事實，再談設計；查不到的是知識缺口，留給人決定。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>兩人讀需求卡的<b>本次範圍</b>與<b>待團隊決定的問題</b></li>
-    <li>貼提示詞：Agent 查已審查事實與<b>知識缺口</b>，寫進紀錄檔</li>
-    <li>③ 確認結果：事實都有「類別:id」，查不到的沒有被補</li>
+    <li>打開 Runbook『D3a 電子發票』› 檢查點 1</li>
+    <li><b>提案者的對話</b>：貼 ②「查已審查事實」，後面接上需求卡全文（按「複製 Markdown」）</li>
+    <li><b>提案者的對話</b>：貼 ③ 確認結果；回「成功」就往下，回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › D3a 電子發票 › 檢查點 1 · 貼提示詞</p>
+  <p class="cp-next">第 73 分前完成 → 下一步：檢查點 2 對外介面（Port）與邊界決策</p>
   <aside class="notes">
     <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
     <p><b>看</b>：有沒有跳過提示詞直接叫 Agent 實作；Agent 是否真的執行了查詢，而不是憑記憶回答。留意逾時＝結果未知，不是失敗。</p>
@@ -56,13 +62,16 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 2 · 對外介面（Port）與邊界決策" data-minute="73">
   <p class="kicker">檢查點 2 / 6 · 第 73–78 分鐘</p>
-  <h2 class="title">交接單：負責的 Context、不變量、邊界</h2>
+  <h2 class="title">對外介面（Port）與邊界決策</h2>
+  <p class="cp-why"><b>為什麼</b>發票歸誰管、服務商擋在哪道邊界後，由你們決定；Agent 只照交接單做。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 每題提<b>兩個選項</b>，各附 Domain Memory 或程式的證據</li>
-    <li>小組討論後用一句話回覆選擇（例如「1A、2B」）</li>
-    <li>Agent 把選擇寫進交接單，列出不變量（任何時候都必須成立的規則）；確認後回「同意」</li>
+    <li>打開 Runbook『D3a 電子發票』› 檢查點 2</li>
+    <li><b>提案者的對話</b>：貼 ②「每題兩個選項」，聊完 ④ 討論題再回選擇，例如「1A、2B、3A、4A、5B」</li>
+    <li><b>提案者的對話</b>：貼 ③ 確認結果；回「成功」就往下，回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout warn">Runbook › D3a 電子發票 › 檢查點 2 · 討論後回覆選擇</p>
+  <p class="cp-judge"><b>你要判斷</b>選項看證據；每條不變量都說得出「怎樣算失敗」，才回「同意」</p>
+  <p class="cp-next">第 78 分前完成 → 下一步：檢查點 3 交接單與 Agent 實作</p>
   <aside class="notes">
     <p><b>說（03:00／第 73 分）</b>：「第 73 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫進交接單 docs/handoffs/d3a-e-invoice.md，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
     <p><b>看</b>：owner 是否有理由；是否把『呼叫服務商』直接寫進付款流程；是否提到不持鎖外呼。</p>
@@ -74,13 +83,16 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="78">
   <p class="kicker">檢查點 3 / 6 · 第 78–85 分鐘</p>
-  <h2 class="title">Agent 依交接單（Handoff）實作，做完停下</h2>
+  <h2 class="title">交接單與 Agent 實作</h2>
+  <p class="cp-why"><b>為什麼</b>Agent 照交接單先提計畫，再分兩段做；每段停下，你們看測試結果再放行。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>貼提示詞：Agent 依交接單<b>先提計畫</b>，你們回「同意」才動手</li>
-    <li>分兩段實作；每段看<b>實際</b>測試結果再回「繼續」</li>
-    <li>測試用的假外部服務（Fake Adapter）要能模擬暫時性與永久性失敗，兩者各一個測試</li>
+    <li>打開 Runbook『D3a 電子發票』› 檢查點 3</li>
+    <li><b>提案者的對話</b>：貼 ②「依交接單提計畫並實作」：計畫回「同意」，每段回「繼續」</li>
+    <li><b>提案者的對話</b>：貼 ③ 確認結果；回「成功」就往下，回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › D3a 電子發票 › 檢查點 3 · 貼提示詞</p>
+  <p class="cp-judge"><b>你要判斷</b>計畫沒違反交接單、核心排前面；每段失敗 0 個、既有測試的斷言沒被改</p>
+  <p class="cp-next">第 85 分前完成 → 下一步：檢查點 4 反事實檢查（沒做完核心也要進）</p>
   <aside class="notes">
     <p><b>說（08:00／第 78 分）</b>：「第 78 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
     <p><b>看</b>：Agent 是否沿用交接單（owner、不變量），還是自己重新決定；測試是否真的執行。冪等是否以 order_id；是否把發票失敗吞掉卻沒有狀態紀錄。</p>
@@ -92,13 +104,16 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 4 · 反事實檢查" data-minute="85">
   <p class="kicker">檢查點 4 / 6 · 第 85–89 分鐘</p>
-  <h2 class="title">每條新規則，各做一次反事實檢查，要看到 killed</h2>
+  <h2 class="title">反事實檢查</h2>
+  <p class="cp-why"><b>為什麼</b>每條新規則都要證明有測試守著：把它改壞，測試必須失敗（<code>killed</code>）。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 先列出每條新規則<b>要改壞哪裡</b>；你們同意才跑</li>
-    <li>只認回報中的 <b>killed</b>；亂碼或 ERROR 都不算</li>
-    <li>survived 就補測試、用同一組字串重跑；最後整套測試再全綠</li>
+    <li>打開 Runbook『D3a 電子發票』› 檢查點 4</li>
+    <li><b>提案者的對話</b>：貼 ②「列出改壞方式」，你們同意後 Agent 才跑</li>
+    <li><b>提案者的對話</b>：貼 ③ 確認結果；回「成功」就往下，回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout warn">Runbook › D3a 電子發票 › 檢查點 4 · 討論後回「同意」</p>
+  <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才回「同意」；只認 <code>killed</code></p>
+  <p class="cp-next">第 89 分前完成 → 下一步：檢查點 5 檢視差異與登記候選</p>
   <aside class="notes">
     <p><b>說（15:00／第 85 分）</b>：「第 85 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
     <p><b>建議現場做的 3 個</b>：重試上限（<code>MAX_ISSUE_ATTEMPTS</code> 5 → 6）、鎖外呼叫（把 Port 呼叫包回 <code>with self.store.lock:</code>）、冪等鍵（<code>merchant_order_no</code> 改成每次隨機）。參考解答三個都 killed。</p>
@@ -109,13 +124,17 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="89">
   <p class="kicker">檢查點 5 / 6 · 第 89–92 分鐘</p>
-  <h2 class="title">人工檢視差異，並把新事實登記為候選</h2>
+  <h2 class="title">檢視差異與登記候選</h2>
+  <p class="cp-why"><b>為什麼</b>Agent 回答固定的審查問題；新事實只登記為候選，commit 由夥伴做。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 對照程式差異與測試結果，回答四個審查問題</li>
-    <li>你們同意後，Agent 把新事實登記為<b>候選</b>（還不是已審查）</li>
-    <li>夥伴在<b>自己的 Agent 對話</b>簽章 commit；第 92 分停手</li>
+    <li>打開 Runbook『D3a 電子發票』› 檢查點 5</li>
+    <li><b>提案者的對話</b>：貼 ② 第一段「審查差異並登記候選」</li>
+    <li><b>夥伴的對話</b>：貼第二段，讀過摘要回「同意」，Agent 才簽章 commit</li>
+    <li><b>夥伴的對話</b>：貼 ③ 確認結果；回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › D3a 電子發票 › 檢查點 5 · 看審查答案後回「同意」</p>
+  <p class="cp-judge"><b>你要判斷</b>四題都是「沒有」或「0 失敗」才回「同意」；候選都有證據行號</p>
+  <p class="cp-next">第 92 分前完成 → 下一步：檢查點 6 停手與揭曉對照</p>
   <aside class="notes">
     <p><b>說（19:00／第 89 分）</b>：「第 89 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
@@ -126,13 +145,17 @@
 
 <section class="slide" data-seg="dlc-d3a" data-title="檢查點 6 · 停手與揭曉對照" data-minute="92">
   <p class="kicker">檢查點 6 / 6 · 第 92–95 分鐘</p>
-  <h2 class="title">停手，對照參考設計，記下差異</h2>
+  <h2 class="title">停手與揭曉對照</h2>
+  <p class="cp-why"><b>為什麼</b>停止擴充，把你們的決定和參考設計對照；差異代表不同取捨。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>停止所有修改</li>
-    <li>Agent 整理決策摘要，對照投影的參考設計</li>
-    <li>兩人一起聊對照的三題，再把結論記進揭曉對照表單；不評分、不比誰對</li>
+    <li>打開 Runbook『D3a 電子發票』› 檢查點 6</li>
+    <li><b>提案者的對話</b>：貼 ②「整理 5 行決策摘要」給 Agent</li>
+    <li><b>提案者的對話</b>：貼 ③ 確認結果；回「成功」就往下，回「失敗」就貼「失敗時」</li>
+    <li>對照投影的參考設計，兩人聊 ④ 三題，再填「D3a 揭曉對照」</li>
   </ol>
-  <p class="callout">Runbook › D3a 電子發票 › 檢查點 6 · 聊完再記揭曉對照</p>
+  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看、或讓 Agent 補了沒決定的事</p>
+  <p class="cp-next">第 95 分前完成 → 下一步：D3b 點數折抵</p>
   <aside class="notes">
     <p><b>說（22:00／第 92 分）</b>：「第 92 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
     <p><b>看</b>：停手後是否還有人在改；對照時是否討論理由而不是對錯。</p>

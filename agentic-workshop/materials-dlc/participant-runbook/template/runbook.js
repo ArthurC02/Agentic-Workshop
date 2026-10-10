@@ -471,6 +471,40 @@
     try { window.scrollTo(0, 0); } catch (e) { /* ignore */ }
   }
 
+  // Folded tips (<details class="rb-callout-fold">): open every fold around a node so a jump can land in it.
+  function revealFolds(node) {
+    for (var d = node && node.closest ? node.closest('details') : null; d; d = d.parentElement ? d.parentElement.closest('details') : null) d.open = true;
+  }
+
+  // After a search jump: open folds holding the query; scroll to one when the first hit lies inside it.
+  function revealSearchHit(q) {
+    var art = articles[currentId];
+    if (!art || !q) return;
+    var scope = art.querySelector('.rb-step:not([hidden])') || art;
+    $$('details.rb-callout-fold', scope).forEach(function (d) {
+      if ((d.textContent || '').toLowerCase().indexOf(q) >= 0) d.open = true;
+    });
+    var walker = doc.createTreeWalker(scope, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = walker.nextNode())) {
+      if ((n.nodeValue || '').toLowerCase().indexOf(q) < 0) continue;
+      var fold = n.parentElement && n.parentElement.closest('details.rb-callout-fold');
+      if (fold) scrollToEl(fold);
+      return;
+    }
+  }
+
+  function initFolds() {
+    var opened = [];
+    on(window, 'beforeprint', function () {
+      opened = $$('details.rb-callout-fold:not([open])');
+      opened.forEach(function (d) { d.open = true; });
+    });
+    on(window, 'afterprint', function () {
+      opened.forEach(function (d) { d.open = false; });
+      opened = [];
+    });
+  }
+
   function route() {
     var raw = (location.hash || '').slice(1), h = raw;
     try { h = decodeURIComponent(raw); } catch (e) { h = raw; }
@@ -478,7 +512,7 @@
     if (h) {
       var target = doc.getElementById(h);
       var art = target && target.closest ? target.closest('.rb-page') : null;
-      if (art) { showPage(art.getAttribute('data-page'), target); return; }
+      if (art) { revealFolds(target); showPage(art.getAttribute('data-page'), target); return; }
     }
     var last = store.get('{{STORAGE_PREFIX}}last-page');
     showPage(last && articles[last] ? last : order[0]);
@@ -1227,7 +1261,10 @@
         a.appendChild(sn);
       }
       on(a, 'mousedown', function (ev) { ev.preventDefault(); });   // keep focus until click resolves
-      on(a, 'click', function () { closeSearch(); searchInput.value = ''; searchInput.blur(); });
+      on(a, 'click', function () {
+        closeSearch(); searchInput.value = ''; searchInput.blur();
+        setTimeout(function () { revealSearchHit(q); }, 60);
+      });
       searchBox.appendChild(a);
     });
     if (!hits.length) {
@@ -1347,6 +1384,7 @@
     initComponents(doc);
     Object.keys(articles).forEach(function (k) { buildSteps(articles[k]); });
     initSearch();
+    initFolds();
     initTheme();
     initExportBtn();
     initSidebar();

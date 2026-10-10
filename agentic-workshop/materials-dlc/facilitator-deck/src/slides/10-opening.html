@@ -21,26 +21,31 @@
   <p class="kicker">第 0 分鐘 · 解鎖</p>
   <h2 class="title">開場與環境 開始</h2>
   <p class="subtitle">下載學員包、解出 Plugin、確認環境就緒</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，打開「開場與環境」，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">接下來 10 分鐘，提示詞都在 Runbook：② 貼給 Agent，再請它跑 ③ 確認結果，回「成功」才往下。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開『開場與環境』，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">每個檢查點：貼 ② 給 Agent → 貼 ③ 確認結果 → 回「成功」才往下。</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
     <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，先貼工作規則。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-opening" data-title="開場與環境 4 個檢查點" data-minute="0" data-timer="10:00" data-gates="dlc-opening">
-  <p class="kicker">開場與環境 · 0–10</p>
+  <p class="kicker">開場與環境 · 第 0–10 分鐘</p>
   <h2 class="title">開場 10 分鐘：環境就緒</h2>
-  <p class="muted">四個檢查點：每個都把 ② 貼給 Agent 執行，再跑 ③ 確認結果；回「成功」才往下，「失敗」就貼「失敗時」。</p>
+  <ul>
+    <li><b>情境</b>：你接手 Smart Ticket 訂票後端，今天替它建立 Domain Memory</li>
+    <li><b>目標</b>：Agent 跑過全部測試、核對 Plugin、確認專案狀態與真實 Python</li>
+    <li><b>今天的技巧</b>：先講好「看到什麼算成功」，Agent 的回報對得上才往下</li>
+    <li><b>從這裡開始</b>：Runbook『開場與環境』› 檢查點 1</li>
+  </ul>
   <ol class="timeline">
-    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 安裝相依套件與測試</b></li>
-    <li data-seg="dlc-opening"><span class="tl-min">03:00</span><b>2 · 解出 Plugin 並核對 SHA256</b></li>
-    <li data-seg="dlc-opening"><span class="tl-min">05:00</span><b>3 · 專案就緒與品質關卡檢查</b></li>
-    <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>4 · 確認真實 Python</b></li>
+    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 安裝相依套件與測試</b><span class="tl-due">第 3 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">03:00</span><b>2 · 解出 Plugin 並核對 SHA256</b><span class="tl-due">第 5 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">05:00</span><b>3 · 專案就緒與品質關卡檢查</b><span class="tl-due">第 8 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>4 · 確認真實 Python</b><span class="tl-due">第 10 分前</span></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼做這一步、② 貼給 Agent、③ 確認結果、④ 補充。請 Agent 跑 ③ 確認結果，回成功就往下；失敗就貼『失敗時』。提示詞都在 Runbook，Agent 執行、你看回報，投影只顯示時間與目前的檢查點。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼做這一步、② 貼給 Agent、③ 確認結果、④ 補充。請 Agent 跑 ③ 確認結果，回成功就往下；失敗就貼『失敗時』。提示詞都在 Runbook，投影上的檢查點頁會列出這一步要貼哪一段、要判斷什麼、幾分前完成。」</p>
     <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 71 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>操作</b>：第一頁就按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說明頁（為什麼、怎麼進行、分組）穿插在安裝等待時說，不另佔時間。</p>
@@ -50,13 +55,15 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="檢查點 1 · 安裝相依套件與測試" data-minute="0">
   <p class="kicker">檢查點 1 / 4 · 第 0–3 分鐘</p>
-  <h2 class="title">安裝依賴，起始 Repo 測試 76 passed</h2>
+  <h2 class="title">安裝相依套件與測試</h2>
+  <p class="cp-why"><b>為什麼</b>今天每一步都以測試結果為準，先確認起始 Repo 的測試全部通過。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>下載學員包，「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent</li>
-    <li>先貼<b>工作規則</b>，再貼本檢查點提示詞（建 venv、安裝依賴約 50 秒、跑測試）</li>
-    <li>Agent 回報：<b>76 passed</b></li>
+    <li>打開 Runbook『開場與環境』› 檢查點 1：下載學員包，解壓到 <code>C:\dlc</code></li>
+    <li>在 Repo 根目錄開 Agent：先貼「工作規則」，再貼 ②「準備執行環境」</li>
+    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 開場與環境 › 檢查點 1 · 貼工作規則與提示詞</p>
+  <p class="cp-next">第 3 分前完成 → 下一步：檢查點 2 解出 Plugin 並核對 SHA256</p>
   <aside class="notes">
     <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓到 C 槽的 dlc 資料夾，在 Repo 根目錄開 Agent，先貼工作規則，再貼提示詞讓 Agent 安裝依賴、跑測試，要看到 76 passed。安裝約 50 秒，我趁這段先說明今天為什麼要學 Domain Memory。」</p>
     <p><b>看</b>：學員有沒有先貼工作規則；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
@@ -90,7 +97,7 @@
     <li data-seg="dlc-d4"><span class="tl-min">155</span><b>D4 · 交接；第 165 分回顧</b></li>
   </ol>
   <aside class="notes">
-    <p><b>說（約 1 分鐘）</b>：「60–70 分休息。每段都從 Runbook 解鎖，投影只顯示時間與檢查點；每個檢查點貼提示詞，Agent 做完停下回報，需要決定時你回一句話，紀錄由 Agent 寫。每段結尾先小組討論，再把結論記進表單。D3 三個情境全做，依序累積。」</p>
+    <p><b>說（約 1 分鐘）</b>：「60–70 分休息。每段都從 Runbook 解鎖，投影會列出每個檢查點要貼哪一段、要判斷什麼；每個檢查點貼提示詞，Agent 做完停下回報，需要決定時你回一句話，紀錄由 Agent 寫。每段結尾先小組討論，再把結論記進表單。D3 三個情境全做，依序累積。」</p>
     <p><b>規則</b>：每段有獨立解鎖碼；卡住時主持人才視需要私下提供 Recovery，Recovery 不作為小組成果評分。</p>
     <p><b>只給路線圖</b>：這裡只念段落名稱，不解釋 DDD 概念；每個概念在第一次用到的檢查點頁才講（講者備註會提醒「這裡第一次介紹 X」）。Runbook 的歡迎頁也只列各段會學到的名稱。</p>
   </aside>
@@ -98,13 +105,15 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="檢查點 2 · 解出 Plugin 並核對 SHA256" data-minute="3">
   <p class="kicker">檢查點 2 / 4 · 第 3–5 分鐘</p>
-  <h2 class="title">解出 Plugin，SHA256 雜湊核對通過</h2>
+  <h2 class="title">解出 Plugin 並核對 SHA256</h2>
+  <p class="cp-why"><b>為什麼</b>今天的檢查都由 Plugin 判定；檔案被改過，結果就不可信。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 解出 domain-memory 0.10.15 ZIP</li>
-    <li>逐檔核對 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同）</li>
-    <li>Agent 回報：<b>SHA OK 71 files</b>、版本 0.10.15</li>
+    <li>打開 Runbook『開場與環境』› 檢查點 2</li>
+    <li>貼 ②「解出 Plugin 並逐檔核對」給 Agent</li>
+    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 開場與環境 › 檢查點 2 · 貼提示詞</p>
+  <p class="cp-next">第 5 分前完成 → 下一步：檢查點 3 專案就緒與品質關卡檢查</p>
   <aside class="notes">
     <p><b>說（03:00／第 3 分）</b>：「第 3 分。檢查點 2：解出 Plugin，核對雜湊。我們不改 Plugin 一個位元組，核對是為了確定大家手上是同一份。」</p>
     <p><b>看</b>：Agent 回報是否為 <code>SHA OK 71 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
@@ -114,13 +123,15 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="檢查點 3 · 專案就緒與品質關卡檢查" data-minute="5">
   <p class="kicker">檢查點 3 / 4 · 第 5–8 分鐘</p>
-  <h2 class="title">專案判定為 brownfield（已有程式碼的既有專案），品質關卡列出 pytest</h2>
+  <h2 class="title">專案就緒與品質關卡檢查</h2>
+  <p class="cp-why"><b>為什麼</b>看 Repo 已有哪些自動檢查；沒有的，之後只能靠測試和人的審查補上。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 經 <code>dm</code> 腳本做專案就緒檢查（readiness）：<b>brownfield</b></li>
-    <li>列出品質關卡（quality-gates）：只有 <b>pytest</b></li>
-    <li>Agent 用白話說明：沒有其他檢查，哪些錯誤只能靠測試與人的審查</li>
+    <li>打開 Runbook『開場與環境』› 檢查點 3</li>
+    <li>貼 ②「兩個唯讀檢查」給 Agent</li>
+    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 開場與環境 › 檢查點 3 · 貼提示詞</p>
+  <p class="cp-next">第 8 分前完成 → 下一步：檢查點 4 確認真實 Python</p>
   <aside class="notes">
     <p><b>說（05:00／第 5 分）</b>：「第 5 分。檢查點 3：讓 Plugin 看一下這個 Repo。readiness 要說是 brownfield，quality-gates 要列出 pytest。這兩個輸出之後每次變更都會再看。」</p>
     <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] registry_tools.py ...</code>）；結果是 brownfield 還是 greenfield。</p>
@@ -144,13 +155,15 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="檢查點 4 · 確認真實 Python" data-minute="8">
   <p class="kicker">檢查點 4 / 4 · 第 8–10 分鐘</p>
-  <h2 class="title">確認 python 是真實直譯器，不是 Microsoft Store 的捷徑別名</h2>
+  <h2 class="title">確認真實 Python</h2>
+  <p class="cp-why"><b>為什麼</b>D2 推送時 Git 直接呼叫 <code>python</code>；Microsoft Store 的捷徑別名會讓推送失敗。</p>
+  <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>Agent 回報 <code>python</code> 為 <b>3.13.x</b>、路徑在 <code>.venv</code> 內</li>
-    <li>起始 commit 建立；環境健檢全部通過</li>
-    <li>還沒有夥伴的，現在找到今天 D2 的夥伴</li>
+    <li>打開 Runbook『開場與環境』› 檢查點 4</li>
+    <li>貼 ②「確認真實 Python、建立起始 commit」給 Agent</li>
+    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
   </ol>
-  <p class="callout">Runbook › 開場與環境 › 檢查點 4 · 貼提示詞</p>
+  <p class="cp-next">第 10 分前完成 → 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</p>
   <aside class="notes">
     <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它直接呼叫 python；這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。順便找好夥伴，D2 兩人一組。」</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>

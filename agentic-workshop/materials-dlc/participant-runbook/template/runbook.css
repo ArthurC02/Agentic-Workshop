@@ -875,9 +875,81 @@ kbd {
   color: var(--co-ink);
   font-weight: 700;
 }
-.rb-callout-body { color: var(--c-ink); font-size: .95rem; }
+.rb-callout-body { color: var(--c-ink); font-size: .95rem; line-height: 1.75; }
 .rb-callout-body > :last-child { margin-bottom: 0; }
 .rb-callout-body > :first-child { margin-top: 0; }
+.rb-callout-body p { margin: 0 0 .5em; }
+.rb-callout .rb-callout-body ul, .rb-callout .rb-callout-body ol { margin: .25em 0 .5em; padding-left: 1.25em; }
+.rb-callout-body li { margin: 0; padding-left: .1em; }
+.rb-callout-body li + li { margin-top: .25em; }
+.rb-callout-body .rb-callout-ref {
+  margin-top: .65em;
+  padding-top: .5em;
+  border-top: 1px solid color-mix(in srgb, var(--co) 25%, transparent);
+  color: var(--c-ink-2); /* AA on callout tints in both themes */
+  font-size: .8125rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+/* Folded tips / knowledge points: native <details>, closed by default; the whole summary row toggles. */
+.rb-callout.rb-callout-fold { padding: 0; }
+.rb-callout-fold > summary {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: .8rem 2.75rem .8rem 2.9rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  list-style: none;
+}
+.rb-callout-fold > summary::-webkit-details-marker { display: none; }
+.rb-callout-fold > summary:hover .rb-callout-name { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+.rb-callout-fold > summary:focus-visible { outline: 2px solid var(--co); outline-offset: 2px; }
+.rb-callout-fold[open] > summary { padding-bottom: .2rem; }
+.rb-callout-lead {
+  overflow: hidden;
+  color: var(--c-ink-2);
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+.rb-callout-fold[open] .rb-callout-lead { display: none; }
+.rb-callout-toggle {
+  position: absolute;
+  top: 1.05rem;
+  right: .95rem;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.rb-callout-toggle::before {
+  content: "";
+  position: absolute;
+  left: .3rem;
+  top: .15rem;
+  width: .45rem;
+  height: .45rem;
+  border-right: 2px solid var(--co-ink);
+  border-bottom: 2px solid var(--co-ink);
+  transform: rotate(45deg);
+  transition: transform .18s var(--ease);
+}
+.rb-callout-fold[open] .rb-callout-toggle::before { top: .4rem; transform: rotate(-135deg); }
+.rb-callout-fold > .rb-callout-body { padding: 0 1.1rem .9rem 2.9rem; }
+.rb-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .rb-callout-tip { --co: var(--c-teal); --co-bg: var(--c-tint-teal); --co-ink: #006A63; --co-icon: var(--i-tip); }
 .rb-callout-warning { --co: var(--c-accent); --co-bg: var(--c-tint-accent); --co-ink: #A63A16; --co-icon: var(--i-warning); }
 .rb-callout-danger { --co: var(--c-danger); --co-bg: var(--c-tint-danger); --co-ink: #B0212B; --co-icon: var(--i-danger); }
@@ -1058,6 +1130,8 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 .rb-task:has(.rb-check:checked) > label { background: var(--c-tint-teal); border-color: rgba(0, 165, 155, .35); }
 .rb-task:has(.rb-check:checked) > label > span { color: var(--c-ink-2); }
 .rb-task .rb-tasks { margin: .35rem 0 0 1.6rem; }
+/* plain sub-bullets under a task: align with the label text (border + padding + checkbox + gap) */
+.rb-page-body .rb-task > ul:not(.rb-tasks), .rb-page-body .rb-task > ol { margin: .3rem 0 .5rem; padding-left: calc(2.55rem + 1px); }
 
 /* Shared custom checkbox: task checks + form checkboxes */
 .rb-check,
@@ -1814,6 +1888,11 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   .rb-page-body ul, .rb-page-body ol { padding-left: 1.25rem; }
   .rb-callout { padding: .75rem .85rem .8rem 2.55rem; }
   .rb-callout::before { left: .75rem; top: .88rem; width: 1.1rem; height: 1.1rem; }
+  .rb-callout.rb-callout-fold { padding: 0; }
+  .rb-callout-fold > summary { padding: .75rem 2.5rem .75rem 2.55rem; }
+  .rb-callout-fold[open] > summary { padding-bottom: .2rem; }
+  .rb-callout-fold > .rb-callout-body { padding: 0 .85rem .8rem 2.55rem; }
+  .rb-callout-toggle { top: .95rem; right: .8rem; }
   pre.rb-code { font-size: .8rem; padding-left: .85rem; padding-right: .85rem; }
   .rb-include { padding: .9rem .9rem 1rem; }
   .rb-download-card { padding: .9rem; padding-left: 3.6rem; }
@@ -1862,6 +1941,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   .rb-skip, .rb-header, .rb-sidebar, .rb-scrim, .rb-toc, .rb-pager, .rb-toasts,
   .rb-breadcrumb, .rb-copy, .rb-cmd-tabs, .rb-form-actions, .rb-lock-form,
   .rb-lock-error, .rb-search-results { display: none !important; }
+  .rb-callout-toggle, .rb-callout-lead { display: none !important; }
   .rb-shell { display: block; }
   .rb-main { padding: 0; }
   .rb-content { max-width: none; }
