@@ -1,6 +1,6 @@
 ---
 id: b3-exception-card
-title: Exception Response 與 Escalation
+title: 例外回應卡與升級格式
 minute: 63-76
 group: b3
 section: B3｜Digital Worker

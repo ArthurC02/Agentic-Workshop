@@ -52,18 +52,6 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 ZIP 內的資料夾層級較深。請不要放在深層的同步資料夾或桌面子資料夾，避免 Windows 路徑長度限制導致檔案不完整。
 ```
 
-### 時間快轉公告
-
-```include
-zip=participant-29-time-skip.zip path=agentic-workshop/02-time-skip/participant/01-time-skip-announcement.md
-```
-
-### 公司與系統成長摘要
-
-```include
-zip=participant-29-time-skip.zip path=agentic-workshop/02-time-skip/participant/02-company-growth-summary.md
-```
-
 ## 檢查點 2 · 開新對話先貼規則與背景（第 31–32 分鐘）
 
 在 `smart-ticket-b0` 資料夾開啟**新的** Agent 對話（不要沿用 Greenfield 的對話：B0 是另一個專案，舊對話裡的規則和背景都不適用）。第一件事貼下面整段：前半是 Agent 工作規則（給 Agent 的，不需要看懂），後半是專案背景。最後請它複述，是為了確認它真的讀進去了。
@@ -99,6 +87,20 @@ Token（詞元）是 Agent 讀寫文字的計費與記憶單位：對話越長�
 你的複述漏了一些規則。請重新讀一次上面的規則與背景，逐條確認你會遵守，再用三句話複述。
 ```
 
+等安裝時，讀下面兩份背景：主持人剛才口頭宣布的時間快轉，以及這 12 個月公司和系統的變化。
+
+### 時間快轉公告
+
+```include
+zip=participant-29-time-skip.zip path=agentic-workshop/02-time-skip/participant/01-time-skip-announcement.md
+```
+
+### 公司與系統成長摘要
+
+```include
+zip=participant-29-time-skip.zip path=agentic-workshop/02-time-skip/participant/02-company-growth-summary.md
+```
+
 ## 檢查點 3 · 請 Agent 建好環境並記下起點（第 32–33 分鐘）
 
 環境裝好後，同一個對話繼續貼下面這段。先確認版本、記下 Git 起點，之後 Agent 才能證明「它改了什麼」，也避免拿錯版本分析。
@@ -116,6 +118,7 @@ Token（詞元）是 Agent 讀寫文字的計費與記憶單位：對話越長�
 
 - Agent 回報的 `app.version` 是 B0。
 - `notes/time-skip.md` 裡有測試數字與 Commit 結果。目前有若干測試失敗是正常的，**先不要修改**，第 33 分鐘起由個人分析找原因，B1 才修改。
+- 第 33 分鐘還沒做完也沒關係：直接進入個人分析頁，讓 Agent 做完這段再回報。
 
 ```callout tip
 常見狀況

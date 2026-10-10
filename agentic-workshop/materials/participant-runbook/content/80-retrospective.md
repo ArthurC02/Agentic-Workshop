@@ -97,7 +97,7 @@ zip=participant-80-retrospective.zip path=agentic-workshop/05-retrospective/part
 
 ```form
 {"id": "retro-prompts", "title": "工作坊回顧","fields":[
-{"id": "my-techniques", "label": "我要帶走的 3 個技巧（勾 3 個）", "type": "checklist", "items": ["先要計畫再動手；小步執行、每步驗收", "開新對話先給規則與脈絡", "讓 Agent 帶你讀陌生專案", "把共識寫成檔案給 Agent", "用失敗測試找 Bug", "請 Agent 提 2–3 個方案並比較，人來選", "委派整件任務：工作單＋三道關卡", "請 Agent 整理交付摘要，人核對", "把今天的技巧變成自己的提示詞清單"], "hint": "提示詞本身由 Agent 寫進 notes/my-prompts.md。"},
+{"id": "my-techniques", "label": "我要帶走的 3 個技巧（勾 3 個）", "type": "checklist", "items": ["給 Agent 一份規則；先要計畫再動手；小步執行、每步驗收", "開新對話先給規則與脈絡", "讓 Agent 帶你讀陌生專案", "把共識寫成檔案給 Agent", "用失敗測試找 Bug", "請 Agent 提 2–3 個方案並比較，人來選", "委派整件任務：工作單＋三道關卡", "請 Agent 整理交付摘要，人核對", "把今天的技巧變成自己的提示詞清單"], "hint": "提示詞本身由 Agent 寫進 notes/my-prompts.md。"},
 {"id": "action", "label": "一項帶回團隊的行動（貼上 Agent 整理好的那一行）", "type": "text", "suggestions": ["待研究"]}
 ]}
 ```

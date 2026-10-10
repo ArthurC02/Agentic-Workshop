@@ -41,13 +41,11 @@ section: B3｜Digital Worker
 
 一次把整件任務交代清楚：要做什麼、能動哪裡、什麼情況要停下來、在哪裡等你決定。交代清楚，Agent 才能自己往前走；只口頭交代，它就不知道何時該停。
 
-```callout tip
-技巧：Skill（加深一層）
-你已經建過兩個 Skill：存規則的 `skills/team-rules.md`、存做法的 `skills/fix-bug-with-test.md`。這次多加一層：把「整件任務」寫成 Skill。工作單（Work Order）就是一份寫清楚範圍、禁止事項、停止條件與回報格式的工作說明，存成 `skills/b3-work-order.md` 後，Agent 自己往前走時隨時可以回頭查，你也不必每道 Gate 重貼。
-📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Claude Code 官方文件〈Best practices for Claude Code〉；你所用工具的官方文件通常有同名章節。
-```
+1. 在主要 Agent **開一個新對話**（Token 節費）；工具有模型選單就選推論能力較強的模型（模型選擇，加深一層），沒有就用預設。
+2. 複製下方提示詞貼給 Agent，先不要送出。
+3. 依序打開 [B3 任務卡](#b3-task-card)、[操作規則](#b3-operating-rules)、[工作單](#b3-work-order)、[三道 Gate](#b3-approval-gates)，按各頁文件上方的「複製 Markdown」，接在提示詞後面，再一起送出。
 
-在主要 Agent **開一個新對話**做 B3（Token 節費）；若你的工具有模型選單，選推論能力較強的模型（模型選擇，加深一層：B3 是今天最吃推論能力的一段），沒有就用預設。複製下方提示詞貼給主要 Agent，接著依序打開 [B3 任務卡](#b3-task-card)、[操作規則](#b3-operating-rules)、[工作單](#b3-work-order)、[三道 Gate](#b3-approval-gates) 四頁，按各頁文件上方的「複製 Markdown」，接在後面一起貼上。提示詞與四份文件裡的英文術語（例如 Out of Scope、Escalation、Atomicity）是給 Agent 的，不需要看懂；要你決定的事，Agent 會用白話問你。
+提示詞與文件裡的英文術語（例如 Out of Scope、Escalation、Atomicity）是給 Agent 的，不需要看懂；要你決定的事，Agent 會用白話問你。
 
 ```text
 請先讀 skills/team-rules.md 並遵守。
@@ -69,6 +67,14 @@ section: B3｜Digital Worker
 - Agent 回報已 Commit「B3 起點」；`skills/b3-work-order.md` 已建立；`notes/b3.md` 出現「已核准背景」（含起點測試數與模型）與「Gate 1」兩段。
 - Agent 用 Gate 回報格式交出 Gate 1 決策卡：5 個是非題與要你決定的問題。
 - 除了 `.gitignore`、`notes/b3.md` 與 `skills/b3-work-order.md`，它沒改任何檔案，也沒改程式。
+
+等 Agent 整理 Gate 1 決策卡時，可以先看這張小卡：
+
+```callout tip
+技巧：Skill（加深一層）
+你已經建過兩個 Skill：存規則的 `skills/team-rules.md`、存做法的 `skills/fix-bug-with-test.md`。這次多加一層：把「整件任務」寫成 Skill。工作單（Work Order）就是一份寫清楚範圍、禁止事項、停止條件與回報格式的工作說明，存成 `skills/b3-work-order.md` 後，Agent 自己往前走時隨時可以回頭查，你也不必每道 Gate 重貼。
+📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Claude Code 官方文件〈Best practices for Claude Code〉；你所用工具的官方文件通常有同名章節。
+```
 
 ## 檢查點 2 · Gate 1：確認 Agent 懂需求（第 64–66 分鐘）
 

@@ -76,8 +76,8 @@ section: 參考
 | Delivery（交付）／Delivery Summary（交付摘要） | 把成果與證據整理成可審查的摘要交出去；交付不等於完整軟體上線。 | 第 76–80 分鐘請 Agent 把交付摘要寫進 `notes/delivery.md`，人核對證據。 | Greenfield 檢查點 4；交付段加深 | 本課程〈Digital Worker Delivery Summary〉 |
 | Level（完成等級） | B3 的完成程度：Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付。依證據擇一，不自動選 Level 3。 | 只完成 Gate 1／2 的分析與設計時，如實交付 Level 1。 | B3 檢查點 4 | 本課程〈B3 任務卡 TASK-B3-001〉 |
 | Work Order（工作單） | 交給 Agent 的正式工作說明，含範圍、限制與停止條件；就是給 Agent 的 Skill。 | B3 第 63 分鐘交給主要 Agent，存成 `skills/b3-work-order.md`。 | B3 | 本課程〈Digital Worker Work Order〉 |
-| Escalation（升級處理） | Agent 遇到停止條件時停下，提出證據與選項，交給人決定。 | 測試出現和本任務無關的新失敗時，Agent 停下來附證據請人決定。 | B3 檢查點 1 | 本課程〈Exception Response 與 Escalation〉 |
-| Exception Response（例外回應） | 主持人宣布例外事件時，Agent 先停下整理提議與證據，人判斷是否在核准範圍內並回一句決定。 | 第 69–70 分鐘的例外事件。 | B3 檢查點 3 | 本課程〈Exception Response 與 Escalation〉 |
+| Escalation（升級處理） | Agent 遇到停止條件時停下，提出證據與選項，交給人決定。 | 測試出現和本任務無關的新失敗時，Agent 停下來附證據請人決定。 | B3 檢查點 1 | 本課程〈例外回應卡與升級格式〉 |
+| Exception Response（例外回應） | 主持人宣布例外事件時，Agent 先停下整理提議與證據，人判斷是否在核准範圍內並回一句決定。 | 第 69–70 分鐘的例外事件。 | B3 檢查點 3 | 本課程〈例外回應卡與升級格式〉 |
 | Atomicity（整筆成功或整筆失敗）／Compensation（補償處理） | Atomicity：一組動作要嘛全部完成、要嘛全部不做，不留下做一半的資料。Compensation：失敗時用補償動作把已做的部分還原。 | B3 團體付款失敗時整團取消：釋放全部座位、把狀態改為已取消。 | B3 檢查點 2（Gate 2 資料） | 本課程〈B3 任務卡 TASK-B3-001〉 |
 | In-Memory（資料存在記憶體） | 資料只存在記憶體裡，沒有寫進資料庫；伺服器重啟後就回到初始狀態。 | 重啟 App 後，之前建立的訂票都不見了，這是設計行為。 | 環境準備 | 本課程〈B0 已知限制〉 |
 | 稽核紀錄（Audit Log） | 系統記下誰在什麼時候做了什麼的紀錄，用來事後追查。 | B0 的訂票、付款與改票都會留下稽核紀錄。 | Time Skip（公司與系統成長摘要） | 本課程〈公司與系統成長摘要〉 |

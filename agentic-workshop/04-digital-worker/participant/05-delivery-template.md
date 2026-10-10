@@ -15,9 +15,9 @@
 
 完成等級。擇一並說明證據，不自動選 Level 3：
 
-- Level 1: Analysis Complete（分析完成）— Gate 1／2 完成，影響分析合理、測試策略完整，程式未完成。
-- Level 2: Core Flow Complete（核心流程完成）— 團體建立與連續座位完成，主要單元測試通過，付款失敗的復原或文件尚未完整。
-- Level 3: Delivery Complete（完整交付）— 建立、付款成功與付款失敗的復原都完成，回歸測試（Regression）通過，文件與交付摘要完成。
+- Level 1：分析完成（Analysis Complete）— Gate 1／2 完成，影響分析合理、測試策略完整，程式尚未完成。
+- Level 2：核心流程完成（Core Flow Complete）— 團體建立與連續座位完成、主要單元測試通過，付款失敗的補償（Compensation）或文件仍有缺項。
+- Level 3：完整交付（Delivery Complete）— 建立、付款成功與付款失敗的補償都完成，回歸測試（Regression）通過，文件與交付摘要都完整。
 
 實際等級與原因：____。
 

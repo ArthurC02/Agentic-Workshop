@@ -1,6 +1,6 @@
 {
-  "build_manifest_sha256": "e7373eb162f1f6251ce8cf0628060e09b43e50ac4d889e0c917e9b1afe689baa",
-  "output": "dist/p11-candidate/e7373eb162f1f625",
+  "build_manifest_sha256": "4813c0355ab3b43dc30fc29933f94eb73ffa60940ce6981c559639f79db75cf0",
+  "output": "dist/p11-candidate/4813c0355ab3b43d",
   "packages": [
     {
       "id": "participant-07-g0",
@@ -55,14 +55,14 @@
     {
       "id": "participant-63-b3-governance",
       "files": 7,
-      "zip_sha256": "cc7a12cf9425dc376336ec5f8f4a07af937442030a9c1414b55d8a54e0ecb0fd",
+      "zip_sha256": "baf9b62bfe9f5a299105958ac49ad4456ae894c4fdc913958991233d16663978",
       "relative_links": 14,
       "membership": "PASS"
     },
     {
       "id": "participant-80-retrospective",
       "files": 2,
-      "zip_sha256": "981d10cc246c0998bb5fc70c2dbe4ca310b0fa398e2b04d4a5311fae293925e4",
+      "zip_sha256": "b52be4cf3ce1c11660487c78da8fab6dce5c7b3b96e535fd1455876fe8a5f560",
       "relative_links": 1,
       "membership": "PASS"
     },
@@ -82,7 +82,7 @@
             "pip",
             "check"
           ],
-          "cwd": "dist/p11-candidate/e7373eb162f1f625/unpacked-recovery-52-b1/recovery-b1",
+          "cwd": "dist/p11-candidate/4813c0355ab3b43d/unpacked-recovery-52-b1/recovery-b1",
           "exit_code": 0,
           "stdout": "No broken requirements found.\n",
           "stderr": ""
@@ -98,7 +98,7 @@
             "-p",
             "no:cacheprovider"
           ],
-          "cwd": "dist/p11-candidate/e7373eb162f1f625/unpacked-recovery-52-b1/recovery-b1",
+          "cwd": "dist/p11-candidate/4813c0355ab3b43d/unpacked-recovery-52-b1/recovery-b1",
           "exit_code": 0,
           "stdout": "............................................                             [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\.codex-tmp\\b1-env\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\OneDrive\\Desktop\\Agentic-Workshop\\.codex-tmp\\b1-env\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n44 passed, 1 warning in 0.79s\n",
           "stderr": ""
@@ -111,7 +111,7 @@
             "-c",
             "from smart_ticket.main import app; assert app.version=='B1'; from fastapi.testclient import TestClient; from smart_ticket.main import app; c=TestClient(app); assert c.get('/health').json()=={'status':'ok'}; spec=c.get('/openapi.json').json(); assert len(spec['paths'])==11; r=c.post('/bookings',json={'trip_id':'T001','passengers':[{'passenger_id':'P1','name':'Demo','passenger_type':'ADULT'}]}); assert r.status_code==201,r.text; bid=r.json()['booking_id']; assert c.post('/bookings/'+bid+'/pay').status_code==200; assert c.post('/bookings/'+bid+'/change',json={'target_trip_id':'T005'}).status_code==200; assert c.post('/bookings/'+bid+'/refund').status_code==200; print(app.version,'Health/OpenAPI/create/pay/change/refund PASS')"
           ],
-          "cwd": "dist/p11-candidate/e7373eb162f1f625/unpacked-recovery-52-b1/recovery-b1",
+          "cwd": "dist/p11-candidate/4813c0355ab3b43d/unpacked-recovery-52-b1/recovery-b1",
           "exit_code": 0,
           "stdout": "B1 Health/OpenAPI/create/pay/change/refund PASS\n",
           "stderr": ""
@@ -135,7 +135,7 @@
             "pip",
             "check"
           ],
-          "cwd": "dist/p11-candidate/e7373eb162f1f625/unpacked-recovery-63-b2/recovery-b2",
+          "cwd": "dist/p11-candidate/4813c0355ab3b43d/unpacked-recovery-63-b2/recovery-b2",
           "exit_code": 0,
           "stdout": "No broken requirements found.\n",
           "stderr": ""
@@ -151,7 +151,7 @@
             "-p",
             "no:cacheprovider"
           ],
-          "cwd": "dist/p11-candidate/e7373eb162f1f625/unpacked-recovery-63-b2/recovery-b2",
+          "cwd": "dist/p11-candidate/4813c0355ab3b43d/unpacked-recovery-63-b2/recovery-b2",
           "exit_code": 0,
           "stdout": ".......................................................                  [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\.codex-tmp\\b2-env\\Lib\\site-packages\\starlette\\testclient.py:37\n  C:\\Users\\a8022\\OneDrive\\Desktop\\Agentic-Workshop\\.codex-tmp\\b2-env\\Lib\\site-packages\\starlette\\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n55 passed, 1 warning in 0.85s\n",
           "stderr": ""
@@ -164,7 +164,7 @@
             "-c",
             "from smart_ticket.main import app; assert app.version=='B2'; from fastapi.testclient import TestClient; from smart_ticket.main import app; c=TestClient(app); assert c.get('/health').json()=={'status':'ok'}; spec=c.get('/openapi.json').json(); assert len(spec['paths'])==11; r=c.post('/bookings',json={'trip_id':'T001','passengers':[{'passenger_id':'P1','name':'Demo','passenger_type':'ADULT'}]}); assert r.status_code==201,r.text; bid=r.json()['booking_id']; assert c.post('/bookings/'+bid+'/pay').status_code==200; assert c.post('/bookings/'+bid+'/change',json={'target_trip_id':'T005'}).status_code==200; assert c.post('/bookings/'+bid+'/refund').status_code==200; print(app.version,'Health/OpenAPI/create/pay/change/refund PASS')"
           ],
-          "cwd": "dist/p11-candidate/e7373eb162f1f625/unpacked-recovery-63-b2/recovery-b2",
+          "cwd": "dist/p11-candidate/4813c0355ab3b43d/unpacked-recovery-63-b2/recovery-b2",
           "exit_code": 0,
           "stdout": "B2 Health/OpenAPI/create/pay/change/refund PASS\n",
           "stderr": ""
@@ -175,14 +175,14 @@
     {
       "id": "facilitator-before-session",
       "files": 60,
-      "zip_sha256": "08e80fdbe658f63c9c5e42691946043af51f5f1542c6a9317c0fb9c58148e604",
+      "zip_sha256": "cacec630690cbabd35c7ddda282e8c081ae2dc733462b9b90abdc65dce9763b8",
       "relative_links": null,
       "membership": "PASS"
     },
     {
       "id": "evaluation-private",
       "files": 411,
-      "zip_sha256": "49cc199df5a825fbdd1f532d4300d731cd8a27b6635b9a995ba1592b2c478728",
+      "zip_sha256": "dc3af54d57f55d1eab1985680953cf9559e6fbe89e8672981f413cc8ea9dcc4a",
       "relative_links": null,
       "membership": "PASS"
     }
@@ -246,12 +246,12 @@
     "detached_artifact_sha256": {
       "scripts/build_delivery.py": "2db9bbd2aa29d2bf413b52f3de498b3ef5a10d62dd1c02c0eb3bb68ed795fcf5",
       "scripts/build_delivery_dlc.py": "d88211ed4697e86c5a2e1ec4db846007024066586dadb5271e9bc82684ea96e9",
-      "scripts/build_materials.py": "ade256fea6b975205a2348b735c4668d75ffbf514eb8ef5530eb824be4a15c4f",
+      "scripts/build_materials.py": "dabbc4372be0e1188e2c3c23c56b5aa9035135222f2e631c81e070b826a83bfb",
       "scripts/check_references.py": "c1be663c083720c8c08e99f0a3a38e4db566de10445f18580445ce8c27232810",
       "scripts/check_zh_tw.py": "9dccd7d7ebb707cdbebdfe3d296d259fdcaa23b1faf0acb6b1140744acbb2f0d",
       "scripts/materials_md.py": "08e44b4437d10b65aec5611d68adfeca3a8150e6babd1a4a5a94e5be184546c0",
-      "scripts/package-manifest-dlc.json": "ecab50ad3a1a1a339418c7eeb96b169fb38d50cea5fa6d5dca92666d074f2744",
-      "scripts/package-manifest.json": "e7373eb162f1f6251ce8cf0628060e09b43e50ac4d889e0c917e9b1afe689baa",
+      "scripts/package-manifest-dlc.json": "9cbd9ca031d1772f3f8ae7bebab640a78df94c7b441a49eefb7932f8a32cb2e1",
+      "scripts/package-manifest.json": "4813c0355ab3b43dc30fc29933f94eb73ffa60940ce6981c559639f79db75cf0",
       "scripts/package_materials.py": "3d577f54af059f8a6d63331ba1205470bbc5068e454bfe1c0c3aa2d129f16aca",
       "scripts/README.md": "4cac118443edda5d4a60734f5684700128de0ca8383000a3bd99e772a9d6a001",
       "scripts/release_materials.py": "7f32c37e11fe332e65046a3d8bc4e5e03f8b410a275d3bbb7832e8b6b36f90a7",
@@ -260,7 +260,7 @@
       "scripts/test_build_materials.py": "e164206e690a69fbd09729861f235f0b6fbc387078ba98f579a52d6f78ee59be",
       "scripts/test_check_references.py": "8647114125d50d25dd6cf43790a799142d5538e6f3fee36b087efc0e35c89d40",
       "scripts/test_check_zh_tw.py": "7914ed444978a5f6447093cb960e8f46cdbfa980494ec91ed104e1f430e9831b",
-      "scripts/test_materials_md.py": "30be24fe5ee4965856636859aaf19d1c6bd1cfce6223f742ad35fde555daefb8",
+      "scripts/test_materials_md.py": "b3a26c59c210f48a151c85e88b4cb43152de9290738f0d6f286834eaf43aa2d7",
       "scripts/test_package_materials.py": "a8f5d4df42844248e306ccd7e106f2bbd3b94bde65573e6b3a4f3eaa8761d7d3",
       "scripts/test_validate_workshop.py": "2571b6e7398bd9596802eb0cc0508a7452290828b3317e1bf8dbd0f716412ddc",
       "scripts/validate_consistency_corrections.py": "ad545dd9af21f6e7272b7ee2b51f1ed1079f6cbb632c21d0ff1ce9cb788d5474",

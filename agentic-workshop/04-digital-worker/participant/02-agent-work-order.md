@@ -33,7 +33,7 @@ B2 的 `FARE-007`–`FARE-010` 繼續適用：優惠不疊加、取最低的合�
 
 ## 允許修改的範圍（Allowed Change Scope）
 
-實際核准範圍由人在 Gate 2 決定，Agent 照原文寫進 `notes/b3.md` 的「Gate 2」段落。可以修改的種類：團體流程需要的 API、業務模型（Domain）、應用流程（Application）、座位分配、付款失敗的復原（Compensation）、測試與文件。每個預計修改的檔案，都要先說明為什麼要改。
+實際核准範圍由人在 Gate 2 決定，Agent 照原文寫進 `notes/b3.md` 的「Gate 2」段落。可以修改的種類：團體流程需要的 API、業務模型（Domain）、應用流程（Application）、座位分配、付款失敗的補償（Compensation）、測試與文件。每個預計修改的檔案，都要先說明為什麼要改。
 
 ## 禁止修改的範圍（Prohibited Change Scope）
 
