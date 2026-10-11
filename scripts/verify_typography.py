@@ -56,9 +56,12 @@ const orphans = (root, where) => {
 
 DECK_PROBE = r"""
 const slides = [...document.querySelectorAll('#dk-stage > section.slide')], out = [];
-const lines = e => { const s = getComputedStyle(e);
-  const h = e.clientHeight - parseFloat(s.paddingTop) - parseFloat(s.paddingBottom);
-  return Math.round(h / parseFloat(s.lineHeight)); };
+// Count rendered text lines (distinct line boxes), not box height: a header may stretch to space the slide.
+const lines = e => { const r = document.createRange(); r.selectNodeContents(e);
+  const q = [...r.getClientRects()].filter(q => q.width > 0.5 && q.height > 0.5).sort((a, b) => a.top - b.top);
+  let n = 0, bottom = -Infinity;
+  for (const x of q) if (x.top >= bottom - x.height / 2) { n++; bottom = x.bottom; } else bottom = Math.max(bottom, x.bottom);
+  return n; };
 const LINES = {title: '.title', main: '.cp-flow > li > b', detail: '.cp-flow > li > span', why: '.cp-why', judge: '.cp-judge'};
 for (let i = 0; i < slides.length; i++) {
   location.hash = '#/' + (i + 1) + '.99'; await sleep(60);
