@@ -37,24 +37,22 @@
   </ol>
   <div class="cols-3">
     <div class="card tool fx fx-up">
-      <span class="chip tool">Tool · 07–29</span>
+      <span class="chip tool">Tool · 工具</span>
       <h3>人逐步下指令，每步驗收</h3>
-      <p>人交代一小步、Agent 做完就停；人看驗收對照表、請 Agent 說明改了什麼，確認後才交代下一步。</p>
     </div>
     <div class="card teammate fx fx-up">
-      <span class="chip teammate">Teammate</span>
+      <span class="chip teammate">Teammate · 隊友</span>
       <h3>Agent 一起分析，人核准計畫</h3>
-      <p>Agent 分析既有系統、提出方案與計畫；人比較各自的分析、整理共同脈絡（Shared Context：小組整理出的共同事實），核准計畫後 Agent 才動手。</p>
     </div>
     <div class="card dw fx fx-up">
-      <span class="chip dw">Digital Worker</span>
-      <h3>Agent 自主執行，人只在 Gate 核准</h3>
-      <p>Agent 在三個核准關卡（Gate）之間自主執行；人在 Gate 質疑假設、核准或退回、要求補證。</p>
+      <span class="chip dw">Digital Worker · 數位員工</span>
+      <h3>Agent 自主執行，人只在關卡核准</h3>
     </div>
   </div>
   <p class="quote fx fx-fade">三種角色的差別是「人怎麼介入」，不是「人寫多少程式」——今天全程人都不碰程式。</p>
   <aside class="notes">
     <p><b>主持口述版（依「全程人不碰程式」改版）</b>：「今天從頭到尾，你不寫程式、不讀程式、不自己打指令，這些都交給 Agent；你負責決定、核准，用證據驗收。三種角色的差別在你怎麼介入：Tool（工具）是你逐步下指令、每步驗收；Teammate（隊友）是 Agent 一起分析、你核准計畫；Digital Worker（數位員工）是 Agent 自主執行、你只在 Gate 核准。責任轉移與重新分配，不因 Agent 自主而消失。」</p>
+    <p><b>從投影移到備註</b>：Tool 是 07–29 的 Greenfield；Teammate 時人比較各自的分析、整理共同脈絡（Shared Context：小組整理出的共同事實）；Digital Worker 時 Agent 在三個核准關卡（Gate）之間自主執行，人在 Gate 質疑假設、核准或退回、要求補證。這些名詞到該段第一次用到時才解釋。</p>
     <p><b>代價要先講明</b>：只看證據不看程式，可能抓不到「測試全過但寫法有問題」的程式；這點留到回顧討論公司需要什麼角色或平台補上。</p>
     <p>Maturity 表下原文：「成熟度指工作安排與責任配置，不是人員排名或工具產品能力榜。」</p>
     <p>注意：此處只講角色與責任；三種角色不是產品分類，也不代表每項工作都應提高自主程度。<b>不提前說明 B1／B2／B3 任務內容或 Bug</b>（29 分鐘前不發 B1／B2／B3 或 Bug 根因）。</p>
@@ -62,70 +60,32 @@
 </section>
 
 <section class="slide" data-seg="opening" data-title="90 分鐘議程" data-minute="02">
-  <p class="kicker">Agenda · 90 分鐘</p>
+  <p class="kicker">Agenda · 90 分鐘 · 每段練一個帶得走的技巧</p>
   <h2 class="title">90 分鐘，十個活動時段</h2>
-  <ol class="timeline">
-    <li data-seg="opening" style="--len:7"><span class="tl-min">00–07</span><b>開場</b></li>
-    <li data-seg="greenfield" style="--len:22"><span class="tl-min">07–29</span><b>Greenfield MVP</b><span class="chip tool">Tool</span></li>
-    <li data-seg="timeskip" style="--len:4"><span class="tl-min">29–33</span><b>Time Skip</b></li>
-    <li data-seg="analysis" style="--len:6"><span class="tl-min">33–39</span><b>個人分析</b><span class="chip teammate">Teammate</span></li>
-    <li data-seg="shared" style="--len:5"><span class="tl-min">39–44</span><b>共同脈絡</b><span class="chip teammate">Teammate</span></li>
-    <li data-seg="b1" style="--len:8"><span class="tl-min">44–52</span><b>B1</b><span class="chip teammate">Teammate</span></li>
-    <li data-seg="b2" style="--len:11"><span class="tl-min">52–63</span><b>B2</b><span class="chip teammate">Teammate →<wbr> Digital Worker</span></li>
-    <li data-seg="b3" style="--len:13"><span class="tl-min">63–76</span><b>B3</b><span class="chip dw">Digital Worker</span></li>
-    <li data-seg="delivery" style="--len:4"><span class="tl-min">76–80</span><b>交付</b></li>
-    <li data-seg="retro" style="--len:10"><span class="tl-min">80–90</span><b>回顧</b></li>
-  </ol>
-  <p class="lead fx fx-fade">Greenfield（從頭開始的新專案）採個人練習；Brownfield（已有程式碼的既有專案）先各自分析，再整合小組判斷。</p>
-  <p class="muted fx fx-fade">MVP（Minimum Viable Product，最小可行產品）；Time Skip（時間快轉：專案假設已開發一段時間）；B1／B2／B3 是 Brownfield 三段任務的代號，內容到時再解鎖。</p>
+  <table class="table agenda-table">
+    <tbody>
+      <tr><td>00–07</td><td>開場</td><td>確認環境、認識 Runbook</td></tr>
+      <tr><td>07–29</td><td>Greenfield <span class="chip tool">Tool</span></td><td>給 Agent 規則；先要計畫；小步執行、每步驗收</td></tr>
+      <tr><td>29–33</td><td>Time Skip</td><td>開新對話先給規則與脈絡</td></tr>
+      <tr><td>33–39</td><td>個人分析 <span class="chip teammate">Teammate</span></td><td>讓 Agent 帶你讀陌生專案</td></tr>
+      <tr><td>39–44</td><td>共同脈絡</td><td>把共識寫成檔案給 Agent</td></tr>
+      <tr><td>44–52</td><td>B1</td><td>用失敗測試找 Bug</td></tr>
+      <tr><td>52–63</td><td>B2</td><td>請 Agent 提 2–3 個方案比較，人來選</td></tr>
+      <tr><td>63–76</td><td>B3 <span class="chip dw">Digital Worker</span></td><td>委派整件任務：工作單＋三道關卡</td></tr>
+      <tr><td>76–80</td><td>交付</td><td>請 Agent 整理交付摘要，人核對</td></tr>
+      <tr><td>80–90</td><td>回顧</td><td>把技巧變成自己的提示詞清單</td></tr>
+    </tbody>
+  </table>
   <aside class="notes">
     <p>十段：00–07｜07–29｜29–33｜33–39｜39–44｜44–52｜52–63｜63–76｜76–80｜80–90，合計 90 分鐘；29–80 共 51 分鐘，B3 的 13 分鐘已包含治理，不新增另一段（RB）。</p>
     <p>RB：Greenfield 個人，Brownfield 先個人分析再小組整合，選主要 Agent，不安排額外角色輪轉。</p>
     <p><b>不要</b>口頭說明 B1／B2／B3 的任務主題、Bug 或 Time Skip 細節；只說「各段開始時在畫面公布解鎖碼」。</p>
     <p>延遲不增加總 90 分鐘（RB 收件與復原）。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="opening" data-title="今天會練的技巧" data-minute="02">
-  <p class="kicker">技巧優先 · 每段練一個帶得走的技巧</p>
-  <h2 class="title">今天會練的 9 個流程技巧</h2>
-  <table class="table">
-    <tbody>
-      <tr><td>Greenfield</td><td>給 Agent 規則；先要計畫；小步執行、每步驗收</td></tr>
-      <tr><td>Time Skip</td><td>開新對話先給規則與脈絡</td></tr>
-      <tr><td>個人分析</td><td>讓 Agent 帶你讀陌生專案</td></tr>
-      <tr><td>共同脈絡</td><td>把共識寫成檔案給 Agent</td></tr>
-      <tr><td>B1</td><td>用失敗測試找 Bug：重現 → 定位 → 最小修正 → 驗證</td></tr>
-      <tr><td>B2</td><td>請 Agent 提 2–3 個方案比較，人來選</td></tr>
-      <tr><td>B3</td><td>委派整件任務：工作單 ＋ 三道關卡</td></tr>
-      <tr><td>交付</td><td>請 Agent 整理交付摘要，人核對</td></tr>
-      <tr><td>回顧</td><td>把技巧變成自己的提示詞清單</td></tr>
-    </tbody>
-  </table>
-  <aside class="notes">
-    <p><b>說</b>：「今天的目標有先後：第一是練 Agentic Coding 技巧，每段一個；第二是體驗 Agent 從工具、隊友到數位員工的流程；第三才是留下證據，而證據由 Agent 寫進 notes 資料夾，你只記自己的決定。這份清單在 Runbook『歡迎與使用方式』頁也有，回顧時會請你挑 3 段自己會再用的提示詞帶走。」</p>
+    <p><b>說（技巧欄）</b>：「今天的目標有先後：第一是練 Agentic Coding 技巧，每段一個；第二是體驗 Agent 從工具、隊友到數位員工的流程；第三才是留下證據，而證據由 Agent 寫進 notes 資料夾，你只記自己的決定。這份清單在 Runbook『歡迎與使用方式』頁也有，回顧時會請你挑 3 段自己會再用的提示詞帶走。」</p>
     <p>本頁只念技巧名稱，<b>不要</b>展開 B1／B2／B3 的任務內容或 Bug。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="opening" data-title="六個 Agent 技巧" data-minute="02">
-  <p class="kicker">技巧路線圖 · 第一次用到時才講</p>
-  <h2 class="title">今天會用到的六個 Agent 技巧</h2>
-  <table class="table">
-    <tbody>
-      <tr><td>提示詞（Prompt）結構</td><td>Greenfield 檢查點 2 第一次學；B3 加深</td></tr>
-      <tr><td>模型選擇</td><td>個人分析檢查點 1 第一次學；B3 再用</td></tr>
-      <tr><td>推論強度</td><td>個人分析檢查點 1 第一次學；B2 再用</td></tr>
-      <tr><td>結構化輸出</td><td>Greenfield 檢查點 3 第一次學；B2、B3、交付加深</td></tr>
-      <tr><td>Token 節費（少讓 Agent 讀不必要的文字）</td><td>Time Skip 檢查點 2 第一次學</td></tr>
-      <tr><td>Skill（存成檔案、可重複使用的工作說明）</td><td>共同脈絡檢查點 2 第一次學；B1、B3 加深</td></tr>
-    </tbody>
-  </table>
-  <aside class="notes">
-    <p><b>說</b>：「上一頁是 9 個流程技巧，每段一個；這六個是真正操作 Agent 的技巧，已經寫進每段的提示詞裡。現在只要記得名稱和在哪一段學，不用懂；第一次用到的那一步，Runbook 會有『技巧：…』小卡說明是什麼、為什麼有效，還附官方文件可以延伸閱讀。」</p>
-    <p><b>只念路線圖</b>：本頁不定義任何一個技巧，也不解釋 Token、Skill 是什麼；定義留到第一次用到的檢查點，各花約 30 秒（講者備註有標「首次介紹」）。</p>
-    <p><b>示範方式</b>：不在這裡展開，到 Greenfield 檢查點 2 指著計畫提示詞的五個【 】標籤講 Prompt 結構；到個人分析檢查點 1 講模型選擇與推論強度，如果你的工具有模型或推論強度設定，當場切一次給大家看，並說明「沒有這個設定的工具，就在提示詞加『先仔細想過再回答』」。</p>
-    <p><b>工具中立</b>：不說任何產品名稱或指令；只說「若你的工具有模型選單／推論強度設定」。定義在 Runbook 第一次用到的那一步；「歡迎與使用方式」頁的流程清單只列技巧名稱。</p>
+  
+    <p><b>從投影移到備註</b>：Greenfield（從頭開始的新專案）採個人練習；Brownfield（已有程式碼的既有專案）先各自分析，再整合小組判斷。MVP（Minimum Viable Product，最小可行產品）；Time Skip（時間快轉：專案假設已開發一段時間）；B1／B2／B3 是 Brownfield 三段任務的代號，內容到時再解鎖。</p>
+    <p><b>六個 Agent 技巧</b>（提示詞結構、模型選擇、推論強度、結構化輸出、Token 節費、Skill）開場不列，第一次用到時由 Runbook 的「技巧：…」小卡介紹（各檢查點備註標「首次介紹」）；清單在回顧檢查點 1 的備註。工具中立：不說任何產品名稱或指令。</p>
   </aside>
 </section>
 
@@ -134,29 +94,26 @@
   <h2 class="title">今天怎麼一起工作</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
-      <span class="chip">工具中立</span>
       <h3>用你自己的 Agent</h3>
-      <p>不指定任何 Agent 產品或專屬指令。</p>
+      <p>不指定任何產品或專屬指令</p>
     </div>
     <div class="card fx fx-up">
-      <span class="chip">不是競賽</span>
-      <h3>不比寫程式速度</h3>
-      <p>不追求最多程式碼，也不排名。</p>
+      <h3>不是競賽</h3>
+      <p>不比速度、不比程式碼量、不排名</p>
     </div>
     <div class="card fx fx-up">
-      <span class="chip">人不碰程式</span>
       <h3>你決定，Agent 動手</h3>
-      <p>Agent 寫程式、跑測試、打指令；你不寫、不讀程式，也不自己打指令，看不懂就請 Agent 用白話說明。</p>
+      <p>你不寫、不讀程式，也不自己打指令</p>
     </div>
     <div class="card fx fx-up">
-      <span class="chip">證據優先</span>
-      <h3>用行為與證據驗收</h3>
-      <p>先核准計畫；看驗收對照表、做變更審查、在 <code>/docs</code> 實際試。未驗證就如實標記；準時停止，交付現況及限制。</p>
+      <h3>用證據驗收</h3>
+      <p>沒驗證過的，如實標「未驗證」</p>
     </div>
   </div>
   <aside class="notes">
     <p><b>來源</b>：RB 00–07「不比較Coding速度」；08 §3「不是競賽，也不是追求最多程式碼」；FG 開場說法「你負責決定做什麼、查看主要變更，並用測試接受結果。未完成也請交付現況及限制。」</p>
     <p><b>說（新原則）</b>：「今天全程你不寫程式、不讀程式、也不自己打指令。Agent 負責這些；你負責決定、核准，並用證據驗收：Agent 交的驗收對照表、變更審查的回答，還有你自己在 /docs 試出來的結果。每段開始時，Runbook 有一段『Agent 工作規則』要整段貼給 Agent，那段是給 Agent 看的，不需要看懂。」安全規則（只用虛構資料、不給真實個資或金鑰、不碰正式環境；Agent 想改需求或範圍外檔案時先不接受）在 Runbook「歡迎與使用方式」頁的紅色提醒框，請大家開場時讀一次。</p>
+    <p><b>從投影移到備註</b>：看不懂就請 Agent 用白話說明；證據是先核准計畫，再看驗收對照表、做變更審查、在 <code>/docs</code> 實際試；準時停止，交付現況及限制。</p>
     <p>FG：不要以代理工具操作數、生成量或自主程度排名。EVAL：不評自主率高低、不以提示次數、程式碼量或速度競賽。</p>
     <p>回顧原則：未觀察不編數據，不排名（RB 80–90）。</p>
   </aside>

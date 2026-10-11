@@ -12,59 +12,61 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="回顧 · 現在在做什麼" data-minute="80" data-timer="10:00" data-gates="retro">
+<section class="slide slide-seg" data-seg="retro" data-title="回顧 · 總覽" data-minute="80" data-timer="10:00" data-gates="retro">
   <p class="kicker">Retrospective · 80–90 · 今天的技巧：把今天的技巧變成自己的提示詞清單</p>
   <h2 class="title">每人帶走 3 段自己會再用的提示詞</h2>
-  <ul>
-    <li><b>情境</b>：回到自己的專案，身邊沒有 Runbook</li>
-    <li><b>目標</b>：帶走 3 段提示詞，小組留下一項帶回團隊的行動</li>
-    <li><b>技巧</b>：寫成可直接貼上的提示詞，最常用的一段存成 Skill</li>
+  <ul class="seg-brief">
+    <li><b>情境</b><span>回到自己的專案，身邊沒有 Runbook</span></li>
+    <li><b>目標</b><span>帶走 3 段提示詞，小組留下一項帶回團隊的行動</span></li>
+    <li><b>技巧</b><span>寫成可直接貼上的提示詞，最常用的一段存成 Skill</span></li>
   </ul>
   <ol class="timeline">
     <li data-seg="retro"><span class="tl-min">00:00</span><b>1 · 選出三個要帶走的技巧</b><span class="tl-due">第 82 分前</span></li>
     <li data-seg="retro"><span class="tl-min">02:00</span><b>2 · 請 Agent 寫成你的提示詞</b><span class="tl-due">第 86 分前</span></li>
     <li data-seg="retro"><span class="tl-min">06:00</span><b>3 · 小組討論盲點，留下一項行動</b><span class="tl-due">第 90 分前</span></li>
   </ol>
-  <p class="callout">從 Runbook『工作坊回顧』› 檢查點 1 開始</p>
+  <p class="callout seg-start">從 Runbook『工作坊回顧』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「10 分鐘：先自己挑 3 個今天最有用的技巧，請 Agent 改寫成你回去能直接貼的提示詞；最後小組討論一個盲點，留下一項帶回團隊的行動。」完成的樣子（口頭帶過）：notes/my-prompts.md 有 3 段提示詞、skills/ 有自己的 Skill；勾 3 個技巧、留一項行動並匯出。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>主持重點</b>：每段提示詞要有「看什麼證據」；「今天的例子」只寫實際發生的事，沒有就寫未觀察。</p>
     <p><b>不可</b>：討論偏向產品比較、完整架構設計或找責任歸咎時，回到本次證據與可改流程；不得公開完整 Evaluation 或未來解答。不排名，不以 pytest 秒數代替人員活動時間。</p>
+    <p><b>版本矩陣 B0→B3（原揭曉頁，移到備註；來源 <code>03-brownfield/evaluation/11-b0-to-b3-version-matrix.md</code>，學員問起時口頭帶過）</b>：學生票價 B0 錯 85%（5 預期失敗）→ B1 只修為 75% → B2 各人最有利單一優惠 → B3 沿用｜會員／提前 B0 第一個符合 → B2 選最低、不疊加並揭露 Applied Discount｜訂票／座位 B0–B2 1–4 人待付款 → B3 新增 5–20 團體、同車廂完整連續｜付款 B0–B2 失敗維持待付款 → B3 團體失敗取消／全釋放／不建訂單｜改票 B2 用最有利政策重新計價 → B3 團體改票 409｜測試 44（5 failed）→ 44 → 55 → 75（參考版本）｜規則 36 → 36 → 40 → 57。B0 <code>PASS AS BROWNFIELD BASELINE</code> 依 Manifest Gate，不等於 pytest 全通過；B1–B3 標準素材判定 <code>PASS FOR WORKSHOP USE</code>，真實 90 分鐘演練與正式放行仍待驗收。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="檢查點 1 · 選出三個要帶走的技巧" data-minute="80">
+<section class="slide slide-cp" data-seg="retro" data-title="檢查點 1 · 選出三個要帶走的技巧" data-minute="80">
   <p class="kicker">檢查點 1 / 3 · 第 80–82 分鐘</p>
   <h2 class="title">選出三個要帶走的技巧</h2>
   <p class="cp-why"><b>為什麼</b>先自己想、不討論：哪一段讓你想到「回到工作就要這樣做」</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>不是主要 Agent 的人，先拿到主要 Agent 的 <code>notes/</code> 資料夾</li>
-    <li>貼「今天的資料夾都在：」＋路徑、②、提示詞清單「複製 Markdown」</li>
-    <li>貼 ③ 確認結果；Agent 推薦 3 個，你回「同意」或換一個，在表單勾選</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②＋提示詞清單</b><span>Runbook『工作坊回顧』› 檢查點 1；開頭加「今天的資料夾都在：」＋ <code>notes/</code> 路徑</span></li>
+    <li><b>回「同意」或換一個</b><span>Agent 推薦 3 個技巧；說好後在頁尾表單勾選</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
-  <p class="cp-next">第 82 分前完成 → 下一步：檢查點 2 寫成你的提示詞</p>
+  <p class="cp-next"><b>第 82 分前完成</b><span>→ 下一步：檢查點 2 寫成你的提示詞</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 80 分）</b>：「先自己想，不討論：貼 Runbook 的提示詞，讓 Agent 從你今天的 notes 推薦 3 個技巧，你決定要不要換。不是主要 Agent 的同學，先請主要 Agent 那位把 notes 資料夾傳給你。」</p>
     <p><b>提醒</b>：notes 分散在 starter-repository、smart-ticket-b0、recovery-b1／recovery-b2 等資料夾，小組段落的紀錄只在主要 Agent 電腦；學員在提示詞第一行補上這些資料夾的上層資料夾路徑，Agent 直接搜尋，避免整排「未觀察」。</p>
     <p><b>看</b>：Agent 推薦後學員有沒有自己判斷（同意或換掉），而不是照單全收；Agent 把沒紀錄的技巧寫成有例子 → 請學員要它改成「未觀察」。</p>
+    <p><b>六個 Agent 技巧（原開場頁，移到備註；學員卡住選不出來時口頭列出）</b>：提示詞（Prompt）結構（Greenfield 檢查點 2；B3 加深）｜模型選擇與推論強度（個人分析檢查點 1；B2、B3 再用）｜結構化輸出（Greenfield 檢查點 3；B2、B3、交付加深）｜Token 節費（Time Skip 檢查點 2）｜Skill（共同脈絡檢查點 2；B1、B3 加深）。</p>
     <p><b>停止（00:02／第 82 分）</b>：「每人至少選好 3 個技巧。」</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="檢查點 2 · 請 Agent 寫成你的提示詞" data-minute="82">
+<section class="slide slide-cp" data-seg="retro" data-title="檢查點 2 · 請 Agent 寫成你的提示詞" data-minute="82">
   <p class="kicker">檢查點 2 / 3 · 第 82–86 分鐘</p>
   <h2 class="title">請 Agent 寫成你的提示詞</h2>
   <p class="cp-why"><b>為什麼</b>寫成可直接貼上的提示詞，回到工作才用得上</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>同一對話貼 ②，Agent 寫進 <code>notes/my-prompts.md</code>，一段存成 Skill</li>
-    <li>讀一遍；不像你會說的話，回「第 2 段改成我平常講話的方式」</li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「寫成我的提示詞」</b><span>Runbook › 檢查點 2；Agent 寫進 <code>notes/my-prompts.md</code>，一段存成 Skill</span></li>
+    <li><b>讀一遍</b><span>不像你會說的話，回「第 2 段改成我平常講話的方式」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每段都寫了「看什麼證據」，不綁今天的專案，你願意直接拿去用</p>
-  <p class="cp-next">第 86 分前完成 → 下一步：檢查點 3 小組討論</p>
+  <p class="cp-next"><b>第 86 分前完成</b><span>→ 下一步：檢查點 3 小組討論</span></p>
   <aside class="notes">
     <p><b>說（00:02／第 82 分）</b>：「在同一個對話貼檢查點 2 的提示詞，讓 Agent 把 3 個技巧寫成提示詞清單；讀一遍，不順手就回一句請它改。」</p>
     <p><b>看</b>：提示詞是否可重用（不寫死 Smart Ticket）｜有沒有「看什麼證據」｜<code>skills/</code> 有沒有多一個學員自己的 Skill 檔｜「今天的例子」有沒有編造。Agent 寫得像範本、不像本人用語 → 「請它改成你平常講話的方式。」</p>
@@ -74,22 +76,23 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="retro" data-title="檢查點 3 · 小組討論盲點，留下一項行動" data-minute="86">
+<section class="slide slide-cp" data-seg="retro" data-title="檢查點 3 · 小組討論盲點，留下一項行動" data-minute="86">
   <p class="kicker">檢查點 3 / 3 · 第 86–90 分鐘</p>
   <h2 class="title">小組討論盲點，留下一項行動</h2>
   <p class="cp-why"><b>為什麼</b>今天全程只看證據、不看程式；這個盲點要帶回團隊補</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>💬 口頭討論 Runbook 上的題目：風險在哪？組織導入第一步做什麼？</li>
-    <li>請一位成員的 Agent 貼 ②，提 3 個行動候選，選一個</li>
-    <li>貼 ③ 確認結果；填回顧表，<b>匯出所有表單</b></li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「3 個行動候選」</b><span>Runbook › 檢查點 3；先口頭討論頁上的題目，再由一位成員貼</span></li>
+    <li><b>小組選一個行動</b><span>回覆 Agent 選哪一個</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→填回顧表，<b>匯出所有表單</b>；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>選定的行動說得出誰、何時、用什麼證據確認</p>
-  <p class="cp-next">第 89 分停止新議題 → 第 90 分結束：離開前匯出表單</p>
+  <p class="cp-next"><b>第 90 分前完成</b><span>→ 第 89 分起不開新議題；離開前匯出表單</span></p>
   <aside class="notes">
     <p><b>說（00:06／第 86 分）</b>：「小組口頭討論，不用寫：先各自說一句交付段『完成後想一想』第 3 題的答案（誰該替交付負責），再想今天全程只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點？再想組織導入的第一步。討論完請一位成員的 Agent 提 3 個行動候選，選一個。」</p>
     <p><b>這題的代價要講明</b>：只看驗收對照表、變更審查與 /docs 行為，抓不到「測試全過但寫法有問題」的程式（例如規則寫錯層、重複邏輯、日後難維護）。可引導到：程式審查角色（懂程式的審查者或資深工程師抽查）、自動化檢查（靜態分析、架構規則檢查）、平台留痕（Audit Log、Test Evidence）。</p>
     <p><b>組織導入（選一兩題，不全問）</b>：背景資料｜哪些資訊缺失造成錯誤？→ 版本化的 Context 檔（如 notes/shared-context.md）。規則｜哪些限制可機器檢查？→ 自動約束與人工 Gate 分開。流程｜哪個 Gate 有價值、哪個流於形式？→ 調整提交證據與停止條件，不只增加簽核。平台｜哪些命令、核准、例外與測試應自動留痕？SQLite 事件可作規則強制與人員審查的例子。</p>
+    <p><b>治理五面向（原 B3 揭曉頁，評估用，不投影；來源 <code>04-digital-worker/evaluation/01-autonomy-and-governance-rubric.md</code>）</b>：A 需求理解｜B 計畫與範圍控制｜C 證據與品質｜D 人員監督｜E 透明揭露，各 0–3。討論盲點時可用來追問「哪一面向缺證據」；只用於回顧與找出平台需求，不排名；缺證據記「未觀察」（不等於 0 分），與 Level 1／2／3 分開。不以程式量、工具操作數或自主率評分；不因學員沒讀程式或沒自己打指令而扣分。平台需求八項（F01／F05）：Agent 權限範圍、Rule Enforcement、Approval Workflow、Audit Log、Test Evidence、Context Versioning、Agent Session 管理、成本與執行時間觀測。收斂紀錄至少一項 Context／Rule 改善、一項 Skill 或流程需求、一項平台需求，並連回 Gate 或例外證據。</p>
     <p><b>介入</b>：只喊「Agent 更聰明」時追問：可改哪份背景資料、哪個 Gate 或哪個可驗證控制？行動含糊時問「誰在何時用什麼證據確認？」</p>
     <p><b>停止</b>：00:09（第 89 分）停止新議題；00:10（第 90 分）準時結束，確認已匯出表單、notes/my-prompts.md 自己帶走。翻到結束頁。</p>
   </aside>

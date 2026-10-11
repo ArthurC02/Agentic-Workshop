@@ -54,20 +54,20 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="b2" data-title="B2 現在在做什麼" data-minute="52" data-timer="11:00" data-gates="b2">
+<section class="slide slide-seg" data-seg="b2" data-title="B2 · 總覽" data-minute="52" data-timer="11:00" data-gates="b2">
   <p class="kicker">B2 · 52–63 · Agent 從隊友（Teammate）過渡到數位員工（Digital Worker）</p>
   <h2 class="title">請 Agent 提 2–3 個方案並比較，人來選</h2>
-  <ul>
-    <li><b>情境</b>：優惠政策要改：多項優惠只給一項最有利的</li>
-    <li><b>目標</b>：選定做法、實作，證明每位旅客的優惠符合規則</li>
-    <li><b>技巧</b>：比較表欄位固定；比較時調高推論強度，實作時調回</li>
+  <ul class="seg-brief">
+    <li><b>情境</b><span>優惠政策要改：多項優惠只給一項最有利的</span></li>
+    <li><b>目標</b><span>選定做法、實作，證明每位旅客的優惠符合規則</span></li>
+    <li><b>技巧</b><span>比較表欄位固定；比較時調高推論強度，實作時調回</span></li>
   </ul>
   <ol class="timeline">
     <li data-seg="b2"><span class="tl-min">00:00</span><b>1 · 提方案並比較，人來選</b><span class="tl-due">第 55 分前核准</span></li>
     <li data-seg="b2"><span class="tl-min">03:00</span><b>2 · 依選定方案分段實作</b><span class="tl-due">第 59 分前</span></li>
     <li data-seg="b2"><span class="tl-min">07:00</span><b>3 · 補測試、更新文件並交付</b><span class="tl-due">第 63 分前</span></li>
   </ol>
-  <p class="callout">從 Runbook『B2 導入不可疊加的最有利優惠政策』› 檢查點 1 開始</p>
+  <p class="callout seg-start">從 Runbook『B2 導入不可疊加的最有利優惠政策』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>說（約 30 秒；先講情境與技巧，再講步驟）</b>：「公司要改優惠政策：一位旅客同時符合多項優惠時，只給一項對他最有利的。這段練的技巧是：不要接受 Agent 的第一個答案，請它提 2–3 個方案，用表格比較影響與風險，你們挑一個假設要它拿出依據，再由你們選。第 55 分鐘前選定並核准；59 停止擴充，補測試和文件；63 停止。紀錄都請 Agent 寫進 notes/b2.md，表單只要選方案和最後接受與否。」</p>
     <p><b>Agent 技巧（怎麼示範）</b>：「比較表欄位固定：方案、改動範圍、風險、測試影響、建議，這是結構化輸出，幾個方案才能並排比。比較時，工具有推論強度設定就調高，沒有就靠提示詞裡的『先仔細想過再回答』；核准後實作是小步修改，調回低，比較快也省 Token。B1 的對話很長，建議開新對話，讀 skills 和 notes 就接得上。」不點名任何工具或設定位置。</p>
@@ -80,18 +80,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="b2" data-title="檢查點 1 · 請 Agent 提方案並比較，人來選" data-minute="52">
+<section class="slide slide-cp" data-seg="b2" data-title="檢查點 1 · 請 Agent 提方案並比較，人來選" data-minute="52">
   <p class="kicker">檢查點 1 / 3 · 第 52–55 分鐘</p>
   <h2 class="title">請 Agent 提方案並比較，人來選</h2>
   <p class="cp-why"><b>為什麼</b>不接受 Agent 的第一個答案；這一步它只比較方案，不改任何檔案</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>Runbook『B2』› 檢查點 1：貼 ②，再接任務卡「複製 Markdown」給主要 Agent</li>
-    <li>💬 挑最沒把握的假設貼「追問假設」；說好貼「核准方案」，在「B2 決定」選方案</li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「提方案並比較」</b><span>Runbook『B2 導入不可疊加的最有利優惠政策』› 檢查點 1；再接任務卡「複製 Markdown」</span></li>
+    <li><b>💬 追問最沒把握的假設</b><span>貼「追問假設」；說好貼「核准方案」，在「B2 決定」選方案</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>2–3 個真的可行的方案、都對照過禁止事項；每個假設標了依據或「未確認」</p>
-  <p class="cp-next">第 55 分前核准 → 下一步：檢查點 2 分段實作</p>
+  <p class="cp-next"><b>第 55 分前核准</b><span>→ 下一步：檢查點 2 分段實作</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 52 分）</b>：「先確認起點是已驗收的 B1。請 Agent 提 2–3 個方案、用表格比較，先不要改程式。不要接受第一個答案：挑一個假設要它拿依據。第 55 分鐘前，由你們選方案；貼核准提示詞後，Agent 會問你們選哪個、理由和做到第幾步，用一句話回答就好；核准人與時間它自己從共同脈絡檔和電腦時間記下。」</p>
     <p><b>💬 討論</b>：Runbook 有兩題口頭討論（挑一個最沒把握的假設；推薦方案的最大風險能不能接受），不用寫下來。小組沒討論就直接選 → 問「哪一個假設你們最沒把握？」</p>
@@ -104,18 +104,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="b2" data-title="檢查點 2 · 依選定方案分段實作" data-minute="55">
+<section class="slide slide-cp" data-seg="b2" data-title="檢查點 2 · 依選定方案分段實作" data-minute="55">
   <p class="kicker">檢查點 2 / 3 · 第 55–59 分鐘</p>
   <h2 class="title">依選定方案分段實作</h2>
   <p class="cp-why"><b>為什麼</b>主要 Agent 做完一段就停下，換你們看證據再放行下一段</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>Runbook › 檢查點 2：Agent 停下後貼 ②「變更審查」</li>
-    <li>五題都是「是」才貼「下一段」；做完再審一次</li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「變更審查」</b><span>Runbook › 檢查點 2；Agent 做完一段停下後貼</span></li>
+    <li><b>五題都是「是」才放行</b><span>貼「下一段」；做完再審一次</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>多優惠旅客每人只採一項、而且最有利；要改舊期待值，附了 Rule ID 才回「核准更新」</p>
-  <p class="cp-next">第 59 分停止擴充 → 下一步：檢查點 3 補測試、更新文件</p>
+  <p class="cp-next"><b>第 59 分前完成</b><span>→ 下一步：停止擴充，檢查點 3 補測試、更新文件</span></p>
   <aside class="notes">
     <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准工作拆解。已核准的，讓主要 Agent 只做第一段，做完停下，你們請它回答變更審查問題；第 5 題它會挑一位多優惠旅客實際驗證，你們核對每人只採一項、而且是最有利的那一項。」</p>
     <p><b>看 → 介入</b>：只改一個分支、忽略 Change、用全團共同優惠或疊乘計價、全面重構成 Engine → 需要介入。實作是否真的照選定方案（偏離時請 Agent 說明為何改用別的做法）。保留同步 Notification；折扣政策清楚化即足夠，不要求複雜的 Engine。</p>
@@ -126,18 +126,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="b2" data-title="檢查點 3 · 補測試、更新文件並交付" data-minute="59">
+<section class="slide slide-cp" data-seg="b2" data-title="檢查點 3 · 補測試、更新文件並交付" data-minute="59">
   <p class="kicker">檢查點 3 / 3 · 第 59–63 分鐘</p>
   <h2 class="title">補測試、更新文件並交付</h2>
   <p class="cp-why"><b>為什麼</b>停止擴充，不再加新功能；把證據補齊再交付</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>Runbook › 檢查點 3：貼 ②「補測試、更新文件」</li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
-    <li>💬 小組說好接受與否，在「B2 決定」記下</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「補測試、更新文件」</b><span>Runbook › 檢查點 3</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>💬 小組說好接受與否</b><span>在「B2 決定」記下</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每位旅客的優惠類型與折扣率符合任務卡，不只核對總額；改過的期待值都有 Rule ID 與核准紀錄</p>
-  <p class="cp-next">第 63 分停止 → 下一步：等 B3 解鎖</p>
+  <p class="cp-next"><b>第 63 分前完成</b><span>→ 下一步：等 B3 解鎖</span></p>
   <aside class="notes">
     <p><b>說（00:07／第 59 分）</b>：「第 59 分鐘，停止擴充。請 Agent 補代表組合測試、跑全套測試、更新折扣文件，結果和交付摘要寫進 notes/b2.md。你們看驗收對照表與實際採用的優惠，逐人優惠與改票都要看，再決定接受與否。」</p>
     <p><b>看</b>：完整套件真實執行，不是只跑單一測試；沒有刪除或弱化斷言；改過的既有期待值只有因新規則過時、列了 Rule ID 且經核准的那一項；文件依實際程式更新。逐位旅客取最有利、不疊加、改票與建立一致、Applied Discount 真實；人真的檢視（要求並檢查驗收對照表與變更審查答案、核對多優惠旅客的實際驗證結果），而不是 Agent 說完成就交付。不因沒讀程式而判失敗。</p>
@@ -169,7 +169,6 @@
 <section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 候選取最低 rate" data-minute="63">
   <p class="reveal-badge">揭曉 · B2</p>
   <h2 class="title">每位旅客：列出符合的優惠 → 取最低折扣率</h2>
-  <p class="muted fx fx-fade">舊：取第一個符合的優惠　→　新：選最低折扣率、每人只用一項</p>
   <div class="b2-lane">
     <span class="b2-who">成人 <small>企業會員＋提前 · 基本票價 700</small></span>
     <span class="b2-cand">CORPORATE<b>95</b><span class="b2-x fx fx-fade" aria-hidden="true"></span></span>
@@ -195,52 +194,11 @@
     <p><b>本頁範例</b>＝AC-B2-007／008／009 的三資格混合案例：學生 STUDENT 75／525、成人 ADVANCE 85／595，總額 <b>1120</b>（09 acceptance map）。按 → 逐步：淘汰較高 rate → 顯示結果 → 總額。</p>
     <p><b>C4 揭露要點</b>：B2 取代 DEBT-001 的「首個符合」政策；Booking 建立與 Booking Change 共用同一政策，回應明細與文件同步；不要求複雜的 Engine，保留同步 Notification。</p>
     <p>來源沒有 B2 標準實作 Code；只講觀察準則，<b>不現場補寫答案 Code</b>。</p>
-    <p><b>從投影移到備註</b>：舊政策依序比對企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT，取第一個符合的。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 代表組合" data-minute="63">
-  <p class="reveal-badge">揭曉 · B2</p>
-  <h2 class="title">代表組合與實際數字（基本票價 700）</h2>
-  <table class="table fx fx-fade">
-    <thead><tr><th>情境</th><th>優惠類型／折扣率／金額</th><th>AC（驗收條件）</th></tr></thead>
-    <tbody>
-      <tr><td>成人無優惠</td><td><code>ADULT／100／700</code></td><td>AC-B2-001</td></tr>
-      <tr><td>學生</td><td><code>STUDENT／75／525</code></td><td>AC-B2-002</td></tr>
-      <tr><td>提前成人（≥14 天）</td><td><code>ADVANCE／85／595</code></td><td>AC-B2-003</td></tr>
-      <tr><td>企業會員成人</td><td><code>CORPORATE／95／665</code></td><td>AC-B2-004</td></tr>
-      <tr><td>學生＋提前</td><td><code>STUDENT／75／525</code>（不疊乘 85%）</td><td>AC-B2-005</td></tr>
-      <tr><td>企業會員＋提前</td><td><code>ADVANCE／85／595</code>（舊測試 665 → 595）</td><td>AC-B2-006</td></tr>
-      <tr><td>三者同時符合</td><td>學生 75／525、成人 85／595</td><td>AC-B2-007</td></tr>
-      <tr><td>企業會員學生、無提前</td><td>仍 <code>STUDENT</code> 75%</td><td>AC-B2-009</td></tr>
-    </tbody>
-  </table>
-  <p class="muted fx fx-fade">改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ <b>1199</b>；票價差額 <b>−26</b>；原訂單仍是 <b>1225</b>（AC-B2-011）</p>
-  <aside class="notes">
-    <p><b>來源</b>：R2-1 表（evaluation 06 開頭段、09 acceptance map AC-B2-001～011）。</p>
-    <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。</p>
-    <p><b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert，完整實測 55 passed，零 failed／skip／xfail。</p>
+    <p><b>從投影移到備註</b>：口頭說「舊：取第一個符合的優惠 → 新：選最低折扣率、每人只用一項」。舊政策依序比對企業會員 CORPORATE → 提前購票 ADVANCE → 學生 STUDENT → 成人 ADULT，取第一個符合的。</p>
+    <p><b>代表組合（基本票價 700；R2-1、09 acceptance map AC-B2-001～011，需要時口頭舉例）</b>：成人無優惠 ADULT／100／700（001）｜學生 STUDENT／75／525（002）｜提前成人（≥14 天，驗 13／14／15 天邊界）ADVANCE／85／595（003）｜企業會員成人 CORPORATE／95／665（004）｜學生＋提前 STUDENT／75／525，不疊乘 85%（005）｜企業會員＋提前 ADVANCE／85／595，舊測試 665 → 595（006）｜三者同時符合：學生 75／525、成人 85／595（007）｜企業會員學生、無提前：仍 STUDENT 75%（009）｜改票（新基本票價 750）：成人 637 ＋ 學生 562 ＝ 1199；票價差額 −26；原訂單仍是 1225（011）。</p>
+    <p><b>AC-B2-006</b>：唯一一項舊測試因新政策<b>明確遷移</b>（改名 <code>test_corporate_advance_uses_best_single_discount</code>，665 → 595）；這是合法的政策遷移，不是弱化斷言。<b>AC-B2-011</b>：改票以目標 Trip＋當前 Clock 用同政策重新計價；失敗時無部分變更。<b>AC-B2-012</b>：原 28 個 G1 未改 body／assert；測試＝原有 44 個（43 個不變、1 個依新規則更新）＋單元 7＋整合 4＝<b>55 passed</b>，零 failed／skip／xfail。</p>
     <p><b>勘誤（evaluation 22）</b>：B2 實際 DiscountType Enum／100% 預設回應為 <b><code>ADULT</code></b>，不是 <code>FULL_FARE</code>。原 B2 參考版的 api-examples.md、architecture.md、discount-overview.md 曾寫成 FULL_FARE，已更正為 ADULT；B2 復原包內的文件也已是 ADULT。AC-B2-013 原「文件與 Code 同步」判定漏掉此名稱誤文。</p>
-    <p><b>從投影移到備註</b>：AC-B2-003 驗 13／14／15 天邊界。測試：原有 44 個（43 個不變、1 個依新規則更新）＋ 單元測試 7 ＋ 整合測試 4 ＝ <b>55 passed</b>。</p>
-  </aside>
-</section>
-
-<section class="slide" data-seg="reveal" data-reveal-of="b2" data-title="揭曉 · 影響模組" data-minute="63">
-  <p class="reveal-badge">揭曉 · B2</p>
-  <h2 class="title">受影響模組與核對重點</h2>
-  <table class="table fx fx-fade">
-    <thead><tr><th>區域</th><th>核對行為</th></tr></thead>
-    <tbody>
-      <tr><td>Domain <code>DiscountPolicy.calculate</code></td><td>候選資格（有效會員／固定時鐘 Clock／≥14 天／旅客型別），選最低折扣率（rate），回傳 amount、discount_type、整數 rate</td></tr>
-      <tr><td><code>BookingService.create</code></td><td>每人獨立選擇，總額＝每人 amount 加總；驗證後才寫 Booking／座位</td></tr>
-      <tr><td><code>ChangeBookingService.change</code></td><td>目標 Trip＋當前 Clock 用同政策重新計價；同步 total_fare、fare_difference、applied_discounts；原 Order 付款金額不變</td></tr>
-      <tr><td>Domain／Schema／API</td><td>Booking 根層 <code>applied_discounts</code>：passenger_id、discount_type、rate、amount；原 passengers 三欄不變</td></tr>
-      <tr><td>文件</td><td>business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR（Architecture Decision Record，架構決策紀錄）記錄候選選擇</td></tr>
-    </tbody>
-  </table>
-  <aside class="notes">
-    <p><b>來源</b>：R2-2（evaluation 06 影響表）。</p>
-    <p>對照學員的 Impact Analysis 三欄（一定要改／可能影響／不應改）：最常漏的是 Booking Change 與文件（Hint 3 觸發點即「只改建立流程，忽略使用端」）。</p>
+    <p><b>影響模組（R2-2，evaluation 06 影響表）</b>：Domain <code>DiscountPolicy.calculate</code>：候選資格（有效會員／固定時鐘 Clock／≥14 天／旅客型別），選最低 rate，回傳 amount、discount_type、整數 rate｜<code>BookingService.create</code>：每人獨立選擇，總額＝每人 amount 加總；驗證後才寫 Booking／座位｜<code>ChangeBookingService.change</code>：目標 Trip＋當前 Clock 用同政策重新計價；同步 total_fare、fare_difference、applied_discounts；原 Order 付款金額不變｜Domain／Schema／API：Booking 根層 <code>applied_discounts</code>（passenger_id、discount_type、rate、amount），原 passengers 三欄不變｜文件：business-rules.md 新增 FARE-007～010；discount-overview.md、API 範例；ADR 記錄候選選擇。對照學員的影響分析三欄（一定要改／可能影響／不應改）：最常漏的是 Booking Change 與文件（Hint 3 觸發點即「只改建立流程，忽略使用端」）。</p>
     <p><b>DEBT-003</b>：改票指南「不處理金額差異」是刻意保留的技術債（實際記錄 new−old Fare Difference，不做補退款金流），與 FULL_FARE 名稱誤文分開。</p>
   </aside>
 </section>
@@ -253,25 +211,22 @@
       <span class="chip teammate">可接受</span>
       <ul>
         <li>列出符合的優惠，選最低折扣率，每人一項</li>
-        <li>ADR 記錄候選選擇的簡單設計</li>
         <li>唯一一項舊測試因新政策<b>明確遷移</b>（665 → 595）</li>
-        <li>每案核對實際折扣率、優惠類型與金額</li>
-        <li>改票失敗時，訂票、訂單、座位、稽核紀錄與通知都整筆還原，不留下改一半的資料</li>
+        <li>改票失敗時整筆還原，不留下改一半的資料</li>
       </ul>
     </div>
     <div class="callout warn fx fx-up">
       <h3>不可接受</h3>
       <ul>
-        <li>疊乘多項優惠</li>
-        <li>引入複雜規則引擎</li>
-        <li>刪掉測試、降低檢查標準，或為了通過而放寬期待值</li>
+        <li>疊乘多項優惠，或引入複雜規則引擎</li>
+        <li>刪測試、放寬期待值來讓測試通過</li>
         <li>只核對總額</li>
-        <li>改票部分寫入；提前實作 B3 團體</li>
       </ul>
     </div>
   </div>
   <aside class="notes">
     <p><b>來源</b>：R2-2 可接受 vs 不可接受表（evaluation 06 §一項合法的政策測試遷移、完成條件）。</p>
+    <p><b>從投影移到備註</b>：可接受還有「ADR 記錄候選選擇的簡單設計」「每案核對實際折扣率、優惠類型與金額」；改票失敗時要還原的是訂票、訂單、座位、稽核紀錄與通知。不可接受還有「改票部分寫入」「提前實作 B3 團體」。</p>
     <p><b>Debrief 提問</b>：Agent 一開始給了幾個方案？你們質疑了哪個假設、因此改變選擇了嗎？誰選了方案、誰核准 Task Breakdown？核准紀錄、政策、實際測試與文件是否一致（TC2 完成條件）？只記錄觀察到的核准、提示與實際結果，不排名。</p>
     <p><b>復原包提醒</b>：未完成小組若接續 B3，只發已驗收的正式 B2 復原包（Recovery）並記錄來源、原因與原小組完成度（BF6 P7）；用復原包不算原小組成果。</p>
   </aside>

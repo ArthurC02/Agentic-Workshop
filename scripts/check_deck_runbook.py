@@ -49,7 +49,8 @@ def parse_slides(name: str, src: str) -> list[dict]:
         a = dict(re.findall(r'([\w-]+)="([^"]*)"', attrs))
         notes = "".join(re.findall(r'(?s)<aside class="notes">(.*?)</aside>', body))
         shown = re.sub(r'(?s)<aside class="notes">.*?</aside>', "", body)
-        grab = lambda cls: text("".join(re.findall(rf'(?s)<\w+ class="{cls}"[^>]*>(.*?)</\w+>', shown))).strip()
+        grab = lambda cls: text("".join(b for _, b in re.findall(
+            rf'(?s)<(\w+) class="{cls}"[^>]*>(.*?)</\1>', shown))).strip()
         out.append({"where": f"{name} 「{a.get('data-title', '?')}」", "seg": a.get("data-seg"),
                     "title": a.get("data-title", ""), "kicker": grab("kicker"), "h2": grab("title"),
                     "next": grab("cp-next"), "text": text(shown) + "\n" + text(notes),

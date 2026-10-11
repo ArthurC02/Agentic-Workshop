@@ -13,13 +13,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="greenfield" data-title="Greenfield 現在在做什麼" data-minute="07" data-timer="22:00" data-gates="greenfield">
+<section class="slide slide-seg" data-seg="greenfield" data-title="Greenfield · 總覽" data-minute="07" data-timer="22:00" data-gates="greenfield">
   <p class="kicker">Greenfield · 07–29 · Agent 是工具（Tool）</p>
   <h2 class="title">先要計畫再動手；小步執行、每步驗收</h2>
-  <ul>
-    <li><b>情境</b>：全新的訂票服務，22 分鐘交出第一版</li>
-    <li><b>目標</b>：帶 Agent 做出 查班次 → 訂票 → 付款 → 查訂單</li>
-    <li><b>技巧</b>：給 Agent 規則；先要計畫；每次只放行一小步</li>
+  <ul class="seg-brief">
+    <li><b>情境</b><span>全新的訂票服務，22 分鐘交出第一版</span></li>
+    <li><b>目標</b><span>帶 Agent 做出 查班次 → 訂票 → 付款 → 查訂單</span></li>
+    <li><b>技巧</b><span>給 Agent 規則；先要計畫；每次只放行一小步</span></li>
   </ul>
   <ol class="timeline">
     <li data-seg="greenfield"><span class="tl-min">00:00</span><b>1 · 規則與環境</b><span class="tl-due">第 09 分前</span></li>
@@ -27,7 +27,7 @@
     <li data-seg="greenfield"><span class="tl-min">04:00</span><b>3 · 小步驗收</b><span class="tl-due">第 24 分前</span></li>
     <li data-seg="greenfield"><span class="tl-min">17:00</span><b>4 · 親自驗證交付</b><span class="tl-due">第 29 分前</span></li>
   </ol>
-  <p class="callout">從 Runbook『Greenfield 任務』› 檢查點 1 開始</p>
+  <p class="callout seg-start">從 Runbook『Greenfield 任務』› 檢查點 1 開始</p>
   <aside class="notes">
     <p><b>說（約 30 秒，學員邊聽邊下載；先講情境與技巧，再講步驟）</b>：「你有 22 分鐘做出訂票服務的第一版。這段要練的不是 Agent 寫多快，而是三個技巧：第一，先給 Agent 一份工作規則；第二，先要計畫，你核准後才動手；第三，每次只放行一小步，它停下後你看驗收對照表和變更審查答案，沒問題才放行下一步。每一步的提示詞都在 Runbook，複製貼上就好；紀錄都請 Agent 寫進 notes/greenfield.md，你只在最後選兩個下拉的交付決定。你不寫、不讀程式，也不自己打指令。」完成的樣子（口頭帶過）：你在 /docs 走完流程，notes/greenfield.md 有計畫、每步驗收對照表和交付摘要。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點，需要總覽時可翻回。</p>
@@ -39,17 +39,16 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="greenfield" data-title="檢查點 1 · 交給 Agent 規則並備好環境" data-minute="07">
+<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 1 · 交給 Agent 規則並備好環境" data-minute="07">
   <p class="kicker">檢查點 1 / 4 · 第 07–09 分鐘</p>
   <h2 class="title">交給 Agent 規則並備好環境</h2>
   <p class="cp-why"><b>為什麼</b>規則先講好，再用 Git 記下起點，之後 Agent 才說得出改了什麼</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>Runbook『Greenfield 任務』› 檢查點 1：下載 G0，解壓縮到短路徑</li>
-    <li>在 <code>starter-repository</code> 開 Agent，貼 ②：工作規則 ＋「準備專案」</li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ② 工作規則＋「準備專案」</b><span>Runbook『Greenfield 任務』› 檢查點 1；先下載 G0、解壓縮到短路徑，在 <code>starter-repository</code> 開 Agent</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
-  <p class="cp-next">第 09 分前完成 → 下一步：檢查點 2 先要計畫</p>
+  <p class="cp-next"><b>第 09 分前完成</b><span>→ 下一步：檢查點 2 先要計畫</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 07 分）</b>：「第一個技巧：給 Agent 一份規則。先把 Runbook 的工作規則整段貼給 Agent，之後就不用每次叮嚀『先計畫、做完停下、附測試結果』。接著請 Agent 建好環境、記下起點，這些指令都由 Agent 打，你看它的白話回報。」</p>
     <p><b>看</b>：有沒有先貼規則；起始 <code>1 passed, 8 skipped</code>（以 Agent 回報的實際輸出為準）；四個業務 API 回應 501。第 09 分還沒跑出起始結果 → 環境問題，優先協助，不要讓他直接叫 Agent 寫程式。學員自己在終端機打指令 → 提醒改請 Agent 執行。</p>
@@ -59,18 +58,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="greenfield" data-title="檢查點 2 · 先要計畫，再核准" data-minute="09">
+<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 2 · 先要計畫，再核准" data-minute="09">
   <p class="kicker">檢查點 2 / 4 · 第 09–11 分鐘</p>
   <h2 class="title">先要計畫，再核准</h2>
   <p class="cp-why"><b>為什麼</b>先看計畫，才能在動手前抓出範圍外的項目；這一步 Agent 不改程式</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>Runbook › 檢查點 2：貼 ②「要計畫」，Agent 寫進 <code>notes/greenfield.md</code></li>
-    <li>看完計畫貼「計畫核准」；不同意就加一句「第 N 題改成…」</li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「要計畫」</b><span>Runbook › 檢查點 2；Agent 寫進 <code>notes/greenfield.md</code></span></li>
+    <li><b>看完計畫貼「計畫核准」</b><span>不同意就加一句「第 N 題改成…」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每步都標了需求編號和要改的檔案、沒有範圍外項目、每題附建議答案</p>
-  <p class="cp-next">第 11 分前完成 → 下一步：檢查點 3 小步做、每步驗收</p>
+  <p class="cp-next"><b>第 11 分前完成</b><span>→ 下一步：檢查點 3 小步做、每步驗收</span></p>
   <aside class="notes">
     <p><b>說（00:02／第 09 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 先讀需求、掃 TODO、提出計畫並寫進 notes，先不要修改。它會在每個問題附上建議答案，你只要回「同意」或「改成…」，然後核准最前面兩小步（票價、班次查詢都很小，一起做省一輪來回）。」</p>
     <p><b>示範 Agent 技巧</b>：指著 Runbook 計畫提示詞的五個標籤【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件】說「這就是 Prompt 結構」。巡場看：學員有沒有自己刪掉某個部分。模型選擇與推論強度留到個人分析才講，這裡不提。</p>
@@ -81,18 +80,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="greenfield" data-title="檢查點 3 · 小步做、每步驗收" data-minute="11">
+<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 3 · 小步做、每步驗收" data-minute="11">
   <p class="kicker">檢查點 3 / 4 · 第 11–24 分鐘</p>
   <h2 class="title">小步做、每步驗收</h2>
   <p class="cp-why"><b>為什麼</b>每次只放行一小步，錯了只要退一小步</p>
   <p class="cp-label">現在做（每一小步重複）</p>
-  <ol class="steps">
-    <li>Agent 做完一步就停，附驗收對照表與審查答案</li>
-    <li>三件都成立貼 ②「放行」；有疑問貼「先不核准」</li>
-    <li>放行後貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「放行」</b><span>Runbook › 檢查點 3；三件都成立才貼，有疑問改貼「先不核准」</span></li>
+    <li><b>等 Agent 做完下一步</b><span>它會停下，附驗收對照表與審查答案</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>改的檔案都在計畫裡、測試沒變少也沒新增跳過、沒刪測試或改期待值；訂票自己手算 700 ＋ 525 ＝ 1225</p>
-  <p class="cp-next">第 24 分前完成 → 下一步：檢查點 4，沒做到付款也照樣進</p>
+  <p class="cp-judge"><b>你要判斷</b>訂票自己手算：700 ＋ 525 ＝ 1225；其餘看驗收對照表</p>
+  <p class="cp-next"><b>第 24 分前完成</b><span>→ 下一步：檢查點 4，沒做到付款也照樣進</span></p>
   <aside class="notes">
     <p><b>說（00:04／第 11 分）</b>：「第三個技巧：小步執行、每步驗收。每次只放行一小步，Agent 停下後會附上驗收對照表和變更審查答案，你判斷三件事是否成立，都成立才請它記進 notes、更新文件、存一版、做下一步。一步出錯只要退回這一步。回報格式每一步都一樣，這就是結構化輸出。」</p>
     <p><b>巡場看技巧</b>：驗收對照表欄位是否固定（Agent 自己換格式 → 請學員要求照工作規則第 5 條）｜回報沒附審查答案 → 請學員貼「請依工作規則第 6 條補上四題審查答案」｜建立訂票時回應轉換出錯（起始程式的回應模型讀不到旅客資料，已知小問題）→ 請學員貼 Runbook 檢查點 3 ④ 補充裡「把訂票結果轉成回應時出錯」那段提示詞，Agent 做最小修改、不改測試。</p>
@@ -107,21 +106,23 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="greenfield" data-title="檢查點 4 · 親自走一次流程並交付" data-minute="24">
+<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 4 · 親自走一次流程並交付" data-minute="24">
   <p class="kicker">檢查點 4 / 4 · 第 24–29 分鐘</p>
   <h2 class="title">親自走一次流程並交付</h2>
   <p class="cp-why"><b>為什麼</b>不再加新功能；最後一步驗收由你親自在 <code>/docs</code> 操作</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>Runbook › 檢查點 4：貼 ②「補測試、啟動 App」</li>
-    <li>在 <code>/docs</code> 走一次：查班次 → 訂票 1225 → 付款 → 查訂單 → 再付一次被拒</li>
-    <li>貼「寫交付摘要」，再貼 ③ 確認結果；「失敗」貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「補測試、啟動 App」</b><span>Runbook › 檢查點 4</span></li>
+    <li><b>在 <code>/docs</code> 親自走一次</b><span>查班次 → 訂票 1225 → 付款 → 查訂單 → 再付一次被拒</span></li>
+    <li><b>貼「寫交付摘要」</b><span>Agent 寫進 <code>notes/greenfield.md</code></span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>交付摘要寫的人工驗證結果，和你在 <code>/docs</code> 看到的一致</p>
-  <p class="cp-next">第 29 分停止修改 → 下一步：Runbook『Greenfield 回顧與交付決定』</p>
+  <p class="cp-next"><b>第 27 分到回顧頁</b><span>→ 下一步：Runbook『Greenfield 回顧與交付決定』；第 29 分停止修改</span></p>
   <aside class="notes">
     <p><b>說（00:17／第 24 分）</b>：「不再加新功能。請 Agent 替還沒有測試的驗收條件補測試、整理最終驗收對照表；最後一步驗收由你親自在 /docs 操作，不只看報告。」</p>
-    <p><b>說（00:20／第 27 分）</b>：「請 Agent 把交付摘要寫進 notes：完成／未完成、測試結果、限制，以及人和 Agent 各做什麼。你核對後在交付表單選接受與否。」</p>
+    <p><b>說（00:19／第 26 分）</b>：「走完 /docs 就貼寫交付摘要的提示詞：Agent 把完成／未完成、測試結果、限制，以及人和 Agent 各做什麼寫進 notes。」</p>
+    <p><b>說（00:20／第 27 分）</b>：「請翻到 Runbook『Greenfield 回顧與交付決定』：先和旁邊的人聊 1 分鐘，再選交付決定。摘要還沒寫完的，讓 Agent 繼續寫，你先聊。」</p>
     <p><b>看</b>：學員自己在 <code>/docs</code> 核對完整流程（<code>/health</code> 由 Agent 啟動時確認；Agent 要實際呼叫 API 時用 Python／TestClient，不用 curl，Windows 的 curl 會弄亂中文）；交付摘要附 Agent 實際執行的指令與驗收對照表，未跑明記未驗證；請 Agent 列出仍被 Skip 的測試，不刪除或弱化測試掩蓋失敗。</p>
     <p><b>提示・時間不足</b>：H1 提醒「每步驗收」：先貼「請列出已完成、未驗證與尚未開始的項目」｜H2 停止擴充，先驗證已做流程，再請 Agent 補最少文件與限制｜H3 請 Agent 依 Runbook 提示把交付摘要寫進 notes，未完成如實標記。</p>
     <p><b>停止（00:22／第 29 分）</b>：翻到「請先停手」頁，說「停止修改，保存並提交現況；不再延長實作。」未達完整 MVP 仍收取 <code>notes/greenfield.md</code>（計畫、每步驗收、交付摘要）與交付表單；不宣稱未驗證功能通過。</p>
@@ -146,32 +147,20 @@
   </aside>
 </section>
 
-<section class="slide slide-mvp-review" data-seg="reveal" data-reveal-of="greenfield" data-title="揭曉 · 預期 MVP 輪廓" data-minute="29">
+<section class="slide" data-seg="reveal" data-reveal-of="greenfield" data-title="揭曉 · 預期 MVP 輪廓" data-minute="29">
   <p class="reveal-badge">揭曉 · Greenfield</p>
-  <h2 class="title">預期 MVP（最小可行產品）輪廓與快速驗收</h2>
-  <div class="cols-2 mvp-review-layout">
-    <table class="table fx fx-fade">
-      <thead><tr><th>API</th><th>核心行為</th></tr></thead>
-      <tbody>
-        <tr><td><code>GET /health</code></td><td>200，<code>{"status":"ok"}</code></td></tr>
-        <tr><td><code>GET /trips</code></td><td>僅可售座位 &gt; 0；站名精確篩選</td></tr>
-        <tr><td><code>POST /bookings</code></td><td>1–4 人且座位足夠；保留座位、狀態為待付款（<code>PENDING_PAYMENT</code>）、逐人計價加總</td></tr>
-        <tr><td><code>POST …/pay</code></td><td>僅待付款可付；成功為 <code>PAID</code>＋唯一訂單；重複付款拒絕</td></tr>
-        <tr><td><code>GET /orders/{order_id}</code></td><td>讀取既有訂單；金額＝訂票總額</td></tr>
-      </tbody>
-    </table>
-    <ol class="steps">
-      <li class="fx"><span>請 Agent 啟動程式，檢查健康檢查（/health）與 API 文件頁<br>保留 Agent 交的驗收對照表</span></li>
-      <li class="fx"><span>重設資料後查班次：T003 不出現<br>站名篩選符合固定資料</span></li>
-      <li class="fx"><span>T001 成人＋學生：<b>1,225</b>，保留 2 座<br>訂票狀態：<code>PENDING_PAYMENT</code></span></li>
-      <li class="fx"><span>付款後 <code>PAID</code>；唯一訂單金額 1,225<br>重複付款遭拒，不新增訂單</span></li>
-      <li class="fx"><span>檢查 0／5 人、座位不足與付款失敗<br>未執行的項目標為「未驗證」</span></li>
-      <li class="fx"><span>核對業務規則、API 範例與變更審查答案<br>說明人與 Agent 各自負責的工作</span></li>
-    </ol>
-  </div>
-  <p class="callout fx fx-fade"><b>功能做到哪裡、和 Agent 合作得好不好，分開看。</b>保留計畫與驗證紀錄；流程跑得通，仍要由人審查。</p>
+  <h2 class="title">你在 <code>/docs</code> 應該看到的四件事</h2>
+  <ol class="steps">
+    <li class="fx">查班次：<b>T003 不出現</b>（沒有可售座位）</li>
+    <li class="fx">T001 成人＋學生訂票：總額 <b>1,225</b>，狀態待付款（<code>PENDING_PAYMENT</code>）</li>
+    <li class="fx">付款後變 <code>PAID</code>，產生一張訂單，金額 1,225</li>
+    <li class="fx">同一筆<b>再付一次被拒</b>，不新增訂單</li>
+  </ol>
+  <p class="callout fx fx-fade"><b>功能做到哪裡、和 Agent 合作得好不好，分開看。</b>沒走到的如實標「未驗證」。</p>
   <aside class="notes">
     <p><b>來源</b>：EMO（預期 MVP 輪廓、快速驗收順序）；EVAL（Debrief 關鍵訊息）。不提供參考解答或完整實作。</p>
+    <p><b>API 輪廓（從投影移到備註）</b>：<code>GET /health</code> 200，<code>{"status":"ok"}</code>｜<code>GET /trips</code> 僅可售座位 &gt; 0、站名精確篩選｜<code>POST /bookings</code> 1–4 人且座位足夠；保留座位、<code>PENDING_PAYMENT</code>、逐人計價加總｜<code>POST …/pay</code> 僅待付款可付；成功為 <code>PAID</code>＋唯一訂單；重複付款拒絕｜<code>GET /orders/{order_id}</code> 讀取既有訂單；金額＝訂票總額。</p>
+    <p><b>其餘快速驗收（從投影移到備註）</b>：Agent 啟動程式並檢查 /health 與 API 文件頁，保留驗收對照表｜重設資料後查班次，站名篩選符合固定資料｜訂票保留 2 座｜檢查 0／5 人、座位不足與付款失敗，未執行的標「未驗證」｜核對業務規則、API 範例與變更審查答案，說明人與 Agent 各自負責的工作。流程跑得通，仍要由人審查。</p>
     <p><b>不可偏離（EMO）</b>：學生 75%、每筆最多 4 人、成功保留座位、付款狀態、唯一 Order、精確站名篩選及錯誤一致性；不得加入會員、早鳥、團體或其他後續功能。</p>
     <p><b>可接受的簡化（EMO）</b>：固定範例日期、整數金額、In-Memory 儲存、Mock 付款、無身份驗證與前端；標準輕量分層。</p>
     <p><b>分層（EMO）</b>：API 處理 HTTP／Schema／錯誤轉換；Application 串接使用案例；Domain 提供模型與 Fare Policy；Infrastructure 提供 In-Memory Repository、Seed／Reset 與 Mock Payment。Domain 不依賴 FastAPI 或測試框架。</p>

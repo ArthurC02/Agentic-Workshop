@@ -42,9 +42,10 @@ The projected slide does two jobs: pace the room, and tell learners exactly what
 - **Checkpoint slide**, top to bottom:
   - `data-title="檢查點 n · 名稱"`, kicker `檢查點 n / N · 第 a–b 分鐘` and `<h2>` 名稱, all taken from the Runbook heading `## 檢查點 n · 名稱（第 a–b 分鐘）`;
   - one 「為什麼」 line (from ①);
-  - 「現在做」 numbered steps mirroring the Runbook blocks: open Runbook › page › 檢查點 n → paste ② (name the prompt in a few words) → paste ③ 確認結果: 「成功」 go on, 「失敗」 paste 「失敗時」;
+  - 「現在做」 2–4 step cards mirroring the Runbook blocks: card 1 = 「貼 ②「prompt name」」 with detail 「Runbook › 檢查點 n」 (segment's first checkpoint: 「Runbook『full page title』› 檢查點 1」, never an ambiguous short form); then the human action (reply, decide, discuss; 「等 Agent 回報」 only with what it reports, otherwise drop the card); last 「貼 ③ 確認結果」／「成功→往下；失敗→貼「失敗時」」 (an action that follows ③ in the Runbook, like a form or discussion, stays after it). DLC role tags only on card 1 and where the conversation switches. No trailing 「。」 on why／judge／card lines;
   - 「你要判斷」 one line when the checkpoint has a human decision (same criterion as ①);
   - a footer line 「第 b 分前完成 → 下一步：…」.
+- Layout markup (deck.css section 8b, identical in both editions; the grid anchors the footer/roadmap to the bottom): checkpoint `<section class="slide slide-cp">` with `p.cp-why`, `p.cp-label`, `ol.cp-flow` (2–4 step cards, sized to content: `<li>[<i>角色的對話</i>]<b>主句</b>[<span>細節</span>]</li>`), `p.cp-judge`, `p.cp-next` = `<b>第 b 分前完成</b><span>→ 下一步：…</span>` (「第 x 分前核准／決策」 only for a decision deadline); segment opening `<section class="slide slide-seg">` with `ul.seg-brief` (`<li><b>情境</b><span>…</span></li>`), `ol.timeline`, `p.callout.seg-start`. Keep step main lines short; detail goes in the `<span>`.
 - Never put full prompts on slides (learners copy from the Runbook). Max ~6 projected lines of text per slide; body ≥ 24px at 1080p.
 - Notes keep: what to say (with timing), what to watch, intervention prompts, first-introduction cues.
 - Slides show whole; only concept／role-change slides step in with `data-fragments="step"`.

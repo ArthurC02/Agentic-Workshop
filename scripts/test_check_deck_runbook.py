@@ -33,6 +33,11 @@ class Problems(unittest.TestCase):
         self.assertEqual(len(run(GOOD.replace("檢查點 2 / 2", "檢查點 2 / 3"))), 1)
         self.assertEqual(len(run(GOOD.replace('<h2 class="title">再做', '<h2 class="title">別做'))), 1)
         self.assertEqual(len(run(GOOD.replace("第 4 分前完成", "第 5 分前完成"))), 1)
+        # The footer may wrap its deadline and next step in inline tags (zoned checkpoint layout).
+        self.assertEqual(run(GOOD.replace("第 4 分前完成 → 下一步：檢查點 2 再做",
+                                          "<b>第 4 分前完成</b><span>→ 下一步：檢查點 2 再做</span>")), [])
+        self.assertEqual(len(run(GOOD.replace("第 4 分前完成 → 下一步：檢查點 2 再做",
+                                              "<b>第 4 分前完成</b><span>→ 下一步：檢查點 2 偷做</span>"))), 1)
 
     def test_next_step_and_page_references(self):
         self.assertEqual(len(run(GOOD.replace("檢查點 2 再做", "檢查點 2 偷做"))), 1)
