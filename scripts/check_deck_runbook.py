@@ -35,6 +35,9 @@ MINUTE = re.compile(r"第 ?(\d+) ?分(前完成)?")
 LIMITS = {"why": 30, "judge": 36, "main": 14, "detail": 24}
 
 
+FILE_REF = re.compile(r"[\w./{}-]*[\w}-]\.(?:md|json|py|sh|ps1|zip|txt|ya?ml)\b")
+
+
 def text(markup: str) -> str:
     return html.unescape(re.sub(r"<[^>]+>", "", markup))
 
@@ -65,7 +68,7 @@ def parse_page(name: str, src: str) -> dict:
     meta = dict(re.findall(r"(?m)^(\w+): *(.*)$", src.split("\n---", 1)[0]))
     cps = [CP.match(h) for h, _ in sections(src)]
     cps = [(int(m[1]), m[2], int(m[3]), int(m[4])) for m in cps if m]
-    return {"file": name, "title": meta.get("title", ""), "start": int(meta.get("minute", "0").split("-")[0]),
+    return {"file": name, "src": src, "title": meta.get("title", ""), "start": int(meta.get("minute", "0").split("-")[0]),
             "cps": cps, "sections": set(re.findall(r"(?m)^## (.+?)\s*$", src)),
             "forms": {re.sub(r"（.*）$", "", t) for t in re.findall(r'"title":\s*"([^"]+)"', "".join(
                 re.findall(r"(?s)```form\n(.*?)```", src)))}}
@@ -89,7 +92,7 @@ def parse_slides(name: str, src: str) -> list[dict]:
                     "why": text(labelled("cp-why")).strip(), "judge": text(labelled("cp-judge")).strip(),
                     "cards": cards,
                     "title": a.get("data-title", ""), "kicker": grab("kicker"), "h2": grab("title"),
-                    "next": grab("cp-next"), "text": text(shown) + "\n" + text(notes),
+                    "next": grab("cp-next"), "shown": text(re.sub(r"<", " <", shown)), "text": text(shown) + "\n" + text(notes),
                     "timeline": re.findall(r'(?s)<li data-seg="[^"]*">.*?<b>(\d+) · .*?</b>'
                                            r'<span class="tl-due">(.*?)</span>', shown)})
     return out
@@ -128,6 +131,7 @@ def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | 
             p for p in pages if re.match(re.escape(ref) + r"[：: ]", p["title"])]
         return [p for p in hits if p in by_seg.get(seg, [])] or hits if len(hits) > 1 else hits
 
+    runbook_src = "".join(p.get("src", "") for p in pages)
     claimed = set()
     for s in slides:
         seg, where = s["seg"], s["where"]
@@ -176,6 +180,9 @@ def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | 
         for k in re.findall(r"Runbook\s*›\s*檢查點 ?(\d+)", s["text"]):
             if (seg, int(k)) not in cps:
                 out.append(f"{where}: Runbook › 檢查點 {k} missing in segment {seg}")
+        for f in sorted(set(FILE_REF.findall(s.get("shown", "")))):  # learners only know files the Runbook names
+            if f not in runbook_src:
+                out.append(f"{where}: projected file 「{f}」 is not mentioned in the Runbook")
         seg_pages = by_seg.get(seg, [])
         known = set().union(*(p["forms"] | p["sections"] | {p["title"]} for p in seg_pages)) if seg_pages else set()
         for ref in FORM_REF.findall(s["text"]):

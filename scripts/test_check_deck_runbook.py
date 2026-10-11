@@ -50,6 +50,11 @@ class Problems(unittest.TestCase):
     def test_form_names(self):
         self.assertEqual(len(run(GOOD.replace("「甲決定」", "「乙決定」"))), 1)
 
+    def test_projected_file_must_be_in_runbook(self):
+        bad = GOOD.replace("<li>Runbook", "<li>skills/old.md</li><li>Runbook", 1)
+        self.assertEqual(len(run(bad)), 1)
+        self.assertIn("skills/old.md", run(bad)[0])
+
     def test_layout_limits(self):
         self.assertEqual(cd.width("貼 ③ ab"), 4)
         ok = ('<p class="cp-why"><b>為什麼</b>' + "字" * 30 + '</p><p class="cp-judge"><b>你要判斷</b>' + "字" * 36
