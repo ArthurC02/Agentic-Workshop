@@ -111,6 +111,7 @@ def main() -> None:
         run("scripts/build_materials.py", "--edition", edition)
         run("scripts/build_materials.py", "--edition", edition, "--check")
         run("scripts/package_materials.py", *([] if edition == "main" else ["dlc"]))
+    run("scripts/verify_typography.py")  # built decks and Runbooks meet the reading parameters (headless Chrome)
     speech = "agentic-workshop/materials/speech/"
     run(speech + "build_decks.py")
     run(speech + "build_decks.py", "--check")

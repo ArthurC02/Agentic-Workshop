@@ -11,17 +11,16 @@ section: Time Skip
 ```callout info
 現在在做什麼
 - **情境**：Smart Ticket 已上線 12 個月（Time Skip：時間快轉），你接手同事維護的既有系統 B0。
-- **你的目標**：4 分鐘內停下 Greenfield，在 B0 開新的 Agent 對話，讓它把環境跑起來並記下起點。
-- **今天的技巧**：**開新對話先給規則與脈絡**。換專案就開新對話，第一件事貼規則、說明背景。
-- **完成的樣子**：Agent 複述得出規則與背景；版本 B0、測試結果與 Git 起點已寫進 `notes/time-skip.md`。
+- **你的目標**：4 分鐘內停下 Greenfield，在 B0 開新的 Agent 對話，讓它建好環境、記下起點。
+- **今天的技巧**：**開新對話先給規則與脈絡**。換專案就開新對話，第一件事貼規則、說背景。
+- **完成的樣子**：Agent 複述得出規則與背景；版本、測試結果和 Git 起點已寫進 `notes/time-skip.md`。
 ```
 
 ```callout warning
 本段只接手，不修改
-**全場使用同一份 B0，本段只接手、不修改。**
+**全場用同一份 B0，這段只接手、不修改。**
 - 不要用自己的 Greenfield 成果代替 B0
-- **不要修改 B0 的程式**
-- 先不要叫 Agent 分析；分析從第 33 分鐘開始
+- 先不要叫 Agent 分析，分析從第 33 分鐘開始
 ```
 
 ## 檢查點總覽
@@ -34,7 +33,7 @@ section: Time Skip
 
 ① 為什麼做這一步
 
-Greenfield 成果保留不動，只請原本的 Agent 停掉它啟動的 App，避免兩個版本搶同一個埠號。
+Greenfield 成果保留不動。只請原本的 Agent 停掉它啟動的伺服器，免得兩個版本搶同一個埠號。
 
 ② 貼給 Agent
 
@@ -44,7 +43,9 @@ Greenfield 成果保留不動，只請原本的 Agent 停掉它啟動的 App，�
 請停止你在背景啟動的這個專案的伺服器（uvicorn smart_ticket，埠號 8000），連同它開出的子程序一起停。接著確認 http://127.0.0.1:8000/health 已經連不上；如果還連得上，表示有別的程式在用 8000，告訴我是哪個程式，但不要停它。最後用白話告訴我結果。不要修改任何檔案。
 ```
 
-接著下載 B0，解壓縮到短路徑（Windows：右鍵「全部解壓縮」，例如 `C:\work\b0`；macOS：在 Finder 點兩下，例如 `~/work/b0`），找到 `smart-ticket-b0` 資料夾（路徑是 `agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0`，裡面有 `README.md`）。
+接著按下方按鈕下載 B0，解壓縮到短路徑。Windows：右鍵選「全部解壓縮」，例如 `C:\work\b0`；macOS：點兩下，例如 `~/work/b0`。
+
+解壓後找到 `smart-ticket-b0` 資料夾，路徑是 `agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0`，裡面有 `README.md`。
 
 ```download
 id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
@@ -52,7 +53,7 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ③ 確認結果
 
-在同一個 Greenfield 對話貼：
+回到原本的 Greenfield 對話貼：
 
 ```text
 請再確認一次 http://127.0.0.1:8000/health 是否連不上，不要修改任何檔案。連不上只回「成功」；還連得上只回「失敗：」加一句原因（是哪個程式在用 8000）。
@@ -68,11 +69,11 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ① 為什麼做這一步
 
-換專案就開新對話，第一件事貼規則與背景，再請 Agent 複述，確認它真的讀進去了。你判斷複述有沒有提到：不自己改程式、先計畫再核准、沒執行過的標未驗證，以及「這段只接手、不修改」。
+換專案就開新對話，第一件事貼規則與背景，再請 Agent 複述，確認它真的讀進去。你判斷複述有沒有漏掉這三點：不自己改程式、先計畫再核准、沒執行過的標「未驗證」。
 
 ② 貼給 Agent
 
-在 `smart-ticket-b0` 資料夾開啟**新的** Agent 對話（不要沿用 Greenfield 的對話），貼下面整段：前半是工作規則（給 Agent 的，不需要看懂），後半是專案背景。
+在 `smart-ticket-b0` 資料夾開**新的** Agent 對話，不要沿用 Greenfield 的對話。貼下面整段：前半是工作規則（給 Agent 的，不需要看懂），後半是專案背景。
 
 ```prompt
 # windows
@@ -109,7 +110,7 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ③ 確認結果
 
-安裝要一點時間，可延到第 33 分。裝好後貼：
+安裝要一點時間，可以延到第 33 分鐘。裝好後貼：
 
 ```text
 請檢查下列兩件事，不要修改任何檔案：1. .venv 已建立，裡面的 Python 是 3.13；2. requirements.txt 已全部安裝。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
@@ -125,9 +126,9 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ```callout tip
 技巧：Token 節費
-**換專案就開新對話，只給規則、背景與要讀的檔案，不帶舊對話。**
+**換專案就開新對話，只給規則、背景和要讀的檔案，不帶舊對話。**
 - Token（詞元）是 Agent 讀寫文字的計費與記憶單位
-- 對話越長、貼越多，越貴，也越容易忘記前面講過的事
+- 對話越長、貼得越多，就越貴，也越容易忘了前面講過的事
 📖 延伸閱讀：Anthropic 官方文件〈Context windows〉與〈Token counting〉、Anthropic Engineering 文章〈Effective context engineering for AI agents〉；你所用工具的官方文件通常有同名章節。
 ```
 
@@ -137,7 +138,7 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ① 為什麼做這一步
 
-先確認版本是 B0、記下 Git 起點和測試數字，之後才說得清楚每段改了什麼。
+先確認版本是 B0，再記下 Git 起點和測試數字。之後每段改了什麼，才說得清楚。
 
 ② 貼給 Agent
 
@@ -166,7 +167,7 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 ④ 補充
 
-有若干測試失敗是正常的，**先不要修改**。第 33 分鐘還沒做完也沒關係：直接進入個人分析頁，讓 Agent 做完這段再回報。
+有幾個測試失敗是正常的，**先不要修改**。第 33 分鐘還沒做完也沒關係：直接到「個人 Agent 分析」頁，讓 Agent 做完這段再回報。
 
 ## 完成後想一想
 
@@ -174,6 +175,6 @@ id=b0 zip=participant-29-b0.zip label=下載 B0 Repository
 
 1. **觀察**：新對話的 Agent 複述規則時，有沒有漏掉或講錯哪一條？如果你沒請它複述，會在什麼時候才發現？
 2. **技巧**：如果直接在 Greenfield 的舊對話裡處理 B0，可能出什麼事？你工作上哪些時候該開新對話，而不是一直聊下去？
-3. **延伸**：B0 有幾個測試沒過，文件也寫了很多。接手一個陌生專案時，你會先問 Agent 哪三個問題，才敢讓它動手？
+3. **延伸**：B0 有幾個測試沒過，文件也寫了很多。接手陌生專案時，你會先問 Agent 哪三個問題，才敢讓它動手？
 
 下一步（第 33 分鐘）：[個人 Agent 分析](#individual-analysis)。

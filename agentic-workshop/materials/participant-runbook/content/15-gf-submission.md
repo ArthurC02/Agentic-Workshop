@@ -10,7 +10,7 @@ section: Greenfield｜Tool
 
 ## 完成後想一想
 
-和旁邊 1–2 位花 1 分鐘，互相看一眼成果再聊：你的 Agent 哪一步最讓你放心、哪一步最讓你擔心？你們的交付決定一樣嗎？主持人會請 1–2 位分享第 2 題。
+和旁邊 1–2 位花 1 分鐘，互看成果再聊下面三題。主持人會請 1–2 位分享第 2 題。
 
 1. **觀察**：哪一步的 Agent 回報讓你意外，或差點讓你放行了不該放行的東西？你是靠驗收對照表、審查答案還是 `/docs` 發現的？
 2. **技巧**：如果一開始不要計畫、直接叫 Agent「把 MVP 做完」，你要怎麼確認它沒做錯？回到你的工作，哪一種任務最值得先要計畫、再小步放行？
@@ -18,7 +18,7 @@ section: Greenfield｜Tool
 
 ## Greenfield 交付決定
 
-聊完，把你的結論記下來；理由與證據 Agent 已寫進 `notes/greenfield.md`。
+聊完，把你的結論記下來。理由與證據 Agent 已寫進 `notes/greenfield.md`。
 
 ```form
 {"id": "greenfield-delivery", "title": "Greenfield 交付決定","fields":[

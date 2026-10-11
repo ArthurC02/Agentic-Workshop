@@ -50,6 +50,19 @@ class Problems(unittest.TestCase):
     def test_form_names(self):
         self.assertEqual(len(run(GOOD.replace("「甲決定」", "「乙決定」"))), 1)
 
+    def test_layout_limits(self):
+        self.assertEqual(cd.width("貼 ③ ab"), 4)
+        ok = ('<p class="cp-why"><b>為什麼</b>' + "字" * 30 + '</p><p class="cp-judge"><b>你要判斷</b>' + "字" * 36
+              + '</p><ol class="cp-flow"><li><b>' + "字" * 13 + "ab</b><span>" + "字" * 24 + "</span></li></ol>")
+        self.assertEqual(run(GOOD.replace("<li>Runbook", ok + "<li>Runbook", 1)), [])
+        for old, new in (("字" * 30 + "<", "字" * 31 + "<"), ("字" * 36 + "<", "字" * 37 + "<"),
+                         ("ab</b>", "abc</b>"), ("字" * 24 + "</span>", "字" * 25 + "</span>")):
+            self.assertEqual(len(run(GOOD.replace("<li>Runbook", ok.replace(old, new, 1) + "<li>Runbook", 1))), 1, new)
+        four = '<ol class="cp-flow">' + "<li><b>甲</b></li>" * 4 + "</ol>"
+        self.assertEqual(run(GOOD.replace("<li>Runbook", four + "<li>Runbook", 1)), [])
+        self.assertEqual(len(run(GOOD.replace("<li>Runbook", four.replace("</b></li>", "</b><span>乙</span></li>", 1)
+                                              + "<li>Runbook", 1))), 1)
+
     def test_checkpoints_md(self):
         md = "## 甲（段落 `seg`）\n\n1. 檢查點 1 · 先做（第 0–4 分鐘）\n2. 檢查點 2 · 再做（第 4–10 分鐘）\n"
         self.assertEqual(run(md=md), [])

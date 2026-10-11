@@ -24,7 +24,7 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
   3. `③ 確認結果`: a short ```text prompt asking the Agent to check the step's 1–3 completion conditions (files, test counts, recorded decisions) and reply **only** 「成功」 or 「失敗：〈一句原因〉」, changing nothing. Then 「失敗時」 with one paste-ready rescue prompt.
   4. `④ 補充`: optional — 技巧／新概念 callouts, 💬 discussion, warnings. Keep only what passes the absolutely-necessary test.
 
-  `scripts/check_blocks.py` enforces ① ② ③ (④) in order, a 成功／失敗 ③ prompt and a 「失敗時」 line.
+  `scripts/check_blocks.py` enforces ① ② ③ (④) in order, a 成功／失敗 ③ prompt, a 「失敗時」 line, and the knowledge-density limits in 「Reading parameters」.
 - **Callouts**: first line after the title is a **bold one-sentence takeaway**, then short bullets. `tip` callouts and `info` callouts titled 技巧／新概念 render folded (closed `<details>`, the bold lead shows as a preview); 現在在做什麼, warnings, 💬 and 時間不夠時 stay open (`callout_folds` in `scripts/materials_md.py`). Anything a learner must see without clicking goes in ①–③, never only in a folded callout.
 - **Prompts**:
   - Use the five parts: 目標 / 背景・要讀的檔 / 限制 / 輸出格式 / 停止條件.
@@ -38,6 +38,7 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
 
 ## Facilitator deck (user rule, 2026-10-11)
 The projected slide does two jobs: pace the room, and tell learners exactly what to do next. Everything only the facilitator needs goes in `<aside class="notes">`.
+- **Never crowd a slide** (user, 2026-10-11: 「不要讓內容擠成一團」). Card main line ≤ 14 CJK chars, card detail ≤ 24, 為什麼 ≤ 30, 你要判斷 ≤ 36 (one line); prefer 3 cards, merge steps instead of adding text; no paths or lists in cards unless learners must see them exactly. Whitespace beats filling space. `check_deck_runbook.py` enforces the limits.
 - **Segment opening slide**: 情境／目標／今天的技巧 in three short lines, the checkpoint roadmap with deadlines, and where to start in the Runbook (page name). Unlock code only where the segment unlocks.
 - **Checkpoint slide**, top to bottom:
   - `data-title="檢查點 n · 名稱"`, kicker `檢查點 n / N · 第 a–b 分鐘` and `<h2>` 名稱, all taken from the Runbook heading `## 檢查點 n · 名稱（第 a–b 分鐘）`;
@@ -46,10 +47,30 @@ The projected slide does two jobs: pace the room, and tell learners exactly what
   - 「你要判斷」 one line when the checkpoint has a human decision (same criterion as ①);
   - a footer line 「第 b 分前完成 → 下一步：…」.
 - Layout markup (deck.css section 8b, identical in both editions; the grid anchors the footer/roadmap to the bottom): checkpoint `<section class="slide slide-cp">` with `p.cp-why`, `p.cp-label`, `ol.cp-flow` (2–4 step cards, sized to content: `<li>[<i>角色的對話</i>]<b>主句</b>[<span>細節</span>]</li>`), `p.cp-judge`, `p.cp-next` = `<b>第 b 分前完成</b><span>→ 下一步：…</span>` (「第 x 分前核准／決策」 only for a decision deadline); segment opening `<section class="slide slide-seg">` with `ul.seg-brief` (`<li><b>情境</b><span>…</span></li>`), `ol.timeline`, `p.callout.seg-start`. Keep step main lines short; detail goes in the `<span>`.
-- Never put full prompts on slides (learners copy from the Runbook). Max ~6 projected lines of text per slide; body ≥ 24px at 1080p.
+- Never put full prompts on slides (learners copy from the Runbook). Max ~6 projected lines of text per slide; sizes per 「Reading parameters」.
 - Notes keep: what to say (with timing), what to watch, intervention prompts, first-introduction cues.
 - Slides show whole; only concept／role-change slides step in with `data-fragments="step"`.
 - `scripts/check_deck_runbook.py` enforces one slide per Runbook checkpoint (data-title, `<h2>`, kicker, footer deadline, 下一步), that Runbook pages, checkpoints and forms named on slides exist, and DLC `CHECKPOINTS.md`.
+
+## Reading parameters (user, 2026-10-11: 「字寬字高，內容知識點密度。這些是關鍵參數」)
+One table for both editions. Values live as CSS variables at the top of each `deck.css` (`--cp-*`, `--fs-min`, `--zone-gap`, `--content-w`) and `runbook.css` (`--rb-*`); change them only with measured evidence and update this table.
+
+| | Size (字高) | Line height | Width (字寬) |
+|---|---|---|---|
+| Slide title (1920×1080) | 72px | 1.15 | ≤ 2 lines, ≤ 16 CJK chars per line |
+| Card main line | 34px (40px fits only 12 chars in a third of the content block) | 1.3 | 1 line, ≤ 14 chars; 4 cards in a row: ≤ 10 |
+| Card detail | 30px | 1.45 | ≤ 2 lines |
+| 為什麼・你要判斷 | 32px | 1.4 | 1 line |
+| Footer deadline | 46px | | |
+| Anything on a slide | ≥ 24px | | letter-spacing 0–0.02em for CJK; wide tracking only on kickers |
+| Slide layout | | | ≥ 48px between zones (header／cards／你要判斷／footer); content block ≤ 1728px |
+| Runbook body | 17px desktop, 16px phone | 1.8 | 32–40 CJK chars per line at 1440px (36); paragraph gap ≥ 0.8em |
+| Runbook headings | | | ≥ 1.6em space above, clear space below |
+| Callout body | 16px | 1.75 | list item gap ≥ 0.35em |
+| Runbook minimum | 12px (meta only) | | |
+
+Knowledge density: Runbook ① ≤ 3 sentences; ≤ 1 new 技巧／新概念 callout per checkpoint (加深一層 doesn't count), ≤ 3 per page. Slides: ≤ 1 new concept per slide; checkpoint slides teach nothing new (concepts live in Runbook ④ and the notes).
+Enforced by `check_blocks.py` (density) and `verify_typography.py` (renders both built decks and Runbooks in headless Chrome; part of `release-materials`).
 
 ## Knowledge points (progressive scaffolding)
 - Introduce each concept, term, file convention, or report field at its **first need**. Use a `技巧：〈名稱〉` or `新概念：〈名稱〉` callout (bold takeaway plus 1–3 short lines).

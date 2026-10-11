@@ -10,10 +10,10 @@ section: Delivery
 
 ```callout info
 現在在做什麼
-- **情境**：B3 時間到了。主管要一份「做了什麼、證據在哪、還缺什麼」的交付摘要，才能決定能不能收。
+- **情境**：B3 時間到了。主管要一份交付摘要，寫清楚做了什麼、證據在哪、還缺什麼，才能決定收不收。
 - **你的目標**：請 Agent 依實際證據寫交付摘要，你抽查證據後交件。
 - **今天的技巧**：**請 Agent 整理交付摘要，人核對**。每一句都要指得出證據，沒驗證的如實標「未驗證」。
-- **完成的樣子**：`notes/delivery.md` 有附證據來源的交付摘要與完成等級；你選了 Level、勾了交件。
+- **完成的樣子**：`notes/delivery.md` 有附證據來源的交付摘要和完成等級；你選了 Level、勾了交件。
 ```
 
 ## 檢查點總覽
@@ -25,7 +25,7 @@ section: Delivery
 
 ① 為什麼做這一步
 
-第 76 分停止一切修改，主管要的是「做了什麼、證據在哪、還缺什麼」。你核對：
+第 76 分鐘停止一切修改。主管要知道做了什麼、證據在哪、還缺什麼。你核對：
 
 - Agent 給的三句話（Level、測試結果、修改範圍）都引用得出證據原文，引用不出的已改成「未驗證」
 - Level 有證據支持
@@ -33,7 +33,7 @@ section: Delivery
 
 ② 貼給 Agent
 
-複製下方提示詞，再按下方 Delivery Summary 範本的「複製 Markdown」，接在後面一起貼給主要 Agent。
+複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。
 
 ```text
 停止新增功能與測試，不要再修改任何程式。請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
@@ -65,7 +65,8 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ```callout tip
 技巧：Structured Output（結構化輸出，加深一層）
-這次多加一層：每一句都要附證據位置。交付摘要固定十二個標題，你只要一欄一欄問「證據在哪？」。
+**這次多一層：每一句都要附證據位置。**
+- 交付摘要固定十二個標題，你只要一欄一欄問「證據在哪？」
 📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured model outputs〉；你所用工具的官方文件通常有同名章節。
 ```
 
@@ -73,7 +74,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ① 為什麼做這一步
 
-要匯出才算交件。小組先花 1 分鐘聊：Agent 建議的 Level 你們同意嗎？只看驗收對照表會選哪一級，加上 Gate 紀錄與缺項後還一樣嗎？如果主管只看一欄，你們希望他看哪一欄？
+要匯出才算交件。先和小組聊 1 分鐘：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄和缺項後，還會選同一級嗎？
 
 ② 貼給 Agent
 
@@ -95,7 +96,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 不要修改任何檔案。請找出 notes/b3.md 與 notes/delivery.md 實際在哪個資料夾，告訴我完整路徑；delivery.md 沒有 Completion Level，就告訴我缺了什麼。
 ```
 
-說好後，把結論記在下方表單，再按按鈕一次下載所有已填寫的表單。
+說好後，把結論記在下方表單，再按按鈕一次下載所有填過的表單。
 
 ```form
 {"id": "delivery-check", "title": "交付核對（任務 ID：TASK-B3-001）","fields":[
@@ -112,7 +113,8 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ```callout warning
 交件後停止修改
-交件後不再修改交付摘要、Level 或任何表單。第 80 分鐘進入回顧。
+**交件後不再修改交付摘要、Level 或任何表單。**
+- 第 80 分鐘進入回顧
 ```
 
 ## 完成後想一想

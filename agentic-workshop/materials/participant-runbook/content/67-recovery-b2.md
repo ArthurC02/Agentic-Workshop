@@ -16,7 +16,7 @@ section: Brownfield｜Digital Worker
 - **完成的樣子**：雜湊值相符、測試 55 passed、`/health` 正常；`notes/recovery-b2.md` 記下切換紀錄。
 ```
 
-先下載復原包（存在瀏覽器預設的下載資料夾即可），記下下載卡上的 SHA256 雜湊（檔案的指紋，用來確認檔案沒被改過）。
+先按下方按鈕下載復原包，存在瀏覽器預設的下載資料夾即可。記下按鈕旁的 SHA256 雜湊：它是檔案的指紋，用來確認檔案沒被改過。
 
 ```download
 id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
@@ -26,7 +26,7 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 
 ① 為什麼做這一步
 
-先把原成果 Commit 並停掉伺服器，換版本時才不會遺失或搶埠號。你判斷 Agent 貼的 SHA256 前 12 碼與下載卡上的值相同（大小寫不同不算不同）；值不同就停止切換，請主持人確認。
+先把原成果 Commit、停掉伺服器，換版本時才不會弄丟成果或搶埠號。你判斷 Agent 算出的 SHA256 前 12 碼，和下載按鈕旁的值相同（大小寫不算）。不同就停止切換，請主持人確認。
 
 ② 貼給 Agent
 
@@ -56,11 +56,11 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 
 ① 為什麼做這一步
 
-新對話讀原成果的 `notes/` 與 `skills/` 就接得上脈絡，不用重講。你判斷 Agent 說明這是 B2 完成後的版本（依包內說明文件與測試結果，不能只看 Health 檢查）；任何一項不符就停止，請主持人確認。
+新對話讀原成果的 `notes/` 和 `skills/`，就接得上脈絡，不用重講。你判斷 Agent 依包內文件和測試結果，確認這是 B2 完成後的版本；只看 `/health` 不算。不符就停止，請主持人確認。
 
 ② 貼給 Agent
 
-在 `recovery-b2` 資料夾開一個**新的** Agent 對話（Session），貼上：
+在 `recovery-b2` 資料夾開一個**新的** Agent 對話，貼上：
 
 ```prompt
 # windows
@@ -95,7 +95,7 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 
 ④ 補充
 
-Agent 說「沒有 skills/team-rules.md」時，才貼這段規則：
+Agent 說沒有 `skills/team-rules.md` 時，才貼這段規則：
 
 ```text
 以下是這次工作的規則，請在整段對話中遵守：

@@ -21,6 +21,16 @@ class Problems(unittest.TestCase):
     def test_heading_inside_fence_does_not_end_section(self):
         self.assertEqual(cb.problems(GOOD.replace("```text\n做\n```", "```prompt\n## 交接單格式\n做\n```")), [])
 
+    def test_why_at_most_three_sentences(self):
+        self.assertEqual(cb.problems(GOOD.replace("因為。", "一。二！三？她說「好。」")), [])
+        self.assertEqual(len(cb.problems(GOOD.replace("因為。", "一。二。三。四。"))), 1)
+
+    def test_at_most_one_new_point_per_checkpoint(self):
+        tip = "```callout tip\n技巧：{}\n**重點。**\n```\n"
+        two = GOOD + tip.format("甲") + tip.format("乙")
+        self.assertEqual(len(cb.problems(two)), 1)
+        self.assertEqual(cb.problems(GOOD + tip.format("甲") + tip.format("乙（加深一層）")), [])
+
 
 if __name__ == "__main__":
     unittest.main()

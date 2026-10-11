@@ -15,7 +15,7 @@ Steps (stops at the first failure; the step list is also in `scripts/README.md`)
 1. Checks: `sync_harness.py --check` (`.agents/skills` and `.codex/hooks` equal the `.claude` originals; skipped when absent), `check_references.py`, `check_zh_tw.py`, `check_blocks.py`, `check_deck_runbook.py`.
 2. Main candidate: on manifest drift, validate (full when G0–B3 sources changed, else `--static-only`) and repin; build and `verify_delivery` a new candidate (a failed one is deleted); set `CANDIDATE_ID`.
 3. DLC candidate: `build_delivery_dlc.py --pin`, build if new, `--verify`; set `edition.json` `candidate_id`.
-4. Each edition: `build_materials.py --edition main|dlc`, `--check`, `package_materials.py`.
+4. Each edition: `build_materials.py --edition main|dlc`, `--check`, `package_materials.py`; then `verify_typography.py` (both editions in headless Chrome).
 5. Speech deck: `build_decks.py`, `--check`, `verify_browser.py`.
 6. All `scripts/test_*.py`, zero manifest drift, prune superseded `dist/*-candidate/<id>`. Prints `RELEASE PIPELINE PASS`.
 
@@ -36,6 +36,7 @@ Steps (stops at the first failure; the step list is also in `scripts/README.md`)
 - `Private overlay missing links`: a packaged doc links outside its package (e.g. into `materials/` or DLC docs); write the reference as plain text.
 - `Source drift`／repin errors: never edit evidence or manifest hashes by hand; fix the source and rerun.
 - G0–B3 behavior gate fails (planted B0 failures, test counts): stop and tell the user; that is a course-design change, not a build problem.
+- `verify_typography`: shorten or merge the slide／Runbook text it names (card main 1 line, detail ≤ 2, why／judge 1 line); change the CSS variables only with measured evidence and update the `course-authoring` table with them.
 - Slide overflow from `verify_browser.py`: shorten the text in `speech/01-greenfield/src/slides.json`.
 - A permission prompt or block: stop and report it; never work around it.
 - Don't use bare `git stash` here: autocrlf rewrites built HTML on restore.

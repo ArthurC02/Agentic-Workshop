@@ -1,7 +1,9 @@
 """Check that every Runbook checkpoint uses the four blocks (course-authoring "Every segment page").
 
 Each `## 檢查點 N · …` / `## 步驟 N · …` section has block labels ① ② ③ (④ optional) in order, a ```text (or OS-tabbed ```prompt)
-prompt under ③ asking for 「成功」／「失敗」, and a 「失敗時」 rescue prompt.
+prompt under ③ asking for 「成功」／「失敗」, and a 「失敗時」 rescue prompt. Knowledge density (course-authoring
+「閱讀參數」): ① has at most 3 sentences and a checkpoint introduces at most 1 new 技巧／新概念 callout
+(加深一層 callouts revisit and don't count).
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_blocks.py
 """
 import re
@@ -12,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTENT = [ROOT / "agentic-workshop/materials/participant-runbook/content",
            ROOT / "agentic-workshop/materials-dlc/participant-runbook/content"]
 HEAD = re.compile(r"(?m)^(## (?:檢查點|步驟) \d+ · .*)$")
+MAX_WHY_SENTENCES, MAX_NEW_POINTS = 3, 1
+SENTENCE_END = re.compile(r"[。！？]+(?![」』）])")  # an end inside a quote doesn't end the sentence
 
 
 def sections(text: str):
@@ -41,6 +45,14 @@ def problems(text: str) -> list[str]:
             out.append(f"{head}: ③ needs a ```text／```prompt prompt asking for 「成功」／「失敗」")
         elif "失敗時" not in body:
             out.append(f"{head}: no 「失敗時」 rescue prompt")
+        why = re.search(r"(?ms)^① [^\n]*\n(.*?)(?=^② )", body)
+        n = len(SENTENCE_END.findall(re.sub(r"(?ms)^```.*?^```", "", why.group(1)))) if why else 0
+        if n > MAX_WHY_SENTENCES:
+            out.append(f"{head}: ① has {n} sentences (max {MAX_WHY_SENTENCES})")
+        new = [t for t in re.findall(r"(?m)^```callout[^\n]*\n([^\n]*)", body)
+               if re.match(r"(技巧|新概念)", t.strip()) and "加深一層" not in t]
+        if len(new) > MAX_NEW_POINTS:
+            out.append(f"{head}: {len(new)} new 技巧／新概念 callouts (max {MAX_NEW_POINTS}): {'、'.join(t.strip() for t in new)}")
     return out
 
 

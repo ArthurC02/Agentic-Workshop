@@ -8,6 +8,9 @@ Per edition (main, dlc):
    before 「：」／space, or a `## ` section); `『頁』› 檢查點 n` and `Runbook › 檢查點 n` exist.
 3. Footer `cp-next` and opening timeline deadlines fall inside the checkpoint (`第 x 分前完成` must be b);
    a 「下一步：檢查點 m …」 names the next checkpoint and a prefix of its Runbook name.
+   Checkpoint slides stay readable (user rule, 2026-10-11; width counts CJK as 1, ASCII as ½):
+   為什麼 ≤ 30, 你要判斷 ≤ 36, at most 4 step cards (4 only when none has a detail line),
+   card main line ≤ 14 and detail ≤ 24.
 4. A form named on a slide (「X」 followed by 選／記／勾／填／表單) is a form title (minus （…）), page title or
    `## ` section of a Runbook page in that segment.
 Unlock slides vs unlock-codes.json (group and minute) are already checked by build_materials.validate_slides.
@@ -29,8 +32,33 @@ FORM_REF = re.compile(r"「([^」]+)」\s*(?=選|記|勾|填|表單)")
 MINUTE = re.compile(r"第 ?(\d+) ?分(前完成)?")
 
 
+LIMITS = {"why": 30, "judge": 36, "main": 14, "detail": 24}
+
+
 def text(markup: str) -> str:
     return html.unescape(re.sub(r"<[^>]+>", "", markup))
+
+
+def width(s: str) -> float:
+    """Visible width: ASCII counts half, everything else (CJK, full-width punctuation) one."""
+    s = re.sub(r"\s+", " ", s).strip()
+    return sum(0.5 if ord(c) < 128 else 1 for c in s)
+
+
+def layout_problems(where: str, s: dict) -> list[str]:
+    out = []
+    for key, label in (("why", "為什麼"), ("judge", "你要判斷")):
+        if s[key] and width(s[key]) > LIMITS[key]:
+            out.append(f"{where}: {label} is {width(s[key]):g} wide (max {LIMITS[key]}): 「{s[key]}」")
+    cards = s["cards"]
+    if len(cards) > 4 or (len(cards) == 4 and any(d for _, d in cards)):
+        out.append(f"{where}: {len(cards)} step cards; use at most 3 (4 only without detail lines)")
+    for main, detail in cards:
+        if width(main) > LIMITS["main"]:
+            out.append(f"{where}: card main line is {width(main):g} wide (max {LIMITS['main']}): 「{main}」")
+        if width(detail) > LIMITS["detail"]:
+            out.append(f"{where}: card detail is {width(detail):g} wide (max {LIMITS['detail']}): 「{detail}」")
+    return out
 
 
 def parse_page(name: str, src: str) -> dict:
@@ -51,7 +79,15 @@ def parse_slides(name: str, src: str) -> list[dict]:
         shown = re.sub(r'(?s)<aside class="notes">.*?</aside>', "", body)
         grab = lambda cls: text("".join(b for _, b in re.findall(
             rf'(?s)<(\w+) class="{cls}"[^>]*>(.*?)</\1>', shown))).strip()
+        labelled = lambda cls: re.sub(r"^\s*<b>[^<]*</b>", "", "".join(re.findall(
+            rf'(?s)<p class="{cls}"[^>]*>(.*?)</p>', shown)))
+        flow = "".join(re.findall(r'(?s)<ol class="cp-flow"[^>]*>(.*?)</ol>', shown))
+        cards = [(text("".join(re.findall(r"(?s)<b>(.*?)</b>", li))),
+                  text("".join(re.findall(r"(?s)<span>(.*?)</span>", li))))
+                 for li in re.findall(r"(?s)<li(?=[\s>])[^>]*>(.*?)</li>", flow)]
         out.append({"where": f"{name} 「{a.get('data-title', '?')}」", "seg": a.get("data-seg"),
+                    "why": text(labelled("cp-why")).strip(), "judge": text(labelled("cp-judge")).strip(),
+                    "cards": cards,
                     "title": a.get("data-title", ""), "kicker": grab("kicker"), "h2": grab("title"),
                     "next": grab("cp-next"), "text": text(shown) + "\n" + text(notes),
                     "timeline": re.findall(r'(?s)<li data-seg="[^"]*">.*?<b>(\d+) · .*?</b>'
@@ -95,6 +131,7 @@ def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | 
     claimed = set()
     for s in slides:
         seg, where = s["seg"], s["where"]
+        out += layout_problems(where, s)
         m = re.fullmatch(r"檢查點 (\d+) · (.+)", s["title"])
         if m:
             n = int(m[1])
