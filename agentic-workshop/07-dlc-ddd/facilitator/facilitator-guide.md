@@ -65,6 +65,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 - [ ] 還原一次 reference Registry（見 `evaluation/reference-registry/README.md`「還原」），確認 `validate --require-reviewed`、`verify-audit`、`verify-git-governance` 全 OK。D2 示範與降級都靠它。
 - [ ] 準備 D2 示範用的兩個身分：`proposer@example.com`、`maintainer@example.com`；示範金鑰放 `%USERPROFILE%\.dlc-keys\demo-maintainer\`。
 - [ ] 投影開啟 `facilitator-deck.html`，副螢幕開講者模式，確認 Recovery 碼只出現在講者畫面。
+- [ ] 每位學員桌上放綠色、紅色便利貼各一疊：③ 回「成功」貼綠色；卡住、或「失敗時」也沒解決就貼紅色。每個檢查點截止時掃一眼全場顏色，紅色先過去。
 
 ### 1.5 起始 Repo 殘留字詞審查（規格 §5.1）
 

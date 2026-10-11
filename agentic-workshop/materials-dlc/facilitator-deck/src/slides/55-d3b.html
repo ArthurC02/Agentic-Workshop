@@ -5,6 +5,8 @@
   <h2 class="title">D3b 點數折抵 開始</h2>
   <p class="subtitle">點數折抵：「餘額不得為負」由誰守住，從哪條路徑呼叫都要成立</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3b 點數折抵』，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">D3a 落後：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3b 點數折抵，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 95 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -167,6 +169,7 @@
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「不評分、不比誰對；差異代表不同取捨。」</p>
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
@@ -191,6 +194,7 @@
       <p>Booking 記下折抵點數、算出 <code>payable_amount</code>；閘道照 Order.amount 扣款；發票 500＝未稅 476＋稅 24</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：參考設計的重點是<b>單一入口不在計價裡</b>：一般與團體建立時，在「計價與座位規劃之後、寫入之前」各呼叫一次 <code>MemberService.reserve_points(booking)</code>；改票依 PTS-013 不碰點數。三條計價迴圈完全沒動，所以不會漏改。請學員比較自己的 owner 理由。</p>
     <p><b>否決的方案</b>：付款時才扣點（違反 PTS-008、兩筆 PENDING 可超扣）；從 <code>total_fare</code> 扣點（破壞 PTS-006、改票差額與上限）；新 Loyalty Context＋事件（本期沒有累積、到期、等級，只多一層轉手）。</p>
@@ -216,6 +220,7 @@
       <p>每條規則各改壞一次，都要 killed。例外：最低 100 改成 1 抓不到，因為「必須是 100 的倍數」已擋下 1～99；這叫等價改壞</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：請學員報告：哪條規則的反事實檢查最難寫？難寫通常代表規則歸屬不清。</p>
     <p><b>教學 mutant</b>：最低 100 → 1 是<b>等價 mutant</b>：正的 100 倍數本來就 ≥ 100，最低值只多擋負數（−100 % 100 == 0），所以拿掉整個最低檢查會被 −100 殺死，但 100 → 1 不會。另外：四個試算中只有 665（上限 199.5）對上限敏感；上限的等號只有 STANDARD 會員的 T002 3,000 → 900 抓得到（CORPORATE 會員打 95 折後是 2,850，折抵 900 會回 409 <code>POINTS_EXCEED_LIMIT</code>）；退款讀 <code>payable_amount</code> 只有「改票後退票」抓得到。</p>

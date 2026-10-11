@@ -330,6 +330,29 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
 }
 .reveal-badge code { background: rgba(255, 255, 255, .14) !important; color: #FFD9CB !important; }
 
+/* Sync cue: the same 「⏸ 看投影」 pill as the Runbook's sync callouts, top-right on every slide learners
+   must take something from (unlock, stop, reveal, exception card, pairing). Sits above .stop-screen. */
+.sync-cue {
+  position: absolute;
+  top: 36px;
+  right: var(--pad-x);
+  z-index: 6;
+  margin: 0;
+  padding: 6px 28px;
+  border-radius: 99px;
+  border: 3px solid var(--orange);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+.slide-title .sync-cue, .stop-screen ~ .sync-cue { background: var(--white); color: var(--navy); }
+.slide[data-countdown] > .sync-cue { right: calc(var(--pad-x) + 252px); } /* clear the 220px countdown ring */
+
 /* ---------- 6. Cards / chips / big number ---------- */
 .card {
   position: relative;
@@ -1033,6 +1056,16 @@ ol.stage-bar > li.active::after {
   line-height: 1.45;
   color: rgba(255, 255, 255, .72);
 }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 4px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
 .slide:not(.slide-title) .dk-unlock { box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 147, 193, .3); }
 
 /* ---------- 17. Gates clock ---------- */

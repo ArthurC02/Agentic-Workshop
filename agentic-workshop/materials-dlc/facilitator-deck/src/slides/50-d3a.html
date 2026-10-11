@@ -5,6 +5,7 @@
   <h2 class="title">D3a 電子發票 開始</h2>
   <p class="subtitle">電子發票：把外部服務擋在領域之外</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』；提案者先貼<b>「Agent 工作規則」</b>。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提示詞都貼到提案者的 Agent 對話，先貼頁面上的 D3 工作規則，再從檢查點 1 開始；commit 還是由夥伴在自己的對話做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -167,6 +168,7 @@
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「不評分、不比誰對；差異代表不同取捨。」</p>
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
@@ -191,6 +193,7 @@
       <p>服務商欄位、回應代碼（2001／1001／1002／9001）、3 秒逾時與連線失敗，全在這裡翻成三種結果</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：參考設計的核心是<b>依賴方向</b>：領域只認識 Port，不認識服務商。請讓學員說出自己的邊界落在哪一層，再比較。</p>
     <p><b>兩段翻譯（ACL）</b>：Invoicing Application 把 Order／Booking／Trip 翻成自己的 <code>InvoiceRequest</code>；Adapter 再把 <code>InvoiceRequest</code> 翻成服務商欄位。發票資訊存在 Invoice，不寫進 Order／Booking。證據：<code>grep -rn "merchant_order_no\|9001\|2001" src</code> 只命中 Adapter 檔。</p>
@@ -217,6 +220,7 @@
       <p>每條規則各改壞一次，都要 killed。有一處改壞後行為跟原本完全一樣，怎麼補測試都抓不到：為什麼？</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：每條新規則都對應一個『弄壞它就失敗』的測試。請學員報告自己哪條規則還沒有被證明。</p>
     <p><b>鎖的陷阱</b>：<code>pay_group</code> 原本在持有 RLock 時呼叫 <code>pay</code>；參考解答讓 <code>pay_group</code> 先釋放鎖，並以 <code>test_einv_002_provider_is_called_outside_the_store_lock[False/True]</code> 兩條路徑各證明一次。</p>

@@ -5,6 +5,8 @@
   <h2 class="title">D3c 團體部分退款 開始</h2>
   <p class="subtitle">團體部分退款：哪些資料必須一起成功、一起失敗</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3c 團體部分退款』，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">D3b 落後：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -167,6 +169,7 @@
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「不評分、不比誰對；差異代表不同取捨。」</p>
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
@@ -191,6 +194,7 @@
       <p>只釋放被取消旅客的座位，其他人不重配；退款紀錄改為只新增、不修改的清單（append-only），每次一筆</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：參考設計的重點是<b>全有或全無</b>：一致性邊界決定哪些東西必須一起成功。請學員指出自己的邊界。</p>
     <p><b>邊界細節</b>：Booking 決定「誰被取消、每人 fee＋refund」並刪自己的座位副本；Inventory 在同一把鎖、同一個 Use Case 內跟著改（<code>store.seat_assignments</code> 與 <code>Trip.available_seats</code>），但不併入 Booking。Refund 只記錄，不重算金額。Pricing、Payment、Membership 一行不改；有點數的團體直接 409。</p>
@@ -216,6 +220,7 @@
       <p>每條規則各改壞一次，都要 killed。手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團測試抓得到</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：請學員報告哪些規則已有 killed、哪些還沒有；沒有的就是還沒被證明。</p>
     <p><b>教學 mutant</b>：卡上範例全是成人（6 × 700 × 30% 整除，平均票價＝每人票價），所以「總額上取整一次」只有兩位學生一起取消（314 vs 315）抓得到，「以 <code>total_fare</code> 平均分攤」只有成人＋學生混合團抓得到。D 用 datetime 相減在 Seed Clock（09:00、班次 09:00）下會存活，但它不是等價 mutant：只要測試把 Clock 調到出發時刻之後（例如 09:01），就分辨得出改壞前後；08:59 仍分辨不出來（取整後的天數相同）。這是測試不足，應補一個調整 Clock 的測試；來不及就標「未證明」。</p>

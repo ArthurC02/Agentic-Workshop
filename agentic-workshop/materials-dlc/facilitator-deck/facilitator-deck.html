@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 9a3f4b87f7049156 inputs-sha256 9a3f4b87f7049156e60f6f90727b46f49c3abb69ae03197dc2f13bfef73c8517 -->
+<!-- 主持人專用，不發給學員。build 97e646a0203012f0 inputs-sha256 97e646a0203012f03c02de3430bb2a1a39538a8a476dfa23e17970a5230572e5 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -338,6 +338,29 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
   box-shadow: 0 0 0 6px rgba(245, 105, 61, .25);
 }
 .reveal-badge code { background: rgba(255, 255, 255, .14) !important; color: #FFD9CB !important; }
+
+/* Sync cue: the same 「⏸ 看投影」 pill as the Runbook's sync callouts, top-right on every slide learners
+   must take something from (unlock, stop, reveal, exception card, pairing). Sits above .stop-screen. */
+.sync-cue {
+  position: absolute;
+  top: 36px;
+  right: var(--pad-x);
+  z-index: 6;
+  margin: 0;
+  padding: 6px 28px;
+  border-radius: 99px;
+  border: 3px solid var(--orange);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+.slide-title .sync-cue, .stop-screen ~ .sync-cue { background: var(--white); color: var(--navy); }
+.slide[data-countdown] > .sync-cue { right: calc(var(--pad-x) + 252px); } /* clear the 220px countdown ring */
 
 /* ---------- 6. Cards / chips / big number ---------- */
 .card {
@@ -1042,6 +1065,16 @@ ol.stage-bar > li.active::after {
   line-height: 1.45;
   color: rgba(255, 255, 255, .72);
 }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 4px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
 .slide:not(.slide-title) .dk-unlock { box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 147, 193, .3); }
 
 /* ---------- 17. Gates clock ---------- */
@@ -1536,8 +1569,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li data-seg="dlc-d3c"><span class="tl-min">125–155</span><b>D3c · 部分退款</b></li>
     <li data-seg="dlc-d4"><span class="tl-min">155–180</span><b>D4 交接 · 回顧</b></li>
   </ol>
+  <p class="callout"><b>投影告訴你做到哪、何時停；Runbook 告訴你怎麼做。</b>③ 回『成功』貼綠色便利貼；卡住貼紅色，主持人會走過去</p>
   <aside class="notes">
     <p><b>說（解鎖前，約 1 分鐘）</b>：「60–70 分休息。每段都從 Runbook 解鎖，投影會列出每個檢查點要貼哪一段、要判斷什麼；每個檢查點貼提示詞，Agent 做完停下回報，需要決定時你回一句話，紀錄由 Agent 寫。每段結尾先小組討論，再把結論記進表單。D3 三個情境全做，依序累積。」</p>
+    <p><b>⏸ 看投影</b>：Runbook 只在真的要抬頭時放深藍色「⏸ 看投影」提示（解鎖、找夥伴、停手、揭曉、Recovery）；投影上對應的頁右上角有同一個標記。說一次：「看到它就抬頭。」</p>
+    <p><b>便利貼</b>：每人桌上綠、紅便利貼各一疊。③ 回「成功」貼綠色；卡住、或貼了「失敗時」還是不行就貼紅色。<b>每個檢查點截止時掃一眼全場顏色</b>：紅色先過去；截止時還沒貼綠色的，走過去問一句卡在哪。</p>
     <p><b>規則</b>：每段有獨立解鎖碼；卡住時主持人才視需要私下提供 Recovery，Recovery 不作為小組成果評分。</p>
     <p><b>只給路線圖</b>：這裡只念段落名稱，不解釋 DDD 概念；每個概念在第一次用到的檢查點頁才講（講者備註會提醒「這裡第一次介紹 X」）。Runbook 的歡迎頁也只列各段會學到的名稱。</p>
   </aside>
@@ -1549,6 +1585,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="subtitle">下載學員包、解出 Plugin、確認環境就緒</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『開場與環境』，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">每個檢查點：先貼 ② 給 Agent，再貼 ③ 確認結果；Agent 回「成功」才往下。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
     <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，先貼工作規則。</p>
@@ -1642,6 +1679,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 10 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
+  <p class="sync-cue" data-sync="夥伴">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它直接呼叫 python；這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
@@ -1656,6 +1694,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D1 語言與邊界 開始</h2>
   <p class="subtitle">把散落在文件與程式裡的領域知識，變成有證據的候選</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D1 共同語言與邊界』，從<b>檢查點 1</b> 開始。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D1 共同語言與邊界，從檢查點 1 開始，沿用開場的 Agent 對話。今天的技巧是：讓 Agent 找證據、人來定義。Agent 會先列草稿和證據再停下，你回『同意』或『改成…』。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 10 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -1814,6 +1853,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D2 審查與核准 開始</h2>
   <p class="subtitle">兩人共用一台機器：一人提案，夥伴持金鑰、核准並簽章</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D2 審查與核准（成對）』，各開<b>自己的 Agent 對話</b>。</p>
+  <p class="muted">D1 沒做完或 D2 卡住：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對）。同一台機器，但提案者和夥伴各用自己的 Agent 對話：夥伴另開終端機和新的 Agent 對話，兩人先各貼一次工作規則。每段提示詞都標了該由誰貼，檢查點頁也會寫是哪個對話。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -1980,6 +2021,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D3a 電子發票 開始</h2>
   <p class="subtitle">電子發票：把外部服務擋在領域之外</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』；提案者先貼<b>「Agent 工作規則」</b>。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提示詞都貼到提案者的 Agent 對話，先貼頁面上的 D3 工作規則，再從檢查點 1 開始；commit 還是由夥伴在自己的對話做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -2142,6 +2184,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「不評分、不比誰對；差異代表不同取捨。」</p>
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
@@ -2166,6 +2209,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       <p>服務商欄位、回應代碼（2001／1001／1002／9001）、3 秒逾時與連線失敗，全在這裡翻成三種結果</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：參考設計的核心是<b>依賴方向</b>：領域只認識 Port，不認識服務商。請讓學員說出自己的邊界落在哪一層，再比較。</p>
     <p><b>兩段翻譯（ACL）</b>：Invoicing Application 把 Order／Booking／Trip 翻成自己的 <code>InvoiceRequest</code>；Adapter 再把 <code>InvoiceRequest</code> 翻成服務商欄位。發票資訊存在 Invoice，不寫進 Order／Booking。證據：<code>grep -rn "merchant_order_no\|9001\|2001" src</code> 只命中 Adapter 檔。</p>
@@ -2192,6 +2236,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       <p>每條規則各改壞一次，都要 killed。有一處改壞後行為跟原本完全一樣，怎麼補測試都抓不到：為什麼？</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：每條新規則都對應一個『弄壞它就失敗』的測試。請學員報告自己哪條規則還沒有被證明。</p>
     <p><b>鎖的陷阱</b>：<code>pay_group</code> 原本在持有 RLock 時呼叫 <code>pay</code>；參考解答讓 <code>pay_group</code> 先釋放鎖，並以 <code>test_einv_002_provider_is_called_outside_the_store_lock[False/True]</code> 兩條路徑各證明一次。</p>
@@ -2208,6 +2253,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D3b 點數折抵 開始</h2>
   <p class="subtitle">點數折抵：「餘額不得為負」由誰守住，從哪條路徑呼叫都要成立</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3b 點數折抵』，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">D3a 落後：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3b 點數折抵，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 95 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -2370,6 +2417,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「不評分、不比誰對；差異代表不同取捨。」</p>
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
@@ -2394,6 +2442,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       <p>Booking 記下折抵點數、算出 <code>payable_amount</code>；閘道照 Order.amount 扣款；發票 500＝未稅 476＋稅 24</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：參考設計的重點是<b>單一入口不在計價裡</b>：一般與團體建立時，在「計價與座位規劃之後、寫入之前」各呼叫一次 <code>MemberService.reserve_points(booking)</code>；改票依 PTS-013 不碰點數。三條計價迴圈完全沒動，所以不會漏改。請學員比較自己的 owner 理由。</p>
     <p><b>否決的方案</b>：付款時才扣點（違反 PTS-008、兩筆 PENDING 可超扣）；從 <code>total_fare</code> 扣點（破壞 PTS-006、改票差額與上限）；新 Loyalty Context＋事件（本期沒有累積、到期、等級，只多一層轉手）。</p>
@@ -2419,6 +2468,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       <p>每條規則各改壞一次，都要 killed。例外：最低 100 改成 1 抓不到，因為「必須是 100 的倍數」已擋下 1～99；這叫等價改壞</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：請學員報告：哪條規則的反事實檢查最難寫？難寫通常代表規則歸屬不清。</p>
     <p><b>教學 mutant</b>：最低 100 → 1 是<b>等價 mutant</b>：正的 100 倍數本來就 ≥ 100，最低值只多擋負數（−100 % 100 == 0），所以拿掉整個最低檢查會被 −100 殺死，但 100 → 1 不會。另外：四個試算中只有 665（上限 199.5）對上限敏感；上限的等號只有 STANDARD 會員的 T002 3,000 → 900 抓得到（CORPORATE 會員打 95 折後是 2,850，折抵 900 會回 409 <code>POINTS_EXCEED_LIMIT</code>）；退款讀 <code>payable_amount</code> 只有「改票後退票」抓得到。</p>
@@ -2434,6 +2484,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D3c 團體部分退款 開始</h2>
   <p class="subtitle">團體部分退款：哪些資料必須一起成功、一起失敗</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3c 團體部分退款』，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">D3b 落後：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -2596,6 +2648,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <h2 class="title">請先停手</h2>
     <p class="lead">保存目前的程式與紀錄，接下來看參考設計。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「不評分、不比誰對；差異代表不同取捨。」</p>
     <p><b>操作</b>：確認全員停手；未完成者保留現況，揭曉後可用 Recovery 接續，Recovery 不作為小組成果評分。</p>
@@ -2620,6 +2673,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       <p>只釋放被取消旅客的座位，其他人不重配；退款紀錄改為只新增、不修改的清單（append-only），每次一筆</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：參考設計的重點是<b>全有或全無</b>：一致性邊界決定哪些東西必須一起成功。請學員指出自己的邊界。</p>
     <p><b>邊界細節</b>：Booking 決定「誰被取消、每人 fee＋refund」並刪自己的座位副本；Inventory 在同一把鎖、同一個 Use Case 內跟著改（<code>store.seat_assignments</code> 與 <code>Trip.available_seats</code>），但不併入 Booking。Refund 只記錄，不重算金額。Pricing、Payment、Membership 一行不改；有點數的團體直接 409。</p>
@@ -2645,6 +2699,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       <p>每條規則各改壞一次，都要 killed。手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團測試抓得到</p>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：請學員報告哪些規則已有 killed、哪些還沒有；沒有的就是還沒被證明。</p>
     <p><b>教學 mutant</b>：卡上範例全是成人（6 × 700 × 30% 整除，平均票價＝每人票價），所以「總額上取整一次」只有兩位學生一起取消（314 vs 315）抓得到，「以 <code>total_fare</code> 平均分攤」只有成人＋學生混合團抓得到。D 用 datetime 相減在 Seed Clock（09:00、班次 09:00）下會存活，但它不是等價 mutant：只要測試把 Clock 調到出發時刻之後（例如 09:01），就分辨得出改壞前後；08:59 仍分辨不出來（取整後的天數相同）。這是測試不足，應補一個調整 Clock 的測試；來不及就標「未證明」。</p>
@@ -2660,6 +2715,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D4 交接 開始</h2>
   <p class="subtitle">把今天學到的事實，交給下一個 Agent</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D4 交接』，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">D3c 落後：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D4 交接，從檢查點 1 開始。提示詞貼到提案者的 Agent 對話；最後的 commit 由夥伴在自己的對話做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 155 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -2751,6 +2808,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">回顧 開始</h2>
   <p class="subtitle">Domain Memory 對 Agent 行為的影響</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『回顧』，從<b>檢查點 1</b> 開始。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的回顧，從檢查點 1 開始。除了檢查點 4 由夥伴貼到自己的對話，其他提示詞貼給任一個 Agent 對話都可以。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 15:00 段落計時（00:00＝第 165 分），翻頁時持續計時。本頁大字顯示解鎖碼。</p>
@@ -2938,6 +2996,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     ["T", "開始 / 暫停本段計時（或倒數）"],
     ["R", "重設本段計時"],
     ["P", "開啟主持人視窗"],
+    ["C", "複製本頁解鎖碼（也可點一下解鎖碼）"],
     ["?", "顯示 / 隱藏本說明"],
     ["Esc", "關閉覆蓋層"]
   ];
@@ -3720,7 +3779,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
         var code = el('div', 'dk-unlock-code', g && g.code ? g.code : '（找不到解鎖碼：' + id + '）');
         if (!g || !g.code) code.setAttribute('data-missing', '');
         box.appendChild(code);
+        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
         box.appendChild(el('div', 'dk-unlock-help', '請在 Runbook 輸入此碼（不分大小寫，空白與連字號可省略）'));
+        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
         insertBeforeNotes(s, box);
       }
 
@@ -3801,6 +3862,31 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       e.stopPropagation();
       if (isPresenter) { remote({ action: 'timer', cmd: 'countdown', index: i }); return; }
       toggleCountdown(i); renderAll(); sendState(true);
+    }, true);
+
+    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
+    function copyText(txt) {
+      var ok = false, ta = el('textarea');
+      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+      document.body.appendChild(ta); ta.select();
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
+      return ok;
+    }
+    function copyUnlock(code) {
+      if (!code || code.hasAttribute('data-missing')) return;
+      if (!copyText(code.textContent.trim())) return;
+      var box = code.closest('.dk-unlock');
+      box.setAttribute('data-copied', '');
+      clearTimeout(box._copiedT);
+      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
+    }
+    document.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
+      if (!t) return;
+      e.preventDefault(); e.stopPropagation();
+      copyUnlock(t);
     }, true);
 
     /* ---------------- rendering (document-wide, so presenter clones update too) ---------------- */
@@ -4136,6 +4222,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
       } else if (k === 'r' || code === 'KeyR') {
         e.preventDefault();
         if (isPresenter) remote({ action: 'timer', cmd: 'reset' }); else command('reset');
+      } else if (k === 'c' || code === 'KeyC') {
+        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
+        if (cs) { e.preventDefault(); copyUnlock(cs); }
       } else if ((k === 'p' || code === 'KeyP') && !isPresenter) {
         e.preventDefault();
         openPresenter();
