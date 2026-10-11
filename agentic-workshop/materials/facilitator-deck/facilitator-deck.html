@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 72ed64a8cb0c93c1 inputs-sha256 72ed64a8cb0c93c115a8c90f4f5a040198bd5fd8f9a0a1f6cf10b21774afdf35 -->
+<!-- 主持人專用，不發給學員。build e26c1b973953bddd inputs-sha256 e26c1b973953bddde3fb98ae755b21a73cba5f6c6357321f2f8b70d6511ce1c7 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -230,6 +230,10 @@ aside.notes { display: none !important; }
   letter-spacing: -.005em;
 }
 h1.title { font-size: var(--fs-h1); line-height: 1.1; }
+/* No orphan characters on a wrapped line: projected text is short, so every block balances its lines
+   ("pretty" still leaves 2-character CJK last lines), and CJK breaks only at punctuation or spaces,
+   never inside a phrase such as 確認 or 核准 (a run too long for its box still breaks). */
+.slide { text-wrap-style: balance; word-break: keep-all; overflow-wrap: break-word; }
 .slide-title .title { color: var(--white); text-shadow: 0 4px 30px rgba(0, 0, 0, .25); }
 
 .subtitle {
@@ -494,9 +498,10 @@ ol.steps > li::before {
    the footer / roadmap is anchored to the bottom, and the main zone takes the free height. */
 .slide.slide-cp, .slide.slide-seg { display: grid; gap: 0; align-content: stretch; }
 
-/* Checkpoint: header (kicker, title, 為什麼) | main (現在做 label + step cards, centered in the free height) |
-   你要判斷 | footer (deadline → 下一步). Rows 4 and 7 split the free space evenly above and below the cards. */
-.slide-cp { grid-template-rows: auto auto auto minmax(var(--zone-gap), 1fr) auto auto minmax(var(--zone-gap), 1fr) auto auto; }
+/* Checkpoint: header (kicker, title, 為什麼) | main (現在做 label + step cards + 你要判斷, one group) |
+   footer (deadline → 下一步). Rows 4 and 8 split the free space 2 : 3, so the main group sits just above
+   the middle and no wide empty band opens between 為什麼 and the cards. */
+.slide-cp { grid-template-rows: auto auto auto minmax(var(--zone-gap), 2fr) auto auto auto minmax(var(--zone-gap), 3fr) auto; }
 .slide-cp > .kicker, .slide-seg > .kicker { margin-bottom: 10px; }
 .slide-cp > .title { text-wrap: balance; }
 .slide .cp-why {
@@ -588,7 +593,8 @@ ol.cp-flow > li > b { font-size: var(--cp-main); line-height: var(--cp-main-lh);
 ol.cp-flow > li > b b { color: var(--dw-ink); }
 ol.cp-flow > li > span { font-size: var(--cp-detail); line-height: var(--cp-detail-lh); color: var(--ink-2); text-wrap: pretty; }
 .slide .cp-judge {
-  grid-row: 8;
+  grid-row: 7;
+  margin-top: var(--zone-gap);
   padding: 16px 32px;
   background: var(--white);
   border: 1px solid #F9C8B6;
@@ -602,7 +608,6 @@ ol.cp-flow > li > span { font-size: var(--cp-detail); line-height: var(--cp-deta
 .cp-judge > b:first-child { background: var(--orange-soft); color: var(--dw-ink); }
 .slide .cp-next {
   grid-row: 9;
-  margin-top: calc(var(--zone-gap) - 16px);
   padding-top: 16px;
   border-top: 2px solid var(--line);
   display: flex;
@@ -649,6 +654,10 @@ ul.seg-brief > li > span { font-size: 34px; line-height: 1.4; }
 .slide-seg ol.timeline > li b { font-size: 28px; }
 ol.timeline > li .tl-due { font-size: 26px; font-weight: 700; color: var(--dw-ink); }
 ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
+
+/* Reveal slides: header stays on top, the body is centred in the free height below it. */
+.slide[data-seg="reveal"]:not(:has(.stop-screen)) > .title { margin-bottom: auto; }
+.slide[data-seg="reveal"]:not(:has(.stop-screen)) > :nth-last-child(1 of :not(aside)) { margin-bottom: auto; }
 
 /* ---------- 9. Table ---------- */
 table.table {
@@ -983,12 +992,12 @@ ol.stage-bar > li.active::after {
 }
 .dk-unlock-code code { font: inherit; color: inherit; background: none !important; padding: 0; }
 .dk-unlock-help {
-  grid-column: 2;
+  /* under the code, full width: beside it the column got too narrow on half-width panels and split phrases */
+  grid-column: 1 / -1;
+  margin-top: 6px;
   font-size: 26px;
   line-height: 1.45;
   color: rgba(255, 255, 255, .72);
-  border-left: 3px solid rgba(127, 211, 238, .4);
-  padding-left: 32px;
 }
 .slide:not(.slide-title) .dk-unlock { box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 147, 193, .3); }
 
@@ -1409,7 +1418,7 @@ body.is-presenter #dk-black { display: none !important; }
 .draw-card-back { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; }
 .draw-card-back span { color: var(--white); font-size: 64px; font-weight: 700; letter-spacing: .2em; }
 .draw-card-tag { display: flex; gap: 16px; align-items: center; margin: 0 0 12px; font-size: 28px; }
-.draw-card-text { margin: 0; font-size: 36px; line-height: 1.45; font-weight: 600; color: var(--navy); }
+.draw-card-text { margin: 0; font-size: 36px; line-height: 1.45; font-weight: 600; color: var(--navy); word-break: normal; text-wrap-style: pretty; }
 
 .slide.is-active .draw-card-inner { animation: dk-card-slide 1.4s var(--ease) both; }
 .slide.is-active .draw-card-back  { animation: dk-back-flip 1.4s linear both; }
@@ -2834,7 +2843,7 @@ body.is-presenter #dk-black { display: none !important; }
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="79">
   <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
-  <h2 class="title">拒絕 SQLite 提議 <span class="chip dw">REJECT</span>，保留團體任務</h2>
+  <h2 class="title">拒絕 SQLite 提議，保留團體任務 <span class="chip dw">REJECT</span></h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>

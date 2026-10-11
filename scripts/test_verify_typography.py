@@ -18,6 +18,9 @@ class DeckProblems(unittest.TestCase):
         self.assertEqual(len(found), 5)
         self.assertTrue(all(f.startswith("dlc deck #3") for f in found))
 
+    def test_orphan_reported(self):
+        self.assertEqual(len(vt.deck_problems("main", [dict(SLIDE, orphans=["實作工作坊"])])), 1)
+
 
 class RunbookProblems(unittest.TestCase):
     def test_measure_line_height_and_small_text(self):
@@ -28,6 +31,10 @@ class RunbookProblems(unittest.TestCase):
         found = vt.runbook_problems("main", report)
         self.assertEqual(len(found), 3)  # b2 too wide, b2 line-height, one small-text class
         self.assertEqual(vt.runbook_problems("main", dict(report, small=[], paras=report["paras"][:1])), [])
+
+    def test_orphan_reported(self):
+        report = {"locked": [], "paras": [], "small": [], "orphans": [{"where": "b1", "text": "第 2 題。"}]}
+        self.assertEqual(vt.runbook_problems("main", report), ["main runbook b1: orphan last line 「…第 2 題。」"])
 
     def test_locked_page_reported(self):
         self.assertEqual(len(vt.runbook_problems("dlc", {"locked": ["d1"], "paras": [], "small": []})), 1)

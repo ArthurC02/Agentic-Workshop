@@ -719,6 +719,9 @@ kbd {
 :root[data-theme="dark"] .rb-page-body h4 { color: var(--c-primary-700); }
 .rb-page-body h5, .rb-page-body h6 { margin: 1.25rem 0 .4rem; font-size: .95rem; color: var(--c-ink-2); }
 .rb-page-body p { margin: 0 0 var(--rb-para-gap); }
+/* No orphan characters on a wrapped line: body text wraps "pretty", headings balance their lines. */
+.rb-page-body { text-wrap-style: pretty; }
+.rb-page-body :is(h1, h2, h3, h4) { text-wrap-style: balance; }
 .rb-page-body strong { font-weight: 700; color: var(--c-ink); }
 .rb-page-body ul, .rb-page-body ol { margin: 0 0 1rem; padding-left: 1.5rem; }
 .rb-page-body li { margin: var(--rb-li-gap) 0; }
@@ -1202,6 +1205,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   vertical-align: top;
 }
 .rb-table td + td, .rb-table th + th { border-left: 1px solid var(--c-line-soft); }
+.rb-table td:first-child { min-width: 7.5em; } /* IDs such as AC-B1-001 stay on one line */
 .rb-table thead th {
   position: sticky;
   top: 0;
@@ -1919,7 +1923,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   .rb-pager { grid-template-columns: 1fr; gap: .6rem; }
   .rb-table th, .rb-table td { padding: .5rem .65rem; }
   .rb-table td { min-width: 7.5em; }
-  .rb-table td:has(> code:only-child) { min-width: 0; }
+  .rb-table td:not(:first-child):has(> code:only-child) { min-width: 0; } /* first column keeps 7.5em: IDs stay whole */
   .rb-pager-prev, .rb-pager-next { grid-column: 1; }
   .rb-toasts { left: .75rem; right: .75rem; bottom: .75rem; align-items: stretch; }
   .rb-toast { max-width: none; }

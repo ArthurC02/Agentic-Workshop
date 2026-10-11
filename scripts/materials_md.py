@@ -696,6 +696,7 @@ class _BlockParser:
         self.source = source
         self.inline = _InlineRenderer(ctx, source)
         self.in_callout = False
+        self.in_list = False  # list items never get checkpoint block labels
 
     # Each block is ("p", inline_html) or ("html", html).
     def parse(self, lines: list[str]) -> list[tuple[str, str]]:
@@ -752,7 +753,7 @@ class _BlockParser:
             i += 1
         inner = self.inline.render(_join_paragraph(para))
         num = BLOCK_LABELS.find(para[0][:1]) + 1
-        if num and para[0][1:2] == " ":
+        if num and para[0][1:2] == " " and not self.in_list:
             blocks.append(("html", f'<p class="rb-block-label" data-block="{num}">{inner}</p>'))
         elif self.in_callout and para[0].startswith(REF_MARK):
             blocks.append(("html", f'<p class="rb-callout-ref">{inner}</p>'))
@@ -852,7 +853,11 @@ class _BlockParser:
                     task_no = self.ctx.task_counter
                     item = [tm.group(2) or ""] + item[1:]
                     has_task = True
-            parts = self.parse(item)
+            outer, self.in_list = self.in_list, True
+            try:
+                parts = self.parse(item)
+            finally:
+                self.in_list = outer
             if task_no is not None:
                 span = ""
                 if parts and parts[0][0] == "p":

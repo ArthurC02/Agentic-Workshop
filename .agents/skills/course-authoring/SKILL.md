@@ -46,7 +46,7 @@ The projected slide does two jobs: pace the room, and tell learners exactly what
   - 「現在做」 2–4 step cards mirroring the Runbook blocks: card 1 = 「貼 ②「prompt name」」 with detail 「Runbook › 檢查點 n」 (segment's first checkpoint: 「Runbook『full page title』› 檢查點 1」, never an ambiguous short form); then the human action (reply, decide, discuss; 「等 Agent 回報」 only with what it reports, otherwise drop the card); last 「貼 ③ 確認結果」／「成功→往下；失敗→貼「失敗時」」 (an action that follows ③ in the Runbook, like a form or discussion, stays after it). DLC role tags only on card 1 and where the conversation switches. No trailing 「。」 on why／judge／card lines;
   - 「你要判斷」 one line when the checkpoint has a human decision (same criterion as ①);
   - a footer line 「第 b 分前完成 → 下一步：…」.
-- Layout markup (deck.css section 8b, identical in both editions; the grid anchors the footer/roadmap to the bottom): checkpoint `<section class="slide slide-cp">` with `p.cp-why`, `p.cp-label`, `ol.cp-flow` (2–4 step cards, sized to content: `<li>[<i>角色的對話</i>]<b>主句</b>[<span>細節</span>]</li>`), `p.cp-judge`, `p.cp-next` = `<b>第 b 分前完成</b><span>→ 下一步：…</span>` (「第 x 分前核准／決策」 only for a decision deadline); segment opening `<section class="slide slide-seg">` with `ul.seg-brief` (`<li><b>情境</b><span>…</span></li>`), `ol.timeline`, `p.callout.seg-start`. Keep step main lines short; detail goes in the `<span>`.
+- Layout markup (deck.css section 8b, identical in both editions; the grid anchors the footer/roadmap to the bottom; the cards and 你要判斷 form one group placed just above the middle, so no wide empty band opens under 為什麼): checkpoint `<section class="slide slide-cp">` with `p.cp-why`, `p.cp-label`, `ol.cp-flow` (2–4 step cards, sized to content: `<li>[<i>角色的對話</i>]<b>主句</b>[<span>細節</span>]</li>`), `p.cp-judge`, `p.cp-next` = `<b>第 b 分前完成</b><span>→ 下一步：…</span>` (「第 x 分前核准／決策」 only for a decision deadline); segment opening `<section class="slide slide-seg">` with `ul.seg-brief` (`<li><b>情境</b><span>…</span></li>`), `ol.timeline`, `p.callout.seg-start`. Keep step main lines short; detail goes in the `<span>`.
 - Never put full prompts on slides (learners copy from the Runbook). Max ~6 projected lines of text per slide; sizes per 「Reading parameters」.
 - Notes keep: what to say (with timing), what to watch, intervention prompts, first-introduction cues.
 - Slides show whole; only concept／role-change slides step in with `data-fragments="step"`.
@@ -63,6 +63,7 @@ One table for both editions. Values live as CSS variables at the top of each `de
 | 為什麼・你要判斷 | 32px | 1.4 | 1 line |
 | Footer deadline | 46px | | |
 | Anything on a slide | ≥ 24px | | letter-spacing 0–0.02em for CJK; wide tracking only on kickers |
+| Line breaks (slides and Runbook) | | | no orphan: a wrapped last line holds ≥ 3 characters. Slides balance lines and break CJK only at punctuation or spaces (deck.css); in Runbook paragraphs and list items, reword (cut or move a few characters) when a line ends with 1–2 characters |
 | Slide layout | | | ≥ 48px between zones (header／cards／你要判斷／footer); content block ≤ 1728px |
 | Runbook body | 17px desktop, 16px phone | 1.8 | 32–40 CJK chars per line at 1440px (36); paragraph gap ≥ 0.8em |
 | Runbook headings | | | ≥ 1.6em space above, clear space below |

@@ -437,6 +437,7 @@ class BlockLabelTests(unittest.TestCase):
         self.assertEqual(render("①不是標籤"), "<p>①不是標籤</p>")
         self.assertEqual(render("⑤ 不是標籤"), "<p>⑤ 不是標籤</p>")
         self.assertEqual(render("文字 ① 中間"), "<p>文字 ① 中間</p>")
+        self.assertNotIn("rb-block-label", render("- ① 為什麼做這一步：說明"))  # list items stay list text
 
 
 class CalloutTests(unittest.TestCase):
