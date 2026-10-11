@@ -86,7 +86,7 @@
     <li>貼 ②，再依序「複製 Markdown」接上任務卡、操作規則、工作單、三道 Gate，一起送出</li>
     <li>Agent 交出 Gate 1 決策卡後，貼 ③ 確認結果；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="cp-next">第 64 分前完成 → 下一步：檢查點 2 回答 Gate 1</p>
+  <p class="cp-next">第 64 分前完成 → 下一步：檢查點 2 Gate 1：確認 Agent 懂需求</p>
   <aside class="notes">
     <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。請照 Runbook 檢查點 1，把工作單和四頁文件整份貼給主要 Agent。它先 Commit 一個「B3 起點」（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」</p>
     <p><b>看</b>：第 64 分 Agent 應已交 Gate 1（摘要、假設、缺口、Out of Scope 寫進 notes，對話是 5 個是非題的決策卡）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。只口頭交代、沒貼工作單 → 提醒技巧：「範圍和停止條件要寫給 Agent，它才知道何時停。」</p>
@@ -101,7 +101,7 @@
   <p class="cp-label">現在做</p>
   <ol class="steps">
     <li>對照任務卡回答決策卡的 5 個是非題，小組說好 Gate 1 決策</li>
-    <li>Runbook › 檢查點 2：貼 ②「記錄 Gate 1」，說出決策</li>
+    <li>Runbook › 檢查點 2：貼 ②「記錄 Gate 1」，說出決策；在「B3 Gate 決策」選 Gate 1</li>
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每題都對得上任務卡才核准；「待小組確認」的由你們決定，不讓 Agent 猜</p>
@@ -122,7 +122,7 @@
   <p class="cp-label">現在做</p>
   <ol class="steps">
     <li>Runbook › 檢查點 3：貼 ②「整理 Gate 2 決策卡」</li>
-    <li>回答是非題，說出 Gate 2 決策，Agent 照原文記下</li>
+    <li>回答是非題，說出 Gate 2 決策；在「B3 Gate 決策」選 Gate 2</li>
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>答案都在工作單允許範圍內；不以「看起來合理」取代範圍檢查</p>
@@ -168,7 +168,7 @@
   </div>
   <p class="callout warn fx fx-fade">Runbook『例外回應卡』貼 ②；Agent 問時照抄：<b>事件：建議加 SQLite</b>，一行回答後貼 ③</p>
   <aside class="notes">
-    <p><b>從投影移到備註</b>：時間緊可縮為 30 秒口頭判斷（例外回應卡 ① 已寫）。1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
+    <p><b>從投影移到備註</b>：時間緊可縮為 30 秒口頭判斷（例外回應卡 ① 已寫）。1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。小組口頭說好後，在例外回應卡頁的「例外回應」表單記下結論。</p>
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
     <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
@@ -195,7 +195,7 @@
   <ol class="steps">
     <li>條件解除後貼 ②「開始執行」；Agent 停下時回一句決定</li>
     <li>第 74 分貼「停止擴充」；看決策卡做 Gate 3，貼「記下 Gate 3」</li>
-    <li>有時間在 <code>/docs</code> 試一筆；再貼 ③ 確認結果，「失敗」貼「失敗時」</li>
+    <li>有時間在 <code>/docs</code> 試一筆；在「B3 Gate 決策」選 Gate 3，再貼 ③ 確認結果</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>審查三題都「是」、失敗與未驗證都列出、建議的 Level 有證據；不預設選 3</p>
   <p class="cp-next">第 76 分停止新增 → 下一步：Runbook『Delivery Summary 與交付』</p>

@@ -22,7 +22,7 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="33">
+<section class="slide" data-seg="analysis" data-title="檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="33">
   <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
   <h2 class="title">請 Agent 畫系統地圖、指出規則在哪</h2>
   <p class="cp-why"><b>為什麼</b>不要一開口就問「Bug 在哪」；先要一張地圖：分幾塊、規則在哪、測試現況</p>
@@ -33,7 +33,7 @@
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>地圖說得出誰負責什麼、依賴誰，不是一串檔名；Agent 列得出讀了哪些檔</p>
-  <p class="cp-next">第 36 分前完成 → 下一步：檢查點 2 標出不一致處</p>
+  <p class="cp-next">第 36 分前完成 → 下一步：檢查點 2 標出文件與程式不一致處</p>
   <aside class="notes">
     <p><b>說（00:00／第 33 分）</b>：「貼檢查點 1 的提示詞，請 Agent 畫系統地圖、指出規則在哪、跑一次測試並啟動伺服器，寫進 notes 後停下。你看它的說明就好，不用讀程式。」</p>
     <p><b>看 → 介入</b>：是否用上技巧（要地圖、要規則位置）｜Agent 說「讀了整個專案」→ 請學員要它列出實際讀了哪些檔（Token 節費）｜只列檔名 →「這個部分負責什麼？依賴誰？」｜Agent 提前修改、刪除或弱化測試 → 請學員叫它停下並還原｜版本／環境錯誤 → 先協助，確認是同一份 B0｜Port 8000 被佔用 → 多半是 G0 的 App 沒停，請學員叫 Greenfield 的 Agent 停掉它｜分析停滯 → 用下方提示。</p>
@@ -43,7 +43,7 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="36">
+<section class="slide" data-seg="analysis" data-title="檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="36">
   <p class="kicker">檢查點 2 / 2 · 第 36–39 分鐘</p>
   <h2 class="title">請 Agent 標出文件與程式不一致處</h2>
   <p class="cp-why"><b>為什麼</b>文件是線索，不是結論；挑一個「事實」追問證據，是這段最重要的動作</p>
@@ -88,7 +88,7 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 1 · 比較各自的分析，選出主要 Agent" data-minute="39">
+<section class="slide" data-seg="shared" data-title="檢查點 1 · 比較各自的分析，選出主要 Agent" data-minute="39">
   <p class="kicker">檢查點 1 / 2 · 第 39–42 分鐘</p>
   <h2 class="title">比較各自的分析，選出主要 Agent</h2>
   <p class="cp-why"><b>為什麼</b>每個人的 Agent 先把分析濃縮成 5 行，小組才比得起來</p>
@@ -102,12 +102,12 @@
   <p class="cp-next">第 42 分前完成 → 下一步：主要 Agent 寫共同脈絡檔</p>
   <aside class="notes">
     <p><b>說（00:00／第 39 分）</b>：「請各自的 Agent 把 notes/analysis.md 濃縮成 5 行，放在一起比較，找出共同事實與分歧，選定主要 Agent。不要把每個人的完整對話直接拼起來。」</p>
-    <p><b>看</b>：小組是否真的開口比較（Runbook 有「💬 討論一下」兩題，口頭即可，不用寫）；共同事實是否附來源；分歧有沒有說出驗證方式。</p>
+    <p><b>看</b>：小組是否真的開口比較（Runbook 有「💬 討論一下」四點，口頭即可，不用寫）；共同事實是否附來源；分歧有沒有說出驗證方式。</p>
     <p><b>提示・小組結論矛盾</b>（提醒技巧「先分事實、假設、缺口」，一次一級）：H1「請各自的 Agent 把結論標成事實（來源）、假設或缺口」｜H2「有分歧的結論，請兩邊的 Agent 各自重跑相關測試並貼出結果」｜H3「請說明同一個訂票請求從 API 到計價規則經過哪些部分」。提示後要求小組補證據，不替小組核准計畫。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="42">
+<section class="slide" data-seg="shared" data-title="檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="42">
   <p class="kicker">檢查點 2 / 2 · 第 42–44 分鐘</p>
   <h2 class="title">請主要 Agent 寫成共同脈絡檔</h2>
   <p class="cp-why"><b>為什麼</b>口頭講過的 Agent 下次就忘；寫成檔案，之後每段先請它讀</p>

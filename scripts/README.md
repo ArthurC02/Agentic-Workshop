@@ -29,6 +29,8 @@ Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並
 
 檢查點四塊檢查：`scripts/check_blocks.py`。主課與 DLC Runbook 的每個「檢查點／步驟」都要依序有 ① 為什麼做這一步、② 貼給 Agent、③ 確認結果（Agent 只回「成功」或「失敗」的提示詞，加上「失敗時」補救提示詞），④ 補充可省略；發布流程會先執行。
 
+簡報與 Runbook 對應檢查：`scripts/check_deck_runbook.py`（可加 `main` 或 `dlc` 只查一版）。Runbook 每個檢查點都要有一張簡報頁：`data-title`、標題、`檢查點 n / N · 第 a–b 分鐘` 與 Runbook 一致，頁尾「第 b 分前完成」與「下一步」對得上；簡報提到的 Runbook 頁名、檢查點與表單名稱都要存在；DLC 的 `CHECKPOINTS.md` 也要一致。解鎖頁與解鎖碼的對應由 `build_materials.py` 檢查。發布流程會先執行。
+
 ## 全域技術驗證
 
 ```powershell

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 05efc5bf9476229d inputs-sha256 05efc5bf9476229d479fce99f20fd0517175360b188ade00b95eb8a4448f1a6d -->
+<!-- 主持人專用，不發給學員。build 2cdc22658c055845 inputs-sha256 2cdc22658c055845267f5c154d814e26b2dd38a40114fe5d60dfb0ef1357e535 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1477,7 +1477,7 @@ body.is-presenter #dk-black { display: none !important; }
     </tbody>
   </table>
   <aside class="notes">
-    <p><b>說</b>：「今天的目標有先後：第一是練 Agentic Coding 技巧，每段一個；第二是體驗 Agent 從工具、隊友到數位員工的流程；第三才是留下證據，而證據由 Agent 寫進 notes 資料夾，你只記自己的決定。這份清單在 Runbook『歡迎』頁也有，回顧時會請你挑 3 段自己會再用的提示詞帶走。」</p>
+    <p><b>說</b>：「今天的目標有先後：第一是練 Agentic Coding 技巧，每段一個；第二是體驗 Agent 從工具、隊友到數位員工的流程；第三才是留下證據，而證據由 Agent 寫進 notes 資料夾，你只記自己的決定。這份清單在 Runbook『歡迎與使用方式』頁也有，回顧時會請你挑 3 段自己會再用的提示詞帶走。」</p>
     <p>本頁只念技巧名稱，<b>不要</b>展開 B1／B2／B3 的任務內容或 Bug。</p>
   </aside>
 </section>
@@ -1923,7 +1923,7 @@ body.is-presenter #dk-black { display: none !important; }
   <ol class="steps">
     <li>Runbook『Time Skip：12 個月後』› 檢查點 1：在<b>原本</b>的對話貼 ②「停掉伺服器」</li>
     <li>下載 B0，解壓縮到短路徑，找到 <code>smart-ticket-b0</code></li>
-    <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
+    <li>同一個對話貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-next">第 31 分前完成 → 下一步：在 B0 開新對話</p>
   <aside class="notes">
@@ -1997,7 +1997,7 @@ body.is-presenter #dk-black { display: none !important; }
   </aside>
 </section>
 
-<section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="33">
+<section class="slide" data-seg="analysis" data-title="檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="33">
   <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
   <h2 class="title">請 Agent 畫系統地圖、指出規則在哪</h2>
   <p class="cp-why"><b>為什麼</b>不要一開口就問「Bug 在哪」；先要一張地圖：分幾塊、規則在哪、測試現況</p>
@@ -2008,7 +2008,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>地圖說得出誰負責什麼、依賴誰，不是一串檔名；Agent 列得出讀了哪些檔</p>
-  <p class="cp-next">第 36 分前完成 → 下一步：檢查點 2 標出不一致處</p>
+  <p class="cp-next">第 36 分前完成 → 下一步：檢查點 2 標出文件與程式不一致處</p>
   <aside class="notes">
     <p><b>說（00:00／第 33 分）</b>：「貼檢查點 1 的提示詞，請 Agent 畫系統地圖、指出規則在哪、跑一次測試並啟動伺服器，寫進 notes 後停下。你看它的說明就好，不用讀程式。」</p>
     <p><b>看 → 介入</b>：是否用上技巧（要地圖、要規則位置）｜Agent 說「讀了整個專案」→ 請學員要它列出實際讀了哪些檔（Token 節費）｜只列檔名 →「這個部分負責什麼？依賴誰？」｜Agent 提前修改、刪除或弱化測試 → 請學員叫它停下並還原｜版本／環境錯誤 → 先協助，確認是同一份 B0｜Port 8000 被佔用 → 多半是 G0 的 App 沒停，請學員叫 Greenfield 的 Agent 停掉它｜分析停滯 → 用下方提示。</p>
@@ -2018,7 +2018,7 @@ body.is-presenter #dk-black { display: none !important; }
   </aside>
 </section>
 
-<section class="slide" data-seg="analysis" data-title="個人分析 · 檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="36">
+<section class="slide" data-seg="analysis" data-title="檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="36">
   <p class="kicker">檢查點 2 / 2 · 第 36–39 分鐘</p>
   <h2 class="title">請 Agent 標出文件與程式不一致處</h2>
   <p class="cp-why"><b>為什麼</b>文件是線索，不是結論；挑一個「事實」追問證據，是這段最重要的動作</p>
@@ -2063,7 +2063,7 @@ body.is-presenter #dk-black { display: none !important; }
   </aside>
 </section>
 
-<section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 1 · 比較各自的分析，選出主要 Agent" data-minute="39">
+<section class="slide" data-seg="shared" data-title="檢查點 1 · 比較各自的分析，選出主要 Agent" data-minute="39">
   <p class="kicker">檢查點 1 / 2 · 第 39–42 分鐘</p>
   <h2 class="title">比較各自的分析，選出主要 Agent</h2>
   <p class="cp-why"><b>為什麼</b>每個人的 Agent 先把分析濃縮成 5 行，小組才比得起來</p>
@@ -2077,12 +2077,12 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-next">第 42 分前完成 → 下一步：主要 Agent 寫共同脈絡檔</p>
   <aside class="notes">
     <p><b>說（00:00／第 39 分）</b>：「請各自的 Agent 把 notes/analysis.md 濃縮成 5 行，放在一起比較，找出共同事實與分歧，選定主要 Agent。不要把每個人的完整對話直接拼起來。」</p>
-    <p><b>看</b>：小組是否真的開口比較（Runbook 有「💬 討論一下」兩題，口頭即可，不用寫）；共同事實是否附來源；分歧有沒有說出驗證方式。</p>
+    <p><b>看</b>：小組是否真的開口比較（Runbook 有「💬 討論一下」四點，口頭即可，不用寫）；共同事實是否附來源；分歧有沒有說出驗證方式。</p>
     <p><b>提示・小組結論矛盾</b>（提醒技巧「先分事實、假設、缺口」，一次一級）：H1「請各自的 Agent 把結論標成事實（來源）、假設或缺口」｜H2「有分歧的結論，請兩邊的 Agent 各自重跑相關測試並貼出結果」｜H3「請說明同一個訂票請求從 API 到計價規則經過哪些部分」。提示後要求小組補證據，不替小組核准計畫。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="shared" data-title="Shared Context · 檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="42">
+<section class="slide" data-seg="shared" data-title="檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="42">
   <p class="kicker">檢查點 2 / 2 · 第 42–44 分鐘</p>
   <h2 class="title">請主要 Agent 寫成共同脈絡檔</h2>
   <p class="cp-why"><b>為什麼</b>口頭講過的 Agent 下次就忘；寫成檔案，之後每段先請它讀</p>
@@ -2408,7 +2408,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-label">現在做</p>
   <ol class="steps">
     <li>Runbook『B2』› 檢查點 1：貼 ②，再接任務卡「複製 Markdown」給主要 Agent</li>
-    <li>💬 挑最沒把握的假設貼「追問假設」；說好再貼「核准方案」</li>
+    <li>💬 挑最沒把握的假設貼「追問假設」；說好貼「核准方案」，在「B2 決定」選方案</li>
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>2–3 個真的可行的方案、都對照過禁止事項；每個假設標了依據或「未確認」</p>
@@ -2685,7 +2685,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li>貼 ②，再依序「複製 Markdown」接上任務卡、操作規則、工作單、三道 Gate，一起送出</li>
     <li>Agent 交出 Gate 1 決策卡後，貼 ③ 確認結果；「失敗」貼「失敗時」</li>
   </ol>
-  <p class="cp-next">第 64 分前完成 → 下一步：檢查點 2 回答 Gate 1</p>
+  <p class="cp-next">第 64 分前完成 → 下一步：檢查點 2 Gate 1：確認 Agent 懂需求</p>
   <aside class="notes">
     <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。請照 Runbook 檢查點 1，把工作單和四頁文件整份貼給主要 Agent。它先 Commit 一個「B3 起點」（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」</p>
     <p><b>看</b>：第 64 分 Agent 應已交 Gate 1（摘要、假設、缺口、Out of Scope 寫進 notes，對話是 5 個是非題的決策卡）。Agent 直接設計或改程式 → 觸發 #1：提醒既定 Rule，要求回 Gate 1。有人伸手改 Code → 觸發 #2，先提醒既定 Rule。只口頭交代、沒貼工作單 → 提醒技巧：「範圍和停止條件要寫給 Agent，它才知道何時停。」</p>
@@ -2700,7 +2700,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-label">現在做</p>
   <ol class="steps">
     <li>對照任務卡回答決策卡的 5 個是非題，小組說好 Gate 1 決策</li>
-    <li>Runbook › 檢查點 2：貼 ②「記錄 Gate 1」，說出決策</li>
+    <li>Runbook › 檢查點 2：貼 ②「記錄 Gate 1」，說出決策；在「B3 Gate 決策」選 Gate 1</li>
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每題都對得上任務卡才核准；「待小組確認」的由你們決定，不讓 Agent 猜</p>
@@ -2721,7 +2721,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-label">現在做</p>
   <ol class="steps">
     <li>Runbook › 檢查點 3：貼 ②「整理 Gate 2 決策卡」</li>
-    <li>回答是非題，說出 Gate 2 決策，Agent 照原文記下</li>
+    <li>回答是非題，說出 Gate 2 決策；在「B3 Gate 決策」選 Gate 2</li>
     <li>貼 ③ 確認結果：「成功」往下；「失敗」貼「失敗時」</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>答案都在工作單允許範圍內；不以「看起來合理」取代範圍檢查</p>
@@ -2767,7 +2767,7 @@ body.is-presenter #dk-black { display: none !important; }
   </div>
   <p class="callout warn fx fx-fade">Runbook『例外回應卡』貼 ②；Agent 問時照抄：<b>事件：建議加 SQLite</b>，一行回答後貼 ③</p>
   <aside class="notes">
-    <p><b>從投影移到備註</b>：時間緊可縮為 30 秒口頭判斷（例外回應卡 ① 已寫）。1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。</p>
+    <p><b>從投影移到備註</b>：時間緊可縮為 30 秒口頭判斷（例外回應卡 ① 已寫）。1 核對＝是／否／不明確，由 Agent 整理提議、規則與證據；2 決策＝核准／有條件核准／退回，Agent 照原文記錄。小組口頭說好後，在例外回應卡頁的「例外回應」表單記下結論。</p>
     <p><b>按 T 啟動 60 秒倒數。</b>說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時機：Gate2 相對第 6–7 分鐘／活動 69–70 分鐘（F03）。畫面引言為 F03 主持口白逐字。</p>
     <p><b>分支（F03 逐字）</b>：「若Agent已自行提出SQLite，直接以此為唯一EXCEPTION-DW-001，記錄原提議與時間，不再發第二事件。若未提出，Gate2後以假設事件卡詢問，不冒稱Agent已做此提議」。已有自然提議的組 → 不朗讀假設口白，只請其用回應卡處理原提議。</p>
     <p><b>事件定義（F03）</b>：與「本次維持In-Memory、不可新增資料庫」衝突。只評估提議，不真正安裝、啟用或改寫SQLite，也不改用其他技術。</p>
@@ -2794,7 +2794,7 @@ body.is-presenter #dk-black { display: none !important; }
   <ol class="steps">
     <li>條件解除後貼 ②「開始執行」；Agent 停下時回一句決定</li>
     <li>第 74 分貼「停止擴充」；看決策卡做 Gate 3，貼「記下 Gate 3」</li>
-    <li>有時間在 <code>/docs</code> 試一筆；再貼 ③ 確認結果，「失敗」貼「失敗時」</li>
+    <li>有時間在 <code>/docs</code> 試一筆；在「B3 Gate 決策」選 Gate 3，再貼 ③ 確認結果</li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>審查三題都「是」、失敗與未驗證都列出、建議的 Level 有證據；不預設選 3</p>
   <p class="cp-next">第 76 分停止新增 → 下一步：Runbook『Delivery Summary 與交付』</p>

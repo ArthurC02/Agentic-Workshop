@@ -1385,7 +1385,7 @@
         {
           "source": "scripts/README.md",
           "destination": "scripts/README.md",
-          "sha256": "fa6dfcc4d8e28a35d9e5d4e80e4cca129d30b1f985ab717f7734bd4ed61d59a8"
+          "sha256": "85b0511d235fe931830527d42667a9582435a376761b9941277887ecb8f642fa"
         }
       ],
       "generated": {}
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "adf0a0a84a435998a3d0c8b9040cb1be8327593ab9ce712c43214533c479ce4a"
+          "sha256": "599638bac1f7a7ab8d82cc527dfd3205c91f1a23203d1653b602066915390373"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3395,7 +3395,7 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "19d58c6350533706b8a2e3630bd8b21df86affe7bc2b03e5d240980c8f560bb6"
+          "sha256": "5a51fc8bb3d63e6eff085a8b21a6ac1f59e90e2d064b3bbb16c4c852b3702ae3"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
