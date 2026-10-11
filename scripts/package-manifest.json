@@ -1370,7 +1370,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "ce4a6f0951d0398ccbe04d49d8ed9bdad7d1e44d2b41dde28dd97b0d69a6a7a4"
+          "sha256": "b65ea708799818b2c7463bcde4ad36fb263abea6b8080e5bfa43be835844e37a"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "4932d45f1842caf641981ea9e59274f02b795ffb339cb9c0186b9e92bdc4a989"
+          "sha256": "3b8463b82e2b0e06b8cc9d3991abee6fef1707e4b9653d187306ff9c54854a6e"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",

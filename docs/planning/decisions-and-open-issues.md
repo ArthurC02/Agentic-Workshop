@@ -205,3 +205,16 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 ## domain-memory Plugin 升級 0.10.15（2026-10-10）
 
 由 0.2.2 升級到 0.10.15。相容性評估：沒有移除或改名的指令與參數、預設值不變；簽章的參考 Registry、d1–d3c Recovery 與 D1→D2 全流程在兩版結果一致；頁面引用的輸出字串都還在。帶來的修正：Plugin 寫檔改 LF、OneDrive 唯讀資料夾不再讓 apply 失敗、檔案系統錯誤只印一行 ERROR、scan-secrets 讀不到檔案時不再中斷、核准證明必須對應同一個 Change Package。學員包只放執行用的檔案：依 Plugin README 排除 `evals/`、`scripts/test_*.py` 與開發用的 `README.md`、`ruff.toml`（由 `scripts/vendor_dlc_plugin.py` 產生，70 個檔案、`SHA OK 71 files`；0.2.2 是 129 個檔案）。另外撤回起始 Repo `.gitignore` 的 `records/`：被忽略的路徑會讓 `git add -A -- . ':!records'` 結束碼為 1。
+
+## domain-memory 0.16.0：暫不升級（2026-10-12）
+
+評估 0.10.15 → 0.16.0（在暫存沙箱用兩版實跑 D1、D2 全流程與 Recovery）。沒有指令、參數或輸出字串被移除，但 0.11 起 `validate` 會檢查 `synonyms`／`not_same_as`，而課程的已簽章參考 Registry 有兩筆在新版不合格（`discount-rate` 的同義詞重複、`best-single-discount` 的 `not_same_as` 指向非詞彙 id），連帶 d1–d3c Recovery 與三份參考解答的 `validate` 都會失敗；D1 檢查點 3 的「互加 not_same_as」在 `make_record.py` 逐筆登記時也會失敗。
+
+決定：維持 0.10.15。理由：0.15／0.16 是當天發布、尚未經過穩定期；升級需重簽參考資料、重建全部 Recovery 與參考解答並重新演練（約一個工作天），而學員用得到的功能沒有增加。教材目前與 0.10.15 一致（例如 resolve-terms「不比對同義詞」在 0.10.15 為真）。先做一項兩版都正確的修正：D1 檢查點 3 提示詞註明 `not_same_as` 填對方那筆的 id、別名不可重複或與詞彙名稱相同。
+
+升級時的工作清單（下一次交付前、且新版已穩定一段時間再做）：
+- 資料：修正 `reference-registry/inputs/d1-records.json` 兩筆；以 CP-CORE-002 取代 CP-CORE-001（需新增授權簽章者）；重跑 `make_recovery.py d1 d2 d3a d3b d3c`、重產參考解答並更新數字。
+- 工具：`make_record.py` 改為每個資產一次批次 upsert；`50-d3c.md` 的「批次在第一個錯誤停下」改為「同一資產全部登記或全部不登記」。
+- 機械：`vendor_dlc_plugin.py` 重產 ZIP 並刪除舊版；版本字串（build_delivery_dlc、dmlib、doctor、README、指令書）；`SHA OK 73 files`。
+- 內容：resolve-terms 會比對同義詞並標示 `match_kind`（10-d1 檢查點 5、30-d3a、20-d1 投影備註、tools/README）。可選加深：D1 檢查點 5 的別名比對、D3a 檢查點 5 的 Contract `idempotency`；D4 檢查點 2 的 `relocate-evidence` 需先向 Plugin 作者確認 `--from src --to src` 是支援的用法。不教：`boundary-impact`、`unhashed`。
+- 之後跑 release-materials 並演練 D1、D2、D4。
