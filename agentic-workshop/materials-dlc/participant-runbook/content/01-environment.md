@@ -12,7 +12,7 @@ section: 開始之前
 現在在做什麼
 - **情境**：你接手 Smart Ticket 的訂票後端，今天要替它建立 Agent 用得上的 Domain Memory。
 - **你的目標**：10 分鐘內讓 Agent 跑過全部測試、核對 Plugin、確認專案狀態與真實 Python。
-- **今天的技巧**：先講好「看到什麼算成功」，Agent 的回報對得上才往下；你不用看懂指令。
+- **今天的技巧**：先講好「看到什麼算成功」，Agent 的回報對得上才往下。
 - **完成的樣子**：`notes/opening.md` 有四個檢查點的結果；起始 commit 已建立。
 ```
 
@@ -26,23 +26,23 @@ section: 開始之前
 
 ① 為什麼做這一步
 
-今天每一步都以測試結果為準，所以先讓 Agent 建好環境，確認起始 Repo 的測試全部通過。先做完這三件事：
+今天每一步都以測試結果為準。先讓 Agent 建好環境，確認起始 Repo 的測試全部通過。開始前先做這三件事：
 
 ```download
 id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起始 Repo、輔助工具、domain-memory Plugin）
 ```
 
 - [ ] 按上方按鈕下載 `participant-dlc-open.zip`，再解壓縮：
-  - Windows：在檔案上按右鍵選「全部解壓縮」，目的地輸入 `C:\dlc`。
-  - macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/agentic-workshop`。
+  - Windows：在檔案上按右鍵選「全部解壓縮」，目的地輸入 `C:\dlc`
+  - macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/agentic-workshop`
 - [ ] 在 Repo 根目錄開啟你的 Agent：
   - Windows：`C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository\smart-ticket-dlc-base`
   - macOS：`~/dlc/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`
-- [ ] 依序貼下方兩段。
+- [ ] 依序貼下方兩段提示詞
 
 ② 貼給 Agent
 
-先貼工作規則（整場只貼一次；之後開新的 Agent 對話時再貼一次）。這段是給 Agent 的，不需要看懂：
+先貼工作規則。整場只貼一次，開新的 Agent 對話時才再貼。這段是給 Agent 的，不需要看懂：
 
 ```prompt
 # windows
@@ -126,7 +126,7 @@ Windows 一定要解壓到 C:\dlc
 
 ① 為什麼做這一步
 
-今天的各種檢查都由 domain-memory Plugin 判定，所以 Plugin 必須原樣使用：檔案被改過，結果就不可信。
+今天的檢查都由 domain-memory Plugin 判定。Plugin 的檔案被改過，結果就不可信，所以先逐檔核對。
 
 ② 貼給 Agent
 
@@ -181,7 +181,10 @@ Git Bash：
 
 ```callout info
 新概念：SHA256 雜湊
-雜湊是由檔案內容算出的一串字，像檔案的指紋：內容改一個位元組就完全不同。Agent 逐檔重算並和清單比對，全部相同才印 `SHA OK`。
+**雜湊像檔案的指紋：內容改一個位元組，算出來的值就完全不同。**
+- Agent 逐檔重算雜湊，和清單比對。
+- 全部相同才印 `SHA OK`。
+
 📖 延伸閱讀：NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉。
 ```
 
@@ -189,7 +192,9 @@ Git Bash：
 
 ① 為什麼做這一步
 
-兩個唯讀檢查：`readiness` 判斷 Repo 狀態，`quality-gates` 列出 Repo 已有哪些自動檢查。沒有的檢查，之後只能靠測試和人的審查補上。
+這一步做兩個只讀不改的檢查：
+- `readiness`：判斷 Repo 是什麼狀態
+- `quality-gates`：列出 Repo 已有哪些自動檢查；沒有的，之後只能靠測試和人的審查補上
 
 ② 貼給 Agent
 
@@ -232,15 +237,15 @@ Git Bash：
 
 ④ 補充
 
-`readiness` 的 brownfield 指已有程式碼的既有專案。`quality-gates` 只有 pytest、沒有 lint、型別或架構檢查，這是事實，不是錯誤。
+`readiness` 回的 brownfield，指已有程式碼的既有專案。`quality-gates` 只找到 pytest，沒有程式風格（lint）、型別或架構檢查：這是事實，不是錯誤。
 
 ## 檢查點 4 · 確認真實 Python（第 8–10 分鐘）
 
 ① 為什麼做這一步
 
-D2 推送（push）時 Git 會直接呼叫 `python`。
-- Windows 教室電腦上的 `python` 常是 Microsoft Store 的別名（路徑含 `WindowsApps`），會讓 push 失敗。
-- 這一步也建立起始 commit。
+D2 推送（push）時，Git 會直接呼叫 `python`，所以先確認它是 venv 裡真的 Python 3.13。
+- Windows 教室電腦的 `python` 常是 Microsoft Store 的捷徑（路徑含 `WindowsApps`），會讓 push 失敗
+- 這一步也建立起始 commit
 
 ② 貼給 Agent
 
@@ -309,4 +314,4 @@ D2 推送（push）時 Git 會直接呼叫 `python`。
 不要在活動中更換 Python 版本或工具。告知主持人，從 D1 起先和夥伴共用一台已通過的機器。
 ```
 
-第 7 分鐘主持人會請你找一位夥伴，D2 起兩人一組。
+第 8 分鐘主持人會請你找好 D2 夥伴：D2 起兩人一組。

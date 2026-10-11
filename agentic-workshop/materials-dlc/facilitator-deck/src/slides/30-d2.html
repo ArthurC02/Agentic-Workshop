@@ -7,7 +7,7 @@
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D2 審查與核准（成對）』。兩人共用一台機器，各開<b>自己的 Agent 對話</b>。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對）。同一台機器，但提案者和夥伴各用自己的 Agent 對話：夥伴另開終端機和新的 Agent 對話，兩人先各貼一次工作規則。每段提示詞都標了該由誰貼，檢查點頁也會寫是哪個對話。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -31,7 +31,7 @@
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備 Change Package；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就舉手，我們有降級路線。」</p>
     <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼一次工作規則（Runbook「開始前」各有一段）。</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
     <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，私下提供給該組 <code data-code="dlc-rec-d2"></code>（已審查的 Domain Memory＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
     <p><b>R3 要明講</b>：<code>record-approval</code> 只比對字串，同機雙身分仍可通過；今天是教學示範，不是安全保證。<b>奇數組</b>：第三人當觀察員（Observer），看核准與簽章是否只出現在夥伴的 Agent 對話，並一起看 <code>verify-audit</code> 結果。</p>
@@ -42,11 +42,11 @@
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 1 · 夥伴建立簽章金鑰" data-minute="35">
   <p class="kicker">檢查點 1 / 6 · 第 35–38 分鐘</p>
   <h2 class="title">夥伴建立簽章金鑰</h2>
-  <p class="cp-why"><b>為什麼</b>之後每個碰到 Registry 的 commit 都要用夥伴的金鑰簽章；私鑰放在 Repo 外</p>
+  <p class="cp-why"><b>為什麼</b>碰到 Domain Memory 的 commit 都要夥伴簽章</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「建立我的簽章金鑰」</b><span>Runbook『D2 審查與核准（成對）』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 38 分前完成</b><span>→ 下一步：檢查點 2 設定審查政策與推送檢查（還是夥伴）</span></p>
   <aside class="notes">
@@ -60,11 +60,11 @@
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 2 · 設定審查政策與推送檢查" data-minute="38">
   <p class="kicker">檢查點 2 / 6 · 第 38–43 分鐘</p>
   <h2 class="title">設定審查政策與推送檢查</h2>
-  <p class="cp-why"><b>為什麼</b>決定誰可以簽、何時檢查，並裝好 push 前的檢查；三件事順序不能調換</p>
+  <p class="cp-why"><b>為什麼</b>決定誰能簽、何時檢查，再裝推送檢查；順序不能換</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>夥伴的對話</i><b>貼 ②「設定審查政策與推送檢查」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>夥伴的對話</i><b>貼 ②「設定審查政策」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 43 分前完成</b><span>→ 下一步：檢查點 3 建立變更審查包並送出提案（換提案者）</span></p>
   <aside class="notes">
@@ -78,21 +78,20 @@
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 3 · 建立變更審查包並送出提案" data-minute="43">
   <p class="kicker">檢查點 3 / 6 · 第 43–48 分鐘</p>
   <h2 class="title">建立變更審查包並送出提案</h2>
-  <p class="cp-why"><b>為什麼</b>把 D1 的候選放進一個審查包送審；至少一條規則用反事實檢查證明有測試守著</p>
+  <p class="cp-why"><b>為什麼</b>把 D1 候選放進審查包，並證明測試守得住規則</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；先下載 D2 格式範本</span></li>
-    <li><b>回「選 1」</b><span>再貼第二段「建立變更審查包」</span></li>
-    <li><b>看過回報再貼「送出」</b></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；先下載 D2 範本</span></li>
+    <li><b>回「選 1」，貼第二段</b><span>看過回報再貼「送出」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>測試全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
+  <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
   <p class="cp-next"><b>第 48 分前完成</b><span>→ 下一步：檢查點 4 夥伴核准與簽章提交（換夥伴）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提反事實方案，你選一個；只認 killed。按 Runbook 的下載鈕取得 D2 格式範本，Agent 會把它放進 worksheets。Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry 的雜湊值。第 45 分我會看大家進度。」</p>
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>變更審查包</b>與<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。變更審查包留到檢查點 4 再講。</p>
   </aside>
 </section>
 
@@ -104,7 +103,7 @@
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「審查變更審查包」</b><span>Runbook › 檢查點 4；這是第一段</span></li>
     <li><b>決定核准才貼第二段</b><span>先讀證據原文；要退回就回「退回：原因」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>說得出「為什麼這條可以算事實」，才核准</p>
   <p class="cp-next"><b>第 53 分前完成</b><span>→ 下一步：檢查點 5 寫出核准證明並驗證</span></p>
@@ -112,17 +111,18 @@
     <p><b>說（13:00／第 48 分）</b>：「第 48 分。換夥伴，回到你自己的 Agent 對話。先讓 Agent 讀審查包、貼證據原文，你讀過再回核准或退回；只有你的回覆能讓簽章發生。看 git log --show-signature 有沒有 Good signature。」</p>
     <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；commit 有沒有簽。</p>
     <p><b>介入訊號</b>：在提案者的對話裡核准或 commit → 停下，說明為什麼要換到夥伴的對話；commit 未簽章 → 不要硬 push，請 Agent 解釋 sign-every-commit 設定與金鑰路徑。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>變更審查包</b>（Runbook 檢查點 4 ④），花 30 秒講：它是夥伴要審的資料，套用後候選才成為已審查。</p>
   </aside>
 </section>
 
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 5 · 寫出核准證明並驗證" data-minute="53">
   <p class="kicker">檢查點 5 / 6 · 第 53–56 分鐘</p>
   <h2 class="title">寫出核准證明並驗證</h2>
-  <p class="cp-why"><b>為什麼</b>把剛才的簽章 commit 寫成核准證明，確認這個簽章是政策授權的</p>
+  <p class="cp-why"><b>為什麼</b>把簽章 commit 寫成核准證明，確認簽的人有授權</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「寫出核准證明並驗證」</b><span>Runbook › 檢查點 5</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 56 分前完成</b><span>→ 下一步：檢查點 6 完成提案並全部驗證（先提案者）</span></p>
   <aside class="notes">
@@ -135,12 +135,12 @@
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 6 · 完成提案並全部驗證" data-minute="56">
   <p class="kicker">檢查點 6 / 6 · 第 56–60 分鐘</p>
   <h2 class="title">完成提案並全部驗證</h2>
-  <p class="cp-why"><b>為什麼</b>套用後，候選才成為已審查事實；再驗證稽核紀錄沒有被竄改</p>
+  <p class="cp-why"><b>為什麼</b>套用後候選才成為已審查事實；再驗證稽核紀錄</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「定案、套用、驗證」</b><span>Runbook › 檢查點 6；這是第一段</span></li>
     <li><i>夥伴的對話</i><b>四步都成功才貼第二段</b><span>「簽章提交並 push」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 60 分前完成</b><span>→ 兩人聊「完成後想一想」、填「D2 決定」；下一步：休息</span></p>
   <aside class="notes">

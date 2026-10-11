@@ -8,7 +8,7 @@ section: D1｜共同語言與邊界
 
 # D1 Recovery：視需要接續
 
-Recovery 是起始 Repo 加上已確認的來源與一組 D1 候選。原 Repo 保留不動；Agent 會如實記錄這段由 Recovery 提供。
+D1 Recovery（復原包）的內容：起始 Repo，加上已確認的來源和一組 D1 候選。原 Repo 保留不動；Agent 會在紀錄寫明這段由 Recovery 提供。
 
 ```download
 id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
@@ -19,8 +19,8 @@ id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
 ① 為什麼做這一步
 
 先記下原 Repo 做到哪裡，再把 Recovery 解成和原 Repo 同一層的 `resume-d1`；原 Repo 不動。
-- 按上方按鈕下載 `recovery-dlc-d1.zip`，存到「下載」資料夾。
-- 把下方提示詞貼給**原本**的 Agent。
+- 按上方按鈕下載 `recovery-dlc-d1.zip`，存到「下載」資料夾
+- 把下方提示詞貼給**原本**的 Agent
 
 ② 貼給 Agent
 
@@ -95,8 +95,8 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 ① 為什麼做這一步
 
 在 `resume-d1` 還原 Git 歷史、建環境，確認 Recovery 的 Registry 可用。
-- 結束目前的 Agent 對話，在 `resume-d1` 資料夾重新開啟 Agent。
-- 先貼 [開場與環境](#environment) 的工作規則，再貼下方提示詞。
+- 結束目前的 Agent 對話，在 `resume-d1` 資料夾重新開啟 Agent
+- 先貼 [開場與環境](#environment) 的工作規則，再貼下方提示詞
 
 ② 貼給 Agent
 

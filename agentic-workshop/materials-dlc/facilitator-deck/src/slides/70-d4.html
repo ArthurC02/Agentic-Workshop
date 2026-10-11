@@ -7,7 +7,7 @@
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D4 交接』，從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D4 交接，從檢查點 1 開始。提示詞貼到提案者的 Agent 對話；最後的 commit 由夥伴在自己的對話做。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 155 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 155 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -15,8 +15,8 @@
   <p class="kicker">D4 交接 · 第 155–165 分鐘</p>
   <h2 class="title">D4：驗證、更新、交接</h2>
   <ul class="seg-brief">
-    <li><b>情境</b><span>明天換另一個 Agent 接手，只看得到 Repo、Domain Memory 與交接單</span></li>
-    <li><b>目標</b><span>先驗證 Domain Memory，把 D3 改變的事實登記成候選，再寫交接單</span></li>
+    <li><b>情境</b><span>明天換別的 Agent 接手，只看得到 Repo 與交接單</span></li>
+    <li><b>目標</b><span>先驗證記憶、把 D3 改變的事實登記成候選，再寫交接單</span></li>
     <li><b>今天的技巧</b><span>交接單只准引用查得到的 id，要 Agent 逐一查證</span></li>
   </ul>
   <ol class="timeline">
@@ -27,7 +27,7 @@
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D4 交接』› 檢查點 1，提示詞貼到提案者的對話</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D4 十分鐘，三段提示詞都貼給同一個 Agent：先請它驗證 Domain Memory 還站得住，再列出 D3 改變的事實、你們同意後登記成候選，最後請它寫交接單並逐一查證 id。你們只回『同意』或『改成…』。」</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>驗收（看紀錄，不看表單填多少）</b>：<code>notes/d4.md</code> 有驗證結果與更新清單；<code>docs/handoffs/d4-next-agent.md</code> 七段齊全、Agent 的 id 核對清單全部查得到，已 commit。</p>
     <p><b>Recovery</b>：D3c 未完成者仍可用 <code data-code="dlc-rec-d3c"></code> 接續到 D4（需在 D3c 揭曉後）。</p>
   </aside>
@@ -36,11 +36,11 @@
 <section class="slide slide-cp" data-seg="dlc-d4" data-title="檢查點 1 · 驗證來源、證據與稽核" data-minute="155">
   <p class="kicker">檢查點 1 / 3 · 第 155–158 分鐘</p>
   <h2 class="title">驗證來源、證據與稽核</h2>
-  <p class="cp-why"><b>為什麼</b>D3 動過程式，證據行號可能對不上；這一步只讀不改，過期（stale）先記下</p>
+  <p class="cp-why"><b>為什麼</b>D3 改過程式，證據可能過期（stale）；只記下，不修</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「驗證 Domain Memory」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「驗證三項」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 158 分前完成</b><span>→ 下一步：檢查點 2 更新已變動事實</span></p>
   <aside class="notes">
@@ -58,9 +58,9 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出更新清單」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>看過清單回「同意」</b><span>你們同意後 Agent 才寫入</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>被 D3 改變的已審查事實用新 id 的候選，原本那筆沒有被覆寫</p>
+  <p class="cp-judge"><b>你要判斷</b>被 D3 改變的已審查事實改用新 id 登記，原本那筆沒被覆寫</p>
   <p class="cp-next"><b>第 161 分前完成</b><span>→ 下一步：檢查點 3 寫交接單並核對 id</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 158 分）</b>：「第 158 分。請 Agent 先列出 D3 改變了哪些事實，你們同意後它才登記，登記的都是候選，不是 reviewed。reviewed 要走 D2 那套審查。」</p>
@@ -72,15 +72,14 @@
 <section class="slide slide-cp" data-seg="dlc-d4" data-title="檢查點 3 · 寫交接單並核對 id" data-minute="161">
   <p class="kicker">檢查點 3 / 3 · 第 161–165 分鐘</p>
   <h2 class="title">寫交接單並核對 id</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 會自信地寫出不存在的 id；查不到的不准猜，移到未知事項（Unknowns）</p>
+  <p class="cp-why"><b>為什麼</b>Agent 會編出不存在的 id，所以要逐一查證</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；這是第一段</span></li>
-    <li><b>看過 id 核對清單回「同意」</b></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，Agent 才簽章 commit</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；看過 id 清單回「同意」</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>抽一句問 Agent「這句的證據在哪？」，指不出來就請它改寫或移到 Unknowns</p>
+  <p class="cp-judge"><b>你要判斷</b>抽一句問「證據在哪？」；指不出來就移到未知事項（Unknowns）</p>
   <p class="cp-next"><b>第 165 分前完成</b><span>→ 聊「完成後想一想」、填「D4 交接核對」；下一步：回顧</span></p>
   <aside class="notes">
     <p><b>說（06:00／第 161 分）</b>：「第 161 分。想像明天換另一個 Agent 接手，它只看得到這份交接單和 Domain Memory。請 Agent 寫，並要它逐一查證每個 id；你們抽一句問『證據在哪？』。」</p>

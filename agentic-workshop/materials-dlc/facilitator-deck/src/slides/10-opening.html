@@ -9,7 +9,7 @@
     <div class="card fx fx-up"><div class="big-number">3</div><p class="muted">個情境依序全做</p></div>
     <div class="card fx fx-up"><div class="big-number">2</div><p class="muted">人一組（D2 起）</p></div>
   </div>
-  <p class="muted">DLC＝延伸課程（原指遊戲的追加內容；這裡指主課之後的加課）。D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。</p>
+  <p class="muted">DLC 是延伸課程，原指遊戲的追加內容。D1–D4 是今天四段的代號，D3 再分 a、b、c 三張需求卡。</p>
   <aside class="notes">
     <p><b>開場前</b>：選定<b>計時者</b>與<b>證據記錄者</b>。接著講「為什麼」「怎麼進行」兩頁（共約 2 分鐘），再翻到解鎖頁；10:00 計時在總覽頁按 <b>T</b> 啟動。</p>
     <p><b>說</b>：「主課你們看過 Agent 從工具、隊友，到能獨立執行任務的數位員工。今天 180 分鐘加課，主題是：Agent 靠什麼記得領域？答案是 Domain Memory。」</p>
@@ -19,10 +19,10 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="為什麼是 Domain Memory" data-minute="0">
   <p class="kicker">為什麼</p>
-  <h2 class="title">Agent 會忘，團隊會換人，領域知識需要住在檔案裡</h2>
+  <h2 class="title">Agent 會忘、團隊會換人，領域知識要存在檔案裡</h2>
   <div class="cols-3">
     <div class="card fx fx-up"><span class="chip">問題</span><h3>知識散在各處</h3><p>文件、ADR（Architecture Decision Record，架構決策紀錄）、程式、測試各說各話，Agent 只能猜。</p></div>
-    <div class="card fx fx-up"><span class="chip">做法</span><h3>候選 → 審查 → 事實</h3><p>用證據建候選，經人審查與簽章核准，才成為已審查（reviewed）事實。</p></div>
+    <div class="card fx fx-up"><span class="chip">做法</span><h3>先是候選，審查後才是事實</h3><p>用證據建候選，經人審查與簽章核准，才成為已審查（reviewed）事實。</p></div>
     <div class="card fx fx-up"><span class="chip">目的</span><h3>照事實改程式，用測試證明</h3><p>Agent 依已審查事實設計、實作，再用測試證明規則真的守得住。</p></div>
   </div>
   <aside class="notes">
@@ -33,7 +33,7 @@
 
 <section class="slide" data-seg="dlc-opening" data-title="今天怎麼進行" data-minute="0">
   <p class="kicker">180 分鐘</p>
-  <h2 class="title">建立 Memory → 審查核准 → 用它做三個變更 → 交接</h2>
+  <h2 class="title">建立記憶、審查核准、用它做三個變更、交接</h2>
   <ol class="timeline">
     <li data-seg="dlc-d1"><span class="tl-min">10</span><b>D1 · 共同語言與邊界（25）</b></li>
     <li data-seg="dlc-d2"><span class="tl-min">35</span><b>D2 · 審查與核准，成對（25）</b></li>
@@ -54,7 +54,7 @@
   <h2 class="title">開場與環境 開始</h2>
   <p class="subtitle">下載學員包、解出 Plugin、確認環境就緒</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『開場與環境』，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">每個檢查點：貼 ② 給 Agent → 貼 ③ 確認結果 → 回「成功」才往下。</p>
+  <p class="muted">每個檢查點：先貼 ② 給 Agent，再貼 ③ 確認結果；Agent 回「成功」才往下。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
     <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，先貼工作規則。</p>
@@ -65,8 +65,8 @@
   <p class="kicker">開場與環境 · 第 0–10 分鐘</p>
   <h2 class="title">開場 10 分鐘：環境就緒</h2>
   <ul class="seg-brief">
-    <li><b>情境</b><span>你接手 Smart Ticket 訂票後端，今天替它建立 Domain Memory</span></li>
-    <li><b>目標</b><span>測試全過、Plugin 核對無誤、Python 是真的</span></li>
+    <li><b>情境</b><span>你接手訂票後端，今天替它建立 Domain Memory</span></li>
+    <li><b>目標</b><span>測試全過、Plugin 核對無誤、Python 是真的 3.13</span></li>
     <li><b>今天的技巧</b><span>先講好「看到什麼算成功」，Agent 的回報對得上才往下</span></li>
   </ul>
   <ol class="timeline">
@@ -77,10 +77,9 @@
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『開場與環境』› 檢查點 1</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼做這一步、② 貼給 Agent、③ 確認結果、④ 補充。請 Agent 跑 ③ 確認結果，回成功就往下；失敗就貼『失敗時』。提示詞都在 Runbook，投影上的檢查點頁會列出這一步要貼哪一段、要判斷什麼、幾分前完成。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
     <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 71 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
-    <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。「為什麼」「怎麼進行」兩頁已在解鎖前講完；配對放到檢查點 4。</p>
+    <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 8 分）。</p>
     <p><b>降級</b>：第 10 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
   </aside>
 </section>
@@ -91,8 +90,9 @@
   <p class="cp-why"><b>為什麼</b>今天每一步都以測試結果為準，先確認起始 Repo 的測試全部通過</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼工作規則＋②「準備執行環境」</b><span>Runbook『開場與環境』› 檢查點 1；先下載學員包、解壓到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>），在 Repo 根目錄開 Agent</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>下載、解壓、開 Agent</b><span>解到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>）</span></li>
+    <li><b>貼工作規則，再貼 ②</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 3 分前完成</b><span>→ 下一步：檢查點 2 解出 Plugin 並核對 SHA256</span></p>
   <aside class="notes">
@@ -108,9 +108,9 @@
   <p class="cp-why"><b>為什麼</b>今天的檢查都由 Plugin 判定；檔案被改過，結果就不可信</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼 ②「解出 Plugin 並逐檔核對」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>等 Agent 回報</b><span>71 個檔都相符（SHA OK），記進 <code>notes/opening.md</code></span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ②「核對 Plugin」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>等 Agent 回報</b><span>71 個檔都相符：<code>SHA OK</code></span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 5 分前完成</b><span>→ 下一步：檢查點 3 專案就緒與品質關卡檢查</span></p>
   <aside class="notes">
@@ -123,11 +123,11 @@
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 3 · 專案就緒與品質關卡檢查" data-minute="5">
   <p class="kicker">檢查點 3 / 4 · 第 5–8 分鐘</p>
   <h2 class="title">專案就緒與品質關卡檢查</h2>
-  <p class="cp-why"><b>為什麼</b>看 Repo 已有哪些自動檢查；沒有的，之後只能靠測試和人的審查補上</p>
+  <p class="cp-why"><b>為什麼</b>看 Repo 已有哪些自動檢查；沒有的只能靠測試和人來補</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「兩個唯讀檢查」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 8 分前完成</b><span>→ 下一步：檢查點 4 確認真實 Python</span></p>
   <aside class="notes">
@@ -141,11 +141,11 @@
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 4 · 確認真實 Python" data-minute="8">
   <p class="kicker">檢查點 4 / 4 · 第 8–10 分鐘</p>
   <h2 class="title">確認真實 Python</h2>
-  <p class="cp-why"><b>為什麼</b>D2 推送時 Git 直接呼叫 <code>python</code>；Microsoft Store 的捷徑別名會讓推送失敗</p>
+  <p class="cp-why"><b>為什麼</b>D2 推送會呼叫 <code>python</code>，它必須是 venv 裡的真實版本</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼 ②「確認真實 Python、建立起始 commit」</b><span>Runbook › 檢查點 4</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ②「確認 Python」</b><span>Runbook › 檢查點 4；也建立起始 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 10 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
   <aside class="notes">

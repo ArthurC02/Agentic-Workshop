@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build a0eda1c1c790e53a inputs-sha256 a0eda1c1c790e53a3f90ed10582aa67a77f5cfb0379302ed48167d4893e5af63 -->
+<!-- 主持人專用，不發給學員。build 4807d7c0fb49d042 inputs-sha256 4807d7c0fb49d04270878d23b5db34ba734d74e7881e1ddd5990c8ce505d24e7 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -50,19 +50,27 @@
 
   --stage-w: 1920px;
   --stage-h: 1080px;
-  --pad-x: 96px;
+  --pad-x: calc((var(--stage-w) - var(--content-w)) / 2);
   --pad-top: 80px;
   --pad-bottom: 48px;
   --agenda-h: 44px;
 
   --fs-body: 36px;
-  --fs-small: 28px;
-  --fs-xs: 22px;
   --fs-kicker: 26px;
   --fs-title: 72px;
   --fs-h1: 88px;
   --fs-sub: 42px;
   --fs-lead: 44px;
+
+  /* Reading parameters (course-authoring「閱讀參數」); scripts/verify_typography.py measures them. */
+  --content-w: 1728px;                    /* widest content block */
+  --fs-min: 24px;                         /* smallest text on a slide */
+  --zone-gap: 48px;                       /* header | cards | 你要判斷 | footer */
+  --cp-gap: 48px;                         /* between step cards; the flow arrow sits in it */
+  --cp-main: 34px;   --cp-main-lh: 1.3;   /* card main line: 1 line (14 CJK chars fit a third of the content block) */
+  --cp-detail: 30px; --cp-detail-lh: 1.45; /* card detail: ≤ 2 lines */
+  --cp-line: 32px;   --cp-line-lh: 1.4;   /* 為什麼・你要判斷: 1 line */
+  --cp-due: 46px;                         /* footer deadline */
 
   --radius: 0.6rem;
   --radius-lg: 1rem;
@@ -520,15 +528,15 @@ ol.steps > li::before {
 
 /* Checkpoint: header (kicker, title, 為什麼) | main (現在做 label + step cards, centered in the free height) |
    你要判斷 | footer (deadline → 下一步). Rows 4 and 7 split the free space evenly above and below the cards. */
-.slide-cp { grid-template-rows: auto auto auto minmax(0, 1fr) auto auto minmax(0, 1fr) auto auto; }
+.slide-cp { grid-template-rows: auto auto auto minmax(var(--zone-gap), 1fr) auto auto minmax(var(--zone-gap), 1fr) auto auto; }
 .slide-cp > .kicker, .slide-seg > .kicker { margin-bottom: 10px; }
 .slide-cp > .title { text-wrap: balance; }
 .slide .cp-why {
   margin-top: 22px;
   padding-bottom: 24px;
   border-bottom: 2px solid var(--line);
-  font-size: 32px;
-  line-height: 1.45;
+  font-size: var(--cp-line);
+  line-height: var(--cp-line-lh);
   color: var(--ink-2);
   text-wrap: pretty;
 }
@@ -537,14 +545,14 @@ ol.steps > li::before {
   margin-right: 16px;
   padding: 2px 16px;
   border-radius: 99px;
-  font-size: 24px;
+  font-size: var(--fs-min);
   font-weight: 700;
-  letter-spacing: .06em;
+  letter-spacing: .02em;
   vertical-align: 3px;
   background: var(--primary-soft);
   color: var(--primary-ink);
 }
-.slide-cp > .cp-label { grid-row: 5; justify-self: start; margin: 24px 0 16px; }
+.slide-cp > .cp-label { grid-row: 5; justify-self: start; margin: 0 0 16px; }
 ol.cp-flow {
   grid-row: 6;
   list-style: none;
@@ -554,7 +562,7 @@ ol.cp-flow {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
-  gap: 56px;
+  gap: var(--cp-gap);
 }
 ol.cp-flow > li {
   /* sized to content; grid stretch keeps a row's cards equal height */
@@ -566,7 +574,7 @@ ol.cp-flow > li {
   align-items: center;
   align-content: flex-start;
   gap: 10px 16px;
-  padding: 22px 32px 28px;
+  padding: 22px 28px 26px;
   background: var(--white);
   border: 1px solid var(--line);
   border-top: 8px solid var(--primary);
@@ -585,9 +593,9 @@ ol.cp-flow > li:not(:last-child)::after {
   /* flow arrow in the gap between cards */
   content: "›";
   position: absolute;
-  right: -44px;
+  right: calc(var(--cp-gap) / -2);
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(50%, -50%);
   font-size: 72px;
   font-weight: 700;
   line-height: 1;
@@ -597,7 +605,7 @@ ol.cp-flow > li > i {
   padding: 2px 14px;
   border-radius: 99px;
   font-style: normal;
-  font-size: 24px;
+  font-size: var(--fs-min);
   font-weight: 700;
   background: var(--teal-soft);
   color: var(--teal-ink);
@@ -608,26 +616,25 @@ ol.cp-flow > li > b, ol.cp-flow > li > span {
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
-ol.cp-flow > li > b { font-size: 40px; line-height: 1.3; color: var(--navy); text-wrap: balance; }
+ol.cp-flow > li > b { font-size: var(--cp-main); line-height: var(--cp-main-lh); color: var(--navy); text-wrap: balance; }
 ol.cp-flow > li > b b { color: var(--dw-ink); }
-ol.cp-flow > li > span { font-size: 30px; line-height: 1.4; color: var(--ink-2); text-wrap: pretty; }
+ol.cp-flow > li > span { font-size: var(--cp-detail); line-height: var(--cp-detail-lh); color: var(--ink-2); text-wrap: pretty; }
 .slide .cp-judge {
   grid-row: 8;
-  margin-top: 24px;
   padding: 16px 32px;
   background: var(--white);
   border: 1px solid #F9C8B6;
   border-left: 10px solid var(--orange);
   border-radius: var(--radius);
-  font-size: 30px;
-  line-height: 1.45;
+  font-size: var(--cp-line);
+  line-height: var(--cp-line-lh);
   color: var(--ink);
   text-wrap: pretty;
 }
 .cp-judge > b:first-child { background: var(--orange-soft); color: var(--dw-ink); }
 .slide .cp-next {
   grid-row: 9;
-  margin-top: 24px;
+  margin-top: calc(var(--zone-gap) - 16px);
   padding-top: 16px;
   border-top: 2px solid var(--line);
   display: flex;
@@ -635,7 +642,7 @@ ol.cp-flow > li > span { font-size: 30px; line-height: 1.4; color: var(--ink-2);
   flex-wrap: wrap;
   gap: 4px 28px;
 }
-.cp-next > b { font-size: 46px; line-height: 1.2; font-weight: 800; color: var(--dw-ink); }
+.cp-next > b { font-size: var(--cp-due); line-height: 1.2; font-weight: 800; color: var(--dw-ink); }
 .cp-next > span { font-size: 30px; font-weight: 600; color: var(--navy); }
 
 /* Segment opening: header | brief rows (情境／目標／技巧) beside the timer | roadmap | start point. */
@@ -668,7 +675,7 @@ ul.seg-brief > li {
   border-bottom: 2px solid var(--line);
 }
 ul.seg-brief > li:first-child { border-top: 2px solid var(--line); }
-ul.seg-brief > li > b { font-size: 26px; letter-spacing: .06em; color: var(--primary-ink); }
+ul.seg-brief > li > b { font-size: 26px; letter-spacing: .02em; color: var(--primary-ink); }
 ul.seg-brief > li > span { font-size: 34px; line-height: 1.4; }
 .slide-seg ol.timeline > li { padding: 24px 20px 22px; }
 .slide-seg ol.timeline > li b { font-size: 28px; }
@@ -764,7 +771,7 @@ ol.timeline > li .tl-min {
   font-variant-numeric: tabular-nums;
 }
 ol.timeline > li b { font-size: 25px; color: var(--navy); overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-ol.timeline > li .chip { font-size: 17px; padding: 3px 10px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; }
+ol.timeline > li .chip { font-size: var(--fs-min); padding: 3px 10px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; }
 
 ol.timeline > li[data-seg="opening"],
 ol.timeline > li[data-seg="greenfield"] { --seg-c: var(--tool); }
@@ -826,7 +833,7 @@ ol.stage-bar > li.active { background: var(--c); color: var(--white); box-shadow
 ol.stage-bar > li.active::after {
   content: "NOW";
   margin-left: 16px;
-  font-size: 18px;
+  font-size: var(--fs-min);
   padding: 2px 10px;
   border-radius: 99px;
   background: rgba(255, 255, 255, .25);
@@ -1476,7 +1483,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <div class="card fx fx-up"><div class="big-number">3</div><p class="muted">個情境依序全做</p></div>
     <div class="card fx fx-up"><div class="big-number">2</div><p class="muted">人一組（D2 起）</p></div>
   </div>
-  <p class="muted">DLC＝延伸課程（原指遊戲的追加內容；這裡指主課之後的加課）。D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。</p>
+  <p class="muted">DLC 是延伸課程，原指遊戲的追加內容。D1–D4 是今天四段的代號，D3 再分 a、b、c 三張需求卡。</p>
   <aside class="notes">
     <p><b>開場前</b>：選定<b>計時者</b>與<b>證據記錄者</b>。接著講「為什麼」「怎麼進行」兩頁（共約 2 分鐘），再翻到解鎖頁；10:00 計時在總覽頁按 <b>T</b> 啟動。</p>
     <p><b>說</b>：「主課你們看過 Agent 從工具、隊友，到能獨立執行任務的數位員工。今天 180 分鐘加課，主題是：Agent 靠什麼記得領域？答案是 Domain Memory。」</p>
@@ -1486,10 +1493,10 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 
 <section class="slide" data-seg="dlc-opening" data-title="為什麼是 Domain Memory" data-minute="0">
   <p class="kicker">為什麼</p>
-  <h2 class="title">Agent 會忘，團隊會換人，領域知識需要住在檔案裡</h2>
+  <h2 class="title">Agent 會忘、團隊會換人，領域知識要存在檔案裡</h2>
   <div class="cols-3">
     <div class="card fx fx-up"><span class="chip">問題</span><h3>知識散在各處</h3><p>文件、ADR（Architecture Decision Record，架構決策紀錄）、程式、測試各說各話，Agent 只能猜。</p></div>
-    <div class="card fx fx-up"><span class="chip">做法</span><h3>候選 → 審查 → 事實</h3><p>用證據建候選，經人審查與簽章核准，才成為已審查（reviewed）事實。</p></div>
+    <div class="card fx fx-up"><span class="chip">做法</span><h3>先是候選，審查後才是事實</h3><p>用證據建候選，經人審查與簽章核准，才成為已審查（reviewed）事實。</p></div>
     <div class="card fx fx-up"><span class="chip">目的</span><h3>照事實改程式，用測試證明</h3><p>Agent 依已審查事實設計、實作，再用測試證明規則真的守得住。</p></div>
   </div>
   <aside class="notes">
@@ -1500,7 +1507,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 
 <section class="slide" data-seg="dlc-opening" data-title="今天怎麼進行" data-minute="0">
   <p class="kicker">180 分鐘</p>
-  <h2 class="title">建立 Memory → 審查核准 → 用它做三個變更 → 交接</h2>
+  <h2 class="title">建立記憶、審查核准、用它做三個變更、交接</h2>
   <ol class="timeline">
     <li data-seg="dlc-d1"><span class="tl-min">10</span><b>D1 · 共同語言與邊界（25）</b></li>
     <li data-seg="dlc-d2"><span class="tl-min">35</span><b>D2 · 審查與核准，成對（25）</b></li>
@@ -1521,7 +1528,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">開場與環境 開始</h2>
   <p class="subtitle">下載學員包、解出 Plugin、確認環境就緒</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『開場與環境』，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">每個檢查點：貼 ② 給 Agent → 貼 ③ 確認結果 → 回「成功」才往下。</p>
+  <p class="muted">每個檢查點：先貼 ② 給 Agent，再貼 ③ 確認結果；Agent 回「成功」才往下。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
     <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，先貼工作規則。</p>
@@ -1532,8 +1539,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="kicker">開場與環境 · 第 0–10 分鐘</p>
   <h2 class="title">開場 10 分鐘：環境就緒</h2>
   <ul class="seg-brief">
-    <li><b>情境</b><span>你接手 Smart Ticket 訂票後端，今天替它建立 Domain Memory</span></li>
-    <li><b>目標</b><span>測試全過、Plugin 核對無誤、Python 是真的</span></li>
+    <li><b>情境</b><span>你接手訂票後端，今天替它建立 Domain Memory</span></li>
+    <li><b>目標</b><span>測試全過、Plugin 核對無誤、Python 是真的 3.13</span></li>
     <li><b>今天的技巧</b><span>先講好「看到什麼算成功」，Agent 的回報對得上才往下</span></li>
   </ul>
   <ol class="timeline">
@@ -1544,10 +1551,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『開場與環境』› 檢查點 1</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼做這一步、② 貼給 Agent、③ 確認結果、④ 補充。請 Agent 跑 ③ 確認結果，回成功就往下；失敗就貼『失敗時』。提示詞都在 Runbook，投影上的檢查點頁會列出這一步要貼哪一段、要判斷什麼、幾分前完成。」</p>
+    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
     <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 71 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
-    <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。「為什麼」「怎麼進行」兩頁已在解鎖前講完；配對放到檢查點 4。</p>
+    <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 8 分）。</p>
     <p><b>降級</b>：第 10 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
   </aside>
 </section>
@@ -1558,8 +1564,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>今天每一步都以測試結果為準，先確認起始 Repo 的測試全部通過</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼工作規則＋②「準備執行環境」</b><span>Runbook『開場與環境』› 檢查點 1；先下載學員包、解壓到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>），在 Repo 根目錄開 Agent</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>下載、解壓、開 Agent</b><span>解到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>）</span></li>
+    <li><b>貼工作規則，再貼 ②</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 3 分前完成</b><span>→ 下一步：檢查點 2 解出 Plugin 並核對 SHA256</span></p>
   <aside class="notes">
@@ -1575,9 +1582,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>今天的檢查都由 Plugin 判定；檔案被改過，結果就不可信</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼 ②「解出 Plugin 並逐檔核對」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>等 Agent 回報</b><span>71 個檔都相符（SHA OK），記進 <code>notes/opening.md</code></span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ②「核對 Plugin」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>等 Agent 回報</b><span>71 個檔都相符：<code>SHA OK</code></span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 5 分前完成</b><span>→ 下一步：檢查點 3 專案就緒與品質關卡檢查</span></p>
   <aside class="notes">
@@ -1590,11 +1597,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 3 · 專案就緒與品質關卡檢查" data-minute="5">
   <p class="kicker">檢查點 3 / 4 · 第 5–8 分鐘</p>
   <h2 class="title">專案就緒與品質關卡檢查</h2>
-  <p class="cp-why"><b>為什麼</b>看 Repo 已有哪些自動檢查；沒有的，之後只能靠測試和人的審查補上</p>
+  <p class="cp-why"><b>為什麼</b>看 Repo 已有哪些自動檢查；沒有的只能靠測試和人來補</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「兩個唯讀檢查」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 8 分前完成</b><span>→ 下一步：檢查點 4 確認真實 Python</span></p>
   <aside class="notes">
@@ -1608,11 +1615,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 4 · 確認真實 Python" data-minute="8">
   <p class="kicker">檢查點 4 / 4 · 第 8–10 分鐘</p>
   <h2 class="title">確認真實 Python</h2>
-  <p class="cp-why"><b>為什麼</b>D2 推送時 Git 直接呼叫 <code>python</code>；Microsoft Store 的捷徑別名會讓推送失敗</p>
+  <p class="cp-why"><b>為什麼</b>D2 推送會呼叫 <code>python</code>，它必須是 venv 裡的真實版本</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼 ②「確認真實 Python、建立起始 commit」</b><span>Runbook › 檢查點 4</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ②「確認 Python」</b><span>Runbook › 檢查點 4；也建立起始 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 10 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
   <aside class="notes">
@@ -1631,7 +1638,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D1 共同語言與邊界』，從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D1 共同語言與邊界，從檢查點 1 開始，沿用開場的 Agent 對話。今天的技巧是：讓 Agent 找證據、人來定義。Agent 會先列草稿和證據再停下，你回『同意』或『改成…』。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 10 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 10 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -1655,7 +1662,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定讀哪些來源，再建詞彙、Context 與規則候選，最後跑 coverage 和邊界分析。Agent 幫你找證據、組 JSON、跑指令，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
     <p><b>目標數量</b>：詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2，並找出不一致與越界；證據格式是「路徑:起-迄」。</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
     <p><b>Recovery</b>：第 35 分鐘 D1 未完成者，私下發 <code data-code="dlc-rec-d1"></code>（Repo＋已確認 source map＋D1 候選集），記錄原因與時間；Recovery 不作為小組成果評分。</p>
   </aside>
@@ -1664,14 +1671,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 1 · 人工選來源" data-minute="10">
   <p class="kicker">檢查點 1 / 6 · 第 10–13 分鐘</p>
   <h2 class="title">人工選來源</h2>
-  <p class="cp-why"><b>為什麼</b>Plugin 不知道哪份文件可信；只有你選進來的來源，之後才能當證據</p>
+  <p class="cp-why"><b>為什麼</b>Plugin 不知道哪份文件可信；只有你選的來源能當證據</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「列出來源與建議」</b><span>Runbook『D1 共同語言與邊界』› 檢查點 1</span></li>
     <li><b>回「同意」或要改哪一項</b><span>看完 Agent 的理由再回</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>需求文件、ADR、程式、測試四個資料夾都要選；沒選的每個都有一句理由</p>
+  <p class="cp-judge"><b>你要判斷</b>需求、ADR、程式、測試四個資料夾要選；其餘各有一句理由</p>
   <p class="cp-next"><b>第 13 分前完成</b><span>→ 下一步：檢查點 2 初始化與確認來源</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 10 分）</b>：「第 10 分。請輸入解鎖碼，從檢查點 1 開始。discover-sources 只是建議，Agent 也只是建議，選哪些來源是你的決定：需求、ADR、程式、測試都要，快取檔不要。」</p>
@@ -1684,11 +1691,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 2 · 初始化與確認來源" data-minute="13">
   <p class="kicker">檢查點 2 / 6 · 第 13–17 分鐘</p>
   <h2 class="title">初始化與確認來源</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 依你的決定建立 <code>domain-memory/</code>，並記下「人確認過來源」</p>
+  <p class="cp-why"><b>為什麼</b>Agent 依你選的來源建立 Domain Memory</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「初始化並確認來源」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 17 分前完成</b><span>→ 下一步：檢查點 3 詞彙候選</span></p>
   <aside class="notes">
@@ -1702,12 +1709,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 3 · 詞彙候選" data-minute="17">
   <p class="kicker">檢查點 3 / 6 · 第 17–22 分鐘</p>
   <h2 class="title">詞彙候選</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 先列名稱矛盾與詞彙草稿，不自己「修好」矛盾；定義由你決定</p>
+  <p class="cp-why"><b>為什麼</b>Agent 先列矛盾與草稿，不自己修；定義由你決定</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「名稱矛盾與詞彙草稿」</b><span>Runbook › 檢查點 3</span></li>
     <li><b>用一行回覆決定</b><span>例如「採用 1,2,4,5,7；矛盾 A 選 1」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>挑一個詞看證據原文；至少採用 5 個</p>
   <p class="cp-next"><b>第 22 分前完成</b><span>→ 下一步：檢查點 4 Context 與規則候選</span></p>
@@ -1717,7 +1724,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>看</b>：學員是不是看了 Agent 摘錄的證據原文才回覆；有沒有改過任何一個定義；有沒有人發現 Fare／Discount 在程式與文件用法不同。</p>
     <p><b>介入訊號</b>：22 分仍不到 3 個 → 請學員直接回「採用前 5 個」，其餘留到 coverage 補；學員全部回「同意」沒看證據 →「挑一個，請 Agent 再把證據原文念給你聽」。</p>
     <p><b>提示</b>：H2：「同一個概念在文件與程式用不同名字，要記成一個詞的別名，還是兩個詞？先看證據再決定。」</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>通用語言</b>，花 30 秒講（Runbook 有「新概念」框）；證據（cite）／候選已在檢查點 2 介紹，不重講。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>通用語言</b>，花 30 秒講（Runbook 有「新概念」框）；證據與候選已在檢查點 2 講過。</p>
   </aside>
 </section>
 
@@ -1727,9 +1734,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>規則要寫成能被測試推翻的一句話；文件有、程式沒做的，列為缺口</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼 ②「Context 與規則草稿」</b><span>Runbook › 檢查點 4</span></li>
+    <li><b>貼 ②「Context 與規則」</b><span>Runbook › 檢查點 4</span></li>
     <li><b>回覆採用哪些</b><span>看過每條的證據再回</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每條規則有兩段證據：文件一段、測試或程式一段</p>
   <p class="cp-next"><b>第 27 分前完成</b><span>→ 下一步：檢查點 5 找缺口與查詞</span></p>
@@ -1744,16 +1751,16 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 5 · 找缺口與查詞" data-minute="27">
   <p class="kicker">檢查點 5 / 6 · 第 27–31 分鐘</p>
   <h2 class="title">找缺口與查詞</h2>
-  <p class="cp-why"><b>為什麼</b>看哪裡還沒登記，並用一句人話查詞；查不到不是錯，是還不知道的地方</p>
+  <p class="cp-why"><b>為什麼</b>找出還沒登記的地方；查不到的詞就是知識缺口</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「找缺口並查詞」</b><span>Runbook › 檢查點 5</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>從 Agent 列的缺口中，選一個記下來</p>
   <p class="cp-next"><b>第 31 分前完成</b><span>→ 下一步：檢查點 6 查 Context 與檢查越界</span></p>
   <aside class="notes">
-    <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看 Plugin 能不能把你的話對到通用語言（Ubiquitous Language，在同一個 Context 內團隊、文件與程式共用的詞彙）。對不到的，就是語言還沒統一。」</p>
+    <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看 Plugin 能不能把你的話對到通用語言。對不到的，就是語言還沒統一。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
     <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的完整名稱（resolve-terms 不比對別名），請 Agent 換一句。</p>
   </aside>
@@ -1765,8 +1772,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>Agent 對照程式，列出直接讀寫對方資料的地方</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>貼 ②「查 Context 並檢查越界」</b><span>Runbook › 檢查點 6</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ②「檢查越界」</b><span>Runbook › 檢查點 6</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
     <li><b>和旁邊的人聊「完成後想一想」</b><span>再把結論記進「D1 決定」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>看證據，判斷算不算邊界洩漏</p>
@@ -1789,7 +1796,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D2 審查與核准（成對）』。兩人共用一台機器，各開<b>自己的 Agent 對話</b>。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對）。同一台機器，但提案者和夥伴各用自己的 Agent 對話：夥伴另開終端機和新的 Agent 對話，兩人先各貼一次工作規則。每段提示詞都標了該由誰貼，檢查點頁也會寫是哪個對話。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -1813,7 +1820,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備 Change Package；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就舉手，我們有降級路線。」</p>
     <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼一次工作規則（Runbook「開始前」各有一段）。</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
     <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，私下提供給該組 <code data-code="dlc-rec-d2"></code>（已審查的 Domain Memory＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
     <p><b>R3 要明講</b>：<code>record-approval</code> 只比對字串，同機雙身分仍可通過；今天是教學示範，不是安全保證。<b>奇數組</b>：第三人當觀察員（Observer），看核准與簽章是否只出現在夥伴的 Agent 對話，並一起看 <code>verify-audit</code> 結果。</p>
@@ -1824,11 +1831,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 1 · 夥伴建立簽章金鑰" data-minute="35">
   <p class="kicker">檢查點 1 / 6 · 第 35–38 分鐘</p>
   <h2 class="title">夥伴建立簽章金鑰</h2>
-  <p class="cp-why"><b>為什麼</b>之後每個碰到 Registry 的 commit 都要用夥伴的金鑰簽章；私鑰放在 Repo 外</p>
+  <p class="cp-why"><b>為什麼</b>碰到 Domain Memory 的 commit 都要夥伴簽章</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「建立我的簽章金鑰」</b><span>Runbook『D2 審查與核准（成對）』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 38 分前完成</b><span>→ 下一步：檢查點 2 設定審查政策與推送檢查（還是夥伴）</span></p>
   <aside class="notes">
@@ -1842,11 +1849,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 2 · 設定審查政策與推送檢查" data-minute="38">
   <p class="kicker">檢查點 2 / 6 · 第 38–43 分鐘</p>
   <h2 class="title">設定審查政策與推送檢查</h2>
-  <p class="cp-why"><b>為什麼</b>決定誰可以簽、何時檢查，並裝好 push 前的檢查；三件事順序不能調換</p>
+  <p class="cp-why"><b>為什麼</b>決定誰能簽、何時檢查，再裝推送檢查；順序不能換</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>夥伴的對話</i><b>貼 ②「設定審查政策與推送檢查」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>夥伴的對話</i><b>貼 ②「設定審查政策」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 43 分前完成</b><span>→ 下一步：檢查點 3 建立變更審查包並送出提案（換提案者）</span></p>
   <aside class="notes">
@@ -1860,21 +1867,20 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 3 · 建立變更審查包並送出提案" data-minute="43">
   <p class="kicker">檢查點 3 / 6 · 第 43–48 分鐘</p>
   <h2 class="title">建立變更審查包並送出提案</h2>
-  <p class="cp-why"><b>為什麼</b>把 D1 的候選放進一個審查包送審；至少一條規則用反事實檢查證明有測試守著</p>
+  <p class="cp-why"><b>為什麼</b>把 D1 候選放進審查包，並證明測試守得住規則</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；先下載 D2 格式範本</span></li>
-    <li><b>回「選 1」</b><span>再貼第二段「建立變更審查包」</span></li>
-    <li><b>看過回報再貼「送出」</b></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；先下載 D2 範本</span></li>
+    <li><b>回「選 1」，貼第二段</b><span>看過回報再貼「送出」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>測試全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
+  <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
   <p class="cp-next"><b>第 48 分前完成</b><span>→ 下一步：檢查點 4 夥伴核准與簽章提交（換夥伴）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提反事實方案，你選一個；只認 killed。按 Runbook 的下載鈕取得 D2 格式範本，Agent 會把它放進 worksheets。Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry 的雜湊值。第 45 分我會看大家進度。」</p>
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>變更審查包</b>與<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。變更審查包留到檢查點 4 再講。</p>
   </aside>
 </section>
 
@@ -1886,7 +1892,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「審查變更審查包」</b><span>Runbook › 檢查點 4；這是第一段</span></li>
     <li><b>決定核准才貼第二段</b><span>先讀證據原文；要退回就回「退回：原因」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>說得出「為什麼這條可以算事實」，才核准</p>
   <p class="cp-next"><b>第 53 分前完成</b><span>→ 下一步：檢查點 5 寫出核准證明並驗證</span></p>
@@ -1894,17 +1900,18 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（13:00／第 48 分）</b>：「第 48 分。換夥伴，回到你自己的 Agent 對話。先讓 Agent 讀審查包、貼證據原文，你讀過再回核准或退回；只有你的回覆能讓簽章發生。看 git log --show-signature 有沒有 Good signature。」</p>
     <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；commit 有沒有簽。</p>
     <p><b>介入訊號</b>：在提案者的對話裡核准或 commit → 停下，說明為什麼要換到夥伴的對話；commit 未簽章 → 不要硬 push，請 Agent 解釋 sign-every-commit 設定與金鑰路徑。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>變更審查包</b>（Runbook 檢查點 4 ④），花 30 秒講：它是夥伴要審的資料，套用後候選才成為已審查。</p>
   </aside>
 </section>
 
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 5 · 寫出核准證明並驗證" data-minute="53">
   <p class="kicker">檢查點 5 / 6 · 第 53–56 分鐘</p>
   <h2 class="title">寫出核准證明並驗證</h2>
-  <p class="cp-why"><b>為什麼</b>把剛才的簽章 commit 寫成核准證明，確認這個簽章是政策授權的</p>
+  <p class="cp-why"><b>為什麼</b>把簽章 commit 寫成核准證明，確認簽的人有授權</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「寫出核准證明並驗證」</b><span>Runbook › 檢查點 5</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 56 分前完成</b><span>→ 下一步：檢查點 6 完成提案並全部驗證（先提案者）</span></p>
   <aside class="notes">
@@ -1917,12 +1924,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 6 · 完成提案並全部驗證" data-minute="56">
   <p class="kicker">檢查點 6 / 6 · 第 56–60 分鐘</p>
   <h2 class="title">完成提案並全部驗證</h2>
-  <p class="cp-why"><b>為什麼</b>套用後，候選才成為已審查事實；再驗證稽核紀錄沒有被竄改</p>
+  <p class="cp-why"><b>為什麼</b>套用後候選才成為已審查事實；再驗證稽核紀錄</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「定案、套用、驗證」</b><span>Runbook › 檢查點 6；這是第一段</span></li>
     <li><i>夥伴的對話</i><b>四步都成功才貼第二段</b><span>「簽章提交並 push」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 60 分前完成</b><span>→ 兩人聊「完成後想一想」、填「D2 決定」；下一步：休息</span></p>
   <aside class="notes">
@@ -1939,7 +1946,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="kicker">休息 · 60–70</p>
   <h2 class="title">休息 10 分鐘</h2>
   <p class="lead">第 70 分鐘回來，輸入 D3a 解鎖碼。</p>
-  <p class="callout warn">私鑰不要放進 Repo、不要貼給 Agent、不要截圖；Domain Memory 還沒變成已審查的組，先找主持人。</p>
+  <p class="callout warn">私鑰不放進 Repo、不貼給 Agent、不截圖。還沒做到已審查的組，先找主持人。</p>
   <aside class="notes">
     <p><b>操作</b>：按 <b>T</b> 啟動 10:00 倒數（00:00＝第 60 分）。</p>
     <p><b>休息時處理</b>：D2 未完成的組，此時私下提供 Recovery 碼 <code data-code="dlc-rec-d2"></code>（若尚未發）；D1 未完成者可發 <code data-code="dlc-rec-d1"></code>。Recovery 不投影、不在群組公開，不作為小組成果評分。</p>
@@ -1955,7 +1962,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』。提案者的對話先貼「Agent 工作規則」，再從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提示詞都貼到提案者的 Agent 對話，先貼頁面上的 D3 工作規則，再從檢查點 1 開始；commit 還是由夥伴在自己的對話做。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -1968,7 +1975,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>今天的技巧</b><span>Agent 提選項與證據，人來選，寫成交接單</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b><span class="tl-due">第 73 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀需求卡與已審查事實</b><span class="tl-due">第 73 分前</span></li>
     <li data-seg="dlc-d3a"><span class="tl-min">03:00</span><b>2 · 對外介面（Port）與邊界決策</b><span class="tl-due">第 78 分前</span></li>
     <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 85 分前</span></li>
     <li data-seg="dlc-d3a"><span class="tl-min">15:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 89 分前</span></li>
@@ -1977,8 +1984,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3a 電子發票』：先貼工作規則，再做檢查點 1</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D3a 電子發票：25 分鐘、六個檢查點。先讀卡、查事實，再由人做設計決策，交給 Agent 實作，證明測試守得住，Review，最後看參考設計。」</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>說（約 20 秒）</b>：「D3a 電子發票：25 分鐘、六個檢查點。先讀需求卡、查事實，再由你們做設計決定；Agent 照交接單實作，證明測試守得住，人審查差異，最後看參考設計。」</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>重點</b>：外部系統隔離。<code>InvoiceIssuer</code> 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；防腐層（ACL，Anti-Corruption Layer；不是存取控制清單）把 Order 翻譯成發票語言；付款成功不因發票失敗而撤銷；以 order_id 冪等；不持鎖做外部呼叫。</p>
     <p><b>驗收</b>：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。</p>
     <p><b>範圍（解鎖時就宣布）</b>：需求卡已標［核心］／［延伸］。核心 EINV-001、002、003、005～011、015；延伸 EINV-004、012、013、014，時間允許才做。卡上的「API」小節先講：介面照卡做，不讓 Agent 自己發明。</p>
@@ -1987,14 +1994,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="70">
+<section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 1 · 讀需求卡與已審查事實" data-minute="70">
   <p class="kicker">檢查點 1 / 6 · 第 70–73 分鐘</p>
-  <h2 class="title">讀情境卡與已審查事實</h2>
-  <p class="cp-why"><b>為什麼</b>先查已審查事實，再談設計；查不到的是知識缺口，留給人決定</p>
+  <h2 class="title">讀需求卡與已審查事實</h2>
+  <p class="cp-why"><b>為什麼</b>先查已審查事實再設計；查不到的留給人決定</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「查已審查事實」</b><span>Runbook『D3a 電子發票』› 檢查點 1；後面接上需求卡「複製 Markdown」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②＋需求卡全文</b><span>Runbook『D3a 電子發票』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 73 分前完成</b><span>→ 下一步：檢查點 2 對外介面（Port）與邊界決策</span></p>
   <aside class="notes">
@@ -2010,36 +2017,35 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 2 · 對外介面（Port）與邊界決策" data-minute="73">
   <p class="kicker">檢查點 2 / 6 · 第 73–78 分鐘</p>
   <h2 class="title">對外介面（Port）與邊界決策</h2>
-  <p class="cp-why"><b>為什麼</b>發票歸誰管、服務商擋在哪道邊界後，由你們決定；Agent 只照交接單做</p>
+  <p class="cp-why"><b>為什麼</b>發票歸誰管、邊界畫在哪，由你們決定</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「每題兩個選項」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>兩人聊完回選擇</b><span>例如「1A、2B、3A、4A、5B」</span></li>
-    <li><b>看交接單與不變量</b><span>回「同意」或「第 2 條改成…」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>兩人聊完回選擇</b><span>看完不變量再回「同意」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>選項看證據；每條不變量都說得出「怎樣算失敗」，才回「同意」</p>
+  <p class="cp-judge"><b>你要判斷</b>選項看證據；每條不變量說得出「怎樣算失敗」才同意</p>
   <p class="cp-next"><b>第 78 分前完成</b><span>→ 下一步：檢查點 3 交接單與 Agent 實作</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 73 分）</b>：「第 73 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫進交接單 docs/handoffs/d3a-e-invoice.md，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
     <p><b>看</b>：owner 是否有理由；是否把『呼叫服務商』直接寫進付款流程；是否提到不持鎖外呼。</p>
     <p><b>介入訊號</b>：沒有 Port 就直接 import 具體 Client → 問：測試要怎麼模擬逾時？</p>
     <p><b>提示</b>：H2：「現有付款 Gateway 沒有 Port，這次要照做還是改？交接單上寫下理由。」</p>
-    <p><b>新概念</b>：這裡第一次介紹 <b>Port／Adapter</b>、<b>防腐層</b>、<b>Owner Context 與不變量</b>，各花 30 秒講（冪等已在檢查點 1 介紹；Runbook 有「新概念」框）。</p>
+    <p><b>新概念</b>：這裡第一次介紹 <b>Port／Adapter 與防腐層</b>，花 30 秒講（Runbook 有「新概念」框）；負責的 Context 是 Bounded Context 加深一層；不變量只用一句話帶過，檢查點 4 再講。</p>
   </aside>
 </section>
 
 <section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="78">
   <p class="kicker">檢查點 3 / 6 · 第 78–85 分鐘</p>
   <h2 class="title">交接單與 Agent 實作</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 照交接單先提計畫，再分兩段做；每段停下，你們看測試結果再放行</p>
+  <p class="cp-why"><b>為什麼</b>Agent 先提計畫、分兩段做；每段你們看過才放行</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「依交接單提計畫並實作」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>計畫回「同意」</b><span>每段停下，看過結果回「繼續」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「照交接單實作」</b><span>Runbook › 檢查點 3</span></li>
+    <li><b>計畫回「同意」</b><span>每段看過結果再回「繼續」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>計畫沒違反交接單、核心排前面；每段失敗 0 個、既有測試的斷言沒被改</p>
+  <p class="cp-judge"><b>你要判斷</b>計畫沒違反交接單、核心在前；每段失敗 0 個、斷言沒被改</p>
   <p class="cp-next"><b>第 85 分前完成</b><span>→ 下一步：檢查點 4 反事實檢查（沒做完核心也要進）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 78 分）</b>：「第 78 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
@@ -2053,39 +2059,39 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 4 · 反事實檢查" data-minute="85">
   <p class="kicker">檢查點 4 / 6 · 第 85–89 分鐘</p>
   <h2 class="title">反事實檢查</h2>
-  <p class="cp-why"><b>為什麼</b>每條新規則都要證明有測試守著：把它改壞，測試必須失敗（<code>killed</code>）</p>
+  <p class="cp-why"><b>為什麼</b>把每條新規則改壞，測試必須失敗（<code>killed</code>）</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
-    <li><b>看過改壞方式回「同意」</b><span>你們同意後 Agent 才跑</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>看過再回「同意」</b><span>你們同意後 Agent 才跑</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才回「同意」；只認 <code>killed</code></p>
+  <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才同意；只認 <code>killed</code></p>
   <p class="cp-next"><b>第 89 分前完成</b><span>→ 下一步：檢查點 5 檢視差異與登記候選</span></p>
   <aside class="notes">
-    <p><b>說（15:00／第 85 分）</b>：「第 85 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
+    <p><b>說（15:00／第 85 分）</b>：「第 85 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
     <p><b>建議現場做的 3 個</b>：重試上限（<code>MAX_ISSUE_ATTEMPTS</code> 5 → 6）、鎖外呼叫（把 Port 呼叫包回 <code>with self.store.lock:</code>）、冪等鍵（<code>merchant_order_no</code> 改成每次隨機）。參考解答三個都 killed。</p>
     <p><b>看</b>：是否每條新規則都有 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
     <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 請學員貼：「這不算 killed，請說明原因，不要換字串。」；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
+    <p><b>新概念</b>：這裡正式介紹<b>不變量</b>（Runbook 檢查點 4 ④），花 30 秒講：每次操作結束都必須成立；寫得好就能變成「規則被破壞就失敗」的測試。</p>
   </aside>
 </section>
 
 <section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="89">
   <p class="kicker">檢查點 5 / 6 · 第 89–92 分鐘</p>
   <h2 class="title">檢視差異與登記候選</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 回答固定的審查問題；新事實只登記為候選，commit 由夥伴做</p>
+  <p class="cp-why"><b>為什麼</b>Agent 回答審查問題；新事實只登記為候選</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「審查差異並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，Agent 才簽章 commit</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>四題都是「沒有」或「0 失敗」才回「同意」；候選都有證據行號</p>
+  <p class="cp-judge"><b>你要判斷</b>四題都是「沒有」或「0 失敗」才同意；候選都有證據行號</p>
   <p class="cp-next"><b>第 92 分前完成</b><span>→ 下一步：檢查點 6 停手與揭曉對照</span></p>
   <aside class="notes">
     <p><b>說（19:00／第 89 分）</b>：「第 89 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
-    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
-    <p><b>看</b>：新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3a-*.json</code> 會進 commit，屬預期。</p>
+    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3a-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
   </aside>
 </section>
@@ -2093,14 +2099,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 6 · 停手與揭曉對照" data-minute="92">
   <p class="kicker">檢查點 6 / 6 · 第 92–95 分鐘</p>
   <h2 class="title">停手與揭曉對照</h2>
-  <p class="cp-why"><b>為什麼</b>停止擴充，把你們的決定和參考設計對照；差異代表不同取捨</p>
+  <p class="cp-why"><b>為什麼</b>停止擴充，對照參考設計；差異代表不同取捨</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「整理 5 行決策摘要」</b><span>Runbook › 檢查點 6</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
     <li><b>對照投影的參考設計</b><span>兩人聊 ④ 三題，再填「D3a 揭曉對照」</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看、或讓 Agent 補了沒決定的事</p>
+  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看或 Agent 自己補的</p>
   <p class="cp-next"><b>第 95 分前完成</b><span>→ 下一步：D3b 點數折抵</span></p>
   <aside class="notes">
     <p><b>說（22:00／第 92 分）</b>：「第 92 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
@@ -2129,7 +2135,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">Invoicing（新 Context）</span>
-      <p>擁有 Invoice（以 order_id 識別）：處理中／已開立／失敗（PENDING／ISSUED／FAILED）、稅額拆分、最多嘗試 5 次；金額只讀 Order.amount</p>
+      <p>負責 Invoice（以 order_id 識別）：狀態分處理中、已開立、失敗；拆稅額；最多試 5 次；金額只讀 Order.amount</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">Port（Domain）</span>
@@ -2144,7 +2150,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說</b>：參考設計的核心是<b>依賴方向</b>：領域只認識 Port，不認識服務商。請讓學員說出自己的邊界落在哪一層，再比較。</p>
     <p><b>兩段翻譯（ACL）</b>：Invoicing Application 把 Order／Booking／Trip 翻成自己的 <code>InvoiceRequest</code>；Adapter 再把 <code>InvoiceRequest</code> 翻成服務商欄位。發票資訊存在 Invoice，不寫進 Order／Booking。證據：<code>grep -rn "merchant_order_no\|9001\|2001" src</code> 只命中 Adapter 檔。</p>
     <p><b>刻意不做</b>：付款閘道不一起 Port 化（這張卡沒有給它新的失敗語意，見參考解答 ADR 005）；不引入 Queue（ADR 003）。有組做了，問「哪一條驗收條件（AC）需要它？」</p>
-    <p>依據：參考解答 d3a-e-invoice 的 SOLUTION-NOTES 第 1–2 節。只講設計判斷，不現場補寫答案程式。</p>
+    <p>依據：參考解答 d3a-e-invoice 的 SOLUTION-NOTES 第 1–2 節。</p>
     <p><b>提醒</b>：這是參考設計，不是標準答案；只講設計判斷與理由，不現場補寫答案程式。</p>
   </aside>
 </section>
@@ -2163,7 +2169,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；有一個故意改壞的版本（mutant）行為跟原本完全一樣，怎麼補測試都抓不到：為什麼？</p>
+      <p>每條規則各改壞一次，都要 killed。有一處改壞後行為跟原本完全一樣，怎麼補測試都抓不到：為什麼？</p>
     </div>
   </div>
   <aside class="notes">
@@ -2180,11 +2186,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-title" data-seg="dlc-d3b" data-title="解鎖 D3b 點數折抵" data-minute="95" data-unlock="dlc-d3b">
   <p class="kicker">第 95 分鐘 · 解鎖</p>
   <h2 class="title">D3b 點數折抵 開始</h2>
-  <p class="subtitle">點數折抵：「餘額不得為負」這類不變量由哪個 Context 負責，從哪條路徑呼叫都要成立</p>
+  <p class="subtitle">點數折抵：「餘額不得為負」由誰守住，從哪條路徑呼叫都要成立</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3b 點數折抵』，從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3b 點數折抵，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 95 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 95 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -2193,11 +2199,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">D3b：誰擁有點數？誰守住不變量？</h2>
   <ul class="seg-brief">
     <li><b>情境</b><span>會員用點數折抵票款，下單先預留，失敗或退票時歸還</span></li>
-    <li><b>目標</b><span>決定點數歸哪個 Context，折抵接到每條計價路徑</span></li>
+    <li><b>目標</b><span>決定點數歸誰管，折抵接到每條計價路徑</span></li>
     <li><b>今天的技巧</b><span>同 D3a，再請 Agent 列出所有算總額的路徑</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3b"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b><span class="tl-due">第 98 分前</span></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">00:00</span><b>1 · 讀需求卡與已審查事實</b><span class="tl-due">第 98 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">03:00</span><b>2 · 決定負責的 Context 與不變量</b><span class="tl-due">第 103 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 111 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">16:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 116 分前</span></li>
@@ -2207,7 +2213,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3b 點數折抵』› 檢查點 1</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D3b 點數折抵：30 分鐘、六個檢查點，在 D3a 成果上累積。這次最大的決定是：點數歸誰管？Membership、Pricing、Payment 都會碰到的不變量，由哪一個 Context 守住？」</p>
-    <p><b>操作</b>：沿用提案者的 Agent 對話。說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：沿用提案者的 Agent 對話。說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>重點</b>：先決定 owner Context 並記錄理由；餘額不為負、折抵後應付 ≥ 0 且為整數、先折扣後折抵；建立時 reserve、付款失敗或取消時 restore，不重複扣點。</p>
     <p><b>驗收</b>：一般、團體、改票三條計價路徑都有測試，付款失敗返點有測試。改票（PTS-013）在卡上是延伸，參考解答完全沒改改票程式，只補測試。</p>
     <p><b>範圍（解鎖時就宣布）</b>：核心 PTS-001、003～010、012、014；延伸 PTS-002、011、013、015。卡上的「API」小節先講（<code>redeemed_points</code>、<code>payable_amount</code>），不讓 Agent 自己發明欄位。</p>
@@ -2216,16 +2222,17 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="95">
+<section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 1 · 讀需求卡與已審查事實" data-minute="95">
   <p class="kicker">檢查點 1 / 6 · 第 95–98 分鐘</p>
-  <h2 class="title">讀情境卡與已審查事實</h2>
-  <p class="cp-why"><b>為什麼</b>先查已審查事實再設計；同名不同義的詞最容易讓 Agent 混淆</p>
+  <h2 class="title">讀需求卡與已審查事實</h2>
+  <p class="cp-why"><b>為什麼</b>先查已審查事實；同名不同義的詞最容易讓 Agent 混淆</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「查已審查事實」</b><span>Runbook『D3b 點數折抵』› 檢查點 1；兩人先讀需求卡，再接上需求卡「複製 Markdown」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>兩人先讀需求卡</b><span>「優惠後總額」和「應付金額」差在哪</span></li>
+    <li><i>提案者的對話</i><b>貼 ②＋需求卡全文</b><span>Runbook『D3b 點數折抵』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>需求卡的「優惠」和 Domain Memory 裡的優惠，是不是同一件事</p>
+  <p class="cp-judge"><b>你要判斷</b>需求卡的「優惠」和記憶裡的優惠，是不是同一件事</p>
   <p class="cp-next"><b>第 98 分前完成</b><span>→ 下一步：檢查點 2 決定負責的 Context 與不變量</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
@@ -2242,12 +2249,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>漏接一條計價路徑，就有一種訂票不受折抵規則限制</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「選項、不變量與計價路徑」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>兩人聊完回選擇</b><span>例如「1A、2B、3A、4B」</span></li>
-    <li><b>看交接單與計價路徑</b><span>回「同意」或「第 2 條改成…」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「選項與計價路徑」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>兩人聊完回選擇</b><span>看完計價路徑再回「同意」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每條計價路徑都附「檔案路徑:行號」與會走到的訂票種類，才回「同意」</p>
+  <p class="cp-judge"><b>你要判斷</b>每條計價路徑都附行號和訂票種類，才回「同意」</p>
   <p class="cp-next"><b>第 103 分前完成</b><span>→ 下一步：檢查點 3 交接單與 Agent 實作</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 98 分）</b>：「第 98 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫進交接單 docs/handoffs/d3b-points-redemption.md，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
@@ -2261,14 +2267,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="103">
   <p class="kicker">檢查點 3 / 6 · 第 103–111 分鐘</p>
   <h2 class="title">交接單與 Agent 實作</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 照交接單先提計畫，再分兩段做；每段停下，你們看測試與試算再放行</p>
+  <p class="cp-why"><b>為什麼</b>Agent 先提計畫、分兩段做；每段看測試與試算再放行</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「依交接單提計畫並實作」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>計畫回「同意」</b><span>每段停下，看過結果回「繼續」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「照交接單實作」</b><span>Runbook › 檢查點 3</span></li>
+    <li><b>計畫回「同意」</b><span>每段看過結果再回「繼續」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>計畫含每條計價路徑；每段失敗 0 個、試算和卡上一致、斷言沒被改</p>
+  <p class="cp-judge"><b>你要判斷</b>計畫含每條計價路徑；失敗 0 個、試算和卡上一致、斷言沒改</p>
   <p class="cp-next"><b>第 111 分前完成</b><span>→ 下一步：檢查點 4 反事實檢查</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 103 分）</b>：「第 103 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
@@ -2286,13 +2292,13 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
-    <li><b>看過改壞方式回「同意」</b><span>你們同意後 Agent 才跑</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>看過再回「同意」</b><span>你們同意後 Agent 才跑</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才回「同意」；只認 <code>killed</code></p>
+  <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才同意；只認 <code>killed</code></p>
   <p class="cp-next"><b>第 116 分前完成</b><span>→ 下一步：檢查點 5 檢視差異與登記候選</span></p>
   <aside class="notes">
-    <p><b>說（16:00／第 111 分）</b>：「第 111 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
+    <p><b>說（16:00／第 111 分）</b>：「第 111 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
     <p><b>建議現場做的 4 個</b>：上限以優惠後總額計（改成原價；只有 M002 665 抓得到）、預留在寫入前（移到寫入之後）、團體付款失敗歸還（移除 restore）、退款現金＝Order.amount（改讀 <code>payable_amount</code>；沒有「改票後退票」的測試就會存活）。第一個與最後一個是「先 survived 再補測試」的好示範。</p>
     <p><b>看</b>：是否每條新規則都有 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
     <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 請學員貼：「這不算 killed，請說明原因，不要換字串。」；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
@@ -2302,19 +2308,18 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="116">
   <p class="kicker">檢查點 5 / 6 · 第 116–121 分鐘</p>
   <h2 class="title">檢視差異與登記候選</h2>
-  <p class="cp-why"><b>為什麼</b>需求改變了已審查事實時，不能直接覆寫：用新 id 登記候選，等下次核准</p>
+  <p class="cp-why"><b>為什麼</b>被改變的已審查事實不能覆寫，要用新 id 登記候選</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「審查差異並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，Agent 才簽章 commit</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>四題都沒問題才回「同意」；被改變的已審查事實有新的候選 id</p>
+  <p class="cp-judge"><b>你要判斷</b>四題都沒問題才同意；被改變的事實有新的候選 id</p>
   <p class="cp-next"><b>第 121 分前完成</b><span>→ 下一步：檢查點 6 停手與揭曉對照</span></p>
   <aside class="notes">
     <p><b>說（21:00／第 116 分）</b>：「第 116 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
-    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
-    <p><b>看</b>：新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3b-*.json</code> 會進 commit，屬預期。</p>
+    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3b-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
   </aside>
 </section>
@@ -2322,14 +2327,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 6 · 停手與揭曉對照" data-minute="121">
   <p class="kicker">檢查點 6 / 6 · 第 121–125 分鐘</p>
   <h2 class="title">停手與揭曉對照</h2>
-  <p class="cp-why"><b>為什麼</b>停止擴充，把你們的決定和參考設計對照；差異代表不同取捨</p>
+  <p class="cp-why"><b>為什麼</b>停止擴充，對照參考設計；差異代表不同取捨</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「整理 5 行決策摘要」</b><span>Runbook › 檢查點 6</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
     <li><b>對照投影的參考設計</b><span>兩人聊 ④ 三題，再填「D3b 揭曉對照」</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看、或讓 Agent 補了沒決定的事</p>
+  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看或 Agent 自己補的</p>
   <p class="cp-next"><b>第 125 分前完成</b><span>→ 下一步：D3c 團體部分退款</span></p>
   <aside class="notes">
     <p><b>說（26:00／第 121 分）</b>：「第 121 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
@@ -2366,7 +2371,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     </div>
     <div class="card fx fx-up">
       <span class="chip">金額流向</span>
-      <p>Booking 記折抵點數、推導 <code>payable_amount</code> → 閘道扣款＝Order.amount → 發票 500＝未稅 476＋稅 24</p>
+      <p>Booking 記下折抵點數、算出 <code>payable_amount</code>；閘道照 Order.amount 扣款；發票 500＝未稅 476＋稅 24</p>
     </div>
   </div>
   <aside class="notes">
@@ -2391,7 +2396,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；有一處改壞是等價的（對任何輸入都和原程式一樣，補再多測試也抓不到）：最低 100 改成 1 後，1～99 仍被「必須是 100 的倍數」擋下，沒有任何輸入分辨得出改壞前後</p>
+      <p>每條規則各改壞一次，都要 killed。例外：最低 100 改成 1 抓不到，因為「必須是 100 的倍數」已擋下 1～99；這叫等價改壞</p>
     </div>
   </div>
   <aside class="notes">
@@ -2407,11 +2412,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-title" data-seg="dlc-d3c" data-title="解鎖 D3c 團體部分退款" data-minute="125" data-unlock="dlc-d3c">
   <p class="kicker">第 125 分鐘 · 解鎖</p>
   <h2 class="title">D3c 團體部分退款 開始</h2>
-  <p class="subtitle">團體部分退款：一致性邊界（哪些資料必須一起成功或一起失敗）</p>
+  <p class="subtitle">團體部分退款：哪些資料必須一起成功、一起失敗</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D3c 團體部分退款』，從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -2424,7 +2429,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>今天的技巧</b><span>同 D3a，交接單先寫明哪些既有測試可以改寫</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀情境卡與已審查事實</b><span class="tl-due">第 128 分前</span></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀需求卡與已審查事實</b><span class="tl-due">第 128 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">03:00</span><b>2 · Aggregate（聚合）邊界與不變量</b><span class="tl-due">第 133 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 142 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">17:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 148 分前</span></li>
@@ -2434,7 +2439,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3c 團體部分退款』› 檢查點 1</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D3c 團體部分退款：30 分鐘、六個檢查點。這次主題是 Aggregate：一致性邊界畫在哪？每一條新規則都要做反事實檢查。時間不夠就先做 Aggregate 與兩條規則。」</p>
-    <p><b>操作</b>：沿用提案者的 Agent 對話。說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：沿用提案者的 Agent 對話。說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>重點</b>：Booking 為 Aggregate root，<code>cancel_passengers</code> 為唯一入口；累計退款 ≤ 已付金額；座位數 = 剩餘旅客數；同一旅客不得重複取消；全部取消等同整張退票。</p>
     <p><b>驗收</b>：<b>每一條</b>新規則都有一次 killed 的反事實檢查紀錄。</p>
     <p><b>時間不夠時</b>：只完成 Aggregate 與兩條規則也算合格。手續費與時間門檻以需求卡為準，不自創。</p>
@@ -2444,16 +2449,16 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 1 · 讀情境卡與已審查事實" data-minute="125">
+<section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 1 · 讀需求卡與已審查事實" data-minute="125">
   <p class="kicker">檢查點 1 / 6 · 第 125–128 分鐘</p>
-  <h2 class="title">讀情境卡與已審查事實</h2>
-  <p class="cp-why"><b>為什麼</b>先查已審查事實，並請 Agent 用需求卡範例把金額對帳等式算一遍</p>
+  <h2 class="title">讀需求卡與已審查事實</h2>
+  <p class="cp-why"><b>為什麼</b>先查已審查事實，再請 Agent 用範例算一遍對帳等式</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「查已審查事實」</b><span>Runbook『D3c 團體部分退款』› 檢查點 1；後面接上需求卡「複製 Markdown」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②＋需求卡全文</b><span>Runbook『D3c 團體部分退款』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>對帳等式的每一項從哪裡來；看懂了，之後才判斷得出實作有沒有算錯</p>
+  <p class="cp-judge"><b>你要判斷</b>對帳等式每一項從哪裡來；看懂了，之後才抓得到算錯</p>
   <p class="cp-next"><b>第 128 分前完成</b><span>→ 下一步：檢查點 2 Aggregate（聚合）邊界與不變量</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 125 分）</b>：「第 125 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
@@ -2467,13 +2472,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 2 · Aggregate（聚合）邊界與不變量" data-minute="128">
   <p class="kicker">檢查點 2 / 6 · 第 128–133 分鐘</p>
   <h2 class="title">Aggregate（聚合）邊界與不變量</h2>
-  <p class="cp-why"><b>為什麼</b>部分取消若能從好幾個地方改座位或退款，就很難保證「全有或全無」</p>
+  <p class="cp-why"><b>為什麼</b>部分取消若能從多處改資料，就難保證全有或全無</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「選項、不變量與可改寫的測試」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>兩人聊完回選擇</b><span>例如「1A、2B、3A」</span></li>
-    <li><b>看交接單與可改寫的測試</b><span>回「同意」或「第 2 個測試不准改」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「選項與可改的測試」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>兩人聊完回選擇</b><span>看完可改的測試再回「同意」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每個允許改寫的既有測試都有對應的 PCR 理由，才回「同意」</p>
   <p class="cp-next"><b>第 133 分前完成</b><span>→ 下一步：檢查點 3 交接單與 Agent 實作</span></p>
@@ -2489,14 +2493,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 3 · 交接單與 Agent 實作" data-minute="133">
   <p class="kicker">檢查點 3 / 6 · 第 133–142 分鐘</p>
   <h2 class="title">交接單與 Agent 實作</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 照交接單先提計畫，再分兩段做；第一段先建立唯一入口</p>
+  <p class="cp-why"><b>為什麼</b>Agent 先提計畫、分兩段做；第一段先建唯一入口</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「依交接單提計畫並實作」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>計畫回「同意」</b><span>每段停下，看過結果回「繼續」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「照交接單實作」</b><span>Runbook › 檢查點 3</span></li>
+    <li><b>計畫回「同意」</b><span>每段看過結果再回「繼續」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>第一步是唯一入口；每段失敗 0 個、改寫的測試都在允許範圍內、範例第 2 步沒留下變更</p>
+  <p class="cp-judge"><b>你要判斷</b>第一步是唯一入口；每段失敗 0 個、只改允許的測試</p>
   <p class="cp-next"><b>第 142 分前完成</b><span>→ 下一步：檢查點 4 反事實檢查（沒做完也要進）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 133 分）</b>：「第 133 分。貼檢查點 3 的提示詞：Agent 依交接單先提計畫，你們回同意才做；分兩段，每段停下，看完測試結果再回繼續。」</p>
@@ -2514,13 +2518,13 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
-    <li><b>看過改壞方式回「同意」</b><span>你們同意後 Agent 才跑</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>看過再回「同意」</b><span>你們同意後 Agent 才跑</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每一條新規則都有一處改壞方式，才回「同意」；只認 <code>killed</code></p>
+  <p class="cp-judge"><b>你要判斷</b>每一條新規則都有一處改壞方式才同意；只認 <code>killed</code></p>
   <p class="cp-next"><b>第 148 分前完成</b><span>→ 下一步：檢查點 5 檢視差異與登記候選</span></p>
   <aside class="notes">
-    <p><b>說（17:00／第 142 分）</b>：「第 142 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。沒看到 killed 字樣就不算；只看到亂碼或 ERROR 都不算成功，要看到 killed。」</p>
+    <p><b>說（17:00／第 142 分）</b>：「第 142 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
     <p><b>建議現場做的 4 個</b>：手續費逐位或以自己的票價（改成總額取整一次或平均分攤；全成人測試會存活，補成人＋學生混合團後 killed）、先決定再釋放（把釋放座位移到決定之前）、部分取消後不可整筆退（拿掉守門，多退 4,200）、只釋放被取消者的座位（改成整筆釋放）。</p>
     <p><b>看</b>：是否每條新規則都有 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
     <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 請學員貼：「這不算 killed，請說明原因，不要換字串。」；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
@@ -2533,16 +2537,15 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>一致性邊界與新規則只登記為候選；commit 由夥伴做</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「審查差異並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，Agent 才簽章 commit</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>四題都沒問題才回「同意」；Aggregate 有唯一入口與不變量</p>
+  <p class="cp-judge"><b>你要判斷</b>四題都沒問題才同意；Aggregate 有唯一入口與不變量</p>
   <p class="cp-next"><b>第 152 分前完成</b><span>→ 下一步：檢查點 6 停手與揭曉對照</span></p>
   <aside class="notes">
     <p><b>說（23:00／第 148 分）</b>：「第 148 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
-    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>。</p>
-    <p><b>看</b>：新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3c-*.json</code> 會進 commit，屬預期。</p>
+    <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3c-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對交接單「允許改寫的既有測試」與工作規則第 7 條（改既有測試要先停下說明、等學員同意）。</p>
   </aside>
 </section>
@@ -2550,14 +2553,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 6 · 停手與揭曉對照" data-minute="152">
   <p class="kicker">檢查點 6 / 6 · 第 152–155 分鐘</p>
   <h2 class="title">停手與揭曉對照</h2>
-  <p class="cp-why"><b>為什麼</b>停止擴充，把你們的決定和參考設計對照；差異代表不同取捨</p>
+  <p class="cp-why"><b>為什麼</b>停止擴充，對照參考設計；差異代表不同取捨</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「整理 5 行決策摘要」</b><span>Runbook › 檢查點 6</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
     <li><b>對照投影的參考設計</b><span>兩人聊 ④ 三題，再填「D3c 揭曉對照」</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看、或讓 Agent 補了沒決定的事</p>
+  <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看或 Agent 自己補的</p>
   <p class="cp-next"><b>第 155 分前完成</b><span>→ 下一步：D4 交接</span></p>
   <aside class="notes">
     <p><b>說（27:00／第 152 分）</b>：「第 152 分，請先停手。接下來看參考設計，不是標準答案，重點是設計理由。差異不代表錯，代表你們做了不同取捨。」</p>
@@ -2590,7 +2593,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     </div>
     <div class="card fx fx-up">
       <span class="chip">手續費一個家</span>
-      <p>費率帶 D ≥ 14／7–13／1–6 → 10／20／30%、D ≤ 0 不受理，放同一模組；每人手續費＝自己的票價 × 費率，無條件捨去</p>
+      <p>距出發 14 天以上收 10%、7–13 天 20%、1–6 天 30%，當天起不受理，都放同一模組；每人手續費＝自己的票價 × 費率，無條件捨去</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">座位與紀錄</span>
@@ -2619,7 +2622,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各弄壞一次 → killed；手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團的測試抓得到</p>
+      <p>每條規則各改壞一次，都要 killed。手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團的測試抓得到</p>
     </div>
   </div>
   <aside class="notes">
@@ -2639,7 +2642,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="lead">在 Runbook 輸入解鎖碼，打開『D4 交接』，從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D4 交接，從檢查點 1 開始。提示詞貼到提案者的 Agent 對話；最後的 commit 由夥伴在自己的對話做。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 155 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 155 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
 
@@ -2647,8 +2650,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="kicker">D4 交接 · 第 155–165 分鐘</p>
   <h2 class="title">D4：驗證、更新、交接</h2>
   <ul class="seg-brief">
-    <li><b>情境</b><span>明天換另一個 Agent 接手，只看得到 Repo、Domain Memory 與交接單</span></li>
-    <li><b>目標</b><span>先驗證 Domain Memory，把 D3 改變的事實登記成候選，再寫交接單</span></li>
+    <li><b>情境</b><span>明天換別的 Agent 接手，只看得到 Repo 與交接單</span></li>
+    <li><b>目標</b><span>先驗證記憶、把 D3 改變的事實登記成候選，再寫交接單</span></li>
     <li><b>今天的技巧</b><span>交接單只准引用查得到的 id，要 Agent 逐一查證</span></li>
   </ul>
   <ol class="timeline">
@@ -2659,7 +2662,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D4 交接』› 檢查點 1，提示詞貼到提案者的對話</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D4 十分鐘，三段提示詞都貼給同一個 Agent：先請它驗證 Domain Memory 還站得住，再列出 D3 改變的事實、你們同意後登記成候選，最後請它寫交接單並逐一查證 id。你們只回『同意』或『改成…』。」</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>驗收（看紀錄，不看表單填多少）</b>：<code>notes/d4.md</code> 有驗證結果與更新清單；<code>docs/handoffs/d4-next-agent.md</code> 七段齊全、Agent 的 id 核對清單全部查得到，已 commit。</p>
     <p><b>Recovery</b>：D3c 未完成者仍可用 <code data-code="dlc-rec-d3c"></code> 接續到 D4（需在 D3c 揭曉後）。</p>
   </aside>
@@ -2668,11 +2671,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d4" data-title="檢查點 1 · 驗證來源、證據與稽核" data-minute="155">
   <p class="kicker">檢查點 1 / 3 · 第 155–158 分鐘</p>
   <h2 class="title">驗證來源、證據與稽核</h2>
-  <p class="cp-why"><b>為什麼</b>D3 動過程式，證據行號可能對不上；這一步只讀不改，過期（stale）先記下</p>
+  <p class="cp-why"><b>為什麼</b>D3 改過程式，證據可能過期（stale）；只記下，不修</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「驗證 Domain Memory」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「驗證三項」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 158 分前完成</b><span>→ 下一步：檢查點 2 更新已變動事實</span></p>
   <aside class="notes">
@@ -2690,9 +2693,9 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出更新清單」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>看過清單回「同意」</b><span>你們同意後 Agent 才寫入</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>被 D3 改變的已審查事實用新 id 的候選，原本那筆沒有被覆寫</p>
+  <p class="cp-judge"><b>你要判斷</b>被 D3 改變的已審查事實改用新 id 登記，原本那筆沒被覆寫</p>
   <p class="cp-next"><b>第 161 分前完成</b><span>→ 下一步：檢查點 3 寫交接單並核對 id</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 158 分）</b>：「第 158 分。請 Agent 先列出 D3 改變了哪些事實，你們同意後它才登記，登記的都是候選，不是 reviewed。reviewed 要走 D2 那套審查。」</p>
@@ -2704,15 +2707,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d4" data-title="檢查點 3 · 寫交接單並核對 id" data-minute="161">
   <p class="kicker">檢查點 3 / 3 · 第 161–165 分鐘</p>
   <h2 class="title">寫交接單並核對 id</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 會自信地寫出不存在的 id；查不到的不准猜，移到未知事項（Unknowns）</p>
+  <p class="cp-why"><b>為什麼</b>Agent 會編出不存在的 id，所以要逐一查證</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；這是第一段</span></li>
-    <li><b>看過 id 核對清單回「同意」</b></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，Agent 才簽章 commit</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；看過 id 清單回「同意」</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>抽一句問 Agent「這句的證據在哪？」，指不出來就請它改寫或移到 Unknowns</p>
+  <p class="cp-judge"><b>你要判斷</b>抽一句問「證據在哪？」；指不出來就移到未知事項（Unknowns）</p>
   <p class="cp-next"><b>第 165 分前完成</b><span>→ 聊「完成後想一想」、填「D4 交接核對」；下一步：回顧</span></p>
   <aside class="notes">
     <p><b>說（06:00／第 161 分）</b>：「第 161 分。想像明天換另一個 Agent 接手，它只看得到這份交接單和 Domain Memory。請 Agent 寫，並要它逐一查證每個 id；你們抽一句問『證據在哪？』。」</p>
@@ -2731,7 +2733,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="lead">在 Runbook 輸入解鎖碼，打開『回顧』，從<b>檢查點 1</b> 開始。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的回顧，從檢查點 1 開始。除了檢查點 4 由夥伴貼到自己的對話，其他提示詞貼給任一個 Agent 對話都可以。」</p>
-    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 15:00 段落計時（00:00＝第 165 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，只在本備註視需要私下提供。</p>
+    <p><b>操作</b>：在本頁按 <b>T</b> 啟動 15:00 段落計時（00:00＝第 165 分），翻頁時持續計時。本頁大字顯示解鎖碼。</p>
   </aside>
 </section>
 
@@ -2740,7 +2742,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <h2 class="title">15 分鐘回顧：用證據說話</h2>
   <ul class="seg-brief">
     <li><b>情境</b><span>今天留下了紀錄、交接單、Domain Memory 與稽核紀錄</span></li>
-    <li><b>目標</b><span>找出 Domain Memory 改變 Agent 輸出的證據，帶走提示詞與一項行動</span></li>
+    <li><b>目標</b><span>找出記憶改變 Agent 輸出的證據，帶走提示詞與行動</span></li>
     <li><b>今天的技巧</b><span>請 Agent 從紀錄整理證據，人只判斷；沒有證據就寫「未觀察」</span></li>
   </ul>
   <ol class="timeline">
@@ -2752,7 +2754,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『回顧』› 檢查點 1，貼給任一個 Agent 對話</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「15 分鐘回顧：請 Agent 從今天的紀錄找證據，你們判斷站不站得住；小組口頭討論哪些核准步驟只是照流程做完；最後每人挑一份自己的提示詞清單，小組選一項行動。」</p>
-    <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
+    <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>回顧至少要談到</b>：哪個已審查事實改變了 Agent 的輸出；哪個候選差點被當成事實；自己核准自己只是照流程做完，和真正由他人審查差在哪裡。討論只用口頭，不用寫下來。</p>
     <p><b>課後</b>：提醒刪除簽章金鑰；Recovery 不作為小組成果評分。</p>
   </aside>
@@ -2765,8 +2767,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「從紀錄整理證據」</b><span>Runbook『回顧』› 檢查點 1</span></li>
-    <li><b>回「同意」或「第 N 題改成…」</b><span>看完 Agent 整理的證據再回</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>回「同意」或要改哪題</b><span>看完 Agent 整理的證據再回</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>證據站不站得住；指不出證據的句子，改成「未觀察」</p>
   <p class="cp-next"><b>第 169 分前完成</b><span>→ 下一步：檢查點 2 比較哪些核准步驟擋得住錯</span></p>
@@ -2785,7 +2787,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="cp-flow">
     <li><b>貼 ②「列出核准流程」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>💬 聊 ④ 討論題</b><span>哪一步真的擋住過錯誤</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>哪一步只是照流程做完：同一個人在同一台機器上就能自己完成</p>
   <p class="cp-next"><b>第 174 分前完成</b><span>→ 下一步：檢查點 3 挑選提示詞與一項行動</span></p>
@@ -2799,12 +2801,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-retro" data-title="檢查點 3 · 挑選提示詞與一項行動" data-minute="174">
   <p class="kicker">檢查點 3 / 4 · 第 174–178 分鐘</p>
   <h2 class="title">挑選提示詞與一項行動</h2>
-  <p class="cp-why"><b>為什麼</b>讓 Agent 把有效的提示詞改寫成能帶回自己專案的版本，你只要挑</p>
+  <p class="cp-why"><b>為什麼</b>Agent 把有效的提示詞改寫成通用版，你只要挑</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>輪流貼 ②「起草 5 段提示詞」</b><span>Runbook › 檢查點 3；每人回「留第幾段」</span></li>
-    <li><b>小組選一項行動</b><span>最後一人貼第二段「3 個改善行動」，回覆選哪項</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>小組選一項行動</b><span>最後一人貼第二段，回覆選哪項</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>小組只選一項行動：誰負責、怎麼確認有效</p>
   <p class="cp-next"><b>第 178 分前完成</b><span>→ 下一步：檢查點 4 匯出與結束</span></p>
@@ -2818,11 +2820,11 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-retro" data-title="檢查點 4 · 匯出與結束" data-minute="178">
   <p class="kicker">檢查點 4 / 4 · 第 178–180 分鐘</p>
   <h2 class="title">匯出與結束</h2>
-  <p class="cp-why"><b>為什麼</b>刪掉練習用的私鑰並關掉簽章設定，否則之後的 commit 都會失敗</p>
+  <p class="cp-why"><b>為什麼</b>刪掉練習用私鑰、關掉簽章設定，否則之後 commit 會失敗</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「刪除簽章私鑰」</b><span>Runbook › 檢查點 4</span></li>
-    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
     <li><b>小組用兩分鐘對齊結論</b><span>填回顧表，按「匯出」</span></li>
   </ol>
   <p class="cp-next"><b>第 180 分前完成</b><span>→ 結束；保存 <code>notes/</code></span></p>

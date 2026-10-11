@@ -14,11 +14,11 @@ section: 參考
 
 | 詞彙 | 今天的用法 | 出處 |
 |---|---|---|
-| DDD（Domain-Driven Design，領域驅動設計） | 先把業務的名詞、規則與責任分清楚，再讓程式結構跟著業務邊界走的設計方法。 | Evans《Domain-Driven Design》；Vernon《Implementing Domain-Driven Design》〈Getting Started with DDD〉 |
-| 通用語言（Ubiquitous Language） | 在同一個 Context 內，團隊、文件、程式與測試對同一件事使用同一個名字與定義；今天以 Registry 的詞彙（vocabulary）記錄。 | Evans《Domain-Driven Design》〈Communication and the Use of Language〉 |
-| Bounded Context（限界上下文，簡稱 Context） | 一個名詞或規則「在這個範圍內意思一致」的邊界，通常對應一群負責同一類決定的程式。每個 Context 寫「它決定什麼」。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
-| Owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的那個 Context。例：D3a 要決定「發票」由哪個 Context 負責；其他 Context 只能透過約定取用。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
-| Contract（約定） | Context 之間約定交換的資料或介面；另一方只能透過它取得資料，不直接碰對方內部。例：付款 Context 只透過約定好的「付款結果」通知發票 Context。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
+| DDD（Domain-Driven Design，領域驅動設計） | 先分清楚業務的名詞、規則與責任，再讓程式結構跟著業務邊界走的設計方法。 | Evans《Domain-Driven Design》；Vernon《Implementing Domain-Driven Design》〈Getting Started with DDD〉 |
+| 通用語言（Ubiquitous Language） | 同一個 Context 內，團隊、文件、程式與測試對同一件事用同一個名字與定義；今天記在 Registry 的詞彙（vocabulary）。 | Evans《Domain-Driven Design》〈Communication and the Use of Language〉 |
+| Bounded Context（限界上下文，簡稱 Context） | 在這個範圍內，同一個名詞或規則的意思一致；通常對應一群負責同一類決定的程式。每個 Context 寫一句「它決定什麼」。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
+| Owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的 Context；其他 Context 只能透過約定取用。例：D3a 決定「發票」歸誰管。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉 |
+| Contract（約定） | Context 之間約定交換的資料或介面；另一方只透過它取得資料，不碰對方內部。例：付款 Context 只用「付款結果」通知發票 Context。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
 | 邊界洩漏 | 一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式。例：計價程式直接改會員的點數欄位。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
 | Aggregate（聚合）／Aggregate root（聚合根） | Aggregate 是必須**一起**保持一致的一組資料；外界只能從一個入口物件（Aggregate root）修改它。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | 不變量（Invariant，INV） | 每次操作結束時都必須成立的業務規則，可以寫成一個會失敗的測試。例：會員點數餘額不得為負。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
@@ -32,7 +32,7 @@ section: 參考
 | 詞彙 | 今天的用法 | 出處 |
 |---|---|---|
 | Plugin（外掛套件） | 裝進 Agent 的擴充工具組。今天的 domain-memory Plugin 提供查詢、登記與審查領域知識的指令。 | `vendor/domain-memory/references/packaging.md`〈Packaging modes〉 |
-| Domain Memory／Registry | Domain Memory 是經人審查、存在 Repo 裡的領域知識；Registry 是它的資料檔，放在 `domain-memory/` 資料夾、以 JSON 檔保存。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
+| Domain Memory／Registry | Domain Memory 是經人審查、存在 Repo 裡的領域知識；Registry 是它的資料檔，也就是 `domain-memory/` 裡的 JSON 檔。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | record（紀錄）與 `asset:id` | Registry 裡的一筆資料。引用時寫成 `asset:id`（類別:id），例如 `rules:FARE-005`。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | `usage`／working-memory | `get-context` 輸出開頭的欄位：D1 是 `working-memory`（整份只能參考），D2 起是 `constraint`（已審查的紀錄可當限制）。某一筆是候選還是已審查，看它自己的 `status`。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
 | 來源（source）／source map | 人確認過、可以當證據的路徑清單。之後新增、刪除或改名檔案，`verify-sources` 會回報 `stale`。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Before Step 0: Map repository sources〉 |
@@ -46,7 +46,7 @@ section: 參考
 | obligation（OB，要通過的檢查） | 一個驗收條件或規則對應的可觀察檢查，通常是一個測試指令。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Step 6: Derive test obligations〉 |
 | 核准證明（attestation） | 寫進變更審查包、指向簽章 commit 的核准證據。 | `vendor/domain-memory/references/reliability-architecture.md`〈Approval and test attestations〉 |
 | 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了；`survived`：沒有測試守住它；`inconclusive`：逾時。做法類似變異測試（mutation testing）。 | `vendor/domain-memory/references/script-api.md`〈Checks on the code being written〉 |
-| 交接單（Handoff） | 交給 Agent 或同事的決策紀錄，存在 `docs/handoffs/`；Agent 只照它做、不自己補決定。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
+| 交接單（Handoff） | 記錄你們決定的文件，交給 Agent 或同事，存在 `docs/handoffs/`；Agent 只照它做，不自己補決定。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
 | Forces／Unknowns（未知事項）／Proof obligations（必須用測試證明的事） | 交接單的三段。Forces：影響決定的考量與限制；Unknowns：還沒決定的事，不能讓 Agent 自己補；Proof obligations：每條規則用哪個測試證明。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
 | 稽核紀錄（audit）／`verify-audit` | Registry 每次變動都附加一筆稽核事件；`verify-audit` 回 `valid` 代表沒被竄改。 | `vendor/domain-memory/references/reliability-architecture.md`〈Update protocol〉 |
 | SHA256／雜湊 | 由檔案內容算出的固定長度字串，像檔案的指紋；一個位元組被改，值就不同。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
@@ -64,5 +64,5 @@ section: 參考
 | 簽章 commit | 用 Maintainer 私鑰簽過名的 commit，證明是持鑰人提交的。今天以它作為核准證據。 | Git 官方文件〈git-commit〉 |
 | Git hook／pre-push hook | pre-push hook 是 Git 在 push 前自動執行的腳本，今天用它檢查有沒有核准與簽章。 | Git 官方文件〈githooks〉 |
 | venv（Python 虛擬環境） | 每個專案各自獨立的一套 Python 套件，放在 `.venv` 資料夾。 | Python 官方文件〈venv — Creation of virtual environments〉 |
-| Recovery（復原包） | 進度落後時改用的接續基線，由主持人個別提供解鎖碼，在新的 `resume-` 資料夾接續。不算自己完成前一段。 | 本課程〈歡迎與使用方式〉 |
+| Recovery（復原包） | 進度落後時改用的前一段完成版。主持人個別提供解鎖碼，你在新的 `resume-` 資料夾接續；不算自己完成前一段。 | 本課程〈歡迎與使用方式〉 |
 | `record-approval` | 記錄夥伴核准決定的 Plugin 指令，只由夥伴的 Agent 執行。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
