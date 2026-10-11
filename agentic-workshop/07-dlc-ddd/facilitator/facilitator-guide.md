@@ -73,7 +73,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 ## 2. 教室配置與分組
 
 - **兩人一組、一台機器、兩個 Agent 對話**。選 D1 做得比較完整的那台；它的主人當 **Proposer**（提案者，用自己的 Agent 對話準備 Change Package，不得核准、不 commit），另一人當 **Maintainer**（夥伴，另開終端機啟動自己的 Agent 對話：持簽章金鑰、讀審查包後核准、簽章 commit、push）。Maintainer 的 Agent 對話開到課程結束：D3a–c 檢查點 5 與 D4 檢查點 3 的簽章 commit、回顧的刪除私鑰都在這個對話執行。
-- 開場第 7 分鐘（「找夥伴」頁）就配好對；D1 各人在自己的 Repo 做，D2 起兩人共用一台機器。開場有人環境裝不起來，D1 起先以夥伴的機器為主。
+- 開場檢查點 4（第 8–10 分鐘）就配好對；D1 各人在自己的 Repo 做，D2 起兩人共用一台機器。開場有人環境裝不起來，D1 起先以夥伴的機器為主。
 - **人數奇數時組成三人組，第三人當觀察員（Observer）**：看每一步是不是在對的人的 Agent 對話裡執行（核准、簽章 commit、push 只出現在 Maintainer 的對話；proposer 的 Agent 不碰 `record-approval`），並一起看 `verify-audit` 結果。D3 起 Observer 負責對照交接單（`docs/handoffs/d3*.md`），並核對 Agent 回報的 counterfactual 結果。
 - D3 三段可以換人操作鍵盤與發言，但提案者與夥伴的 Agent 對話不換；簽章 commit 一律在持鑰夥伴的對話。**Maintainer 的私鑰不換人**：只有持鑰人能簽觸及 Registry 的 commit。
 - 座位安排讓兩人能同時看同一個螢幕；助教巡堂路線要能看到螢幕上的終端機輸出。
@@ -89,13 +89,12 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 | 分鐘 | 檢查點 | 你說／做 |
 |---|---|---|
+| 0 | （解鎖前） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁，共約 2 分鐘 |
 | 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
 | 0–3 | 1 · 安裝相依套件與測試 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
-| 1–2 | （等待安裝時） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁 |
 | 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 71 files`、`"version": "0.10.15"` |
 | 5–8 | 3 · 專案就緒與品質關卡檢查 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
-| 7 | 找夥伴 | 配對；奇數時三人組，第三人當觀察員 |
-| 8–10 | 4 · 確認真實 Python | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的 |
+| 8–10 | 4 · 確認真實 Python | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
 
 巡場看：學員是不是「貼 ② → 看回報 → 跑 ③ 確認結果」，而不是自己在終端機打指令。③ 回「失敗」時請學員貼該檢查點的「失敗時」提示詞，讓 Agent 先解釋錯誤、列出處理方式，等學員同意再做；不要替學員改指令。最常見的是 Agent 沒經 `dm` 腳本（cp950 錯誤）或沒在同一個指令裡啟用 `.venv`（`python` 指到 `WindowsApps`）：請學員重貼工作規則。
 

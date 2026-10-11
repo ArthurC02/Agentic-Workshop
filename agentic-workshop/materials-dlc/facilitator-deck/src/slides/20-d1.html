@@ -11,14 +11,13 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="D1 語言與邊界 6 個檢查點" data-minute="10" data-timer="25:00" data-gates="dlc-d1">
+<section class="slide slide-seg" data-seg="dlc-d1" data-title="D1 共同語言與邊界 · 總覽" data-minute="10" data-timer="25:00" data-gates="dlc-d1">
   <p class="kicker">D1 共同語言與邊界 · 第 10–35 分鐘</p>
   <h2 class="title">D1：建立有證據的候選</h2>
-  <ul>
-    <li><b>情境</b>：領域知識散在文件、ADR、程式與測試，說法不一，Agent 只能猜</li>
-    <li><b>目標</b>：詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2 的候選，找出不一致與越界</li>
-    <li><b>今天的技巧</b>：Agent 找證據、人來定義：看「路徑:起-迄」證據，回一句話決定</li>
-    <li><b>從這裡開始</b>：Runbook『D1 共同語言與邊界』› 檢查點 1，沿用開場的 Agent 對話</li>
+  <ul class="seg-brief">
+    <li><b>情境</b><span>領域知識散在文件與程式，說法不一，Agent 只能猜</span></li>
+    <li><b>目標</b><span>建立有證據的詞彙、Context 與規則候選</span></li>
+    <li><b>今天的技巧</b><span>Agent 找證據、人來定義，回一句話決定</span></li>
   </ul>
   <ol class="timeline">
     <li data-seg="dlc-d1"><span class="tl-min">00:00</span><b>1 · 人工選來源</b><span class="tl-due">第 13 分前</span></li>
@@ -28,26 +27,28 @@
     <li data-seg="dlc-d1"><span class="tl-min">17:00</span><b>5 · 找缺口與查詞</b><span class="tl-due">第 31 分前</span></li>
     <li data-seg="dlc-d1"><span class="tl-min">21:00</span><b>6 · 查 Context 與檢查越界</b><span class="tl-due">第 35 分前</span></li>
   </ol>
+  <p class="callout seg-start"><b>從這裡開始</b>Runbook『D1 共同語言與邊界』› 檢查點 1，沿用開場的 Agent 對話</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定讀哪些來源，再建詞彙、Context 與規則候選，最後跑 coverage 和邊界分析。Agent 幫你找證據、組 JSON、跑指令，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
+    <p><b>目標數量</b>：詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2，並找出不一致與越界；證據格式是「路徑:起-迄」。</p>
     <p><b>操作</b>：說完翻到檢查點 1。之後每到時間點翻到下一個檢查點頁；本頁時間軸會依計時自動標示目前檢查點。</p>
     <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
     <p><b>Recovery</b>：第 35 分鐘 D1 未完成者，私下發 <code data-code="dlc-rec-d1"></code>（Repo＋已確認 source map＋D1 候選集），記錄原因與時間；Recovery 不作為小組成果評分。</p>
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="檢查點 1 · 人工選來源" data-minute="10">
+<section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 1 · 人工選來源" data-minute="10">
   <p class="kicker">檢查點 1 / 6 · 第 10–13 分鐘</p>
   <h2 class="title">人工選來源</h2>
-  <p class="cp-why"><b>為什麼</b>Plugin 不知道哪份文件可信；只有你選進來的來源，之後才能當證據。</p>
+  <p class="cp-why"><b>為什麼</b>Plugin 不知道哪份文件可信；只有你選進來的來源，之後才能當證據</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>打開 Runbook『D1 共同語言與邊界』› 檢查點 1</li>
-    <li>貼 ②「列出來源與建議」給 Agent，看完理由回「同意」或要改哪一項</li>
-    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「列出來源與建議」</b><span>Runbook『D1 共同語言與邊界』› 檢查點 1</span></li>
+    <li><b>回「同意」或要改哪一項</b><span>看完 Agent 的理由再回</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>需求文件、ADR、程式、測試四個資料夾都要選；沒選的每個都有一句理由</p>
-  <p class="cp-next">第 13 分前完成 → 下一步：檢查點 2 初始化與確認來源</p>
+  <p class="cp-next"><b>第 13 分前完成</b><span>→ 下一步：檢查點 2 初始化與確認來源</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 10 分）</b>：「第 10 分。請輸入解鎖碼，從檢查點 1 開始。discover-sources 只是建議，Agent 也只是建議，選哪些來源是你的決定：需求、ADR、程式、測試都要，快取檔不要。」</p>
     <p><b>看</b>：學員是不是讀了 Agent 的理由才回覆，還是直接照單全收；有沒有漏掉 docs/requirements/；__pycache__ 是否排除。</p>
@@ -56,17 +57,16 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="檢查點 2 · 初始化與確認來源" data-minute="13">
+<section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 2 · 初始化與確認來源" data-minute="13">
   <p class="kicker">檢查點 2 / 6 · 第 13–17 分鐘</p>
   <h2 class="title">初始化與確認來源</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 依你的決定建立 <code>domain-memory/</code>，並記下「人確認過來源」。</p>
+  <p class="cp-why"><b>為什麼</b>Agent 依你的決定建立 <code>domain-memory/</code>，並記下「人確認過來源」</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>打開 Runbook『D1 共同語言與邊界』› 檢查點 2</li>
-    <li>貼 ②「初始化並確認來源」給 Agent</li>
-    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「初始化並確認來源」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
-  <p class="cp-next">第 17 分前完成 → 下一步：檢查點 3 詞彙候選</p>
+  <p class="cp-next"><b>第 17 分前完成</b><span>→ 下一步：檢查點 3 詞彙候選</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 13 分）</b>：「第 13 分。初始化 Domain Memory，檔案納入版本控管（tracked）、審查模式先設成只存草稿（local-draft-only）。這一步是把『我們讀哪些來源』寫成檔案，不是口頭同意。」</p>
     <p><b>看</b>：Agent 回報 confirm-sources 確認的路徑是否與 <code>notes/d1.md</code>「來源決定」一致；有沒有人讓 Agent commit domain-memory/。</p>
@@ -75,18 +75,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="檢查點 3 · 詞彙候選" data-minute="17">
+<section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 3 · 詞彙候選" data-minute="17">
   <p class="kicker">檢查點 3 / 6 · 第 17–22 分鐘</p>
   <h2 class="title">詞彙候選</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 先列名稱矛盾與詞彙草稿，不自己「修好」矛盾；定義由你決定。</p>
+  <p class="cp-why"><b>為什麼</b>Agent 先列名稱矛盾與詞彙草稿，不自己「修好」矛盾；定義由你決定</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>打開 Runbook『D1 共同語言與邊界』› 檢查點 3</li>
-    <li>貼 ②「名稱矛盾與詞彙草稿」給 Agent，用一行回覆決定</li>
-    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「名稱矛盾與詞彙草稿」</b><span>Runbook › 檢查點 3</span></li>
+    <li><b>用一行回覆決定</b><span>例如「採用 1,2,4,5,7；矛盾 A 選 1」</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>挑一個詞看證據原文；至少採用 5 個，例如「採用 1,2,4,5,7；矛盾 A 選 1」</p>
-  <p class="cp-next">第 22 分前完成 → 下一步：檢查點 4 Context 與規則候選</p>
+  <p class="cp-judge"><b>你要判斷</b>挑一個詞看證據原文；至少採用 5 個</p>
+  <p class="cp-next"><b>第 22 分前完成</b><span>→ 下一步：檢查點 4 Context 與規則候選</span></p>
   <aside class="notes">
     <p><b>說（07:00／第 17 分）</b>：「第 17 分。建詞彙候選，至少 5 個。Agent 會先列名稱矛盾，看證據時想想兩個名字是同一件事還是兩件事。每個詞都要有證據行號。」</p>
     <p><b>可選提示</b>：Agent 的矛盾清單沒有 Fare Policy／Discount Policy 時，請學員補一句「也比對 Fare Policy 和 Discount Policy」；Runbook 的提示詞不會主動指向這組。</p>
@@ -97,18 +97,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="檢查點 4 · Context 與規則候選" data-minute="22">
+<section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 4 · Context 與規則候選" data-minute="22">
   <p class="kicker">檢查點 4 / 6 · 第 22–27 分鐘</p>
   <h2 class="title">Context 與規則候選</h2>
-  <p class="cp-why"><b>為什麼</b>規則要寫成能被測試推翻的一句話；文件有、程式沒做的，列為缺口。</p>
+  <p class="cp-why"><b>為什麼</b>規則要寫成能被測試推翻的一句話；文件有、程式沒做的，列為缺口</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>打開 Runbook『D1 共同語言與邊界』› 檢查點 4</li>
-    <li>貼 ②「Context 與規則草稿」給 Agent，回覆採用哪些</li>
-    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「Context 與規則草稿」</b><span>Runbook › 檢查點 4</span></li>
+    <li><b>回覆採用哪些</b><span>看過每條的證據再回</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每條規則有兩段證據：文件一段、測試或程式一段</p>
-  <p class="cp-next">第 27 分前完成 → 下一步：檢查點 5 找缺口與查詞</p>
+  <p class="cp-next"><b>第 27 分前完成</b><span>→ 下一步：檢查點 5 找缺口與查詞</span></p>
   <aside class="notes">
     <p><b>說（12:00／第 22 分）</b>：「第 22 分。Context 兩個以上，規則兩條以上。規則的證據一定要在剛才確認的來源裡；文件有、程式找不到的概念，照實列為缺口，不要讓 Agent 編出來。」</p>
     <p><b>看</b>：學員能不能說出採用的 Context 各自決定什麼；規則草稿是否有規則文件＋測試或程式兩段證據；Agent 有沒有為了湊數寫出程式沒有的行為。</p>
@@ -117,18 +117,17 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="檢查點 5 · 找缺口與查詞" data-minute="27">
+<section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 5 · 找缺口與查詞" data-minute="27">
   <p class="kicker">檢查點 5 / 6 · 第 27–31 分鐘</p>
   <h2 class="title">找缺口與查詞</h2>
-  <p class="cp-why"><b>為什麼</b>看哪裡還沒登記，並用一句人話查詞；查不到不是錯，是還不知道的地方。</p>
+  <p class="cp-why"><b>為什麼</b>看哪裡還沒登記，並用一句人話查詞；查不到不是錯，是還不知道的地方</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>打開 Runbook『D1 共同語言與邊界』› 檢查點 5</li>
-    <li>貼 ②「找缺口並查詞」給 Agent</li>
-    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「找缺口並查詞」</b><span>Runbook › 檢查點 5</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>從 Agent 列的缺口中，選一個記下來</p>
-  <p class="cp-next">第 31 分前完成 → 下一步：檢查點 6 查 Context 與檢查越界</p>
+  <p class="cp-next"><b>第 31 分前完成</b><span>→ 下一步：檢查點 6 查 Context 與檢查越界</span></p>
   <aside class="notes">
     <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看 Plugin 能不能把你的話對到通用語言（Ubiquitous Language，在同一個 Context 內團隊、文件與程式共用的詞彙）。對不到的，就是語言還沒統一。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
@@ -136,19 +135,18 @@
   </aside>
 </section>
 
-<section class="slide" data-seg="dlc-d1" data-title="檢查點 6 · 查 Context 與檢查越界" data-minute="31">
+<section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 6 · 查 Context 與檢查越界" data-minute="31">
   <p class="kicker">檢查點 6 / 6 · 第 31–35 分鐘</p>
   <h2 class="title">查 Context 與檢查越界</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 對照程式，列出直接讀寫對方資料的地方。</p>
+  <p class="cp-why"><b>為什麼</b>Agent 對照程式，列出直接讀寫對方資料的地方</p>
   <p class="cp-label">現在做</p>
-  <ol class="steps">
-    <li>打開 Runbook『D1 共同語言與邊界』› 檢查點 6</li>
-    <li>貼 ②「查 Context 並檢查越界」給 Agent</li>
-    <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
-    <li>和旁邊的人聊「完成後想一想」，再把結論記進「D1 決定」</li>
+  <ol class="cp-flow">
+    <li><b>貼 ②「查 Context 並檢查越界」</b><span>Runbook › 檢查點 6</span></li>
+    <li><b>貼 ③ 確認結果</b><span>成功→往下；失敗→貼「失敗時」</span></li>
+    <li><b>和旁邊的人聊「完成後想一想」</b><span>再把結論記進「D1 決定」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>看證據，判斷算不算邊界洩漏</p>
-  <p class="cp-next">第 35 分前完成 → 下一步：D2 審查與核准（兩人一組）</p>
+  <p class="cp-next"><b>第 35 分前完成</b><span>→ 下一步：D2 審查與核准（兩人一組）</span></p>
   <aside class="notes">
     <p><b>說（21:00／第 31 分）</b>：「第 31 分。最後：get-context 取出 Context 的知識，analyze-boundary 檢查 Context 之間是否互相知道得太多。Agent 會附證據，是不是洩漏由你判斷。做完和旁邊的人聊「完成後想一想」三題，再把結論記進 D1 決定。35 分鐘 D1 結束，D2 換成兩人一組。」</p>
     <p><b>看</b>：是否至少涵蓋兩個不同 Context；是否讀到實際的洩漏（例如三處複製計價、直接依賴具體 Gateway）。</p>

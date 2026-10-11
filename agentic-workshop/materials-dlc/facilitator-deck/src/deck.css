@@ -256,7 +256,7 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
 /* Code inside small labels would drop below 24px at the usual .86em. */
 .slide .kicker code, .slide .chip code, .slide .reveal-badge code, .slide .draw-card-tag code { font-size: 1em; }
 
-.slide ul, .slide ol:not(.timeline):not(.stage-bar):not(.steps) {
+.slide ul, .slide ol:not(.timeline):not(.stage-bar):not(.steps):not(.cp-flow) {
   padding-left: 1.3em;
 }
 .slide li { margin: .2em 0; }
@@ -504,29 +504,166 @@ ol.steps > li::before {
   flex-shrink: 0;
 }
 
-/* Checkpoint slide: 為什麼 → 現在做 (ol.steps) → 你要判斷 → 第 b 分前完成 → 下一步. */
-.cp-why, .cp-judge { font-size: 32px; line-height: 1.45; color: var(--ink); }
+/* ---------- 8b. Zoned layouts: checkpoint (.slide-cp) and segment opening (.slide-seg) ----------
+   Same side margins as every slide. A grid spans the whole safe area: the header sits on top,
+   the footer / roadmap is anchored to the bottom, and the main zone takes the free height. */
+.slide.slide-cp, .slide.slide-seg { display: grid; gap: 0; align-content: stretch; }
+
+/* Checkpoint: header (kicker, title, 為什麼) | main (現在做 label + step cards, centered in the free height) |
+   你要判斷 | footer (deadline → 下一步). Rows 4 and 7 split the free space evenly above and below the cards. */
+.slide-cp { grid-template-rows: auto auto auto minmax(0, 1fr) auto auto minmax(0, 1fr) auto auto; }
+.slide-cp > .kicker, .slide-seg > .kicker { margin-bottom: 10px; }
+.slide-cp > .title { text-wrap: balance; }
+.slide .cp-why {
+  margin-top: 22px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--line);
+  font-size: 32px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
 .cp-why > b:first-child, .cp-judge > b:first-child, .cp-label {
   display: inline-block;
   margin-right: 16px;
   padding: 2px 16px;
   border-radius: 99px;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
+  letter-spacing: .06em;
+  vertical-align: 3px;
   background: var(--primary-soft);
   color: var(--primary-ink);
 }
-.cp-judge > b:first-child { background: var(--orange-soft); color: var(--dw-ink); }
-.slide .cp-label { align-self: flex-start; margin: 4px 0 -6px; }
-.slide .cp-next {
-  margin-top: auto;
-  padding-top: 14px;
-  border-top: 2px solid var(--line);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--navy);
+.slide-cp > .cp-label { grid-row: 5; justify-self: start; margin: 24px 0 16px; }
+ol.cp-flow {
+  grid-row: 6;
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 56px;
 }
-ol.timeline > li .tl-due { font-size: 24px; color: var(--muted); }
+ol.cp-flow > li {
+  /* sized to content; grid stretch keeps a row's cards equal height */
+  counter-increment: step;
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  gap: 10px 16px;
+  padding: 22px 32px 28px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 8px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+ol.cp-flow > li::before {
+  content: counter(step);
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+ol.cp-flow > li:not(:last-child)::after {
+  /* flow arrow in the gap between cards */
+  content: "›";
+  position: absolute;
+  right: -44px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--primary);
+}
+ol.cp-flow > li > i {
+  padding: 2px 14px;
+  border-radius: 99px;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 700;
+  background: var(--teal-soft);
+  color: var(--teal-ink);
+}
+ol.cp-flow > li > b, ol.cp-flow > li > span {
+  /* break at spaces and punctuation, not inside quoted prompt names */
+  flex: 0 0 100%;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+ol.cp-flow > li > b { font-size: 40px; line-height: 1.3; color: var(--navy); text-wrap: balance; }
+ol.cp-flow > li > b b { color: var(--dw-ink); }
+ol.cp-flow > li > span { font-size: 30px; line-height: 1.4; color: var(--ink-2); text-wrap: pretty; }
+.slide .cp-judge {
+  grid-row: 8;
+  margin-top: 24px;
+  padding: 16px 32px;
+  background: var(--white);
+  border: 1px solid #F9C8B6;
+  border-left: 10px solid var(--orange);
+  border-radius: var(--radius);
+  font-size: 30px;
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.cp-judge > b:first-child { background: var(--orange-soft); color: var(--dw-ink); }
+.slide .cp-next {
+  grid-row: 9;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 2px solid var(--line);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+}
+.cp-next > b { font-size: 46px; line-height: 1.2; font-weight: 800; color: var(--dw-ink); }
+.cp-next > span { font-size: 30px; font-weight: 600; color: var(--navy); }
+
+/* Segment opening: header | brief rows (情境／目標／技巧) beside the timer | roadmap | start point. */
+.slide-seg {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  column-gap: 56px;
+}
+.slide-seg > .kicker, .slide-seg > .title { grid-column: 1 / -1; }
+.slide-seg > .timeline { grid-column: 1 / -1; grid-row: 4; }
+.slide-seg > .seg-start { grid-column: 1 / -1; grid-row: 5; margin-top: 24px; padding: 18px 36px; font-weight: 600; }
+.seg-start > b:first-child { margin-right: 20px; color: var(--primary-ink); }
+.slide-seg > .dk-timer-big { grid-column: 2; grid-row: 3; align-self: center; margin: 0; padding: 12px 44px 16px; }
+.slide-seg .dk-timer-time { font-size: 112px; }
+.slide ul.seg-brief {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: center;
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+}
+ul.seg-brief > li {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: baseline;
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--line);
+}
+ul.seg-brief > li:first-child { border-top: 2px solid var(--line); }
+ul.seg-brief > li > b { font-size: 26px; letter-spacing: .06em; color: var(--primary-ink); }
+ul.seg-brief > li > span { font-size: 34px; line-height: 1.4; }
+.slide-seg ol.timeline > li { padding: 24px 20px 22px; }
+.slide-seg ol.timeline > li b { font-size: 28px; }
+ol.timeline > li .tl-due { font-size: 26px; font-weight: 700; color: var(--dw-ink); }
 ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
 
 /* ---------- 9. Table ---------- */
