@@ -6,6 +6,7 @@
   <p class="subtitle">Greenfield（從頭開始的新專案）：個人用 Agent 完成核心訂票 MVP（Minimum Viable Product，最小可行產品）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Greenfield 任務」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">每個檢查點，投影會提示這一步貼哪段、看什麼；提示詞都在 Runbook。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Greenfield 任務，從檢查點 1 開始。每到一個檢查點，投影會告訴你貼哪段、判斷什麼、幾分前做完；提示詞都在 Runbook，複製貼上就好。」</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 22:00 段落計時（00:00＝第 07 分），翻頁時持續計時。本頁大字顯示 Greenfield 解鎖碼。</p>
@@ -135,6 +136,7 @@
     <p class="lead">停止修改，保存並提交現況。</p>
     <p class="muted">未完成也請交付現況及限制。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>口令（00:22／第 29 分，逐字）</b>：「停止修改，保存並提交現況；不再延長實作。」</p>
     <p>29 分鐘收成果和缺項，不強修完整 MVP，也不私下延長。沒做完也照收 <code>notes/greenfield.md</code>（計畫、每步驗收、審查答案、交付摘要）和交付表單。</p>
@@ -152,6 +154,7 @@
     <li class="fx">同一筆<b>再付一次被拒</b>，不新增訂單</li>
   </ol>
   <p class="callout fx fx-fade"><b>功能做到哪裡、和 Agent 合作得好不好，分開看。</b>沒走到的如實標「未驗證」。</p>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p>不提供參考解答或完整實作。</p>
     <p><b>API 輪廓</b>：<code>GET /health</code> 200，<code>{"status":"ok"}</code>｜<code>GET /trips</code> 只列可售座位 &gt; 0、站名精確篩選｜<code>POST /bookings</code> 1–4 人且座位足夠；保留座位、<code>PENDING_PAYMENT</code>、逐人計價加總｜<code>POST …/pay</code> 只有待付款能付；成功為 <code>PAID</code>＋唯一訂單；重複付款拒絕｜<code>GET /orders/{order_id}</code> 讀既有訂單；金額＝訂票總額。</p>

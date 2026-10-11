@@ -13,6 +13,10 @@ Per edition (main, dlc):
    card main line ≤ 14 and detail ≤ 24.
 4. A form named on a slide (「X」 followed by 選／記／勾／填／表單) is a form title (minus （…）), page title or
    `## ` section of a Runbook page in that segment.
+5. Sync cues (course-authoring 「Sync cues」): a slide marker is `<p class="sync-cue" data-sync="key …">⏸ 看投影</p>`.
+   Every Runbook ```callout sync title must contain a key of a marked slide whose data-minute lies in the page's
+   minute range; every key of a marked slide must appear in such a callout ("解鎖碼" on a data-unlock slide is
+   answered by the Runbook lock card instead). Every data-unlock and data-reveal-of slide carries the marker.
 Unlock slides vs unlock-codes.json (group and minute) are already checked by build_materials.validate_slides.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_deck_runbook.py
 """
@@ -23,6 +27,7 @@ from pathlib import Path
 
 from build_materials import load_edition
 from check_blocks import sections
+from materials_md import SYNC_PREFIX
 
 ROOT = Path(__file__).resolve().parents[1]
 CP = re.compile(r"## 檢查點 (\d+) · (.+)（第 (\d+)–(\d+) 分鐘）$")
@@ -33,6 +38,9 @@ MINUTE = re.compile(r"第 ?(\d+) ?分(前完成)?")
 
 
 LIMITS = {"why": 30, "judge": 36, "main": 14, "detail": 24}
+SYNC_CUE = re.compile(r'(?s)<p class="sync-cue" data-sync="([^"]*)">(.*?)</p>')
+SYNC_CALLOUT = re.compile(r"(?m)^```callout sync\r?\n([^\r\n]*)")
+UNLOCK_KEY = "解鎖碼"
 
 
 FILE_REF = re.compile(r"[\w./{}-]*[\w}-]\.(?:md|json|py|sh|ps1|zip|txt|ya?ml)\b")
@@ -68,7 +76,9 @@ def parse_page(name: str, src: str) -> dict:
     meta = dict(re.findall(r"(?m)^(\w+): *(.*)$", src.split("\n---", 1)[0]))
     cps = [CP.match(h) for h, _ in sections(src)]
     cps = [(int(m[1]), m[2], int(m[3]), int(m[4])) for m in cps if m]
-    return {"file": name, "src": src, "title": meta.get("title", ""), "start": int(meta.get("minute", "0").split("-")[0]),
+    minutes = [int(x) for x in meta.get("minute", "0").split("-")]
+    return {"file": name, "src": src, "title": meta.get("title", ""), "start": minutes[0], "end": minutes[-1],
+            "syncs": [t.strip() for t in SYNC_CALLOUT.findall(src)],
             "cps": cps, "sections": set(re.findall(r"(?m)^## (.+?)\s*$", src)),
             "forms": {re.sub(r"（.*）$", "", t) for t in re.findall(r'"title":\s*"([^"]+)"', "".join(
                 re.findall(r"(?s)```form\n(.*?)```", src)))}}
@@ -88,7 +98,11 @@ def parse_slides(name: str, src: str) -> list[dict]:
         cards = [(text("".join(re.findall(r"(?s)<b>(.*?)</b>", li))),
                   text("".join(re.findall(r"(?s)<span>(.*?)</span>", li))))
                  for li in re.findall(r"(?s)<li(?=[\s>])[^>]*>(.*?)</li>", flow)]
+        cues = SYNC_CUE.findall(shown)
         out.append({"where": f"{name} 「{a.get('data-title', '?')}」", "seg": a.get("data-seg"),
+                    "minute": int(a["data-minute"]) if a.get("data-minute", "").isdigit() else None,
+                    "unlock": "data-unlock" in a, "reveal": "data-reveal-of" in a,
+                    "sync": [k for keys, _ in cues for k in keys.split()], "sync_text": [text(t).strip() for _, t in cues],
                     "why": text(labelled("cp-why")).strip(), "judge": text(labelled("cp-judge")).strip(),
                     "cards": cards,
                     "title": a.get("data-title", ""), "kicker": grab("kicker"), "h2": grab("title"),
@@ -112,8 +126,39 @@ def deadline_problems(where: str, phrase: str, a: int, b: int) -> list[str]:
     return []
 
 
-def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | None = None) -> list[str]:
+def sync_problems(pages: list[dict], slides: list[dict]) -> list[str]:
     out = []
+    marked = [s for s in slides if s.get("sync")]
+    for s in slides:
+        if any(t != "⏸ 看投影" for t in s.get("sync_text", [])) or (s.get("sync_text") and not s.get("sync")):
+            out.append(f"{s['where']}: sync marker must read 「⏸ 看投影」 and name at least one data-sync key")
+        if s.get("unlock") and UNLOCK_KEY not in s.get("sync", []):
+            out.append(f"{s['where']}: unlock slide lacks <p class=\"sync-cue\" data-sync=\"{UNLOCK_KEY}\">⏸ 看投影</p>")
+        if s.get("reveal") and not s.get("sync"):
+            out.append(f"{s['where']}: stop／reveal slide lacks the 「⏸ 看投影」 sync marker")
+
+    def inside(s, p):
+        return s.get("minute") is not None and p["start"] <= s["minute"] <= p["end"]
+
+    for p in pages:
+        for t in p.get("syncs", []):
+            if not t.startswith(SYNC_PREFIX):
+                out.append(f"{p['file']}: sync callout 「{t}」 must start with 「{SYNC_PREFIX}」")
+            elif not any(inside(s, p) and any(k in t for k in s["sync"]) for s in marked):
+                out.append(f"{p['file']}: sync callout 「{t}」 has no marked slide (minutes {p['start']}–{p['end']}) "
+                           f"whose data-sync key it names")
+    for s in marked:
+        for k in s["sync"]:
+            if k == UNLOCK_KEY and s.get("unlock"):
+                continue  # the Runbook lock card says 「⏸ 看投影：第 N 分鐘公布解鎖碼」
+            if not any(inside(s, p) and any(k in t for t in p.get("syncs", [])) for p in pages):
+                out.append(f"{s['where']}: sync key 「{k}」 has no Runbook ```callout sync naming it in a page "
+                           f"covering minute {s.get('minute')}")
+    return out
+
+
+def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | None = None) -> list[str]:
+    out = sync_problems(pages, slides)
     by_seg: dict[str, list[dict]] = {}
     cps: dict[tuple, tuple] = {}  # (seg, n) -> (name, a, b, total)
     for p in pages:

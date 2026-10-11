@@ -27,3 +27,7 @@ section: Greenfield｜Tool
 {"id": "unsure", "label": "還有什麼不確定、要再問 Agent 的？（選填）", "type": "text", "suggestions": ["沒有"]}
 ]}
 ```
+
+```callout sync
+⏸ 看投影：第 29 分鐘請先停手，一起看 Greenfield 揭曉
+```

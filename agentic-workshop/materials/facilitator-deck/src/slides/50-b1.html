@@ -5,6 +5,7 @@
   <h2 class="title">TASK-B1-001</h2>
   <p class="subtitle">修復學生票折扣異常 · Agent 是隊友（Teammate）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B1 修復學生票折扣異常」，從<b>檢查點 1</b> 開始。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。客服回報學生票價好像算錯了。這段練一個技巧：先讓 Agent 用失敗測試證明 Bug 存在，你們核准最小修正計畫後才修，修完用同一個測試證明修好。」</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 08:00 段落計時（00:00＝第 44 分），翻頁時持續計時。本頁大字顯示 B1 解鎖碼，只解開 B1 頁和任務卡。</p>
@@ -110,6 +111,7 @@
     <p class="lead">停止 B1 擴充，保留現況與證據。</p>
     <p class="muted">沒做完也請保留原因、影響分析、計畫與未完成事項。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>第 52 分鐘</b>：立即停止 B1 擴充，不再給提示；保留原因、影響、計畫與缺項。</p>
     <p><b>B1 沒修好的組</b></p>
@@ -141,6 +143,7 @@
     </div>
   </div>
   <p class="quote fx fx-fade">比對失敗清單，不只數數量：先看哪幾個測試失敗、是不是同一個原因，再決定改哪裡。</p>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>講法</b>：投影只放三個數字；程式、呼叫路徑和失敗清單在下面，需要時口頭帶過。重點是「五個失敗來自同一個原因，修改只有一行」，以及學員是不是靠 Agent 的說明與證據找到它。</p>
     <p><b>原因（<code>BUG-B0-001</code>）</b>：<code>src/smart_ticket/domain/fare_policy.py</code> 的常數 <code>STUDENT_FARE_RATE = 85</code>，公開規則 <code>FARE-002</code> 是 75%。一個常數造成單元、服務、HTTP 三層都失敗。</p>

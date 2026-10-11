@@ -44,13 +44,14 @@ MAX_INCLUDE_DEPTH = 8
 READER_NOTE_RE = re.compile(r"\A(\ufeff?#[^\n]*?(\r?\n))(?:[ \t]*\r?\n)*>[ \t]*(?:目標)?讀者：[^\n]*\n(?:>[^\n]*\n)*(?:[ \t]*\r?\n)*")
 REF_MARK = "📖"  # a line opening 📖 starts its own paragraph; inside a callout it renders as rb-callout-ref
 BLOCK_LABELS = "①②③④"  # a paragraph opening "① " is a checkpoint block label
-CALLOUT_KINDS = ("info", "tip", "warning", "danger")
+CALLOUT_KINDS = ("info", "tip", "warning", "danger", "sync")
+SYNC_PREFIX = "⏸ 看投影："  # sync cue title: the one pointer meaning "look up, it is on the projector now"
 _LEAD_RE = re.compile(r"<strong>(?:(?!</?strong>).)+</strong>", re.S)
 
 
 def callout_folds(kind: str, title: str) -> bool:
     """Tips and 技巧／新概念 callouts collapse; 現在在做什麼, warnings, dangers, 💬 discussions and
-    時間不夠時 lines always stay open (learners must see them without clicking)."""
+    時間不夠時 lines always stay open (learners must see them without clicking); sync cues (⏸ 看投影) never fold."""
     title = title.strip()
     if title.startswith(("💬", "時間不夠")):
         return False
@@ -966,6 +967,8 @@ class _BlockParser:
         content = _trim_blank(body)
         if not content:
             raise MarkdownError(f"```callout {kind}: missing title line")
+        if kind == "sync" and not content[0].strip().startswith(SYNC_PREFIX):
+            raise MarkdownError(f"```callout sync: title must start with 「{SYNC_PREFIX}」")
         title = self.inline.render(content[0].strip())
         outer, self.in_callout = self.in_callout, True
         try:

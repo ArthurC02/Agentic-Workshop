@@ -111,10 +111,9 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 依主持人指定方式交件：匯出的表單 ZIP，加上主要 Agent 電腦上的 `notes/` 資料夾。
 
-```callout warning
-交件後停止修改
-**交件後不再修改交付摘要、Level 或任何表單。**
-- 第 80 分鐘進入回顧
+```callout sync
+⏸ 看投影：第 79 分鐘請先停手，一起看 B3 揭曉
+交件後不再修改交付摘要、Level 或任何表單；第 80 分鐘進入回顧。
 ```
 
 ## 完成後想一想

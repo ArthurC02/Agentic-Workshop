@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build 988f07933651b034 inputs-sha256 988f07933651b034d6510d8d3fdb5a33c10293e501bf97e78a608b820be30c08 -->
+<!-- 主持人專用，不發給學員。build 0e9d96f263d34b59 inputs-sha256 0e9d96f263d34b593bfaeba0f2967ffa085f1884b7849e2cd5ff0d0905041fc8 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -338,6 +338,29 @@ h1.title { font-size: var(--fs-h1); line-height: 1.1; }
   box-shadow: 0 0 0 6px rgba(245, 105, 61, .25);
 }
 .reveal-badge code { background: rgba(255, 255, 255, .14) !important; color: #FFD9CB !important; }
+
+/* Sync cue: the same 「⏸ 看投影」 pill as the Runbook's sync callouts, top-right on every slide learners
+   must take something from (unlock, stop, reveal, exception card, pairing). Sits above .stop-screen. */
+.sync-cue {
+  position: absolute;
+  top: 36px;
+  right: var(--pad-x);
+  z-index: 6;
+  margin: 0;
+  padding: 6px 28px;
+  border-radius: 99px;
+  border: 3px solid var(--orange);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+.slide-title .sync-cue, .stop-screen ~ .sync-cue { background: var(--white); color: var(--navy); }
+.slide[data-countdown] > .sync-cue { right: calc(var(--pad-x) + 252px); } /* clear the 220px countdown ring */
 
 /* ---------- 6. Cards / chips / big number ---------- */
 .card {
@@ -1010,6 +1033,16 @@ ol.stage-bar > li.active::after {
   line-height: 1.45;
   color: rgba(255, 255, 255, .72);
 }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 4px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
 .slide:not(.slide-title) .dk-unlock { box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 147, 193, .3); }
 
 /* ---------- 17. Gates clock ---------- */
@@ -1612,8 +1645,9 @@ body.is-presenter #dk-black { display: none !important; }
     <ol class="steps">
       <li class="fx">開啟 <code>runbook.html</code>，不用網路</li>
       <li class="fx">輸入投影公布的解鎖碼，打開該段</li>
-      <li class="fx"><b>提示詞都在 Runbook</b>，投影提示做到哪個檢查點</li>
-      <li class="fx">貼 ② 給 Agent，再貼 ③ 確認結果：回『成功』就往下，回『失敗』就貼『失敗時』</li>
+      <li class="fx"><b>投影告訴你做到哪、何時停</b>；Runbook 告訴你怎麼做</li>
+      <li class="fx">貼 ② 給 Agent，再貼 ③ 確認結果；<br>回『成功』就往下，回『失敗』就貼『失敗時』</li>
+      <li class="fx">③ 回『成功』貼綠色便利貼；卡住貼紅色，主持人會走過去</li>
     </ol>
     <div class="card fx fx-fade">
       <h3>解鎖時點（分鐘）</h3>
@@ -1633,6 +1667,8 @@ body.is-presenter #dk-black { display: none !important; }
     <p>本頁<b>不顯示</b>解鎖碼。一般解鎖碼在各段解鎖頁顯示；B1／B2 復原包的碼只在講者視窗，第 52／63 分鐘視需要私下給，不向全場公布。</p>
     <p><b>說</b>：「接下來每一段，投影會顯示時間、現在第幾個檢查點、這一步貼哪段、要判斷什麼；提示詞都在 Runbook，複製貼上就好。每個檢查點分四塊：① 為什麼做這一步，要你判斷的事也寫在這裡；② 貼給 Agent 的提示詞；③ 確認結果，再貼一段，Agent 只回『成功』或『失敗』，回『失敗』就貼下面『失敗時』那段；④ 補充。要你決定時，Agent 會先列選項或建議答案，你回『同意』或『改成…』就好。紀錄由 Agent 寫進 notes 資料夾，你不用抄；表單大多是下拉選單，只記你的決定。我換頁時，請跟著跳到 Runbook 對應的檢查點。」</p>
     <p>例外事件不在 Runbook，只在 B3 指定時點由投影呈現，不要提前提。</p>
+    <p><b>⏸ 看投影</b>：Runbook 只在真的要抬頭時放深藍色「⏸ 看投影」提示（解鎖、停手、揭曉、例外事件、Recovery）；投影上對應的頁右上角有同一個標記。說一次：「看到它就抬頭。」</p>
+    <p><b>便利貼</b>：每人桌上綠、紅便利貼各一疊。③ 回「成功」貼綠色；卡住、或貼了「失敗時」還是不行就貼紅色。<b>每個檢查點截止時掃一眼全場顏色</b>：紅色先過去；截止時還沒貼綠色的，走過去問一句卡在哪。</p>
   </aside>
 </section>
 
@@ -1672,6 +1708,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="subtitle">Greenfield（從頭開始的新專案）：個人用 Agent 完成核心訂票 MVP（Minimum Viable Product，最小可行產品）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Greenfield 任務」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">每個檢查點，投影會提示這一步貼哪段、看什麼；提示詞都在 Runbook。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Greenfield 任務，從檢查點 1 開始。每到一個檢查點，投影會告訴你貼哪段、判斷什麼、幾分前做完；提示詞都在 Runbook，複製貼上就好。」</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 22:00 段落計時（00:00＝第 07 分），翻頁時持續計時。本頁大字顯示 Greenfield 解鎖碼。</p>
@@ -1801,6 +1838,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p class="lead">停止修改，保存並提交現況。</p>
     <p class="muted">未完成也請交付現況及限制。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>口令（00:22／第 29 分，逐字）</b>：「停止修改，保存並提交現況；不再延長實作。」</p>
     <p>29 分鐘收成果和缺項，不強修完整 MVP，也不私下延長。沒做完也照收 <code>notes/greenfield.md</code>（計畫、每步驗收、審查答案、交付摘要）和交付表單。</p>
@@ -1818,6 +1856,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li class="fx">同一筆<b>再付一次被拒</b>，不新增訂單</li>
   </ol>
   <p class="callout fx fx-fade"><b>功能做到哪裡、和 Agent 合作得好不好，分開看。</b>沒走到的如實標「未驗證」。</p>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p>不提供參考解答或完整實作。</p>
     <p><b>API 輪廓</b>：<code>GET /health</code> 200，<code>{"status":"ok"}</code>｜<code>GET /trips</code> 只列可售座位 &gt; 0、站名精確篩選｜<code>POST /bookings</code> 1–4 人且座位足夠；保留座位、<code>PENDING_PAYMENT</code>、逐人計價加總｜<code>POST …/pay</code> 只有待付款能付；成功為 <code>PAID</code>＋唯一訂單；重複付款拒絕｜<code>GET /orders/{order_id}</code> 讀既有訂單；金額＝訂票總額。</p>
@@ -1906,6 +1945,7 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">Time Skip 開始</h2>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「Time Skip：12 個月後」，從<b>檢查點 1</b> 開始。</p>
   <p class="muted">全員使用同一份 B0，請先不要修改程式。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 Time Skip，從檢查點 1 開始。」</p>
     <p><b>操作</b>：計時應已在上一頁啟動；還沒的話在本頁按 <b>T</b>（04:00，00:00＝第 29 分）。</p>
@@ -2161,6 +2201,7 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">TASK-B1-001</h2>
   <p class="subtitle">修復學生票折扣異常 · Agent 是隊友（Teammate）</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B1 修復學生票折扣異常」，從<b>檢查點 1</b> 開始。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B1，從檢查點 1 開始。客服回報學生票價好像算錯了。這段練一個技巧：先讓 Agent 用失敗測試證明 Bug 存在，你們核准最小修正計畫後才修，修完用同一個測試證明修好。」</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 08:00 段落計時（00:00＝第 44 分），翻頁時持續計時。本頁大字顯示 B1 解鎖碼，只解開 B1 頁和任務卡。</p>
@@ -2266,6 +2307,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p class="lead">停止 B1 擴充，保留現況與證據。</p>
     <p class="muted">沒做完也請保留原因、影響分析、計畫與未完成事項。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>第 52 分鐘</b>：立即停止 B1 擴充，不再給提示；保留原因、影響、計畫與缺項。</p>
     <p><b>B1 沒修好的組</b></p>
@@ -2297,6 +2339,7 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
   </div>
   <p class="quote fx fx-fade">比對失敗清單，不只數數量：先看哪幾個測試失敗、是不是同一個原因，再決定改哪裡。</p>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>講法</b>：投影只放三個數字；程式、呼叫路徑和失敗清單在下面，需要時口頭帶過。重點是「五個失敗來自同一個原因，修改只有一行」，以及學員是不是靠 Agent 的說明與證據找到它。</p>
     <p><b>原因（<code>BUG-B0-001</code>）</b>：<code>src/smart_ticket/domain/fare_policy.py</code> 的常數 <code>STUDENT_FARE_RATE = 85</code>，公開規則 <code>FARE-002</code> 是 75%。一個常數造成單元、服務、HTTP 三層都失敗。</p>
@@ -2332,6 +2375,8 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">B2 開始</h2>
   <p class="subtitle">TASK-B2-001：導入不可疊加的最有利優惠政策</p>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B2」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">B1 沒做完：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B2，從檢查點 1 開始。起點是你們驗收過的 B1。這段練的技巧：不要接受 Agent 的第一個答案，請它提 2–3 個方案並比較，由你們來選。第 55 分鐘前，由人選方案、核准工作拆解，主要 Agent 才開始做。」</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 11:00 段落計時（00:00＝第 52 分），翻頁時持續計時。本頁大字顯示 B2 解鎖碼，只解開 B2 頁和任務卡。</p>
@@ -2465,6 +2510,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p class="lead">停止新增工作，收摘要。</p>
     <p class="muted">未完成時保留政策設計、測試案例、文件清單與未完成事項。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>第 63 分鐘</b>：停止新增工作，收摘要。沒完成的保留方案設計、測試案例、文件更新清單、實際結果與缺項；不拿方案文件冒充程式已完成。</p>
     <p><b>B2 復原包</b>：要接續 B3 的組，只發<b>驗收過的正式 B2 復原包</b>，記下來源、原因與原小組完成度。主持人視需要私下給解鎖碼（<code data-code="recovery-b2"></code>），不在投影或群組公開。沒有正式版本時，不用未驗證的快照或其他段的副本代替。復原包不算原小組成果。B3 開始後不再切換版本。</p>
@@ -2495,6 +2541,7 @@ body.is-presenter #dk-black { display: none !important; }
     <span class="big-number">1120</span>
   </div>
   <p class="callout fx fx-fade">每人金額＝基本票價 × 單一折扣率 ÷ 100（取整數）；無疊乘、無團體功能。</p>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>政策轉變</b>：從「取第一個符合的優惠」→ 列出所有符合的、選最低折扣率、每人只用一項。費率不變：學生 75%、提前 85%、企業會員 95%、成人 100%。口頭說：「舊：依序比對企業會員 → 提前購票 → 學生 → 成人，取第一個符合的。新：選最低折扣率，每人只用一項。」</p>
     <p><b>本頁範例</b>是 AC-B2-007／008／009 的三資格混合：學生 STUDENT 75／525、成人 ADVANCE 85／595，總額 <b>1120</b>。按 → 逐步：淘汰較高的折扣率 → 顯示結果 → 總額。</p>
@@ -2528,6 +2575,7 @@ body.is-presenter #dk-black { display: none !important; }
       </ul>
     </div>
   </div>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>補充</b>：可接受還有「用 ADR 記錄選擇方式的簡單設計」「每個案例核對實際折扣率、優惠類型與金額」；改票失敗要還原訂票、訂單、座位、稽核紀錄和通知。不可接受還有「改票只寫入一部分」「提前做 B3 團體訂票」。</p>
     <p><b>回顧提問</b>：Agent 一開始給了幾個方案？你們質疑了哪個假設，有因此改變選擇嗎？誰選方案、誰核准工作拆解？核准紀錄、政策、實際測試與文件一致嗎？只記錄觀察到的事，不排名。</p>
@@ -2539,6 +2587,8 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="kicker">第 63 分鐘 · 解鎖</p>
   <h2 class="title">B3 團體訂票 · Digital Worker</h2>
   <p class="lead">在 Runbook 輸入解鎖碼，打開「B3 團體訂票：Digital Worker 流程」，從<b>檢查點 1</b> 開始。</p>
+  <p class="muted">B2 沒做完：貼紅色便利貼，主持人會走過去</p>
+  <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 B3，從檢查點 1 開始。任務卡、操作規則、工作單（Work Order）、三道核准關卡（Gate）和 Gate 決策表都在 Runbook，其他紀錄由 Agent 寫進 notes/b3.md。」說完翻下一頁宣布規則改變。</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼。</p>
@@ -2693,6 +2743,7 @@ body.is-presenter #dk-black { display: none !important; }
     </div>
   </div>
   <p class="callout warn fx fx-fade">Runbook『例外回應卡』貼 ②；Agent 問時照抄：<b>事件：建議加 SQLite</b>，一行回答後貼 ③</p>
+  <p class="sync-cue" data-sync="事件">⏸ 看投影</p>
   <aside class="notes">
     <p><b>操作</b>：按 <b>T</b> 啟動 60 秒倒數。說：「Agent 問事件內容時，照抄畫面上那一行『事件：建議加 SQLite』，不用打整張卡；它會一行問完，你一行回答。」時間緊可縮成 30 秒口頭判斷（例外回應卡 ① 已寫）。小組口頭說好後，在例外回應卡頁的表單記下結論。</p>
     <p><b>分支</b>：Agent 已經自己提出 SQLite 的組，就把它當成這次唯一的例外事件，記下原提議和時間，不再發第二件；不朗讀假設卡，只請他們用回應卡處理原提議。沒提出的組，Gate 2 後用假設事件卡詢問，不要說成 Agent 已經提了。</p>
@@ -2819,6 +2870,7 @@ body.is-presenter #dk-black { display: none !important; }
     <h2 class="title">請先停手</h2>
     <p class="lead">停止修改，保持交付時的樣子。</p>
   </div>
+  <p class="sync-cue" data-sync="停手">⏸ 看投影</p>
   <aside class="notes">
     <p><b>停止</b>：第 76 分停止，Level 1–3 如實交付；人不補程式或測試，沒完成的如實列為缺項。</p>
     <p>確認全員停手、交付已收件，才翻到揭曉頁。揭曉頁不轉發評估檔案或參考程式。</p>
@@ -2838,6 +2890,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li>同班次、同車廂找完整連續座位；找不到就<b>整筆拒絕</b>，不會只成立一部分</li>
     <li>團體付款失敗：整團取消、釋放全部座位、不建訂單；一般訂票仍保留待付款</li>
   </ul>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p>一般訂票付款失敗仍維持待付款、保留座位；只有團體訂票付款失敗會取消（見下方「全有或全無與失敗補償」）。</p>
     <p>分配座位的欄位：seat_id／carriage_id／row_number／seat_number／position。文件同步說明團體訂票和改票的邊界。</p>
@@ -2871,6 +2924,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li class="fx">退回的是<b>超範圍方案，不是整個任務</b></li>
     <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計就停下，說明卡在哪，交給人決定</li>
   </ol>
+  <p class="sync-cue" data-sync="揭曉">⏸ 看投影</p>
   <aside class="notes">
     <p><b>學員看得到的依據（可指回）</b>：操作規則「Agent 不得加入外部服務、資料庫或規則引擎」；工作單禁止範圍「不引入外部服務、資料庫或第三方規則引擎」；工作單停止條件「需新增外部服務或套件」；任務卡明列不提供外部資料庫。</p>
     <p><b>不可接受</b>：直接核准 SQLite｜條件含糊就開始寫程式｜長篇討論或實際安裝。</p>
@@ -2886,6 +2940,7 @@ body.is-presenter #dk-black { display: none !important; }
   <h2 class="title">Retrospective 回顧</h2>
   <p class="subtitle">在 Runbook 輸入解鎖碼，打開「工作坊回顧」，從<b>檢查點 1</b> 開始</p>
   <p class="lead fx fx-fade">10 分鐘：帶走 3 段你自己的提示詞，小組留下一項行動。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的工作坊回顧，從檢查點 1 開始。今天最後一個技巧，是把學到的變成你自己的提示詞清單。」</p>
     <p><b>操作</b>：按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 80 分），翻頁時持續計時。本頁大字顯示回顧解鎖碼（解開回顧頁和「我的提示詞清單」）。</p>
@@ -3066,6 +3121,7 @@ body.is-presenter #dk-black { display: none !important; }
     ["T", "開始 / 暫停本段計時（或倒數）"],
     ["R", "重設本段計時"],
     ["P", "開啟主持人視窗"],
+    ["C", "複製本頁解鎖碼（也可點一下解鎖碼）"],
     ["?", "顯示 / 隱藏本說明"],
     ["Esc", "關閉覆蓋層"]
   ];
@@ -3848,7 +3904,9 @@ body.is-presenter #dk-black { display: none !important; }
         var code = el('div', 'dk-unlock-code', g && g.code ? g.code : '（找不到解鎖碼：' + id + '）');
         if (!g || !g.code) code.setAttribute('data-missing', '');
         box.appendChild(code);
+        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
         box.appendChild(el('div', 'dk-unlock-help', '請在 Runbook 輸入此碼（不分大小寫，空白與連字號可省略）'));
+        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
         insertBeforeNotes(s, box);
       }
 
@@ -3929,6 +3987,31 @@ body.is-presenter #dk-black { display: none !important; }
       e.stopPropagation();
       if (isPresenter) { remote({ action: 'timer', cmd: 'countdown', index: i }); return; }
       toggleCountdown(i); renderAll(); sendState(true);
+    }, true);
+
+    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
+    function copyText(txt) {
+      var ok = false, ta = el('textarea');
+      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+      document.body.appendChild(ta); ta.select();
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
+      return ok;
+    }
+    function copyUnlock(code) {
+      if (!code || code.hasAttribute('data-missing')) return;
+      if (!copyText(code.textContent.trim())) return;
+      var box = code.closest('.dk-unlock');
+      box.setAttribute('data-copied', '');
+      clearTimeout(box._copiedT);
+      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
+    }
+    document.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
+      if (!t) return;
+      e.preventDefault(); e.stopPropagation();
+      copyUnlock(t);
     }, true);
 
     /* ---------------- rendering (document-wide, so presenter clones update too) ---------------- */
@@ -4264,6 +4347,9 @@ body.is-presenter #dk-black { display: none !important; }
       } else if (k === 'r' || code === 'KeyR') {
         e.preventDefault();
         if (isPresenter) remote({ action: 'timer', cmd: 'reset' }); else command('reset');
+      } else if (k === 'c' || code === 'KeyC') {
+        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
+        if (cs) { e.preventDefault(); copyUnlock(cs); }
       } else if ((k === 'p' || code === 'KeyP') && !isPresenter) {
         e.preventDefault();
         openPresenter();

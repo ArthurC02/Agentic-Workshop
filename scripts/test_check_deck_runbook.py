@@ -68,6 +68,23 @@ class Problems(unittest.TestCase):
         self.assertEqual(len(run(GOOD.replace("<li>Runbook", four.replace("</b></li>", "</b><span>乙</span></li>", 1)
                                               + "<li>Runbook", 1))), 1)
 
+    def test_sync_cues(self):
+        cue = '<p class="sync-cue" data-sync="{}">⏸ 看投影</p>'
+        stop = ('<section class="slide" data-seg="reveal" data-reveal-of="seg" data-title="請先停手" data-minute="10">'
+                + cue.format("停手") + "</section>\n")
+        unlock = ('<section class="slide" data-seg="seg" data-title="解鎖" data-minute="0" data-unlock="seg">'
+                  + cue.format("解鎖碼") + "</section>\n")
+        page = PAGE + "\n```callout sync\n⏸ 看投影：第 10 分鐘請先停手\n```\n"
+        self.assertEqual(run(GOOD + stop + unlock, page), [])  # the unlock key is answered by the lock card
+        self.assertEqual(len(run(GOOD + stop, PAGE)), 1)  # marked slide without a Runbook callout
+        self.assertEqual(len(run(GOOD, page)), 1)  # Runbook callout without a marked slide
+        self.assertEqual(len(run(GOOD + stop.replace('data-minute="10"', 'data-minute="11"'), page)), 2)  # out of window
+        self.assertEqual(len(run(GOOD + stop.replace('data-sync="停手"', 'data-sync="揭曉"'), page)), 2)  # key not named
+        self.assertEqual(len(run(GOOD + stop.replace(cue.format("停手"), ""), page)), 2)  # reveal slide unmarked
+        self.assertEqual(len(run(GOOD + stop + unlock.replace(cue.format("解鎖碼"), ""), page)), 1)
+        self.assertEqual(len(run(GOOD + stop.replace("⏸ 看投影</p>", "看簡報</p>"), page)), 1)
+        self.assertEqual(len(run(GOOD + stop, page.replace("⏸ 看投影：", "看投影："))), 1)
+
     def test_checkpoints_md(self):
         md = "## 甲（段落 `seg`）\n\n1. 檢查點 1 · 先做（第 0–4 分鐘）\n2. 檢查點 2 · 再做（第 4–10 分鐘）\n"
         self.assertEqual(run(md=md), [])

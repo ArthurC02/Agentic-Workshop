@@ -1074,7 +1074,11 @@
     icon.innerHTML = LOCK_SVG;
     card.appendChild(icon);
     card.appendChild(el('h2', 'rb-lock-title', (g.label || gid) + ' · 尚未解鎖'));
-    var metaTxt = (g.minute != null && g.minute !== '' ? '到第 ' + g.minute + ' 分鐘時，' : '') + '主持人會公布解鎖碼，輸入後就能看到這一段';
+    // Segment codes are projected (the ⏸ 看投影 sync cue); Recovery codes are handed over privately.
+    var when = g.minute != null && g.minute !== '' ? '第 ' + g.minute + ' 分鐘' : '';
+    var metaTxt = /Recovery/.test(g.label || '')
+      ? '落後時，主持人會走到你們旁邊給解鎖碼'
+      : '⏸ 看投影：' + when + '公布解鎖碼';
     card.appendChild(el('p', 'rb-lock-meta', metaTxt));
     var form = el('form', 'rb-lock-form');
     form.setAttribute('autocomplete', 'off');

@@ -969,6 +969,21 @@ kbd {
 :root[data-theme="dark"] .rb-callout-tip { --co-ink: var(--c-teal-700); }
 :root[data-theme="dark"] .rb-callout-warning { --co-ink: var(--c-accent-700); }
 :root[data-theme="dark"] .rb-callout-danger { --co-ink: var(--c-danger-700); }
+/* Sync cue (⏸ 看投影): the one pointer for "look up, the projector has it now". Solid navy bar with the
+   accent rail, same look in both themes; the ⏸ in the title replaces the icon. Never folds. */
+.rb-callout.rb-callout-sync {
+  padding: .7rem 1.1rem;
+  border: 0;
+  border-left: 6px solid var(--c-accent);
+  background: var(--c-navy);
+  color: #FFFFFF;
+}
+.rb-callout-sync::before { display: none; }
+.rb-callout-sync .rb-callout-title { margin: 0; color: #FFFFFF; letter-spacing: .02em; }
+.rb-callout-sync .rb-callout-body { color: #E6ECF5; }
+.rb-callout-sync a { color: #9ED9EE; }
+.rb-callout-sync .rb-callout-body:empty { display: none; }
+:root[data-theme="dark"] .rb-callout-sync { border: 1px solid #3A5384; border-left: 6px solid var(--c-accent); }
 .rb-zip-warning { margin-top: 0; }
 
 /* ---------- 11. Code blocks, copy button, command tabs --------------- */

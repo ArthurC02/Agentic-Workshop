@@ -18,7 +18,7 @@ from materials_md import (  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "agentic-workshop" / "materials" / "participant-runbook" / "content"
-DIST = ROOT / "dist" / "p11-candidate" / "33134016f0c4bbb2"
+DIST = ROOT / "dist" / "p11-candidate" / "1c7c7a8adc7641eb"
 
 
 class Recorder:
@@ -464,11 +464,20 @@ class CalloutTests(unittest.TestCase):
         cases = [("tip", "💬 討論一下", False), ("tip", "時間不夠時的最低完成線", False), ("tip", "Port 8000 已被佔用", True),
                  ("info", "技巧：Prompt 結構", True),
                  ("info", "新概念：Gate（核准關卡，加深一層）", True), ("info", "現在在做什麼", False),
-                 ("info", "B1 尚未揭露", False), ("warning", "技巧：X", False), ("danger", "新概念：X", False)]
+                 ("info", "B1 尚未揭露", False), ("warning", "技巧：X", False), ("danger", "新概念：X", False),
+                 ("sync", "⏸ 看投影：技巧：解鎖碼", False)]
         for kind, title, folds in cases:
             out = render(fence("callout " + kind, title, "body"))
             self.assertEqual(out.startswith("<details "), folds, (kind, title))
             self.assertEqual("rb-callout-fold" in out, folds, (kind, title))
+
+    def test_sync_cue(self):
+        self.assertEqual(render(fence("callout sync", "⏸ 看投影：第 29 分鐘停手")),
+                         '<div class="rb-callout rb-callout-sync"><div class="rb-callout-title">⏸ 看投影：第 29 分鐘停手'
+                         '</div><div class="rb-callout-body"></div></div>')
+        for title in ("看投影：沒有符號", "⏸ 看簡報：用詞不對", "⏸看投影：少空白"):
+            with self.assertRaises(MarkdownError, msg=title):
+                render(fence("callout sync", title))
 
     def test_folded_callout_markup_and_lead_preview(self):
         out = render(fence("callout tip", "技巧：T", "**重點 `x`。**", "- a"))

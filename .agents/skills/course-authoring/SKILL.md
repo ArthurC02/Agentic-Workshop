@@ -52,6 +52,12 @@ The projected slide does two jobs: pace the room, and tell learners exactly what
 - Slides show whole; only concept／role-change slides step in with `data-fragments="step"`.
 - `scripts/check_deck_runbook.py` enforces one slide per Runbook checkpoint (data-title, `<h2>`, kicker, footer deadline, 下一步), that Runbook pages, checkpoints and forms named on slides exist, and DLC `CHECKPOINTS.md`.
 
+## Sync cues (user, 2026-10-11: the facilitator controls the pace)
+- Projector = where we are and when to stop; Runbook = how. Said once on the welcome page, never as a blanket "watch the facilitator" line (redundancy).
+- A ```callout sync (title 「⏸ 看投影：」 + one short clause; never folds) goes **only** where the learner must take something from the projector or wait for the facilitator: stop／揭曉, the B3 exception card, DLC partner pairing, a Recovery handoff (「貼紅色便利貼，主持人會走過去」). Unlock codes are cued by the lock card (runbook.js). Always 「投影」, never 簡報／螢幕 for the projector. Replace existing prose that says the same; don't duplicate.
+- The matching slide carries `<p class="sync-cue" data-sync="key …">⏸ 看投影</p>` (deck.css). `check_deck_runbook.py` maps each callout to a marked slide whose data-minute lies in the page's minute range and whose key the title names, and back; unlock and stop／reveal slides must be marked.
+- Status: green／red sticky notes (③ 成功 → green; stuck → red, facilitator comes over). Explained once on the welcome page and the opening how-to slide, never per checkpoint; speaker notes tell the facilitator to scan colours at each checkpoint deadline.
+
 ## Reading parameters (user, 2026-10-11: 「字寬字高，內容知識點密度。這些是關鍵參數」)
 One table for both editions. Values live as CSS variables at the top of each `deck.css` (`--cp-*`, `--fs-min`, `--zone-gap`, `--content-w`) and `runbook.css` (`--rb-*`); change them only with measured evidence and update this table.
 
