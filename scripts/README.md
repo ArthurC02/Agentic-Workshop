@@ -21,7 +21,16 @@ B0／Recovery採過濾輸出與安全README、Context、API摘要；程式與測
 
 Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並拒絕路徑穿越、隱藏Git、越界答案與損壞內容。B1／B2解壓副本使用既有獨立venv執行pip check、44／55項版本Gate及Health／OpenAPI／建立／付款／改退票Smoke；不宣稱重新安裝依賴或真人Recovery完成。Python `-O` 不支援驗證。
 
-一次執行全部步驟（檢查知識點出處、偵測漂移、驗證、釘選、建置、驗證候選、重建教材與測試）：`scripts/release_materials.py`。
+一次執行全部步驟：`uv run --no-project --python 3.13 python -X utf8 scripts/release_materials.py`。依序為：
+
+1. `sync_harness.py --check`、`check_references.py`、`check_zh_tw.py`、`check_blocks.py`、`check_deck_runbook.py`（說明見下文）。
+2. 主課候選：Manifest 來源有變動時先驗證（G0–B3 有變為完整驗證，否則 `--static-only`），再 `build_delivery.py --repin-reviewed-sources` 重新釘選；新 ID 的候選不存在時才建置並以 `verify_delivery.py` 驗證（驗證失敗即刪除該候選），最後同步 `CANDIDATE_ID`。
+3. DLC 候選：`build_delivery_dlc.py --pin`、建置（不存在時）、`--verify`，同步 `materials-dlc/edition.json` 的 `candidate_id`。
+4. 主課與 DLC 各自 `build_materials.py --edition`、`--check`、`package_materials.py`。
+5. Speech：`build_decks.py`、`--check`、`verify_browser.py`。
+6. `scripts/` 全部單元測試；確認 Manifest 已無漂移；刪除 `dist/` 中被取代的候選；印出 `RELEASE PIPELINE PASS`。
+
+Agent 工具同步：`scripts/sync_harness.py`。`.claude/skills/` 與 `.claude/hooks/guard_generated.py` 是正本，逐位元組複製到 Codex 用的 `.agents/skills/` 與 `.codex/hooks/`；`--check` 只回報差異並以失敗結束。本機沒有 `.agents/` 或 `.codex/` 時略過。
 
 台灣繁體中文檢查：`scripts/check_zh_tw.py`。課程素材、docs/ 與 .claude 的文字必須是繁體字並使用台灣詞彙；發布流程會先執行。
 

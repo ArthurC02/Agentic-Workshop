@@ -1,31 +1,41 @@
 ---
 name: release-materials
-description: Rebuild and verify workshop candidates and materials after any change to agentic-workshop/** sources, materials, materials-dlc, docs or Agent.md, then commit and push. Use after editing course content, runbook/deck sources, participant files, or when asked to "rebuild", "重建", "跑檢查", "發布教材".
+description: Rebuild, check and verify both workshop editions (main and DLC) after any change to agentic-workshop/**, docs/**, Agent.md, scripts/README.md or .claude/skills, then commit DLC and main separately and push. Use after editing course content, Runbook or deck sources, participant files or the harness, or when asked to "rebuild", "重建", "跑檢查", "發布教材".
 ---
 
 # Release materials
 
-One command runs the whole order from docs/instructions/08 (2026-10-08 規範調整):
+One command runs the order from docs/instructions/08 (2026-10-08 規範調整):
 
 ```bash
 uv run --no-project --python 3.13 python -X utf8 scripts/release_materials.py
 ```
 
-It first runs `scripts/check_references.py`, `scripts/check_zh_tw.py` (Taiwan Traditional Chinese characters and vocabulary) and `scripts/check_blocks.py` (every checkpoint has ① ② ③ (④) in order, a 成功／失敗 ③ prompt and a 失敗時 rescue)) and `scripts/check_deck_runbook.py` (main and DLC: each Runbook checkpoint has exactly one slide with matching `data-title`, `<h2>`, kicker `檢查點 n / N · 第 a–b 分鐘`, footer deadline and 下一步; Runbook pages, checkpoints and forms named on slides exist; DLC `CHECKPOINTS.md` matches; run `scripts/check_deck_runbook.py main` for one edition). check_references: every 技巧／新概念 callout and glossary row must cite a title from `course-authoring/references.md`, and plugin sections and course titles must exist. Then it detects manifest drift → validates (full when G0–B3 changed, else static) → repins → builds and verifies the main candidate → sets `CANDIDATE_ID` → repins/builds/verifies the DLC candidate and `edition.json` → rebuilds both editions, `--check`, packages → speech deck build/check/browser check → unit tests → confirms zero drift → prunes superseded `dist/*-candidate/<id>` folders. Prints `RELEASE PIPELINE PASS` on success. A candidate that fails `verify_delivery` is deleted so the next run rebuilds it (verify snapshots `scripts/` into the candidate and refuses to re-verify after scripts change).
+Steps (stops at the first failure; the step list is also in `scripts/README.md`):
+1. Checks: `sync_harness.py --check` (`.agents/skills` and `.codex/hooks` equal the `.claude` originals; skipped when absent), `check_references.py`, `check_zh_tw.py`, `check_blocks.py`, `check_deck_runbook.py`.
+2. Main candidate: on manifest drift, validate (full when G0–B3 sources changed, else `--static-only`) and repin; build and `verify_delivery` a new candidate (a failed one is deleted); set `CANDIDATE_ID`.
+3. DLC candidate: `build_delivery_dlc.py --pin`, build if new, `--verify`; set `edition.json` `candidate_id`.
+4. Each edition: `build_materials.py --edition main|dlc`, `--check`, `package_materials.py`.
+5. Speech deck: `build_decks.py`, `--check`, `verify_browser.py`.
+6. All `scripts/test_*.py`, zero manifest drift, prune superseded `dist/*-candidate/<id>`. Prints `RELEASE PIPELINE PASS`.
 
 ## Before running
-- Edit sources, never build outputs (`runbook.html`, `facilitator-deck.html`, `greenfield-deck.html`, `greenfield-handout.md`); a hook blocks those.
-- Full validation needs `.codex-tmp/<g0|g1|b0|b1|b2|b3>-env`. If missing:
-  `uv venv --seed --python 3.13 .codex-tmp/<v>-env` then `uv pip install --python .codex-tmp/<v>-env/Scripts/python.exe -r <version dir>/requirements.txt` (dirs: `VERSIONS` in scripts/validate_workshop.py).
+- Edit sources, never generated files (built `runbook.html`／`facilitator-deck.html` in both editions, speech `greenfield-deck.html`／`greenfield-handout.md`, `dist/`, script-written evidence in `06-runbook/evaluation/`); the `guard_generated.py` hook blocks those.
+- After editing `.claude/skills/**` or the hook, run `scripts/sync_harness.py` (no `--check`) to update the Codex mirror.
+- Full validation needs `.codex-tmp/<g0|g1|b0|b1|b2|b3>-env`. If missing: `uv venv --seed --python 3.13 .codex-tmp/<v>-env`, then `uv pip install --python .codex-tmp/<v>-env/Scripts/python.exe -r <version dir>/requirements.txt` (dirs: `VERSIONS` in `scripts/validate_workshop.py`).
 
 ## After it passes
-- Commit with a message describing the content change; split DLC and main-course work into separate commits. Push to `main` (the user asked for automatic commit & push).
+- Commit without asking: DLC work and main-course work in separate commits, messages in Taiwan Traditional Chinese describing the content change. Push to `main`.
 - Report the new candidate IDs only if they changed.
 
 ## When it fails
-- `check_references` fails: fix the citation using `course-authoring/references.md`. If you need a new source, verify it online first and then add it there.
-- `Private overlay missing links`: a packaged doc links to a file outside the main package (e.g. DLC docs) — write the reference as plain text.
-- `Source drift` / repin errors: never edit evidence or manifest hashes by hand; fix the source, rerun.
-- G0–B3 behavior gate fails: the exercise changed (planted B0 failures, test counts). Stop and tell the user — that is a course-design change, not a build problem.
-- Slide overflow from `verify_browser.py`: shorten the slide text in `speech/01-greenfield/src/slides.json`.
+- `sync_harness --check`: run `scripts/sync_harness.py`; never edit `.agents/` or `.codex/hooks/` by hand.
+- `check_references`: fix the citation from `course-authoring/references.md`; a new source must be verified online first, then added there.
+- `check_zh_tw`: replace the listed character or mainland term with the Taiwan form it names.
+- `check_blocks`／`check_deck_runbook`: fix the Runbook or the slide so they follow `course-authoring` (four blocks; one slide per checkpoint with matching `data-title`, `<h2>`, kicker, footer).
+- `Private overlay missing links`: a packaged doc links outside its package (e.g. into `materials/` or DLC docs); write the reference as plain text.
+- `Source drift`／repin errors: never edit evidence or manifest hashes by hand; fix the source and rerun.
+- G0–B3 behavior gate fails (planted B0 failures, test counts): stop and tell the user; that is a course-design change, not a build problem.
+- Slide overflow from `verify_browser.py`: shorten the text in `speech/01-greenfield/src/slides.json`.
+- A permission prompt or block: stop and report it; never work around it.
 - Don't use bare `git stash` here: autocrlf rewrites built HTML on restore.

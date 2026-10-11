@@ -61,10 +61,10 @@ phase('Consistency')
 const consistency = await agent(
   `Cross-group consistency check after a plain-language pass. Read ${SPEC}.
 Group reports: ${JSON.stringify(done)}
-1. Checkpoint renames must appear identically in runbook headings, runbook checkpoint overviews, deck data-title/kicker/callout and CHECKPOINTS.md (dlc) — fix any mismatch.
+1. Apply every checkpoint rename everywhere the course-authoring rename rule lists (Runbook heading and 檢查點總覽, slide data-title/<h2>/kicker, opening roadmap, previous slide's 下一步, CHECKPOINTS.md for dlc).
 2. Add every glossary_gaps term to the edition glossary (88-glossary.md).
 3. Grep the edited files for the same term expanded two different ways; align to the spec.
-Edit files directly. Do not run builds. Return a short summary of fixes and anything left for the human.`,
+Edit files directly. Do not run builds; do run uv run --no-project --python 3.13 python -X utf8 scripts/check_deck_runbook.py, scripts/check_blocks.py and scripts/check_zh_tw.py (same prefix) and fix what they report. Return a short summary of fixes and anything left for the human.`,
   { label: 'consistency', phase: 'Consistency' })
 
 return { groups: done, failed, consistency }

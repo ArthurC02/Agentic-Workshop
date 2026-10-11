@@ -22,14 +22,14 @@ The materials have two loops. Review both against the authoring standard in `cou
 
 ## Inner loop: each task (one segment = Runbook page(s) + included docs + slides + facilitator notes)
 1. **Situation and goal.** The 「現在在做什麼」 card makes clear what is happening, why, the technique, and what "done" looks like.
-2. **Prompts are runnable.** Pasting the prompts in order gets an Agent through the task. Nothing is missing: files to read, commands, where to record results, a stop condition. There are no `〈 〉` blanks for learners. Commands and arguments match the tools in the repo.
+2. **Prompts are runnable.** Pasting the prompts in order gets an Agent through the task; the learner never writes or reads code or types a command. Nothing is missing: files to read, commands, where to record results, a stop condition. There are no `〈 〉` blanks for learners. Commands and arguments match the tools in the repo.
 3. **Facts match the repo.** File paths, endpoints, test counts, unlock times, rule IDs, plugin output strings, and minutes all match the code packages and the other materials.
 4. **Pass criteria are observable.** ① states what the learner judges; every ③ 確認結果 condition is something the Agent can actually check (files, test counts, recorded decisions) and a correct run answers 「成功」.
 5. **Decisions are real.** Each human decision point offers a genuine choice with evidence. Forms only record that decision, using select or checkbox fields.
 6. **Stuck paths exist.** 「失敗時」 prompts and Recovery steps work from the state a learner is actually in.
 7. **No leaks.** No answer leaks: the B1 root cause, the B2 order, the B3 or SQLite answer, and DLC reference solutions stay hidden. No forbidden markers.
-8. **Alignment.** Slides, CHECKPOINTS.md (DLC), and the facilitator guide match the Runbook: checkpoint titles, minutes, and what to watch for.
+8. **Alignment.** Each checkpoint has one slide that paces the room and names the learner's next step (`course-authoring` 「Facilitator deck」); slides, CHECKPOINTS.md (DLC) and the facilitator guide match the Runbook in titles, minutes and what to watch for. `check_deck_runbook.py` covers the mechanical part; judge the wording.
 9. **Reflection.** The 「完成後想一想」 questions are specific to this task, not generic.
 
 ## Fix rules
-Follow `course-authoring` (its "Never change" and "Always" lists). Main course: `scripts/validate_consistency_corrections.py` must PASS.
+Follow `course-authoring` (its "Never change" and "Always" lists). `scripts/check_blocks.py` and `scripts/check_deck_runbook.py` must pass for both editions; main course: `scripts/validate_consistency_corrections.py` must PASS.

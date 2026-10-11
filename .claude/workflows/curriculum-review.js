@@ -13,6 +13,7 @@ export const meta = {
 const SKILL = '.claude/skills/curriculum-review/SKILL.md and .claude/skills/course-authoring/SKILL.md'
 const M = 'agentic-workshop/materials'
 const D = 'agentic-workshop/materials-dlc'
+const W = 'agentic-workshop/07-dlc-ddd/participant/worksheets'
 const SEGMENTS = {
   main: [
     { key: 'opening', files: `${M}/participant-runbook/content/00–02, slides 10-opening.html` },
@@ -24,10 +25,10 @@ const SEGMENTS = {
     { key: 'delivery-retro', files: `${M}/participant-runbook/content/70, 80, 88, 05-retrospective/**, slides 70-delivery.html 80-retrospective.html` },
   ],
   dlc: [
-    { key: 'opening-d1', files: `${D}/participant-runbook/content/00–19, worksheets d1-*, slides 10-opening.html 20-d1.html` },
-    { key: 'd2', files: `${D}/participant-runbook/content/20–29, worksheets d2-*, slides 30-d2.html 40-break.html` },
-    { key: 'd3', files: `${D}/participant-runbook/content/30–59, worksheets d3-*, scenarios/*, slides 50-d3a.html 55-d3b.html 60-d3c.html` },
-    { key: 'd4-retro', files: `${D}/participant-runbook/content/60–88, worksheets d4-*, slides 70-d4.html 80-retro.html, ${D}/CHECKPOINTS.md` },
+    { key: 'opening-d1', files: `${D}/participant-runbook/content/00–19, ${W}/d1-*, slides 10-opening.html 20-d1.html` },
+    { key: 'd2', files: `${D}/participant-runbook/content/20–29, ${W}/d2-*, slides 30-d2.html 40-break.html` },
+    { key: 'd3', files: `${D}/participant-runbook/content/30–59, ${W}/d3-*, agentic-workshop/07-dlc-ddd/participant/scenarios/*, slides 50-d3a.html 55-d3b.html 60-d3c.html` },
+    { key: 'd4-retro', files: `${D}/participant-runbook/content/60–88, ${W}/d4-*, slides 70-d4.html 80-retro.html, ${D}/CHECKPOINTS.md` },
   ],
 }
 const scope = (args && args.scope) || 'main'
@@ -79,12 +80,13 @@ const results = await pipeline(segs,
   })
 
 phase('Consistency')
-const check = scope === 'main'
-  ? 'uv run --no-project --python 3.13 python -X utf8 scripts/validate_consistency_corrections.py (must PASS) and uv run --no-project --python 3.13 python -X utf8 scripts/build_materials.py --edition main --check'
-  : 'uv run --no-project --python 3.13 python -X utf8 scripts/build_materials.py --edition dlc --check'
+const PY = 'uv run --no-project --python 3.13 python -X utf8'
+const check = `${PY} scripts/check_blocks.py, ${PY} scripts/check_deck_runbook.py ${scope}, ${PY} scripts/check_references.py, ${PY} scripts/check_zh_tw.py (all must PASS), `
+  + (scope === 'main' ? `${PY} scripts/validate_consistency_corrections.py (must PASS) and ` : '')
+  + `${PY} scripts/build_materials.py --edition ${scope} --check`
 const consistency = await agent(
   `Cross-segment consistency after a curriculum-review fix pass (${scope}). Read ${SKILL}. Per-segment results: ${JSON.stringify(results)}
-Check that knowledge points referenced across segments still line up (introduced before use, same names), checkpoint titles match across runbook/slides${scope === 'dlc' ? '/CHECKPOINTS.md' : ''}, and the glossary covers new terms. Fix mismatches. Then run ${check} (DIFFERS is expected before rebuild; parse errors, forbidden hits or external URLs are not). Return a short summary and anything left for the human.`,
+Check that knowledge points referenced across segments still line up (introduced before use, same names), checkpoint titles match across runbook/slides${scope === 'dlc' ? '/CHECKPOINTS.md' : ''} (course-authoring rename rule), and the glossary covers new terms. Fix mismatches. Then run ${check} (DIFFERS is expected before rebuild; parse errors, forbidden hits or external URLs are not). Return a short summary and anything left for the human.`,
   { label: 'consistency', phase: 'Consistency' })
 
 return { raw: all.length, results, consistency }

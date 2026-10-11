@@ -1090,7 +1090,7 @@
         {
           "source": "Agent.md",
           "destination": "Agent.md",
-          "sha256": "3086808504b1257e81e2ec2e5cdbbfe63a98d6582862bf5ef326861e0d720eb9"
+          "sha256": "763db360b9c63b80623548b006cfbc964a86cf8852bbb7297da3a30ee8cf851d"
         },
         {
           "source": "docs/planning/agent-work-history.md",
@@ -1385,7 +1385,7 @@
         {
           "source": "scripts/README.md",
           "destination": "scripts/README.md",
-          "sha256": "85b0511d235fe931830527d42667a9582435a376761b9941277887ecb8f642fa"
+          "sha256": "782e5588c0a8ca3a687248a2e1a978362aebca3094015603b7f95847e5628b48"
         }
       ],
       "generated": {}
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "599638bac1f7a7ab8d82cc527dfd3205c91f1a23203d1653b602066915390373"
+          "sha256": "838d7efe7eb0fde3db441cea8d5b9c3ef0e7b408cd7be44a94477c27dc05e2f1"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
