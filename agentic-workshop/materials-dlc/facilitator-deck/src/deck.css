@@ -683,10 +683,14 @@ ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
 .slide:not(.slide-title, .slide-seg) > ol.timeline > li b { font-size: 30px; line-height: 1.3; }
 
 /* Concept, section and reveal slides: the header (kicker, title and a stage bar right under it) stays on top
-   and the body is centred in the free height below it, so no empty band opens under short content.
+   and the free height splits 2 : 3 above and below the body (like checkpoint slides), so short content sits
+   just above the middle instead of leaving a wide band under the title.
    Title, zoned, stop, unlock and timer slides keep their own layout. */
 .slide:not(.slide-title, .slide-cp, .slide-seg):not(:has(.stop-screen, .dk-unlock, .dk-timer-big, .dk-countdown))
-  > :is(.title:not(:has(+ .stage-bar)), .title + .stage-bar, :nth-last-child(1 of :not(aside))) { margin-bottom: auto; }
+  > :is(.title:not(:has(+ .stage-bar)), .title + .stage-bar) { flex: 2 0 auto; align-items: flex-start; }
+.slide:not(.slide-title, .slide-cp, .slide-seg):not(:has(.stop-screen, .dk-unlock, .dk-timer-big, .dk-countdown))::after {
+  content: ""; flex: 3 0 0;
+}
 
 /* ---------- 9. Table ---------- */
 table.table {

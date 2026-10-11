@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 07b83b635bb566e7 inputs-sha256 07b83b635bb566e74f15d40deb879ef147a7a84e7444cfc34fddedf31b77c846 -->
+<!-- 主持人專用，不發給學員。build 238943faca83acee inputs-sha256 238943faca83acee816d21da4e342c8fcf5cf561a35037895f5cf368d4378198 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -692,10 +692,14 @@ ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
 .slide:not(.slide-title, .slide-seg) > ol.timeline > li b { font-size: 30px; line-height: 1.3; }
 
 /* Concept, section and reveal slides: the header (kicker, title and a stage bar right under it) stays on top
-   and the body is centred in the free height below it, so no empty band opens under short content.
+   and the free height splits 2 : 3 above and below the body (like checkpoint slides), so short content sits
+   just above the middle instead of leaving a wide band under the title.
    Title, zoned, stop, unlock and timer slides keep their own layout. */
 .slide:not(.slide-title, .slide-cp, .slide-seg):not(:has(.stop-screen, .dk-unlock, .dk-timer-big, .dk-countdown))
-  > :is(.title:not(:has(+ .stage-bar)), .title + .stage-bar, :nth-last-child(1 of :not(aside))) { margin-bottom: auto; }
+  > :is(.title:not(:has(+ .stage-bar)), .title + .stage-bar) { flex: 2 0 auto; align-items: flex-start; }
+.slide:not(.slide-title, .slide-cp, .slide-seg):not(:has(.stop-screen, .dk-unlock, .dk-timer-big, .dk-countdown))::after {
+  content: ""; flex: 3 0 0;
+}
 
 /* ---------- 9. Table ---------- */
 table.table {
