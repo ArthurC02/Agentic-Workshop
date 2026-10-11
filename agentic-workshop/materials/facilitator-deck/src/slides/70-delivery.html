@@ -115,21 +115,21 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="sqlite" data-title="揭曉 · SQLite 標準決策" data-minute="79">
   <p class="reveal-badge">揭曉 · 例外事件 EXCEPTION-DW-001</p>
-  <h2 class="title">拒絕 SQLite 提議，保留團體任務 <span class="chip dw">REJECT</span></h2>
+  <h2 class="title">拒絕 SQLite 提議，保留團體任務</h2>
   <div class="cols-2">
     <div class="card fx fx-up">
       <h3>證據</h3>
-      <p>工作單的儲存方式（Persistence）= <b>In-Memory</b>（資料只存在記憶體）；SQLite 提案與此限制衝突</p>
+      <p>工作單規定資料<b>只存在記憶體</b>（In-Memory）；改用 SQLite 和這條規定衝突</p>
       <p class="muted">SQLite 屬<b>未核准資料庫變更</b>，不能安裝或實作</p>
     </div>
     <div class="card dw fx fx-up">
       <h3>必要修正</h3>
       <p>拒絕 SQLite 方案、<b>保留團體任務</b></p>
-      <p class="muted">重提 In-Memory 的座位保留與失敗補償方案，附實測計畫</p>
+      <p class="muted">改提只用記憶體的座位保留與付款失敗補償方案，附測試計畫</p>
     </div>
   </div>
   <ol class="steps">
-    <li class="fx">退回（Reject）的是<b>超範圍方案，不是整個任務</b></li>
+    <li class="fx">退回的是<b>超範圍方案，不是整個任務</b></li>
     <li class="fx">不因 13 分鐘壓力「先做再補核准」；找不到可行設計就停下，說明卡在哪，交給人決定</li>
   </ol>
   <aside class="notes">

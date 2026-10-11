@@ -1345,7 +1345,7 @@
         {
           "source": "docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md",
           "destination": "docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md",
-          "sha256": "373f75536c1a77170f0eb02c373e3e19998420df9264bb619d9f9571111a85d9"
+          "sha256": "c8741c08e6d647b4f63ee84c747ca70964737531c98597ef588d39def80d3e86"
         },
         {
           "source": "docs/instructions/07_主持Runbook與回顧整合產製指令書.md",
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "c14f609ba30f08a59526a2fff83c87db359731326b89ead0ec4c6978ce5a9fdd"
+          "sha256": "6bebafce054e94f246b0bb7291251db7d1515b5204f6a02c6417f8b1a3597d30"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
