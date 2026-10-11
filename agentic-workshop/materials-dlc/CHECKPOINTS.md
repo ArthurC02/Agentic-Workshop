@@ -76,6 +76,6 @@
 
 - 開場把 E3（readiness）與 E4（quality-gates）合為檢查點 3。
 - D3a/b/c 的紀錄在 `notes/d3*.md`、`docs/handoffs/d3*.md`。檢查點 6「停手與揭曉對照」：停手、Agent 整理決策摘要、看參考設計；Runbook 不提供參考設計內容，每段只有一張揭曉對照表單（兩個下拉、一個勾選、一個短文字）。
-- D2 第 45 分鐘或任一步卡 5 分鐘可公布 `dlc-rec-d2`。
+- D2 第 45 分鐘或任一步卡 5 分鐘，可私下提供 `dlc-rec-d2` 給該組。
 - D2 兩人共用一台機器。檢查點 1、2、4、5 在夥伴（Maintainer）另開終端機的自己的 Agent 對話執行，檢查點 3 在提案者的 Agent 對話，檢查點 6 先提案者後夥伴；全段只有一張「D2 決定」表單。夥伴的對話保留到結束：D3a–c 檢查點 5 與 D4 檢查點 3 的簽章 commit 都在那裡執行，提案者的 Agent 不 commit、不 push。
 - 揭曉前不得公布 `dlc-rec-d3*`；Recovery 碼只在簡報講者備註（`data-code`）出現。

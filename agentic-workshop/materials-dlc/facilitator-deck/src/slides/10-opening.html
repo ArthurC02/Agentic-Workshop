@@ -59,7 +59,7 @@
   <p class="cp-why"><b>為什麼</b>今天每一步都以測試結果為準，先確認起始 Repo 的測試全部通過。</p>
   <p class="cp-label">現在做</p>
   <ol class="steps">
-    <li>打開 Runbook『開場與環境』› 檢查點 1：下載學員包，解壓到 <code>C:\dlc</code></li>
+    <li>打開 Runbook『開場與環境』› 檢查點 1：下載學員包，解壓到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>）</li>
     <li>在 Repo 根目錄開 Agent：先貼「工作規則」，再貼 ②「準備執行環境」</li>
     <li>貼 ③ 確認結果：回「成功」就往下；回「失敗」就貼「失敗時」</li>
   </ol>
@@ -135,7 +135,7 @@
   <aside class="notes">
     <p><b>說（05:00／第 5 分）</b>：「第 5 分。檢查點 3：讓 Plugin 看一下這個 Repo。readiness 要說是 brownfield，quality-gates 要列出 pytest。這兩個輸出之後每次變更都會再看。」</p>
     <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] registry_tools.py ...</code>）；結果是 brownfield 還是 greenfield。</p>
-    <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → Agent 沒走 dm 腳本；請學員重貼工作規則（第 3 條要求一律經 dm）。</p>
+    <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → Agent 沒走 dm 腳本；請學員重貼工作規則（第 4 條要求 Plugin 一律經 dm 腳本）。</p>
     <p><b>提示</b>：H1：「請 Agent 說明它用哪種終端機、經過哪支 dm 腳本。」</p>
   </aside>
 </section>
