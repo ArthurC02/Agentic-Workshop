@@ -70,7 +70,7 @@
     <li><b>兩人聊完回選擇</b><span>看完可改的測試再回「同意」</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每個允許改寫的既有測試都有對應的 PCR 理由，才回「同意」</p>
+  <p class="cp-judge"><b>你要判斷</b>每個要改寫的既有測試都對得到需求卡條目（PCR），才回「同意」</p>
   <p class="cp-next"><b>第 133 分前完成</b><span>→ 下一步：檢查點 3 交接單與 Agent 實作</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 128 分）</b>：「第 128 分。這一段是今天的核心：Agent 提選項和證據，由你們討論後選；選完 Agent 寫進交接單 docs/handoffs/d3c-group-partial-refund.md，再實作。三件事：誰擁有、什麼一定成立、邊界畫在哪。」</p>
@@ -125,11 +125,11 @@
 <section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="148">
   <p class="kicker">檢查點 5 / 6 · 第 148–152 分鐘</p>
   <h2 class="title">檢視差異與登記候選</h2>
-  <p class="cp-why"><b>為什麼</b>一致性邊界與新規則只登記為候選；commit 由夥伴做</p>
+  <p class="cp-why"><b>為什麼</b>新的邊界與規則只登記為候選；commit 由夥伴做</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>四題都沒問題才同意；Aggregate 有唯一入口與不變量</p>
@@ -201,7 +201,7 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3c" data-title="揭曉 · D3c 不變量與反事實檢查" data-minute="154">
   <p class="reveal-badge">揭曉 · D3c 團體部分退款</p>
-  <h2 class="title">D3c 不變量與每條規則的反事實檢查</h2>
+  <h2 class="title">D3c 不變量與反事實檢查</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">恆等式</span>
@@ -213,7 +213,7 @@
     </div>
     <div class="card fx fx-up">
       <span class="chip">證明</span>
-      <p>每條規則各改壞一次，都要 killed。手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團的測試抓得到</p>
+      <p>每條規則各改壞一次，都要 killed。手續費改成「平均分攤」或「總額取整一次」，只有學生票或混合團測試抓得到</p>
     </div>
   </div>
   <aside class="notes">

@@ -4,7 +4,7 @@
   <p class="kicker">第 70 分鐘 · 解鎖</p>
   <h2 class="title">D3a 電子發票 開始</h2>
   <p class="subtitle">電子發票：把外部服務擋在領域之外</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』。提案者的對話先貼「Agent 工作規則」，再從<b>檢查點 1</b> 開始。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』；提案者先貼<b>「Agent 工作規則」</b>。</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提示詞都貼到提案者的 Agent 對話，先貼頁面上的 D3 工作規則，再從檢查點 1 開始；commit 還是由夥伴在自己的對話做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
@@ -129,7 +129,7 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」，才簽章 commit</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>四題都是「沒有」或「0 失敗」才同意；候選都有證據行號</p>
@@ -176,7 +176,7 @@
 
 <section class="slide" data-seg="reveal" data-reveal-of="dlc-d3a" data-title="揭曉 · D3a 參考設計：Invoicing Context 與 Port" data-minute="93">
   <p class="reveal-badge">揭曉 · D3a 電子發票</p>
-  <h2 class="title">D3a 參考設計：新的 Invoicing Context，Port 在領域、Adapter 在外</h2>
+  <h2 class="title">D3a 參考設計：Port 在領域內，Adapter 在外</h2>
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">Invoicing（新 Context）</span>
@@ -206,7 +206,7 @@
   <div class="cols-3">
     <div class="card fx fx-up">
       <span class="chip">鎖外呼叫</span>
-      <p>鎖內只做扣款、Order、PAID、建 PENDING（處理中）發票；釋放鎖後才呼叫 Port。發票任何結果，付款仍回成功（200）</p>
+      <p>鎖內只做扣款、Order、PAID、建 PENDING（處理中）發票；放開鎖才呼叫 Port；發票不論結果，付款都回 200</p>
     </div>
     <div class="card fx fx-up">
       <span class="chip">冪等</span>

@@ -203,7 +203,7 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
 ① 為什麼做這一步
 
 提案者在 `resume-d2` 建好環境，確認測試、Registry 與稽核紀錄都可用，才接續下一段。
-- 結束原本的提案者 Agent 對話，在 `resume-d2` 重新啟動 Agent，開一個**新的**對話
+- 結束提案者原本的對話，到 `resume-d2` 開一個**新的** Agent 對話
 - 先貼 [開場與環境](#environment) 的工作規則，再貼下方提示詞
 
 ② 貼給 Agent
