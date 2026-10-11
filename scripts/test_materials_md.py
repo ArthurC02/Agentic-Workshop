@@ -327,6 +327,13 @@ class TableTests(unittest.TestCase):
     def test_mismatched_delimiter_is_paragraph(self):
         self.assertEqual(render("| a | b |\n|---|"), "<p>| a | b |\n|---|</p>")
 
+    def test_paths_in_cells_break_only_after_slash(self):
+        out = render("| f |\n|---|\n| `a/b-c/d.md` `x` `/` |\n\n`a/b`")
+        self.assertIn('<td><code class="rb-path"><span>a/</span><wbr><span>b-c/</span><wbr><span>d.md</span></code>'
+                      ' <code>x</code> <code>/</code></td>', out)
+        self.assertTrue(out.endswith("<p><code>a/b</code></p>"))  # only table cells
+        self.assertIn("<span>POST /x/</span><wbr><span>y</span>", render("| f |\n|---|\n| `POST /x/y` |"))
+
     def test_links_in_cells(self):
         out = render("| doc |\n|---|\n| [M](#gf-mission) |")
         self.assertIn('<td><a class="rb-xref" href="#p-gf-mission">M</a></td>', out)
@@ -729,7 +736,7 @@ class RealChapterSmokeTests(unittest.TestCase):
                 self.assertTrue(all(h.startswith("#p-") for h in hrefs), hrefs)
                 tags = set(re.findall(r"<([a-z][a-z0-9]*)", out))
                 allowed = {"h2", "h3", "h4", "h5", "h6", "p", "strong", "em", "code", "a", "ul", "ol", "li",
-                           "label", "input", "span", "blockquote", "hr", "br", "div", "details", "summary", "table", "thead", "tbody",
+                           "label", "input", "span", "blockquote", "hr", "br", "wbr", "div", "details", "summary", "table", "thead", "tbody",
                            "tr", "th", "td", "pre", "button", "section", "script"}
                 self.assertLessEqual(tags, allowed)
                 self.assertEqual(out.count("<script"), out.count('<script type="application/json" class="rb-form-def">')

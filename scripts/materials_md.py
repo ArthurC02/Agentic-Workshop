@@ -348,12 +348,21 @@ def _parse_link_tail(text: str, i: int):
     return text[i + 1:close], dest, k + 1
 
 
+def _path_code(code: str) -> str:
+    """Inline code holding a path, for narrow table cells: each segment stays whole and the line
+    may break only after a "/" (runbook.css keeps .rb-path segments on one line)."""
+    parts = re.findall(r"[^/]*/|[^/]+$", code)
+    if len(parts) > 1 and parts[0].endswith(" /"):  # "POST /" never ends a line on its own
+        parts[:2] = [parts[0] + parts[1]]
+    return '<code class="rb-path">' + "<wbr>".join(f"<span>{_esc(s)}</span>" for s in parts) + "</code>"
+
+
 class _InlineRenderer:
     def __init__(self, ctx: RenderContext, source):
         self.ctx = ctx
         self.source = source
 
-    def render(self, text: str, allow_links: bool = True) -> str:
+    def render(self, text: str, allow_links: bool = True, path_breaks: bool = False) -> str:
         nodes: list = []
         delims: list[_Delim] = []
         buf: list[str] = []
@@ -403,7 +412,7 @@ class _InlineRenderer:
                 if len(code) >= 2 and code[0] == " " and code[-1] == " " and code.strip(" "):
                     code = code[1:-1]
                 flush()
-                nodes.append("<code>" + _esc(code) + "</code>")
+                nodes.append(_path_code(code) if path_breaks and "/" in code.strip("/") else "<code>" + _esc(code) + "</code>")
                 i = end + width
                 continue
             if ch == "!" and i + 1 < n and text[i + 1] == "[" and _parse_link_tail(text, i + 1):
@@ -892,7 +901,7 @@ class _BlockParser:
 
         def cell(tag, text, align, label=""):
             style = f' style="text-align:{align}"' if align else ""
-            return f"<{tag}{style}{label}>{self.inline.render(text)}</{tag}>"
+            return f"<{tag}{style}{label}>{self.inline.render(text, path_breaks=True)}</{tag}>"
 
         width = len(aligns)
         # 3+ columns: each <td> carries its header as data-label so phones can show rows as cards.
