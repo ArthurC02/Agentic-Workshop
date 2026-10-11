@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 0d149fd50acd3943 inputs-sha256 0d149fd50acd394357df4591af3adfa963b5ce20b64765dcf81bb8b1a9a1d659 -->
+<!-- 主持人專用，不發給學員。build 07b83b635bb566e7 inputs-sha256 07b83b635bb566e74f15d40deb879ef147a7a84e7444cfc34fddedf31b77c846 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -686,10 +686,16 @@ ul.seg-brief > li > span { font-size: 34px; line-height: 1.4; }
 .slide-seg ol.timeline > li b { font-size: 28px; }
 ol.timeline > li .tl-due { font-size: 26px; font-weight: 700; color: var(--dw-ink); }
 ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
+/* A roadmap that is the whole body of a plain slide gets larger labels, not a thin strip in an empty slide. */
+.slide:not(.slide-title, .slide-seg) > ol.timeline > li { padding: 28px 20px 26px; }
+.slide:not(.slide-title, .slide-seg) > ol.timeline > li .tl-min { font-size: 28px; }
+.slide:not(.slide-title, .slide-seg) > ol.timeline > li b { font-size: 30px; line-height: 1.3; }
 
-/* Reveal slides: header stays on top, the body is centred in the free height below it. */
-.slide[data-seg="reveal"]:not(:has(.stop-screen)) > .title { margin-bottom: auto; }
-.slide[data-seg="reveal"]:not(:has(.stop-screen)) > :nth-last-child(1 of :not(aside)) { margin-bottom: auto; }
+/* Concept, section and reveal slides: the header (kicker, title and a stage bar right under it) stays on top
+   and the body is centred in the free height below it, so no empty band opens under short content.
+   Title, zoned, stop, unlock and timer slides keep their own layout. */
+.slide:not(.slide-title, .slide-cp, .slide-seg):not(:has(.stop-screen, .dk-unlock, .dk-timer-big, .dk-countdown))
+  > :is(.title:not(:has(+ .stage-bar)), .title + .stage-bar, :nth-last-child(1 of :not(aside))) { margin-bottom: auto; }
 
 /* ---------- 9. Table ---------- */
 table.table {
@@ -779,7 +785,8 @@ ol.timeline > li .tl-min {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-ol.timeline > li b { font-size: 25px; color: var(--navy); overflow-wrap: break-word; word-break: normal; hyphens: auto; }
+/* Labels break only at spaces, punctuation or a <wbr> placed between phrases, never inside a word such as 確認. */
+ol.timeline > li b { font-size: 25px; color: var(--navy); word-break: keep-all; overflow-wrap: anywhere; }
 ol.timeline > li .chip { font-size: var(--fs-min); padding: 3px 10px; max-width: 100%; margin: auto 0 0; align-self: flex-start; white-space: normal; }
 
 ol.timeline > li[data-seg="opening"],
@@ -1661,7 +1668,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ul>
   <ol class="timeline">
     <li data-seg="dlc-d1"><span class="tl-min">00:00</span><b>1 · 人工選來源</b><span class="tl-due">第 13 分前</span></li>
-    <li data-seg="dlc-d1"><span class="tl-min">03:00</span><b>2 · 初始化與確認來源</b><span class="tl-due">第 17 分前</span></li>
+    <li data-seg="dlc-d1"><span class="tl-min">03:00</span><b>2 · 初始化<wbr>與確認來源</b><span class="tl-due">第 17 分前</span></li>
     <li data-seg="dlc-d1"><span class="tl-min">07:00</span><b>3 · 詞彙候選</b><span class="tl-due">第 22 分前</span></li>
     <li data-seg="dlc-d1"><span class="tl-min">12:00</span><b>4 · Context 與規則候選</b><span class="tl-due">第 27 分前</span></li>
     <li data-seg="dlc-d1"><span class="tl-min">17:00</span><b>5 · 找缺口與查詞</b><span class="tl-due">第 31 分前</span></li>
@@ -1818,12 +1825,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>今天的技巧</b><span>提案者的 Agent 只準備證據，夥伴看過才回「核准」</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d2"><span class="tl-min">00:00</span><b>1 · 夥伴建立簽章金鑰</b><span class="tl-due">第 38 分前</span></li>
-    <li data-seg="dlc-d2"><span class="tl-min">03:00</span><b>2 · 設定審查政策與推送檢查</b><span class="tl-due">第 43 分前</span></li>
-    <li data-seg="dlc-d2"><span class="tl-min">08:00</span><b>3 · 建立變更審查包並送出提案</b><span class="tl-due">第 48 分前</span></li>
-    <li data-seg="dlc-d2"><span class="tl-min">13:00</span><b>4 · 夥伴核准與簽章提交</b><span class="tl-due">第 53 分前</span></li>
-    <li data-seg="dlc-d2"><span class="tl-min">18:00</span><b>5 · 寫出核准證明並驗證</b><span class="tl-due">第 56 分前</span></li>
-    <li data-seg="dlc-d2"><span class="tl-min">21:00</span><b>6 · 完成提案並全部驗證</b><span class="tl-due">第 60 分前</span></li>
+    <li data-seg="dlc-d2"><span class="tl-min">00:00</span><b>1 · 夥伴<wbr>建立簽章金鑰</b><span class="tl-due">第 38 分前</span></li>
+    <li data-seg="dlc-d2"><span class="tl-min">03:00</span><b>2 · 設定審查政策<wbr>與推送檢查</b><span class="tl-due">第 43 分前</span></li>
+    <li data-seg="dlc-d2"><span class="tl-min">08:00</span><b>3 · 建立變更<wbr>審查包<wbr>並送出提案</b><span class="tl-due">第 48 分前</span></li>
+    <li data-seg="dlc-d2"><span class="tl-min">13:00</span><b>4 · 夥伴核准<wbr>與簽章提交</b><span class="tl-due">第 53 分前</span></li>
+    <li data-seg="dlc-d2"><span class="tl-min">18:00</span><b>5 · 寫出核准證明<wbr>並驗證</b><span class="tl-due">第 56 分前</span></li>
+    <li data-seg="dlc-d2"><span class="tl-min">21:00</span><b>6 · 完成提案<wbr>並全部驗證</b><span class="tl-due">第 60 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D2 審查與核准（成對）』›「開始前」</p>
   <aside class="notes">
@@ -1984,12 +1991,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>今天的技巧</b><span>Agent 提選項與證據，人來選，寫成交接單</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀需求卡與已審查事實</b><span class="tl-due">第 73 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">00:00</span><b>1 · 讀需求卡<wbr>與已審查事實</b><span class="tl-due">第 73 分前</span></li>
     <li data-seg="dlc-d3a"><span class="tl-min">03:00</span><b>2 · 對外介面（Port）與邊界決策</b><span class="tl-due">第 78 分前</span></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 85 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">08:00</span><b>3 · 交接單<wbr>與 Agent 實作</b><span class="tl-due">第 85 分前</span></li>
     <li data-seg="dlc-d3a"><span class="tl-min">15:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 89 分前</span></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · 檢視差異與登記候選</b><span class="tl-due">第 92 分前</span></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">22:00</span><b>6 · 停手與揭曉對照</b><span class="tl-due">第 95 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · 檢視差異<wbr>與登記候選</b><span class="tl-due">第 92 分前</span></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">22:00</span><b>6 · 停手<wbr>與揭曉對照</b><span class="tl-due">第 95 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3a 電子發票』：先貼工作規則，再做檢查點 1</p>
   <aside class="notes">
@@ -2212,12 +2219,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>今天的技巧</b><span>同 D3a，再請 Agent 列出所有算總額的路徑</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3b"><span class="tl-min">00:00</span><b>1 · 讀需求卡與已審查事實</b><span class="tl-due">第 98 分前</span></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">00:00</span><b>1 · 讀需求卡<wbr>與已審查事實</b><span class="tl-due">第 98 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">03:00</span><b>2 · 決定負責的 Context 與不變量</b><span class="tl-due">第 103 分前</span></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 111 分前</span></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">08:00</span><b>3 · 交接單<wbr>與 Agent 實作</b><span class="tl-due">第 111 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">16:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 116 分前</span></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">21:00</span><b>5 · 檢視差異與登記候選</b><span class="tl-due">第 121 分前</span></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">26:00</span><b>6 · 停手與揭曉對照</b><span class="tl-due">第 125 分前</span></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">21:00</span><b>5 · 檢視差異<wbr>與登記候選</b><span class="tl-due">第 121 分前</span></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">26:00</span><b>6 · 停手<wbr>與揭曉對照</b><span class="tl-due">第 125 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3b 點數折抵』› 檢查點 1</p>
   <aside class="notes">
@@ -2438,12 +2445,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>今天的技巧</b><span>同 D3a，交接單先寫明哪些既有測試可以改寫</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀需求卡與已審查事實</b><span class="tl-due">第 128 分前</span></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">00:00</span><b>1 · 讀需求卡<wbr>與已審查事實</b><span class="tl-due">第 128 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">03:00</span><b>2 · Aggregate（聚合）邊界與不變量</b><span class="tl-due">第 133 分前</span></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · 交接單與 Agent 實作</b><span class="tl-due">第 142 分前</span></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · 交接單<wbr>與 Agent 實作</b><span class="tl-due">第 142 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">17:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 148 分前</span></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · 檢視差異與登記候選</b><span class="tl-due">第 152 分前</span></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">27:00</span><b>6 · 停手與揭曉對照</b><span class="tl-due">第 155 分前</span></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · 檢視差異<wbr>與登記候選</b><span class="tl-due">第 152 分前</span></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">27:00</span><b>6 · 停手<wbr>與揭曉對照</b><span class="tl-due">第 155 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3c 團體部分退款』› 檢查點 1</p>
   <aside class="notes">
@@ -2756,7 +2763,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ul>
   <ol class="timeline">
     <li data-seg="dlc-retro"><span class="tl-min">00:00</span><b>1 · 請 Agent 從紀錄整理證據</b><span class="tl-due">第 169 分前</span></li>
-    <li data-seg="dlc-retro"><span class="tl-min">04:00</span><b>2 · 比較哪些核准步驟擋得住錯</b><span class="tl-due">第 174 分前</span></li>
+    <li data-seg="dlc-retro"><span class="tl-min">04:00</span><b>2 · 比較哪些核准步驟<wbr>擋得住錯</b><span class="tl-due">第 174 分前</span></li>
     <li data-seg="dlc-retro"><span class="tl-min">09:00</span><b>3 · 挑選提示詞與一項行動</b><span class="tl-due">第 178 分前</span></li>
     <li data-seg="dlc-retro"><span class="tl-min">13:00</span><b>4 · 匯出與結束</b><span class="tl-due">第 180 分前</span></li>
   </ol>
