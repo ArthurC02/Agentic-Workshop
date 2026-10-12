@@ -21,6 +21,7 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
 - Every checkpoint uses four blocks, in this order, each starting with its label line (user rule, 2026-10-10):
   1. `① 為什麼做這一步`: the precondition and the meaning in 1–3 sentences. Where the step needs a human judgment (approve a plan, review an acceptance table, decide at a Gate, approve as partner), say here what the learner judges and how.
   2. `② 貼給 Agent`: the prompt that runs the step. If it contains OS-specific commands or paths, use a ```prompt block with `# windows` and `# macos` sections (rendered as Windows／macOS tabs, choice remembered); otherwise ```text.
+     **Paste order follows reality** (user feedback, 2026-10-13: learners pasted Greenfield's rules before opening the repo): every paste block sits inside the checkpoint ② that first needs it, after the download／open-folder／new-conversation step. Never put a prompt above a segment's first checkpoint.
   3. `③ 確認結果`: a short ```text prompt asking the Agent to check the step's 1–3 completion conditions (files, test counts, recorded decisions) and reply **only** 「成功」 or 「失敗：〈一句原因〉」, changing nothing. Then 「失敗時」 with one paste-ready rescue prompt.
   4. `④ 補充`: optional — 技巧／新概念 callouts, 💬 discussion, warnings. Keep only what passes the absolutely-necessary test.
 

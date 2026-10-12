@@ -16,27 +16,6 @@ section: Greenfield｜Tool
 - **完成的樣子**：你在 `/docs` 走完流程；`notes/greenfield.md` 有計畫、每步的驗收對照表和交付摘要。
 ```
 
-## 先貼給 Agent：工作規則
-
-檢查點 1 開啟 Agent 後，第一件事就是貼下面整段。開了新對話也要重貼。這段是給 Agent 的，不需要看懂。
-
-```callout tip
-技巧：給 Agent 一份工作規則
-**規則先講好，之後每一步就不用再叮嚀「先計畫」「做完停下」「附測試結果」。**
-📖 延伸閱讀：Claude Code 官方文件〈Best practices for Claude Code〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件 Copilot〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。
-```
-
-```text
-以下是這次工作的規則，請在整段對話中遵守：
-1. 你負責所有程式、測試與指令操作；我不會自己修改程式，也不會自己讀程式，請用白話向我說明。
-2. 每次修改前先提出計畫，等我核准；只做核准的步驟，做完就停下來等我。
-3. 商業規則放在 domain／application，Router 只做輸入輸出轉換；不新增套件、不改 Seed 資料、不動 /health。
-4. 功能完成才移除對應的 skip；不得修改或刪除既有測試的斷言，不得用 skip／xfail 隱藏失敗。
-5. 每次做完都執行 pytest -q，並用「驗收對照表」回報：每條驗收條件或規則一列，欄位固定為「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」，最後一行寫通過／失敗／跳過的測試數。不要貼原始輸出，只給摘要。
-6. 每次修改後，接在驗收對照表後面用白話回答四題審查問題，並附你實際執行的指令：(1) 改了哪些檔案、各改了什麼、為什麼，有沒有不在核准計畫裡的檔案（notes/ 不算）；(2) 測試總數有沒有比上一次少，有沒有新增 skip 或 xfail；(3) 有沒有刪除測試或修改既有測試的期待值（用 git diff 檢查 tests 資料夾）；(4) 這一步讓哪些原本跳過的測試變成通過。最後用一句話建議「可以放行」或「不建議放行（原因）」。
-7. 你沒有實際執行的事情，一律標「未驗證」。
-```
-
 ## 檢查點總覽
 
 - **07–09 · 檢查點 1 交給 Agent 規則並備好環境**
@@ -58,7 +37,20 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 1. 按上方按鈕下載 `g0.zip`，解壓縮到短路徑。Windows：在檔案上按右鍵選「全部解壓縮」，例如 `C:\work\g0`；macOS：點兩下，例如 `~/work/g0`。
 2. 在解壓後的 `agentic-workshop/01-greenfield/participant/starter-repository` 資料夾開啟 Agent。例如在編輯器用「開啟資料夾」選它，再開 Agent 對話。
-3. 先貼上方的「工作規則」，再貼這段（給 Agent 的，不需要看懂）：
+3. 先貼這段「工作規則」（給 Agent 的，不需要看懂）。開了新對話也要重貼：
+
+```text
+以下是這次工作的規則，請在整段對話中遵守：
+1. 你負責所有程式、測試與指令操作；我不會自己修改程式，也不會自己讀程式，請用白話向我說明。
+2. 每次修改前先提出計畫，等我核准；只做核准的步驟，做完就停下來等我。
+3. 商業規則放在 domain／application，Router 只做輸入輸出轉換；不新增套件、不改 Seed 資料、不動 /health。
+4. 功能完成才移除對應的 skip；不得修改或刪除既有測試的斷言，不得用 skip／xfail 隱藏失敗。
+5. 每次做完都執行 pytest -q，並用「驗收對照表」回報：每條驗收條件或規則一列，欄位固定為「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」，最後一行寫通過／失敗／跳過的測試數。不要貼原始輸出，只給摘要。
+6. 每次修改後，接在驗收對照表後面用白話回答四題審查問題，並附你實際執行的指令：(1) 改了哪些檔案、各改了什麼、為什麼，有沒有不在核准計畫裡的檔案（notes/ 不算）；(2) 測試總數有沒有比上一次少，有沒有新增 skip 或 xfail；(3) 有沒有刪除測試或修改既有測試的期待值（用 git diff 檢查 tests 資料夾）；(4) 這一步讓哪些原本跳過的測試變成通過。最後用一句話建議「可以放行」或「不建議放行（原因）」。
+7. 你沒有實際執行的事情，一律標「未驗證」。
+```
+
+4. Agent 回覆後，再貼這段準備專案：
 
 ```prompt
 # windows
@@ -90,6 +82,12 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 ```
 
 ④ 補充
+
+```callout tip
+技巧：給 Agent 一份工作規則
+**規則先講好，之後每一步就不用再叮嚀「先計畫」「做完停下」「附測試結果」。**
+📖 延伸閱讀：Claude Code 官方文件〈Best practices for Claude Code〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件 Copilot〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。
+```
 
 起始測試應是 `1 passed, 8 skipped`（1 個通過、8 個跳過），以實際輸出為準。跳過（Skip）的測試代表功能還沒做。
 
