@@ -63,9 +63,12 @@ command = [str(browser), '--headless', '--disable-gpu', '--no-first-run',
            '--virtual-time-budget=6000', '--dump-dom',
            '--user-data-dir=' + str(WORK / 'profile'),
            '--screenshot=' + str(WORK / 'architecture.png'), target.as_uri()]
-run = subprocess.run(command, capture_output=True, text=True, encoding='utf-8',
-                     errors='replace', timeout=60, creationflags=subprocess.CREATE_NO_WINDOW)
-match = re.search(r'<pre id="browser-report"[^>]*>(.*?)</pre>', run.stdout, re.S)
+for attempt in range(2):  # headless --dump-dom occasionally returns an empty DOM; one retry clears it
+    run = subprocess.run(command, capture_output=True, text=True, encoding='utf-8',
+                         errors='replace', timeout=60, creationflags=subprocess.CREATE_NO_WINDOW)
+    match = re.search(r'<pre id="browser-report"[^>]*>(.*?)</pre>', run.stdout, re.S)
+    if match:
+        break
 (WORK / 'dom.html').write_text(run.stdout, encoding='utf-8')
 if not match:
     print(run.stderr[-2500:])

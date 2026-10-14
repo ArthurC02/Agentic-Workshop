@@ -232,3 +232,22 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 - `dmlib.py` 的指令集合未包含 0.14 起新增的 `boundary-impact`、`recite`、`relocate-evidence`（都需要兩個 root），D4 若教 `relocate-evidence` 要一併加入。
 
 同時修正一處兩版都不對的說明：`30-d3a.md` 延伸閱讀原寫 `pattern-verification.md`「最後一段講反事實檢查」，實際在〈Evidence matrix〉一段的最後一列（最後一段是〈Review outcome〉）。
+
+## domain-memory 升級 0.22.0（2026-10-15）
+
+使用者核准升級，固定在 0.22.0（SkillHub `bdd994626`，與目前 HEAD 的 Plugin 內容相同）。
+
+做了什麼：
+- 機械：`vendor_dlc_plugin.py` 產生 `domain-memory-0.22.0.zip`（72 個 Plugin 檔案；學員核對印出 `SHA OK 73 files`，含 ZIP 本身），刪除 0.10.15 的 ZIP 與 SHA256SUMS；版本字串與檔案數同步到 build_delivery_dlc（含測試）、dmlib、doctor、tools／DLC README、01-environment、開場投影片、主持指南、觀察指南與 11 號指令書。`dmlib.py` 的指令集合改成與 0.22.0 的 `cli_parser` 完全一致（補上 `attest-signed-commit`、`audit-attestations`、`boundary-impact`、`promote-candidate`、`recite`、`record-test-result`、`recover-registry-update`、`relocate-evidence`、`validate-change-package` 缺的固定參數）。
+- 工具：`make_record.py --upsert` 改為每種資產一次 `upsert-candidate`（依 ASSETS 順序），互標 `not_same_as` 的兩筆才能一起登記；同一種資產全部登記或全部不登記（實測：規則批次裡有一筆 reviewed id 時，同批新規則也不登記，之前的種類已登記、之後的種類停下）。`test_tools.py` 加了互標 `not_same_as` 的一對詞彙，舊版逐筆 upsert 會失敗。`doctor.py` 改用與 hook 相同的規則檢查 PATH 上的 `python3`／`python` ≥ 3.10。
+- 資料：`d1-records.json` 修兩筆（`discount-rate` 別名去重、`best-single-discount` 的 `not_same_as` 清空：`fare-policy` 不是詞彙 id，定義已說明不依條件先後取第一個）。參考 bundle 不重建（參考解答與 Recovery 的證據雜湊建立在原本 23 個 CRLF 檔案上，重建會全部失效），改在 tag 上加三個簽章 commit：以 `amend-policy` 授權第二把 Maintainer 金鑰（原私鑰不在產製機，新私鑰只在暫存區），再以 CP-CORE-002（`supersedes` CP-CORE-001，反事實檢查 `not_applicable`）修正兩筆詞彙；tag `dlc-d2-reviewed` 移到新 HEAD，`keys/` 附兩把公鑰。重跑 `make_recovery.py d1 d2 d3a d3b d3c` 與三份參考解答的 `domain-memory/`。
+- 內容：D4 檢查點 1–2 改用 `shifted` 與每筆結果的 asset／id／`cited_lines`，不再從 `notes/` 反查 id；`resolve-terms` 的說明改為依名稱、id 或別名比對並附 `match_kind`，查不到時可能回非權威的 `mentioned`（10-d1、30／40／50、20-d1 備註、tools README）；50-d3c 的「批次在第一個錯誤停下」改為「同一種資產一起登記」；詞彙表加 `shifted`；Recovery 頁的數字與「三個金鑰指紋」。push 前啟用 `.venv` 保留：0.21.1 的 hook 先找 `python3` 再找 `python`，但 Windows 的 python.org 安裝沒有 `python3`、`python` 可能不在 PATH 或是 Store 捷徑，只改了理由的說法（01-environment、20-d2、開場投影片、主持指南常見問題第 4 條、tools README、11 號指令書）。D4 不教 `relocate-evidence`（檢查點 2 的 shifted 新行號已在 verify-evidence 輸出裡；它的 `registry_updates` 只對下一次核准有用），寫進參考解答的 D4 待辦。
+
+量測（0.22.0）：
+- 參考 Registry：162 個引用全部 current；verify-audit 64 events（原 62），head `sha256:955311a5…34260`；兩個 attestation commit 都 `Git governance is valid.`；推到本機 bare remote 時 hook 印六行。
+- D1 重播（`make_recovery.py d1`，57 筆、互標 `not_same_as`）：`Registry is valid.`、162 current，約 55 秒（原約 100 秒）。
+- Recovery current／shifted／stale：d2 162／0／0；d3a 147／12／3、d3b 108／32／22、d3c 99／31／32（0.10.15 為 147／15、108／54、99／63）。Recovery 的 Registry commit 由 3 個變 6 個，接手後 `authorized_signers` 由 2 個變 3 個，D2 Recovery push 的 hook 印七行。
+- 參考解答：d3a 192 個引用 177／12／3、69 events；d3b 225 個 168／35／22、73 events；d3c 248 個 171／16／61、77 events（原 72／82／90 events：同一種資產一次登記，事件變少）。
+- `relocate-evidence --from . --to .`（D3a Recovery）：12 筆 `registry_updates`、`supersedes` CP-CORE-001、3 筆 unmatched，與 shifted／stale 一致。
+
+驗證：已實跑工具自檢（5 tests OK，含互標 `not_same_as`；以舊版 make_record 重跑會失敗）、D1 重播、參考 Registry 的完整簽章與 push（本機 bare remote，未被擋）、d1–d3c Recovery 重建與量測、`relocate-evidence`，以及 `release_materials.py`（RELEASE PIPELINE PASS，DLC 候選 `23f432cf92c2153b`）。未驗證：以候選包貼 Runbook 提示詞逐頁演練（開場＋D1＋D2、D2／D3 Recovery 接手、D4 檢查點 1–3）已在沙箱啟動，但交回時結果尚未取得；交付前須補跑一次 rehearsal 並在此補記。

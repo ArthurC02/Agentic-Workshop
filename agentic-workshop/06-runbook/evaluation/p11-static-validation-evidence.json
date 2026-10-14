@@ -1,19 +1,19 @@
 {
-  "executed_utc": "2026-10-14T05:34:56.745012+00:00",
+  "executed_utc": "2026-10-14T17:13:59.915951+00:00",
   "installation": "NOT RUN: static checks only",
   "human_rehearsal": "NOT RUN",
   "agent_service_availability": "NOT RUN",
   "coverage": "STATIC_ONLY",
   "documents": {
     "status": "PASS",
-    "markdown_files": 388,
+    "markdown_files": 396,
     "relative_links": 886,
     "errors": [],
     "existing_utf8_bom_files": [
-      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md",
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/api-examples.md",
       "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/architecture.md",
-      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/business-rules.md"
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/docs/business-rules.md",
+      "agentic-workshop/01-greenfield/evaluation/reference-solution/greenfield-reference-mvp/README.md"
     ],
     "scope": "Agent.md + docs/**/*.md + agentic-workshop/**/*.md + scripts/**/*.md",
     "limits": "Static links/encoding/fences/participant internal references only; not semantic review"
