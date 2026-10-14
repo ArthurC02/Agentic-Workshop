@@ -218,3 +218,17 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 - 機械：`vendor_dlc_plugin.py` 重產 ZIP 並刪除舊版；版本字串（build_delivery_dlc、dmlib、doctor、README、指令書）；`SHA OK 73 files`。
 - 內容：resolve-terms 會比對同義詞並標示 `match_kind`（10-d1 檢查點 5、30-d3a、20-d1 投影備註、tools/README）。可選加深：D1 檢查點 5 的別名比對、D3a 檢查點 5 的 Contract `idempotency`；D4 檢查點 2 的 `relocate-evidence` 需先向 Plugin 作者確認 `--from src --to src` 是支援的用法。不教：`boundary-impact`、`unhashed`。
 - 之後跑 release-materials 並演練 D1、D2、D4。
+
+## domain-memory 0.22.0：仍暫不升級（2026-10-14）
+
+評估 0.10.15 → 0.22.0（暫存沙箱用兩版實跑 D1 重播、D2–D3c Recovery 接手、簽章 commit、push、`validate --require-reviewed`、`verify-audit`、`verify-evidence`、`verify-sources`、`quality-gates`，另比對指令參數與頁面引用的輸出字串）。指令、參數、預設值與頁面引用的成功字串都沒有變，D2 Change Package 流程（`fill_package.py`）在新版也是 `Change package is valid.`。阻擋點與 0.16.0 相同：兩筆詞彙資料讓 9 份 Registry 的 `validate` 失敗；修好資料後，D1 重播仍停在互標 `not_same_as` 的 `advance-purchase-discount`（逐筆 upsert）。
+
+決定：維持 0.10.15，教材不為 Plugin 改版而改。理由：0.16–0.22 在兩天內連發 7 版，尚未穩定；升級成本與 2026-10-12 的清單相同，且 D4 需要改寫。
+
+新版對課程的影響（補充 2026-10-12 的工作清單）：
+- D4 受益最大：行號只是移動的引用改報 `shifted`、不算失敗；`verify-evidence` 每筆附 asset、id 與 `cited_lines`。實測 current／shifted／stale：d3a 147／12／3、d3b 108／32／22、d3c 99／31／32（0.10.15 為 147／15、108／54、99／63）。升級時要改：`39/49/59-recovery-*.md` 的數字、`60-d4.md` 檢查點 2（不必再從 `notes/` 反查 id；「只是行號移動而 stale」改為 `shifted`）、詞彙表的狀態列與主持指南。`relocate-evidence --from . --to .` 自 0.20.1 起涵蓋整個 Repo，同一路徑會重新引用 shifted 的證據，可取代 2026-10-12 清單中「先向 Plugin 作者確認」那一項。
+- `resolve-terms`：0.19 起查不到詞彙時回傳非權威的 `mentioned`（不一定是 `[]`），0.20 起只比對完整單字；`10-d1.md`、`30-d3a.md`、`40-d3b.md`、`50-d3c.md` 對 `[]` 的說明要一併改。
+- pre-push hook：0.21.1 起先找 `python3` 再找 `python`。實測 0.10.15 的 hook 在 PATH 沒有裸 `python` 時 push 失敗（`python: not found`）；Runbook 的 push 步驟都先啟用 `.venv`，所以目前學員不會遇到，升級後可刪去相關提醒（`20-d2.md`、`tools/README.md`、主持指南常見問題第 4 條）。
+- `dmlib.py` 的指令集合未包含 0.14 起新增的 `boundary-impact`、`recite`、`relocate-evidence`（都需要兩個 root），D4 若教 `relocate-evidence` 要一併加入。
+
+同時修正一處兩版都不對的說明：`30-d3a.md` 延伸閱讀原寫 `pattern-verification.md`「最後一段講反事實檢查」，實際在〈Evidence matrix〉一段的最後一列（最後一段是〈Review outcome〉）。
