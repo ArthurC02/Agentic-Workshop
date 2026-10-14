@@ -211,7 +211,7 @@ git log --show-signature -1
 
 （Git Bash 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
 
-**看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 為 `G maintainer@example.com`{log_note}；`amend-policy` 回報 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 為 `{{"status": "ready", "blocks": []}}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
+**看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的六個 commit 為 `G maintainer@example.com`{log_note}；`amend-policy` 回報 `authorized_signers` 從兩個 fingerprint 變成三個；`governance-readiness` 為 `{{"status": "ready", "blocks": []}}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
 
 - 附加 Maintainer 公鑰那一行不可省略：`init-signing-key` 會把 `gpg.ssh.allowedSignersFile` 指向只含夥伴金鑰的檔案，少了它，歷史上 Maintainer 簽的 commit 就驗不過，之後 push 會被 hook 以「Git commit signature is invalid」拒絕。
 - 之後 D3、D4 的 commit 照 Runbook 由夥伴的對話簽章。私鑰永遠不要 commit、不要放進 ZIP 或截圖。
@@ -236,13 +236,13 @@ py -3.13 -m venv .venv
 INTRO = {
     "d2": """# D2 Recovery
 
-內容：起始 Repo 加上已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer），以及它的 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。""",
+內容：起始 Repo 加上已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer；`CP-CORE-002` 修正兩筆詞彙的標籤，由第二把 Maintainer 金鑰簽章），以及它的 Git 歷史 `repo.bundle` 與兩把 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。""",
 }
 # segment -> which reference implementations the snapshot holds (each solution includes the earlier segments)
 SOLUTION_SCOPE = {"d3a": "D3a ", "d3b": "D3a＋D3b 的", "d3c": "D3a～D3c 的"}
 INTRO_SOLUTION = """# {up} Recovery
 
-內容：D2 的 reviewed Registry，加上 {scope}參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。"""
+內容：D2 的 reviewed Registry，加上 {scope}參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與兩把 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 shifted 是已審查事實所引用的那幾行只是移動，stale 是那幾行被實作改過，都留到 D4 處理。"""
 
 USAGE = """使用 Recovery 不算自己完成 {up}。學員照 Runbook「{up} Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。"""
 
@@ -264,7 +264,7 @@ export PYTHONUTF8=1
 git push -u origin HEAD
 ```
 
-**看到什麼算成功**：hook 共印出四行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的三個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。被拒時不要用 `--no-verify` 繞過。
+**看到什麼算成功**：hook 共印出七行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的六個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。被拒時不要用 `--no-verify` 繞過。
 """
 
 D1_INTRO = """# D1 Recovery
@@ -308,7 +308,7 @@ def recovery_md(seg: str, solution: str | None, message: str | None) -> str:
     base_note = "最下面的「Smart Ticket DLC base」（起始程式）"
     log_note = ("，最上面的「" + message + "」與" + base_note + "為 `N`（未簽章，不碰 Registry，hook 允許）"
                 if solution else "，" + base_note + "為 `N`（未簽章，不碰 Registry，hook 允許）")
-    evidence_note = ("verify-evidence 多數 `current`，引用行內容被實作改過的證據顯示 `stale`、exit 1，屬預期，留到 D4 處理"
+    evidence_note = ("verify-evidence 多數 `current`，引用行只是移動的顯示 `shifted`，內容被實作改過的顯示 `stale`、exit 1，屬預期，留到 D4 處理"
                      if solution else "verify-evidence 全部 `current`")
     return "\n\n".join([intro, usage, STEP_SAVE.format(seg=seg) + "\n"
                         + STEP_TAKEOVER.format(seg=seg, up=up, log_note=log_note) + "\n"

@@ -1,6 +1,6 @@
 # DDD DLC 產製結果
 
-> 本報告記錄的是 2026-10-07 以 Plugin 0.2.2、候選包 efbd1ba2c3e7b958 的驗證；0.10.15 升級與相容性見 docs/planning/decisions-and-open-issues.md（2026-10-10）。D3c datetime mutant 的判定已改為測試不足（見 observation-guide）。
+> 本報告記錄的是 2026-10-07 以 Plugin 0.2.2、候選包 efbd1ba2c3e7b958 的驗證；0.10.15 升級與相容性見 docs/planning/decisions-and-open-issues.md（2026-10-10）；0.22.0 升級（2026-10-15）重新量測的數字見同檔〈domain-memory 升級 0.22.0〉，參考 Registry 現為 64 events、Recovery 與參考解答的 verify-evidence 改分 current／shifted／stale，下方表格保留 2026-10-07 的原始紀錄。D3c datetime mutant 的判定已改為測試不足（見 observation-guide）。
 
 > 驗證日期：2026-10-07（重驗；取代先前對 `63c281a541f2001a` 的 FAIL 判定）。驗證對象：候選包 `dist/dlc-candidate/efbd1ba2c3e7b958/`（與 `materials-dlc/edition.json` 的 `candidate_id`、`scripts/package-manifest-dlc.json` 的 sha256 前 16 碼一致）。
 > 方法：只用候選包 ZIP，在短路徑 `C:/dlcv/`（簽章演練在 `C:/dlcp/`）解壓、還原與執行，驗證後刪除；Python 3.13.14、Windows 11、全新 venv、Plugin 取自學員包內的 vendor ZIP（SkillHub 原檔未動）。

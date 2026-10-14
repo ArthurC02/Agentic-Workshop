@@ -119,14 +119,6 @@ def build(spec: dict, allow_unclassified: bool = False, plugin: str | None = Non
     return record
 
 
-def save_and_upsert(asset: str, record: dict, out: Path, upsert: bool, plugin: str | None) -> None:
-    dmlib.write_json(out, record)
-    print(f"已寫出 {out}（{len(record['evidence'])} 個證據）")
-    if upsert:
-        done = dmlib.run(["upsert-candidate", "--asset", asset, "--record-file", str(out)], plugin)
-        print(f"  upsert-candidate {asset}:{record['id']} → {done.stdout.strip() or 'OK'}")
-
-
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="以 cite 證據產生 Domain Registry record JSON（候選）。",
                                      epilog=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -161,10 +153,19 @@ def main(argv: list[str] | None = None) -> int:
         specs = [spec]
     else:
         parser.error("需要 --asset ... 或 --batch 檔案")
+    groups: dict[str, list[Path]] = {}
     for spec in specs:
         record = build(spec, args.allow_unclassified, args.plugin)
         out = Path(args.out) if args.out and not args.batch else Path(args.out_dir) / f"{spec['asset']}-{record['id']}.json"
-        save_and_upsert(spec["asset"], record, out, args.upsert, args.plugin)
+        dmlib.write_json(out, record)
+        print(f"已寫出 {out}（{len(record['evidence'])} 個證據）")
+        groups.setdefault(spec["asset"], []).append(out)
+    if args.upsert:
+        # 同一資產一次 upsert（Plugin 整批驗證）：互相標 not_same_as 的兩筆才能一起登記。
+        for asset in (a for a in ASSETS if a in groups):
+            files = [arg for out in groups[asset] for arg in ("--record-file", str(out))]
+            done = dmlib.run(["upsert-candidate", "--asset", asset, *files], args.plugin)
+            print(f"  upsert-candidate {asset}（{len(groups[asset])} 筆）→ {done.stdout.strip() or 'OK'}")
     return 0
 
 

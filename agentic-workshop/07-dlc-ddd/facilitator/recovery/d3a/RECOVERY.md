@@ -1,6 +1,6 @@
 # D3a Recovery
 
-內容：D2 的 reviewed Registry，加上 D3a 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「D3a：電子發票（Recovery 參考實作）」，以及 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 stale 是已審查事實所引用的那幾行被實作改過，留到 D4 以新的候選更新。
+內容：D2 的 reviewed Registry，加上 D3a 參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「D3a：電子發票（Recovery 參考實作）」，以及 Git 歷史 `repo.bundle` 與兩把 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 shifted 是已審查事實所引用的那幾行只是移動，stale 是那幾行被實作改過，都留到 D4 處理。
 
 使用 Recovery 不算自己完成 D3a。學員照 Runbook「D3a Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。
 
@@ -88,7 +88,7 @@ git log --show-signature -1
 
 （Git Bash 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
 
-**看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 為 `G maintainer@example.com`，最上面的「D3a：電子發票（Recovery 參考實作）」與最下面的「Smart Ticket DLC base」（起始程式）為 `N`（未簽章，不碰 Registry，hook 允許）；`amend-policy` 回報 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 為 `{"status": "ready", "blocks": []}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
+**看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的六個 commit 為 `G maintainer@example.com`，最上面的「D3a：電子發票（Recovery 參考實作）」與最下面的「Smart Ticket DLC base」（起始程式）為 `N`（未簽章，不碰 Registry，hook 允許）；`amend-policy` 回報 `authorized_signers` 從兩個 fingerprint 變成三個；`governance-readiness` 為 `{"status": "ready", "blocks": []}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
 
 - 附加 Maintainer 公鑰那一行不可省略：`init-signing-key` 會把 `gpg.ssh.allowedSignersFile` 指向只含夥伴金鑰的檔案，少了它，歷史上 Maintainer 簽的 commit 就驗不過，之後 push 會被 hook 以「Git commit signature is invalid」拒絕。
 - 之後 D3、D4 的 commit 照 Runbook 由夥伴的對話簽章。私鑰永遠不要 commit、不要放進 ZIP 或截圖。
@@ -106,4 +106,4 @@ py -3.13 -m venv .venv
 
 （Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`。）
 
-**看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 多數 `current`，引用行內容被實作改過的證據顯示 `stale`、exit 1，屬預期，留到 D4 處理。結果寫進 `notes/recovery-d3a.md` 的「環境與驗證」，最後一行寫「D3a 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
+**看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 多數 `current`，引用行只是移動的顯示 `shifted`，內容被實作改過的顯示 `stale`、exit 1，屬預期，留到 D4 處理。結果寫進 `notes/recovery-d3a.md` 的「環境與驗證」，最後一行寫「D3a 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。

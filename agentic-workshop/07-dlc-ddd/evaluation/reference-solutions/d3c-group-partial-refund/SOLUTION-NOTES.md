@@ -271,20 +271,20 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --a
 | 指令 | 結果 |
 |---|---|
 | `validate` | `Registry is valid.`（`--require-reviewed` 預期失敗） |
-| `verify-audit` | `valid`，90 events，head `sha256:94032381…cdd986` |
+| `verify-audit` | `valid`，77 events，head `sha256:f59e9778…60ad` |
 | `coverage` | 6 Contexts、27 詞、30 規則、3 Aggregates（`booking`、`order`、候選 `booking-v2`）；缺口 inventory、membership、invoicing 無 Aggregate（ADR 007 第 3 點刻意不合併座位資料）、6 個 Context 都無 Contract |
-| `verify-evidence` | 248 個引用：171 current、77 stale（exit 1，預期） |
+| `verify-evidence` | 248 個引用：171 current、16 shifted、61 stale（exit 1，預期） |
 | `verify-sources` | `stale`（同 D3a） |
 
-**stale**（第 8 節列出的檔案，加上 `business-rules.md`、`booking_service.py`、`members.py`、`payment_service.py`）：
+**stale 與 shifted**（第 8 節列出的檔案，加上 `business-rules.md`、`booking_service.py`、`members.py`、`payment_service.py`）：
 
-- reviewed（41）：D3b 的 36 筆，加上 `contexts:inventory`、`vocabulary:seat-assignment`、`vocabulary:consecutive-seat-segment`、`rules:SEAT-001`、`rules:GROUP-004`。
-- 候選（7）：D3a 的 `rules:EINV-002`、`interactions:payment-triggers-invoicing`；D3b 的 `vocabulary:redeemed-points`、`vocabulary:payable-amount`、`rules:PTS-008`、`rules:PTS-012`、`interactions:booking-reserves-member-points`（行號移動，可直接重新 upsert）。
+- reviewed（41）：D3b 的 36 筆，加上 `contexts:inventory`、`vocabulary:seat-assignment`、`vocabulary:consecutive-seat-segment`、`rules:SEAT-001`、`rules:GROUP-004`。其中只是行號移動（shifted）的 7 筆：`vocabulary:total-fare`、`rules:FARE-003`、`rules:BOOKING-002`、`rules:BOOKING-003`、`rules:PAYMENT-001`、`interactions:pricing-reads-membership`、`interactions:payment-compensates-inventory`；其餘 34 筆 stale。
+- 候選（7）：D3a 的 `rules:EINV-002`、`interactions:payment-triggers-invoicing`（shifted）；D3b 的 `vocabulary:redeemed-points`、`vocabulary:payable-amount`、`rules:PTS-008`、`rules:PTS-012`、`interactions:booking-reserves-member-points`（stale）。候選可以直接重新 upsert。
 - **內容已不成立**：D3b 已列出的 `rules:ORDER-002`、`rules:MEMBER-004`、`vocabulary:order`、`vocabulary:points-balance`、`aggregates:order`，加上 `rules:REFUND-004`、`aggregates:booking`、`vocabulary:refund-record`（以 booking_id 為鍵、只能一筆）、`decisions:ASIS-004`、`rules:GROUP-001`（加註部分取消）。`decisions:ADR-004` 引用行沒變所以**不會** stale，但內容需要修訂：verify-evidence 抓不到這種情況，只能靠人審查。
 
 **D4 要做的事**：
 
 - 以 Change Package 升級 D3a～D3c 的候選；三個新測試檔與 `domain/cancellation.py` 先 `confirm-sources`。
 - 已不成立的 reviewed 事實：在 proposal 以 `registry_updates` 用**原 id** upsert 新內容（REFUND-004、aggregate `booking`、ADR-004 等），`supersedes` 指名 CP-CORE-001；ASIS-004 以 `remove` 移除或改寫為歷史觀察。之後 `REFUND-004-V2`、`booking-v2`、`ADR-004-V2` 這類暫用 id 在同一 proposal 移除，避免同一事實兩筆。
-- 其餘 stale 的 reviewed 事實在同一 proposal 重新引用（內容不變）。
+- 其餘 stale 與 shifted 的 reviewed 事實在同一 proposal 重新引用（內容不變；shifted 的可由 `relocate-evidence --from . --to .` 產生 `registry_updates`）。
 - 交接 Unknowns 與 Forces：見第 8 節（待決問題 4／5／6、passenger_id 唯一性、發票折讓）。

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 638fe43a35570fcd inputs-sha256 638fe43a35570fcd0db360f05545bf697d7d9e1544841cbb195c921774a470f5 -->
+<!-- 主持人專用，不發給學員。build 65c24ee6ae2d8605 inputs-sha256 65c24ee6ae2d86057ae1ba355900fa6a5a5f7eff9dbf69a9bc2b5acf8ba3cdca -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1609,7 +1609,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『開場與環境』› 檢查點 1</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
-    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 71 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
+    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 73 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
     <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 8 分）。</p>
     <p><b>降級</b>：第 10 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
   </aside>
@@ -1640,13 +1640,13 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「核對 Plugin」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>等 Agent 回報</b><span>71 個檔都相符：<code>SHA OK</code></span></li>
+    <li><b>等 Agent 回報</b><span>73 個檔都相符：<code>SHA OK</code></span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 5 分前完成</b><span>→ 下一步：檢查點 3 專案就緒與品質關卡檢查</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 3 分）</b>：「第 3 分。檢查點 2：解出 Plugin，核對雜湊。我們不改 Plugin 一個位元組，核對是為了確定大家手上是同一份。」</p>
-    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 71 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
+    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 73 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
     <p><b>介入訊號</b>：<code>SHA MISMATCH</code> → 重新下載學員包再請 Agent 重跑，不要讓 Agent 修改 Plugin 檔案。</p>
   </aside>
 </section>
@@ -1672,7 +1672,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 4 · 確認真實 Python" data-minute="8">
   <p class="kicker">檢查點 4 / 4 · 第 8–10 分鐘</p>
   <h2 class="title">確認真實 Python</h2>
-  <p class="cp-why"><b>為什麼</b>D2 推送會呼叫 <code>python</code>，它必須是 venv 裡的真實版本</p>
+  <p class="cp-why"><b>為什麼</b>D2 推送要在 PATH 上找到 Python，啟用 venv 後必須是真實版本</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「確認 Python」</b><span>Runbook › 檢查點 4；也建立起始 commit</span></li>
@@ -1681,7 +1681,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-next"><b>第 10 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
   <p class="sync-cue" data-sync="夥伴">⏸ 看投影</p>
   <aside class="notes">
-    <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它直接呼叫 python；這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
+    <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它在 PATH 上找 python3 或 python（3.10 以上）；Windows 上常只有 py 啟動器或 Store 捷徑，所以 push 前要先啟用 .venv。這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
     <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（在同一個指令裡先啟用 .venv，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
   </aside>
@@ -1821,7 +1821,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看 Plugin 能不能把你的話對到通用語言。對不到的，就是語言還沒統一。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
-    <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的完整名稱（resolve-terms 不比對別名），請 Agent 換一句。</p>
+    <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的名稱或別名，請 Agent 換一句；只命中 synonym 或 definition 時，請 Agent 改用正式名稱再查。</p>
   </aside>
 </section>
 
@@ -2748,7 +2748,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d4" data-title="檢查點 1 · 驗證來源、證據與稽核" data-minute="155">
   <p class="kicker">檢查點 1 / 3 · 第 155–158 分鐘</p>
   <h2 class="title">驗證來源、證據與稽核</h2>
-  <p class="cp-why"><b>為什麼</b>D3 改過程式，證據可能過期（stale）；只記下，不修</p>
+  <p class="cp-why"><b>為什麼</b>D3 改過程式：移動的報 shifted，被改的報 stale；只記下</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「驗證三項」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
@@ -2756,8 +2756,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="cp-next"><b>第 158 分前完成</b><span>→ 下一步：檢查點 2 更新已變動事實</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 動了程式，證據行號可能已經過期：先請 Agent 驗證，再交接。stale 是預期的，記下來，不要叫 Agent 當場修。」</p>
-    <p><b>看</b>：學員是否讀了 Agent 的回報；stale 是否依檔案分組列出（工具只印路徑，不要求逐筆 asset:id）；Agent 有沒有自己寫腳本或動手修。</p>
+    <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 動了程式：只是移動的引用報 shifted，不算失敗；內容被改的報 stale（過期）。先請 Agent 驗證，再交接。兩種都是預期的，記下來，不要叫 Agent 當場修。」</p>
+    <p><b>看</b>：學員是否讀了 Agent 的回報；stale 與 shifted 是否列成 asset:id 清單（verify-evidence 每筆結果都附 asset 與 id；數量以引用計，清單以 asset:id 合併，每張清單裡同一個 id 只列一次）；Agent 有沒有自己寫腳本或動手修。</p>
     <p><b>介入訊號</b>：Agent 開始改檔 → 請學員貼「停下，只回報，不要修改」；stale 被略過 →「下一個 Agent 會把哪一筆當成限制？」</p>
   </aside>
 </section>
@@ -2776,7 +2776,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-next"><b>第 161 分前完成</b><span>→ 下一步：檢查點 3 寫交接單並核對 id</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 158 分）</b>：「第 158 分。請 Agent 先列出 D3 改變了哪些事實，你們同意後它才登記，登記的都是候選，不是 reviewed。reviewed 要走 D2 那套審查。」</p>
-    <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動的 reviewed 事實維持 stale、不登記。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
+    <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動（shifted）的 reviewed 事實不登記，留給下一次核准。get-record 只查 stale 清單；同時在兩張清單的以 stale 處理；B 類最多 3 項（REFUND-004 先列），其餘列為未完成、留給交接單的 Unknowns。D3c Recovery 接手的組清單約 39 個 asset:id（8 個兩張都有），讀程式最花時間，所以才設上限。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
     <p><b>介入訊號</b>：有人想直接標成 reviewed → 提醒：沒有核准簽章就不是。</p>
   </aside>
 </section>
@@ -2795,7 +2795,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-next"><b>第 165 分前完成</b><span>→ 聊「完成後想一想」、填「D4 交接核對」；下一步：回顧</span></p>
   <aside class="notes">
     <p><b>說（06:00／第 161 分）</b>：「第 161 分。想像明天換另一個 Agent 接手，它只看得到這份交接單和 Domain Memory。請 Agent 寫，並要它逐一查證每個 id；你們抽一句問『證據在哪？』。」</p>
-    <p><b>看</b>：Agent 是否回報 id 核對清單；查不到的 id 是否移到 Unknowns 而不是被換成猜的 id；Unknowns 是否誠實；commit 在夥伴的 Agent 對話執行，不是提案者的 Agent。</p>
+    <p><b>看</b>：Agent 是否回報 id 核對清單；查不到的 id 是否移到 Unknowns 而不是被換成猜的 id；Unknowns 是否誠實（含檢查點 2 列為未完成的事實；用過 Recovery 的組 Counterfactual 寫「未證明」，Unknowns 註明「Recovery 不含」）；commit 在夥伴的 Agent 對話執行，不是提案者的 Agent。</p>
     <p><b>介入訊號</b>：第 165 分未完成 → 保留現況，進回顧。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人聊兩分鐘（也可和隔壁組交換看交接單的 Unknowns），再把結論記進「D4 交接核對」；挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再請大家回想各段結尾的討論。</p>
   </aside>

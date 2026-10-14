@@ -7,7 +7,7 @@
 | 檔案 | 用途 |
 |---|---|
 | `dm.ps1`、`dm.sh` | 代打 Plugin 長指令：自動用 Python 3.13、UTF-8 編碼（`py -3.13 -X utf8`）執行，並補上 `--registry-root domain-memory` 與 `--repo-root .`；`--save 檔案` 以 UTF-8 存輸出 |
-| `make_record.py` | 由 id、名稱、定義與 `路徑:起-迄` 呼叫 Plugin 的 `cite` 指令，寫出完整的紀錄 JSON；`--upsert` 直接登記為候選；`--batch` 一次多筆 |
+| `make_record.py` | 由 id、名稱、定義與 `路徑:起-迄` 呼叫 Plugin 的 `cite` 指令，寫出完整的紀錄 JSON；`--upsert` 直接登記為候選；`--batch` 一次多筆（同一種資產一起登記：全部成功或全部不登記） |
 | `fill_package.py` | 由一份精簡描述 JSON 建立並填寫 Change Package；測試**實際執行**，記錄真實 exit code 與輸出的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同） |
 | `write_scm_attestation.py` | 把夥伴的已簽章 commit 寫成 `git-signed-commit` 核准證明（attestation）；檔名中的 SCM（Source Control Management，版本控制，這裡指 Git） |
 | `setup_remote.py` | 在本機建立一個模擬的遠端儲存庫（bare remote）並設為 `origin`，讓 pre-push hook（push 前 Git 自動執行的檢查腳本）有地方 push |
@@ -19,7 +19,7 @@
 
 ## Plugin 位置
 
-依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.10.15.zip` 解壓到這裡）。
+依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.22.0.zip` 解壓到這裡）。
 
 ## 常用指令
 
@@ -50,6 +50,6 @@ py -3.13 -X utf8 ..\..\tools\write_scm_attestation.py --package domain-memory/ch
 - `init-signing-key` 沒給 `--key-file` 時，`dm` 會補成 `~/.dlc-keys/<身分代號>/signing-key`；`--key-file` 落在 Repo 內（例如 PowerShell 裡寫了不會展開的 `%USERPROFILE%`）會被拒絕。
 - 證據預設只能引用 D1 確認過的來源（docs/requirements、docs/adr、src，以及 source map 列出的測試檔）；D3 新增的檔案要加 `--allow-unclassified`，只能當候選，之後無法直接升為 reviewed。
 - `analyze-boundary` 有方向：`--source-context` 填提供資料的一方（producer），例如付款提供資料給訂單時填付款；反過來查會得到 `no_registered_collaboration`。
-- `resolve-terms` 比對的是詞的名稱、id 或定義，不比對同義詞（synonyms）；查詢句要包含詞的完整名稱。
-- pre-push hook 會直接呼叫 `python`（不指定版本）：push 前先啟用 `.venv`。
+- `resolve-terms` 依名稱、id 或別名（synonyms）找詞彙，每筆附 `match_kind`：`name` 是用了正式名稱，`synonym` 是用了別名，`definition` 只是定義裡提到。查不到詞彙時回 `[]`，或列出以完整單字提到這句話的已審查紀錄（`match_kind: "mentioned"`、`authoritative: false`）：那只是被提到，不是定義。
+- pre-push hook 在 PATH 上找 Python 3.10 以上（先 `python3`、再 `python`）。Windows 常只有 `py` 啟動器或 Store 捷徑，所以 push 前在同一次執行先啟用 `.venv`。
 - 金鑰放在 Repo **外**的 `%USERPROFILE%\.dlc-keys\<身分代號>\`（Git Bash：`~/.dlc-keys/<身分代號>/`；程式內為 `dmlib.key_dir()`），不要放在 Repo 內、不要放 `~/.ssh`。祕密掃描檢查 `scan-secrets` 會掃到工作目錄內（含已忽略）的私鑰；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。回顧檢查點 4 只刪除私鑰 `signing-key`，保留 `signing-key.allowed_signers`；公用電腦課後再由主持人刪除整個 `.dlc-keys` 資料夾。

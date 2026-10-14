@@ -210,7 +210,7 @@ Port 的詞彙只有三種結果：`ISSUED`（含 2001 重複開立）、`REJECT
 
 ## 9. Registry 參考狀態
 
-`domain-memory/` 是表現良好的一組在 D3a 檢查點 5 結束時的 Registry：D2 的 reviewed Registry（`reference-registry` bundle，tag `dlc-d2-reviewed`，CP-CORE-001）原樣保留，加上 10 筆**候選**。輸入檔是 `evidence/registry-candidates.json`，在 Repo 根目錄以一行登記（約 20 秒）：
+`domain-memory/` 是表現良好的一組在 D3a 檢查點 5 結束時的 Registry：D2 的 reviewed Registry（`reference-registry` bundle，tag `dlc-d2-reviewed`，CP-CORE-001 與修正詞彙標籤的 CP-CORE-002）原樣保留，加上 10 筆**候選**。輸入檔是 `evidence/registry-candidates.json`，在 Repo 根目錄以一行登記（約 20 秒）：
 
 ```powershell
 py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --allow-unclassified --upsert
@@ -235,15 +235,20 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --a
 |---|---|
 | `validate` | `Registry is valid.` |
 | `validate --require-reviewed` | 失敗，列出新候選 not reviewed（預期，Runbook 已說明） |
-| `verify-audit` | `valid`，72 events，head `sha256:d6b8f6bf…1a6e` |
+| `verify-audit` | `valid`，69 events，head `sha256:0d859064…0f38`（Plugin 0.22.0 同一種資產一次登記） |
 | `coverage` | 6 Contexts、24 詞、20 規則、2 Aggregates；缺口 `without_aggregate`：inventory、membership、invoicing（Invoice 是小型 Entity＋狀態機，刻意不登記 Aggregate）；6 個 Context 都無 Contract |
-| `verify-evidence` | 192 個引用：177 current、15 stale（exit 1，預期） |
+| `verify-evidence` | 192 個引用：177 current、12 shifted、3 stale（exit 1，預期） |
 | `verify-sources` | `stale`：`src`、`tests`、`docs/adr` 檔案變更，`docs/requirements` 內容變更 |
 
-**stale 的 reviewed 事實**（引用行被 `payment_service.py`、`store.py` 的修改改變了；15 筆都是 reviewed，候選沒有 stale）：`contexts:payment`、`vocabulary:available-seats`、`vocabulary:order`、`vocabulary:group-payment-compensation`、`aggregates:booking`、`aggregates:order`、`rules:GROUP-PAY-002`、`rules:PAYMENT-001`、`rules:ORDER-002`、`rules:MEMBER-004`、`interactions:payment-settles-booking`、`interactions:payment-compensates-inventory`、`decisions:ASIS-001`、`decisions:ASIS-003`、`decisions:ASIS-004`。內容上仍成立（只是行號移動），沒有被 D3a 推翻的 reviewed 事實。
+**受影響的 reviewed 事實**（引用行被 `payment_service.py`、`store.py` 的修改影響；15 筆都是 reviewed，候選沒有）：
+
+- `stale`（引用的那幾行內容被改，3 筆）：`contexts:payment`、`decisions:ASIS-001`、`decisions:ASIS-003`。
+- `shifted`（那幾行原封不動、只是移動，12 筆）：`vocabulary:available-seats`、`vocabulary:order`、`vocabulary:group-payment-compensation`、`aggregates:booking`、`aggregates:order`、`rules:GROUP-PAY-002`、`rules:PAYMENT-001`、`rules:ORDER-002`、`rules:MEMBER-004`、`interactions:payment-settles-booking`、`interactions:payment-compensates-inventory`、`decisions:ASIS-004`。
+
+內容上都仍成立，沒有被 D3a 推翻的 reviewed 事實。
 
 **D4 要做的事**：
 
 - 以一個 Change Package 把 10 筆候選升為 reviewed（成對核准、簽章 commit）；`test_e_invoice.py` 要先 `confirm-sources` 納入來源，否則引用它的規則無法升級。
-- 同一個 Change Package 以 `registry_updates` 重新引用上面 15 筆 stale 的 reviewed 事實（內容不變、更新行號）；改動 reviewed 紀錄必須在 proposal 的 `supersedes` 指名 CP-CORE-001。
+- 同一個 Change Package 以 `registry_updates` 重新引用上面 15 筆 reviewed 事實（內容不變、更新行號）：12 筆 shifted 由 `relocate-evidence --from . --to .` 直接印出 `registry_updates` 與 `supersedes`（2026-10-15 在 D3a Recovery 實測：12 筆 updates、3 筆 unmatched）；3 筆 stale 用 `recite` 或手動重新引用。改動 reviewed 紀錄必須在 proposal 的 `supersedes` 指名審查它的提案：這 15 筆都是 CP-CORE-001（`discount-rate`、`best-single-discount` 是 CP-CORE-002）。
 - 交接 Unknowns：PENDING 逾時升級、真實服務商契約測試未做、`merchant_order_no` 長度限制（第 3 節）。

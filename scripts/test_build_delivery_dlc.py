@@ -56,12 +56,12 @@ class VendorPluginTests(unittest.TestCase):
         out.with_name(name + ".SHA256SUMS").write_bytes(sums)
         self.assertEqual(vendor.verify(out), [])
         self.assertEqual(dlc.vendor_check({dlc.VENDOR_ZIP: data, dlc.VENDOR_ZIP + ".SHA256SUMS":
-                                           sums.replace(name.encode(), b"domain-memory-0.10.15.zip")}), True)
+                                           sums.replace(name.encode(), b"domain-memory-0.22.0.zip")}), True)
         out.write_bytes(data + b"x")
         self.assertTrue(vendor.verify(out))
 
     def test_vendored_repo_copy_matches_its_sums(self):
-        target = vendor.VENDOR / "domain-memory-0.10.15.zip"
+        target = vendor.VENDOR / "domain-memory-0.22.0.zip"
         if not target.exists():
             self.skipTest("plugin not vendored yet")
         self.assertEqual(vendor.verify(target), [])
@@ -80,7 +80,7 @@ class DlcBuilderTests(unittest.TestCase):
         self.write("agentic-workshop/07-dlc-ddd/evaluation/answer.md", "# private\n")
         plugin = self.root / "plugin"
         (plugin / ".claude-plugin").mkdir(parents=True)
-        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "0.10.15"}')
+        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "0.22.0"}')
         _name, data, sums = vendor.build(plugin)
         (self.root / dlc.VENDOR_ZIP).parent.mkdir(parents=True)
         (self.root / dlc.VENDOR_ZIP).write_bytes(data)

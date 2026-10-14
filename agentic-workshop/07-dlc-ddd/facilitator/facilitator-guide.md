@@ -1,7 +1,7 @@
 # DDD DLC 主持人手冊
 
 > 對象：DDD DLC（180 分鐘加課）的主持人與助教。學員已完成主課（Tool → Teammate → Digital Worker）。
-> 主題：**Agent 的領域記憶**。把領域知識做成經審查、以檔案保存的 Domain Memory，再用它約束之後的每一次程式變更（要有證據、經過審查）。DDD 概念全部透過 domain-memory Plugin 0.10.15 的操作來教，不開理論講堂。
+> 主題：**Agent 的領域記憶**。把領域知識做成經審查、以檔案保存的 Domain Memory，再用它約束之後的每一次程式變更（要有證據、經過審查）。DDD 概念全部透過 domain-memory Plugin 0.22.0 的操作來教，不開理論講堂。
 > 依據：`docs/instructions/11_DDD_DLC產製指令書.md`（以下稱「規格」）。檢查點以 `agentic-workshop/materials-dlc/CHECKPOINTS.md` 為準，解鎖碼在 `agentic-workshop/materials-dlc/unlock-codes.json`（本手冊不重抄碼，避免兩份不一致）。
 > 本手冊與 `evaluation/` 底下所有檔案只給主持人，**不得**放進學員包、Runbook 或投影。
 
@@ -16,7 +16,7 @@
 | 70–95 | D3a 電子發票 | 6 個檢查點 → 停手 → 2 頁揭曉 | 解鎖時宣布核心／延伸與 API 小節；揭曉後才可發 `dlc-rec-d3a` |
 | 95–125 | D3b 點數折抵 | 同上 | 同上；`dlc-rec-d3b` |
 | 125–155 | D3c 團體部分退款 | 同上 | **最重的一段**：保住 Review 時間；`dlc-rec-d3c` |
-| 155–165 | D4 交接 | 3 個檢查點 | stale 證據不准跳過；更新事實只到候選 |
+| 155–165 | D4 交接 | 3 個檢查點 | stale 與 shifted 證據不准跳過；更新事實只到候選 |
 | 165–180 | 回顧 | 4 個檢查點 | 討論「走過場的自我核准」和「真的擋得住錯的核准」差在哪裡 |
 
 三條不可破的規則：
@@ -55,9 +55,9 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 ### 1.3 Plugin SHA
 
-- Plugin 固定 0.10.15，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.10.15.zip`，逐檔清單 `domain-memory-0.10.15.zip.SHA256SUMS`（70 個 Plugin 檔案＋ZIP 本身＝71 行）。
-- 目前 ZIP 的 SHA256 以 `domain-memory-0.10.15.zip.SHA256SUMS` 最後一行為準。
-- 學員在開場檢查點 2 應看到 `SHA OK 71 files` 與 `"version": "0.10.15"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
+- Plugin 固定 0.22.0，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.22.0.zip`，逐檔清單 `domain-memory-0.22.0.zip.SHA256SUMS`（72 個 Plugin 檔案＋ZIP 本身＝73 行）。
+- 目前 ZIP 的 SHA256 以 `domain-memory-0.22.0.zip.SHA256SUMS` 最後一行為準。
+- 學員在開場檢查點 2 應看到 `SHA OK 73 files` 與 `"version": "0.22.0"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
 
 ### 1.4 主持人自己的機器（課前 30 分鐘）
 
@@ -93,7 +93,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 0 | （解鎖前） | 「為什麼是 Domain Memory」「今天怎麼進行」兩頁，共約 2 分鐘 |
 | 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
 | 0–3 | 1 · 安裝相依套件與測試 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
-| 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 71 files`、`"version": "0.10.15"` |
+| 3–5 | 2 · 解出 Plugin 並核對 SHA256 | Agent 回報 `SHA OK 73 files`、`"version": "0.22.0"` |
 | 5–8 | 3 · 專案就緒與品質關卡檢查 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
 | 8–10 | 4 · 確認真實 Python | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
 
@@ -233,11 +233,11 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
-| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 只有引用行被改過的證據是 `stale`、exit 1。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-evidence` 只印 stale 的路徑，只要求數量與依檔案分組（每個檔案大約幾筆即可），不讓 Agent 自寫腳本對 id |
-| 158–161 | 2 · 更新已變動事實 | Agent 先列更新清單（stale 候選的 id 從 D3 notes「審查與候選」取出，用 `get-record` 查；decisions 看 `review_status`，其他看 `status`），學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選；reviewed 事實以新 id 候選取代；只是行號移動的 reviewed 事實維持 stale、不登記。參考：D3c 讓 `REFUND-004`、Booking 的「只能退一次」與 `ASIS-004` 不再成立 |
+| 155–158 | 1 · 驗證來源、證據與稽核 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 對只是移動的引用回報 `shifted`（不算失敗），引用行被改過的才是 `stale`、exit 1。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-evidence` 每筆結果都附 asset、id 與 `cited_lines`，Agent 直接把 stale 與 shifted 列成 asset:id 清單，不必自寫腳本 |
+| 158–161 | 2 · 更新已變動事實 | Agent 依檢查點 1 的 asset:id 清單，只對 stale 的 id 用 `get-record` 分出候選與 reviewed（decisions 看 `review_status`，其他看 `status`；shifted 的 reviewed 一律歸 C，兩張清單都有的以 stale 處理），列出更新清單；學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選。stale 或 shifted 的候選用同一個 id 重新引用；行為被改變的 reviewed 事實以新 id 候選取代；只是移動（shifted）或行為沒變的 reviewed 事實不登記，留給下一次核准。B 類最多 3 項（`REFUND-004` 先列），其餘列為未完成、寫進交接單 Unknowns。參考：D3c 讓 `REFUND-004`、`vocabulary:refund-record`、Booking 的「只能退一次」（`aggregates:booking`）與 `ASIS-004` 不再成立；D3c Recovery 也含 D3a／D3b 的變更，所以 `MEMBER-004`、`vocabulary:points-balance`（已可折抵點數）、`ORDER-002`、`vocabulary:order`、`aggregates:order`（Order 金額改為折抵後的應付金額）同樣不再成立，`contexts:membership`（多了預留與歸還點數）與 `contexts:payment`（多了開立電子發票）的職責描述已不完整。D3c Recovery 的清單約 39 個 asset:id（stale 21、shifted 26，8 個兩張都有），3 分鐘內登記不完，其餘列為未完成是預期 |
 | 161–165 | 3 · 寫交接單並核對 id | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
 
-看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4。
+看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4；Recovery 沒有 D3 的交接單、情境卡與 `cf-*.json`，Counterfactual check 一律寫「未證明」，Unknowns 註明「Recovery 不含」。
 
 收尾（第 165 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再引用各段的答案。
 
@@ -267,7 +267,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 - 使用 Recovery 的組如實記錄觸發原因與時間（依 Runbook 對應 Recovery 頁的做法）。
 - Recovery 包只含可接續的 Repo（含 `domain-memory/`），不含觀察指引、counterfactual 證據原稿或任何 `evaluation/` 檔案。
 - **Recovery 切換做法（五個 Recovery 頁共用，與各段 `recovery/<段>/RECOVERY.md` 同一份指令）**：原 Repo 不改名、不覆寫；Recovery 複製成同一層的 `resume-<段>`，從 `repo.bundle` 還原 Git 歷史（不重新 `git init` 出未簽章的起點 commit）。D1 只有一個不含 `domain-memory/` 的「起始 Repo」commit，兩步都由提案者的 Agent 做、沒有 commit。D2 起分三步：① 提案者原對話解出 Recovery、把原 Repo 的 `notes/`、`docs/handoffs/` 複製進 `resume-<段>`，原狀態寫進 `resume-<段>` 的 `notes/<段>.md`（原 Repo 什麼都不寫）；② **夥伴**在 `resume-<段>` 新開自己的 Agent 對話（先貼 D2【夥伴】規則）：還原歷史、`init-signing-key`（沿用 `.dlc-keys\maintainer\` 的 D2 金鑰，沒有就新建）、把 `keys/maintainer.allowed_signers` 附加到新的 allowed signers 檔、`amend-policy authorized_signers` 加入自己的 fingerprint、`install-git-hitl-hook`、`governance-readiness` ready，回「同意」後以 `git add domain-memory notes docs` 把複製來的 `notes/`、`docs/handoffs/` 一起簽章 commit（commit 後 `git status --short` 是空的）並 `verify-git-governance --commit HEAD`；③ 提案者在 `resume-<段>` 新開對話建 venv、測試、`validate --require-reviewed`、`verify-audit`、`verify-evidence`。之後 D3、D4 的 commit 照常由夥伴簽章。Git Bash 區塊整段包在 `( set -e … )` 子 shell 裡，任何一行失敗只結束這一段，不會關掉 Agent 的終端機。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，查不到是預期。
-- D3a／D3b／D3c 的 Recovery 還原後，`verify-evidence` 會對引用行被改過的證據回報 `stale`，`verify-sources` 會因來源資料夾新增了檔案回報 `stale`，都是 exit 1，屬預期，留到 D4 處理。`git log` 最上面的「Recovery 參考實作」commit 是 `N`（未簽章），因為它不碰 Registry，hook 允許；Registry 的三個 commit 是 `G maintainer@example.com`。D2 起每個 Recovery 最下面的「Smart Ticket DLC base」（起始程式）也是 `N`，同樣不碰 Registry。
+- D3a／D3b／D3c 的 Recovery 還原後，`verify-evidence` 會對引用行只是移動的證據回報 `shifted`、被改過的回報 `stale`，`verify-sources` 會因來源資料夾新增了檔案回報 `stale`，都是 exit 1，屬預期，留到 D4 處理。`git log` 最上面的「Recovery 參考實作」commit 是 `N`（未簽章），因為它不碰 Registry，hook 允許；Registry 的六個 commit 是 `G maintainer@example.com`。D2 起每個 Recovery 最下面的「Smart Ticket DLC base」（起始程式）也是 `N`，同樣不碰 Registry。
 
 ## 5. Windows 已知陷阱與修正
 
@@ -276,7 +276,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 1 | D1 寫 Registry 時「檔名或副檔名太長」`WinError 206` | Plugin 在 `domain-memory/` 底下建很長的暫存資料夾名；放在桌面、OneDrive 或深層資料夾就超過路徑上限 | 解壓到 `C:\dlc`（Recovery 用 `C:\dlc-rec\<段>`）。已出錯的組：整個資料夾搬到 `C:\dlc` 再重跑該步 |
 | 2 | `UnicodeDecodeError: 'cp950' codec ...` | 直接呼叫 `registry_tools.py`，缺 `-X utf8` | 一律經 `tools\dm.ps1`／`dm.sh`（固定 `py -3.13 -X utf8`） |
 | 3 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
-| 4 | push 時 hook 失敗、或跳出 Microsoft Store | pre-push hook 呼叫裸 `python`，`python` 是 Store 別名（路徑含 `WindowsApps`） | push 前啟用 Repo 的 `.venv`；或關閉「應用程式執行別名」。開場檢查點 4 就要攔下 |
+| 4 | push 時 hook 印出 `no Python 3.10 or later on PATH as python3 or python` | pre-push hook 只在 PATH 上找 `python3`、`python`（要 3.10 以上）；Windows 常只有 `py` 啟動器，或 `python` 是 Store 別名（路徑含 `WindowsApps`） | push 前在同一次執行啟用 Repo 的 `.venv`（Runbook 的 push 步驟已寫好）。開場檢查點 4 就要攔下 |
 | 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
 | 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate` |
 | 7 | `ssh-keygen` 行為不同、金鑰路徑找不到 | Git Bash 與 PowerShell 的 `ssh-keygen` 不同 | 兩者皆可，但同一組全程用同一種 shell |

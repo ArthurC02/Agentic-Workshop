@@ -1,0 +1,165 @@
+{
+  "format": "domain-change-proposal/v1",
+  "proposal_id": "CP-CORE-002",
+  "proposer": "Proposer <proposer@example.com>",
+  "requirement_id": "REQ-CORE-002",
+  "status": "applied",
+  "change_classification": "material",
+  "submitted_at": "2026-10-14T16:51:15.222581Z",
+  "verified_at": "2026-10-14T16:51:16.053262Z",
+  "finalized_at": "2026-10-14T16:51:17.682080Z",
+  "applied_at": "2026-10-14T16:51:18.739784Z",
+  "proposal_revision": 1,
+  "base_registry_revision": {
+    "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+    "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
+  },
+  "affected_contexts": [
+    "pricing"
+  ],
+  "rule_ids": [],
+  "contract_ids": [],
+  "ownership_decision": {
+    "owner_context": "pricing",
+    "invariant": "只改詞彙標籤（synonyms、not_same_as），不改任何定義、規則或程式。",
+    "evidence": []
+  },
+  "boundary_decision": {
+    "interaction": "none",
+    "consistency": "synchronous",
+    "prohibited_dependencies": [],
+    "evidence": []
+  },
+  "implementation_design": {
+    "domain_forces": [
+      "Plugin 0.11 起檢查 synonyms／not_same_as"
+    ],
+    "decision": "只修正兩筆詞彙的標籤，不改程式與規則",
+    "invariants_preserved": [
+      "FARE-008"
+    ],
+    "rejected_alternatives": [
+      "重建整個參考 Registry（會讓參考解答的證據雜湊全部失效）"
+    ],
+    "proof_obligations": [
+      "OB-AC-FIX-1"
+    ],
+    "counterfactual_check": "不適用：沒有規則或程式行為改變"
+  },
+  "event_change": null,
+  "contract_change": null,
+  "registry_updates": [
+    {
+      "asset": "vocabulary",
+      "operation": "upsert",
+      "record": {
+        "id": "discount-rate",
+        "synonyms": [
+          "Rate"
+        ],
+        "not_same_as": [],
+        "required_qualifiers": [],
+        "owner": "unknown",
+        "name": "折扣率",
+        "definition": "以百分比整數表示的票價比例（100、95、85、75）；旅客票價 = 基本票價 × rate // 100。",
+        "contexts": [
+          "pricing"
+        ],
+        "evidence": [
+          {
+            "path": "docs/requirements/business-rules.md",
+            "lines": {
+              "start": 5,
+              "end": 5
+            },
+            "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+            "excerpt_sha256": "sha256:aa62b0eb17e954655f6c72c581d8e837e602b75b0e3366ee28e9dc2028935ab4",
+            "source_kind": "requirements"
+          },
+          {
+            "path": "src/smart_ticket/domain/discounts.py",
+            "lines": {
+              "start": 27,
+              "end": 35
+            },
+            "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+            "excerpt_sha256": "sha256:5b21670b385a034ebf8c1c9d8104297c86204c0703751a5e34a07e15b9080200",
+            "source_kind": "implementation"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "vocabulary",
+      "operation": "upsert",
+      "record": {
+        "id": "best-single-discount",
+        "synonyms": [
+          "Best Single Discount",
+          "DiscountPolicy"
+        ],
+        "not_same_as": [],
+        "required_qualifiers": [],
+        "owner": "unknown",
+        "name": "最有利單一優惠",
+        "definition": "每位旅客實際採用的唯一優惠：在所有符合的資格（含成人全額預設）中取 rate 最低者；多項優惠不疊加，也不依條件先後取第一個符合者。",
+        "contexts": [
+          "pricing"
+        ],
+        "evidence": [
+          {
+            "path": "docs/requirements/business-rules.md",
+            "lines": {
+              "start": 46,
+              "end": 48
+            },
+            "content_sha256": "sha256:43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2",
+            "excerpt_sha256": "sha256:3228e1b59ca1744056b2b033f361d370476c257b68f8dc80e372cd2484ebc777",
+            "source_kind": "requirements"
+          },
+          {
+            "path": "docs/requirements/discount-overview.md",
+            "lines": {
+              "start": 3,
+              "end": 3
+            },
+            "content_sha256": "sha256:6c7054e02561bb1f66dc0c9d8d2269f391fbd61648380c22dfa041b5fc3f1112",
+            "excerpt_sha256": "sha256:fc5678df1c855e235ef5777cbb7204fccab27e7fccce5282e83a8688c78d77f1",
+            "source_kind": "requirements"
+          },
+          {
+            "path": "src/smart_ticket/domain/discounts.py",
+            "lines": {
+              "start": 27,
+              "end": 34
+            },
+            "content_sha256": "sha256:4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6",
+            "excerpt_sha256": "sha256:c63f7dca019714e6017457c2a920d5da70b642dcb309d262f5b73635c6157c45",
+            "source_kind": "implementation"
+          }
+        ]
+      }
+    }
+  ],
+  "risk_flags": [],
+  "open_questions": [],
+  "approvals": [
+    {
+      "role": "domain-owner",
+      "reviewer": "maintainer@example.com",
+      "decision": "approved",
+      "approved_at": "2026-10-14T16:51:15.653837Z",
+      "scope": "只修正 discount-rate 與 best-single-discount 的詞彙標籤",
+      "proposal_revision": 1,
+      "base_registry_revision": {
+        "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+        "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
+      }
+    }
+  ],
+  "supersedes": "CP-CORE-001",
+  "applied_registry_revision": {
+    "observed_commit": "38116f248f78befa51abac56405349301a5623c7",
+    "registry_digest": "sha256:3d4bf93e0fe7aead088c49d2ab44ad661c69abf8527e3319e66666199204cc2e"
+  }
+}

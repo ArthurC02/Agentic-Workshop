@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
-PLUGIN_VERSION = "0.10.15"
+PLUGIN_VERSION = "0.22.0"
 
 
 def run(*command: str) -> tuple[int, str]:
@@ -65,14 +65,17 @@ def checks(plugin: str | None) -> list[tuple[str, str, str]]:
         level = "!!" if locale.getpreferredencoding(False).lower() in ("cp950", "big5", "mbcs") else "--"
         results.append((level, "UTF-8 模式（-X utf8）",
                         "所有 Plugin 指令請經 tools/dm.ps1 或 dm.sh（已固定 -X utf8），否則 cp950 會 UnicodeDecodeError。"))
-    python = shutil.which("python")
-    if python is None or "WindowsApps" in python:
-        results.append(("!!", "PATH 上的 python（pre-push hook 會呼叫）",
-                        f"目前是 {python or '找不到'}。push 前先啟用 .venv：PowerShell `.\\.venv\\Scripts\\Activate.ps1`；"
-                        "Git Bash `source .venv/Scripts/activate`。"))
+    # 與 pre-push hook 相同：先找 python3、再找 python，要 3.10 以上（Store 捷徑跑不起來，等於沒有）。
+    label = "PATH 上的 python3／python ≥ 3.10（pre-push hook 會用）"
+    for name in ("python3", "python"):
+        python = shutil.which(name)
+        code, out = run(python, "--version") if python and "WindowsApps" not in python else (1, "")
+        if code == 0 and version_tuple(out) >= (3, 10):
+            results.append(("OK", label, f"{python} → {out}"))
+            break
     else:
-        code, out = run(python, "--version")
-        results.append(("OK" if code == 0 else "!!", "PATH 上的 python（pre-push hook 會呼叫）", f"{python} → {out}"))
+        results.append(("!!", label, "找不到。push 前在同一次執行先啟用 .venv：PowerShell `.\\.venv\\Scripts\\Activate.ps1`；"
+                        "Git Bash `source .venv/Scripts/activate`。"))
     code, out = run("git", "--version")
     git_ok = code == 0 and version_tuple(out) >= (2, 34)
     results.append(("OK" if git_ok else "!!", "git ≥ 2.34（SSH 簽章）", out if git_ok else

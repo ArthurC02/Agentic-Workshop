@@ -43,8 +43,7 @@
     {
       "id": "discount-rate",
       "synonyms": [
-        "Rate",
-        "rate"
+        "Rate"
       ],
       "not_same_as": [],
       "required_qualifiers": [],
@@ -84,9 +83,7 @@
         "Best Single Discount",
         "DiscountPolicy"
       ],
-      "not_same_as": [
-        "fare-policy"
-      ],
+      "not_same_as": [],
       "required_qualifiers": [],
       "owner": "unknown",
       "name": "最有利單一優惠",

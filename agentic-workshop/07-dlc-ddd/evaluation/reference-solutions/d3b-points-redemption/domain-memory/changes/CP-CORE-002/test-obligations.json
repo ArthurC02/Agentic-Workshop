@@ -1,0 +1,16 @@
+{
+  "format": "domain-test-obligations/v1",
+  "requirement_id": "REQ-CORE-002",
+  "proposal_id": "CP-CORE-002",
+  "obligations": [
+    {
+      "id": "OB-AC-FIX-1",
+      "source_type": "acceptance-criterion",
+      "source_id": "AC-FIX-1",
+      "expected_outcome": "passed",
+      "level": "integration",
+      "status": "executed",
+      "check": "tests/integration/test_best_discount_api.py"
+    }
+  ]
+}

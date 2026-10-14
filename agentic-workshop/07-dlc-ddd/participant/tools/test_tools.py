@@ -125,7 +125,9 @@ class GovernedLifecycleTest(unittest.TestCase):
             {"asset": "contexts", "id": "limits", "name": "上限", "responsibility": "決定單筆上限",
              "evidence": ["docs/requirements/rules.md:3"]},
             {"asset": "vocabulary", "id": "limit", "name": "上限", "definition": "單筆最多 14",
-             "context": "limits", "evidence": ["docs/requirements/rules.md:3", "src/app.py:1"]},
+             "context": "limits", "not_same_as": ["quota"], "evidence": ["docs/requirements/rules.md:3", "src/app.py:1"]},
+            {"asset": "vocabulary", "id": "quota", "name": "額度", "definition": "全部加總的上限",  # 互標 not_same_as
+             "context": "limits", "not_same_as": ["limit"], "evidence": ["docs/requirements/rules.md:3"]},
             {"asset": "rules", "id": "LIM-001", "statement": "單筆上限為 14", "context": ["limits"],
              "evidence": ["docs/requirements/rules.md:3", "tests/test_check.py:4"]},
         ]
@@ -152,7 +154,7 @@ class GovernedLifecycleTest(unittest.TestCase):
                 "proposer": "Proposer <proposer@example.com>", "intent": "升為 reviewed",
                 "acceptance_criteria": [{"id": "AC-1", "statement": "上限 14", "test": "tests/test_check.py"}],
                 "rules": [{"id": "LIM-001", "test": "tests/test_check.py"}],
-                "promote": {"contexts": ["limits"], "vocabulary": ["limit"], "rules": ["LIM-001"]},
+                "promote": {"contexts": ["limits"], "vocabulary": ["limit", "quota"], "rules": ["LIM-001"]},
                 "owner_context": "limits", "invariant": "單筆不超過 14",
                 "owner_evidence": ["docs/requirements/rules.md:3"],
                 "design": {"domain_forces": ["上限會調整"], "decision": "沿用常數",

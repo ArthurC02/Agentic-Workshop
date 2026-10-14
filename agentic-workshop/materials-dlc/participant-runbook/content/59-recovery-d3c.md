@@ -140,7 +140,7 @@ fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf
 ../../tools/dm.sh install-git-hitl-hook
 ../../tools/dm.sh governance-readiness
 )
-用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d3c.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
+用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值（它印出 base revision is now stale 是預期的，不是錯誤）；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d3c.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
 我同意後執行（Git Bash 把 ..\..\tools\dm.ps1 換成 ../../tools/dm.sh；git add 裡的 docs 照寫：它只會加入從原 Repo 複製來的 docs/handoffs/，沒有複製就不會多加檔案）：
 git add domain-memory notes docs
 git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "D3c Recovery：授權本組金鑰"
@@ -169,7 +169,7 @@ fp=$(python -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf-8
 ../../tools/dm.sh install-git-hitl-hook
 ../../tools/dm.sh governance-readiness
 )
-用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d3c.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
+用白話回報：git status 列了什麼（應該只有從原 Repo 複製來的 ?? notes/，原 Repo 有 docs/handoffs/ 時還有 ?? docs/handoffs/）；金鑰是沿用還是新建（signing.json 的 source）、fingerprint 前 12 碼；git log 每個 commit 的簽章狀態（G 或 N）；amend-policy 的舊值 → 新值（它印出 base revision is now stale 是預期的，不是錯誤）；governance-readiness 的 status 與 blocks。不要讀取或顯示私鑰檔 signing-key。把結果寫進 notes/recovery-d3c.md 的「簽章接手」，列出這次要 commit 的檔案，停下等我回「同意」。
 我同意後執行（git add 裡的 docs 照寫：它只會加入從原 Repo 複製來的 docs/handoffs/，沒有複製就不會多加檔案）：
 git add domain-memory notes docs
 git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "D3c Recovery：授權本組金鑰"
@@ -183,7 +183,7 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
 ```text
 請只檢查，不要修改任何檔案，也不要讀取私鑰檔：
 1. git log --format='%h %G? %GS %s' 裡碰到 Registry 的 commit 是 G maintainer@example.com，其他是 N（它們不碰 Registry，允許）。
-2. governance-readiness 是 {"status": "ready", "blocks": []}；authorized_signers 有兩個金鑰指紋。
+2. governance-readiness 是 {"status": "ready", "blocks": []}；authorized_signers 有三個金鑰指紋（兩個 Maintainer 的，加上本組的）。
 3. git log --show-signature -1 有 Good "git" signature for maintainer@example.com，verify-git-governance --commit HEAD 是 Git governance is valid.，git status --short 是空的。
 全部符合只回「成功」，否則只回「失敗：」加一句原因。
 ```
@@ -224,7 +224,7 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
    ..\..\tools\dm.ps1 validate --require-reviewed
    ..\..\tools\dm.ps1 verify-audit
    ..\..\tools\dm.ps1 verify-evidence
-3. 用白話回報：pytest 最後一行；validate 結果；verify-audit 的 status；verify-evidence 的 current、stale、missing、invalid 各幾個（Recovery 的參考實作改過部分已審查事實所引用的那幾行，那些證據出現 stale 與 exit 1 是預期，留到 D4，不要修）。寫進 notes/recovery-d3c.md 的「環境與驗證」，最後一行寫「D3c 的成果由 Recovery 提供，不是我們自己完成」。不要 commit，做完停下。
+3. 用白話回報：pytest 最後一行；validate 結果；verify-audit 的 status；verify-evidence 的 current、shifted、stale、missing、invalid 各幾個（Recovery 的參考實作移動或改過部分已審查事實所引用的那幾行，那些證據出現 shifted、stale 與 exit 1 是預期，留到 D4，不要修）。寫進 notes/recovery-d3c.md 的「環境與驗證」，最後一行寫「D3c 的成果由 Recovery 提供，不是我們自己完成」。不要 commit，做完停下。
 # macos
 這是 D3c Recovery 起點，Repo 根目錄是 resume-d3c。D3c 的成果由 Recovery 提供；夥伴已在自己的對話還原簽章歷史並接手簽章（見 notes/recovery-d3c.md）。依序做，任何一步失敗就停下：
 1. 建 venv、安裝相依套件、跑全部測試：
@@ -235,7 +235,7 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
    source .venv/bin/activate && ../../tools/dm.sh validate --require-reviewed
    source .venv/bin/activate && ../../tools/dm.sh verify-audit
    source .venv/bin/activate && ../../tools/dm.sh verify-evidence
-3. 用白話回報：pytest 最後一行；validate 結果；verify-audit 的 status；verify-evidence 的 current、stale、missing、invalid 各幾個（Recovery 的參考實作改過部分已審查事實所引用的那幾行，那些證據出現 stale 與 exit 1 是預期，留到 D4，不要修）。寫進 notes/recovery-d3c.md 的「環境與驗證」，最後一行寫「D3c 的成果由 Recovery 提供，不是我們自己完成」。不要 commit，做完停下。
+3. 用白話回報：pytest 最後一行；validate 結果；verify-audit 的 status；verify-evidence 的 current、shifted、stale、missing、invalid 各幾個（Recovery 的參考實作移動或改過部分已審查事實所引用的那幾行，那些證據出現 shifted、stale 與 exit 1 是預期，留到 D4，不要修）。寫進 notes/recovery-d3c.md 的「環境與驗證」，最後一行寫「D3c 的成果由 Recovery 提供，不是我們自己完成」。不要 commit，做完停下。
 ```
 
 ③ 確認結果
@@ -244,7 +244,7 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
 請只檢查，不要修改任何檔案：
 1. 用 .venv 裡的 python 執行 pytest -q 全部 passed。
 2. validate --require-reviewed 是 Registry is valid.；verify-audit 是 "status": "valid"。
-3. verify-evidence 約 99 個 current、約 63 個 stale（參考實作改過引用的那幾行，結束碼 1 是預期），missing 與 invalid 都是 0。
+3. verify-evidence 約 99 個 current、約 31 個 shifted（引用的那幾行只是移動）、約 32 個 stale（參考實作改過引用的那幾行，結束碼 1 是預期），missing 與 invalid 都是 0。
 全部符合只回「成功」，否則只回「失敗：」加一句原因。
 ```
 

@@ -36,8 +36,8 @@ section: 參考
 | record（紀錄）與 `asset:id` | Registry 裡的一筆資料。引用時寫成 `asset:id`（類別:id），例如 `rules:FARE-005`。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | `usage`／working-memory | `get-context` 輸出開頭的欄位：D1 是 `working-memory`（整份只能參考），D2 起是 `constraint`（已審查的紀錄可當限制）。某一筆是候選還是已審查，看它自己的 `status`。 | `vendor/domain-memory/references/script-api.md`〈Preparing the approval authority〉 |
 | 來源（source）／source map | 人確認過、可以當證據的路徑清單。之後新增、刪除或改名檔案，`verify-sources` 會回報 `stale`。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Before Step 0: Map repository sources〉 |
-| 證據（evidence）／`cite` | 指向某個檔案第幾行到第幾行、並帶內容雜湊的引用。引用的行被改過，`verify-evidence` 會回報 `stale`。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
-| 過期（stale）／不存在（missing）／格式錯誤（invalid） | stale：引用的那幾行內容變了；missing：檔案不存在；invalid：寫法或行號不對；仍一致是 current。stale 常常只是「程式改了，紀錄還沒跟上」。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
+| 證據（evidence）／`cite` | 指向某個檔案第幾行到第幾行、並帶內容雜湊的引用。引用的行被改過，`verify-evidence` 會回報 `stale`；只是移到別處，回報 `shifted`。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
+| 移動（shifted）／過期（stale）／不存在（missing）／格式錯誤（invalid） | shifted：引用的那幾行沒變，只是移到同一個檔案的別處，不算失敗；stale：引用的那幾行內容變了；missing：檔案不存在；invalid：寫法或行號不對；仍一致是 current。stale 常常只是「程式改了，紀錄還沒跟上」。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 候選（candidate） | 有證據、但還沒經過核准的主張。Agent 或任何人登記的新內容都是候選，不可當成限制或事實。 | `vendor/domain-memory/references/reliability-architecture.md`〈State model〉 |
 | 已審查（reviewed） | 已由另一人核准的正式事實，Agent 可以當成限制。之後不能直接覆寫，只能由下一次核准的提案取代。 | `vendor/domain-memory/references/proposal-lifecycle.md`〈Proposal lifecycle〉 |
 | 成對核准 | 一人提案（Proposer）、另一人核准並做簽章 commit（Maintainer）的流程，D2 走過一次。候選要經過它才會變成已審查。 | 本課程〈D2 審查與核准（成對）〉 |

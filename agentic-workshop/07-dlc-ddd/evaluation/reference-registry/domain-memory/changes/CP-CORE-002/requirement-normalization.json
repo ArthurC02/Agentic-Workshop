@@ -1,0 +1,21 @@
+{
+  "format": "domain-requirement/v1",
+  "requirement_id": "REQ-CORE-002",
+  "status": "draft",
+  "intent": "修正兩筆詞彙的標籤，讓 domain-memory Plugin 0.22.0 的 validate 通過：discount-rate 的別名不重複，best-single-discount 的「不是同一件事」只列詞彙 id。",
+  "actor": "Smart Ticket 維護者（domain-owner）",
+  "observable_outcome": "Plugin 0.22.0 的 validate --require-reviewed 通過；詞彙定義與規則不變。",
+  "acceptance_criteria": [
+    {
+      "id": "AC-FIX-1",
+      "statement": "折扣計算行為不變"
+    }
+  ],
+  "candidate_terms": [],
+  "open_questions": [],
+  "risk_flags": [],
+  "required_approval_roles": [
+    "domain-owner"
+  ],
+  "sources": []
+}

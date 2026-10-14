@@ -248,20 +248,21 @@ reviewed 事實不能覆寫（`upsert-candidate` 回 `cannot overwrite reviewed 
 | 指令 | 結果 |
 |---|---|
 | `validate` | `Registry is valid.`（`--require-reviewed` 預期失敗） |
-| `verify-audit` | `valid`，82 events，head `sha256:f3f25677…63c8` |
+| `verify-audit` | `valid`，73 events，head `sha256:1e5ea7ad…f48d` |
 | `coverage` | 6 Contexts、26 詞、26 規則、2 Aggregates；缺口與 D3a 相同（Membership 仍刻意沒有 Aggregate：ADR 006 只在 `Member` 加兩個方法） |
-| `verify-evidence` | 225 個引用：168 current、57 stale（exit 1，預期） |
+| `verify-evidence` | 225 個引用：168 current、35 shifted、22 stale（exit 1，預期） |
 | `verify-sources` | `stale`（同 D3a） |
 
-**stale**（引用行因 `booking_service.py`、`group_booking_service.py`、`members.py`、`models.py`、`payment_service.py`、`refund_service.py`、`store.py`、`business-rules.md` 的修改而改變）：
+**stale 與 shifted**（引用行因 `booking_service.py`、`group_booking_service.py`、`members.py`、`models.py`、`payment_service.py`、`refund_service.py`、`store.py`、`business-rules.md` 的修改而改變）：
 
-- reviewed（36）：`contexts:booking`、`contexts:membership`、`contexts:payment`；vocabulary `base-fare`、`applied-discount`、`total-fare`、`booking`、`booking-status`、`group-booking`、`passenger`、`refund-record`、`available-seats`、`member`、`points-balance`、`order`、`group-payment-compensation`；`aggregates:booking`、`aggregates:order`；rules `FARE-003`、`BOOKING-002`、`BOOKING-003`、`GROUP-001`、`GROUP-PAY-002`、`PAYMENT-001`、`ORDER-002`、`REFUND-004`、`MEMBER-004`；interactions `booking-uses-pricing`、`pricing-reads-membership`、`booking-reserves-inventory`、`payment-settles-booking`、`payment-compensates-inventory`；decisions `ASIS-001`～`ASIS-004`。
-- D3a 的候選（2）：`rules:EINV-002`、`interactions:payment-triggers-invoicing`（`payment_service.py` 行號移動；候選可以直接用 `make_record.py --upsert` 重新引用）。
-- 其中**內容已不成立**的只有：`rules:ORDER-002`、`rules:MEMBER-004`、`vocabulary:order`、`vocabulary:points-balance`、`vocabulary:refund-record`（金額）、`aggregates:order`（「amount 為付款當時的訂票總票價」）。其餘只是行號移動。
+- reviewed stale（17）：`contexts:membership`、`contexts:payment`；vocabulary `refund-record`、`member`、`points-balance`、`order`、`group-payment-compensation`；`aggregates:order`；rules `GROUP-PAY-002`、`ORDER-002`、`REFUND-004`、`MEMBER-004`；interactions `booking-reserves-inventory`、`payment-settles-booking`；decisions `ASIS-001`、`ASIS-003`、`ASIS-004`。
+- reviewed shifted（19，只是行號移動）：`contexts:booking`；vocabulary `base-fare`、`applied-discount`、`total-fare`、`booking`、`booking-status`、`group-booking`、`passenger`、`available-seats`；`aggregates:booking`；rules `FARE-003`、`BOOKING-002`、`BOOKING-003`、`GROUP-001`、`PAYMENT-001`；interactions `booking-uses-pricing`、`pricing-reads-membership`、`payment-compensates-inventory`；`decisions:ASIS-002`。
+- D3a 的候選 shifted（2）：`rules:EINV-002`、`interactions:payment-triggers-invoicing`（`payment_service.py` 行號移動；候選可以直接用 `make_record.py --upsert` 重新引用）。
+- 其中**內容已不成立**的只有（都在 stale 裡）：`rules:ORDER-002`、`rules:MEMBER-004`、`vocabulary:order`、`vocabulary:points-balance`、`vocabulary:refund-record`（金額）、`aggregates:order`（「amount 為付款當時的訂票總票價」）。其餘只是行號移動。
 
 **D4 要做的事**：
 
 - 以 Change Package 升級 D3a＋D3b 候選；新測試檔 `test_e_invoice.py`、`test_points_redemption.py` 先 `confirm-sources`。
 - 上面 6 筆內容已不成立的 reviewed 事實：在 proposal 以 `registry_updates` 用**原 id** upsert 新內容（例如 ORDER-002 改為「Order.amount＝應付金額」），並以 `supersedes` 指名 CP-CORE-001；之後 `PTS-009`、`PTS-014` 等新 id 可保留為獨立規則，或在同一 proposal 移除重複者。
-- 其餘 stale 的 reviewed 事實在同一 proposal 重新引用（內容不變）。
+- 其餘 stale 與 shifted 的 reviewed 事實在同一 proposal 重新引用（內容不變；shifted 的可由 `relocate-evidence --from . --to .` 產生 `registry_updates`）。
 - 交接 Unknowns：一般 PENDING 訂票點數永久預留（無逾時釋放）、多程序部署需原子條件扣除（第 3 節）。

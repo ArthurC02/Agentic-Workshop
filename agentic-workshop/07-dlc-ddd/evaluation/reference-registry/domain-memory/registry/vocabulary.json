@@ -61,8 +61,7 @@
     {
       "id": "discount-rate",
       "synonyms": [
-        "Rate",
-        "rate"
+        "Rate"
       ],
       "not_same_as": [],
       "required_qualifiers": [],
@@ -95,19 +94,19 @@
         }
       ],
       "review": {
-        "proposal_id": "CP-CORE-001",
+        "proposal_id": "CP-CORE-002",
         "proposal_revision": 1,
         "approvals": [
           {
             "role": "domain-owner",
-            "reviewer": "Maintainer <maintainer@example.com>",
+            "reviewer": "maintainer@example.com",
             "decision": "approved",
-            "approved_at": "2026-10-07T03:06:45.386842Z",
-            "scope": "CP-CORE-001 全部 registry_updates",
+            "approved_at": "2026-10-14T16:51:15.653837Z",
+            "scope": "只修正 discount-rate 與 best-single-discount 的詞彙標籤",
             "proposal_revision": 1,
             "base_registry_revision": {
-              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
-              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+              "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+              "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
             }
           }
         ]
@@ -120,9 +119,7 @@
         "Best Single Discount",
         "DiscountPolicy"
       ],
-      "not_same_as": [
-        "fare-policy"
-      ],
+      "not_same_as": [],
       "required_qualifiers": [],
       "owner": "unknown",
       "name": "最有利單一優惠",
@@ -163,19 +160,19 @@
         }
       ],
       "review": {
-        "proposal_id": "CP-CORE-001",
+        "proposal_id": "CP-CORE-002",
         "proposal_revision": 1,
         "approvals": [
           {
             "role": "domain-owner",
-            "reviewer": "Maintainer <maintainer@example.com>",
+            "reviewer": "maintainer@example.com",
             "decision": "approved",
-            "approved_at": "2026-10-07T03:06:45.386842Z",
-            "scope": "CP-CORE-001 全部 registry_updates",
+            "approved_at": "2026-10-14T16:51:15.653837Z",
+            "scope": "只修正 discount-rate 與 best-single-discount 的詞彙標籤",
             "proposal_revision": 1,
             "base_registry_revision": {
-              "observed_commit": "22de5e49c9db4e604161ef3143e91a09199b001e",
-              "registry_digest": "sha256:2f4468304e85174e4b343879036bd9b96e66ce5e87bf2ef40094e9217b93eedf"
+              "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+              "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
             }
           }
         ]

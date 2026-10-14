@@ -323,7 +323,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "sha256": "d83f7491526669c8111fc82c8b0f7321791f0d0cf38e9342836704459b4a5743"
+          "sha256": "f8c5ad114b5b78a26a3c458a59765334bceac500f1319b532c2f54e28d4fedf5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -338,12 +338,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
-          "sha256": "50251ca591361364287ac1b6898dee781bf4942913b7c50f1b2780ba5e92310f"
+          "sha256": "3a6214e4013816121260ab244faf228944b4b6f786b9b551aabfcb68b234dedb"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
-          "sha256": "03f0ead876092d72c0b8aefd4d48da650b5b1ef847589106f90548262f04da02"
+          "sha256": "3b04a46827d16fd982cce06aded2cbd312725d9170f9bf8cd9b26d41e2f98d12"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
@@ -353,17 +353,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/make_record.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/make_record.py",
-          "sha256": "c2fd3f59f7951824f69738163d957c37485ff7a13a4436215d23382419e5decd"
+          "sha256": "d2e2ac1f1d07d7c16ad7a0c2e1b9f781a262f01bd6f082fce315518f5d3ace4b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/setup_remote.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/setup_remote.py",
-          "sha256": "cb3f9758960e4d01fd903e119aa2094980d573dca60bc7788e2fddc03ca64b56"
+          "sha256": "f248bd5874007ea6bf63fb202dda4f49713fde27261d86a474bc6ebf9047d2d7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
-          "sha256": "e485317895536ec73eb8a70ecda4fbfc742d726ba43f2b2b981d2b130e8c1820"
+          "sha256": "8e2e6258e0d23d599fb1b8c85934ec965d294e8f6e55e9aad9ace4275c5f374c"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/write_scm_attestation.py",
@@ -371,14 +371,14 @@
           "sha256": "1a6ba665520877ba86648b5955a259802b2676d8e8dd9e80a358f704aaa12a93"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.10.15.zip",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.10.15.zip",
-          "sha256": "2b885ef4d63ceea14a24866380d36863b346a8514c07806c9dd2c67e6cc9b93a"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip",
+          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip",
+          "sha256": "2f584081efbae0326ccba254e0076a00e9a2e09a86888b23b20f216e4c3db11a"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.10.15.zip.SHA256SUMS",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.10.15.zip.SHA256SUMS",
-          "sha256": "b5797b791901e8606bb6d5ae25ccfa5d66e4f533173bd31115b5772820a83a3c"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip.SHA256SUMS",
+          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip.SHA256SUMS",
+          "sha256": "47249f60c6a17417e638d4636c57db1ab4c6abc1f45b52c3704f41832c781c22"
         }
       ],
       "generated": {}
@@ -599,12 +599,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "a77182ee390cccb67c1ba486eb3ce323c20a6d9489cbbcb8b5bdde9219b44e0c"
+          "sha256": "20730066f0c0e472b305b104f019be2e8e4f9d3d5934195313b37d5e0b240be3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "6a396b019935939496ce8f39e4d4fd3c90154a3428d506e8c52edb9426782369"
+          "sha256": "cd2180b682b689cecc920c0a8a5eed1a1b31efb9aa10e6e3ad19861a8ccf068b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
@@ -669,12 +669,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "69e5e77a920ed8492360a5a4a82c3a09ece212f643c9d9c56f9c84bcfc80c9a0"
+          "sha256": "e06a060a332d300707cd887e72bfc4750600a008c353da81ca325e8ddc2e5ad5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/source-map.json",
-          "sha256": "b7c3cb8df3c118395762d657082ebe2dd7253432aa3db1224468e37bfac64660"
+          "sha256": "2a43dc70b3123c92d2057920aa74b8f7f2e5fc56a696847a6e18cd6f6eef1031"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/pyproject.toml",
@@ -931,17 +931,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "recovery-dlc-d2/RECOVERY.md",
-          "sha256": "d018e82928217d2da975f3af6af07d6406d07a1630811328c172a26d26ea84f5"
+          "sha256": "b84c05a5a3755af452e953c0d75015606c3ada1ae0e1319c1b17d33d23ac3ac9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
           "destination": "recovery-dlc-d2/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/repo.bundle",
           "destination": "recovery-dlc-d2/repo.bundle",
-          "sha256": "93e7ad6996af2b7636e447ce87c2ded9036cf918faf8213d0b8c2f9f70f9df01"
+          "sha256": "21566baab6911490334877dc7942ea951c70f0184a273232972e00719096511c"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/.gitattributes",
@@ -1011,12 +1011,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -1044,9 +1044,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -1106,7 +1131,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "recovery-dlc-d2/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -1368,17 +1393,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "recovery-dlc-d3a/RECOVERY.md",
-          "sha256": "aea886bffec67054666f9728aa236f85f444d52a921680c1882305f66c6f97bc"
+          "sha256": "0b77775e175e0bb1c505808d772a481f2c12b800d1926bd230b599a17daa5b54"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
           "destination": "recovery-dlc-d3a/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/repo.bundle",
           "destination": "recovery-dlc-d3a/repo.bundle",
-          "sha256": "6d4f7218611a9a8741e2b1ae3d19112562f9b033f58ca946cf7a014ebf0e2b4b"
+          "sha256": "70d31f345871eff484e6ee747eb74c062ee3f4f80d32063e574a88354c553aa0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/.gitattributes",
@@ -1453,12 +1478,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -1486,9 +1511,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -1548,7 +1598,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "recovery-dlc-d3a/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -1830,17 +1880,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "recovery-dlc-d3b/RECOVERY.md",
-          "sha256": "0013b89b15810bc0c42938086e06a000b75418d7999582965f79c64e9317a39f"
+          "sha256": "04d1ce33e1f16690f254273556cce1702f0b36769bd287f64221165bab1bf2b3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
           "destination": "recovery-dlc-d3b/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/repo.bundle",
           "destination": "recovery-dlc-d3b/repo.bundle",
-          "sha256": "78cd7f389d6d6974fac2f99abb2ba6cb1bd2a349dc407ff2928621c0b53c7109"
+          "sha256": "f8b4bb89425edb66606086a16179954f4ef0d7229466dc50373607f1cc1179c7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/.gitattributes",
@@ -1920,12 +1970,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -1953,9 +2003,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -2015,7 +2090,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "recovery-dlc-d3b/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -2302,17 +2377,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "recovery-dlc-d3c/RECOVERY.md",
-          "sha256": "9d756abc3b51513fae538897e3ff966bde9376bafa2c2519ecd65f5747648405"
+          "sha256": "d7986e9ab7bf36cfbb565bf6904a5cfd2f1d97f8142feaba8b28f1b647979d71"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
           "destination": "recovery-dlc-d3c/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/repo.bundle",
           "destination": "recovery-dlc-d3c/repo.bundle",
-          "sha256": "999d99a032b015cb6117deec0237376b96e00cdd671edf59d59b652bf46ec811"
+          "sha256": "88dcb49fc4f9aba77ef0c0c63be56a200d3e03732ee4df679f9e5bd626861fe5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/.gitattributes",
@@ -2397,12 +2472,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -2430,9 +2505,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -2492,7 +2592,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "recovery-dlc-d3c/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -2785,7 +2885,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "8b6286f0e91fb379dc2ed8e0c34235c939edf945e7bb0cc4f2b43a3f32e39559"
+          "sha256": "f79dec9552c07a9f3fd1c758b8c133fb5f429d8d46b73e91ab5159e62973c256"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -2865,12 +2965,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "a77182ee390cccb67c1ba486eb3ce323c20a6d9489cbbcb8b5bdde9219b44e0c"
+          "sha256": "20730066f0c0e472b305b104f019be2e8e4f9d3d5934195313b37d5e0b240be3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "6a396b019935939496ce8f39e4d4fd3c90154a3428d506e8c52edb9426782369"
+          "sha256": "cd2180b682b689cecc920c0a8a5eed1a1b31efb9aa10e6e3ad19861a8ccf068b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
@@ -2935,12 +3035,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "69e5e77a920ed8492360a5a4a82c3a09ece212f643c9d9c56f9c84bcfc80c9a0"
+          "sha256": "e06a060a332d300707cd887e72bfc4750600a008c353da81ca325e8ddc2e5ad5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
-          "sha256": "b7c3cb8df3c118395762d657082ebe2dd7253432aa3db1224468e37bfac64660"
+          "sha256": "2a43dc70b3123c92d2057920aa74b8f7f2e5fc56a696847a6e18cd6f6eef1031"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/pyproject.toml",
@@ -3180,17 +3280,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
-          "sha256": "d018e82928217d2da975f3af6af07d6406d07a1630811328c172a26d26ea84f5"
+          "sha256": "b84c05a5a3755af452e953c0d75015606c3ada1ae0e1319c1b17d33d23ac3ac9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/repo.bundle",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/repo.bundle",
-          "sha256": "93e7ad6996af2b7636e447ce87c2ded9036cf918faf8213d0b8c2f9f70f9df01"
+          "sha256": "21566baab6911490334877dc7942ea951c70f0184a273232972e00719096511c"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/.gitattributes",
@@ -3260,12 +3360,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -3293,9 +3393,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -3355,7 +3480,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -3600,17 +3725,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
-          "sha256": "aea886bffec67054666f9728aa236f85f444d52a921680c1882305f66c6f97bc"
+          "sha256": "0b77775e175e0bb1c505808d772a481f2c12b800d1926bd230b599a17daa5b54"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/repo.bundle",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/repo.bundle",
-          "sha256": "6d4f7218611a9a8741e2b1ae3d19112562f9b033f58ca946cf7a014ebf0e2b4b"
+          "sha256": "70d31f345871eff484e6ee747eb74c062ee3f4f80d32063e574a88354c553aa0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/.gitattributes",
@@ -3685,12 +3810,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -3718,9 +3843,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -3780,7 +3930,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -4045,17 +4195,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
-          "sha256": "0013b89b15810bc0c42938086e06a000b75418d7999582965f79c64e9317a39f"
+          "sha256": "04d1ce33e1f16690f254273556cce1702f0b36769bd287f64221165bab1bf2b3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/repo.bundle",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/repo.bundle",
-          "sha256": "78cd7f389d6d6974fac2f99abb2ba6cb1bd2a349dc407ff2928621c0b53c7109"
+          "sha256": "f8b4bb89425edb66606086a16179954f4ef0d7229466dc50373607f1cc1179c7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/.gitattributes",
@@ -4135,12 +4285,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -4168,9 +4318,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -4230,7 +4405,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -4500,17 +4675,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
-          "sha256": "9d756abc3b51513fae538897e3ff966bde9376bafa2c2519ecd65f5747648405"
+          "sha256": "d7986e9ab7bf36cfbb565bf6904a5cfd2f1d97f8142feaba8b28f1b647979d71"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/repo.bundle",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/repo.bundle",
-          "sha256": "999d99a032b015cb6117deec0237376b96e00cdd671edf59d59b652bf46ec811"
+          "sha256": "88dcb49fc4f9aba77ef0c0c63be56a200d3e03732ee4df679f9e5bd626861fe5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/.gitattributes",
@@ -4595,12 +4770,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -4628,9 +4803,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/registry/aggregates.json",
@@ -4690,7 +4890,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/smart-ticket-dlc-base/domain-memory/source-map.json",
@@ -4970,7 +5170,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
-          "sha256": "d697e329574e9d518caf2860c206d3d93cfbf524fb6726aa05c679726d017c99"
+          "sha256": "21321d3179f5c1855129fdfa0833cc4ded42a165a07d074c1211535879414274"
         }
       ],
       "generated": {}
@@ -4988,17 +5188,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
-          "sha256": "0cbcb7eb27830611d741b9747ff41eb7c0da79ad106bb8891e149fb1181f74bd"
+          "sha256": "9b1f4f5c44be6a4abbe170c425e6b4b59259473439cb2cd92cfc4459f7f72e62"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
-          "sha256": "5b8d01a4696235fac68bd29e5a8497abc71591369a2a1430573f81b2b4ce5f42"
+          "sha256": "17d1d16a220b3bc484d52bfaf156c85cacbec1c666cc95f0db97c4f06f4057c5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "93d4f6c6cede1934d91a7a2683fcc8e26dc5abb199fbb409a3c014f7fd2334ce"
+          "sha256": "6739b22ecfc0844af7fde776d4490b7622bd7b1799683a383f2d770d476cf389"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -5008,7 +5208,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "5b2e9c1ab58161fb124bc3666db7695ef93a635fcf15871dcf5c2b906973664a"
+          "sha256": "f90c0de452d40059b3d20cf293bb2ca4513f88b8d1df17bb05e09c1b6f668ff3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",
@@ -5033,12 +5233,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/audit/events.jsonl",
-          "sha256": "69761b1d59b229a3de271e06f6987094d6275ed3e996c07080d4bd01588209a0"
+          "sha256": "5ec3745da0a13e089862d3ddbcc5851e3bc900a680527e4767d29aef7da2c348"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/audit/manifest.json",
-          "sha256": "cb1bbf09f78b3939b5af2a21f3c8bedb85d2b98dd329b41d873acf55a288c38f"
+          "sha256": "27c5d8c51d11504ccf270babfa947b65b1a832284939fdd7c390812b45104dc6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -5066,9 +5266,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/registry/aggregates.json",
@@ -5128,7 +5353,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/registry/vocabulary.json",
-          "sha256": "45bb47201aaadb61417919572c393eb8b98ccb49c10dd1bbc7dcb2bd08be7db7"
+          "sha256": "44ac9b53ef6f8cb930131209480344a4220297609275e3b82c2fa1b11ead7ece"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/domain-memory/source-map.json",
@@ -5138,7 +5363,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/inputs/d1-records.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/inputs/d1-records.json",
-          "sha256": "72ada4d7b7ead474eaa2452692627e05267f8165b06c149b63bb5d9820d19820"
+          "sha256": "2515b0e78215ac52c8566ffd7572975f4373d69c1bb00bfe27a9f6a0ca36b4cb"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/inputs/package-spec.json",
@@ -5148,17 +5373,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/keys/maintainer.allowed_signers",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/keys/maintainer.allowed_signers",
-          "sha256": "39af991e6af0646315980196c06d1e43fdf0d6e71728871e0e388788d983266e"
+          "sha256": "8df9c933b6c7c84dc27fcee7e208583fbebb29a402c104fd0d297b581503d1f5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/keys/maintainer.pub",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/keys/maintainer.pub",
-          "sha256": "b88ed19db377bc7414c2f6b1ab843890bf2d2535bac72808dd299aaa758c1528"
+          "sha256": "ec7c649bd0fc46cb1363a2a9b6de87fe3a4a633eac659fab850635d5c9270164"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/smart-ticket-dlc-reference.bundle",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/smart-ticket-dlc-reference.bundle",
-          "sha256": "d8f5847ebf0e28b6a8abd17b88847266c837487e898fc7aaab3e938deda45a8f"
+          "sha256": "afd5154da56de262e696962d8f6999981c9d8d857bf7951181c1e155e44f8bd9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/.gitignore",
@@ -5173,7 +5398,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/SOLUTION-NOTES.md",
-          "sha256": "cf8ca7ae6a6e97900a98c2694ac66f18e6b91d756b05cadcb4718c82ac04cd92"
+          "sha256": "ecdb1884446f2b0de73ea9e8370399420d1dc47d898146f91521a0ae5aeef79f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/docs/adr/001-use-in-memory-repositories.md",
@@ -5233,12 +5458,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/audit/events.jsonl",
-          "sha256": "2ee714f32416c9cc6e27b15d07941094243163e9e53c287665a84e45028b28ab"
+          "sha256": "8c59266acba72850829c3d7686cc03f812d0a5f02be45ceda0a614d86801102e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/audit/manifest.json",
-          "sha256": "8efdf9930ced891af5ff2d406a11145cca0f747d05e4807610c6af2a36beb2bd"
+          "sha256": "a7db00e1e27e768aac5675473c59ffe972f63aac4c896c37bb7e4227eacd99a3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -5266,9 +5491,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/aggregates.json",
@@ -5283,7 +5533,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/contexts.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/contexts.json",
-          "sha256": "f6ff289cf2f82e60d8c5a5274e3c5d4b4204b24ba84e6f3dbd6674c41e76b913"
+          "sha256": "bff3934941801b1e0d12631e5a01bf7afd6c07bcb1df11297627dbeb542d8628"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/contracts.json",
@@ -5293,7 +5543,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/decisions.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/decisions.json",
-          "sha256": "8a0be13d5d6158999c912249e944ed949084f3403b9f34597bd2d804bb2157ee"
+          "sha256": "ac09164f6212b63a2cd49869e30de8bf8471a2b1d3c6600e5940d33e449d8263"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/dependency-policies.json",
@@ -5308,7 +5558,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/interactions.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/interactions.json",
-          "sha256": "36da15163d3bde9dd9fca114aa53e455ea8966e69487a264daad94275ca4715e"
+          "sha256": "6b301ad81052619acea58fee416bfdd8268166f41852596e2e84404f00879c04"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/manifest.json",
@@ -5318,7 +5568,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/rules.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/rules.json",
-          "sha256": "aea1557763bb6b1a26c79aee5d2166ffb7f146cae3b6c0a17ac37cc8ff438ee1"
+          "sha256": "1f3b2d6d4207f1dba0166a5b3469053fa10d5724ab7fa3785d1dfd8985c46f7e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/value-objects.json",
@@ -5328,7 +5578,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/registry/vocabulary.json",
-          "sha256": "73743590be016334ecdf4e8dd0a443fbea19a72301c705619da7f30084dd1f64"
+          "sha256": "a7c29139095b7950a2b57c0d8488ef9ea0c56c9ae9363f4a7113ed5d5b141ede"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/domain-memory/source-map.json",
@@ -5743,7 +5993,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/SOLUTION-NOTES.md",
-          "sha256": "0dcc397af8109290d6b1813415b54b137e34400e20cec20780bbbdb2eb435cb4"
+          "sha256": "a5ed6d7f4e5ae153aa7dbd97af6b2f4705c2c1a454f7afcb02d055133d47e138"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/docs/adr/001-use-in-memory-repositories.md",
@@ -5808,12 +6058,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/audit/events.jsonl",
-          "sha256": "4f92a4cd7fb176c2eadfc6494890f57470c58b93cf7d84cadac601391856e814"
+          "sha256": "bcf7ebf9b1bc49197488bde2ae7fc5ee1cf9d3d87b8813e0c73b3c2da85cf992"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/audit/manifest.json",
-          "sha256": "312973db59a39186d1cfd5d4f748847c4b1e0665634c7ae978130ee53ad4101f"
+          "sha256": "2931101579ad830945b1bd57d7e1031e08d9a8aa887c1f4e5652fd4d41b7cb2f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -5841,9 +6091,34 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/aggregates.json",
@@ -5858,7 +6133,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/contexts.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/contexts.json",
-          "sha256": "f6ff289cf2f82e60d8c5a5274e3c5d4b4204b24ba84e6f3dbd6674c41e76b913"
+          "sha256": "bff3934941801b1e0d12631e5a01bf7afd6c07bcb1df11297627dbeb542d8628"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/contracts.json",
@@ -5868,7 +6143,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/decisions.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/decisions.json",
-          "sha256": "9a21c836346865f20e7fdb9a4a5a58aaa5e46ecc3e4e887c712ad7c8e852ee8f"
+          "sha256": "5ef4173f1f4be9a70d2a255bcddb77d0dbef720a652d43a43148ce1e0b9a066e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/dependency-policies.json",
@@ -5883,7 +6158,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/interactions.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/interactions.json",
-          "sha256": "1ea272df5f82d79bc0193fc670b64505ebcbb0052ddc8cd1352045924e51d9f5"
+          "sha256": "d6380e0b93ec12ffc42fb5053c5de9d8411ae651298ff72b509e728adb263b47"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/manifest.json",
@@ -5893,7 +6168,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/rules.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/rules.json",
-          "sha256": "260da1de4caa5b99b9c0ad24b59bd5b41f147478e9a144fad391e1dcca29b48d"
+          "sha256": "8bc6c26a1e1bcf4fa19852d3cb866432f97ff7703a9cd8d1ac82eef43e236a95"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/value-objects.json",
@@ -5903,7 +6178,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/registry/vocabulary.json",
-          "sha256": "23177a7bdc4cc915530e25bb26e412152d76472fc7ec2ec4c4327fa78135ef5a"
+          "sha256": "b640301512cb7570a9cf57b4cf03dbf8c935ba5d1f5f73864e7a4c7e3bc05c4a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/domain-memory/source-map.json",
@@ -6313,7 +6588,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
-          "sha256": "f17c29ea11ea780c48b419c08e20336a9ba834a6f029b208ad7559b4c3e852bf"
+          "sha256": "3082332e20300119e5fc6ca0c0e274de280f686386e3b94c8960152385dc4a74"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/docs/adr/001-use-in-memory-repositories.md",
@@ -6383,12 +6658,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/audit/events.jsonl",
-          "sha256": "6004d81ad2db33d8056d3bce10c52d4fc41eea96198e20076a68fbbd06302b8f"
+          "sha256": "306ee13fd7f3b48d877a1ee9b6290fcb77e2fc63967ec49280d4cfac05b30c52"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/audit/manifest.json",
-          "sha256": "a485b094e46db17a709e0670a28234303dad4395ff8fd4bb8ee2292488b6d7a7"
+          "sha256": "d95b11d1eb76b8a071191dba8a0e6cb93e25219ada8085dba17532cce4a3baa9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-001/domain-change-proposal.json",
@@ -6416,14 +6691,39 @@
           "sha256": "9588ae47be605fa4738b3ba5f76873dcbba355d4851a535cea6ee7449c174416"
         },
         {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/domain-change-proposal.json",
+          "sha256": "b39965ff2b1163622057637e069903856c74cd048a6cb9ea77de82771ee9caa1"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/draft-pr.md",
+          "sha256": "2304e8cf743f45e99ac37f16d4b6abef0a27879f8480146c42e006a6b28f9e0c"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/evidence-bundle.json",
+          "sha256": "1b309f5ec0e2bb4a0f02f4e8f15bef453bb47bab9fed7dabca07b59568e97442"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/requirement-normalization.json",
+          "sha256": "21990869f2a23d25992be7fd1c64679557259740c81824a2c0e31d06b22107e9"
+        },
+        {
+          "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/changes/CP-CORE-002/test-obligations.json",
+          "sha256": "1f508f4942c75b09cedafa27aaf456331cec0fb475bc2f9f65674c2efbce0a2d"
+        },
+        {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/domain-memory-policy.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/domain-memory-policy.json",
-          "sha256": "a1a04caa75747ccda80104f15e4238cd5451cc0abf2f38e4447cc16add50974d"
+          "sha256": "e0feb4616ffdcba424d185cedebb21bb811e0be56b3a183083b9f0e4dafd23df"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/aggregates.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/aggregates.json",
-          "sha256": "f4d89bf5d30938fc4b8675fc776475c2640005276edc5c547d76af2b761b8194"
+          "sha256": "69cb63a3557f62a9ca2695d3ce766ec0fb9861aeb4bd1ea061a1568529c3f7b9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/capabilities.json",
@@ -6433,7 +6733,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/contexts.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/contexts.json",
-          "sha256": "f6ff289cf2f82e60d8c5a5274e3c5d4b4204b24ba84e6f3dbd6674c41e76b913"
+          "sha256": "bff3934941801b1e0d12631e5a01bf7afd6c07bcb1df11297627dbeb542d8628"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/contracts.json",
@@ -6443,7 +6743,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/decisions.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/decisions.json",
-          "sha256": "9b9080b9680213c3e29459221efed01fea8fa2932d806c6addd4b6e744c6a26d"
+          "sha256": "f9312aa956d6aa6c0798fc83082d4bad6660807a7f024ecb5804acbd8985493b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/dependency-policies.json",
@@ -6458,7 +6758,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/interactions.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/interactions.json",
-          "sha256": "1ea272df5f82d79bc0193fc670b64505ebcbb0052ddc8cd1352045924e51d9f5"
+          "sha256": "d6380e0b93ec12ffc42fb5053c5de9d8411ae651298ff72b509e728adb263b47"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/manifest.json",
@@ -6468,7 +6768,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/rules.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/rules.json",
-          "sha256": "6d2de3c00abcff4edd4201296f8db6e7a8c02eb365f07a1a0d865711d105f03e"
+          "sha256": "67634ea5cda8523dd8131693ce55113188f9f54ea23e0519c8b4160d36f043ea"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/value-objects.json",
@@ -6478,7 +6778,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/vocabulary.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/registry/vocabulary.json",
-          "sha256": "b330112c242395db63f290c81e79cf12aba79e330a740edd915ed1ed0d7027cf"
+          "sha256": "6f3e616c5c74a6616da477ae044a0b0f6f8dbd4e9ddcecd4ed2a82ac90f92388"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/domain-memory/source-map.json",

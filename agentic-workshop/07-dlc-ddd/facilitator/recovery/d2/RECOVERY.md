@@ -1,6 +1,6 @@
 # D2 Recovery
 
-內容：起始 Repo 加上已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer），以及它的 Git 歷史 `repo.bundle` 與 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。
+內容：起始 Repo 加上已審查、簽章並套用的 Registry（Change Package `CP-CORE-001`，proposer：Proposer，reviewer：Maintainer；`CP-CORE-002` 修正兩筆詞彙的標籤，由第二把 Maintainer 金鑰簽章），以及它的 Git 歷史 `repo.bundle` 與兩把 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Policy 為 `scm-verified`／`git-signed-commit`／`git-push`。
 
 使用 Recovery 不算自己完成 D2。學員照 Runbook「D2 Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。
 
@@ -88,7 +88,7 @@ git log --show-signature -1
 
 （Git Bash 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
 
-**看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的三個 commit 為 `G maintainer@example.com`，最下面的「Smart Ticket DLC base」（起始程式）為 `N`（未簽章，不碰 Registry，hook 允許）；`amend-policy` 回報 `authorized_signers` 從一個 fingerprint 變成兩個；`governance-readiness` 為 `{"status": "ready", "blocks": []}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
+**看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的六個 commit 為 `G maintainer@example.com`，最下面的「Smart Ticket DLC base」（起始程式）為 `N`（未簽章，不碰 Registry，hook 允許）；`amend-policy` 回報 `authorized_signers` 從兩個 fingerprint 變成三個；`governance-readiness` 為 `{"status": "ready", "blocks": []}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
 
 - 附加 Maintainer 公鑰那一行不可省略：`init-signing-key` 會把 `gpg.ssh.allowedSignersFile` 指向只含夥伴金鑰的檔案，少了它，歷史上 Maintainer 簽的 commit 就驗不過，之後 push 會被 hook 以「Git commit signature is invalid」拒絕。
 - 之後 D3、D4 的 commit 照 Runbook 由夥伴的對話簽章。私鑰永遠不要 commit、不要放進 ZIP 或截圖。
@@ -127,4 +127,4 @@ export PYTHONUTF8=1
 git push -u origin HEAD
 ```
 
-**看到什麼算成功**：hook 共印出四行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的三個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。被拒時不要用 `--no-verify` 繞過。
+**看到什麼算成功**：hook 共印出七行 `Git governance is valid.`（Recovery 歷史裡碰到 Registry 的六個 commit，加上步驟 2 的簽章 commit），最後 `* [new branch] HEAD -> main`。被拒時不要用 `--no-verify` 繞過。

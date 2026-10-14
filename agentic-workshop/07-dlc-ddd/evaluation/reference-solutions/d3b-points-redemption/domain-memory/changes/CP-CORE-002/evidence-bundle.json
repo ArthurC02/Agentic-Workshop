@@ -1,0 +1,56 @@
+{
+  "format": "domain-evidence-bundle/v1",
+  "requirement_id": "REQ-CORE-002",
+  "proposal_id": "CP-CORE-002",
+  "registry_revision": {
+    "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+    "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
+  },
+  "approvals": [
+    {
+      "role": "domain-owner",
+      "reviewer": "maintainer@example.com",
+      "decision": "approved",
+      "approved_at": "2026-10-14T16:51:15.653837Z",
+      "scope": "只修正 discount-rate 與 best-single-discount 的詞彙標籤",
+      "proposal_revision": 1,
+      "base_registry_revision": {
+        "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+        "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
+      }
+    }
+  ],
+  "scm_attestation": {
+    "provider": "git-signed-commit",
+    "commit": "38116f248f78befa51abac56405349301a5623c7",
+    "status": "approved",
+    "proposal_revision": 1,
+    "base_registry_revision": {
+      "observed_commit": "b603d3c6a874c6da22d00c421e8923f324383241",
+      "registry_digest": "sha256:9e6c631ff7930c624bac3e6da574fc110c853a0bd719cb3dc6d61823de26721b"
+    },
+    "verified_at": "2026-10-14T16:51:16Z"
+  },
+  "counterfactual_check": {
+    "status": "not_applicable",
+    "reason": "只修正詞彙的 synonyms 與 not_same_as 標籤，沒有可被反事實檢查的規則或程式行為"
+  },
+  "sources": [],
+  "test_results": [
+    {
+      "obligation_id": "OB-AC-FIX-1",
+      "status": "passed",
+      "evidence": ".venv\\Scripts\\python.exe -m pytest -q tests/integration/test_best_discount_api.py",
+      "command_profile": "pytest-local",
+      "exit_code": 0,
+      "output_sha256": "sha256:2e03435c54a690fe2f7799a5888912a72fe4443c7a7c84e9a47457c1c99df3e1",
+      "finished_at": "2026-10-14T16:51:12Z"
+    }
+  ],
+  "contract_checks": [],
+  "architecture_checks": [],
+  "security_checks": [],
+  "residual_risks": [
+    "原 Maintainer 私鑰不在產製機，本提案由第二把 Maintainer 金鑰簽章；授權它的 policy 變更記在 audit chain。"
+  ]
+}

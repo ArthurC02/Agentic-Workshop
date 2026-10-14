@@ -22,7 +22,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 71 files`、`"version": "0.10.15"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 73 files`、`"version": "0.22.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
 | O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
@@ -103,7 +103,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 被記下並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修 |
+| D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 與 `shifted` 被列成 asset:id 並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修 |
 | D2 | H | Agent 先列更新清單，學員回覆後才登記；只更新真的改變的事實，而且是候選（reviewed 以新 id 候選取代） |
 | D3 | E | 交接單七段齊全，Agent 回報的 id 核對清單全部查得到；commit 由 Maintainer 自己的 Agent 對話執行；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
 

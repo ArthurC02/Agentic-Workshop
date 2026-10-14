@@ -8,7 +8,8 @@
     "trigger": "git-push",
     "ci_requirement": "none",
     "authorized_signers": [
-      "SHA256:Zgznp4qU2GZH6Vmr2/RHtQzVnE+CbK2meH71Cq9BAH0"
+      "SHA256:Zgznp4qU2GZH6Vmr2/RHtQzVnE+CbK2meH71Cq9BAH0",
+      "SHA256:GtKS8fENiTCqtsSZviOYPomnWfgLk3xRSOmBy5MueCs"
     ]
   },
   "source_policy": {

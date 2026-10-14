@@ -1348,5 +1348,87 @@
    "exit": 0,
    "output_sha256": "96c5800b0c5398a4bb0dc2d0cb0a236b76b24feb6bf229c872860090bfa36141"
   }
+ },
+ "plugin_0_22_0_remeasure": {
+  "date": "2026-10-15",
+  "plugin": "domain-memory 0.22.0 (SkillHub bdd994626)",
+  "vendor_zip_sha256": "2f584081efbae0326ccba254e0076a00e9a2e09a86888b23b20f216e4c3db11a",
+  "plugin_files": 72,
+  "sha_ok_line": "SHA OK 73 files",
+  "reference_registry": {
+   "head": "fc9efe2",
+   "registry_commits_signed": 6,
+   "verify_evidence": {
+    "current": 162,
+    "shifted": 0,
+    "stale": 0
+   },
+   "verify_audit": {
+    "status": "valid",
+    "events": 64,
+    "head": "sha256:955311a5167eb4dbca4b7c6adeeaad705cff5423b27f1c37aad80ffc95f34260"
+   },
+   "push_hook_governance_lines": 6
+  },
+  "d1_replay": {
+   "records": 57,
+   "validate": "Registry is valid.",
+   "verify_evidence_current": 162
+  },
+  "recovery_verify_evidence": {
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "order": "current, shifted, stale"
+  },
+  "reference_solutions": {
+   "d3a": {
+    "citations": 192,
+    "ve": [
+     177,
+     12,
+     3
+    ],
+    "events": 69
+   },
+   "d3b": {
+    "citations": 225,
+    "ve": [
+     168,
+     35,
+     22
+    ],
+    "events": 73
+   },
+   "d3c": {
+    "citations": 248,
+    "ve": [
+     171,
+     16,
+     61
+    ],
+    "events": 77
+   }
+  },
+  "tools_selftest": "5 tests OK",
+  "release_pipeline": "RELEASE PIPELINE PASS (dlc candidate 23f432cf92c2153b)",
+  "not_verified": "candidate-package rehearsal of Runbook pages (open-D2, D2/D3 Recovery, D4) results not collected at handback"
  }
 }
