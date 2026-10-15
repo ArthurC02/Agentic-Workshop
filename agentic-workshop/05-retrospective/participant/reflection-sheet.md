@@ -2,7 +2,7 @@
 
 > 讀者：參與者與參與者的 Agent。時機：第80–90分鐘。前置：保留今天的 `notes/` 資料夾。可見性：Participant。
 
-今天每一段都練了一個 Agentic Coding 技巧，提示詞裡還埋了六個 Agent 技巧。請 Agent 依今天的 `notes/` 與 `skills/` 紀錄，整理每個技巧用在哪、效果如何，再推薦 3 個最值得帶走的技巧，然後停下等你確認。你確認後，Agent 依下方格式寫成可直接重用的提示詞，存進 `notes/my-prompts.md`。三種角色的差別見 [成熟度比較](maturity-comparison.md)。
+今天每一段都練了一個 Agentic Coding 技巧，提示詞裡還埋了六個 Agent 技巧。請 Agent 依今天的 `notes/` 與 `skills/` 紀錄，整理每個技巧用在哪、效果如何，再推薦 3 個最值得帶走的技巧，然後停下等你確認。你確認後，Agent 依下方格式寫成可直接重用的提示詞，存進 `notes/my-prompts.md`。
 
 ## 今天的九個技巧
 

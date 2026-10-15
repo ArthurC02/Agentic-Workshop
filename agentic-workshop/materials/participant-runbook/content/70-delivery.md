@@ -33,7 +33,7 @@ section: Delivery
 
 ② 貼給 Agent
 
-B3 檢查點 4 的 ③ 還沒做的，先貼它、回「成功」再往下。複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。
+B3 檢查點 4 的 ③ 還沒做的，先到 [B3 檢查點 4](#b3) 貼那段 ③；回「失敗」就直接告訴 Agent 缺的 Gate 3 決策（例如「條件：未驗證項目寫進交付摘要；/docs 未實測；第 75 分」），請它照原文補進 notes/b3.md，然後不論結果都往下，還缺的會在摘要寫成「未驗證」。複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。
 
 ```text
 停止新增功能與測試，不要再修改任何程式。請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
@@ -41,7 +41,7 @@ B3 檢查點 4 的 ③ 還沒做的，先貼它、回「成功」再往下。複
 - Completion Level 擇一並說明證據，不自動選 Level 3。
 - 修改檔案欄用白話寫每個檔案改了什麼、為什麼，附上 Gate 3 前的變更審查答案；沒有修改時寫「無修改」及原因，不虛構變更。
 - 驗收結果用驗收對照表呈現；測試只寫實際執行過的命令與結果，沒執行的寫「未執行」及原因。
-- Gate 決策照 notes/b3.md 的原文抄錄；寫出與 Gate 2 核准計畫的偏差，沒有偏差也要明寫。
+- Gate 決策照 notes/b3.md 的原文抄錄；寫出與 Gate 2 核准計畫的偏差，沒有偏差也要明寫（寫在 Deviations from Approved Plan 與 Recommended Decision）。
 寫完在對話給我核對用的三句話：你建議的 Level、測試結果、修改範圍。每句後面直接引用它的證據原文與位置（notes/b3.md 的段落或實際指令）；引用不出證據的，在摘要裡改成「未驗證」。最後列出未驗證項目清單，然後停下等我們核對。不要自行修正或補做任何項目。
 ```
 
@@ -74,7 +74,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ① 為什麼做這一步
 
-要匯出才算交件。先和小組聊 1 分鐘：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄和缺項後，還會選同一級嗎？
+要匯出才算交件。邊等 Agent 回覆邊和小組聊 30 秒：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄和缺項後，還會選同一級嗎？
 
 ② 貼給 Agent
 
@@ -96,13 +96,13 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 不要修改任何檔案。請找出 notes/b3.md 與 notes/delivery.md 實際在哪個資料夾，告訴我完整路徑；delivery.md 沒有 Completion Level，就告訴我缺了什麼。
 ```
 
-說好後，把結論記在下方表單，再按按鈕一次下載所有填過的表單。
+說好後，把結論記在下方表單，再按下方「下載全部填寫內容（ZIP）」：ZIP 裡每份表單一個 Markdown（.md）檔；瀏覽器擋下載時，改按各表單的「匯出 Markdown」。
 
 ```form
 {"id": "delivery-check", "title": "交付核對（任務 ID：TASK-B3-001）","fields":[
 {"id": "level", "label": "核對後的完成等級", "type": "select", "options": ["Level 1：分析完成（Analysis Complete）", "Level 2：核心流程完成（Core Flow Complete）", "Level 3：完整交付（Delivery Complete）"], "hint": "依 notes/delivery.md 的證據擇一，不自動選 Level 3。"},
 {"id": "evidence-cited", "label": "抽查的三句都指得出證據嗎？", "type": "select", "options": ["是", "否，已請 Agent 改成未驗證", "不確定"]},
-{"id": "handed-in", "label": "已匯出表單並連同 notes 資料夾交件", "type": "checkbox"}
+{"id": "handed-in", "label": "我會匯出表單，連同 notes 資料夾交件", "type": "checkbox"}
 ]}
 ```
 
