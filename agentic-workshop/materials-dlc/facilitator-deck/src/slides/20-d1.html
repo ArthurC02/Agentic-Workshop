@@ -30,7 +30,7 @@
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D1 共同語言與邊界』› 檢查點 1，沿用開場的 Agent 對話</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定讀哪些來源，再建詞彙、Context 與規則候選，最後跑 coverage 和邊界分析。Agent 幫你找證據、組 JSON、跑指令，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
+    <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定哪些資料算證據，再建詞彙、Context 與規則候選，最後找模型缺口和邊界洩漏。Agent 找證據、做苦工，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
     <p><b>目標數量</b>：詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2，並找出不一致與越界；證據格式是「路徑:起-迄」。</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
@@ -131,7 +131,7 @@
   <p class="cp-judge"><b>你要判斷</b>從 Agent 列的缺口中，選一個記下來</p>
   <p class="cp-next"><b>第 31 分前完成</b><span>→ 下一步：檢查點 6 對照程式判斷邊界洩漏</span></p>
   <aside class="notes">
-    <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看模型能不能把客人的話對到通用語言。對不到的，就是語言還沒統一。」</p>
+    <p><b>說（17:00／第 27 分）</b>：「第 27 分。Agent 先列出模型哪裡還空著，再用客人會說的一句話查模型。對不到通用語言的，就是模型的缺口。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
     <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的名稱或別名，請 Agent 換一句；只命中 synonym 或 definition 時，請 Agent 改用正式名稱再查。</p>
   </aside>

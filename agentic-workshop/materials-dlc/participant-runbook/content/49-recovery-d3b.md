@@ -3,7 +3,7 @@ id: recovery-d3b
 title: D3b Recovery 切換
 minute: 125-155
 group: dlc-rec-d3b
-section: D3｜受治理的變更
+section: D3｜照模型做變更
 ---
 
 # D3b Recovery：視需要接續

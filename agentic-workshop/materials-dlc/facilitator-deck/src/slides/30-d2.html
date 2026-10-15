@@ -31,7 +31,7 @@
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D2 審查與核准（成對）』›「開始前」</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備提案（變更審查包）；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就舉手，我們有降級路線。」</p>
+    <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備提案（變更審查包）；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就貼紅色便利貼，我們有降級路線。」</p>
     <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼一次工作規則（Runbook「開始前」各有一段）。</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
@@ -52,7 +52,7 @@
   </ol>
   <p class="cp-next"><b>第 38 分前完成</b><span>→ 下一步：檢查點 2 規定只有夥伴核准才算數（還是夥伴）</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 35 分）</b>：「第 35 分。輸入解鎖碼，從檢查點 1 開始。夥伴先建簽章金鑰，而且一定要在第一次提交 Domain Memory 檔案之前，否則之後 push 會被拒。金鑰放使用者資料夾的 .dlc-keys，不要放進 Repo，也不要放 .ssh。」</p>
+    <p><b>說（00:00／第 35 分）</b>：「第 35 分。輸入解鎖碼，從檢查點 1 開始。夥伴先建簽章金鑰，而且一定要在第一次提交共用模型檔案之前，否則之後 push 會被拒。金鑰放使用者資料夾的 .dlc-keys，不要放進 Repo，也不要放 .ssh。」</p>
     <p><b>看</b>：夥伴是否另開了自己的 Agent 對話並貼了工作規則；Agent 回報的金鑰路徑在 <code>%USERPROFILE%\.dlc-keys\</code> 底下（不在 Repo 內）、signs_every_commit 為 true；Agent 沒有打開私鑰檔；兩人用同一種 shell。</p>
     <p><b>介入訊號</b>：在提案者的 Agent 對話裡建立金鑰 → 停下，改在夥伴的對話做；金鑰落在會被 commit 的路徑 → 立即移走，請 Agent 確認 <code>git status</code>。</p>
     <p><b>技巧（加深一層）</b>：人工核准關卡——接回主課 B3 Gate：「Gate 是你決定 Agent 能否往下；今天多一條：提案的人不能核准自己。」花 30 秒講（Runbook 有「技巧・加深一層」框）。簽章 commit 與金鑰指紋只在學員問到時說：私鑰簽名、公鑰驗證，fingerprint 可公開。</p>
@@ -129,7 +129,7 @@
   </ol>
   <p class="cp-next"><b>第 56 分前完成</b><span>→ 下一步：檢查點 6 套用核准，模型成為事實（先提案者）</span></p>
   <aside class="notes">
-    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 把剛才的簽章 commit 寫成 attestation，再讓 Plugin 驗證。看到 Git governance is valid. 才往下，否則下一步 finalize 會拒絕。」</p>
+    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 把剛才的簽章 commit 寫成核准紀錄，再驗證簽的人有授權。看到 Git governance is valid. 才往下，否則下一步 finalize 會拒絕。」</p>
     <p><b>看</b>：Agent 回報的 commit 是剛才的簽章 commit；verify 是否 valid。</p>
     <p><b>介入訊號</b>：驗證失敗 → 先檢查是否簽章 commit、attestation 的 commit 是否同一個。工具輸出提到 finalize-proposal → 那是提案者在檢查點 6 的步驟，夥伴的 Agent 不執行。</p>
   </aside>

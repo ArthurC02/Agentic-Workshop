@@ -3,7 +3,7 @@ id: recovery-d3a
 title: D3a Recovery 切換
 minute: 95-125
 group: dlc-rec-d3a
-section: D3｜受治理的變更
+section: D3｜照模型做變更
 ---
 
 # D3a Recovery：視需要接續

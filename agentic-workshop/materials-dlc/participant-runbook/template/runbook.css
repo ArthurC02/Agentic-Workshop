@@ -498,7 +498,8 @@ kbd {
   transition: background-color .12s, color .12s;
 }
 .rb-nav-link:hover { background: var(--c-surface-2); color: var(--c-ink); }
-.rb-nav-title { flex: 1 1 auto; min-width: 0; }
+/* Wrapped nav titles split into even lines, so no line holds only 1–2 characters (e.g. 「數」). */
+.rb-nav-title { flex: 1 1 auto; min-width: 0; text-wrap: balance; }
 .rb-badge {
   display: inline-flex;
   align-items: center;
@@ -543,7 +544,7 @@ kbd {
   text-decoration: none;
 }
 .rb-nav-step:hover { background: var(--c-surface-2); color: var(--c-ink); }
-.rb-nav-step-title { flex: 1 1 auto; min-width: 0; }
+.rb-nav-step-title { flex: 1 1 auto; min-width: 0; text-wrap: balance; }
 .rb-nav-step.is-current { background: var(--c-tint); color: var(--c-primary-700); font-weight: 700; }
 .rb-nav-step.is-current .rb-badge { background: var(--c-surface); }
 .rb-step > :first-child { margin-top: 0; }

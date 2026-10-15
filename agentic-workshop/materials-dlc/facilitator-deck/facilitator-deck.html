@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 1136ff1ead031c4d inputs-sha256 1136ff1ead031c4da0bbdbd02c7ecebb57297ee18997cda312770a45ef3c9e82 -->
+<!-- 主持人專用，不發給學員。build 739d3688158e70d3 inputs-sha256 739d3688158e70d365cdb22466a8886755f4ac6bec6ccf642b3bdf2032b11a7f -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -708,6 +708,14 @@ ul.seg-brief > li > span { font-size: 34px; line-height: 1.4; }
 .slide-seg ol.timeline > li { padding: 24px 20px 22px; }
 .slide-seg ol.timeline > li b { font-size: 28px; }
 ol.timeline > li .tl-due { font-size: 26px; font-weight: 700; color: var(--dw-ink); }
+/* Five or six checkpoints: two rows of three cards, time and deadline on top, so each label fits one line
+   instead of wrapping inside words in a sixth of the width. */
+.slide-seg ol.timeline:has(> li:nth-child(5)) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.slide-seg ol.timeline:has(> li:nth-child(5)) > li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline;
+  gap: 6px 16px; padding: 14px 22px 16px;
+}
+.slide-seg ol.timeline:has(> li:nth-child(5)) > li b { grid-column: 1 / -1; grid-row: 2; }
 ol.timeline > li.is-current .tl-due { color: #FFD9CB; }
 /* A roadmap that is the whole body of a plain slide gets larger labels, not a thin strip in an empty slide. */
 .slide:not(.slide-title, .slide-seg) > ol.timeline > li { padding: 28px 20px 26px; }
@@ -981,7 +989,7 @@ ol.stage-bar > li.active::after {
 /* ---------- 15. Segment timer (data-timer slides) ---------- */
 .dk-timer-big {
   align-self: center;
-  margin-top: auto;
+  margin-block: auto;  /* centred in the free height, not pinned to the bottom */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1539,7 +1547,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="muted">DLC 是延伸課程，原指遊戲的追加內容。D1–D4 是今天四段的代號，D3 再分 a、b、c 三張需求卡。</p>
   <aside class="notes">
     <p><b>開場前</b>：選定<b>計時者</b>與<b>證據記錄者</b>。接著講「為什麼」「怎麼進行」兩頁（共約 2 分鐘），再翻到解鎖頁；10:00 計時在總覽頁按 <b>T</b> 啟動。</p>
-    <p><b>說</b>：「主課你們看過 Agent 從工具、隊友，到能獨立執行任務的數位員工。今天 180 分鐘加課，主題是：怎麼帶著 Coding Agent 做 DDD。Agent 找證據、做苦工；你定義模型、做決定、看證據驗收。Domain Memory 只是存放共用模型的地方。」</p>
+    <p><b>說</b>：「主課你們看過 Agent 從工具、隊友，到能獨立執行任務的數位員工。今天 180 分鐘加課，主題是：怎麼帶著 Coding Agent 做 DDD。Agent 找證據、做苦工；你定義模型、做決定、看證據驗收。domain-memory 只是保存共用模型的工具。」</p>
     <p><b>前提</b>：對象是已完成主課的學員；DDD 概念透過和 Agent 一起做真實決定來學，不另開理論講堂；domain-memory 只保存共用模型，指令全由 Agent 執行。</p>
   </aside>
 </section>
@@ -1719,7 +1727,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D1 共同語言與邊界』› 檢查點 1，沿用開場的 Agent 對話</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定讀哪些來源，再建詞彙、Context 與規則候選，最後跑 coverage 和邊界分析。Agent 幫你找證據、組 JSON、跑指令，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
+    <p><b>說（約 20 秒）</b>：「D1 有 25 分鐘、六個檢查點。先決定哪些資料算證據，再建詞彙、Context 與規則候選，最後找模型缺口和邊界洩漏。Agent 找證據、做苦工，你的時間花在判斷。紀錄由 Agent 寫進 notes/d1.md。」</p>
     <p><b>目標數量</b>：詞彙 ≥ 5、Context ≥ 2、規則 ≥ 2，並找出不一致與越界；證據格式是「路徑:起-迄」。</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>教學重點</b>：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，要讓學員在 <code>cite</code> 證據裡親眼看到。</p>
@@ -1820,7 +1828,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-judge"><b>你要判斷</b>從 Agent 列的缺口中，選一個記下來</p>
   <p class="cp-next"><b>第 31 分前完成</b><span>→ 下一步：檢查點 6 對照程式判斷邊界洩漏</span></p>
   <aside class="notes">
-    <p><b>說（17:00／第 27 分）</b>：「第 27 分。coverage 告訴你哪裡沒被建模；resolve-terms 用一句人話查詞，看模型能不能把客人的話對到通用語言。對不到的，就是語言還沒統一。」</p>
+    <p><b>說（17:00／第 27 分）</b>：「第 27 分。Agent 先列出模型哪裡還空著，再用客人會說的一句話查模型。對不到通用語言的，就是模型的缺口。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
     <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的名稱或別名，請 Agent 換一句；只命中 synonym 或 definition 時，請 Agent 改用正式名稱再查。</p>
   </aside>
@@ -1880,7 +1888,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D2 審查與核准（成對）』›「開始前」</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備提案（變更審查包）；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就舉手，我們有降級路線。」</p>
+    <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備提案（變更審查包）；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就貼紅色便利貼，我們有降級路線。」</p>
     <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼一次工作規則（Runbook「開始前」各有一段）。</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
@@ -1901,7 +1909,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="cp-next"><b>第 38 分前完成</b><span>→ 下一步：檢查點 2 規定只有夥伴核准才算數（還是夥伴）</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 35 分）</b>：「第 35 分。輸入解鎖碼，從檢查點 1 開始。夥伴先建簽章金鑰，而且一定要在第一次提交 Domain Memory 檔案之前，否則之後 push 會被拒。金鑰放使用者資料夾的 .dlc-keys，不要放進 Repo，也不要放 .ssh。」</p>
+    <p><b>說（00:00／第 35 分）</b>：「第 35 分。輸入解鎖碼，從檢查點 1 開始。夥伴先建簽章金鑰，而且一定要在第一次提交共用模型檔案之前，否則之後 push 會被拒。金鑰放使用者資料夾的 .dlc-keys，不要放進 Repo，也不要放 .ssh。」</p>
     <p><b>看</b>：夥伴是否另開了自己的 Agent 對話並貼了工作規則；Agent 回報的金鑰路徑在 <code>%USERPROFILE%\.dlc-keys\</code> 底下（不在 Repo 內）、signs_every_commit 為 true；Agent 沒有打開私鑰檔；兩人用同一種 shell。</p>
     <p><b>介入訊號</b>：在提案者的 Agent 對話裡建立金鑰 → 停下，改在夥伴的對話做；金鑰落在會被 commit 的路徑 → 立即移走，請 Agent 確認 <code>git status</code>。</p>
     <p><b>技巧（加深一層）</b>：人工核准關卡——接回主課 B3 Gate：「Gate 是你決定 Agent 能否往下；今天多一條：提案的人不能核准自己。」花 30 秒講（Runbook 有「技巧・加深一層」框）。簽章 commit 與金鑰指紋只在學員問到時說：私鑰簽名、公鑰驗證，fingerprint 可公開。</p>
@@ -1978,7 +1986,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="cp-next"><b>第 56 分前完成</b><span>→ 下一步：檢查點 6 套用核准，模型成為事實（先提案者）</span></p>
   <aside class="notes">
-    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 把剛才的簽章 commit 寫成 attestation，再讓 Plugin 驗證。看到 Git governance is valid. 才往下，否則下一步 finalize 會拒絕。」</p>
+    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 把剛才的簽章 commit 寫成核准紀錄，再驗證簽的人有授權。看到 Git governance is valid. 才往下，否則下一步 finalize 會拒絕。」</p>
     <p><b>看</b>：Agent 回報的 commit 是剛才的簽章 commit；verify 是否 valid。</p>
     <p><b>介入訊號</b>：驗證失敗 → 先檢查是否簽章 commit、attestation 的 commit 是否同一個。工具輸出提到 finalize-proposal → 那是提案者在檢查點 6 的步驟，夥伴的 Agent 不執行。</p>
   </aside>
@@ -2069,7 +2077,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="cp-next"><b>第 73 分前完成</b><span>→ 下一步：檢查點 2 對外介面（Port）與邊界決策</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
+    <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向共用模型查已審查（reviewed）事實，已知與未知分開回報。」</p>
     <p><b>看</b>：有沒有跳過提示詞直接叫 Agent 實作；Agent 是否真的執行了查詢，而不是憑記憶回答。留意逾時＝結果未知，不是失敗。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「逾時代表什麼？對方可能已經開出發票了嗎？」</p>
@@ -2302,10 +2310,10 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><i>提案者的對話</i><b>貼 ②＋需求卡全文</b><span>Runbook『D3b 點數折抵』› 檢查點 1</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>需求卡的「優惠」和記憶裡的優惠，是不是同一件事</p>
+  <p class="cp-judge"><b>你要判斷</b>需求卡的「優惠」和模型裡的優惠，是不是同一件事</p>
   <p class="cp-next"><b>第 98 分前完成</b><span>→ 下一步：檢查點 2 決定負責的 Context 與不變量</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
+    <p><b>說（00:00／第 95 分）</b>：「第 95 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向共用模型查已審查（reviewed）事實，已知與未知分開回報。」</p>
     <p><b>看</b>：有沒有跳過提示詞直接叫 Agent 實作；Agent 是否真的執行了查詢，而不是憑記憶回答。留意現有三條計價路徑（一般、團體、改票）。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」</p>
@@ -2536,7 +2544,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-judge"><b>你要判斷</b>對帳等式每一項從哪裡來；看懂了，之後才抓得到算錯</p>
   <p class="cp-next"><b>第 128 分前完成</b><span>→ 下一步：檢查點 2 Aggregate（聚合）邊界與不變量</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 125 分）</b>：「第 125 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向 Domain Memory 查已審查（reviewed）事實，已知與未知分開回報。」</p>
+    <p><b>說（00:00／第 125 分）</b>：「第 125 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向共用模型查已審查（reviewed）事實，已知與未知分開回報。」</p>
     <p><b>看</b>：有沒有跳過提示詞直接叫 Agent 實作；Agent 是否真的執行了查詢，而不是憑記憶回答。留意 refunds 以 booking_id 為鍵、現行『只能退一次』。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「現在的退款紀錄，能表達『同一筆訂票退過兩次』嗎？」</p>
@@ -2829,7 +2837,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ul>
   <ol class="timeline">
     <li data-seg="dlc-retro"><span class="tl-min">00:00</span><b>1 · 請 Agent 從紀錄整理證據</b><span class="tl-due">第 169 分前</span></li>
-    <li data-seg="dlc-retro"><span class="tl-min">04:00</span><b>2 · 比較哪些人工把關擋得住錯</b><span class="tl-due">第 174 分前</span></li>
+    <li data-seg="dlc-retro"><span class="tl-min">04:00</span><b>2 · 比較哪些人工把關<wbr>擋得住錯</b><span class="tl-due">第 174 分前</span></li>
     <li data-seg="dlc-retro"><span class="tl-min">09:00</span><b>3 · 挑選提示詞與一項行動</b><span class="tl-due">第 178 分前</span></li>
     <li data-seg="dlc-retro"><span class="tl-min">13:00</span><b>4 · 匯出與結束</b><span class="tl-due">第 180 分前</span></li>
   </ol>
