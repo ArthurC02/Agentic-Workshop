@@ -28,11 +28,11 @@ section: 參考
 | Rule ID（規則編號） | 商業規則的編號，例如 `FARE-002`：學生為基礎票價的 75%。 | 本課程〈Greenfield Business Requirements〉 |
 | AC（驗收條件） | Acceptance Criteria，功能必須符合的要求，例如 `AC-B1-001`。 | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
 | 驗收對照表 | Agent 回報測試結果的表：每條驗收條件一列，寫編號、白話內容、通過／失敗／未驗證、依據的測試名稱；最後一行是通過、失敗、跳過各幾個。 | 本課程〈Greenfield Acceptance Criteria〉 |
-| 變更審查 | 你不讀程式的修改內容（Diff），改請 Agent 對固定問題回答「是／否／不確定」，這些回答就是審查答案；全部「是」才放行。 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
+| 變更審查 | 你不讀程式的修改內容（Diff），改請 Agent 回答固定的審查問題，這些回答就是審查答案。Greenfield 用白話答四題並建議放不放行，之後各段逐題答「是／否／不確定」；由你判斷要不要放行。 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
 | Skip／XFail | Skip 是略過測試；XFail 是把測試標成預期會失敗。兩者都不代表功能完成，不得用來隱藏失敗。 | pytest 官方文件〈How to use skip and xfail to deal with tests that cannot succeed〉 |
 | Regression（回歸問題） | 修改後，原本正常的功能被改壞。既有測試要保留並通過；因規則改變而過時的期待值，要附規則編號並經人核准才更新。 | ISTQB〈Glossary〉 |
 | PASS／FAIL／NOT VERIFIED | 通過／失敗／未驗證。沒有實際執行就只能寫未驗證。 | 本課程〈Digital Worker Delivery Summary〉 |
-| /docs | 伺服器啟動後，在瀏覽器開的 API 測試頁。點開 API，按「Try it out」，貼範例，再按「Execute」看狀態碼：201 成功、404 找不到、409 不符商業規則或和目前狀態衝突、422 輸入格式錯誤。 | FastAPI 官方文件〈First Steps〉；IETF〈RFC 9110 HTTP Semantics〉 |
+| /docs | 伺服器啟動後，在瀏覽器開的 API 測試頁。點開 API，按「Try it out」，貼範例，再按「Execute」看狀態碼：200 或 201 是成功，404 是找不到，409 是不符商業規則或和目前狀態衝突，422 是輸入格式錯誤。 | FastAPI 官方文件〈First Steps〉；IETF〈RFC 9110 HTTP Semantics〉 |
 | notes 資料夾 | Agent 把分析、計畫、核准決策與驗收紀錄寫成檔案的地方；你只做決定與核對。 | 本課程〈歡迎與使用方式〉 |
 | SHA256 雜湊 | 檔案的指紋：只要改一個位元組，值就不同；用來確認下載的復原包是原版。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
 | 復原包（Recovery） | 進度落後時改用的接續版本，已完成前一段；使用它不算小組自行完成前段。 | 本課程〈B1 Recovery：第 52 分鐘，必要時才切換〉 |

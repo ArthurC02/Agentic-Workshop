@@ -27,12 +27,12 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
           "destination": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
-          "sha256": "008952a7469132046dc986958f12dbcb3f7200720fd0c57a4300bdf4faae685d"
+          "sha256": "f7bdd21a9f0f907ea0563e0586b022f0886a1d45a75ee5e055c26b9a77e9bd3c"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/05-submission-checklist.md",
           "destination": "agentic-workshop/01-greenfield/participant/05-submission-checklist.md",
-          "sha256": "eba89b685d26ed44809d1e0ad12e6e0cd2f41c5454ba5a5935750401ed6387bd"
+          "sha256": "5559b52527960dc1d418a820b5257d7640a145058555128781e3b68e426b810d"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/.gitignore",
@@ -1135,12 +1135,12 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
-          "sha256": "d4d71bdf27871c89a95ca3fdb8f182fe414e1816ed49272f27332ed97006eca9"
+          "sha256": "58c2ca38f15ad0502f0587bfb2eed53f20b2d3fabe7f2fe7ce8a114c77a3a910"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
-          "sha256": "171b7202df554e710562152633f80c1fd1058ffee4815cdbac41e2a16182c8ce"
+          "sha256": "3d71d65e81865cccb16681fca08d4dcf2e36a92d72dd948432074ac339385511"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
@@ -1155,7 +1155,7 @@
         {
           "source": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
           "destination": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
-          "sha256": "15f4507060573fcdf9d476dca097e162250a1991e78514a7afd2a4716d006668"
+          "sha256": "89dde40b60014c0c188a1f8c847d13e48847001a0e57e6cb94337b5061929687"
         },
         {
           "source": "agentic-workshop/02-time-skip/facilitator/02-repository-delta-explanation.md",
@@ -1190,7 +1190,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
-          "sha256": "3750b773687b084f286e8e4b59267eb5a7a4de5c52442569f26fd53312e381e5"
+          "sha256": "db375b09581829496418a9a62cf24f34d0ecf24138ddbd46592be44c1c3a53a1"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/07-expected-participant-behavior.md",
@@ -1205,7 +1205,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "e771e46cc7b3428d0501c0e99075193c28fdde4cf2e27ecedba4cfc0d4f206ec"
+          "sha256": "419943bff2c9645bcb97c0f52806e6a9b8971989c0f2b5506dfacd22471d726e"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -1260,7 +1260,7 @@
         {
           "source": "agentic-workshop/06-runbook/workshop-runbook.md",
           "destination": "agentic-workshop/06-runbook/workshop-runbook.md",
-          "sha256": "3dea3d539ace2ad801a15130b7cd9c4b9833f01b0252e5269a567843582cc80e"
+          "sha256": "bea262299aaf699d8853e4f7330fa2a76b87b6df9f67fe1d8d6b8ad4a93645a3"
         },
         {
           "source": "docs/contents/00_README_文件導覽.md",
@@ -1325,7 +1325,7 @@
         {
           "source": "docs/instructions/02_Greenfield_Starter_Kit產製指令書.md",
           "destination": "docs/instructions/02_Greenfield_Starter_Kit產製指令書.md",
-          "sha256": "b57900179a58f5e38e6bdf59cbaa9fc3cd9caaab8f96dedd3bf18cfec083ba98"
+          "sha256": "188afb01dea903ab7db5fa9055cc67a40c064f8e02fb319c5a60dea73b2beeff"
         },
         {
           "source": "docs/instructions/03_G1_Greenfield_Reference_MVP產製指令書.md",
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "f8870630da33f426aa30e71acc517be74803ef1da4278bdb9a63c9e866a8c97b"
+          "sha256": "d490af95d28d428140096592a5ad0ec712d58036e7a2e1117b754c7ca5d3a256"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3385,7 +3385,7 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "2fb0f1e75361040ba73b702cc962d753cd56a39135b1520a4b1aa7645822b4c9"
+          "sha256": "da3a6e470001a9e3eef04e65061cf5a6e9d8151469c0277ea79db97426b63d21"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
