@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build b32d7eba18c9f77f inputs-sha256 b32d7eba18c9f77ffe8c827f88445f9117ffdeddc2702c4c3a2851fbdfdf5813 -->
+<!-- 主持人專用，不發給學員。build be1c9b3b78bc0afc inputs-sha256 be1c9b3b78bc0afc996a6ff2ea178cc026e321397bb362eb4d2a450da35ff583 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1781,7 +1781,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-judge"><b>你要判斷</b>每步有規則編號和要改的檔案，沒有範圍外項目</p>
   <p class="cp-next"><b>第 15 分前完成</b><span>→ 下一步：檢查點 3 小步做、每步驗收</span></p>
   <aside class="notes">
-    <p><b>說（00:04／第 11 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 讀需求、找 TODO、提出固定 4 步的計畫寫進 notes，先不要改。每個問題它會附建議答案，你回『同意』或『改成…』，然後核准最前面兩小步：票價和班次查詢都很小，一起做省一輪來回。」</p>
+    <p><b>說（00:04／第 11 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 讀需求、找 TODO、提出固定 4 步的計畫寫進 notes，先不要改。每個問題它會附建議答案，你看完貼『計畫核准』，不同意某題就在第一行後加『第 N 題改成…』，這樣就核准最前面兩小步：票價和班次查詢都很小，一起做省一輪來回。」</p>
     <p><b>示範技巧</b>：指著計畫提示詞的五個標籤【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件】說「這就是 Prompt 結構」。巡場看學員有沒有刪掉某一塊。模型選擇與推論強度留到個人分析才講。</p>
     <p><b>看</b>：Agent 已開始改檔案 → 請學員貼檢查點 2 ④「核准前就改檔案」那段｜學員有沒有看過建議答案才回「同意」｜是否只核准前兩小步（說「全部做完」→ 提醒這段練的是小步放行）。</p>
     <p><b>需求澄清（已寫在計畫提示詞【限制】）</b>：付款失敗 → Booking 維持 <code>PENDING_PAYMENT</code>、座位不釋放、不建 Order、可再付款；找不到資源 404；人數不符 409（在 domain／application 檢查，不寫成輸入格式限制）；座位不足、重複付款、付款失敗也是 409；格式錯誤保留 422；付款失敗用 <code>MockPaymentGateway.next_result = PaymentStatus.FAILED</code> 模擬。AC-G-013 要求 Booking／Order 不存在回 404，Trip 不存在依澄清也回 404。</p>
@@ -1828,7 +1828,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-judge"><b>你要判斷</b>你在 <code>/docs</code> 看到的和預期一致，照實回覆</p>
   <p class="cp-next"><b>第 29 分前完成</b><span>→ 下一步：停手，一起看 Greenfield 揭曉</span></p>
   <aside class="notes">
-    <p><b>說（00:18／第 25 分）</b>：「不再加新功能。貼檢查點 4 的提示詞：Agent 補測試、更新文件、啟動伺服器、寫交付摘要，給你 /docs 網址後停下。等它的時候，先到『Greenfield 回顧與交付決定』頁填表單。拿到網址就親自試訂票和付款，回它一行，例如『兩項都一致』；它寫進人工驗證，Commit 成 Greenfield 交付。」8000 被占用 → 學員回「請改用 8001，並在最終驗收寫下實際埠號」。</p>
+    <p><b>說（00:18／第 25 分）</b>：「不再加新功能。貼檢查點 4 的提示詞：Agent 補測試、更新文件、啟動伺服器，先給你 /docs 網址，邊寫交付摘要。等網址的時候，先到『Greenfield 回顧與交付決定』頁填表單。拿到網址就親自試訂票和付款，回它一行，例如『兩項都一致』；它寫進人工驗證，Commit 成 Greenfield 交付。」8000 被占用 → 學員回「請改用 8001，並在最終驗收寫下實際埠號」。</p>
     <p><b>看</b>：學員親自在 <code>/docs</code> 走完流程（Agent 要呼叫 API 時用 Python，不用 curl，Windows 的 curl 會弄亂中文）；交付摘要附實際指令和驗收對照表，沒跑的標未驗證；仍被跳過的測試要列出，不刪測試掩蓋失敗。</p>
     <p><b>時間不夠</b>：H1 先貼「請列出已完成、未驗證與尚未開始的項目」｜H2 停止擴充，先驗證已做的流程，再請 Agent 補最少的文件與限制｜H3 請 Agent 照 Runbook 把交付摘要寫進 notes，未完成如實標記。</p>
     <p><b>停止（00:22／第 29 分）</b>：翻到「請先停手」頁。沒做完整 MVP 也照收 <code>notes/greenfield.md</code> 和交付表單；不宣稱未驗證的功能通過。</p>
@@ -2027,6 +2027,7 @@ body.is-presenter #dk-black { display: none !important; }
   <aside class="notes">
     <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，請原本的 Agent 停掉伺服器。B0 從 Runbook 下載，解壓縮到短路徑。這 12 個月系統加了會員、優惠、改退票、通知、座位和稽核；細節在 B0 的文件裡，個人分析時再請 Agent 讀。」</p>
     <p><b>看</b>：是否還在改自己的 MVP；解壓到太深的路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；用自己的 G1 代替 B0。</p>
+    <p><b>伺服器</b>：Greenfield 改用 8001 的，那台也要停。8000 被學員沒啟動、先前已回報過的程式占用，③ 仍算成功，不必處理。</p>
     <p><b>介入</b>：不能用個人 G1 或已修好的 B1 代替 B0。下載失敗時由主持人提供同一份 B0，不讓學員各找替代版本。</p>
     <p><b>回答背景問題</b>：只描述模組與這 12 個月加了什麼；不說內部原因、修法、文件落差位置或後續任務。B0 延續 G1 的分層、四個核心 API、Health、固定資料與測試；重點是讓「理解與影響分析」成為必要能力，不是另一個產品。</p>
   </aside>
@@ -2427,7 +2428,7 @@ body.is-presenter #dk-black { display: none !important; }
   </ul>
   <ol class="timeline">
     <li data-seg="b2"><span class="tl-min">00:00</span><b>1 · 提方案並比較，人來選</b><span class="tl-due">第 55 分前核准</span></li>
-    <li data-seg="b2"><span class="tl-min">03:00</span><b>2 · 依選定方案分段實作</b><span class="tl-due">第 59 分前</span></li>
+    <li data-seg="b2"><span class="tl-min">03:00</span><b>2 · 依選定方案實作</b><span class="tl-due">第 59 分前</span></li>
     <li data-seg="b2"><span class="tl-min">07:00</span><b>3 · 補測試、更新文件並交付</b><span class="tl-due">第 63 分前</span></li>
   </ol>
   <p class="callout seg-start">從 Runbook『B2 導入不可疊加的最有利優惠政策』› 檢查點 1 開始</p>
@@ -2458,27 +2459,27 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>💬 討論</b>：Runbook 有兩題口頭討論（會改變選擇的未確認假設；推薦方案的最大風險能不能接受）。追問假設是選用，第 54 分後不再追問，直接核准。</p>
     <p><b>看</b>：起點是驗收過的 B1 或 B1 復原包｜Agent 有沒有比較 2–3 個方案（只有一個 → 介入）｜人看過假設的依據欄｜Agent 已開始改檔 → 叫它停下，回到提案｜核准人與時間寫進 notes/b2.md。</p>
     <p><b>第 55 分還沒核准</b>：提醒小組立刻選方案並核准。主持人不替人選。核准後的實作會延續到檢查點 2 的時間，這是預期的；等 Agent 停下回報再貼檢查點 2 ②。</p>
-    <p><b>Recovery 組</b>（切換約 4 分鐘）：照 Runbook 任務卡上方「用 Recovery 的組：走縮短版」：不貼「追問假設」、不貼「下一段」、第 59 分還在實作就貼檢查點 3「失敗時」。第 63 分照樣停手。</p>
+    <p><b>Recovery 組</b>（切換約 4 分鐘）：照 Runbook 任務卡上方「用 Recovery 的組：走縮短版」：不貼「追問假設」；第 59 分還沒完成檢查點 2（含 Agent 停下等「核准更新」）就貼檢查點 3「失敗時」，如實交付。第 63 分照樣停手。</p>
     <p><b>只有一個方案</b>（小組直接接受）：提醒「不接受第一個答案」和結構化輸出。貼「先仔細想過再回答。請再提至少一個不同的做法，和剛才的方案用固定欄位（方案、改動範圍、風險、測試影響、建議）的表格比較，寫進 notes/b2.md。」</p>
     <p><b>H1 方向</b>（還照舊的先後順序，沒分析同時符合多項）：提醒「先比較再選」。貼「先列出每位旅客可能符合的優惠，與任務卡上各自的公開資格對照，再說明每個方案怎麼處理同時符合多項的旅客。」</p>
     <p><b>可回答</b>：只引用任務卡範例（逐字）「例如學生加提前採75%，企業加提前採85%，三項同時符合採75%；不把75%與85%相乘，成人無資格時100%。」<b>不算金額</b>。</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="b2" data-title="檢查點 2 · 依選定方案分段實作" data-minute="55">
+<section class="slide slide-cp" data-seg="b2" data-title="檢查點 2 · 依選定方案實作" data-minute="55">
   <p class="kicker">檢查點 2 / 3 · 第 55–59 分鐘</p>
-  <h2 class="title">依選定方案分段實作</h2>
+  <h2 class="title">依選定方案實作</h2>
   <p class="cp-why"><b>為什麼</b>Agent 做完一段就停下，你們看過證據再放行</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「變更審查」</b><span>Agent 做完一段停下後貼</span></li>
-    <li><b>五題都「是」才放行</b><span>第 58 分前才選用 ④「下一段」</span></li>
+    <li><b>五題都「是」才放行</b><span>每組只做一段</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每人只採一項最有利的優惠；改舊期待值要附 Rule ID</p>
   <p class="cp-next"><b>第 59 分前完成</b><span>→ 下一步：停止擴充，檢查點 3 補測試、更新文件</span></p>
   <aside class="notes">
-    <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准工作拆解。已核准的，每組都只做一段，做完停下，你們請它回答變更審查五題；第 5 題它會挑一位多優惠旅客實際驗證，你們核對每人只採一項、而且是最有利的那一項。」第 58 分前 ③ 已成功、核准步驟還沒做完的組，才選用 ④「下一段」，做完再審一次（Commit 名稱「B2 第二段」）。</p>
+    <p><b>說（00:03／第 55 分）</b>：「第 55 分鐘。還沒核准的組，現在就選方案、核准工作拆解。已核准的，每組都只做一段，做完停下，你們請它回答變更審查五題；第 5 題它會挑一位多優惠旅客實際驗證，你們核對每人只採一項、而且是最有利的那一項。」一段就收，不做第二段；③ 失敗就貼「失敗時」，五題都「是」它才 Commit「B2 第一段」。</p>
     <p><b>看 → 介入</b>：只改一個分支、忽略改票、整團共用優惠或疊乘、全面重構成規則引擎 → 介入。實作是否照選定方案（偏離時請 Agent 說明原因）。保留同步通知；把折扣政策寫清楚就夠，不要求引擎。</p>
     <p><b>立即停止</b>：規則疊乘、弱化回歸測試、未核准的外部套件、提前做團體功能 → 要 Agent 停止，回到核准範圍。</p>
     <p><b>預期卡點：舊期待值</b>：<code>tests/integration/test_advance.py::test_corporate_first_match_precedes_more_favorable_advance</code> 用舊的「取第一個符合」期待 665，和 FARE-008（新規則 595）衝突。依 team-rules 第 4 條、任務卡和核准提示詞：因新規則而過時的期待值可以更新，但 Agent 要先在 notes/b2.md 列出測試名稱、舊期待、Rule ID 與理由，人核准後才改；其他期待值一律不動。<b>不要對學員說出測試名稱或數字</b>。Agent 沒列 Rule ID 就改，或小組以為「任何期待值都不能改」而卡住 → 貼：「先不要改測試。請列出和新規則衝突的既有測試：測試名稱、舊期待、新規則要求、對應 Rule ID 與理由，寫進 notes/b2.md，停下等我們核准；其他期待值一律不改。」</p>
@@ -2603,7 +2604,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>操作</b>：按 <b>T</b> 啟動 13:00 段落計時（00:00＝第 63 分），翻頁時持續計時。本頁大字顯示 B3 解鎖碼。</p>
     <p><b>解鎖內容</b>：B3 任務卡、操作規則、工作單、三道 Gate、交付審查清單、交付摘要範本、例外回應卡（只有提示詞和表單）。檢查點 1 用「複製 Markdown」交給 Agent 的只有任務卡、操作規則、工作單、三道 Gate；交付審查清單在 Gate 3 想逐項核對時才用，交付範本下一段用，例外回應卡第 69 分才用。</p>
     <p><b>不可說</b>：例外事件的內容。例外情境只在第 69–70 分由投影呈現，<b>現在不要提</b>。</p>
-    <p><b>B2 復原包</b>：只在第 63 分進 B3 時視需要私下提供（<code data-code="recovery-b2"></code>），保留原成果、未完成事項、來源與切換原因，不算小組自己完成。<b>B3 開始後不再切換版本</b>，卡住時改用降級流程（見總覽頁備註）。切換約需 5 分鐘：Recovery 組 Gate 1 約第 69–70 分、Gate 2 約第 72 分決策，第 74 分照樣停止擴充，目標 Level 1，不延後 Gate 3。</p>
+    <p><b>B2 復原包</b>：只在第 63 分進 B3 時視需要私下提供（<code data-code="recovery-b2"></code>），保留原成果、未完成事項、來源與切換原因，不算小組自己完成。<b>B3 開始後不再切換版本</b>，卡住時改用降級流程（見總覽頁備註）。切換約需 5 分鐘：Recovery 組的 Gate 1 約第 70–71 分、Gate 2 約第 73 分決策；例外事件用 30 秒口頭判斷；Gate 2 後不貼「開始執行」，第 74 分直接貼「停止擴充」，目標 Level 1，不延後 Gate 3。</p>
   </aside>
 </section>
 
@@ -2673,7 +2674,7 @@ body.is-presenter #dk-black { display: none !important; }
   </ol>
   <p class="cp-next"><b>第 64 分前完成</b><span>→ 下一步：檢查點 2 Gate 1：確認 Agent 懂需求</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。照 Runbook 檢查點 1，把提示詞和四份文件整份貼給主要 Agent。它會先 Commit 一個『B3 起點』（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」</p>
+    <p><b>說（00:00／第 63 分）</b>：「委派整件任務的第一步，是一次把任務交代清楚。照 Runbook 檢查點 1，把提示詞和四份文件整份貼給主要 Agent。它會先 Commit 一個『B3 起點』（Gate 3 的變更審查拿它來比），再把背景寫進 notes/b3.md，交出 Gate 1 決策卡就停下。」沒有變更也要建立『B3 起點』（提示詞已寫 git commit --allow-empty）。</p>
     <p><b>看</b>：第 64 分左右 Agent 交出 Gate 1（摘要、假設、缺口、不做的範圍寫進 notes；對話是 5 個是非題的決策卡）。Agent 直接設計或改程式 → #1：提醒規則，回 Gate 1。有人伸手改程式 → #2。只口頭交代、沒貼工作單 → 提醒「範圍和停止條件要寫給 Agent，它才知道何時停」。</p>
     <p><b>可回答</b>：操作規則與工作單的意思。2 分鐘讀不完操作規則的組，可以在 Agent 準備 Gate 1 時讀。</p>
   </aside>
@@ -2792,7 +2793,7 @@ body.is-presenter #dk-black { display: none !important; }
     <p><b>停止與升級條件（工作單已列）</b>：衝突（需求和規則編號衝突；文件和程式衝突、測試也判斷不了）｜範圍（要改核准範圍外的 API 合約；要加外部服務或套件；要移除既有回歸測試；改的檔案明顯比 Gate 2 預估多）｜設計（確認不了付款失敗的正確狀態；找不到同時滿足座位與全有或全無的方案）｜品質與時間（出現和任務無關的新失敗；剩下時間做不完承諾的交付）。這些升級處理寫進 notes/b3.md，不算第二件例外事件；全場只有一件例外事件。</p>
     <p><b>Level 1</b>：沒有修改或沒跑測試時，審 Gate 1／2、影響分析、測試策略和缺項，寫明「無修改／未執行」，不預填成功。<b>核准不等於通過</b>：三道 Gate 是執行中的人員核准，不取代程式驗收。</p>
     <p><b>時間不夠（Runbook 已寫）</b>：三道 Gate 都要做、都要有真實證據；Gate 3 至少看驗收對照表和未完成事項；例外事件可縮成 30 秒。</p>
-    <p><b>停止（00:13／第 76 分）</b>：「停止新增功能，交付摘要下一段請 Agent 整理。」→ 翻到交付總覽。</p>
+    <p><b>停止（00:13／第 76 分）</b>：「停止新增功能，交付摘要下一段請 Agent 整理。Gate 3 的 ③ 還沒做的，可延到交付段開頭做。」→ 翻到交付總覽。</p>
     <p><b>首次介紹</b>：第 74 分前介紹完成等級（Level 1–3），約 30 秒，指著「新概念：完成等級（Level）」小卡講。</p>
     <p><b>收尾</b>：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。</p>
   </aside>

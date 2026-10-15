@@ -33,7 +33,7 @@ section: Delivery
 
 ② 貼給 Agent
 
-複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。
+B3 檢查點 4 的 ③ 還沒做的，先貼它、回「成功」再往下。複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。
 
 ```text
 停止新增功能與測試，不要再修改任何程式。請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：

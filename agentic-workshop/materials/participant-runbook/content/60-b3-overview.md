@@ -41,7 +41,7 @@ section: B3｜Digital Worker
 
 ```callout sync
 ⏸ 看投影：B2 沒做完的組貼紅色便利貼，主持人會走過去
-拿到解鎖碼後，先到 [B2 Recovery](#recovery-b2) 切換，約需 5 分鐘。Recovery 組的 Gate 1 約第 69–70 分、Gate 2 約第 72 分決策，第 74 分照樣停止擴充，目標 Level 1。
+拿到解鎖碼後，先到 [B2 Recovery](#recovery-b2) 切換，約需 5 分鐘。Recovery 組的 Gate 1 約第 70–71 分、Gate 2 約第 73 分決策；例外事件用 30 秒口頭判斷；Gate 2 後不貼「開始執行」，第 74 分直接貼「停止擴充」，目標 Level 1。
 ```
 
 ## 檢查點 1 · 把工作單交給 Agent（第 63–64 分鐘）
@@ -61,7 +61,7 @@ section: B3｜Digital Worker
 ```text
 請先讀 skills/team-rules.md 並遵守。
 請依附在這段後面的任務卡、Digital Worker 操作規則、工作單（Work Order）與三道 Gate，執行 TASK-B3-001 團體訂票：
-0. 建立 B3 起點：這個資料夾還沒有 Git 就執行 git init；沒有 .gitignore 就建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/。執行 pytest -q，再把目前狀態 Commit，訊息寫「B3 起點」；如果 Git 要求姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。之後的變更審查都和這個 Commit 比。
+0. 建立 B3 起點：這個資料夾還沒有 Git 就執行 git init；沒有 .gitignore 就建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/。執行 pytest -q，再把目前狀態 Commit，訊息寫「B3 起點」（沒有變更也要建立，用 git commit --allow-empty）；如果 Git 要求姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。之後的變更審查都和這個 Commit 比。
 1. 只把工作單原文，加上三道 Gate 文件裡的「Gate 回報格式」，以及 Escalation 格式（依序六個標題：Trigger、Evidence、Impact、Options、Recommendation、Decision Needed），存成 skills/b3-work-order.md，這是你這次的工作說明（Skill）。任務卡、操作規則與三道 Gate 的其他內容不要重抄，在檔案開頭寫一行「任務卡、操作規則與三道 Gate 全文在這個對話的第一則訊息」。之後我只會說「依 skills/b3-work-order.md」，不再重貼。
 2. 讀 notes/shared-context.md，在 notes/b3.md 建立「已核准背景」：小組、接手的程式版本（B2 接手版本或 B2 復原包）、B3 起點的測試結果（通過／失敗／跳過各幾個）、這次對話用的模型與推論強度（不知道就問我；工具沒有這個設定就寫「預設」）、已確認的假設與限制、尚待決定的事項。查不到的寫「待小組確認」，不要猜。
 3. 提交 Gate 1 資料：需求摘要、規則清單、關鍵假設、資訊缺口、不做的範圍（Out of Scope），寫進 notes/b3.md 的「Gate 1」段落。對話只用 Gate 回報格式給我 Gate 1 決策卡：「證據」用 5 個是非題確認你的需求理解，每題附任務卡原文位置：5–20 人邊界、同班次（Trip）與同車廂連續座位、不允許部分成功、付款失敗整筆取消並釋放全部座位、每位旅客沿用 B2 最有利單一優惠；「需要人決定的事」列出要我決定的問題，每題附你的建議答案與依據，查不到依據的標「待小組確認」；任務卡沒寫每節車廂有幾個座位，請依程式裡現有的資料提出建議值與依據，列為一題由我核准；「建議結論」給一個建議決策（APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE）與一句理由；「風險」寫你最沒把握的地方。
@@ -242,9 +242,9 @@ Agent 碰到停止條件會停下來問你（升級處理）。讀它寫的選�
 然後問我：Gate 3 決策、條件、/docs 有沒有實測、核准人、現在第幾分鐘。我回答後照原文記進 notes/b3.md 的「Gate 3」段落，然後停止，不再新增功能。
 ```
 
-Agent 問你時用一行回答，例如：「附條件核准；條件：未驗證項目寫進交付摘要；/docs 已實測；核准人小林；第 75 分」。
+回答前，有時間就在 /docs 試一次團體訂票：點開團體訂票的 API，按「Try it out」，貼上 Agent 給的 5 人範例，再按「Execute」。201 是成功，409 是不符商業規則。沒時間試，就告訴 Agent「/docs 未實測（未驗證）」。
 
-有時間就在 /docs 試一次團體訂票：點開團體訂票的 API，按「Try it out」，貼上 Agent 給的 5 人範例，再按「Execute」。201 是成功，409 是不符商業規則。沒時間試，就告訴 Agent「/docs 未實測（未驗證）」。
+Agent 問你時用一行回答，例如：「附條件核准；條件：未驗證項目寫進交付摘要；/docs 已實測；核准人小林；第 75 分」。
 
 ③ 確認結果
 
@@ -258,7 +258,7 @@ Agent 問你時用一行回答，例如：「附條件核准；條件：未驗�
 不要再修改程式。請把缺的部分補進 notes/b3.md；做不到的寫「未驗證」與原因，不要宣稱已通過驗收，補完告訴我。
 ```
 
-在頁尾選 Gate 3 的決策。第 76 分鐘停止一切修改，列出缺項；交付摘要下一段再整理。
+在頁尾選 Gate 3 的決策。第 76 分鐘停止一切修改，列出缺項；Gate 3 的 ③ 可延到交付段開頭做，交付摘要下一段再整理。
 
 ④ 補充
 
