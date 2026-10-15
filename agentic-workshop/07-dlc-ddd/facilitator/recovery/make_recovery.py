@@ -143,7 +143,7 @@ def subshell(body: str) -> str:
 
 STEP_SAVE = r"""## 1. 保存原成果並解出 Recovery（提案者原本的 Agent 對話）
 
-原 Repo 不改名、不覆寫、不刪除，也不 commit，什麼都不寫進原 Repo。Agent 在原 Repo 執行 `git status`、`git log --oneline -3` 並問學員進度，再把 Recovery 複製成和原 Repo 同一層的 `resume-{seg}`（`..\..\tools` 才會指向學員包的工具），原 Repo 有 `notes/`、`docs/handoffs/` 時一併複製過去（後面的段落要讀）。最後把學員的回答、兩個指令的結果與原 Repo 的完整路徑附加到 `resume-{seg}` 的 `notes/{seg}.md`（標題「改用 Recovery 前的狀態」）。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。下面的指令任何一行失敗就停下（PowerShell 用 `$ErrorActionPreference` 與 `$LASTEXITCODE`；Git Bash 整段包在 `( set -e … )` 子 shell 裡，失敗只結束這一段，不會關掉 Agent 的終端機）。中途失敗要重跑時，重跑前先刪除 `C:\dlc-rec\{seg}` 與 `resume-{seg}`（只刪這兩個）。
+原 Repo 不改名、不覆寫、不刪除，也不 commit，什麼都不寫進原 Repo。Agent 在原 Repo 執行 `git status`、`git log --oneline -3` 並問學員進度，再把 Recovery 複製成和原 Repo 同一層的 `resume-{seg}`（`..\..\tools` 才會指向學員包的工具），原 Repo 有 `notes/`、`docs/handoffs/` 時一併複製過去（後面的段落要讀）。最後把學員的回答、兩個指令的結果與原 Repo 的完整路徑附加到 `resume-{seg}` 的 `notes/{seg}.md`（標題「改用 Recovery 前的狀態」）。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。下面的指令任何一行失敗就停下（PowerShell 用 `$ErrorActionPreference` 與 `$LASTEXITCODE`；Git Bash 整段包在 `( set -e … )` 子 shell 裡，失敗只結束這一段，不會關掉 Agent 的終端機）。中途失敗要重跑時，重跑前先刪除 `C:\dlc-rec\{seg}`（macOS：`~/dlc-rec/{seg}`）與 `resume-{seg}`（只刪這兩個）。
 
 ```powershell
 """ + SAVE_PS + r"""
@@ -209,7 +209,7 @@ git log --show-signature -1
 ..\..\tools\dm.ps1 verify-git-governance --commit HEAD
 ```
 
-（Git Bash 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
+（Git Bash 與 macOS 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
 
 **看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的六個 commit 為 `G maintainer@example.com`{log_note}；`amend-policy` 回報 `authorized_signers` 從兩個 fingerprint 變成三個；`governance-readiness` 為 `{{"status": "ready", "blocks": []}}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
 
@@ -228,7 +228,7 @@ py -3.13 -m venv .venv
 ..\..\tools\dm.ps1 verify-evidence
 ```
 
-（Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`。）
+（Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`；macOS 用 `python3.13`、`.venv/bin/python` 與 `../../tools/dm.sh`。）
 
 **看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；{evidence_note}。結果寫進 `notes/recovery-{seg}.md` 的「環境與驗證」，最後一行寫「{up} 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
 """
@@ -245,6 +245,16 @@ INTRO_SOLUTION = """# {up} Recovery
 內容：D2 的 reviewed Registry，加上 {scope}參考實作（程式、測試、文件）作為一個未簽章、未碰 Registry 的 commit「{message}」，以及 Git 歷史 `repo.bundle` 與兩把 Maintainer 公鑰 `keys/maintainer.allowed_signers`。Registry 沒有新增候選：下一段的新事實由學員同意後，Agent 依 Runbook 檢查點 5 的提示詞以 `make_record.py --allow-unclassified --upsert` 登記為候選；`verify-evidence` 回報的 shifted 是已審查事實所引用的那幾行只是移動，stale 是那幾行被實作改過，都留到 D4 處理。"""
 
 USAGE = """使用 Recovery 不算自己完成 {up}。學員照 Runbook「{up} Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。"""
+
+# Same substitutions as the macOS tab of the Runbook recovery pages; a list keeps RECOVERY.md short.
+MACOS = """## macOS
+
+`bash` 區塊是 Windows Git Bash 的寫法。macOS 用同一組 bash 指令（一樣包在 `( set -e … )`），只換下面幾處；完整的 macOS 提示詞在 Runbook「{up} Recovery 切換」頁的 macOS 分頁。
+
+- 路徑：`/c/dlc/agentic-workshop/07-dlc-ddd/participant/repository` 換成 `"$orig/.."`（原 Repo 的上一層）；`/c/dlc-rec/{seg}` 換成 `"$HOME/dlc-rec/{seg}"`。
+- Python：`py -3.13` 換成 `python3.13`；`.venv/Scripts/python.exe` 換成 `.venv/bin/python`；`source .venv/Scripts/activate` 換成 `source .venv/bin/activate`。
+- 找不到 `~/Downloads/recovery-dlc-{seg}.zip`：Safari 可能已自動解壓並刪掉 zip，到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，再重新下載。
+- `dm.sh` 出現 permission denied：先執行 `chmod +x ../../tools/dm.sh`（只開執行權限）。"""
 
 STEP_PUSH = r"""## 4. （選做）push 檢查（夥伴的 Agent 對話，步驟 3 建好 `.venv` 之後）
 
@@ -301,7 +311,7 @@ py -3.13 -m venv .venv
 
 def recovery_md(seg: str, solution: str | None, message: str | None) -> str:
     up = seg.capitalize()
-    usage = USAGE.format(up=up)
+    usage = USAGE.format(up=up) + "\n\n" + MACOS.format(up=up, seg=seg)
     if seg == "d1":
         return "\n\n".join([D1_INTRO, usage, STEP_SAVE.format(seg=seg) + "\n" + D1_RESTORE])
     intro = INTRO.get(seg) or INTRO_SOLUTION.format(up=up, message=message, scope=SOLUTION_SCOPE[seg])

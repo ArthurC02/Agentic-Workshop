@@ -233,36 +233,38 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
 
 ```prompt
 # windows
-請確認真實 Python、建立起始 commit，並執行環境健檢：
+請確認真實 Python、建立 Git Repo、執行環境健檢，再建立起始 commit：
 1. 在同一個指令裡啟用 venv 並確認 python 的版本與路徑：
    PowerShell：.\.venv\Scripts\Activate.ps1; python --version; (Get-Command python).Source
    Git Bash：source .venv/Scripts/activate && python --version && command -v python
-2. 執行環境健檢（它會檢查 PATH 上的 python，所以同一個指令裡要先啟用 venv）：
+2. 建立 Git Repo，Git 使用者只設在本 Repo，不要用 --global；這時先不要 commit：
+   git init
+   git config --local user.name "DLC Proposer"
+   git config --local user.email proposer@example.com
+3. 執行環境健檢（它會檢查 PATH 上的 python 與本 Repo 的 Git 設定，所以在 git init 之後執行，同一個指令裡先啟用 venv）：
    PowerShell：.\.venv\Scripts\Activate.ps1; py -3.13 -X utf8 ..\..\tools\doctor.py
    Git Bash：source .venv/Scripts/activate && py -3.13 -X utf8 ../../tools/doctor.py
-3. 在 notes/opening.md 加上標題「檢查點 4 · 真實 Python 與環境健檢」，寫入 python 版本與路徑原文、doctor.py 的最後一行，以及有沒有 [!!]（[--] 只是提醒）。這份紀錄要在下一步 commit 之前寫完。
-4. 建立起始 commit（這時還沒有 domain-memory/，所以不需要簽章）。Git 使用者只設在本 Repo，不要用 --global：
-   git init
-   git config --local user.name "DLC Proposer"
-   git config --local user.email proposer@example.com
+4. 在 notes/opening.md 加上標題「檢查點 4 · 真實 Python 與環境健檢」，寫入 python 版本與路徑原文、doctor.py 的最後一行，以及有沒有 [!!]（[--] 只是提醒）。這份紀錄要在下一步 commit 之前寫完。
+5. 建立起始 commit（這時還沒有 domain-memory/，所以不需要簽章）：
    git add -A
    git commit -m "起始 Repo"
-5. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv\Scripts 底下且不含 WindowsApps；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
+6. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv\Scripts 底下且不含 WindowsApps；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
 做完停下等我。
 # macos
-請確認真實 Python、建立起始 commit，並執行環境健檢：
+請確認真實 Python、建立 Git Repo、執行環境健檢，再建立起始 commit：
 1. 在同一個指令裡啟用 venv 並確認 python 的版本與路徑：
    source .venv/bin/activate && python --version && command -v python
-2. 執行環境健檢（它會檢查 PATH 上的 python，所以同一個指令裡要先啟用 venv）：
-   source .venv/bin/activate && python -X utf8 ../../tools/doctor.py
-3. 在 notes/opening.md 加上標題「檢查點 4 · 真實 Python 與環境健檢」，寫入 python 版本與路徑原文、doctor.py 的最後一行，以及有沒有 [!!]（[--] 只是提醒）。這份紀錄要在下一步 commit 之前寫完。
-4. 建立起始 commit（這時還沒有 domain-memory/，所以不需要簽章）。Git 使用者只設在本 Repo，不要用 --global：
+2. 建立 Git Repo，Git 使用者只設在本 Repo，不要用 --global；這時先不要 commit：
    git init
    git config --local user.name "DLC Proposer"
    git config --local user.email proposer@example.com
+3. 執行環境健檢（它會檢查 PATH 上的 python 與本 Repo 的 Git 設定，所以在 git init 之後執行，同一個指令裡先啟用 venv）：
+   source .venv/bin/activate && python -X utf8 ../../tools/doctor.py
+4. 在 notes/opening.md 加上標題「檢查點 4 · 真實 Python 與環境健檢」，寫入 python 版本與路徑原文、doctor.py 的最後一行，以及有沒有 [!!]（[--] 只是提醒）。這份紀錄要在下一步 commit 之前寫完。
+5. 建立起始 commit（這時還沒有 domain-memory/，所以不需要簽章）：
    git add -A
    git commit -m "起始 Repo"
-5. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv/bin 底下；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
+6. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv/bin 底下；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
 做完停下等我。
 ```
 

@@ -32,7 +32,7 @@ DLC = "agentic-workshop/07-dlc-ddd"
 VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-0.22.0.zip"
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
-    "participant-dlc-open": ("participant", 0), "participant-dlc-d1": ("participant", 10),
+    "participant-dlc-open": ("participant", 0),
     "participant-dlc-d2": ("participant", 35), "participant-dlc-d3a": ("participant", 70),
     "participant-dlc-d3b": ("participant", 95), "participant-dlc-d3c": ("participant", 125),
     "participant-dlc-d4": ("participant", 155),

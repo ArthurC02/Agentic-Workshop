@@ -33,7 +33,7 @@ py -3.13 -X utf8 scripts/build_delivery_dlc.py --verify dist/dlc-candidate/<sha1
 ```
 
 - `--allow-missing` 僅供開發：缺少的來源以警告略過，沒有任何檔案的包不產出，並列於 `build-evidence.json` 的 `missing_packages`。正式候選不得使用。
-- 包別固定：`participant-dlc-open`、`participant-dlc-d1`、`-d2`、`-d3a`（情境卡 01＋`worksheets/d3-*.md`）、`-d3b`、`-d3c`、`-d4`、`recovery-dlc-d1/d2/d3a/d3b/d3c`（來源 `07-dlc-ddd/facilitator/recovery/<段>/`，ZIP 內根目錄 `recovery-dlc-<段>/`）、`facilitator-dlc-before-session`、`evaluation-dlc-private`。
+- 包別固定：`participant-dlc-open`、`participant-dlc-d2`、`-d3a`（情境卡 01＋`worksheets/d3-*.md`）、`-d3b`、`-d3c`、`-d4`、`recovery-dlc-d1/d2/d3a/d3b/d3c`（來源 `07-dlc-ddd/facilitator/recovery/<段>/`，ZIP 內根目錄 `recovery-dlc-<段>/`）、`facilitator-dlc-before-session`、`evaluation-dlc-private`。
 - 學員包內路徑即 Repo 相對路徑，Runbook `include` 寫法例：`zip=participant-dlc-d3a.zip path=agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md`。
 - 建置後在 `edition.json` 更新 `candidate_id`，再跑 `build_materials.py --edition dlc` 與 `package_materials.py dlc`（輸出 `dist/materials-dlc/participant-materials-dlc.zip`）。
 - 注意：builder 不允許在 `open` 頁放 `download`；`participant-dlc-open.zip` 的下載需放在第一個解鎖群組的頁面，或由主持人另行發放。

@@ -4,9 +4,18 @@
 
 使用 Recovery 不算自己完成 D2。學員照 Runbook「D2 Recovery 切換」頁貼提示詞，由 Agent 執行下面的指令；本檔是給 Agent 與主持人核對的同一份步驟。
 
+## macOS
+
+`bash` 區塊是 Windows Git Bash 的寫法。macOS 用同一組 bash 指令（一樣包在 `( set -e … )`），只換下面幾處；完整的 macOS 提示詞在 Runbook「D2 Recovery 切換」頁的 macOS 分頁。
+
+- 路徑：`/c/dlc/agentic-workshop/07-dlc-ddd/participant/repository` 換成 `"$orig/.."`（原 Repo 的上一層）；`/c/dlc-rec/d2` 換成 `"$HOME/dlc-rec/d2"`。
+- Python：`py -3.13` 換成 `python3.13`；`.venv/Scripts/python.exe` 換成 `.venv/bin/python`；`source .venv/Scripts/activate` 換成 `source .venv/bin/activate`。
+- 找不到 `~/Downloads/recovery-dlc-d2.zip`：Safari 可能已自動解壓並刪掉 zip，到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，再重新下載。
+- `dm.sh` 出現 permission denied：先執行 `chmod +x ../../tools/dm.sh`（只開執行權限）。
+
 ## 1. 保存原成果並解出 Recovery（提案者原本的 Agent 對話）
 
-原 Repo 不改名、不覆寫、不刪除，也不 commit，什麼都不寫進原 Repo。Agent 在原 Repo 執行 `git status`、`git log --oneline -3` 並問學員進度，再把 Recovery 複製成和原 Repo 同一層的 `resume-d2`（`..\..\tools` 才會指向學員包的工具），原 Repo 有 `notes/`、`docs/handoffs/` 時一併複製過去（後面的段落要讀）。最後把學員的回答、兩個指令的結果與原 Repo 的完整路徑附加到 `resume-d2` 的 `notes/d2.md`（標題「改用 Recovery 前的狀態」）。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。下面的指令任何一行失敗就停下（PowerShell 用 `$ErrorActionPreference` 與 `$LASTEXITCODE`；Git Bash 整段包在 `( set -e … )` 子 shell 裡，失敗只結束這一段，不會關掉 Agent 的終端機）。中途失敗要重跑時，重跑前先刪除 `C:\dlc-rec\d2` 與 `resume-d2`（只刪這兩個）。
+原 Repo 不改名、不覆寫、不刪除，也不 commit，什麼都不寫進原 Repo。Agent 在原 Repo 執行 `git status`、`git log --oneline -3` 並問學員進度，再把 Recovery 複製成和原 Repo 同一層的 `resume-d2`（`..\..\tools` 才會指向學員包的工具），原 Repo 有 `notes/`、`docs/handoffs/` 時一併複製過去（後面的段落要讀）。最後把學員的回答、兩個指令的結果與原 Repo 的完整路徑附加到 `resume-d2` 的 `notes/d2.md`（標題「改用 Recovery 前的狀態」）。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，之後查不到是預期。下面的指令任何一行失敗就停下（PowerShell 用 `$ErrorActionPreference` 與 `$LASTEXITCODE`；Git Bash 整段包在 `( set -e … )` 子 shell 裡，失敗只結束這一段，不會關掉 Agent 的終端機）。中途失敗要重跑時，重跑前先刪除 `C:\dlc-rec\d2`（macOS：`~/dlc-rec/d2`）與 `resume-d2`（只刪這兩個）。
 
 ```powershell
 $ErrorActionPreference = 'Stop'
@@ -86,7 +95,7 @@ git log --show-signature -1
 ..\..\tools\dm.ps1 verify-git-governance --commit HEAD
 ```
 
-（Git Bash 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
+（Git Bash 與 macOS 把 `..\..\tools\dm.ps1` 換成 `../../tools/dm.sh`。`git add` 的 `docs` 只會加入從原 Repo 複製來的 `docs/handoffs/`，沒有就什麼都不加；commit 後 `git status --short` 是空的。）
 
 **看到什麼算成功**：`git status --short` 只列出從原 Repo 複製來的 `?? notes/`（原 Repo 有 `docs/handoffs/` 時還有 `?? docs/handoffs/`）；`git log` 中 Registry 的六個 commit 為 `G maintainer@example.com`，最下面的「Smart Ticket DLC base」（起始程式）為 `N`（未簽章，不碰 Registry，hook 允許）；`amend-policy` 回報 `authorized_signers` 從兩個 fingerprint 變成三個；`governance-readiness` 為 `{"status": "ready", "blocks": []}`；簽章 commit 有 `Good "git" signature for maintainer@example.com`，接著 `Git governance is valid.`。
 
@@ -104,7 +113,7 @@ py -3.13 -m venv .venv
 ..\..\tools\dm.ps1 verify-evidence
 ```
 
-（Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`。）
+（Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`；macOS 用 `python3.13`、`.venv/bin/python` 與 `../../tools/dm.sh`。）
 
 **看到什麼算成功**：pytest 全部 passed；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 全部 `current`。結果寫進 `notes/recovery-d2.md` 的「環境與驗證」，最後一行寫「D2 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
 

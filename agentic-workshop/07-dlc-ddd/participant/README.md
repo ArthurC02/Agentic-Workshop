@@ -10,7 +10,7 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 
 | 段落 | 內容 | 用到的檔案 |
 |---|---|---|
-| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選（有證據、但還沒審查的紀錄） | Runbook『D1 來源選擇原則』與『D1 候選紀錄格式』兩頁（不在 `worksheets/`）；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
+| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選（有證據、但還沒審查的紀錄） | 原則與格式已寫在 Runbook D1 頁的提示詞裡；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
 | D2 | 兩人一組：一人提案、一人審查核准並簽章，把候選升為已審查（reviewed）事實 | `worksheets/d2-role-cards.md`、`worksheets/d2-signing-checklist.md` |
 | D3a | 實作需求卡 01：電子發票 | `scenarios/01-e-invoice.md`、`worksheets/d3-decision-card.md` |
 | D3b | 實作需求卡 02：點數折抵 | `scenarios/02-points-redemption.md`、`worksheets/d3-decision-card.md` |
@@ -36,7 +36,7 @@ D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個�
 | `worksheets/` | 各段紀錄的格式範本，由 Agent 照格式寫進紀錄檔（見上方段落表） |
 | `tools/` | 輔助腳本：代打 Plugin 長指令、產生 JSON、檢查環境；由 Agent 依提示詞執行（說明見 `tools/README.md`） |
 
-開場學員包裡還沒有 `worksheets/` 與 `scenarios/`：D1 的兩份格式說明直接放在 Runbook 的 D1 頁面，其餘範本與需求卡隨後面各段的學員包提供（該段解鎖後在 Runbook 下載）。
+開場學員包裡還沒有 `worksheets/` 與 `scenarios/`：D1 的原則與格式直接寫在 Runbook D1 頁的提示詞裡，其餘範本與需求卡隨後面各段的學員包提供（該段解鎖後在 Runbook 下載）。
 
 程式庫的產品規則文件在 `docs/requirements/`，ADR（Architecture Decision Record，架構決策紀錄）在 `docs/adr/`。需求卡中的商業數字與驗收條件是唯一依據，不要自行補規則；卡片末尾的「待團隊決定的問題」由你們決定，Agent 把決定與理由記進紀錄檔。
 
