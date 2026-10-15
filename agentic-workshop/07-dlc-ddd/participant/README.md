@@ -59,12 +59,23 @@ uvicorn smart_ticket.main:app --app-dir src --reload
 
 若 PowerShell 顯示「已停用指令碼」，先執行 `Set-ExecutionPolicy -Scope Process Bypass` 再啟用。
 
-Git Bash／macOS／Linux：
+macOS／Linux：
 
 ```bash
 cd repository/smart-ticket-dlc-base
-py -3.13 -m venv .venv            # macOS／Linux：python3.13 -m venv .venv
-source .venv/bin/activate          # Git Bash on Windows：source .venv/Scripts/activate
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+pytest -q
+uvicorn smart_ticket.main:app --app-dir src --reload
+```
+
+Windows 的 Git Bash（建立 venv 用 `py -3.13`，啟用路徑是 `.venv/Scripts`）：
+
+```bash
+cd repository/smart-ticket-dlc-base
+py -3.13 -m venv .venv
+source .venv/Scripts/activate
 python -m pip install -r requirements.txt
 pytest -q
 uvicorn smart_ticket.main:app --app-dir src --reload

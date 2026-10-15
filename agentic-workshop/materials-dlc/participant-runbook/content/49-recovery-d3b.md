@@ -60,6 +60,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 orig=$(git rev-parse --show-toplevel)
 cd "$orig/.."
 [ ! -e ./resume-d3b ] || { echo "resume-d3b already exists: delete ~/dlc-rec/d3b and resume-d3b, then rerun" >&2; exit 1; }
+[ -f ~/Downloads/recovery-dlc-d3b.zip ] || { echo "找不到 zip：Safari 可能已自動解壓並把 zip 丟到垃圾桶，請到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，再重新下載" >&2; exit 1; }
 mkdir -p "$HOME/dlc-rec/d3b"
 unzip -o -q ~/Downloads/recovery-dlc-d3b.zip -d "$HOME/dlc-rec/d3b"
 rec=$(find "$HOME/dlc-rec/d3b" -name repo.bundle -exec dirname {} \; | head -1)

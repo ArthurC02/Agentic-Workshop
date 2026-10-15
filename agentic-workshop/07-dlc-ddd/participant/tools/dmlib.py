@@ -78,8 +78,9 @@ def expand(args: list[str], registry_exists: bool | None = None) -> list[str]:
             key = Path(rest[rest.index("--key-file") + 1])
             if key.resolve().is_relative_to(Path.cwd().resolve()):
                 raise SystemExit(
-                    f"--key-file {key} 在 Repo 內（scan-secrets 會掃到私鑰）。請放 Repo 外，例如 PowerShell "
-                    '"$env:USERPROFILE\\.dlc-keys\\<代號>\\signing-key"（PowerShell 不展開 %USERPROFILE%）。'
+                    f"--key-file {key} 在 Repo 內（scan-secrets 會掃到私鑰）。請放 Repo 外，例如 " + (
+                        'PowerShell "$env:USERPROFILE\\.dlc-keys\\<代號>\\signing-key"（PowerShell 不展開 %USERPROFILE%）。'
+                        if os.name == "nt" else '"$HOME/.dlc-keys/<代號>/signing-key"。')
                 )
         elif "--key-file" not in rest and "--principal" in rest[:-1]:
             # Plugin 預設 ~/.domain-memory/signing-key：兩人共用電腦會互相沿用，改放 ~/.dlc-keys/<principal>/。

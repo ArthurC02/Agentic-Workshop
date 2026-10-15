@@ -35,11 +35,17 @@
 
 ### 1.1 一週前
 
-- [ ] 確認學員機器：Windows 10/11，可裝軟體或已預裝下列項目。
+- [ ] 確認學員機器：Windows 10/11 或 macOS 12 以上，可裝軟體或已預裝下列項目。
 - [ ] **Python 3.13 與 `py` launcher**：`py -3.13 --version` 要有回應。沒有 launcher 的機器，請學員用 python.org 安裝程式重裝並勾選 py launcher（規格 §9 第 3 點尚未決定是否提供可攜版；若教室不允許安裝，課前要決定替代方案）。
 - [ ] **Git for Windows ≥ 2.34**（SSH 簽章需要）：`git --version`。
+- [ ] **macOS 機器**：
+  - `python3.13 --version` 要有回應（python.org 安裝程式或 `brew install python@3.13`；內建的 `python3` 是 3.9，不能用）；
+  - `git --version` ≥ 2.34（Xcode Command Line Tools 14 以上：`xcode-select --install`，或 `brew install git`）；
+  - macOS 12 以上（`ssh-keygen -Y` 簽章需要）；
+  - Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，或改用 Chrome（否則 zip 會被自動解開並丟到垃圾桶）；
+  - venv 在 `.venv/bin`（不是 `.venv\Scripts`）。
 - [ ] 每台機器一個可讀寫本機資料夾、能執行終端指令的通用 Coding Agent。
-- [ ] 通知學員：學員包一律解壓到 **`C:\dlc`**（不要放桌面、OneDrive、深層資料夾）。原因見 §5 陷阱 1（WinError 206）。
+- [ ] 通知學員：學員包一律解壓到 **`C:\dlc`**（不要放桌面、OneDrive、深層資料夾）；macOS 把 zip 移到 `~/dlc` 再點兩下，會解到 `~/dlc/participant-dlc-open/`。原因見 §5 陷阱 1（WinError 206）。
 - [ ] 建置並驗證候選包（課程維護人員）：
 
 ```powershell
@@ -97,11 +103,11 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 分鐘 | 檢查點 | 你說／做 |
 |---|---|---|
 | 0 | （解鎖前） | 「為什麼要和 Agent 一起建模」「今天怎麼進行」兩頁，共約 2 分鐘 |
-| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
+| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`（macOS：移到 `~/dlc` 再點兩下）、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
 | 0–3 | 1 · 確認起點：測試全部通過 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
 | 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 73 files`、`"version": "0.22.0"` |
 | 5–8 | 3 · 找出只能靠人審查的錯 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
-| 8–10 | 4 · 確認環境並建立起始版本 | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
+| 8–10 | 4 · 確認環境並建立起始版本 | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`（macOS：在 `.venv/bin/`）；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
 
 巡場看：學員是不是「貼 ② → 看回報 → 跑 ③ 確認結果」，而不是自己在終端機打指令。③ 回「失敗」時請學員貼該檢查點的「失敗時」提示詞，讓 Agent 先解釋錯誤、列出處理方式，等學員同意再做；不要替學員改指令。最常見的是 Agent 沒經 `dm` 腳本（cp950 錯誤）或沒在同一個指令裡啟用 `.venv`（`python` 指到 `WindowsApps`）：請學員重貼工作規則。
 
@@ -275,16 +281,16 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 - **Recovery 切換做法（五個 Recovery 頁共用，與各段 `recovery/<段>/RECOVERY.md` 同一份指令）**：原 Repo 不改名、不覆寫；Recovery 複製成同一層的 `resume-<段>`，從 `repo.bundle` 還原 Git 歷史（不重新 `git init` 出未簽章的起點 commit）。D1 只有一個不含 `domain-memory/` 的「起始 Repo」commit，兩步都由提案者的 Agent 做、沒有 commit。D2 起分三步：① 提案者原對話解出 Recovery、把原 Repo 的 `notes/`、`docs/handoffs/` 複製進 `resume-<段>`，原狀態寫進 `resume-<段>` 的 `notes/<段>.md`（原 Repo 什麼都不寫）；② **夥伴**在 `resume-<段>` 新開自己的 Agent 對話（先貼 D2【夥伴】規則）：還原歷史、`init-signing-key`（沿用 `.dlc-keys\maintainer\` 的 D2 金鑰，沒有就新建）、把 `keys/maintainer.allowed_signers` 附加到新的 allowed signers 檔、`amend-policy authorized_signers` 加入自己的 fingerprint、`install-git-hitl-hook`、`governance-readiness` ready，回「同意」後以 `git add domain-memory notes docs` 把複製來的 `notes/`、`docs/handoffs/` 一起簽章 commit（commit 後 `git status --short` 是空的）並 `verify-git-governance --commit HEAD`；③ 提案者在 `resume-<段>` 新開對話建 venv、測試、`validate --require-reviewed`、`verify-audit`、`verify-evidence`。之後 D3、D4 的 commit 照常由夥伴簽章。Git Bash 區塊整段包在 `( set -e … )` 子 shell 裡，任何一行失敗只結束這一段，不會關掉 Agent 的終端機。複製來的 `notes/` 提到的候選 id 是原 Repo 的，Recovery 的 Registry 不一定有，查不到是預期。
 - D3a／D3b／D3c 的 Recovery 還原後，`verify-evidence` 會對引用行只是移動的證據回報 `shifted`、被改過的回報 `stale`，`verify-sources` 會因來源資料夾新增了檔案回報 `stale`，都是 exit 1，屬預期，留到 D4 處理。`git log` 最上面的「Recovery 參考實作」commit 是 `N`（未簽章），因為它不碰 Registry，hook 允許；Registry 的六個 commit 是 `G maintainer@example.com`。D2 起每個 Recovery 最下面的「Smart Ticket DLC base」（起始程式）也是 `N`，同樣不碰 Registry。
 
-## 5. Windows 已知陷阱與修正
+## 5. Windows／macOS 已知陷阱與修正
 
 | # | 症狀 | 原因 | 修正 |
 |---|---|---|---|
 | 1 | D1 寫 Registry 時「檔名或副檔名太長」`WinError 206` | Plugin 在 `domain-memory/` 底下建很長的暫存資料夾名；放在桌面、OneDrive 或深層資料夾就超過路徑上限 | 解壓到 `C:\dlc`（Recovery 用 `C:\dlc-rec\<段>`）。已出錯的組：整個資料夾搬到 `C:\dlc` 再重跑該步 |
 | 2 | `UnicodeDecodeError: 'cp950' codec ...` | 直接呼叫 `registry_tools.py`，缺 `-X utf8` | 一律經 `tools\dm.ps1`／`dm.sh`（固定 `py -3.13 -X utf8`） |
-| 3 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
-| 4 | push 時 hook 印出 `no Python 3.10 or later on PATH as python3 or python` | pre-push hook 只在 PATH 上找 `python3`、`python`（要 3.10 以上）；Windows 常只有 `py` 啟動器，或 `python` 是 Store 別名（路徑含 `WindowsApps`） | push 前在同一次執行啟用 Repo 的 `.venv`（Runbook 的 push 步驟已寫好）。開場檢查點 4 就要攔下 |
+| 3 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線；macOS 由 `/bin/sh` 執行，寫 `.venv/bin/python`）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
+| 4 | push 時 hook 印出 `no Python 3.10 or later on PATH as python3 or python` | pre-push hook 只在 PATH 上找 `python3`、`python`（要 3.10 以上）；Windows 常只有 `py` 啟動器，或 `python` 是 Store 別名（路徑含 `WindowsApps`）；macOS 的 `python3` 可能是內建的 3.9 | push 前在同一次執行啟用 Repo 的 `.venv`（Runbook 的 push 步驟已寫好）。開場檢查點 4 就要攔下 |
 | 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
-| 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate` |
+| 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate` |
 | 7 | `ssh-keygen` 行為不同、金鑰路徑找不到 | Git Bash 與 PowerShell 的 `ssh-keygen` 不同 | 兩者皆可，但同一組全程用同一種 shell |
 | 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它 |
 | 9 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
@@ -292,6 +298,11 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 11 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
 | 12 | PowerShell 說「已停用指令碼」 | 執行原則 | `Set-ExecutionPolicy -Scope Process Bypass -Force`（只影響目前視窗） |
 | 13 | push 出現 `unpacker error` | Repo 路徑太長 | 把 Repo 複製到短路徑（例如 `C:\dlc`）再 push |
+| 14 | macOS：下載資料夾沒有 zip，只有同名資料夾 | Safari 預設「下載後打開『安全』的檔案」，自動解開後把 zip 丟到垃圾桶 | Safari › 設定 › 一般 取消該項，或改用 Chrome，再重新下載。Recovery 的 macOS 指令找不到 zip 時會印出這個提示 |
+| 15 | macOS：路徑多一層 `participant-dlc-open/` | 「封存工具程式」解開頂層有多個項目的 zip 時，會包一層以 zip 命名的資料夾 | 照 Runbook 的路徑 `~/dlc/participant-dlc-open/agentic-workshop/...`；Recovery 指令用相對路徑，不受影響 |
+| 16 | macOS：`dm.sh` 出現語法錯誤或版本錯誤 | PATH 上沒有 `python3.13`，`dm.sh` 退回 `python3`（內建 3.9 跑不動 Plugin） | 安裝 Python 3.13（python.org 或 `brew install python@3.13`），確認 `python3.13 --version` |
+| 17 | macOS：`ssh-keygen` 不認得 `-Y`，或 git 版本低於 2.34 | macOS 11 以前內建的 OpenSSH 太舊；Xcode Command Line Tools 太舊 | macOS 12 以上；`xcode-select --install` 或 `brew install git`。來不及就和夥伴共用已通過的機器 |
+| 18 | macOS：`dm.sh: permission denied` | 解壓工具沒保留執行權限 | `chmod +x ../../tools/dm.sh`（Runbook 開場工作規則已寫） |
 
 ## 6. 時間風險
 

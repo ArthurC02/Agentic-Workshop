@@ -61,6 +61,25 @@ class UnitTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 parse_evidence(bad)
 
+    def test_dm_sh_has_lf_only(self):
+        self.assertNotIn(b"\r", (TOOLS / "dm.sh").read_bytes())  # CRLF 會讓 macOS 的 sh 讀到 "python3\r"
+
+    @unittest.skipUnless(shutil.which("sh"), "需要 sh（Git Bash／macOS／Linux）")
+    def test_dm_sh_prefers_python313_without_py(self):
+        # macOS／Linux：沒有 py 啟動器時，要用 python3.13，而不是 PATH 上較舊或較新的 python3。
+        with tempfile.TemporaryDirectory() as shims:
+            for name in ("python3.13", "python3"):
+                shim = Path(shims) / name
+                shim.write_bytes(f'#!/bin/sh\necho "{name} $*"\n'.encode())
+                shim.chmod(0o755)
+            sh = shutil.which("sh")
+            path = os.pathsep.join([shims, str(Path(sh).parent)] if os.name == "nt" else [shims, "/usr/bin", "/bin"])
+            done = subprocess.run([sh, str(TOOLS / "dm.sh"), "readiness"], capture_output=True, text=True,
+                                  env={**os.environ, "PATH": path})
+            self.assertEqual(done.returncode, 0, done.stderr)
+            self.assertTrue(done.stdout.startswith("python3.13 -X utf8 "), done.stdout)
+            self.assertTrue(done.stdout.strip().endswith("dmlib.py readiness"), done.stdout)
+
     def test_read_json_accepts_powershell_utf16(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "cf.json"

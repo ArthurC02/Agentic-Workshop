@@ -1,6 +1,7 @@
-"""環境健檢：逐項檢查 DLC 會踩到的 Windows 陷阱，並印出修正方式。在 Repo 根目錄執行：
+"""環境健檢：逐項檢查 DLC 會踩到的環境陷阱（Windows／macOS），並印出修正方式。在 Repo 根目錄執行：
 
-  py -3.13 -X utf8 ../../tools/doctor.py
+  Windows：py -3.13 -X utf8 ../../tools/doctor.py
+  macOS：  python3.13 -X utf8 ../../tools/doctor.py
 
 [OK] 通過、[!!] 必須修正、[--] 提醒。任何 [!!] 時 exit 1。
 """
@@ -20,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
 PLUGIN_VERSION = "0.22.0"
+WINDOWS = os.name == "nt"
 
 
 def run(*command: str) -> tuple[int, str]:
@@ -51,14 +53,15 @@ def key_checks(repo: Path) -> list[tuple[str, str, str]]:
 def checks(plugin: str | None) -> list[tuple[str, str, str]]:
     """回傳 (等級, 項目, 說明或修正)；等級為 OK、!!、--。"""
     results = []
-    if os.name == "nt":
+    if WINDOWS:
         code, out = run("py", "-3.13", "-c", "import sys; print(sys.version)")
         results.append(("OK", "Python 3.13（py launcher）", out.splitlines()[0]) if code == 0 else
                        ("!!", "Python 3.13（py launcher）", "安裝 Python 3.13（python.org 安裝程式，勾選 py launcher）。"))
     else:
         ok = sys.version_info[:2] == (3, 13)
         results.append(("OK" if ok else "!!", "Python 3.13", sys.version.split()[0] if ok else
-                        "請用 Python 3.13 執行（起始 Repo 要求 >=3.13,<3.14）。"))
+                        "請用 python3.13 執行（起始 Repo 要求 >=3.13,<3.14）；"
+                        "沒有就用 python.org 安裝程式或 brew install python@3.13 安裝。"))
     if sys.flags.utf8_mode:
         results.append(("OK", "UTF-8 模式（-X utf8）", "本次以 -X utf8 執行"))
     else:
@@ -74,15 +77,18 @@ def checks(plugin: str | None) -> list[tuple[str, str, str]]:
             results.append(("OK", label, f"{python} → {out}"))
             break
     else:
-        results.append(("!!", label, "找不到。push 前在同一次執行先啟用 .venv：PowerShell `.\\.venv\\Scripts\\Activate.ps1`；"
-                        "Git Bash `source .venv/Scripts/activate`。"))
+        results.append(("!!", label, "找不到。push 前在同一次執行先啟用 .venv：" + (
+            "PowerShell `.\\.venv\\Scripts\\Activate.ps1`；Git Bash `source .venv/Scripts/activate`。" if WINDOWS else
+            "`source .venv/bin/activate`。")))
     code, out = run("git", "--version")
     git_ok = code == 0 and version_tuple(out) >= (2, 34)
     results.append(("OK" if git_ok else "!!", "git ≥ 2.34（SSH 簽章）", out if git_ok else
-                    f"目前：{out or '找不到 git'}。請安裝 Git for Windows 2.34 以上。"))
+                    f"目前：{out or '找不到 git'}。" + ("請安裝 Git for Windows 2.34 以上。" if WINDOWS else
+                    "請執行 xcode-select --install（Xcode Command Line Tools 14 以上），或 brew install git。")))
     keygen = shutil.which("ssh-keygen")
     results.append(("OK", "ssh-keygen", f"{keygen}（同一組全程用同一個 shell）") if keygen else
-                   ("!!", "ssh-keygen", "找不到。啟用 Windows「OpenSSH 用戶端」功能，或改在 Git Bash 執行。"))
+                   ("!!", "ssh-keygen", "找不到。啟用 Windows「OpenSSH 用戶端」功能，或改在 Git Bash 執行。" if WINDOWS else
+                    "找不到。macOS 內建 /usr/bin/ssh-keygen（簽章要 macOS 12 以上），請確認 PATH 含 /usr/bin。"))
     try:
         root = dmlib.plugin_root(plugin)
         manifest = json.loads((root / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -104,14 +110,15 @@ def checks(plugin: str | None) -> list[tuple[str, str, str]]:
                            ("!!", f"git {key}", f"在本 Repo 設定：git config --local {key} \"...\"（不要改 global）"))
     else:
         results.append(("--", "git repo", "目前目錄不是 git repo；D2 前請 git init 並 commit 起始程式。"))
-    venv = Path(".venv/Scripts/python.exe" if os.name == "nt" else ".venv/bin/python")
+    venv = Path(".venv/Scripts/python.exe" if WINDOWS else ".venv/bin/python")
     results.append(("OK", ".venv", str(venv)) if venv.exists() else
-                    ("--", ".venv", "尚未建立：py -3.13 -m venv .venv，再 pip install -r requirements.txt"))
+                    ("--", ".venv", f"尚未建立：{'py -3.13' if WINDOWS else 'python3.13'} -m venv .venv，"
+                     f"再 {venv} -m pip install -r requirements.txt"))
     return results
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="檢查 DLC 的 Windows 環境陷阱並列出修正方式。",
+    parser = argparse.ArgumentParser(description="檢查 DLC 的環境陷阱（Windows／macOS）並列出修正方式。",
                                      epilog=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--plugin", help="Plugin 資料夾（預設 DOMAIN_MEMORY_PLUGIN 或 vendor/domain-memory）")
     args = parser.parse_args(argv)

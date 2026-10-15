@@ -20,6 +20,7 @@ section: 開始之前
 
 - Python **3.13**：Windows 要有 `py` 啟動器；macOS 要有 `python3.13`。
 - Git 2.34 以上（Windows 是 Git for Windows）。
+- macOS 用 Safari 下載的人：到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，或改用 Chrome。
 - 一個能讀寫本機資料夾、執行終端機指令的 Coding Agent（主課用過的即可）。
 
 ## 檢查點 1 · 確認起點：測試全部通過（第 0–3 分鐘）
@@ -34,10 +35,10 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 
 - [ ] 按上方按鈕下載 `participant-dlc-open.zip`，再解壓縮：
   - Windows：在檔案上按右鍵選「全部解壓縮」，目的地輸入 `C:\dlc`
-  - macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/agentic-workshop`
+  - macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/participant-dlc-open/agentic-workshop`
 - [ ] 在 Repo 根目錄開啟你的 Agent：
   - Windows：`C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository\smart-ticket-dlc-base`
-  - macOS：`~/dlc/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`
+  - macOS：`~/dlc/participant-dlc-open/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`
 - [ ] 依序貼下方兩段提示詞
 
 ② 貼給 Agent
@@ -61,7 +62,7 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 1. 你負責所有指令操作與檔案編輯；我不自己打指令、不讀程式。每次做完用白話告訴我結果，並引用關鍵的實際輸出字樣（例如「76 passed」「Registry is valid.」），不要只貼原始輸出。
 2. 每一步做完就停下等我。需要我決定的地方，先列出選項或草稿，每項附證據（路徑:起-迄，行號要實際打開檔案核對），然後等我回覆「同意」或「改成…」。
 3. 除非我另外說明，所有指令都在目前的 Repo 根目錄（你開啟 Agent 的資料夾，例如 smart-ticket-dlc-base；改用 Recovery 時是 resume- 開頭的資料夾）執行。不要直接執行 registry_tools.py，也不要手動修改 domain-memory/ 底下的檔案。
-4. 這台是 macOS：Plugin 一律經 ../../tools/dm.sh。dm.sh 會用 PATH 上的 python3，所以每個 dm.sh 指令都在同一個指令裡先啟用 .venv，例如 source .venv/bin/activate && ../../tools/dm.sh validate。zip 解開後 dm.sh 沒有執行權限，出現 permission denied 時先在 Repo 根目錄執行一次 chmod +x ../../tools/dm.sh。
+4. 這台是 macOS：Plugin 一律經 ../../tools/dm.sh（它會自己找 python3.13）。若出現 permission denied，先在 Repo 根目錄執行一次 chmod +x ../../tools/dm.sh 再重跑。
 5. 你的每個指令可能在新的終端機程序執行，啟用過的 venv 不會延續：需要 python 時直接用 .venv/bin/python，或在同一個指令裡先 source .venv/bin/activate。
 6. 你或我新增到 Domain Memory 的內容一律是候選（candidate），不要寫成「已確認」，也不要當成限制。
 7. 沒有我的指示，不要 git commit 或 git push；不要讀取、複製或顯示任何私鑰檔。
@@ -142,7 +143,7 @@ PowerShell：
   Set-Location ..\repository\smart-ticket-dlc-base
 Git Bash：
   cd ../../vendor
-  unzip -q domain-memory-0.22.0.zip
+  unzip -qo domain-memory-0.22.0.zip
   py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-0.22.0.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
   grep '"version"' domain-memory/.claude-plugin/plugin.json
   cd ../repository/smart-ticket-dlc-base
@@ -153,7 +154,7 @@ Git Bash：
 請解出 domain-memory Plugin 並逐檔核對 SHA256，不要修改 Plugin 的任何檔案：
 1. 到學員包的 vendor 資料夾解出 Plugin、逐檔核對清單、顯示版本，再回到 Repo 根目錄：
   cd ../../vendor
-  unzip -q domain-memory-0.22.0.zip
+  unzip -qo domain-memory-0.22.0.zip
   python3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-0.22.0.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
   grep '"version"' domain-memory/.claude-plugin/plugin.json
   cd ../repository/smart-ticket-dlc-base
@@ -198,8 +199,8 @@ Agent 用兩個只讀不改的檢查看這個 Repo：它是已有程式的既有
 在 notes/opening.md 加上標題「檢查點 3 · 專案就緒與品質關卡」，寫入上面三題的答案與關鍵輸出原文。做完停下等我。
 # macos
 請用 dm 腳本執行兩個唯讀檢查，不要修改任何檔案：
-  chmod +x ../../tools/dm.sh   # 解壓縮後沒有執行權限；只開權限，不改內容
-  source .venv/bin/activate && ../../tools/dm.sh readiness && ../../tools/dm.sh quality-gates
+  ../../tools/dm.sh readiness && ../../tools/dm.sh quality-gates
+若出現 permission denied，先執行 chmod +x ../../tools/dm.sh（只開執行權限，不改內容）再重跑。
 然後用白話告訴我：
 1. readiness 的 state 與 confidence 是什麼？
 2. quality-gates 找到哪些檢查？有沒有 lint（程式風格檢查）、型別或架構檢查？

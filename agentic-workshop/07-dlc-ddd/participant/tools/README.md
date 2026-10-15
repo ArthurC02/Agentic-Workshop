@@ -6,14 +6,14 @@
 
 | 檔案 | 用途 |
 |---|---|
-| `dm.ps1`、`dm.sh` | 代打 Plugin 長指令：自動用 Python 3.13、UTF-8 編碼（`py -3.13 -X utf8`）執行，並補上 `--registry-root domain-memory` 與 `--repo-root .`；`--save 檔案` 以 UTF-8 存輸出 |
+| `dm.ps1`、`dm.sh` | 代打 Plugin 長指令：自動用 Python 3.13、UTF-8 編碼執行（Windows `py -3.13 -X utf8`，macOS `python3.13 -X utf8`），並補上 `--registry-root domain-memory` 與 `--repo-root .`；`--save 檔案` 以 UTF-8 存輸出 |
 | `make_record.py` | 由 id、名稱、定義與 `路徑:起-迄` 呼叫 Plugin 的 `cite` 指令，寫出完整的紀錄 JSON；`--upsert` 直接登記為候選；`--batch` 一次多筆（同一種資產一起登記：全部成功或全部不登記） |
 | `fill_package.py` | 由一份精簡描述 JSON 建立並填寫 Change Package；測試**實際執行**，記錄真實 exit code 與輸出的 SHA256 雜湊（檔案的指紋；一個位元組被改，值就不同） |
 | `write_scm_attestation.py` | 把夥伴的已簽章 commit 寫成 `git-signed-commit` 核准證明（attestation）；檔名中的 SCM（Source Control Management，版本控制，這裡指 Git） |
 | `setup_remote.py` | 在本機建立一個模擬的遠端儲存庫（bare remote）並設為 `origin`，讓 pre-push hook（push 前 Git 自動執行的檢查腳本）有地方 push |
-| `doctor.py` | 檢查 Windows 常見的環境問題（Python 版本、編碼、Git、ssh-keygen 等）並列出修正方式 |
+| `doctor.py` | 檢查 Windows／macOS 常見的環境問題（Python 版本、編碼、Git、ssh-keygen 等），依作業系統列出修正方式 |
 | `dmlib.py` | `dm.ps1`、`dm.sh` 共用的 Python 程式 |
-| `test_tools.py` | 自檢：`py -3.13 -X utf8 -m unittest discover -s ../../tools -p "test_*.py"` |
+| `test_tools.py` | 自檢：`py -3.13 -X utf8 -m unittest discover -s ../../tools -p "test_*.py"`（macOS 把 `py -3.13` 換成 `python3.13`） |
 
 每支腳本都有 `--help`（繁體中文）。
 
@@ -43,13 +43,23 @@ py -3.13 -X utf8 ..\..\tools\write_scm_attestation.py --package domain-memory/ch
 ../../tools/dm.sh get-context --id pricing
 ```
 
+macOS（zsh 預設不把 `#` 當註解，所以這段不放註解）：
+
+```bash
+python3.13 -X utf8 ../../tools/doctor.py
+../../tools/dm.sh readiness
+../../tools/dm.sh validate
+../../tools/dm.sh counterfactual --file src/smart_ticket/domain/discounts.py --find ".days >= 14" --replace ".days > 14" --test-command '.venv/bin/python -m pytest -q tests/integration/test_advance.py' --save cf.json
+python3.13 -X utf8 ../../tools/fill_package.py package-spec.json
+```
+
 ## 注意
 
-- 反事實檢查 `counterfactual`（故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）的 `--test-command` 由 cmd.exe 執行：用 `.venv\Scripts\python.exe` 這種反斜線路徑。路徑寫錯時會出現 `ERROR: the tests do not pass before anything is broken` 和一行亂碼（Windows 中文錯誤訊息）。只看到亂碼或 ERROR 都不算成功，**要看到 `"verdict": "killed"` 才算數**。
+- 反事實檢查 `counterfactual`（故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）的 `--test-command` 在 Windows 由 cmd.exe 執行：用 `.venv\Scripts\python.exe` 這種反斜線路徑；在 macOS 由 `/bin/sh` 執行：用 `.venv/bin/python`。路徑寫錯時會出現 `ERROR: the tests do not pass before anything is broken` 和一行亂碼（Windows 中文錯誤訊息）。只看到亂碼或 ERROR 都不算成功，**要看到 `"verdict": "killed"` 才算數**。
 - PowerShell 5.1 的 `>` 會存成 UTF-16；請用 `--save 檔案`（指令失敗時錯誤訊息仍會印在畫面上）。
 - `init-signing-key` 沒給 `--key-file` 時，`dm` 會補成 `~/.dlc-keys/<身分代號>/signing-key`；`--key-file` 落在 Repo 內（例如 PowerShell 裡寫了不會展開的 `%USERPROFILE%`）會被拒絕。
 - 證據預設只能引用 D1 確認過的來源（docs/requirements、docs/adr、src，以及 source map 列出的測試檔）；D3 新增的檔案要加 `--allow-unclassified`，只能當候選，之後無法直接升為 reviewed。
 - `analyze-boundary` 有方向：`--source-context` 填提供資料的一方（producer），例如付款提供資料給訂單時填付款；反過來查會得到 `no_registered_collaboration`。
 - `resolve-terms` 依名稱、id 或別名（synonyms）找詞彙，每筆附 `match_kind`：`name` 是用了正式名稱，`synonym` 是用了別名，`definition` 只是定義裡提到。查不到詞彙時回 `[]`，或列出以完整單字提到這句話的已審查紀錄（`match_kind: "mentioned"`、`authoritative: false`）：那只是被提到，不是定義。
-- pre-push hook 在 PATH 上找 Python 3.10 以上（先 `python3`、再 `python`）。Windows 常只有 `py` 啟動器或 Store 捷徑，所以 push 前在同一次執行先啟用 `.venv`。
-- 金鑰放在 Repo **外**的 `%USERPROFILE%\.dlc-keys\<身分代號>\`（Git Bash：`~/.dlc-keys/<身分代號>/`；程式內為 `dmlib.key_dir()`），不要放在 Repo 內、不要放 `~/.ssh`。祕密掃描檢查 `scan-secrets` 會掃到工作目錄內（含已忽略）的私鑰；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。回顧檢查點 4 只刪除私鑰 `signing-key`，保留 `signing-key.allowed_signers`；公用電腦課後再由主持人刪除整個 `.dlc-keys` 資料夾。
+- pre-push hook 在 PATH 上找 Python 3.10 以上（先 `python3`、再 `python`）。Windows 常只有 `py` 啟動器或 Store 捷徑，macOS 的 `python3` 可能是內建的 3.9，所以 push 前在同一次執行先啟用 `.venv`（macOS：`source .venv/bin/activate`）。
+- 金鑰放在 Repo **外**的 `%USERPROFILE%\.dlc-keys\<身分代號>\`（Git Bash／macOS：`~/.dlc-keys/<身分代號>/`；程式內為 `dmlib.key_dir()`），不要放在 Repo 內、不要放 `~/.ssh`。祕密掃描檢查 `scan-secrets` 會掃到工作目錄內（含已忽略）的私鑰；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。回顧檢查點 4 只刪除私鑰 `signing-key`，保留 `signing-key.allowed_signers`；公用電腦課後再由主持人刪除整個 `.dlc-keys` 資料夾。
