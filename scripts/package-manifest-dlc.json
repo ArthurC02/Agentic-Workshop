@@ -5208,7 +5208,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "f90c0de452d40059b3d20cf293bb2ca4513f88b8d1df17bb05e09c1b6f668ff3"
+          "sha256": "4d53dc42fdd020df75ab5a5ab5d3956e2d1fe2e1e37b4b6ffcbe68fb9e617426"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",

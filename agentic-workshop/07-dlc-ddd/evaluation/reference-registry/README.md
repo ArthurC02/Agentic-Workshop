@@ -10,7 +10,7 @@
 | `domain-memory/` | 最終 Registry 的檔案快照（policy、source map、registry、audit chain、`changes/CP-CORE-001/`、`changes/CP-CORE-002/`），方便直接閱讀 |
 | `domain-memory/changes/CP-CORE-001/` | 已 `applied` 的 Change Package（proposer：Proposer，reviewer：Maintainer） |
 | `domain-memory/changes/CP-CORE-002/` | 已 `applied`、`supersedes` CP-CORE-001 的 Change Package：只修正 `discount-rate` 的重複別名與 `best-single-discount` 指向非詞彙 id 的 `not_same_as`（Plugin 0.11 起 `validate` 會擋），反事實檢查記為 `not_applicable`（沒有規則或程式行為改變） |
-| `keys/maintainer.pub`、`keys/maintainer.allowed_signers` | 兩把 Maintainer 金鑰的**公鑰**與 allowed signers（沒有私鑰；私鑰從未離開產製機） |
+| `keys/maintainer.pub`、`keys/maintainer.allowed_signers` | 兩把 Maintainer 金鑰的**公鑰**與 allowed signers（沒有私鑰；保管方式見下方「Maintainer 私鑰保管」） |
 | `counterfactual/cf-*.json` | 四條規則的 counterfactual 原始輸出（全部 killed、原檔已還原） |
 | `inputs/d1-records.json`、`inputs/package-spec.json` | 產生本 Registry 的工具輸入（`make_record.py --batch`、`fill_package.py`） |
 
@@ -29,6 +29,18 @@ b603d3c G maintainer@example.com 授權第二把 Maintainer 金鑰（原私鑰�
 第一個 commit 未簽章是刻意的：它不碰 Registry，hook 只檢查觸及 Registry 的 commit。簽章在第一個 Registry commit（22de5e4）之前就以 `init-signing-key --sign-every-commit` 設好。
 
 最上面三個 commit 是 2026-10-15 升級 Plugin 0.22.0 時加的：原 Maintainer 私鑰（`SHA256:Zgznp4qU…BAH0`）不在產製機，所以先以 `amend-policy` 授權第二把 Maintainer 金鑰（`SHA256:GtKS8fEN…MueCs`，principal 同為 `maintainer@example.com`），由它簽章；再以 CP-CORE-002（`supersedes` CP-CORE-001）修正兩筆詞彙標籤。授權那一筆記在 audit chain（event 63），舊的三個 commit 原封不動，仍由原金鑰驗證。
+
+### Maintainer 私鑰保管
+
+只有改簽章資料（`inputs/` 改動後重簽、搬 tag、重產 Recovery）才需要私鑰；學員與主持人都用不到。
+
+- 放在 Repo 與雲端同步資料夾之外的 `~/.dlc-keys/maintainer-2/id_ed25519`（Windows：`%USERPROFILE%\.dlc-keys\maintainer-2\id_ed25519`），和學員金鑰的 `~/.dlc-keys/` 慣例一致。指紋必須是 `SHA256:GtKS8fENiTCqtsSZviOYPomnWfgLk3xRSOmBy5MueCs`。
+- 權限只給本人，否則 OpenSSH 拒用：
+  - Windows（PowerShell）：`icacls "$env:USERPROFILE\.dlc-keys\maintainer-2\id_ed25519" /inheritance:r /grant:r "${env:USERNAME}:F"`
+  - macOS：`chmod 700 ~/.dlc-keys ~/.dlc-keys/maintainer-2 && chmod 600 ~/.dlc-keys/maintainer-2/id_ed25519`
+- 另存一份到密碼管理器（例如安全筆記），換電腦時從那裡還原，再套上面的權限。不要 commit、不要放 OneDrive／iCloud 等同步資料夾、不要用通訊軟體傳。
+- 確認可用（兩個系統指令相同；Windows 用 PowerShell 時把 `~` 換成 `$env:USERPROFILE`）：`ssh-keygen -lf ~/.dlc-keys/maintainer-2/id_ed25519` 印出上面的指紋。
+- 遺失時不必救回：照上面 b603d3c 的做法，用 `amend-policy --field authorized_signers` 再授權一把新金鑰，由新金鑰簽章即可；舊 commit 仍由原公鑰驗證。
 
 ## 模型摘要
 
