@@ -43,7 +43,7 @@ Greenfield 成果保留不動。只請原本的 Agent 停掉它啟動的伺服�
 請停止你在背景啟動的這個專案的伺服器（uvicorn smart_ticket，埠號 8000），連同它開出的子程序一起停。接著確認 http://127.0.0.1:8000/health 已經連不上；如果還連得上，表示有別的程式在用 8000，告訴我是哪個程式，但不要停它。最後用白話告訴我結果。不要修改任何檔案。
 ```
 
-接著按下方按鈕下載 B0，解壓縮到短路徑。Windows：右鍵選「全部解壓縮」，例如 `C:\work\b0`；macOS：點兩下，例如 `~/work/b0`。
+接著按下方按鈕下載 B0，解壓縮到短路徑。Windows：右鍵選「全部解壓縮」，例如 `C:\work\b0`；macOS：把 ZIP 移到 `~/work` 再點兩下，會解到 `~/work/participant-29-b0`。
 
 解壓後找到 `smart-ticket-b0` 資料夾，路徑是 `agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0`，裡面有 `README.md`。
 

@@ -1240,7 +1240,7 @@
         {
           "source": "agentic-workshop/06-runbook/preflight-checklist.md",
           "destination": "agentic-workshop/06-runbook/preflight-checklist.md",
-          "sha256": "cd065ade555508f70341a0f64477541efcd3acb27a25e820e5651878f98f4974"
+          "sha256": "95755f58106070bf77d65236678ef91452fd848f6950ff6d390d38f2cd48670f"
         },
         {
           "source": "agentic-workshop/06-runbook/recovery-plan.md",
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "dda63cf74307560851bd02e815378389f92bbfabf3d0bb527a187347e6722368"
+          "sha256": "f8870630da33f426aa30e71acc517be74803ef1da4278bdb9a63c9e866a8c97b"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",

@@ -35,7 +35,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ② 貼給 Agent
 
-1. 按上方按鈕下載 `g0.zip`，解壓縮到短路徑。Windows：在檔案上按右鍵選「全部解壓縮」，例如 `C:\work\g0`；macOS：點兩下，例如 `~/work/g0`。
+1. 按上方按鈕下載 `participant-07-g0.zip`，解壓縮到短路徑。Windows：在檔案上按右鍵選「全部解壓縮」，例如 `C:\work\g0`；macOS：把 ZIP 移到 `~/work` 再點兩下，會解到 `~/work/participant-07-g0`。
 2. 在解壓後的 `agentic-workshop/01-greenfield/participant/starter-repository` 資料夾開啟 Agent。例如在編輯器用「開啟資料夾」選它，再開 Agent 對話。
 3. 先貼這段「工作規則」（給 Agent 的，不需要看懂）。開了新對話也要重貼：
 

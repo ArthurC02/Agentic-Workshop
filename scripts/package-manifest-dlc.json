@@ -18,7 +18,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/README.md",
-          "sha256": "922c769c7b227d789dca798faa478714117968854ad76a9790e67737d0b8bbf8"
+          "sha256": "bb443c529c3f7e9b81a35095b53fbba5be793b8afa8ac9ff0670b53430872a58"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitattributes",
@@ -33,7 +33,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/README.md",
-          "sha256": "8efce025069ce51617da90e63db51cf0d6842785c674552b925253b36f1f49d6"
+          "sha256": "0bdb43b39057fe2c6683d5583e30960fd968196549eed738a20ff4cef750fb3d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/001-use-in-memory-repositories.md",
@@ -323,7 +323,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "sha256": "f8c5ad114b5b78a26a3c458a59765334bceac500f1319b532c2f54e28d4fedf5"
+          "sha256": "7d0c3fcbf3c09c35973a31258561b21a61e9f563d27e17ae8af3da6f2065120a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -333,17 +333,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.sh",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dm.sh",
-          "sha256": "913a0bffeb30518d0bd68448be3a30062c82e057b5eda84ed1a9d5eccda11c96"
+          "sha256": "2702b0278573a34380bf84497f4b7417864c1a48dc74c7187e1037a8a5ff420f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
-          "sha256": "3a6214e4013816121260ab244faf228944b4b6f786b9b551aabfcb68b234dedb"
+          "sha256": "dbb80cb1b72ae121a11dda0d866e445724dfe13c54aec5a86c2401067350ce74"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
-          "sha256": "3b04a46827d16fd982cce06aded2cbd312725d9170f9bf8cd9b26d41e2f98d12"
+          "sha256": "ea4ef05b67b5bc736b6a068cfc33bb2efa12db21d9e86e493b60ec27fa875f0d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
@@ -363,7 +363,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
-          "sha256": "8e2e6258e0d23d599fb1b8c85934ec965d294e8f6e55e9aad9ace4275c5f374c"
+          "sha256": "5592f32d1ecdf0423ffd497b068bb3827f668621e51407610ab2ef8675b02025"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/write_scm_attestation.py",
@@ -2885,7 +2885,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "86a35a2f0cd8c7cef53eac9968a6b2ff4d4390d1b15c4ebec7a9f368182d00c3"
+          "sha256": "fdc248fa141ee6905c23c5b3b216c060600c622e42cf998006c750c364c97d65"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",

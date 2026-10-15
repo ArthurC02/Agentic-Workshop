@@ -14,6 +14,7 @@ section: 開始之前
 - [ ] 一個 Coding Agent，能讀本機資料夾、修改檔案、執行終端機指令。
 - [ ] 已安裝 Git：Agent 用它記下起點、回報改了什麼。
 - [ ] 已用瀏覽器開啟這份 `runbook.html`。
+- [ ] macOS 用 Safari 下載的人：到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，或改用 Chrome。否則 Safari 會自動解開 ZIP，並把 ZIP 丟到垃圾桶。
 
 現在不用另外準備，建環境的提示詞在 Greenfield 檢查點 1。這頁只放出錯時的疑難排解。
 
