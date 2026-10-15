@@ -1385,7 +1385,7 @@
         {
           "source": "scripts/README.md",
           "destination": "scripts/README.md",
-          "sha256": "ef0c9e8525d8b5c869f46b83e17c4a8fefdf7d05a8eda9248927ab3b49df90d1"
+          "sha256": "c100459023ab282bc8941e18ed9ab1edf26fbf482bf88b0e0fd364510d122716"
         }
       ],
       "generated": {}
@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "0e14f6a5e16685a1bbd3f7be0855b7876af967b6e88a4bdac965de62098e81e1"
+          "sha256": "dda63cf74307560851bd02e815378389f92bbfabf3d0bb527a187347e6722368"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",

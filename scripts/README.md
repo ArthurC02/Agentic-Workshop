@@ -38,7 +38,7 @@ Agent 工具同步：`scripts/sync_harness.py`。`.claude/skills/` 與 `.claude/
 
 檢查點四塊檢查：`scripts/check_blocks.py`。主課與 DLC Runbook 的每個「檢查點／步驟」都要依序有 ① 為什麼做這一步、② 貼給 Agent、③ 確認結果（Agent 只回「成功」或「失敗」的提示詞，加上「失敗時」補救提示詞），④ 補充可省略；另外 ① 最多 3 句（以「。！？」結尾計算，引號內的不算），每個檢查點最多 1 個新的「技巧／新概念」說明框（加深一層不算）。發布流程會先執行。
 
-閱讀參數量測：`scripts/verify_typography.py`。用無頭 Chrome（沒有就用 Edge）開啟兩版建置好的主持簡報（1920×1080，逐頁 `#/<n>`）與 Runbook（1440 寬，用各版 `unlock-codes.json` 解鎖全部群組），檢查：簡報沒有自動縮放（fit-zoom < 1）或超出 1728px 內容區、可見文字 ≥ 24px、標題 ≤ 2 行、檢查點卡片主句 1 行、細節 ≤ 2 行、為什麼／你要判斷 1 行；Runbook 內文每行 32–40 個中文字、行高 ≥ 1.75、可見文字 ≥ 12px。參數表在 `course-authoring`「閱讀參數」；數值集中在兩版 `deck.css`／`runbook.css` 開頭的 CSS 變數。約 10 秒；發布流程在建置後執行。
+閱讀參數量測：`scripts/verify_typography.py`。用無頭 Chrome（沒有就用 Edge）開啟兩版建置好的主持簡報（1920×1080，逐頁 `#/<n>`）與 Runbook（1440 寬，用各版 `unlock-codes.json` 解鎖全部群組），檢查：簡報沒有自動縮放（fit-zoom < 1）或超出 1728px 內容區、可見文字 ≥ 24px、標題 ≤ 2 行、檢查點卡片主句 1 行、細節 ≤ 2 行、為什麼／你要判斷 1 行；Runbook 內文每行 32–40 個中文字、行高 ≥ 1.75、可見文字 ≥ 12px，側欄的章節與檢查點標題（逐頁打開）換行後最後一行不只 1–2 個字。參數表在 `course-authoring`「閱讀參數」；數值集中在兩版 `deck.css`／`runbook.css` 開頭的 CSS 變數。約 10 秒；發布流程在建置後執行。
 
 簡報與 Runbook 對應檢查：`scripts/check_deck_runbook.py`（可加 `main` 或 `dlc` 只查一版）。Runbook 每個檢查點都要有一張簡報頁：`data-title`、標題、`檢查點 n / N · 第 a–b 分鐘` 與 Runbook 一致，頁尾「第 b 分前完成」與「下一步」對得上；簡報提到的 Runbook 頁名、檢查點與表單名稱都要存在；DLC 的 `CHECKPOINTS.md` 也要一致。檢查點頁的字數也有上限（中文算 1、英數算半字）：「為什麼」≤ 30、「你要判斷」≤ 36、步驟卡主句 ≤ 14、細節 ≤ 24，最多 3 張卡（4 張時都不能有細節）。解鎖頁與解鎖碼的對應由 `build_materials.py` 檢查。發布流程會先執行。
 

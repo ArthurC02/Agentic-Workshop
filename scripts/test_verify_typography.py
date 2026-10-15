@@ -36,6 +36,14 @@ class RunbookProblems(unittest.TestCase):
         report = {"locked": [], "paras": [], "small": [], "orphans": [{"where": "b1", "text": "第 2 題。"}]}
         self.assertEqual(vt.runbook_problems("main", report), ["main runbook b1: orphan last line 「…第 2 題。」"])
 
+    def test_sidebar_orphan_reported(self):
+        report = {"locked": [], "paras": [], "small": [], "orphans": [{"where": "sidebar", "text": "2 · 規定只有夥伴核准才算數"}]}
+        self.assertEqual(vt.runbook_problems("dlc", report), ["dlc runbook sidebar: orphan last line 「…2 · 規定只有夥伴核准才算數」"])
+
+    def test_probe_walks_sidebar(self):  # the sidebar is an <aside>; only deck notes are skipped
+        self.assertIn("aside:not(.rb-sidebar)", vt.ORPHANS_JS)
+        self.assertIn(".rb-sidebar", vt.RUNBOOK_PROBE)
+
     def test_locked_page_reported(self):
         self.assertEqual(len(vt.runbook_problems("dlc", {"locked": ["d1"], "paras": [], "small": []})), 1)
 

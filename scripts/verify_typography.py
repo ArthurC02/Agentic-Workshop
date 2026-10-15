@@ -5,7 +5,8 @@ Deck (1920×1080): no fit-zoom < 1 or overflow past the 1728px content block, vi
 checkpoint card main 1 line / detail ≤ 2, 為什麼・你要判斷 1 line.
 Runbook (1440px, every group unlocked): body paragraphs 32–40 CJK chars per line and
 line-height ≥ 1.75, visible text ≥ 12px.
-Both: no orphan — a wrapped text block whose last line holds ≤ 2 characters (e.g. 「題。」 alone).
+Both: no orphan — a wrapped text block whose last line holds ≤ 2 characters (e.g. 「題。」 alone);
+Runbook: also the sidebar page and checkpoint titles, with each page opened in turn.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/verify_typography.py
 """
 import html
@@ -32,7 +33,7 @@ ORPHANS_JS = r"""
 const orphans = (root, where) => {
   const out = [];
   for (const e of root.querySelectorAll('*')) {
-    if (e.closest('aside, pre, script, style, td, th') || !e.getClientRects().length) continue;  // table columns are narrow by design
+    if (e.closest('aside:not(.rb-sidebar), pre, script, style, td, th') || !e.getClientRects().length) continue;  // table columns are narrow by design
     const cs = getComputedStyle(e);
     if (cs.display.startsWith('inline') || cs.display === 'none' || cs.visibility === 'hidden' || cs.whiteSpace.startsWith('pre')) continue;
     if (![...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) continue;
@@ -101,6 +102,13 @@ for (const [gid, code] of Object.entries(CODES)) {
   form.querySelector('input').value = code; form.requestSubmit(); await sleep(80);
 }
 const locked = [...document.querySelectorAll('.rb-lock-form')].map(f => f.closest('[data-page]')?.getAttribute('data-page'));
+// The sidebar lists a page's checkpoints only while that page is open, so open each page in turn.
+const side = [], sideSeen = new Set();
+for (const a of document.querySelectorAll('.rb-page')) {
+  location.hash = '#p-' + a.getAttribute('data-page'); await sleep(60);
+  for (const o of orphans(document.querySelector('.rb-sidebar'), () => 'sidebar'))
+    if (!sideSeen.has(o.text)) { sideSeen.add(o.text); side.push(o); }
+}
 document.querySelectorAll('.rb-page, .rb-step').forEach(e => { e.hidden = false; });
 await sleep(50);
 const paras = [];
@@ -119,8 +127,8 @@ for (let t; (t = walk.nextNode());) {
   const px = parseFloat(getComputedStyle(e).fontSize);
   if (px < MIN_PX - 0.01) small.push({text: t.textContent.trim().slice(0, 30), px, cls: e.tagName.toLowerCase() + "." + (e.className || e.parentElement.className)});
 }
-return {locked, paras, small, orphans: orphans(document.querySelector('main') || document.body,
-                                            e => e.closest('[data-page]')?.getAttribute('data-page') || '')};
+return {locked, paras, small, orphans: [...orphans(document.querySelector('main') || document.body,
+                                               e => e.closest('[data-page]')?.getAttribute('data-page') || ''), ...side]};
 """
 
 
