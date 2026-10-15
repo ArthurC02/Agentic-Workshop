@@ -35,9 +35,9 @@
 
   var STAGE_TEXT = {
     tool: "開場",
-    teammate: "建立 Domain Memory",
-    dw: "用 Domain Memory 驅動變更",
-    all: "Agent 的領域記憶"
+    teammate: "和 Agent 建模型",
+    dw: "照模型做變更",
+    all: "和 Agent 一起做 DDD"
   };
 
   var HELP_KEYS = [

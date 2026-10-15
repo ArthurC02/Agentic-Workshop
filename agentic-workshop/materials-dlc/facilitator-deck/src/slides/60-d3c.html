@@ -26,7 +26,7 @@
     <li data-seg="dlc-d3c"><span class="tl-min">03:00</span><b>2 · Aggregate（聚合）邊界與不變量</b><span class="tl-due">第 133 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">08:00</span><b>3 · 交接單<wbr>與 Agent 實作</b><span class="tl-due">第 142 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">17:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 148 分前</span></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · 檢視差異<wbr>與登記候選</b><span class="tl-due">第 152 分前</span></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">23:00</span><b>5 · 審查變更，新知識寫回模型</b><span class="tl-due">第 152 分前</span></li>
     <li data-seg="dlc-d3c"><span class="tl-min">27:00</span><b>6 · 停手<wbr>與揭曉對照</b><span class="tl-due">第 155 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3c 團體部分退款』› 檢查點 1</p>
@@ -115,7 +115,7 @@
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每一條新規則都有一處改壞方式才同意；只認 <code>killed</code></p>
-  <p class="cp-next"><b>第 148 分前完成</b><span>→ 下一步：檢查點 5 檢視差異與登記候選</span></p>
+  <p class="cp-next"><b>第 148 分前完成</b><span>→ 下一步：檢查點 5 審查變更，新知識寫回模型</span></p>
   <aside class="notes">
     <p><b>說（17:00／第 142 分）</b>：「第 142 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
     <p><b>建議現場做的 4 個</b>：手續費逐位或以自己的票價（改成總額取整一次或平均分攤；全成人測試會存活，補成人＋學生混合團後 killed）、先決定再釋放（把釋放座位移到決定之前）、部分取消後不可整筆退（拿掉守門，多退 4,200）、只釋放被取消者的座位（改成整筆釋放）。</p>
@@ -124,10 +124,10 @@
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="148">
+<section class="slide slide-cp" data-seg="dlc-d3c" data-title="檢查點 5 · 審查變更，新知識寫回模型" data-minute="148">
   <p class="kicker">檢查點 5 / 6 · 第 148–152 分鐘</p>
-  <h2 class="title">檢視差異與登記候選</h2>
-  <p class="cp-why"><b>為什麼</b>新的邊界與規則只登記為候選；commit 由夥伴做</p>
+  <h2 class="title">審查變更，新知識寫回模型</h2>
+  <p class="cp-why"><b>為什麼</b>新的邊界與規則寫回模型只算候選；commit 由夥伴做</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>

@@ -10,10 +10,10 @@ section: 開始之前
 
 ```callout info
 現在在做什麼
-- **情境**：你接手 Smart Ticket 的訂票後端，今天要替它建立 Agent 用得上的 Domain Memory。
-- **你的目標**：10 分鐘內讓 Agent 跑過全部測試、核對 Plugin、確認專案狀態與真實 Python。
+- **情境**：你接手 Smart Ticket 的訂票後端，今天要和 Agent 一起替它建立團隊共用的領域模型。
+- **你的目標**：10 分鐘內讓 Agent 備好環境：測試全過、模型工具可信，並找出哪些錯只能靠人審查。
 - **今天的技巧**：先講好「看到什麼算成功」，Agent 的回報對得上才往下。
-- **完成的樣子**：`notes/opening.md` 有四個檢查點的結果；起始 commit 已建立。
+- **完成的樣子**：`notes/opening.md` 有四個檢查點的結果；起始版本（起始 commit）已建立。
 ```
 
 ## 前置需求
@@ -22,11 +22,11 @@ section: 開始之前
 - Git 2.34 以上（Windows 是 Git for Windows）。
 - 一個能讀寫本機資料夾、執行終端機指令的 Coding Agent（主課用過的即可）。
 
-## 檢查點 1 · 安裝相依套件與測試（第 0–3 分鐘）
+## 檢查點 1 · 確認起點：測試全部通過（第 0–3 分鐘）
 
 ① 為什麼做這一步
 
-今天每一步都以測試結果為準。先讓 Agent 建好環境，確認起始 Repo 的測試全部通過。開始前先做這三件事：
+今天每個設計決定最後都要用測試證明，所以先確認起點：起始 Repo 的測試全部通過。開始前先做這三件事：
 
 ```download
 id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起始 Repo、輔助工具、domain-memory Plugin）
@@ -122,11 +122,11 @@ Windows 一定要解壓到 C:\dlc
 放在桌面、OneDrive 或深層資料夾，D1 會出現「檔名或副檔名太長」（WinError 206）。
 ```
 
-## 檢查點 2 · 解出 Plugin 並核對 SHA256（第 3–5 分鐘）
+## 檢查點 2 · 備好可信的共用模型工具（第 3–5 分鐘）
 
 ① 為什麼做這一步
 
-今天的檢查都由 domain-memory Plugin 判定。Plugin 的檔案被改過，結果就不可信，所以先逐檔核對。
+今天你和 Agent 會把領域知識整理成一份共用模型，之後每個 Agent 都照它做事，所以保存它的工具（domain-memory）本身要可信。Agent 會逐檔比對工具的指紋，全部相符才使用；你只看 ③ 是否成功。
 
 ② 貼給 Agent
 
@@ -177,24 +177,11 @@ Git Bash：
 請不要修改 Plugin 的任何檔案。用白話說明是哪一步沒有成功：找不到 zip、解壓縮失敗、核對不符，還是版本不對？列出不符的檔案，等我和主持人決定。
 ```
 
-④ 補充
-
-```callout info
-新概念：SHA256 雜湊
-**雜湊像檔案的指紋：內容改一個位元組，算出來的值就完全不同。**
-- Agent 逐檔重算雜湊，和清單比對。
-- 全部相同才印 `SHA OK`。
-
-📖 延伸閱讀：NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉。
-```
-
-## 檢查點 3 · 專案就緒與品質關卡檢查（第 5–8 分鐘）
+## 檢查點 3 · 找出只能靠人審查的錯（第 5–8 分鐘）
 
 ① 為什麼做這一步
 
-這一步做兩個只讀不改的檢查：
-- `readiness`：判斷 Repo 是什麼狀態
-- `quality-gates`：列出 Repo 已有哪些自動檢查；沒有的，之後只能靠測試和人的審查補上
+Agent 用兩個唯讀檢查看這個 Repo：它是已有程式的既有專案，自動檢查只有測試，沒有架構檢查。所以程式有沒有越過 Context 邊界，只能靠你審查；D3 每次變更都會回來問這一題。
 
 ② 貼給 Agent
 
@@ -235,17 +222,11 @@ Git Bash：
 請不要修改任何檔案。用白話解釋 readiness 或 quality-gates 的輸出和預期哪裡不同，可能的原因是什麼，列出建議的下一步，等我同意。
 ```
 
-④ 補充
-
-`readiness` 回的 brownfield，指已有程式碼的既有專案。`quality-gates` 只找到 pytest，沒有程式風格（lint）、型別或架構檢查：這是事實，不是錯誤。
-
-## 檢查點 4 · 確認真實 Python（第 8–10 分鐘）
+## 檢查點 4 · 確認環境並建立起始版本（第 8–10 分鐘）
 
 ① 為什麼做這一步
 
-D2 推送（push）時，Git 會在 PATH 上找 `python3` 或 `python` 來執行檢查，所以先確認啟用 venv 後找到的是真的 Python 3.13。
-- Windows 教室電腦的 `python` 常是 Microsoft Store 的捷徑（路徑含 `WindowsApps`），會讓 push 失敗
-- 這一步也建立起始 commit
+Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 commit），之後每次變更都能和它比對。D2 起，共用模型每次推送前都會自動檢查有沒有核准，這項檢查要用到正確的 Python。
 
 ② 貼給 Agent
 

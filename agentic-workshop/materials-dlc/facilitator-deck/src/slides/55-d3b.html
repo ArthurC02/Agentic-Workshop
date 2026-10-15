@@ -26,7 +26,7 @@
     <li data-seg="dlc-d3b"><span class="tl-min">03:00</span><b>2 · 決定負責的 Context 與不變量</b><span class="tl-due">第 103 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">08:00</span><b>3 · 交接單<wbr>與 Agent 實作</b><span class="tl-due">第 111 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">16:00</span><b>4 · 反事實檢查</b><span class="tl-due">第 116 分前</span></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">21:00</span><b>5 · 檢視差異<wbr>與登記候選</b><span class="tl-due">第 121 分前</span></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">21:00</span><b>5 · 審查變更，新知識寫回模型</b><span class="tl-due">第 121 分前</span></li>
     <li data-seg="dlc-d3b"><span class="tl-min">26:00</span><b>6 · 停手<wbr>與揭曉對照</b><span class="tl-due">第 125 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3b 點數折抵』› 檢查點 1</p>
@@ -115,7 +115,7 @@
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才同意；只認 <code>killed</code></p>
-  <p class="cp-next"><b>第 116 分前完成</b><span>→ 下一步：檢查點 5 檢視差異與登記候選</span></p>
+  <p class="cp-next"><b>第 116 分前完成</b><span>→ 下一步：檢查點 5 審查變更，新知識寫回模型</span></p>
   <aside class="notes">
     <p><b>說（16:00／第 111 分）</b>：「第 111 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
     <p><b>建議現場做的 4 個</b>：上限以優惠後總額計（改成原價；只有 M002 665 抓得到）、預留在寫入前（移到寫入之後）、團體付款失敗歸還（移除 restore）、退款現金＝Order.amount（改讀 <code>payable_amount</code>；沒有「改票後退票」的測試就會存活）。第一個與最後一個是「先 survived 再補測試」的好示範。</p>
@@ -124,9 +124,9 @@
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 5 · 檢視差異與登記候選" data-minute="116">
+<section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 5 · 審查變更，新知識寫回模型" data-minute="116">
   <p class="kicker">檢查點 5 / 6 · 第 116–121 分鐘</p>
-  <h2 class="title">檢視差異與登記候選</h2>
+  <h2 class="title">審查變更，新知識寫回模型</h2>
   <p class="cp-why"><b>為什麼</b>被改變的已審查事實不能覆寫，要用新 id 登記候選</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
