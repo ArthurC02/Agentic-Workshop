@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>交接與回顧：讓下一個 Agent 接得上</title>
+<style>:root{--ink:#1e3761;--blue:#0093c1;--teal:#008b82;--orange:#df6539;--muted:#536173;--line:#d5e1e6}
+*{box-sizing:border-box} [hidden]{display:none!important}
+body{margin:0;background:#102036;color:var(--ink);font-family:"Microsoft JhengHei","Segoe UI",sans-serif;overflow:hidden}
+button{font:inherit;cursor:pointer;border:1px solid #c6dbe3;border-radius:7px;background:white;color:var(--ink);padding:7px 12px}
+button:hover{background:#e2f3f9}button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}button:disabled{opacity:.4;cursor:default}
+#stage{position:absolute;width:1600px;height:900px;transform-origin:top left;background:#f2f6f7;padding:42px 65px 36px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+header{display:flex;justify-content:space-between;font-size:21px;color:var(--muted);letter-spacing:1px}
+#chapter{color:var(--blue);font-weight:700}h1{font-size:55px;line-height:1.2;margin:10px 0 0;letter-spacing:1px}
+#lead{font-size:28px;line-height:1.5;margin:0;color:var(--muted)}#content{display:flex;flex-direction:column;gap:18px;min-height:0;flex-shrink:1;overflow:auto}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:10px;padding:16px 24px}
+.card h2{font-size:28px;margin:0 0 8px}.card p{font-size:25px;line-height:1.4;margin:0;color:#34485d}
+.flow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.flow span{font-size:24px;padding:13px 18px;background:#dff3f0;border-radius:8px;line-height:1.35}.flow b{color:var(--teal);font-size:25px}
+pre{margin:0;padding:12px 22px;border-radius:10px;background:#152c43;color:#f2f6f7;font:22px/1.3 Consolas,"Microsoft JhengHei",monospace;white-space:pre-wrap;overflow:auto}
+#prompt-box{padding:20px 26px;background:#e2f3f9;border-radius:10px;border-left:6px solid var(--blue);flex-shrink:0}
+.label{display:flex;justify-content:space-between;align-items:center;font-size:24px}.label button{font-size:19px}
+#prompt{font-size:25px;line-height:1.5;margin:10px 0 0;white-space:pre-wrap}#check{margin:0;padding:17px 23px;background:#fff0e7;border-left:6px solid var(--orange);font-size:24px;line-height:1.45;border-radius:5px;flex-shrink:0}
+footer{margin-top:auto;display:flex;justify-content:space-between;font-size:19px;color:var(--muted)}
+#notes{position:absolute;inset:140px 65px 85px;background:#fffdf5;box-shadow:0 10px 50px #10203655;border:2px solid #f0cc89;border-radius:12px;padding:38px;font-size:30px;line-height:1.8;overflow:auto;z-index:2;white-space:pre-wrap}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:7px;align-items:center;padding:9px 12px;background:#102036;color:white;flex-wrap:wrap;font-size:15px;z-index:5;transition:opacity .3s}
+/* Fullscreen = projecting: hide the operator bar until the pointer or keyboard focus reaches it. */
+:fullscreen nav{opacity:0}:fullscreen nav:hover,:fullscreen nav:focus-within{opacity:1}
+#timer{font-variant-numeric:tabular-nums;margin:0 6px}#timer.over{color:#ffaf85}
+dialog{width:min(1100px,90vw);max-height:85vh;border:0;border-radius:14px;padding:28px;color:var(--ink);overflow:auto}dialog::backdrop{background:#102036bb}
+#overview-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}#overview-list button{text-align:left;line-height:1.5;padding:15px}#overview-list button[aria-current=true]{border:2px solid var(--blue);background:#e2f3f9}
+@media print{body{background:white;overflow:visible}nav,dialog,#notes{display:none!important}#stage{position:static;transform:none!important;width:100%;height:auto;padding:20px}h1{font-size:30px}.card p,#prompt,#check{font-size:16px}pre{font-size:14px}header,footer{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main id="stage" aria-label="投影片">
+  <header><span id="chapter"></span><span>DLC Speech 04 · D4 與回顧 · 25 分鐘</span></header>
+  <h1 id="title"></h1><p id="lead"></p>
+  <div id="content"></div>
+  <section id="prompt-box" hidden><div class="label"><b>交給 Agent 的指令</b><button id="copy">複製指令</button></div><p id="prompt"></p></section>
+  <p id="check"></p>
+  <aside id="notes" hidden aria-label="講者備註"></aside>
+  <footer><span id="status" role="status" aria-live="polite"></span><span id="counter"></span></footer>
+</main>
+<nav aria-label="簡報操作">
+  <button id="prev" aria-label="上一頁">←</button><button id="next" aria-label="下一頁">→</button>
+  <button id="overview-button">總覽 O</button><button id="notes-button" aria-pressed="false">備註 N</button>
+  <button id="fullscreen">全螢幕 F</button><span id="downloads"></span>
+  <span id="timer" aria-label="經過時間">00:00 / 25:00</span><button id="timer-button">計時 T</button><button id="reset">重設</button>
+</nav>
+<dialog id="overview"><h2>交接與回顧：讓下一個 Agent 接得上 · 投影片總覽</h2><div id="overview-list"></div><button id="close-overview">關閉 Esc</button></dialog>
+<script>const SPEECH_DATA = {"slides": [{"id": "start", "chapter": "開場", "title": "明天換人接手", "lead": "接手的人只看得到 Repo、共用模型與一份交接單；今天的對話他看不到。", "cards": [["D4", "檢查模型落後程式多少，寫給下一個 Agent 的交接單。"], ["回顧", "從紀錄找證據：哪些把關真的有用。"]], "check": "如果明天換你接手，你最先打開哪一個檔？", "notes": "0–2 分鐘。這是講解，不是重做 D4 與回顧。先問開場題，記下答案，D4 的部分講完再對照。"}, {"id": "drift", "chapter": "D4 交接", "title": "模型會落後程式", "lead": "D3 加了新程式與新規則；D1 確認的來源多了新檔案，Agent 回報「來源過期」是正常的。", "cards": [["不要硬修", "來源過期不是錯誤，是模型需要下一次審查。"], ["寫進 Unknowns（未知事項）", "留給下一次成對核准處理。"]], "check": "Agent 回報來源過期時，有沒有想自己「修好」它？", "notes": "2–3 分鐘。對照 D4 檢查點 1，模型的加深一層。共用模型不是寫一次就好的文件；程式一直在變，模型要跟著審查。Agent 看到 stale 很容易自己去改，所以提示詞明確寫「不要試著修好」。📖 延伸閱讀：Eric Evans〈Domain-Driven Design Reference〉；學員包 vendor/domain-memory/references/registry-maintenance.md。"}, {"id": "writeback", "chapter": "D4 交接", "title": "改變的規則，寫成新候選", "lead": "D3 改變了哪些規則，Agent 整理成新候選；它們要等下一次核准才成為事實。", "cards": [["候選附證據", "每筆指到 D3 的實作與測試行號。"], ["不冒充事實", "沒經夥伴核准的，一律標候選。"]], "check": "Agent 有沒有把任何一筆 D3 的新規則寫成已審查事實？", "notes": "2 分鐘。對照 D4 檢查點 2。這是 DLC Speech 02「事實只能用新提案取代」的實際用法：今天留下的候選，就是下一次審查包的內容。"}, {"id": "handoff", "chapter": "D4 交接", "title": "交接單的七段", "lead": "給下一個 Agent 的交接單用固定的七段；沒有內容的段寫「無」與原因。", "code": "Domain facts        已審查事實與候選，分開列\nForces              影響決定的考量與限制\nDecision            做了什麼決定、為什麼\nExternal systems    外部服務與它的回應分類\nUnknowns            還沒決定、還沒證明的事\nProof obligations   每條規則對應的測試\nCounterfactual check  實際看到 killed 的規則；沒有寫「未證明」", "cards": [["時間不夠時", "至少寫 Unknowns，其他段寫「未完成」。"]], "check": "只看這份交接單，接手的人知道哪些事還沒決定嗎？", "notes": "2–3 分鐘。對照 D4 檢查點 3。七段的標題對應 domain-memory 的交接格式。最低完成線是 Unknowns：其他段沒寫，接手的人還能自己查；Unknowns 沒寫，他會以為一切都決定了。"}, {"id": "cite", "chapter": "D4 交接", "title": "技巧：只准引用查得到的 id", "lead": "Agent 會自信地寫出不存在的 id；請它逐一查證每一個引用。", "prompt": "不要修改任何檔案。請把這份交接單裡引用的每個 id 與檔案路徑列出來，逐一到共用模型與 Repo 查證：查得到、查不到、或狀態不同（例如寫成已審查事實但其實是候選）。列成表，查不到的不要自己補，列完停下。", "cards": [["為什麼會錯", "Agent 照格式「合理地」編出 id。"], ["人看什麼", "表裡有沒有「查不到」或「狀態不同」。"]], "check": "你的交接單裡，有沒有一個 id 第一次查不到？", "notes": "3 分鐘。D4 的技巧。這是主課交接檔「人要查數字依據」的加深：交接單寫得越像樣，越容易讓人相信。示範提示詞僅供示範，未實際執行就不要宣稱結果。"}, {"id": "retro-evidence", "chapter": "回顧", "title": "請 Agent 從紀錄整理證據", "lead": "回顧時，Agent 從 notes/、交接單與版本紀錄整理證據，人只判斷；沒有證據就寫「未觀察」。", "cards": [["不憑印象", "「感覺有幫助」不算，要指到紀錄裡的哪一行。"], ["未觀察也是答案", "沒有紀錄，就不宣稱有效果。"]], "check": "你的回顧裡，有沒有一句沒有證據、卻寫成了結論？", "notes": "2 分鐘。對照回顧檢查點 1。這是主課回顧「證據支持導入」的 DLC 版本。本工作坊沒有量測效率，講解時不要引用任何效率數字。"}, {"id": "gates", "chapter": "回顧", "title": "哪些把關真的擋住錯", "lead": "把今天每個人工把關攤開，判斷哪一步擋住過錯誤、哪一步只是照流程做完。", "flow": ["來源與定義", "夥伴核准", "選項與交接單", "反事實檢查", "查證引用"], "cards": [["擋住過", "紀錄裡找得到它抓到的錯。"], ["只是做完", "做了，但沒有改變任何結果。"]], "check": "哪一步你覺得有用，但紀錄裡找不到它擋住過什麼？", "notes": "3 分鐘。對照回顧檢查點 2。照流程做完不代表沒價值，可能只是今天剛好沒遇到錯；但要誠實分開說。這一頁的答案每組不同，請兩三組分享。"}, {"id": "limits", "chapter": "回顧", "title": "說清楚：簽章是教學示範", "lead": "兩人在同一台機器上，今天的成對簽章不能證明真的有兩個人審查過。", "cards": [["為什麼不能", "任一人都拿得到私鑰；推送前的檢查也能被跳過。"], ["它的用處", "讓你看見每一步留下什麼證據。"]], "check": "要證明「真的有另一個人審查過」，今天還缺什麼？", "notes": "2–3 分鐘。這一頁一定要講，不要讓學員以為今天的設定就是安全保證。推送前的檢查（pre-push）可以用 git push --no-verify 跳過；同一台機器上誰都能拿到私鑰。📖 延伸閱讀：Git 官方文件〈githooks〉的 pre-push 一節。"}, {"id": "real-team", "chapter": "回顧", "title": "回到團隊需要什麼", "lead": "真實團隊要讓「另一個人核准」變成做不到假的事。", "cards": [["不同的人與機器", "每人自己的金鑰，私鑰不離開本人。"], ["伺服器端檢查", "例如受保護分支（沒核准不能合併），不靠本機。"], ["一個持鑰角色", "誰負責審查共用模型，要有人擔任。"]], "check": "你的團隊裡，誰適合擔任共用模型的審查者？", "notes": "2–3 分鐘。不點名特定平台產品；受保護分支是一般概念。第三張卡呼應 D4「完成後想一想」第 3 題：下一次核准需要誰。"}, {"id": "action", "chapter": "下一站", "title": "帶走一個提示詞、一項行動", "lead": "回到自己的專案時沒有 Runbook；挑今天最有用的提示詞，和一項有人負責的行動。", "cards": [["提示詞", "存進 notes/，下次直接貼給 Agent。"], ["一項行動", "寫出誰做、何時、怎麼知道做到了。"]], "check": "你的行動，說得出「怎麼知道做到了」嗎？", "notes": "2 分鐘。對照回顧檢查點 3。行動要小：例如「下週替一個常吵的名詞寫定義並請同事核准」。最後提醒：私鑰已刪、表單已匯出。"}, {"id": "close", "chapter": "下一站", "title": "DLC 帶走什麼", "lead": "Agent 找證據、做苦工；人定義模型、做決定、用證據驗收。", "flow": ["共同語言與邊界", "審查與核准", "依模型做需求", "交接", "回顧"], "cards": [["四場的主線", "候選要經人核准才成事實；每條規則要有測試守著。"], ["回到工作", "先從一個名詞、一條規則開始寫下來。"]], "check": "回到開場：明天接手時你打開的那個檔，今天有寫好嗎？", "notes": "1–2 分鐘，系列收尾。回到開場答案。不要再加新內容，請每人說出自己的一項行動。"}], "title": "交接與回顧：讓下一個 Agent 接得上", "minutes": 25, "downloads": [{"label": "下載操作講義", "name": "handoff-retro-handout.md", "text": "# 交接與回顧：讓下一個 Agent 接得上\n\n\u003e 讀者：學員。時機：DDD 延伸課 D4 與回顧之後的 25 分鐘講解。前置：已聽過前三場 DLC Speech，手邊有自己的 notes/ 與 docs/handoffs/。\n\n本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。\n\n## 1. 明天換人接手\n\n接手的人只看得到 Repo、共用模型與一份交接單；今天的對話他看不到。\n\n- **D4**：檢查模型落後程式多少，寫給下一個 Agent 的交接單。\n\n- **回顧**：從紀錄找證據：哪些把關真的有用。\n\n**人工確認**：如果明天換你接手，你最先打開哪一個檔？\n\n## 2. 模型會落後程式\n\nD3 加了新程式與新規則；D1 確認的來源多了新檔案，Agent 回報「來源過期」是正常的。\n\n- **不要硬修**：來源過期不是錯誤，是模型需要下一次審查。\n\n- **寫進 Unknowns（未知事項）**：留給下一次成對核准處理。\n\n**人工確認**：Agent 回報來源過期時，有沒有想自己「修好」它？\n\n## 3. 改變的規則，寫成新候選\n\nD3 改變了哪些規則，Agent 整理成新候選；它們要等下一次核准才成為事實。\n\n- **候選附證據**：每筆指到 D3 的實作與測試行號。\n\n- **不冒充事實**：沒經夥伴核准的，一律標候選。\n\n**人工確認**：Agent 有沒有把任何一筆 D3 的新規則寫成已審查事實？\n\n## 4. 交接單的七段\n\n給下一個 Agent 的交接單用固定的七段；沒有內容的段寫「無」與原因。\n\n- **時間不夠時**：至少寫 Unknowns，其他段寫「未完成」。\n\n```text\nDomain facts        已審查事實與候選，分開列\nForces              影響決定的考量與限制\nDecision            做了什麼決定、為什麼\nExternal systems    外部服務與它的回應分類\nUnknowns            還沒決定、還沒證明的事\nProof obligations   每條規則對應的測試\nCounterfactual check  實際看到 killed 的規則；沒有寫「未證明」\n```\n\n**人工確認**：只看這份交接單，接手的人知道哪些事還沒決定嗎？\n\n## 5. 技巧：只准引用查得到的 id\n\nAgent 會自信地寫出不存在的 id；請它逐一查證每一個引用。\n\n- **為什麼會錯**：Agent 照格式「合理地」編出 id。\n\n- **人看什麼**：表裡有沒有「查不到」或「狀態不同」。\n\n### 交給 Agent 的指令\n\n不要修改任何檔案。請把這份交接單裡引用的每個 id 與檔案路徑列出來，逐一到共用模型與 Repo 查證：查得到、查不到、或狀態不同（例如寫成已審查事實但其實是候選）。列成表，查不到的不要自己補，列完停下。\n\n**人工確認**：你的交接單裡，有沒有一個 id 第一次查不到？\n\n## 6. 請 Agent 從紀錄整理證據\n\n回顧時，Agent 從 notes/、交接單與版本紀錄整理證據，人只判斷；沒有證據就寫「未觀察」。\n\n- **不憑印象**：「感覺有幫助」不算，要指到紀錄裡的哪一行。\n\n- **未觀察也是答案**：沒有紀錄，就不宣稱有效果。\n\n**人工確認**：你的回顧裡，有沒有一句沒有證據、卻寫成了結論？\n\n## 7. 哪些把關真的擋住錯\n\n把今天每個人工把關攤開，判斷哪一步擋住過錯誤、哪一步只是照流程做完。\n\n來源與定義 → 夥伴核准 → 選項與交接單 → 反事實檢查 → 查證引用\n\n- **擋住過**：紀錄裡找得到它抓到的錯。\n\n- **只是做完**：做了，但沒有改變任何結果。\n\n**人工確認**：哪一步你覺得有用，但紀錄裡找不到它擋住過什麼？\n\n## 8. 說清楚：簽章是教學示範\n\n兩人在同一台機器上，今天的成對簽章不能證明真的有兩個人審查過。\n\n- **為什麼不能**：任一人都拿得到私鑰；推送前的檢查也能被跳過。\n\n- **它的用處**：讓你看見每一步留下什麼證據。\n\n**人工確認**：要證明「真的有另一個人審查過」，今天還缺什麼？\n\n## 9. 回到團隊需要什麼\n\n真實團隊要讓「另一個人核准」變成做不到假的事。\n\n- **不同的人與機器**：每人自己的金鑰，私鑰不離開本人。\n\n- **伺服器端檢查**：例如受保護分支（沒核准不能合併），不靠本機。\n\n- **一個持鑰角色**：誰負責審查共用模型，要有人擔任。\n\n**人工確認**：你的團隊裡，誰適合擔任共用模型的審查者？\n\n## 10. 帶走一個提示詞、一項行動\n\n回到自己的專案時沒有 Runbook；挑今天最有用的提示詞，和一項有人負責的行動。\n\n- **提示詞**：存進 notes/，下次直接貼給 Agent。\n\n- **一項行動**：寫出誰做、何時、怎麼知道做到了。\n\n**人工確認**：你的行動，說得出「怎麼知道做到了」嗎？\n\n## 11. DLC 帶走什麼\n\nAgent 找證據、做苦工；人定義模型、做決定、用證據驗收。\n\n共同語言與邊界 → 審查與核准 → 依模型做需求 → 交接 → 回顧\n\n- **四場的主線**：候選要經人核准才成事實；每條規則要有測試守著。\n\n- **回到工作**：先從一個名詞、一條規則開始寫下來。\n\n**人工確認**：回到開場：明天接手時你打開的那個檔，今天有寫好嗎？\n\n## 完成條件\n說得出模型為什麼會落後程式、交接單為什麼只准引用查得到的 id；能區分今天哪些人工把關真的擋住錯誤，也說得出成對簽章的限制與真實團隊需要的條件；帶走一項回到團隊的行動。\n"}]};</script>
+<script>'use strict';
+const slides = SPEECH_DATA.slides;
+const el = id => document.getElementById(id);
+let index = 0, notesVisible = false, running = false, accumulated = 0, startedAt = 0;
+const overview = el('overview');
+function node(tag, value, cls) { const n = document.createElement(tag); if(value !== undefined) n.textContent = value; if(cls) n.className = cls; return n; }
+function announce(message) { el('status').textContent = message; }
+function resize() {
+  const available = Math.max(100, innerHeight - document.querySelector('nav').offsetHeight - 18);
+  const scale = Math.min(innerWidth / 1600, available / 900);
+  const stage = el('stage'); stage.style.transform = `scale(${scale})`;
+  stage.style.left = `${(innerWidth - 1600 * scale) / 2}px`; stage.style.top = `${(available - 900 * scale) / 2}px`;
+}
+function render() {
+  const s = slides[index]; el('chapter').textContent = s.chapter; el('title').textContent = s.title; el('lead').textContent = s.lead;
+  const content = el('content'); content.replaceChildren();
+  if(s.flow) { const flow = node('div', undefined, 'flow'); s.flow.forEach((v,i)=>{ if(i)flow.append(node('b','→'));flow.append(node('span',v)); });content.append(flow); }
+  if(s.code) content.append(node('pre', s.code));
+  if(s.cards) { const cards = node('div',undefined,'cards');s.cards.forEach(([title,body])=>{ const card=node('article',undefined,'card');card.append(node('h2',title),node('p',body));cards.append(card); });content.append(cards); }
+  el('prompt-box').hidden = !s.prompt; el('prompt').textContent = s.prompt || '';
+  el('check').textContent = '人工確認｜' + s.check; el('notes').textContent = '講者備註 · ' + (index+1) + '\n\n' + s.notes;
+  el('notes').hidden = !notesVisible; el('counter').textContent = `${index+1} / ${slides.length}`;
+  el('prev').disabled = index === 0; el('next').disabled = index === slides.length-1;
+  document.title = `${SPEECH_DATA.title.split('：')[0]} · ${s.title}`; location.replace('#'+s.id);
+  announce(''); document.querySelectorAll('#overview-list button').forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
+  requestAnimationFrame(resize);
+}
+function move(delta){index=Math.max(0,Math.min(slides.length-1,index+delta));render();}
+function toggleNotes(){notesVisible=!notesVisible;el('notes-button').setAttribute('aria-pressed',String(notesVisible));el('notes').hidden=!notesVisible;}
+function openOverview(){if(!overview.open)overview.showModal();}
+function elapsed(){return accumulated+(running?performance.now()-startedAt:0);}
+function toggleTimer(){if(running){accumulated=elapsed();running=false;}else{startedAt=performance.now();running=true;}el('timer-button').textContent=running?'暫停 T':'計時 T';}
+function updateTimer(){const secs=Math.floor(elapsed()/1000);el('timer').textContent=`${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')} / ${String(SPEECH_DATA.minutes).padStart(2,'0')}:00`;el('timer').classList.toggle('over',secs>=SPEECH_DATA.minutes*60);}
+function save(filename, value){const url=URL.createObjectURL(new Blob([value],{type:'text/plain;charset=utf-8'}));const a=node('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);announce('已下載 '+filename);}
+async function copyPrompt(){const value=slides[index].prompt;if(!value)return;try{await navigator.clipboard.writeText(value);announce('指令已複製');}catch{const t=node('textarea');t.value=value;document.body.append(t);t.select();let copied=false;try{copied=document.execCommand('copy');}catch{}t.remove();if(copied)announce('指令已複製');else{const range=document.createRange();range.selectNodeContents(el('prompt'));const selection=getSelection();selection.removeAllRanges();selection.addRange(range);announce('請按 Ctrl+C／Cmd+C 複製已選取的指令');}}}
+el('prev').onclick=()=>move(-1);el('next').onclick=()=>move(1);el('copy').onclick=copyPrompt;
+el('notes-button').onclick=toggleNotes;el('overview-button').onclick=openOverview;el('close-overview').onclick=()=>overview.close();
+el('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{announce('請使用瀏覽器的全螢幕功能');}};
+el('timer-button').onclick=toggleTimer;el('reset').onclick=()=>{running=false;accumulated=0;el('timer-button').textContent='計時 T';updateTimer();};
+SPEECH_DATA.downloads.forEach(d=>{const b=node('button',d.label);b.onclick=()=>save(d.name,d.text);el('downloads').append(b);});
+slides.forEach((s,i)=>{const b=node('button',`${i+1}. ${s.title}`);b.onclick=()=>{index=i;overview.close();render();};el('overview-list').append(b);});
+function fromHash(){const target=slides.findIndex(s=>s.id===location.hash.slice(1));if(target>=0&&target!==index){index=target;render();}}
+addEventListener('hashchange',fromHash);addEventListener('resize',resize);
+addEventListener('keydown',e=>{if((e.target instanceof Element&&(e.target.closest('textarea,input,select')||(e.target.closest('button')&&[' ','Enter'].includes(e.key))))||e.ctrlKey||e.metaKey||e.altKey)return;if(overview.open)return;const key=e.key.toLowerCase();if(['arrowright','arrowdown','pagedown',' '].includes(key)){e.preventDefault();move(1);}else if(['arrowleft','arrowup','pageup'].includes(key)){e.preventDefault();move(-1);}else if(key==='home'){index=0;render();}else if(key==='end'){index=slides.length-1;render();}else if(key==='n')toggleNotes();else if(key==='o')openOverview();else if(key==='t')toggleTimer();else if(key==='f')el('fullscreen').click();else if(key==='escape'&&notesVisible)toggleNotes();});
+fromHash();render();setInterval(updateTimer,500);resize();
+</script>
+</body>
+</html>

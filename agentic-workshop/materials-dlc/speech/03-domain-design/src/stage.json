@@ -1,0 +1,12 @@
+{
+  "title": "依模型做新需求：邊界、不變量與交接單",
+  "header": "DLC Speech 03 · D3a–D3c · 40 分鐘",
+  "minutes": 40,
+  "deck": "domain-design-deck.html",
+  "handout": "domain-design-handout.md",
+  "handout_intro": [
+    "> 讀者：學員。時機：DDD 延伸課 D3a–D3c 之後的 40 分鐘講解。前置：已聽過 DLC Speech 01、02，做完 D3 三段。",
+    "本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。本場不公布三張需求卡的參考設計。"
+  ],
+  "handout_done": "說得出 D3 每一段同一個迴圈裡人要判斷什麼；能說明負責的 Context、Port／Adapter、冪等、不變量、預留與歸還、Aggregate 各解決什麼問題；知道交接單比工作單多了哪兩段，以及新知識為什麼先寫成候選。"
+}

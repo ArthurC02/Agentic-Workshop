@@ -1,6 +1,6 @@
 # DDD DLC 素材（materials-dlc）
 
-本資料夾是 DDD DLC 的學員 Runbook（`participant-runbook/content/`）、主持簡報（`facilitator-deck/src/slides/`）、檢查點對照（`CHECKPOINTS.md`）與解鎖碼（`unlock-codes.json`）。下面記錄 Runbook 的寫法、打包與 edition 設定。
+本資料夾是 DDD DLC 的學員 Runbook（`participant-runbook/content/`）、主持簡報（`facilitator-deck/src/slides/`）、檢查點對照（`CHECKPOINTS.md`）與解鎖碼（`unlock-codes.json`）；各段之後的概念講解在 [speech/](speech/README.md)。下面記錄 Runbook 的寫法、打包與 edition 設定。
 
 ## Runbook 的寫法（複製提示詞即可通關）
 

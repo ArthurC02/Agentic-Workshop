@@ -1,0 +1,12 @@
+{
+  "title": "交接與回顧：讓下一個 Agent 接得上",
+  "header": "DLC Speech 04 · D4 與回顧 · 25 分鐘",
+  "minutes": 25,
+  "deck": "handoff-retro-deck.html",
+  "handout": "handoff-retro-handout.md",
+  "handout_intro": [
+    "> 讀者：學員。時機：DDD 延伸課 D4 與回顧之後的 25 分鐘講解。前置：已聽過前三場 DLC Speech，手邊有自己的 notes/ 與 docs/handoffs/。",
+    "本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。"
+  ],
+  "handout_done": "說得出模型為什麼會落後程式、交接單為什麼只准引用查得到的 id；能區分今天哪些人工把關真的擋住錯誤，也說得出成對簽章的限制與真實團隊需要的條件；帶走一項回到團隊的行動。"
+}
