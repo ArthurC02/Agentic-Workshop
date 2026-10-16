@@ -1534,5 +1534,25 @@
   },
   "material_design_lists_non_empty": true,
   "same_results_as": "0.22.0 and 0.26.1 (6fe26ead1)"
+ },
+ "plugin_0_27_2_remeasure": {
+  "date": "2026-10-16",
+  "plugin": "domain-memory 0.27.2 (SkillHub 214f269f5, exported with git archive)",
+  "vendor_zip_sha256": "4057b081a8e4ff49be3d5b4f4a3a49127727f3ad134b4aae1670b7253e6100ff",
+  "plugin_files": 73,
+  "sha_ok_line": "SHA OK 74 files",
+  "cli_parser_vs_dmlib": "identical (REGISTRY_REQUIRED, REGISTRY_OPTIONAL, REPO_ROOT)",
+  "tools_self_test": "7 tests OK",
+  "reference_registry": "same as plugin_0_27_0_remeasure; signed commit touching domain-memory/ pushed to a fresh local bare remote: hook printed 7 'Git governance is valid.' lines (6 Registry commits + the new one)",
+  "chained_hook_stop": "pre-push.domain-memory-existing without '#!' (Git Bash: not executable) stops the push with the 0.27.2 message; with '#!/bin/sh' it runs and the push passes",
+  "d1_replay": {
+   "records": 57,
+   "validate": "Registry is valid.",
+   "verify_evidence_current": 162,
+   "seconds": 46
+  },
+  "recovery_and_reference_solutions": "same as plugin_0_27_0_remeasure",
+  "recovery_ships_git_hooks": false,
+  "same_results_as": "0.27.0 (492af5a28)"
  }
 }

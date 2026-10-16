@@ -19,10 +19,10 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.27.0")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.27.2")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 0.27.0 的 cli_parser.py 整理（只讀，不 import Plugin）。
+# 依 Plugin 0.27.2 的 cli_parser.py 整理（只讀，不 import Plugin）。
 REGISTRY_REQUIRED = {
     "migrate-registry", "validate", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
     "analyze-boundary", "upsert-candidate", "retract-candidate", "apply-approved-updates",
@@ -50,7 +50,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.27.0.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.27.2.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 

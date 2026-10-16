@@ -252,19 +252,19 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 
 驗證：已實跑工具自檢（5 tests OK，含互標 `not_same_as`；以舊版 make_record 重跑會失敗）、D1 重播、參考 Registry 的完整簽章與 push（本機 bare remote，未被擋）、d1–d3c Recovery 重建與量測、`relocate-evidence`，以及 `release_materials.py`（RELEASE PIPELINE PASS，DLC 候選 `23f432cf92c2153b`）。未驗證：以候選包貼 Runbook 提示詞逐頁演練（開場＋D1＋D2、D2／D3 Recovery 接手、D4 檢查點 1–3）已在沙箱啟動，但交回時結果尚未取得；交付前須補跑一次 rehearsal 並在此補記。
 
-## domain-memory 升級 0.27.0（2026-10-16）
+## domain-memory 升級 0.27.2（2026-10-16）
 
-由 0.22.0 升級到 0.27.0（SkillHub `492af5a28`）。原本固定在 0.26.1（`6fe26ead1`，當時最新的已 commit 版本）並已完成全部驗證；作業期間作者 commit 了 0.27.0，預先檢查通過後改固定 0.27.0 並重跑驗證。之後還有 0.27.1（`d815d4a05`：Linux／macOS 上 `cannot run ssh-keygen` 也報成「未檢查」），本次未採用。Plugin 以 `git archive <commit> .claude/skills/domain-memory` 匯出到暫存區再封裝，不用 SkillHub 的工作目錄（裡面有未發布的修改）；`vendor_dlc_plugin.py` 的說明已補上這個做法。
+由 0.22.0 升級，現固定 0.27.2（SkillHub `214f269f5`）。過程：先固定 0.26.1（`6fe26ead1`）並完成全部驗證；作業期間作者 commit 了 0.27.0（`492af5a28`），預先檢查通過後改固定 0.27.0 並重跑驗證；同日再改固定 0.27.2。0.27.1 與 0.27.2 都是只修錯的 patch 版：0.27.1 讓 macOS／Linux 的 `cannot run <程式>`（簽章程式啟動不了）也報成「未檢查」，0.27.0 只認 Windows 的 `cannot spawn`；0.27.2 讓已安裝的 pre-push hook 在串接的舊 hook（`pre-push.domain-memory-existing`）存在卻失去執行權限時停下 push，原本是默默跳過。兩者都落在學員路徑上（macOS 學員、解壓或同步後的 Repo），依下方版本政策採用。Plugin 以 `git archive <commit> .claude/skills/domain-memory` 匯出到暫存區再封裝，不用 SkillHub 的工作目錄（裡面有未發布的修改）；`vendor_dlc_plugin.py` 的說明已補上這個做法。
 
 做了什麼：
-- 機械：產生 `domain-memory-0.27.0.zip`（73 個 Plugin 檔案；學員核對印出 `SHA OK 74 files`），刪除 0.22.0 的 ZIP 與 SHA256SUMS；版本字串與檔案數同步到 build_delivery_dlc（含測試、manifest）、dmlib、doctor、tools／DLC README、materials-dlc README、01-environment、開場投影片、主持指南、觀察指南、11 號指令書（順手修正 SHA256SUMS 檔名少了 `.zip`）、參考 Registry README。`dmlib.py` 的指令集合比對 `cli_parser`：只差 `init-change-package` 自 0.26.0 新增的可選 `--registry-root`（給 `--recitation` 用），已加入 `REGISTRY_OPTIONAL`；0.26.1 與 0.27.0 比對後三組都完全一致。
-- 資料：參考 Registry、d2–d3c Recovery 與三份參考解答的 `domain-memory/` 都不重建。0.23–0.27.0 沒有改資料格式，`validate`、`verify-evidence`、`verify-audit` 結果與 0.22.0 完全相同；d2–d3c Recovery 由簽章 bundle 產生、不經 Plugin，重建只會讓 bundle 位元組變動，而它們的證據雜湊建立在原本 23 個 CRLF 檔案上（見 2026-10-15）。只重跑 d1（Plugin 產生的內容只差時間戳記；順帶把 d1 的起始 Repo README 同步為現行版本，原本落後一版）。
-- 內容（只改學員會讀到的輸出或主持人會看到的訊息）：D4 檢查點 1 的回報多列 `verify-sources` 新增的 `discovered_but_gone`（D1 盤點時有、現在已不存在的檔案）；主持指南常見問題第 5 條改成 0.25.1 的訊息（`carries no signature`／`signature does not verify`，並說明 rebase／amend 會拿掉簽章、改用 merge），第 7 條加上 0.27.0 的 `Git commit signature was not checked: cannot spawn ssh-keygen`（Windows 找不到 `ssh-keygen`；開場 `doctor.py` 已檢查，macOS 要到 0.27.1 才同樣處理）；三份 SOLUTION-NOTES 的 D4 待辦改用 `recite --onto` 把 stale 疊加到 `relocate-evidence` 的輸出。
+- 機械：產生 `domain-memory-0.27.2.zip`（73 個 Plugin 檔案；學員核對印出 `SHA OK 74 files`），刪除舊版的 ZIP 與 SHA256SUMS；版本字串與檔案數同步到 build_delivery_dlc（含測試、manifest）、dmlib、doctor、tools／DLC README、materials-dlc README、01-environment、開場投影片、主持指南、觀察指南、11 號指令書（順手修正 SHA256SUMS 檔名少了 `.zip`）、參考 Registry README。`dmlib.py` 的指令集合比對 `cli_parser`：只差 `init-change-package` 自 0.26.0 新增的可選 `--registry-root`（給 `--recitation` 用），已加入 `REGISTRY_OPTIONAL`；0.26.1、0.27.0 與 0.27.2 比對後三組都完全一致（0.27.1／0.27.2 沒有改 `cli_parser`）。
+- 資料：參考 Registry、d2–d3c Recovery 與三份參考解答的 `domain-memory/` 都不重建。0.23–0.27.2 沒有改資料格式，`validate`、`verify-evidence`、`verify-audit` 結果與 0.22.0 完全相同；d2–d3c Recovery 由簽章 bundle 產生、不經 Plugin，重建只會讓 bundle 位元組變動，而它們的證據雜湊建立在原本 23 個 CRLF 檔案上（見 2026-10-15）。只重跑 d1（Plugin 產生的內容只差時間戳記；順帶把 d1 的起始 Repo README 同步為現行版本，原本落後一版）。
+- 內容（只改學員會讀到的輸出或主持人會看到的訊息）：D4 檢查點 1 的回報多列 `verify-sources` 新增的 `discovered_but_gone`（D1 盤點時有、現在已不存在的檔案）；主持指南常見問題第 5 條改成 0.25.1 的訊息（`carries no signature`／`signature does not verify`，並說明 rebase／amend 會拿掉簽章、改用 merge），第 7 條加上 `Git commit signature was not checked`（Windows 接 `cannot spawn ssh-keygen`、macOS 自 0.27.1 接 `cannot run ssh-keygen`；開場 `doctor.py` 已檢查 `ssh-keygen`）；新增第 19 條：串接的舊 pre-push hook 失去執行權限時 0.27.2 停下 push 的訊息與修正（macOS `chmod +x`、Windows 看第一行 `#!`、不需要就刪掉、`pre-push` 遺失就重跑 `install-git-hitl-hook`）。DLC 的步驟都在剛 `git init` 或剛從 bundle clone 的 Repo 安裝 hook，只有學員機器原本就有別的 pre-push hook（例如 Git LFS）才會串接，所以列為主持人排錯項，不改 Runbook；Recovery 包不含 `.git`（hook 一律在接手時用封裝的 Plugin 重裝），沒有舊版 hook 需要重裝；三份 SOLUTION-NOTES 的 D4 待辦改用 `recite --onto` 把 stale 疊加到 `relocate-evidence` 的輸出。
 - 不改：`shifted` 的說法（詞彙表與 D4 檢查點 2 已寫「只是移動、不算失敗、留給下一次核准的提案重新引用」，與 0.23 一致）；push 前設 `PYTHONUTF8` 與 dm 腳本固定 `-X utf8`（cp950 下 0.22.0 與 0.26.1 直接呼叫都沒出錯、hook 不設 `PYTHONUTF8` 也都通過，沒有證據顯示這些提醒已過時，而且無害）；DLC 原本就沒有非 ASCII 路徑的提醒可刪。
 
 `init-change-package --recitation` 不放進 D4：D4 只有 10 分鐘、沒有成對簽章，而且實測（D3a Recovery 沙箱，0.26.1 與 0.27.0 結果相同：`relocate-evidence` 12 筆＋`recite --onto` 3 筆 stale＝15 筆 updates、0 unmatched，package 建立成功、`validate-change-package` 通過）發現 recitation package 無法走完：它唯一的測試義務是 cited paths 的 `verify-evidence`，Registry 還留著 stale 引用時結束碼為 1，`record-test-result` 不記錄，`verify-proposal` 因此拒絕；而引用要等套用後才會更新。只有 shifted 時 `verify-evidence --path` 結束碼為 0，可以走完，但 shifted 本來就通過所有檢查。這是 Plugin 的問題，應回報給 Plugin 作者。
 
-量測（0.27.0，與 0.26.1、0.22.0 完全相同）：
+量測（0.27.0，與 0.26.1、0.22.0 完全相同；0.27.2 重測的差異見下）：
 - 工具自檢：7 tests OK（含 D1＋D2 簽章整合測試）。
 - 參考 Registry：`Registry is valid.`（`--require-reviewed`）；162 個引用全部 current；verify-sources `current`、`discovered_but_gone` 空；verify-audit 64 events、head `sha256:955311a5…34260`；兩個 attestation commit `Git governance is valid.`；quality-gates 只有 pytest；pytest 76 passed；以第二把 Maintainer 金鑰（暫存區）做一個簽章 commit、推到本機 bare remote，hook 印六行 `Git governance is valid.`。參考 Registry 不必重簽。
 - D1 重播（`make_recovery.py d1`）：57 筆，`Registry is valid.`，162 current，約 52 秒（0.26.1 約 64 秒）。
@@ -274,4 +274,8 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 
 0.27.0 的新規則：material proposal 的 `implementation_design` 需要 `domain_forces`、`invariants_preserved`、`rejected_alternatives` 各至少一筆。DLC 會產生或附帶的 material Change Package 都已符合：CP-CORE-001（3／4／2）、CP-CORE-002（1／1／1，參考 Registry、d2–d3c Recovery 與三份參考解答裡的副本相同）、`inputs/package-spec.json`、學員範本 `worksheets/d2-signing-checklist.md`（三欄各一筆）、`test_tools.py` 的整合測試；Recovery 與參考解答的 `validate-change-package` 都通過。`fill_package.py` 沒有給這三欄時會寫空陣列，由 Plugin 擋下並說明，所以不另加檢查。
 
-驗證：已實跑上述全部項目與 `release_materials.py`（RELEASE PIPELINE PASS，DLC 候選 `0fdc94bd85da8a64`）。未驗證：以候選包貼 Runbook 提示詞逐頁演練（rehearsal），尤其 D4 檢查點 1 的新增欄位；2026-10-15 記錄的演練缺口仍未補。
+0.27.2 重測（與 0.27.0 相同，只列差異）：ZIP SHA256 `4057b081…6100ff`，仍是 73 個 Plugin 檔案、`SHA OK 74 files`；工具自檢 7 tests OK；參考 Registry 各項檢查結果相同，簽章 commit 這次改到 `domain-memory/`，push 時 hook 印七行 `Git governance is valid.`（六個 Registry commit＋新 commit）；D1 重播約 46 秒；Recovery 與參考解答數字不變。另實測 0.27.2 的新行為（Windows Git Bash）：串接的 hook 沒有 `#!` 第一行時被視為不可執行，push 停下並印出新訊息；補上 `#!/bin/sh` 後照常執行、push 通過。D3a Recovery 的 recitation 試跑沒有重跑（0.27.1／0.27.2 沒有改到 `recite`、`relocate-evidence`、`init-change-package`）。
+
+驗證：已實跑上述全部項目與 `release_materials.py`（RELEASE PIPELINE PASS，DLC 候選 `3e468118f398ecdd`）。未驗證：以候選包貼 Runbook 提示詞逐頁演練（rehearsal），尤其 D4 檢查點 1 的新增欄位；2026-10-15 記錄的演練缺口仍未補。
+
+Plugin 版本政策（2026-10-16 起）：一、固定一個確切的已 commit 版本，以 `git archive` 匯出後封裝，附逐檔與整包 SHA256，封裝的位元組不改。二、修正學員路徑上錯誤的 patch 版，重跑驗證（工具自檢、參考 Registry、D1 重播、`release_materials.py`）後採用；只動開發用檔案或與 DLC 無關的 patch 版可以不跟。三、minor 版（新增或改變行為）先讀 CHANGELOG 評估影響、在沙箱演練過再固定。四、排定的工作坊前 7 天凍結版本，凍結期間只接受安全性修正或會擋住學員的錯誤修正。五、每次改版都在本紀錄寫下 commit、採用理由與量測（與前一版的差異），並把版本字串與檔案數同步到所有出處（以舊版本號全文搜尋）。

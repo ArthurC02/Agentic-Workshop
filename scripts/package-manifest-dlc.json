@@ -323,7 +323,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "sha256": "309b606f83eba175d4935b9837161edf4630ff77f98d8b5e56cb8a447faedda7"
+          "sha256": "bfa7d8b6f68a945ce8983b0dd2117aedcfe86cd91f5644c264e8480dad934776"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -338,12 +338,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
-          "sha256": "37656c009114c02fe4318fc5ca36eb502532fe70e2b7c341565b8dcc045b50ab"
+          "sha256": "c6169c983fcb8bef5f0f5b2ab540490850b39b27defd852e1065af9f0b8e4476"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
-          "sha256": "9b14e9c1b86321d6db1dd7ff71f3caec274d40f2f500461fe99df514fa52dbb9"
+          "sha256": "093969b1787baaedb476e5bbda3ed9fd5ba22b74657c6425266502b2ea9e474d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
@@ -371,14 +371,14 @@
           "sha256": "1a6ba665520877ba86648b5955a259802b2676d8e8dd9e80a358f704aaa12a93"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip",
-          "sha256": "0031ff5f21d45b9c7dde03bc75868b73b857bd7a3272888415b2943deb231e2c"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.2.zip",
+          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.2.zip",
+          "sha256": "4057b081a8e4ff49be3d5b4f4a3a49127727f3ad134b4aae1670b7253e6100ff"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip.SHA256SUMS",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip.SHA256SUMS",
-          "sha256": "f8e54d6f2b4b7d292563a6edb348cd5cb2420640d6ab16de79d52c61659ffb72"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.2.zip.SHA256SUMS",
+          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.2.zip.SHA256SUMS",
+          "sha256": "4febb2725af7b621397ef1a2142d323f28fa28c87140ab1b3699b16771b7a333"
         }
       ],
       "generated": {}
@@ -576,12 +576,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "0cf165d99e1cd50cd181cb92e46535b2741e9a4f06f9cd0abbfbcf945dc1c71e"
+          "sha256": "edca9842054063bda231b0fb019fac693179cab9767e5c86604ce5d528832112"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "4ee67cf78895a4501ce9d85df52b6b109e786bb369b82bb3bd4b1f36171d9c66"
+          "sha256": "d1d13864f0acce14c5394b54a3c7508de6b63e6bdcb05c9cfe116c52697666dd"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
@@ -651,7 +651,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/source-map.json",
-          "sha256": "2ebbfaef033dceb93b3b092d8990011171571b73478169152d95b99dce106a26"
+          "sha256": "6e3cab3310abfa9a3f71b45d27b12e85fce8f6d8a3f509b51eeccd35371245d0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/pyproject.toml",
@@ -2862,7 +2862,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "bafc469288182e7e7b924bdec6eb43275c6362fcd2ea258e310ade1580f18b87"
+          "sha256": "d52d80b12316f4ead1c759a72ffb98dd30d7f2b98bac105f1ad32654589b7f83"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -2942,12 +2942,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "0cf165d99e1cd50cd181cb92e46535b2741e9a4f06f9cd0abbfbcf945dc1c71e"
+          "sha256": "edca9842054063bda231b0fb019fac693179cab9767e5c86604ce5d528832112"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "4ee67cf78895a4501ce9d85df52b6b109e786bb369b82bb3bd4b1f36171d9c66"
+          "sha256": "d1d13864f0acce14c5394b54a3c7508de6b63e6bdcb05c9cfe116c52697666dd"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
@@ -3017,7 +3017,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
-          "sha256": "2ebbfaef033dceb93b3b092d8990011171571b73478169152d95b99dce106a26"
+          "sha256": "6e3cab3310abfa9a3f71b45d27b12e85fce8f6d8a3f509b51eeccd35371245d0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/pyproject.toml",
@@ -5165,17 +5165,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
-          "sha256": "b657a8fa6e2c0e0c97d05c2274d4ac6b654c718b234e5c2d5db42243c80f2d53"
+          "sha256": "03a8d980078d2c40327f472b5fda8ec2e1f9e178aa347a632e82333b623dfd52"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
-          "sha256": "da35a5fc99b2bdce2b64535075942742e83a5290e2d9409fac138e421e2675a8"
+          "sha256": "536d3a5209ea34e8a105b60627b7302288a68ba02a44dcf0fec67e2da671c2d7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "5a3e40e312b3b97d1bbc56a166ad40b23ff899a63126404ca7925618b9f10261"
+          "sha256": "93c1fd62791a09c0e5a59c8ececac4b6ac9957b8759eff4ea571047e89b29172"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -5185,7 +5185,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "2fde9148231d965a2cd7520a95590d07c58e5330b3f559493c133e26f0b094e2"
+          "sha256": "3a336409e8956641f4d8928efec10799f064e554a7606bf6aa1ba713ff816ba9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",

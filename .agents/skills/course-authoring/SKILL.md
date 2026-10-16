@@ -118,6 +118,12 @@ Stay tool-neutral: no vendor product names, commands or config paths as requirem
 - No answer leaks: the B1 root cause, the B2 discount order, the B3/SQLite answer, DLC reference solutions.
 - If a checkpoint is renamed or renumbered, change together: the Runbook heading and 檢查點總覽, the slide `data-title`／`<h2>`／kicker, the segment opening roadmap, the previous slide's 「下一步」, and DLC `CHECKPOINTS.md`. Run `check_deck_runbook.py`.
 
+## DLC plugin version (domain-memory; full rule and procedure: decisions record 「Plugin 版本政策」)
+- Pin one exact committed version: `git archive <commit>` export → `scripts/vendor_dlc_plugin.py --source`, ZIP plus SHA256SUMS; never vendor a working tree, never edit vendored bytes.
+- Patch releases that fix something on the learner path: take them after re-running the checks (tools self-test, reference Registry, D1 replay, release pipeline). Minor releases: evaluate the changelog and rehearse before pinning.
+- Freeze the pin 7 days before a scheduled workshop; during the freeze only security or blocking fixes.
+- Every pin change: update version strings and file counts everywhere (grep the old version), and record commit, measurements and differences in the decisions record.
+
 ## Always
 - Delete content made obsolete, contradictory or duplicated by your edit. Do not only add.
 - Facilitator notes: situation and technique first, what to watch for, paste-ready hint prompts. Evaluation judges technique use plus evidence in `notes/` and `skills/`, never the number of form fields filled.
