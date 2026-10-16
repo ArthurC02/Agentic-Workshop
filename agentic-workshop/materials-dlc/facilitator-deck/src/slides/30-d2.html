@@ -66,11 +66,12 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「設定審查政策」</b><span>Runbook › 檢查點 2</span></li>
+    <li><b>提案者先下載 D2 範本</b><span>Runbook › 檢查點 3 的下載鈕</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 43 分前完成</b><span>→ 下一步：檢查點 3 整理提案並證明測試守得住（換提案者）</span></p>
   <aside class="notes">
-    <p><b>說（03:00／第 38 分）</b>：「第 38 分。還是夥伴：把檢查點 2 的提示詞貼給你的 Agent，policy 三次修改的順序已寫好，不要讓 Agent 調換。governance-readiness 要說 ready，否則後面都會失敗。」</p>
+    <p><b>說（03:00／第 38 分）</b>：「第 38 分。還是夥伴：把檢查點 2 的提示詞貼給你的 Agent，policy 三次修改的順序已寫好，不要讓 Agent 調換。governance-readiness 要說 ready，否則後面都會失敗。提案者趁這時先按檢查點 3 的下載鈕，把 D2 範本存到下載資料夾。」</p>
     <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready（其他狀態是 needs-setup 或 working-memory）。</p>
     <p><b>介入訊號</b>：readiness 是 needs-setup → 看 blocks 缺授權簽章者還是 hook；是 working-memory → review_mode 還沒改成 scm-verified；卡 5 分鐘上報。</p>
     <p><b>提示</b>：H1：請學員貼 Runbook 檢查點 2 的「失敗時」提示詞，讓 Agent 用白話解釋 blocks 缺哪一項，不要自己改設定。</p>
@@ -83,14 +84,15 @@
   <p class="cp-why"><b>為什麼</b>把 D1 模型打包送審，並證明測試守得住規則</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；先下載 D2 範本</span></li>
-    <li><b>回「選 1」，貼第二段</b><span>看過回報再貼「送出」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；範本沒下載就先下載</span></li>
+    <li><b>回「選 1」，貼第二段</b><span>等的時候讀小卡；看過回報再貼「送出」</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
   <p class="cp-next"><b>第 48 分前完成</b><span>→ 下一步：檢查點 4 夥伴審查證據並決定核准（換夥伴）</span></p>
   <aside class="notes">
-    <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提反事實方案，你選一個；只認 killed。按 Runbook 的下載鈕取得 D2 格式範本，Agent 會把它放進 worksheets。第 45 分我會看大家進度。」</p>
+    <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提兩個反事實方案，你選一個；只認 killed。D2 格式範本檢查點 2 時應已下載，Agent 會把它放進 worksheets。Agent 跑檢查時，提案者讀反事實檢查小卡、夥伴讀檢查點 4 ①。第 45 分我會看大家進度。」</p>
+    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各檔案候選數、方案改為 2 個；「送出」後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>背景</b>：Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry 的雜湊值。</p>
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
@@ -106,12 +108,13 @@
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「審查變更審查包」</b><span>Runbook › 檢查點 4；這是第一段</span></li>
     <li><b>決定核准才貼第二段</b><span>先讀證據原文；要退回就回「退回：原因」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>說得出「為什麼這條可以算事實」，才核准</p>
   <p class="cp-next"><b>第 53 分前完成</b><span>→ 下一步：檢查點 5 留下可驗證的核准紀錄</span></p>
   <aside class="notes">
     <p><b>說（13:00／第 48 分）</b>：「第 48 分。換夥伴，回到你自己的 Agent 對話。先讓 Agent 讀審查包、貼證據原文，你讀過再回核准或退回；只有你的回覆能讓簽章發生。看 git log --show-signature 有沒有 Good signature。」</p>
+    <p><b>省時</b>：核准那段最後請 Agent 自己檢查並回成功／失敗（不重跑 verify-proposal），不另貼 ③；Agent 讀審查包時夥伴先讀「已審查事實」小卡。</p>
     <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；commit 有沒有簽。</p>
     <p><b>介入訊號</b>：在提案者的對話裡核准或 commit → 停下，說明為什麼要換到夥伴的對話；commit 未簽章 → 不要硬 push，請 Agent 解釋 sign-every-commit 設定與金鑰路徑。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>已審查事實</b>（Runbook 檢查點 4 ④），花 30 秒講：經夥伴核准的模型是 Agent 必須遵守的限制，不能直接改寫；變更審查包在這裡順帶一句：它是夥伴要審的資料。</p>

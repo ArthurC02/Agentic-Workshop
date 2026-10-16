@@ -61,7 +61,7 @@
   <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
-    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，先貼工作規則。</p>
+    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，把工作規則和檢查點 1 的提示詞接在一起一次貼。</p>
   </aside>
 </section>
 
@@ -95,13 +95,14 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>下載、解壓、開 Agent</b><span>解到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>）</span></li>
-    <li><b>貼工作規則，再貼 ②</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>規則接 ② 一次貼</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 3 分前完成</b><span>→ 下一步：檢查點 2 備好可信的共用模型工具</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓到 C 槽的 dlc 資料夾，在 Repo 根目錄開 Agent，先貼工作規則，再貼提示詞讓 Agent 安裝依賴、跑測試，要看到 76 passed。」</p>
-    <p><b>看</b>：學員有沒有先貼工作規則；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
+    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓到 C 槽的 dlc 資料夾，在 Repo 根目錄開 Agent，把工作規則和提示詞接在一起一次貼，讓 Agent 安裝依賴、跑測試，要看到 76 passed；最後一行它會自己回成功或失敗。等安裝時先讀 Runbook 的 Windows 提醒。」</p>
+    <p><b>省時</b>：規則與檢查點 1 提示詞合成一次貼上（規則最後一句已改成「後面接著有指示就直接做」）；② 最後請 Agent 自我檢查並回成功／失敗，學員不必再貼 ③（沒看到才貼）。</p>
+    <p><b>看</b>：學員貼的內容開頭是不是工作規則；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
     <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 檢查點 1 的「失敗時」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源、路徑）；不要全場等。</p>
   </aside>
 </section>
@@ -149,12 +150,14 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「確認 Python」</b><span>Runbook › 檢查點 4；也建立起始 commit</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>等的時候找 D2 夥伴</b><span>還沒有夥伴的現在找</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 10 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
   <p class="sync-cue" data-sync="夥伴">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它在 PATH 上找 python3 或 python（3.10 以上）；Windows 上常只有 py 啟動器或 Store 捷徑，所以 push 前要先啟用 .venv。這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
+    <p><b>省時</b>：② 第 6 項的回報和 ③ 檢查相同，已請 Agent 在最後一行自己回成功／失敗，學員不必再貼 ③；找夥伴放在等 Agent 的時間。</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
     <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（在同一個指令裡先啟用 .venv，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
   </aside>

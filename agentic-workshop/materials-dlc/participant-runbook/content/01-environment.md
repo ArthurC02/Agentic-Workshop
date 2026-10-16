@@ -39,11 +39,11 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 - [ ] 在 Repo 根目錄開啟你的 Agent：
   - Windows：`C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository\smart-ticket-dlc-base`
   - macOS：`~/dlc/participant-dlc-open/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`
-- [ ] 依序貼下方兩段提示詞
+- [ ] 把下方兩段提示詞接在一起，一次貼給 Agent
 
 ② 貼給 Agent
 
-先貼工作規則。整場只貼一次，開新的 Agent 對話時才再貼。這段是給 Agent 的，不需要看懂：
+先複製工作規則，再把本檢查點的提示詞接在後面，一起送出（中間不用等 Agent 回覆）。工作規則整場只貼一次，開新的 Agent 對話時才再貼。這段是給 Agent 的，不需要看懂：
 
 ```prompt
 # windows
@@ -56,7 +56,7 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 6. 你或我新增到 Domain Memory 的內容一律是候選（candidate），不要寫成「已確認」，也不要當成限制。
 7. 沒有我的指示，不要 git commit 或 git push；不要讀取、複製或顯示任何私鑰檔。
 8. 你沒有實際執行的事情，一律標「未驗證」。
-請回覆「了解」，然後等我的下一個指示。
+請回覆「了解」；這段後面如果接著有指示，就直接開始做，否則等我的下一個指示。
 # macos
 以下是今天這堂延伸課程的工作規則，請在整段對話中遵守：
 1. 你負責所有指令操作與檔案編輯；我不自己打指令、不讀程式。每次做完用白話告訴我結果，並引用關鍵的實際輸出字樣（例如「76 passed」「Registry is valid.」），不要只貼原始輸出。
@@ -67,10 +67,10 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 6. 你或我新增到 Domain Memory 的內容一律是候選（candidate），不要寫成「已確認」，也不要當成限制。
 7. 沒有我的指示，不要 git commit 或 git push；不要讀取、複製或顯示任何私鑰檔。
 8. 你沒有實際執行的事情，一律標「未驗證」。
-請回覆「了解」，然後等我的下一個指示。
+請回覆「了解」；這段後面如果接著有指示，就直接開始做，否則等我的下一個指示。
 ```
 
-再貼本檢查點的提示詞：
+接在後面的本檢查點提示詞：
 
 ```prompt
 # windows
@@ -81,6 +81,7 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
    .venv\Scripts\python.exe -m pytest -q
 2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，沒有 warning）、有沒有 failed 或 error。
 3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
+4. 最後只檢查、不修改：pytest 最後一行是 76 passed，沒有 warning、failed 或 error；Repo 的完整路徑在 C:\dlc\ 底下；notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。全部符合在最後一行只寫「成功」，否則寫「失敗：」加一句原因。
 做完停下等我。
 # macos
 請準備起始 Repo 的執行環境，不要修改任何程式：
@@ -90,10 +91,15 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
    .venv/bin/python -m pytest -q
 2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，沒有 warning）、有沒有 failed 或 error。
 3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
+4. 最後只檢查、不修改：pytest 最後一行是 76 passed，沒有 warning、failed 或 error；Repo 的完整路徑在 ~/dlc/ 底下；notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。全部符合在最後一行只寫「成功」，否則寫「失敗：」加一句原因。
 做完停下等我。
 ```
 
+Agent 安裝套件約要一分鐘，先讀下方 ④ 的 Windows 提醒和檢查點 2 的 ①。
+
 ③ 確認結果
+
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
 
 ```prompt
 # windows
@@ -249,6 +255,7 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
    git add -A
    git commit -m "起始 Repo"
 6. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv\Scripts 底下且不含 WindowsApps；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
+最後一行只寫「成功」（python 是 3.13.x 且路徑正確、doctor.py 最後一行是「全部必要項目通過。」且沒有 [!!]、起始 commit 已建立且沒有 domain-memory/、git status --short 是空的），否則寫「失敗：」加一句原因。
 做完停下等我。
 # macos
 請確認真實 Python、建立 Git Repo、執行環境健檢，再建立起始 commit：
@@ -265,10 +272,15 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
    git add -A
    git commit -m "起始 Repo"
 6. 用白話告訴我：python 是不是 3.13.x、路徑是否在 smart-ticket-dlc-base 的 .venv/bin 底下；doctor.py 的最後一行、有沒有 [!!]；起始 commit 是否建立、裡面有沒有 domain-memory/；commit 後 git status --short 是不是空的。不要再改 notes/opening.md。
+最後一行只寫「成功」（python 是 3.13.x 且路徑正確、doctor.py 最後一行是「全部必要項目通過。」且沒有 [!!]、起始 commit 已建立且沒有 domain-memory/、git status --short 是空的），否則寫「失敗：」加一句原因。
 做完停下等我。
 ```
 
+等 Agent 時，還沒有 D2 夥伴的先找好（見本頁最後的「⏸ 看投影」）。
+
 ③ 確認結果
+
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
 
 ```prompt
 # windows

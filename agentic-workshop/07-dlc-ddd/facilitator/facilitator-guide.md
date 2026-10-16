@@ -103,13 +103,13 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 分鐘 | 檢查點 | 你說／做 |
 |---|---|---|
 | 0 | （解鎖前） | 「為什麼要和 Agent 一起建模」「今天怎麼進行」兩頁，共約 2 分鐘 |
-| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`（macOS：移到 `~/dlc` 再點兩下）、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
+| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`（macOS：移到 `~/dlc` 再點兩下）、在 Repo 根目錄開 Agent，把 Runbook 的工作規則和檢查點 1 的提示詞接在一起一次貼（規則最後一句會讓 Agent 直接開始） |
 | 0–3 | 1 · 確認起點：測試全部通過 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
 | 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 74 files`、`"version": "0.27.2"` |
 | 5–8 | 3 · 找出只能靠人審查的錯 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
 | 8–10 | 4 · 確認環境並建立起始版本 | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`（macOS：在 `.venv/bin/`）；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
 
-巡場看：學員是不是「貼 ② → 看回報 → 跑 ③ 確認結果」，而不是自己在終端機打指令。③ 回「失敗」時請學員貼該檢查點的「失敗時」提示詞，讓 Agent 先解釋錯誤、列出處理方式，等學員同意再做；不要替學員改指令。最常見的是 Agent 沒經 `dm` 腳本（cp950 錯誤）或沒在同一個指令裡啟用 `.venv`（`python` 指到 `WindowsApps`）：請學員重貼工作規則。
+巡場看：學員是不是「貼 ② → 看回報 → 跑 ③ 確認結果」，而不是自己在終端機打指令。檢查點 1、4 的 ② 已請 Agent 自我檢查並在最後一行回成功／失敗，學員不另貼 ③（沒看到才貼）；檢查點 4 等 Agent 時找好 D2 夥伴。③ 回「失敗」時請學員貼該檢查點的「失敗時」提示詞，讓 Agent 先解釋錯誤、列出處理方式，等學員同意再做；不要替學員改指令。最常見的是 Agent 沒經 `dm` 腳本（cp950 錯誤）或沒在同一個指令裡啟用 `.venv`（`python` 指到 `WindowsApps`）：請學員重貼工作規則。
 
 降級：第 10 分鐘仍有人未過 → 兩人一機繼續，D1 以夥伴機器為主；請 Agent 在 `notes/opening.md` 記下卡在哪一步，不延長本段。
 
@@ -120,9 +120,9 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 10–13 | 1 · 決定哪些資料算證據 | Agent 跑 `discover-sources` 並逐列建議；**學員回覆決定**。必含 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`，排除 `**/__pycache__/**` |
 | 13–17 | 2 · 建立共用模型並記下來源 | Agent 依學員的決定跑 `init-domain-memory --storage-mode tracked --review-mode local-draft-only` ＋ `confirm-sources`；不 commit |
 | 17–22 | 3 · 統一名詞：通用語言 | Agent 先列名稱矛盾、再提詞彙草稿與證據原文；學員選 ≥ 5 個、改定義、選矛盾的處理方式；Agent 寫 `d1-records.json` 並試跑 `make_record.py`（內部呼叫 `cite`） |
-| 22–27 | 4 · 劃分 Context，寫下規則 | 同樣由學員決定 ≥ 2 個 contexts、≥ 2 條 rules；Agent 一次登記為候選並跑 `validate`、`verify-evidence` |
+| 22–27 | 4 · 劃分 Context，寫下規則 | 同樣由學員決定 ≥ 2 個 contexts、2–3 條 rules；Agent 一次登記為候選並跑 `validate`、`verify-evidence`，最後一行自己回成功／失敗（不另貼 ③） |
 | 27–31 | 5 · 用客人的話找出模型缺口 | Agent 跑 `coverage` 與兩句 `resolve-terms`；學員選一個要記下的缺口 |
-| 31–35 | 6 · 對照程式判斷邊界洩漏 | Agent 跑 `get-context`、兩個不同 Context 的 `analyze-boundary`，對照程式附證據；學員判斷是否洩漏，填「D1 決定」 |
+| 31–35 | 6 · 對照程式判斷邊界洩漏 | Agent 跑 `get-context`、兩個不同 Context 的 `analyze-boundary`，對照程式附證據；學員判斷是否洩漏，Agent 寫完紀錄自己檢查（含 `git status`）；學員趁等 Agent 時聊「完成後想一想」，填「D1 決定」 |
 
 教學重點：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，**一定要讓學員在 Agent 摘錄的 `cite` 證據裡親眼看到**，不要口頭告訴他們。Runbook 的提示詞不會主動指向這兩組；Agent 的矛盾清單漏掉 Fare Policy／Discount Policy 時，可以請學員補一句「也比對 Fare Policy 和 Discount Policy」（可選）。Agent 會提草稿，但「哪些來源、哪些名詞、定義怎麼寫、是不是越界」必須是學員的回覆；學員對每個草稿一律回「同意」時，請他挑一個，要 Agent 把證據原文再念一次。
 
@@ -130,7 +130,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo＋已確認 source map＋D1 候選集，全部為候選）。切換後 `domain-memory/` 仍未追蹤；D2 夥伴在 `resume-d1` 開自己的 Agent 對話。
 
-收尾（第 35 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。
+收尾（第 35 分前）：學員趁等 Agent 時聊 Runbook「完成後想一想」，再填「D1 決定」；這段時間已滿，不另開全場分享（會吃掉 D2 約 1 分鐘）。
 
 ### 3.3 D2 審查與核准，成對（35–60，群組 `dlc-d2`）
 
@@ -140,8 +140,8 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 |---|---|---|---|
 | 35–38 | 1 · 夥伴取得核准權 | Maintainer | `init-signing-key --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit`（Git Bash：`"$HOME/.dlc-keys/maintainer/signing-key"`）；**先於第一個 Registry commit** |
 | 38–43 | 2 · 規定只有夥伴核准才算數 | Maintainer | `amend-policy` 依序 `authorized_signers`（fingerprint）→ `review_trigger git-push` → `review_mode scm-verified --verifier git-signed-commit`；`install-git-hitl-hook`；`governance-readiness` ready |
-| 43–48 | 3 · 整理提案並證明測試守得住 | Proposer | 學員按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 提 2–3 個 counterfactual 方案、學員選一個（只認 `killed`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal` |
-| 48–53 | 4 · 夥伴審查證據並決定核准 | Maintainer | Agent 先讀審查包、貼一條規則的證據原文並停下；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S` |
+| 43–48 | 3 · 整理提案並證明測試守得住 | Proposer | 提案者在檢查點 2（夥伴操作時）先按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 只回報各檔案候選數，提 2 個 counterfactual 方案、學員選一個（只認 `killed`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
+| 48–53 | 4 · 夥伴審查證據並決定核准 | Maintainer | Agent 先讀審查包、貼一條規則的證據原文並停下；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
 | 53–56 | 5 · 留下可驗證的核准紀錄 | Maintainer | `write_scm_attestation.py --commit HEAD`、`verify-git-governance --commit HEAD`；輸出提到的 `finalize-proposal` 是 Proposer 在 CP6 的步驟，Maintainer 的 Agent 不執行 |
 | 56–60 | 6 · 套用核准，模型成為事實 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`） |
 
