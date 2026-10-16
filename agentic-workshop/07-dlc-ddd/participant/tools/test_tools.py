@@ -155,7 +155,7 @@ class GovernedLifecycleTest(unittest.TestCase):
         record = dmlib.read_json(self.repo / "records" / "vocabulary-limit.json")
         self.assertEqual(record["contexts"], ["limits"])
         self.assertEqual(len(record["evidence"]), 2)
-        documents = dmlib.registry_documents(self.repo / "domain-memory")  # 有 export 就用，沒有就讀檔
+        documents = dmlib.registry_documents(self.repo / "domain-memory")  # 經 Plugin export
         self.assertEqual(sorted(documents), sorted(dmlib.ASSETS))
         self.assertEqual({t["id"] for t in documents["vocabulary"]["terms"]}, {"limit", "quota"})
         self.assertIn("valid", self.dm("validate").stdout)
@@ -206,6 +206,11 @@ class GovernedLifecycleTest(unittest.TestCase):
         self.dm("finalize-proposal", "--package-root", package)
         self.dm("apply-approved-updates", "--package-root", package)
         self.dm("validate", "--require-reviewed")
+        # 0.31 起 reviewed record 帶 verified（誰、何時核准），不再有 review 區塊；讀取一律經 export。
+        rule = dmlib.registry_documents(self.repo / "domain-memory")["rules"]["rules"][0]
+        self.assertEqual(rule["status"], "reviewed")
+        self.assertNotIn("review", rule)
+        self.assertTrue(rule["verified"] and all(v["by"].startswith("human:") for v in rule["verified"]), rule)
         self.assertIn('"valid"', self.dm("verify-audit").stdout)
         self.tool("setup_remote.py", "--path", "../" + self.repo.name + "-remote.git")
         self.assertTrue(self.git("remote", "get-url", "origin").endswith("-remote.git"))

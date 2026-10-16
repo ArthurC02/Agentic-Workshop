@@ -78,6 +78,10 @@ def documents():
                 continue
             links += 1
             resolved = (path.parent / target).resolve()
+            registry = next((p for p in path.parents if p.name == 'registry' and p.parent.name == 'domain-memory'), None)
+            if registry and target.startswith('/'):  # OKF concept ID /<asset>/<id> → registry/<asset>/<id>.md
+                concept = target.lstrip('/')
+                resolved = (registry / (concept if concept.endswith('.md') else concept + '.md')).resolve()
             if not resolved.exists():
                 errors.append(f'Broken link: {path.relative_to(ROOT)} -> {target}')
             if participant and any(part in resolved.parts for part in

@@ -21,12 +21,12 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.27.2")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.33.0")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 0.27.2 的 cli_parser.py 整理（只讀，不 import Plugin）。
+# 依 Plugin 0.33.0 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
-    "migrate-registry", "validate", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
+    "migrate-registry", "validate", "export", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
     "analyze-boundary", "upsert-candidate", "retract-candidate", "apply-approved-updates",
     "demote-local-reviews", "probe", "verify-evidence", "migrate-evidence", "recover-registry-update",
     "confirm-sources", "refresh-sources", "refine-sources", "amend-policy", "verify-git-governance",
@@ -44,6 +44,7 @@ REPO_ROOT = {
     "governance-readiness", "submit-proposal", "verify-proposal", "finalize-proposal", "quality-gates",
     "counterfactual", "cite", "attest-signed-commit", "audit-attestations", "boundary-impact", "recite",
     "record-test-result", "recover-registry-update", "relocate-evidence", "validate-change-package",
+    "export", "compare-registry", "change-coupling",
 }
 
 
@@ -52,7 +53,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.27.2.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.33.0.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 
@@ -119,17 +120,10 @@ def run_json(args: list[str], plugin: str | None = None):
 
 
 def registry_documents(root: str | Path = REGISTRY, plugin: str | None = None) -> dict:
-    """唯讀：Registry 每種資產的文件 {資產: 文件}。工具要讀 Registry 內容一律經這裡，不直接開檔。
-
-    Plugin 有 `export`（0.28.0 起）就用它，檔案版面改變也不受影響；0.27.2 沒有 `export`，
-    才退回讀 registry/<資產>.json（內容與 export 相同）。寫入一律經 Plugin 指令。
+    """唯讀：Registry 每種資產的文件 {資產: 文件}，經 Plugin `export`。工具要讀 Registry 內容一律經這裡，
+    不直接開檔（0.29 起是 OKF 版面 registry/<資產>/<id>.md，版面是 Plugin 的事）。寫入一律經 Plugin 指令。
     """
-    done = run(["export", "--registry-root", str(root)], plugin, check=False)
-    if done.returncode == 0:
-        return json.loads(done.stdout)
-    if "invalid choice: 'export'" not in done.stderr:
-        raise SystemExit(f"Plugin 指令失敗（exit {done.returncode}）：export\n{done.stdout}{done.stderr}")
-    return {asset: read_json(Path(root) / "registry" / f"{asset}.json") for asset in ASSETS}
+    return run_json(["export", "--registry-root", str(root)], plugin)
 
 
 def read_json(path: str | Path):

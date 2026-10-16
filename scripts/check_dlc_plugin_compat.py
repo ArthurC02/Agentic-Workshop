@@ -9,7 +9,7 @@
 Everything runs in a temp sandbox; the repo, the reference bundle and the private key are never written or used.
 Checks: (1) plugin commands/flags vs dmlib and the commands learners run, (2) participant tools self-test,
 (3) D1 replay (make_recovery.build_d1) plus the D1/D3 read commands, (4) reference Registry from the bundle:
-validate, verify-evidence/sources/audit, verify-git-governance, Change Packages, export vs files, push through
+validate, verify-evidence/sources/audit, verify-git-governance, Change Packages, export (OKF records), push through
 the pre-push hook (existing signed history, no key needed), (5) every plugin string the Runbook, Recovery or
 the deck quotes to learners. Prints PASS/CHANGED per item; exit 1 when anything CHANGED.
 Inventory and upgrade plan: docs/planning/domain-memory-touchpoints.md.
@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.27.2.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.33.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -66,7 +66,7 @@ QUOTED = [
     '"state": "brownfield"', '"tool": "pytest"', '"confidence": "high"', "not_applicable",
 ]
 ATTESTED = ["5538b6dbcba9e5c4468ceddec72b75b231f9688d", "38116f248f78befa51abac56405349301a5623c7"]
-REGISTRY_COMMITS = 6
+REGISTRY_COMMITS = 7  # six JSON-era commits + the signed OKF migration (0.33.0)
 
 results: list[tuple[str, str, str]] = []
 transcript: list[str] = []
@@ -111,8 +111,7 @@ def parser_surface(plugin: Path) -> dict[str, dict[str, bool]]:
     return json.loads(done.stdout)
 
 
-def check_commands(plugin: Path) -> bool:
-    """Returns whether the plugin has `export`."""
+def check_commands(plugin: Path) -> None:
     cli = parser_surface(plugin)
     sets = {"REGISTRY_REQUIRED": ({c for c, o in cli.items() if o.get("--registry-root") is True},
                                   dmlib.REGISTRY_REQUIRED),
@@ -131,7 +130,6 @@ def check_commands(plugin: Path) -> bool:
                                       "validate-contract", "verify-scm-attestation"})
     if new:
         print(f"[INFO] commands new to the DLC: {', '.join(new)}")
-    return "export" in cli
 
 
 def check_tools(plugin: Path) -> None:
@@ -171,7 +169,7 @@ def run_in(cwd: Path, func, *args):
         os.chdir(old)
 
 
-def check_reference(plugin: Path, sandbox: Path, has_export: bool) -> None:
+def check_reference(plugin: Path, sandbox: Path) -> None:
     repo = sandbox / "reference"
     sh(["git", "clone", "-q", "--no-checkout", str(REFERENCE / "smart-ticket-dlc-reference.bundle"), str(repo)],
        sandbox)
@@ -188,15 +186,13 @@ def check_reference(plugin: Path, sandbox: Path, has_export: bool) -> None:
         done = dm(repo, plugin, *args)
         report(done.returncode == 0, f"reference {' '.join(args)}", "" if done.returncode == 0 else
                (done.stdout + done.stderr).strip()[-300:])
-    files = {asset: dmlib.read_json(repo / "domain-memory/registry" / f"{asset}.json") for asset in dmlib.ASSETS
-             if (repo / "domain-memory/registry" / f"{asset}.json").exists()}
+    # OKF bundle (0.29+ layout, 0.31 record shape): export lists every asset; reviewed records carry `verified`.
     exported = run_in(repo, dmlib.registry_documents, "domain-memory", str(plugin))
-    if files:  # JSON layout: export must return the files' content unchanged
-        report(exported == files, "reference export equals registry files",
-               f"{len(files)} assets ({'export' if has_export else 'no export: file fallback'})"
-               if exported == files else "export differs from the files")
-    else:  # a migrated (OKF) bundle has no JSON files left; export alone must still list every asset
-        report(sorted(exported) == sorted(dmlib.ASSETS), "reference export lists every asset", str(sorted(exported)))
+    records = [r for doc in exported.values() for v in doc.values() if isinstance(v, list) for r in v
+               if isinstance(r, dict) and "id" in r]
+    odd = [r["id"] for r in records if "review" in r or not r.get("verified")]
+    report(sorted(exported) == sorted(dmlib.ASSETS) and records and not odd, "reference export (OKF records)",
+           f"{len(exported)} assets, {len(records)} records" + (f"; review block or no verified: {odd}" if odd else ""))
     sh(["git", "init", "-q", "--bare", str(sandbox / "remote.git")], sandbox)
     path = os.pathsep.join([str(Path(sys.executable).parent), os.environ.get("PATH", "")])
     done = sh(["git", "push", "-u", str(sandbox / "remote.git"), "HEAD:main"], repo, {"PATH": path})
@@ -224,10 +220,10 @@ def main(argv: list[str] | None = None) -> int:
         plugin = unpack(args.source.resolve(), sandbox)
         version = json.loads((plugin / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))["version"]
         print(f"domain-memory {version} from {args.source}\nsandbox {sandbox}", flush=True)
-        has_export = check_commands(plugin)
+        check_commands(plugin)
         check_tools(plugin)
         check_d1(plugin, sandbox)
-        check_reference(plugin, sandbox, has_export)
+        check_reference(plugin, sandbox)
         check_quoted(plugin)
     finally:
         if not args.keep:

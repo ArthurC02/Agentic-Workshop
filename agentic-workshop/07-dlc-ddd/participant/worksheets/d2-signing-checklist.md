@@ -23,7 +23,7 @@
 
 編號前綴：CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。
 
-`promote` 要列出 Registry 的**全部**候選，包括用過 Recovery 時帶進來的候選：`domain-memory/registry/` 底下每個有候選的 JSON 檔（`manifest.json` 除外）都要有一個同名的鍵。自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
+`promote` 要列出 Registry 的**全部**候選，包括用過 Recovery 時帶進來的候選：每種有候選的類別都要有一個同名的鍵（`dm export` 輸出的頂層鍵，例如 `rules`、`vocabulary`）。自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
 
 ```json
 {

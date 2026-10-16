@@ -235,7 +235,7 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --a
 |---|---|
 | `validate` | `Registry is valid.` |
 | `validate --require-reviewed` | 失敗，列出新候選 not reviewed（預期，Runbook 已說明） |
-| `verify-audit` | `valid`，69 events，head `sha256:0d859064…0f38`（Plugin 0.22.0 同一種資產一次登記） |
+| `verify-audit` | `valid`，70 events，head `sha256:9b530c2c…6979`（Plugin 0.33.0 `migrate-registry` 改存 OKF 版面，多一筆 event） |
 | `coverage` | 6 Contexts、24 詞、20 規則、2 Aggregates；缺口 `without_aggregate`：inventory、membership、invoicing（Invoice 是小型 Entity＋狀態機，刻意不登記 Aggregate）；6 個 Context 都無 Contract |
 | `verify-evidence` | 192 個引用：177 current、12 shifted、3 stale（exit 1，預期） |
 | `verify-sources` | `stale`：`src`、`tests`、`docs/adr` 檔案變更，`docs/requirements` 內容變更 |

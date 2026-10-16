@@ -1,0 +1,23 @@
+# Vocabulary
+
+- [提前購票優惠](/vocabulary/advance-purchase-discount) — 購票日（系統 Clock 的今天）至出發日相差至少 14 天時取得的 85% 資格；13 天不符合。.
+- [採用優惠明細](/vocabulary/applied-discount) — 每位旅客實際採用的優惠紀錄：passenger_id、discount_type、rate、amount；建立與改票都會重新產生。文件稱 Fare Result，程式在計價端叫 DiscountResult、在 Booking 上叫 AppliedDiscount。.
+- [剩餘座位數](/vocabulary/available-seats) — 班次目前還能賣的座位數；訂票保留時減少、釋放時增加。程式中同時存在計數器、座位指派表與容量表三份資料。.
+- [基本票價](/vocabulary/base-fare) — 班次的標準全額票價（整數）；成人無其他優惠時就付基本票價（rate 100）。.
+- [最有利單一優惠](/vocabulary/best-single-discount) — 每位旅客實際採用的唯一優惠：在所有符合的資格（含成人全額預設）中取 rate 最低者；多項優惠不疊加，也不依條件先後取第一個符合者。.
+- [訂票](/vocabulary/booking) — 一位或多位旅客對同一班次的一次訂位，持有旅客、狀態、總票價、採用優惠明細、座位與可選的會員 id。.
+- [訂票狀態](/vocabulary/booking-status) — 建立後為 PENDING_PAYMENT；付款成功轉 PAID；已付款退票轉 REFUNDED；團體付款失敗轉 CANCELLED。一般付款失敗維持 PENDING_PAYMENT。.
+- [連續座位區段](/vocabulary/consecutive-seat-segment) — 同一車廂（每車廂 20 個位置）內連號且完全空著的一段座位；團體訂票只能配置在這樣的一段內，不可跨車廂。.
+- [企業會員優惠](/vocabulary/corporate-discount) — 訂票綁定的會員類型為 CORPORATE 時取得的 95% 資格；資格判斷目前寫在 Pricing，直接讀取 Membership 的 Member 型別。.
+- [折扣率](/vocabulary/discount-rate) — 以百分比整數表示的票價比例（100、95、85、75）；旅客票價 = 基本票價 × rate // 100。.
+- [票價差額](/vocabulary/fare-difference) — 改票時新票價減原票價（new - old）；只記錄在 Booking 上，不執行補款或退款，Order 金額不變。.
+- [團體訂票](/vocabulary/group-booking) — 5–20 位旅客搭乘同一班次、配置同車廂連續座位的訂票；以 booking_type 字串 "GROUP" 區分，沒有獨立型別。.
+- [團體付款失敗補償](/vocabulary/group-payment-compensation) — 團體付款失敗時的整套處置：訂票轉 CANCELLED、釋放全部座位、不建立 Order、留下 Audit 與取消通知。文件稱補償，程式沒有對應名稱，只是 PaymentService.pay 內的一個分支。.
+- [會員](/vocabulary/member) — 有效會員 id 可附加到訂票；會員類型為 STANDARD 或 CORPORATE。.
+- [訂單](/vocabulary/order) — 付款成功後建立的唯一交易快照，amount 等於付款當時的訂票總票價；之後改票不改變它。.
+- [旅客](/vocabulary/passenger) — 訂票中的一位乘客，帶 passenger_id、姓名與旅客類型（ADULT 或 STUDENT）；每位旅客獨立決定優惠。.
+- [點數餘額](/vocabulary/points-balance) — 每位會員的非負整數點數，可經會員查詢取得；目前沒有任何累積或使用點數的功能。.
+- [退款紀錄](/vocabulary/refund-record) — 已付款訂票退票時建立的唯一本機紀錄，金額為訂票總票價；目前以 booking_id 為鍵，結構上一筆訂票只能退一次。.
+- [座位指派](/vocabulary/seat-assignment) — 一位旅客在某班次的座位：Seat ID（S001 起）、車廂、排、位置；同班次 Seat ID 不重複。.
+- [學生優惠](/vocabulary/student-discount) — 旅客類型為學生時取得的 75% 資格；仍與其他資格一起比較，取最低 rate。.
+- [訂票總票價](/vocabulary/total-fare) — 每位旅客個別計價後的整數金額加總；團體同樣是個別票價加總。.

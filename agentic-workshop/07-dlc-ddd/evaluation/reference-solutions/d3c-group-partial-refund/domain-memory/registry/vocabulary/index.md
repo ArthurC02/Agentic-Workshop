@@ -1,0 +1,29 @@
+# Vocabulary
+
+- [提前購票優惠](/vocabulary/advance-purchase-discount) — 購票日（系統 Clock 的今天）至出發日相差至少 14 天時取得的 85% 資格；13 天不符合。.
+- [採用優惠明細](/vocabulary/applied-discount) — 每位旅客實際採用的優惠紀錄：passenger_id、discount_type、rate、amount；建立與改票都會重新產生。文件稱 Fare Result，程式在計價端叫 DiscountResult、在 Booking 上叫 AppliedDiscount。.
+- [剩餘座位數](/vocabulary/available-seats) — 班次目前還能賣的座位數；訂票保留時減少、釋放時增加。程式中同時存在計數器、座位指派表與容量表三份資料。.
+- [基本票價](/vocabulary/base-fare) — 班次的標準全額票價（整數）；成人無其他優惠時就付基本票價（rate 100）。.
+- [最有利單一優惠](/vocabulary/best-single-discount) — 每位旅客實際採用的唯一優惠：在所有符合的資格（含成人全額預設）中取 rate 最低者；多項優惠不疊加，也不依條件先後取第一個符合者。.
+- [訂票](/vocabulary/booking) — 一位或多位旅客對同一班次的一次訂位，持有旅客、狀態、總票價、採用優惠明細、座位與可選的會員 id。.
+- [訂票狀態](/vocabulary/booking-status) — 建立後為 PENDING_PAYMENT；付款成功轉 PAID；已付款退票轉 REFUNDED；團體付款失敗轉 CANCELLED。一般付款失敗維持 PENDING_PAYMENT。.
+- [連續座位區段](/vocabulary/consecutive-seat-segment) — 同一車廂（每車廂 20 個位置）內連號且完全空著的一段座位；團體訂票只能配置在這樣的一段內，不可跨車廂。.
+- [企業會員優惠](/vocabulary/corporate-discount) — 訂票綁定的會員類型為 CORPORATE 時取得的 95% 資格；資格判斷目前寫在 Pricing，直接讀取 Membership 的 Member 型別。.
+- [折扣率](/vocabulary/discount-rate) — 以百分比整數表示的票價比例（100、95、85、75）；旅客票價 = 基本票價 × rate // 100。.
+- [票價差額](/vocabulary/fare-difference) — 改票時新票價減原票價（new - old）；只記錄在 Booking 上，不執行補款或退款，Order 金額不變。.
+- [團體訂票](/vocabulary/group-booking) — 5–20 位旅客搭乘同一班次、配置同車廂連續座位的訂票；以 booking_type 字串 "GROUP" 區分，沒有獨立型別。.
+- [團體付款失敗補償](/vocabulary/group-payment-compensation) — 團體付款失敗時的整套處置：訂票轉 CANCELLED、釋放全部座位、不建立 Order、留下 Audit 與取消通知。文件稱補償，程式沒有對應名稱，只是 PaymentService.pay 內的一個分支。.
+- [電子發票](/vocabulary/invoice) — 為一筆 Order 開立的電子發票，以 order_id 識別、總額等於 Order.amount；狀態 PENDING（可重試）、ISSUED（含不可變更的發票號碼）、FAILED（永久失敗或達呼叫上限，需人工處理）。.
+- [購票人發票資訊](/vocabulary/invoice-buyer-info) — 付款時選填的統編（8 位數字，須附公司名稱）或手機條碼載具（/ 加 7 碼），二者擇一；皆未提供時開立一般個人發票。格式錯誤在扣款前以 422 拒絕；資訊存在 Invoice，不寫入 Booking 或 Order。.
+- [開立呼叫次數](/vocabulary/issue-attempt) — Invoicing 為同一張發票呼叫服務商的累計次數（含第一次），每次都用同一 order_id；暫時失敗記錄最後錯誤並維持 PENDING，第 5 次仍未成功轉 FAILED。.
+- [會員](/vocabulary/member) — 有效會員 id 可附加到訂票；會員類型為 STANDARD 或 CORPORATE。.
+- [訂單](/vocabulary/order) — 付款成功後建立的唯一交易快照，amount 等於付款當時的訂票總票價；之後改票不改變它。.
+- [旅客](/vocabulary/passenger) — 訂票中的一位乘客，帶 passenger_id、姓名與旅客類型（ADULT 或 STUDENT）；每位旅客獨立決定優惠。.
+- [旅客部分取消](/vocabulary/passenger-cancellation) — 已付款團體只取消部分旅客：依出發前天數 D（出發日台灣日期 − 今天）收手續費，D ≥ 14 為 10%、7–13 為 20%、1–6 為 30%、D ≤ 0 拒絕；手續費逐位以該旅客票價計算並向下取整，退款＝被取消旅客票價合計 − 手續費。.
+- [應付金額](/vocabulary/payable-amount) — 優惠後總額（total_fare）減去折抵點數價值；付款向閘道扣的就是它，Order.amount 等於它，電子發票與退款再從 Order.amount 取。total_fare 與 applied_discounts 不因折抵改變。.
+- [點數餘額](/vocabulary/points-balance) — 每位會員的非負整數點數，可經會員查詢取得；目前沒有任何累積或使用點數的功能。.
+- [折抵點數](/vocabulary/redeemed-points) — 訂票建立時以會員點數折抵票款的點數（1 點 = 1 元）：至少 100 點、為 100 的倍數、價值不超過優惠後總額 30%（向下取整）；建立成功即從餘額預留（扣除），記在 Booking 上作為歸還依據。折抵不是優惠。.
+- [退款紀錄](/vocabulary/refund-record) — 已付款訂票退票時建立的唯一本機紀錄，金額為訂票總票價；目前以 booking_id 為鍵，結構上一筆訂票只能退一次。.
+- [座位指派](/vocabulary/seat-assignment) — 一位旅客在某班次的座位：Seat ID（S001 起）、車廂、排、位置；同班次 Seat ID 不重複。.
+- [學生優惠](/vocabulary/student-discount) — 旅客類型為學生時取得的 75% 資格；仍與其他資格一起比較，取最低 rate。.
+- [訂票總票價](/vocabulary/total-fare) — 每位旅客個別計價後的整數金額加總；團體同樣是個別票價加總。.

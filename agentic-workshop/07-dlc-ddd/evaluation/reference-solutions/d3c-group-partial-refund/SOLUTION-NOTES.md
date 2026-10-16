@@ -271,7 +271,7 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --a
 | 指令 | 結果 |
 |---|---|
 | `validate` | `Registry is valid.`（`--require-reviewed` 預期失敗） |
-| `verify-audit` | `valid`，77 events，head `sha256:f59e9778…60ad` |
+| `verify-audit` | `valid`，78 events，head `sha256:e323b453…94fe`（Plugin 0.33.0 `migrate-registry` 改存 OKF 版面，多一筆 event） |
 | `coverage` | 6 Contexts、27 詞、30 規則、3 Aggregates（`booking`、`order`、候選 `booking-v2`）；缺口 inventory、membership、invoicing 無 Aggregate（ADR 007 第 3 點刻意不合併座位資料）、6 個 Context 都無 Contract |
 | `verify-evidence` | 248 個引用：171 current、16 shifted、61 stale（exit 1，預期） |
 | `verify-sources` | `stale`（同 D3a） |

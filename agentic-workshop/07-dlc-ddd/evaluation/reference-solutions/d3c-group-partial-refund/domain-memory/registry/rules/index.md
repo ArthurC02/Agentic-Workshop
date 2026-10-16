@@ -1,0 +1,32 @@
+# Business Rules
+
+- [BOOKING-002](/rules/BOOKING-002) — 一般訂票單筆 1 至 4 位旅客；5 位以上要走團體訂票。.
+- [BOOKING-003](/rules/BOOKING-003) — 旅客數不得超過班次剩餘座位數，失敗時不留下任何訂票或座位。.
+- [CHANGE-004](/rules/CHANGE-004) — 改票只記錄票價差額（new - old），不執行補價或退款。.
+- [EINV-002](/rules/EINV-002) — 發票開立的任何結果都不影響付款：Order 與 PAID 先在付款鎖內成立，釋放全域鎖後才呼叫服務商（一般與團體路徑皆然），失敗只改 Invoice 狀態，付款 API 照樣成功、Order 金額不變。.
+- [EINV-003](/rules/EINV-003) — 發票總額等於 Order.amount；銷售額 = 總額 ÷ 1.05 四捨五入、稅額 = 總額 − 銷售額，全部以整數計算。.
+- [EINV-005](/rules/EINV-005) — 一筆 Order 至多一張已開立發票：以 order_id 作為服務商的商家訂單編號，第一次開立、逾時後重試都用同一編號；服務商回覆已開立（2001）視為成功並沿用原號碼（EINV-010）。.
+- [EINV-008](/rules/EINV-008) — 暫時失敗（忙碌、逾時、連線失敗）維持 PENDING 並可重試；累計呼叫 5 次（含第一次）仍未成功轉 FAILED，永久失敗（1001／1002）第一次就轉 FAILED；FAILED 之後不再呼叫服務商（EINV-007／008／009）。.
+- [FARE-002](/rules/FARE-002) — 學生旅客具備基本票價 75% 的資格，實際結果仍由最有利單一優惠決定。.
+- [FARE-003](/rules/FARE-003) — 每位旅客個別計價，個別整數金額加總為訂票總票價。.
+- [FARE-005](/rules/FARE-005) — 購票日至出發日相差至少 14 天才具備 85% 提前購票資格；未滿 14 天不具備（FARE-006）。.
+- [FARE-008](/rules/FARE-008) — 同時符合多項優惠時只採 rate 最低的單一優惠，多項優惠不疊加（FARE-007）。.
+- [GROUP-001](/rules/GROUP-001) — 團體訂票旅客數為 5 至 20 人（GROUP-001 最少 5、GROUP-002 最多 20）。.
+- [GROUP-004](/rules/GROUP-004) — 團體訂票必須配置同一車廂內的連續座位；找不到完整區段就不建立訂票（GROUP-005）。.
+- [GROUP-PAY-002](/rules/GROUP-PAY-002) — 團體付款失敗時訂票轉 CANCELLED、釋放全部團體座位且不建立 Order（GROUP-PAY-002 至 004）。.
+- [MEMBER-003](/rules/MEMBER-003) — 綁定 CORPORATE 會員的訂票，旅客具備 95% 企業優惠資格。.
+- [MEMBER-004](/rules/MEMBER-004) — 每位會員有非負整數點數餘額，可經會員查詢取得；目前沒有累積或使用點數的功能。.
+- [ORDER-002](/rules/ORDER-002) — Order 建立時 amount 等於付款當時的訂票總票價；改票後 Order 保留原付款快照，不執行差額金流。.
+- [PAYMENT-001](/rules/PAYMENT-001) — 只有 PENDING_PAYMENT 的訂票可以付款；同一訂票不得重複付款（PAYMENT-003）。.
+- [PCR-004](/rules/PCR-004) — 手續費與退款逐位以該旅客自己的票價計算（不以 total_fare 平均），費率依取消當天的 D 決定，金額向下取整為整數。.
+- [PCR-005](/rules/PCR-005) — 部分取消後有效旅客須 ≥ 5 人或 0 人；剩 1–4 人時整個請求 409 GROUP_BELOW_MINIMUM 且不留下任何變更；檢查與標記取消在同一把全域鎖內，同時取消也不會跌破下限。與團體建立共用 MIN_GROUP_SIZE。.
+- [PCR-008](/rules/PCR-008) — 任何時刻 Σ退款 + Σ手續費 + Σ有效旅客票價 = Order.amount；Order.amount 與 total_fare 不變，整筆退票視為全部旅客取消、手續費 0。.
+- [PTS-003](/rules/PTS-003) — 折抵點數小於 100 或不是 100 的倍數（含負數）時拒絕建立訂票（409 POINTS_INVALID_AMOUNT），餘額不變。.
+- [PTS-005](/rules/PTS-005) — 折抵點數價值不得超過優惠後總額的 30%（向下取整），剛好等於上限可以；以 total_fare（逐位最有利優惠後）計，不是基本票價。.
+- [PTS-008](/rules/PTS-008) — 點數在訂票建立成功時立即預留（扣除），且是寫入 Booking 與座位之前最後一道會拒絕的檢查；任何檢查失敗都不留下 Booking、座位、Audit 或扣點。.
+- [PTS-009](/rules/PTS-009) — 付款向閘道扣應付金額，Order.amount 等於應付金額（不再是訂票總票價），電子發票總額因此也是應付金額。取代 reviewed ORDER-002 在有折抵時的描述。.
+- [PTS-012](/rules/PTS-012) — 整筆退票的退款金額一律為 Order.amount（實付金額，未折抵、已改票的訂票亦同），折抵點數另外全數歸還；現金與點數不互相換算。.
+- [PTS-014](/rules/PTS-014) — 會員可用點數永不為負：餘額只在 Member.reserve_points 減少，檢查與扣除在同一把全域鎖內，同一會員同時建立多筆訂票合計預留不超過原餘額。取代 reviewed MEMBER-004 的「沒有使用點數的功能」。.
+- [REFUND-004](/rules/REFUND-004) — 只有已付款訂票可退票，退票建立唯一退款紀錄並釋放座位；同一訂票不可再退。.
+- [REFUND-004-V2](/rules/REFUND-004-V2) — 每次退款建立一筆新的退款紀錄（append-only，既有紀錄不被覆寫）：整筆退票一筆、團體部分取消每次一筆；整筆退票只能一次，且只限從未部分取消過的訂票（PCR-007、PCR-012）。取代 reviewed REFUND-004 的「同一訂票不可再退」。.
+- [SEAT-001](/rules/SEAT-001) — 同一班次內 Seat ID 不可重複配置。.

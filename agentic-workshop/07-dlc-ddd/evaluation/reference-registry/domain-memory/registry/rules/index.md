@@ -1,0 +1,18 @@
+# Business Rules
+
+- [BOOKING-002](/rules/BOOKING-002) — 一般訂票單筆 1 至 4 位旅客；5 位以上要走團體訂票。.
+- [BOOKING-003](/rules/BOOKING-003) — 旅客數不得超過班次剩餘座位數，失敗時不留下任何訂票或座位。.
+- [CHANGE-004](/rules/CHANGE-004) — 改票只記錄票價差額（new - old），不執行補價或退款。.
+- [FARE-002](/rules/FARE-002) — 學生旅客具備基本票價 75% 的資格，實際結果仍由最有利單一優惠決定。.
+- [FARE-003](/rules/FARE-003) — 每位旅客個別計價，個別整數金額加總為訂票總票價。.
+- [FARE-005](/rules/FARE-005) — 購票日至出發日相差至少 14 天才具備 85% 提前購票資格；未滿 14 天不具備（FARE-006）。.
+- [FARE-008](/rules/FARE-008) — 同時符合多項優惠時只採 rate 最低的單一優惠，多項優惠不疊加（FARE-007）。.
+- [GROUP-001](/rules/GROUP-001) — 團體訂票旅客數為 5 至 20 人（GROUP-001 最少 5、GROUP-002 最多 20）。.
+- [GROUP-004](/rules/GROUP-004) — 團體訂票必須配置同一車廂內的連續座位；找不到完整區段就不建立訂票（GROUP-005）。.
+- [GROUP-PAY-002](/rules/GROUP-PAY-002) — 團體付款失敗時訂票轉 CANCELLED、釋放全部團體座位且不建立 Order（GROUP-PAY-002 至 004）。.
+- [MEMBER-003](/rules/MEMBER-003) — 綁定 CORPORATE 會員的訂票，旅客具備 95% 企業優惠資格。.
+- [MEMBER-004](/rules/MEMBER-004) — 每位會員有非負整數點數餘額，可經會員查詢取得；目前沒有累積或使用點數的功能。.
+- [ORDER-002](/rules/ORDER-002) — Order 建立時 amount 等於付款當時的訂票總票價；改票後 Order 保留原付款快照，不執行差額金流。.
+- [PAYMENT-001](/rules/PAYMENT-001) — 只有 PENDING_PAYMENT 的訂票可以付款；同一訂票不得重複付款（PAYMENT-003）。.
+- [REFUND-004](/rules/REFUND-004) — 只有已付款訂票可退票，退票建立唯一退款紀錄並釋放座位；同一訂票不可再退。.
+- [SEAT-001](/rules/SEAT-001) — 同一班次內 Seat ID 不可重複配置。.

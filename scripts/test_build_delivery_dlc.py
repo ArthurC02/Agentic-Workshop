@@ -56,12 +56,12 @@ class VendorPluginTests(unittest.TestCase):
         out.with_name(name + ".SHA256SUMS").write_bytes(sums)
         self.assertEqual(vendor.verify(out), [])
         self.assertEqual(dlc.vendor_check({dlc.VENDOR_ZIP: data, dlc.VENDOR_ZIP + ".SHA256SUMS":
-                                           sums.replace(name.encode(), b"domain-memory-0.27.2.zip")}), True)
+                                           sums.replace(name.encode(), b"domain-memory-0.33.0.zip")}), True)
         out.write_bytes(data + b"x")
         self.assertTrue(vendor.verify(out))
 
     def test_vendored_repo_copy_matches_its_sums(self):
-        target = vendor.VENDOR / "domain-memory-0.27.2.zip"
+        target = vendor.VENDOR / "domain-memory-0.33.0.zip"
         if not target.exists():
             self.skipTest("plugin not vendored yet")
         self.assertEqual(vendor.verify(target), [])
@@ -80,7 +80,7 @@ class DlcBuilderTests(unittest.TestCase):
         self.write("agentic-workshop/07-dlc-ddd/evaluation/answer.md", "# private\n")
         plugin = self.root / "plugin"
         (plugin / ".claude-plugin").mkdir(parents=True)
-        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "0.27.2"}')
+        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "0.33.0"}')
         _name, data, sums = vendor.build(plugin)
         (self.root / dlc.VENDOR_ZIP).parent.mkdir(parents=True)
         (self.root / dlc.VENDOR_ZIP).write_bytes(data)
@@ -201,6 +201,13 @@ class DlcBuilderTests(unittest.TestCase):
         target.write_bytes(target.read_bytes() + b"x")
         with self.assertRaisesRegex(ValueError, "SHA256 differs"):
             dlc.verify(run)
+
+    def test_okf_concept_links_resolve_inside_the_registry(self):
+        reg = "a/domain-memory/registry"
+        ok = {f"{reg}/rules/R-1.md": b"- Contexts: [p](/contexts/p)\n", f"{reg}/contexts/p.md": b"x"}
+        self.assertEqual(dlc.dlc_link_check(ok), 0)
+        with self.assertRaisesRegex(ValueError, "Missing packaged concept"):
+            dlc.dlc_link_check({f"{reg}/rules/R-1.md": b"[q](/contexts/q)"})
 
     def test_shell_scripts_are_executable_for_unix_unzip(self):
         path = Path(self.tmp.name) / "t.zip"

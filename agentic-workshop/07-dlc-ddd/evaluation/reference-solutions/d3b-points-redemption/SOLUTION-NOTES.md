@@ -248,7 +248,7 @@ reviewed 事實不能覆寫（`upsert-candidate` 回 `cannot overwrite reviewed 
 | 指令 | 結果 |
 |---|---|
 | `validate` | `Registry is valid.`（`--require-reviewed` 預期失敗） |
-| `verify-audit` | `valid`，73 events，head `sha256:1e5ea7ad…f48d` |
+| `verify-audit` | `valid`，74 events，head `sha256:5bb77a38…18aa`（Plugin 0.33.0 `migrate-registry` 改存 OKF 版面，多一筆 event） |
 | `coverage` | 6 Contexts、26 詞、26 規則、2 Aggregates；缺口與 D3a 相同（Membership 仍刻意沒有 Aggregate：ADR 006 只在 `Member` 加兩個方法） |
 | `verify-evidence` | 225 個引用：168 current、35 shifted、22 stale（exit 1，預期） |
 | `verify-sources` | `stale`（同 D3a） |

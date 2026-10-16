@@ -1554,5 +1554,93 @@
   "recovery_and_reference_solutions": "same as plugin_0_27_0_remeasure",
   "recovery_ships_git_hooks": false,
   "same_results_as": "0.27.0 (492af5a28)"
+ },
+ "plugin_0_33_0_remeasure": {
+  "date": "2026-10-17",
+  "plugin": "domain-memory 0.33.0 (SkillHub b00228f49, exported with git archive)",
+  "vendor_zip_sha256": "f53aefc06bd5827f77c6344650f578ad3aba31d8e47c3c3b157509c790eca751",
+  "plugin_files": 79,
+  "sha_ok_line": "SHA OK 80 files",
+  "cli_parser_vs_dmlib": "identical after adding export (REGISTRY_REQUIRED, REPO_ROOT) and compare-registry, change-coupling (REPO_ROOT)",
+  "compat_before_migration": "26 PASS, 3 CHANGED (dmlib sets; reference validate --require-reviewed: legacy review block, missing verified)",
+  "compat_after": "29 PASS, 0 CHANGED (vendored ZIP)",
+  "tools_self_test": "7 tests OK (integration test asserts verified, no review block)",
+  "reference_registry": {
+   "migration_commit": "de53623 signed by Maintainer-2 (SHA256:GtKS8fEN...MueCs); tag dlc-d2-reviewed moved",
+   "layout": "OKF: 69 concept .md files under registry/ (57 records + 11 asset index.md + registry/index.md)",
+   "validate_require_reviewed": "Registry is valid.",
+   "verify_evidence": {
+    "current": 162,
+    "shifted": 0,
+    "stale": 0
+   },
+   "verify_audit": {
+    "events": 65,
+    "head": "sha256:f53095a8321df583dad6ecb3506872f648878b0c073e54b500ca5b03c9ff04b0"
+   },
+   "attestation_commits": "both Git governance is valid.",
+   "push_fresh_bare_remote": "7 x 'Git governance is valid.' (6 JSON-era Registry commits + the migration)",
+   "source_bytes": "no change outside domain-memory/; 22 CRLF + 1 mixed (.gitignore) source files untouched"
+  },
+  "d1_replay": {
+   "records": 57,
+   "validate": "Registry is valid.",
+   "verify_evidence_current": 162,
+   "seconds": 60,
+   "layout": "OKF"
+  },
+  "recovery": {
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "registry_commits_G": 7,
+   "d2_takeover_push_lines": 8
+  },
+  "reference_solutions": {
+   "d3a": {
+    "citations": [
+     177,
+     12,
+     3
+    ],
+    "events": 70
+   },
+   "d3b": {
+    "citations": [
+     168,
+     35,
+     22
+    ],
+    "events": 74
+   },
+   "d3c": {
+    "citations": [
+     171,
+     16,
+     61
+    ],
+    "events": 78
+   }
+  },
+  "compare_registry": "D1 replay vs reference snapshot: P/R/F1 1.0 on all assets; d3a solution vs --gold-commit dlc-d2-reviewed: precision 0.851, recall 1.0, 10 extras (the D3a candidates)",
+  "change_coupling": "starter repo: 1 commit, skipped (>30 files), no pairs; d3c recovery with thresholds lowered: only layer folders (api/application/domain/infrastructure) coupled at degree 100",
+  "same_results_as": "0.27.2 (citation counts); audit +1 event per Registry"
  }
 }

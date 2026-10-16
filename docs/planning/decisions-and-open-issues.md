@@ -283,3 +283,44 @@ Plugin 版本政策（2026-10-16 起）：一、固定一個確切的已 commit 
 ## domain-memory OKF 改版準備（2026-10-16）
 
 SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge Format）：Plugin 讀寫改走單一 store，新增 `export`；版面本身之後才改。DLC 仍固定 0.27.2，先做準備：`docs/planning/domain-memory-touchpoints.md` 列出 DLC 依賴 Plugin 的每個地方（指令與旗標、直接讀寫的路徑、學員看到的輸出字串、隨包的 Registry 與簽章歷史），逐項標記不受影響／需 migrate／需改寫，並寫下 OKF 上線時的步驟與風險；DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（有 `export` 就用，0.27.2 退回讀檔）；三處學員文字的「JSON 檔」改為「檔案」；新增 `scripts/check_dlc_plugin_compat.py`。實測 0.27.2 為 29 PASS，0.28.0 只有「dmlib 尚未列入 `export`」一項 CHANGED。學員路徑上唯一寫死版面的是 D2 檢查點 3 第一步與簽章流程清單，換版時一起改；參考 Registry 的 migrate commit 需要 Maintainer 私鑰，只能在保管者的電腦執行。
+
+## domain-memory 升級 0.33.0（OKF）（2026-10-17）
+
+由 0.27.2 升級，現固定 0.33.0（SkillHub `b00228f49`，以 `git archive` 匯出；SkillHub 工作區另有未 commit 的修改，沒有使用）。0.28–0.33 都是 minor 版，依版本政策第三條先讀 CHANGELOG、在沙箱跑相容性檢查再固定。這是第一階段（技術基礎）：Plugin、DLC 工具、參考 Registry、Recovery 與參考解答全部改成 OKF 版面；學員內容只改不改就會壞的步驟，其餘列在下方「第二階段重新設計清單」。
+
+採用理由：0.29 起 Registry 存成 OKF（Open Knowledge Format）概念檔，每筆紀錄一個 `registry/<類別>/<id>.md`，紀錄間的參照是 `# Relations` 底下的連結；0.31 起 reviewed 紀錄改帶 `verified`（誰、何時核准），不再有 `review` 區塊，審查它的提案改記在 audit log，引用只留 `path`、`lines`、`excerpt_sha256`；0.30 加 `export --commit`，0.32 加 `compare-registry`（以已審查的 Registry 為標準答案替抽取結果打分），0.33 加 `domain-memory-extract` Skill（`references/extraction.md`）與 `change-coupling`（從 Git 歷史找一起變動的模組）。學員用新 Plugin 做的 D1 一定是 OKF，參考 Registry 與 Recovery 若不跟著 migrate，同一班會出現兩種版面（見 `domain-memory-touchpoints.md` 第 8 節）。
+
+相容性檢查（`check_dlc_plugin_compat.py --source <0.33.0 匯出>`，遷移前）：26 PASS、3 CHANGED。`dmlib.REGISTRY_REQUIRED` 少 `export`；`dmlib.REPO_ROOT` 少 `change-coupling`、`compare-registry`、`export`；參考 Registry 的 `validate --require-reviewed` 失敗（`holds a legacy review block; run migrate-registry`、`is reviewed but missing verified`）。其餘都通過，包括工具自檢、D1 重播（已是 OKF，57／57 筆經 export 讀到）、`verify-evidence`、`verify-audit`、兩個 attestation commit、兩個 Change Package、經 hook push 舊的簽章歷史（六行）。修正後以封裝的 ZIP 重跑：29 PASS、0 CHANGED。
+
+做了什麼：
+- 機械：`domain-memory-0.33.0.zip`（79 個 Plugin 檔案；學員核對印出 `SHA OK 80 files`；ZIP SHA256 `f53aefc0…eca751`），刪除 0.27.2 的 ZIP 與 SHA256SUMS；版本字串與檔案數同步到 build_delivery_dlc（含測試、manifest）、check_dlc_plugin_compat、dmlib、doctor、tools／DLC README、materials-dlc README、01-environment、開場投影片、主持指南、觀察指南、11 號指令書、參考 Registry README。主持指南常見問題第 19 條「Plugin 0.27.2 起改成停下 push」是行為的起始版本，保留。`dmlib.py` 三組指令集合改成與 0.33.0 的 `cli_parser` 完全一致；`registry_documents()` 只走 `export`，刪掉 0.27.2 的讀檔備援。
+- 工具：`make_record.py` 與 `fill_package.py` 送出紀錄前也拿掉 `verified`（只能由 `apply-approved-updates` 寫入）；`test_tools.py` 的 D1＋D2 整合測試多驗 reviewed 紀錄帶 `verified`、沒有 `review` 區塊（讀取經 export）；相容性檢查改驗參考 Registry 的 OKF 紀錄形狀，hook 預期七行。其他工具不用改：`cite` 仍回 `source_kind`（Plugin 寫入時自己去掉衍生欄位），Change Package 範本格式沒變，`write_scm_attestation.py` 只讀寫 `changes/` 下的 JSON。
+- 參考 Registry：在暫存區 clone bundle、checkout `dlc-d2-reviewed`（`core.autocrlf=false`，`* -text` 不變）→ `migrate-registry`（11 個 JSON 換成 69 個 `.md`：57 筆紀錄、11 個類別 `index.md`、1 個 `registry/index.md`；audit event 65 為 `migrate-registry`、`layout: okf`，`reviewed_by` 記每筆的審查提案 CP-CORE-001／002）→ `validate --require-reviewed`、`verify-evidence`、`verify-sources`、`verify-audit`、`quality-gates` → 由 Maintainer-2 金鑰簽章 commit `de53623`「Registry 改存 OKF 版面（domain-memory 0.33.0 migrate-registry）」→ `verify-git-governance --commit HEAD` → push 到全新的本機 bare remote（hook 七行）→ tag 移到 `de53623` → 重做 bundle、以 `git archive` 重新匯出 `domain-memory/` 快照。私鑰沿用暫存區 `up22/keys-ref/signing-key`（`%USERPROFILE%\.dlc-keys\maintainer-2\` 不存在），以 `user.signingkey` 在原處讀取，沒有複製、搬移、commit 或重產；指紋 `SHA256:GtKS8fEN…MueCs`。這個 commit 只動 `domain-memory/`：起始程式的 22 個 CRLF 檔與 `.gitignore`（CRLF／LF 混合）位元組不變，舊的 7 個 commit 與兩個 attestation 雜湊不變。
+- Recovery：`make_recovery.py` 的「Registry 的六個 commit」改為七個（最上面一個是改存 OKF 版面）、push 檢查由七行改為八行；主持指南第 284 行同步；重跑 `make_recovery.py d1 d2 d3a d3b d3c`。Runbook 的 Recovery 頁沒有寫數字，不用改。
+- 參考解答：三份 `domain-memory/` 各跑一次 `migrate-registry`（不是 Git repo，不用金鑰）；SOLUTION-NOTES 的 events 與 head 更新。
+- 學員內容（只改會壞的）：D2 檢查點 3 第一步原本讀 `domain-memory/registry/*.json`，OKF 版面下 Agent 找不到 JSON、`promote` 會漏列，改為執行 `dm export`（兩個系統的指令寫在同一段），依類別記下 `status` 是 candidate 的 id；第二步兩個分頁的「每個有候選的檔案一個同名的鍵（檔名去掉 .json）」改為「每個有候選的類別一個同名的鍵（export 輸出的頂層鍵）」；`worksheets/d2-signing-checklist.md` 第 2 節同步。都以位元組層級修改，20-d2.md 保持 CRLF。
+- 檢查程式：OKF 的紀錄連結是概念 ID（`/contexts/booking`），不是相對路徑；`validate_workshop.py` 與 `build_delivery_dlc.dlc_link_check` 原本把它當成檔案連結而失敗，改為在 `domain-memory/registry/` 底下把 `/<類別>/<id>` 對到 `<類別>/<id>.md` 再檢查（仍會擋斷掉的連結；`test_build_delivery_dlc.py` 加一個測試）。
+- 其他：`materials-dlc/README.md` 的 `vendor_dlc_plugin.py` 範例補上必填的 `--source`；參考 Registry README（歷史、版面、預期結果、換行說明）、`dlc-validation-evidence.json` 加 `plugin_0_33_0_remeasure`、course-authoring Skill 的 DLC Plugin 規則（OKF 已上線、磁碟上 `status` 是 draft／stable、簽章歷史的新 commit 只能用 Maintainer-2 金鑰）、`domain-memory-touchpoints.md`。
+
+量測（0.33.0，Windows；與 0.27.2 的差異）：
+- 工具自檢：7 tests OK，約 23 秒。
+- 參考 Registry：`Registry is valid.`（`--require-reviewed`）；162 個引用全部 current；verify-sources `discovered_but_gone` 空；verify-audit 65 events（原 64）、head `sha256:f53095a8…04b0`；兩個 attestation commit `Git governance is valid.`；push 到全新 bare remote，hook 印七行（原六行）。
+- D1 重播（`make_recovery.py d1`）：57 筆，OKF 版面，`Registry is valid.`，162 current，約 60 秒。
+- Recovery current／shifted／stale：d2 162／0／0；d3a 147／12／3；d3b 108／32／22；d3c 99／31／32（與 0.27.2 相同）。Registry commit 7 個都是 `G`；d2 依 RECOVERY.md 接手（另產生的練習金鑰、`amend-policy` 兩個→三個 fingerprint、簽章 commit）後 push，hook 印八行。
+- 參考解答：d3a 177／12／3、70 events；d3b 168／35／22、74 events；d3c 171／16／61、78 events（引用數字不變，events 各多 1 筆）。
+- `compare-registry`：D1 重播對參考 Registry 快照，11 類的 precision／recall／F1 都是 1.0（輸入相同，預期）；d3a 參考解答對 `--gold-commit dlc-d2-reviewed`（在參考 clone 內執行）precision 0.851、recall 1.0，extra 正好是 D3a 的 10 筆候選。`--gold-commit 22de5e4`（JSON 版面的舊 commit）也讀得到。
+- `change-coupling`：起始 Repo 只有一個 commit，超過 30 個檔案被略過，輸出全空；d3c Recovery（9 個 commit）把門檻全部放到最低才有結果，而且只有 `api`／`application`／`domain`／`infrastructure` 四個分層資料夾彼此 degree 100（分層架構，看不出 Context）。
+
+驗證：已實跑上述全部項目與 `release_materials.py`（RELEASE PIPELINE PASS，DLC 候選 `214e9bf877f22902`；主課程候選也會變，因為主課程打包清單釘選本紀錄）。未驗證：Windows 與 macOS 各以候選包演練 D1 檢查點 2–3、D2 檢查點 1–6（尤其新的 `dm export` 第一步與 push）、D2 Recovery、D3a 檢查點 5、D4 檢查點 1；macOS 完全沒有實跑；Agent 讀約 78 KB 的 export 輸出是否穩定列出全部候選，也還沒驗證。
+
+第二階段重新設計清單：
+1. D2 檢查點 3 第一步：export 輸出約 78 KB（57 筆含證據）。考慮 `--save` 到暫存檔再摘要，或請 Plugin 作者加只列 candidate 的篩選。
+2. 磁碟上 `status` 是 draft／stable／deprecated，指令與 export 說 candidate／reviewed。「讀 domain-memory/ 裡的詞彙紀錄」（10-d1 檢查點 5 失敗時、30／40／50 第 2 步與失敗提示）應改用 `dm export` 或 `resolve-terms`，或在詞彙表說明兩套說法；30-d3a 第 3 步「看每筆紀錄自己的 status」目前靠 `get-context` 輸出（reviewed），Agent 若直接讀檔會看到 stable。
+3. 新概念：OKF 概念檔（一筆一檔、`# Relations` 連結、PR diff 可讀）、`verified` 與審查提案記在 audit（取代 `review` 區塊）、引用只留雜湊；詞彙表 Registry 列與相關卡片。
+4. `compare-registry`：設計 D1 結束或揭曉時的打分（學員包不能帶參考 Registry，可在主持人端或 Recovery 歷史上用 `--gold-commit`）；D3 可用來看「新增了哪些」。
+5. `change-coupling`：起始 Repo 沒有可用的歷史，若要教，起始 Repo 需要一段依功能切的 commit 歷史；或改成「分層 Repo 上這個訊號不準」的反例。
+6. `domain-memory-extract` Skill 與 `references/extraction.md`（語言→邊界→關係→戰術，紀錄不寫怎麼找到的）可作為 D1 的骨架，對照目前 D1 檢查點重排。
+7. `export --commit`（0.30）：D4 可對照 D2 tag 與目前的事實。
+8. 簡報、主持人指南、觀察指南：OKF 檔案的截圖與說明；主持人常見問題補「手動編輯 `.md` 超出 frontmatter 子集被拒（附行號）」與編輯器換行的處理（未實測）。
+9. 學員包 `references/registry-schema.md` 新增「Concept files」一節；詞彙表或延伸閱讀引用章節時要核對。
+10. `dlc-final-report.md` 首段只記到 0.27.2。

@@ -29,7 +29,7 @@ from build_delivery import ROOT, digest, link_check, safe_path
 MANIFEST = ROOT / "scripts/package-manifest-dlc.json"
 OUT_ROOT = ROOT / "dist/dlc-candidate"
 DLC = "agentic-workshop/07-dlc-ddd"
-VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-0.27.2.zip"
+VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-0.33.0.zip"
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
     "participant-dlc-open": ("participant", 0),
@@ -177,6 +177,13 @@ def dlc_link_check(contents: dict[str, bytes]) -> int:
     """build_delivery.link_check, but a link to a directory is fine when the package ships files under it."""
     files = dict(contents)
     for name, data in contents.items():
+        registry = re.match(r"(.*/domain-memory/registry)/", name)
+        if registry and name.endswith(".md"):  # OKF concept ID /<asset>/<id> → <registry>/<asset>/<id>.md
+            for target in re.findall(r"\]\((/[^)]*)\)", data.decode("utf-8")):
+                key = registry.group(1) + (target if target.endswith(".md") else target + ".md")
+                if key not in contents:
+                    raise ValueError(f"Missing packaged concept: {name} -> {target}")
+            files[name] = re.sub(rb"\]\(/[^)]*\)", b"]", data)  # checked above; link_check sees the rest
         if name.endswith(".md"):
             for target in re.findall(r"\]\(([^)]+)\)", data.decode("utf-8")):
                 target = unquote(target.split("#", 1)[0].strip("<>"))
