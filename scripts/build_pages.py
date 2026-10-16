@@ -6,14 +6,12 @@ unlock code appears in a published page. Preview: python scripts/build_pages.py 
 from html import escape
 from pathlib import Path
 import json
-import os
 import shutil
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKSHOP = ROOT / "agentic-workshop"
 OUT = ROOT / "_site"
-REPO = os.environ.get("GITHUB_REPOSITORY", "ArthurC02/Agentic-Workshop")
 EDITIONS = (("materials", "主課程"), ("materials-dlc", "DDD 延伸課（DLC）"))
 
 STYLE = """
@@ -35,12 +33,11 @@ li:first-child{border-top:0}
 .n{color:var(--muted);font-variant-numeric:tabular-nums}
 li a{color:var(--fg);flex:1}
 .meta{color:var(--muted);font-size:.875rem;white-space:nowrap}
-.meta a{color:var(--muted)}
 """
 
 
 def collect(folder):
-    """Return (runbook, [(deck, stage_meta, handout_or_None)]) for one edition."""
+    """Return (runbook, [(deck, stage_meta)]) for one edition."""
     base = WORKSHOP / folder
     decks = []
     for stage in sorted(base.glob("speech/*/src/stage.json")):
@@ -48,8 +45,7 @@ def collect(folder):
         deck = stage.parent.parent / meta["deck"]
         if not deck.exists():  # ponytail: an unbuilt stage simply stays off the site
             continue
-        handout = stage.parent.parent / meta.get("handout", "")
-        decks.append((deck, meta, handout if handout.is_file() else None))
+        decks.append((deck, meta))
     return base / "participant-runbook" / "runbook.html", decks
 
 
@@ -73,11 +69,9 @@ def unlock_codes():
 def section(label, runbook, decks):
     rel = lambda p: escape(p.relative_to(WORKSHOP).as_posix())
     items = []
-    for i, (deck, meta, handout) in enumerate(decks, 1):
-        extra = (f' · <a href="https://github.com/{REPO}/blob/main/{escape(handout.relative_to(ROOT).as_posix())}">講義</a>'
-                 if handout else "")
+    for i, (deck, meta) in enumerate(decks, 1):
         items.append(f'<li><span class="n">{i:02d}</span><a href="{rel(deck)}">{escape(meta["title"])}</a>'
-                     f'<span class="meta">{meta["minutes"]} 分鐘{extra}</span></li>')
+                     f'<span class="meta">{meta["minutes"]} 分鐘</span></li>')
     talks = f'<h3>演講簡報（照上課順序）</h3><ol>{"".join(items)}</ol>' if items else ""
     return (f'<section><h2>{escape(label)}</h2>'
             f'<a class="cta" href="{rel(runbook)}">學員 Runbook：{escape(label)} →</a>{talks}</section>')
@@ -89,7 +83,7 @@ def build(out=OUT):
     sections = []
     for folder, label in EDITIONS:
         runbook, decks = collect(folder)
-        for page in [runbook] + [d for d, _, _ in decks]:
+        for page in [runbook] + [d for d, _ in decks]:
             target = out / page.relative_to(WORKSHOP)
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(page, target)
