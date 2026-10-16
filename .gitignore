@@ -8,3 +8,4 @@ dist/
 
 # PowerShell module cache written when an agent runs with a redirected profile
 /Microsoft/
+_site/
