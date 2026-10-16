@@ -70,11 +70,11 @@ def section(label, runbook, decks):
     rel = lambda p: escape(p.relative_to(WORKSHOP).as_posix())
     items = []
     for i, (deck, meta) in enumerate(decks, 1):
-        items.append(f'<li><span class="n">{i:02d}</span><a href="{rel(deck)}">{escape(meta["title"])}</a>'
+        items.append(f'<li><span class="n">{i:02d}</span><a href="{rel(deck)}" target="_blank">{escape(meta["title"])}</a>'
                      f'<span class="meta">{meta["minutes"]} 分鐘</span></li>')
     talks = f'<h3>演講簡報（照上課順序）</h3><ol>{"".join(items)}</ol>' if items else ""
     return (f'<section><h2>{escape(label)}</h2>'
-            f'<a class="cta" href="{rel(runbook)}">學員 Runbook：{escape(label)} →</a>{talks}</section>')
+            f'<a class="cta" href="{rel(runbook)}" target="_blank">學員 Runbook：{escape(label)} →</a>{talks}</section>')
 
 
 def build(out=OUT):
