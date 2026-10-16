@@ -238,7 +238,7 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
    PowerShell：.\.venv\Scripts\Activate.ps1; python --version; (Get-Command python).Source
    Git Bash：source .venv/Scripts/activate && python --version && command -v python
 2. 建立 Git Repo，Git 使用者只設在本 Repo，不要用 --global；這時先不要 commit：
-   git init
+   git init -b main
    git config --local user.name "DLC Proposer"
    git config --local user.email proposer@example.com
 3. 執行環境健檢（它會檢查 PATH 上的 python 與本 Repo 的 Git 設定，所以在 git init 之後執行，同一個指令裡先啟用 venv）：
@@ -255,7 +255,7 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
 1. 在同一個指令裡啟用 venv 並確認 python 的版本與路徑：
    source .venv/bin/activate && python --version && command -v python
 2. 建立 Git Repo，Git 使用者只設在本 Repo，不要用 --global；這時先不要 commit：
-   git init
+   git init -b main
    git config --local user.name "DLC Proposer"
    git config --local user.email proposer@example.com
 3. 執行環境健檢（它會檢查 PATH 上的 python 與本 Repo 的 Git 設定，所以在 git init 之後執行，同一個指令裡先啟用 venv）：

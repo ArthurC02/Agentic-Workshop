@@ -10,6 +10,8 @@ section: D3｜照模型做變更
 
 Recovery 的內容是 D2 的已審查 Registry，加上 D3a～D3c 參考實作（電子發票、點數折抵與團體部分退款的程式、測試與 ADR；會取代你們自己的 D3a～D3c 程式）。原 Repo 保留不動；Agent 會在紀錄寫明這段由 Recovery 提供。
 
+改用這個 Recovery 的組，D4 只做最低完成線：檢查點 1，加上只含 Unknowns 的交接單，其他段寫「未完成」。
+
 ```download
 id=recovery-dlc-d3c zip=recovery-dlc-d3c.zip label=下載 D3c Recovery
 ```

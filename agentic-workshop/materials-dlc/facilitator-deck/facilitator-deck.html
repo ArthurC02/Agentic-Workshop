@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 60464960ce838aaa inputs-sha256 60464960ce838aaa4a1fa2bab6a38575fa5ca25a7576019b1ba13d9110396998 -->
+<!-- 主持人專用，不發給學員。build b4ee561a47edbaa0 inputs-sha256 b4ee561a47edbaa0e892b652322293002f2b6eb118e67103c66a3715ff7dae66 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1781,7 +1781,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「名稱矛盾與詞彙草稿」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>用一行回覆決定</b><span>例如「採用 1,2,4,5,7；矛盾 A 選 1」</span></li>
+    <li><b>用一行回覆決定</b><span>例如「採用 1,2,3,5,6；矛盾 A 選 1」</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>挑一個詞看證據原文；至少採用 5 個</p>
@@ -2630,6 +2630,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（23:00／第 148 分）</b>：「第 148 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3c-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對交接單「允許改寫的既有測試」與工作規則第 7 條（改既有測試要先停下說明、等學員同意）。</p>
+    <p><b>第 150 分決定 Recovery</b>：掃一圈，核心還沒跑起來、Review 做不完的組，現在決定是否改用 D3c Recovery；決定的組揭曉後立即私下給碼（不等第 155 分），D4 只做最低完成線。</p>
   </aside>
 </section>
 
@@ -2749,10 +2750,12 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D4 交接』› 檢查點 1，提示詞貼到提案者的對話</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「D4 十分鐘，三段提示詞都貼給同一個 Agent：先請它檢查模型有沒有落後程式，再列出 D3 改變的規則、你們同意後登記成候選，最後請它寫交接單並逐一查證 id。你們只回『同意』或『改成…』。」</p>
+    <p><b>說（約 20 秒）</b>：「D4 十分鐘，提示詞都貼給提案者的 Agent：先請它檢查模型有沒有落後程式，再列出 D3 改變的規則、你們同意後登記成候選，最後請它寫交接單並逐一查證 id。你們只回『同意』或『改成…』。」</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>驗收（看紀錄，不看表單填多少）</b>：<code>notes/d4.md</code> 有驗證結果與更新清單；<code>docs/handoffs/d4-next-agent.md</code> 七段齊全、Agent 的 id 核對清單全部查得到，已 commit。</p>
-    <p><b>Recovery</b>：D3c 未完成者仍可用 <code data-code="dlc-rec-d3c"></code> 接續到 D4（需在 D3c 揭曉後）。</p>
+    <p><b>角色</b>：三個檢查點的提示詞都貼給提案者的 Agent；最後的 commit 由夥伴在自己的對話貼第二段。</p>
+    <p><b>時間</b>：D4 實際要 12–15 分鐘；第 165 分還沒完成就收在最低完成線：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」。</p>
+    <p><b>Recovery</b>：第 150 分決定改用 D3c Recovery 的組，揭曉後立即私下提供 <code data-code="dlc-rec-d3c"></code>（不等第 155 分）；切換要 5–7 分鐘，這些組 D4 只做最低完成線。</p>
   </aside>
 </section>
 
@@ -2769,7 +2772,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 改了程式，模型引用的原文可能只是移動，也可能內容變了。只是移動的不算問題；內容變了，代表模型落後程式：記下來交給下一次核准，不要叫 Agent 當場修。」</p>
     <p><b>背景</b>：Agent 回報裡，只是移動的叫 shifted，內容變了的叫 stale（過期）；兩種都是預期的。</p>
-    <p><b>看</b>：學員是否讀了 Agent 的回報；stale 與 shifted 是否列成 asset:id 清單（verify-evidence 每筆結果都附 asset 與 id；數量以引用計，清單以 asset:id 合併，每張清單裡同一個 id 只列一次）；Agent 有沒有自己寫腳本或動手修。</p>
+    <p><b>看</b>：學員是否讀了 Agent 的回報；stale 與 shifted 是否列成 asset:id 清單（清單只列 asset:id（檔案），行號不必列；數量以引用計，清單以 asset:id 合併，每張清單裡同一個 id 只列一次）；Agent 有沒有自己寫腳本或動手修。verify-sources 的 discovered_but_gone 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 []。</p>
     <p><b>介入訊號</b>：Agent 開始改檔 → 請學員貼「停下，只回報，不要修改」；stale 被略過 →「下一個 Agent 會把哪一筆當成限制？」</p>
   </aside>
 </section>
@@ -2808,7 +2811,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（06:00／第 161 分）</b>：「第 161 分。想像明天換另一個 Agent 接手，它只看得到這份交接單和共用模型。請 Agent 寫，並要它逐一查證每個 id；你們抽一句問『證據在哪？』。」</p>
     <p><b>看</b>：Agent 是否回報 id 核對清單；查不到的 id 是否移到 Unknowns 而不是被換成猜的 id；Unknowns 是否誠實（含檢查點 2 列為未完成的事實；用過 Recovery 的組 Counterfactual 寫「未證明」，Unknowns 註明「Recovery 不含」）；commit 在夥伴的 Agent 對話執行，不是提案者的 Agent。</p>
-    <p><b>介入訊號</b>：第 165 分未完成 → 保留現況，進回顧。</p>
+    <p><b>介入訊號</b>：第 165 分未完成 → 請學員對 Agent 說「照 D4 最低完成線收尾」：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」；夥伴 commit 後進回顧。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人聊兩分鐘（也可和隔壁組交換看交接單的 Unknowns），再把結論記進「D4 交接核對」；挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再請大家回想各段結尾的討論。</p>
   </aside>
 </section>

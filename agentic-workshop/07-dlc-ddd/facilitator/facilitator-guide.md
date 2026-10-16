@@ -245,11 +245,13 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
-| 155–158 | 1 · 檢查模型是否落後程式 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 對只是移動的引用回報 `shifted`（不算失敗），引用行被改過的才是 `stale`、exit 1。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-evidence` 每筆結果都附 asset、id 與 `cited_lines`，Agent 直接把 stale 與 shifted 列成 asset:id 清單，不必自寫腳本 |
+| 155–158 | 1 · 檢查模型是否落後程式 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 對只是移動的引用回報 `shifted`（不算失敗），引用行被改過的才是 `stale`、exit 1。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-sources` 的 `discovered_but_gone` 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 `[]`。stale 與 shifted 清單只列 asset:id（檔案），行號不必列（檢查點 2 要新行號時再跑一次 `verify-evidence`），不必自寫腳本 |
 | 158–161 | 2 · 把改變的規則寫回模型 | Agent 依檢查點 1 的 asset:id 清單，只對 stale 的 id 用 `get-record` 分出候選與 reviewed（decisions 看 `review_status`，其他看 `status`；shifted 的 reviewed 一律歸 C，兩張清單都有的以 stale 處理），列出更新清單；學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選。stale 或 shifted 的候選用同一個 id 重新引用；行為被改變的 reviewed 事實以新 id 候選取代；只是移動（shifted）或行為沒變的 reviewed 事實不登記，留給下一次核准。B 類最多 3 項（`REFUND-004` 先列），其餘列為未完成、寫進交接單 Unknowns。參考：D3c 讓 `REFUND-004`、`vocabulary:refund-record`、Booking 的「只能退一次」（`aggregates:booking`）與 `ASIS-004` 不再成立；D3c Recovery 也含 D3a／D3b 的變更，所以 `MEMBER-004`、`vocabulary:points-balance`（已可折抵點數）、`ORDER-002`、`vocabulary:order`、`aggregates:order`（Order 金額改為折抵後的應付金額）同樣不再成立，`contexts:membership`（多了預留與歸還點數）與 `contexts:payment`（多了開立電子發票）的職責描述已不完整。D3c Recovery 的清單約 39 個 asset:id（stale 21、shifted 26，8 個兩張都有），3 分鐘內登記不完，其餘列為未完成是預期 |
 | 161–165 | 3 · 寫交接單並查證每個引用 | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
 
-看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。D3c 未完成者仍可用 `dlc-rec-d3c`（D3c 揭曉後）接續 D4；Recovery 沒有 D3 的交接單、情境卡與 `cf-*.json`，Counterfactual check 一律寫「未證明」，Unknowns 註明「Recovery 不含」。
+**時間**：D4 實際要 12–15 分鐘，10 分鐘做不完是常態。第 165 分還沒完成就收在最低完成線：「檢查點 1 + 只含 Unknowns 的交接單，其他段寫『未完成』」，夥伴 commit 後進回顧。第 150 分決定改用 D3c Recovery 的組（切換要 5–7 分鐘，會吃掉大半個 D4），D4 一開始就只做這條線。
+
+看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。第 150 分決定切換的組用 `dlc-rec-d3c` 接續 D4（見 §4）；Recovery 沒有 D3 的交接單、情境卡與 `cf-*.json`，Counterfactual check 一律寫「未證明」，Unknowns 註明「Recovery 不含」。
 
 收尾（第 165 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再引用各段的答案。
 
@@ -273,7 +275,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | `dlc-rec-d2` | 45 | Recovery | 第 45 分起；或任一組任一步卡 5 分鐘 |
 | `dlc-rec-d3a` | 95 | Recovery | **D3a 揭曉頁之後**才可提供 |
 | `dlc-rec-d3b` | 125 | Recovery | **D3b 揭曉頁之後**才可提供 |
-| `dlc-rec-d3c` | 155 | Recovery | **D3c 揭曉頁之後**才可提供 |
+| `dlc-rec-d3c` | 152 | Recovery | **第 150 分決定**哪些組切換；切換的組在 **D3c 揭曉頁之後**立即私下提供（約第 152 分，不等第 155 分）。切換要 5–7 分鐘、與整個 D4 重疊，這些組 D4 只做最低完成線（§3.9） |
 
 - Recovery 碼與一般碼分開、只視需要提供，不投影、不貼群組；Recovery 不作為小組成果評分。
 - 使用 Recovery 的組如實記錄觸發原因與時間（依 Runbook 對應 Recovery 頁的做法）。
@@ -292,7 +294,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 5 | push 被拒「Git commit signature is invalid」：後面接 `carries no signature`（沒有簽章）或 `is signed, but the signature does not verify`（有簽章但驗不過），並寫出是哪個 commit | 沒有簽章：簽章在第一個 Registry commit 之後才設定，或 Agent 用 rebase／amend 改寫過已簽章的 commit；驗不過：Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；已簽章的 commit 不要 amend 或 rebase，要合併別人的變更用 merge；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
 | 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate` |
 | 7 | `ssh-keygen` 行為不同、金鑰路徑找不到；或驗證簽章時出現 `Git commit signature was not checked`，後面接 `cannot spawn ssh-keygen`（Windows）或 `cannot run ssh-keygen`（macOS） | Git Bash 與 PowerShell 的 `ssh-keygen` 不同；後者是 Git 在目前的 PATH 找不到或啟動不了 `ssh-keygen`，簽章沒有被檢查，不是簽章錯 | 兩者皆可，但同一組全程用同一種 shell。找不到時先跑開場的 `doctor.py`（會檢查 `ssh-keygen`）；Windows 在「選用功能」啟用 OpenSSH Client，或改在 Git Bash 執行；macOS 確認 `which ssh-keygen` 指到內建的 `/usr/bin/ssh-keygen`。再驗證一次 |
-| 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它 |
+| 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它。Recovery 第一次寫入後 registry 檔整檔換行改變（CRLF→LF）是預期，diff 很大但雜湊與稽核不受影響 |
 | 9 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
 | 10 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
 | 11 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
