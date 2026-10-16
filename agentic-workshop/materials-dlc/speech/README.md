@@ -8,10 +8,10 @@
 
 | 存放位置 | 對應段落 | 長度 | 頁數 | 第一次講的概念與技巧 |
 |---|---|---|---|---|
-| `01-language-boundary/` | 開場、D1 | 30 分鐘 | 12 | 先講好什麼算成功、只能靠人抓的錯、候選、通用語言、Bounded Context、邊界洩漏 |
-| `02-review-approval/` | D2 | 25 分鐘 | 11 | 做與核准分開（加深 Gate）、變更審查包、反事實檢查、核准紀錄、已審查事實 |
-| `03-domain-design/` | D3a–D3c | 40 分鐘 | 17 | 需求卡是唯一依據、負責的 Context、Port／Adapter 與防腐層、冪等、不變量、預留與歸還、Aggregate、交接單（加深工作單） |
-| `04-handoff-retro/` | D4、回顧 | 25 分鐘 | 11 | 模型落後程式、交接單七段、只准引用查得到的 id、從紀錄整理證據、成對簽章的限制 |
+| `01-language-boundary/` | 開場、D1 | 30 分鐘 | 15 | DDD 三句話、Agent 沒有走廊記憶、要證據不要形容詞、通用語言、候選、用 AI 讀舊系統（案例）、Agent 編出的名字、Bounded Context、Context 畫布、Context Map、邊界洩漏 |
+| `02-review-approval/` | D2 | 25 分鐘 | 12 | 決策紀錄（ADR）與已審查事實、做與核准分開（加深 Gate）、規則寫成檢查、Replit 與 AWS Kiro 警示案例、審查表與審查方法、測試被改、反事實檢查（變異測試）、核准紀錄 |
+| `03-domain-design/` | D3a–D3c | 40 分鐘 | 18 | 不變量、Aggregate、領域事件、Port／Adapter 與防腐層、冪等、交給 Agent 列不變量與邊界選項、用反事實檢查守不變量、依領域模型讓 Agent 改舊系統（案例；事故警示回扣 02） |
+| `04-handoff-retro/` | D4、回顧 | 25 分鐘 | 12 | 交接要寫理由、用編號句子講領域、共用模型是外部記憶、只准引用查得到的 id、模型漂移定期回收、團隊共用指示與指示過長、DDD 社群的做法、成對簽章的限制、從一個 Context 導入 |
 
 每場最後一頁銜接下一場；時間不足時，優先保留各場的概念頁，先砍示範提示詞頁。實際時間需現場確認，與 180 分鐘 DLC 流程的整合另行安排。
 
@@ -21,7 +21,7 @@
 - 檢查點對照：[CHECKPOINTS.md](../CHECKPOINTS.md)
 - 引用來源只用 `.claude/skills/course-authoring/references.md` 列出的標題。
 
-不公布 D3 三張需求卡的參考設計與負責 Context，不引用 `07-dlc-ddd/evaluation/` 的任何內容；簡報範例的 id 與行號僅示意。本工作坊未量測效率，簡報不引用此類數字。
+不公布 D3 三張需求卡的參考設計與負責 Context，不引用 `07-dlc-ddd/evaluation/` 的任何內容；簡報範例的 id 與行號僅示意。簡報不把效率數字當成本課程的結果；外部案例數字一律註明是對方自稱。
 
 ## 建置與檢查
 
