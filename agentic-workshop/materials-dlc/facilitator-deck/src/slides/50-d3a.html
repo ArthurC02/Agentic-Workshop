@@ -32,7 +32,7 @@
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D3a 電子發票：25 分鐘、六個檢查點。先讀需求卡、查事實，再由你們做設計決定；Agent 照交接單實作，證明測試守得住，人審查差異，最後看參考設計。」</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
-    <p><b>重點</b>：外部系統隔離。<code>InvoiceIssuer</code> 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；防腐層（ACL，Anti-Corruption Layer；不是存取控制清單）把 Order 翻譯成發票語言；付款成功不因發票失敗而撤銷；以 order_id 冪等；不持鎖做外部呼叫。</p>
+    <p><b>重點</b>：外部系統隔離。<code>InvoiceIssuer</code> 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；防腐層（ACL，Anticorruption Layer；不是存取控制清單）把 Order 翻譯成發票語言；付款成功不因發票失敗而撤銷；以 order_id 冪等；不持鎖做外部呼叫。</p>
     <p><b>驗收</b>：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。</p>
     <p><b>範圍（解鎖時就宣布）</b>：需求卡已標［核心］／［延伸］。核心 EINV-001、002、003、005～011、015；延伸 EINV-004、012、013、014，時間允許才做。卡上的「API」小節先講：介面照卡做，不讓 Agent 自己發明。</p>
     <p><b>時間</b>：參考解答完整 15 條驗收條件約 340 行程式＋320 行測試，25 分鐘只夠核心切片。第 85 分 Agent 還沒做完核心也要進 counterfactual 與 Review，不延長。</p>

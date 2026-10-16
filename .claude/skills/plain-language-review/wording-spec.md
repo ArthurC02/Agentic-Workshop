@@ -34,7 +34,7 @@
 | CP／REQ／AC／OB／INV | CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量 |
 | HITL | HITL（Human-in-the-loop，人工把關） |
 | SCM | SCM（Source Control Management，版本控制，這裡指 Git） |
-| ACL | 防腐層（ACL，Anti-Corruption Layer；不是存取控制清單） |
+| ACL | 防腐層（ACL，Anticorruption Layer；不是存取控制清單） |
 | Port／Adapter | Port（領域程式需要的對外能力介面）／Adapter（接真實外部系統的實作） |
 | Aggregate | Aggregate（聚合：必須一起保持一致的一組資料，只能從 Aggregate root 這個入口修改） |
 | fingerprint | 金鑰指紋（fingerprint，辨識是哪一把金鑰，可公開） |

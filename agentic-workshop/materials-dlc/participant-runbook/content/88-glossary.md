@@ -25,9 +25,9 @@ section: 參考
 | 不變量（Invariant，INV） | 每次操作結束時都必須成立的業務規則，可以寫成一個會失敗的測試。例：會員點數餘額不得為負。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | 一致性邊界 | 每次操作結束時，不變量都必須成立的那一組資料的範圍。邊界內全有或全無；邊界外可以事後再同步。 | Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | Port／Adapter | Port 是領域程式需要的對外能力介面，用自己的業務用語描述；Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。 | Vernon《Implementing Domain-Driven Design》〈Architecture〉；`vendor/domain-memory/references/ports-and-adapters.md`〈Ports and adapters〉 |
-| 防腐層（ACL，Anti-Corruption Layer；不是存取控制清單） | 把外部系統的資料格式與錯誤碼翻譯成自己用語的那一層。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
+| 防腐層（ACL，Anticorruption Layer；不是存取控制清單） | 把外部系統的資料格式與錯誤碼翻譯成自己用語的那一層。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
 | 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。 | Hohpe & Woolf《Enterprise Integration Patterns》〈Idempotent Receiver〉；`vendor/domain-memory/references/pattern-verification.md`〈Verification questions〉 |
-| 預留與歸還 | 先扣下點數（預留），付款成功才確定；失敗或退票時全數歸還，重複歸還也只算一次。D3b 用到。 | 本課程〈需求卡 02：會員點數折抵〉 |
+| 預留與歸還 | 先扣下點數（預留），付款成功才確定；團體付款失敗或退票時全數歸還（一般訂票付款失敗仍保留），重複歸還也只算一次。D3b 用到。 | 本課程〈需求卡 02：會員點數折抵〉 |
 | ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件。 | Michael Nygard〈Documenting Architecture Decisions〉 |
 
 ## 和 Agent 協作的技巧

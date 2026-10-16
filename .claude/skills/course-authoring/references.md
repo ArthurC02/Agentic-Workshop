@@ -33,7 +33,7 @@ Format: `📖 延伸閱讀：〈組織〉官方文件〈標題〉…；你所用
 | HTTP status codes | IETF〈RFC 9110 HTTP Semantics〉 | |
 | Idempotency (冪等) | Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》 (2003)〈Idempotent Receiver〉 | |
 | Version control, SCM, commit | Pro Git〈About Version Control〉; Git 官方文件〈git-commit〉 | |
-| Git hooks | Git 官方文件〈githooks〉 | |
+| Git hooks | Git 官方文件〈githooks〉；跳過推送前檢查（`--no-verify`）：Git 官方文件〈git-push〉 | |
 | Bare repository | Git 官方文件〈git-init〉 (`--bare`) | |
 | Bundle（離線傳送 Repo） | Git 官方文件〈git-bundle〉 | |
 | Python virtual environment | Python 官方文件〈venv — Creation of virtual environments〉 | |
@@ -45,7 +45,7 @@ Format: `📖 延伸閱讀：〈組織〉官方文件〈標題〉…；你所用
 - Eric Evans《Domain-Driven Design》(2003), chapters used:
   - ch.2 〈Communication and the Use of Language〉
   - ch.6 〈The Life Cycle of a Domain Object〉 (Aggregates)
-  - ch.14 〈Maintaining Model Integrity〉 (Bounded Context, Context Map, Anti-Corruption Layer)
+  - ch.14 〈Maintaining Model Integrity〉 (Bounded Context, Context Map, Anticorruption Layer)
 - Vaughn Vernon《Implementing Domain-Driven Design》(2013), chapters used:
   - ch.1 〈Getting Started with DDD〉
   - ch.2 〈Domains, Subdomains, and Bounded Contexts〉

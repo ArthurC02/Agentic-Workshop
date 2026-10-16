@@ -42,7 +42,7 @@
     "flow": ["領域程式", "Port（自己的用語）", "Adapter（翻譯）", "外部服務商"],
     "cards": [["防腐層", "服務商的欄位與錯誤碼，不滲進領域程式。"], ["好處", "換服務商、用假服務測試，都只動 Adapter。"]],
     "check": "領域程式裡，有沒有出現服務商的欄位名稱？",
-    "notes": "3 分鐘。D3a 的新概念。ACL 是 Anti-Corruption Layer（防腐層）。人審查時不必看懂程式，只問一題：服務商的說法有沒有漏進領域程式。測試用假的服務商（Fake）模擬逾時與拒絕。📖 延伸閱讀：Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉的 Anti-Corruption Layer 一節；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉的 Hexagonal（Ports and Adapters）一節。"
+    "notes": "3 分鐘。D3a 的新概念。ACL 是 Anticorruption Layer（防腐層）。人審查時不必看懂程式，只問一題：服務商的說法有沒有漏進領域程式。測試用假的服務商（Fake）模擬逾時與拒絕。📖 延伸閱讀：Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉的 Anticorruption Layer 一節；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉的 Hexagonal（Ports and Adapters）一節。"
   },
   {
     "id": "idempotency", "chapter": "D3a 外部服務", "title": "冪等：重送不會多開一張",
