@@ -54,7 +54,7 @@ b603d3c G maintainer@example.com 授權第二把 Maintainer 金鑰（原私鑰�
 
 ## 還原（D2 Recovery）
 
-需求：Git ≥ 2.34、Python 3.13、domain-memory Plugin 0.22.0（下以 `tools/` 指學員包的 `participant/tools/`，Plugin 依 tools README 的位置規則尋找）。
+需求：Git ≥ 2.34、Python 3.13、domain-memory Plugin 0.27.0（下以 `tools/` 指學員包的 `participant/tools/`，Plugin 依 tools README 的位置規則尋找）。
 
 PowerShell：
 
@@ -78,7 +78,7 @@ py -3.13 -m venv .venv; .\.venv\Scripts\python.exe -m pip install -r requirement
 
 Git Bash 相同，改用 `../tools/dm.sh` 與 `source .venv/Scripts/activate`。
 
-預期結果（2026-10-15 以 Plugin 0.22.0 實測）：`Registry is valid.`；verify-evidence 162 個引用全部 `current`（shifted、stale 都是 0）；verify-sources `current`／`developer-confirmed`；verify-audit `valid`、64 events、head `sha256:955311a5…34260`；兩個 attestation commit 都是 `Git governance is valid.`；pytest 76 passed；推到本機 bare remote 時 hook 印出六行 `Git governance is valid.`。還原（不含 venv）約 10 秒。
+預期結果（2026-10-16 以 Plugin 0.27.0 實測，與 0.22.0 相同；Registry 不必為升級重簽）：`Registry is valid.`；verify-evidence 162 個引用全部 `current`（shifted、stale 都是 0）；verify-sources `current`／`developer-confirmed`（`discovered_but_gone` 為空）；verify-audit `valid`、64 events、head `sha256:955311a5…34260`；兩個 attestation commit 都是 `Git governance is valid.`；pytest 76 passed；推到本機 bare remote 時 hook 印出六行 `Git governance is valid.`。還原（不含 venv）約 5–10 秒。
 
 ## 學員從 Recovery 接續（D3 之後還要 push）
 

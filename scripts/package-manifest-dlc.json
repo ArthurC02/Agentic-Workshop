@@ -323,7 +323,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "sha256": "7d0c3fcbf3c09c35973a31258561b21a61e9f563d27e17ae8af3da6f2065120a"
+          "sha256": "309b606f83eba175d4935b9837161edf4630ff77f98d8b5e56cb8a447faedda7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -338,12 +338,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
-          "sha256": "dbb80cb1b72ae121a11dda0d866e445724dfe13c54aec5a86c2401067350ce74"
+          "sha256": "37656c009114c02fe4318fc5ca36eb502532fe70e2b7c341565b8dcc045b50ab"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
-          "sha256": "ea4ef05b67b5bc736b6a068cfc33bb2efa12db21d9e86e493b60ec27fa875f0d"
+          "sha256": "9b14e9c1b86321d6db1dd7ff71f3caec274d40f2f500461fe99df514fa52dbb9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
@@ -371,14 +371,14 @@
           "sha256": "1a6ba665520877ba86648b5955a259802b2676d8e8dd9e80a358f704aaa12a93"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip",
-          "sha256": "2f584081efbae0326ccba254e0076a00e9a2e09a86888b23b20f216e4c3db11a"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip",
+          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip",
+          "sha256": "0031ff5f21d45b9c7dde03bc75868b73b857bd7a3272888415b2943deb231e2c"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip.SHA256SUMS",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.22.0.zip.SHA256SUMS",
-          "sha256": "47249f60c6a17417e638d4636c57db1ab4c6abc1f45b52c3704f41832c781c22"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip.SHA256SUMS",
+          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.27.0.zip.SHA256SUMS",
+          "sha256": "f8e54d6f2b4b7d292563a6edb348cd5cb2420640d6ab16de79d52c61659ffb72"
         }
       ],
       "generated": {}
@@ -506,7 +506,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
           "destination": "recovery-dlc-d1/repo.bundle",
-          "sha256": "af5c4bd8ff3d9ff2cd2518c91b79a98a22c3d93e5bbaaca22603de7619c16072"
+          "sha256": "2be9aa8183cdd293dd5dbae43b6831842695a009751398b4a7f2b77365479bc7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/.gitattributes",
@@ -521,7 +521,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/README.md",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/README.md",
-          "sha256": "8efce025069ce51617da90e63db51cf0d6842785c674552b925253b36f1f49d6"
+          "sha256": "0bdb43b39057fe2c6683d5583e30960fd968196549eed738a20ff4cef750fb3d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/docs/adr/001-use-in-memory-repositories.md",
@@ -576,12 +576,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "20730066f0c0e472b305b104f019be2e8e4f9d3d5934195313b37d5e0b240be3"
+          "sha256": "0cf165d99e1cd50cd181cb92e46535b2741e9a4f06f9cd0abbfbcf945dc1c71e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cd2180b682b689cecc920c0a8a5eed1a1b31efb9aa10e6e3ad19861a8ccf068b"
+          "sha256": "4ee67cf78895a4501ce9d85df52b6b109e786bb369b82bb3bd4b1f36171d9c66"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
@@ -651,7 +651,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
           "destination": "recovery-dlc-d1/smart-ticket-dlc-base/domain-memory/source-map.json",
-          "sha256": "2a43dc70b3123c92d2057920aa74b8f7f2e5fc56a696847a6e18cd6f6eef1031"
+          "sha256": "2ebbfaef033dceb93b3b092d8990011171571b73478169152d95b99dce106a26"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/pyproject.toml",
@@ -2862,7 +2862,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "fdc248fa141ee6905c23c5b3b216c060600c622e42cf998006c750c364c97d65"
+          "sha256": "bafc469288182e7e7b924bdec6eb43275c6362fcd2ea258e310ade1580f18b87"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -2872,7 +2872,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
-          "sha256": "af5c4bd8ff3d9ff2cd2518c91b79a98a22c3d93e5bbaaca22603de7619c16072"
+          "sha256": "2be9aa8183cdd293dd5dbae43b6831842695a009751398b4a7f2b77365479bc7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/.gitattributes",
@@ -2887,7 +2887,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/README.md",
-          "sha256": "8efce025069ce51617da90e63db51cf0d6842785c674552b925253b36f1f49d6"
+          "sha256": "0bdb43b39057fe2c6683d5583e30960fd968196549eed738a20ff4cef750fb3d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/docs/adr/001-use-in-memory-repositories.md",
@@ -2942,12 +2942,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/events.jsonl",
-          "sha256": "20730066f0c0e472b305b104f019be2e8e4f9d3d5934195313b37d5e0b240be3"
+          "sha256": "0cf165d99e1cd50cd181cb92e46535b2741e9a4f06f9cd0abbfbcf945dc1c71e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/audit/manifest.json",
-          "sha256": "cd2180b682b689cecc920c0a8a5eed1a1b31efb9aa10e6e3ad19861a8ccf068b"
+          "sha256": "4ee67cf78895a4501ce9d85df52b6b109e786bb369b82bb3bd4b1f36171d9c66"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/domain-memory-policy.json",
@@ -3017,7 +3017,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/domain-memory/source-map.json",
-          "sha256": "2a43dc70b3123c92d2057920aa74b8f7f2e5fc56a696847a6e18cd6f6eef1031"
+          "sha256": "2ebbfaef033dceb93b3b092d8990011171571b73478169152d95b99dce106a26"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/smart-ticket-dlc-base/pyproject.toml",
@@ -5165,17 +5165,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
-          "sha256": "9b1f4f5c44be6a4abbe170c425e6b4b59259473439cb2cd92cfc4459f7f72e62"
+          "sha256": "b657a8fa6e2c0e0c97d05c2274d4ac6b654c718b234e5c2d5db42243c80f2d53"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
-          "sha256": "17d1d16a220b3bc484d52bfaf156c85cacbec1c666cc95f0db97c4f06f4057c5"
+          "sha256": "da35a5fc99b2bdce2b64535075942742e83a5290e2d9409fac138e421e2675a8"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "6739b22ecfc0844af7fde776d4490b7622bd7b1799683a383f2d770d476cf389"
+          "sha256": "5a3e40e312b3b97d1bbc56a166ad40b23ff899a63126404ca7925618b9f10261"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -5185,7 +5185,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "4d53dc42fdd020df75ab5a5ab5d3956e2d1fe2e1e37b4b6ffcbe68fb9e617426"
+          "sha256": "2fde9148231d965a2cd7520a95590d07c58e5330b3f559493c133e26f0b094e2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",
@@ -5375,7 +5375,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/SOLUTION-NOTES.md",
-          "sha256": "ecdb1884446f2b0de73ea9e8370399420d1dc47d898146f91521a0ae5aeef79f"
+          "sha256": "8c17a40be205d32ff216134c113d6bb4f97411b3c50e64564abe5493c5a86b45"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/docs/adr/001-use-in-memory-repositories.md",
@@ -5970,7 +5970,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/SOLUTION-NOTES.md",
-          "sha256": "a5ed6d7f4e5ae153aa7dbd97af6b2f4705c2c1a454f7afcb02d055133d47e138"
+          "sha256": "994c970672656862c4b691b32af161c67e3808c5ad71f4ab8c9b82e5c49fa30b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/docs/adr/001-use-in-memory-repositories.md",
@@ -6565,7 +6565,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
-          "sha256": "3082332e20300119e5fc6ca0c0e274de280f686386e3b94c8960152385dc4a74"
+          "sha256": "538f1a77577744de20d867fae84b2203fbc11b3ee25acf61f8880071e1bdab78"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/docs/adr/001-use-in-memory-repositories.md",

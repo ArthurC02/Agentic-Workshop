@@ -286,5 +286,5 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --a
 
 - 以 Change Package 升級 D3a～D3c 的候選；三個新測試檔與 `domain/cancellation.py` 先 `confirm-sources`。
 - 已不成立的 reviewed 事實：在 proposal 以 `registry_updates` 用**原 id** upsert 新內容（REFUND-004、aggregate `booking`、ADR-004 等），`supersedes` 指名 CP-CORE-001；ASIS-004 以 `remove` 移除或改寫為歷史觀察。之後 `REFUND-004-V2`、`booking-v2`、`ADR-004-V2` 這類暫用 id 在同一 proposal 移除，避免同一事實兩筆。
-- 其餘 stale 與 shifted 的 reviewed 事實在同一 proposal 重新引用（內容不變；shifted 的可由 `relocate-evidence --from . --to .` 產生 `registry_updates`）。
+- 其餘 stale 與 shifted 的 reviewed 事實在同一 proposal 重新引用（內容不變；shifted 的可由 `relocate-evidence --from . --to .` 產生 `registry_updates`，內容不變的 stale 再用 `recite --onto` 疊加到同一份輸出）。
 - 交接 Unknowns 與 Forces：見第 8 節（待決問題 4／5／6、passenger_id 唯一性、發票折讓）。

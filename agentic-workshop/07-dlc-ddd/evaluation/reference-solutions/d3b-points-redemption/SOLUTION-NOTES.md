@@ -264,5 +264,5 @@ reviewed 事實不能覆寫（`upsert-candidate` 回 `cannot overwrite reviewed 
 
 - 以 Change Package 升級 D3a＋D3b 候選；新測試檔 `test_e_invoice.py`、`test_points_redemption.py` 先 `confirm-sources`。
 - 上面 6 筆內容已不成立的 reviewed 事實：在 proposal 以 `registry_updates` 用**原 id** upsert 新內容（例如 ORDER-002 改為「Order.amount＝應付金額」），並以 `supersedes` 指名 CP-CORE-001；之後 `PTS-009`、`PTS-014` 等新 id 可保留為獨立規則，或在同一 proposal 移除重複者。
-- 其餘 stale 與 shifted 的 reviewed 事實在同一 proposal 重新引用（內容不變；shifted 的可由 `relocate-evidence --from . --to .` 產生 `registry_updates`）。
+- 其餘 stale 與 shifted 的 reviewed 事實在同一 proposal 重新引用（內容不變；shifted 的可由 `relocate-evidence --from . --to .` 產生 `registry_updates`，內容不變的 stale 再用 `recite --onto` 疊加到同一份輸出）。
 - 交接 Unknowns：一般 PENDING 訂票點數永久預留（無逾時釋放）、多程序部署需原子條件扣除（第 3 節）。

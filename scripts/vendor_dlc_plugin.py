@@ -7,6 +7,9 @@ Writes agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-<version>.zi
 domain-memory/, runtime files only: development files and caches excluded, sorted members, fixed timestamps) and <zip>.SHA256SUMS with one
 line per member file plus a final line for the ZIP itself (sha256sum format).
 --check rebuilds in memory and exits 1 when the vendored files differ.
+Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
+    git -C <SkillHub> archive <commit> .claude/skills/domain-memory | tar -x -C <scratch>
+and pass --source <scratch>/.claude/skills/domain-memory.
 """
 from __future__ import annotations
 

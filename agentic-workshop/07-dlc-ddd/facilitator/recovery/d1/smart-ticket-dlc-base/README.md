@@ -4,10 +4,10 @@ Smart Ticket 是一套台灣城際列車訂票後端服務，已上線約 12 個
 
 ## 安裝、啟動與測試
 
-需要 Python 3.13。在本目錄操作：
+需要 Python 3.13。在本目錄操作。先建立並啟用虛擬環境（venv）：Windows 用 `py -3.13 -m venv .venv`，macOS／Linux 用 `python3.13 -m venv .venv`。以下是 macOS／Linux 的寫法：
 
 ```bash
-python -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 uvicorn smart_ticket.main:app --app-dir src --reload

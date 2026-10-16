@@ -250,5 +250,5 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --batch registry-candidates.json --a
 **D4 要做的事**：
 
 - 以一個 Change Package 把 10 筆候選升為 reviewed（成對核准、簽章 commit）；`test_e_invoice.py` 要先 `confirm-sources` 納入來源，否則引用它的規則無法升級。
-- 同一個 Change Package 以 `registry_updates` 重新引用上面 15 筆 reviewed 事實（內容不變、更新行號）：12 筆 shifted 由 `relocate-evidence --from . --to .` 直接印出 `registry_updates` 與 `supersedes`（2026-10-15 在 D3a Recovery 實測：12 筆 updates、3 筆 unmatched）；3 筆 stale 用 `recite` 或手動重新引用。改動 reviewed 紀錄必須在 proposal 的 `supersedes` 指名審查它的提案：這 15 筆都是 CP-CORE-001（`discount-rate`、`best-single-discount` 是 CP-CORE-002）。
+- 同一個 Change Package 以 `registry_updates` 重新引用上面 15 筆 reviewed 事實（內容不變、更新行號）：12 筆 shifted 由 `relocate-evidence --from . --to .` 直接印出 `registry_updates` 與 `supersedes`（2026-10-15 在 D3a Recovery 實測：12 筆 updates、3 筆 unmatched）；3 筆 stale 讀過程式確認內容不變後，用 `recite --onto <relocate-evidence 的輸出>` 逐筆疊加，合成同一份 `registry_updates`（Plugin 0.23 起；2026-10-16 在 D3a Recovery 以 0.27.0 實測：15 筆 updates、0 筆 unmatched）。這裡不用 `init-change-package --recitation`：它只收純重新引用，而這個 package 還要升級候選；而且它產生的唯一測試義務是 verify-evidence 全部 current，有 stale 時要等套用後才會通過，套用前卻得先記錄通過的測試（0.26.1 與 0.27.0 實測都停在 verify-proposal）。改動 reviewed 紀錄必須在 proposal 的 `supersedes` 指名審查它的提案：這 15 筆都是 CP-CORE-001（`discount-rate`、`best-single-discount` 是 CP-CORE-002）。
 - 交接 Unknowns：PENDING 逾時升級、真實服務商契約測試未做、`merchant_order_no` 長度限制（第 3 節）。

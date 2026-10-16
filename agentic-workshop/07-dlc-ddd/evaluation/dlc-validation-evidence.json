@@ -1430,5 +1430,109 @@
   "tools_selftest": "5 tests OK",
   "release_pipeline": "RELEASE PIPELINE PASS (dlc candidate 23f432cf92c2153b)",
   "not_verified": "candidate-package rehearsal of Runbook pages (open-D2, D2/D3 Recovery, D4) results not collected at handback"
+ },
+ "plugin_0_27_0_remeasure": {
+  "date": "2026-10-16",
+  "plugin": "domain-memory 0.27.0 (SkillHub 492af5a28, exported with git archive)",
+  "vendor_zip_sha256": "0031ff5f21d45b9c7dde03bc75868b73b857bd7a3272888415b2943deb231e2c",
+  "plugin_files": 73,
+  "sha_ok_line": "SHA OK 74 files",
+  "tools_self_test": "7 tests OK",
+  "reference_registry": {
+   "head": "fc9efe2",
+   "resigned": false,
+   "verify_evidence": {
+    "current": 162,
+    "shifted": 0,
+    "stale": 0
+   },
+   "verify_sources": {
+    "status": "current",
+    "discovered_but_gone": 0
+   },
+   "verify_audit": {
+    "status": "valid",
+    "events": 64,
+    "head": "sha256:955311a5167eb4dbca4b7c6adeeaad705cff5423b27f1c37aad80ffc95f34260"
+   },
+   "pytest": "76 passed",
+   "signed_commit_push_hook_governance_lines": 6
+  },
+  "d1_replay": {
+   "records": 57,
+   "validate": "Registry is valid.",
+   "verify_evidence_current": 162,
+   "seconds": 52
+  },
+  "recovery_verify_evidence": {
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "order": "current, shifted, stale",
+   "rebuilt": [
+    "d1"
+   ]
+  },
+  "reference_solutions": {
+   "d3a": {
+    "citations": 192,
+    "ve": [
+     177,
+     12,
+     3
+    ],
+    "events": 69
+   },
+   "d3b": {
+    "citations": 225,
+    "ve": [
+     168,
+     35,
+     22
+    ],
+    "events": 73
+   },
+   "d3c": {
+    "citations": 248,
+    "ve": [
+     171,
+     16,
+     61
+    ],
+    "events": 77
+   },
+   "rebuilt": false
+  },
+  "d3a_recitation_trial": {
+   "relocate_updates": 12,
+   "recite_onto_updates": 15,
+   "unmatched_after": 0,
+   "init_change_package_recitation": "created (routine, 4 contexts)",
+   "record_test_result": "refused: verify-evidence exits 1 while the 3 stale citations are still in the Registry",
+   "verify_proposal": "refused: no passing test result",
+   "plugin_versions": [
+    "0.26.1",
+    "0.27.0"
+   ]
+  },
+  "material_design_lists_non_empty": true,
+  "same_results_as": "0.22.0 and 0.26.1 (6fe26ead1)"
  }
 }

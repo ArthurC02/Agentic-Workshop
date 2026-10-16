@@ -1,7 +1,7 @@
 # DDD DLC 主持人手冊
 
 > 對象：DDD DLC（180 分鐘加課）的主持人與助教。學員已完成主課（Tool → Teammate → Digital Worker）。
-> 主題：**和 Coding Agent 一起做 DDD**：Agent 找證據、提選項、實作；學員定義模型、做決定、用證據驗收。domain-memory Plugin 0.22.0 只是保存共用模型的工具，指令全在提示詞裡。不開理論講堂。
+> 主題：**和 Coding Agent 一起做 DDD**：Agent 找證據、提選項、實作；學員定義模型、做決定、用證據驗收。domain-memory Plugin 0.27.0 只是保存共用模型的工具，指令全在提示詞裡。不開理論講堂。
 > 依據：`docs/instructions/11_DDD_DLC產製指令書.md`（以下稱「規格」）。檢查點以 `agentic-workshop/materials-dlc/CHECKPOINTS.md` 為準，解鎖碼在 `agentic-workshop/materials-dlc/unlock-codes.json`（本手冊不重抄碼，避免兩份不一致）。
 > 本手冊與 `evaluation/` 底下所有檔案只給主持人，**不得**放進學員包、Runbook 或投影。
 
@@ -67,9 +67,9 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 ### 1.3 Plugin SHA
 
-- Plugin 固定 0.22.0，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.22.0.zip`，逐檔清單 `domain-memory-0.22.0.zip.SHA256SUMS`（72 個 Plugin 檔案＋ZIP 本身＝73 行）。
-- 目前 ZIP 的 SHA256 以 `domain-memory-0.22.0.zip.SHA256SUMS` 最後一行為準。
-- 學員在開場檢查點 2 應看到 `SHA OK 73 files` 與 `"version": "0.22.0"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
+- Plugin 固定 0.27.0，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.27.0.zip`，逐檔清單 `domain-memory-0.27.0.zip.SHA256SUMS`（73 個 Plugin 檔案＋ZIP 本身＝74 行）。
+- 目前 ZIP 的 SHA256 以 `domain-memory-0.27.0.zip.SHA256SUMS` 最後一行為準。
+- 學員在開場檢查點 2 應看到 `SHA OK 74 files` 與 `"version": "0.27.0"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
 
 ### 1.4 主持人自己的機器（課前 30 分鐘）
 
@@ -105,7 +105,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 0 | （解鎖前） | 「為什麼要和 Agent 一起建模」「今天怎麼進行」兩頁，共約 2 分鐘 |
 | 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`（macOS：移到 `~/dlc` 再點兩下）、在 Repo 根目錄開 Agent，先貼 Runbook 的工作規則 |
 | 0–3 | 1 · 確認起點：測試全部通過 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
-| 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 73 files`、`"version": "0.22.0"` |
+| 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 74 files`、`"version": "0.27.0"` |
 | 5–8 | 3 · 找出只能靠人審查的錯 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
 | 8–10 | 4 · 確認環境並建立起始版本 | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`（macOS：在 `.venv/bin/`）；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
 
@@ -289,9 +289,9 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 2 | `UnicodeDecodeError: 'cp950' codec ...` | 直接呼叫 `registry_tools.py`，缺 `-X utf8` | 一律經 `tools\dm.ps1`／`dm.sh`（固定 `py -3.13 -X utf8`） |
 | 3 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線；macOS 由 `/bin/sh` 執行，寫 `.venv/bin/python`）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
 | 4 | push 時 hook 印出 `no Python 3.10 or later on PATH as python3 or python` | pre-push hook 只在 PATH 上找 `python3`、`python`（要 3.10 以上）；Windows 常只有 `py` 啟動器，或 `python` 是 Store 別名（路徑含 `WindowsApps`）；macOS 的 `python3` 可能是內建的 3.9 | push 前在同一次執行啟用 Repo 的 `.venv`（Runbook 的 push 步驟已寫好）。開場檢查點 4 就要攔下 |
-| 5 | push 被拒「Git commit signature is invalid」或未簽章 | 簽章在第一個 Registry commit 之後才設定；或 Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
+| 5 | push 被拒「Git commit signature is invalid」：後面接 `carries no signature`（沒有簽章）或 `is signed, but the signature does not verify`（有簽章但驗不過），並寫出是哪個 commit | 沒有簽章：簽章在第一個 Registry commit 之後才設定，或 Agent 用 rebase／amend 改寫過已簽章的 commit；驗不過：Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；已簽章的 commit 不要 amend 或 rebase，要合併別人的變更用 merge；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
 | 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate` |
-| 7 | `ssh-keygen` 行為不同、金鑰路徑找不到 | Git Bash 與 PowerShell 的 `ssh-keygen` 不同 | 兩者皆可，但同一組全程用同一種 shell |
+| 7 | `ssh-keygen` 行為不同、金鑰路徑找不到；或驗證簽章時出現 `Git commit signature was not checked: cannot spawn ssh-keygen`（Windows；macOS 在 0.27.0 仍報成 `signature does not verify`，訊息裡帶 `cannot run ssh-keygen`） | Git Bash 與 PowerShell 的 `ssh-keygen` 不同；後者是 Git 在目前的 PATH 找不到 `ssh-keygen`，簽章沒有被檢查，不是簽章錯 | 兩者皆可，但同一組全程用同一種 shell。找不到時先跑開場的 `doctor.py`（會檢查 `ssh-keygen`）；Windows 在「選用功能」啟用 OpenSSH Client，或改在 Git Bash 執行，再驗證一次 |
 | 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它 |
 | 9 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
 | 10 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
