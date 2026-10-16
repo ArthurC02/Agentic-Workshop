@@ -33,23 +33,29 @@ section: Delivery
 
 ② 貼給 Agent
 
-B3 檢查點 4 的 ③ 還沒做的，先到 [B3 檢查點 4](#b3) 貼那段 ③；回「失敗」就直接告訴 Agent 缺的 Gate 3 決策（例如「條件：未驗證項目寫進交付摘要；/docs 未實測；第 75 分」），請它照原文補進 notes/b3.md，然後不論結果都往下，還缺的會在摘要寫成「未驗證」。複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。
+複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。它會先核對 B3 的 Gate 3 紀錄，缺了你的決定就問你，一行回答即可（例如「條件：未驗證項目寫進交付摘要；/docs 未實測；第 75 分」）。
 
 ```text
-停止新增功能與測試，不要再修改任何程式。請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
+停止新增功能與測試，不要再修改任何程式。先核對 notes/b3.md：有驗收對照表（最後一行有測試總數）、變更審查三題答案、Gate 3 資料，「Gate 3」段落記著我的決策、條件、/docs 是否實測、核准人與分鐘。缺的是我的 Gate 3 決策，就先問我，照原文補進 notes/b3.md 再繼續；其他缺項在摘要寫成「未驗證」。
+接著請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
 - 每一欄都附證據來源：notes/b3.md 的哪一段、哪個實際執行的指令、哪份文件。找不到證據的寫「未驗證」及原因，未驗證不能寫 PASS。
 - Completion Level 擇一並說明證據，不自動選 Level 3。
 - 修改檔案欄用白話寫每個檔案改了什麼、為什麼，附上 Gate 3 前的變更審查答案；沒有修改時寫「無修改」及原因，不虛構變更。
 - 驗收結果用驗收對照表呈現；測試只寫實際執行過的命令與結果，沒執行的寫「未執行」及原因。
 - Gate 決策照 notes/b3.md 的原文抄錄；寫出與 Gate 2 核准計畫的偏差，沒有偏差也要明寫（寫在 Deviations from Approved Plan 與 Recommended Decision）。
-寫完在對話給我核對用的三句話：你建議的 Level、測試結果、修改範圍。每句後面直接引用它的證據原文與位置（notes/b3.md 的段落或實際指令）；引用不出證據的，在摘要裡改成「未驗證」。最後列出未驗證項目清單，然後停下等我們核對。不要自行修正或補做任何項目。
+寫完在對話給我核對用的三句話：你建議的 Level、測試結果、修改範圍。每句後面直接引用它的證據原文與位置（notes/b3.md 的段落或實際指令）；引用不出證據的，在摘要裡改成「未驗證」。
+最後只檢查、不修改：notes/delivery.md 有範本十二欄、標題與順序不變；每一欄都附了證據來源，沒有證據的都寫「未驗證」及原因；這段沒有修改任何程式（git status 列出的變動，除了 notes/ 與 skills/，都已記在 notes/b3.md 的變更審查裡）。再告訴我 notes 資料夾的完整路徑。最後一行只寫「成功」或「失敗：」加一句原因，然後停下等我們核對。不要自行修正或補做任何項目。
 ```
 
 ```include
 zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/participant/05-delivery-template.md
 ```
 
+等 Agent 寫摘要時，和小組聊 30 秒：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄和缺項後，還會選同一級嗎？
+
 ③ 確認結果
+
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
 
 ```text
 請檢查下列三件事，不要修改任何檔案：1. notes/delivery.md 有範本的十二欄，標題與順序不變；2. 每一欄都附了證據來源，沒有證據的都寫「未驗證」及原因；3. 這段沒有修改任何程式：git status 列出的變動，除了 notes/ 與 skills/，都已記在 notes/b3.md 的變更審查裡。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
@@ -74,17 +80,19 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ① 為什麼做這一步
 
-要匯出才算交件。邊等 Agent 回覆邊和小組聊 30 秒：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄和缺項後，還會選同一級嗎？
+要匯出才算交件。把剛才聊好的 Level 與抽查結果記進表單，再匯出。
 
 ② 貼給 Agent
 
-請主要 Agent 告訴你要交的 `notes/` 在哪裡：
+Agent 在檢查點 1 已告訴你 `notes/` 的完整路徑，就跳過 ② ③，直接填下方表單。沒給才貼：
 
 ```text
 請告訴我這個專案 notes 資料夾的完整路徑，並列出裡面的檔案。不要修改任何檔案。
 ```
 
 ③ 確認結果
+
+只有貼了 ② 才需要：
 
 ```text
 請檢查你剛才給我的 notes 資料夾，不要修改任何檔案：裡面有 b3.md 與 delivery.md，而且 delivery.md 寫了 Completion Level。符合只回「成功」；不符只回「失敗：」加一句原因。
@@ -96,7 +104,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 不要修改任何檔案。請找出 notes/b3.md 與 notes/delivery.md 實際在哪個資料夾，告訴我完整路徑；delivery.md 沒有 Completion Level，就告訴我缺了什麼。
 ```
 
-說好後，把結論記在下方表單，再按下方「下載全部填寫內容（ZIP）」：ZIP 裡每份表單一個 Markdown（.md）檔；瀏覽器擋下載時，改按各表單的「匯出 Markdown」。
+把結論記在下方表單，再按下方「下載全部填寫內容（ZIP）」：ZIP 裡每份表單一個 Markdown（.md）檔；瀏覽器擋下載時，改按各表單的「匯出 Markdown」。
 
 ```form
 {"id": "delivery-check", "title": "交付核對（任務 ID：TASK-B3-001）","fields":[
@@ -109,7 +117,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 ```exportall
 ```
 
-依主持人指定方式交件：匯出的表單 ZIP，加上主要 Agent 電腦上的 `notes/` 資料夾。
+依主持人指定方式交件：匯出的表單 ZIP，加上主要 Agent 電腦上的 `notes/` 資料夾。主要 Agent 那位同時把 `notes/` 與 `skills/` 傳給組員，回顧要用。
 
 ```callout sync
 ⏸ 看投影：第 79 分鐘請先停手，一起看 B3 揭曉
@@ -118,7 +126,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/par
 
 ## 完成後想一想
 
-先自己想 30 秒，再和旁邊的人聊；主持人會請 1–2 位分享第 2 題。
+先自己想 30 秒，再和旁邊的人聊；趁等 Agent 回報時聊，這段不另開全場分享。
 
 1. **觀察**：你抽查的三句裡，有沒有哪一句引用不出證據、被改成「未驗證」？Agent 一開始建議的 Level 跟你們最後選的一樣嗎？
 2. **技巧**：如果交付摘要讓 Agent 自由發揮、不要求每句附證據，你要怎麼分辨哪些是真的做到、哪些只是它「覺得」做到？你工作上的週報或交接文件，哪幾欄值得固定下來？
