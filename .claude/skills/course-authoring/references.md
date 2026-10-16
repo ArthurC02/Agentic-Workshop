@@ -23,6 +23,7 @@ Format: `📖 延伸閱讀：〈組織〉官方文件〈標題〉…；你所用
 | Topic | Cite (exact title) | Retired titles (do not use) |
 |---|---|---|
 | Testing terms (regression, root cause, impact analysis, traceability, acceptance criteria, test basis) | ISTQB〈Glossary〉 (the ISTQB Standard Glossary of Terms Used in Software Testing) | |
+| Layered architecture (DDD) | Vaughn Vernon《Implementing Domain-Driven Design》(2013) ch.4〈Architecture〉 | |
 | Gherkin, Given/When/Then | Cucumber 官方文件〈Gherkin Reference〉 | |
 | ADR | Michael Nygard〈Documenting Architecture Decisions〉 (2011) | |
 | MVP | Eric Ries《The Lean Startup》 (2011) | |

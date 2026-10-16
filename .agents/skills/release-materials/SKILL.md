@@ -16,11 +16,11 @@ Steps (stops at the first failure; the step list is also in `scripts/README.md`)
 2. Main candidate: on manifest drift, validate (full when G0–B3 sources changed, else `--static-only`) and repin; build and `verify_delivery` a new candidate (a failed one is deleted); set `CANDIDATE_ID`.
 3. DLC candidate: `build_delivery_dlc.py --pin`, build if new, `--verify`; set `edition.json` `candidate_id`.
 4. Each edition: `build_materials.py --edition main|dlc`, `--check`, `package_materials.py`; then `verify_typography.py` (both editions in headless Chrome).
-5. Speech deck: `build_decks.py`, `--check`, `verify_browser.py`.
+5. Speech decks (every `speech/0N-*/src/stage.json`): `build_decks.py`, `--check`, `verify_browser.py`.
 6. All `scripts/test_*.py`, zero manifest drift, prune superseded `dist/*-candidate/<id>`. Prints `RELEASE PIPELINE PASS`.
 
 ## Before running
-- Edit sources, never generated files (built `runbook.html`／`facilitator-deck.html` in both editions, speech `greenfield-deck.html`／`greenfield-handout.md`, `dist/`, script-written evidence in `06-runbook/evaluation/`); the `guard_generated.py` hook blocks those.
+- Edit sources, never generated files (built `runbook.html`／`facilitator-deck.html` in both editions, speech `0N-*/*-deck.html`／`*-handout.md`, `dist/`, script-written evidence in `06-runbook/evaluation/`); the `guard_generated.py` hook blocks those.
 - After editing `.claude/skills/**` or the hook, run `scripts/sync_harness.py` (no `--check`) to update the Codex mirror.
 - Full validation needs `.codex-tmp/<g0|g1|b0|b1|b2|b3>-env`. If missing: `uv venv --seed --python 3.13 .codex-tmp/<v>-env`, then `uv pip install --python .codex-tmp/<v>-env/Scripts/python.exe -r <version dir>/requirements.txt` (dirs: `VERSIONS` in `scripts/validate_workshop.py`).
 
@@ -37,6 +37,6 @@ Steps (stops at the first failure; the step list is also in `scripts/README.md`)
 - `Source drift`／repin errors: never edit evidence or manifest hashes by hand; fix the source and rerun.
 - G0–B3 behavior gate fails (planted B0 failures, test counts): stop and tell the user; that is a course-design change, not a build problem.
 - `verify_typography`: shorten or merge the slide／Runbook text it names (card main 1 line, detail ≤ 2, why／judge 1 line); change the CSS variables only with measured evidence and update the `course-authoring` table with them.
-- Slide overflow from `verify_browser.py`: shorten the text in `speech/01-greenfield/src/slides.json`.
+- Slide overflow from `verify_browser.py`: shorten the text in that stage's `speech/0N-*/src/slides.json`.
 - A permission prompt or block: stop and report it; never work around it.
 - Don't use bare `git stash` here: autocrlf rewrites built HTML on restore.

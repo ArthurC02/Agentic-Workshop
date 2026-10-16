@@ -15,8 +15,8 @@ GENERATED = [  # (regex on the repo-relative path, what to do instead)
      "edit participant-runbook/content/*.md or template/, then run release-materials"),
     (r"agentic-workshop/materials(-dlc)?/facilitator-deck/facilitator-deck\.html",
      "edit facilitator-deck/src/, then run release-materials"),
-    (r"agentic-workshop/materials/speech/01-greenfield/greenfield-(deck\.html|handout\.md)",
-     "edit speech/01-greenfield/src/slides.json, then run release-materials"),
+    (r"agentic-workshop/materials(-dlc)?/speech/0\d-[^/]+/[^/]+-(deck\.html|handout\.md)",
+     "edit the stage's src/slides.json, then run release-materials"),
     (r"dist/.*", "dist/ is build output; run release-materials"),
     (re.escape(EVAL) + r"(p11-(validation|static-validation|package-validation|runtime-baseline)-evidence\.json"
      r"|p11-validation-logs/.*|consistency-(correction|package-validation)-evidence\.json)",

@@ -21,7 +21,7 @@ function render() {
   el('check').textContent = '人工確認｜' + s.check; el('notes').textContent = '講者備註 · ' + (index+1) + '\n\n' + s.notes;
   el('notes').hidden = !notesVisible; el('counter').textContent = `${index+1} / ${slides.length}`;
   el('prev').disabled = index === 0; el('next').disabled = index === slides.length-1;
-  document.title = `Greenfield · ${s.title}`; location.replace('#'+s.id);
+  document.title = `${SPEECH_DATA.title.split('：')[0]} · ${s.title}`; location.replace('#'+s.id);
   announce(''); document.querySelectorAll('#overview-list button').forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
   requestAnimationFrame(resize);
 }
@@ -30,14 +30,14 @@ function toggleNotes(){notesVisible=!notesVisible;el('notes-button').setAttribut
 function openOverview(){if(!overview.open)overview.showModal();}
 function elapsed(){return accumulated+(running?performance.now()-startedAt:0);}
 function toggleTimer(){if(running){accumulated=elapsed();running=false;}else{startedAt=performance.now();running=true;}el('timer-button').textContent=running?'暫停 T':'計時 T';}
-function updateTimer(){const secs=Math.floor(elapsed()/1000);el('timer').textContent=`${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')} / 45:00`;el('timer').classList.toggle('over',secs>=2700);}
+function updateTimer(){const secs=Math.floor(elapsed()/1000);el('timer').textContent=`${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')} / ${String(SPEECH_DATA.minutes).padStart(2,'0')}:00`;el('timer').classList.toggle('over',secs>=SPEECH_DATA.minutes*60);}
 function save(filename, value){const url=URL.createObjectURL(new Blob([value],{type:'text/plain;charset=utf-8'}));const a=node('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);announce('已下載 '+filename);}
 async function copyPrompt(){const value=slides[index].prompt;if(!value)return;try{await navigator.clipboard.writeText(value);announce('指令已複製');}catch{const t=node('textarea');t.value=value;document.body.append(t);t.select();let copied=false;try{copied=document.execCommand('copy');}catch{}t.remove();if(copied)announce('指令已複製');else{const range=document.createRange();range.selectNodeContents(el('prompt'));const selection=getSelection();selection.removeAllRanges();selection.addRange(range);announce('請按 Ctrl+C／Cmd+C 複製已選取的指令');}}}
 el('prev').onclick=()=>move(-1);el('next').onclick=()=>move(1);el('copy').onclick=copyPrompt;
 el('notes-button').onclick=toggleNotes;el('overview-button').onclick=openOverview;el('close-overview').onclick=()=>overview.close();
 el('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{announce('請使用瀏覽器的全螢幕功能');}};
 el('timer-button').onclick=toggleTimer;el('reset').onclick=()=>{running=false;accumulated=0;el('timer-button').textContent='計時 T';updateTimer();};
-el('download-idea').onclick=()=>save('idea.md',SPEECH_DATA.idea);el('download-feature').onclick=()=>save('booking.feature',SPEECH_DATA.feature);el('download-handout').onclick=()=>save('greenfield-handout.md',SPEECH_DATA.handout);
+SPEECH_DATA.downloads.forEach(d=>{const b=node('button',d.label);b.onclick=()=>save(d.name,d.text);el('downloads').append(b);});
 slides.forEach((s,i)=>{const b=node('button',`${i+1}. ${s.title}`);b.onclick=()=>{index=i;overview.close();render();};el('overview-list').append(b);});
 function fromHash(){const target=slides.findIndex(s=>s.id===location.hash.slice(1));if(target>=0&&target!==index){index=target;render();}}
 addEventListener('hashchange',fromHash);addEventListener('resize',resize);

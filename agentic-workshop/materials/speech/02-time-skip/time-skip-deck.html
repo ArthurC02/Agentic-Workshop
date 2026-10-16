@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Time Skip：系統演化與接手</title>
+<style>:root{--ink:#1e3761;--blue:#0093c1;--teal:#008b82;--orange:#df6539;--muted:#536173;--line:#d5e1e6}
+*{box-sizing:border-box} [hidden]{display:none!important}
+body{margin:0;background:#102036;color:var(--ink);font-family:"Microsoft JhengHei","Segoe UI",sans-serif;overflow:hidden}
+button{font:inherit;cursor:pointer;border:1px solid #c6dbe3;border-radius:7px;background:white;color:var(--ink);padding:7px 12px}
+button:hover{background:#e2f3f9}button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}button:disabled{opacity:.4;cursor:default}
+#stage{position:absolute;width:1600px;height:900px;transform-origin:top left;background:#f2f6f7;padding:42px 65px 36px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+header{display:flex;justify-content:space-between;font-size:21px;color:var(--muted);letter-spacing:1px}
+#chapter{color:var(--blue);font-weight:700}h1{font-size:55px;line-height:1.2;margin:10px 0 0;letter-spacing:1px}
+#lead{font-size:28px;line-height:1.5;margin:0;color:var(--muted)}#content{display:flex;flex-direction:column;gap:18px;min-height:0;flex-shrink:1;overflow:auto}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:10px;padding:16px 24px}
+.card h2{font-size:28px;margin:0 0 8px}.card p{font-size:25px;line-height:1.4;margin:0;color:#34485d}
+.flow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.flow span{font-size:24px;padding:13px 18px;background:#dff3f0;border-radius:8px;line-height:1.35}.flow b{color:var(--teal);font-size:25px}
+pre{margin:0;padding:12px 22px;border-radius:10px;background:#152c43;color:#f2f6f7;font:22px/1.3 Consolas,"Microsoft JhengHei",monospace;white-space:pre-wrap;overflow:auto}
+#prompt-box{padding:20px 26px;background:#e2f3f9;border-radius:10px;border-left:6px solid var(--blue);flex-shrink:0}
+.label{display:flex;justify-content:space-between;align-items:center;font-size:24px}.label button{font-size:19px}
+#prompt{font-size:25px;line-height:1.5;margin:10px 0 0;white-space:pre-wrap}#check{margin:0;padding:17px 23px;background:#fff0e7;border-left:6px solid var(--orange);font-size:24px;line-height:1.45;border-radius:5px;flex-shrink:0}
+footer{margin-top:auto;display:flex;justify-content:space-between;font-size:19px;color:var(--muted)}
+#notes{position:absolute;inset:140px 65px 85px;background:#fffdf5;box-shadow:0 10px 50px #10203655;border:2px solid #f0cc89;border-radius:12px;padding:38px;font-size:30px;line-height:1.8;overflow:auto;z-index:2;white-space:pre-wrap}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:7px;align-items:center;padding:9px 12px;background:#102036;color:white;flex-wrap:wrap;font-size:15px;z-index:5;transition:opacity .3s}
+/* Fullscreen = projecting: hide the operator bar until the pointer or keyboard focus reaches it. */
+:fullscreen nav{opacity:0}:fullscreen nav:hover,:fullscreen nav:focus-within{opacity:1}
+#timer{font-variant-numeric:tabular-nums;margin:0 6px}#timer.over{color:#ffaf85}
+dialog{width:min(1100px,90vw);max-height:85vh;border:0;border-radius:14px;padding:28px;color:var(--ink);overflow:auto}dialog::backdrop{background:#102036bb}
+#overview-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}#overview-list button{text-align:left;line-height:1.5;padding:15px}#overview-list button[aria-current=true]{border:2px solid var(--blue);background:#e2f3f9}
+@media print{body{background:white;overflow:visible}nav,dialog,#notes{display:none!important}#stage{position:static;transform:none!important;width:100%;height:auto;padding:20px}h1{font-size:30px}.card p,#prompt,#check{font-size:16px}pre{font-size:14px}header,footer{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main id="stage" aria-label="投影片">
+  <header><span id="chapter"></span><span>Speech 02 · Time Skip · 25 分鐘</span></header>
+  <h1 id="title"></h1><p id="lead"></p>
+  <div id="content"></div>
+  <section id="prompt-box" hidden><div class="label"><b>交給 Agent 的指令</b><button id="copy">複製指令</button></div><p id="prompt"></p></section>
+  <p id="check"></p>
+  <aside id="notes" hidden aria-label="講者備註"></aside>
+  <footer><span id="status" role="status" aria-live="polite"></span><span id="counter"></span></footer>
+</main>
+<nav aria-label="簡報操作">
+  <button id="prev" aria-label="上一頁">←</button><button id="next" aria-label="下一頁">→</button>
+  <button id="overview-button">總覽 O</button><button id="notes-button" aria-pressed="false">備註 N</button>
+  <button id="fullscreen">全螢幕 F</button><span id="downloads"></span>
+  <span id="timer" aria-label="經過時間">00:00 / 25:00</span><button id="timer-button">計時 T</button><button id="reset">重設</button>
+</nav>
+<dialog id="overview"><h2>Time Skip：系統演化與接手 · 投影片總覽</h2><div id="overview-list"></div><button id="close-overview">關閉 Esc</button></dialog>
+<script>const SPEECH_DATA = {"slides": [{"id": "start", "chapter": "什麼是 Time Skip", "title": "時間快轉：專案已經長大了", "lead": "Time Skip（時間快轉）：假設專案已開發一段時間，而你剛接手。", "cards": [["Greenfield（新專案）", "從頭開始，文件和程式都是你剛建的，記得住。"], ["Time Skip 之後", "別人寫的、跑了很久的系統；你和 Agent（AI 助手）都是新來的。"]], "check": "說出一件你接手別人專案時最不確定的事。", "notes": "約 2 分鐘。Time Skip 是課程設定：Smart Ticket 上線 12 個月，你接手同事維護的既有系統。這場講接手的技巧，不是分析或修改；那是下一場。先問一題：上次接手別人的專案，第一天最難的是什麼？📖 定義出處：本課程〈Time Skip：12 個月後〉"}, {"id": "evolve", "chapter": "什麼是 Time Skip", "title": "12 個月後，多了什麼", "lead": "原有的查詢、訂票、付款、訂單仍在，旁邊長出許多新功能。", "cards": [["新增能力", "會員、提前購票與企業優惠、改票與退票、通知、座位、稽核紀錄。"], ["也留下歷史", "測試、文件與設計取捨都跟著增加。"], ["文件不一定同步", "文件是線索，不保證和程式一致。"]], "check": "區分：哪些是看得到的事實，哪些只是文件的說法。", "notes": "約 2 分鐘。只講公開的成長背景，不講任何失敗原因。重點是最後一張卡：舊文件、舊對話、舊記憶都可能過時，這是整場的主線。來源：公司與系統成長摘要。"}, {"id": "newchat", "chapter": "技巧：Token（詞元）節費", "title": "換專案，就開新對話", "lead": "新專案不要沿用舊對話，把舊內容帶進來只會干擾。", "cards": [["舊對話的問題", "裡面全是上一個專案的細節，容易被誤當成這個專案的事實。"], ["新對話的起點", "只給三樣：工作規則、專案背景、要讀的檔案。"]], "check": "舊對話裡有哪些內容，會讓 Agent 誤會新專案？", "notes": "約 2 分鐘。承接 Greenfield：那時一路用同一個對話，是因為專案是從零長出來的。接手別人的專案，舊對話沒有用處。這是本場第一個技巧：Token 節費（本課程新介紹）。📖 延伸閱讀：Anthropic 官方文件〈Context windows〉與〈Token counting〉；你所用工具的官方文件通常有同名章節。"}, {"id": "token", "chapter": "技巧：Token（詞元）節費", "title": "Token 是什麼？為什麼要省", "lead": "Token（詞元）是 Agent 讀寫文字的計費與記憶單位。", "flow": ["開新對話", "指名要讀的檔", "用摘要代替重讀", "留交接檔"], "cards": [["越長越貴", "對話越長、貼得越多，花費越高，也越容易忘了前面講過的事。"], ["省的是干擾", "目標不只是便宜，而是讓 Agent 只看相關的內容。"]], "check": "同一件事，說得短而準，Agent 的答案有沒有變差？", "notes": "約 2 分鐘。四個做法：開新對話、指名要讀的檔、用摘要代替重讀全部、留交接檔。指名要讀的檔與留交接檔接下來各用一頁；用摘要代替重讀併在交接檔頁。不要講模型選擇（那是別場的主題）。📖 延伸閱讀：Anthropic Engineering 文章〈Effective context engineering for AI agents〉；你所用工具的官方文件通常有同名章節。"}, {"id": "name-files", "chapter": "技巧：Token（詞元）節費", "title": "指名要讀的檔，不叫它全讀", "lead": "「把整個專案讀一遍」很花 Token，而且重點會被淹沒。", "prompt": "先不要修改檔案。只讀 README.md 和 notes/ 資料夾，用五句白話告訴我：這個專案做什麼、目前版本、哪些資料你還沒讀。說完就停下等我。", "cards": [["指名範圍", "寫出檔案或資料夾，讓 Agent 不必自己亂找。"], ["先摘要再深入", "要細節時，再請它讀下一個指定的檔。"]], "check": "Agent 有沒有只讀你指定的檔？它說「還沒讀」的清單合理嗎？", "notes": "約 3 分鐘。這是提示詞五部分中「背景・要讀的檔」的實際用法，Greenfield 已教過結構，這裡只是深化。示範提示詞僅供示範，現場可由講者貼給 Agent；未實際執行就不要宣稱結果。重點在最後一句：叫 Agent 列出沒讀的部分，讓範圍看得見。"}, {"id": "rules", "chapter": "開新對話先給規則", "title": "第一件事：貼工作規則、說背景", "lead": "規則是給 Agent 的，你不需要看懂程式，只要確認它複述正確。", "cards": [["規則的重點", "不自己亂改程式；先提計畫、經你核准才動；沒執行的事標「未驗證」。"], ["背景的重點", "這是上線已久的系統、你剛接手；這一段只接手，先不分析。"], ["請它複述", "用三句話複述，就能看出有沒有漏掉。"]], "check": "複述有沒有漏掉：不自己改程式、先計畫再核准、未執行標未驗證。", "notes": "約 2 分鐘。Runbook 的完整規則共 7 條，現場不必逐條念，只說三個最關鍵的。這份規則和 Greenfield 的工作規則同一套，第 3、4 條改成任務卡範圍與過時期待值的處理。複述是最便宜的檢查：漏了，現在就補，比做到一半才發現便宜很多。補救句：「你的複述漏了一些規則。請重新讀一次上面的規則與背景，逐條確認，再用三句話複述。」📖 定義出處：本課程〈Time Skip：12 個月後〉"}, {"id": "orient", "chapter": "讓 Agent 看懂演化後的專案", "title": "不信舊記憶：三方對照", "lead": "文件、舊對話與 Agent 的記憶都可能過時，要拿現況來核對。", "flow": ["程式現況", "測試結果", "公開規則", "三者是否一致"], "cards": [["以實際為準", "版本號、測試結果、版本紀錄，都請 Agent 當場看、當場跑。"], ["不一致就標出來", "文件寫的和程式做的不同時，標為待確認，不自己選邊。"]], "check": "重要結論：Agent 有說出程式、測試、規則三者是否一致嗎？", "notes": "約 3 分鐘。這是整場最重要的一頁。Agent 會很有自信地複述舊文件。要訓練的習慣是：每個重要結論，都問「依據是什麼、是現在看到的嗎」。不要在此講任何 B0 的具體問題或失敗原因，只講方法。來源：Brownfield 接手說明。📖 延伸閱讀：Michael Feathers《Working Effectively with Legacy Code》（2004）。"}, {"id": "baseline", "chapter": "讓 Agent 看懂演化後的專案", "title": "先記下起點，再談分析", "lead": "接手的第一份成果，是一份「現在長什麼樣」的紀錄（B0＝剛接手、已上線的既有程式）。", "cards": [["要記什麼", "版本號、測試的通過／失敗／跳過數、版本紀錄的起點。"], ["有失敗也先不修", "起點就是要誠實記下現況；之後才知道改了什麼。"]], "code": "notes/\n  time-skip.md    起點紀錄\n    - 版本：B0\n    - 測試：通過／失敗／跳過 各幾個\n    - 版本紀錄：B0 baseline 是否成功", "check": "紀錄裡的數字是 Agent 實際執行得到的，還是它推測的？", "notes": "約 2 分鐘。notes 只放紀錄，不算修改程式。這一頁示範起點紀錄的樣子，數字要以實際執行為準；課堂示範沒有執行就說「未驗證」。起點有了，之後每一段改了什麼才說得清楚。來源：Runbook 檢查點 3。"}, {"id": "handoff", "chapter": "交接檔", "title": "交接檔：讓下一段對話接得上", "lead": "Greenfield（新專案那一場）已把決定寫進 notes/；交接檔再濃縮成一份，下一段對話只讀它就接得上。", "code": "目標：這一段要做什麼\n已完成：做了什麼、改了哪些檔\n決策：選了什麼、為什麼\n測試：結果數字、哪些未驗證\n問題：還沒解決的事\n下一步：接手的人先做什麼", "cards": [["不是流水帳", "寫結論和依據，不貼整段對話。"], ["省 Token", "新對話只讀這份，就能接著做。"]], "check": "交接檔裡，已完成、未完成、未驗證三類，有沒有分清楚？", "notes": "約 3 分鐘。這是 Token 節費的最後一招，也是團隊協作的基礎。交接檔的欄位對應詞彙表的 Handover Package（交接資訊）。結束前請 Agent 把這一段整理成交接檔，是比保留長對話更好的習慣。可以要求：「把這一段整理成交接檔，結論要附依據，沒執行的標未驗證。」"}, {"id": "verify", "chapter": "交接檔", "title": "人要查交接檔的哪幾項", "lead": "交接檔由 Agent 寫，但對不對，仍由你判斷。", "cards": [["數字有依據", "測試數字來自實際執行，不是估計。"], ["範圍沒有越界", "改的檔案都在你核准的範圍內。"], ["缺口有寫出來", "未驗證與未解決的事，有明確列出，沒被默默略過。"]], "check": "挑一條交接檔裡的結論，追問：這是看到的，還是猜的？", "notes": "約 2 分鐘。對照 Greenfield 的原則：Agent 整理，人確認。接手別人專案時更重要，因為你自己也還不熟，更容易被一份寫得漂亮的交接檔說服。"}, {"id": "next", "chapter": "下一站", "title": "接手之後：交給 Teammate", "lead": "起點記好了，下一場把 Agent 當隊友，一起分析與共同工作。", "flow": ["新對話", "工作規則", "起點紀錄", "交接檔", "下一場：Brownfield（既有專案）／Teammate（隊友）"], "cards": [["今天帶走", "開新對話、指名要讀的檔、不信舊記憶、留交接檔。"], ["下一場", "分析演化後的專案，並讓人決定怎麼做。"]], "check": "用一句話說出：接手時，你第一個要做的動作是什麼？", "notes": "約 2 分鐘，收尾。總結四個 Token 節費做法與兩個核心習慣（三方對照、人查交接檔）。接著銜接 03 Brownfield／Teammate：不要先講那場的內容，只說會用到今天的起點與交接檔。"}], "title": "Time Skip：系統演化與接手", "minutes": 25, "downloads": [{"label": "下載操作講義", "name": "time-skip-handout.md", "text": "# Time Skip：系統演化與接手\n\n\u003e 讀者：學員。時機：25 分鐘觀念與技巧講解。前置：已聽過 Greenfield 講解，備妥可用的 Coding Agent（能讀寫檔案、協助寫程式的 AI 助手）。\n\n本段不寫程式、不打指令。提示詞只供示範；沒有實際執行的結果，一律標為未驗證。\n\n## 1. 時間快轉：專案已經長大了\n\nTime Skip（時間快轉）：假設專案已開發一段時間，而你剛接手。\n\n- **Greenfield（新專案）**：從頭開始，文件和程式都是你剛建的，記得住。\n\n- **Time Skip 之後**：別人寫的、跑了很久的系統；你和 Agent（AI 助手）都是新來的。\n\n**人工確認**：說出一件你接手別人專案時最不確定的事。\n\n## 2. 12 個月後，多了什麼\n\n原有的查詢、訂票、付款、訂單仍在，旁邊長出許多新功能。\n\n- **新增能力**：會員、提前購票與企業優惠、改票與退票、通知、座位、稽核紀錄。\n\n- **也留下歷史**：測試、文件與設計取捨都跟著增加。\n\n- **文件不一定同步**：文件是線索，不保證和程式一致。\n\n**人工確認**：區分：哪些是看得到的事實，哪些只是文件的說法。\n\n## 3. 換專案，就開新對話\n\n新專案不要沿用舊對話，把舊內容帶進來只會干擾。\n\n- **舊對話的問題**：裡面全是上一個專案的細節，容易被誤當成這個專案的事實。\n\n- **新對話的起點**：只給三樣：工作規則、專案背景、要讀的檔案。\n\n**人工確認**：舊對話裡有哪些內容，會讓 Agent 誤會新專案？\n\n## 4. Token 是什麼？為什麼要省\n\nToken（詞元）是 Agent 讀寫文字的計費與記憶單位。\n\n開新對話 → 指名要讀的檔 → 用摘要代替重讀 → 留交接檔\n\n- **越長越貴**：對話越長、貼得越多，花費越高，也越容易忘了前面講過的事。\n\n- **省的是干擾**：目標不只是便宜，而是讓 Agent 只看相關的內容。\n\n**人工確認**：同一件事，說得短而準，Agent 的答案有沒有變差？\n\n## 5. 指名要讀的檔，不叫它全讀\n\n「把整個專案讀一遍」很花 Token，而且重點會被淹沒。\n\n- **指名範圍**：寫出檔案或資料夾，讓 Agent 不必自己亂找。\n\n- **先摘要再深入**：要細節時，再請它讀下一個指定的檔。\n\n### 交給 Agent 的指令\n\n先不要修改檔案。只讀 README.md 和 notes/ 資料夾，用五句白話告訴我：這個專案做什麼、目前版本、哪些資料你還沒讀。說完就停下等我。\n\n**人工確認**：Agent 有沒有只讀你指定的檔？它說「還沒讀」的清單合理嗎？\n\n## 6. 第一件事：貼工作規則、說背景\n\n規則是給 Agent 的，你不需要看懂程式，只要確認它複述正確。\n\n- **規則的重點**：不自己亂改程式；先提計畫、經你核准才動；沒執行的事標「未驗證」。\n\n- **背景的重點**：這是上線已久的系統、你剛接手；這一段只接手，先不分析。\n\n- **請它複述**：用三句話複述，就能看出有沒有漏掉。\n\n**人工確認**：複述有沒有漏掉：不自己改程式、先計畫再核准、未執行標未驗證。\n\n## 7. 不信舊記憶：三方對照\n\n文件、舊對話與 Agent 的記憶都可能過時，要拿現況來核對。\n\n程式現況 → 測試結果 → 公開規則 → 三者是否一致\n\n- **以實際為準**：版本號、測試結果、版本紀錄，都請 Agent 當場看、當場跑。\n\n- **不一致就標出來**：文件寫的和程式做的不同時，標為待確認，不自己選邊。\n\n**人工確認**：重要結論：Agent 有說出程式、測試、規則三者是否一致嗎？\n\n## 8. 先記下起點，再談分析\n\n接手的第一份成果，是一份「現在長什麼樣」的紀錄（B0＝剛接手、已上線的既有程式）。\n\n- **要記什麼**：版本號、測試的通過／失敗／跳過數、版本紀錄的起點。\n\n- **有失敗也先不修**：起點就是要誠實記下現況；之後才知道改了什麼。\n\n```text\nnotes/\n  time-skip.md    起點紀錄\n    - 版本：B0\n    - 測試：通過／失敗／跳過 各幾個\n    - 版本紀錄：B0 baseline 是否成功\n```\n\n**人工確認**：紀錄裡的數字是 Agent 實際執行得到的，還是它推測的？\n\n## 9. 交接檔：讓下一段對話接得上\n\nGreenfield（新專案那一場）已把決定寫進 notes/；交接檔再濃縮成一份，下一段對話只讀它就接得上。\n\n- **不是流水帳**：寫結論和依據，不貼整段對話。\n\n- **省 Token**：新對話只讀這份，就能接著做。\n\n```text\n目標：這一段要做什麼\n已完成：做了什麼、改了哪些檔\n決策：選了什麼、為什麼\n測試：結果數字、哪些未驗證\n問題：還沒解決的事\n下一步：接手的人先做什麼\n```\n\n**人工確認**：交接檔裡，已完成、未完成、未驗證三類，有沒有分清楚？\n\n## 10. 人要查交接檔的哪幾項\n\n交接檔由 Agent 寫，但對不對，仍由你判斷。\n\n- **數字有依據**：測試數字來自實際執行，不是估計。\n\n- **範圍沒有越界**：改的檔案都在你核准的範圍內。\n\n- **缺口有寫出來**：未驗證與未解決的事，有明確列出，沒被默默略過。\n\n**人工確認**：挑一條交接檔裡的結論，追問：這是看到的，還是猜的？\n\n## 11. 接手之後：交給 Teammate\n\n起點記好了，下一場把 Agent 當隊友，一起分析與共同工作。\n\n新對話 → 工作規則 → 起點紀錄 → 交接檔 → 下一場：Brownfield（既有專案）／Teammate（隊友）\n\n- **今天帶走**：開新對話、指名要讀的檔、不信舊記憶、留交接檔。\n\n- **下一場**：分析演化後的專案，並讓人決定怎麼做。\n\n**人工確認**：用一句話說出：接手時，你第一個要做的動作是什麼？\n\n## 完成條件\n能說明接手演化後的專案時，如何開新對話、指定要讀的檔、不信舊記憶，並留下一份交接檔；知道人要查交接檔的哪幾項。\n"}]};</script>
+<script>'use strict';
+const slides = SPEECH_DATA.slides;
+const el = id => document.getElementById(id);
+let index = 0, notesVisible = false, running = false, accumulated = 0, startedAt = 0;
+const overview = el('overview');
+function node(tag, value, cls) { const n = document.createElement(tag); if(value !== undefined) n.textContent = value; if(cls) n.className = cls; return n; }
+function announce(message) { el('status').textContent = message; }
+function resize() {
+  const available = Math.max(100, innerHeight - document.querySelector('nav').offsetHeight - 18);
+  const scale = Math.min(innerWidth / 1600, available / 900);
+  const stage = el('stage'); stage.style.transform = `scale(${scale})`;
+  stage.style.left = `${(innerWidth - 1600 * scale) / 2}px`; stage.style.top = `${(available - 900 * scale) / 2}px`;
+}
+function render() {
+  const s = slides[index]; el('chapter').textContent = s.chapter; el('title').textContent = s.title; el('lead').textContent = s.lead;
+  const content = el('content'); content.replaceChildren();
+  if(s.flow) { const flow = node('div', undefined, 'flow'); s.flow.forEach((v,i)=>{ if(i)flow.append(node('b','→'));flow.append(node('span',v)); });content.append(flow); }
+  if(s.code) content.append(node('pre', s.code));
+  if(s.cards) { const cards = node('div',undefined,'cards');s.cards.forEach(([title,body])=>{ const card=node('article',undefined,'card');card.append(node('h2',title),node('p',body));cards.append(card); });content.append(cards); }
+  el('prompt-box').hidden = !s.prompt; el('prompt').textContent = s.prompt || '';
+  el('check').textContent = '人工確認｜' + s.check; el('notes').textContent = '講者備註 · ' + (index+1) + '\n\n' + s.notes;
+  el('notes').hidden = !notesVisible; el('counter').textContent = `${index+1} / ${slides.length}`;
+  el('prev').disabled = index === 0; el('next').disabled = index === slides.length-1;
+  document.title = `${SPEECH_DATA.title.split('：')[0]} · ${s.title}`; location.replace('#'+s.id);
+  announce(''); document.querySelectorAll('#overview-list button').forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
+  requestAnimationFrame(resize);
+}
+function move(delta){index=Math.max(0,Math.min(slides.length-1,index+delta));render();}
+function toggleNotes(){notesVisible=!notesVisible;el('notes-button').setAttribute('aria-pressed',String(notesVisible));el('notes').hidden=!notesVisible;}
+function openOverview(){if(!overview.open)overview.showModal();}
+function elapsed(){return accumulated+(running?performance.now()-startedAt:0);}
+function toggleTimer(){if(running){accumulated=elapsed();running=false;}else{startedAt=performance.now();running=true;}el('timer-button').textContent=running?'暫停 T':'計時 T';}
+function updateTimer(){const secs=Math.floor(elapsed()/1000);el('timer').textContent=`${String(Math.floor(secs/60)).padStart(2,'0')}:${String(secs%60).padStart(2,'0')} / ${String(SPEECH_DATA.minutes).padStart(2,'0')}:00`;el('timer').classList.toggle('over',secs>=SPEECH_DATA.minutes*60);}
+function save(filename, value){const url=URL.createObjectURL(new Blob([value],{type:'text/plain;charset=utf-8'}));const a=node('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);announce('已下載 '+filename);}
+async function copyPrompt(){const value=slides[index].prompt;if(!value)return;try{await navigator.clipboard.writeText(value);announce('指令已複製');}catch{const t=node('textarea');t.value=value;document.body.append(t);t.select();let copied=false;try{copied=document.execCommand('copy');}catch{}t.remove();if(copied)announce('指令已複製');else{const range=document.createRange();range.selectNodeContents(el('prompt'));const selection=getSelection();selection.removeAllRanges();selection.addRange(range);announce('請按 Ctrl+C／Cmd+C 複製已選取的指令');}}}
+el('prev').onclick=()=>move(-1);el('next').onclick=()=>move(1);el('copy').onclick=copyPrompt;
+el('notes-button').onclick=toggleNotes;el('overview-button').onclick=openOverview;el('close-overview').onclick=()=>overview.close();
+el('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{announce('請使用瀏覽器的全螢幕功能');}};
+el('timer-button').onclick=toggleTimer;el('reset').onclick=()=>{running=false;accumulated=0;el('timer-button').textContent='計時 T';updateTimer();};
+SPEECH_DATA.downloads.forEach(d=>{const b=node('button',d.label);b.onclick=()=>save(d.name,d.text);el('downloads').append(b);});
+slides.forEach((s,i)=>{const b=node('button',`${i+1}. ${s.title}`);b.onclick=()=>{index=i;overview.close();render();};el('overview-list').append(b);});
+function fromHash(){const target=slides.findIndex(s=>s.id===location.hash.slice(1));if(target>=0&&target!==index){index=target;render();}}
+addEventListener('hashchange',fromHash);addEventListener('resize',resize);
+addEventListener('keydown',e=>{if((e.target instanceof Element&&(e.target.closest('textarea,input,select')||(e.target.closest('button')&&[' ','Enter'].includes(e.key))))||e.ctrlKey||e.metaKey||e.altKey)return;if(overview.open)return;const key=e.key.toLowerCase();if(['arrowright','arrowdown','pagedown',' '].includes(key)){e.preventDefault();move(1);}else if(['arrowleft','arrowup','pageup'].includes(key)){e.preventDefault();move(-1);}else if(key==='home'){index=0;render();}else if(key==='end'){index=slides.length-1;render();}else if(key==='n')toggleNotes();else if(key==='o')openOverview();else if(key==='t')toggleTimer();else if(key==='f')el('fullscreen').click();else if(key==='escape'&&notesVisible)toggleNotes();});
+fromHash();render();setInterval(updateTimer,500);resize();
+</script>
+</body>
+</html>

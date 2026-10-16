@@ -1,0 +1,12 @@
+{
+  "title": "Time Skip：系統演化與接手",
+  "header": "Speech 02 · Time Skip · 25 分鐘",
+  "minutes": 25,
+  "deck": "time-skip-deck.html",
+  "handout": "time-skip-handout.md",
+  "handout_intro": [
+    "> 讀者：學員。時機：25 分鐘觀念與技巧講解。前置：已聽過 Greenfield 講解，備妥可用的 Coding Agent（能讀寫檔案、協助寫程式的 AI 助手）。",
+    "本段不寫程式、不打指令。提示詞只供示範；沒有實際執行的結果，一律標為未驗證。"
+  ],
+  "handout_done": "能說明接手演化後的專案時，如何開新對話、指定要讀的檔、不信舊記憶，並留下一份交接檔；知道人要查交接檔的哪幾項。"
+}

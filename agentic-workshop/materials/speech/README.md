@@ -1,44 +1,37 @@
-# Speech：概念與技術操作教學
+# Speech：概念與 Agentic 開發技巧講解
 
 > 目標讀者：講者與教材維護者。
-> 使用時機：規劃各階段 Workshop 後的概念、技術講解與引導操作。
+> 使用時機：各階段 Workshop 之後，講解該階段背後的概念與 Agentic 開發技巧。
 > 前置條件：閱讀既有 Workshop 任務與 `materials` 教材。
 
-本資料夾存放 Speech 的內容規劃、操作指令、投影片原稿與講者備註。
+本資料夾存放五場獨立講解的投影片原稿、講者備註與學員講義。
 
 ## 教學方式
 
-以學員實作為重點。每個主題提供操作步驟、可複製的 Agent 指令、預期產出與人工確認事項；概念搭配操作講解。
+以概念和 Agentic 開發技巧為主：說明為什麼這樣問 Agent、什麼時候用、人要判斷什麼。學員不寫程式、不讀程式、不打指令；頁面上的提示詞是示範，學員想試再貼給自己的 Agent，沒有實際執行的結果一律視為未驗證。
 
-## 第一階段：Greenfield
+五場依 Tool → Teammate → Digital Worker 推進，這三個階段的差別是人介入的方式：逐步確認、核准計畫、只在 Gate（關卡）決策。每個技巧只在第一次需要時講一次，之後的場次只加深。
 
-從「Greenfield（從頭開始的新專案）為什麼這麼順利？做了哪些準備？」出發，帶學員理解如何從空資料夾逐步建立開發依據：
+## 五場講解
 
-1. 從空資料夾開始。
-2. 將專案構想（Idea）相關文件放入 `docs/`。
-3. 從文件細化 MVP（Minimum Viable Product，最小可行產品）各階段應有的工作項目。
-4. 將工作項目轉為使用者故事（User Story）或使用案例（Use Case）。
-5. 定義驗收條件（AC，Acceptance Criteria）。
-6. 理解業務情境與流程（Business Flow）。
-7. 使用 Gherkin（用 Given／When／Then 寫測試情境的格式）撰寫測試情境。
-8. 設計分層式架構（依責任把程式分成幾層）。
+| 存放位置 | 主題 | 長度 | 頁數 | 第一次講的技巧 |
+|---|---|---|---|---|
+| `01-greenfield/` | 從 Idea 到可開發的專案；Tool | 45 分鐘 | 20 | 工作規則、五段式提示詞、小步放行、驗收對照表（Structured Output，結構化輸出）、變更審查 |
+| `02-time-skip/` | 系統演化與接手 | 25 分鐘 | 11 | Token 節費、交接檔 |
+| `03-brownfield/` | 既有系統理解、共同脈絡與變更；Teammate | 45 分鐘 | 19 | 模型選擇與推論強度、團隊規則 Skill |
+| `04-digital-worker/` | 工作授權、審查與治理；Digital Worker | 45 分鐘 | 19 | Work Order（工作單）、Gate 決策、例外處理（加深前面技巧） |
+| `05-retrospective/` | 回顧與組織導入 | 25 分鐘 | 11 | 寫自己的 Skill |
 
-第一階段採45分鐘完整操作與審查，詳見 [Greenfield操作說明](01-greenfield/README.md)。既有G0（Greenfield 起始程式包）作為回看準備工作的案例，再由學員在新目錄重建文件流程。
+各場的節奏、內容依據與邊界見該資料夾的 `README.md`。
 
-## 各階段獨立簡報（Deck）
+## 建置與檢查
 
-主題中的 Tool → Teammate → Digital Worker，指 Agent 從工具、隊友到能獨立執行任務的數位員工。
+從 Repo 根目錄執行；不帶資料夾名稱時處理全部五場：
 
-| 存放位置 | 主題 | 狀態 |
-|---|---|---|
-| `01-greenfield/` | 從Idea到可開發專案；Greenfield／Tool | 本輪產製 |
-| `02-time-skip/` | 系統演化與接手 | 預留，尚未產製 |
-| `03-brownfield/` | 既有系統理解、共同脈絡與變更；Teammate | 預留，尚未產製 |
-| `04-digital-worker/` | 工作授權、審查與治理；Digital Worker | 預留，尚未產製 |
-| `05-retrospective/` | 回顧與組織導入 | 預留，尚未產製 |
+```powershell
+py -3.13 -X utf8 agentic-workshop/materials/speech/build_decks.py [01-greenfield …]
+py -3.13 -X utf8 agentic-workshop/materials/speech/build_decks.py --check
+py -3.13 -X utf8 agentic-workshop/materials/speech/verify_browser.py [01-greenfield …]
+```
 
-每個階段使用各自的HTML與內容原稿；`shared/`存放共用呈現元件。後續各階段的內容與時間於產製時細化。
-
-## 目前產出
-
-第一階段提供單檔HTML、逐頁操作講義、Idea與Gherkin參考。`build_decks.py`目前只建置已完成內容的Greenfield，不自動產製後續階段。
+每場的來源是 `src/stage.json`（標題、長度、輸出檔名、講義開頭與完成條件、可下載檔）與 `src/slides.json`（逐頁內容與講者備註）；`shared/` 是共用版型。建置產生單檔離線 HTML（`*-deck.html`）與不含講者備註的講義（`*-handout.md`），兩者都不要手改。DLC 的四場講解（`materials-dlc/speech/`）共用同一套腳本與版型，不帶資料夾名稱時一併處理。`verify_browser.py` 以無頭瀏覽器逐頁檢查溢出與裁切，並測試翻頁、備註、計時、複製與下載。發布時由 `release-materials` 一併執行。

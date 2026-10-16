@@ -33,7 +33,7 @@
 | Repository 結構與產製進度 | [結構規劃](docs/planning/repository-structure.md)、[產製路線](docs/planning/production-roadmap.md) |
 | 已核准決策、衝突與待辦 | [決策與待協調事項](docs/planning/decisions-and-open-issues.md) |
 | 主持簡報與學員 Runbook 建置／操作 | [Materials 操作說明](agentic-workshop/materials/README.md) |
-| 獨立操作教學內容 | [Speech 說明](agentic-workshop/materials/speech/README.md) |
+| 獨立操作教學內容 | [Speech 說明](agentic-workshop/materials/speech/README.md)、DLC Speech 說明（`agentic-workshop/materials-dlc/speech/README.md`） |
 | 發布流程、打包、驗證工具與證據 | [工具說明](scripts/README.md) 與各階段 `evaluation/` |
 | 規格、案例與驗收證據查找 | [決策與驗證參考索引](docs/planning/agent-work-history.md) |
 
@@ -46,7 +46,7 @@
 | `docs/contents/`、`docs/instructions/`、`docs/planning/` | 既有概念與範本、產製規格、規劃與決策 |
 | `agentic-workshop/00-governance/`–`06-runbook/` | 主課素材：治理、G0／G1、Time Skip、B0–B3、Digital Worker、回顧、主持流程與 Recovery |
 | `agentic-workshop/07-dlc-ddd/` | DLC 素材、工具與 Recovery |
-| `agentic-workshop/materials/`、`materials-dlc/` | 主課與 DLC 的主持簡報、學員 Runbook 原稿與成品；`materials/speech/` 為獨立操作教學 |
+| `agentic-workshop/materials/`、`materials-dlc/` | 主課與 DLC 的主持簡報、學員 Runbook 原稿與成品；`materials/speech/`、`materials-dlc/speech/` 為獨立操作教學 |
 | `scripts/` | 檢查、建置、打包、驗證與發布工具 |
 | `.claude/` | Agent 工具正本：Skills、Workflows、Hook（見 §8.2） |
 | `dist/`、`.codex-tmp/` | 生成的候選包與本機環境，排除於 Git 追蹤之外 |

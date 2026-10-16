@@ -1,0 +1,12 @@
+{
+  "title": "Digital Worker：工作授權、審查與治理",
+  "header": "Speech 04 · Digital Worker · 45 分鐘",
+  "minutes": 45,
+  "deck": "digital-worker-deck.html",
+  "handout": "digital-worker-handout.md",
+  "handout_intro": [
+    "> 讀者：學員。時機：B3 與交付之後的 45 分鐘概念講解。前置：做過 B3，或手邊有自己的 `notes/b3.md`、`notes/delivery.md` 與 `skills/b3-work-order.md`。",
+    "本段講概念與判斷，不寫程式、不打指令。範例提示詞是選用示範，貼給你自己的 Coding Agent，結果由你檢查；沒有實際執行的，一律當作未驗證。"
+  ],
+  "handout_done": "能說出：一份工作單的五個部分與授權邊界、每道 Gate 你要核對什麼、例外提議怎麼判斷範圍、交付時憑哪些證據選完成等級；並想好工作上一件可以這樣委派的事，以及 Gate 要設在哪裡。"
+}

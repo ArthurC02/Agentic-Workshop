@@ -1,0 +1,12 @@
+{
+  "title": "回顧與組織導入：把做法帶回團隊",
+  "header": "Speech 05 · 回顧與組織導入 · 25 分鐘",
+  "minutes": 25,
+  "deck": "retrospective-deck.html",
+  "handout": "retrospective-handout.md",
+  "handout_intro": [
+    "> 讀者：學員。時機：25 分鐘回顧講解。前置：已聽過前四段，或手邊有自己的 `notes/` 與 `skills/` 紀錄。",
+    "本段以概念與判斷為主；範例提示詞選用，貼給你自己的 Coding Agent（能讀寫檔案、協助寫程式的 AI 助手），結果由你檢查。"
+  ],
+  "handout_done": "帶走三項：一份依風險、可逆性與證據選介入方式的判斷、一個寫成 Skill 的重複做法，以及一項有責任人與驗證方式的導入行動。"
+}
