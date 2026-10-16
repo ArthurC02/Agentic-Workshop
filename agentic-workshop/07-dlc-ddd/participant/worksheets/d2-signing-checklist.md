@@ -12,7 +12,7 @@
 6. **提案者**：反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）→ `fill_package.py` → `submit-proposal`。變更審查包（Change Package）放在 `domain-memory/changes/<id>/`，不會動到已審查的內容。
 7. **夥伴**：讀過審查包、回「核准」後，`record-approval` → `verify-proposal`。提案者不得核准自己的提案。
 8. **夥伴**：簽章 commit → `write_scm_attestation.py` → `verify-git-governance`。`write_scm_attestation.py` 把簽章 commit 寫成核准證明（attestation）；這份證據指向 Git 裡的簽章 commit，不靠 Plugin 自己的紀錄也能驗證。
-9. **提案者**：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`。只有核准且有簽章證據的提案能套用。
+9. **提案者**：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`。只有核准且有簽章證據的提案能套用；套用後每筆事實帶 `verified`（誰、何時核准）。
 10. **夥伴**：簽章 commit 套用結果並 push；hook 會再檢查一次簽章。
 
 核准、簽章、push 只在夥伴自己的 Agent 對話裡執行；提案者的 Agent 不碰 `.dlc-keys`。
@@ -23,7 +23,7 @@
 
 編號前綴：CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。
 
-`promote` 要列出 Registry 的**全部**候選，包括用過 Recovery 時帶進來的候選：每種有候選的類別都要有一個同名的鍵（`dm export` 輸出的頂層鍵，例如 `rules`、`vocabulary`）。自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
+`promote` 要列出 Registry 的**全部**候選，包括用過 Recovery 時帶進來的候選：每種有候選的類別都要有一個同名的鍵（`dm export` 輸出的頂層鍵，例如 `rules`、`vocabulary`）。候選清單照 Runbook D2 檢查點 3 第一步的指令產生：export 先存到 Repo 外的暫存檔，再只印出候選 id，不要把整份 export 讀進對話。自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
 
 ```json
 {
@@ -56,7 +56,8 @@
     "rejected_alternatives": ["〈例如：全部維持候選，Agent 繼續靠猜〉"],
     "counterfactual_check": "〈要改壞的保護與預期會失敗的測試〉"
   },
-  "counterfactual": {"obligation_id": "OB-〈做過 counterfactual 的規則 id〉", "result_file": "cf-d2.json"}
+  "counterfactual": {"obligation_id": "OB-〈做過 counterfactual 的規則 id〉", "result_file": "cf-d2.json"},
+  "open_questions": ["〈D1 還沒解決的缺口或問題，一句一個〉"]
 }
 ```
 
@@ -64,6 +65,7 @@
 - 每條驗收條件與規則各產生一個 obligation，id 是 `OB-<原 id>`。
 - `counterfactual.obligation_id` 必須是上面某條規則的 `OB-<規則 id>`。
 - `owner_context`、`invariant` 是給 Agent 填的，不需要看懂；不變量 D3a 才介紹。
+- `open_questions` 放 `notes/d1.md`「缺口與查詢」選的缺口與其他還沒解決的問題。紀錄只放元素、關係與證據，問題不寫進紀錄。
 
 ## 3. `notes/d2.md` 要留下什麼
 

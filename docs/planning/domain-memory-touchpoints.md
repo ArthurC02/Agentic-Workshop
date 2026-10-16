@@ -41,7 +41,8 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | `validate` | `--require-reviewed` | 幾乎每一頁；簡報 20／30／40 | 不受影響 |
 | `export` | `--registry-root`（`--commit --repo-root` 可選） | Runbook 20-d2 檢查點 3；`d2-signing-checklist.md`；`dmlib.registry_documents()`；相容性檢查 | 已處理 |
 | `migrate-registry` | `--registry-root` | 只在維護時（參考 Registry、參考解答） | 已處理 |
-| `compare-registry`、`change-coupling` | `--gold-root --candidate-root [--gold-commit]`；`[--root --depth --since --min-*]` | 尚未用在學員路徑 | 第二階段 |
+| `compare-registry` | `--gold-root --gold-commit --candidate-root`（＋dmlib `--save`） | Runbook 70 回顧檢查點 2（基準＝最後一個「套用」commit） | 已處理（第二階段） |
+| `change-coupling` | `[--root --depth --since --min-*]` | 不在學員路徑；只在簡報備註與主持人指南當反例 | 已處理（第二階段） |
 
 ## 2. 直接讀寫的檔案路徑
 
@@ -54,7 +55,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | `domain-memory/changes/<CP>/*.json` | `fill_package.py`、`write_scm_attestation.py` 直接讀寫（Plugin 的設計：`init-change-package` 產生範本，由人或 Agent 填寫） | 不受影響 |
 | `records/<資產>-<id>.json`、`cf-*.json`、`cp-d2.json` | DLC 工具自己的輸入輸出 | 不受影響 |
 | `.git/hooks/pre-push` | D2 檢查點 2 的 ③；Recovery | 不受影響 |
-| 「讀 domain-memory/ 裡的詞彙紀錄」 | Runbook 10（檢查點 5 失敗時）、30、40、50：沒寫檔名，但 Agent 直接讀檔會看到 draft／stable | 第二階段（改用 `export` 或 `resolve-terms`） |
+| 「讀 domain-memory/ 裡的詞彙紀錄」 | 已改為 `export --save ../../tmp/registry.json` 後只列 Context 與詞彙名稱（Runbook 10 檢查點 5 失敗時、30／40／50 第 2 步與失敗提示）；學員只「打開來讀」紀錄檔（D1 檢查點 4、D2 檢查點 4） | 已處理（第二階段） |
 
 ## 3. 學員看到或 ③ 檢查的 Plugin 輸出
 

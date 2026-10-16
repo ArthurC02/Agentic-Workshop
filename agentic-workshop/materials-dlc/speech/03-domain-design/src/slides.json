@@ -2,7 +2,7 @@
   {
     "id": "start", "chapter": "開場", "title": "用 Agent 做領域設計，人守什麼",
     "lead": "D3 做了三個新需求。這一場把背後的 DDD 概念講清楚，再看業界怎麼讓 Agent 照著領域模型寫程式。",
-    "cards": [["今天的概念", "不變量、Aggregate、領域事件、Port 與防腐層。"], ["今天的做法", "交給 Agent 的指令，以及人要確認什麼。"], ["今天的案例", "2025–2026 年的舊系統現代化與警示。"]],
+    "cards": [["今天的概念", "不變量、Aggregate、領域事件、Port 與防腐層。"], ["今天的做法", "交給 Agent 的指令，以及人要確認什麼。"], ["今天的案例", "2025–2026 年的舊系統現代化做法。"]],
     "check": "D3 三段裡，哪一個決定你們吵最久？最後靠什麼定案？",
     "notes": "0–2 分鐘。這是講解，不是揭曉：本場不公布任何一張需求卡的參考設計，也不說哪個 Context 是「對的」負責者，未來梯次也會看到這份簡報。先問開場題並記下答案，最後一頁回來對照。本場大部分是新內容：概念用業界最常引用的例子講，每個概念後面接一個交給 Agent 的示範指令；示範指令沒有實際執行，就說未驗證。案例的數字都是該公司自己說的，本工作坊沒有量測效率。"
   },
@@ -34,14 +34,22 @@
     "flow": ["外送只存無人機 id", "外送完成：發出事件", "帳務收到後開發票"],
     "cards": [["為什麼要小", "越大越容易同時被改，也越難一起成功。"], ["經驗法則", "服務不小於一個 Aggregate，不大於一個 Bounded Context。"]],
     "check": "你們的邊界裡，有沒有一份資料其實可以事後再同步？",
-    "notes": "8–11 分鐘。Microsoft Azure Architecture Center〈Use Tactical DDD to Design Microservices〉（2026-02 更新）的無人機外送範例：Delivery 不直接抓住無人機物件，只存 DroneId；外送完成時發出 DeliveryCompleted 事件，帳務再去開發票。原文規則：「Include only the data that must remain consistent within a single transaction.」Evans 的摘要：邊界內同步套用一致性規則，跨邊界非同步處理。經驗法則原文：服務「no smaller than an aggregate and no larger than a bounded context」。和 D3c 的關係：哪些資料一定要全有或全無，是人要做的取捨；不說參考設計。📖 延伸閱讀：〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）；〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）。"
+    "notes": "8–10.5 分鐘。Microsoft Azure Architecture Center〈Use Tactical DDD to Design Microservices〉（2026-02 更新）的無人機外送範例：Delivery 不直接抓住無人機物件，只存 DroneId；外送完成時發出 DeliveryCompleted 事件，帳務再去開發票。原文規則：「Include only the data that must remain consistent within a single transaction.」Evans 的摘要：邊界內同步套用一致性規則，跨邊界非同步處理。經驗法則原文：服務「no smaller than an aggregate and no larger than a bounded context」。和 D3c 的關係：哪些資料一定要全有或全無，是人要做的取捨；不說參考設計。📖 延伸閱讀：〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）；〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）。"
   },
   {
     "id": "domain-event", "chapter": "不變量與 Aggregate", "title": "領域事件：領域專家在乎的事",
     "lead": "「資料表多了一列」不是領域事件；「外送取消了」才是。用過去式寫，懂業務的人一聽就懂。",
     "cards": [["找事件的方法", "EventStorming：橘色便利貼寫事件，照時間排。"], ["跨邊界同步", "邊界外的資料，靠事件事後更新。"], ["交給 Agent", "請它從程式列出事件，人刪掉技術動作。"]],
     "check": "Agent 列的事件裡，有沒有一個其實只是技術動作？",
-    "notes": "11–13 分鐘。Evans 的定義：「Something happened that domain experts care about.」Azure 用同一組對比說明：「a record was inserted into a table」不算，「a delivery was canceled」才算。Alberto Brandolini 2013 年介紹 EventStorming：用橘色便利貼寫領域事件，貼在長紙卷上照時間排（「the convention is to use orange stickies for this purpose」）。今天不教完整工作坊，只借它的規則：事件用過去式、用業務語言。Agent 的用法：先從程式與紀錄列一版，人刪掉「已儲存」「已呼叫 API」這種技術動作。這也接上前一頁：跨 Aggregate 的同步就是靠事件。📖 延伸閱讀：〈Introducing Event Storming〉（Alberto Brandolini，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）。"
+    "notes": "10.5–12.5 分鐘。Evans 的定義：「Something happened that domain experts care about.」Azure 用同一組對比說明：「a record was inserted into a table」不算，「a delivery was canceled」才算。Alberto Brandolini 2013 年介紹 EventStorming：用橘色便利貼寫領域事件，貼在長紙卷上照時間排（「the convention is to use orange stickies for this purpose」）。今天不教完整工作坊，只借它的規則：事件用過去式、用業務語言。Agent 的用法：先從程式與紀錄列一版，人刪掉「已儲存」「已呼叫 API」這種技術動作。這也接上前一頁：跨 Aggregate 的同步就是靠事件。📖 延伸閱讀：〈Introducing Event Storming〉（Alberto Brandolini，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）。"
+  },
+  {
+    "id": "definitions", "chapter": "不變量與 Aggregate", "title": "定義要寫「是什麼」，也寫「不是什麼」",
+    "lead": "Agent 最常把相近的東西當成這個概念；給它判斷用的定義時，連同「不是」一起給。",
+    "prompt": "先不要修改任何檔案。請把這次提出的 Aggregate、規則與領域事件候選，逐一對照下面的定義：Aggregate 是由一個根守住、橫跨多個物件的一條不變量，不是資料表；規則是能被推翻的敘述，不是測試名稱；領域事件是提交後業務在乎的事，不是技術通知。不符合的標出來、說明理由，不要自己改，列完停下。",
+    "cards": [["Aggregate", "是：根守住的跨物件不變量；不是：資料表。"], ["規則", "是：能被推翻的敘述；不是：測試名稱。"], ["領域事件", "是：提交後業務在乎的事；不是：技術通知。"]],
+    "check": "D3 的候選裡，有沒有一個其實落在「不是」那一欄？",
+    "notes": "12.5–15 分鐘。新概念：用「是／不是」寫定義。前三頁的概念收成一張表，給 Agent 當檢查標準。Aggregate 回扣 Vernon 的不變量：沒有一條要一起守的不變量，就不是 Aggregate，只是有子物件的類別或一張表。規則要說得出怎樣算違反；測試名稱只是線索，斷言拒絕情況的測試才是證據。領域事件回扣 Evans 與 Azure：已儲存、已呼叫 API 不算。看起來像但缺定義性質時，寧可不記，或只記成較弱的概念（例如一個名詞）。第 01 場說 Agent 定 Aggregate 不可靠，這張表就是人審查時的標準。示範提示詞，未實際執行。"
   },
   {
     "id": "agent-boundary", "chapter": "不變量與 Aggregate", "title": "交給 Agent：先列不變量，再提邊界",
@@ -49,7 +57,7 @@
     "prompt": "先不要修改任何程式。請依需求文件與共用模型，列出這個功能的每條不變量，每條寫一句「怎樣算失敗」。再提 2 個一致性邊界的選項（A、B）：各自哪些資料一起改、哪些用事件事後同步、放寬時怎麼補救。每點附證據：檔案路徑:行號或模型裡的 id。不要替我選，列完停下。",
     "cards": [["證據來自事實", "選項要指到模型或程式，不是 Agent 的偏好。"], ["回覆很短", "「選 A」；想混合就直接說。"]],
     "check": "每條不變量都說得出失敗的樣子嗎？選項的取捨你看得懂嗎？",
-    "notes": "13–16 分鐘。DDD Crew 的〈Aggregate Design Canvas〉把「不變量」和「修正政策」（放寬即時一致時怎麼補救）放在同一張畫布，原文說這樣「will make design trade-offs explicit」。這頁的提示詞就是請 Agent 先填畫布的這兩欄，人只做選擇。這是主課 B2「比較方案」與 D3 檢查點 2 的加深：比較的依據換成已審查的模型。示範提示詞未實際執行，不要宣稱結果。📖 延伸閱讀：〈Aggregate Design Canvas〉（DDD Crew）。"
+    "notes": "15–17.5 分鐘。DDD Crew 的〈Aggregate Design Canvas〉把「不變量」和「修正政策」（放寬即時一致時怎麼補救）放在同一張畫布，原文說這樣「will make design trade-offs explicit」。這頁的提示詞就是請 Agent 先填畫布的這兩欄，人只做選擇。這是主課 B2「比較方案」與 D3 檢查點 2 的加深：比較的依據換成已審查的模型。示範提示詞未實際執行，不要宣稱結果。📖 延伸閱讀：〈Aggregate Design Canvas〉（DDD Crew）。"
   },
   {
     "id": "port", "chapter": "外部系統", "title": "Port／Adapter：插座規格與轉接頭",
@@ -57,21 +65,21 @@
     "flow": ["領域程式", "Port（自己的用語）", "Adapter（翻譯）", "外部服務"],
     "cards": [["原始用意", "人、程式、測試都能用同一種方式驅動系統。"], ["好處", "換服務商、用假服務測逾時，只動 Adapter。"]],
     "check": "領域程式裡，有沒有出現外部服務的欄位名稱？",
-    "notes": "16–18 分鐘。Alistair Cockburn〈Hexagonal Architecture〉（2005）的意圖原文：讓應用程式「equally be driven by users, programs, automated test or batch scripts」，並能和資料庫、外部裝置分開開發與測試。比喻：Port 是你家插座的規格，Adapter 是出國用的轉接頭（比喻是本課的說法，不是原文）。要不要定義 Port、由誰翻譯，是 D3a 需求卡留給學員決定的問題，不給答案。📖 延伸閱讀：〈Hexagonal Architecture〉（Alistair Cockburn，2005）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉。"
+    "notes": "17.5–19 分鐘。Alistair Cockburn〈Hexagonal Architecture〉（2005）的意圖原文：讓應用程式「equally be driven by users, programs, automated test or batch scripts」，並能和資料庫、外部裝置分開開發與測試。比喻：Port 是你家插座的規格，Adapter 是出國用的轉接頭（比喻是本課的說法，不是原文）。要不要定義 Port、由誰翻譯，是 D3a 需求卡留給學員決定的問題，不給答案。📖 延伸閱讀：〈Hexagonal Architecture〉（Alistair Cockburn，2005）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉。"
   },
   {
     "id": "acl", "chapter": "外部系統", "title": "防腐層：翻譯官只翻譯",
     "lead": "Anticorruption Layer（防腐層）是下游自己蓋的翻譯層，讓外部系統的說法不滲進自己的模型。",
     "cards": [["只翻譯", "不放業務規則，也不負責流程編排。"], ["有成本", "多一層呼叫與維護；舊系統遷移時要決定留多久。"], ["也可以不蓋", "外部模型夠好時，直接照用也是一種選擇。"]],
     "check": "你們的翻譯層裡，有沒有藏著一條業務規則？",
-    "notes": "18–20 分鐘。Evans 的定義：建立一個隔離層，用「your own domain model」的說法提供上游系統的功能。Azure〈Anti-Corruption Layer Pattern〉（2026-05 更新）的兩個提醒：「Avoid placing business rules or orchestration in the layer.」以及它會增加兩個系統之間的延遲。第三張卡是 Context Map 的另一種關係：Conformist（照著上游的模型走）；DDD Crew 的 Context Mapping 速查表列了所有關係的名稱，可當延伸。講防腐層的成本，是為了避免學員把它當成免費的好東西。📖 延伸閱讀：〈Anti-Corruption Layer Pattern〉（Microsoft Azure Architecture Center，2026）；〈Context Mapping〉（DDD Crew）；Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉。"
+    "notes": "19–21 分鐘。Evans 的定義：建立一個隔離層，用「your own domain model」的說法提供上游系統的功能。Azure〈Anti-Corruption Layer Pattern〉（2026-05 更新）的兩個提醒：「Avoid placing business rules or orchestration in the layer.」以及它會增加兩個系統之間的延遲。第三張卡是 Context Map 的另一種關係：Conformist（照著上游的模型走）；DDD Crew 的 Context Mapping 速查表列了所有關係的名稱，可當延伸。講防腐層的成本，是為了避免學員把它當成免費的好東西。📖 延伸閱讀：〈Anti-Corruption Layer Pattern〉（Microsoft Azure Architecture Center，2026）；〈Context Mapping〉（DDD Crew）；Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉。"
   },
   {
     "id": "idempotency", "chapter": "外部系統", "title": "冪等：逾時是「不知道」",
     "lead": "Idempotency（冪等）：同一個請求送很多次，結果和送一次一樣。外部服務逾時，你不知道它到底收到沒有。",
     "cards": [["為什麼需要", "逾時後重送，最怕多開一張、多扣一次。"], ["人要確認", "重送與同時送出，結果都只算一次。"]],
     "check": "逾時後重送，你怎麼知道對方沒有處理兩次？",
-    "notes": "20–22 分鐘。逾時不是成功、也不是失敗，是「不知道」；所以外部服務的回應要分類，不能只分成功與失敗。冪等和 D3b 的預留與歸還是同一類問題：重送與同時發生。Agent 很容易只寫「成功」「失敗」兩種分支，審查時請它說明逾時那一條怎麼處理。📖 延伸閱讀：Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉。"
+    "notes": "21–22.5 分鐘。逾時不是成功、也不是失敗，是「不知道」；所以外部服務的回應要分類，不能只分成功與失敗。冪等和 D3b 的預留與歸還是同一類問題：重送與同時發生。Agent 很容易只寫「成功」「失敗」兩種分支，審查時請它說明逾時那一條怎麼處理。📖 延伸閱讀：Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉。"
   },
   {
     "id": "agent-leak", "chapter": "外部系統", "title": "交給 Agent：外部說法有沒有滲進來",
@@ -79,7 +87,7 @@
     "prompt": "不要修改任何檔案。請檢查領域程式（不含 Adapter）有沒有出現外部服務的欄位名稱、錯誤碼或資料格式，每筆附檔案路徑:行號，並說明它該由哪一層翻譯。也列出 Adapter 裡看起來像業務規則的判斷。列成表，列完停下。",
     "cards": [["為什麼請 Agent", "名稱換了寫法，固定規則就抓不到。"], ["人來決定", "每筆看行號，再決定改不改。"]],
     "check": "表裡每一筆，你都對照過它指的那一行嗎？",
-    "notes": "22–24 分鐘。Thoughtworks Technology Radar 第 34 期（2026-04）把「用 LLM 減少架構漂移」列在 Assess（評估中）：固定規則的檢查工具（例如 ArchUnit）加上 LLM 評估，可以「detect both structural and semantic violations」；同時提醒 Agent 的修正要小、要有驗證迴圈。Thomas Coopman 在 DDD Europe 2026 的工作坊也提到，可以請 Agent 拿現有程式對照 Bounded Context 的定義。這是 D1「邊界洩漏」的加深：從找一次洩漏，變成每次變更後都查。示範提示詞未實際執行。📖 延伸閱讀：〈Architecture drift reduction with LLMs〉（Thoughtworks Technology Radar，2026）。"
+    "notes": "22.5–24 分鐘。Thoughtworks Technology Radar 第 34 期（2026-04）把「用 LLM 減少架構漂移」列在 Assess（評估中）：固定規則的檢查工具（例如 ArchUnit）加上 LLM 評估，可以「detect both structural and semantic violations」；同時提醒 Agent 的修正要小、要有驗證迴圈。Thomas Coopman 在 DDD Europe 2026 的工作坊也提到，可以請 Agent 拿現有程式對照 Bounded Context 的定義。這是 D1「邊界洩漏」的加深：從找一次洩漏，變成每次變更後都查。示範提示詞未實際執行。📖 延伸閱讀：〈Architecture drift reduction with LLMs〉（Thoughtworks Technology Radar，2026）。"
   },
   {
     "id": "tests-guard", "chapter": "用測試守規則", "title": "測試會綠，不代表規則有人守",
@@ -87,28 +95,28 @@
     "prompt": "先不要修改測試。請對每條不變量各做一次反事實檢查：暫時把守這條規則的程式改壞，跑測試，記錄 killed（被抓到）或 survived（沒被抓到），再把程式改回原狀。survived 的不要換改法，列出缺哪個測試，列完停下。",
     "cards": [["killed", "這條規則有測試守著。"], ["survived", "補一個會失敗的測試，不換較好抓的改法。"]],
     "check": "有沒有一條規則第一次是 survived？後來補了什麼測試？",
-    "notes": "24–27 分鐘。加深一層：「Agent 會改測試配合程式」（系統卡）與「變異測試是最誠實的訊號」（技術雷達）都在第 02 場講過，這裡只回扣一句，不重講。新的一點是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要；survived 時不換較好抓的改法，而是補一個會失敗的測試。示範提示詞未實際執行。"
+    "notes": "24–26 分鐘。加深一層：「Agent 會改測試配合程式」（系統卡）與「變異測試是最誠實的訊號」（技術雷達）都在第 02 場講過，這裡只回扣一句，不重講。新的一點是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要；survived 時不換較好抓的改法，而是補一個會失敗的測試。示範提示詞未實際執行。"
   },
   {
     "id": "card-only", "chapter": "用測試守規則", "title": "需求沒寫的，Agent 會自己補",
     "lead": "D3 的需求卡是唯一依據：卡片沒規定的值，寫進交接單的 Unknowns（未知事項），停下來問。",
     "cards": [["卡片有寫", "照做：路徑、欄位與錯誤碼不自己發明。"], ["卡片沒寫", "寫進 Unknowns：停下來問，或本段不處理。"]],
     "check": "Agent 有沒有自己補了一個卡片沒寫的數字或狀態？",
-    "notes": "27–29 分鐘。回到 D3 的做法。Agent 很會「合理地補」：逾時幾秒、重試幾次、狀態叫什麼。每一個自己補的值，都是一條沒人核准的規則。這是 DLC 共同規則第 4 條，也是第 2 頁 Böckeler「AI jumps to the wrong conclusions」的實際對策。D3 停手對照時，差異分三種：有理由的取捨、漏看、Agent 補的；第三種代表 Unknowns 漏了一項。"
+    "notes": "26–28 分鐘。回到 D3 的做法。Agent 很會「合理地補」：逾時幾秒、重試幾次、狀態叫什麼。每一個自己補的值，都是一條沒人核准的規則。這是 DLC 共同規則第 4 條，也是第 2 頁 Böckeler「AI jumps to the wrong conclusions」的實際對策。D3 停手對照時，差異分三種：有理由的取捨、漏看、Agent 補的；第三種代表 Unknowns 漏了一項。"
   },
   {
     "id": "legacy-cases", "chapter": "改舊系統", "title": "案例：Agent 大量修改，人照常審查",
     "lead": "大公司用 Agent 改舊程式的共同點：先有清楚的規格或規則，人照常審查。數字都是公司自己說的。",
     "cards": [["Google，2025-01", "一次 id 型別遷移中，已合併的修改約 80% 由 AI 產生；人照常審查。"], ["Morgan Stanley（第 01 場）", "先產白話規格、工程師再重寫：同樣是人把關。"]],
     "check": "兩個案例裡，哪一步一定由人做？",
-    "notes": "29–32 分鐘。Google 論文〈How is Google using AI for internal code migrations?〉（arXiv，2025-01）：int32 改 int64 的那次遷移，已合併變更裡 80% 的程式修改完全由 AI 產生，工程師自估總時間減少約 50%；原文「Humans review the LLM-generated code the same way as any other code」。這只是 Google 特定遷移的數字，而且是 Google 自稱，不能說成「Google 80% 程式由 AI 寫」。Morgan Stanley 的 DevGen.AI 在第 01 場講過，這裡只回扣一句：重點是「先產規格、人再重寫」，不是自動翻譯。本工作坊沒有量測效率。📖 延伸閱讀：〈How is Google using AI for internal code migrations?〉（Nikolov 等人，2025）。"
+    "notes": "28–30 分鐘。Google 論文〈How is Google using AI for internal code migrations?〉（arXiv，2025-01）：int32 改 int64 的那次遷移，已合併變更裡 80% 的程式修改完全由 AI 產生，工程師自估總時間減少約 50%；原文「Humans review the LLM-generated code the same way as any other code」。這只是 Google 特定遷移的數字，而且是 Google 自稱，不能說成「Google 80% 程式由 AI 寫」。Morgan Stanley 的 DevGen.AI 在第 01 場講過，這裡只回扣一句：重點是「先產規格、人再重寫」，不是自動翻譯。本工作坊沒有量測效率。📖 延伸閱讀：〈How is Google using AI for internal code migrations?〉（Nikolov 等人，2025）。"
   },
   {
     "id": "legacy-start", "chapter": "改舊系統", "title": "從一塊邊界清楚的地方開始",
     "lead": "舊系統現代化的建議很一致：先拆出業務領域，人核准拆法，一次改一塊、每步驗證。",
     "cards": [["Anthropic，2026-02", "先挑邊界清楚、複雜度中等的一個元件。"], ["AWS Transform", "拆成業務領域與分批計畫時，要人核准。"], ["DDD Europe 2026", "用 AI 產生端到端 API 測試，先守住舊行為。"]],
     "check": "如果你的團隊要改一個舊系統，第一塊會選哪裡？為什麼？",
-    "notes": "32–34 分鐘。Anthropic〈How AI helps break the cost barrier to COBOL modernization〉（2026-02-23）建議從「a single component or workflow that has clear boundaries and moderate complexity」開始，一次一個元件、每步驗證；文中「quarters instead of years」是廠商主張，不是量測結果。AWS Transform 的大型主機現代化使用者指南明列：中間產物（例如「domains decomposition or wave planning」）需要人核准；InfoQ 2025-05 的上市報導沒有準確率或節省數字，不要講。Cyrille Martraire 與 Olivier Penhoat 在 DDD Europe 2026 分享：在舊系統現代化中用 AI 產生端到端 API 測試，保護一個年營收約 5 億歐元的 API，並把經驗連回 DDD 實務；只有議程摘要，沒有成效數字。共同點：邊界由人核准，舊行為先用測試守住。📖 延伸閱讀：〈How AI helps break the cost barrier to COBOL modernization〉（Anthropic，2026）；〈Modernization of mainframe applications〉（AWS Transform 使用者指南）；〈AI-Generated End-to-End API Tests: An Experience Report in Legacy Modernization〉（DDD Europe，2026）。"
+    "notes": "30–32 分鐘。Anthropic〈How AI helps break the cost barrier to COBOL modernization〉（2026-02-23）建議從「a single component or workflow that has clear boundaries and moderate complexity」開始，一次一個元件、每步驗證；文中「quarters instead of years」是廠商主張，不是量測結果。AWS Transform 的大型主機現代化使用者指南明列：中間產物（例如「domains decomposition or wave planning」）需要人核准；InfoQ 2025-05 的上市報導沒有準確率或節省數字，不要講。Cyrille Martraire 與 Olivier Penhoat 在 DDD Europe 2026 分享：在舊系統現代化中用 AI 產生端到端 API 測試，保護一個年營收約 5 億歐元的 API，並把經驗連回 DDD 實務；只有議程摘要，沒有成效數字。共同點：邊界由人核准，舊行為先用測試守住。📖 延伸閱讀：〈How AI helps break the cost barrier to COBOL modernization〉（Anthropic，2026）；〈Modernization of mainframe applications〉（AWS Transform 使用者指南）；〈AI-Generated End-to-End API Tests: An Experience Report in Legacy Modernization〉（DDD Europe，2026）。"
   },
   {
     "id": "agent-legacy", "chapter": "改舊系統", "title": "交給 Agent：舊程式先抽出領域",
@@ -116,14 +124,15 @@
     "prompt": "先不要修改任何程式。請讀這個模組，用業務語言列出：它處理哪些業務事件、守哪些規則、用到哪些名詞。每項附檔案路徑:行號，標成事實、推測或不確定。最後提 2 個可以先獨立出來的邊界選項，各寫風險。不要替我選，列完停下。",
     "cards": [["Agent 做", "讀大量舊程式，整理成可以審查的清單。"], ["人做", "核准哪些是真規則，選第一塊邊界。"]],
     "check": "清單裡標成「事實」的規則，有沒有一條你找懂業務的人確認過？",
-    "notes": "34–36 分鐘。加深一層：技術雷達「用 AI 理解舊程式」、CodeConcise 由領域專家驗證、Kostyra「可以犯錯的初級領域專家」都在第 01 場講過，這裡不重講。新的一點：第 01 場只整理語言，這裡請 Agent 一路做到業務事件、規則與候選邊界，並標事實、推測或不確定；人核准規則、選第一塊邊界。這就是 DLC 的「候選要人核准才成事實」。示範提示詞未實際執行。"
+    "notes": "32–34.5 分鐘。加深一層：技術雷達「用 AI 理解舊程式」、CodeConcise 由領域專家驗證、Kostyra「可以犯錯的初級領域專家」都在第 01 場講過，這裡不重講。新的一點：第 01 場只整理語言，這裡請 Agent 一路做到業務事件、規則與候選邊界，並標事實、推測或不確定；人核准規則、選第一塊邊界。這就是 DLC 的「候選要人核准才成事實」。示範提示詞未實際執行。"
   },
   {
-    "id": "cautions", "chapter": "改舊系統", "title": "警示：改舊系統時，誰碰得到正式環境",
-    "lead": "第 02 場的 Replit 與 AWS Kiro 事故，加深一層：改舊系統時，Agent 常要碰真實資料與環境。",
-    "cards": [["回扣第 02 場", "兩起都是：規定只寫在對話裡，沒有第二道關卡。"], ["改舊系統前先問", "Agent 碰得到正式資料嗎？它的權限誰核准？"]],
-    "check": "你的團隊裡，哪個動作只靠口頭規定、沒有第二個人核准？",
-    "notes": "36–38 分鐘。加深一層：兩起事故的經過、雙方說法與查核限制都在第 02 場完整講過，這裡不重講細節（也不要補講「捏造 4,000 個使用者」或「AWS 承認 AI 造成當機」）。新的角度是舊系統現代化：讀舊程式、跑遷移、建測試環境時，Agent 很容易拿到接近正式環境的權限。兩件事故的共同補強正好對應前兩頁：Replit 事後分開開發與正式資料庫，Amazon 事後加入正式環境存取的強制同儕審查；就像 AWS Transform 要人核准拆法，Agent 的權限也要人核准。這接回 D2 的做與核准分開。"
+    "id": "refactor", "chapter": "寫回模型", "title": "搬程式不等於改模型",
+    "lead": "名詞、負責者、不變量、邊界都沒變，只是搬位置或拆函式，就是重構；模型不改，只更新證據位置。",
+    "prompt": "先不要修改任何檔案。請對這次變更逐項判斷模型有沒有改：名詞、決定歸哪個 Context、不變量或規則、邊界與允許的依賴、事件或約定。每項回答「有改」或「沒改」並附證據（路徑:起-迄行）。全部沒改就回「只是重構」，並列出位置變了、要重新指向的證據。列完停下。",
+    "cards": [["是模型變更", "改名詞、換負責者、改不變量或邊界。"], ["不是", "改檔名、搬資料夾、拆函式。"]],
+    "check": "D3 寫回模型的候選，有沒有一筆其實只是重構？",
+    "notes": "34.5–38 分鐘。新概念：重構與模型變更的分界。Fowler〈Definition Of Refactoring〉：重構是「a change made to the internal structure of software to make it easier to understand and cheaper to modify」，而且不改變可觀察的行為。對模型來說同理：逐個元素問有沒有變；全都沒變，就不提新候選，只把證據改指新位置。Agent 常把「檔案搬了」當成模型變了，提出一堆沒必要的候選，增加審查負擔；反過來，改名其實是改模型（第 01 場：改一個名詞就是改模型）。對照 D3 各段「新知識寫回模型」與 D4 檢查點 1–2。示範提示詞，未實際執行。📖 延伸閱讀：〈Definition Of Refactoring〉（Martin Fowler，2004）。"
   },
   {
     "id": "next", "chapter": "下一站", "title": "D3 帶走什麼",
@@ -131,6 +140,6 @@
     "flow": ["不變量", "Aggregate 邊界", "事件與防腐層", "Agent 實作", "每條 killed", "候選寫回"],
     "cards": [["今天帶走", "先列不變量與證據，再讓 Agent 動手。"], ["下一場", "模型落後程式時怎麼辦，以及怎麼交給下一個 Agent。"]],
     "check": "回到開場：吵最久的那個決定，最後寫進交接單的哪一段？",
-    "notes": "38–40 分鐘，收尾。回到開場的答案。D3 留下了新程式和新候選（只算候選，要等下一次成對核准），模型與程式已經不同步，這就是下一場的起點。"
+    "notes": "38–40 分鐘，收尾。回到開場的答案。D3 留下了新程式和新候選（只算候選，要等下一次成對核准），模型與程式已經不同步，這就是下一場的起點。 模型落後程式時，先用上一頁的判斷分開「只是重構」與「模型真的變了」。"
   }
 ]

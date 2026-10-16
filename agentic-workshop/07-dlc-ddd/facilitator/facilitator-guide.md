@@ -119,10 +119,14 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 |---|---|---|
 | 10–13 | 1 · 決定哪些資料算證據 | Agent 跑 `discover-sources` 並逐列建議；**學員回覆決定**。必含 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`，排除 `**/__pycache__/**` |
 | 13–17 | 2 · 建立共用模型並記下來源 | Agent 依學員的決定跑 `init-domain-memory --storage-mode tracked --review-mode local-draft-only` ＋ `confirm-sources`；不 commit |
-| 17–22 | 3 · 統一名詞：通用語言 | Agent 先列名稱矛盾、再提詞彙草稿與證據原文；學員選 ≥ 5 個、改定義、選矛盾的處理方式；Agent 寫 `d1-records.json` 並試跑 `make_record.py`（內部呼叫 `cite`） |
-| 22–27 | 4 · 劃分 Context，寫下規則 | 同樣由學員決定 ≥ 2 個 contexts、2–3 條 rules；Agent 一次登記為候選並跑 `validate`、`verify-evidence`，最後一行自己回成功／失敗（不另貼 ③） |
-| 27–31 | 5 · 用客人的話找出模型缺口 | Agent 跑 `coverage` 與兩句 `resolve-terms`；學員選一個要記下的缺口 |
+| 17–22 | 3 · 統一名詞：通用語言 | 擷取順序先名詞、再 Context、再規則（錯的邊界會擴散到之後每一筆紀錄）。Agent 先列名稱矛盾（含「同一個字兩種意思」，標為邊界訊號）、再提詞彙草稿與證據原文；學員選 ≥ 5 個、改定義、選矛盾的處理方式；Agent 寫 `d1-records.json` 並試跑 `make_record.py`（內部呼叫 `cite`） |
+| 22–27 | 4 · 劃分 Context，寫下規則 | Agent 為每個 Context 標出有哪幾種訊號（用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫），只有一種的標「證據薄弱」；規則是能被推翻的敘述，不是測試名稱。同樣由學員決定 ≥ 2 個 contexts、2–3 條 rules；登記後學員打開 Agent 指出的一份規則紀錄檔親眼看；Agent 一次登記為候選並跑 `validate`、`verify-evidence`，最後一行自己回成功／失敗（不另貼 ③） |
+| 27–31 | 5 · 用客人的話找出模型缺口 | Agent 跑 `coverage` 與兩句 `resolve-terms`；學員選一個要記下的缺口，只寫進 `notes/d1.md`，不寫進模型（D2 放進提案的 `open_questions`）。失敗時 Agent 用 `export --save ../../tmp/registry.json` 再只列詞彙名稱，不直接讀 `domain-memory/` 的檔案 |
 | 31–35 | 6 · 對照程式判斷邊界洩漏 | Agent 跑 `get-context`、兩個不同 Context 的 `analyze-boundary`，對照程式附證據；學員判斷是否洩漏，Agent 寫完紀錄自己檢查（含 `git status`）；學員趁等 Agent 時聊「完成後想一想」，填「D1 決定」 |
+
+**一筆紀錄長什麼樣（投影或口頭說明用）**：每筆是 `domain-memory/` 裡的一份 Markdown 文件。開頭的區塊有 `type`、`status`（磁碟上 `draft`＝候選、`stable`＝已審查；指令與 `export` 輸出仍寫 candidate／reviewed，學員的檢查一律看指令輸出）、`sources`（每段證據一行「路徑#L起-迄」加 `excerpt_sha256`），已審查的還有 `verified`；內文第一段是規則敘述或定義；最後 `# Relations` 一行一個連結，例如「Contexts:」後面接指向 `/contexts/pricing` 的連結。紀錄只放元素、關係與證據，看到「怎麼找到的」「信心」「待辦」就請 Agent 拿掉。
+
+**「一起修改」這個訊號（`change-coupling`）不在學員路徑上**：起始 Repo 只有一個大 commit（超過 30 個檔案會被略過），輸出全空；即使在 D3c Recovery 的 9 個 commit 上把門檻放到最低，也只看到 `api`／`application`／`domain`／`infrastructure` 四個分層資料夾彼此 100% 一起改。學員或 Agent 問到時就用它教一句：說不出東西的訊號不是證據，依技術分層放的程式把 Context 藏在各層裡。
 
 教學重點：名稱矛盾（Fare Policy／Discount Policy；Compensation／補償在 ADR 有、只出現在一個測試名稱、沒有對應類別）與 Context 邊界洩漏，**一定要讓學員在 Agent 摘錄的 `cite` 證據裡親眼看到**，不要口頭告訴他們。Runbook 的提示詞不會主動指向這兩組；Agent 的矛盾清單漏掉 Fare Policy／Discount Policy 時，可以請學員補一句「也比對 Fare Policy 和 Discount Policy」（可選）。Agent 會提草稿，但「哪些來源、哪些名詞、定義怎麼寫、是不是越界」必須是學員的回覆；學員對每個草稿一律回「同意」時，請他挑一個，要 Agent 把證據原文再念一次。
 
@@ -140,10 +144,10 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 |---|---|---|---|
 | 35–38 | 1 · 夥伴取得核准權 | Maintainer | `init-signing-key --key-file "$env:USERPROFILE\.dlc-keys\maintainer\signing-key" --sign-every-commit`（Git Bash：`"$HOME/.dlc-keys/maintainer/signing-key"`）；**先於第一個 Registry commit** |
 | 38–43 | 2 · 規定只有夥伴核准才算數 | Maintainer | `amend-policy` 依序 `authorized_signers`（fingerprint）→ `review_trigger git-push` → `review_mode scm-verified --verifier git-signed-commit`；`install-git-hitl-hook`；`governance-readiness` ready |
-| 43–48 | 3 · 整理提案並證明測試守得住 | Proposer | 提案者在檢查點 2（夥伴操作時）先按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 只回報各檔案候選數，提 2 個 counterfactual 方案、學員選一個（只認 `killed`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
-| 48–53 | 4 · 夥伴審查證據並決定核准 | Maintainer | Agent 先讀審查包、貼一條規則的證據原文並停下；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
+| 43–48 | 3 · 整理提案並證明測試守得住 | Proposer | 提案者在檢查點 2（夥伴操作時）先按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 把 `export` 存到 Repo 外的 `tmp/export-d2.json`（約 80 KB，不讀進對話），再用一行指令只印各類別候選 id，回報各類別候選數；提 2 個 counterfactual 方案、學員選一個（只認 `killed`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`open_questions` 放 D1 選的缺口；`fill_package.py`（測試實際執行，不預填 PASS），放 `domain-memory/changes/<id>/`；學員回「送出」才 `submit-proposal`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
+| 48–53 | 4 · 夥伴審查證據並決定核准 | Maintainer | Agent 先讀審查包、貼一條規則的證據原文、給出那條規則的紀錄檔路徑並停下（夥伴自己打開讀）；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
 | 53–56 | 5 · 留下可驗證的核准紀錄 | Maintainer | `write_scm_attestation.py --commit HEAD`、`verify-git-governance --commit HEAD`；輸出提到的 `finalize-proposal` 是 Proposer 在 CP6 的步驟，Maintainer 的 Agent 不執行 |
-| 56–60 | 6 · 套用核准，模型成為事實 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`） |
+| 56–60 | 6 · 套用核准，模型成為事實 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit` → `get-record` 回報一條規則的 `verified`（`by: human:maintainer@example.com`、`at`：核准時間；≈ ADR 的 Accepted 加決策者，審查它的提案記在稽核紀錄）；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`） |
 
 巡堂看三件事：核准與簽章只出現在 Maintainer 的對話；Maintainer 回「核准」前說得出哪一行證據支持哪條規則；Agent 停下時學員真的做了決定。學員只填一張「D2 決定」（角色、審查決定、三項確認），其餘紀錄由 Agent 寫進 `notes/d2.md`。③ 回「失敗」時請學員貼該檢查點的「失敗時」提示詞（請 Agent 白話解釋錯誤、不改設定、不重做 commit、不繞過 hook），不要替學員打指令。
 
@@ -175,7 +179,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；`analyze-boundary` 的 source 填提供資料或能力的一方、target 填使用的一方，回 `no_registered_collaboration` 就對調再查一次；Agent 依選擇寫成交接單（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
 3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
 4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 帶 `-W ignore::DeprecationWarning`：萬一有套件過時警告（例如用 D2 Recovery 時），它會把真正的失敗訊息擠出 `failing_evidence`；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
-5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
+5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題，再逐項判斷模型有沒有變（名詞、負責的 Context、不變量或規則、邊界、事件或對外約定），只搬移程式的重構不登記；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
 6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：Runbook 檢查點 6 ④ 的三題請兩人對照參考設計時一起聊，挑第 3 題請 1–2 組分享（約 1 分鐘）。
 
 **巡場看流程**：每組是否「貼提示詞 → 看 Agent 回報 → 自己做決定 → 讓 Agent 記錄」。決策點（檢查點 2–5）學員要自己選，回「你決定」就介入。卡住時給可直接貼的補救提示詞，不替學員決定：
@@ -233,7 +237,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 分鐘 | 檢查點 | 決策點 |
 |---|---|---|
 | 125–128 | 1 · 讀需求卡與已審查事實 | 宣布核心／延伸與 API 小節，並明講「本段最緊，延伸一律最後」。H1：「現在的退款紀錄能表達『同一筆訂票退過兩次』嗎？」 |
-| 128–133 | 2 · Aggregate（聚合）邊界與不變量 | Aggregate root、唯一入口、恆等式誰保證、手續費歸誰、退款紀錄結構 |
+| 128–133 | 2 · Aggregate（聚合）邊界與不變量 | Aggregate root、唯一入口、恆等式誰保證、手續費歸誰、退款紀錄結構。Aggregate 選項要寫出守住哪一條必須同時成立的規則；「把這些類別包在一起」或「一張表」不算 |
 | 133–142 | 3 · 交接單與 Agent 實作 | Handoff 要有「四份座位資料」「先拒絕再修改」「不要動 `total_fare`」與混合團範例 |
 | 142–148 | 4 · 反事實檢查 | 建議的 4 個；第 142 分沒做完也進來 |
 | 148–152 | 5 · 審查變更，新知識寫回模型 | **不可壓縮**。看整筆退票路徑、恆等式在哪裡成立、座位四份是否一致 |
@@ -246,8 +250,8 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 分鐘 | 檢查點 | 重點 |
 |---|---|---|
 | 155–158 | 1 · 檢查模型是否落後程式 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`，寫進 `notes/d4.md`。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 對只是移動的引用回報 `shifted`（不算失敗），引用行被改過的才是 `stale`、exit 1。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`verify-sources` 的 `discovered_but_gone` 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 `[]`。stale 與 shifted 清單只列 asset:id（檔案），行號不必列（檢查點 2 要新行號時再跑一次 `verify-evidence`），不必自寫腳本 |
-| 158–161 | 2 · 把改變的規則寫回模型 | Agent 依檢查點 1 的 asset:id 清單，只對 stale 的 id 用 `get-record` 分出候選與 reviewed（decisions 看 `review_status`，其他看 `status`；shifted 的 reviewed 一律歸 C，兩張清單都有的以 stale 處理），列出更新清單；學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選。stale 或 shifted 的候選用同一個 id 重新引用；行為被改變的 reviewed 事實以新 id 候選取代；只是移動（shifted）或行為沒變的 reviewed 事實不登記，留給下一次核准。B 類最多 3 項（`REFUND-004` 先列），其餘列為未完成、寫進交接單 Unknowns。參考：D3c 讓 `REFUND-004`、`vocabulary:refund-record`、Booking 的「只能退一次」（`aggregates:booking`）與 `ASIS-004` 不再成立；D3c Recovery 也含 D3a／D3b 的變更，所以 `MEMBER-004`、`vocabulary:points-balance`（已可折抵點數）、`ORDER-002`、`vocabulary:order`、`aggregates:order`（Order 金額改為折抵後的應付金額）同樣不再成立，`contexts:membership`（多了預留與歸還點數）與 `contexts:payment`（多了開立電子發票）的職責描述已不完整。D3c Recovery 的清單約 39 個 asset:id（stale 21、shifted 26，8 個兩張都有），3 分鐘內登記不完，其餘列為未完成是預期 |
-| 161–165 | 3 · 寫交接單並查證每個引用 | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
+| 158–161 | 2 · 把改變的規則寫回模型 | Agent 依檢查點 1 的 asset:id 清單，只對 stale 的 id 用 `get-record` 分出候選與 reviewed（decisions 看 `review_status`，其他看 `status`；shifted 的 reviewed 一律歸 C，兩張清單都有的以 stale 處理），列出更新清單；學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選。stale 或 shifted 的候選用同一個 id 重新引用；意思被改變（名詞、負責者、不變量或規則、邊界、事件或約定至少一項）的 reviewed 事實以新 id 候選取代，只是重構的歸 C；只是移動（shifted）或行為沒變的 reviewed 事實不登記，留給下一次核准。B 類最多 3 項（`REFUND-004` 先列），其餘列為未完成、寫進交接單 Unknowns。參考：D3c 讓 `REFUND-004`、`vocabulary:refund-record`、Booking 的「只能退一次」（`aggregates:booking`）與 `ASIS-004` 不再成立；D3c Recovery 也含 D3a／D3b 的變更，所以 `MEMBER-004`、`vocabulary:points-balance`（已可折抵點數）、`ORDER-002`、`vocabulary:order`、`aggregates:order`（Order 金額改為折抵後的應付金額）同樣不再成立，`contexts:membership`（多了預留與歸還點數）與 `contexts:payment`（多了開立電子發票）的職責描述已不完整。D3c Recovery 的清單約 39 個 asset:id（stale 21、shifted 26，8 個兩張都有），3 分鐘內登記不完，其餘列為未完成是預期 |
+| 161–165 | 3 · 寫交接單並查證每個引用 | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，Domain facts 第一行寫模型版本（最後一個訊息含「套用」的 commit；Agent 以 `export --commit <編號> --save ../../tmp/model-reviewed.json` 確認讀得到），每個 id 用 `get-record` 查證並回報核對清單；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit） |
 
 **時間**：D4 實際要 12–15 分鐘，10 分鐘做不完是常態。第 165 分還沒完成就收在最低完成線：「檢查點 1 + 只含 Unknowns 的交接單，其他段寫『未完成』」，夥伴 commit 後進回顧。第 150 分決定改用 D3c Recovery 的組（切換要 5–7 分鐘，會吃掉大半個 D4），D4 一開始就只做這條線。
 
@@ -257,11 +261,12 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 ### 3.10 回顧（165–180，群組 `dlc-retro`）
 
-四個檢查點：請 Agent 從紀錄整理證據（165–169，Agent 寫 `notes/retro.md`）、比較哪些人工把關擋得住錯（169–174，Agent 依紀錄把今天每個人工把關點列成清單：留下了什麼證據、同一個人在同一台機器上能不能自己完成；小組口頭討論）、挑選提示詞與一項行動（174–178，Agent 起草、每人挑選，寫成 `notes/my-prompts-<名字>.md`；最後一人貼第二段，小組選一項行動寫進 `notes/retro.md`）、匯出與結束（178–180，Maintainer 請自己的 Agent 刪除私鑰，全員匯出）。討論只用口頭，不要求寫下來；檢查點 2 請學員回想各段結尾的討論（D1、D2、D4 的「完成後想一想」，D3 檢查點 6 的三題），對照哪個技巧真的擋住了錯。必談：
+四個檢查點：請 Agent 從紀錄整理證據（165–169，Agent 寫 `notes/retro.md`）、比較哪些人工把關擋得住錯（169–174，Agent 依紀錄把今天每個人工把關點列成清單：留下了什麼證據、同一個人在同一台機器上能不能自己完成；再以最後一個訊息含「套用」的 commit 當基準答案跑 `compare-registry --gold-commit`，回報 precision、recall 與每類的 missed／extra；小組口頭討論）、挑選提示詞與一項行動（174–178，Agent 起草、每人挑選，寫成 `notes/my-prompts-<名字>.md`；最後一人貼第二段，小組選一項行動寫進 `notes/retro.md`）、匯出與結束（178–180，Maintainer 請自己的 Agent 刪除私鑰，全員匯出）。討論只用口頭，不要求寫下來；檢查點 2 請學員回想各段結尾的討論（D1、D2、D4 的「完成後想一想」，D3 檢查點 6 的三題），對照哪個技巧真的擋住了錯。必談：
 
 1. 哪一個 reviewed 事實改變了 Agent 的輸出？
 2. 哪一個候選差點被當成事實？
 3. 走過場的自我核准，和真的擋得住錯的核准差在哪裡？（直接回到 R3：`record-approval` 只比字串）
+4. Agent 的分數：extra 是核准後 Agent 新寫、還沒有人審的（自己做 D3 的組通常是 D3 與 D4 的候選）；missed 不是 0，代表核准過的事實不見了，請 Agent 指出是哪一段改掉的。分數只比結構（名稱、id、引用的檔案），不比意思；用過 Recovery 又沒做 D3 登記的組會是 1.0，照實說「沒有新候選」即可。
 
 看什麼：學員是否抽問 Agent「這句的證據在哪？」，把沒有證據的句子改成「未觀察」。最後提醒匯出 Runbook（`smart-ticket-dlc-runbook-<stamp>.zip`）並保存 `notes/`，以及刪除金鑰（§7）。
 
@@ -306,6 +311,8 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 17 | macOS：`ssh-keygen` 不認得 `-Y`，或 git 版本低於 2.34 | macOS 11 以前內建的 OpenSSH 太舊；Xcode Command Line Tools 太舊 | macOS 12 以上；`xcode-select --install` 或 `brew install git`。來不及就和夥伴共用已通過的機器 |
 | 18 | macOS：`dm.sh: permission denied` | 解壓工具沒保留執行權限 | `chmod +x ../../tools/dm.sh`（Runbook 開場工作規則已寫） |
 | 19 | push 被拒，hook 印出 `domain-memory pre-push: the chained hook .git/hooks/pre-push.domain-memory-existing is not executable` | 裝 hook 前，這個 Repo 已經有別的 pre-push hook（例如 Git LFS 裝的），`install-git-hitl-hook` 把它改名成 `pre-push.domain-memory-existing` 並在 push 時先執行它；之後 Repo 經過解壓、雲端同步或複製，那個檔案失去執行權限（macOS 常見；Windows 的 Git Bash 看檔案第一行是不是 `#!`）。Plugin 0.27.2 起改成停下 push，不再默默跳過原本的檢查 | 先確認原本那個 hook 還要不要：要的話，macOS `chmod +x .git/hooks/pre-push.domain-memory-existing`，Windows 確認它第一行是 `#!/bin/sh` 之類的直譯器行；不要的話刪掉它。再 push 一次。`pre-push` 本身遺失或被覆蓋時，重跑 `install-git-hitl-hook` 裝回 |
+| 20 | Agent 或學員手動改了 `domain-memory/` 裡的紀錄檔，`validate` 回 `ERROR: <類別>/<id>.md: frontmatter line N: …` | 紀錄檔開頭區塊只接受 YAML 的一小部分：`key: value`、兩格縮排、`- ` 項目、值不加引號或用雙引號；單引號、`[a, b]` 會被拒並附行號。手改也不會留下稽核事件（`verify-audit` 照樣 valid），等於繞過候選與核准 | `git checkout -- <那個檔>` 還原（還沒 commit 時）；要改內容就照 Runbook 走候選與核准，不手改。學員只「打開來讀」 |
+| 21 | 編輯器存檔後，紀錄檔的換行從 LF 變成 CRLF | Plugin 寫的紀錄檔一律 LF；Windows 編輯器另存可能改成 CRLF | 讀取與 `validate` 不受影響（實測 0.33.0：改成 CRLF 後 `validate`、`get-record` 正常），但 `git diff` 會顯示整檔改變；還沒 commit 就 `git checkout -- <那個檔>` 還原，請學員只讀不存 |
 
 ## 6. 時間風險
 

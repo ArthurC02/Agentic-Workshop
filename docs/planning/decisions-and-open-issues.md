@@ -324,3 +324,22 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 8. 簡報、主持人指南、觀察指南：OKF 檔案的截圖與說明；主持人常見問題補「手動編輯 `.md` 超出 frontmatter 子集被拒（附行號）」與編輯器換行的處理（未實測）。
 9. 學員包 `references/registry-schema.md` 新增「Concept files」一節；詞彙表或延伸閱讀引用章節時要核對。
 10. `dlc-final-report.md` 首段只記到 0.27.2。
+
+## DLC 第二階段改寫：Agentic DDD × domain-memory 0.33.0（2026-10-17）
+
+依 `dlc-okf-redesign.md` 改寫學員內容；段落時間、檢查點分鐘、解鎖碼、表單 id、Recovery 都沒動，檢查點標題也沒改。指令名稱只出現在提示詞、④ 與備註。第一階段清單的處理：
+
+- 1（export 約 78 KB）：D2 檢查點 3 第一步改為 `export --save ../../tmp/export-d2.json`（學員包根目錄的 `tmp/`，在 Repo 外），再用一行 Python 只印各類別候選 id；D1 失敗時、D3a–D3c 第 2 步同樣存檔後只列 Context 與詞彙名稱。PowerShell 5.1 與 Git Bash 實跑（D1 Recovery 的 57 筆：contexts 5、vocabulary 21、aggregates 2、rules 16、interactions 5、decisions 8）。
+- 2（draft／stable 與 candidate／reviewed）：提示詞不再叫 Agent 讀 `domain-memory/` 的檔案找詞彙；D3a 第 3 步註明以 `get-context` 輸出為準；詞彙表 Registry 列說明兩套說法。
+- 3（OKF、`verified`）：D1 檢查點 2 候選小卡、檢查點 4 登記後學員打開一份規則紀錄檔；D2 檢查點 4 夥伴自己打開要核准的紀錄檔；D2 檢查點 6 Agent 用 `get-record` 回報 `verified`（實測 `by: human:maintainer@example.com`），④ 加深一層小卡對照 ADR 的 Accepted 與決策者（Nygard、MADR）。
+- 4（`compare-registry`）：學員包不能帶參考 Registry，改用學員自己的歷史：回顧檢查點 2 以最後一個訊息含「套用」的 commit 為基準答案（自己做的 D2 是「D2：套用 CP-D2-001」，Recovery 是「CP-CORE-002：finalize 並套用」），對現在的工作區打分，extra＝核准後 Agent 新寫、待審的候選，missed＝核准過卻不見的。新概念小卡「評估 Agent 的成果」。實測 D3c Recovery 對 `fc9efe2`：1.0；加一筆候選後 rules extra＝[TEST-001]、precision 0.983；PowerShell `--save` 正常。
+- 5（`change-coupling`）：不做主步驟；D1 Bounded Context 小卡加「資料夾不是證據：這個 Repo 依技術分層」，「說不出東西的訊號不是證據」寫在簡報備註與主持人指南。
+- 6（擷取順序、元素定義）：D1 檢查點 3 ①「先統一名詞再劃邊界」、同字異義標「邊界訊號」；檢查點 4 ① 與提示詞要求每個 Context 列出訊號種類（只有一種標「證據薄弱」），規則「不是測試名稱、記錄訊息或願望」；D3c 檢查點 2 Aggregate「不是資料表、不是有子物件的類別」。
+- 紀錄只放元素、關係、證據：D1 候選小卡與檢查點 5 ①；D2 `cp-d2.json` 新增 `open_questions`（`fill_package.py` 已支援，實測寫入 `domain-change-proposal.json`），簽章流程清單第 2 節同步。
+- 7（`export --commit`）：D4 交接單 Domain facts 第一行寫模型版本（最後一個「套用」commit），Agent 以 `export --commit … --save ../../tmp/model-reviewed.json` 確認讀得到；③ 與 D4 範本同步。
+- 重構 ≠ 模型變更：D3a–D3c 檢查點 5 提示詞先逐項判斷模型有沒有變；D3a ① 一句，D3b 檢查點 5 新概念小卡（Fowler〈Definition Of Refactoring〉）；D4 檢查點 1 小卡、檢查點 2 B 類條件。
+- 8（主持人與觀察）：主持人指南 D1–回顧各表、「一筆紀錄長什麼樣」文字說明（代替截圖）、change-coupling 說明、陷阱 #20（手改紀錄檔：單引號被拒並附行號，實測 `frontmatter line 4: write this value plainly or in double quotes`；手改不留稽核事件）與 #21（存成 CRLF：實測 `validate`、`get-record` 正常，diff 整檔）；觀察指引 D1 O5–O6、D2 O6、D4 D2／D3、回顧 R4。
+- 10：`dlc-final-report.md` 首段補 0.33.0。
+- 未做：9（`registry-schema.md` 的 Concept files 已在 vendored Plugin 內，詞彙表直接引用〈Concept files〉）；Speech 由另一個工作改寫。
+
+驗證（Windows，沙箱 `C:\tmp\dlc33`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL）：D1 Recovery 為底跑完 D2 檢查點 1–6 第一步（新的第一步、含 `open_questions` 的 `fill_package.py`、`submit-proposal`、`record-approval`、簽章 commit、attestation、`verify-git-governance`、finalize、apply、`validate --require-reviewed`、`get-record` 的 `verified`）；D2 第二步的套用 commit 與 push 沒有重跑（步驟未改）。D3 第 2 步的列出指令、D4 的 `export --commit`、回顧的 `compare-registry` 在 D3c Recovery 實跑。macOS 只做靜態檢查。`release_materials.py` RELEASE PIPELINE PASS；`check_dlc_plugin_compat.py` 29 PASS。

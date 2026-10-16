@@ -80,7 +80,7 @@
 <section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 3 · 統一名詞：通用語言" data-minute="17">
   <p class="kicker">檢查點 3 / 6 · 第 17–22 分鐘</p>
   <h2 class="title">統一名詞：通用語言</h2>
-  <p class="cp-why"><b>為什麼</b>Agent 先列矛盾與草稿，不自己修；定義由你決定</p>
+  <p class="cp-why"><b>為什麼</b>先統一名詞再劃邊界；同一個字兩種意思是邊界訊號</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「名稱矛盾與詞彙草稿」</b><span>Runbook › 檢查點 3</span></li>
@@ -96,20 +96,22 @@
     <p><b>介入訊號</b>：22 分仍不到 3 個 → 請學員直接回「採用前 5 個」，其餘留到 coverage 補；學員全部回「同意」沒看證據 →「挑一個，請 Agent 再把證據原文念給你聽」。</p>
     <p><b>提示</b>：H2：「同一個概念在文件與程式用不同名字，要記成一個詞的別名，還是兩個詞？先看證據再決定。」</p>
     <p><b>新概念</b>：這裡第一次介紹<b>通用語言</b>，花 30 秒講（Runbook 有「新概念」框）；證據與候選已在檢查點 2 講過。</p>
+    <p><b>擷取順序</b>：Agent 找名詞與關係很可靠，找邊界與 Aggregate 不可靠；先把名詞定下來，錯的邊界才不會擴散到之後每一筆紀錄。所以 D1 是名詞 → Context → 規則，協作關係在檢查點 6 對照程式。</p>
+    <p><b>同字異義</b>：同一個字在兩處意思不同，是兩個 Context 的訊號；Agent 標「邊界訊號」，學員決定記成兩個詞（互標 not_same_as）還是先不建模，檢查點 4 劃 Context 時再用。</p>
   </aside>
 </section>
 
 <section class="slide slide-cp" data-seg="dlc-d1" data-title="檢查點 4 · 劃分 Context，寫下規則" data-minute="22">
   <p class="kicker">檢查點 4 / 6 · 第 22–27 分鐘</p>
   <h2 class="title">劃分 Context，寫下規則</h2>
-  <p class="cp-why"><b>為什麼</b>規則要寫成能被測試推翻的一句話；文件有、程式沒做的，列為缺口</p>
+  <p class="cp-why"><b>為什麼</b>Context 要多個訊號一致才劃；規則要能被測試推翻</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「Context 與規則」</b><span>Runbook › 檢查點 4；等的時候讀小卡</span></li>
-    <li><b>回覆採用哪些</b><span>看過每條的證據再回</span></li>
+    <li><b>回覆採用哪些</b><span>看證據；登記後打開一份規則紀錄</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>每條規則有兩段證據：文件一段、測試或程式一段</p>
+  <p class="cp-judge"><b>你要判斷</b>每個 Context 有兩種以上訊號；每條規則有兩段證據</p>
   <p class="cp-next"><b>第 27 分前完成</b><span>→ 下一步：檢查點 5 用客人的話找出模型缺口</span></p>
   <aside class="notes">
     <p><b>說（12:00／第 22 分）</b>：「第 22 分。Context 兩個以上，規則兩條以上。規則的證據一定要在剛才確認的來源裡；文件有、程式找不到的概念，照實列為缺口，不要讓 Agent 編出來。」</p>
@@ -117,6 +119,10 @@
     <p><b>省時</b>：規則候選改為 2–3 條；Agent 登記、驗證後自己檢查並在最後一行回成功／失敗，學員不必再貼 ③（validate、verify-evidence 不重跑）。Agent 列候選時學員先讀 Bounded Context 小卡。</p>
     <p><b>介入訊號</b>：有人憑空補上 Compensation 實作 → 請對照證據，退回『未建模』。</p>
     <p><b>新概念</b>：這裡第一次介紹 <b>Bounded Context</b>，花 30 秒講：「在這個範圍內，名詞的意思一致；每個 Context 說得出它決定什麼。」</p>
+    <p><b>多個訊號</b>：Context 要用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫，至少兩種一致；Agent 只拿出一種的，標「證據薄弱」。這個 Repo 依技術分層（api、application、domain、infrastructure），資料夾不是證據。</p>
+    <p><b>規則的定義</b>：能被推翻的一句敘述，不是測試名稱、記錄訊息或願望。</p>
+    <p><b>打開一份紀錄（投影時用文字說明即可）</b>：每筆紀錄是一份 Markdown 文件。開頭的區塊有 type、status（磁碟上寫 draft＝候選、stable＝已審查）與 sources（每段證據寫成「路徑#L起-迄」加雜湊）；內文第一段是規則敘述；最後「# Relations」列出它屬於哪個 Context（例如「Contexts: [pricing](/contexts/pricing)」）。請學員確認裡面沒有「怎麼找到的」「信心」「待辦」這類工作筆記。</p>
+    <p><b>學員或 Agent 問到「一起修改」怎麼看（change-coupling）</b>：起始 Repo 只有一個大 commit，會被略過，輸出是空的；就算有歷史，分層 Repo 也只會看到四個分層資料夾彼此 100% 一起改。說不出東西的訊號不是證據；分層放的程式把 Context 藏在各層裡。不要在這裡花時間跑。</p>
   </aside>
 </section>
 
@@ -135,6 +141,8 @@
     <p><b>說（17:00／第 27 分）</b>：「第 27 分。Agent 先列出模型哪裡還空著，再用客人會說的一句話查模型。對不到通用語言的，就是模型的缺口。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
     <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的名稱或別名，請 Agent 換一句；只命中 synonym 或 definition 時，請 Agent 改用正式名稱再查。</p>
+    <p><b>缺口放哪裡</b>：選的缺口只寫進 notes/d1.md，不寫進模型；模型只放元素、關係與證據，D2 會把缺口寫進提案的開放問題。</p>
+    <p><b>失敗時</b>：Agent 改用 export 存到 Repo 外的暫存檔，再只列詞彙名稱；不要讓它直接讀 domain-memory/ 的檔案（檔案寫 draft／stable，和指令輸出的 candidate／reviewed 對不上）。</p>
   </aside>
 </section>
 

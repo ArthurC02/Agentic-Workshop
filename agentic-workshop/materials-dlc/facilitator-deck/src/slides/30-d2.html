@@ -97,6 +97,8 @@
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。變更審查包留到檢查點 4 再講。</p>
+    <p><b>第一步的 export</b>：整份 Registry 約 80 KB，Agent 把它存到 Repo 外的 tmp/，再用一行指令只印候選 id；請學員看 Agent 回報的各類別候選數（自己做的 D1 通常是 contexts、vocabulary、rules）。</p>
+    <p><b>開放問題</b>：cp-d2.json 的 open_questions 放 D1 選的缺口；模型只放元素、關係與證據，還沒解決的問題放提案。</p>
   </aside>
 </section>
 
@@ -118,6 +120,7 @@
     <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；commit 有沒有簽。</p>
     <p><b>介入訊號</b>：在提案者的對話裡核准或 commit → 停下，說明為什麼要換到夥伴的對話；commit 未簽章 → 不要硬 push，請 Agent 解釋 sign-every-commit 設定與金鑰路徑。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>已審查事實</b>（Runbook 檢查點 4 ④），花 30 秒講：經夥伴核准的模型是 Agent 必須遵守的限制，不能直接改寫；變更審查包在這裡順帶一句：它是夥伴要審的資料。</p>
+    <p><b>讀紀錄本身</b>：Agent 會給出那條規則的紀錄檔路徑，請夥伴自己打開讀：人和 Agent 讀的是同一份文件，模型本身可以被審查。</p>
   </aside>
 </section>
 
@@ -154,6 +157,7 @@
     <p><b>看</b>：Agent 回報 Registry is valid.（帶 --require-reviewed）與 verify-audit valid；push 由夥伴的 Agent 執行、沒有用 --no-verify 繞過 hook；是否把候選與 reviewed 混為一談。</p>
     <p><b>介入訊號</b>：<code>validate --require-reviewed</code> 回一串「not reviewed」→ cp-d2.json 的 promote 少列了資產（用過 D1 Recovery 的組常漏 aggregates、interactions、decisions），請學員找主持人或改用 Recovery；第 60 分仍未完成 → 休息時私下提供 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人一起聊兩分鐘，再記「D2 決定」；挑第 2 題（哪一步只是照流程做完、哪一步真的擋得住錯）請 1–2 組分享（約 1 分鐘），回顧會再用到。</p>
+    <p><b>加深一層</b>：已審查事實帶 <code>verified</code>（by: human:maintainer@example.com、at: 核准時間），就像 ADR 的狀態寫 Accepted 並列出決策者；核准它的提案記在稽核紀錄，不在紀錄本身。Agent 用 get-record 取一條規則回報這兩個值。</p>
   </aside>
 </section>
 

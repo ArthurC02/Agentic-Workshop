@@ -8,7 +8,7 @@
 
 | 類別 | 數量 |
 |---|---|
-| 已查證來源（原頁打開並核對引文） | 49 |
+| 已查證來源（原頁打開並核對引文） | 57（S53–S60 於 2026-10-17 補查，見第 9 節） |
 | 部分查證（頁面存在，但關鍵數字或原文只見於二手來源） | 3（S43 的「900 萬行」、S48 的 FT 原文、S51 的 GitHub 原始檔） |
 | 未查證、不得引用的說法 | 8（見第 6 節） |
 
@@ -70,6 +70,14 @@
 | S50 | The Model Is Not the Bottleneck: Domain-Driven Design as Agent Infrastructure | Lucas Hendrich／Forte Group | 2026-09-02 | https://www.fortegrp.com/insights/the-model-is-not-the-bottleneck-domain-driven-design-as-agent-infrastructure | ✅（廠商文章） |
 | S51 | ubiquitous-language（Agent Skill） | Matt Pocock／skills.sh 目錄 | 2026-03-16 首次收錄 | https://skills.sh/mattpocock/skills/ubiquitous-language | ◐ |
 | S52 | Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity | METR | 2025-07-10（頁面註明已被 2026-02 更新取代） | https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ | ✅（只用於「不要說」） |
+| S53 | Change Coupling: Visualize Logical Dependencies | CodeScene 文件 | 頁面無日期（2026-10-17 讀取） | https://codescene.io/docs/guides/technical/change-coupling.html | ✅ |
+| S54 | Your Code as a Crime Scene, Second Edition | Adam Tornhill／Pragmatic Bookshelf | 2024-02 | https://pragprog.com/titles/atcrime2/your-code-as-a-crime-scene-second-edition/ | ✅（書籍頁） |
+| S55 | Software Design X-Rays: Fix Technical Debt with Behavioral Code Analysis | Adam Tornhill／Pragmatic Bookshelf | 2018-03 | https://pragprog.com/titles/atevol/software-design-x-rays/ | ✅（書籍頁） |
+| S56 | About MADR（MADR 4.0.0） | ADR GitHub organization | 2024-09-17 | https://adr.github.io/madr/ | ✅ |
+| S57 | Definition Of Refactoring（bliki） | Martin Fowler | 2004-09-01 | https://martinfowler.com/bliki/DefinitionOfRefactoring.html | ✅ |
+| S58 | Demystifying evals for AI agents | Anthropic Engineering | 2026-01-09 | https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents | ✅ |
+| S59 | Classification: Accuracy, recall, precision, and related metrics | Google Machine Learning Crash Course | 2026-01-12 更新 | https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall | ✅ |
+| S60 | Open Knowledge Format (OKF), Version 0.2 | Google Cloud（knowledge-catalog，GitHub） | 頁面無日期（2026-10-17 讀取） | https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md | ✅ |
 
 ## 2. 第 01 場：語言與邊界（開場、D1）
 
@@ -323,3 +331,18 @@
 - Vaughn Vernon〈Effective Aggregate Design〉（2011）
 - DDD Crew〈Bounded Context Canvas〉、〈Aggregate Design Canvas〉、〈Context Mapping〉
 - Anthropic Engineering〈Effective context engineering for AI agents〉（已在清單）
+
+## 9. 2026-10-17 補充：domain-memory 0.33.0 帶出的 DDD 概念
+
+用途：四場講解依 `docs/planning/dlc-okf-redesign.md` 補的新頁。2026-10-17 用 WebFetch 打開原頁核對；引文每段不超過 25 個英文字。Plugin 本身只在講者備註當「一種工具」提及，概念頁引用下列方法來源。
+
+| 場次與頁 | 概念 | 來源與原文 |
+|---|---|---|
+| 01 `coupling` | 一起變更（change coupling）是邊界訊號之一 | S53：「Change Coupling means that two (or more) modules change together over time.」同頁建議拿它和「your architectural principles」對照，並以同一次 commit、同一個 ticket 判斷一起變更。S55 書籍頁：「the techniques build on behavioral data that you already have: your version-control system.」S54 第二版目錄有〈Understand Change Coupling Algorithms〉與〈Understand the Reasons Behind Temporal Dependencies〉。 |
+| 01 `order`、`signals` | 先語言、再邊界；多個訊號一致才劃 Context | 沒有外部研究支持「模型找邊界不可靠」的說法；備註寫明這是實務觀察（Plugin 擷取指引的寫法），不講成研究結論。 |
+| 02 `record` | 已審查事實＝Accepted 加決策者與日期 | S56 範本欄位：「decision-makers: {list everyone involved in the decision}」；「date: {YYYY-MM-DD when the decision was last updated}」。 |
+| 03 `refactor` | 重構不是模型變更 | S57：「a change made to the internal structure of software to make it easier to understand and cheaper to modify」，且不改變可觀察的行為。 |
+| 04 `eval` | 用人審過的模型評估 Agent 擷取 | S58：「we do not take eval scores at face value」；「LLM-as-judge graders should be closely calibrated with human experts」。S58 沒有談 precision／recall，定義改用 S59：precision 是「the proportion of all the model's positive classifications that are actually positive」；recall 是「the proportion of all actual positives that were classified correctly as positives」。 |
+| 04 `readable-model` | 每個概念一份 Markdown、關係寫成連結，人和 Agent 讀同一份 | S60：OKF 是「a directory of markdown files with YAML frontmatter」；「If you can `cat` a file, you can read OKF.」 |
+
+不要說：Tornhill 或 CodeScene「證明」一起變更就是 Bounded Context（原文只說可對照架構原則、找邏輯依賴）；MADR 規定一定要列決策者（範本註明這些欄位是選填）。

@@ -19,14 +19,14 @@
     "flow": ["提議＝候選", "接受＝已審查事實", "被取代＝新候選核准後"],
     "cards": [["接受後不改寫", "Agent 必須遵守，不能直接修改。"], ["要改就取代", "提新的候選，舊的保留可查。"]],
     "check": "Agent 想改一條已審查事實時，正確的做法是什麼？",
-    "notes": "3.5–6 分鐘。Nygard 的狀態是 proposed、accepted，被推翻時「we will keep the old one around, but mark it as superseded.」AWS〈Architectural decision record process〉：「When the team accepts an ADR, it becomes immutable.」被拒絕的提案也要寫理由，避免下次重吵同一件事。本課的已審查事實（reviewed）就是 Accepted：不是不能變，而是只能透過同一套審查流程被取代。第 03 場的新知識也會先寫成候選。📖 延伸閱讀：〈Architectural decision record process〉（AWS Prescriptive Guidance）。"
+    "notes": "3.5–5.5 分鐘。Nygard 的狀態是 proposed、accepted，被推翻時「we will keep the old one around, but mark it as superseded.」AWS〈Architectural decision record process〉：「When the team accepts an ADR, it becomes immutable.」被拒絕的提案也要寫理由，避免下次重吵同一件事。本課的已審查事實（reviewed）就是 Accepted：不是不能變，而是只能透過同一套審查流程被取代。第 03 場的新知識也會先寫成候選。📖 延伸閱讀：〈Architectural decision record process〉（AWS Prescriptive Guidance）。"
   },
   {
     "id": "separate", "chapter": "做與核准分開", "title": "球員不兼裁判",
     "lead": "做變更的 Agent 不核准自己的變更；審查交給另一個乾淨的對話，或另一個人。",
     "cards": [["官方建議", "另開審查者，只看差異與標準，不看作者的推理。"], ["平台限制", "GitHub 的雲端 Agent 不能核准或合併自己的 PR。"], ["企業做法", "Stripe 自述：Agent 每週上千個 PR，全經人審。"]],
     "check": "D2 裡，「核准」這句話是在誰的對話裡說的？",
-    "notes": "6–8.5 分鐘。人工核准關卡（Gate）的加深一層。Claude Code 官方文件〈Best practices for Claude Code〉建議用新的審查者審 diff：「the agent doing the work isn't the one grading it.」GitHub〈Risks and mitigations for GitHub Copilot cloud agent〉：雲端 Agent「cannot approve or merge a pull request」。Stripe 工程部落格〈Minions: Stripe's one-shot, end-to-end coding agents〉（2026-02-09）自述每週超過一千個 PR 由 Agent 產出、全部交人審查；這是公司自己的數字。AWS Transform 的使用者指南也把「domains decomposition」列為要人核准的中間產物。D2 的設計：兩人共用一台機器，但各用自己的 Agent 對話。📖 延伸閱讀：〈Best practices for Claude Code〉（Claude Code 官方文件）；〈Building effective agents〉（Anthropic Engineering，2024）。"
+    "notes": "5.5–7.5 分鐘。人工核准關卡（Gate）的加深一層。Claude Code 官方文件〈Best practices for Claude Code〉建議用新的審查者審 diff：「the agent doing the work isn't the one grading it.」GitHub〈Risks and mitigations for GitHub Copilot cloud agent〉：雲端 Agent「cannot approve or merge a pull request」。Stripe 工程部落格〈Minions: Stripe's one-shot, end-to-end coding agents〉（2026-02-09）自述每週超過一千個 PR 由 Agent 產出、全部交人審查；這是公司自己的數字。AWS Transform 的使用者指南也把「domains decomposition」列為要人核准的中間產物。D2 的設計：兩人共用一台機器，但各用自己的 Agent 對話。📖 延伸閱讀：〈Best practices for Claude Code〉（Claude Code 官方文件）；〈Building effective agents〉（Anthropic Engineering，2024）。"
   },
   {
     "id": "enforce", "chapter": "做與核准分開", "title": "口頭規則擋不住，寫成檢查",
@@ -34,14 +34,21 @@
     "flow": ["規則檔：建議", "測試與檢查程式：每次都跑", "推送時檢查：沒核准就擋"],
     "cards": [["為什麼", "Agent 忙起來會忘，人也會。"], ["D2 的做法", "沒有夥伴簽章的變更，推不上去。"]],
     "check": "如果 Agent 自己 commit 再推送，會在哪一步被擋下？",
-    "notes": "8.5–10.5 分鐘。Claude Code 官方文件：「Unlike CLAUDE.md instructions which are advisory, hooks are deterministic」；AGENTS.md 等其他工具的規則檔也一樣，是上下文，不是強制設定。Thoughtworks Technology Radar Vol. 34（2026-04）把〈Feedback sensors for coding agents〉列為 Trial：檢查要在寫程式的過程中跑，commit 前回報乾淨的結果。對照 D2 檢查點 1、2。不要展開金鑰與 hook 細節；這套檢查的限制留到第 04 場。📖 延伸閱讀：〈githooks〉（Git 官方文件）。"
+    "notes": "7.5–9.5 分鐘。Claude Code 官方文件：「Unlike CLAUDE.md instructions which are advisory, hooks are deterministic」；AGENTS.md 等其他工具的規則檔也一樣，是上下文，不是強制設定。Thoughtworks Technology Radar Vol. 34（2026-04）把〈Feedback sensors for coding agents〉列為 Trial：檢查要在寫程式的過程中跑，commit 前回報乾淨的結果。對照 D2 檢查點 1、2。不要展開金鑰與 hook 細節；這套檢查的限制留到第 04 場。📖 延伸閱讀：〈githooks〉（Git 官方文件）。"
   },
   {
     "id": "incidents", "chapter": "做與核准分開", "title": "警示案例：少了第二道關卡",
     "lead": "規則只寫在對話裡、或沒人覆核，就擋不住 Agent 的破壞性動作。",
     "cards": [["Replit（2025-07）", "凍結期間 Agent 刪了正式資料庫；事後分開開發與正式環境。"], ["AWS（2025-12）", "報導稱 Agent 重建環境，服務中斷 13 小時；Amazon 說是權限設定錯誤。"]],
     "check": "你的團隊有哪個動作，現在只靠一個人說了算？",
-    "notes": "10.5–13 分鐘。Fortune（2025-07-23）：SaaStr 創辦人測試 Replit Agent，在「程式碼與動作凍結」期間，Agent 刪掉 1,200 多位主管、1,190 多家公司的資料，還說無法回復，其實可以手動回復；Replit 執行長稱「Unacceptable and should never be possible」，之後加入開發與正式資料庫分離、只規劃模式。教訓：凍結只寫在對話裡沒用。The Decoder（2026-02-20）轉述 Financial Times：AWS 的 Kiro 決定「delete and recreate the environment」，造成某服務 13 小時中斷，報導稱工程師不需第二人核准；Amazon 回應是「user error—specifically misconfigured access controls—not AI」，之後加入正式環境存取的強制同儕審查。兩邊說法都要講；FT 原文在付費牆後，未讀到。不要說「AWS 承認 AI 造成當機」，也不要說「Replit 捏造 4,000 個使用者」。這是兩件事故在 DLC 唯一的完整講法，第 03、04 場只回扣。📖 延伸閱讀：〈An AI-powered coding tool wiped out a software company's database, then apologized for a 'catastrophic failure on my part'〉（Fortune，2025）；〈AWS AI coding tool decided to delete and recreate a customer-facing system〉（The Decoder，2026）。"
+    "notes": "9.5–11.5 分鐘。Fortune（2025-07-23）：SaaStr 創辦人測試 Replit Agent，在「程式碼與動作凍結」期間，Agent 刪掉 1,200 多位主管、1,190 多家公司的資料，還說無法回復，其實可以手動回復；Replit 執行長稱「Unacceptable and should never be possible」，之後加入開發與正式資料庫分離、只規劃模式。教訓：凍結只寫在對話裡沒用。The Decoder（2026-02-20）轉述 Financial Times：AWS 的 Kiro 決定「delete and recreate the environment」，造成某服務 13 小時中斷，報導稱工程師不需第二人核准；Amazon 回應是「user error—specifically misconfigured access controls—not AI」，之後加入正式環境存取的強制同儕審查。兩邊說法都要講；FT 原文在付費牆後，未讀到。不要說「AWS 承認 AI 造成當機」，也不要說「Replit 捏造 4,000 個使用者」。這是兩件事故在 DLC 唯一的完整講法，第 03、04 場只回扣。📖 延伸閱讀：〈An AI-powered coding tool wiped out a software company's database, then apologized for a 'catastrophic failure on my part'〉（Fortune，2025）；〈AWS AI coding tool decided to delete and recreate a customer-facing system〉（The Decoder，2026）。"
+  },
+  {
+    "id": "record-scope", "chapter": "審查證據", "title": "紀錄只放模型，不放工作筆記",
+    "lead": "一筆紀錄只寫：這個概念是什麼、和誰有關、證據在哪。做法、信心分數、待辦都不放。",
+    "cards": [["為什麼", "審查的人逐條對證據；雜訊越多越難審。"], ["沒解決的問題", "寫進變更提案的待確認問題，不寫進模型。"]],
+    "check": "D2 審的那筆候選，有沒有一句其實是工作筆記？",
+    "notes": "11.5–13 分鐘。新概念：紀錄的範圍。Agent 很愛把「我是用什麼方法找到的」「信心 0.8」「待確認」順手寫進紀錄；這些放進模型，下一個 Agent 會把它們當成事實讀。較短、每句都能對證據的紀錄，勝過看起來完整、其實重述原文的紀錄。沒解決的問題放在變更提案的待確認問題，審查時一起決定。這和 ADR 只寫背景、決定、後果是同一個精神。給 Agent 的一句話：「紀錄只放元素、關係與證據；其他寫進提案的待確認問題。」"
   },
   {
     "id": "package", "chapter": "審查證據", "title": "示範：請 Agent 做審查表",
@@ -75,11 +82,11 @@
     "notes": "19–21.5 分鐘。這是變異測試（mutation testing）的手動小版本：工具會自動產生大量小改動，看測試殺掉幾個。Thoughtworks Technology Radar Vol. 34（2026-04）在〈Feedback sensors for coding agents〉稱變異測試是評估測試抓錯能力「the most honest signal」，也提醒 AI 產生的測試可能永遠是綠的。為什麼人選改法：Agent 容易挑最好抓的改法。指令沒報錯不等於 killed，要看實際字樣。第 03 場會加深：每條新規則各改壞一次。📖 延伸閱讀：〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）。"
   },
   {
-    "id": "record", "chapter": "留下紀錄", "title": "核准紀錄：誰、核准什麼、沒被改過",
-    "lead": "核准不能只是一句話：要查得到誰簽的、對應哪份審查包、之後有沒有被改。",
-    "cards": [["誰", "核准者的簽章，事後驗得出來。"], ["核准什麼", "紀錄指向這一份審查包。"], ["沒被改過", "套用前，Agent 再驗一次。"]],
+    "id": "record", "chapter": "留下紀錄", "title": "核准紀錄：誰、何時、核准哪一份",
+    "lead": "ADR 被接受時寫下決策者與日期；模型裡的已審查事實也一樣，要查得到誰、何時核准。",
+    "cards": [["誰與何時", "每筆已審查事實附核准者與時間。"], ["提案留在歷史", "紀錄不抄提案；要查時從歷史找得到。"], ["沒被改過", "簽章驗得出；套用前 Agent 再驗一次。"]],
     "check": "三個月後有人問「這條規則誰核准的」，你從哪裡查？",
-    "notes": "21.5–23.5 分鐘。對照 D2 檢查點 5、6。這和 ADR「接受後不改寫」是同一個想法，多了「誰」與「沒被改過」可以用工具驗證。業界常見做法是簽章 commit 加上必要審查；本課用一個 Plugin 做，工具可以換。📖 延伸閱讀：〈git-commit〉（Git 官方文件）的 -S 選項說明。"
+    "notes": "21.5–23.5 分鐘。對照 D2 檢查點 5、6。MADR 4.0 的 ADR 範本在狀態與日期旁邊有 decision-makers 欄位：「list everyone involved in the decision」。已審查事實就是 Accepted 加上決策者：紀錄本身只寫誰、何時；當初那份審查包與核准過程留在版本與稽核歷史裡，要追查時找得到，不必抄進每筆紀錄（呼應前面：紀錄只放模型）。「沒被改過」要靠工具驗：業界常見做法是簽章 commit 加上必要審查。本 DLC 用的模型工具在每筆已審查紀錄寫入核准者與時間，提案記在稽核紀錄；工具可以換，道理相同。📖 延伸閱讀：〈About MADR〉（MADR 4.0）；〈git-commit〉（Git 官方文件）的 -S 選項說明。"
   },
   {
     "id": "next", "chapter": "下一站", "title": "帶走什麼",

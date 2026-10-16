@@ -401,7 +401,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
-          "sha256": "66c477abaa27e34734bb5a46cea7a16a4ec75e674529b3e14db656cecd0ca42d"
+          "sha256": "e3cb47cad734ec5992ad9aac94f8fda2ff24dfda256b316c14af180aa08c2928"
         }
       ],
       "generated": {}
@@ -479,7 +479,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
-          "sha256": "6f92c4edb6f772407e923367937f71292c0b99529877254ed8c20123d18ecb1d"
+          "sha256": "d1ee025ba9ce6df26a168347f6375ccf1949ea986ab04bfc3f7f80a6cf09da29"
         }
       ],
       "generated": {}
@@ -4287,7 +4287,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "e0e8c50f011946704c36dca1d89993d25a67ae9c20934f9ec48b76d12ea8962f"
+          "sha256": "8303a5c360a7a6cd6368f563f3dabf2fa0a1a6f0d762375660973f10e0ecb2b8"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -8015,7 +8015,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-final-report.md",
-          "sha256": "03a8d980078d2c40327f472b5fda8ec2e1f9e178aa347a632e82333b623dfd52"
+          "sha256": "cd98286aeadbe6edbdbff774b49b05b8d4ac9a8b6d71834840193a55e33dd9db"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
@@ -8025,7 +8025,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "c3bf25dafb402b7d85c2d3f4f360328164a331a1493ea4befbdbcddb9fac5c11"
+          "sha256": "677d60d0866172b13705c83cb7029c0c329740224419407b9cd0352adc14f74e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",

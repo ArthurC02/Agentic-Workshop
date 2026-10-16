@@ -36,6 +36,8 @@
 | O2 | E | 每個候選至少一個 `cite` 證據，且證據在已確認來源內（Agent 回報 `validate` 通過、`verify-evidence` 全部 current） |
 | O3 | A | 發現名稱矛盾（Fare Policy／Discount Policy）或沒有對應程式的詞（Compensation），選擇記錄矛盾或「未建模」，而不是挑一個當答案 |
 | O4 | A | `analyze-boundary` 用兩個不同 Context，學員能依 Agent 附的證據說出一個邊界洩漏 |
+| O5 | A | 劃 Context 時看得到兩種以上訊號（用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫），不是照資料夾分；同一個字兩種意思被記成兩個詞或先不建模，不是硬合成一個 |
+| O6 | E | 學員打開過一份規則紀錄檔（Markdown，開頭是狀態與證據、內文是敘述、最後是 `# Relations`），說得出裡面只有元素、關係與證據；選的缺口寫在 `notes/d1.md`，沒有寫進紀錄 |
 
 評估看 `notes/d1.md` 的證據與學員的決定（「D1 決定」只有三個選擇＋一個短文字），不因少填表扣分。
 
@@ -50,6 +52,7 @@
 | O3 | E | counterfactual 方案由 proposer 選定，結果只認 `killed`；Change Package 的測試結果來自實際執行（`fill_package.py`），沒有預填 PASS |
 | O4 | E | `notes/d2.md` 有 Agent 寫下的 readiness `ready`、obligation 結果、審查摘要與核准決定、簽章行；私鑰不在 Repo、不在截圖、不貼給 Agent |
 | O5 | H | 能說出「`record-approval` 只比字串，真正擋得住的是簽章；Agent 不能替自己的提案核准」 |
+| O6 | E | Maintainer 自己打開要核准的那份紀錄檔讀過；套用後 Agent 回報的 `verified`（誰、何時核准）有 maintainer@example.com；`cp-d2.json` 的 `open_questions` 放了 D1 的缺口 |
 
 證據看 `notes/d2.md` 與學員有沒有在 Agent 停下時做決定，不看表單填了多少。介入訊號：核准或 commit 出現在 proposer 的對話 →「這個核准是誰決定的？」；Maintainer 直接回核准 →「哪一行證據支持這條規則？」；金鑰放在 Repo 內或 `.ssh` → 立刻請 Agent 移到 `%USERPROFILE%\.dlc-keys\` 並確認 `git status`；卡 5 分鐘 → 依手冊提供 `dlc-rec-d2`。
 
@@ -104,8 +107,8 @@
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
 | D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 與 `shifted` 被列成 asset:id 並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修 |
-| D2 | H | Agent 先列更新清單，學員回覆後才登記；只更新真的改變的事實，而且是候選（reviewed 以新 id 候選取代） |
-| D3 | E | 交接單七段齊全，Agent 回報的 id 核對清單全部查得到；commit 由 Maintainer 自己的 Agent 對話執行；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
+| D2 | H | Agent 先列更新清單，學員回覆後才登記；只更新真的改變的事實，而且是候選（reviewed 以新 id 候選取代）；說得出哪些只是重構（搬移程式、意思沒變），所以不登記 |
+| D3 | E | 交接單七段齊全，Domain facts 第一行有模型版本（已審查模型的 commit，`export --commit` 讀得到），Agent 回報的 id 核對清單全部查得到；commit 由 Maintainer 自己的 Agent 對話執行；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
 
 介入訊號：想直接標 reviewed →「核准簽章在哪？」；Agent 沒等回覆就登記 → 請學員貼「先停下，列出你要寫入的內容等我同意」；交接單引用不存在的 id →「下一個 Agent 查得到它嗎？」
 
@@ -116,6 +119,7 @@
 | R1 | E | `notes/retro.md` 有「reviewed 事實改變了 Agent 輸出」的具體例子與證據，或誠實寫「未觀察」；學員有抽問 Agent「證據在哪？」 |
 | R2 | E | 能指出一個差點被當成事實的候選 |
 | R3 | H | 口頭討論時能區分 `record-approval`（字串比對）與簽章（持鑰）的治理強度 |
+| R4 | E | `compare-registry` 以最後一個「套用」commit 為基準答案：學員讀了 missed 與 extra 清單，不只念分數；說得出 extra 是下一次核准要審的候選 |
 
 介入訊號：Agent 的回顧寫了紀錄裡沒有的事 →「這句的證據在哪？沒有就請它改成未觀察」；討論停在「很有用」→「哪一個 commit 或哪一段紀錄看得出來？」
 
