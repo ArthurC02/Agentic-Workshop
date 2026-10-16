@@ -332,7 +332,7 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 - 1（export 約 78 KB）：D2 檢查點 3 第一步改為 `export --save ../../tmp/export-d2.json`（學員包根目錄的 `tmp/`，在 Repo 外），再用一行 Python 只印各類別候選 id；D1 失敗時、D3a–D3c 第 2 步同樣存檔後只列 Context 與詞彙名稱。PowerShell 5.1 與 Git Bash 實跑（D1 Recovery 的 57 筆：contexts 5、vocabulary 21、aggregates 2、rules 16、interactions 5、decisions 8）。
 - 2（draft／stable 與 candidate／reviewed）：提示詞不再叫 Agent 讀 `domain-memory/` 的檔案找詞彙；D3a 第 3 步註明以 `get-context` 輸出為準；詞彙表 Registry 列說明兩套說法。
 - 3（OKF、`verified`）：D1 檢查點 2 候選小卡、檢查點 4 登記後學員打開一份規則紀錄檔；D2 檢查點 4 夥伴自己打開要核准的紀錄檔；D2 檢查點 6 Agent 用 `get-record` 回報 `verified`（實測 `by: human:maintainer@example.com`），④ 加深一層小卡對照 ADR 的 Accepted 與決策者（Nygard、MADR）。
-- 4（`compare-registry`）：學員包不能帶參考 Registry，改用學員自己的歷史：回顧檢查點 2 以最後一個訊息含「套用」的 commit 為基準答案（自己做的 D2 是「D2：套用 CP-D2-001」，Recovery 是「CP-CORE-002：finalize 並套用」），對現在的工作區打分，extra＝核准後 Agent 新寫、待審的候選，missed＝核准過卻不見的。新概念小卡「評估 Agent 的成果」。實測 D3c Recovery 對 `fc9efe2`：1.0；加一筆候選後 rules extra＝[TEST-001]、precision 0.983；PowerShell `--save` 正常。
+- 4（`compare-registry`）：學員包不能帶參考 Registry，改用學員自己的歷史：回顧檢查點 2 以 git log 最上面（最新）一個訊息含「套用」的 commit 為基準答案（自己做的 D2 是「D2：套用 CP-D2-001」，Recovery 是「CP-CORE-002：finalize 並套用」），對現在的工作區打分，extra＝核准後 Agent 新寫、待審的候選，missed＝核准過卻不見的。新概念小卡「評估 Agent 的成果」。實測 D3c Recovery 對 `fc9efe2`：1.0；加一筆候選後 rules extra＝[TEST-001]、precision 0.983；PowerShell `--save` 正常。
 - 5（`change-coupling`）：不做主步驟；D1 Bounded Context 小卡加「資料夾不是證據：這個 Repo 依技術分層」，「說不出東西的訊號不是證據」寫在簡報備註與主持人指南。
 - 6（擷取順序、元素定義）：D1 檢查點 3 ①「先統一名詞再劃邊界」、同字異義標「邊界訊號」；檢查點 4 ① 與提示詞要求每個 Context 列出訊號種類（只有一種標「證據薄弱」），規則「不是測試名稱、記錄訊息或願望」；D3c 檢查點 2 Aggregate「不是資料表、不是有子物件的類別」。
 - 紀錄只放元素、關係、證據：D1 候選小卡與檢查點 5 ①；D2 `cp-d2.json` 新增 `open_questions`（`fill_package.py` 已支援，實測寫入 `domain-change-proposal.json`），簽章流程清單第 2 節同步。

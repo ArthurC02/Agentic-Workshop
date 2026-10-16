@@ -119,7 +119,7 @@
 | R1 | E | `notes/retro.md` 有「reviewed 事實改變了 Agent 輸出」的具體例子與證據，或誠實寫「未觀察」；學員有抽問 Agent「證據在哪？」 |
 | R2 | E | 能指出一個差點被當成事實的候選 |
 | R3 | H | 口頭討論時能區分 `record-approval`（字串比對）與簽章（持鑰）的治理強度 |
-| R4 | E | `compare-registry` 以最後一個「套用」commit 為基準答案：學員讀了 missed 與 extra 清單，不只念分數；說得出 extra 是下一次核准要審的候選 |
+| R4 | E | `compare-registry` 以 git log 最上面（最新）一個訊息含「套用」的 commit 為基準答案：學員讀了 missed 與 extra 清單，不只念分數；說得出 extra 是下一次核准要審的候選 |
 
 介入訊號：Agent 的回顧寫了紀錄裡沒有的事 →「這句的證據在哪？沒有就請它改成未觀察」；討論停在「很有用」→「哪一個 commit 或哪一段紀錄看得出來？」
 

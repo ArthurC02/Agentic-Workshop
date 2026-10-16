@@ -32,7 +32,7 @@ id=recovery-dlc-d3a zip=recovery-dlc-d3a.zip label=下載 D3a Recovery
 PowerShell（整段原樣執行，不要加 2>&1 或 *>&1，否則 dm 的提示訊息會被當成錯誤）：
 $ErrorActionPreference = 'Stop'
 $orig = git rev-parse --show-toplevel; if ($LASTEXITCODE) { throw "not in the original Repo" }
-Set-Location C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository
+Set-Location (Split-Path $orig)
 if (Test-Path .\resume-d3a) { throw "resume-d3a already exists: delete C:\dlc-rec\d3a and resume-d3a, then rerun" }
 Expand-Archive -Force -LiteralPath "$HOME\Downloads\recovery-dlc-d3a.zip" -DestinationPath C:\dlc-rec\d3a
 $b = (Get-ChildItem C:\dlc-rec\d3a -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
@@ -41,7 +41,7 @@ foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item
 Git Bash：
 ( set -e
 orig=$(git rev-parse --show-toplevel)
-cd /c/dlc/agentic-workshop/07-dlc-ddd/participant/repository
+cd "$orig/.."
 [ ! -e ./resume-d3a ] || { echo "resume-d3a already exists: delete /c/dlc-rec/d3a and resume-d3a, then rerun" >&2; exit 1; }
 mkdir -p /c/dlc-rec/d3a
 unzip -o -q ~/Downloads/recovery-dlc-d3a.zip -d /c/dlc-rec/d3a

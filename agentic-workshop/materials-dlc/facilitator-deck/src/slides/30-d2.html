@@ -85,19 +85,19 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；範本沒下載就先下載</span></li>
-    <li><b>回「選 1」，貼第二段</b><span>等的時候讀小卡；看過回報再貼「送出」</span></li>
+    <li><b>回「選 1」，貼第二段</b><span>等的時候讀小卡；看過回報再回「送出」</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
+  <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才回「送出」</p>
   <p class="cp-next"><b>第 48 分前完成</b><span>→ 下一步：檢查點 4 夥伴審查證據並決定核准（換夥伴）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提兩個反事實方案，你選一個；只認 killed。D2 格式範本檢查點 2 時應已下載，Agent 會把它放進 worksheets。Agent 跑檢查時，提案者讀反事實檢查小卡、夥伴讀檢查點 4 ①。第 45 分我會看大家進度。」</p>
-    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各檔案候選數、方案改為 2 個；「送出」後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
+    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各檔案候選數、方案改為 2 個；送出併進第二段，學員只回一句「送出」，不另貼第三段；送出後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>背景</b>：Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry 的雜湊值。</p>
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。變更審查包留到檢查點 4 再講。</p>
-    <p><b>第一步的 export</b>：整份 Registry 約 80 KB，Agent 把它存到 Repo 外的 tmp/，再用一行指令只印候選 id；請學員看 Agent 回報的各類別候選數（自己做的 D1 通常是 contexts、vocabulary、rules）。</p>
+    <p><b>第一步的 export</b>：整份 Registry 可能有數十 KB（用過 Recovery 約 80 KB），Agent 把它存到 Repo 外的 tmp/，再用一行指令只印候選 id；請學員看 Agent 回報的各類別候選數（自己做的 D1 通常是 contexts、vocabulary、rules）。</p>
     <p><b>開放問題</b>：cp-d2.json 的 open_questions 放 D1 選的缺口；模型只放元素、關係與證據，還沒解決的問題放提案。</p>
   </aside>
 </section>

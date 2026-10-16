@@ -73,14 +73,14 @@ Agent 翻紀錄找證據，你們判斷證據站不站得住；記得的和紀�
 ```prompt
 # windows
 請依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每一步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
-再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 裡最後一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號，依終端機選一行：
+再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 最上面（最新）一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號，依終端機選一行：
 PowerShell：..\..\tools\dm.ps1 compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ..\..\tmp\retro-compare.json
 Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
 讀存下的結果，用白話回報：overall 的 precision 與 recall；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
 最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不要修改任何檔案，列完停下。
 # macos
 請依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每一步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
-再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 裡最後一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號：
+再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 最上面（最新）一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號：
 ../../tools/dm.sh compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
 讀存下的結果，用白話回報：overall 的 precision 與 recall；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
 最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不要修改任何檔案，列完停下。
@@ -95,7 +95,7 @@ Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-c
 失敗時：
 
 ```text
-請把清單裡缺證據或缺判斷的步驟補齊；查不到證據的寫「紀錄中沒有」。比對指令失敗時，貼出錯誤訊息，確認 COMMIT 是 git log 裡訊息含「套用」的那一個。不要修改任何檔案，列完停下。
+請把清單裡缺證據或缺判斷的步驟補齊；查不到證據的寫「紀錄中沒有」。比對指令失敗時，貼出錯誤訊息，確認 COMMIT 是 git log 最上面（最新）一個訊息含「套用」的 commit。不要修改任何檔案，列完停下。
 ```
 
 ④ 補充

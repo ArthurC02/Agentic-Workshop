@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 21f5158843cb4656 inputs-sha256 21f5158843cb4656e58f36fd6adecd3b94155a1c255ab6314cfaa92b1801fbe0 -->
+<!-- 主持人專用，不發給學員。build fa5c149a72d34f7d inputs-sha256 fa5c149a72d34f7d99d59df9e57d647c830f56b216aca20680a08f118e345670 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1785,7 +1785,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="cp-flow">
     <li><b>貼 ②「名稱矛盾與詞彙草稿」</b><span>Runbook › 檢查點 3</span></li>
     <li><b>用一行回覆決定</b><span>例如「採用 1,2,3,5,6；矛盾 A 選 1」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>挑一個詞看證據原文；至少採用 5 個</p>
   <p class="cp-next"><b>第 22 分前完成</b><span>→ 下一步：檢查點 4 劃分 Context，寫下規則</span></p>
@@ -1796,6 +1796,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>介入訊號</b>：22 分仍不到 3 個 → 請學員直接回「採用前 5 個」，其餘留到 coverage 補；學員全部回「同意」沒看證據 →「挑一個，請 Agent 再把證據原文念給你聽」。</p>
     <p><b>提示</b>：H2：「同一個概念在文件與程式用不同名字，要記成一個詞的別名，還是兩個詞？先看證據再決定。」</p>
     <p><b>新概念</b>：這裡第一次介紹<b>通用語言</b>，花 30 秒講（Runbook 有「新概念」框）；證據與候選已在檢查點 2 講過。</p>
+    <p><b>省時</b>：矛盾最多列 3 處、證據原文一行以內；Agent 登記後自己檢查並在最後一行回成功／失敗，學員不必再貼 ③。Agent 列候選時學員先讀通用語言小卡。</p>
     <p><b>擷取順序</b>：Agent 找名詞與關係很可靠，找邊界與 Aggregate 不可靠；先把名詞定下來，錯的邊界才不會擴散到之後每一筆紀錄。所以 D1 是名詞 → Context → 規則，協作關係在檢查點 6 對照程式。</p>
     <p><b>同字異義</b>：同一個字在兩處意思不同，是兩個 Context 的訊號；Agent 標「邊界訊號」，學員決定記成兩個詞（互標 not_same_as）還是先不建模，檢查點 4 劃 Context 時再用。</p>
   </aside>
@@ -1816,13 +1817,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <aside class="notes">
     <p><b>說（12:00／第 22 分）</b>：「第 22 分。Context 兩個以上，規則兩條以上。規則的證據一定要在剛才確認的來源裡；文件有、程式找不到的概念，照實列為缺口，不要讓 Agent 編出來。」</p>
     <p><b>看</b>：學員能不能說出採用的 Context 各自決定什麼；規則草稿是否有規則文件＋測試或程式兩段證據；Agent 有沒有為了湊數寫出程式沒有的行為。</p>
-    <p><b>省時</b>：規則候選改為 2–3 條；Agent 登記、驗證後自己檢查並在最後一行回成功／失敗，學員不必再貼 ③（validate、verify-evidence 不重跑）。Agent 列候選時學員先讀 Bounded Context 小卡。</p>
+    <p><b>省時</b>：規則候選改為 2–3 條；「一起修改」查不到歷史就寫「無歷史」，不讓 Agent 翻 git log 猜；登記結果只報失敗的；Agent 登記、驗證後自己檢查並在最後一行回成功／失敗，學員不必再貼 ③（validate、verify-evidence 不重跑）。Agent 列候選時學員先讀 Bounded Context 小卡。</p>
     <p><b>介入訊號</b>：有人憑空補上 Compensation 實作 → 請對照證據，退回『未建模』。</p>
     <p><b>新概念</b>：這裡第一次介紹 <b>Bounded Context</b>，花 30 秒講：「在這個範圍內，名詞的意思一致；每個 Context 說得出它決定什麼。」</p>
     <p><b>多個訊號</b>：Context 要用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫，至少兩種一致；Agent 只拿出一種的，標「證據薄弱」。這個 Repo 依技術分層（api、application、domain、infrastructure），資料夾不是證據。</p>
     <p><b>規則的定義</b>：能被推翻的一句敘述，不是測試名稱、記錄訊息或願望。</p>
+    <p><b>Context 數量</b>：2–4 個，至少涵蓋檢查點 3 詞彙用到的 context id；漏掉的話 Agent 自我檢查會回失敗。</p>
     <p><b>打開一份紀錄（投影時用文字說明即可）</b>：每筆紀錄是一份 Markdown 文件。開頭的區塊有 type、status（磁碟上寫 draft＝候選、stable＝已審查）與 sources（每段證據寫成「路徑#L起-迄」加雜湊）；內文第一段是規則敘述；最後「# Relations」列出它屬於哪個 Context（例如「Contexts: [pricing](/contexts/pricing)」）。請學員確認裡面沒有「怎麼找到的」「信心」「待辦」這類工作筆記。</p>
-    <p><b>學員或 Agent 問到「一起修改」怎麼看（change-coupling）</b>：起始 Repo 只有一個大 commit，會被略過，輸出是空的；就算有歷史，分層 Repo 也只會看到四個分層資料夾彼此 100% 一起改。說不出東西的訊號不是證據；分層放的程式把 Context 藏在各層裡。不要在這裡花時間跑。</p>
+    <p><b>學員或 Agent 問到「一起修改」怎麼看（change-coupling）</b>：起始 Repo 只有一個大 commit，會被略過，輸出是空的；就算有歷史，分層 Repo 也只會看到四個分層資料夾彼此 100% 一起改。說不出東西的訊號不是證據；分層放的程式把 Context 藏在各層裡。提示詞要 Agent 寫「無歷史」、不要猜；不要在這裡花時間跑。</p>
   </aside>
 </section>
 
@@ -1835,12 +1837,13 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><b>貼 ②「找缺口並查詞」</b><span>Runbook › 檢查點 5</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>從 Agent 列的缺口中，選一個記下來</p>
+  <p class="cp-judge"><b>你要判斷</b>命中的詞意思對嗎；從缺口中選一個記下</p>
   <p class="cp-next"><b>第 31 分前完成</b><span>→ 下一步：檢查點 6 對照程式判斷邊界洩漏</span></p>
   <aside class="notes">
     <p><b>說（17:00／第 27 分）</b>：「第 27 分。Agent 先列出模型哪裡還空著，再用客人會說的一句話查模型。對不到通用語言的，就是模型的缺口。」</p>
     <p><b>看</b>：學員有沒有讀 Agent 對缺口的白話說明，而不是只看 OK；查詢句是否是旅客或客服會說的話。</p>
     <p><b>介入訊號</b>：第一句也查不到 → 句子裡沒有詞彙的名稱或別名，請 Agent 換一句；只命中 synonym 或 definition 時，請 Agent 改用正式名稱再查。</p>
+    <p><b>名稱命中不等於意思對</b>：範例句「團體訂票付款失敗時…」通常以名稱命中一般訂票的「付款失敗」（例如 payment-failure：維持待付款、保留座位），不是團體付款失敗（取消）。請學員看 Agent 說明命中的詞屬於哪個 Context、意思對不對；名稱命中但意思不對不算通過，記成缺口，再換一句真的在說那個詞的話。</p>
     <p><b>缺口放哪裡</b>：選的缺口只寫進 notes/d1.md，不寫進模型；模型只放元素、關係與證據，D2 會把缺口寫進提案的開放問題。</p>
     <p><b>失敗時</b>：Agent 改用 export 存到 Repo 外的暫存檔，再只列詞彙名稱；不要讓它直接讀 domain-memory/ 的檔案（檔案寫 draft／stable，和指令輸出的 candidate／reviewed 對不上）。</p>
   </aside>
@@ -1955,19 +1958,19 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「準備反事實檢查」</b><span>Runbook › 檢查點 3；範本沒下載就先下載</span></li>
-    <li><b>回「選 1」，貼第二段</b><span>等的時候讀小卡；看過回報再貼「送出」</span></li>
+    <li><b>回「選 1」，貼第二段</b><span>等的時候讀小卡；看過回報再回「送出」</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才貼「送出」</p>
+  <p class="cp-judge"><b>你要判斷</b>全部 <code>passed</code>、反事實檢查是 <code>killed</code>，才回「送出」</p>
   <p class="cp-next"><b>第 48 分前完成</b><span>→ 下一步：檢查點 4 夥伴審查證據並決定核准（換夥伴）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提兩個反事實方案，你選一個；只認 killed。D2 格式範本檢查點 2 時應已下載，Agent 會把它放進 worksheets。Agent 跑檢查時，提案者讀反事實檢查小卡、夥伴讀檢查點 4 ①。第 45 分我會看大家進度。」</p>
-    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各檔案候選數、方案改為 2 個；「送出」後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
+    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各檔案候選數、方案改為 2 個；送出併進第二段，學員只回一句「送出」，不另貼第三段；送出後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>背景</b>：Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry 的雜湊值。</p>
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed 與 failing_evidence 的斷言；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>反事實檢查</b>，花 30 秒講：故意改壞一處、測試失敗才是 killed；只認 killed 字樣。變更審查包留到檢查點 4 再講。</p>
-    <p><b>第一步的 export</b>：整份 Registry 約 80 KB，Agent 把它存到 Repo 外的 tmp/，再用一行指令只印候選 id；請學員看 Agent 回報的各類別候選數（自己做的 D1 通常是 contexts、vocabulary、rules）。</p>
+    <p><b>第一步的 export</b>：整份 Registry 可能有數十 KB（用過 Recovery 約 80 KB），Agent 把它存到 Repo 外的 tmp/，再用一行指令只印候選 id；請學員看 Agent 回報的各類別候選數（自己做的 D1 通常是 contexts、vocabulary、rules）。</p>
     <p><b>開放問題</b>：cp-d2.json 的 open_questions 放 D1 選的缺口；模型只放元素、關係與證據，還沒解決的問題放提案。</p>
   </aside>
 </section>
@@ -2809,13 +2812,14 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出更新清單」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>看過清單回「同意」</b><span>你們同意後 Agent 才寫入</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>被 D3 改變的已審查事實改用新 id 登記，原本那筆沒被覆寫</p>
   <p class="cp-next"><b>第 161 分前完成</b><span>→ 下一步：檢查點 3 寫交接單並查證每個引用</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 158 分）</b>：「第 158 分。請 Agent 先列出 D3 改變了哪些事實，你們同意後它才登記，登記的都是候選，不是 reviewed。reviewed 要走 D2 那套審查。」</p>
     <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動（shifted）的 reviewed 事實不登記，留給下一次核准。get-record 只查 stale 清單；同時在兩張清單的以 stale 處理；B 類最多 3 項（REFUND-004 先列），其餘列為未完成、留給交接單的 Unknowns。D3c Recovery 接手的組清單約 39 個 asset:id（8 個兩張都有），讀程式最花時間，所以才設上限。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
+    <p><b>省時</b>：Agent 登記後自己檢查並在最後一行回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：有人想直接標成 reviewed → 提醒：沒有核准簽章就不是。</p>
     <p><b>重構 ≠ 模型變更（加深一層）</b>：shifted 只是搬移；stale 也要逐項問意思有沒有變，只是重構的歸 C。</p>
   </aside>
@@ -2829,16 +2833,17 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；看過 id 清單回「同意」</span></li>
     <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看夥伴 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>抽一句問「證據在哪？」；指不出來就移到未知事項（Unknowns）</p>
   <p class="cp-next"><b>第 165 分前完成</b><span>→ 聊「完成後想一想」、填「D4 交接核對」；下一步：回顧</span></p>
   <aside class="notes">
     <p><b>說（06:00／第 161 分）</b>：「第 161 分。想像明天換另一個 Agent 接手，它只看得到這份交接單和共用模型。請 Agent 寫，並要它逐一查證每個 id；你們抽一句問『證據在哪？』。」</p>
     <p><b>看</b>：Agent 是否回報 id 核對清單；查不到的 id 是否移到 Unknowns 而不是被換成猜的 id；Unknowns 是否誠實（含檢查點 2 列為未完成的事實；用過 Recovery 的組 Counterfactual 寫「未證明」，Unknowns 註明「Recovery 不含」）；commit 在夥伴的 Agent 對話執行，不是提案者的 Agent。</p>
+    <p><b>省時</b>：提案者的 Agent 只回報 id 核對清單與移到 Unknowns 的項目，各段由學員打開檔案看；夥伴的 Agent commit 後自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：第 165 分未完成 → 請學員對 Agent 說「照 D4 最低完成線收尾」：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」；夥伴 commit 後進回顧。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人聊兩分鐘（也可和隔壁組交換看交接單的 Unknowns），再把結論記進「D4 交接核對」；挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再請大家回想各段結尾的討論。</p>
-    <p><b>模型版本</b>：交接單 Domain facts 第一行寫已審查模型的 commit（最後一個訊息含「套用」的 commit）；Agent 用 export --commit 確認讀得到。交接時說得出「哪一版的模型」，下一個 Agent 才知道哪些是核准過的。</p>
+    <p><b>模型版本</b>：交接單 Domain facts 第一行寫已審查模型的 commit（git log 最上面（最新）一個訊息含「套用」的 commit）；Agent 用 export --commit 確認讀得到。交接時說得出「哪一版的模型」，下一個 Agent 才知道哪些是核准過的。</p>
   </aside>
 </section>
 
@@ -2914,7 +2919,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（04:00／第 169 分）</b>：「第 169 分。請 Agent 把今天每個人工把關點列出來：來源與定義、夥伴核准、選項與交接單、反事實檢查、查證引用，標出哪一步一個人就能完成。然後口頭討論：哪一步真的擋住過今天的錯？record-approval 只比對字串、同機雙身分也能過，自己核准自己只是照流程做完，這和真正由他人審查差在哪？」</p>
     <p><b>看</b>：是否討論到簽章只證明『誰簽了』，不證明『審得夠不夠』。</p>
     <p><b>介入訊號</b>：偏向工具比較 → 拉回今天的證據。</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>評估 Agent 的成果（eval）</b>，花 30 秒講：拿最後一次人核准的模型（訊息含「套用」的 commit）當基準答案，compare-registry 比對現在的模型；extra 是核准後 Agent 新寫、還沒人審的，missed 是核准過卻不見的。分數只比結構，要讀清單。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>評估 Agent 的成果（eval）</b>，花 30 秒講：拿最後一次人核准的模型（git log 最上面（最新）一個訊息含「套用」的 commit）當基準答案，compare-registry 比對現在的模型；extra 是核准後 Agent 新寫、還沒人審的，missed 是核准過卻不見的。分數只比結構，要讀清單。</p>
     <p><b>看</b>：missed 不是 0 的組，請 Agent 指出是哪一段改掉的：這就是人工把關沒擋住的地方。</p>
   </aside>
 </section>

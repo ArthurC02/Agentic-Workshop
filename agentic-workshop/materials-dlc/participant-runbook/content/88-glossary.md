@@ -39,6 +39,8 @@ section: 參考
 | 證據（evidence）／`cite` | 指向某個檔案第幾行到第幾行的引用。Agent 寫進模型的每一句都要附證據；原文之後被改，Agent 會回報對不上。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 候選（candidate） | 有證據、但還沒經過核准的主張。Agent 或任何人寫進模型的新內容都是候選，不可當成限制或事實。 | `vendor/domain-memory/references/reliability-architecture.md`〈State model〉 |
 | 已審查事實（reviewed） | 經夥伴核准的模型，Agent 之後必須遵守。不能直接覆寫，只能由下一次核准的新候選取代。每筆帶 `verified`：誰、何時核准，像 ADR 寫「已接受」並列出決策者。 | `vendor/domain-memory/references/proposal-lifecycle.md`〈Proposal lifecycle〉 |
+| 開放問題（open_questions） | 提案裡還沒解決的缺口或問題；模型只放元素、關係與證據。D1 找到的缺口，D2 寫進提案的開放問題。 | 本課程〈D2 審查與核准（成對）〉 |
+| 模型版本 | 已審查模型所在的 commit；`export --commit` 讀得到當時的模型。D4 寫在交接單 Domain facts 的第一行。 | 本課程〈D4 交接〉 |
 | 成對核准（人工核准關卡） | 做的人和核准的人分開：一人提案（Proposer），另一人審查證據後核准（Maintainer）。主課 B3 Gate 的加深，D2 走過一次。 | 本課程〈D2 審查與核准（成對）〉；Anthropic Engineering〈Building effective agents〉 |
 | 提案者（Proposer） | 整理變更審查包、送出提案、套用；不得核准自己的提案。提案者的 Agent 不 commit、不 push、不碰金鑰。 | 本課程〈D2 審查與核准（成對）〉 |
 | 夥伴（Maintainer，持鑰人） | 在自己的 Agent 對話裡建立簽章金鑰、審查並核准、做簽章 commit 與 push。 | 本課程〈D2 審查與核准（成對）〉 |

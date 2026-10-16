@@ -63,13 +63,14 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出更新清單」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>看過清單回「同意」</b><span>你們同意後 Agent 才寫入</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>被 D3 改變的已審查事實改用新 id 登記，原本那筆沒被覆寫</p>
   <p class="cp-next"><b>第 161 分前完成</b><span>→ 下一步：檢查點 3 寫交接單並查證每個引用</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 158 分）</b>：「第 158 分。請 Agent 先列出 D3 改變了哪些事實，你們同意後它才登記，登記的都是候選，不是 reviewed。reviewed 要走 D2 那套審查。」</p>
     <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動（shifted）的 reviewed 事實不登記，留給下一次核准。get-record 只查 stale 清單；同時在兩張清單的以 stale 處理；B 類最多 3 項（REFUND-004 先列），其餘列為未完成、留給交接單的 Unknowns。D3c Recovery 接手的組清單約 39 個 asset:id（8 個兩張都有），讀程式最花時間，所以才設上限。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
+    <p><b>省時</b>：Agent 登記後自己檢查並在最後一行回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：有人想直接標成 reviewed → 提醒：沒有核准簽章就不是。</p>
     <p><b>重構 ≠ 模型變更（加深一層）</b>：shifted 只是搬移；stale 也要逐項問意思有沒有變，只是重構的歸 C。</p>
   </aside>
@@ -83,16 +84,17 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；看過 id 清單回「同意」</span></li>
     <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看夥伴 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>抽一句問「證據在哪？」；指不出來就移到未知事項（Unknowns）</p>
   <p class="cp-next"><b>第 165 分前完成</b><span>→ 聊「完成後想一想」、填「D4 交接核對」；下一步：回顧</span></p>
   <aside class="notes">
     <p><b>說（06:00／第 161 分）</b>：「第 161 分。想像明天換另一個 Agent 接手，它只看得到這份交接單和共用模型。請 Agent 寫，並要它逐一查證每個 id；你們抽一句問『證據在哪？』。」</p>
     <p><b>看</b>：Agent 是否回報 id 核對清單；查不到的 id 是否移到 Unknowns 而不是被換成猜的 id；Unknowns 是否誠實（含檢查點 2 列為未完成的事實；用過 Recovery 的組 Counterfactual 寫「未證明」，Unknowns 註明「Recovery 不含」）；commit 在夥伴的 Agent 對話執行，不是提案者的 Agent。</p>
+    <p><b>省時</b>：提案者的 Agent 只回報 id 核對清單與移到 Unknowns 的項目，各段由學員打開檔案看；夥伴的 Agent commit 後自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：第 165 分未完成 → 請學員對 Agent 說「照 D4 最低完成線收尾」：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」；夥伴 commit 後進回顧。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人聊兩分鐘（也可和隔壁組交換看交接單的 Unknowns），再把結論記進「D4 交接核對」；挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再請大家回想各段結尾的討論。</p>
-    <p><b>模型版本</b>：交接單 Domain facts 第一行寫已審查模型的 commit（最後一個訊息含「套用」的 commit）；Agent 用 export --commit 確認讀得到。交接時說得出「哪一版的模型」，下一個 Agent 才知道哪些是核准過的。</p>
+    <p><b>模型版本</b>：交接單 Domain facts 第一行寫已審查模型的 commit（git log 最上面（最新）一個訊息含「套用」的 commit）；Agent 用 export --commit 確認讀得到。交接時說得出「哪一版的模型」，下一個 Agent 才知道哪些是核准過的。</p>
   </aside>
 </section>
 
