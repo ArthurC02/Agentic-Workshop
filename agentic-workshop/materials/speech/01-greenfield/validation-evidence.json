@@ -9,14 +9,6 @@
       "clipped": []
     },
     {
-      "id": "why",
-      "contentOverflow": 0,
-      "horizontalOverflow": 0,
-      "stageOverflow": 0,
-      "promptVisible": true,
-      "clipped": []
-    },
-    {
       "id": "tool",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
@@ -25,7 +17,7 @@
       "clipped": []
     },
     {
-      "id": "chain",
+      "id": "loop",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
@@ -33,47 +25,15 @@
       "clipped": []
     },
     {
-      "id": "idea",
+      "id": "check-first",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
       "promptVisible": true,
-      "clipped": []
-    },
-    {
-      "id": "mvp",
-      "contentOverflow": 0,
-      "horizontalOverflow": 0,
-      "stageOverflow": 0,
-      "promptVisible": false,
-      "clipped": []
-    },
-    {
-      "id": "story",
-      "contentOverflow": 0,
-      "horizontalOverflow": 0,
-      "stageOverflow": 0,
-      "promptVisible": false,
       "clipped": []
     },
     {
       "id": "acceptance",
-      "contentOverflow": 0,
-      "horizontalOverflow": 0,
-      "stageOverflow": 0,
-      "promptVisible": true,
-      "clipped": []
-    },
-    {
-      "id": "flow",
-      "contentOverflow": 0,
-      "horizontalOverflow": 0,
-      "stageOverflow": 0,
-      "promptVisible": false,
-      "clipped": []
-    },
-    {
-      "id": "flow-review",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
@@ -89,7 +49,31 @@
       "clipped": []
     },
     {
-      "id": "architecture",
+      "id": "sdd",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false,
+      "clipped": []
+    },
+    {
+      "id": "spec-small",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true,
+      "clipped": []
+    },
+    {
+      "id": "case-airbnb",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false,
+      "clipped": []
+    },
+    {
+      "id": "context",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
@@ -113,6 +97,14 @@
       "clipped": []
     },
     {
+      "id": "plan",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": true,
+      "clipped": []
+    },
+    {
       "id": "small-steps",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
@@ -133,11 +125,19 @@
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
+      "promptVisible": true,
+      "clipped": []
+    },
+    {
+      "id": "cases",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
       "promptVisible": false,
       "clipped": []
     },
     {
-      "id": "try-docs",
+      "id": "caution",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,
@@ -146,6 +146,14 @@
     },
     {
       "id": "notes",
+      "contentOverflow": 0,
+      "horizontalOverflow": 0,
+      "stageOverflow": 0,
+      "promptVisible": false,
+      "clipped": []
+    },
+    {
+      "id": "apply",
       "contentOverflow": 0,
       "horizontalOverflow": 0,
       "stageOverflow": 0,

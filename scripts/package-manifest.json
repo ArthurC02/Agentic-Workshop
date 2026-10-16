@@ -3145,7 +3145,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "4752df46e715583cab1536c7e5b8ac12221422f75965f11bf944c38d85922bda"
+          "sha256": "c137ecd5caf96a22bac18aa8d1454b0201b7b328e34498500a917ed60f367773"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3420,22 +3420,22 @@
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/README.md",
           "destination": "agentic-workshop/materials/speech/01-greenfield/README.md",
-          "sha256": "827dc53a2d7db42040c455f20b00fd13fc6633e19d43a5d9e008b5885891d6d7"
+          "sha256": "fce45cd08e5405eb01dc79de37cc13125ac08dd0929c20b95365f626092a4332"
         },
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
           "destination": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
-          "sha256": "1b5c8e719a7f452124b42dc6172f00616b67cf53a9dc704036653cdd5f70df86"
+          "sha256": "debc0326932c9763efb0277604d82c9c4dc789afe8978fac8f2456b5786fc9a6"
         },
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/validation-report.md",
           "destination": "agentic-workshop/materials/speech/01-greenfield/validation-report.md",
-          "sha256": "b19cf8a66e4bb5d6b33ab5f9411b5076ea8d053e3fa1f122d1092bcce4436fbc"
+          "sha256": "e8e7f5d4128669217930c183b880f135f22b30ece4522c76a5208bb5d9b1e90e"
         },
         {
           "source": "agentic-workshop/materials/speech/README.md",
           "destination": "agentic-workshop/materials/speech/README.md",
-          "sha256": "a8533e92c8b0f3a968dc4e4eff4b1e037d5b6d69c519be4a3af62bd683917fe3"
+          "sha256": "34cc89c4b28631cf9a4c5276556dd380265f27a784b33ac55121e476a5b2e167"
         },
         {
           "source": "agentic-workshop/materials/validation-evidence.json",

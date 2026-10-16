@@ -1,12 +1,12 @@
 {
-  "executed_utc": "2026-10-16T12:12:43.002025+00:00",
+  "executed_utc": "2026-10-16T16:12:48.349383+00:00",
   "installation": "NOT RUN: static checks only",
   "human_rehearsal": "NOT RUN",
   "agent_service_availability": "NOT RUN",
   "coverage": "STATIC_ONLY",
   "documents": {
     "status": "PASS",
-    "markdown_files": 404,
+    "markdown_files": 406,
     "relative_links": 881,
     "errors": [],
     "existing_utf8_bom_files": [

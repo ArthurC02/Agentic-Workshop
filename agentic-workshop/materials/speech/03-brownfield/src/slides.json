@@ -1,143 +1,20 @@
 [
-  {
-    "id": "start", "chapter": "開場", "title": "接手既有系統：Agent 當隊友",
-    "lead": "第三階段 · Brownfield（已有程式碼的既有專案）／Teammate（隊友：與 Agent，也就是 AI 助手，一起工作） · 概念與技巧",
-    "cards": [["今天回看", "個人分析、共同脈絡、B1（第一個變更任務：修 Bug）、B2（第二個：改規則）：四段各用了什麼技巧。"], ["今天帶走", "接手陌生系統、讓團隊共用規則、修 Bug 與改規則時，人該在哪裡判斷。"]],
-    "check": "能說出剛才四段裡，自己核准過的一份計畫或選過的一個方案。",
-    "notes": "0–2 分鐘。這是講解，不是重做任務：學員不讀程式、不打指令。投影片上的指令是示範用，講者可視時間貼給自己的 Agent，結果沒跑就說未驗證。本場不揭露 B1 原因與 B2 計算結果，未來梯次也會看到這份簡報。先問一句：剛才哪一段最不放心交給 Agent？記下答案，最後一頁回來對照。Brownfield 的定義出處：本課程〈詞彙表〉。"
-  },
-  {
-    "id": "teammate", "chapter": "開場", "title": "Tool → Teammate：人改成核准計畫",
-    "lead": "差別不在 Agent 多聰明，而在人怎麼介入：Tool 逐步下指令，Teammate 先一起分析，人核准計畫後才動手。",
-    "flow": ["Tool：人逐步下指令", "Teammate：一起分析，人核准計畫", "Digital Worker（數位員工）：下一場"],
-    "cards": [["Agent 多做的", "讀檔、跑測試、比較做法、寫紀錄，附來源回報。"], ["人保留的", "選哪份計畫、範圍多大、證據夠不夠、接不接受。"]],
-    "check": "每段開始動手前，都有一個由人說「核准」的時間點。",
-    "notes": "2–4 分鐘。定義對照課程詞彙表：Tool 由人逐步下指令；Teammate 由人與 Agent 共同分析、比較，人核准計畫；Digital Worker 留到下一場。強調「核准計畫」不是放手：計畫要小、要附證據、要寫出不改哪些地方。📖 定義出處：本課程〈歡迎與使用方式〉；📖 延伸閱讀：Anthropic Engineering〈Building effective agents〉（談 Agent 的運作方式，並未定義這三階段）。"
-  },
-  {
-    "id": "map-first", "chapter": "01 讀懂既有系統", "title": "先要一張地圖，不先問 Bug 在哪",
-    "lead": "接手陌生專案，第一個問題是「分幾塊、規則在哪、測試現況」，不是「哪裡壞了」。",
-    "cards": [["系統地圖", "各部分負責什麼業務、依賴誰；不是一串檔名。"], ["規則在哪", "商業規則寫在哪份文件、對應到哪一部分。"], ["測試現況", "通過、失敗、跳過各幾個；先不推論原因。"]],
-    "prompt": "先不要修改程式。請帶我讀這個專案：先列資料夾結構，只挑必要的重點檔讀。用白話說明系統分哪幾部分、規則寫在哪、測試現況，每個結論標事實、假設或缺口，最後列出你讀了哪些檔，然後停下。",
-    "check": "地圖說得出「誰負責什麼、依賴誰」；Agent 列得出實際讀了哪些檔。",
-    "notes": "4–7 分鐘。對照 Runbook「個人 Agent 分析」檢查點 1。先問「Bug 在哪」會讓 Agent 直接猜原因，反而跳過理解；先要地圖，後面每個結論才有位置可以放。課程用固定五個標題寫 notes/analysis.md（系統地圖／規則在哪／測試現況／文件與程式不一致處／還不確定的事），這也是結構化輸出（用提示詞要求固定標題）：小組之後才比得起來。"
-  },
-  {
-    "id": "model-effort", "chapter": "01 讀懂既有系統", "title": "技巧：模型選擇與推論強度",
-    "lead": "分析陌生程式要想深一點：選較強的模型、調高推論強度。機械性工作用快速、便宜的模型就夠。",
-    "cards": [["模型選擇", "跑測試、整理格式用快速模型；分析、比較取捨用較強模型。"], ["推論強度（Reasoning Effort）", "同一個模型「想多深」；越深越慢，也越耗 Token（詞元）。"], ["沒有推論強度設定時", "有設定就直接調整；沒有，才在提示詞寫「先仔細想過再回答」替代。"]],
-    "check": "說得出剛才分析時用的是哪一種設定，以及為什麼。",
-    "notes": "7–9 分鐘。這是本課程第一次正式介紹這個技巧；Greenfield 只在提示詞裡寫「先仔細想過再回答」。工具有模型選單或推論強度設定是加分，不是必要；沒有推論強度設定時，才在提示詞加上「先仔細想過再回答」作為替代；不要點名特定產品。B2 會再加深：比較時調高、實作時調回。📖 延伸閱讀：Anthropic〈Choosing the right model〉、〈Effort〉；OpenAI〈Reasoning models〉。"
-  },
-  {
-    "id": "named-files", "chapter": "01 讀懂既有系統", "title": "Token 節費（加深一層）：指名檔案，只要摘要",
-    "lead": "Speech 02 學過開新對話與指名要讀的檔；陌生專案還不知道該指名哪些，就先列目錄、挑重點檔。",
-    "cards": [["先列目錄再挑", "先讀 README、架構文件與決策紀錄，回報讀了哪些；其他需要時才讀。"], ["只要摘要", "測試結果只報通過／失敗／跳過數，不貼完整輸出。"], ["交接用摘要", "給別人的 Agent 用 5 行摘要，是 Speech 02 交接檔的短版。"]],
-    "check": "Agent 回報裡有「讀了哪些檔」；沒有出現整段原始輸出。",
-    "notes": "9–11 分鐘。讀整個專案最耗 Token，也最容易讀到後面忘了前面，結論反而更模糊。這一頁深化 02 Time Skip 的節費技巧，不重講開新對話與指名要讀的檔。可以問學員：剛才 Agent 讀了幾個檔？有沒有人看到它一次讀很多？📖 延伸閱讀：Anthropic Engineering〈Effective context engineering for AI agents〉、Anthropic〈Context windows〉。"
-  },
-  {
-    "id": "fact-label", "chapter": "01 讀懂既有系統", "title": "文件是線索，不是結論",
-    "lead": "Speech 02 的三方對照（文件、測試、程式），這裡落到每個結論：標出它是哪一種。",
-    "cards": [["事實", "附文件位置、測試名稱或實際執行過的指令。"], ["假設", "說明依據，以及還缺什麼證據。"], ["缺口", "查不清楚，需要問人。"]],
-    "prompt": "我要追問第 2 條事實：請引用規則或文件原文、測試名稱，並重新執行相關測試貼出結果摘要。拿不出證據就改標為假設，告訴我改了什麼，然後停下。",
-    "check": "挑一個「事實」追問證據；說「可能」「應該」的地方已改標為假設。",
-    "notes": "11–14 分鐘。這是分析段最重要的人工動作：不是讀 Agent 的結論，而是挑一條追問。Runbook 讓 Agent 先列編號，學員只回「追問第 N 個」。示範時可問：有沒有哪條一追問就改標假設？那就是本來會被當成事實帶進修改計畫的風險。不要在這頁講出不一致的具體內容。"
-  },
-  {
-    "id": "compare", "chapter": "02 共同脈絡", "title": "幾個 Agent 讀同一份系統，說法不同怎麼辦",
-    "lead": "每人的 Agent 先濃縮成 5 行摘要，小組才比得起來；比的是證據，不是誰的語氣最肯定。",
-    "flow": ["各自 5 行摘要", "說法一樣且附來源：共同事實", "說法不同或沒證據：分歧", "寫下用什麼驗證分歧"],
-    "cards": [["主要 Agent", "小組選定、代表全組執行工作的那一個 Agent。"], ["人員核准者", "小組指定說「核准」的人；之後的紀錄都記他。"]],
-    "check": "說得出一條附來源的共同事實、一個分歧，以及要重跑哪個測試才分得出對錯。",
-    "notes": "14–16 分鐘。5 行摘要同時是結構化輸出（用提示詞要求固定五項）與 Token 節費（摘要不貼全文）。選一個主要 Agent，是避免大家各自叫 Agent 改同一份程式。分歧不需要當場解決，寫下驗證方式就好。📖 定義出處：本課程〈Shared Context：把共識寫成檔案給 Agent〉。"
-  },
-  {
-    "id": "shared-file", "chapter": "02 共同脈絡", "title": "口頭講過的，Agent 下次就忘了",
-    "lead": "共同脈絡（Shared Context）：小組的共同事實、分歧與待決事項，由主要 Agent 寫成檔案。",
-    "code": "notes/shared-context.md\n  ## 共同事實      多人一致，附來源\n  ## 仍有分歧      附驗證方式\n  ## 已知限制      只記限制，不預先核准修改\n  ## 待決事項      要等任務揭露才能決定\n  ## 分工          主要 Agent 與核准者",
-    "check": "主要 Agent 複述時，沒有把分歧或假設說成事實，也沒有自己加修改計畫。",
-    "notes": "16–18 分鐘。關鍵是「寫成檔案」：換人、開新對話，Agent 都能先讀它接上。這段刻意不提修改計畫，因為任務還沒揭露；先核准計畫等於替還不知道的問題預先放行。複述是人的檢查點：聽 3 句複述，比讀整份檔快。"
-  },
-  {
-    "id": "team-rules", "chapter": "02 共同脈絡", "title": "技巧：Skill，把規則寫成開工先讀的檔",
-    "lead": "Skill（技能檔）：本課程用簡化版，就是 skills/ 裡一份 Markdown 說明檔；工具內建的 Skill 另有固定格式。",
-    "code": "skills/team-rules.md\n  ## 開工先讀    notes/shared-context.md\n  ## 工作規則    7 條，含過時期待值須經核准才更新\n  ## 回報格式    驗收對照表、改了哪些檔與原因",
-    "cards": [["之後每段的第一句", "「請先讀 skills/team-rules.md」，不再整段重貼規則。"]],
-    "check": "說得出 team-rules.md 的三節；之後的提示詞都以它開頭。",
-    "notes": "18–21 分鐘。Skill 第一次出現。重點：規則從口頭、到每次重貼、到一個檔案，這是 Token 節費也是一致性。工具內建的 Skill（官方 Agent Skills）是含 SKILL.md 的資料夾，檔頭要有 name 與 description，另有固定格式，今天不需要；一份放在專案裡的 Markdown 就夠。之後只要說「請先讀它並照做」，不用重貼。請學員想一條自己團隊「每次都要重講」的規則。📖 延伸閱讀：Anthropic〈Agent Skills〉；OpenAI Codex〈Custom instructions with AGENTS.md〉；GitHub〈Adding repository custom instructions for GitHub Copilot〉。"
-  },
-  {
-    "id": "test-first", "chapter": "03 B1 修 Bug", "title": "用失敗測試找 Bug",
-    "lead": "「修前失敗、修後通過」是你不讀程式也能信任的證據。先重現，才算找到 Bug。",
-    "flow": ["重現：一個現在會失敗的測試", "定位：分開事實與推論", "最小修正：只做核准的步驟", "驗證：同一批測試變成通過"],
-    "check": "修好的證據是同一批測試的前後對照，而不是 Agent 說「完成了」。",
-    "notes": "21–24 分鐘。不要講 B1 的原因或修了哪裡；講方法。跳過重現、直接叫 Agent「修好學生票」，修完沒有辦法知道真的修好、也沒改壞成人票。幾個測試同時失敗不代表有幾個 Bug，先問它們是不是同一個原因。📖 延伸閱讀：pytest 官方文件〈Get Started〉；Claude Code 官方文件〈Best practices for Claude Code〉。"
-  },
-  {
-    "id": "approve-plan", "chapter": "03 B1 修 Bug", "title": "人核准的是一份小計畫",
-    "lead": "Teammate 的介入點：Agent 先交原因與計畫，人看證據夠不夠、範圍夠不夠小，再說核准或退回。",
-    "cards": [["原因分兩欄", "有規則或測試證據的事實，和還只是推論的部分。"], ["計畫最多 3 步", "每步標規則編號（Rule ID）或驗收條件（AC，Acceptance Criteria）。"], ["寫出不改什麼", "其他票種、既有優惠與順序都不動。"]],
-    "prompt": "先不要核准，也不要修改程式。請補證據：你的原因有沒有規則原文或測試結果支持？說不出依據的標成「推論」，計畫裡超出任務卡範圍的步驟刪掉，再告訴我改了哪裡，然後停下等我。",
-    "check": "證據夠、範圍小才核准；證據不足或計畫太大就退回補證據。",
-    "notes": "24–26 分鐘。AC（Acceptance Criteria，驗收條件）、Rule ID（規則編號）在前面階段已介紹，這裡只提醒。退回不是失敗，是 Teammate 正常的工作方式。可問：核准前，有沒有哪句推論差點被當成事實？"
-  },
-  {
-    "id": "change-review", "chapter": "03 B1 修 Bug", "title": "改完先停：變更審查三題",
-    "lead": "Greenfield 的四題審查，B1 留前三題；只看答案與附上的指令，三題都是「是」才放行。",
-    "cards": [["1. 範圍", "改的檔案都在核准計畫裡。"], ["2. 測試沒變少", "總數沒少，也沒新增跳過（skip）或預期失敗（xfail）。"], ["3. 期待值沒被動", "沒刪測試、沒改既有期待值，用變更內容（Diff）核對。"]],
-    "check": "任一題是「否」或「不確定」，就請 Agent 解釋並還原超出範圍的修改，不放行。",
-    "notes": "26–29 分鐘。最危險的「修好」是把正確的期待值改成符合錯誤輸出，測試全綠但 Bug 還在；第 3 題就是防這件事。每題要附實際執行的指令與結果摘要，沒跑的標未驗證。📖 延伸閱讀：Google Engineering Practices〈Google's Code Review Guidelines〉；Git 官方文件〈git-diff〉；pytest 官方文件〈How to use skip and xfail to deal with tests that cannot succeed〉。"
-  },
-  {
-    "id": "fix-skill", "chapter": "03 B1 修 Bug", "title": "Skill（加深一層）：存的是一套做法",
-    "lead": "重複的程序就該長成 Skill。team-rules.md 存規則；fix-bug-with-test.md 存修 Bug 的做法。",
-    "code": "skills/\n  team-rules.md          規則：每段開工先讀\n  fix-bug-with-test.md   做法：重現 → 定位 → 最小修正 → 驗證\n                         每步要交的證據、禁止事項、回報格式",
-    "check": "fix-bug-with-test.md 是通用說明，沒有寫進這次 Bug 的原因或修改內容。",
-    "notes": "29–31 分鐘。這裡的 Skill 同樣是簡化版。Skill 不是一開始就設計好的，是做過一次、確認可行後才整理。寫進這次原因會讓它變成一次性的筆記，下次反而誤導。下次遇到 Bug，只要說「請先讀 skills/fix-bug-with-test.md 並照做」。📖 延伸閱讀：Anthropic〈Agent Skills〉。"
-  },
-  {
-    "id": "options", "chapter": "04 B2 改規則", "title": "改規則時，不接受第一個答案",
-    "lead": "修 Bug 有明確的對錯；改規則常有不只一種做法。請 Agent 提 2–3 個可行方案，人來選。",
-    "cards": [["真的可行", "不是一個方案配兩個陪襯。"], ["對照禁止事項", "違反任務卡禁止事項的方案直接標出來。"], ["假設附依據", "沒有依據的標「未確認」，再決定要不要追問。"]],
-    "check": "選方案前，至少問過一次：哪個「未確認」的假設錯了會改變選擇？",
-    "notes": "31–33 分鐘。只要一個做法就開工，風險通常在實作一半才冒出來；先比較，風險在選之前就攤開。不要在這頁講任何方案的具體內容或優惠計算結果。可問：你工作上哪一類決定值得先要 2–3 個方案？"
-  },
-  {
-    "id": "comparison-table", "chapter": "04 B2 改規則", "title": "結構化輸出（加深一層）：固定欄位的比較表",
-    "lead": "Greenfield 用固定欄位寫驗收表；這裡用同樣方法並排比較方案，幾個方案才能逐欄對照。",
-    "code": "| 方案 | 改動範圍 | 風險 | 測試影響 | 建議 |\n|------|----------|------|----------|------|\n| A    | 一定要改／可能影響／不應改，附證據 | … | … | … |\n| B    | …        | …    | …        | …    |",
-    "check": "每個方案都填滿同一組欄位；改動範圍附檔案或測試名稱當證據。",
-    "notes": "33–36 分鐘。改動範圍那欄就是影響分析（Impact Analysis）：一定要改、可能影響、不應改。欄位固定，人才能一欄一欄看，而不是讀三段各說各話的散文。欄位是用提示詞要求的固定格式（本課程的結構化輸出），不是 API 的強制輸出功能。表格內容只是格式示意，不代表任何組的實際方案。📖 延伸閱讀：Anthropic〈Structured outputs〉；OpenAI〈Structured model outputs〉；ISTQB〈Glossary〉（impact analysis）。"
-  },
-  {
-    "id": "effort-switch", "chapter": "04 B2 改規則", "title": "推論強度（加深一層）：比較調高，實作調回",
-    "lead": "同一個任務的不同階段，需要的「想多深」不一樣。用對地方，既準又省。",
-    "flow": ["比較方案、找風險：調高", "人選方案並核准", "小步實作：調回低或預設"],
-    "cards": [["為什麼實作調回", "核准後是照計畫的小步修改，想太深只是更慢、更耗 Token。"]],
-    "check": "比較方案時有調高（沒有這項設定才改用提示詞），核准後有調回。",
-    "notes": "36–38 分鐘。這是分析段那張卡的加深：不只是「分析時調高」，而是同一段工作裡切換。工具有推論強度設定就直接調整；沒有這項設定時，才在比較時加上「先仔細想過再回答」作為替代，實作時不寫。📖 延伸閱讀：Anthropic〈Effort〉、〈Thinking〉；OpenAI〈Reasoning models〉。"
-  },
-  {
-    "id": "outdated-expectation", "chapter": "04 B2 改規則", "title": "規則改了，舊測試怎麼辦",
-    "lead": "有些既有測試只在舊規則下才對。Agent 要先停下列出來，人核准後才更新；其他期待值一律不改。",
-    "cards": [["三點都成立才核准", "舊期待只在舊規則下才對；新規則要求不同結果；附了 Rule ID。"], ["變更審查多兩題", "政策不放在 API 路由層，訂票與改票共用同一套；挑一位多優惠旅客實際驗證。"], ["核對到每位旅客", "看每人採用的優惠類型與折扣率，不只核對總額。"]],
-    "check": "改過的既有期待值，每一處都附 Rule ID 和小組的核准紀錄。",
-    "notes": "38–41 分鐘。這頁接回 team-rules.md 第 4 條：過時期待值須列測試名稱與 Rule ID，經人核准才更新。說不出 Rule ID 的，請 Agent 改程式，不要改測試。不要在這頁說出是哪個測試、舊值或新值。ISTQB 的迴歸測試（regression testing）只管「改動後既有功能不能壞」；「附 Rule ID 並經人核准才更新」是本課程規則。📖 定義出處：本課程〈詞彙表〉（Regression 列）。"
-  },
-  {
-    "id": "human-judges", "chapter": "回看與交接", "title": "每一步，人判斷的是什麼",
-    "lead": "Agent 負責讀、跑、寫；人負責四種判斷。這張表就是 Teammate 階段的分工。",
-    "code": "分析      這個「事實」附得出來源嗎？\n共同脈絡  有沒有把分歧或假設說成事實？\nB1 核准   證據夠嗎？計畫夠小嗎？寫了不改什麼嗎？\nB1 驗收   同一批測試修前失敗、修後通過？審查三題都是「是」？\nB2 選擇   方案真的可行嗎？未確認的假設會改變選擇嗎？\nB2 驗收   每位旅客的結果符合新規則？改過的期待值都核准過？",
-    "check": "說得出自己在其中一步曾經退回或追問過什麼。",
-    "notes": "41–43 分鐘。回到開場那個問題：最不放心交給 Agent 的那段，對應到表上哪一行？通常不放心的原因是那一步沒有證據可看；解法是要求證據，而不是自己去讀程式。"
-  },
-  {
-    "id": "handoff", "chapter": "回看與交接", "title": "下一場：任務更大，你沒辦法盯每一段",
-    "lead": "這次每做完一段都停下看證據。任務再大一點，人就得先寫清楚範圍，只在幾個關鍵點做決定。",
-    "flow": ["Tool：逐步下指令", "Teammate：核准計畫", "Digital Worker：只在關鍵點決定"],
-    "cards": [["帶到下一場的檔", "notes/shared-context.md、skills/team-rules.md、skills/fix-bug-with-test.md。"], ["帶到下一場的問題", "如果不能盯每一小段，你會先寫清楚哪些事，才敢讓 Agent 自己往前走？"]],
-    "check": "離場前寫下一條自己團隊值得寫成 Skill 的規則或做法。",
-    "notes": "43–45 分鐘。只留問題，不教下一場的工作單、關卡或例外處理，那是 04 Digital Worker 的內容。B2 本身就是從 Teammate 走向 Digital Worker 的過渡：主要 Agent 在核准後主導實作，人透過審查與驗收對照表決定。"
-  }
+  {"id": "start", "chapter": "開場", "title": "Agent 當隊友：人改成核准計畫", "lead": "Brownfield（已有程式碼的既有專案）／Teammate（隊友）：Agent 先一起分析，人核准計畫後才動手。", "flow": ["Tool：人逐步下指令", "Teammate：人核准計畫", "Digital Worker（數位員工）：下一場"], "cards": [["剛才做過的", "分析舊系統、寫共同脈絡、B1 修 Bug、B2 改規則。"], ["今天補上的", "讀舊系統、模型與強度、規則與 Skill、測試先行、比較方案、認知債。"]], "check": "剛才四段裡，哪一段你最不放心交給 Agent？", "notes": "0–2 分鐘。這是講解，不是重做任務：學員不讀程式、不打指令。投影片上的提示詞是示範，沒有實際執行就說未驗證。不揭露 B1 原因與 B2 的計算結果。定義對照課程詞彙表：Tool 由人逐步下指令；Teammate 由人與 Agent 共同分析、比較，人核准計畫；Digital Worker 留到下一場。記下「最不放心」的答案，最後一頁回來對照。📖 定義出處：本課程〈歡迎與使用方式〉"},
+  {"id": "senior", "chapter": "01 讀懂舊系統", "title": "把 Agent 當成資深同事來問", "lead": "接手陌生程式，最快的入門方式是問問題，而不是叫 Agent 直接改。", "cards": [["問運作方式", "「下訂單時，資料經過哪幾個地方？」"], ["問規則在哪", "「這條優惠規則寫在哪個檔？哪個測試在檢查它？」"], ["問為什麼", "「為什麼這裡要這樣做？有文件或紀錄說明嗎？」"]], "prompt": "先不要修改程式。我剛接手這個專案，請像資深同事帶新人一樣回答：訂票從收到請求到存檔，經過哪幾個部分？每一步標出檔案位置，說不出依據的標「推測」，最後列出你讀了哪些檔，然後停下。", "check": "回答裡每一步都有檔案位置；標「推測」的地方，你知道下一步要問誰。", "notes": "2–5 分鐘。Claude Code 官方〈Best practices for Claude Code〉建議：Ask Claude questions you'd ask a senior engineer.（問你會問資深工程師的問題），並說這是很有效的入職方式。學員不讀程式也能用：問的是業務流程與規則，不是語法。經典參考：Michael Feathers《Working Effectively with Legacy Code》談沒有測試保護的舊程式要先理解、再小步修改。📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，持續更新）；《Working Effectively with Legacy Code》（Michael Feathers，2004）"},
+  {"id": "evidence", "chapter": "01 讀懂舊系統", "title": "沒有出處的結論，一律當假設", "lead": "Agent 讀舊程式時，會很自然地把空白處「補」成合理的故事。", "cards": [["事實", "附檔案位置、測試名稱或實際執行的結果。"], ["假設", "說得出理由，但還缺證據。"], ["缺口", "查不到，要問人。"]], "check": "挑一條「事實」追問出處；拿不出證據的，有沒有改標為假設？", "notes": "5–7 分鐘。這頁連回分析段的事實／假設／缺口，只補一個新觀念：為什麼 Agent 特別需要標。語言模型擅長寫出通順、可信的說明，舊系統又常有文件和程式不一致的地方，兩者加起來，最容易產生「聽起來對」的錯誤結論。人的動作不是讀懂全部，而是抽一條追問。經驗法則：一份分析裡如果沒有任何一條標「假設」或「缺口」，反而要更小心。"},
+  {"id": "spotify", "chapter": "01 讀懂舊系統", "title": "案例：Spotify 的背景 Coding Agent", "lead": "Spotify 讓 Agent 在背景做大量程式遷移，公開了成果，也公開了限制（2025 年）。", "cards": [["成果", "合併超過 1,500 個變更；遷移類工作省下 60–90% 時間。"], ["為什麼用 Agent", "舊的自動化腳本太難維護，一個依賴更新腳本超過兩萬行。"], ["沒有省掉的", "Agent 改完照樣跑格式、檢查與 AI 審查，最後由人審核合併。"]], "check": "這個案例裡，哪一個環節仍然由人負責？", "notes": "7–9 分鐘。來源：Spotify Engineering〈1,500+ PRs Later: Spotify's Journey with Our Background Coding Agent (Honk, Part 1)〉（Max Charas、Marc Bruggmann，2025-11-06）。平衡提醒：作者坦言 Agent 的輸出比舊腳本難預測，也說 don't have all the answers yet（還沒有全部答案）。網路上流傳的「10 天合併 1,000 個」只見於二手報導，不要引用。教學重點：成功的關鍵是改完之後的自動檢查與人審，不是模型多聰明。📖 延伸閱讀：〈1,500+ PRs Later: Spotify's Journey with Our Background Coding Agent (Honk, Part 1)〉（Spotify Engineering，2025）"},
+  {"id": "model", "chapter": "02 模型與推論強度", "title": "模型選擇：按工作分工，不是一律最強", "lead": "同一個任務裡，不同步驟適合不同大小的模型。", "cards": [["量大、明確", "照計畫改格式、批次小修改：較小、較快的模型。"], ["難、要判斷", "審查、訂規則、找風險、架構取捨：較強的模型。"], ["先用預設", "名稱與價格每幾個月就變；記原則，不記型號。"]], "check": "說出你工作中一件「量大、明確」和一件「要判斷」的事。", "notes": "9–11 分鐘。這頁不寫任何模型名稱或價格，因為每幾個月就變。案例：第一場看過的 Anthropic 大型遷移文章，這裡只看另一個角度：大型遷移時，用較小的模型做大量實作，用最大的模型做審查與寫規則。Claude Code 官方〈Manage costs effectively〉也建議把最強的模型留給複雜的架構決策或多步推理。平衡提醒：這是廠商自家案例。工具沒有模型選單也沒關係，原則一樣適用於選工具或選人。📖 延伸閱讀：〈Choosing the right model〉（Anthropic，持續更新）"},
+  {"id": "effort", "chapter": "02 模型與推論強度", "title": "推論強度是微調旋鈕，不是救命按鈕", "lead": "Reasoning Effort（推論強度）：同一個模型回答前「想多深」。越深越慢，也越耗 Token。", "cards": [["先用預設", "有證據顯示不夠，才調高；兩家主要廠商說法一致。"], ["簡單量大就調低", "例如整理格式、跑既定步驟。"], ["調高救不了模糊", "需求不清、脈絡不足，想再久也是猜。"]], "check": "上次 Agent 答得不好，問題出在「想不夠深」，還是「資訊不夠」？", "notes": "11–13 分鐘。OpenAI〈Reasoning models〉原話：Treat reasoning effort as a tuning knob, not the primary way to recover quality.（推論強度是微調旋鈕，不是救回品質的主要方法），最高檔位也寫明只在評測顯示有明顯好處時才用。Anthropic〈Effort〉說 Effort is a behavioral signal, not a strict token budget，低強度適合簡單、重視速度的工作（例如子 Agent），並建議用自己的評測決定。常見誤解：「調高推論強度就能救回品質」。工具沒有這項設定時，可在提示詞寫「先仔細想過再回答」替代，但不要期待它補上缺的資訊。📖 延伸閱讀：〈Reasoning models〉（OpenAI，持續更新）；〈Effort〉（Anthropic，持續更新）"},
+  {"id": "debug-order", "chapter": "02 模型與推論強度", "title": "答得不好時，先查這四樣", "lead": "換更強的模型或調高強度，應該是最後一步，不是第一步。", "flow": ["目標說清楚了嗎", "給對檔案了嗎", "有可執行的檢查嗎", "最後才調模型與強度"], "prompt": "先不要修改。回答前請先告訴我：要把這件事做對，你還缺哪些資訊或檔案？哪些地方你只能用猜的？列完就停下，等我補齊再開始。", "check": "Agent 列出的缺口，你補了幾項？補完後答案有沒有變好？", "notes": "13–15 分鐘。這頁把前兩頁變成可操作的排查順序，前三步都是第一場教過的：寫清楚目標（五段式提示詞）、指名檔案（脈絡）、給它能自己跑的檢查。這裡不重講，只加深一層：把它們排在換模型之前。讓 Agent 先列缺口，比讓它直接作答更容易發現需求不清。"},
+  {"id": "shared-rules", "chapter": "03 團隊規則與 Skill", "title": "團隊規則：進版本控制，大家一起維護", "lead": "每個人各寫各的提示詞，Agent 就有幾種做事方式；共用一份規則，行為才一致。", "cards": [["進版本控制", "改規則也像改程式：有人提、有人審、留紀錄。"], ["好規則涵蓋六件事", "怎麼執行、怎麼測試、專案結構、程式風格、版本控制習慣、邊界。"], ["最常見的有用限制", "「絕對不要提交密碼與金鑰」。"]], "check": "你團隊的規則裡，六件事缺了哪一件？", "notes": "15–17 分鐘。剛才共同脈絡段寫的 skills/team-rules.md 就是這個做法，這裡補怎麼寫、怎麼維護。上一場提過 Thoughtworks Technology Radar Vol. 34 把團隊共同維護的規則列為 Adopt（建議採用），這裡只帶過。GitHub Blog〈How to write a great agents.md: Lessons from over 2,500 repositories〉（Matt Nigh，2025-11-19）分析兩千五百多個開源專案的規則檔，歸納出六個面向，最常見的有用限制是 Never commit secrets。上一場講過規則檔要短，這裡講要共用、要有人維護：放進版本控制，改規則也要經過審查。📖 延伸閱讀：〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）"},
+  {"id": "boundaries", "chapter": "03 團隊規則與 Skill", "title": "邊界寫成三層：一定做、先問、絕不做", "lead": "只寫「要小心」沒有用；把邊界分三層，Agent 和人都知道何時該停。", "code": "## 一定做\n  修改後執行全部測試，回報通過／失敗／跳過數\n## 先問我\n  更新既有測試的期待值、增加新套件\n## 絕不做\n  提交密碼或金鑰、刪除測試、直接改正式環境", "prompt": "先不要修改檔案。請讀我們的規則檔，把每條規則歸到「一定做／先問我／絕不做」三層；分不進去或互相矛盾的單獨列出。用表格回報，然後停下等我決定。", "check": "「先問我」那一層，是不是剛好列出你真正想親自決定的事？", "notes": "17–19 分鐘。三層邊界出自 GitHub Blog〈How to write a great agents.md〉（2025-11-19）的建議（Always do／Ask first／Never do）。範例內容是通用示意，不是工作坊的答案。提醒上一場的觀念：規則檔是脈絡，不保證照做；「絕不做」那一層最好再用權限或自動檢查擋住，例如推送前自動掃描金鑰。這會在下一場加深。📖 延伸閱讀：〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）"},
+  {"id": "skill", "chapter": "03 團隊規則與 Skill", "title": "Skill：需要時才翻開的入職手冊", "lead": "Skill（技能檔）：一個資料夾加一份說明檔，寫一套做法；任務相關時 Agent 才讀全文。", "cards": [["規則檔", "每次對話都整份讀進來，所以要短。"], ["Skill", "平常只看名稱與一句說明，用到才讀全文，可以寫得完整。"], ["開放格式", "多數主流 Coding Agent 都支援同一種格式；技術雷達列為試用。"]], "check": "你的一條做法，該放規則檔（每次都要）還是 Skill（某類任務才要）？", "notes": "19–22 分鐘。Anthropic〈Equipping agents for the real world with Agent Skills〉（2025-10-16，2025-12 改為開放標準）比喻：Building a skill for an agent is like putting together an onboarding guide for a new hire.（像替新同事整理入職手冊）。agentskills.io 說明這是開放格式，啟動時只載入名稱與說明，任務相符才讀全文（逐步揭露），列出 Claude Code、Codex、GitHub Copilot、Gemini CLI、Cursor 等支援。Thoughtworks Technology Radar Vol. 34 把 Agent Skills 列為 Trial（試用）。工作坊用的是簡化版：skills/ 裡一份 Markdown，請 Agent「先讀它並照做」，不需要工具內建功能。📖 延伸閱讀：〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）；〈Agent Skills〉（Anthropic，持續更新）"},
+  {"id": "skill-write", "chapter": "03 團隊規則與 Skill", "title": "什麼時候該寫 Skill", "lead": "做過一次、確認可行、還會再做，才整理成 Skill。", "cards": [["寫通用做法", "步驟、每步要交的證據、禁止事項、回報格式。"], ["不寫這一次的答案", "寫進某次 Bug 的原因，下次反而會誤導。"], ["只裝信任的來源", "Skill 能叫 Agent 做事；別人的 Skill 要先讀過再用。"]], "prompt": "先不要修改程式。請把我們剛才完成的做法整理成一份 Skill 草稿：適用情境、步驟、每步要交的證據、禁止事項、回報格式。不要寫入這次問題的具體原因或修改內容。寫好給我看，等我核准再存檔。", "check": "草稿裡有沒有混進這一次的具體原因？換一個新問題還能照著用嗎？", "notes": "22–24 分鐘。B1 之後存的 skills/fix-bug-with-test.md 就是這樣來的，這裡講通用原則。安全提醒出自 Anthropic〈Equipping agents for the real world with Agent Skills〉：We recommend installing skills only from trusted sources.（建議只從信任的來源安裝）。Thoughtworks Technology Radar Vol. 34 也把「Skill 當成可執行的入職文件」列為評估中。可問：你團隊有哪件事，每次都要跟新人講一次？那就是第一個 Skill 候選。📖 延伸閱讀：〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）"},
+  {"id": "red-green", "chapter": "04 測試先行", "title": "修 Bug：先讓測試紅，再讓它綠", "lead": "先寫一個會失敗的測試把問題重現出來，再修，最後看同一個測試變成通過。", "flow": ["重現：測試失敗（紅）", "修正根本原因", "同一測試通過（綠）", "其他測試沒變壞"], "cards": [["為什麼你能信", "修前失敗、修後通過，是不讀程式也看得懂的證據。"], ["修根本原因", "不是把錯誤訊息藏起來，也不是改測試配合錯的結果。"]], "prompt": "先不要修改測試以外的程式。請先寫一個會失敗的測試，重現這個問題，執行並貼出失敗摘要。然後提出修正根本原因的計畫，最多 3 步，等我核准。", "check": "你看到的是同一個測試的前後對照，而不是 Agent 說「修好了」。", "notes": "24–28 分鐘。Claude Code 官方〈Best practices for Claude Code〉範例提示詞：write a failing test that reproduces the issue, then fix it，另一條：address the root cause, don't suppress the error（修根本原因，不要壓掉錯誤）。第一場引用過的 Simon Willison〈Your job is to deliver code you have proven to work〉在這裡加深一層，補一個檢查法：把修正拿掉時，這個測試應該要失敗；不會失敗的測試證明不了什麼。第一場的大型遷移案例（既有測試全過才合併）是同一個道理的放大版：測試套件就是裁判，這裡縮小到一個 Bug。可以問：你的專案裡，如果明天要修一個 Bug，有沒有一個測試能當裁判？沒有，就從寫第一個開始。不要講 B1 的原因或修了哪裡。📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，持續更新）"},
+  {"id": "guides-sensors", "chapter": "04 測試先行", "title": "事前給地圖，事後裝感測器", "lead": "讓 Agent 做對有兩種方法：動手前引導它，動手後自動檢查它。", "cards": [["事前引導", "規則檔、Skill、計畫：告訴它該怎麼做。"], ["事後感測", "測試、格式檢查、型別檢查：做完立刻知道對不對。"], ["優先用算得出來的", "測試快又穩定；請 AI 審查較慢、較貴，結果也不固定。"]], "check": "你的團隊做法裡，哪一條只有「事前提醒」，還沒有「事後檢查」？", "notes": "28–31 分鐘。出自 Birgitta Böckeler〈Harness engineering for coding agent users〉（martinfowler.com，2026-04-02）：guides（事前引導）在 Agent 行動前影響它，sensors（事後感測）在行動後讓它自我修正；可計算的檢查（測試、linter）快且確定，推論型檢查（AI 審查）較慢、較貴、不確定。她用自動調速器比喻：兩者搭配才穩。連回上一場：規則檔只是脈絡，一定要發生的事要有感測器。📖 延伸閱讀：〈Harness engineering for coding agent users〉（martinfowler.com，2026）"},
+  {"id": "options", "chapter": "05 比較方案", "title": "比較方案：先唯讀研究，再由人選", "lead": "有不只一種做法時，請 Agent 不動檔案、先研究，用同一組欄位列出 2–3 個方案。", "code": "| 方案 | 改動範圍 | 風險 | 可逆性 | 未確認的假設 |\n|------|----------|------|--------|--------------|\n| A    | 附檔案或測試名稱 | … | 容易還原？ | … |\n| B    | …        | …    | …      | …            |", "prompt": "先不要修改任何檔案。請提出 2–3 個真的可行的方案，用表格比較：改動範圍（附檔案或測試名稱）、風險、可逆性、未確認的假設。最後寫你的建議與理由，然後停下等我選。", "check": "每個方案都填滿同一組欄位；有沒有方案只是陪襯？", "notes": "31–34 分鐘。B2 已用過固定欄位比較表，這裡加一欄「可逆性」並說明原因。Anthropic〈Our framework for developing safe and trustworthy agents〉（2025-08-04）主張預設唯讀、改動前要人核准：humans should retain control over how their goals are pursued, particularly before high-stakes decisions are made.（尤其在高風險決定前，人要保有控制權。）表格內容只是格式示意，不代表任何組的方案，不要講 B2 的計算結果。📖 延伸閱讀：〈Our framework for developing safe and trustworthy agents〉（Anthropic，2025）；〈Structured outputs〉（Anthropic，持續更新）"},
+  {"id": "choose", "chapter": "05 比較方案", "title": "人怎麼選：先看能不能還原", "lead": "選方案不用讀程式，問兩個問題就夠。", "cards": [["能輕易還原嗎", "能：選一個先做小步試。不能：要更多證據再決定。"], ["哪個假設最危險", "「哪個未確認的假設錯了，會改變選擇？」先驗證它。"], ["Agent 的建議只是一票", "它不知道的業務限制，只有你知道。"]], "check": "你這次的選擇，說得出是根據哪個欄位決定的嗎？", "notes": "34–36 分鐘。經驗法則：可還原的決定可以快，不可還原的決定要慢（例如刪資料、改正式環境、改對外介面）。這對應上一頁的「可逆性」欄。Agent 的建議常偏向它看得到的程式面理由；業務、客戶、時程的考量要由人補上。可問：你工作中最近一個「很難還原」的決定是什麼？"},
+  {"id": "cognitive-debt", "chapter": "06 認知債", "title": "警示：程式能跑，但沒有人懂", "lead": "Cognitive Debt（認知債）：Agent 改得越快，團隊真正理解的部分可能越少。", "cards": [["業界警示", "技術雷達把「程式碼的認知債」列為警示。"], ["監督的悖論", "監督 AI 需要的能力，正是少寫程式後最容易退化的能力。"], ["人能說出為什麼", "每個核准的變更，你能用一句話說出改了什麼、為什麼。"]], "prompt": "請用三句白話向一位新同事說明這次的變更：改了什麼行為、為什麼要改、用什麼證據確認沒改壞。不要貼程式，然後停下。", "check": "這三句你自己看得懂嗎？看不懂的那句，就是要追問的地方。", "notes": "36–40 分鐘。Thoughtworks Technology Radar Vol. 34（2026-04）把 Codebase cognitive debt（程式碼的認知債）列為 Caution（警示）。Anthropic 研究〈How AI is transforming work at Anthropic〉（2025-12-02）訪問自家工程師，提到「監督的悖論」：監督 AI 需要的技能，正是少寫程式後會退化的技能。這不是叫大家少用 Agent，而是把「理解」也當成交付的一部分：決定與原因寫進 notes/，人要能解釋。講到這裡可以停一下，請學員兩兩討論一分鐘：你們團隊有沒有已經沒人敢動的程式？📖 延伸閱讀：〈Technology Radar Vol. 34〉（Thoughtworks，2026）；〈How AI is transforming work at Anthropic〉（Anthropic，2025）"},
+  {"id": "human-judges", "chapter": "收尾", "title": "人判斷的四件事", "lead": "Agent 負責讀、跑、寫；人負責判斷。這就是 Teammate 的分工。", "cards": [["證據", "這個「事實」有出處嗎？是實際執行看到的嗎？"], ["範圍", "計畫夠小嗎？寫了不改什麼嗎？"], ["選擇", "能還原嗎？哪個假設最危險？"], ["理解", "我說得出改了什麼、為什麼嗎？"]], "check": "回到開場：你最不放心的那段，缺的是四件事裡的哪一件？", "notes": "40–43 分鐘。回到開場的答案。通常不放心是因為那一步沒有證據可看；解法是要求證據，而不是自己去讀程式。四件事對應今天的四段：讀舊系統、測試先行、比較方案、認知債。"},
+  {"id": "handoff", "chapter": "收尾", "title": "下一場：你沒辦法盯每一段", "lead": "任務再大一點，人就得先寫清楚範圍，只在幾個關鍵點做決定。", "flow": ["Tool：逐步下指令", "Teammate：核准計畫", "Digital Worker：只在關鍵點決定"], "cards": [["帶到下一場", "團隊規則、修 Bug 的 Skill、共同脈絡紀錄。"], ["想一想", "如果不能盯每一小段，你會先寫清楚哪些事，才敢讓 Agent 自己往前走？"]], "check": "離場前寫下一條你團隊值得寫成 Skill 的做法。", "notes": "43–45 分鐘。只留問題，不教下一場的工作單、關卡或例外處理，那是 04 Digital Worker 的內容。"}
 ]

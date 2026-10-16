@@ -1,155 +1,162 @@
 [
   {
-    "id": "start", "chapter": "開場", "title": "從 Idea 到可開發的專案",
-    "lead": "Greenfield（從頭開始的新專案）為什麼順利？先看事先準備了什麼，再看你怎麼一步步帶 Agent（能讀寫檔案、協助寫程式的 AI 助手）。",
-    "cards": [["前半：準備工作鏈", "從構想、驗收條件到測試情境與分層架構，每一環人要判斷什麼。"], ["後半：Tool（人逐步下指令）階段的技巧", "工作規則、五段式提示詞、驗收對照表、變更審查與 notes/ 紀錄。"]],
+    "id": "start", "chapter": "開場", "title": "剛才的順利，不是運氣",
+    "lead": "G0（Greenfield 起始程式包）先備好了 16 條規則、15 項驗收條件與測試骨架；Agent（能讀寫檔案、協助寫程式的 AI 助手）因此知道什麼叫做對。",
+    "cards": [["本場回答三個問題", "Agent 怎麼知道做對了？怎麼知道要做什麼？人怎麼確認？"], ["講法", "每個做法：白話概念 → 官方說法 → 怎麼用在你的工作 → 業界案例。"]],
     "check": "說得出剛才 Greenfield 哪一步最順、哪一步卡住。",
-    "notes": "（第 00–02 分）本場 45 分鐘，接在主課 Greenfield（第 07–29 分鐘）之後。這不是實作課：學員不寫、不讀程式，也不打指令；頁面上的提示詞是講者示範用，學員想試可以貼給自己的 Agent，不試也不影響。開場請 2–3 位學員各用一句話說最順與最卡的一步，記在白板，最後一頁回來對照。後續各場：02 Time Skip、03 Brownfield／Teammate、04 Digital Worker、05 回顧。"
-  },
-  {
-    "id": "why", "chapter": "開場", "title": "剛才的順利，哪些來自事先準備？",
-    "lead": "G0（Greenfield 起始程式包）不是空的：需求、驗收條件與骨架都先備好了。",
-    "cards": [["需求先寫清楚", "四個 API（應用程式介面）、16 條商業規則、15 項驗收條件，範圍先限定。"], ["骨架先搭好", "分層目錄與測試骨架已在，留 11 個 TODO（待完成標記）；起始 1 個通過、8 個跳過。"]],
-    "prompt": "先不要修改任何檔案。請閱讀這個專案的 README、docs/ 與上一層的需求文件，用白話列出：已準備好的需求、規則、架構與驗證方式各在哪個檔案、消除了什麼不確定性；最後列出仍需要我決定的事，然後停下。",
-    "check": "指出一項準備和它所在的檔案，說明它讓你少猜了什麼。",
-    "notes": "（第 02–05 分）示範：講者在 G0 的 starter-repository 資料夾貼這段，Agent 只盤點、不修改。數字來源：G0 的 02 商業需求共 16 條規則編號（TRIP、BOOKING、FARE、PAYMENT、ORDER）、03 驗收條件 AC-G-001～015、starter-repository/docs/architecture.md；Runbook Greenfield 檢查點 1 起始為 1 passed、8 skipped，檢查點 2 Agent 應回報 11 個 TODO(GREENFIELD 標記。順利不是必然：有人卡在環境、或 Agent 不肯停下。請學員把卡點歸成需求、環境、提示詞或審查哪一類，後面各頁會對應。資料來源：本課程〈Greenfield Business Requirements〉、〈Greenfield Acceptance Criteria〉、Runbook〈Greenfield 任務：核心訂票 MVP〉。"
+    "notes": "（第 00–02 分）本場 45 分鐘，接在主課 Greenfield（第 07–29 分鐘）之後。這不是實作課：學員不寫、不讀程式，也不打指令；頁面上的提示詞是講者示範用，學員想試可以貼給自己的 Agent，不試也不影響，沒實際執行的結果一律視為未驗證。開場請 2–3 位學員各用一句話說最順與最卡的一步，記在白板，第 20 頁回來對照。數字來源：本課程〈Greenfield Business Requirements〉16 條規則、〈Greenfield Acceptance Criteria〉AC-G-001～015。本場約四分之一連回剛才的體驗，其餘是做法背後的原理、官方建議與近期案例。"
   },
   {
     "id": "tool", "chapter": "開場", "title": "Tool：人一步一步介入",
     "lead": "Tool（工具）→ Teammate（隊友）→ Digital Worker（數位員工）差在人怎麼介入，不是人寫多少程式。",
     "flow": ["Tool：逐步下指令、每步驗收", "Teammate：核准計畫後才動手", "Digital Worker：只在核准關卡決定"],
-    "cards": [["剛才的 Greenfield 是 Tool", "步驟由你定；Agent 做完一步就停，你看證據才放行下一步。"]],
+    "cards": [["剛才的 Greenfield 是 Tool", "步驟由你定；Agent 做完一步就停，你看證據才放行下一步。"], ["為什麼從 Tool 開始", "先學會「怎麼判斷做對了」，之後才能放手讓 Agent 多做。"]],
     "check": "說出 Greenfield 中你「放行」了幾次，每次看了什麼證據。",
-    "notes": "（第 05–07 分）新概念。Greenfield 的放行點：核准計畫、放行第 1、2 步、放行第 3、4 步、在 /docs 試完回一行。Teammate 與 Digital Worker 分別在 Speech 03、04 展開，這裡只說出三者差在人介入的方式。核准關卡（Gate）只提名稱，不展開。📖 定義出處：本課程〈歡迎與使用方式〉。📖 延伸閱讀：Anthropic Engineering〈Building effective agents〉（談 Agent 的運作方式，並未定義這三階段）。"
+    "notes": "（第 02–04 分）Greenfield 的放行點：核准計畫、放行第 1、2 步、放行第 3、4 步、在 /docs 試完回一行。Teammate 與 Digital Worker 分別在 Speech 03、04 展開，這裡只說出三者差在人介入的方式。核准關卡（Gate）只提名稱，不展開。📖 定義出處：本課程〈歡迎與使用方式〉。"
   },
   {
-    "id": "chain", "chapter": "準備工作鏈", "title": "讓 Greenfield 順利的準備工作鏈",
-    "lead": "每一環都從上一環推出來；新專案沒有這些文件時，就請 Agent 一環一環補上。",
-    "flow": ["構想（Idea）放入 docs 資料夾", "最小可行產品（MVP）範圍", "使用者故事／使用案例", "驗收條件", "業務流程", "Gherkin 測試情境", "分層架構"],
-    "cards": [["一次只往前一步", "Agent 讀來源、提草稿；人確認後才存檔，再往下一環。"], ["可以往回修", "下一環暴露問題，就回頭補前一環，並寫下理由。"]],
-    "check": "每份文件都沿用同一套規則編號與驗收條件編號；Agent 補的假設先標「待確認」。",
-    "notes": "（第 07–09 分）G0 已提供需求、驗收條件與架構文件；使用者故事、業務流程與 Gherkin 在主課沒有獨立檔案。接下來八頁說明新專案從空資料夾開始時，每一環是什麼、人判斷什麼、為什麼這樣問 Agent。重點不是文件多，而是每一環都追得回來源，這叫追溯（Traceability）。MVP 與 Gherkin 在後面各自那一頁解釋。📖 延伸閱讀：ISTQB〈Glossary〉（traceability 條目）。"
+    "id": "loop", "chapter": "Agent 怎麼知道做對了", "title": "新概念：Agent 在迴圈裡看結果做事",
+    "lead": "Agent 不是一次寫完答案：它讀檔、動手、看執行結果，再決定下一步，一圈一圈往前。",
+    "flow": ["讀需求與檔案", "修改或執行", "看結果：測試、錯誤訊息", "決定下一步"],
+    "cards": [["白話比喻", "很快、很勤勞，但第一天上班的新同事：不知道你們的規則，也不會讀心。"], ["經驗法則", "迴圈裡沒有檢查，你就是那個檢查：每一步都得等你看過才知道對不對。"], ["📖 延伸閱讀", "〈Building effective agents〉（Anthropic，2024）"]],
+    "check": "說得出剛才 Agent 每一步「看了什麼結果」才回報：是測試輸出，還是它自己覺得完成了。",
+    "notes": "（第 04–06 分）新概念。Anthropic〈Building effective agents〉（2024-12-19）：Agent 是模型在迴圈裡使用工具、依環境回饋行動；文中強調 Agent 每一步都要從環境取得「ground truth」（真實結果，例如工具回傳、程式執行結果）。這就是為什麼 G0 先備好測試骨架：測試結果就是 Agent 的真相來源。「沒有檢查，你就是那個檢查」改寫自 Claude Code 官方文件〈Best practices for Claude Code〉：沒有可執行的檢查時，人就變成驗證迴圈。同樣概念在 OpenAI、GitHub 的 Agent 文件也找得到，不是單一產品的說法。"
   },
   {
-    "id": "idea", "chapter": "準備工作鏈", "title": "構想放入 docs：來源與假設分開",
-    "lead": "構想文件寫下問題、使用者、核心流程與規則；哪份來源算數，由人決定。",
-    "cards": [["Agent 做", "整理成專案摘要，每項結論標出來源。"], ["人判斷", "來源沒寫的就是假設：保留待確認，或補成規則，由你決定。"]],
-    "prompt": "請閱讀 docs/idea.md，先不要寫程式。整理問題、使用者、核心流程、已明定的規則與限制，寫入 docs/01-project-brief.md。每項結論標示來源；來源沒提到的列為待確認問題，不要自行補成需求。完成後停下等我。",
-    "check": "在摘要裡至少找出一個假設或缺口，並決定保留待確認還是補成規則。",
-    "notes": "（第 09–11 分）可下載的 idea.md 是 Greenfield 需求的課後摘要，供示範用；正式任務以 G0 文件為準。示範重點：Agent 常自己補出「登入」「會員」，這時指回來源範圍，請它移除。為什麼要求標來源：人不讀程式，只能靠來源判斷 Agent 的結論對不對。"
+    "id": "check-first", "chapter": "Agent 怎麼知道做對了", "title": "技巧：先給檢查，再請它做事",
+    "lead": "官方建議：給 Agent 一個能自己執行的檢查（測試、建置、可比對的畫面），它才能自己收斂。",
+    "cards": [["沒有檢查時", "「看起來完成」是唯一訊號，你只能相信或自己試。"], ["有檢查時", "Agent 自己跑、自己修，附上結果；你只看結果對不對。"], ["📖 延伸閱讀", "〈Best practices for Claude Code〉（Anthropic，官方文件）"]],
+    "prompt": "先不要修改任何檔案。請告訴我這個專案現在有哪些你能自己執行的檢查（例如測試、建置、啟動後的畫面），各自目前的結果是什麼。再對照需求，列出哪些需求還沒有任何檢查能證明，並建議要補什麼檢查。列完就停下等我。",
+    "check": "每條需求都對得到一個檢查；沒有檢查的，先決定要補檢查還是由你親自試。",
+    "notes": "（第 06–08 分）新技巧。原文（Claude Code 官方文件〈Best practices for Claude Code〉，持續更新）：「Give Claude a check it can run: tests, a build, a screenshot to compare.」換成你的工具也一樣：OpenAI Codex、GitHub Copilot 的官方文件都建議讓 Agent 執行測試來驗證。連回剛才：G0 起始時 1 個通過、8 個跳過，跳過的就是「還沒做完」的檢查，所以 Agent 每做一步都看得到進度。示範提示詞適合用在任何既有專案：先盤點檢查，再交辦工作。"
   },
   {
-    "id": "mvp", "chapter": "準備工作鏈", "title": "MVP：最少功能走完核心流程",
-    "lead": "MVP（Minimum Viable Product，最小可行產品）：用最少功能做出能實際使用的版本，盡快驗證想法。本課程的範圍＝查班次→訂票→模擬付款→查訂單。",
-    "cards": [["範圍內", "四個 API；計畫固定 4 步：票價、班次查詢、建立訂票、付款與查詢訂單。"], ["範圍外", "前端、登入、會員、優惠、改退票、新套件。"]],
-    "check": "計畫裡沒有範圍外項目；每一步完成後都有能驗證的成果。",
-    "notes": "（第 11–13 分）主課檢查點 2 的計畫提示詞把 4 步固定寫在【限制】裡：步驟由人定，這是 Tool 階段的特徵。範圍外清單寫在同一段，Agent 才不會擴大範圍。問學員：如果只寫「做出 MVP」，Agent 會怎麼理解「最小」？📖 延伸閱讀：Eric Ries《The Lean Startup》。"
+    "id": "acceptance", "chapter": "Agent 怎麼知道做對了", "title": "驗收條件：把「正確」寫成可判定",
+    "lead": "AC（Acceptance Criteria，驗收條件）：事先寫好、能明確判定符合或不符合的完成標準。它是人和 Agent 共同的真相來源。",
+    "cards": [["好的寫法", "AC-G-005：成人＋學生訂 T001，總價 1225 且為整數。"], ["不好的寫法", "「計價正常」「錯誤處理完善」：Agent 和你都無法判定。"], ["預期值先從規則推", "成人 700＋學生 75%：看 Agent 回報前就先算好。"], ["寫給 Agent 的好處", "條件可判定，Agent 才能把它轉成測試，自己檢查。"]],
+    "check": "每一條都能判斷「符合／不符合」；預期數字指得回一條規則編號。",
+    "notes": "（第 08–10 分）連回剛才：主課第 3、4 步請學員把 1225 和驗收對照表比對。本頁的重點是背後的原理：可判定的條件才能變成上一頁說的「可執行的檢查」；人不讀程式，也能用預先算好的數字判斷 Agent 對不對。帶回工作：下次交辦任務，先問自己「完成時，我要看到什麼數字或畫面？」寫不出來，就先請 Agent 幫你把需求改寫成可判定的條件，再由你確認。📖 延伸閱讀：ISTQB〈Glossary〉（acceptance criteria 條目）。"
   },
   {
-    "id": "story", "chapter": "準備工作鏈", "title": "使用者故事與使用案例",
-    "lead": "先說清楚使用者要什麼，再安排實作；技術工作不必硬寫成使用者需求。",
-    "cards": [["使用者故事（User Story）", "誰、想做什麼、為了什麼：旅客替同行成人與學生一次訂票，各付正確票價。"], ["使用案例（Use Case）", "一步步的互動與例外：人數不合法、班次不存在、座位不足。"]],
-    "check": "故事寫出價值，使用案例寫出例外；兩者擇一即可，不必兩份都做。",
-    "notes": "（第 13–15 分）人判斷的是「價值」與「例外」是否完整，不是格式。Agent 常漏例外流程，追問「失敗時呢？」就好。資料存取、模擬付款這類技術工作列為支援任務，不需要虛構一個使用者。ISTQB 的 user story 還包含驗收條件；use case 是使用者與系統之間的一連串互動。📖 延伸閱讀：ISTQB〈Glossary〉（user story、use case 條目）。"
+    "id": "gherkin", "chapter": "Agent 怎麼知道做對了", "title": "Given／When／Then：可判定的好寫法",
+    "lead": "Gherkin 用 Given（前提）／When（操作）／Then（結果）寫情境：業務方讀得懂，也能接上測試自動驗證。",
+    "code": "Scenario: 成人與學生一起訂票\n  Given T001 基本票價 700，剩餘 20 座\n  When 為 T001 訂一位成人與一位學生\n  Then 總價為 1225 且為整數\n  And 訂票為待付款，T001 剩餘 18 座",
+    "cards": [["人看什麼", "Then 寫看得到的結果；一個情境只有一個 When。"], ["📖 延伸閱讀", "〈Gherkin Reference〉（Cucumber，官方文件）"]],
+    "check": "每個 Then 都能在 Agent 的回報裡找到實際結果；情境沒接上測試的標「未驗證」。",
+    "notes": "（第 10–12 分）Cucumber 官方文件說 Gherkin 用關鍵字讓規格「可執行」（executable specifications）。主課沒有 Gherkin 檔，測試由 Agent 直接依驗收條件補上，不要宣稱主課做過。什麼時候用：需求還在跟業務方討論、要用具體例子對齊時。Gherkin 檔本身不會執行，要接上測試工具才算驗證。帶回工作：請 Agent「把這份需求的驗收條件改寫成 Given／When／Then，每個 Then 寫看得到的結果，不確定的標待確認」，你只審 Then 對不對。"
   },
   {
-    "id": "acceptance", "chapter": "準備工作鏈", "title": "驗收條件：把「正確」寫成可判定",
-    "lead": "AC（Acceptance Criteria，驗收條件）：事先寫好、能明確判定符合或不符合的完成標準。",
-    "cards": [["好的寫法", "AC-G-005：成人＋學生訂 T001，總價 1225 且為整數。"], ["不好的寫法", "「計價正常」「錯誤處理完善」：無法判定通過與否。"], ["預期值從規則來", "成人 700＋學生 75%（FARE-002）：看 Agent 回報前就定好。"]],
-    "prompt": "請依 docs/idea.md 與專案摘要寫 docs/04-acceptance.md：沿用 AC-G 編號與規則編號，每列寫前置、操作、可觀察的結果。不要新增來源沒有的錯誤碼，缺口列為待確認，寫完停下等我。",
-    "check": "每一條都能判斷「符合／不符合」；預期數字能指回一條規則編號。",
-    "notes": "（第 15–18 分）為什麼要可判定：之後 Agent 的驗收對照表就是一條驗收條件一列（第 16 頁）；條件寫不清楚，對照表也看不出結果。主課第 3、4 步請學員把 1225 和對照表比對，本場的重點是背後的技巧：預期值先從規則推出來，人不讀程式也能判斷 Agent 對不對。📖 延伸閱讀：ISTQB〈Glossary〉（acceptance criteria 條目）。"
+    "id": "sdd", "chapter": "Agent 怎麼知道要做什麼", "title": "規格驅動開發：先寫規格再動手",
+    "lead": "Spec-driven development（規格驅動開發）：把需求、設計、任務寫成檔案，Agent 照規格做、人照規格審。",
+    "flow": ["需求（含驗收條件）", "設計（例如分層架構）", "任務清單", "逐項實作與驗證"],
+    "cards": [["三種深度", "只在開工前寫（多數做法）→ 規格隨程式維護 → 只改規格、程式由它產生。"], ["經驗法則：別用大鐵鎚敲核桃", "小改動不必走完整流程；規格大小要和任務大小相稱。"], ["業界現況", "仍在試：相關工具多列在「評估」，還不是業界標準。"], ["📖 延伸閱讀", "〈Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl〉（martinfowler.com，2025）"]],
+    "check": "說得出 Greenfield 的規格在哪：需求、驗收條件、架構文件各是哪一份。",
+    "notes": "（第 12–14 分）Birgitta Böckeler 在 martinfowler.com（2025-10-15）把規格驅動開發分成 spec-first（先寫規格）、spec-anchored（規格隨程式長期維護）、spec-as-source（規格就是原始碼）三層，大多數工具停在第一層；她用小 bug 試 Kiro 的完整流程，形容像「用大鐵鎚敲核桃」，也觀察到 Agent 常沒照全部規格做，且大量 Markdown 很難審。AWS Kiro 文件把規格拆成需求（含驗收條件）、設計、任務三份檔。Thoughtworks Technology Radar Vol. 34（2026-04）把 GitHub Spec Kit、OpenSpec 列在 Assess（評估），而 Context engineering 列在 Adopt。連回剛才：G0 的 02 需求、03 驗收條件、docs/architecture.md 就是第一層規格；分層架構決定規則放哪，所以工作規則第 3 條能讓你不讀程式也檢查變更落點。不要說「規格驅動是業界標準」。"
   },
   {
-    "id": "flow", "chapter": "準備工作鏈", "title": "業務流程：成功和失敗都要有出口",
-    "lead": "業務流程（Business Flow）把功能串成狀態與資料的變化。",
-    "flow": ["查詢可售班次", "驗證人數與座位", "逐人計價", "建立待付款訂票、保留座位", "模擬付款成功", "建立唯一訂單"],
-    "cards": [["訂票被拒", "不建立訂票、不扣座位。"], ["付款失敗", "不建立訂單；維持待付款，座位不釋放，之後可再付款。"]],
-    "check": "付款前不會有訂單；付款成功只會有一筆訂單；失敗不會被標成已付款。",
-    "notes": "（第 18–20 分）付款失敗的處理，需求文件沒有逐字寫明；主課在計畫提示詞【限制】裡由人明定（Booking 維持 PENDING_PAYMENT、座位不釋放、不建立 Order、之後仍可再付款）。這是「人判斷」的典型：來源沒寫的，不讓 Agent 自己假設。流程用文字或簡單圖都可以，不需要繪圖工具。ISTQB 的 state transition testing 是用「狀態與轉換」設計測試的技巧，這裡借它檢查流程；付款失敗怎麼處理，是本課程的決定。📖 延伸閱讀：ISTQB〈Glossary〉（state transition testing 條目）。"
+    "id": "spec-small", "chapter": "Agent 怎麼知道要做什麼", "title": "技巧：規格從短開始，請 Agent 訪談你",
+    "lead": "先寫幾行高層次的構想，請 Agent 一次問一個問題補齊，再擴寫成規格；人只審，不從零寫。",
+    "cards": [["為什麼有效", "Agent 擅長找出缺口；你只要回答它問的題，不必自己想到每一件事。"], ["📖 延伸閱讀", "〈How to write a good spec for AI agents〉（Addy Osmani，2026）"]],
+    "prompt": "請讀 docs/idea.md，先不要寫程式。一次問我一個問題，釐清使用者、範圍外項目、失敗時怎麼處理。問完後寫成 docs/spec.md，分三段：需求（每條附可判定的驗收條件）、設計重點、任務清單。來源沒寫的標「待確認」，不要自行補成需求。寫完停下等我。",
+    "check": "規格裡每個「待確認」都由你決定；沒有出現來源以外的功能（例如登入、會員）。",
+    "notes": "（第 14–17 分）示範：在空資料夾放入可下載的 idea.md（Greenfield 需求的課後摘要）再貼提示詞，講者回答 2–3 題即可。Addy Osmani〈How to write a good spec for AI agents〉（2026-01-13）：先寫精簡的高層規格，再請 AI 擴寫成詳細計畫；並建議一次只給一個聚焦任務：規格拆成小任務，每次只交一個，不要一次全丟。Claude Code 官方文件也建議大功能先請 Agent 訪談你、寫成規格，再開始實作。示範重點：Agent 常自己補出「登入」「會員」，這時指回來源範圍，請它移除。連回剛才：主課的 MVP（最小可行產品）範圍與範圍外清單，就是由人決定、寫進提示詞的。"
   },
   {
-    "id": "flow-review", "chapter": "準備工作鏈", "title": "討論：用流程反查驗收條件",
-    "lead": "兩人一組：一人說明流程，另一人只追問狀態與證據。",
-    "cards": [["追問一", "付款成功後又收到一次付款，會不會多一筆訂單？"], ["追問二", "票價算好了但座位不足，會不會留下半筆訂票？"], ["追問三", "付款失敗時，訂票、訂單、座位各是什麼狀態？"]],
-    "check": "流程與驗收條件說法一致；答不出來的分支記為待確認，不讓 Agent 自己決定。",
-    "notes": "（第 20–22 分）討論 2 分鐘，請一組分享。三題分別對應 AC-G-011（重複付款）、AC-G-008（座位不足）、AC-G-014（付款失敗）。要示範時可貼：「請對照 docs/04-acceptance.md 與業務流程文件，列出流程有、驗收條件沒有的分支，以及反過來的情況；不要修改規則，列成待我決定的問題，然後停下。」"
+    "id": "case-airbnb", "chapter": "Agent 怎麼知道要做什麼", "title": "案例：每一步都有自動驗證",
+    "lead": "Airbnb 用大型語言模型把近 3,500 個前端測試檔換到新的測試框架；原估 1.5 年，6 週完成。",
+    "cards": [["做法", "逐檔、分步驟；每一步都跑驗證，失敗就把錯誤帶回去重試。"], ["結果", "4 小時自動完成 75%；調整 4 天後 97%；剩 3% 人工約一週。"], ["關鍵", "不是一次生成全部，而是「小步＋檢查＋重試」的迴圈。"], ["📖 延伸閱讀", "〈Accelerating Large-Scale Test Migration with LLMs〉（Airbnb Tech Blog）"]],
+    "check": "說出這個案例裡的「檢查」是什麼，以及沒有它時會發生什麼。",
+    "notes": "（第 17–19 分）Charles Covey-Brandt〈Accelerating Large-Scale Test Migration with LLMs〉，Airbnb Tech Blog：近 3.5K 個 React 測試檔從舊測試工具遷移；原估 1.5 年、6 週完成；4 小時內自動完成 75%，調整提示詞與脈絡 4 天後達 97%，剩下 3% 人工約一週。原頁面沒有顯示發布日期，所以投影片不寫年份，口頭也不要說確切日期。連回第 3 頁的迴圈：每一步都有自動驗證，所以能放大規模；這和 Greenfield「每步跑測試、附對照表」是同一個原理，只是規模不同。"
   },
   {
-    "id": "gherkin", "chapter": "準備工作鏈", "title": "Gherkin：讓測試情境像業務範例",
-    "lead": "Gherkin 用 Given（前提）／When（操作）／Then（結果）寫情境，業務與開發都讀得懂。",
-    "code": "@AC-G-005 @AC-G-009\nScenario: 成人與學生一起訂票\n  Given T001 基本票價 700，剩餘 20 座\n  When 為 T001 訂一位成人與一位學生\n  Then 總價為 1225 且為整數\n  And 訂票為待付款，T001 剩餘 18 座",
-    "cards": [["人看什麼", "Then 寫看得到的結果；預期數字指得回規則。"], ["誰寫測試", "Agent 把情境轉成可執行的測試；你看回報裡的測試名稱。"]],
-    "check": "一個情境只有一個 When；每個 Then 都能在 Agent 的回報裡找到結果。",
-    "notes": "（第 22–24 分）@AC-G-005 這類標籤讓情境追回驗收條件。主課沒有 Gherkin 檔，測試由 Agent 直接依驗收條件補上；Gherkin 適合需求還在討論、要和業務方對齊的時候。Gherkin 檔本身不會執行，要接上測試工具才算驗證；沒接上就標「未驗證」。📖 延伸閱讀：Cucumber 官方文件〈Gherkin Reference〉。"
+    "id": "context", "chapter": "Agent 怎麼知道要做什麼", "title": "新概念：脈絡工程",
+    "lead": "Context engineering（脈絡工程）：提供讓任務「有可能被解出來」的全部資訊。重點從「怎麼問」移到「給它看什麼」。",
+    "cards": [["要給", "目標與完成標準、指名要讀的檔、限制與範圍外、一段真實範例、怎麼驗證。"], ["不要給", "整個資料夾、不相關的舊對話；多不等於好，雜訊會蓋過重點。"], ["經驗法則", "一段真實範例，勝過三段文字描述。"], ["📖 延伸閱讀", "〈Context engineering〉（Simon Willison，2025）"]],
+    "check": "交辦前檢查：Agent 不問你，能從你給的資料推出「什麼算做完」嗎？",
+    "notes": "（第 19–21 分）新概念。Simon Willison〈Context engineering〉（2025-06-27）引用 Shopify 執行長 Tobi Lütke 的定義：「the art of providing all the context for the task to be plausibly solvable by the LLM.」Thoughtworks Technology Radar Vol. 34（2026-04）把 Context engineering 列為 Adopt（建議採用）。「一段真實範例勝過三段描述」出自 GitHub Blog〈How to write a great agents.md: Lessons from over 2,500 repositories〉（2025-11-19）。Prompt engineering（提示詞工程）沒有過時，只是術語轉向，寫清楚的提示詞仍是基本功。為什麼「多不等於好」留到 Speech 02 用 Context Window（脈絡視窗）解釋，這裡只預告。連回剛才：G0 把需求、驗收條件、架構放在固定檔案，就是替 Agent 準備好脈絡。📖 延伸閱讀：Anthropic Engineering〈Effective context engineering for AI agents〉。"
   },
   {
-    "id": "architecture", "chapter": "準備工作鏈", "title": "分層架構：規則放在固定位置",
-    "lead": "分層架構依責任把程式分成幾層；每層只做一類事，規則才找得到、改得動。",
-    "flow": ["API／Schemas（資料格式定義）：輸入與輸出", "Application（應用層）：協調訂票流程", "Domain（領域層）：模型與票價規則", "Infrastructure（基礎設施層）：記憶體資料、模擬付款"],
-    "cards": [["人不讀程式也能管", "把分層寫進工作規則：商業規則放領域層與應用層，API 入口只做輸入輸出。"]],
-    "check": "Agent 回報的修改檔案，和這一步該動的那一層對得上。",
-    "notes": "（第 24–26 分）依據 G0 的 docs/architecture.md：依賴方向 API → Application → Domain，Domain 不依賴網頁框架。架構決定「規則放哪裡」，人用它檢查變更的檔案是否落在預期的層；這就是 Greenfield 工作規則第 3 條。不展開程式結構，學員不需要看懂目錄。📖 延伸閱讀：Vaughn Vernon《Implementing Domain-Driven Design》第 4 章〈Architecture〉。"
-  },
-  {
-    "id": "rules", "chapter": "Tool 階段的技巧", "title": "技巧：先給 Agent 一份工作規則",
-    "lead": "規則先講好，之後每一步就不用再叮嚀「先計畫」「做完停下」「附測試結果」。",
-    "cards": [["流程", "改之前先提計畫；只做核准的步驟，做完就停。"], ["邊界", "照分層放規則；不新增套件；不刪測試，不用跳過（skip）藏失敗。"], ["回報", "固定格式的驗收對照表與四題審查；沒執行的標「未驗證」。"]],
+    "id": "rules", "chapter": "Agent 怎麼知道要做什麼", "title": "技巧：工作規則是每次都要的脈絡",
+    "lead": "每一步都會用到的要求（流程、邊界、回報格式）先講一次；之後每段提示詞就能短。",
+    "cards": [["流程", "改之前先提計畫；只做核准的步驟，做完就停。"], ["邊界", "照分層放規則；不新增套件；不刪測試，不用跳過藏失敗。"], ["回報", "固定格式的驗收對照表與審查答案；沒執行的標「未驗證」。"], ["注意", "規則是提醒，不是鎖：一定要發生的事，要靠檢查或權限把關。"]],
     "check": "Agent 每做完一步真的停下；每次回報都附上驗收對照表與審查答案。",
-    "notes": "（第 26–29 分）新技巧，對應 Runbook Greenfield 檢查點 1 的 7 條工作規則。為什麼有效：Agent 只知道你告訴它的；規則一次講完，之後每段提示詞都能短。問學員：規則裡哪一條最常救了你？開新對話時規則不會自動帶過去，要重貼，Speech 02 會處理這件事；之後規則會存成檔案讓大家共用（Speech 03，只預告）。📖 延伸閱讀：Claude Code 官方文件〈Best practices for Claude Code〉、OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉、GitHub 官方文件〈Adding repository custom instructions for GitHub Copilot〉；你所用工具的官方文件通常有同名章節。"
+    "notes": "（第 21–23 分）連回 Runbook Greenfield 檢查點 1 的 7 條工作規則。工具中立：這裡只講「每次都要的要求先講一次」這個做法。官方文件也明說規則是給 Agent 的脈絡，不是強制設定；一定要發生的事（例如不得刪測試）要靠測試、持續整合或權限把關，這是 Speech 04 的主題。開新對話時貼上的規則不會自動帶過去，寫成每次自動讀的規則檔（例如 AGENTS.md）留到 Speech 02，團隊共用規則留到 Speech 03，這裡只預告。📖 延伸閱讀：GitHub 官方文件〈Adding repository custom instructions for GitHub Copilot〉。"
   },
   {
-    "id": "prompt", "chapter": "Tool 階段的技巧", "title": "技巧：五段式提示詞",
-    "lead": "好的提示詞有五個部分；缺任何一塊，Agent 就會自己猜。",
+    "id": "prompt", "chapter": "Agent 怎麼知道要做什麼", "title": "技巧：五段式提示詞",
+    "lead": "Agent 能推測意圖，但不會讀心。五段寫齊，它就不必自己猜。",
     "code": "【目標】先不要修改程式，提出 4 步實作計畫\n【背景／要讀的檔】只讀需求、驗收條件、README、docs/\n【限制】固定 4 步；不放範圍外項目；付款失敗照我定的處理\n【輸出格式】寫進 notes/greenfield.md「計畫」：每步列規則與檔案\n【停止條件】寫完就停下等我",
-    "cards": [["缺一塊會怎樣", "沒寫停止條件，Agent 寫完計畫可能直接動手改程式。"]],
-    "check": "計畫每一步都有規則編號、驗收條件與預計修改的檔案；每個問題都附建議答案。",
-    "notes": "（第 29–32 分）新技巧。這是 Runbook Greenfield 檢查點 2 計畫提示詞的縮寫版。逐段問學員：拿掉【背景／要讀的檔】會怎樣（Agent 讀整個資料夾，或只憑印象）；拿掉【限制】會怎樣（擴大範圍、自己假設付款失敗怎麼處理）。決策點用短回覆：「同意」「第 2 題改成…」。原提示詞裡的「先仔細想過再回答」與模型選擇、推論強度有關，留到 Speech 03：工具有推論強度設定就直接調整，沒有這項設定時，才在提示詞加上這句作為替代。📖 延伸閱讀：Anthropic 官方文件〈Prompt engineering overview〉與〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉；你所用工具的官方文件通常有同名章節。"
+    "cards": [["模糊 vs 指名", "「修好訂票」→「AC-G-008 座位不足時不應建立訂票，請讓它通過」。"], ["缺一塊會怎樣", "沒寫停止條件，Agent 寫完計畫可能直接動手改程式。"]],
+    "check": "提示詞指名了檔案、情境和「什麼算修好」；決策點用短回覆：「同意」「選 B」。",
+    "notes": "（第 23–25 分）新技巧，是 Runbook Greenfield 檢查點 2 計畫提示詞的縮寫版。Claude Code 官方文件〈Best practices for Claude Code〉：「Claude can infer intent, but it can't read your mind.」並建議指名檔案、情境與什麼算修好；模糊的提示詞會讓 Agent 掃大量檔案。逐段問學員：拿掉【背景／要讀的檔】會怎樣（Agent 讀整個資料夾，或只憑印象）；拿掉【限制】會怎樣（擴大範圍、自己假設付款失敗怎麼處理）。原提示詞的「先仔細想過再回答」和模型選擇、推論強度有關，留到 Speech 03。📖 延伸閱讀：Anthropic 官方文件〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉。"
   },
   {
-    "id": "small-steps", "chapter": "Tool 階段的技巧", "title": "小步放行：錯了只退一小步",
-    "lead": "核准計畫後，一次只放行一小段；Agent 停下，你看證據再放行下一段。",
-    "flow": ["核准計畫", "做第 1、2 步", "審查後放行", "做第 3、4 步", "審查後放行", "親自試用並交付"],
-    "cards": [["放行前判斷三件事", "改的檔案都在計畫裡；測試數沒變少、沒新增跳過；沒改既有期待值。"]],
+    "id": "plan", "chapter": "人怎麼確認", "title": "技巧：先探索、再計畫、再實作",
+    "lead": "先讓 Agent 讀懂現況、提出計畫，你核准後才動手；錯在計畫上，比錯在程式上便宜得多。",
+    "flow": ["探索：只讀不改", "計畫：每步對應驗收條件", "人核准", "實作與驗證", "存一版"],
+    "cards": [["經驗法則", "一句話講得完的改動，不用寫計畫；說不清楚的，一定要先計畫。"], ["📖 延伸閱讀", "〈Vibe engineering〉（Simon Willison，2025）"]],
+    "prompt": "先不要修改任何檔案。請先讀需求與相關檔案，再提出實作計畫：每一步寫要改哪些檔案、對應哪條驗收條件、用什麼檢查證明完成。如果這個改動一句話就說得完，直接告訴我不需要計畫。寫完停下等我核准。",
+    "check": "計畫每一步都有檔案、驗收條件與檢查；沒有範圍外的項目才核准。",
+    "notes": "（第 25–28 分）Claude Code 官方文件〈Best practices for Claude Code〉建議 Explore → Plan → Implement → Commit 四步，並說：「If you could describe the diff in one sentence, skip the plan.」Simon Willison〈Vibe engineering〉（2025-10-07）：「Sitting down to hack something together goes much better if you start with a high level plan.」很多工具有「只規劃、不修改」的模式，可以當例子提，但不是必要；用提示詞說「先不要修改任何檔案」就做得到。連回剛才：主課檢查點 2 就是計畫，核准紀錄寫進 notes/greenfield.md。到 Speech 03 Teammate，人介入方式會變成「只核准計畫」。"
+  },
+  {
+    "id": "small-steps", "chapter": "人怎麼確認", "title": "小步驗證：錯了只退一小步",
+    "lead": "一次只放行一小段；每段都有檢查和存檔點，錯了只退回上一段。大型專案也是這樣做的。",
+    "flow": ["核准計畫", "做第 1、2 步", "審查後放行", "做第 3、4 步", "審查後放行"],
+    "cards": [["案例：先試 6 個檔", "一次大型遷移先只轉 6 個檔，抓到 2 個規則問題，才擴大到 1,448 個檔。"], ["案例：測試當裁判", "近百萬行的程式換語言，既有測試全部通過才合併。"], ["放行前三問", "改的檔案都在計畫裡？測試數沒變少？沒改既有期待值？"], ["📖 延伸閱讀", "〈How Anthropic runs large-scale code migrations with Claude Code〉（Anthropic，2026）"]],
     "check": "說得出你哪一次差點放行了不該放行的變更，靠什麼發現的。",
-    "notes": "（第 32–34 分）每次放行後，Agent 把這一段寫進 notes 並存一版（Git Commit），所以退一步的成本只有一段。Agent 一口氣做好幾步時，請它停下並補上每一步的回報。這是 Tool 階段人介入的方式：每一步都經過人。📖 延伸閱讀：Claude Code 官方文件〈Best practices for Claude Code〉。"
+    "notes": "（第 28–30 分）Anthropic〈How Anthropic runs large-scale code migrations with Claude Code〉（2026-07-16）：Bun 從 Zig 改寫成 Rust 約百萬行、兩週內完成；另一次 Python → TypeScript 約 16.5 萬行、一個週末。既有測試在持續整合 100% 通過後才合併，合併後發現的 19 個回歸全數修好；先只轉 6 個檔試水溫，抓到 2 個規則問題才擴大到 1,448 個檔。這是廠商自家案例，請照實說。DORA 也把「小批量工作」列為放大 AI 效益的能力之一。連回剛才：每次放行後 Agent 寫 notes 並存一版（Git Commit），所以退一步的成本只有一段；Agent 一口氣做好幾步時，請它停下並補上每一步的回報。"
   },
   {
-    "id": "structured", "chapter": "Tool 階段的技巧", "title": "技巧：驗收對照表",
-    "lead": "結構化輸出（Structured Output）：用提示詞要求 Agent 照固定欄位回報，人才看得快、能前後比對。",
+    "id": "structured", "chapter": "人怎麼確認", "title": "技巧：結構化輸出",
+    "lead": "Structured Output（結構化輸出）：要求 Agent 照固定欄位回報，人才看得快、能前後比對，也能交給下一個工具處理。",
     "code": "編號     | 白話內容           | 結果   | 依據的測試名稱\nAC-G-005 | 成人＋學生總價1225 | 通過   | 混合訂票測試\nAC-G-014 | 付款失敗不建立訂單 | 未驗證 | （尚無）\n通過 6／失敗 0／跳過 3（示意，非實際輸出）",
-    "cards": [["人看什麼", "每條驗收條件都有一列；「未驗證」不等於「通過」；跳過數沒有增加。"]],
+    "cards": [["人看什麼", "每條驗收條件都有一列；「未驗證」不等於「通過」；跳過數沒有增加。"], ["業界評價", "固定格式輸出被列為「建議採用」：可比對、可自動檢查。"]],
     "check": "對照表沒有漏列、漏欄；結果和你從規則推出的預期值一致。",
-    "notes": "（第 34–37 分）新技巧。畫面是示意，不是實際輸出。欄位固定寫在工作規則第 5 條：編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱，最後一行寫通過／失敗／跳過的測試數。為什麼固定：每一步同樣欄位，人才能前後比對「上次跳過的，這次變通過了嗎」。Agent 仍可能漏欄，所以要檢查。本課程的結構化輸出，指用提示詞要求固定欄位或標題的回報；官方的 Structured Output 功能是用結構定義強制輸出格式，目的相同：讓結果可以比對。後面幾場會沿用固定格式的回報，只預告。📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured model outputs〉。"
+    "notes": "（第 30–32 分）新技巧。畫面是示意，不是實際輸出。欄位固定寫在工作規則第 5 條：編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱，最後一行寫測試數。Thoughtworks Technology Radar Vol. 34（2026-04）把「Structured output from LLMs」列為 Adopt。本課程的結構化輸出指用提示詞要求固定欄位或標題；官方 API 的 Structured Output 功能是用結構定義強制格式，目的相同。帶回工作：任何要比對的回報（測試結果、方案比較、風險清單）都先定好欄位，再請 Agent 填。Agent 仍可能漏欄，所以要檢查。📖 延伸閱讀：Anthropic 官方文件〈Structured outputs〉、OpenAI 官方文件〈Structured model outputs〉。"
   },
   {
-    "id": "review", "chapter": "Tool 階段的技巧", "title": "變更審查：不讀程式也能判斷",
-    "lead": "Agent 用白話回答四題固定問題，最後建議放不放行；判斷的人是你。",
-    "cards": [["改了什麼", "改了哪些檔案、為什麼；有沒有計畫外的檔案。"], ["測試有沒有被動手腳", "測試數變少、新增跳過、刪測試或改期待值。"], ["換來什麼", "哪些原本跳過的測試變成通過。"]],
-    "check": "審查答案附了實際執行的指令；答案和驗收對照表的數字對得上。",
-    "notes": "（第 37–39 分）工作規則第 6 條。四題：(1) 改了哪些檔案、為什麼、有沒有計畫外的檔案；(2) 測試總數有沒有變少、有沒有新增 skip 或 xfail（標成預期失敗）；(3) 有沒有刪測試或改既有期待值（用差異比對檢查 tests 資料夾）；(4) 哪些跳過的測試變成通過。誠實說盲點：只看證據不看程式，抓不到「測試全過但寫法有問題」，所以規則把分層寫進去、禁止改測試。📖 延伸閱讀：Google Engineering Practices〈Google's Code Review Guidelines〉、Git 官方文件〈git-diff〉。"
+    "id": "review", "chapter": "人怎麼確認", "title": "審查變更：看證據，不看宣稱",
+    "lead": "不讀程式也能審：要求 Agent 拿出執行結果當證據，再親眼看一次真實行為。",
+    "cards": [["要證據", "「測試全過」要附實際執行的結果；沒執行的標「未驗證」。"], ["看範圍", "有沒有計畫外的檔案、刪測試、新增跳過、改期待值。"], ["親眼看", "沒看過它做對，就當它還沒做好；你在 /docs 試的就是這一步。"], ["📖 延伸閱讀", "〈Your job is to deliver code you have proven to work〉（Simon Willison，2025）"]],
+    "prompt": "請審查剛才的變更，先不要修改任何檔案。用證據回答：改了哪些檔案、有沒有超出計畫；實際執行了哪些檢查、結果是什麼；有沒有刪測試、新增跳過或改期待值；最後列出你沒有驗證的部分。只回報事實，不要宣稱完成。",
+    "check": "每個「通過」都附了實際執行的結果；你親自試過至少一個關鍵行為。",
+    "notes": "（第 32–35 分）Claude Code 官方文件〈Best practices for Claude Code〉：「Have Claude show evidence rather than asserting success」；也建議用另一個乾淨的對話來審查，並提醒審查者被要求找問題時，即使成品沒問題也「will usually report some」，所以審查結果也要你判斷。Simon Willison〈Your job is to deliver code you have proven to work〉（2025-12-18）：「If you haven't seen the code do the right thing yourself, that code doesn't work.」連回剛才：工作規則第 6 條的四題審查，以及檢查點 4 在 /docs 親自試訂票與付款。誠實說盲點：只看證據不看程式，抓不到「測試全過但寫法有問題」，所以規則把分層寫進去、禁止改測試。開新對話留到 Speech 02，這裡只提「另一個乾淨的對話」不展開。"
   },
   {
-    "id": "try-docs", "chapter": "Tool 階段的技巧", "title": "親自試用：在 /docs 看真實行為",
-    "lead": "/docs 是 Agent 啟動伺服器後提供的 API 試用網頁；你親自試訂票和付款。",
-    "flow": ["按 Try it out", "貼上範例", "按 Execute", "看狀態碼與內容"],
-    "cards": [["你判斷", "訂票總價 1225、待付款；付款回傳金額 1225、付款成功。"], ["照實回覆", "回 Agent「兩項都一致」或「第 N 項不一致：我看到…」。"]],
-    "check": "你看到的結果和驗收條件一致；不一致就照實回報，不放行。",
-    "notes": "（第 39–41 分）對應 Runbook Greenfield 檢查點 4。狀態碼：200／201 成功、404 找不到、409 和目前狀態衝突。查班次、查訂單與重複付款由 Agent 的測試驗證。為什麼人要親自試：測試是 Agent 寫的，人親眼看一次行為，等於抽查測試本身。伺服器重啟後資料回到初始狀態，這是刻意的設計。📖 延伸閱讀：FastAPI 官方文件〈First Steps〉（Interactive API docs 段落）、IETF〈RFC 9110 HTTP Semantics〉。"
+    "id": "cases", "chapter": "業界現況", "title": "案例：大規模使用的共同點",
+    "lead": "近一年的公開案例，Agent 每週產出成百上千個變更；共同點不是模型更聰明，而是驗證與人審。",
+    "cards": [["Stripe", "隔離環境、大量自動測試，產出全部經人審查。"], ["Spotify", "背景 Agent 改完仍跑格式與靜態檢查，人審後才合併。"], ["數字與細節", "Spotify 在 Speech 03，Stripe 與 GitHub 在 Speech 04 詳談。"]],
+    "check": "說得出這些案例共同的「檢查」與「人審」在哪裡，對應你今天練的哪一步。",
+    "notes": "（第 35–37 分）這頁只點出共同點，不講數字：Spotify 的背景 Agent 在 Speech 03 詳談，Stripe 的 Minions 與 GitHub 的 Coding Agent 在 Speech 04 詳談，數字與來源都留到那兩場，這裡不要先講。要講的只有一句：規模放大的前提是每個變更都過自動檢查與人審。這些是 Digital Worker 的樣子，但地基就是今天 Tool 階段的檢查、小步與審查。"
   },
   {
-    "id": "notes", "chapter": "交付與接手", "title": "把決定寫進 notes/",
+    "id": "caution", "chapter": "業界現況", "title": "平衡提醒：差一點就對，最花時間",
+    "lead": "開發者普遍在用 AI，但信任度不高；AI 會放大團隊原有的長處，也會放大短處。",
+    "cards": [["差一點就對", "66% 開發者最大的挫折是 AI 的答案「差一點就對」；只有 33% 信任其準確度。"], ["放大器", "DORA：90% 在工作中用 AI；採用與交付量正相關，但與交付穩定度仍負相關。"], ["所以", "檢查、小步、審查不是多餘的手續，是讓速度不變成風險的方法。"], ["📖 延伸閱讀", "〈2025 Developer Survey — AI〉（Stack Overflow，2025）；〈Announcing the 2025 DORA Report〉（Google Cloud，2025）"]],
+    "check": "你的團隊有哪一項基本功（測試、小批量、版本控制）還不夠，會被 AI 放大？",
+    "notes": "（第 37–39 分）Stack Overflow〈2025 Developer Survey — AI〉：84% 使用或打算使用 AI 工具；33% 信任準確度、46% 不信任；66% 最大挫折是「almost right, but not quite」；45.2% 認為除錯 AI 產生的程式碼更耗時；在工作中使用 AI Agent 的約 31%，還不是主流。Google Cloud〈Announcing the 2025 DORA Report〉（2025-09-24）：90% 受訪者在工作中使用 AI，超過 80% 認為生產力提升，30% 幾乎或完全不信任 AI 產生的程式碼；AI 採用與交付吞吐量正相關、與交付穩定度仍為負相關；原文「AI doesn't fix a team; it amplifies what's already there.」不要把「90% 使用 AI」說成「90% 使用 Agent」；也不要用單一的加速百分比當通則（Speech 05 會談量測）。"
+  },
+  {
+    "id": "notes", "chapter": "帶回工作", "title": "把決定寫進檔案，不留在對話裡",
     "lead": "計畫、核准、每步驗收與交付摘要，都請 Agent 寫進 notes/greenfield.md；你不用抄。",
-    "code": "notes/greenfield.md\n  起點：測試數字、Git 基準\n  計畫：4 步與待決問題\n  核准紀錄：你的決定與時間\n  第 1、2 步／第 3、4 步：對照表、審查答案\n  最終驗收、交付摘要（七項）",
-    "cards": [["為什麼寫下來", "對話會結束，檔案會留下；下一個人或下一段對話照著讀就能接手。"]],
+    "cards": [["為什麼寫下來", "對話會結束，檔案會留下；下一個人或下一段對話照著讀就能接手。"], ["如實交付", "未完成項目與「未驗證」照實列出，不把部分完成寫成完整交付。"]],
     "check": "交付摘要如實列出未完成項目與「未驗證」，沒有把部分完成寫成完整交付。",
-    "notes": "（第 41–43 分）交付摘要七項：完成的功能與對應規則編號、驗收條件；修改的檔案；最後一次測試指令與總數；文件更新；未完成項目、仍被跳過的測試與風險；人和 Agent 各做了什麼；人工驗證。核准紀錄就是一種決策紀錄：寫下決定與理由，之後的人不必重猜。📖 延伸閱讀：Michael Nygard〈Documenting Architecture Decisions〉。資料來源：Runbook〈Greenfield 任務：核心訂票 MVP〉、〈Greenfield Submission Checklist〉。"
+    "notes": "（第 39–40 分）交付摘要七項：完成的功能與對應規則編號、驗收條件；修改的檔案；最後一次測試指令與總數；文件更新；未完成項目、仍被跳過的測試與風險；人和 Agent 各做了什麼；人工驗證。核准紀錄就是一種決策紀錄：寫下決定與理由，之後的人不必重猜。這頁是 Speech 02 交接的起點。📖 延伸閱讀：Michael Nygard〈Documenting Architecture Decisions〉。資料來源：Runbook〈Greenfield 任務：核心訂票 MVP〉、〈Greenfield Submission Checklist〉。"
   },
   {
-    "id": "next", "chapter": "交付與接手", "title": "下一場：Time Skip（時間快轉）",
-    "lead": "準備工作鏈讓新專案順利；接下來專案長大、換了對話，要怎麼接得上？",
-    "cards": [["今天帶走", "準備工作鏈；工作規則、五段式提示詞、驗收對照表、變更審查、notes 紀錄。"], ["Speech 02 會談", "為什麼換專案要開新對話，怎麼用交接檔接手長大的系統。"]],
+    "id": "apply", "chapter": "帶回工作", "title": "討論：交辦前的五個問題",
+    "lead": "兩人一組，各挑一件自己工作上想交給 Agent 的事，互相問這五題；答不出來的，就是要先補的地方。",
+    "flow": ["檢查：怎麼證明完成？", "規格：驗收條件可判定嗎？", "脈絡：要讀哪些檔？", "計畫：一句話講得完嗎？", "審查：要看什麼證據？"],
+    "cards": [["答不出「檢查」", "先請 Agent 盤點現有檢查（第 4 頁的提示詞）。"], ["答不出「驗收條件」", "先請 Agent 訪談你、寫短規格（第 8 頁的提示詞）。"]],
+    "check": "每人說出一題自己答不出來的，以及下一步要請 Agent 先做什麼。",
+    "notes": "（第 40–44 分）討論 3 分鐘，請一組分享；時間不夠就由講者用一個學員的例子帶過五題。回到開場白板上的卡點，請學員說哪一題能解：環境類卡點不在本場範圍，提示詞類對應脈絡與五段式，審查類對應證據。五題分別對應第 4、5、10、13、16 頁，都是工具中立的做法，換任何 Coding Agent 都適用。"
+  },
+  {
+    "id": "next", "chapter": "帶回工作", "title": "下一場：Time Skip（時間快轉）",
+    "lead": "今天讓新專案順利；接下來專案長大、換了對話，要怎麼接得上？",
+    "cards": [["今天帶走", "先給檢查、可判定的驗收條件、脈絡、先計畫、小步驗證、結構化輸出、看證據審查。"], ["Speech 02 會談", "對話越長為什麼越不準、怎麼開新對話，用交接檔接手長大的系統。"]],
     "check": "說出一項回到工作時，你最想先寫成文件或規則交給 Agent 的事。",
-    "notes": "（第 43–45 分）回到開場白板上的卡點，請學員說哪個技巧能解。銜接：notes/greenfield.md 是下一段的起點；新對話不記得舊對話，Speech 02 Time Skip 會說明為什麼要開新對話、怎麼寫交接檔。這裡不展開。"
+    "notes": "（第 44–45 分）銜接：notes/greenfield.md 是下一段的起點；新對話不記得舊對話，Speech 02 Time Skip 會說明為什麼要開新對話、怎麼寫交接檔。這裡不展開。第 45 分鐘結束，不延長。"
   }
 ]
