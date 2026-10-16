@@ -120,7 +120,8 @@ Stay tool-neutral: no vendor product names, commands or config paths as requirem
 
 ## DLC plugin version (domain-memory; full rule and procedure: decisions record 「Plugin 版本政策」)
 - Pin one exact committed version: `git archive <commit>` export → `scripts/vendor_dlc_plugin.py --source`, ZIP plus SHA256SUMS; never vendor a working tree, never edit vendored bytes.
-- Patch releases that fix something on the learner path: take them after re-running the checks (tools self-test, reference Registry, D1 replay, release pipeline). Minor releases: evaluate the changelog and rehearse before pinning.
+- Patch releases that fix something on the learner path: take them after re-running the checks (`scripts/check_dlc_plugin_compat.py --source <export>` covers tools self-test, reference Registry, D1 replay and learner-quoted output; then the release pipeline). Minor releases: evaluate the changelog and rehearse before pinning.
+- Registry layout is the plugin's business (OKF migration pending, see `docs/planning/domain-memory-touchpoints.md`): DLC tools read Registry content only through `dmlib.registry_documents()` and write only through plugin commands; prompts name plugin commands or stay layout-neutral (「domain-memory/ 裡的詞彙紀錄」), never `registry/<asset>.json`.
 - Freeze the pin 7 days before a scheduled workshop; during the freeze only security or blocking fixes.
 - Every pin change: update version strings and file counts everywhere (grep the old version), and record commit, measurements and differences in the decisions record.
 

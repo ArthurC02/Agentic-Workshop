@@ -30,6 +30,8 @@ Verifier檢查實際ZIP清單、來源／輸出雜湊與學員相對連結，並
 5. Speech：`build_decks.py`、`--check`、`verify_browser.py`。
 6. `scripts/` 全部單元測試；確認 Manifest 已無漂移；刪除 `dist/` 中被取代的候選；印出 `RELEASE PIPELINE PASS`。
 
+domain-memory 換版前的相容性檢查：`uv run --no-project --python 3.13 python -X utf8 scripts/check_dlc_plugin_compat.py [--source <匯出的 Plugin 資料夾或 ZIP>]`（預設檢查已封裝的 ZIP）。在暫存沙箱跑工具自檢、指令與旗標比對、D1 重播、參考 Registry 唯讀驗證與 hook push，並比對學員看到的 Plugin 輸出字串，逐項印 PASS／CHANGED，約 2 分鐘；不改 Repo、不用私鑰。觸及點清單與 OKF 升級計畫見 `docs/planning/domain-memory-touchpoints.md`。
+
 Agent 工具同步：`scripts/sync_harness.py`。`.claude/skills/` 與 `.claude/hooks/guard_generated.py` 是正本，逐位元組複製到 Codex 用的 `.agents/skills/` 與 `.codex/hooks/`；`--check` 只回報差異並以失敗結束。本機沒有 `.agents/` 或 `.codex/` 時略過。
 
 台灣繁體中文檢查：`scripts/check_zh_tw.py`。課程素材、docs/ 與 .claude 的文字必須是繁體字並使用台灣詞彙；發布流程會先執行。

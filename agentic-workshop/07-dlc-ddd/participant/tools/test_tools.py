@@ -155,6 +155,9 @@ class GovernedLifecycleTest(unittest.TestCase):
         record = dmlib.read_json(self.repo / "records" / "vocabulary-limit.json")
         self.assertEqual(record["contexts"], ["limits"])
         self.assertEqual(len(record["evidence"]), 2)
+        documents = dmlib.registry_documents(self.repo / "domain-memory")  # 有 export 就用，沒有就讀檔
+        self.assertEqual(sorted(documents), sorted(dmlib.ASSETS))
+        self.assertEqual({t["id"] for t in documents["vocabulary"]["terms"]}, {"limit", "quota"})
         self.assertIn("valid", self.dm("validate").stdout)
         self.dm("counterfactual", "--file", "src/app.py", "--find", "LIMIT = 14", "--replace", "LIMIT = 15",
                 "--test-command", f"{quoted} tests/test_check.py", "--save", "cf.json")

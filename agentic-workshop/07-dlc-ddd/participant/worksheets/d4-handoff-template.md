@@ -2,7 +2,7 @@
 
 > 讀者：DDD（Domain-Driven Design，領域驅動設計）延伸課程學員。使用時機：D4（今天最後一段）檢查點 3。交接單由 Agent 依這份格式寫進 `docs/handoffs/d4-next-agent.md`，Runbook D4 頁的提示詞已附上同一份格式；你們不用自己填，只要讀 Agent 的回報、用短回覆核對。
 
-交接單（Handoff）照 Plugin 的交接格式分七段。**只引用 Registry（`domain-memory/` 裡記錄領域知識的 JSON 檔）查得到的 id**（Agent 用 `get-record` 逐一查證）；查不到的移到 Unknowns，不編 id。每一項標明是已審查（reviewed）還是候選。
+交接單（Handoff）照 Plugin 的交接格式分七段。**只引用 Registry（`domain-memory/` 裡記錄領域知識的檔案）查得到的 id**（Agent 用 `get-record` 逐一查證）；查不到的移到 Unknowns，不編 id。每一項標明是已審查（reviewed）還是候選。
 
 - **Domain facts（領域事實）**：reviewed 的 Context、詞彙與規則；D3 新增的候選（尚未審查，不可當成限制）；D3 之後已不成立、要由新候選取代的 reviewed 事實（舊 id → 新候選 id）。
 - **Forces（影響決定的考量與限制）**：哪些資料必須同時成立；外部系統失敗與重試，以及冪等鍵（重送多次也只處理一次所依據的鍵）；預留與歸還、部分取消。

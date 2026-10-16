@@ -1,7 +1,7 @@
 """Vendor the domain-memory plugin into the DLC participant tree as a deterministic ZIP.
 
 Usage:
-    py -3.13 -X utf8 scripts/vendor_dlc_plugin.py [--source <plugin dir>] [--check]
+    py -3.13 -X utf8 scripts/vendor_dlc_plugin.py --source <exported plugin dir> [--check]
 
 Writes agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-<version>.zip (top folder
 domain-memory/, runtime files only: development files and caches excluded, sorted members, fixed timestamps) and <zip>.SHA256SUMS with one
@@ -22,7 +22,6 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = Path("C:/Users/a8022/OneDrive/Desktop/SkillHub/.claude/skills/domain-memory")
 VENDOR = ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor"
 EXCLUDED_DIRS = {".pytest_cache", ".ruff_cache", "__pycache__", ".git", ".venv"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
@@ -83,7 +82,8 @@ def verify(zip_path: Path) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
+    parser.add_argument("--source", type=Path, required=True,
+                        help="plugin dir exported from a committed SkillHub version (git archive), never the working tree")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args(argv)
     name, data, sums = build(args.source)

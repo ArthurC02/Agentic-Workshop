@@ -19,6 +19,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
+ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
+          "events", "capabilities", "value-objects", "dependency-policies"]
 _VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.27.2")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
@@ -114,6 +116,20 @@ def run(args: list[str], plugin: str | None = None, check: bool = True) -> subpr
 
 def run_json(args: list[str], plugin: str | None = None):
     return json.loads(run(args, plugin).stdout)
+
+
+def registry_documents(root: str | Path = REGISTRY, plugin: str | None = None) -> dict:
+    """唯讀：Registry 每種資產的文件 {資產: 文件}。工具要讀 Registry 內容一律經這裡，不直接開檔。
+
+    Plugin 有 `export`（0.28.0 起）就用它，檔案版面改變也不受影響；0.27.2 沒有 `export`，
+    才退回讀 registry/<資產>.json（內容與 export 相同）。寫入一律經 Plugin 指令。
+    """
+    done = run(["export", "--registry-root", str(root)], plugin, check=False)
+    if done.returncode == 0:
+        return json.loads(done.stdout)
+    if "invalid choice: 'export'" not in done.stderr:
+        raise SystemExit(f"Plugin 指令失敗（exit {done.returncode}）：export\n{done.stdout}{done.stderr}")
+    return {asset: read_json(Path(root) / "registry" / f"{asset}.json") for asset in ASSETS}
 
 
 def read_json(path: str | Path):

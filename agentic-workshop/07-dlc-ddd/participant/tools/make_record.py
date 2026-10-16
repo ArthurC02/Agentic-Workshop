@@ -23,8 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
-ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
-          "events", "capabilities", "value-objects", "dependency-policies"]
+ASSETS = dmlib.ASSETS
 # Plugin 對 reviewed record 的必要欄位（registry-schema.md），review 由 apply-approved-updates 產生。
 REQUIRED = {
     "contexts": ("name", "responsibility"),

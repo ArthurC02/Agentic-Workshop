@@ -50,7 +50,7 @@ section: 參考
 | 詞彙 | 今天的用法 | 出處 |
 |---|---|---|
 | Plugin（domain-memory） | 保存共用模型的工具；指令都寫在提示詞裡，由 Agent 執行。 | `vendor/domain-memory/references/packaging.md`〈Packaging modes〉 |
-| Registry／record／`asset:id` | Registry 是共用模型的資料檔，也就是 `domain-memory/` 裡的 JSON 檔；每筆資料叫 record，引用時寫成 `asset:id`（類別:id），例如 `rules:FARE-005`。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
+| Registry／record／`asset:id` | Registry 是共用模型的資料檔，也就是 `domain-memory/` 裡的檔案；每筆資料叫 record，引用時寫成 `asset:id`（類別:id），例如 `rules:FARE-005`。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | 證據狀態：current／shifted／stale／missing／invalid | current：仍一致。shifted：引用的那幾行沒變，只是移到同一個檔案的別處，不算失敗。stale：引用的內容變了，常常只是程式改了、模型還沒跟上。missing：檔案不存在。invalid：寫法或行號不對。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 檢查指令（`validate`、`verify-*`） | `validate` 檢查模型的格式與狀態；加 `--require-reviewed` 時，還有候選就不通過。`verify-evidence`、`verify-sources` 比對原文；`verify-audit` 檢查稽核紀錄。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
 | 變更審查包（Change Package，CP） | 一次變更的審查資料：要升級哪些候選、每條規則要通過的檢查（obligation，通常是一個測試指令）與實際執行結果。例：D2 的 `CP-D2-001`。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Step 7: Prepare, verify, and review the package〉 |

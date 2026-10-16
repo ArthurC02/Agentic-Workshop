@@ -279,3 +279,7 @@ O-01新素材採十段90分鐘、Greenfield個人、Time Skip統一B0、個人�
 驗證：已實跑上述全部項目與 `release_materials.py`（RELEASE PIPELINE PASS，DLC 候選 `3e468118f398ecdd`）。未驗證：以候選包貼 Runbook 提示詞逐頁演練（rehearsal），尤其 D4 檢查點 1 的新增欄位；2026-10-15 記錄的演練缺口仍未補。
 
 Plugin 版本政策（2026-10-16 起）：一、固定一個確切的已 commit 版本，以 `git archive` 匯出後封裝，附逐檔與整包 SHA256，封裝的位元組不改。二、修正學員路徑上錯誤的 patch 版，重跑驗證（工具自檢、參考 Registry、D1 重播、`release_materials.py`）後採用；只動開發用檔案或與 DLC 無關的 patch 版可以不跟。三、minor 版（新增或改變行為）先讀 CHANGELOG 評估影響、在沙箱演練過再固定。四、排定的工作坊前 7 天凍結版本，凍結期間只接受安全性修正或會擋住學員的錯誤修正。五、每次改版都在本紀錄寫下 commit、採用理由與量測（與前一版的差異），並把版本字串與檔案數同步到所有出處（以舊版本號全文搜尋）。
+
+## domain-memory OKF 改版準備（2026-10-16）
+
+SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge Format）：Plugin 讀寫改走單一 store，新增 `export`；版面本身之後才改。DLC 仍固定 0.27.2，先做準備：`docs/planning/domain-memory-touchpoints.md` 列出 DLC 依賴 Plugin 的每個地方（指令與旗標、直接讀寫的路徑、學員看到的輸出字串、隨包的 Registry 與簽章歷史），逐項標記不受影響／需 migrate／需改寫，並寫下 OKF 上線時的步驟與風險；DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（有 `export` 就用，0.27.2 退回讀檔）；三處學員文字的「JSON 檔」改為「檔案」；新增 `scripts/check_dlc_plugin_compat.py`。實測 0.27.2 為 29 PASS，0.28.0 只有「dmlib 尚未列入 `export`」一項 CHANGED。學員路徑上唯一寫死版面的是 D2 檢查點 3 第一步與簽章流程清單，換版時一起改；參考 Registry 的 migrate commit 需要 Maintainer 私鑰，只能在保管者的電腦執行。
