@@ -19,7 +19,7 @@
 
 ## Plugin 位置
 
-依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.33.0.zip` 解壓到這裡）。
+依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-0.52.0.zip` 解壓到這裡）。
 
 ## 常用指令
 
@@ -32,7 +32,7 @@ py -3.13 -X utf8 ..\..\tools\make_record.py --asset rules --id FARE-005 --contex
   --statement "購票日至出發日至少 14 天才有 85% 提前購票資格" `
   --evidence docs/requirements/business-rules.md:29-30 --evidence src/smart_ticket/domain/discounts.py:30-31 --upsert
 ..\..\tools\dm.ps1 counterfactual --file src/smart_ticket/domain/discounts.py --find ".days >= 14" --replace ".days > 14" `
-  --test-command ".venv\Scripts\python.exe -m pytest -q tests/integration/test_advance.py" --save cf.json
+  --expect "700 == 595" --test-command "./.venv/Scripts/python.exe -m pytest -q tests/integration/test_advance.py" --save cf.json
 py -3.13 -X utf8 ..\..\tools\fill_package.py package-spec.json
 py -3.13 -X utf8 ..\..\tools\write_scm_attestation.py --package domain-memory/changes/CP-D2-001 --commit HEAD
 ```
@@ -49,17 +49,17 @@ macOS（zsh 預設不把 `#` 當註解，所以這段不放註解）：
 python3.13 -X utf8 ../../tools/doctor.py
 ../../tools/dm.sh readiness
 ../../tools/dm.sh validate
-../../tools/dm.sh counterfactual --file src/smart_ticket/domain/discounts.py --find ".days >= 14" --replace ".days > 14" --test-command '.venv/bin/python -m pytest -q tests/integration/test_advance.py' --save cf.json
+../../tools/dm.sh counterfactual --file src/smart_ticket/domain/discounts.py --find ".days >= 14" --replace ".days > 14" --expect "700 == 595" --test-command '.venv/bin/python -m pytest -q tests/integration/test_advance.py' --save cf.json
 python3.13 -X utf8 ../../tools/fill_package.py package-spec.json
 ```
 
 ## 注意
 
-- 反事實檢查 `counterfactual`（故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）的 `--test-command` 在 Windows 由 cmd.exe 執行：用 `.venv\Scripts\python.exe` 這種反斜線路徑；在 macOS 由 `/bin/sh` 執行：用 `.venv/bin/python`。路徑寫錯時會出現 `ERROR: the tests do not pass before anything is broken` 和一行亂碼（Windows 中文錯誤訊息）。只看到亂碼或 ERROR 都不算成功，**要看到 `"verdict": "killed"` 才算數**。
+- 反事實檢查 `counterfactual`（故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）的 `--test-command` 不經 shell，由 Plugin 拆字後直接執行：Windows 寫 `./.venv/Scripts/python.exe`（斜線、`./` 開頭；反斜線會被吃掉，沒有 `./` 找不到程式），macOS 寫 `.venv/bin/python`。路徑寫錯時會出現 `ERROR: … could not start`。`--expect` 是失敗輸出必須符合的斷言片段（正規表示式），不符時 verdict 是 `inconclusive`；改壞後程式無法載入也是 `inconclusive`。**要看到 `"verdict": "killed"` 才算數**，失敗輸出在 `failure_evidence`。
 - PowerShell 5.1 的 `>` 會存成 UTF-16；請用 `--save 檔案`（指令失敗時錯誤訊息仍會印在畫面上）。
 - `init-signing-key` 沒給 `--key-file` 時，`dm` 會補成 `~/.dlc-keys/<身分代號>/signing-key`；`--key-file` 落在 Repo 內（例如 PowerShell 裡寫了不會展開的 `%USERPROFILE%`）會被拒絕。
 - 證據預設只能引用 D1 確認過的來源（docs/requirements、docs/adr、src，以及 source map 列出的測試檔）；D3 新增的檔案要加 `--allow-unclassified`，只能當候選，之後無法直接升為 reviewed。
 - `analyze-boundary` 有方向：`--source-context` 填提供資料的一方（producer），例如付款提供資料給訂單時填付款；反過來查會得到 `no_registered_collaboration`。
-- `resolve-terms` 依名稱、id 或別名（synonyms）找詞彙，每筆附 `match_kind`：`name` 是用了正式名稱，`synonym` 是用了別名，`definition` 只是定義裡提到。查不到詞彙時回 `[]`，或列出以完整單字提到這句話的已審查紀錄（`match_kind: "mentioned"`、`authoritative: false`）：那只是被提到，不是定義。
+- `resolve-terms` 依名稱、id 或別名（synonyms）找詞彙，每筆附 `match_kind`：`name` 是用了正式名稱，`synonym` 是用了別名，`definition` 只是定義裡提到。查不到詞彙時回 `[]`，或列出以完整單字提到這句話的已審查紀錄（`match_kind: "mentioned"`）：那只是被提到，不是定義。
 - pre-push hook 在 PATH 上找 Python 3.10 以上（先 `python3`、再 `python`）。Windows 常只有 `py` 啟動器或 Store 捷徑，macOS 的 `python3` 可能是內建的 3.9，所以 push 前在同一次執行先啟用 `.venv`（macOS：`source .venv/bin/activate`）。
 - 金鑰放在 Repo **外**的 `%USERPROFILE%\.dlc-keys\<身分代號>\`（Git Bash／macOS：`~/.dlc-keys/<身分代號>/`；程式內為 `dmlib.key_dir()`），不要放在 Repo 內、不要放 `~/.ssh`。祕密掃描檢查 `scan-secrets` 會掃到工作目錄內（含已忽略）的私鑰；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。回顧檢查點 4 只刪除私鑰 `signing-key`，保留 `signing-key.allowed_signers`；公用電腦課後再由主持人刪除整個 `.dlc-keys` 資料夾。

@@ -3,8 +3,9 @@
   py -3.13 -X utf8 ../../tools/fill_package.py package-spec.json
 
 - 套件不存在時先執行 init-change-package；只會改寫 status 為 draft 的套件。
-- 每條驗收條件（acceptance_criteria）與規則（rules）各產生一個 obligation（OB-<id>），
-  並「實際執行」它的 test，記錄真實 exit code 與輸出 sha256；失敗就記 failed，絕不預填 passed。
+- 每條驗收條件（acceptance_criteria）與規則（rules）各產生一個 obligation（OB-<id>），check 是完整測試指令
+  （測試指令前綴 + test），並「實際執行」它，記錄真實 exit code 與輸出 sha256；失敗就記 failed，絕不預填 passed。
+  0.51 起 verify-proposal 要求測試紀錄的 evidence 就是 obligation 的 check。
 - promote 列出要升為 reviewed 的既有候選（由 get-record 取出 Registry 裡的現行內容）。
 - counterfactual.result_file 是 `dm counterfactual ... --save cf.json` 的輸出；verdict 必須是 killed 才算通過。
 - 最後執行 validate-change-package 並印出結果。
@@ -43,26 +44,25 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
-def default_test_command() -> str:
-    venv = Path(".venv/Scripts/python.exe") if os.name == "nt" else Path(".venv/bin/python")
-    if not venv.exists():
+def default_test_command(require: bool = True) -> str:
+    # 與 Plugin 相同以 shlex 拆字、不經 shell：反斜線會被吃掉，Windows 又要 ./ 開頭才找得到相對路徑的程式。
+    venv = "./.venv/Scripts/python.exe" if os.name == "nt" else ".venv/bin/python"
+    if require and not Path(venv).exists():
         raise SystemExit("找不到 .venv 的 Python；請先建立 .venv 並安裝依賴，或用 --test-command 指定。")
     return f"{venv} -m pytest -q"
 
 
-def run_test(test_command: str, target: str) -> dict:
-    """真的執行測試；回傳 exit code、輸出 sha256 與完成時間。"""
-    command = f"{test_command} {target}" if os.name == "nt" else shlex.split(test_command) + shlex.split(target)
+def run_test(check: str) -> dict:
+    """真的執行 obligation 的 check（不經 shell，與 Plugin 相同）；回傳 exit code、輸出 sha256 與完成時間。"""
     try:
-        done = subprocess.run(command, capture_output=True, env=dmlib.env())
+        done = subprocess.run(shlex.split(check), capture_output=True, env=dmlib.env())
     except OSError as error:
-        raise SystemExit(f"無法執行測試指令「{test_command}」：{error}。請確認 .venv 已建立，或用 --test-command 指定。") from None
+        raise SystemExit(f"無法執行測試指令「{check}」：{error}。請確認 .venv 已建立，或用 --test-command 指定。") from None
     return {"exit_code": done.returncode, "output_sha256": "sha256:" + hashlib.sha256(done.stdout).hexdigest(),
-            "finished_at": now(), "evidence": f"{test_command} {target}",
-            "tail": done.stdout.decode("utf-8", "replace")[-300:]}
+            "finished_at": now(), "evidence": check, "tail": done.stdout.decode("utf-8", "replace")[-300:]}
 
 
-def obligations_from(spec: dict) -> list[dict]:
+def obligations_from(spec: dict, test_command: str) -> list[dict]:
     items = [("acceptance-criterion", item) for item in spec["acceptance_criteria"]]
     items += [("rule", item) for item in spec.get("rules", [])]
     obligations = []
@@ -72,7 +72,7 @@ def obligations_from(spec: dict) -> list[dict]:
         obligations.append({"id": f"OB-{item['id']}", "source_type": source_type, "source_id": item["id"],
                             "expected_outcome": item.get("expected") or item.get("statement") or item["id"],
                             "level": item.get("level", "integration"), "status": "executed",
-                            "check": item["test"]})
+                            "check": f"{test_command} {item['test']}".strip()})
     return obligations
 
 
@@ -98,12 +98,12 @@ def counterfactual_evidence(spec: dict) -> dict | None:
     killed = result.get("verdict") == "killed"
     if not killed:
         print(f"注意：counterfactual verdict 是 {result.get('verdict')}，不是 killed，記為 failed。")
-    elif not result.get("failing_evidence"):
-        print("注意：counterfactual 沒有失敗輸出（failing_evidence 空白），verify-proposal 會拒絕；請讓測試印出斷言失敗。")
+    elif not result.get("failure_evidence"):
+        print("注意：counterfactual 沒有失敗輸出（failure_evidence 空白），verify-proposal 會拒絕；請讓測試印出斷言失敗。")
     return {"status": "passed" if killed else "failed", "obligation_id": config["obligation_id"],
             "mutated_protection": f"{result.get('file')}:{result.get('line')} "
                                   f"{mutated.get('from')} -> {mutated.get('to')}",
-            "failure_evidence": (result.get("failing_evidence") or "")[-600:],
+            "failure_evidence": (result.get("failure_evidence") or "")[-600:],
             "restored": bool((result.get("restoration_result") or {}).get("restored"))}
 
 
@@ -123,7 +123,7 @@ def fill(spec: dict, test_command: str, plugin: str | None = None, run_tests: bo
     req_id, prop_id = spec["requirement_id"], spec["proposal_id"]
     flags = spec.get("risk_flags", [])
     sources = spec.get("sources", [])
-    obligations = obligations_from(spec)
+    obligations = obligations_from(spec, test_command)
     updates = promoted_updates(spec, plugin)
     rule_ids = [item["id"] for item in spec.get("rules", [])]
     contexts = spec.get("affected_contexts") or sorted(
@@ -160,7 +160,7 @@ def fill(spec: dict, test_command: str, plugin: str | None = None, run_tests: bo
     results = []
     if run_tests:
         for obligation in obligations:
-            outcome = run_test(test_command, obligation["check"])
+            outcome = run_test(obligation["check"])
             status = "passed" if outcome["exit_code"] == 0 else "failed"
             print(f"  {obligation['id']}: {status}（exit {outcome['exit_code']}）{obligation['check']}")
             if status == "failed":
@@ -181,12 +181,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="建立並填寫 Change Package，測試結果來自實際執行。",
                                      epilog=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("spec", help="精簡描述 JSON 檔")
-    parser.add_argument("--test-command", help=r"測試指令前綴；預設 .venv\Scripts\python.exe -m pytest -q")
+    parser.add_argument("--test-command", help="測試指令前綴；預設 ./.venv/Scripts/python.exe -m pytest -q（macOS：.venv/bin/python）")
     parser.add_argument("--no-run", action="store_true", help="只填文件、不執行測試（test_results 留空）")
     parser.add_argument("--plugin", help="Plugin 資料夾（預設 DOMAIN_MEMORY_PLUGIN 或 vendor/domain-memory）")
     args = parser.parse_args(argv)
     spec = dmlib.read_json(args.spec)
-    test_command = args.test_command or ("" if args.no_run else default_test_command())
+    test_command = args.test_command or default_test_command(require=not args.no_run)
     results = fill(spec, test_command, args.plugin, not args.no_run)
     check = dmlib.run(["validate-change-package", "--package-root", spec["package"]], args.plugin, check=False)
     print(check.stdout.strip(), check.stderr.strip())

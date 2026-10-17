@@ -140,6 +140,7 @@
     <p><b>說（19:00／第 89 分）</b>：「第 89 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3a-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
+    <p><b>加深一層（不變量）</b>：候選清單把同一個測試守住的規則排在一起。這幾條通常是同一個不變量的不同面向，該同屬一個 Context；分在兩個 Context 就問「那個測試要歸誰？」。之後送審時這個測試只記一次，其他規則列在 also_covers。</p>
     <p><b>重構不是模型變更</b>：Agent 登記前逐項問名詞、負責的 Context、不變量或規則、邊界、事件或對外約定有沒有變；只搬移程式的部分不登記。</p>
   </aside>
 </section>

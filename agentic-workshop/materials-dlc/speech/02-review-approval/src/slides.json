@@ -79,7 +79,7 @@
     "prompt": "先不要修改任何檔案。請針對這條規則，提 2 個「故意改壞」的方案：改哪個檔案的哪幾行、改成什麼、預期哪個測試會失敗。不要替我選，列完停下。我選好後再跑，回報實際字樣是 killed 還是 survived。",
     "cards": [["killed", "測試失敗了：這條規則有測試守著。"], ["survived", "測試仍通過：規則沒人守，或測試太弱。"]],
     "check": "你選的改法，改到的是規則本身，還是無關的字串？",
-    "notes": "19–21.5 分鐘。這是變異測試（mutation testing）的手動小版本：工具會自動產生大量小改動，看測試殺掉幾個。Thoughtworks Technology Radar Vol. 34（2026-04）在〈Feedback sensors for coding agents〉稱變異測試是評估測試抓錯能力「the most honest signal」，也提醒 AI 產生的測試可能永遠是綠的。為什麼人選改法：Agent 容易挑最好抓的改法。指令沒報錯不等於 killed，要看實際字樣。第 03 場會加深：每條新規則各改壞一次。📖 延伸閱讀：〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）。"
+    "notes": "19–21.5 分鐘。這是變異測試（mutation testing）的手動小版本：工具會自動產生大量小改動，看測試殺掉幾個。Thoughtworks Technology Radar Vol. 34（2026-04）在〈Feedback sensors for coding agents〉稱變異測試是評估測試抓錯能力「the most honest signal」，也提醒 AI 產生的測試可能永遠是綠的。為什麼人選改法：Agent 容易挑最好抓的改法。指令沒報錯不等於 killed，要看實際字樣；也要因為對的原因失敗：先寫下預期看到哪個斷言失敗，測試因別的錯（例如程式根本載入不了）而失敗不算證明，本 DLC 的工具會把這種結果標成 inconclusive。第 03 場會加深：每條新規則各改壞一次。📖 延伸閱讀：〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）。"
   },
   {
     "id": "record", "chapter": "留下紀錄", "title": "核准紀錄：誰、何時、核准哪一份",

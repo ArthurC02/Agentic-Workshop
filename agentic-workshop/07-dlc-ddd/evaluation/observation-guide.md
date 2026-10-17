@@ -22,7 +22,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 80 files`、`"version": "0.33.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 81 files`、`"version": "0.52.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
 | O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
@@ -49,7 +49,7 @@
 |---|---|---|
 | O1 | H | 兩個 Agent 對話分清：`record-approval`、簽章 commit、push 只出現在 Maintainer 自己的 Agent 對話；proposer 的 Agent 沒碰 `.dlc-keys`、沒 commit（三人組由 Observer 看） |
 | O2 | H | Maintainer 回「核准」前讀過 Agent 貼出的證據原文與測試結果，說得出一行證據支持哪條規則；不是 Agent 一停就回核准 |
-| O3 | E | counterfactual 方案由 proposer 選定，結果只認 `killed`；Change Package 的測試結果來自實際執行（`fill_package.py`），沒有預填 PASS |
+| O3 | E | counterfactual 方案由 proposer 選定，連同改壞後該看到的斷言（`--expect`）；結果只認 `killed`，`inconclusive` 不當成通過；Change Package 的測試結果來自實際執行（`fill_package.py`），沒有預填 PASS |
 | O4 | E | `notes/d2.md` 有 Agent 寫下的 readiness `ready`、obligation 結果、審查摘要與核准決定、簽章行；私鑰不在 Repo、不在截圖、不貼給 Agent |
 | O5 | H | 能說出「`record-approval` 只比字串，真正擋得住的是簽章；Agent 不能替自己的提案核准」 |
 | O6 | E | Maintainer 自己打開要核准的那份紀錄檔讀過；套用後 Agent 回報的 `verified`（誰、何時核准）有 maintainer@example.com；`cp-d2.json` 的 `open_questions` 放了 D1 的缺口 |
@@ -106,7 +106,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 與 `shifted` 被列成 asset:id 並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修 |
+| D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 與 `shifted` 被列成 asset:id 並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修；stale 的規則重跑過 `proven_by` 的測試，學員說得出「測試還通過」和「行為沒變」不完全相同 |
 | D2 | H | Agent 先列更新清單，學員回覆後才登記；只更新真的改變的事實，而且是候選（reviewed 以新 id 候選取代）；說得出哪些只是重構（搬移程式、意思沒變），所以不登記 |
 | D3 | E | 交接單七段齊全，Domain facts 第一行有模型版本（已審查模型的 commit，`export --commit` 讀得到），Agent 回報的 id 核對清單全部查得到；commit 由 Maintainer 自己的 Agent 對話執行；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
 
@@ -119,7 +119,7 @@
 | R1 | E | `notes/retro.md` 有「reviewed 事實改變了 Agent 輸出」的具體例子與證據，或誠實寫「未觀察」；學員有抽問 Agent「證據在哪？」 |
 | R2 | E | 能指出一個差點被當成事實的候選 |
 | R3 | H | 口頭討論時能區分 `record-approval`（字串比對）與簽章（持鑰）的治理強度 |
-| R4 | E | `compare-registry` 以 git log 最上面（最新）一個訊息含「套用」的 commit 為基準答案：學員讀了 missed 與 extra 清單，不只念分數；說得出 extra 是下一次核准要審的候選 |
+| R4 | E | `compare-registry` 以 git log 最上面（最新）一個訊息含「套用」的 commit 為基準答案：學員讀了 missed 與 extra 清單，不只念分數；說得出 extra 是下一次核准要審的候選，也說得出 `overall` 1.0 多半來自照抄的配對（看 `overall_independent`） |
 
 介入訊號：Agent 的回顧寫了紀錄裡沒有的事 →「這句的證據在哪？沒有就請它改成未觀察」；討論停在「很有用」→「哪一個 commit 或哪一段紀錄看得出來？」
 

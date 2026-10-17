@@ -76,20 +76,20 @@ Agent 翻紀錄找證據，你們判斷證據站不站得住；記得的和紀�
 再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 最上面（最新）一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號，依終端機選一行：
 PowerShell：..\..\tools\dm.ps1 compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ..\..\tmp\retro-compare.json
 Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
-讀存下的結果，用白話回報：overall 的 precision 與 recall；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
+讀存下的結果，用白話回報：overall 的 precision 與 recall；copied_matches 與 overall_independent（引用和基準答案一字不差的配對標 copied_evidence，是核准後沒動過的紀錄，不算 Agent 自己的成果；overall_independent 把它們排除後才是誠實的分數）；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
 最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不要修改任何檔案，列完停下。
 # macos
 請依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每一步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
 再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 最上面（最新）一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號：
 ../../tools/dm.sh compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
-讀存下的結果，用白話回報：overall 的 precision 與 recall；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
+讀存下的結果，用白話回報：overall 的 precision 與 recall；copied_matches 與 overall_independent（引用和基準答案一字不差的配對標 copied_evidence，是核准後沒動過的紀錄，不算 Agent 自己的成果；overall_independent 把它們排除後才是誠實的分數）；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
 最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不要修改任何檔案，列完停下。
 ```
 
 ③ 確認結果
 
 ```text
-請只檢查你剛才列的清單，不要修改任何檔案：每一步都有證據（查不到的寫明「紀錄中沒有」也算），也都有「一個人能不能自己完成」的判斷；比對結果有 precision、recall 與每個類別的 missed、extra（沒有就寫「無」）；最後有一句還缺什麼。全部符合只回「成功」，否則只回「失敗：」加一句原因。
+請只檢查你剛才列的清單，不要修改任何檔案：每一步都有證據（查不到的寫明「紀錄中沒有」也算），也都有「一個人能不能自己完成」的判斷；比對結果有 precision、recall、overall_independent 與照抄的配對數，以及每個類別的 missed、extra（沒有就寫「無」）；最後有一句還缺什麼。全部符合只回「成功」，否則只回「失敗：」加一句原因。
 ```
 
 失敗時：
@@ -114,6 +114,7 @@ Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-c
 **拿人審查過的版本當基準答案，量 Agent 的輸出：多了什麼、漏了什麼。**
 - precision：Agent 寫的有多少在基準答案裡；recall：基準答案有多少被 Agent 寫到。
 - 分數只比結構：名稱對上但意思寫錯也算配對，一定要讀 missed 與 extra 清單。
+- 引用和基準答案一字不差的配對（`copied_evidence`）是照抄來的，不算 Agent 的本事；看排除它們的 `overall_independent`。
 - 回到自己的專案：先人工審查一小份模型當基準，再讓 Agent 擷取同一份程式，比一次就知道它哪裡不可靠。
 
 📖 延伸閱讀：Anthropic Engineering〈Demystifying evals for AI agents〉（2026）；Google Machine Learning Crash Course〈Classification: Accuracy, recall, precision, and related metrics〉。

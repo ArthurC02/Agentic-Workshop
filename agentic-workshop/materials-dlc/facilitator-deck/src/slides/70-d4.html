@@ -43,13 +43,14 @@
   <p class="cp-why"><b>為什麼</b>D3 改過程式；模型落後的地方只記下，不當場修</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「驗證三項」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「驗證與重跑測試」</b><span>Runbook『D4 交接』› 檢查點 1</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 158 分前完成</b><span>→ 下一步：檢查點 2 把改變的規則寫回模型</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 改了程式，模型引用的原文可能只是移動，也可能內容變了。只是移動的不算問題；內容變了，代表模型落後程式：記下來交給下一次核准，不要叫 Agent 當場修。」</p>
     <p><b>背景</b>：Agent 回報裡，只是移動的叫 shifted，內容變了的叫 stale（過期）；兩種都是預期的。</p>
+    <p><b>加深一層（D2 的「證明它的測試」）</b>：stale 的規則，Agent 用 get-record --changes-root 找出 proven_by 的測試再跑一次。還通過，行為多半沒變；失敗或沒有測試，模型才真的落後。D3c Recovery 實測 5 條 stale 規則都找得到測試、都通過。</p>
     <p><b>看</b>：學員是否讀了 Agent 的回報；stale 與 shifted 是否列成 asset:id 清單（清單只列 asset:id（檔案），行號不必列；數量以引用計，清單以 asset:id 合併，每張清單裡同一個 id 只列一次）；Agent 有沒有自己寫腳本或動手修。verify-sources 的 discovered_but_gone 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 []。</p>
     <p><b>介入訊號</b>：Agent 開始改檔 → 請學員貼「停下，只回報，不要修改」；stale 被略過 →「下一個 Agent 會把哪一筆當成限制？」</p>
   </aside>

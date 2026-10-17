@@ -7,7 +7,8 @@ from pathlib import Path
 # Usage (from anywhere):
 #   py -3.13 -X utf8 evidence/run_counterfactuals.py <path-to-venv-python.exe> <path-to-domain-memory/scripts/registry_tools.py> [case ...]
 # Optional case names run only those cases (default: all).
-# Paths passed to cmd.exe must be absolute Windows paths (see the spike report's Windows pitfalls).
+# The plugin splits --test-command with shlex and runs it without a shell (0.34+): quote the interpreter path,
+# write every other path with forward slashes (an unquoted backslash is dropped).
 PY, TOOL = (str(Path(arg).resolve()) for arg in sys.argv[1:3])
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "evidence" / "counterfactual"
@@ -15,7 +16,7 @@ DOMAIN = r"src\smart_ticket\domain\invoicing.py"
 ADAPTER = r"src\smart_ticket\infrastructure\einvoice_provider.py"
 SERVICE = r"src\smart_ticket\application\invoicing_service.py"
 PAYMENT = r"src\smart_ticket\application\payment_service.py"
-T = r"tests\integration\test_e_invoice.py"
+T = "tests/integration/test_e_invoice.py"
 
 def test(k):
     return f'"{PY}" -X utf8 -m pytest -q -p no:cacheprovider {T} -k "{k}"'

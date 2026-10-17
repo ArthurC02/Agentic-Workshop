@@ -1642,5 +1642,54 @@
   "compare_registry": "D1 replay vs reference snapshot: P/R/F1 1.0 on all assets; d3a solution vs --gold-commit dlc-d2-reviewed: precision 0.851, recall 1.0, 10 extras (the D3a candidates)",
   "change_coupling": "starter repo: 1 commit, skipped (>30 files), no pairs; d3c recovery with thresholds lowered: only layer folders (api/application/domain/infrastructure) coupled at degree 100",
   "same_results_as": "0.27.2 (citation counts); audit +1 event per Registry"
+ },
+ "plugin_0_52_0_remeasure": {
+  "date": "2026-10-17",
+  "plugin": "domain-memory 0.52.0 (SkillHub ed3edd700, exported with git archive)",
+  "vendor_zip_sha256": "02df4401c23e41419f9491115998411df79feb94594960d0020292145039436a",
+  "plugin_files": 80,
+  "sha_ok_line": "SHA OK 81 files",
+  "compat_before": "24 PASS, 5 CHANGED (dmlib sets: harvest-candidates, change-coupling optional registry root; tools self-test: verify-proposal evidence != check; QUOTED failing_evidence, authoritative)",
+  "compat_after": "29 PASS, 0 CHANGED (vendored ZIP)",
+  "tools_self_test": "7 tests OK",
+  "counterfactual_windows_test_command": "./.venv/Scripts/python.exe (backslash dropped by shlex; .venv/Scripts/python.exe without ./ fails WinError 2)",
+  "recovery": {
+   "d1": [
+    162,
+    0,
+    0
+   ],
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "d2_takeover_push_lines": 8,
+   "bundles_unchanged": true
+  },
+  "reference_solution_counterfactuals": {
+   "d3a": "25/25 killed",
+   "d3b": "23/24 killed",
+   "d3c": "37/38 killed",
+   "inconclusive": 0
+  },
+  "proven_by_d3c_stale_rules": "5/5 have proven_by, all re-run passed",
+  "compare_registry": "d3c recovery vs fc9efe2: overall 1.0, copied_matches 52, overall_independent 5/5; d3a recovery + 3 candidates: overall precision 0.95, overall_independent precision 0.625",
+  "registry_migration": "none (OKF unchanged; no signing)"
  }
 }

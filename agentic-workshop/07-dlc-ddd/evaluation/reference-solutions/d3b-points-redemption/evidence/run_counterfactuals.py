@@ -6,7 +6,8 @@ from pathlib import Path
 
 # Usage (from anywhere):
 #   py -3.13 -X utf8 evidence/run_counterfactuals.py <path-to-venv-python.exe> <path-to-domain-memory/scripts/registry_tools.py>
-# Paths passed to cmd.exe must be absolute Windows paths (see the spike report's Windows pitfalls).
+# The plugin splits --test-command with shlex and runs it without a shell (0.34+): quote the interpreter path,
+# write every other path with forward slashes (an unquoted backslash is dropped).
 PY, TOOL = (str(Path(arg).resolve()) for arg in sys.argv[1:3])
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "evidence" / "counterfactual"
@@ -17,7 +18,7 @@ BOOKING_SVC = r"src\smart_ticket\application\booking_service.py"
 PAYMENT_SVC = r"src\smart_ticket\application\payment_service.py"
 REFUND_SVC = r"src\smart_ticket\application\refund_service.py"
 CHANGE_SVC = r"src\smart_ticket\application\change_booking_service.py"
-T = r"tests\integration\test_points_redemption.py"
+T = "tests/integration/test_points_redemption.py"
 NL = "\r\n"   # the application files use CRLF; members.py uses LF
 
 def test(k):

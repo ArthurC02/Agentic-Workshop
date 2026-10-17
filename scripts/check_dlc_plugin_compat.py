@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.33.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.52.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -43,8 +43,8 @@ LEARNER_COMMANDS = {
                            "--review-mode", "--source-authority"],
     "confirm-sources": ["--confirmed-by"], "cite": ["--path", "--start", "--end"],
     "upsert-candidate": ["--asset", "--record-file"], "resolve-terms": ["--query"], "get-context": ["--id"],
-    "get-record": ["--asset", "--id"], "analyze-boundary": ["--source-context", "--target-context"],
-    "counterfactual": ["--file", "--find", "--replace", "--test-command"],
+    "get-record": ["--asset", "--id", "--changes-root"], "analyze-boundary": ["--source-context", "--target-context"],
+    "counterfactual": ["--file", "--find", "--replace", "--test-command", "--expect"],
     "init-change-package": ["--output"], "validate-change-package": ["--package-root"],
     "submit-proposal": ["--package-root"], "record-approval": ["--package-root", "--role", "--reviewer", "--scope"],
     "verify-proposal": ["--package-root"], "finalize-proposal": ["--package-root"],
@@ -52,18 +52,20 @@ LEARNER_COMMANDS = {
                                                                        "--sign-every-commit"],
     "amend-policy": ["--field", "--value", "--reason", "--verifier"], "install-git-hitl-hook": [],
     "governance-readiness": [], "verify-git-governance": ["--commit"], "verify-audit": [], "scan-secrets": [],
+    "export": ["--commit"], "compare-registry": ["--gold-root", "--gold-commit", "--candidate-root"],
 }
 # Plugin output the learner-facing text quotes or a ③ check waits for (inventory section 3).
 QUOTED = [
     "Registry is valid.", "Change package is valid.", "Proposal submitted for human review.",
     "Proposal test evidence verified.", "Git governance is valid.", "That is reach, not an error.",
     "the tests do not pass before anything is broken", "Git commit signature is invalid", "not reviewed",
-    '"status": "ready"', '"blocks": []', '"status": "valid"', "verdict", "killed", "survived", "failing_evidence",
-    "restoration_result", "restored", "match_kind", "mentioned", "authoritative", "no_registered_collaboration",
+    '"status": "ready"', '"blocks": []', '"status": "valid"', "verdict", "killed", "survived", "inconclusive", "failure_evidence",
+    "restoration_result", "restored", "matching --expect", "match_kind", "mentioned", "no_registered_collaboration",
     "current", "shifted", "stale", "discovered_but_gone", "developer-confirmed", "content_changed",
     "changed_sources", "confirmed_absences", "source_kind", "unclassified", "authorized_signers",
     "review_governance", "review_mode", "scm-verified", "git-signed-commit", "git-push", "fingerprint",
     '"state": "brownfield"', '"tool": "pytest"', '"confidence": "high"', "not_applicable",
+    "proven_by", "also_covers", "copied_evidence", "copied_matches", "overall_independent",
 ]
 ATTESTED = ["5538b6dbcba9e5c4468ceddec72b75b231f9688d", "38116f248f78befa51abac56405349301a5623c7"]
 REGISTRY_COMMITS = 7  # six JSON-era commits + the signed OKF migration (0.33.0)

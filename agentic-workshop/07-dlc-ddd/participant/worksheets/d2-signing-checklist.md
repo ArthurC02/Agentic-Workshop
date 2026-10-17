@@ -9,7 +9,7 @@
 3. **夥伴**：`amend-policy review_trigger git-push`。再決定何時檢查：每次 push 時。
 4. **夥伴**：`amend-policy review_mode scm-verified --verifier git-signed-commit`。最後才把審查模式從「只能存候選（local-draft-only）」改成「核准要有 Git 簽章（scm-verified）」。
 5. **夥伴**：`install-git-hitl-hook`（HITL＝Human-in-the-loop，人工把關；pre-push hook 是 push 前 Git 自動執行的檢查腳本），`governance-readiness` 回報 `ready` 才往下。
-6. **提案者**：反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）→ `fill_package.py` → `submit-proposal`。變更審查包（Change Package）放在 `domain-memory/changes/<id>/`，不會動到已審查的內容。
+6. **提案者**：反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；失敗輸出符合事先寫下的斷言 `--expect` 才顯示 killed）→ `fill_package.py` → `submit-proposal`。變更審查包（Change Package）放在 `domain-memory/changes/<id>/`，不會動到已審查的內容。
 7. **夥伴**：讀過審查包、回「核准」後，`record-approval` → `verify-proposal`。提案者不得核准自己的提案。
 8. **夥伴**：簽章 commit → `write_scm_attestation.py` → `verify-git-governance`。`write_scm_attestation.py` 把簽章 commit 寫成核准證明（attestation）；這份證據指向 Git 裡的簽章 commit，不靠 Plugin 自己的紀錄也能驗證。
 9. **提案者**：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`。只有核准且有簽章證據的提案能套用；套用後每筆事實帶 `verified`（誰、何時核准）。

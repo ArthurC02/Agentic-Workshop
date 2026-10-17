@@ -351,3 +351,38 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 - 根因：Plugin 寫入 Registry 時在 `domain-memory/` 下建 `.domain-registry-stage-<32 碼>/registry/<asset>/<id>.md`（Repo 根目錄之後約 125 字元，Plugin 位元組不改）；學員包又多包了 `agentic-workshop/07-dlc-ddd/participant/` 40 字元。深層基準 `C:\tmp\pl\OneDrive - Contoso Workshop\Desktop\some folder\Downloads\`（67 字元，比 `C:\Users\<名>\OneDrive - <公司>\Desktop\` 還深）加「全部解壓縮」預設的 `participant-dlc-open\`：最長路徑 286（.venv 的 pip 檔 266），超過 Windows 260 上限。
 - 修正：`participant-dlc-open` 以 `destination_root` `"to": ""` 打包，ZIP 根目錄就是 `repository/`、`tools/`、`vendor/`（`..\..\tools` 相對位置不變）；同一基準最長 246（.venv 226）。Recovery 改解到學員包裡的 `recovery-<段>`（相對路徑，兩個 OS 一樣），D2 範本解到 `pkg-d2`。下載 id、解鎖碼、表單 id、include 路徑不變；D2–D4 範本包與 Recovery 包結構不變。
 - 驗證（Windows，本機 LongPathsEnabled=1，所以以稽核鉤子量測每個被開啟／建立的路徑長度，而非等它報錯）：深層基準下 D1 環境（76 passed、SHA OK 80 files）、init／confirm／make_record／validate／verify-evidence；D2 Recovery 三步（簽章接手、`Git governance is valid.`、76 passed 1 warning、`Registry is valid.`、verify-audit valid、verify-evidence 全 current）；D3a Recovery 的 bash 解壓與歷史還原。macOS 靜態檢查（封存工具程式解開多項目 ZIP 會包 `participant-dlc-open/`，與 Windows 預設同一路徑）。
+
+## domain-memory 升級 0.52.0（2026-10-17）
+
+由 0.33.0 升級，現固定 0.52.0（SkillHub `ed3edd700`，以 `git archive` 匯出；沒有使用 SkillHub 工作區）。0.34–0.52 有 minor 版，依版本政策第三條先讀 CHANGELOG、跑相容性檢查、在沙箱演練再固定。Registry 版面（OKF）沒有再改：參考 Registry、bundle、tag `dlc-d2-reviewed`、`REGISTRY_COMMITS` = 7、參考解答的 `domain-memory/` 都不動，不需要 Maintainer 金鑰或簽章 commit。DLC 主軸仍是 Agentic DDD：新概念只放在能讓 DDD 判斷更清楚的地方，每個檢查點最多一個，指令名稱只出現在提示詞、④ 與備註。
+
+相容性檢查（`check_dlc_plugin_compat.py --source <0.52.0 匯出>`，修改前）：24 PASS、5 CHANGED。dmlib 三組集合（新 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`）；tools 自檢失敗（`verify-proposal` 拒絕 evidence 不等於 obligation 的 check）；`QUOTED` 少 `failing_evidence`、`authoritative`。修正後以封裝的 ZIP 重跑：29 PASS、0 CHANGED。
+
+會壞的地方與修法：
+- 0.34 `counterfactual` 不經 shell、以 shlex 拆字：`.venv\Scripts\python.exe` 的反斜線被吃掉。實測 `.venv/Scripts/python.exe` 在 Windows 也失敗（`[WinError 2]`：CreateProcess 只把 `./` 開頭的相對路徑當成路徑），`./.venv/Scripts/python.exe` 才行，所以 Runbook 20／30／40／50 的 Windows `--test-command`、D3 工作規則第 2 條、tools README、主持指南常見問題第 2 條都改成 `./.venv/Scripts/python.exe`（PowerShell 與 Git Bash 相同；macOS 仍是 `.venv/bin/python`）。參考解答的 `run_counterfactuals.py` 把測試路徑改成斜線（直譯器路徑本來就加引號）。計畫原本寫 make_recovery 與 Recovery 頁有 `--test-command`，查證後沒有，不用改。
+- 新 verdict `inconclusive`（逾時、改壞後無法載入、失敗不符 `--expect`）：D2 提示詞與小卡、D3 工作規則第 11 條、詞彙表、主持指南說明。
+- 0.45 `failing_evidence` 改名 `failure_evidence`：`fill_package.py` 改讀新鍵；Runbook、詞彙表、簡報備註、主持指南改名；三份 SOLUTION-NOTES 註明 `evidence/counterfactual/*.json` 是 0.33.0 存檔、保留舊鍵。
+- 0.51 `verify-proposal` 要求測試紀錄的 `evidence` 等於 obligation 的 `check`：`fill_package.py` 的 `check` 改為完整測試指令（前綴＋測試路徑），也以 shlex、不經 shell 執行（與 Plugin 相同），預設前綴 Windows `./.venv/Scripts/python.exe -m pytest -q`。`test_tools.py` 不用改（它傳加引號的絕對路徑），修正後 7 tests OK。
+- 0.52 `resolve-terms` 移除 `authoritative`：D3a 兩個分頁與 tools README 刪掉；`QUOTED` 同步。
+- 0.35–0.38 `compare-registry` 加 `overall_independent`、`copied_matches`、`copied_evidence`：回顧檢查點 2 的基準與候選是同一個 Registry 的兩個版本，核准後沒動過的紀錄全部標 `copied_evidence`，`overall` 1.0 幾乎全靠它們，提示詞與 ③ 改為也回報 `overall_independent`。
+
+新概念與位置（每個都綁一個 DDD 判斷）：
+- `proven_by`（規則有多可信，看證明它的測試）：D2 檢查點 6 新概念小卡，`get-record --changes-root domain-memory/changes` 回報 `verified` 與 `proven_by`；D4 檢查點 1 加深：stale 的規則重跑 `proven_by` 的測試，通過＝行為多半沒變，失敗或沒有測試＝模型真的落後（併進原本的加深小卡，① 仍 3 句）。
+- `counterfactual --expect`（因為對的原因 killed）：D2 檢查點 3，併進原本的「反事實檢查」技巧小卡（不新增小卡）；方案多一欄「改壞後該看到的斷言」，範例 `--expect "700 == 595"`。D3 不加 `--expect`，仍由 Agent 看 `failure_evidence`。
+- `also_covers`（一個測試守住幾條規則）：D3a 檢查點 5，候選清單把同一個測試守住的規則排在一起，④ 新增「新概念・加深一層：一個測試守住幾條規則」（加深不變量；D3a 已有 3 個新概念，所以用加深）；詞彙表「一致性邊界」補一句。
+- 誠實的評估排除照抄的證據：回顧檢查點 2，併進原本的 eval 小卡；詞彙表 eval 列補一句。
+- `change-coupling` 的 `explained_by`：查證後**不放進學員路徑**。D1 只有起始 commit；D3c Recovery 歷史上 D3 每段只有一個大 commit（被略過），把門檻放到最低也只有分層資料夾互相耦合，`explained_by` 對不上 Context，說不出東西。只在 D1 簡報備註與主持指南補一句 `explained_by` 的意思。
+- Speech 只改備註：02 場反事實「要因為對的原因失敗」、04 場 eval「照抄的配對要排除」。
+
+機械：`domain-memory-0.52.0.zip`（80 個 Plugin 檔案；學員核對印出 `SHA OK 81 files`；ZIP SHA256 `02df4401…39436a`），刪除 0.33.0 的 ZIP 與 SHA256SUMS；版本字串同步到 dmlib（三組集合與 `cli_parser` 一致）、doctor、build_delivery_dlc（含測試）、check_dlc_plugin_compat（`QUOTED` 49 個、學員旗標加 `--expect`、`--changes-root`、`export --commit`、`compare-registry`）、tools／DLC README、materials-dlc README、01-environment、開場投影片、主持指南（含「73 個檔案＝74 行」舊數字）、觀察指引、11 號指令書、course-authoring Skill。主持指南常見問題第 18 條「實測 0.33.0」是當時的量測，保留。
+
+量測（0.52.0，Windows）：
+- 工具自檢：7 tests OK，約 19 秒。
+- Recovery：`make_recovery.py d1 d2 d3a d3b d3c` 重跑，d2–d3c 的 `repo.bundle` 與樹位元組不變（可重現），d1 只有 Plugin 時間戳變；current／shifted／stale：d1 162／0／0、d2 162／0／0、d3a 147／12／3、d3b 108／32／22、d3c 99／31／32（與 0.33.0 相同）。
+- 參考解答反事實（`run_counterfactuals.py`，暫存複本）：d3a 25／25、d3b 23／24、d3c 37／38 killed，存活的都是已記錄的等價或測試不足那一個，沒有 `inconclusive`。
+- D2 範例反事實：`--expect "700 == 595"` → killed、reason `the tests failed with output matching --expect 700 == 595`；`--expect "== 640"` → inconclusive；改成語法錯誤 → inconclusive；`--expect FAIL` 被拒。
+- D3c Recovery：5 條 stale 規則都有 `proven_by`（CP-CORE-001 的測試路徑），重跑都通過；`compare-registry` 對 `fc9efe2`：overall 1.0、`copied_matches` 52、`overall_independent` 5／5；D3a Recovery 加 3 筆候選後 overall precision 0.95、`overall_independent` precision 0.625。
+
+演練（Windows，沙箱 `C:\tmp\dm52`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包；沙箱產物：`py -3.13` 以 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`）：開場檢查點 1–4（76 passed、`SHA OK 81 files`、`"version": "0.52.0"`、brownfield／high、pytest）；D1 檢查點 2–4（PowerShell：11 筆候選、`Registry is valid.`、32 current）；D2 檢查點 1–6（PowerShell；反事實 PowerShell 與 Git Bash 都 killed；`fill_package.py` 的 check 與 evidence 都是 `./.venv/Scripts/python.exe -m pytest -q …`；`Proposal test evidence verified.`；`Git governance is valid.`；`proven_by` 列出 OB-FARE-005；push hook 兩行、`[new branch]`）；D2 Recovery（Git Bash 步驟 1、PowerShell 步驟 2–3；76 passed 1 warning；162 current；push hook 八行）；D3a 檢查點 4 一條反事實（PowerShell，killed）與檢查點 5（同一個測試守住兩條候選規則，`make_record --allow-unclassified`、`Registry is valid.`、夥伴簽章 commit）；D4 檢查點 1（PowerShell，含 `proven_by` 重跑）；回顧檢查點 2（PowerShell 與 Git Bash）。macOS 只做靜態檢查。
+
+未驗證：macOS 實機；Agent 在真實對話中會不會為自訂方案寫出好的 `--expect`；D3b／D3c 檢查點 4 的新 `--test-command` 只以參考解答腳本間接驗證。
