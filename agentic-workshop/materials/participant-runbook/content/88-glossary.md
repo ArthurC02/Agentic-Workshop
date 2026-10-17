@@ -57,5 +57,5 @@ section: 參考
 | APPROVE／APPROVE WITH CONDITIONS／REJECT | 核准／附條件核准（條件解除後才可續行）／拒絕；REJECT AND REVISE 是退回修正。 | 本課程〈B3 人員核准 Gate〉 |
 | Work Order（工作單） | 交給 Agent 的整件任務說明：範圍、禁止事項、停止條件與回報格式；B3 存成 `skills/b3-work-order.md`。 | 本課程〈Digital Worker Work Order〉 |
 | Escalation（升級處理） | Agent 遇到停止條件時停下，附證據與選項，交給人決定。 | 本課程〈Digital Worker Work Order〉 |
-| Atomicity／Compensation | Atomicity：一組動作要嘛全部完成、要嘛全部不做。Compensation：失敗時把已做的部分還原，例如團體付款失敗就釋放全部座位。 | 本課程〈B3 任務卡 TASK-B3-001〉 |
-| Level（完成等級） | Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付；依證據擇一，不自動選 Level 3。 | 本課程〈B3 任務卡 TASK-B3-001〉 |
+| Atomicity／Compensation | Atomicity：一組動作要嘛全部完成、要嘛全部不做。Compensation：失敗時把已做的部分還原，例如團體付款失敗就釋放全部座位。 | 本課程〈TASK-B3-001：新增團體訂票能力〉 |
+| Level（完成等級） | Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付；依證據擇一，不自動選 Level 3。 | 本課程〈TASK-B3-001：新增團體訂票能力〉 |

@@ -359,11 +359,11 @@ class SchemeBTests(unittest.TestCase):
 
 class LinkResolutionTests(unittest.TestCase):
     def setUp(self):
-        includes = {"b3-task-card": ["participant-63-b3-governance.zip:agentic-workshop/03-brownfield/participant/"
-                                     "task-cards/03-b3-group-booking.md"],
+        includes = {"b3": ["participant-63-b3-governance.zip:agentic-workshop/03-brownfield/participant/"
+                           "task-cards/03-b3-group-booking.md"],
                     "b3-exception-card": ["participant-63-b3-governance.zip:agentic-workshop/04-digital-worker/"
                                           "participant/06-exception-response-card.md"]}
-        self.r = bm.LinkResolver(["welcome", "b3", "b3-task-card", "b3-exception-card"], includes)
+        self.r = bm.LinkResolver(["welcome", "b3", "b3-exception-card"], includes)
 
     def test_page_anchor(self):
         self.assertEqual(self.r.resolve("welcome", "#b3"), "#p-b3")
@@ -380,8 +380,8 @@ class LinkResolutionTests(unittest.TestCase):
 
     def test_relative_md_by_basename(self):
         href = "../../03-brownfield/participant/task-cards/03-b3-group-booking.md#scope"
-        self.assertEqual(self.r.resolve("b3-exception-card", href, "x.zip:y.md"), "#p-b3-task-card")
-        self.assertEqual(self.r.resolve("b3-task-card", "03-b3-group-booking.md"), "#p-b3-task-card")
+        self.assertEqual(self.r.resolve("b3-exception-card", href, "x.zip:y.md"), "#p-b3")
+        self.assertEqual(self.r.resolve("b3", "03-b3-group-booking.md"), "#p-b3")
 
     def test_unknown_md_and_other_links(self):
         self.assertIsNone(self.r.resolve("b3", "../missing.md"))
