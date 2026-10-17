@@ -82,7 +82,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/partici
 ③ 確認結果
 
 ```text
-請檢查下列三件事，不要修改任何檔案：1. 有「B3 起點」這個 Git Commit，skills/b3-work-order.md 已建立；2. notes/b3.md 有「已核准背景」（含起點測試數與模型）與「Gate 1」兩段，Gate 1 有 5 個是非題（每題附任務卡段落名稱與照抄的原句）與需要我決定的問題；3. 除了 .gitignore、notes/b3.md 與 skills/b3-work-order.md，沒有修改任何檔案（用 git status 確認）。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+請實際查看檔案與 Git 紀錄再回答，不要憑記憶；不要修改任何檔案。檢查下列三件事：1. 有「B3 起點」這個 Git Commit；skills/b3-work-order.md 存在（列出 skills 資料夾確認），內容有工作單原文、Gate 回報格式與 Escalation 六個標題；2. notes/b3.md 有「已核准背景」（含起點測試數與模型）與「Gate 1」兩段，Gate 1 有 5 個是非題（每題附任務卡段落名稱與照抄的原句）與需要我決定的問題；3. 除了 .gitignore、notes/b3.md 與 skills/b3-work-order.md，沒有修改任何檔案（用 git status 確認）。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
 ```
 
 失敗時：
