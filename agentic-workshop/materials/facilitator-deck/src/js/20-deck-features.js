@@ -230,19 +230,7 @@
         if (!g || !g.code) code.setAttribute('data-missing', '');
         box.appendChild(code);
         if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
-        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
-        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
-        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
-        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
-        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
-        if (g && g.code) { code.setAttribute('role', 'button'); code.setAttribute('tabindex', '0'); code.title = '點一下複製'; }
         box.appendChild(el('div', 'dk-unlock-help', '請在 Runbook 輸入此碼（不分大小寫，空白與連字號可省略）'));
-        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
-        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
-        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
-        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
-        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
-        box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
         box.appendChild(el('div', 'dk-unlock-copied', '已複製'));
         insertBeforeNotes(s, box);
       }
@@ -324,156 +312,6 @@
       e.stopPropagation();
       if (isPresenter) { remote({ action: 'timer', cmd: 'countdown', index: i }); return; }
       toggleCountdown(i); renderAll(); sendState(true);
-    }, true);
-
-    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
-    function copyText(txt) {
-      var ok = false, ta = el('textarea');
-      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
-      return ok;
-    }
-    function copyUnlock(code) {
-      if (!code || code.hasAttribute('data-missing')) return;
-      if (!copyText(code.textContent.trim())) return;
-      var box = code.closest('.dk-unlock');
-      box.setAttribute('data-copied', '');
-      clearTimeout(box._copiedT);
-      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
-    }
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
-      if (!t) return;
-      e.preventDefault(); e.stopPropagation();
-      copyUnlock(t);
-    }, true);
-
-    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
-    function copyText(txt) {
-      var ok = false, ta = el('textarea');
-      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
-      return ok;
-    }
-    function copyUnlock(code) {
-      if (!code || code.hasAttribute('data-missing')) return;
-      if (!copyText(code.textContent.trim())) return;
-      var box = code.closest('.dk-unlock');
-      box.setAttribute('data-copied', '');
-      clearTimeout(box._copiedT);
-      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
-    }
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
-      if (!t) return;
-      e.preventDefault(); e.stopPropagation();
-      copyUnlock(t);
-    }, true);
-
-    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
-    function copyText(txt) {
-      var ok = false, ta = el('textarea');
-      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
-      return ok;
-    }
-    function copyUnlock(code) {
-      if (!code || code.hasAttribute('data-missing')) return;
-      if (!copyText(code.textContent.trim())) return;
-      var box = code.closest('.dk-unlock');
-      box.setAttribute('data-copied', '');
-      clearTimeout(box._copiedT);
-      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
-    }
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
-      if (!t) return;
-      e.preventDefault(); e.stopPropagation();
-      copyUnlock(t);
-    }, true);
-
-    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
-    function copyText(txt) {
-      var ok = false, ta = el('textarea');
-      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
-      return ok;
-    }
-    function copyUnlock(code) {
-      if (!code || code.hasAttribute('data-missing')) return;
-      if (!copyText(code.textContent.trim())) return;
-      var box = code.closest('.dk-unlock');
-      box.setAttribute('data-copied', '');
-      clearTimeout(box._copiedT);
-      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
-    }
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
-      if (!t) return;
-      e.preventDefault(); e.stopPropagation();
-      copyUnlock(t);
-    }, true);
-
-    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
-    function copyText(txt) {
-      var ok = false, ta = el('textarea');
-      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
-      return ok;
-    }
-    function copyUnlock(code) {
-      if (!code || code.hasAttribute('data-missing')) return;
-      if (!copyText(code.textContent.trim())) return;
-      var box = code.closest('.dk-unlock');
-      box.setAttribute('data-copied', '');
-      clearTimeout(box._copiedT);
-      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
-    }
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
-      if (!t) return;
-      e.preventDefault(); e.stopPropagation();
-      copyUnlock(t);
-    }, true);
-
-    /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
-    function copyText(txt) {
-      var ok = false, ta = el('textarea');
-      ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
-      document.body.appendChild(ta); ta.select();
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      if (!ok && navigator.clipboard) { navigator.clipboard.writeText(txt).catch(function () {}); ok = true; }
-      return ok;
-    }
-    function copyUnlock(code) {
-      if (!code || code.hasAttribute('data-missing')) return;
-      if (!copyText(code.textContent.trim())) return;
-      var box = code.closest('.dk-unlock');
-      box.setAttribute('data-copied', '');
-      clearTimeout(box._copiedT);
-      box._copiedT = setTimeout(function () { box.removeAttribute('data-copied'); }, 1600);
-    }
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('.dk-unlock-code') : null;
-      if (!t) return;
-      e.preventDefault(); e.stopPropagation();
-      copyUnlock(t);
     }, true);
 
     /* Unlock code: click it (or press C) to copy, so nobody has to drag-select the glowing text. */
@@ -834,24 +672,6 @@
       } else if (k === 'r' || code === 'KeyR') {
         e.preventDefault();
         if (isPresenter) remote({ action: 'timer', cmd: 'reset' }); else command('reset');
-      } else if (k === 'c' || code === 'KeyC') {
-        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
-        if (cs) { e.preventDefault(); copyUnlock(cs); }
-      } else if (k === 'c' || code === 'KeyC') {
-        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
-        if (cs) { e.preventDefault(); copyUnlock(cs); }
-      } else if (k === 'c' || code === 'KeyC') {
-        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
-        if (cs) { e.preventDefault(); copyUnlock(cs); }
-      } else if (k === 'c' || code === 'KeyC') {
-        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
-        if (cs) { e.preventDefault(); copyUnlock(cs); }
-      } else if (k === 'c' || code === 'KeyC') {
-        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
-        if (cs) { e.preventDefault(); copyUnlock(cs); }
-      } else if (k === 'c' || code === 'KeyC') {
-        var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
-        if (cs) { e.preventDefault(); copyUnlock(cs); }
       } else if (k === 'c' || code === 'KeyC') {
         var cs = isPresenter ? $('.dk-unlock-code') : (curSlide() && $('.dk-unlock-code', curSlide()));
         if (cs) { e.preventDefault(); copyUnlock(cs); }
