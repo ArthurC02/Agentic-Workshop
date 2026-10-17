@@ -755,3 +755,16 @@ class EditionTests(FixtureCase):
         script = "\n".join(p.read_text(encoding="utf-8") for p in bm.deck_sources(dlc.materials)["scripts"])
         self.assertEqual(len(bm.JS_PLAN_ROW.findall(script)), len(dlc.plan))
         self.assertEqual(bm.js_plan_problems(script, dlc.plan), [])
+
+    def test_deck_sources_have_no_pasted_duplicates(self):
+        # A block pasted several times (seen 2026-10: the copy-unlock code x7) still runs, so only this catches it.
+        for edition in ("main", "dlc"):
+            src = bm.deck_sources(bm.load_edition(edition).materials)
+            for path in [src["style"], *src["scripts"]]:
+                lines = [l.strip() for l in path.read_text(encoding="utf-8").splitlines() if len(l.strip()) > 20]
+                seen = {}
+                for i in range(len(lines) - 4):
+                    block = "\n".join(lines[i:i + 5])
+                    if block in seen or lines[i] == lines[i + 1]:
+                        self.fail(f"{edition} {path.name}: repeated block starting {lines[i][:60]!r}")
+                    seen[block] = i
