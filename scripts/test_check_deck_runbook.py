@@ -91,5 +91,22 @@ class Problems(unittest.TestCase):
         self.assertEqual(len(run(md=md.replace("再做", "別做"))), 2)
 
 
+class B3Package(unittest.TestCase):
+    WO = ("| 1 需求理解 |\n| 2 設計與修改範圍 |\n| 3 交付 |\n## 9. 時間\n第 66 分 Gate 1；第 69–70 分例外\n## 10. 交接\n第 99 分")
+    CARD = "| 1 需求理解 |\n| 2 設計與修改範圍 |\n| 3 交付 |"
+    PAGE = ("path=b3-docs/task-card.md\n第 64–66 分鐘、第 69 分鐘、第 70 分\nGate 1 需求理解 Gate 2 設計與修改範圍 "
+            "Gate 3 交付\n讀 b3-docs/b3-work-order.md")
+    DEST = {"b3-docs/task-card.md", "b3-docs/b3-work-order.md"}
+
+    def test_consistent_package_passes(self):
+        self.assertEqual(cd.b3_package_problems({"60-b3.md": self.PAGE}, self.DEST, self.WO, self.CARD), [])
+
+    def test_missing_file_minute_and_gate_name(self):
+        page = self.PAGE.replace("第 69 分鐘", "").replace("b3-work-order.md", "05-old.md")
+        found = cd.b3_package_problems({"60-b3.md": page, "70-delivery.md": "b3-docs/gone.md"}, self.DEST,
+                                       self.WO, self.CARD.replace("2 設計與修改範圍", "2 Impact and Design"))
+        self.assertEqual(len(found), 4, found)  # 05-old.md, gone.md, 第 69 分, task card Gate 2
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -39,7 +39,7 @@
 
 ## Acceptance Criteria Results
 
-驗收條件（AC）結果。用驗收對照表列出每條 AC 的結果：PASS（通過）／FAIL（失敗）／NOT VERIFIED（未驗證），以及依據的測試名稱：____；人在 /docs 實測的結果：____。沒驗證的不能寫 PASS。
+驗收條件（AC）結果。用驗收對照表列出每條 AC 的結果：通過／失敗／未驗證，以及依據的測試名稱：____；人在 /docs 實測的結果（有做才填，沒做寫「未驗證」）：____。沒驗證的不能寫通過。
 
 ## Test Command and Actual Result
 
@@ -59,9 +59,7 @@
 
 ## Recommended Decision
 
-建議決策（核准／附條件核准／退回修正）：
-
-APPROVE | APPROVE WITH CONDITIONS | REJECT AND REVISE
+建議決策，擇一：核准｜附條件核准｜退回修正。
 
 Agent 的建議與理由：____。人的最後決策記在 Gate 3；摘要裡的 Gate 決策必須和 `notes/b3.md` 的原文一致。測試通過之外，還要核對需求、範圍、文件與還沒完成的事。
 

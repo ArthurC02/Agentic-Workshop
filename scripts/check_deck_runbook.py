@@ -17,6 +17,9 @@ Per edition (main, dlc):
    Every Runbook ```callout sync title must contain a key of a marked slide whose data-minute lies in the page's
    minute range; every key of a marked slide must appear in such a callout ("解鎖碼" on a data-unlock slide is
    answered by the Runbook lock card instead). Every data-unlock and data-reveal-of slide carries the marker.
+6. B3 package (main): every `b3-docs/<file>` a B3 Runbook page (B3, exception card, delivery) names, and every
+   include path, is a destination of participant-63-b3-governance in package-manifest.json; every 「第 n 分」 in the
+   work order's 時間 section appears on the B3 page; the Gate names on the B3 form appear in the work order and task card.
 Unlock slides vs unlock-codes.json (group and minute) are already checked by build_materials.validate_slides.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_deck_runbook.py
 """
@@ -253,6 +256,44 @@ def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | 
     return out
 
 
+B3_PACKAGE = "participant-63-b3-governance"
+B3_GATES = ("需求理解", "設計與修改範圍", "交付")
+
+
+def b3_package_problems(pages: dict[str, str], destinations: set[str], work_order: str, task_card: str) -> list[str]:
+    """pages: B3-related Runbook page sources by file name; destinations: ZIP member paths of the B3 package."""
+    out = []
+    for name, src in pages.items():
+        named = set(re.findall(r"b3-docs/[\w.-]+\.md", src))
+        named |= {p for p in re.findall(r"path=(\S+)", src)}
+        out += [f"{name}: {p} is not in {B3_PACKAGE}" for p in sorted(named - destinations)]
+    page = "\n".join(src for name, src in pages.items() if name.startswith("60-"))
+    on_page = {int(n) for pair in re.findall(r"第 ?(\d+)(?:–(\d+))? ?分", page) for n in pair if n}
+    times = work_order.split("## 9.", 1)[-1].split("\n## ", 1)[0]
+    wo = {int(n) for pair in re.findall(r"第 ?(\d+)(?:–(\d+))? ?分", times) for n in pair if n}
+    out += [f"work order 時間 names 第 {n} 分, not on the B3 page" for n in sorted(wo - on_page)]
+    for n, gate in enumerate(B3_GATES, 1):
+        if f"Gate {n} {gate}" not in page:
+            out.append(f"B3 page lacks Gate {n} {gate}")
+        for label, doc in (("work order", work_order), ("task card", task_card)):
+            if f"| {n} {gate}" not in doc:
+                out.append(f"{label} Gate table lacks 「{n} {gate}」")
+    return out
+
+
+def check_b3_package() -> list[str]:
+    import json
+    manifest = json.loads((ROOT / "scripts/package-manifest.json").read_text(encoding="utf-8"))
+    package = next(p for p in manifest["packages"] if p["id"] == B3_PACKAGE)
+    dest = {e["destination"]: e["source"] for e in package["files"]}
+    content = load_edition("main").materials / "participant-runbook/content"
+    pages = {p.name: p.read_text(encoding="utf-8") for p in sorted(content.glob("*.md"))
+             if p.name.startswith(("60-", "66-", "70-"))}
+    read = lambda d: (ROOT / dest[d]).read_text(encoding="utf-8") if d in dest else ""
+    return [f"main: {m}" for m in b3_package_problems(pages, set(dest), read("b3-docs/b3-work-order.md"),
+                                                      read("b3-docs/task-card.md"))]
+
+
 def check_edition(name: str) -> list[str]:
     ed = load_edition(name)
     content = ed.materials / "participant-runbook/content"
@@ -266,6 +307,6 @@ def check_edition(name: str) -> list[str]:
 
 if __name__ == "__main__":
     editions = sys.argv[1:] or ["main", "dlc"]
-    found = [m for e in editions for m in check_edition(e)]
+    found = [m for e in editions for m in check_edition(e)] + (check_b3_package() if "main" in editions else [])
     print("\n".join(found) or "DECK–RUNBOOK PASS")
     sys.exit(1 if found else 0)

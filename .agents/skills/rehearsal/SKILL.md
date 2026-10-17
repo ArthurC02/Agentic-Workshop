@@ -34,7 +34,7 @@ description: Dry-run the workshop the way a learner would. An agent pastes each 
 |---|---|---|---|
 | main | greenfield | content 00–16 | `participant-07-g0.zip` |
 | main | brownfield | 30–52 (+53, 67 recovery check) | `participant-29-b0.zip`; task cards from `participant-44-b1.zip`, `participant-52-b2.zip` |
-| main | b3-delivery-retro | 60–80 | `recovery-63-b2.zip` (post-B2 baseline), `participant-63-b3-governance.zip`; the exception text is on the deck slide 例外事件 |
+| main | b3-delivery-retro | 60–80 | `recovery-63-b2.zip` (post-B2 baseline), `participant-63-b3-governance.zip` (downloads as `b3-docs.zip`; only its `b3-docs/` folder goes into the project; also try the wrong-folder case: CP1 opened inside the extracted package must stop); the exception text is on the deck slide 例外事件 |
 | dlc | open-d1-d2 | 00–29 | `participant-dlc-open.zip`, `-d1`, `-d2` |
 | dlc | d3a | 30–39 | D2 end state (build it with the page-29 Recovery D2 flow) |
 | dlc | d3b | 40–49 | `recovery-dlc-d3a.zip` via page 39 |

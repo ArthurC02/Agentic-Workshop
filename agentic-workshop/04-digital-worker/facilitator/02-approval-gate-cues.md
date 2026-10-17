@@ -4,7 +4,7 @@
 
 | B3相對分鐘 | 活動分鐘 | Cue與決策 |
 |---|---|---|
-| 0 | 63 | 解鎖B3（任務卡＋B3文件包），先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員下載B3文件包、開新對話貼一段短提示詞：Agent解壓到專案的`b3-docs/`，把`b3-work-order.md`複製成`skills/b3-work-order.md`（Skill），再照工作單第2節Commit「B3 起點」（沒有變更也用git commit --allow-empty；沒有Git就git init並建.gitignore）、在`notes/b3.md`記下核准人、起點測試數與模型／推論強度，交出Gate 1卡，最後一行自報「自我檢查：成功／失敗」；工具有模型選單的選較強模型。 |
+| 0 | 63 | 解鎖B3（任務卡＋B3文件包），先講技巧「委派整件任務：工作單＋三道關卡」，再宣布：全程人本來就不寫程式，到B3連核准方式也要變，人只透過三道Gate管Agent。學員下載B3文件包、開新對話貼一段短提示詞：Agent先確認在B2專案資料夾（不是就請學員切回smart-ticket-b0／recovery-b2），把`b3-docs.zip`裡的`b3-docs/`解進專案，把`b3-work-order.md`複製成`skills/b3-work-order.md`（Skill），再照工作單第2節Commit「B3 起點」（沒有變更也用git commit --allow-empty；沒有Git就git init並建.gitignore）、在`notes/b3.md`記下核准人、起點測試數與模型／推論強度，交出Gate 1卡，最後一行自報「自我檢查：成功／失敗」；工具有模型選單的選較強模型。 |
 | 1 | 64 | Gate 1卡：5個是非題附任務卡原文、「要你決定」（每節車廂座位數等）。 |
 | 3 | 66 | 人回Gate 1（核准／附條件：…／退回：…）；核准後Agent自己交Gate 2卡，不用再貼提示詞。 |
 | 3 | 66 | Gate 2卡：影響範圍、API、座位、整筆成功或整筆失敗、測試及風險，5個是非題附工作單原文。 |

@@ -343,3 +343,11 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 - 未做：9（`registry-schema.md` 的 Concept files 已在 vendored Plugin 內，詞彙表直接引用〈Concept files〉）；Speech 由另一個工作改寫。
 
 驗證（Windows，沙箱 `C:\tmp\dlc33`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL）：D1 Recovery 為底跑完 D2 檢查點 1–6 第一步（新的第一步、含 `open_questions` 的 `fill_package.py`、`submit-proposal`、`record-approval`、簽章 commit、attestation、`verify-git-governance`、finalize、apply、`validate --require-reviewed`、`get-record` 的 `verified`）；D2 第二步的套用 commit 與 push 沒有重跑（步驟未改）。D3 第 2 步的列出指令、D4 的 `export --commit`、回顧的 `compare-registry` 在 D3c Recovery 實跑。macOS 只做靜態檢查。`release_materials.py` RELEASE PIPELINE PASS；`check_dlc_plugin_compat.py` 29 PASS。
+
+## DLC 學員包改為扁平結構，不再要求解壓到 C:\dlc（2026-10-17）
+
+使用者要求：DLC 不再強調把 Repo 放到 C:\dlc，專注在 Agentic DDD。
+
+- 根因：Plugin 寫入 Registry 時在 `domain-memory/` 下建 `.domain-registry-stage-<32 碼>/registry/<asset>/<id>.md`（Repo 根目錄之後約 125 字元，Plugin 位元組不改）；學員包又多包了 `agentic-workshop/07-dlc-ddd/participant/` 40 字元。深層基準 `C:\tmp\pl\OneDrive - Contoso Workshop\Desktop\some folder\Downloads\`（67 字元，比 `C:\Users\<名>\OneDrive - <公司>\Desktop\` 還深）加「全部解壓縮」預設的 `participant-dlc-open\`：最長路徑 286（.venv 的 pip 檔 266），超過 Windows 260 上限。
+- 修正：`participant-dlc-open` 以 `destination_root` `"to": ""` 打包，ZIP 根目錄就是 `repository/`、`tools/`、`vendor/`（`..\..\tools` 相對位置不變）；同一基準最長 246（.venv 226）。Recovery 改解到學員包裡的 `recovery-<段>`（相對路徑，兩個 OS 一樣），D2 範本解到 `pkg-d2`。下載 id、解鎖碼、表單 id、include 路徑不變；D2–D4 範本包與 Recovery 包結構不變。
+- 驗證（Windows，本機 LongPathsEnabled=1，所以以稽核鉤子量測每個被開啟／建立的路徑長度，而非等它報錯）：深層基準下 D1 環境（76 passed、SHA OK 80 files）、init／confirm／make_record／validate／verify-evidence；D2 Recovery 三步（簽章接手、`Git governance is valid.`、76 passed 1 warning、`Registry is valid.`、verify-audit valid、verify-evidence 全 current）；D3a Recovery 的 bash 解壓與歷史還原。macOS 靜態檢查（封存工具程式解開多項目 ZIP 會包 `participant-dlc-open/`，與 Windows 預設同一路徑）。

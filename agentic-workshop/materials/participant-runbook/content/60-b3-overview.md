@@ -49,7 +49,7 @@ section: B3｜Digital Worker
 ## 任務卡
 
 ```include
-zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md
+zip=participant-63-b3-governance.zip path=b3-docs/task-card.md
 ```
 
 ## 檢查點 1 · 把工作單交給 Agent（第 63–64 分鐘）
@@ -60,19 +60,21 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/partici
 
 ② 貼給 Agent
 
-1. 按下方按鈕下載 B3 文件包，存在瀏覽器預設的下載資料夾即可。文件包是給 Agent 讀的，你不用打開，也不用自己複製。
-2. 在 B2 用的專案資料夾（`smart-ticket-b0`；用過 B2 Recovery 的是 `recovery-b2`），在主要 Agent **開一個新對話**。工具有模型選單，就選推論能力較強的模型；沒有就用預設。
+1. 按下方按鈕下載 B3 文件包（`b3-docs.zip`），存在瀏覽器預設的下載資料夾即可。下載後不用解壓縮、不用打開；VS Code 保持開著 `smart-ticket-b0`（或 `recovery-b2`）。
+2. 在這個 B2 用的專案資料夾（用過 B2 Recovery 的是 `recovery-b2`），在主要 Agent **開一個新對話**。工具有模型選單，就選推論能力較強的模型；沒有就用預設。
 3. 貼上下方提示詞。Agent 會解開文件包、記下起點，再交出 Gate 1 卡（可能到第 65 分才出來）。
 
 ```download
-id=participant-63-b3-governance zip=participant-63-b3-governance.zip label=下載 B3 文件包
+id=b3-docs zip=participant-63-b3-governance.zip label=下載 B3 文件包
 ```
 
 ```text
-我們要開始 B3。請先讀 skills/team-rules.md 並遵守，然後依序做：
-1. 在下載資料夾找到 participant-63-b3-governance.zip（找不到就問我位置；只有同名資料夾、沒有 ZIP，就直接用那個資料夾），解壓縮到這個專案的 b3-docs 資料夾。
-2. 在 b3-docs 裡找到 b3-work-order.md，複製成這個專案的 skills/b3-work-order.md（一般的 skills 子資料夾）。
-3. 讀 skills/b3-work-order.md，照它第 2 節「開始」做完，交出 Gate 1 卡後停下；不要設計，也不要改程式。
+我們要開始 B3。請依序做：
+0. 先確認目前的資料夾是 B2 的專案：有 skills/team-rules.md，也有程式資料夾 src/smart_ticket。不是的話（例如這裡只有 b3-docs、README.md 或 b3-work-order.md），立刻停下，只回我一句：「這裡不是 B2 專案：請用 VS Code 選單 File → Open Folder（中文介面：檔案 → 開啟資料夾）切到 smart-ticket-b0（用過 B2 Recovery 的是 recovery-b2），在那裡開新對話再貼一次。」不要在這裡做任何事。
+1. 讀 skills/team-rules.md 並遵守。
+2. 在下載資料夾找到 b3-docs.zip（找不到就問我位置；只有同名資料夾、沒有 ZIP，就用那個資料夾），只把裡面的 b3-docs 資料夾解壓縮到這個專案，成為 b3-docs/（ZIP 最外層的 PACKAGE-MANIFEST.json 不用）。
+3. 把 b3-docs/b3-work-order.md 複製成 skills/b3-work-order.md。
+4. 讀 skills/b3-work-order.md，照它第 2 節「開始」做完，交出 Gate 1 卡後停下；不要設計，也不要改程式。
 ```
 
 ③ 確認結果
@@ -80,13 +82,13 @@ id=participant-63-b3-governance zip=participant-63-b3-governance.zip label=下�
 Gate 1 卡最後一行寫「自我檢查：成功」就往下；寫「失敗」就貼「失敗時」。沒看到這一行才貼：
 
 ```text
-請實際列出 skills 資料夾並執行 git log --oneline -3 再回答，不要憑記憶，也不要修改任何檔案：1. skills/b3-work-order.md 存在；2. 有「B3 起點」Commit；3. notes/b3.md 有「已核准背景」和「Gate 1」兩段。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+請實際列出 skills 資料夾並執行 git log --oneline -3 再回答，不要憑記憶，也不要修改任何檔案：1. skills/b3-work-order.md 與 b3-docs/delivery-template.md 都存在；2. 有「B3 起點」Commit；3. notes/b3.md 有「已核准背景」和「Gate 1」兩段。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
 ```
 
 失敗時：
 
 ```text
-請補做缺的那一項：找不到 b3-work-order.md，就告訴我你在下載資料夾看到哪些檔案；缺 Commit 或 notes/b3.md 的段落，就照 skills/b3-work-order.md 第 2 節補上。不要改程式，補完重新給我 Gate 1 卡。
+請補做缺的那一項：找不到 b3-docs.zip，就告訴我你在下載資料夾看到哪些檔案；缺 Commit 或 notes/b3.md 的段落，就照 skills/b3-work-order.md 第 2 節補上。不要改程式，補完重新給我 Gate 1 卡。
 ```
 
 ④ 補充
@@ -259,9 +261,9 @@ Gate 3 回覆後還不到第 76 分，才貼這段補驗文件範例；Agent 會
 
 ```form
 {"id": "b3-gates", "title": "B3 Gate 決策","fields":[
-{"id": "gate1", "label": "Gate 1 需求理解（第 66 分）", "type": "select", "options": ["核准（APPROVE）", "附條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）", "未進行"]},
-{"id": "gate2", "label": "Gate 2 設計與修改範圍（第 69 分，含例外事件）", "type": "select", "options": ["核准（APPROVE）", "附條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）", "未進行"], "hint": "附條件時，條件解除後 Agent 才可以改程式。"},
-{"id": "gate3", "label": "Gate 3 交付（第 75 分）", "type": "select", "options": ["核准（APPROVE）", "附條件核准（APPROVE WITH CONDITIONS）", "退回修正（REJECT AND REVISE）", "未進行"], "hint": "核准代表接受目前成果，不等於測試通過；通過要看驗收對照表。"},
+{"id": "gate1", "label": "Gate 1 需求理解（第 66 分）", "type": "select", "options": ["核准", "附條件核准", "退回修正", "未進行"]},
+{"id": "gate2", "label": "Gate 2 設計與修改範圍（第 69 分，含例外事件）", "type": "select", "options": ["核准", "附條件核准", "退回修正", "未進行"], "hint": "附條件時，條件解除後 Agent 才可以改程式。"},
+{"id": "gate3", "label": "Gate 3 交付（第 75 分）", "type": "select", "options": ["核准", "附條件核准", "退回修正", "未進行"], "hint": "核准代表接受目前成果，不等於測試通過；通過要看驗收對照表。"},
 {"id": "unsure", "label": "還有什麼不確定？（選填，一句話）", "type": "text", "suggestions": ["沒有不確定的地方"]}
 ]}
 ```
