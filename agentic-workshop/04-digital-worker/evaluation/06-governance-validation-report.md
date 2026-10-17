@@ -9,7 +9,7 @@
 
 | 對象 | 必要文件 |
 |---|---|
-| Participant，6份 | [Operating Rules](../participant/01-operating-rules.md)、[Work Order](../participant/02-agent-work-order.md)、[三 Gate](../participant/03-approval-gates.md)、[Review Checklist](../participant/04-review-checklist.md)、[Delivery Template](../participant/05-delivery-template.md)、[Exception Response](../participant/06-exception-response-card.md) |
+| Participant，3份（2026-10-17起：操作規則、工作單、三 Gate、審查清單併為一份工作單） | [工作單](../participant/b3-work-order.md)、[Delivery Template](../participant/05-delivery-template.md)、[Exception Response](../participant/06-exception-response-card.md) |
 | Facilitator，5份 | [Observation](../facilitator/01-governance-observation-guide.md)、[Gate Cues](../facilitator/02-approval-gate-cues.md)、[例外注入](../facilitator/03-exception-injection.md)、[介入規則](../facilitator/04-intervention-rules.md)、[Debrief](../facilitator/05-digital-worker-debrief-notes.md) |
 | Evaluation，4份 | [Rubric](01-autonomy-and-governance-rubric.md)、[核准證據](02-approval-evidence-checklist.md)、[Audit](03-digital-worker-audit-template.md)、[例外答案](04-exception-reference-answer.md) |
 

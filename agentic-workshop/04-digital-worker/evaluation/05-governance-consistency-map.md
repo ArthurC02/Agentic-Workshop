@@ -7,13 +7,13 @@
 
 | 06來源節 | 文件定位 | 可判定檢查 |
 |---|---|---|
-| §3 固定原則 | participant/01-operating-rules.md；03-approval-gates.md | Agent主導／不越界、人不Coding仍理解、重大動作有Gate、實際證據、停止升級、責任由人承擔 |
-| §4 Operating Rules | participant/01-operating-rules.md | 人／Agent可做與不可做、先Gate再執行；目標2分鐘閱讀，真實閱讀時間尚未測 |
-| §5 Work Order | participant/02-agent-work-order.md | 固定Mission／Requirements／Rules／Context／Allowed／Prohibited／Deliverables／Tests／Gates／Stop／Timebox，Context留空而非猜測 |
-| §6 三Gate | participant/03-approval-gates.md | Gate1理解／Gate2設計／Gate3交付均有Input、Human Review、Decision、Evidence；Gate2核准才改Code |
-| §7 短格式 | participant/03-approval-gates.md；facilitator/02-approval-gate-cues.md | 三種Decision、Reviewed Evidence、Conditions、Approver、Timestamp／Minute，不由Agent代核准 |
-| §8 停止升級 | participant/02-agent-work-order.md；06-exception-response-card.md | 10個停止條件及Escalation六heading，衝突或超權不猜測 |
-| §9 Review | participant/04-review-checklist.md | Requirement／Scope／Quality／Evidence四類，未完成保持未勾 |
+| §3 固定原則 | participant/b3-work-order.md | Agent主導／不越界、人不Coding仍理解、重大動作有Gate、實際證據、停止升級、責任由人承擔 |
+| §4 Operating Rules | participant/b3-work-order.md | 人／Agent可做與不可做、先Gate再執行；學員不讀，Agent存成Skill照做 |
+| §5 Work Order | participant/b3-work-order.md | 固定Mission／Requirements／Rules／Context／Allowed／Prohibited／Deliverables／Tests／Gates／Stop／Timebox，Context留空而非猜測 |
+| §6 三Gate | participant/b3-work-order.md | Gate1理解／Gate2設計／Gate3交付均有Input、Human Review、Decision、Evidence；Gate2核准才改Code |
+| §7 短格式 | participant/b3-work-order.md；facilitator/02-approval-gate-cues.md | 三種決策（核准／附條件／退回）、人的原話、審查過的題號、條件；核准人與時間由Agent自己記，不問人、不代核准 |
+| §8 停止升級 | participant/b3-work-order.md；06-exception-response-card.md | 停止條件（原10項併為6組）及Escalation六標題，衝突或超權不猜測 |
+| §9 Review | participant/b3-work-order.md（第7節） | 變更審查三題＋驗收對照表最多7列；未驗證如實標示（原審查清單已併入） |
 | §10 Delivery | participant/05-delivery-template.md | 十二欄、Level1–3、真實Test與未驗證、風險／偏差、Agent建議不等於人員決策 |
 | §11 唯一事件 | facilitator/03-exception-injection.md | EXCEPTION-DW-001 SQLite；自然提出即不再注入，假設卡不冒稱真實提議，不安裝資料庫 |
 | §12 Response | participant/06-exception-response-card.md | 5欄Scope／Evidence／Risk／Decision／Instruction空白，未嵌入SQLite標準答案 |
@@ -27,8 +27,8 @@
 | §20 Exception Reference | evaluation/04-exception-reference-answer.md | Reject方案非Reject任務；In-Memory Reservation／Compensation，可選Snapshot／Token／Rollback，不強制通用框架 |
 | §21 Debrief | facilitator/05-digital-worker-debrief-notes.md | Review負擔、Gate價值、證據／平台Audit、自動約束與人的責任；不以自主率競賽 |
 | §22 工具中立 | 全15必要文件 | 無特定產品必要流程，Agent／Tool／Session為通用角色 |
-| §23 時間壓力 | participant/01-operating-rules.md、02-agent-work-order.md；facilitator/02-approval-gate-cues.md | 必讀僅Operating／Work Order／Gates／B3任務卡；其他視需要；每Gate1–3分鐘，時間不足保留Gate1／2及Gate3最小Review，例外不刪 |
-| §24 一致性 | 本表；participant/02-agent-work-order.md | 17 B3新增Rule與Registry精確一致、三Gate與AC對齊、材料角色隔離、Level1–3、責任不消失 |
+| §23 時間壓力 | participant/b3-work-order.md；facilitator/02-approval-gate-cues.md | Agent必讀僅工作單與B3任務卡；學員只回Gate卡；每Gate1–3分鐘，時間不足保留Gate1／2及Gate3最小Review，例外不刪 |
+| §24 一致性 | 本表；participant/b3-work-order.md | 17 B3新增Rule與Registry精確一致、三Gate與AC對齊、材料角色隔離、Level1–3、責任不消失 |
 
 ## 已完成的靜態核對
 

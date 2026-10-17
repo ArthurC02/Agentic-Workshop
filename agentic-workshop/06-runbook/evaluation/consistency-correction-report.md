@@ -16,7 +16,7 @@
 | 初始B0提前診斷／優惠順序 | 生成Context只保留公開規則與交叉查證，不指出Bug位置或答案優先序 | 準備內容與實際ZIP的content_policy檢查；必要原文經獨立Review |
 | B0教材缺失 | 恢復原字節change-booking-guide、discount-overview及三份當時B0安全ADR，README／Architecture連至實際檔 | 五項精確白名單；缺任一或改原字節拒絕，Recovery仍拒ADR |
 | 任務揭露前核准 | 39–44只共同事實／分歧／責任，44揭露B1後才填任務範圍與核准計畫 | [Shared Context](../../03-brownfield/participant/04-shared-context-template.md)、[Runbook](../workshop-runbook.md)、評估索引 |
-| Level1不能交付 | 前置接受分析／Gate證據；無修改／未執行明記，Level1需合理Impact及完整Test Strategy | [Delivery](../../04-digital-worker/participant/05-delivery-template.md)、[Review](../../04-digital-worker/participant/04-review-checklist.md)；完整Gate不降 |
+| Level1不能交付 | 前置接受分析／Gate證據；無修改／未執行明記，Level1需合理Impact及完整Test Strategy | [Delivery](../../04-digital-worker/participant/05-delivery-template.md)、[工作單](../../04-digital-worker/participant/b3-work-order.md)；完整Gate不降 |
 | B3中途換版 | Recovery固定52／63切換；B3卡點保留現況分析／Review降級，不換版、不發B3答案 | [介入規則](../../04-digital-worker/facilitator/04-intervention-rules.md)、Recovery與Preflight |
 | B2誤文與AC判定 | 外置勘誤對照ADULT，原FULL_FARE凍結文件保持；AC-B2-013明記舊審查漏判 | [B2勘誤](../../03-brownfield/evaluation/22-b2-documentation-errata.md)、AC Map及真實Enum／Test |
 | Mission時點 | 開場口頭目標，第7分鐘統一發Mission與G0 | Runbook／Mission／評估索引及Manifest一致 |

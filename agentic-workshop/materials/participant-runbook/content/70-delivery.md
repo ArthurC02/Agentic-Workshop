@@ -33,11 +33,11 @@ section: Delivery
 
 ② 貼給 Agent
 
-複製下方提示詞，再按下方交付摘要範本（Delivery Summary）的「複製 Markdown」接在後面，一起貼給主要 Agent。它會先核對 B3 的 Gate 3 紀錄，缺了你的決定就問你，一行回答即可（例如「條件：未驗證項目寫進交付摘要；/docs 未實測；第 75 分」）。
+複製下方提示詞貼給主要 Agent；交付摘要範本（Delivery Summary）已在 B3 文件包裡，Agent 會自己讀。它會先核對 B3 的 Gate 3 紀錄，缺了你的決定就問你，回「核准」「附條件：…」或「退回：…」即可。
 
 ```text
-停止新增功能與測試，不要再修改任何程式。先核對 notes/b3.md：有驗收對照表（最後一行有測試總數）、變更審查三題答案、Gate 3 資料，「Gate 3」段落記著我的決策、條件、/docs 是否實測、核准人與分鐘。缺的是我的 Gate 3 決策，就先問我，照原文補進 notes/b3.md 再繼續；其他缺項在摘要寫成「未驗證」。
-接著請讀 notes/b3.md（只讀這個檔與範本，不要回頭翻對話或讀整個專案），依附在這段後面的 Delivery Summary 範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
+停止新增功能與測試，不要再修改任何程式。先核對 notes/b3.md：有驗收對照表（最後一行有測試總數）、變更審查三題答案、Gate 3 資料，「Gate 3」段落記著我的決定原話、條件、核准人與時間。缺的是我的 Gate 3 決定，就只問我一句「核准／附條件／退回？」，照原話補進 notes/b3.md（核准人和時間你自己記）再繼續；其他缺項在摘要寫成「未驗證」。
+接著請讀 notes/b3.md 與專案 b3-docs 資料夾裡的 05-delivery-template.md（Delivery Summary 範本；只讀這兩個檔，不要回頭翻對話或讀整個專案），依範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
 - 每一欄都附證據來源：notes/b3.md 的哪一段、哪個實際執行的指令、哪份文件。找不到證據的寫「未驗證」及原因，未驗證不能寫 PASS。
 - Completion Level 擇一並說明證據，不自動選 Level 3。
 - 修改檔案欄用白話寫每個檔案改了什麼、為什麼，附上 Gate 3 前的變更審查答案；沒有修改時寫「無修改」及原因，不虛構變更。
@@ -45,10 +45,6 @@ section: Delivery
 - Gate 決策照 notes/b3.md 的原文抄錄；寫出與 Gate 2 核准計畫的偏差，沒有偏差也要明寫（寫在 Deviations from Approved Plan 與 Recommended Decision）。
 寫完在對話給我核對用的三句話：你建議的 Level、測試結果、修改範圍。每句後面直接引用它的證據原文與位置（notes/b3.md 的段落或實際指令）；引用不出證據的，在摘要裡改成「未驗證」。
 最後只檢查、不修改：notes/delivery.md 有範本十二欄、標題與順序不變；每一欄都附了證據來源，沒有證據的都寫「未驗證」及原因；這段沒有修改任何程式（git status 列出的變動，除了 notes/ 與 skills/，都已記在 notes/b3.md 的變更審查裡）。再告訴我 notes 資料夾的完整路徑。最後一行只寫「成功」或「失敗：」加一句原因，然後停下等我們核對。不要自行修正或補做任何項目。
-```
-
-```include
-zip=participant-63-b3-governance.zip path=agentic-workshop/04-digital-worker/participant/05-delivery-template.md
 ```
 
 等 Agent 寫摘要時，和小組聊 30 秒：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄和缺項後，還會選同一級嗎？

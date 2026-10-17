@@ -13,7 +13,7 @@ Audience: very junior engineers who may not know Python. They **never write or r
 3. Evidence for organizational adoption. The Agent writes it into files; learners do not fill it in.
 
 ## Absolutely necessary (user rule, 2026-10-10)
-Every page, section, callout and sentence must pass: "would the learner fail or hesitate at a step without this?" If not, cut it. Never re-host a document that ships in the learner's download unless learners must paste it to the Agent with 「複製 Markdown」 (the Agent reads files from the folder). Pages ending in a form lead with a short pair/group discussion and frame the form as recording its conclusions, not cold form-filling.
+Every page, section, callout and sentence must pass: "would the learner fail or hesitate at a step without this?" If not, cut it. Never re-host a document that ships in the learner's download unless learners must paste it to the Agent with 「複製 Markdown」 (the Agent reads files from the folder). A file the Agent must use verbatim (e.g. the B3 work order) ships ready-made in a package the Agent unzips and copies, never assembled by the Agent from pasted parts, and never as an include-only Runbook page (user feedback, 2026-10-17: B3 CP1's assembled `skills/b3-work-order.md` was never created). Gate replies are one word from a fixed set on the card (「核准」／「附條件：…」／「退回：…」); the Agent records approver and time itself. Pages ending in a form lead with a short pair/group discussion and frame the form as recording its conclusions, not cold form-filling.
 
 ## Every segment page
 - Top: a 「現在在做什麼」 callout with four lines: 情境 / 你的目標 / 今天的技巧 / 完成的樣子.

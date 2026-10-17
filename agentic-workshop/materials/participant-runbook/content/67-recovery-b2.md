@@ -109,7 +109,7 @@ Agent 說沒有 `skills/team-rules.md` 時，才貼這段規則：
 請把以上規則存成 skills/team-rules.md，之後我會說「請先讀 skills/team-rules.md」。
 ```
 
-完成後接續 [B3](#b3)。
+完成後回到 [B3](#b3)，從檢查點 1 開始，走「用 Recovery 的組：走縮短版」，目標 Level 1。
 
 ```form
 {"id": "recovery-b2-record", "title": "B2 Recovery 紀錄","fields":[

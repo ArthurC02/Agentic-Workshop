@@ -521,24 +521,9 @@
           "sha256": "0ae5bd539b2bce1e3c5c09222b6bef2320739e0bc86f1907faedf2dc5c789c4b"
         },
         {
-          "source": "agentic-workshop/04-digital-worker/participant/01-operating-rules.md",
-          "destination": "agentic-workshop/04-digital-worker/participant/01-operating-rules.md",
-          "sha256": "a3d5b2b6b915b0ab4b026f73e6455e3e16c128033df71bf868cb000db3ddec75"
-        },
-        {
-          "source": "agentic-workshop/04-digital-worker/participant/02-agent-work-order.md",
-          "destination": "agentic-workshop/04-digital-worker/participant/02-agent-work-order.md",
-          "sha256": "94a3fcf235cb5263147a41a5ee04fee1dd70743712ee07570a7e68ebbf5eddb4"
-        },
-        {
-          "source": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
-          "destination": "agentic-workshop/04-digital-worker/participant/03-approval-gates.md",
-          "sha256": "12092218249988b7fb3af0d5dcaf603cfb806692cc2090845b164c9216fbd48a"
-        },
-        {
-          "source": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
-          "destination": "agentic-workshop/04-digital-worker/participant/04-review-checklist.md",
-          "sha256": "d2f8bde531fc3a927b9121e3736fcffa9d98242696aaa096d3672b3d4c367f30"
+          "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
+          "destination": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
+          "sha256": "b8f571953fb4d16a1edbc7f4c4f580d9da42c37c0981da5feac8ef16181ef91b"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
@@ -1185,7 +1170,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/05-task-progressive-hints.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/05-task-progressive-hints.md",
-          "sha256": "347e41a6c28117ce8b6062e8e23a64a774b8cafdd0121ff62b72bee63424eec1"
+          "sha256": "b8b2629cd5ff77668d3823e0c4d3a4386e918d43a2158c58da5596c8f28bcf3d"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
@@ -1200,12 +1185,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
-          "sha256": "a55457f7ccf4aeda623a87a313b7fd168650edd2d1e0d13fc7385986a291bd05"
+          "sha256": "7fe156ef488ba61e3e8673f4d7a2cee3f69cc976ff67217d989b86d8f724540e"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "86fe3ea1600f024a35fe1cf0b1324cbaababd973034337271e18b4997627500d"
+          "sha256": "380418ed822f175ea4613031846c23c1287ee2558396d2d83bee10be9a47fd59"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -1260,7 +1245,7 @@
         {
           "source": "agentic-workshop/06-runbook/workshop-runbook.md",
           "destination": "agentic-workshop/06-runbook/workshop-runbook.md",
-          "sha256": "f625c438f0d6e2383924fc80936d1dca2552724190b07beccb202b2b376baff5"
+          "sha256": "a3a5b83205c7ab2f05da46c08b39340a6df25011c547cdcfeeedc05f4ed13dba"
         },
         {
           "source": "docs/contents/00_README_文件導覽.md",
@@ -1310,7 +1295,7 @@
         {
           "source": "docs/contents/09_範本與檢核表.md",
           "destination": "docs/contents/09_範本與檢核表.md",
-          "sha256": "3851ea123068eaa0cd5bb6555a717925856a48c169cb2b560ea01c40562f9acc"
+          "sha256": "4ec36d923bd4f650925b020eaeb3b08f735045e366314f94318026e32b47b53c"
         },
         {
           "source": "docs/instructions/00_Agentic工作坊素材產製總控指令書.md",
@@ -3100,12 +3085,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
-          "sha256": "ed5b3e3f3520c5b8edca88c6f6a3319b01e1143ad2d1899ad989b8f30cd87023"
+          "sha256": "cd0c7ccfd24dc0c91ac2d2d4e783016658829d8dd9f8198de01afe3b5e21efce"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/06-governance-validation-report.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/06-governance-validation-report.md",
-          "sha256": "c368af305f081ae2d757272bea7b1b7b24e35315df35876850f7049c2f7e03ff"
+          "sha256": "a40d5aee9bbafd21a38922e7057b8ce4fb7d34da46dc430e5646784afb320d35"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/07-governance-validation-evidence.json",
@@ -3115,12 +3100,12 @@
         {
           "source": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
           "destination": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
-          "sha256": "189ea0cc5ba013e5c5457cea73d1513e281ead21a4bb3a26ed704325481ddba0"
+          "sha256": "5b9b7ea482e00254107635afc42d8b8eeb984f1d3d5eeea69400e3b9f3ad9ab2"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/consistency-correction-report.md",
           "destination": "agentic-workshop/06-runbook/evaluation/consistency-correction-report.md",
-          "sha256": "ed8855568a293e7d0a1922cb33dee744774cfeac785406549e30a8f49e7de5ce"
+          "sha256": "dc71c57ed6cc43f6a53c6d8d259b1695dd7eb7d803b5edea671eaaa432c33ac6"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p10-validation-evidence.json",
@@ -3145,7 +3130,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "59b40d1cc8aff724793842e8f151411a410fd12df1909ec04c492f413e6f8c53"
+          "sha256": "3c7a6c97439dadd38082220779cdbfd4e96e3291cc1277a938fa3a34c9b25442"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3385,12 +3370,12 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "5142df8ce642c90764f5df44bb16bdd2bc131693063356363f15de3079ffb596"
+          "sha256": "c2765a85078ea52a570ea3db389b063aff12cd532ce2da7ac40f5eb888c44808"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "d631261d28d53e6b40040089b8df0345b55fa5ef87d6718f8dc474dc304ce70e"
+          "sha256": "530c1c8d931a54ed60c4db664ddf975bf222e051b8ca9be32d0520264bbd37a3"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",

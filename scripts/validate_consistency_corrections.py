@@ -114,10 +114,10 @@ def corrections(package_output):
     delivery = compact(read(level_files[1]))
     allowance = any(token in delivery for token in ('尚未修改', '未修改', '無程式修改', '沒有程式修改', '可無修改'))
     unrun = any(token in delivery for token in ('NOTRUN', '未執行', '無已執行測試'))
-    review_file = '04-digital-worker/participant/04-review-checklist.md'
+    review_file = '04-digital-worker/participant/b3-work-order.md'
     review = compact(read(review_file))
     review_allows_analysis = 'Level1' in review and '未執行測試' in review and ('尚無修改' in review or '無修改' in review)
-    gate_file = '04-digital-worker/participant/03-approval-gates.md'
+    gate_file = '04-digital-worker/participant/b3-work-order.md'
     gates = compact(read(gate_file))
     gate_allows_analysis = 'Level1' in gates and ('未執行' in gates or '無修改' in gates or '尚無' in gates)
     cue_file = '04-digital-worker/facilitator/02-approval-gate-cues.md'
@@ -129,7 +129,7 @@ def corrections(package_output):
     record('C-04', 'Level1 requires understanding/design gates, reasonable impact and complete test strategy; delivery permits no code changes/tests not run',
            all(level_results.values()) and allowance and unrun and review_allows_analysis
            and gate_allows_analysis and cue_allows_analysis and audit_allows_analysis,
-           ['agentic-workshop/' + p for p in [*level_files, review_file, gate_file, cue_file, audit_file]],
+           ['agentic-workshop/' + p for p in dict.fromkeys([*level_files, review_file, gate_file, cue_file, audit_file])],
            {'level_definition_checks': level_results,
             'delivery_allows_no_changes': allowance, 'delivery_allows_tests_not_run': unrun,
             'review_allows_analysis': review_allows_analysis, 'gate3_allows_analysis': gate_allows_analysis,
