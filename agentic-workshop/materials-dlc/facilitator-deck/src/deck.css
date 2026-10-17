@@ -1074,6 +1074,66 @@ ol.stage-bar > li.active::after {
   opacity: 0; transition: opacity .2s;
 }
 .dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
+.dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
+.dk-unlock { position: relative; }
+.dk-unlock-copied {
+  position: absolute; top: 24px; right: 32px;
+  padding: 4px 18px; border-radius: 99px;
+  font-size: 26px; font-weight: 700; color: var(--deep); background: #7FD3EE;
+  opacity: 0; transition: opacity .2s;
+}
+.dk-unlock[data-copied] .dk-unlock-copied { opacity: 1; }
 .slide:not(.slide-title) .dk-unlock { box-shadow: var(--shadow-lg), 0 0 50px rgba(0, 147, 193, .3); }
 
 /* ---------- 17. Gates clock ---------- */
