@@ -15,7 +15,7 @@
 
 | 分鐘 | 段落 | 投影 | 你要做的關鍵動作 |
 |---|---|---|---|
-| 0–10 | 開場與環境 | 解鎖頁 → 4 個檢查點 | 盯 C:\dlc 短路徑、Store 別名、SHA 核對；第 8 分配對 |
+| 0–10 | 開場與環境 | 解鎖頁 → 4 個檢查點 | 盯 Store 別名、SHA 核對；第 8 分配對 |
 | 10–35 | D1 共同語言與邊界 | 6 個檢查點 | 名稱矛盾與邊界洩漏要讓學員在 `cite` 證據中親眼看到 |
 | 35–60 | D2 審查與核准（成對） | 6 個檢查點 | 第 45 分或卡 5 分鐘把 `dlc-rec-d2` 私下提供給該組；示範簽章 |
 | 60–70 | 休息 | 休息頁 | 巡 D2 落後組，確認大家都有可接續的 reviewed Registry |
@@ -45,7 +45,6 @@
   - Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，或改用 Chrome（否則 zip 會被自動解開並丟到垃圾桶）；
   - venv 在 `.venv/bin`（不是 `.venv\Scripts`）。
 - [ ] 每台機器一個可讀寫本機資料夾、能執行終端指令的通用 Coding Agent。
-- [ ] 通知學員：學員包一律解壓到 **`C:\dlc`**（不要放桌面、OneDrive、深層資料夾）；macOS 把 zip 移到 `~/dlc` 再點兩下，會解到 `~/dlc/participant-dlc-open/`。原因見 §5 陷阱 1（WinError 206）。
 - [ ] 建置並驗證候選包（課程維護人員）：
 
 ```powershell
@@ -103,7 +102,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 分鐘 | 檢查點 | 你說／做 |
 |---|---|---|
 | 0 | （解鎖前） | 「為什麼要和 Agent 一起建模」「今天怎麼進行」兩頁，共約 2 分鐘 |
-| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、「全部解壓縮」到 `C:\dlc`（macOS：移到 `~/dlc` 再點兩下）、在 Repo 根目錄開 Agent，把 Runbook 的工作規則和檢查點 1 的提示詞接在一起一次貼（規則最後一句會讓 Agent 直接開始） |
+| 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、解壓縮到習慣的位置（例如下載資料夾）、用 Agent 開啟 `participant-dlc-open/repository/smart-ticket-dlc-base`，把 Runbook 的工作規則和檢查點 1 的提示詞接在一起一次貼（規則最後一句會讓 Agent 直接開始） |
 | 0–3 | 1 · 確認起點：測試全部通過 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
 | 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 80 files`、`"version": "0.33.0"` |
 | 5–8 | 3 · 找出只能靠人審查的錯 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
@@ -292,27 +291,24 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | # | 症狀 | 原因 | 修正 |
 |---|---|---|---|
-| 1 | D1 寫 Registry 時「檔名或副檔名太長」`WinError 206` | Plugin 在 `domain-memory/` 底下建很長的暫存資料夾名；放在桌面、OneDrive 或深層資料夾就超過路徑上限 | 解壓到 `C:\dlc`（Recovery 用 `C:\dlc-rec\<段>`）。已出錯的組：整個資料夾搬到 `C:\dlc` 再重跑該步 |
-| 2 | `UnicodeDecodeError: 'cp950' codec ...` | 直接呼叫 `registry_tools.py`，缺 `-X utf8` | 一律經 `tools\dm.ps1`／`dm.sh`（固定 `py -3.13 -X utf8`） |
-| 3 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線；macOS 由 `/bin/sh` 執行，寫 `.venv/bin/python`）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
-| 4 | push 時 hook 印出 `no Python 3.10 or later on PATH as python3 or python` | pre-push hook 只在 PATH 上找 `python3`、`python`（要 3.10 以上）；Windows 常只有 `py` 啟動器，或 `python` 是 Store 別名（路徑含 `WindowsApps`）；macOS 的 `python3` 可能是內建的 3.9 | push 前在同一次執行啟用 Repo 的 `.venv`（Runbook 的 push 步驟已寫好）。開場檢查點 4 就要攔下 |
-| 5 | push 被拒「Git commit signature is invalid」：後面接 `carries no signature`（沒有簽章）或 `is signed, but the signature does not verify`（有簽章但驗不過），並寫出是哪個 commit | 沒有簽章：簽章在第一個 Registry commit 之後才設定，或 Agent 用 rebase／amend 改寫過已簽章的 commit；驗不過：Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；已簽章的 commit 不要 amend 或 rebase，要合併別人的變更用 merge；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
-| 6 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate` |
-| 7 | `ssh-keygen` 行為不同、金鑰路徑找不到；或驗證簽章時出現 `Git commit signature was not checked`，後面接 `cannot spawn ssh-keygen`（Windows）或 `cannot run ssh-keygen`（macOS） | Git Bash 與 PowerShell 的 `ssh-keygen` 不同；後者是 Git 在目前的 PATH 找不到或啟動不了 `ssh-keygen`，簽章沒有被檢查，不是簽章錯 | 兩者皆可，但同一組全程用同一種 shell。找不到時先跑開場的 `doctor.py`（會檢查 `ssh-keygen`）；Windows 在「選用功能」啟用 OpenSSH Client，或改在 Git Bash 執行；macOS 確認 `which ssh-keygen` 指到內建的 `/usr/bin/ssh-keygen`。再驗證一次 |
-| 8 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它。Recovery 第一次寫入後 registry 檔整檔換行改變（CRLF→LF）是預期，diff 很大但雜湊與稽核不受影響 |
-| 9 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
-| 10 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
-| 11 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
-| 12 | PowerShell 說「已停用指令碼」 | 執行原則 | `Set-ExecutionPolicy -Scope Process Bypass -Force`（只影響目前視窗） |
-| 13 | push 出現 `unpacker error` | Repo 路徑太長 | 把 Repo 複製到短路徑（例如 `C:\dlc`）再 push |
-| 14 | macOS：下載資料夾沒有 zip，只有同名資料夾 | Safari 預設「下載後打開『安全』的檔案」，自動解開後把 zip 丟到垃圾桶 | Safari › 設定 › 一般 取消該項，或改用 Chrome，再重新下載。Recovery 的 macOS 指令找不到 zip 時會印出這個提示 |
-| 15 | macOS：路徑多一層 `participant-dlc-open/` | 「封存工具程式」解開頂層有多個項目的 zip 時，會包一層以 zip 命名的資料夾 | 照 Runbook 的路徑 `~/dlc/participant-dlc-open/agentic-workshop/...`；Recovery 指令用相對路徑，不受影響 |
-| 16 | macOS：`dm.sh` 出現語法錯誤或版本錯誤 | PATH 上沒有 `python3.13`，`dm.sh` 退回 `python3`（內建 3.9 跑不動 Plugin） | 安裝 Python 3.13（python.org 或 `brew install python@3.13`），確認 `python3.13 --version` |
-| 17 | macOS：`ssh-keygen` 不認得 `-Y`，或 git 版本低於 2.34 | macOS 11 以前內建的 OpenSSH 太舊；Xcode Command Line Tools 太舊 | macOS 12 以上；`xcode-select --install` 或 `brew install git`。來不及就和夥伴共用已通過的機器 |
-| 18 | macOS：`dm.sh: permission denied` | 解壓工具沒保留執行權限 | `chmod +x ../../tools/dm.sh`（Runbook 開場工作規則已寫） |
-| 19 | push 被拒，hook 印出 `domain-memory pre-push: the chained hook .git/hooks/pre-push.domain-memory-existing is not executable` | 裝 hook 前，這個 Repo 已經有別的 pre-push hook（例如 Git LFS 裝的），`install-git-hitl-hook` 把它改名成 `pre-push.domain-memory-existing` 並在 push 時先執行它；之後 Repo 經過解壓、雲端同步或複製，那個檔案失去執行權限（macOS 常見；Windows 的 Git Bash 看檔案第一行是不是 `#!`）。Plugin 0.27.2 起改成停下 push，不再默默跳過原本的檢查 | 先確認原本那個 hook 還要不要：要的話，macOS `chmod +x .git/hooks/pre-push.domain-memory-existing`，Windows 確認它第一行是 `#!/bin/sh` 之類的直譯器行；不要的話刪掉它。再 push 一次。`pre-push` 本身遺失或被覆蓋時，重跑 `install-git-hitl-hook` 裝回 |
-| 20 | Agent 或學員手動改了 `domain-memory/` 裡的紀錄檔，`validate` 回 `ERROR: <類別>/<id>.md: frontmatter line N: …` | 紀錄檔開頭區塊只接受 YAML 的一小部分：`key: value`、兩格縮排、`- ` 項目、值不加引號或用雙引號；單引號、`[a, b]` 會被拒並附行號。手改也不會留下稽核事件（`verify-audit` 照樣 valid），等於繞過候選與核准 | `git checkout -- <那個檔>` 還原（還沒 commit 時）；要改內容就照 Runbook 走候選與核准，不手改。學員只「打開來讀」 |
-| 21 | 編輯器存檔後，紀錄檔的換行從 LF 變成 CRLF | Plugin 寫的紀錄檔一律 LF；Windows 編輯器另存可能改成 CRLF | 讀取與 `validate` 不受影響（實測 0.33.0：改成 CRLF 後 `validate`、`get-record` 正常），但 `git diff` 會顯示整檔改變；還沒 commit 就 `git checkout -- <那個檔>` 還原，請學員只讀不存 |
+| 1 | `UnicodeDecodeError: 'cp950' codec ...` | 直接呼叫 `registry_tools.py`，缺 `-X utf8` | 一律經 `tools\dm.ps1`／`dm.sh`（固定 `py -3.13 -X utf8`） |
+| 2 | counterfactual 印出亂碼（Big5）並以 ERROR 結束（exit 1） | `--test-command` 由 cmd.exe 執行，直譯器路徑寫錯 | 寫 `.venv\Scripts\python.exe -m pytest -q <測試>`（反斜線；macOS 由 `/bin/sh` 執行，寫 `.venv/bin/python`）。**只認輸出中的 `killed`**；`failing_evidence` 要是 assertion 失敗 |
+| 3 | push 時 hook 印出 `no Python 3.10 or later on PATH as python3 or python` | pre-push hook 只在 PATH 上找 `python3`、`python`（要 3.10 以上）；Windows 常只有 `py` 啟動器，或 `python` 是 Store 別名（路徑含 `WindowsApps`）；macOS 的 `python3` 可能是內建的 3.9 | push 前在同一次執行啟用 Repo 的 `.venv`（Runbook 的 push 步驟已寫好）。開場檢查點 4 就要攔下 |
+| 4 | push 被拒「Git commit signature is invalid」：後面接 `carries no signature`（沒有簽章）或 `is signed, but the signature does not verify`（有簽章但驗不過），並寫出是哪個 commit | 沒有簽章：簽章在第一個 Registry commit 之後才設定，或 Agent 用 rebase／amend 改寫過已簽章的 commit；驗不過：Recovery 接手時沒附 maintainer 的 allowed_signers | 簽章先於第一個 Registry commit（`--sign-every-commit`）；已簽章的 commit 不要 amend 或 rebase，要合併別人的變更用 merge；Recovery 照切換頁步驟 2（RECOVERY.md 第 2 節）附上 allowed_signers 那一行，不要讓 Agent 自己 `git init` 出未簽章的起點 commit；用 `git log --format='%h %G? %s'` 找出 `N` 的那個 commit |
+| 5 | 新開的終端機裡 `python` 又不對 | venv 只對目前視窗有效 | 每個新視窗：PowerShell `Set-ExecutionPolicy -Scope Process Bypass -Force` ＋ `.\.venv\Scripts\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate` |
+| 6 | `ssh-keygen` 行為不同、金鑰路徑找不到；或驗證簽章時出現 `Git commit signature was not checked`，後面接 `cannot spawn ssh-keygen`（Windows）或 `cannot run ssh-keygen`（macOS） | Git Bash 與 PowerShell 的 `ssh-keygen` 不同；後者是 Git 在目前的 PATH 找不到或啟動不了 `ssh-keygen`，簽章沒有被檢查，不是簽章錯 | 兩者皆可，但同一組全程用同一種 shell。找不到時先跑開場的 `doctor.py`（會檢查 `ssh-keygen`）；Windows 在「選用功能」啟用 OpenSSH Client，或改在 Git Bash 執行；macOS 確認 `which ssh-keygen` 指到內建的 `/usr/bin/ssh-keygen`。再驗證一次 |
+| 7 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它。Recovery 第一次寫入後 registry 檔整檔換行改變（CRLF→LF）是預期，diff 很大但雜湊與稽核不受影響 |
+| 8 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | Runbook 已在 push 前設 `$env:PYTHONUTF8 = '1'`（Git Bash `export PYTHONUTF8=1`） |
+| 9 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
+| 10 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
+| 11 | PowerShell 說「已停用指令碼」 | 執行原則 | `Set-ExecutionPolicy -Scope Process Bypass -Force`（只影響目前視窗） |
+| 12 | macOS：下載資料夾沒有 zip，只有同名資料夾 | Safari 預設「下載後打開『安全』的檔案」，自動解開後把 zip 丟到垃圾桶 | Safari › 設定 › 一般 取消該項，或改用 Chrome，再重新下載。Recovery 的 macOS 指令找不到 zip 時會印出這個提示 |
+| 13 | macOS：`dm.sh` 出現語法錯誤或版本錯誤 | PATH 上沒有 `python3.13`，`dm.sh` 退回 `python3`（內建 3.9 跑不動 Plugin） | 安裝 Python 3.13（python.org 或 `brew install python@3.13`），確認 `python3.13 --version` |
+| 14 | macOS：`ssh-keygen` 不認得 `-Y`，或 git 版本低於 2.34 | macOS 11 以前內建的 OpenSSH 太舊；Xcode Command Line Tools 太舊 | macOS 12 以上；`xcode-select --install` 或 `brew install git`。來不及就和夥伴共用已通過的機器 |
+| 15 | macOS：`dm.sh: permission denied` | 解壓工具沒保留執行權限 | `chmod +x ../../tools/dm.sh`（Runbook 開場工作規則已寫） |
+| 16 | push 被拒，hook 印出 `domain-memory pre-push: the chained hook .git/hooks/pre-push.domain-memory-existing is not executable` | 裝 hook 前，這個 Repo 已經有別的 pre-push hook（例如 Git LFS 裝的），`install-git-hitl-hook` 把它改名成 `pre-push.domain-memory-existing` 並在 push 時先執行它；之後 Repo 經過解壓、雲端同步或複製，那個檔案失去執行權限（macOS 常見；Windows 的 Git Bash 看檔案第一行是不是 `#!`）。Plugin 0.27.2 起改成停下 push，不再默默跳過原本的檢查 | 先確認原本那個 hook 還要不要：要的話，macOS `chmod +x .git/hooks/pre-push.domain-memory-existing`，Windows 確認它第一行是 `#!/bin/sh` 之類的直譯器行；不要的話刪掉它。再 push 一次。`pre-push` 本身遺失或被覆蓋時，重跑 `install-git-hitl-hook` 裝回 |
+| 17 | Agent 或學員手動改了 `domain-memory/` 裡的紀錄檔，`validate` 回 `ERROR: <類別>/<id>.md: frontmatter line N: …` | 紀錄檔開頭區塊只接受 YAML 的一小部分：`key: value`、兩格縮排、`- ` 項目、值不加引號或用雙引號；單引號、`[a, b]` 會被拒並附行號。手改也不會留下稽核事件（`verify-audit` 照樣 valid），等於繞過候選與核准 | `git checkout -- <那個檔>` 還原（還沒 commit 時）；要改內容就照 Runbook 走候選與核准，不手改。學員只「打開來讀」 |
+| 18 | 編輯器存檔後，紀錄檔的換行從 LF 變成 CRLF | Plugin 寫的紀錄檔一律 LF；Windows 編輯器另存可能改成 CRLF | 讀取與 `validate` 不受影響（實測 0.33.0：改成 CRLF 後 `validate`、`get-record` 正常），但 `git diff` 會顯示整檔改變；還沒 commit 就 `git checkout -- <那個檔>` 還原，請學員只讀不存 |
 
 ## 6. 時間風險
 
@@ -329,7 +325,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 - [ ] 確認每組已在回顧檢查點 4 只刪除私鑰 `signing-key`。同一個資料夾裡的 `signing-key.allowed_signers` 刻意保留：它只有公鑰，Git 驗證今天的簽章要用它。公用電腦由主持人課後連同 `C:\dlc` 一起刪除整個金鑰資料夾：PowerShell `Remove-Item -Recurse -Force "$env:USERPROFILE\.dlc-keys"`；Git Bash `rm -rf ~/.dlc-keys`。主持人示範金鑰同樣刪除。
 - [ ] 確認沒有人把 `signing-key`（無副檔名的私鑰檔）複製進 Repo、貼到 Agent、表單或聊天、或出現在截圖。
-- [ ] 公用電腦：刪除 `C:\dlc`、`C:\dlc-rec`；清除瀏覽器中 `stwdlc:` 開頭的 Runbook 暫存（或請學員在 Runbook 內清除）。
+- [ ] 公用電腦：刪除學員解出來的 `participant-dlc-open` 資料夾（Recovery 也解在裡面）；清除瀏覽器中 `stwdlc:` 開頭的 Runbook 暫存（或請學員在 Runbook 內清除）。
 - [ ] 收回學員匯出的 Runbook ZIP（若有收集），存放時視為個人資料。
 - [ ] 記錄本場：各組使用了哪些 Recovery、在第幾分鐘；哪些段落超時；這些資料回填規格 §7 的真人演練紀錄（未有實際場次前，該項一律 `NOT_RUN`）。
 

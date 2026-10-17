@@ -28,24 +28,24 @@ id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
 # windows
 我要改用 D1 Recovery 接續。不要修改或刪除目前這個 Repo，也不要 git commit；任何一步失敗就停下，不要自己繞過：
 1. 在目前 Repo 執行 git status 與 git log --oneline -3，然後問我：現在是第幾分鐘、主要卡在哪裡、自己完成到 D1 第幾個檢查點。先記在對話裡，不要寫進目前這個 Repo。
-2. 把 Recovery 解到 C:\dlc-rec\d1，再把裡面的 smart-ticket-dlc-base 複製成 repository 資料夾裡的 resume-d1（和原 Repo 同一層，學員包的 tools 才找得到）；原 Repo 有 notes 與 docs/handoffs 資料夾時一併複製過去，後面的段落要讀。這一步不碰 Git。下面的指令要在原 Repo 根目錄開始執行，任何一行失敗都會自動停下：
+2. 把 Recovery 解到學員包裡的 recovery-d1 資料夾，再把裡面的 smart-ticket-dlc-base 複製成 repository 資料夾裡的 resume-d1（和原 Repo 同一層，學員包的 tools 才找得到）；原 Repo 有 notes 與 docs/handoffs 資料夾時一併複製過去，後面的段落要讀。這一步不碰 Git。下面的指令要在原 Repo 根目錄開始執行，任何一行失敗都會自動停下：
 PowerShell（整段原樣執行，不要加 2>&1 或 *>&1，否則 dm 的提示訊息會被當成錯誤）：
 $ErrorActionPreference = 'Stop'
 $orig = git rev-parse --show-toplevel; if ($LASTEXITCODE) { throw "not in the original Repo" }
 Set-Location (Split-Path $orig)
-if (Test-Path .\resume-d1) { throw "resume-d1 already exists: delete C:\dlc-rec\d1 and resume-d1, then rerun" }
-Expand-Archive -Force -LiteralPath "$HOME\Downloads\recovery-dlc-d1.zip" -DestinationPath C:\dlc-rec\d1
-$b = (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
+if (Test-Path .\resume-d1) { throw "resume-d1 already exists: delete ..\recovery-d1 and resume-d1, then rerun" }
+Expand-Archive -Force -LiteralPath "$HOME\Downloads\recovery-dlc-d1.zip" -DestinationPath ..\recovery-d1
+$b = (Get-ChildItem ..\recovery-d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d1
 foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d1\$d" } }
 Git Bash：
 ( set -e
 orig=$(git rev-parse --show-toplevel)
 cd "$orig/.."
-[ ! -e ./resume-d1 ] || { echo "resume-d1 already exists: delete /c/dlc-rec/d1 and resume-d1, then rerun" >&2; exit 1; }
-mkdir -p /c/dlc-rec/d1
-unzip -o -q ~/Downloads/recovery-dlc-d1.zip -d /c/dlc-rec/d1
-rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
+[ ! -e ./resume-d1 ] || { echo "resume-d1 already exists: delete ../recovery-d1 and resume-d1, then rerun" >&2; exit 1; }
+mkdir -p ../recovery-d1
+unzip -o -q ~/Downloads/recovery-dlc-d1.zip -d ../recovery-d1
+rec=$(find ../recovery-d1 -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d1
 for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./resume-d1/$d"; fi; done
@@ -55,15 +55,15 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 # macos
 我要改用 D1 Recovery 接續。不要修改或刪除目前這個 Repo，也不要 git commit；任何一步失敗就停下，不要自己繞過：
 1. 在目前 Repo 執行 git status 與 git log --oneline -3，然後問我：現在是第幾分鐘、主要卡在哪裡、自己完成到 D1 第幾個檢查點。先記在對話裡，不要寫進目前這個 Repo。
-2. 把 Recovery 解到 ~/dlc-rec/d1，再把裡面的 smart-ticket-dlc-base 複製成 repository 資料夾裡的 resume-d1（和原 Repo 同一層，學員包的 tools 才找得到）；原 Repo 有 notes 與 docs/handoffs 資料夾時一併複製過去，後面的段落要讀。這一步不碰 Git。下面的指令要在原 Repo 根目錄開始執行，任何一行失敗都會自動停下：
+2. 把 Recovery 解到學員包裡的 recovery-d1 資料夾，再把裡面的 smart-ticket-dlc-base 複製成 repository 資料夾裡的 resume-d1（和原 Repo 同一層，學員包的 tools 才找得到）；原 Repo 有 notes 與 docs/handoffs 資料夾時一併複製過去，後面的段落要讀。這一步不碰 Git。下面的指令要在原 Repo 根目錄開始執行，任何一行失敗都會自動停下：
 ( set -e
 orig=$(git rev-parse --show-toplevel)
 cd "$orig/.."
-[ ! -e ./resume-d1 ] || { echo "resume-d1 already exists: delete ~/dlc-rec/d1 and resume-d1, then rerun" >&2; exit 1; }
+[ ! -e ./resume-d1 ] || { echo "resume-d1 already exists: delete ../recovery-d1 and resume-d1, then rerun" >&2; exit 1; }
 [ -f ~/Downloads/recovery-dlc-d1.zip ] || { echo "找不到 zip：Safari 可能已自動解壓並把 zip 丟到垃圾桶，請到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，再重新下載" >&2; exit 1; }
-mkdir -p "$HOME/dlc-rec/d1"
-unzip -o -q ~/Downloads/recovery-dlc-d1.zip -d "$HOME/dlc-rec/d1"
-rec=$(find "$HOME/dlc-rec/d1" -name repo.bundle -exec dirname {} \; | head -1)
+mkdir -p ../recovery-d1
+unzip -o -q ~/Downloads/recovery-dlc-d1.zip -d ../recovery-d1
+rec=$(find ../recovery-d1 -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d1
 for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./resume-d1/$d"; fi; done
@@ -84,11 +84,8 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 
 失敗時（中途失敗、要重跑）：
 
-```prompt
-# windows
-步驟 1 中途失敗了。重跑前先刪除 C:\dlc-rec\d1 與 repository 資料夾裡的 resume-d1（只刪這兩個，原 Repo 不動），再重跑第 2 步同一組指令；仍失敗就停下貼出錯誤。
-# macos
-步驟 1 中途失敗了。重跑前先刪除 ~/dlc-rec/d1 與 repository 資料夾裡的 resume-d1（只刪這兩個，原 Repo 不動），再重跑第 2 步同一組指令；仍失敗就停下貼出錯誤。
+```text
+步驟 1 中途失敗了。重跑前先刪除學員包裡的 recovery-d1 與 repository 資料夾裡的 resume-d1（只刪這兩個，原 Repo 不動），再重跑第 2 步同一組指令；仍失敗就停下貼出錯誤。
 ```
 
 ## 步驟 2 · 在 resume-d1 開新的 Agent 對話，還原並驗證
@@ -106,7 +103,7 @@ for d in notes docs/handoffs; do if [ -d "$orig/$d" ]; then cp -r "$orig/$d" "./
 這是 D1 Recovery 起點，Repo 根目錄是 resume-d1：Domain Memory 在 domain-memory/，裡面全部是候選。不要 git add 或 commit domain-memory/。依終端機選一組，在「同一次執行」裡依序跑（rec 變數要在同一次執行內才有值），任何一步失敗就停下：
 PowerShell（整段原樣執行，不要加 2>&1 或 *>&1，否則 dm 的提示訊息會被當成錯誤）：
 $ErrorActionPreference = 'Stop'
-$b = (Get-ChildItem C:\dlc-rec\d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
+$b = (Get-ChildItem ..\..\recovery-d1 -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 git init -q -b main; if ($LASTEXITCODE) { throw "git init failed" }
 git fetch -q "$rec\repo.bundle" main; if ($LASTEXITCODE) { throw "git fetch failed" }
 git reset -q FETCH_HEAD; if ($LASTEXITCODE) { throw "git reset failed" }
@@ -120,7 +117,7 @@ py -3.13 -m venv .venv; if ($LASTEXITCODE) { throw "venv failed" }
 ..\..\tools\dm.ps1 verify-evidence
 Git Bash：
 ( set -e
-rec=$(find /c/dlc-rec/d1 -name repo.bundle -exec dirname {} \; | head -1)
+rec=$(find ../../recovery-d1 -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main
@@ -138,7 +135,7 @@ py -3.13 -m venv .venv
 # macos
 這是 D1 Recovery 起點，Repo 根目錄是 resume-d1：Domain Memory 在 domain-memory/，裡面全部是候選。不要 git add 或 commit domain-memory/。在「同一次執行」裡依序跑（rec 變數要在同一次執行內才有值），任何一步失敗就停下：
 ( set -e
-rec=$(find "$HOME/dlc-rec/d1" -name repo.bundle -exec dirname {} \; | head -1)
+rec=$(find ../../recovery-d1 -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 git init -q -b main
 git fetch -q "$rec/repo.bundle" main

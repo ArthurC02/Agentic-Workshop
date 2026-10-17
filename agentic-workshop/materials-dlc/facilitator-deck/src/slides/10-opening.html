@@ -61,7 +61,7 @@
   <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
-    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載並「全部解壓縮」到 <code>C:\dlc</code>，在 Repo 根目錄開 Agent，把工作規則和檢查點 1 的提示詞接在一起一次貼。</p>
+    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載、解壓縮到習慣的位置（例如下載資料夾），用 Agent 開啟 <code>smart-ticket-dlc-base</code>，把工作規則和檢查點 1 的提示詞接在一起一次貼。</p>
   </aside>
 </section>
 
@@ -94,16 +94,16 @@
   <p class="cp-why"><b>為什麼</b>每個決定最後都用測試證明；先確認起點全部通過</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>下載、解壓、開 Agent</b><span>解到 <code>C:\dlc</code>（macOS：<code>~/dlc</code>）</span></li>
+    <li><b>下載、解壓、開 Agent</b><span>解壓到下載資料夾，開 Repo 資料夾</span></li>
     <li><b>規則接 ② 一次貼</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 3 分前完成</b><span>→ 下一步：檢查點 2 備好可信的共用模型工具</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓到 C 槽的 dlc 資料夾，在 Repo 根目錄開 Agent，把工作規則和提示詞接在一起一次貼，讓 Agent 安裝依賴、跑測試，要看到 76 passed；最後一行它會自己回成功或失敗。等安裝時先讀 Runbook 的 Windows 提醒。」</p>
+    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓縮後用 Agent 開啟 smart-ticket-dlc-base，把工作規則和提示詞接在一起一次貼，讓 Agent 安裝依賴、跑測試，要看到 76 passed；最後一行它會自己回成功或失敗。等安裝時先讀檢查點 2 的 ①。」</p>
     <p><b>省時</b>：規則與檢查點 1 提示詞合成一次貼上（規則最後一句已改成「後面接著有指示就直接做」）；② 最後請 Agent 自我檢查並回成功／失敗，學員不必再貼 ③（沒看到才貼）。</p>
     <p><b>看</b>：學員貼的內容開頭是不是工作規則；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
-    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 檢查點 1 的「失敗時」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源、路徑）；不要全場等。</p>
+    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 檢查點 1 的「失敗時」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源）；不要全場等。</p>
   </aside>
 </section>
 

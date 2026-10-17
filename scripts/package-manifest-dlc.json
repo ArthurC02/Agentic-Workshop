@@ -14,370 +14,374 @@
         "agentic-workshop/07-dlc-ddd/participant/tools/**/*",
         "agentic-workshop/07-dlc-ddd/participant/vendor/**/*"
       ],
+      "destination_root": {
+        "from": "agentic-workshop/07-dlc-ddd/participant",
+        "to": ""
+      },
       "files": [
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/README.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/README.md",
+          "destination": "README.md",
           "sha256": "16667d36b96e5b7502553cf157f16e877b5a27f544530bfcd8fb393b935b6f1d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitattributes",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitattributes",
+          "destination": "repository/smart-ticket-dlc-base/.gitattributes",
           "sha256": "b4533e8805d1fb4b8bcc0fca73b59a7e5985c40a88ee652dd4b01424db2c3d48"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitignore",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/.gitignore",
+          "destination": "repository/smart-ticket-dlc-base/.gitignore",
           "sha256": "b0b18f5bf7184f205a45032e7a3034fffc852f9c6ad28ae26bb839e2893b5ddd"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/README.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/README.md",
+          "destination": "repository/smart-ticket-dlc-base/README.md",
           "sha256": "0bdb43b39057fe2c6683d5583e30960fd968196549eed738a20ff4cef750fb3d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/001-use-in-memory-repositories.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/001-use-in-memory-repositories.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/adr/001-use-in-memory-repositories.md",
           "sha256": "a90464d63ad75b50e69e5a308343eeff4c7efcbfd08f529c26e1f3c4fb52ce3b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/002-introduce-discount-policy.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/002-introduce-discount-policy.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/adr/002-introduce-discount-policy.md",
           "sha256": "0122d103a4785a588b937b863fcc626b8fbffbac5852cca71c4a7c78cf9fb845"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/003-record-notifications-synchronously.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/003-record-notifications-synchronously.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/adr/003-record-notifications-synchronously.md",
           "sha256": "1d8abf620505701ccc4809b526ff6502076f3a00e4974fc9fb4b8d3c4deaa25b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/004-group-seat-atomicity.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/adr/004-group-seat-atomicity.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/adr/004-group-seat-atomicity.md",
           "sha256": "3f99dcb7c77680a497cbbde9dbe7aaaef14763812c5681eff44a9a10927a532b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/api-examples.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/api-examples.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/api-examples.md",
           "sha256": "a5ca35c0520b93769e1f6a3f26a6c4708036a863888d9ca45a8bf4737ae46a04"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/architecture.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/architecture.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/architecture.md",
           "sha256": "e34b38895c6992b629107a249e66069d72635767a77611b9dee0a215d0893312"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/requirements/business-rules.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/requirements/business-rules.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/requirements/business-rules.md",
           "sha256": "43e91ec800b24cbb491c671e48b1e0fa1ee512abadccdaaad6a1c5df2bdf65e2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/requirements/change-booking-guide.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/requirements/change-booking-guide.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/requirements/change-booking-guide.md",
           "sha256": "20ef516bfa1572a275b817f3a8c1cb785ff392444d98087af9f8c8756d4659b0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/requirements/discount-overview.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/requirements/discount-overview.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/requirements/discount-overview.md",
           "sha256": "6c7054e02561bb1f66dc0c9d8d2269f391fbd61648380c22dfa041b5fc3f1112"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/version-history.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/docs/version-history.md",
+          "destination": "repository/smart-ticket-dlc-base/docs/version-history.md",
           "sha256": "9c144f110832912f9fef44991dd118b655c411c0fed769f22553879a264c3417"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/pyproject.toml",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/pyproject.toml",
+          "destination": "repository/smart-ticket-dlc-base/pyproject.toml",
           "sha256": "90e9f7c6be9b1d78e25cec299beb115bdc61304a419b6ef04d1918591726d3d2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/requirements.txt",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/requirements.txt",
+          "destination": "repository/smart-ticket-dlc-base/requirements.txt",
           "sha256": "d138f08faa514f6df2b5806bb496c843c82bbb0ba488349b55ceaab6c3f1ada5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/__init__.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/__init__.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/__init__.py",
           "sha256": "d75cfc25e931de6c4744b1b9b40310a357941bcf828f487204d2eaa6c4a5153f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/api/dependencies.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/api/dependencies.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/api/dependencies.py",
           "sha256": "ed9f414e6a59402f4d5db2a0d4577d9a7a588be96f7edf7bd920c687251dcc08"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/api/routes.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/api/routes.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/api/routes.py",
           "sha256": "5db43d95c2263f8832ad9b9cd69f1ec946309a13e79babbdb471e7c257f8f7b1"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/audit_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/audit_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/audit_service.py",
           "sha256": "3d5d141f31e809a144eae0a440581e59b71b33832af8a3f0313d642faa6cbdf1"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/booking_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/booking_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/booking_service.py",
           "sha256": "fa695f45dcbefa2c5e37b98e95eaf31ab93acf0b7bcdea97e4b3f9451f9757ba"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/change_booking_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/change_booking_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/change_booking_service.py",
           "sha256": "cf2d429bc824bc744913f67aa585624d64c6866314b133d238b2a5928ac2e75f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/group_booking_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/group_booking_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/group_booking_service.py",
           "sha256": "87b2a5f506238f53ef792b827950c4d06b1216f22246a949a54618a0ae5de30d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/member_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/member_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/member_service.py",
           "sha256": "09e59b302dfe2c7853a941239aca2f080ae5b748790326e53c3b9434aef4e04d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/notification_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/notification_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/notification_service.py",
           "sha256": "823973eac5da687bc6ba270af01520322bad147cb6f550830916a922c15fb646"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/order_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/order_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/order_service.py",
           "sha256": "94f7d206caecba1f357d2a336dbd35a0e583a168352f0763457627d78e74b81a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/payment_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/payment_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/payment_service.py",
           "sha256": "73301a21c601efac8a04dd36065fefa8f0cf1979f95c24c6291dabe350b1a859"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/refund_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/refund_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/refund_service.py",
           "sha256": "af2a8baa311e12a900cd81fb4b86b4e2c8ac17a6a31788686d4a90d37dd31cf7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/seat_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/seat_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/seat_service.py",
           "sha256": "8ebda2a05274377d8749fbfb28498362f052a103b5300c2a277827814b1859dd"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/trip_service.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/application/trip_service.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/application/trip_service.py",
           "sha256": "1a02c8e326f1085ec9fc62458f3ee9ec3f32f0ac9bdd7656fcc2e0797b051a44"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/discounts.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/discounts.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/discounts.py",
           "sha256": "4f0917658e867636787f9486f24bd768ea2ac37cf1e30a6381c91b306f659ee6"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/errors.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/errors.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/errors.py",
           "sha256": "b401180f5388bdc68e453a8ab0f4dd12af9671621b465c3146c807984155c834"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/fare_policy.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/fare_policy.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/fare_policy.py",
           "sha256": "a678a9818d901ae1e51333a90788754a318717db722adc2d9ed45a467987b8cf"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/members.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/members.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/members.py",
           "sha256": "3b1e75d51590c00539422a97f6be622cfc6090cc6cbdb798483a16d46f7a1e2e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/models.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/models.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/models.py",
           "sha256": "05953cc0b6bd554c7caecfdede09c3a449975f51d84dfc5f61502739e5336014"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/records.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/records.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/records.py",
           "sha256": "651fa7ea05bd2b0b893766ea44d56ce3ab65e3d5f707a121fa967c9ea2f06ed0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/repositories.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/domain/repositories.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/domain/repositories.py",
           "sha256": "f0118673b59b2db3a911bc37d39be2bb61cc1867b885a6a709c9995de0c0ad38"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/clock.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/clock.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/clock.py",
           "sha256": "7100603f42c46744edb68b0e9fc548b6cad189c7fc9b0e80071fd9807a004d80"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/payment_gateway.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/payment_gateway.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/payment_gateway.py",
           "sha256": "f74352beecc39e1bd6e063b5e1be9393f3550d994d68de5c476f8820af02d3c3"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/seed_data.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/seed_data.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/seed_data.py",
           "sha256": "b047ae7670459dd243dd15150ac76c77747731348266685ad90bcfc2350084c2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/store.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/store.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/infrastructure/store.py",
           "sha256": "675022ee31ec4bb64addbafb2ee94cb514698e47b82dc6fef2a70fdd444e1c3d"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/main.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/main.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/main.py",
           "sha256": "b29c7bb379fca0995c527b0fb1ee7b5d127b4de36fbb1be12a9603970aa28c27"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/schemas/contracts.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/src/smart_ticket/schemas/contracts.py",
+          "destination": "repository/smart-ticket-dlc-base/src/smart_ticket/schemas/contracts.py",
           "sha256": "84064b9771afc8660cda1fd79025c3026e14b51244f6e3c2c876456f1000a28e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/conftest.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/conftest.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/conftest.py",
           "sha256": "5b6c4d870c6a5ea96db6f738d7358a9a22f3373ffa73f56476ca680cc8811759"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/conftest.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/conftest.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/conftest.py",
           "sha256": "a122e8081c519db58881ad430566c55224d95dfee2609c8a735abdf373fbe95a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_advance.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_advance.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_advance.py",
           "sha256": "a581320e7a03f3cf77979a1ff4244753015593db3fc9e79acf7a945a41a8c81a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_best_discount_api.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_best_discount_api.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_best_discount_api.py",
           "sha256": "f7d604b157e9e1208c8cc9fa6ab8a292cc70e60a2221b59e0cec3e2d629bab41"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_changes.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_changes.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_changes.py",
           "sha256": "6cd04c30f2dd63e350e3e33303a49d1e93d3f2018cec4456d2b34c15f3ae4ef4"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_features.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_features.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_features.py",
           "sha256": "b0b34bc8efa0de9b63b046da9bab275cc82f0113d24f2c05f47c270356f47d9f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_group_creation.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_group_creation.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_group_creation.py",
           "sha256": "1e1fc56e29a9f32da8cb66ce038d6a4a7d973038c8d54328a2eb042f930fea1a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_group_payment.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_group_payment.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_group_payment.py",
           "sha256": "24bff5ff661c30b753977a74d0396f6386734634cf8322ea0ea54eb279113127"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_members.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_members.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_members.py",
           "sha256": "2e4e86a8519ef7695dc8559ca7b26e1e182e8e34c6ddbd910c86bd733dd508d4"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_missing_resources_api.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_missing_resources_api.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_missing_resources_api.py",
           "sha256": "d69259405ef8a39917aac61f3271eafa6d826fb0df0a629609ae10461732a111"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_records.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_records.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_records.py",
           "sha256": "97b0bcf6cd5968faf127f40384e14d82cc761a433b5f5a7c74086aed6fdb80d9"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_refunds.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_refunds.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_refunds.py",
           "sha256": "762623ad5a5657cf720af8f8820ebcdb179f5dfbc3052b81cd3020618f64ddea"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_seats.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_seats.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_seats.py",
           "sha256": "edc2284d4f0d90a092067c339e181722969918ef72cf2b9f5046c00f40857d3e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_seed.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/integration/test_seed.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/integration/test_seed.py",
           "sha256": "f8c4cc3cb08212da754407148f1fed20419d5081da7fcf85151cc023968fd404"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/test_health.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/test_health.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/test_health.py",
           "sha256": "1a51e70f54c48ac6baf297f4ca09ecd5315a193f02e1bd04c70764441bc50d33"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/unit/test_best_discount_policy.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/unit/test_best_discount_policy.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/unit/test_best_discount_policy.py",
           "sha256": "026f6b2dd0a173da45db9e1e56d6d3c167e2ddf6f9fd42b81d0ba4243408119f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/unit/test_fare_policy.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/unit/test_fare_policy.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/unit/test_fare_policy.py",
           "sha256": "256d7a8eb5b8c3f8512e7f0cb43d894e8ce3bf92c375c9fadad5cee372d096f8"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/unit/test_services.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/tests/unit/test_services.py",
+          "destination": "repository/smart-ticket-dlc-base/tests/unit/test_services.py",
           "sha256": "bb749699b9c0455c1fd48c8acce801246e946aa035e751be8333af8acb4a46ad"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
+          "destination": "tools/README.md",
           "sha256": "1f2cc0e1b3e9d57f86c3f36cdebc20f0663aa770192b35a5069a4740d92b32d2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
+          "destination": "tools/dm.ps1",
           "sha256": "7ce016bb3a2f5fd4527e23051542a4414c2639b8691b23223963945185eb3b13"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.sh",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dm.sh",
+          "destination": "tools/dm.sh",
           "sha256": "2702b0278573a34380bf84497f4b7417864c1a48dc74c7187e1037a8a5ff420f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
+          "destination": "tools/dmlib.py",
           "sha256": "ac0698dd56b3d092830bb246c2c1865d6f52d7645679fa6d3e7fc4bd623974ea"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
+          "destination": "tools/doctor.py",
           "sha256": "15da35605907c538a84065b8be88ef0e21c89f21008eadb42a440eb772a43282"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
+          "destination": "tools/fill_package.py",
           "sha256": "3902bbb510b7e2cb727146133b092f08f0aaec5b15abe8eb7b194fcf72527be2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/make_record.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/make_record.py",
+          "destination": "tools/make_record.py",
           "sha256": "8634ad56524893950c2800e36c7b70f19e8beb45d63572bcca0c70e5269ccc22"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/setup_remote.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/setup_remote.py",
+          "destination": "tools/setup_remote.py",
           "sha256": "f248bd5874007ea6bf63fb202dda4f49713fde27261d86a474bc6ebf9047d2d7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
+          "destination": "tools/test_tools.py",
           "sha256": "c0f10031c34c2920d2e1c987559712999ea338b0a175b8c06bdc19ea70bfbfab"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/write_scm_attestation.py",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/tools/write_scm_attestation.py",
+          "destination": "tools/write_scm_attestation.py",
           "sha256": "1a6ba665520877ba86648b5955a259802b2676d8e8dd9e80a358f704aaa12a93"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.33.0.zip",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.33.0.zip",
+          "destination": "vendor/domain-memory-0.33.0.zip",
           "sha256": "f53aefc06bd5827f77c6344650f578ad3aba31d8e47c3c3b157509c790eca751"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.33.0.zip.SHA256SUMS",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.33.0.zip.SHA256SUMS",
+          "destination": "vendor/domain-memory-0.33.0.zip.SHA256SUMS",
           "sha256": "fc281b0e74bfdead351f58745b6ed211bfe2c257ac7a715d177967aa6845b607"
         }
       ],
@@ -501,7 +505,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
           "destination": "recovery-dlc-d1/RECOVERY.md",
-          "sha256": "98d8a104710ef8630656f6db3c4421af46314d11ebb0626403a8b00d530aff88"
+          "sha256": "2f4078f241a31dbab43251af7d60352d151075a3a439e88f0a8b8c655e475998"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
@@ -1193,7 +1197,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "recovery-dlc-d2/RECOVERY.md",
-          "sha256": "b3ee7d988b696487811c38c6fe661642c85a87572f05474f8dcbb93d6c86f673"
+          "sha256": "a6fd0c5634c8d126268bc4b6a9e7b01be337d69fb78a52eddfb50cec94321131"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -1940,7 +1944,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "recovery-dlc-d3a/RECOVERY.md",
-          "sha256": "aef852783261e10f590fd200397cdd02254ed2954c91b62e7591e3aa7f8ecb2a"
+          "sha256": "7be96819794f98e0ae7ce856e74ae5e8f459abbac946c09c36185677ae40e216"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -2712,7 +2716,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "recovery-dlc-d3b/RECOVERY.md",
-          "sha256": "64c554c332b9db89f3c81addb08960d54edc7b04a219896c5d824111f216a978"
+          "sha256": "0ed85650cb9fb2e6fbccee1e56a622d9f9dfabf18c8dbc6d98ad5393b23aa0e4"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -3494,7 +3498,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "recovery-dlc-d3c/RECOVERY.md",
-          "sha256": "4c9ee43f1711a4d75180866dddf5de84b4014192539e97f7a0de2545069b0881"
+          "sha256": "2513b1623dedc6f27e0aa0b4af18166fa70b2eaaf6f341b6b6637d0db2060e66"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -4287,12 +4291,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "970357b0f1a844ece3eda52640d1fe556e980fbae45009954c6791f98c3b18e6"
+          "sha256": "8a73379283dfc27c8bbb2632877c7c28b1b2bd987aee4b46d26008cbb1ffeef0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
-          "sha256": "98d8a104710ef8630656f6db3c4421af46314d11ebb0626403a8b00d530aff88"
+          "sha256": "2f4078f241a31dbab43251af7d60352d151075a3a439e88f0a8b8c655e475998"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/repo.bundle",
@@ -4967,7 +4971,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
-          "sha256": "b3ee7d988b696487811c38c6fe661642c85a87572f05474f8dcbb93d6c86f673"
+          "sha256": "a6fd0c5634c8d126268bc4b6a9e7b01be337d69fb78a52eddfb50cec94321131"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -5697,7 +5701,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
-          "sha256": "aef852783261e10f590fd200397cdd02254ed2954c91b62e7591e3aa7f8ecb2a"
+          "sha256": "7be96819794f98e0ae7ce856e74ae5e8f459abbac946c09c36185677ae40e216"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -6452,7 +6456,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
-          "sha256": "64c554c332b9db89f3c81addb08960d54edc7b04a219896c5d824111f216a978"
+          "sha256": "0ed85650cb9fb2e6fbccee1e56a622d9f9dfabf18c8dbc6d98ad5393b23aa0e4"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -7217,7 +7221,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
-          "sha256": "4c9ee43f1711a4d75180866dddf5de84b4014192539e97f7a0de2545069b0881"
+          "sha256": "2513b1623dedc6f27e0aa0b4af18166fa70b2eaaf6f341b6b6637d0db2060e66"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -7997,7 +8001,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
-          "sha256": "e11049bfa6e49306a2e0534af3468db2f874558eec9d9d104b7271bf7579d893"
+          "sha256": "73e51855217b6b9803c97b864527df2f941a45863405e76b1c45a284627a90dd"
         }
       ],
       "generated": {}
@@ -8025,7 +8029,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "4cc5ad88c07519db215504051cdc03b2aedb13084b045ae93ad4fac670161b2d"
+          "sha256": "8df23894be6cf0e6e2e730ab4eddd358eef0c794d8fe3ecb7978efc3f855e11b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",

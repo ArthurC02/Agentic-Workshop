@@ -6,7 +6,8 @@ Usage:
     py -3.13 -X utf8 scripts/build_delivery_dlc.py --verify <dir>     # inspect an existing candidate
 
 Same manifest schema as package-manifest.json plus one key per package: "sources" (glob patterns relative
-to the repo root) and optional "destination_root" {"from", "to"} (recovery packages). The build fails when
+to the repo root) and optional "destination_root" {"from", "to"} (recovery packages; participant-dlc-open uses
+"to": "" so it unpacks to repository/, tools/, vendor/ with short paths). The build fails when
 a declared source matches nothing; --allow-missing (dev only) skips those sources with a warning, and a
 package left without files is skipped and listed under "missing_packages" in build-evidence.json.
 Pinned files must equal what the sources enumerate (no unpinned additions, no vanished files, no drift).
@@ -30,6 +31,7 @@ MANIFEST = ROOT / "scripts/package-manifest-dlc.json"
 OUT_ROOT = ROOT / "dist/dlc-candidate"
 DLC = "agentic-workshop/07-dlc-ddd"
 VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-0.33.0.zip"
+VENDOR_PACKED = "vendor/domain-memory-0.33.0.zip"  # its path inside participant-dlc-open
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
     "participant-dlc-open": ("participant", 0),
@@ -73,7 +75,8 @@ def destination(package: dict, source: str) -> str:
         prefix = mapping["from"].rstrip("/") + "/"
         if not source.startswith(prefix):
             raise ValueError(f"Source outside destination_root: {source}")
-        return mapping["to"].rstrip("/") + "/" + source[len(prefix):]
+        to = mapping["to"].strip("/")
+        return f"{to}/{source[len(prefix):]}" if to else source[len(prefix):]
     return source
 
 
@@ -123,14 +126,14 @@ def source_policy(package: dict, source: str) -> None:
 
 def vendor_check(contents: dict[str, bytes]) -> bool:
     """The vendored plugin ZIP must match its SHA256SUMS (whole ZIP and every member)."""
-    if VENDOR_ZIP not in contents:
+    if VENDOR_PACKED not in contents:
         return False
-    sums = contents.get(VENDOR_ZIP + ".SHA256SUMS")
+    sums = contents.get(VENDOR_PACKED + ".SHA256SUMS")
     if sums is None:
         raise ValueError("Vendored plugin ZIP without SHA256SUMS")
     expected = dict(reversed(line.split("  ", 1)) for line in sums.decode("utf-8").splitlines())
-    data = contents[VENDOR_ZIP]
-    if expected.pop(Path(VENDOR_ZIP).name, None) != digest(data):
+    data = contents[VENDOR_PACKED]
+    if expected.pop(Path(VENDOR_PACKED).name, None) != digest(data):
         raise ValueError("Vendored plugin ZIP SHA256 mismatch")
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         actual = {n: digest(archive.read(n)) for n in archive.namelist()}

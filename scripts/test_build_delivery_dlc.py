@@ -55,7 +55,7 @@ class VendorPluginTests(unittest.TestCase):
         out.write_bytes(data)
         out.with_name(name + ".SHA256SUMS").write_bytes(sums)
         self.assertEqual(vendor.verify(out), [])
-        self.assertEqual(dlc.vendor_check({dlc.VENDOR_ZIP: data, dlc.VENDOR_ZIP + ".SHA256SUMS":
+        self.assertEqual(dlc.vendor_check({dlc.VENDOR_PACKED: data, dlc.VENDOR_PACKED + ".SHA256SUMS":
                                            sums.replace(name.encode(), b"domain-memory-0.33.0.zip")}), True)
         out.write_bytes(data + b"x")
         self.assertTrue(vendor.verify(out))
@@ -87,8 +87,9 @@ class DlcBuilderTests(unittest.TestCase):
         (self.root / (dlc.VENDOR_ZIP + ".SHA256SUMS")).write_bytes(sums)
         rec = "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1"
         self.manifest = {"schema": 1, "packages": [
-            self.pkg("participant-dlc-open", "participant", 0,
-                     [f"{P}/README.md", f"{P}/repository/base/**/*", f"{P}/vendor/**/*"]),
+            {**self.pkg("participant-dlc-open", "participant", 0,
+                        [f"{P}/README.md", f"{P}/repository/base/**/*", f"{P}/vendor/**/*"]),
+             "destination_root": {"from": P, "to": ""}},
             self.pkg("participant-dlc-d1", "participant", 10, [f"{P}/worksheets/d1-*.md"]),
             {**self.pkg("recovery-dlc-d1", "participant", 35, [rec + "/**/*"]),
              "destination_root": {"from": rec, "to": "recovery-dlc-d1"}},
@@ -132,7 +133,7 @@ class DlcBuilderTests(unittest.TestCase):
         run = self.root / evidence["output"]
         self.assertEqual(run.name, sha(self.manifest_path.read_bytes())[:16])
         open_files = next(p for p in evidence["packages"] if p["id"] == "participant-dlc-open")["files"]
-        self.assertEqual(sorted(open_files)[:2], [f"{P}/README.md", f"{P}/repository/base/app.py"])
+        self.assertEqual(sorted(open_files)[:2], ["README.md", "repository/base/app.py"])  # flat: short paths
         self.assertEqual(len(open_files), 4)  # no cache/venv
         rec = next(p for p in evidence["packages"] if p["id"] == "recovery-dlc-d1")["files"]
         self.assertEqual(list(rec), ["recovery-dlc-d1/repo/app.py"])

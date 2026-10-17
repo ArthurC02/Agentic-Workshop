@@ -33,12 +33,8 @@ section: 開始之前
 id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起始 Repo、輔助工具、domain-memory Plugin）
 ```
 
-- [ ] 按上方按鈕下載 `participant-dlc-open.zip`，再解壓縮：
-  - Windows：在檔案上按右鍵選「全部解壓縮」，目的地輸入 `C:\dlc`
-  - macOS：在家目錄建立 `dlc` 資料夾，把 zip 移進去後按兩下解壓縮，得到 `~/dlc/participant-dlc-open/agentic-workshop`
-- [ ] 在 Repo 根目錄開啟你的 Agent：
-  - Windows：`C:\dlc\agentic-workshop\07-dlc-ddd\participant\repository\smart-ticket-dlc-base`
-  - macOS：`~/dlc/participant-dlc-open/agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base`
+- [ ] 按上方按鈕下載 `participant-dlc-open.zip`，解壓縮到你習慣的位置（例如下載資料夾）：Windows 在檔案上按右鍵選「全部解壓縮」；macOS 按兩下 zip
+- [ ] 用 Agent 開啟解出來的 `participant-dlc-open` › `repository` › `smart-ticket-dlc-base` 資料夾（Repo 根目錄）
 - [ ] 把下方兩段提示詞接在一起，一次貼給 Agent
 
 ② 貼給 Agent
@@ -80,8 +76,8 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
    .venv\Scripts\python.exe -m pip install -r requirements.txt
    .venv\Scripts\python.exe -m pytest -q
 2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，沒有 warning）、有沒有 failed 或 error。
-3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
-4. 最後只檢查、不修改：pytest 最後一行是 76 passed，沒有 warning、failed 或 error；Repo 的完整路徑在 C:\dlc\ 底下；notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。全部符合在最後一行只寫「成功」，否則寫「失敗：」加一句原因。
+3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
+4. 最後只檢查、不修改：pytest 最後一行是 76 passed，沒有 warning、failed 或 error；notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。全部符合在最後一行只寫「成功」，否則寫「失敗：」加一句原因。
 做完停下等我。
 # macos
 請準備起始 Repo 的執行環境，不要修改任何程式：
@@ -90,43 +86,28 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
    .venv/bin/python -m pip install -r requirements.txt
    .venv/bin/python -m pytest -q
 2. 用白話告訴我：測試最後一行是什麼（成功應為 76 passed，沒有 warning）、有沒有 failed 或 error。
-3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、Repo 的完整路徑、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
-4. 最後只檢查、不修改：pytest 最後一行是 76 passed，沒有 warning、failed 或 error；Repo 的完整路徑在 ~/dlc/ 底下；notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。全部符合在最後一行只寫「成功」，否則寫「失敗：」加一句原因。
+3. 建立 notes/opening.md，寫入標題「檢查點 1 · 安裝相依套件與測試」、pytest 最後一行原文、遇到的問題與處理（沒有就寫「沒有」）。
+4. 最後只檢查、不修改：pytest 最後一行是 76 passed，沒有 warning、failed 或 error；notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。全部符合在最後一行只寫「成功」，否則寫「失敗：」加一句原因。
 做完停下等我。
 ```
 
-Agent 安裝套件約要一分鐘，先讀下方 ④ 的 Windows 提醒和檢查點 2 的 ①。
+Agent 安裝套件約要一分鐘，趁這時先讀檢查點 2 的 ①。
 
 ③ 確認結果
 
 Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
 
-```prompt
-# windows
+```text
 請只檢查，不要修改任何檔案：
 1. 用 .venv 裡的 python 執行 pytest -q，最後一行是 76 passed，沒有 warning、failed 或 error。
-2. Repo 的完整路徑在 C:\dlc\ 底下。
-3. notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。
-全部符合只回「成功」，否則只回「失敗：」加一句原因。
-# macos
-請只檢查，不要修改任何檔案：
-1. 用 .venv 裡的 python 執行 pytest -q，最後一行是 76 passed，沒有 warning、failed 或 error。
-2. Repo 的完整路徑在 ~/dlc/ 底下。
-3. notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。
+2. notes/opening.md 有「檢查點 1 · 安裝相依套件與測試」。
 全部符合只回「成功」，否則只回「失敗：」加一句原因。
 ```
 
 失敗時：
 
 ```text
-請先不要修改任何檔案。用白話解釋剛才的錯誤訊息：是 Python 版本、網路／pip 來源，還是資料夾位置的問題？列出你建議的處理方式，等我同意再做。
-```
-
-④ 補充
-
-```callout warning
-Windows 一定要解壓到 C:\dlc
-放在桌面、OneDrive 或深層資料夾，D1 會出現「檔名或副檔名太長」（WinError 206）。
+請先不要修改任何檔案。用白話解釋剛才的錯誤訊息：是 Python 版本，還是網路／pip 來源的問題？列出你建議的處理方式，等我同意再做。
 ```
 
 ## 檢查點 2 · 備好可信的共用模型工具（第 3–5 分鐘）
