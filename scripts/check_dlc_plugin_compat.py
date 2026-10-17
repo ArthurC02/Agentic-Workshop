@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.52.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.61.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -57,7 +57,7 @@ LEARNER_COMMANDS = {
 # Plugin output the learner-facing text quotes or a ③ check waits for (inventory section 3).
 QUOTED = [
     "Registry is valid.", "Change package is valid.", "Proposal submitted for human review.",
-    "Proposal test evidence verified.", "Git governance is valid.", "That is reach, not an error.",
+    "Proposal test evidence verified.", "Git governance is valid for 1 commit.", "That is reach, not an error.",
     "the tests do not pass before anything is broken", "Git commit signature is invalid", "not reviewed",
     '"status": "ready"', '"blocks": []', '"status": "valid"', "verdict", "killed", "survived", "inconclusive", "failure_evidence",
     "restoration_result", "restored", "matching --expect", "match_kind", "mentioned", "no_registered_collaboration",
@@ -66,6 +66,8 @@ QUOTED = [
     "review_governance", "review_mode", "scm-verified", "git-signed-commit", "git-push", "fingerprint",
     '"state": "brownfield"', '"tool": "pytest"', '"confidence": "high"', "not_applicable",
     "proven_by", "also_covers", "copied_evidence", "copied_matches", "overall_independent",
+    "failing_tests", "rule_totals", "rules_by_context", "reviewed_rules", "contexts_without_reviewed_rules",
+    '"proven"', '"unproven"', '"unknown"',
 ]
 ATTESTED = ["5538b6dbcba9e5c4468ceddec72b75b231f9688d", "38116f248f78befa51abac56405349301a5623c7"]
 REGISTRY_COMMITS = 7  # six JSON-era commits + the signed OKF migration (0.33.0)
@@ -198,9 +200,12 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     sh(["git", "init", "-q", "--bare", str(sandbox / "remote.git")], sandbox)
     path = os.pathsep.join([str(Path(sys.executable).parent), os.environ.get("PATH", "")])
     done = sh(["git", "push", "-u", str(sandbox / "remote.git"), "HEAD:main"], repo, {"PATH": path})
-    valid = (done.stdout + done.stderr).count("Git governance is valid.")
-    report(done.returncode == 0 and valid == REGISTRY_COMMITS, "reference push through pre-push hook",
-           f"{valid} x 'Git governance is valid.' (expect {REGISTRY_COMMITS})")
+    # 0.58+: the hook verifies a push's Registry commits in one call and prints one line for them all.
+    output = done.stdout + done.stderr
+    expected = f"Git governance is valid for {REGISTRY_COMMITS} commits."
+    lines = output.count("Git governance is valid")
+    report(done.returncode == 0 and expected in output and lines == 1, "reference push through pre-push hook",
+           f"{lines} governance line(s); expect one '{expected}'")
 
 
 def check_quoted(plugin: Path) -> None:

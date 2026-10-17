@@ -182,7 +182,7 @@ source .venv/bin/activate && ../../tools/dm.sh verify-git-governance --commit HE
 請只檢查，不要修改任何檔案，也不要讀取私鑰檔：
 1. git log --format='%h %G? %GS %s' 裡碰到 Registry 的 commit 是 G maintainer@example.com，其他是 N（它們不碰 Registry，允許）。
 2. governance-readiness 是 {"status": "ready", "blocks": []}；authorized_signers 有三個金鑰指紋（兩個 Maintainer 的，加上本組的）。
-3. git log --show-signature -1 有 Good "git" signature for maintainer@example.com，verify-git-governance --commit HEAD 是 Git governance is valid.，git status --short 是空的。
+3. git log --show-signature -1 有 Good "git" signature for maintainer@example.com，verify-git-governance --commit HEAD 是 Git governance is valid for 1 commit.，git status --short 是空的。
 全部符合只回「成功」，否則只回「失敗：」加一句原因。
 ```
 

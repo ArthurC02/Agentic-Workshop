@@ -386,3 +386,34 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 演練（Windows，沙箱 `C:\tmp\dm52`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包；沙箱產物：`py -3.13` 以 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`）：開場檢查點 1–4（76 passed、`SHA OK 81 files`、`"version": "0.52.0"`、brownfield／high、pytest）；D1 檢查點 2–4（PowerShell：11 筆候選、`Registry is valid.`、32 current）；D2 檢查點 1–6（PowerShell；反事實 PowerShell 與 Git Bash 都 killed；`fill_package.py` 的 check 與 evidence 都是 `./.venv/Scripts/python.exe -m pytest -q …`；`Proposal test evidence verified.`；`Git governance is valid.`；`proven_by` 列出 OB-FARE-005；push hook 兩行、`[new branch]`）；D2 Recovery（Git Bash 步驟 1、PowerShell 步驟 2–3；76 passed 1 warning；162 current；push hook 八行）；D3a 檢查點 4 一條反事實（PowerShell，killed）與檢查點 5（同一個測試守住兩條候選規則，`make_record --allow-unclassified`、`Registry is valid.`、夥伴簽章 commit）；D4 檢查點 1（PowerShell，含 `proven_by` 重跑）；回顧檢查點 2（PowerShell 與 Git Bash）。macOS 只做靜態檢查。
 
 未驗證：macOS 實機；Agent 在真實對話中會不會為自訂方案寫出好的 `--expect`；D3b／D3c 檢查點 4 的新 `--test-command` 只以參考解答腳本間接驗證。
+
+## domain-memory 升級 0.61.0（2026-10-17）
+
+由 0.52.0 升級，現固定 0.61.0（SkillHub `0a40b5b48`，以 `git archive` 匯出；沒有使用 SkillHub 工作區）。0.53–0.61 都是 minor 版，依版本政策第三條讀 CHANGELOG 與 `git diff ed3edd700 0a40b5b48`、跑相容性檢查、在沙箱演練後固定。Registry 版面（OKF）沒有改：參考 Registry、bundle、tag `dlc-d2-reviewed`、`REGISTRY_COMMITS` = 7、參考解答的 `domain-memory/` 都不動，不需要 Maintainer 金鑰或簽章 commit。主軸仍是 Agentic DDD：新概念只放在能讓 DDD 判斷更清楚的地方，每個檢查點最多一個，指令名稱只出現在提示詞、④ 與備註；時間、分鐘、解鎖碼與表單 id 不變。
+
+相容性檢查（`check_dlc_plugin_compat.py --source <0.61.0 匯出>`，修改前）：25 PASS、4 CHANGED。dmlib 兩組集合（`redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root`；`coverage`、`promote-candidate`、`redraft-proposal`、`supersede-proposal` 接受 `--repo-root`）；經 pre-push hook push 參考歷史只印一行；`QUOTED` 找不到 `Git governance is valid.`。修正後以封裝的 ZIP 重跑：29 PASS、0 CHANGED（`QUOTED` 57 個，push 檢查改為「恰好一行 `Git governance is valid for 7 commits.`」）。
+
+各版與學員路徑：
+- 0.58 `verify-git-governance` 的訊息改成 `Git governance is valid for N commit(s).`，pre-push hook 一次檢查整個 push、只印一行（會壞）。Runbook D2 檢查點 5 的提示詞與 ③、檢查點 6 的回報（改問「for N commits. 裡 N 是多少」）、四個 Recovery 頁的 ③、`make_recovery.py`（RECOVERY.md「接著 … for 1 commit.」、push 一行 `… for 8 commits.`）、簡報 30-d2 備註、主持指南 D2 檢查點 6、參考 README（`for 1 commit.`、push 一行 `for 7 commits.`）都改。實測自己做的 D2 push：`Git governance is valid for 2 commits.`；D2 Recovery push：`for 8 commits.`。
+- 0.58 聚焦測試 survived 時 reason 建議對整個測試套件重跑：與 D3 工作規則第 11 條「survived 不要換字串」不衝突，但 Agent 會猶豫，所以第 11 條加一項：同一組字串、TEST 換成 tests、存成下一個編號再跑一次，整套 killed 才算有測試守著。實測 D3b 的等價 mutant（`MIN_REDEMPTION_POINTS = 1`）整套仍 survived，照原規則記為等價。
+- 0.59 `submit-proposal` 拒絕引用已確認來源以外路徑的升級紀錄（原本到 `apply-approved-updates` 才拒絕）：不會壞。自己做的 D1（11 筆）送出成功；D1 Recovery 的 162 個引用全部有 source kind，沒有未分類路徑；D3 的 `--allow-unclassified` 候選只到候選、不送審。`validate`／`verify-git-governance` 對已核准未套用的提案印 NOTE：D2 檢查點 5 時提案狀態是 `verified`，實測不會出現，提示詞不改。
+- 0.53 `get-record` 沒給 `--changes-root` 也讀 `domain-memory/changes`：候選規則多一行 NOTE（沒有測試證明它），D2 檢查點 4 審查時看得到，是事實，不改。`coverage` 在沒有 `changes/` 時印 NOTE 請加 `--changes-root`：D1 檢查點 5 提示詞加一句「這是正常的，D2 才會有」。
+- 0.54 `counterfactual` 多 `failing_tests`：D3a–D3c 檢查點 4 回報加一項「failing_tests 列出哪個測試抓到它」，D3a 檢查點 5 的「守住它的測試」改為取自 `failing_tests`（讓「一個測試守住幾條規則」有證據，不靠 Agent 猜）。只改提示詞，不是新概念。
+- 0.55 `fill-harvest-package`、0.60–0.61 `supersede-proposal`／`redraft-proposal`：不在學員路徑。`fill_package.py` 照用：`fill-harvest-package` 要求每條規則都有 killed 的反事實，D2 只做一條。
+- 0.56–0.57 `promote-candidate --amend`／`--cite`：學員不執行；只當 D4 檢查點 2 新概念的做法說明。
+
+新概念與位置（每個都綁一個 DDD 判斷）：
+- 「模型在哪些 Context 說了算」（`coverage` 的 `rule_totals`、`rules_by_context`，0.53／0.54／0.58）：D4 檢查點 1 多跑一個唯讀的 `coverage`，回報每個 Context 的已審查與候選規則、`proven`／`unproven`／`unknown`，列出沒有已審查規則的 Context；④ 新概念小卡；交接單 Unknowns 加「沒有已審查規則的 Context」。實測 D2 Recovery＋D3a 候選（新 Context `invoicing` 與兩條候選規則）：`contexts_without_reviewed_rules` 1；D3c Recovery：16 條全部 proven、0。D1 已有 3 個新概念、D2 檢查點 6 已有一個，所以放在 D4（本頁原本 0 個新概念）。
+- 「重新證明同一條規則，還是寫一條新規則」（0.56–0.57 `promote-candidate --amend --cite`）：D4 檢查點 2 新增 ④ 新概念小卡；C 類理由改為「意思沒變：reviewed 不能覆寫，下一次核准沿用同一個 id 重新證明」；詞彙表「已審查事實」補一句；簡報 70-d4 與主持指南各補一句。
+- 詞彙表「已審查事實」另補 `coverage` 的 `rules_by_context`。
+
+機械：`domain-memory-0.61.0.zip`（81 個 Plugin 檔案，0.55 加 `harvest_package.py`；學員核對印出 `SHA OK 82 files`；ZIP SHA256 `71f345f9…388510`），`git rm` 0.52.0 的 ZIP 與 SHA256SUMS；版本字串同步到 dmlib（集合與 `cli_parser` 一致）、doctor、build_delivery_dlc（含測試）、check_dlc_plugin_compat、package-manifest-dlc、tools／DLC README、materials-dlc README、01-environment、主持指南、觀察指引、11 號指令書、course-authoring Skill（`.claude` 與 `.agents`）。主持指南 change-coupling 段的「0.52.0 實測」與常見問題第 18 條「實測 0.33.0」是當時的量測，保留；`dlc-final-report.md` 是歷史報告，不改。
+
+量測（0.61.0，Windows）：
+- Recovery：`make_recovery.py d1 d2 d3a d3b d3c` 重跑（d1 要 `--plugin` 指向解開的 ZIP），d2–d3c 的 `repo.bundle` 與樹位元組不變，只有 RECOVERY.md 的文字變；d1 只有 Plugin 時間戳變。current／shifted／stale：d1 162／0／0、d2 162／0／0、d3a 147／12／3、d3b 108／32／22、d3c 99／31／32（不變）。
+- 參考解答反事實（`run_counterfactuals.py`，暫存複本）：d3a 25／25、d3b 23／24、d3c 37／38 killed，存活的仍是已記錄的等價 mutant，沒有 `inconclusive`；每個 killed 都有 `failing_tests`。
+- D4 檢查點 1（D3c Recovery）：5 條 stale 規則都有 `proven_by`、重跑都通過；`coverage` 16 條全部 proven。回顧檢查點 2（D2 Recovery＋D3a 候選，對 `fc9efe2`）：overall precision 0.95、`copied_matches` 52、`overall_independent` precision 0.625（與 0.52.0 相同）。
+
+演練（Windows，沙箱 `C:\tmp\dm61`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包；沙箱產物：`py -3.13` 以小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`）：開場檢查點 1–4（76 passed、`SHA OK 82 files`、`"version": "0.61.0"`、brownfield／high、pytest）；D1 檢查點 2–4（PowerShell：11 筆候選、`Registry is valid.`、31 current；`coverage` 的 NOTE 與 `rules_by_context`）；D2 檢查點 1–6（PowerShell；反事實 PowerShell 與 Git Bash 都 killed、`failing_tests` 列出兩個測試；`Change package is valid.`；`Proposal submitted for human review.`；`Proposal test evidence verified.`；`Git governance is valid for 1 commit.`；`proven_by` 列出 OB-FARE-005；push `Git governance is valid for 2 commits.`、`[new branch]`）；D2 Recovery（Git Bash 步驟 1、PowerShell 步驟 2–3：76 passed 1 warning、`Registry is valid.`、66 events、162 current；Git Bash push `for 8 commits.`）；D3a 檢查點 4（PowerShell 兩條 killed，`failing_tests` 有參數化測試名）與 5（`make_record --allow-unclassified`、`Registry is valid.`、夥伴簽章 commit）；D3b 檢查點 4（PowerShell 兩條 killed：預留與歸還各一；另以等價 mutant 驗證整套重跑仍 survived）；D3c 檢查點 4（Git Bash 兩條 killed）；D4 檢查點 1（D3a 狀態與 D3c Recovery，含 `coverage` 與 `proven_by` 重跑）；回顧檢查點 2（PowerShell 與 Git Bash）。D3b／D3c 檢查點 4 以 Recovery 的參考實作代替學員實作。macOS 只做靜態檢查。
+
+未驗證：macOS 實機；Agent 在真實對話中會不會照第 11 條把 survived 改跑整套、會不會把參數化的 `failing_tests` 收斂成測試名；D4 多一個指令後 3 分鐘是否夠（D4 原本就常超時，維持最低完成線）。

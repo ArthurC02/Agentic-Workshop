@@ -109,7 +109,7 @@ Port 的詞彙只有三種結果：`ISSUED`（含 2001 重複開立）、`REJECT
 
 ## 4. 反事實檢查（counterfactual）
 
-每條新規則各破壞一次、跑聚焦測試、還原。25／25 killed（`evidence/counterfactual/` 的 JSON 以 0.33.0 存檔，欄位名是 `failing_evidence`；0.45 起叫 `failure_evidence`。2026-10-17 以 0.52.0 重跑結果相同），失敗輸出皆為測試失敗而非建置錯誤：兩個「失敗隔離」mutant 是付款 API 因 `TimeoutError`／`RuntimeError` 穿透而失敗（正是要防止的行為），其餘為斷言失敗。另有一個等價 mutant 的 survived 紀錄，見下方說明。JSON 在 `evidence/counterfactual/`。
+每條新規則各破壞一次、跑聚焦測試、還原。25／25 killed（`evidence/counterfactual/` 的 JSON 以 0.33.0 存檔，欄位名是 `failing_evidence`；0.45 起叫 `failure_evidence`。2026-10-17 以 0.52.0、0.61.0 重跑結果相同），失敗輸出皆為測試失敗而非建置錯誤：兩個「失敗隔離」mutant 是付款 API 因 `TimeoutError`／`RuntimeError` 穿透而失敗（正是要防止的行為），其餘為斷言失敗。另有一個等價 mutant 的 survived 紀錄，見下方說明。JSON 在 `evidence/counterfactual/`。
 
 | AC | 規則 | 破壞方式 | 結果 |
 |---|---|---|---|

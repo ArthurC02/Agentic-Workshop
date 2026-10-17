@@ -22,7 +22,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 81 files`、`"version": "0.52.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 82 files`、`"version": "0.61.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
 | O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 

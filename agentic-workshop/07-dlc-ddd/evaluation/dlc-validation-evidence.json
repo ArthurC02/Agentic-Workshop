@@ -1691,5 +1691,55 @@
   "proven_by_d3c_stale_rules": "5/5 have proven_by, all re-run passed",
   "compare_registry": "d3c recovery vs fc9efe2: overall 1.0, copied_matches 52, overall_independent 5/5; d3a recovery + 3 candidates: overall precision 0.95, overall_independent precision 0.625",
   "registry_migration": "none (OKF unchanged; no signing)"
+ },
+ "plugin_0_61_0_remeasure": {
+  "date": "2026-10-17",
+  "plugin": "domain-memory 0.61.0 (SkillHub 0a40b5b48, exported with git archive)",
+  "vendor_zip_sha256": "71f345f9f5195f397eaedb35b92071822592f641f1a550b99abbdd71f3388510",
+  "plugin_files": 81,
+  "sha_ok_line": "SHA OK 82 files",
+  "compat_before": "25 PASS, 4 CHANGED (dmlib sets: redraft-proposal, supersede-proposal optional registry root; coverage, promote-candidate, redraft-proposal, supersede-proposal take --repo-root; push through the hook printed one 'Git governance is valid for 7 commits.' instead of seven lines; QUOTED 'Git governance is valid.')",
+  "compat_after": "29 PASS, 0 CHANGED (vendored ZIP; QUOTED 57)",
+  "governance_line": "verify-git-governance --commit: 'Git governance is valid for 1 commit.'; pre-push hook: one line per push, own D2 'for 2 commits.', D2 Recovery push 'for 8 commits.', reference bundle push 'for 7 commits.'",
+  "recovery": {
+   "d1": [
+    162,
+    0,
+    0
+   ],
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "bundles_unchanged": true
+  },
+  "reference_solution_counterfactuals": {
+   "d3a": "25/25 killed",
+   "d3b": "23/24 killed",
+   "d3c": "37/38 killed",
+   "inconclusive": 0,
+   "failing_tests": "every killed result names its failing tests"
+  },
+  "submission_unconfirmed_evidence": "0.59 refusal not hit: own D1 (11 candidates) submitted; D1 Recovery evidence is all classified (by_source_kind has no unclassified)",
+  "coverage": "d3c recovery: rule_totals reviewed 16, proven 16, contexts_without_reviewed_rules 0; d2 recovery + D3a candidates (context invoicing, EINV-003, EINV-008): contexts_without_reviewed_rules 1 (invoicing 0 reviewed, 2 candidate)",
+  "proven_by_d3c_stale_rules": "5/5 have proven_by, all re-run passed",
+  "compare_registry": "d2 recovery + D3a candidates vs fc9efe2: overall precision 0.95, copied_matches 52, overall_independent precision 0.625",
+  "registry_migration": "none (OKF unchanged; no signing)"
  }
 }

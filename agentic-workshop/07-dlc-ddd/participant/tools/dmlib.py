@@ -21,10 +21,10 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.52.0")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.61.0")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 0.52.0 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 0.61.0 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
     "migrate-registry", "validate", "export", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
     "analyze-boundary", "upsert-candidate", "retract-candidate", "apply-approved-updates",
@@ -36,7 +36,7 @@ REGISTRY_REQUIRED = {
 }
 # 可選 --registry-root：只有 domain-memory/ 已存在時才補。
 REGISTRY_OPTIONAL = {"readiness", "cite", "finalize-proposal", "validate-change-package", "init-change-package",
-                     "change-coupling"}
+                     "change-coupling", "redraft-proposal", "supersede-proposal"}
 REPO_ROOT = {
     "validate", "readiness", "upsert-candidate", "retract-candidate", "apply-approved-updates",
     "demote-local-reviews", "discover-sources", "verify-sources", "probe", "verify-evidence",
@@ -45,7 +45,8 @@ REPO_ROOT = {
     "governance-readiness", "submit-proposal", "verify-proposal", "finalize-proposal", "quality-gates",
     "counterfactual", "cite", "attest-signed-commit", "audit-attestations", "boundary-impact", "recite",
     "record-test-result", "recover-registry-update", "relocate-evidence", "validate-change-package",
-    "export", "compare-registry", "change-coupling", "harvest-candidates",
+    "export", "compare-registry", "change-coupling", "harvest-candidates", "coverage", "promote-candidate",
+    "redraft-proposal", "supersede-proposal",
 }
 
 
@@ -54,7 +55,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.52.0.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.61.0.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 
