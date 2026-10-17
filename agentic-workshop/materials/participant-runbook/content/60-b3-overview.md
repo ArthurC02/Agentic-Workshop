@@ -60,8 +60,8 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/partici
 
 ② 貼給 Agent
 
-1. 按下方按鈕下載 B3 文件包，存在瀏覽器預設的下載資料夾即可。
-2. 在主要 Agent **開一個新對話**。工具有模型選單，就選推論能力較強的模型；沒有就用預設。
+1. 按下方按鈕下載 B3 文件包，存在瀏覽器預設的下載資料夾即可。文件包是給 Agent 讀的，你不用打開，也不用自己複製。
+2. 在 B2 用的專案資料夾（`smart-ticket-b0`；用過 B2 Recovery 的是 `recovery-b2`），在主要 Agent **開一個新對話**。工具有模型選單，就選推論能力較強的模型；沒有就用預設。
 3. 貼上下方提示詞。Agent 會解開文件包、記下起點，再交出 Gate 1 卡（可能到第 65 分才出來）。
 
 ```download
