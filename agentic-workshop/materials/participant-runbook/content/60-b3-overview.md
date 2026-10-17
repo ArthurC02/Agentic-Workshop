@@ -68,7 +68,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/partici
 請先讀 skills/team-rules.md 並遵守。
 請依附在這段後面的任務卡、Digital Worker 操作規則、工作單（Work Order）與三道 Gate，執行 TASK-B3-001 團體訂票：
 0. 建立 B3 起點：這個資料夾還沒有 Git 就執行 git init；沒有 .gitignore 就建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/。執行 pytest -q，再把目前狀態 Commit，訊息寫「B3 起點」（沒有變更也要建立，用 git commit --allow-empty）；如果 Git 要求姓名或 Email，只在這個資料夾設定（不要用 --global），名字用「workshop」、Email 用「you@example.com」。之後的變更審查都和這個 Commit 比。
-1. 只把工作單原文，加上三道 Gate 文件裡的「Gate 回報格式」，以及 Escalation 格式（依序六個標題：Trigger、Evidence、Impact、Options、Recommendation、Decision Needed），存成 skills/b3-work-order.md，這是你這次的工作說明（Skill）。任務卡、操作規則與三道 Gate 的其他內容不要重抄，在檔案開頭寫一行「任務卡、操作規則與三道 Gate 全文在這個對話的第一則訊息」。之後我只會說「依 skills/b3-work-order.md」，不再重貼。
+1. 只把工作單原文，加上三道 Gate 文件裡的「Gate 回報格式」，以及 Escalation 格式（依序六個標題：Trigger、Evidence、Impact、Options、Recommendation、Decision Needed），存成這個專案資料夾裡的 skills/b3-work-order.md（一般的 skills 子資料夾，不是工具自己的設定資料夾），這是你這次的工作說明（Skill）。附件少了任務卡、操作規則、工作單或三道 Gate 任何一份，就先停下告訴我缺哪一份，不要自己補寫。任務卡、操作規則與三道 Gate 的其他內容不要重抄，在檔案開頭寫一行「任務卡、操作規則與三道 Gate 全文在這個對話的第一則訊息」。之後我只會說「依 skills/b3-work-order.md」，不再重貼。
 2. 讀 notes/shared-context.md，在 notes/b3.md 建立「已核准背景」：小組、接手的程式版本（B2 接手版本或 B2 復原包）、B3 起點的測試結果（通過／失敗／跳過各幾個）、這次對話用的模型與推論強度（不知道就問我；工具沒有這個設定就寫「預設」）、已確認的假設與限制、尚待決定的事項。查不到的寫「待小組確認」，不要猜。
 3. 提交 Gate 1 資料：需求摘要、規則清單、關鍵假設、資訊缺口、不做的範圍（Out of Scope），寫進 notes/b3.md 的「Gate 1」段落。對話只用 Gate 回報格式給我 Gate 1 決策卡：「證據」用 5 個是非題確認你的需求理解，每題下一行寫「原文（任務卡段落名稱）：」加上任務卡的原句，照抄不改寫、不超過一行，讓我不用翻任務卡就能核對：5–20 人邊界、同班次（Trip）與同車廂連續座位、不允許部分成功、付款失敗整筆取消並釋放全部座位、每位旅客沿用 B2 最有利單一優惠；「需要人決定的事」列出要我決定的問題，每題附你的建議答案與依據，查不到依據的標「待小組確認」；任務卡沒寫每節車廂有幾個座位，請依程式裡現有的資料提出建議值與依據，列為一題由我核准；「建議結論」給一個建議決策（APPROVE／APPROVE WITH CONDITIONS／REJECT AND REVISE）與一句理由；「風險」寫你最沒把握的地方。
 4. 每過一道 Gate 才進下一步：Gate 1 核准才設計；Gate 2 核准且條件解除才改程式；Gate 3 由我決定是否交付。
@@ -88,7 +88,7 @@ zip=participant-63-b3-governance.zip path=agentic-workshop/03-brownfield/partici
 失敗時：
 
 ```text
-請用白話說明哪一項不符，只補齊缺的 Commit、skills/b3-work-order.md 或 notes/b3.md 的段落；改到其他檔案就用 Git 還原。不要開始設計，補完重新給我 Gate 1 決策卡，然後停下。
+請用白話說明哪一項不符，只補齊缺的 Commit、skills/b3-work-order.md 或 notes/b3.md 的段落；這個對話裡找不到工作單原文，就先告訴我，我會到「工作單」頁按「複製 Markdown」再貼一次；改到其他檔案就用 Git 還原。不要開始設計，補完重新給我 Gate 1 決策卡，然後停下。
 ```
 
 ④ 補充
