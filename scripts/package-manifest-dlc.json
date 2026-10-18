@@ -327,7 +327,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "tools/README.md",
-          "sha256": "c564f4fed03931c1978a07bca89ba043e09720224d6e0619df54a4a686c91839"
+          "sha256": "b55731ee0fa346e012a8e274271f7e1a3127037ff26a2826dfd71e9b3ff3e2f7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -342,22 +342,22 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "tools/dmlib.py",
-          "sha256": "e7a7ae50b90cb59375f7fea47eac2f05d3bb30b27efae23f74fa9029ec589936"
+          "sha256": "7ba8e51be6baf43802f2676a0daaf4d4905176a59d1e3e1abbf16777e83c85b7"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "tools/doctor.py",
-          "sha256": "225584d0ff014bedc159c7cf671a6eba4b619dceb6c5b5a9935e1eeb8623f6e1"
+          "sha256": "04ae88a7ecb6f21d63c568a60938d63be151799fd657411013c90429210f884a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
           "destination": "tools/fill_package.py",
-          "sha256": "4fdb66f703885e33b97f15a16eafde48652da060e44ee99a8ff686229a21ba5a"
+          "sha256": "c27e1534f562d4f3a5f68be7c5c754e6bd54d9e8f396ded05199bbba7d9dae22"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/make_record.py",
           "destination": "tools/make_record.py",
-          "sha256": "8634ad56524893950c2800e36c7b70f19e8beb45d63572bcca0c70e5269ccc22"
+          "sha256": "f9977e06d9d7b9fbd41ed2f9d4174c30ce04a40338febae67270948271611719"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/setup_remote.py",
@@ -367,22 +367,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
           "destination": "tools/test_tools.py",
-          "sha256": "c0f10031c34c2920d2e1c987559712999ea338b0a175b8c06bdc19ea70bfbfab"
+          "sha256": "101c3770d3ec297ca72f1b18954cb9df88273400a077def5a998dca2e21cdba9"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/tools/write_scm_attestation.py",
-          "destination": "tools/write_scm_attestation.py",
-          "sha256": "1a6ba665520877ba86648b5955a259802b2676d8e8dd9e80a358f704aaa12a93"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.1.0.zip",
+          "destination": "vendor/domain-memory-1.1.0.zip",
+          "sha256": "32e53e66a733ad5b9a7c660687cf7bb3ccbd2dc3a172712cf1ba7badd9f60320"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.61.0.zip",
-          "destination": "vendor/domain-memory-0.61.0.zip",
-          "sha256": "71f345f9f5195f397eaedb35b92071822592f641f1a550b99abbdd71f3388510"
-        },
-        {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-0.61.0.zip.SHA256SUMS",
-          "destination": "vendor/domain-memory-0.61.0.zip.SHA256SUMS",
-          "sha256": "cfe065222c8316daa26b50d0ee4d9abe1c1f4a808ef510dd9589ab71f707a61e"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.1.0.zip.SHA256SUMS",
+          "destination": "vendor/domain-memory-1.1.0.zip.SHA256SUMS",
+          "sha256": "5d8c05d332ed608f5cc5ec64fca2e27a3ad292fe9c1aa65bbd662469d0040b01"
         }
       ],
       "generated": {}
@@ -400,12 +395,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
-          "sha256": "13892fd4c9103d7b3742b2cd0b2d56cc761311edaf5f016c0f8c24e28f403f3a"
+          "sha256": "fa4a029ccd9ddd7594863053b8b89aef51e9104be9c2ace1be68e677035bb384"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
           "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
-          "sha256": "50b663b7a2f4b42663ed3bf941b800bbeab9e952319d4add10670f59031af65a"
+          "sha256": "0c0d1aaf4740801ec9bea02d53975b93f7b307de662490df5115d4ef92b79f9f"
         }
       ],
       "generated": {}
@@ -4291,7 +4286,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "1e52c9f85cf6f1649630992fc468a557dafc4be3a9836010c79b22bed96a245f"
+          "sha256": "a9a01ff5de079d7bc8fccd526f0a9a6604133fd40c6bd380eb0eb6dae1dcc183"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -8024,12 +8019,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
-          "sha256": "0f3d77a0f91d955f13f4f8b24dc7e6f161365b5da89197c3c8c03af9cb477b07"
+          "sha256": "09af9b1711a3d9df13ba630903a166c77271075f1efdcd4d550c2186ee49f568"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "5e89725daaebbf522486138a05a6360dce75b0945ffa7f0b492c26a0758bd6d6"
+          "sha256": "f60c1ec7dc2b5b0b964dff8b9cbabf48aca47a6a7ccafd837c925315eba55cc2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -8039,7 +8034,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "1fbcb037ed26fea30e87e385e084c893403e86815cf08807ae2f377b8681008e"
+          "sha256": "a38db22278cb455b666d139259167ba877450bd01b22a700e49acf942a9050f2"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",
@@ -8514,7 +8509,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/SOLUTION-NOTES.md",
-          "sha256": "04128b0412444afb7b091ef4cf01030a2fec018be44bcec528230b5d35297615"
+          "sha256": "64ef5edafb3096cebb36254427e7747538fb55ea8b02fd6c943da55495252fe5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3a-e-invoice/docs/adr/001-use-in-memory-repositories.md",
@@ -9444,7 +9439,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/SOLUTION-NOTES.md",
-          "sha256": "58358b51f3a5df3866cb9218c9d0f5d7d2eaf6dce7d6ad9a828c60136ee1010b"
+          "sha256": "76a22e7e781cabc0bed19670f0c3e1267b639ea43730b8333e955066ff363fb1"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3b-points-redemption/docs/adr/001-use-in-memory-repositories.md",
@@ -10424,7 +10419,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/SOLUTION-NOTES.md",
-          "sha256": "ed4ad7871606b8230d02e131ea2eec1c26de3fa16413501cfcb5266db6eb9f4f"
+          "sha256": "ab4df8684f4be661060724ae801564d63b120a9f9d6b35a25d31e38220a763e1"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-solutions/d3c-group-partial-refund/docs/adr/001-use-in-memory-repositories.md",

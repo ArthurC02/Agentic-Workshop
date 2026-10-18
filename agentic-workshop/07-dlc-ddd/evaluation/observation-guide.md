@@ -22,7 +22,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 82 files`、`"version": "0.61.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 95 files`、`"version": "1.1.0"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
 | O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
@@ -64,7 +64,7 @@
 | C2 | A | Agent 每題提兩個選項＋證據，**學員自己選**（不是回「你決定」）；決策卡（`docs/handoffs/d3*.md`）在 Agent 改檔前完成，寫的是學員選的選項 |
 | C3 | H | Agent 先提計畫、學員回「同意」才動手；分段停下，學員看實際測試結果才回「繼續」；核心 AC 排在延伸之前、介面照卡上 API |
 | C4 | E | 學員看過 Agent 列的改壞方式才同意執行；每條登記的新規則有 `killed`；survived 時補測試用同一組字串重跑；未證明的在紀錄檔照實寫 |
-| C5 | E | 學員看過審查答案才同意登記；Agent 用 `make_record.py` 登記，措辭仍是候選；沒有執行 `record-approval`、`amend-policy` |
+| C5 | E | 學員看過審查答案才同意登記；Agent 用 `make_record.py` 登記，措辭仍是候選；沒有執行 `record-approval`、`amend-policy`；D3b、D3c 的「模型有沒有變」逐筆對到變更簡報（`brief`）列出的已審查紀錄，不是 Agent 憑印象說「沒變」 |
 
 共同介入訊號：跳過選項直接叫 Agent 實作，或回「你決定」→「決策卡呢？owner 是誰選的？」；Agent 改既有測試期待值讓測試過 →「規格 R8 允許改寫哪些？理由寫在哪？」；只看 exit code →「`killed` 在哪？」
 
@@ -99,6 +99,7 @@
 | C3 | A | 手續費的商業數字只有一個家；以每位旅客自己的票價逐位計算 |
 | C4 | A | 整筆退票路徑也被處理（部分取消過就不能整筆退） |
 | C5 | E | 測試含成人＋學生混合團（或在 counterfactual 中發現需要它） |
+| C6 | A | 登記的規則寫了它守的 `aggregate`；若 Plugin 以「不在同一個 Context」拒絕，學員決定是規則還是 Aggregate 放錯，沒有讓 Agent 刪掉 `aggregate` 硬過 |
 
 介入訊號：改 `total_fare` →「恆等式右邊還是 Order.amount 嗎？」；整筆 release 再 reserve →「中間失敗會怎樣？會不會換座位？」；第 148 分還在寫延伸 → 停手進 Review。
 
@@ -109,6 +110,7 @@
 | D1 | E | `notes/d4.md` 有三個驗證結果；`stale` 與 `shifted` 被列成 asset:id 並分清候選或 reviewed，沒有跳過，也沒讓 Agent 當場修；stale 的規則重跑過 `proven_by` 的測試，學員說得出「測試還通過」和「行為沒變」不完全相同 |
 | D2 | H | Agent 先列更新清單，學員回覆後才登記；只更新真的改變的事實，而且是候選（reviewed 以新 id 候選取代）；說得出哪些只是重構（搬移程式、意思沒變），所以不登記 |
 | D3 | E | 交接單七段齊全，Domain facts 第一行有模型版本（已審查模型的 commit，`export --commit` 讀得到），Agent 回報的 id 核對清單全部查得到；commit 由 Maintainer 自己的 Agent 對話執行；Unknowns 誠實（例：D3c 低於 5 人是否降級、整筆退票是否收手續費、閘道退款失敗） |
+| D4 | E | 提交前檢查裝在 Maintainer 的對話；示範的改名 commit 被擋下、檔案搬回原位，學員說得出「下一個 Agent 改到被引用的程式，要先讓模型跟上」 |
 
 介入訊號：想直接標 reviewed →「核准簽章在哪？」；Agent 沒等回覆就登記 → 請學員貼「先停下，列出你要寫入的內容等我同意」；交接單引用不存在的 id →「下一個 Agent 查得到它嗎？」
 

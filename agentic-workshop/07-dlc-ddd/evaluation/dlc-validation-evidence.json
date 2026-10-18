@@ -1741,5 +1741,58 @@
   "proven_by_d3c_stale_rules": "5/5 have proven_by, all re-run passed",
   "compare_registry": "d2 recovery + D3a candidates vs fc9efe2: overall precision 0.95, copied_matches 52, overall_independent precision 0.625",
   "registry_migration": "none (OKF unchanged; no signing)"
+ },
+ "plugin_1_1_0_remeasure": {
+  "date": "2026-10-19",
+  "plugin": "domain-memory 1.1.0 (SkillHub 8c7a8a47c, exported with git archive); evaluated first as 1.0.0 (8ccb13ec0), never committed",
+  "vendor_zip_sha256": "32e53e66a733ad5b9a7c660687cf7bb3ccbd2dc3a172712cf1ba7badd9f60320",
+  "plugin_files": 94,
+  "sha_ok_line": "SHA OK 95 files",
+  "maintainer_checks": "uvx ruff@0.16.7 check . passed; run_tests.py --jobs 4: 40/41 modules OK, test_support (helper module, 0 tests) exits 5 on Python 3.12+ (0 on 3.11)",
+  "compat_before": "1.0.0 export: 24 PASS, 5 CHANGED (dmlib sets add brief, dependents, harvest, install-pre-commit-hook, mcp-serve, refresh-listing, ship-package and drop apply-approved-updates, attest-signed-commit, finalize-proposal; learner commands finalize-proposal, apply-approved-updates missing; tools self-test failed)",
+  "compat_after": "1.1.0 vendored ZIP: 30 PASS, 0 CHANGED (dmlib adds discard-harvest; QUOTED 68; pre-commit hook refuses a rename with the relocate-evidence hint)",
+  "governance_line": "verify-git-governance --commit HEAD: 'Git governance is valid for 1 commit.'; own D2 push 'for 2 commits.'; reference bundle push 'for 7 commits.'",
+  "ship_package": "D2 CP6: completed [attest-signed-commit, finalize-proposal, apply-approved-updates], status applied, errors []; unsigned commit refused at attest (test_tools)",
+  "recovery": {
+   "d1": [
+    162,
+    0,
+    0
+   ],
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "bundles_unchanged": true
+  },
+  "reference_solution_counterfactuals": {
+   "d3a": "25/25 killed",
+   "d3b": "23/24 killed",
+   "d3c": "37/38 killed",
+   "survivors": "documented equivalent mutants PTS-003 min-points-1, PCR-004 days-by-datetime"
+  },
+  "counterfactual_error": "baseline red: verdict error, reason 'the tests do not pass before anything is broken…', exit 3",
+  "brief": "D3b (d2 recovery + d3a + d3b solutions vs HEAD): Attention 14 records incl. REFUND-004, MEMBER-004 only as a dependent; D3c: Attention lists REFUND-004",
+  "aggregate_refusal": "rules/PCR-099 aggregate group-booking-cancellation belongs to context booking, which the record does not name",
+  "pre_commit_demo": "D4 CP3: git mv discounts.py refused, one line per record plus 'is renamed to … run relocate-evidence --from … --to …'; moved back, status clean",
+  "verify_sources_d4": "stale, exit 1, NOTE discovery drifted (3 matching paths unlisted)",
+  "compare_registry": "d2 recovery + D3a–D4 candidates vs fc9efe2: overall precision 0.90, recall 1.0, copied_matches 52, overall_independent precision 0.45",
+  "registry_migration": "none (OKF unchanged; no signing, Maintainer key not used)"
  }
 }

@@ -117,7 +117,7 @@ py -3.13 -X utf8 evidence\run_counterfactuals.py .venv\Scripts\python.exe <Skill
 
 ## 4. 反事實檢查（counterfactual）
 
-每條新規則各破壞一次、跑聚焦測試、還原。23／24 killed（`evidence/counterfactual/` 的 JSON 以 0.33.0 存檔，欄位名是 `failing_evidence`；0.45 起叫 `failure_evidence`。2026-10-17 以 0.52.0、0.61.0 重跑結果相同），失敗輸出皆為斷言失敗（不是 import／語法錯誤），`restoration_result.restored` 皆為 true；1 個是可證明的等價 mutant。JSON 在 `evidence/counterfactual/`。
+每條新規則各破壞一次、跑聚焦測試、還原。23／24 killed（`evidence/counterfactual/` 的 JSON 以 0.33.0 存檔，欄位名是 `failing_evidence`；0.45 起叫 `failure_evidence`。2026-10-17 以 0.52.0、0.61.0，2026-10-19 以 1.1.0 重跑結果相同），失敗輸出皆為斷言失敗（不是 import／語法錯誤），`restoration_result.restored` 皆為 true；1 個是可證明的等價 mutant。JSON 在 `evidence/counterfactual/`。
 
 | AC | 規則 | 破壞方式 | 結果 |
 |---|---|---|---|

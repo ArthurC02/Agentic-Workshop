@@ -195,16 +195,17 @@ class GovernedLifecycleTest(unittest.TestCase):
         self.dm("record-approval", "--package-root", package, "--role", "domain-owner",
                 "--reviewer", "Maintainer <maintainer@example.com>", "--scope", "all")
         self.dm("verify-proposal", "--package-root", package)
-        # 未簽章 commit 不得寫成 attestation。
+        # 未簽章 commit 不得當成核准證明：ship-package 在 attest 這一步就拒絕，什麼都不寫。
         self.git("add", "-A")
         self.git("-c", "commit.gpgsign=false", "commit", "-qm", "unsigned")
-        self.assertNotEqual(self.tool("write_scm_attestation.py", "--package", package, ok=False).returncode, 0)
+        self.assertNotEqual(self.dm("ship-package", "--package-root", package, "--commit", "HEAD",
+                                    ok=False).returncode, 0)
         self.git("reset", "-q", "--soft", "HEAD~1")
         self.git("-c", "user.name=Maintainer", "-c", "user.email=maintainer@example.com", "commit", "-qm", "approve")
-        self.tool("write_scm_attestation.py", "--package", package)
         self.dm("verify-git-governance", "--commit", self.git("rev-parse", "HEAD"))
-        self.dm("finalize-proposal", "--package-root", package)
-        self.dm("apply-approved-updates", "--package-root", package)
+        # D2 檢查點 6：一步寫入核准證明、定案並套用（Plugin 1.0 的 ship-package）。
+        shipped = json.loads(self.dm("ship-package", "--package-root", package, "--commit", "HEAD").stdout)
+        self.assertEqual(shipped["status"], "applied", shipped)
         self.dm("validate", "--require-reviewed")
         # 0.31 起 reviewed record 帶 verified（誰、何時核准），不再有 review 區塊；讀取一律經 export。
         rule = dmlib.registry_documents(self.repo / "domain-memory")["rules"]["rules"][0]

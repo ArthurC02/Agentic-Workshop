@@ -108,7 +108,7 @@
     "flow": ["上游 Context", "提供資料或服務", "下游 Context", "跟著上游的變動改"],
     "cards": [["先畫現況", "照實記下誰依賴誰，改造之後再說。"], ["Agent 幫忙找", "誰呼叫誰、誰讀誰的資料，都附證據。"]],
     "check": "你的系統裡，哪個模組一改，別人就得跟著改？",
-    "notes": "25–26.5 分鐘。Evans〈DDD Reference〉的 Context Map 一節：先畫現有地形，「Map the existing terrain. Take up transformations later.」上下游的河流比喻也在同一份參考資料。DDD Crew〈Context Mapping〉列出常見關係名稱（Conformist、Anticorruption Layer、Shared Kernel 等），第 03 場會講防腐層。D1 沒有要學員畫完整的 Context Map；這頁是下一頁邊界洩漏的背景。📖 延伸閱讀：〈Context Mapping〉（DDD Crew）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 3 章〈Context Maps〉。"
+    "notes": "25–26.5 分鐘。Evans〈DDD Reference〉的 Context Map 一節：先畫現有地形，「Map the existing terrain. Take up transformations later.」上下游的河流比喻也在同一份參考資料。DDD Crew〈Context Mapping〉列出常見關係名稱（Conformist、Anticorruption Layer、Shared Kernel 等），第 03 場會講防腐層。D1 沒有要學員畫完整的 Context Map；這頁是下一頁邊界洩漏的背景。D1 檢查點 6 的邊界查詢一次回報兩個方向（誰依賴誰），學員對照程式時就是在畫這張地形圖。📖 延伸閱讀：〈Context Mapping〉（DDD Crew）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 3 章〈Context Maps〉。"
   },
   {
     "id": "leak", "chapter": "邊界", "title": "邊界洩漏：測試抓不到的錯",

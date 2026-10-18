@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 944678d5edf96ea4 inputs-sha256 944678d5edf96ea4acc88f1720ef5ef1f5b1faff889f897460f640dfe1c8a4b6 -->
+<!-- 主持人專用，不發給學員。build 1c3c96f162217406 inputs-sha256 1c3c96f162217406d20cd806955004d4e004c0638cc23c86a2051c85e6c153e6 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1074,7 +1074,7 @@ ol.stage-bar > li.active::after {
   color: rgba(255, 255, 255, .72);
 }
 .dk-unlock-code[role="button"] { cursor: copy; border-radius: 12px; }
-.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 4px; }
+.dk-unlock-code[role="button"]:hover, .dk-unlock-code[role="button"]:focus-visible { outline: 3px dashed rgba(127, 211, 238, .6); outline-offset: 10px; }
 .dk-unlock { position: relative; }
 .dk-unlock-copied {
   position: absolute; top: 24px; right: 32px;
@@ -1655,7 +1655,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-next"><b>第 5 分前完成</b><span>→ 下一步：檢查點 3 找出只能靠人審查的錯</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 3 分）</b>：「第 3 分。檢查點 2：我們要建的共用模型，Agent 會一直照著它做事，所以存它的工具要先確認沒被動過；Agent 核對，你看成功就好。」</p>
-    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 81 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
+    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 95 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
     <p><b>介入訊號</b>：<code>SHA MISMATCH</code> → 重新下載學員包再請 Agent 重跑，不要讓 Agent 修改 Plugin 檔案。</p>
   </aside>
 </section>
@@ -1865,7 +1865,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（21:00／第 31 分）</b>：「第 31 分。最後：Agent 先看模型裡兩個 Context 有沒有登記協作，再對照程式找直接讀寫；是不是洩漏由你判斷。Agent 對照程式、寫紀錄的時候，就和旁邊的人聊「完成後想一想」三題，再把結論記進 D1 決定。35 分鐘 D1 結束，D2 換成兩人一組。」</p>
     <p><b>看</b>：是否至少涵蓋兩個不同 Context；是否讀到實際的洩漏（例如三處複製計價、直接依賴具體 Gateway）。</p>
     <p><b>介入訊號</b>：第 35 分仍未完成 → 不延長；以 Recovery 接續，記錄。</p>
-    <p><b>加深一層</b>：把檢查點 4 的 <b>Bounded Context</b> 加深到<b>邊界洩漏</b>，花 30 秒講：模型說沒有協作、程式卻直接讀寫對方資料。</p>
+    <p><b>加深一層</b>：把檢查點 4 的 <b>Bounded Context</b> 加深到<b>邊界洩漏</b>，花 30 秒講：模型說沒有協作、程式卻直接讀寫對方資料。analyze-boundary 一次回報兩個方向（誰依賴誰），畫出來就是 Context Map：被依賴的是上游、依賴的是下游。</p>
     <p><b>收尾</b>：學員趁等 Agent 時聊 Runbook『完成後想一想』，再把結論記進「D1 決定」。這段時間已滿，不另開全場分享（會吃掉 D2 約 1 分鐘）。</p>
     <p><b>省時</b>：get-context 只要一句說明；git status 併進 Agent 寫完紀錄後的自我檢查，最後一行回成功／失敗，不另貼 ③。</p>
   </aside>
@@ -2000,17 +2000,17 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
 <section class="slide slide-cp" data-seg="dlc-d2" data-title="檢查點 5 · 留下可驗證的核准紀錄" data-minute="53">
   <p class="kicker">檢查點 5 / 6 · 第 53–56 分鐘</p>
   <h2 class="title">留下可驗證的核准紀錄</h2>
-  <p class="cp-why"><b>為什麼</b>把核准寫成可驗證的紀錄，確認簽的人有授權</p>
+  <p class="cp-why"><b>為什麼</b>簽章 commit 就是核准紀錄，先確認簽的人有授權</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>夥伴的對話</i><b>貼 ②「寫出核准證明並驗證」</b><span>Runbook › 檢查點 5</span></li>
+    <li><i>夥伴的對話</i><b>貼 ②「驗證核准紀錄」</b><span>Runbook › 檢查點 5</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 56 分前完成</b><span>→ 下一步：檢查點 6 套用核准，模型成為事實（先提案者）</span></p>
   <aside class="notes">
-    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 把剛才的簽章 commit 寫成核准紀錄，再驗證簽的人有授權。看到 Git governance is valid for 1 commit. 才往下，否則下一步 finalize 會拒絕。」</p>
-    <p><b>看</b>：Agent 回報的 commit 是剛才的簽章 commit；verify 是否 valid。</p>
-    <p><b>介入訊號</b>：驗證失敗 → 先檢查是否簽章 commit、attestation 的 commit 是否同一個。工具輸出提到 finalize-proposal → 那是提案者在檢查點 6 的步驟，夥伴的 Agent 不執行。</p>
+    <p><b>說（18:00／第 53 分）</b>：「第 53 分。夥伴的 Agent 驗證剛才的簽章 commit 出自政策授權的金鑰：這個 commit 就是可驗證的核准紀錄。看到 Git governance is valid for 1 commit. 才往下，否則下一步套用會在第一關被拒絕。」</p>
+    <p><b>看</b>：Agent 回報的 HEAD 訊息是「D2：核准 CP-D2-001」；verify 是否 valid。</p>
+    <p><b>介入訊號</b>：驗證失敗 → 先檢查 HEAD 是不是檢查點 4 的簽章 commit（有人多做了一個 commit 時最常見）；不要重做 commit。</p>
   </aside>
 </section>
 
@@ -2020,15 +2020,15 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-why"><b>為什麼</b>套用核准後，模型才成為 Agent 必須遵守的事實</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②「定案、套用、驗證」</b><span>Runbook › 檢查點 6；這是第一段</span></li>
-    <li><i>夥伴的對話</i><b>四步都成功才貼第二段</b><span>「簽章提交並 push」</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「套用並驗證」</b><span>Runbook › 檢查點 6；這是第一段</span></li>
+    <li><i>夥伴的對話</i><b>三個指令都成功才貼第二段</b><span>「簽章提交並 push」</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 60 分前完成</b><span>→ 兩人聊「完成後想一想」、填「D2 決定」；下一步：休息</span></p>
   <aside class="notes">
-    <p><b>說（21:00／第 56 分）</b>：「第 56 分。先提案者的 Agent：finalize、apply、validate 要求 reviewed、verify-audit。四個都 OK，再換夥伴的 Agent 簽章提交並 push。最後兩人聊兩分鐘「完成後想一想」，再把結論記進「D2 決定」。夥伴的 Agent 對話不要關，D3、D4 的 commit 都在那裡做。第 60 分休息，沒完成的組，休息時間內我私下提供 Recovery 碼。」</p>
-    <p><b>看</b>：Agent 回報 Registry is valid.（帶 --require-reviewed）與 verify-audit valid；push 由夥伴的 Agent 執行、沒有用 --no-verify 繞過 hook；是否把候選與 reviewed 混為一談。</p>
-    <p><b>介入訊號</b>：<code>validate --require-reviewed</code> 回一串「not reviewed」→ cp-d2.json 的 promote 少列了資產（用過 D1 Recovery 的組常漏 aggregates、interactions、decisions），請學員找主持人或改用 Recovery；第 60 分仍未完成 → 休息時私下提供 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
+    <p><b>說（21:00／第 56 分）</b>：「第 56 分。先提案者的 Agent：ship-package 一步確認夥伴的簽章 commit、寫成核准證明、定案並套用，再跑 validate 要求 reviewed 與 verify-audit。三個都 OK，再換夥伴的 Agent 簽章提交並 push。最後兩人聊兩分鐘「完成後想一想」，再把結論記進「D2 決定」。夥伴的 Agent 對話不要關，D3、D4 的 commit 都在那裡做。第 60 分休息，沒完成的組，休息時間內我私下提供 Recovery 碼。」</p>
+    <p><b>看</b>：ship-package 的 completed 有三步、status 是 applied；Agent 回報 Registry is valid.（帶 --require-reviewed）與 verify-audit valid；push 由夥伴的 Agent 執行、沒有用 --no-verify 繞過 hook；是否把候選與 reviewed 混為一談。</p>
+    <p><b>介入訊號</b>：ship-package 的 errors 點名 attest-signed-commit → HEAD 不是檢查點 4 的簽章 commit，或那個 commit 沒帶著審查包；不要重做 commit，找主持人。<code>validate --require-reviewed</code> 回一串「not reviewed」→ cp-d2.json 的 promote 少列了資產（用過 D1 Recovery 的組常漏 aggregates、interactions、decisions），請學員找主持人或改用 Recovery；第 60 分仍未完成 → 休息時私下提供 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人一起聊兩分鐘，再記「D2 決定」；挑第 2 題（哪一步只是照流程做完、哪一步真的擋得住錯）請 1–2 組分享（約 1 分鐘），回顧會再用到。</p>
     <p><b>加深一層</b>：已審查事實帶 <code>verified</code>（by: human:maintainer@example.com、at: 核准時間），就像 ADR 的狀態寫 Accepted 並列出決策者；核准它的提案記在稽核紀錄，不在紀錄本身。Agent 用 get-record 取一條規則回報這兩個值。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>規則有多可信，看證明它的測試</b>，花 30 秒講：get-record 加 --changes-root 會多一個 proven_by，列出審查包裡證明這條規則的 obligation 與 check。核准只說明有人同意；測試被刪、被放寬，這條規則就只剩「有人核准過」。D4 檢查點 1 會再跑一次這些測試。</p>
@@ -2425,7 +2425,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（21:00／第 116 分）</b>：「第 116 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3b-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>模型變更與重構</b>（Runbook 檢查點 5 ④），花 30 秒講：改了程式不代表模型變了；名詞、負責者、不變量、邊界、事件或約定有一項變了才登記，只是搬移程式的不登記。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>模型變更與重構</b>（Runbook 檢查點 5 ④），花 30 秒講：改了程式不代表模型變了；名詞、負責者、不變量、邊界、事件或約定有一項變了才登記，只是搬移程式的不登記。從哪裡問起：Agent 先讀變更簡報（brief --base HEAD），它列出這次改動碰到引用行的已審查紀錄，Agent 逐筆判斷，不靠記憶猜。需求卡直接改掉的事實不一定碰到引用行：參考實作的 MEMBER-004「目前沒有使用點數的功能」不在 Attention，要靠提示詞的「被改變的已審查事實」那一步從需求卡找出來。</p>
+    <p><b>brief 的雜訊</b>：Attention 裡一串「lies outside every Context」是因為這個 Repo 的 Context 沒有登記程式路徑，Agent 照提示詞略過；它建議的 recite 也不執行（D3 Agent 不寫已審查事實）。</p>
   </aside>
 </section>
 
@@ -2652,14 +2653,15 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>四題都沒問題才同意；Aggregate 有唯一入口與不變量</p>
+  <p class="cp-judge"><b>你要判斷</b>四題都沒問題才同意；每條規則寫了它守的 Aggregate</p>
   <p class="cp-next"><b>第 152 分前完成</b><span>→ 下一步：檢查點 6 停手與揭曉對照</span></p>
   <aside class="notes">
     <p><b>說（23:00／第 148 分）</b>：「第 148 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3c-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對交接單「允許改寫的既有測試」與工作規則第 7 條（改既有測試要先停下說明、等學員同意）。</p>
     <p><b>第 150 分決定 Recovery</b>：掃一圈，核心還沒跑起來、Review 做不完的組，現在決定是否改用 D3c Recovery；決定的組揭曉後立即私下給碼（不等第 155 分），D4 只做最低完成線。</p>
-    <p><b>重構不是模型變更</b>：Agent 登記前逐項問名詞、負責的 Context、不變量或規則、邊界、事件或對外約定有沒有變；只搬移程式的部分不登記。</p>
+    <p><b>重構不是模型變更</b>：Agent 先讀變更簡報（brief --base HEAD），逐筆問名詞、負責的 Context、不變量或規則、邊界、事件或對外約定有沒有變；只搬移程式的部分不登記。參考實作會列出 REFUND-004（一筆訂票只能退一次），這條意思變了，要新 id。</p>
+    <p><b>加深一層</b>：<b>規則守的是哪個 Aggregate</b>（Runbook 檢查點 5 ④），花 30 秒講：d3c-records.json 的每條規則寫上 aggregate；規則和那個 Aggregate 不在同一個 Context，Plugin 直接拒絕登記（訊息含 belongs to context …, which the record does not name）。被拒絕不是工具故障，是邊界可能畫錯，請學員決定規則換 Context 還是 Aggregate 範圍不對，不讓 Agent 刪掉 aggregate 硬過。</p>
   </aside>
 </section>
 
@@ -2837,7 +2839,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「寫交接單」</b><span>Runbook › 檢查點 3；看過 id 清單回「同意」</span></li>
-    <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
+    <li><i>夥伴的對話</i><b>貼第二段</b><span>同意後簽章提交，再裝提交前檢查</span></li>
     <li><b>看夥伴 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>抽一句問「證據在哪？」；指不出來就移到未知事項（Unknowns）</p>
@@ -2848,6 +2850,8 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>省時</b>：提案者的 Agent 只回報 id 核對清單與移到 Unknowns 的項目，各段由學員打開檔案看；夥伴的 Agent commit 後自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：第 165 分未完成 → 請學員對 Agent 說「照 D4 最低完成線收尾」：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」；夥伴 commit 後進回顧。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人聊兩分鐘（也可和隔壁組交換看交接單的 Unknowns），再把結論記進「D4 交接核對」；挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再請大家回想各段結尾的討論。</p>
+    <p><b>新概念</b>：這裡第一次介紹<b>讓模型擋住讓引用失效的 commit</b>（Runbook 檢查點 3 ④），花 30 秒講：夥伴 commit 後替 Repo 裝上提交前檢查（install-pre-commit-hook），再示範把 discounts.py 改名後 commit，會被擋下並點名引用它的紀錄、給出 relocate-evidence 那一行；示範完檔案搬回原位。這是留給下一個 Agent 的防線：模型會保護自己，不靠記得。</p>
+    <p><b>看（提交前檢查）</b>：示範的 commit 被擋下；檔案已搬回、git status 乾淨。被擋下的訊息若是「no Python 3.10 or later on PATH」，是 venv 沒在同一次執行內啟用，不是示範成功；萬一示範的 commit 通過了（Registry 沒引用 discounts.py 的少數組），Agent 會照提示詞 git reset --soft HEAD~1。</p>
     <p><b>模型版本</b>：交接單 Domain facts 第一行寫已審查模型的 commit（git log 最上面（最新）一個訊息含「套用」的 commit）；Agent 用 export --commit 確認讀得到。交接時說得出「哪一版的模型」，下一個 Agent 才知道哪些是核准過的。</p>
   </aside>
 </section>

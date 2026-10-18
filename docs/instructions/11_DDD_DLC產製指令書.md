@@ -2,20 +2,20 @@
 
 > 讀者：產製 DDD DLC 教材、參考解答、建置與打包工具的 Coding Agent，以及驗收者。
 > 時機：主課 P12 素材完成之後；與 edition-aware 建置（`scripts/build_materials.py --edition dlc`）平行進行。
-> 前置：00 總控、05、06、10 指令書；起始 Repo `agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/`；domain-memory Plugin 0.61.0（`SKILL.md`、`AGENTS.md`、`references/script-api.md`、`references/seven-step-workflow.md`、`references/implementation-handoff.md`、`references/ports-and-adapters.md`、`references/pattern-verification.md`）。
+> 前置：00 總控、05、06、10 指令書；起始 Repo `agentic-workshop/07-dlc-ddd/participant/repository/smart-ticket-dlc-base/`；domain-memory Plugin 1.1.0（`SKILL.md`、`AGENTS.md`、`references/script-api.md`、`references/seven-step-workflow.md`、`references/implementation-handoff.md`、`references/ports-and-adapters.md`、`references/pattern-verification.md`）。
 > 主課候選以程式為準：`scripts/build_materials.py` 的 `CANDIDATE_ID`。
 
 ## 1. 已核准變更（2026-10-07，使用者於對話中核准）
 
 1. 新增獨立產品「DDD DLC」：180 分鐘加課，對象為已完成主課（Tool → Teammate → Digital Worker）的學員。不改主課 90 分鐘時程、商業規則、版本、測試期待值或任何凍結候選。
 2. 主題：**Agent 的領域記憶**。把領域知識轉成經審查、以檔案保存的 Domain Memory，並用它驅動受治理的變更。DDD 概念（Ubiquitous Language、Bounded Context、Context Map、Aggregate／invariant／一致性邊界、Port／Adapter／ACL）一律透過 domain-memory Plugin 操作來教，不另開理論講堂。
-3. Plugin 版本固定為 0.61.0，只內嵌執行用的檔案（依 Plugin README，排除 `evals/`、`scripts/test_*.py` 與開發用的 `README.md`、`ruff.toml`；由 `scripts/vendor_dlc_plugin.py` 產生），附 SHA256 清單；內嵌的檔案不得修改任何位元組。
+3. Plugin 版本固定為 1.1.0，只內嵌執行用的檔案（依 Plugin README，排除 `evals/`、`scripts/test_*.py` 與開發用的 `README.md`、`ruff.toml`；由 `scripts/vendor_dlc_plugin.py` 產生），附 SHA256 清單；內嵌的檔案不得修改任何位元組。
 4. 起始 Repo 為 B3 團體訂票解答的清理複本 `smart-ticket-dlc-base`。設計洩漏（貧血模型、三處複製計價、具體 Gateway 無 Port、三份座位真相、退款以 booking_id 為鍵）刻意保留作為教材；產品規則放在 `docs/requirements/`，因為 Plugin 只自動分類該類資料夾。
 5. 情境卡為 `agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md`、`02-points-redemption.md`、`03-group-partial-refund.md`，由平行工作撰寫；本指令書只引用路徑，不得改寫其內容。
 6. D3 三個情境**全體依序進行、三個都做**（D3a → D3b → D3c），每段在前一段成果上累積。
 7. D2 為成對練習：每組一人當 proposer，夥伴持 maintainer 簽章金鑰並核准。主持人提供的 reviewed Registry 為預設降級與 Recovery。
 8. 每個 D 段沿用主課檢查點節奏：投影顯示時間與目前檢查點；每段有獨立解鎖碼與 Recovery 包。2026-10-09 已核准變更：Runbook 每個檢查點是「說明 → 可直接複製的提示詞 → 看到什麼算過關」，Plugin 與 Git 指令原樣寫進提示詞由 Agent 執行並白話回報，學員只用短回覆做決定；紀錄由 Agent 寫入檔案；表單每段最多一張、以下拉／勾選為主；小組討論用「討論一下」提示，不用表格。D2 核准仍須由夥伴本人在自己開的 Agent 對話中（同一台電腦、另一個終端機）、讀過審查包後下指令簽章；提案者的 Agent 不得執行簽章、核准、commit 或 push，也不得讀取金鑰。
-9. 學員輔助腳本由 Spike 衍生（以 `cite` 組 record、Change Package 填寫器、SCM attestation 寫入器），讓時間花在領域決策而不是手打 JSON。
+9. 學員輔助腳本由 Spike 衍生（以 `cite` 組 record、Change Package 填寫器；SCM attestation 自 Plugin 1.0 起由 `ship-package --commit` 寫入，DLC 不再自帶寫入器），讓時間花在領域決策而不是手打 JSON。
 10. 建置走 edition 參數：`scripts/build_materials.py --edition dlc`，輸出 `agentic-workshop/materials-dlc/`；Runbook 儲存前綴 `stwdlc:`；打包獨立（`scripts/package-manifest-dlc.json`、`dist/dlc-candidate/<id>/`、獨立證據）。DLC 工作不得變更主課 `scripts/package-manifest.json` 與主課候選。
 11. Evaluation 素材（reference Registry、各情境參考解答、觀察指引／評分表）僅供主持人；揭曉前不得可由任何學員包或 Runbook 取得。
 12. 2026-10-07 追加核准：(a) 起始 Repo 允許新增 `.gitattributes`（`* -text`），測試數為 76；(b) DLC 學員簽章金鑰放在 Repo 外 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），不放 Repo 內 `.dlc-keys/`（scan-secrets 會掃忽略目錄）也不放 `~/.ssh`，故 `scan-secrets` 預期 exit 0。
@@ -29,8 +29,8 @@
 | `agentic-workshop/07-dlc-ddd/README.md` | DLC 總覽、三分目錄說明、建置與驗證指令 | 維護者 |
 | `07-dlc-ddd/participant/repository/smart-ticket-dlc-base/` | 起始 Repo（已存在；僅允許第 5.3 節列出的補強） | 學員 |
 | `07-dlc-ddd/participant/scenarios/01–03-*.md` | 情境卡（平行工作產出，本指令書只驗收引用） | 學員 |
-| `07-dlc-ddd/participant/vendor/domain-memory-0.61.0.zip`、`domain-memory-0.61.0.zip.SHA256SUMS` | Plugin 原樣封裝與逐檔／整包雜湊 | 學員 |
-| `07-dlc-ddd/participant/tools/` | `dm.ps1`、`dm.sh`（固定 `-X utf8` 與 `--registry-root domain-memory` 的命令前綴）、`make_record.py`、`fill_package.py`、`write_scm_attestation.py`、`setup_remote.py`（建本機 bare remote）、`dmlib.py`（共用函式）、`doctor.py`（環境自檢） | 學員 |
+| `07-dlc-ddd/participant/vendor/domain-memory-1.1.0.zip`、`domain-memory-1.1.0.zip.SHA256SUMS` | Plugin 原樣封裝與逐檔／整包雜湊 | 學員 |
+| `07-dlc-ddd/participant/tools/` | `dm.ps1`、`dm.sh`（固定 `-X utf8` 與 `--registry-root domain-memory` 的命令前綴）、`make_record.py`、`fill_package.py`、`setup_remote.py`（建本機 bare remote）、`dmlib.py`（共用函式）、`doctor.py`（環境自檢） | 學員 |
 | `07-dlc-ddd/participant/worksheets/` | D1 來源選擇表、D2 角色卡、D3 決策卡、D4 Handoff 範本（純 Markdown，供 Runbook include） | 學員 |
 | `07-dlc-ddd/facilitator/facilitator-guide.md` | 逐段 cue、檢查點、提示條件、降級規則、成對簽章示範腳本 | 主持人 |
 | `07-dlc-ddd/facilitator/recovery/` | 各段 Recovery 來源（見第 3.2 節）與產生器 `make_recovery.py`（d1、d2、d3a、d3b、d3c），由參考解答清理而來 | 主持人（揭曉後才發） |
@@ -55,7 +55,7 @@
 |---|---|---|---|
 | 0–10 | `dlc-opening` | 開場與環境 | 安裝依賴、解出 Plugin 並核對 SHA、`readiness`、`quality-gates`、`python --version` |
 | 10–35 | `dlc-d1` | 共同語言與邊界 | `discover-sources` → 人工選來源 → `init-domain-memory` → `confirm-sources` → 以 `cite` 建 vocabulary／contexts／rules 候選 → `coverage` → `resolve-terms` → `get-context` → `analyze-boundary`（至少 2 個 Context） |
-| 35–60 | `dlc-d2` | 審查與核准（成對） | `init-signing-key --key-file <忽略目錄或 %TEMP%> --sign-every-commit` → `amend-policy`（依 3.3 順序）→ `install-git-hitl-hook` → `governance-readiness` → Change Package → 夥伴 `record-approval` → 簽章 commit → attestation → `finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit` |
+| 35–60 | `dlc-d2` | 審查與核准（成對） | `init-signing-key --key-file <忽略目錄或 %TEMP%> --sign-every-commit` → `amend-policy`（依 3.3 順序）→ `install-git-hitl-hook` → `governance-readiness` → Change Package → 夥伴 `record-approval` → 簽章 commit → `verify-git-governance` → 提案者 `ship-package --commit HEAD`（attestation、finalize、apply 一步）→ `validate --require-reviewed` → `verify-audit` |
 | 60–70 | `dlc-break` | 休息 | — |
 | 70–95 | `dlc-d3a` | 電子發票 | Port／Adapter、ACL、失敗隔離、冪等 |
 | 95–125 | `dlc-d3b` | 點數折抵 | 決定 owner Context；跨 Membership／Pricing／Payment 的不變量；reserve／restore |
@@ -116,13 +116,13 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 ### 4.3 D2 審查與核准（35–60，成對）
 
 - 角色：proposer（操作者機器）與 maintainer 夥伴（持鑰、核准、簽章）。兩人共用同一台機器時，夥伴金鑰一律放在 Repo 外的 `%USERPROFILE%\.dlc-keys\<夥伴代號>\`（Git Bash：`~/.dlc-keys/<夥伴代號>/`），不放 Repo 內的 `.dlc-keys/`、不放 `~/.ssh`。
-- 檢查點：D2-1 夥伴 `init-signing-key`；D2-2 三次 `amend-policy`＋hook＋`governance-readiness` ready；D2-3 proposer 以 `fill_package.py` 建 Change Package 並 `validate-change-package`、`submit-proposal`；D2-4 夥伴 `record-approval`、`verify-proposal`、簽章 commit、`write_scm_attestation.py`、`verify-git-governance --commit`；D2-5 `finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit`。
+- 檢查點：D2-1 夥伴 `init-signing-key`；D2-2 三次 `amend-policy`＋hook＋`governance-readiness` ready；D2-3 proposer 以 `fill_package.py` 建 Change Package 並 `validate-change-package`、`submit-proposal`；D2-4 夥伴 `record-approval`、`verify-proposal`、簽章 commit；D2-5 夥伴 `verify-git-governance --commit HEAD`；D2-6 提案者 `ship-package --commit HEAD` → `validate --require-reviewed` → `verify-audit`，夥伴簽章 commit 並 push。
 - 降級：任一步卡 5 分鐘，公布 `dlc-rec-d2`，小組改為對 reviewed Registry 執行 `validate --require-reviewed` 與 `verify-audit`，並觀看主持人示範簽章段落。
 - 驗收：參考 Registry 與成對流程皆 `validate --require-reviewed` OK、`verify-audit` OK；`git log --show-signature` 可見核准 commit 已簽章；私鑰不在任何 commit、ZIP 或 Runbook 中。
 
 ### 4.4 D3 共同規則（70–155）
 
-每個情境依同一節奏：讀情境卡 → `get-context`／`resolve-terms` 取得 reviewed 事實 → 寫 D3 決策卡（owner Context、不變量、外部系統、未知項）→ 交 Agent 實作 → 測試 → 每條新規則跑 `counterfactual` → 以 `upsert-candidate` 登記新事實（候選，不得自稱 reviewed）。參考解答的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實候選；D3 不 finalize Change Package（見第 1 節第 13 項）。
+每個情境依同一節奏：讀情境卡 → `get-context`／`resolve-terms` 取得 reviewed 事實 → 寫 D3 決策卡（owner Context、不變量、外部系統、未知項）→ 交 Agent 實作 → 測試 → 每條新規則跑 `counterfactual` → 讀 `brief --base HEAD` 判斷哪些已審查事實被改變（D3b 起）→ 以 `upsert-candidate` 登記新事實（候選，不得自稱 reviewed；D3c 規則寫上所守的 `aggregate`）。參考解答的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實候選；D3 不 finalize Change Package（見第 1 節第 13 項）。
 - 檢查點時窗：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分、D3c 步驟 4 為 6 分，屬已接受例外；緩解為情境卡 AC 的核心／延伸切分。
 
 - **D3a 電子發票（70–95）**：`InvoiceIssuer` 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；ACL 把 Order 翻譯為發票語言；付款成功不得因發票失敗撤銷；以 order_id 冪等；不得持鎖做外部呼叫。驗收：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。
@@ -131,7 +131,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 
 ### 4.5 D4 交接（155–165）
 
-- 檢查點：D4-1 `verify-sources`、`verify-evidence`、`verify-audit`；D4-2 對 D3 改變的事實 `upsert-candidate`；D4-3 依 `implementation-handoff.md` 七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）填 Handoff 範本。
+- 檢查點：D4-1 `verify-sources`、`verify-evidence`、`verify-audit`；D4-2 對 D3 改變的事實 `upsert-candidate`；D4-3 依 `implementation-handoff.md` 七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）填 Handoff 範本，夥伴簽章 commit 後 `install-pre-commit-hook` 並示範一次被擋下的改名 commit。
 - 驗收：Handoff 範本七段齊全且只引用 Registry 中存在的 id。
 
 ### 4.6 回顧（165–180）
@@ -165,7 +165,6 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 - 只用標準函式庫；以 subprocess 呼叫 Plugin 的 `registry_tools.py`，不得 import 或修改 Plugin 內部。
 - `make_record.py`：輸入 asset、id、名稱、定義與 `path:start-end`，輸出含 `cite` 證據的 record JSON。
 - `fill_package.py`：填 requirement／proposal／obligations／evidence；測試結果必須來自實際 pytest exit code 與輸出 sha256，不得預填 PASS。
-- `write_scm_attestation.py`：以指定 commit 寫出 `git-signed-commit` attestation。
 - 每支腳本附一個 `__main__` 自檢或 `test_*.py`，於第 7 節執行。
 
 ## 6. 建置與打包
@@ -180,7 +179,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 
 所有指令於 Repo 根以 Python 3.13 執行，實際輸出摘要寫入 `dlc-validation-evidence.json`。
 
-1. **Plugin 完整性**：解出的 Plugin 每檔 SHA256 與 `SHA256SUMS` 一致；`plugin.json` 版本為 0.61.0。
+1. **Plugin 完整性**：解出的 Plugin 每檔 SHA256 與 `SHA256SUMS` 一致；`plugin.json` 版本為 1.1.0。
 2. **起始 Repo**：全新 venv 安裝後 `pytest -q` 為 76 passed，無 Skip／XFail；第 5.1 節 grep 結果已審查。
 3. **Reference Registry**：`validate --require-reviewed`、`verify-evidence`、`verify-sources`、`verify-audit`、`governance-readiness` 全部 OK；`coverage` 輸出已審查並記錄刻意未建模的缺口。
 4. **參考解答（d3a、d3b、d3c 各自）**：pytest 全綠且無 Skip／XFail，記錄實際 passed 數；對各自 `domain-memory/` 執行 `validate`、`verify-audit`、`coverage` 皆 OK；已變動檔案上的 stale evidence 為預期，須列出（`verify-evidence`／`verify-sources` 可 exit 1，留到 D4）。
@@ -257,7 +256,7 @@ Final Decision 僅可為 `PASS FOR WORKSHOP USE` 或 `FAIL`；任何第 7 節項
 ## 完成條件
 
 - 第 2 節產出齊備，且未新增表外頂層資料夾。
-- Plugin 0.61.0 原樣封裝，SHA 清單核對通過。
+- Plugin 1.1.0 原樣封裝，SHA 清單核對通過。
 - 時程連續、合計 180 分鐘，九段與第 3.1 節一致；每個 D 段有檢查點、「停下等我」提示詞、確認表單、獨立解鎖碼與 Recovery。
 - 第 3.3 節操作順序與第 5.2 節 Windows 陷阱在 Runbook 與參考解答中一致處理。
 - 三個參考解答測試全綠；其 `domain-memory/` 的 `validate`、`verify-audit`、`coverage` OK（stale evidence 已列出）；reference Registry（D2）`validate --require-reviewed` 與 `verify-audit` OK；每條新規則有 killed counterfactual。

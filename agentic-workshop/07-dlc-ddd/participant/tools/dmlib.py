@@ -21,32 +21,31 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-0.61.0")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.1.0")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 0.61.0 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 1.1.0 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
     "migrate-registry", "validate", "export", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
-    "analyze-boundary", "upsert-candidate", "retract-candidate", "apply-approved-updates",
-    "demote-local-reviews", "probe", "verify-evidence", "migrate-evidence", "recover-registry-update",
-    "confirm-sources", "refresh-sources", "refine-sources", "amend-policy", "verify-git-governance",
-    "install-git-hitl-hook", "governance-readiness", "verify-audit", "submit-proposal", "verify-proposal",
-    "attest-signed-commit", "boundary-impact", "promote-candidate", "recite", "record-test-result",
-    "relocate-evidence", "harvest-candidates",
+    "dependents", "brief", "analyze-boundary", "upsert-candidate", "retract-candidate", "demote-local-reviews",
+    "probe", "verify-evidence", "migrate-evidence", "recover-registry-update", "confirm-sources", "refresh-sources",
+    "refresh-listing", "refine-sources", "amend-policy", "verify-git-governance", "install-git-hitl-hook",
+    "install-pre-commit-hook", "governance-readiness", "verify-audit", "submit-proposal", "verify-proposal",
+    "ship-package", "boundary-impact", "promote-candidate", "recite", "record-test-result", "relocate-evidence",
+    "harvest", "discard-harvest", "harvest-candidates", "mcp-serve",
 }
 # 可選 --registry-root：只有 domain-memory/ 已存在時才補。
-REGISTRY_OPTIONAL = {"readiness", "cite", "finalize-proposal", "validate-change-package", "init-change-package",
-                     "change-coupling", "redraft-proposal", "supersede-proposal"}
+REGISTRY_OPTIONAL = {"readiness", "cite", "validate-change-package", "init-change-package", "change-coupling",
+                     "redraft-proposal", "supersede-proposal"}
 REPO_ROOT = {
-    "validate", "readiness", "upsert-candidate", "retract-candidate", "apply-approved-updates",
-    "demote-local-reviews", "discover-sources", "verify-sources", "probe", "verify-evidence",
-    "migrate-evidence", "init-domain-memory", "confirm-sources", "refresh-sources", "refine-sources",
-    "init-signing-key", "scan-secrets", "verify-git-governance", "install-git-hitl-hook",
-    "governance-readiness", "submit-proposal", "verify-proposal", "finalize-proposal", "quality-gates",
-    "counterfactual", "cite", "attest-signed-commit", "audit-attestations", "boundary-impact", "recite",
-    "record-test-result", "recover-registry-update", "relocate-evidence", "validate-change-package",
-    "export", "compare-registry", "change-coupling", "harvest-candidates", "coverage", "promote-candidate",
-    "redraft-proposal", "supersede-proposal",
+    "validate", "readiness", "upsert-candidate", "retract-candidate", "demote-local-reviews", "discover-sources",
+    "verify-sources", "probe", "verify-evidence", "migrate-evidence", "init-domain-memory", "confirm-sources",
+    "refresh-sources", "refresh-listing", "refine-sources", "init-signing-key", "scan-secrets",
+    "verify-git-governance", "install-git-hitl-hook", "install-pre-commit-hook", "governance-readiness",
+    "submit-proposal", "verify-proposal", "ship-package", "quality-gates", "counterfactual", "cite",
+    "audit-attestations", "boundary-impact", "brief", "recite", "record-test-result", "recover-registry-update",
+    "relocate-evidence", "validate-change-package", "export", "compare-registry", "change-coupling", "harvest",
+    "discard-harvest", "harvest-candidates", "coverage", "promote-candidate", "redraft-proposal", "supersede-proposal", "mcp-serve",
 }
 
 
@@ -55,7 +54,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-0.61.0.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.1.0.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 
@@ -137,7 +136,7 @@ def read_json(path: str | Path):
     except OSError as error:
         raise SystemExit(f"讀不到 {path}：{error}") from None
     except ValueError as error:
-        raise SystemExit(f"{path} 不是有效的 JSON（{error}）。若是 --save 的輸出，先看它的內容是否為 ERROR 訊息。") from None
+        raise SystemExit(f"{path} 不是有效的 JSON（{error}）。若是 --save 的輸出，先看那次指令在終端機印出的 ERROR 訊息（1.0 起拒絕時不寫進檔案）。") from None
 
 
 def write_json(path: str | Path, data) -> None:
@@ -168,7 +167,7 @@ def main(argv: list[str]) -> int:
     done = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=env())
     Path(save).parent.mkdir(parents=True, exist_ok=True)
     Path(save).write_text(done.stdout, encoding="utf-8")
-    sys.stderr.write(done.stderr if done.returncode == 0 else done.stdout + done.stderr)  # Plugin 的 ERROR 印在 stdout
+    sys.stderr.write(done.stderr)  # 1.0 起 Plugin 的 ERROR 與 NOTE 都印在 stderr，stdout 只有輸出本身
     print(f"[dm] 輸出已存到 {save}（exit {done.returncode}）", file=sys.stderr)
     return done.returncode
 

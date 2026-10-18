@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-0.61.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.1.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -47,9 +47,9 @@ LEARNER_COMMANDS = {
     "counterfactual": ["--file", "--find", "--replace", "--test-command", "--expect"],
     "init-change-package": ["--output"], "validate-change-package": ["--package-root"],
     "submit-proposal": ["--package-root"], "record-approval": ["--package-root", "--role", "--reviewer", "--scope"],
-    "verify-proposal": ["--package-root"], "finalize-proposal": ["--package-root"],
-    "apply-approved-updates": ["--package-root"], "init-signing-key": ["--principal", "--key-file",
-                                                                       "--sign-every-commit"],
+    "verify-proposal": ["--package-root"], "ship-package": ["--package-root", "--commit"],
+    "init-signing-key": ["--principal", "--key-file", "--sign-every-commit"],
+    "brief": ["--base", "--markdown"], "install-pre-commit-hook": [],
     "amend-policy": ["--field", "--value", "--reason", "--verifier"], "install-git-hitl-hook": [],
     "governance-readiness": [], "verify-git-governance": ["--commit"], "verify-audit": [], "scan-secrets": [],
     "export": ["--commit"], "compare-registry": ["--gold-root", "--gold-commit", "--candidate-root"],
@@ -68,6 +68,10 @@ QUOTED = [
     "proven_by", "also_covers", "copied_evidence", "copied_matches", "overall_independent",
     "failing_tests", "rule_totals", "rules_by_context", "reviewed_rules", "contexts_without_reviewed_rules",
     '"proven"', '"unproven"', '"unknown"',
+    # 1.0: analyze-boundary per direction, ship-package, brief (D3b/D3c), rule aggregate (D3c), pre-commit hook (D4)
+    "source_depends_on_target", "target_depends_on_source", "completed", "applied", "Attention",
+    "lies outside every Context", "belongs to context", "which the record does not name",
+    "Installed Domain Memory pre-commit hook", "is renamed to", "relocate-evidence --from",
 ]
 ATTESTED = ["5538b6dbcba9e5c4468ceddec72b75b231f9688d", "38116f248f78befa51abac56405349301a5623c7"]
 REGISTRY_COMMITS = 7  # six JSON-era commits + the signed OKF migration (0.33.0)
@@ -206,6 +210,16 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     lines = output.count("Git governance is valid")
     report(done.returncode == 0 and expected in output and lines == 1, "reference push through pre-push hook",
            f"{lines} governance line(s); expect one '{expected}'")
+    # 1.0 (D4 checkpoint 3): the pre-commit hook refuses a commit that renames a cited file, then is undone.
+    dm(repo, plugin, "install-pre-commit-hook")
+    cited, moved = "src/smart_ticket/domain/discounts.py", "src/smart_ticket/domain/discount_rules.py"
+    sh(["git", "mv", cited, moved], repo)
+    done = sh(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "-m", "rename"], repo,
+              {"PATH": path})
+    sh(["git", "mv", moved, cited], repo)
+    output = done.stdout + done.stderr
+    report(done.returncode != 0 and "relocate-evidence --from" in output, "reference pre-commit hook refuses a rename",
+           "refused with the relocate-evidence hint" if done.returncode else "commit went through")
 
 
 def check_quoted(plugin: Path) -> None:

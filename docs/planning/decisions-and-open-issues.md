@@ -417,3 +417,39 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 演練（Windows，沙箱 `C:\tmp\dm61`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包；沙箱產物：`py -3.13` 以小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`）：開場檢查點 1–4（76 passed、`SHA OK 82 files`、`"version": "0.61.0"`、brownfield／high、pytest）；D1 檢查點 2–4（PowerShell：11 筆候選、`Registry is valid.`、31 current；`coverage` 的 NOTE 與 `rules_by_context`）；D2 檢查點 1–6（PowerShell；反事實 PowerShell 與 Git Bash 都 killed、`failing_tests` 列出兩個測試；`Change package is valid.`；`Proposal submitted for human review.`；`Proposal test evidence verified.`；`Git governance is valid for 1 commit.`；`proven_by` 列出 OB-FARE-005；push `Git governance is valid for 2 commits.`、`[new branch]`）；D2 Recovery（Git Bash 步驟 1、PowerShell 步驟 2–3：76 passed 1 warning、`Registry is valid.`、66 events、162 current；Git Bash push `for 8 commits.`）；D3a 檢查點 4（PowerShell 兩條 killed，`failing_tests` 有參數化測試名）與 5（`make_record --allow-unclassified`、`Registry is valid.`、夥伴簽章 commit）；D3b 檢查點 4（PowerShell 兩條 killed：預留與歸還各一；另以等價 mutant 驗證整套重跑仍 survived）；D3c 檢查點 4（Git Bash 兩條 killed）；D4 檢查點 1（D3a 狀態與 D3c Recovery，含 `coverage` 與 `proven_by` 重跑）；回顧檢查點 2（PowerShell 與 Git Bash）。D3b／D3c 檢查點 4 以 Recovery 的參考實作代替學員實作。macOS 只做靜態檢查。
 
 未驗證：macOS 實機；Agent 在真實對話中會不會照第 11 條把 survived 改跑整套、會不會把參數化的 `failing_tests` 收斂成測試名；D4 多一個指令後 3 分鐘是否夠（D4 原本就常超時，維持最低完成線）。
+
+## domain-memory 升級 1.1.0（2026-10-19）
+
+由 0.61.0 升級，現固定 1.1.0（SkillHub `8c7a8a47c`，以 `git archive` 匯出；沒有使用 SkillHub 工作區）。原本先以 1.0.0（`8ccb13ec0`）評估與修改，未提交前 1.1.0 釋出，改固定 1.1.0；1.0.0 的 ZIP 從未提交，直接刪除。1.0 是 major 版，依版本政策讀 CHANGELOG 與 `git diff 0a40b5b48 8c7a8a47c`、跑相容性檢查、在沙箱演練後固定。Registry 版面（OKF）、稽核事件名稱與證據包格式都沒有改：參考 Registry、bundle、tag `dlc-d2-reviewed`、`REGISTRY_COMMITS` = 7、參考解答都不用遷移，不需要新的簽章 commit，也沒有動用 Maintainer 金鑰。Plugin 維護者的檢查在匯出上重跑：`uvx ruff@0.16.7 check .` 全部通過；`run_tests.py --jobs 4` 41 個模組中 40 個 OK，`test_support` 是沒有測試的輔助模組，Python 3.12 起 `unittest` 對「沒有測試」回 exit 5，所以在 3.12／3.13 被算成失敗（3.11 回 0）：回報給維護者，不影響執行。
+
+相容性檢查（`check_dlc_plugin_compat.py --source <1.0.0 匯出>`，修改前）：24 PASS、5 CHANGED。dmlib 三組集合（加 `brief`、`dependents`、`harvest`、`install-pre-commit-hook`、`mcp-serve`、`refresh-listing`、`ship-package`；刪 `apply-approved-updates`、`attest-signed-commit`、`finalize-proposal`）；學員指令 `finalize-proposal`、`apply-approved-updates` 不存在；tools 自檢失敗（`write_scm_attestation.py` 呼叫的 `attest-signed-commit` 已刪）。1.1.0 只在 `harvest` 與新指令 `discard-harvest` 上不同（執行檔只差 `cli_parser.py`、`commands/lifecycle.py`、`harvest_run.py`），dmlib 加 `discard-harvest` 後：30 PASS、0 CHANGED。
+
+各版與學員路徑：
+- 1.0 刪除 `attest-signed-commit`、`finalize-proposal`、`apply-approved-updates`，改用 `ship-package --package-root … --commit <sha>` 一步做完（會壞）。D2 檢查點 5 改成夥伴的 Agent 只驗證簽章 commit（`git log -1`＋`verify-git-governance --commit HEAD`）：這個 commit 就是核准紀錄；檢查點 6 由提案者跑 `ship-package --commit HEAD`（回報 `completed` 三步、`status` `applied`）→ `validate --require-reviewed` → `verify-audit`。刪除 `write_scm_attestation.py`；簽章流程清單、角色卡、`test_tools.py`（未簽章 commit 必須被 `ship-package` 拒絕）、簡報 30-d2、主持指南、詞彙表同步。
+- 1.0 起 `ERROR:` 拒絕訊息與 NOTE 印在 stderr：dmlib 的 `--save` 只存 stdout，另把 stderr 照印；tools README 補一句。
+- `counterfactual` 拒絕執行改成 JSON，`verdict` 是 `error`、exit 3（會壞）：D3 工作規則第 11 條改為 error 的 cf-*.json 刪掉重跑、killed／survived／inconclusive 保留；D2 檢查點 3、主持指南的介入句同步。
+- `analyze-boundary` 一次回報兩個方向（`source_depends_on_target`、`target_depends_on_source`）：刪掉「對調再查一次」（D1 檢查點 6、D3 工作規則第 10 條、主持指南）。
+- `verify-sources` 多 `discovered_but_unlisted` 與 discovery drifted 的 NOTE：D4 檢查點 1 的狀態仍是 `stale`（exit 1），提示詞已說只讀、不要試著修好，不改。
+- `harvest`、`discard-harvest`、`mcp-serve`、`refresh-listing`、`list-proposals`：不在學員路徑。`fill_package.py` 照用：`harvest` 要求每條規則都有 killed 的反事實，D2 只做一條。
+- 維護者提醒的 `shared-kernel`（Context 子領域）與 `separate-ways`（Interaction 關係）拒絕：參考 Registry、bundle、Recovery 與學員提示詞都沒有用到。
+
+新概念與位置（Agentic DDD 為主，每個檢查點最多一個新想法）：
+- Context Map 的上游／下游（`analyze-boundary` 兩個方向）：D1 檢查點 6 ④ 加深一層補一點；詞彙表新增「Context Map（上游／下游）」；簡報 20-d1 備註、演講 01 的 context-map 備註。Context Map 的 `relationship` 欄位（例如 customer-supplier）延後：D3 頁面已滿。
+- 從變更簡報問起（`brief --base HEAD --markdown`）：D3b、D3c 檢查點 5 讓 Agent 只讀 Attention，逐筆判斷改動碰到引用行的已審查紀錄是模型變更還是重構；D3b ④「模型變更與重構」補一點。實測 Attention 列得到 REFUND-004（D3b、D3c），列不到 MEMBER-004：它沒有引用被改的行，要靠提示詞「被改變的已審查事實」那一步從需求卡找，簡報 55-d3b 備註照實寫。
+- 規則守的是哪個 Aggregate（規則的 `aggregate` 欄位）：D3c 檢查點 5 的 d3c-records.json 範本加 `aggregate`，新增 ④「新概念・加深一層」；規則和 Aggregate 不在同一個 Context 時 Plugin 拒絕（`… belongs to context …, which the record does not name`），提示詞要 Agent 停下讓學員決定。觀察指南加 C6。
+- 讓模型擋住讓引用失效的 commit（`install-pre-commit-hook`）：D4 檢查點 3 夥伴 commit 後裝上，`git mv discounts.py` 示範被擋下再搬回；④ 新概念小卡（Git〈githooks〉pre-commit；`--no-verify` 可繞過，回顧說明）。觀察指南加 D4。
+
+刪除的概念：`analyze-boundary` 的「對調再查」；獨立的「寫出核准證明」步驟與 `write_scm_attestation.py`；counterfactual 的 `ERROR:` 文字拒絕。
+
+順帶修正：兩版簡報 `src/deck.css`、`src/js/10-deck-core.js`、`src/js/20-deck-features.js` 重複貼上的區塊（HEAD 的 `test_deck_sources_have_no_pasted_duplicates` 因此失敗，擋住發布流程），只留最後一份，畫面不變；主持指南的 Plugin 檔案數（80／81 行）與開場簡報的 `SHA OK 81 files` 原本就過期，改成 94／95。
+
+機械：`domain-memory-1.1.0.zip`（94 個 Plugin 檔案；學員核對印出 `SHA OK 95 files`；ZIP SHA256 `32e53e66…f60320`），`git rm` 0.61.0 的 ZIP 與 SHA256SUMS；版本字串同步到 dmlib（集合與 `cli_parser` 一致）、doctor、build_delivery_dlc（含測試）、check_dlc_plugin_compat（`QUOTED` 68 個，新增 pre-commit hook 擋下改名的檢查）、package-manifest-dlc、tools／DLC README、materials-dlc README、Runbook 開場、主持指南、觀察指南、指令書 11、course-authoring 技能。
+
+量測（1.1.0，Windows）：
+- Recovery：`make_recovery.py` 對 d1–d3c 各跑一次，d2–d3c 位元組不變；d1 只有事件 id 與時間戳變，還原為原版（1.1.0 下 `validate`、`verify-audit`、`verify-sources` 都通過）。current／shifted／stale：d1 162／0／0、d2 162／0／0、d3a 147／12／3、d3b 108／32／22、d3c 99／31／32（不變）。
+- 參考解答反事實（暫存複本）：d3a 25／25、d3b 23／24、d3c 37／38 killed，存活的仍是已記錄的等價 mutant（PTS-003 min-points-1、PCR-004 days-by-datetime）。
+- 回顧檢查點 2（D2 Recovery＋D3a–D4 候選，對 `fc9efe2`）：overall precision 0.90、recall 1.0、`copied_matches` 52、`overall_independent` precision 0.45（候選多了 D3b–D4 的紀錄）。
+
+演練（Windows，沙箱 `C:\tmp\dm100\rh`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包；沙箱產物：`py -3.13` 以編譯的小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`）：開場檢查點 1–4（76 passed；換 1.1.0 後重跑檢查點 2：`SHA OK 95 files`、`"version": "1.1.0"`）；D1 檢查點 2–6（12 筆候選、`Registry is valid.`、`analyze-boundary` 兩個方向、`no_registered_collaboration`）；D2 檢查點 1–6（`ready`、反事實 killed、4 個 obligation passed、`Change package is valid.`、`Good "git" signature`、`Git governance is valid for 1 commit.`、`ship-package` `completed` 三步、`status` `applied`、`verify-audit` 8 個事件、push `for 2 commits.`、`[new branch]`）；D2 Recovery（沿用金鑰、`ready`、簽章 commit、76 passed、162／0／0）；D3a 檢查點 1–5（反事實 killed、改壞前測試沒過時 `verdict` `error`）；D3b 檢查點 4–5（`brief` Attention 14 筆，含 REFUND-004）；D3c 檢查點 2–5（`brief` 列出 REFUND-004、規則帶 `aggregate`、放錯 Context 被拒絕）；D4 檢查點 1–3（`stale`、44 筆 stale 引用、16 條規則全部 proven、pre-commit 擋下改名並給出 relocate-evidence 那一行、搬回後狀態乾淨）；回顧檢查點 2。D1–D3b 以 1.0.0 執行、D3c 起以 1.1.0 執行（兩版執行檔只差 `harvest`）。Git Bash 變體只由相容性檢查以 bash 跑過 pre-push 與 pre-commit。
+
+未驗證：macOS 實機（只做靜態檢查）；Agent 在真實對話中會不會只讀 Attention、不照 NOTE 執行 refresh-sources 或 recite；D4 檢查點 3 多一段 hook 示範後時間是否夠（D4 原本就常超時）。

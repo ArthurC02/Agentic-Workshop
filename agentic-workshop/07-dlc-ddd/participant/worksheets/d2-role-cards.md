@@ -7,19 +7,19 @@ D2 兩人一組，共用提案者的機器與 Repo，但**各自用自己的 Age
 ## 提案者（Proposer）
 
 - **身分**：`proposer@example.com`（開場時設定的 Git 使用者）。
-- **你的 Agent 負責**：反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）、把 D1 的候選整理成變更審查包（Change Package）並驗證、送出提案、夥伴核准後定案、套用與驗證。
+- **你的 Agent 負責**：反事實檢查（counterfactual：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed）、把 D1 的候選整理成變更審查包（Change Package）並驗證、送出提案；夥伴核准並簽章提交後，一步寫入核准證明、定案並套用，再驗證。
 - **你決定**：用哪一條規則做反事實檢查；審查包看起來完整了才回「送出」。
 - **你的 Agent 不可以**：執行 `record-approval`、碰夥伴的金鑰、commit 或 push（本 Repo 的 commit 會用夥伴的金鑰簽章）。Plugin（外掛套件，這裡指 domain-memory）只比對身分字串，**它擋不住冒用夥伴的名字**，所以這條界線靠你們兩人遵守。
 
 ## 夥伴（Maintainer，持鑰人）
 
 - **身分**：`maintainer@example.com`。
-- **你的 Agent 負責**（建立金鑰 → 設定政策 → 讀審查包 → 簽章 commit → 核准證明 → push）：
+- **你的 Agent 負責**（建立金鑰 → 設定政策 → 讀審查包 → 簽章 commit → 驗證核准紀錄 → push）：
   1. 建立你的簽章金鑰（放在 Repo 外的 `%USERPROFILE%\.dlc-keys\maintainer\`）。
   2. 設定審查政策與 push 檢查。
   3. 把審查包讀給你聽。
   4. 你回「核准」之後，執行 `record-approval` 與簽章 commit。
-  5. 寫出核准證明並驗證。
+  5. 驗證剛才的簽章 commit 出自政策授權的金鑰：這個 commit 就是核准紀錄。
   6. 最後 push。
 
   D3、D4 的簽章 commit 也由你的 Agent 執行。

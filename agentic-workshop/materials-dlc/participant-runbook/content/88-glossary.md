@@ -21,7 +21,8 @@ section: 參考
 | Owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的 Context；其他 Context 只能透過約定取用。例：D3a 決定「發票」歸誰管。 | Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉；`vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | Contract（約定） | Context 之間約定交換的資料或介面；另一方只透過它取得資料，不碰對方內部。例：付款 Context 只用「付款結果」通知發票 Context。 | Vernon《Implementing Domain-Driven Design》〈Context Maps〉；`vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | 邊界洩漏 | 一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式。例：計價程式直接改會員的點數欄位。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
-| Aggregate（聚合）／Aggregate root（聚合根） | Aggregate 是必須**一起**保持一致的一組資料；外界只能從一個入口物件（Aggregate root）修改它。它守住一條橫跨多份資料的規則；不是一張資料表，也不是「有子物件的類別」。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
+| Context Map（上游／下游） | 畫出 Context 之間誰依賴誰：被依賴的一方是上游，依賴的一方是下游。`analyze-boundary` 一次回報兩個方向。D1 檢查點 6 用到。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
+| Aggregate（聚合）／Aggregate root（聚合根） | Aggregate 是必須**一起**保持一致的一組資料；外界只能從一個入口物件（Aggregate root）修改它。它守住一條橫跨多份資料的規則；不是一張資料表，也不是「有子物件的類別」。規則可以寫上它守的 Aggregate；兩者不在同一個 Context，模型會拒絕登記（D3c）。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉；`vendor/domain-memory/references/registry-schema.md` |
 | 不變量（Invariant，INV） | 每次操作結束時都必須成立的業務規則，可以寫成一個會失敗的測試。例：會員點數餘額不得為負。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | 一致性邊界 | 每次操作結束時，不變量都必須成立的那一組資料的範圍。邊界內全有或全無；邊界外可以事後再同步。一個測試同時守住好幾條規則（審查包記為 `also_covers`），常是它們同屬一個邊界的訊號。 | Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | Port／Adapter | Port 是領域程式需要的對外能力介面，用自己的業務用語描述；Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。 | Vernon《Implementing Domain-Driven Design》〈Architecture〉；`vendor/domain-memory/references/ports-and-adapters.md`〈Ports and adapters〉 |
@@ -29,7 +30,7 @@ section: 參考
 | 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。 | Hohpe & Woolf《Enterprise Integration Patterns》〈Idempotent Receiver〉；`vendor/domain-memory/references/pattern-verification.md`〈Verification questions〉 |
 | 預留與歸還 | 先扣下點數（預留），付款成功才確定；團體付款失敗或退票時全數歸還（一般訂票付款失敗仍保留），重複歸還也只算一次。D3b 用到。 | 本課程〈需求卡 02：會員點數折抵〉 |
 | ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件。 | Michael Nygard〈Documenting Architecture Decisions〉 |
-| 模型變更與重構 | 名詞、負責的 Context、不變量或規則、邊界、事件或對外約定，有任何一項改了才是模型變更，要寫成新候選；只搬移或整理程式、這些都沒變的是重構，只要重新引用證據。 | Martin Fowler〈Definition Of Refactoring〉；`vendor/domain-memory/references/extraction.md`〈From a change〉 |
+| 模型變更與重構 | 名詞、負責的 Context、不變量或規則、邊界、事件或對外約定，有任何一項改了才是模型變更，要寫成新候選；只搬移或整理程式、這些都沒變的是重構，只要重新引用證據。變更簡報（`brief`）列出改動碰到引用的已審查紀錄，Agent 逐筆判斷（D3b 起）。 | Martin Fowler〈Definition Of Refactoring〉；`vendor/domain-memory/references/extraction.md`〈From a change〉；`vendor/domain-memory/references/script-api.md` |
 
 ## 和 Agent 協作的技巧
 
@@ -58,8 +59,8 @@ section: 參考
 | 證據狀態：current／shifted／stale／missing／invalid | current：仍一致。shifted：引用的那幾行沒變，只是移到同一個檔案的別處，不算失敗。stale：引用的內容變了，常常只是程式改了、模型還沒跟上。missing：檔案不存在。invalid：寫法或行號不對。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 檢查指令（`validate`、`verify-*`） | `validate` 檢查模型的格式與狀態；加 `--require-reviewed` 時，還有候選就不通過。`verify-evidence`、`verify-sources` 比對原文；`verify-audit` 檢查稽核紀錄。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
 | 變更審查包（Change Package，CP） | 一次變更的審查資料：要升級哪些候選、每條規則要通過的檢查（obligation，通常是一個測試指令）與實際執行結果。例：D2 的 `CP-D2-001`。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Step 7: Prepare, verify, and review the package〉 |
-| 簽章 commit／金鑰指紋／核准紀錄 | 用夥伴私鑰（ed25519 類型）簽過名的 commit，證明是持鑰人提交的。金鑰指紋（fingerprint）辨識是哪一把金鑰，可以公開；私鑰不可外流。寫進變更審查包、指向這個 commit 的證據叫核准紀錄（attestation）。 | Git 官方文件〈git-commit〉；OpenSSH 官方文件〈ssh-keygen〉；`vendor/domain-memory/references/reliability-architecture.md`〈Approval and test attestations〉 |
-| Git hook／推送檢查 | pre-push hook 是 Git 在推送（push）前自動執行的腳本，今天用它檢查有沒有核准與簽章。 | Git 官方文件〈githooks〉 |
+| 簽章 commit／金鑰指紋／核准紀錄 | 用夥伴私鑰（ed25519 類型）簽過名的 commit，證明是持鑰人提交的。金鑰指紋（fingerprint）辨識是哪一把金鑰，可以公開；私鑰不可外流。寫進變更審查包、指向這個 commit 的證據叫核准紀錄（attestation），由 `ship-package` 確認簽章後寫入。 | Git 官方文件〈git-commit〉；OpenSSH 官方文件〈ssh-keygen〉；`vendor/domain-memory/references/reliability-architecture.md`〈Approval and test attestations〉 |
+| Git hook／推送檢查／提交前檢查 | pre-push hook 是 Git 在推送（push）前自動執行的腳本，今天用它檢查有沒有核准與簽章。pre-commit hook 在 commit 前執行：D4 裝上，擋下讓模型引用失效的 commit。 | Git 官方文件〈githooks〉；`vendor/domain-memory/references/script-api.md` |
 | 稽核紀錄（audit） | 模型每次變動都附加一筆稽核事件；`verify-audit` 回 `valid` 代表沒被竄改。 | `vendor/domain-memory/references/reliability-architecture.md`〈Update protocol〉 |
 | `record-approval`／`amend-policy` | 記錄核准決定、修改審查規則的指令，只由夥伴的 Agent 執行。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
 | SHA256／雜湊 | 由檔案內容算出的固定長度字串，像檔案的指紋；一個位元組被改，值就不同。開場用它確認工具沒被改過。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |

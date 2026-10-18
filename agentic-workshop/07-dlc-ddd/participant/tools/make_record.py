@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
 ASSETS = dmlib.ASSETS
-# Plugin 對 reviewed record 的必要欄位（registry-schema.md），verified 由 apply-approved-updates 產生。
+# Plugin 對 reviewed record 的必要欄位（registry-schema.md），verified 由 ship-package 套用時產生。
 REQUIRED = {
     "contexts": ("name", "responsibility"),
     "vocabulary": ("name", "definition", "contexts"),
@@ -114,7 +114,7 @@ def build(spec: dict, allow_unclassified: bool = False, plugin: str | None = Non
         raise SystemExit(f"{asset}:{record['id']} 缺少必要欄位：{', '.join(missing)}（用對應旗標或 --set 欄位=值）")
     record.pop("review_status" if asset == "decisions" else "status", None)  # decisions 的 status 是決策狀態
     record.pop("review", None)
-    record.pop("verified", None)  # 審查紀錄只由 apply-approved-updates 寫入
+    record.pop("verified", None)  # 審查紀錄只由 ship-package 套用時寫入
     record["evidence"] = [cite(item, allow_unclassified, plugin) for item in evidence]
     return record
 

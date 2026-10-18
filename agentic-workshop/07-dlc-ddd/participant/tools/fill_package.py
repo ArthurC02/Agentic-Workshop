@@ -83,7 +83,7 @@ def promoted_updates(spec: dict, plugin: str | None) -> list[dict]:
             record = dmlib.run_json(["get-record", "--asset", asset, "--id", record_id], plugin)
             record.pop("status", None)
             record.pop("review", None)
-            record.pop("verified", None)  # 0.31 起由 apply-approved-updates 寫入
+            record.pop("verified", None)  # 由 ship-package 套用時寫入
             record.pop("review_status", None)
             updates.append({"asset": asset, "operation": "upsert", "record": record})
     return updates

@@ -26,7 +26,7 @@
     "lead": "Aggregate（聚合）是一組必須一起保持一致、可以當成一個單位處理的資料。Fowler 的例子：訂單和它的明細行。",
     "cards": [["唯一入口", "外界只拿得到訂單（根），不能直接改某一行明細。"], ["一起成立", "入口先檢查全部規則，再一次寫入。"]],
     "check": "如果有人能直接改明細，訂單總額的規則還守得住嗎？",
-    "notes": "6–8 分鐘。Martin Fowler〈DDD_Aggregate〉（2013）把 Aggregate 說成「a cluster of domain objects that can be treated as a single unit」，例子就是訂單與明細：分開的物件，但當成一個單位處理。Eric Evans 的定義摘要：外部物件只能持有根的參照（「allow external objects to hold references to the root only」），入口叫 Aggregate root。為什麼重要：總額等於明細加總這條不變量，只能由同一個入口守住；如果 Agent 另外寫了一條路徑直接改明細，規則就破了。D3c 哪些資料放在同一個邊界由學員決定，不要給答案。📖 延伸閱讀：〈DDD_Aggregate〉（Martin Fowler，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）。"
+    "notes": "6–8 分鐘。Martin Fowler〈DDD_Aggregate〉（2013）把 Aggregate 說成「a cluster of domain objects that can be treated as a single unit」，例子就是訂單與明細：分開的物件，但當成一個單位處理。Eric Evans 的定義摘要：外部物件只能持有根的參照（「allow external objects to hold references to the root only」），入口叫 Aggregate root。為什麼重要：總額等於明細加總這條不變量，只能由同一個入口守住；如果 Agent 另外寫了一條路徑直接改明細，規則就破了。D3c 哪些資料放在同一個邊界由學員決定，不要給答案。D3c 檢查點 5 登記規則時會寫上它守的 Aggregate；本 DLC 用的模型工具會拒絕和 Aggregate 不在同一個 Context 的規則，因為一個 Aggregate 只活在一個 Bounded Context 裡（Vernon 第 10 章）。被拒絕時是邊界的問題，讓學員決定，不讓 Agent 刪掉欄位硬過。📖 延伸閱讀：〈DDD_Aggregate〉（Martin Fowler，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）。"
   },
   {
     "id": "small-aggregate", "chapter": "不變量與 Aggregate", "title": "Aggregate 要小：無人機外送",
@@ -129,10 +129,10 @@
   {
     "id": "refactor", "chapter": "寫回模型", "title": "搬程式不等於改模型",
     "lead": "名詞、負責者、不變量、邊界都沒變，只是搬位置或拆函式，就是重構；模型不改，只更新證據位置。",
-    "prompt": "先不要修改任何檔案。請對這次變更逐項判斷模型有沒有改：名詞、決定歸哪個 Context、不變量或規則、邊界與允許的依賴、事件或約定。每項回答「有改」或「沒改」並附證據（路徑:起-迄行）。全部沒改就回「只是重構」，並列出位置變了、要重新指向的證據。列完停下。",
+    "prompt": "先不要修改任何檔案。請先列出這次改動碰到引用行的模型紀錄，再對每一筆逐項判斷模型有沒有改：名詞、決定歸哪個 Context、不變量或規則、邊界與允許的依賴、事件或約定。每項回答「有改」或「沒改」並附證據（路徑:起-迄行）。全部沒改就回「只是重構」，並列出位置變了、要重新指向的證據。列完停下。",
     "cards": [["是模型變更", "改名詞、換負責者、改不變量或邊界。"], ["不是", "改檔名、搬資料夾、拆函式。"]],
     "check": "D3 寫回模型的候選，有沒有一筆其實只是重構？",
-    "notes": "34.5–38 分鐘。新概念：重構與模型變更的分界。Fowler〈Definition Of Refactoring〉：重構是「a change made to the internal structure of software to make it easier to understand and cheaper to modify」，而且不改變可觀察的行為。對模型來說同理：逐個元素問有沒有變；全都沒變，就不提新候選，只把證據改指新位置。Agent 常把「檔案搬了」當成模型變了，提出一堆沒必要的候選，增加審查負擔；反過來，改名其實是改模型（第 01 場：改一個名詞就是改模型）。對照 D3 各段「新知識寫回模型」與 D4 檢查點 1–2。示範提示詞，未實際執行。📖 延伸閱讀：〈Definition Of Refactoring〉（Martin Fowler，2004）。"
+    "notes": "34.5–38 分鐘。新概念：重構與模型變更的分界。Fowler〈Definition Of Refactoring〉：重構是「a change made to the internal structure of software to make it easier to understand and cheaper to modify」，而且不改變可觀察的行為。對模型來說同理：逐個元素問有沒有變；全都沒變，就不提新候選，只把證據改指新位置。Agent 常把「檔案搬了」當成模型變了，提出一堆沒必要的候選，增加審查負擔；反過來，改名其實是改模型（第 01 場：改一個名詞就是改模型）。對照 D3 各段「新知識寫回模型」與 D4 檢查點 1–2。D3b、D3c 的 Agent 先讀模型工具的變更簡報（brief），它列出改動碰到引用行的已審查紀錄，Agent 從這份清單逐筆問，不靠記憶猜哪些事實受影響。示範提示詞，未實際執行。📖 延伸閱讀：〈Definition Of Refactoring〉（Martin Fowler，2004）。"
   },
   {
     "id": "next", "chapter": "下一站", "title": "D3 帶走什麼",

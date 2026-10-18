@@ -1,7 +1,7 @@
 # DDD DLC 主持人手冊
 
 > 對象：DDD DLC（180 分鐘加課）的主持人與助教。學員已完成主課（Tool → Teammate → Digital Worker）。
-> 主題：**和 Coding Agent 一起做 DDD**：Agent 找證據、提選項、實作；學員定義模型、做決定、用證據驗收。domain-memory Plugin 0.61.0 只是保存共用模型的工具，指令全在提示詞裡。不開理論講堂。
+> 主題：**和 Coding Agent 一起做 DDD**：Agent 找證據、提選項、實作；學員定義模型、做決定、用證據驗收。domain-memory Plugin 1.1.0 只是保存共用模型的工具，指令全在提示詞裡。不開理論講堂。
 > 依據：`docs/instructions/11_DDD_DLC產製指令書.md`（以下稱「規格」）。檢查點以 `agentic-workshop/materials-dlc/CHECKPOINTS.md` 為準，解鎖碼在 `agentic-workshop/materials-dlc/unlock-codes.json`（本手冊不重抄碼，避免兩份不一致）。
 > 本手冊與 `evaluation/` 底下所有檔案只給主持人，**不得**放進學員包、Runbook 或投影。
 
@@ -66,9 +66,9 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 
 ### 1.3 Plugin SHA
 
-- Plugin 固定 0.61.0，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-0.61.0.zip`，逐檔清單 `domain-memory-0.61.0.zip.SHA256SUMS`（80 個 Plugin 檔案＋ZIP 本身＝81 行）。
-- 目前 ZIP 的 SHA256 以 `domain-memory-0.61.0.zip.SHA256SUMS` 最後一行為準。
-- 學員在開場檢查點 2 應看到 `SHA OK 82 files` 與 `"version": "0.61.0"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
+- Plugin 固定 1.1.0，只封裝執行用的檔案（不含開發用的 `evals/`、`scripts/test_*.py`、`README.md`、`ruff.toml`），檔案內容未經修改，封裝於 `participant/vendor/domain-memory-1.1.0.zip`，逐檔清單 `domain-memory-1.1.0.zip.SHA256SUMS`（94 個 Plugin 檔案＋ZIP 本身＝95 行）。
+- 目前 ZIP 的 SHA256 以 `domain-memory-1.1.0.zip.SHA256SUMS` 最後一行為準。
+- 學員在開場檢查點 2 應看到 `SHA OK 95 files` 與 `"version": "1.1.0"`。看到 `SHA MISMATCH` 一律停用該份 Plugin，換一份重新下載；不要「先用用看」。
 
 ### 1.4 主持人自己的機器（課前 30 分鐘）
 
@@ -104,7 +104,7 @@ py -3.13 -X utf8 scripts/build_materials.py --edition dlc --check
 | 0 | （解鎖前） | 「為什麼要和 Agent 一起建模」「今天怎麼進行」兩頁，共約 2 分鐘 |
 | 0 | 解鎖 | 公布開場解鎖碼；說明今天的節奏：複製提示詞 → Agent 執行並白話回報 → 需要時回一句話決定 → Agent 寫紀錄。學員只需自己下載 `participant-dlc-open.zip`、解壓縮到習慣的位置（例如下載資料夾）、用 Agent 開啟 `participant-dlc-open/repository/smart-ticket-dlc-base`，把 Runbook 的工作規則和檢查點 1 的提示詞接在一起一次貼（規則最後一句會讓 Agent 直接開始） |
 | 0–3 | 1 · 確認起點：測試全部通過 | Agent 回報 **76 passed**；沒有跑 `pip install -e .` |
-| 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 82 files`、`"version": "0.61.0"` |
+| 3–5 | 2 · 備好可信的共用模型工具 | Agent 回報 `SHA OK 95 files`、`"version": "1.1.0"` |
 | 5–8 | 3 · 找出只能靠人審查的錯 | Agent 經 `tools/dm.ps1`／`dm.sh` 執行：`readiness` 說 brownfield，`quality-gates` 只有 pytest；Agent 回答「哪些問題只能靠測試和人的審查才抓得到」 |
 | 8–10 | 4 · 確認環境並建立起始版本 | Agent 回報 `python` 路徑在 `.venv\Scripts\`、不含 `WindowsApps`（macOS：在 `.venv/bin/`）；`doctor.py` 最後一行「全部必要項目通過。」（`[--]` 只是提醒，不算失敗）；`notes/opening.md` 有四段結果後才建立起始 commit，commit 後 `git status --short` 是空的；同時配好 D2 夥伴（奇數時三人組，第三人當觀察員） |
 
@@ -145,8 +145,8 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 38–43 | 2 · 規定只有夥伴核准才算數 | Maintainer | `amend-policy` 依序 `authorized_signers`（fingerprint）→ `review_trigger git-push` → `review_mode scm-verified --verifier git-signed-commit`；`install-git-hitl-hook`；`governance-readiness` ready |
 | 43–48 | 3 · 整理提案並證明測試守得住 | Proposer | 提案者在檢查點 2（夥伴操作時）先按 Runbook 下載鈕取得 `participant-dlc-d2.zip`，Agent 把格式範本放進 `worksheets/`；Agent 把 `export` 存到 Repo 外的 `tmp/export-d2.json`（可能有數十 KB，用過 Recovery 約 80 KB；不讀進對話），再用一行指令只印各類別候選 id，回報各類別候選數；提 2 個 counterfactual 方案（含 `--expect` 要符合的斷言片段，範例是 `700 == 595`）、學員選一個（只認 `killed`；失敗的不是那個斷言會是 `inconclusive`）；`cp-d2.json` 的 `promote` 列 Registry 每個有候選的資產（用過 D1 Recovery 含 aggregates、interactions、decisions，漏列會在 CP6 `validate --require-reviewed` 報 not reviewed）；`open_questions` 放 D1 選的缺口；`fill_package.py`（測試實際執行，不預填 PASS；0.51 起 `verify-proposal` 要求測試紀錄的指令就是 obligation 的 `check`，`fill_package.py` 把 `check` 寫成完整指令），放 `domain-memory/changes/<id>/`；送出併在第二段提示詞裡，學員回一句「送出」才 `submit-proposal`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
 | 48–53 | 4 · 夥伴審查證據並決定核准 | Maintainer | Agent 先讀審查包、貼一條規則的證據原文、給出那條規則的紀錄檔路徑並停下（夥伴自己打開讀）；Maintainer 回「核准」後才 `record-approval --reviewer maintainer@example.com`、`verify-proposal`、`git commit -S`，Agent 最後一行自己回成功／失敗（不另貼 ③） |
-| 53–56 | 5 · 留下可驗證的核准紀錄 | Maintainer | `write_scm_attestation.py --commit HEAD`、`verify-git-governance --commit HEAD`；輸出提到的 `finalize-proposal` 是 Proposer 在 CP6 的步驟，Maintainer 的 Agent 不執行 |
-| 56–60 | 6 · 套用核准，模型成為事實 | Proposer → Maintainer | Proposer 的 Agent：`finalize-proposal` → `apply-approved-updates` → `validate --require-reviewed` → `verify-audit` → `get-record --changes-root domain-memory/changes` 回報一條規則的 `verified`（`by: human:maintainer@example.com`、`at`：核准時間；≈ ADR 的 Accepted 加決策者，審查它的提案記在稽核紀錄）與 `proven_by`（審查包裡證明它的 obligation 與 `check`；新概念「規則有多可信，看證明它的測試」，D4 檢查點 1 會再用）；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`；0.58 起 hook 一次檢查整個 push，只印一行，自己做的 D2 是 `Git governance is valid for 2 commits.`） |
+| 53–56 | 5 · 留下可驗證的核准紀錄 | Maintainer | `git log -1` 確認 HEAD 是「D2：核准 CP-D2-001」，`verify-git-governance --commit HEAD` 回 `Git governance is valid for 1 commit.`：這個簽章 commit 就是核准紀錄（Plugin 1.0 起不再有獨立的寫入核准證明步驟，CP6 的 `ship-package` 會寫） |
+| 56–60 | 6 · 套用核准，模型成為事實 | Proposer → Maintainer | Proposer 的 Agent：`ship-package --commit HEAD`（一步確認簽章 commit 有授權且帶著審查包、寫成核准證明、定案並套用；`completed` 三步、`status` `applied`；任何一步拒絕就停在那一步、什麼都不寫）→ `validate --require-reviewed` → `verify-audit` → `get-record --changes-root domain-memory/changes` 回報一條規則的 `verified`（`by: human:maintainer@example.com`、`at`：核准時間；≈ ADR 的 Accepted 加決策者，審查它的提案記在稽核紀錄）與 `proven_by`（審查包裡證明它的 obligation 與 `check`；新概念「規則有多可信，看證明它的測試」，D4 檢查點 1 會再用）；Maintainer 的 Agent：簽章 commit、`setup_remote.py`、push（不得 `--no-verify`；0.58 起 hook 一次檢查整個 push，只印一行，自己做的 D2 是 `Git governance is valid for 2 commits.`） |
 
 巡堂看三件事：核准與簽章只出現在 Maintainer 的對話；Maintainer 回「核准」前說得出哪一行證據支持哪條規則；Agent 停下時學員真的做了決定。學員只填一張「D2 決定」（角色、審查決定、三項確認），其餘紀錄由 Agent 寫進 `notes/d2.md`。③ 回「失敗」時請學員貼該檢查點的「失敗時」提示詞（請 Agent 白話解釋錯誤、不改設定、不重做 commit、不繞過 hook），不要替學員打指令。
 
@@ -162,7 +162,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 1. 「Proposer 做完 Change Package，現在換 Maintainer 坐到鍵盤前，用自己的 Agent 對話。」示範 `record-approval --reviewer maintainer@example.com`。順便示範反例：以 `proposer@example.com` 當 reviewer 會被拒；再說明以另一個字串也能通過，**所以真正的保護是簽章**。
 2. `git -c user.name="DLC Maintainer" -c user.email=maintainer@example.com commit -S -m "..."`，接著 `git log --show-signature -1`，指出 `Good "git" signature for maintainer@example.com`。
-3. `write_scm_attestation.py --commit HEAD` → `verify-git-governance --commit HEAD`：「核准證據不是一行文字，是一個可驗證的已簽章 commit。」
+3. `verify-git-governance --commit HEAD` → `ship-package --commit HEAD`：「核准證據不是一行文字，是一個可驗證的已簽章 commit；ship-package 先驗它，才肯定案與套用。」反例：對一個未簽章的 commit 跑 `ship-package --commit`，它在 `attest-signed-commit` 這一步就拒絕，什麼都不寫。
 4. （有時間）做一個不簽章、觸及 `domain-memory/` 的 commit 再 push，給大家看 hook 拒絕的輸出。
 5. 收尾：「私鑰在 `%USERPROFILE%\.dlc-keys\`，不在 Repo、不在 `.ssh`、不截圖。回顧檢查點 4 只刪私鑰 `signing-key`，`signing-key.allowed_signers` 保留；公用電腦課後再刪整個 `.dlc-keys` 資料夾。」
 
@@ -175,17 +175,17 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 三個情境**全體依序、三個都做**，每段在前一段成果上累積。每段六個檢查點同一個節奏：
 
 1. 學員貼提示詞：Agent 存下需求卡、執行 `resolve-terms`／`get-context`，已知事實與知識缺口分開寫進 `notes/d3*.md`。
-2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；`analyze-boundary` 的 source 填提供資料或能力的一方、target 填使用的一方，回 `no_registered_collaboration` 就對調再查一次；Agent 依選擇寫成交接單（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
+2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；`analyze-boundary` 一次回報兩個方向（`source_depends_on_target`、`target_depends_on_source`），兩邊都空才是 `no_registered_collaboration`；Agent 依選擇寫成交接單（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
 3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
 4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 寫 `./.venv/Scripts/python.exe`（不經 shell，見常見問題第 2 條）並帶 `-W ignore::DeprecationWarning`，讓套件過時警告（例如用 D2 Recovery 時）不混進 `failure_evidence`。`inconclusive` 不算 killed 也不算 survived：逾時就縮小測試範圍，改壞後程式無法載入就換改法；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
-5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題，再逐項判斷模型有沒有變（名詞、負責的 Context、不變量或規則、邊界、事件或對外約定），只搬移程式的重構不登記；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
+5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題，再逐項判斷模型有沒有變（名詞、負責的 Context、不變量或規則、邊界、事件或對外約定），只搬移程式的重構不登記；D3b、D3c 起先讀變更簡報 `brief --base HEAD --markdown`，只看 Attention 裡改動碰到引用行的已審查紀錄，逐筆判斷（「lies outside every Context」是因為 Context 沒登記程式路徑，略過；不執行它建議的 `recite`）；D3c 的規則在 `d3c-records.json` 寫上 `aggregate`，規則和 Aggregate 不在同一個 Context 時 Plugin 拒絕登記，讓學員決定哪一邊放錯；人同意後提案者的 Agent 才用 `make_record.py` 登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**做簽章 commit（與 D2 相同）。
 6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：Runbook 檢查點 6 ④ 的三題請兩人對照參考設計時一起聊，挑第 3 題請 1–2 組分享（約 1 分鐘）。
 
 **巡場看流程**：每組是否「貼提示詞 → 看 Agent 回報 → 自己做決定 → 讓 Agent 記錄」。決策點（檢查點 2–5）學員要自己選，回「你決定」就介入。卡住時給可直接貼的補救提示詞，不替學員決定：
 
 - Agent 替學員選了或開始改程式：「停下，不要再修改。如果你已經改了檔案，列出改了哪些。請回到只列選項與證據，等我們選擇。」
 - Agent 說「完成」但沒附實際輸出：「請貼出你實際執行的指令與輸出；沒有執行的標『未驗證』。」
-- counterfactual 只有亂碼或 ERROR：「這不算 killed，請說明原因，不要換字串。」
+- counterfactual 只有亂碼，或 `verdict` 是 `error`（1.0 起指令拒絕也輸出 JSON，原因在 `reason`）：「這不算 killed，請說明原因，不要換字串。」
 - commit 遇到簽章錯誤：「不要修改 Git 設定、不要碰金鑰，貼出錯誤訊息後停下。」然後由主持人處理。
 
 評估以紀錄檔（`notes/d3*.md`、`docs/handoffs/d3*.md`、`cf-d3*.json`）裡的證據與「學員有沒有自己做決定」為準，不因表單欄位少而扣分。
@@ -250,7 +250,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 |---|---|---|
 | 155–158 | 1 · 檢查模型是否落後程式 | Agent 跑 `verify-sources`、`verify-evidence`、`verify-audit`、`coverage`，寫進 `notes/d4.md`；`verify-evidence` 輸出很長，只讀 summary 與 stale／shifted 的 asset、id 欄位。`verify-sources` 會是 `stale`、exit 1：D3 新增了檔案，來源資料夾列在 `changed_sources`，只改內容的列在 `content_changed`；`verify-evidence` 對只是移動的引用回報 `shifted`（不算失敗），引用行被改過的才是 `stale`、exit 1。stale 的規則再用 `get-record --changes-root domain-memory/changes` 找出 `proven_by` 的測試並跑一次（D3c Recovery 實測 5 條 stale 規則都有、都通過；check 是 CP-CORE 的測試路徑，Agent 前面加 python -m pytest -q）：通過代表行為多半沒變，失敗或沒有測試才是模型真的落後。兩者都是預期；要記下，不准跳過，也不讓 Agent 當場修。`coverage` 的 `rule_totals` 與 `rules_by_context`（0.53 起）說出模型在哪些 Context 說了算：每個 Context 有幾條已審查規則、其中幾條有測試證明（`proven`／`unproven`／`unknown`）；D3c Recovery 實測 16 條已審查規則全部 proven、`contexts_without_reviewed_rules` 0。自己做 D3 的組，D3 新增、只有候選規則的 Context 會出現 `reviewed_rules` 0，寫進交接單 Unknowns。`verify-sources` 的 `discovered_but_gone` 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 `[]`。stale 與 shifted 清單只列 asset:id（檔案），行號不必列（檢查點 2 要新行號時再跑一次 `verify-evidence`），不必自寫腳本 |
 | 158–161 | 2 · 把改變的規則寫回模型 | Agent 依檢查點 1 的 asset:id 清單，只對 stale 的 id 用 `get-record` 分出候選與 reviewed（decisions 看 `review_status`，其他看 `status`；shifted 的 reviewed 一律歸 C，兩張清單都有的以 stale 處理），列出更新清單；學員回「同意」後才用 `make_record.py --upsert` 登記，只到候選。stale 或 shifted 的候選用同一個 id 重新引用；意思被改變（名詞、負責者、不變量或規則、邊界、事件或約定至少一項）的 reviewed 事實以新 id 候選取代，只是重構的歸 C；只是移動（shifted）或行為沒變的 reviewed 事實不登記，下一次核准沿用原 id 重新證明（Plugin 0.56 起 `promote-candidate --amend`，0.57 起可同時 `--cite` 新的引用與測試；學員只需分得出「同一條規則重新證明」與「意思變了的新規則」）。B 類最多 3 項（`REFUND-004` 先列），其餘列為未完成、寫進交接單 Unknowns。參考：D3c 讓 `REFUND-004`、`vocabulary:refund-record`、Booking 的「只能退一次」（`aggregates:booking`）與 `ASIS-004` 不再成立；D3c Recovery 也含 D3a／D3b 的變更，所以 `MEMBER-004`、`vocabulary:points-balance`（已可折抵點數）、`ORDER-002`、`vocabulary:order`、`aggregates:order`（Order 金額改為折抵後的應付金額）同樣不再成立，`contexts:membership`（多了預留與歸還點數）與 `contexts:payment`（多了開立電子發票）的職責描述已不完整。D3c Recovery 的清單約 39 個 asset:id（stale 21、shifted 26，8 個兩張都有），3 分鐘內登記不完，其餘列為未完成是預期。Agent 登記後最後一行自己回成功／失敗（不另貼 ③） |
-| 161–165 | 3 · 寫交接單並查證每個引用 | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，Domain facts 第一行寫模型版本（git log 最上面（最新）一個訊息含「套用」的 commit；Agent 以 `export --commit <編號> --save ../../tmp/model-reviewed.json` 確認讀得到），每個 id 用 `get-record` 查證並回報核對清單；提案者的 Agent 只回報 id 核對清單與移到 Unknowns 的項目（各段學員自己打開看）；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit），夥伴的 Agent 最後一行自己回成功／失敗（不另貼 ③） |
+| 161–165 | 3 · 寫交接單並查證每個引用 | Agent 依七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）寫 `docs/handoffs/d4-next-agent.md`，Domain facts 第一行寫模型版本（git log 最上面（最新）一個訊息含「套用」的 commit；Agent 以 `export --commit <編號> --save ../../tmp/model-reviewed.json` 確認讀得到），每個 id 用 `get-record` 查證並回報核對清單；提案者的 Agent 只回報 id 核對清單與移到 Unknowns 的項目（各段學員自己打開看）；學員同意後，Maintainer 在自己的 Agent 對話簽章 commit（提案者的 Agent 不 commit），接著 `install-pre-commit-hook` 並示範一次：把 `discounts.py` `git mv` 改名後 commit，被提交前檢查擋下（點名引用它的紀錄、印出 `relocate-evidence --from … --to …`），再搬回原位；夥伴的 Agent 最後一行自己回成功／失敗（不另貼 ③）。新概念「讓模型擋住讓引用失效的 commit」：hook 只看這次 commit 的檔案，要在 PATH 上找到 Python 3.10 以上，所以同一次執行先啟用 venv；它留在學員的 Repo 裡，課後刪掉工作坊資料夾（Plugin 在 `vendor/`）會讓碰到引用檔的 commit 失敗，屆時刪除 `.git/hooks/pre-commit` 即可 |
 
 **時間**：D4 實際要 11–13 分鐘（檢查點 2、3 由 Agent 自己回成功／失敗之後），10 分鐘做不完是常態。第 165 分還沒完成就收在最低完成線：「檢查點 1 + 只含 Unknowns 的交接單，其他段寫『未完成』」，夥伴 commit 後進回顧。第 150 分決定改用 D3c Recovery 的組（切換要 5–7 分鐘，會吃掉大半個 D4），D4 一開始就只做這條線。
 
