@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.2.4.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.2.8.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402

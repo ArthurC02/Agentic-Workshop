@@ -1882,5 +1882,22 @@
   "rebase_current": "after the approval commit with the Registry unchanged: exit 0, note 'the proposal base is current; nothing was written', next 'sign a commit holding the package, then ship-package --commit <that commit>', status verified, proposal_revision 1, approvals 1; ship-package then applied (1.2.2 retired the approval here)",
   "prompt_changes": "facilitator guide FAQ 19 only (finalize-proposal: prefix, completed [] with nothing written, follow next; a current-base rebase only prints the note)",
   "registry_migration": "none (no signing, Maintainer key not used)"
+ },
+ "plugin_1_2_8_remeasure": {
+  "date": "2026-10-19",
+  "plugin": "domain-memory 1.2.8 (SkillHub 7d2c73c6f, exported with git archive); patches: 1.2.5 lint/tests only; 1.2.6 probe stale line 'run refresh-sources, then have a developer run confirm-sources.' plus doc fixes; 1.2.7 git/ssh-keygen 15 s timeout as one ERROR line, init-domain-memory removes its output when the policy is refused, verify/finalize validate before writing, discard-harvest audits before removing, null GitHub user/head, 0600 signing key from the environment, StaleBaseError (messages unchanged), FileExistsError -> ValueError (same message); 1.2.8 docs only (script-api rows trimmed, probe exit codes 0/1/2)",
+  "vendor_zip_sha256": "6544504b440db8348964288ea5b542c2e2a2c5520a36182de195850b74397b58",
+  "plugin_files": 94,
+  "sha_ok_line": "SHA OK 95 files",
+  "cli_commands": "63 (cli_parser.py unchanged)",
+  "maintainer_checks": "uvx ruff@0.16.7 check . passed; run_tests.py --jobs 4: 41 modules, test_support skip, failed: none",
+  "compat": "1.2.8 export before any repo change: 32 PASS, 0 CHANGED (INFO list-proposals); vendored ZIP: 32 PASS, 0 CHANGED; QUOTED 73 unchanged; only VENDOR_ZIP changed",
+  "dlc_touchpoints": "probe is not on the learner path (only in dmlib command sets); D4 CP1 uses verify-sources, whose NOTE is unchanged, so the guard stays; cited script-api rows get-record/coverage/install-pre-commit-hook and headings still exist; removed row labels are not cited; doctor.py and test_tools.py unaffected; no learner text changed besides version strings",
+  "refused_policy_init": "init-domain-memory --exclude ' ': ERROR: invalid policy: policy requires include patterns and valid exclude patterns, exit 1, no domain-memory/ left (1.2.4 left it); corrected Runbook rerun succeeded",
+  "rehearsal": "Windows, sandbox C:\\tmp\\dm128r, candidate e89553db35eb4508: opening CP1-4 (CP2/CP4 also in Git Bash), D1 CP2-3, D1 Recovery steps 1-2, D2 CP1-6 including push (hook 'Git governance is valid for 2 commits.', [new branch]), D3c Recovery steps 1-3, D4 CP1 all as expected; doctor [!!] only for the py launcher shim",
+  "d2": "19 obligations passed; Change package is valid.; verify-proposal re-run 'already verified at revision 1; nothing was written' exit 0; ship-package completed 3 steps, applied; verify-audit valid, 11 events",
+  "d4_cp1": "verify-sources stale exit 1 (changed docs/adr, src, tests; content_changed docs/requirements); verify-evidence 99/31/32 exit 1; verify-audit valid 66 events; coverage reviewed 16, proven 16; stale rules GROUP-001, GROUP-PAY-002, MEMBER-004, ORDER-002, REFUND-004; probe: 'Domain Memory at domain-memory: stale. 3 sources moved (docs/adr, src, tests); run refresh-sources, then have a developer run confirm-sources.' exit 1",
+  "prompt_changes": "none (version strings only)",
+  "registry_migration": "none (no signing, Maintainer key not used)"
  }
 }

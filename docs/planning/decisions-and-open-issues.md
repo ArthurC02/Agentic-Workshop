@@ -535,3 +535,37 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 - 由程式推論、未實測：`ship-package` 只對 verified 先做過期檢查；approved（定案後套用失敗）的過期仍由 apply 拒絕，`next` 是否同樣指向 `rebase-proposal` 沒有測到。
 
 未驗證：macOS 實機（這次只改主持指南，沒有 macOS 專屬指令）；`git push`（權限檢查擋下）。
+
+## domain-memory 1.2.8（patch）（2026-10-19）
+
+由 1.2.4 換成 1.2.8（SkillHub `7d2c73c6f`，以 `git archive` 匯出；只讀 commit 過的內容：`git diff 089b50321 7d2c73c6f -- .claude/skills/domain-memory` 與 CHANGELOG 1.2.5–1.2.8）。依版本政策，四個都是 patch，重跑檢查後採用。`cli_parser.py` 沒變，指令仍 63 個；沒有新增或刪除的檔案（94 個 Plugin 檔案，學員核對仍印 `SHA OK 95 files`；ZIP SHA256 `6544504b…74397b58`）；版面、稽核事件、證據包格式都沒變，不需要遷移，沒有用到 Maintainer 金鑰。維護者的檢查在匯出上重跑：`uvx ruff@0.16.7 check .` 全部通過；`run_tests.py --jobs 4` 41 個模組，`test_support` skip，failed: none。
+
+逐項對照程式（維護者的摘要都屬實）：
+- 1.2.5：只動 `ruff.toml` 與測試，兩者都不進 ZIP。
+- 1.2.6：`probe` 過期那一行由「…; refresh before trusting it.」改成「Domain Memory at <root>: stale. <n> sources moved (<names>); run refresh-sources, then have a developer run confirm-sources.」（`commands/read.py`）。其他是文件：`readiness` 的範例帶 `--registry-root`、依賴政策的值寫 `forbidden`、引用的指令補上必填旗標。
+- 1.2.7：新的拒絕訊息有三個：`ERROR: <commit>:<path> is not valid JSON`（commit 裡的政策 JSON，`revision.py`）、`ERROR: Command '[...]' timed out after 15 seconds`（git 與 ssh-keygen 的呼叫加上 `GIT_COMMAND_TIMEOUT_SECONDS = 15`，`cli.py` 接住 `subprocess.SubprocessError`，exit 1）、`ERROR: invalid JSON: <path>`（巢狀過深，接住 `RecursionError`）。行為的改變：`init-domain-memory` 的政策被拒時，用 `remove_tree` 刪掉剛建的輸出；`verify-proposal` 與 `finalize-proposal` 先驗證再寫入；`discard-harvest` 在寫入鎖內先記稽核事件再刪套件；GitHub 回傳的 `user`／`head` 是 null 時不再當掉；從 `DOMAIN_MEMORY_SIGNING_KEY` 寫出的金鑰一建立就是 0600；過期改用 `StaleBaseError` 判斷，`STALE_BASE` 訊息不變。摘要沒提的一項：輸出資料夾已有內容時，三處原本丟 `FileExistsError`，現在一律 `ValueError`，訊息仍是 `output directory is not empty: <path>`。
+- 1.2.8：只改文件。script-api 最長的幾列只留契約；`Package a re-citation`、`Preview the next stage` 兩個列名消失，改成 `init-change-package`、`validate-change-package` 各一列；`probe` 那列寫明 exit code（0 current、1 其他狀態、2 absent），理由移到其他頁與新的〈Notes on single commands〉。
+
+DLC 碰到的地方（逐一 grep 過）：
+- `probe` 不在學員路徑（Runbook、Recovery、簡報、主持指南、tools 都沒有，只列在 dmlib 的指令集合），新句子沒有地方要改。D4 檢查點 1 跑的是 `verify-sources`，它的 NOTE 沒變（`… the selection is stale, so run refresh-sources, then confirm-sources`），仍是命令句，所以保留「出現 shifted、stale 或 exit 1 是預期中的結果，不要試著修好。」新的 `probe` 句子也是命令句，日後放上學員路徑時同樣要配這句。
+- DLC 引用的 script-api 列（`get-record`、`coverage`、`install-pre-commit-hook`）與各頁標題都還在；被刪的兩個列名 DLC 沒有引用，相容性檢查也不讀列名。
+- `doctor.py` 只讀 `plugin.json` 的版本，不解析 `probe` 輸出或 traceback；`test_tools.py` 沒有引用改動的字串；`QUOTED` 不用增減。
+- D1 檢查點 2 的「失敗時」原本就要 Agent 先解釋錯誤、等同意再處理。1.2.7 起政策被拒不會留下半成品，修正參數後直接重跑即可；1.2.4 會留下 `domain-memory/`，重跑時回 `output directory is not empty`。學員頁不用改。
+
+相容性檢查（`check_dlc_plugin_compat.py`）：1.2.8 匯出在改版本字串之前就是 32 PASS、0 CHANGED，INFO 仍只有 `list-proposals`；封裝 ZIP 後同樣 32 PASS、0 CHANGED，`QUOTED` 73 個全部找得到（本次輸出看到 32 個）。腳本只改 `VENDOR_ZIP`。`git rm` 1.2.4 的 ZIP 與 SHA256SUMS；版本字串同步到 1.2.4 換版時的同一批檔案；`SHA OK 95 files` 不變。
+
+演練（Windows，沙箱 `C:\tmp\dm128r`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包 `e89553db35eb4508`，結束後刪除；沙箱產物：`py -3.13` 以編譯的小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`。登錄檔的下載資料夾是 `%USERPROFILE%\Downloads`，在沙箱裡展開成沙箱的下載資料夾，所以 Recovery 與 D2 範本的指令原樣執行）：
+- 開場檢查點 1–4：76 passed；`SHA OK 95 files`、`"version": "1.2.8"`（PowerShell 與 Git Bash）；`"state": "brownfield"`、`"confidence": "high"`，quality-gates 只有 pytest、`"standard": "none"`；python 在 `.venv\Scripts`；起始 commit 不含 domain-memory/，`git status --short` 是空的。
+- 刻意讓政策被拒的 init（`--exclude " "`）：`ERROR: invalid policy: policy requires include patterns and valid exclude patterns`、exit 1、沒有留下 `domain-memory/`（同一個指令換 1.2.4 會留下）；接著照 Runbook 的參數重跑成功。
+- D1 檢查點 2–3：`Domain Memory initialized. …`、`Sources confirmed by DLC Proposer <proposer@example.com>: docs/adr, docs/requirements, src, tests`、`selection_status` developer-confirmed、`status` current；domain-memory/ 未 commit。`make_record.py --batch` 6 筆詞彙全部寫出 `records/vocabulary-<id>.json`。
+- D1 Recovery 步驟 1–2（PowerShell，D2 的起點）：`?? domain-memory/`、`?? notes/`、76 passed、`Registry is valid.`、162／0／0。
+- D2 檢查點 1–6：金鑰 `source` generated；三次 amend-policy、hook 安裝、`{"status": "ready", "blocks": []}`；候選 contexts 5、vocabulary 21、aggregates 2、rules 16、interactions 5、decisions 8；反事實 killed、`the tests failed with output matching --expect 700 == 595`、restored true；19 個 obligation 全部 passed（cp-d2.json 以參考套件描述改寫）、`Change package is valid.`、`Proposal submitted for human review.`；`Human approval recorded.`、`Proposal test evidence verified.`、`Good "git" signature for maintainer@example.com`、Author DLC Maintainer；檢查點 4 ③ 重跑 `already verified at revision 1; nothing was written`、exit 0；`Git governance is valid for 1 commit.`；`ship-package` `completed` 三步、`applied`；`Registry is valid.`；`verify-audit` valid、11 個事件；`get-record` 有 `verified` 的 by／at 與 `proven_by`；套用 commit 已簽章，push 到本機 bare remote：hook 印 `Git governance is valid for 2 commits.`、`[new branch]`。
+- D3c Recovery 步驟 1–3（D4 的起點）：簽章接手、`ready`、`Git governance is valid for 1 commit.`；179 passed；`Registry is valid.`；verify-audit 66 個事件；verify-evidence 99／31／32（exit 1，預期）。
+- D4 檢查點 1：`verify-sources` stale、exit 1，NOTE 如上；changed_sources 是 docs/adr、src、tests，content_changed 是 docs/requirements；verify-evidence exit 1；verify-audit valid；coverage 已審查 16 條、proven 16；stale 規則 GROUP-001、GROUP-PAY-002、MEMBER-004、ORDER-002、REFUND-004，抽 GROUP-001 的 `proven_by` 測試照跑通過；`git status --short` 沒有變動。另外在同一處跑 `probe`：印出 1.2.6 的新句子、exit 1。
+
+回報給維護者：
+- 15 秒的 git／ssh-keygen 逾時：教室的 Windows 若有防毒掃描或 OneDrive 同步，`git verify-commit`、`ssh-keygen` 偶爾可能超過 15 秒；演練中都沒有逾時。逾時時只印 `ERROR: Command '[...]' timed out after 15 seconds`，沒有說可以重跑，也不能調整秒數。
+- `probe` 的過期句把 `changed_sources` 一律說成「sources moved」：D3c 之後 docs/adr、src、tests 是多了新檔案，不是搬移；只改內容的 docs/requirements 也沒有出現在句子裡。
+- `init-domain-memory` 的旗標組合大多在 CLI 先擋下、什麼都不建；只有通過 CLI 檢查、卻被政策驗證拒絕的情況（例如空白的 `--exclude`）才走到 1.2.7 的清除路徑。
+
+未驗證：macOS 實機（這次學員頁只改版本字串，沒有 macOS 專屬指令改動）；git 逾時本身（沒有在教室等級的慢機器上重現）。

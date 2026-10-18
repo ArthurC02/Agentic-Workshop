@@ -81,7 +81,7 @@ py -3.13 -m venv .venv; .\.venv\Scripts\python.exe -m pip install -r requirement
 
 Git Bash 相同，改用 `../tools/dm.sh` 與 `source .venv/Scripts/activate`。
 
-預期結果（2026-10-17 以 Plugin 0.33.0 實測，0.52.0、0.61.0、1.1.0、1.1.1、1.2.2、1.2.4 重測相同；0.58 起 verify-git-governance 的訊息帶檢查的 commit 數，一次 push 只印一行）：`Registry is valid.`；verify-evidence 162 個引用全部 `current`（shifted、stale 都是 0）；verify-sources `current`／`developer-confirmed`（`discovered_but_gone` 為空）；verify-audit `valid`、65 events、head `sha256:f53095a8…04b0`；兩個 attestation commit 都是 `Git governance is valid for 1 commit.`；pytest 76 passed；推到本機 bare remote 時 hook 印出一行 `Git governance is valid for 7 commits.`。還原（不含 venv）約 5–10 秒。
+預期結果（2026-10-17 以 Plugin 0.33.0 實測，0.52.0、0.61.0、1.1.0、1.1.1、1.2.2、1.2.4、1.2.8 重測相同；0.58 起 verify-git-governance 的訊息帶檢查的 commit 數，一次 push 只印一行）：`Registry is valid.`；verify-evidence 162 個引用全部 `current`（shifted、stale 都是 0）；verify-sources `current`／`developer-confirmed`（`discovered_but_gone` 為空）；verify-audit `valid`、65 events、head `sha256:f53095a8…04b0`；兩個 attestation commit 都是 `Git governance is valid for 1 commit.`；pytest 76 passed；推到本機 bare remote 時 hook 印出一行 `Git governance is valid for 7 commits.`。還原（不含 venv）約 5–10 秒。
 
 ## 學員從 Recovery 接續（D3 之後還要 push）
 
