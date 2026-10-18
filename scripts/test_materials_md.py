@@ -18,7 +18,7 @@ from materials_md import (  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "agentic-workshop" / "materials" / "participant-runbook" / "content"
-DIST = ROOT / "dist" / "p11-candidate" / "9781cf7b88aff18d"
+DIST = ROOT / "dist" / "p11-candidate" / "a6b958ca1a4e9af0"
 
 
 class Recorder:
