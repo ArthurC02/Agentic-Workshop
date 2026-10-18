@@ -1,11 +1,11 @@
 # domain-memory 觸及點與換版步驟
 
 > 讀者：DLC 維護者。時機：domain-memory 換版前。可見性：內部，不發學員。
-> 更新日期：2026-10-19。目前固定 1.2.2（SkillHub `42819a57e`），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉〈domain-memory 升級 1.2.2〉。
+> 更新日期：2026-10-19。目前固定 1.2.4（SkillHub `089b50321`），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉〈domain-memory 升級 1.2.2〉〈domain-memory 1.2.4（patch）〉。
 
 ## 0. 現況
 
-| 項目 | 0.27.2（舊） | 0.33.0 起（現行 1.2.2） |
+| 項目 | 0.27.2（舊） | 0.33.0 起（現行 1.2.4） |
 |---|---|---|
 | Registry 版面 | `domain-memory/registry/<資產>.json`＋`manifest.json` | `registry/index.md`＋`registry/<資產>/index.md`＋每筆一個 `registry/<資產>/<id>.md`（YAML 開頭區塊＋內文＋`# Relations` 連結） |
 | 狀態 | `status`（decisions 用 `review_status`）：candidate／reviewed | 檔案裡 `status`：draft／stable／deprecated；**指令與 `export` 輸出仍是 candidate／reviewed** |
@@ -19,11 +19,11 @@
 
 DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`），寫入只經 Plugin 指令或 Plugin 的 Change Package 範本（`changes/<CP>/*.json`）。學員路徑上原本寫死 JSON 版面的 D2 檢查點 3 與簽章流程清單已改用 `dm export`。
 
-標記：**不受影響**＝換版後照常；**已處理**＝0.33.0 升級時改過；**0.52 已處理**＝0.52.0 升級時改過；**0.61 已處理**＝0.61.0 升級時改過；**1.1 已處理**＝1.1.0 升級時改過；**1.2 已處理**＝1.2.2 升級時改過；**第二階段**＝留給內容重新設計（清單在升級紀錄）。
+標記：**不受影響**＝換版後照常；**已處理**＝0.33.0 升級時改過；**0.52 已處理**＝0.52.0 升級時改過；**0.61 已處理**＝0.61.0 升級時改過；**1.1 已處理**＝1.1.0 升級時改過；**1.2 已處理**＝1.2.2 升級時改過（1.2.4 patch 只改主持指南第 19 條）；**第二階段**＝留給內容重新設計（清單在升級紀錄）。
 
 ## 1. Plugin 指令與旗標
 
-學員都經 `dm.ps1`／`dm.sh`（→ `dmlib.py`）呼叫；`dmlib.expand()` 自動補 `--registry-root domain-memory`、`--repo-root .`，`verify-sources` 另補 `--source-map`、`--policy`，`init-signing-key` 補 `--key-file`。三組指令集合（`REGISTRY_REQUIRED`／`REGISTRY_OPTIONAL`／`REPO_ROOT`）與 1.2.2 的 `cli_parser.py` 完全一致（1.2.0 加 `rebase-proposal`，63 個指令；1.0 起 `ERROR:` 拒絕訊息與 NOTE 都印在 stderr，`--save` 只存 stdout），相容性檢查會逐一比對（0.52.0 加了 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`，Registry 存在時 dmlib 會補，輸出多 `explained_by`；0.61.0 的 `redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root` 與 `--repo-root`，`coverage`、`promote-candidate` 接受 `--repo-root`）。
+學員都經 `dm.ps1`／`dm.sh`（→ `dmlib.py`）呼叫；`dmlib.expand()` 自動補 `--registry-root domain-memory`、`--repo-root .`，`verify-sources` 另補 `--source-map`、`--policy`，`init-signing-key` 補 `--key-file`。三組指令集合（`REGISTRY_REQUIRED`／`REGISTRY_OPTIONAL`／`REPO_ROOT`）與 1.2.4 的 `cli_parser.py` 完全一致（1.2.0 加 `rebase-proposal`，63 個指令，1.2.3／1.2.4 沒有增減；1.0 起 `ERROR:` 拒絕訊息與 NOTE 都印在 stderr，`--save` 只存 stdout），相容性檢查會逐一比對（0.52.0 加了 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`，Registry 存在時 dmlib 會補，輸出多 `explained_by`；0.61.0 的 `redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root` 與 `--repo-root`，`coverage`、`promote-candidate` 接受 `--repo-root`）。
 
 | 指令 | 用到的旗標 | 出處 | 標記 |
 |---|---|---|---|
@@ -45,7 +45,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | `compare-registry` | `--gold-root --gold-commit --candidate-root`（＋dmlib `--save`） | Runbook 70 回顧檢查點 2（基準＝最後一個「套用」commit） | 0.52 已處理：回報 `overall_independent`、`copied_matches`、配對的 `copied_evidence`；D3c Recovery 對 `fc9efe2` 實測 57 個配對有 52 個照抄，`overall_independent` 只剩 5 個 Context 配對 |
 | `change-coupling` | `[--root --depth --since --min-*]`（`--registry-root` 由 dmlib 補） | 不在學員路徑；只在簡報備註與主持人指南當反例 | 0.52 已處理：`explained_by` 只在模組對得上 Context 時有意義；這個分層 Repo 在 D3c Recovery 仍沒有可用配對 |
 | `harvest-candidates`、`list-proposals` | — | 不在學員路徑 | 0.52 新增，dmlib 集合已列入 `harvest-candidates` |
-| `rebase-proposal`（1.2.0） | `--package-root`（dmlib 補 `--registry-root`、`--repo-root`） | 主持指南常見問題第 19 條（D2 檢查點 6 `ship-package` 回報過期時） | 1.2 已處理：提案者的 Agent 執行，只改審查包：`proposal_revision` 加 1、`status` 回 `submitted`、`verified_at` 與 `scm_attestation` 清空，印 `package`、`status`、`proposal_revision`、`base_registry_revision`、`approvals_retired`、`attestation_removed`、`next`；之後要重新核准、新的簽章 commit。不在 Runbook |
+| `rebase-proposal`（1.2.0） | `--package-root`（dmlib 補 `--registry-root`、`--repo-root`） | 主持指南常見問題第 19 條（D2 檢查點 6 `ship-package` 回報過期時） | 1.2 已處理：提案者的 Agent 執行，只改審查包：`proposal_revision` 加 1、`status` 回 `submitted`、`verified_at` 與 `scm_attestation` 清空，印 `package`、`status`、`proposal_revision`、`base_registry_revision`、`approvals_retired`、`attestation_removed`、`next`；之後要重新核准、新的簽章 commit。1.2.3 起「是否過期」用和 verify／finalize／apply 相同的過期檢查（1.2.2 在只多一個 commit、Registry 沒變時也會 rebase 並作廢核准），也收 approved（回 submitted、清 `finalized_at`）；1.2.4 起 base 沒過期時 exit 0、只印 `note` `the proposal base is current; nothing was written` 與該狀態的 `next`（原本 `ERROR: … nothing to rebase`、exit 1）。不在 Runbook |
 | `harvest`／`discard-harvest`（1.0／1.1，取代 `fill-harvest-package`；1.2.0 起 `discard-harvest` 也收 verified 的套件）、`brief` 的 `registry_changes`、`mcp-serve`、`refresh-listing`、`list-proposals`、`promote-candidate --amend`（0.56）／`--cite`、`--cite-function`（0.57）、`supersede-proposal`／`redraft-proposal` 的旗標（0.60–0.61） | — | 不在學員路徑；`--amend` 只在 D4 檢查點 2 的新概念小卡與主持指南當「同一條規則重新證明」的做法 | DLC 的 `fill_package.py` 照用，不換成 `harvest`（它要求每條規則都有 killed 的反事實，D2 只做一條）；1.1.0 的改動全在 `harvest`（可續跑、`discard-harvest` 復原），不在學員路徑 |
 
 ## 2. 直接讀寫的檔案路徑
@@ -63,13 +63,13 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 
 ## 3. 學員看到或 ③ 檢查的 Plugin 輸出
 
-全部列在 `check_dlc_plugin_compat.py` 的 `QUOTED`；檢查時在本次執行的輸出或 Plugin 原始碼裡找得到才算 PASS。1.2.2 全部找得到（71 個；1.2 加 `nothing was written`、`proposal base revision is stale; rebase-proposal`、`approvals_retired`；1.1.0、1.1.1 是 68 個；1.0 起新增 `ship-package` 的 `completed`／`applied`、`analyze-boundary` 兩個方向的鍵、`brief` 的 Attention 與 lies outside every Context、規則 `aggregate` 的拒絕訊息、pre-commit hook 的安裝與改名提示）。
+全部列在 `check_dlc_plugin_compat.py` 的 `QUOTED`；檢查時在本次執行的輸出或 Plugin 原始碼裡找得到才算 PASS。1.2.4 全部找得到（73 個；1.2.4 加 `the proposal base is stale; rebase-proposal`、`the proposal base is current; nothing was written`；1.2.2 是 71 個，1.2 加 `nothing was written`、`proposal base revision is stale; rebase-proposal`、`approvals_retired`；1.1.0、1.1.1 是 68 個；1.0 起新增 `ship-package` 的 `completed`／`applied`、`analyze-boundary` 兩個方向的鍵、`brief` 的 Attention 與 lies outside every Context、規則 `aggregate` 的拒絕訊息、pre-commit hook 的安裝與改名提示）。
 
 | 字串 | 出處 | 標記 |
 |---|---|---|
 | `Registry is valid.` | Runbook 01／10／19／20／29–59／60；RECOVERY.md；簡報 30-d2；tools README | 不受影響 |
 | `Change package is valid.`、`Proposal submitted for human review.`、`Proposal test evidence verified.` | Runbook 20 | 不受影響 |
-| `already verified at revision 1; nothing was written`（重跑 `verify-proposal`）、`proposal base revision is stale; rebase-proposal`、`approvals_retired` | Runbook 20 檢查點 4 的 ③；主持指南常見問題第 19 條 | 1.2 已處理（`QUOTED` 收 `nothing was written`；完整的一行由 `test_tools.py` 驗證） |
+| `already verified at revision 1; nothing was written`（重跑 `verify-proposal`）、`proposal base revision is stale; rebase-proposal`、`approvals_retired`、`the proposal base is stale; rebase-proposal`（過期時 `ship-package` 的 `next`，1.2.3）、`the proposal base is current; nothing was written`（1.2.4） | Runbook 20 檢查點 4 的 ③；主持指南常見問題第 19 條 | 1.2 已處理（`QUOTED` 收 `nothing was written`；完整的一行由 `test_tools.py` 驗證） |
 | `Git governance is valid for 1 commit.`（push 時一行 `… for N commits.`：D2 是 2，D2 Recovery 是 8） | Runbook 20／29–59；RECOVERY.md；簡報 30-d2；參考 README；主持指南 | 0.61 已處理（0.58 起訊息帶 commit 數、一次 push 一行） |
 | `That is reach, not an error.` | Runbook 30／40／50／60；簡報 70-d4 | 不受影響 |
 | `the tests do not pass before anything is broken`、`Git commit signature is invalid`、`not reviewed` | tools README；RECOVERY.md；簡報 30-d2 | 不受影響 |
@@ -93,9 +93,9 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | Recovery d1 | `facilitator/recovery/d1/`（`make_recovery.py d1` 以 Plugin 現場產生，未簽章、未 commit Registry） | OKF |
 | Recovery d2～d3c | `facilitator/recovery/d2…d3c/`（從 bundle tag 重產，`repo.bundle` 帶簽章歷史） | OKF；Registry commit 7 個 |
 | 參考解答 d3a～d3c 的 `domain-memory/` | `evaluation/reference-solutions/*/domain-memory/`（含 D3 候選；不是 Git repo） | OKF（各跑過一次 `migrate-registry`） |
-| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-1.2.2.zip(.SHA256SUMS)` | 94 個 Plugin 檔案（1.0 起含 `scripts/domain_registry/commands/`、`mcp_server.py`），`SHA OK 95 files` |
+| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-1.2.4.zip(.SHA256SUMS)` | 94 個 Plugin 檔案（1.0 起含 `scripts/domain_registry/commands/`、`mcp_server.py`），`SHA OK 95 files` |
 | 打包清單 | `scripts/package-manifest-dlc.json` | 由 `release_materials.py` 自動 `--pin` |
-| 驗證證據 | `evaluation/dlc-validation-evidence.json` 的 `plugin_0_33_0_remeasure`、`plugin_0_52_0_remeasure`、`plugin_0_61_0_remeasure`、`plugin_1_1_0_remeasure`、`plugin_1_1_1_remeasure`、`plugin_1_2_2_remeasure` | 已記 |
+| 驗證證據 | `evaluation/dlc-validation-evidence.json` 的 `plugin_0_33_0_remeasure`、`plugin_0_52_0_remeasure`、`plugin_0_61_0_remeasure`、`plugin_1_1_0_remeasure`、`plugin_1_1_1_remeasure`、`plugin_1_2_2_remeasure`、`plugin_1_2_4_remeasure` | 已記 |
 
 版本字串（換版時以舊版本號全文搜尋）：`07-dlc-ddd/README.md`、`participant/tools/{dmlib.py,doctor.py,README.md}`、`facilitator/facilitator-guide.md`、`evaluation/{observation-guide.md,dlc-validation-evidence.json,reference-registry/README.md}`、`materials-dlc/README.md`、Runbook `01-environment.md`、開場投影片 `10-opening.html`、`docs/instructions/11_DDD_DLC產製指令書.md`、`scripts/{build_delivery_dlc.py,test_build_delivery_dlc.py,check_dlc_plugin_compat.py,package-manifest-dlc.json}`。`doctor.py` 的 `PLUGIN_VERSION` 會把其他版本判為 `[!!]`。主持指南常見問題第 16 條的「Plugin 0.27.2 起」是行為的起始版本，不要改。
 
@@ -118,6 +118,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | 1.1.1（`accf3235f` 封裝 ZIP，2026-10-19） | 30 PASS、0 CHANGED（不用改 dmlib 與 `QUOTED`；只改 hook 拒絕訊息結尾與 NOTE 文字，學員頁沒有引用） |
 | 1.2.2（`42819a57e` 匯出，修改前，2026-10-19） | 28 PASS、2 CHANGED：dmlib `REGISTRY_REQUIRED`、`REPO_ROOT` 少 `rebase-proposal` |
 | 1.2.2（封裝 ZIP，修改後，2026-10-19） | 32 PASS、0 CHANGED（dmlib 加 `rebase-proposal`；`QUOTED` 71 個；參考 Registry 兩個 applied 套件加跑 `verify-proposal`，回 `already applied at revision 1; nothing was written`） |
+| 1.2.4（`089b50321` 封裝 ZIP，2026-10-19） | 32 PASS、0 CHANGED（不用改 dmlib；`QUOTED` 71 → 73：過期時 `ship-package` 的 `next` 與 base 沒過期時 `rebase-proposal` 的 `note`） |
 
 ## 6. 下次換版的步驟
 

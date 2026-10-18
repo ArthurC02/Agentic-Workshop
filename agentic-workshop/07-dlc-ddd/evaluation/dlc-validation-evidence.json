@@ -1865,5 +1865,22 @@
   "rebase_not_stale": "rebase-proposal on an unchanged Registry after the approval commit still rebases (approvals_retired 1): 'base is current' compares the whole revision including observed_commit",
   "prompt_changes": "D2 CP4 ③ waits for 'already verified at revision 1; nothing was written'; facilitator guide FAQ 19 (stale base)",
   "registry_migration": "none (no signing, Maintainer key not used)"
+ },
+ "plugin_1_2_4_remeasure": {
+  "date": "2026-10-19",
+  "plugin": "domain-memory 1.2.4 (SkillHub 089b50321, exported with git archive); patch: rebase-proposal judges 'current' by the lifecycle stale check, accepts approved, and on a current base prints note 'the proposal base is current; nothing was written' with exit 0 (1.2.3/1.2.4); ship-package checks staleness before attesting and its next names rebase-proposal (1.2.3)",
+  "vendor_zip_sha256": "96f22ad60eb2abab55724de2e06a7d4fb5ee14db873b8c90ccc5e5d5f19a20e9",
+  "plugin_files": 94,
+  "sha_ok_line": "SHA OK 95 files",
+  "cli_commands": "63 (unchanged)",
+  "maintainer_checks": "uvx ruff@0.16.7 check . passed; run_tests.py --jobs 4: 41 modules, test_support skip, failed: none",
+  "compat": "1.2.4 vendored ZIP: 32 PASS, 0 CHANGED with no dmlib change; QUOTED 71 -> 73 ('the proposal base is stale; rebase-proposal', 'the proposal base is current; nothing was written')",
+  "recovery_and_reference_solutions": "not rerun: the patch only changes rebase-proposal and ship-package staleness handling; compat D1 replay 57/57 and reference Registry checks pass",
+  "rehearsal": "Windows, sandbox C:\\tmp\\dm124r, candidate bebcc1e7bbd5547b: opening CP1-4 (CP2 in PowerShell and Git Bash), D1 Recovery steps 1-2 (PowerShell), D2 CP1-6 all as expected; git push blocked by the session's permission check, not run",
+  "ship_package": "D2 CP6: completed [attest-signed-commit, finalize-proposal, apply-approved-updates], status applied; verify-audit 11 events; apply commit signed, verify-git-governance valid",
+  "stale_base": "candidate added after the approval commit: ship-package exit 1, completed [], errors 'finalize-proposal: proposal base revision is stale; rebase-proposal, then obtain fresh approval: the base Registry cannot be rebuilt from its observed commit, ...', next 'the proposal base is stale; rebase-proposal, then record-approval, verify-proposal, sign a commit holding the package, and ship-package --commit <that commit>', scm_attestation null, package unchanged; retract-candidate path -> applied, validate --require-reviewed valid; rebase path -> submitted, proposal_revision 2, approvals_retired 1, attestation_removed false, second rebase note (current) exit 0, verify before re-approval refused, old commit refused 'carries another proposal or revision', re-approve + new signed commit -> applied, late candidate 'not reviewed'; rebase on applied refused 'an applied proposal is not rebased; it is applied; supersede it and open a new draft'",
+  "rebase_current": "after the approval commit with the Registry unchanged: exit 0, note 'the proposal base is current; nothing was written', next 'sign a commit holding the package, then ship-package --commit <that commit>', status verified, proposal_revision 1, approvals 1; ship-package then applied (1.2.2 retired the approval here)",
+  "prompt_changes": "facilitator guide FAQ 19 only (finalize-proposal: prefix, completed [] with nothing written, follow next; a current-base rebase only prints the note)",
+  "registry_migration": "none (no signing, Maintainer key not used)"
  }
 }

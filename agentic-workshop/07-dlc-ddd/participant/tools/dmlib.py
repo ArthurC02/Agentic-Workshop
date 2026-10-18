@@ -21,10 +21,10 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.2.2")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.2.4")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 1.2.2 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 1.2.4 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
     "migrate-registry", "validate", "export", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
     "dependents", "brief", "analyze-boundary", "upsert-candidate", "retract-candidate", "demote-local-reviews",
@@ -54,7 +54,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.2.2.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.2.4.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 

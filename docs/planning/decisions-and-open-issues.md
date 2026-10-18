@@ -509,3 +509,29 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 - 由程式推論、未實測：1.1.x 提交、base 裡沒有 `committed_digest` 的提案，只要 HEAD 裝著 Registry，即使 HEAD 沒動，`rebase-proposal` 也會因為多出 `committed_digest` 而視為不同、照樣 rebase。
 
 未驗證：macOS 實機（只做靜態檢查：這次改的是 ```text 的 ③ 與主持指南，沒有 macOS 專屬指令）；Agent 在真實對話中看到過期訊息會不會自行執行 `rebase-proposal`（D2 檢查點 6 ② 與「失敗時」都要它停下）。
+
+## domain-memory 1.2.4（patch）（2026-10-19）
+
+由 1.2.2 換成 1.2.4（SkillHub `089b50321`，以 `git archive` 匯出；只讀 commit 過的內容：`git diff 42819a57e 089b50321 -- .claude/skills/domain-memory` 與 CHANGELOG 1.2.3、1.2.4）。依版本政策，patch 修的是主持指南第 19 條碰到的 `rebase-proposal`／`ship-package` 行為，重跑檢查後採用。改動只在 `hitl.py`、`ship.py`、`script-api.md` 與測試：指令仍 63 個，沒有新檔案（94 個 Plugin 檔案，學員核對仍印 `SHA OK 95 files`；ZIP SHA256 `96f22ad6…19a20e9`），版面、稽核事件、證據包格式都沒變，不需要遷移，沒有用到 Maintainer 金鑰。維護者的檢查在匯出上重跑：`uvx ruff@0.16.7 check .` 全部通過；`run_tests.py --jobs 4` 41 個模組，`test_support` skip，failed: none。
+
+逐項對照程式與演練（維護者的摘要都屬實）：
+- 1.2.4：base 沒過期時 `rebase-proposal` exit 0，印 JSON（`package`、`status`、`proposal_revision`、`base_registry_revision`、`note` `the proposal base is current; nothing was written`、依狀態的 `next`），什麼都不寫；`nothing to rebase` 已不在原始碼裡。
+- 1.2.3：「是否過期」交給和 verify／finalize／apply 相同的過期檢查（`require_current_registry_revision`），不再比對整個 base revision；拒絕訊息是 `a draft proposal is not rebased; submit-proposal stamps its base`、`an applied proposal is not rebased; it is applied; supersede it and open a new draft`、`a superseded proposal is not rebased; it is retired; redraft-proposal opens a new draft from it`；approved 的提案也收，回 `submitted`、清 `finalized_at`（Plugin 測試涵蓋，學員路徑碰不到 approved 停留的狀態）。
+- 1.2.3：verified 的提案在寫 attestation 之前先做過期檢查；過期時 `completed` 是 `[]`、不寫 attestation，errors 是 `finalize-proposal: proposal base revision is stale; rebase-proposal, then obtain fresh approval: …`，`next` 是 `the proposal base is stale; rebase-proposal, then record-approval, verify-proposal, sign a commit holding the package, and ship-package --commit <that commit>`。這三點修掉 1.2.2 回報給維護者的前兩項。
+
+相容性檢查（`check_dlc_plugin_compat.py`，封裝 ZIP）：版本字串換好後第一次就是 32 PASS、0 CHANGED，dmlib 不用改；`QUOTED` 71 → 73，加上主持指南新引用的 `the proposal base is stale; rebase-proposal` 與 `the proposal base is current; nothing was written`，`proposal base revision is stale; rebase-proposal` 仍找得到。`git rm` 1.2.2 的 ZIP 與 SHA256SUMS；版本字串同步到 1.2.2 升級時的同一批檔案。
+
+主持指南常見問題第 19 條：原本照 1.2.2 寫（`ship-package` 先寫 attestation、再停在 finalize）。改為 errors 帶 `finalize-proposal:` 前綴、`completed` 是 `[]`（什麼都沒寫入），改動要留下時照 `next` 跑 `rebase-proposal`；並註明 base 沒過期時它只回 `the proposal base is current; nothing was written`、不動核准。Runbook 與簡報不用改。Recovery 與參考解答反事實沒有重跑：這次只改 `rebase-proposal` 與 `ship-package` 的過期判斷，相容檢查的 D1 重播 57／57、參考 Registry 全部通過。
+
+演練（Windows，沙箱 `C:\tmp\dm124r`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包 `bebcc1e7bbd5547b`，結束後刪除；沙箱產物：`py -3.13` 以編譯的小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`；Recovery 與 D2 範本的 zip 從沙箱的下載資料夾解，不讀登錄檔的真實下載資料夾）：
+- 開場檢查點 1–4：76 passed；`SHA OK 95 files`、`"version": "1.2.4"`（PowerShell 與 Git Bash）；brownfield／high、只有 pytest；起始 commit。
+- D1 Recovery 步驟 1–2（PowerShell）：`?? domain-memory/`、`?? notes/`、76 passed、`Registry is valid.`、162／0／0。
+- D2 檢查點 1–6：`ready`；候選 contexts 5、vocabulary 21、aggregates 2、rules 16、interactions 5、decisions 8；反事實 killed；17 個 obligation passed、`Change package is valid.`、`Proposal submitted for human review.`；`Good "git" signature`；檢查點 4 ③ `already verified at revision 1; nothing was written`；`Git governance is valid for 1 commit.`；`ship-package` `completed` 三步、`applied`；`Registry is valid.`；`verify-audit` 11 個事件；套用 commit 已簽章、`verify-git-governance` 通過。`git push` 被這次執行環境的權限檢查擋下，沒有跑（hook 的 `for 2 commits.`／`for 3 commits.` 沿用 1.2.2 的實測）。
+- 過期（核准 commit 之後再登記一筆候選）：`ship-package` exit 1，`completed` `[]`，errors 與 `next` 如上，`scm_attestation` 仍是 null，審查包沒有變動。路一：`retract-candidate` 撤回後 `ship-package` 直接 `applied`、`validate --require-reviewed` 通過。路二：`rebase-proposal` → `submitted`、`proposal_revision` 2、`approvals_retired` 1、`attestation_removed` false（1.2.3 起本來就沒寫）；再跑一次回 `note`（base current）、exit 0；未重新核准就 `verify-proposal` 被拒；拿舊核准 commit `ship-package` 被拒（`carries another proposal or revision`）；夥伴重做檢查點 4 第二段、新簽章 commit、檢查點 5 通過後 `applied`；晚加的候選照預期 `not reviewed`；對 applied 的提案 `rebase-proposal` 回 `an applied proposal is not rebased; …`。
+- base 沒過期（核准 commit 之後、Registry 沒動）：`rebase-proposal` exit 0、`note` `the proposal base is current; nothing was written`、`next` `sign a commit holding the package, then ship-package --commit <that commit>`；`status` 仍 verified、`proposal_revision` 1、核准仍 1 筆；接著 `ship-package` 直接 `applied`（1.2.2 在這裡會作廢核准）。
+
+回報給維護者：
+- 自己做的 D2 在檢查點 3 提交時 HEAD 沒有 Registry，所以過期原因一律是 `the base Registry cannot be rebuilt from its observed commit, so the records this proposal touches cannot be compared`，不會說是哪一筆變了；這不影響補救，但學員看不出是哪個改動造成的。
+- 由程式推論、未實測：`ship-package` 只對 verified 先做過期檢查；approved（定案後套用失敗）的過期仍由 apply 拒絕，`next` 是否同樣指向 `rebase-proposal` 沒有測到。
+
+未驗證：macOS 實機（這次只改主持指南，沒有 macOS 專屬指令）；`git push`（權限檢查擋下）。

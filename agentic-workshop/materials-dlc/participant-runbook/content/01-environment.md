@@ -124,14 +124,14 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 1. 到學員包的 vendor 資料夾解出 Plugin、逐檔核對清單、顯示版本，再回到 Repo 根目錄：
 PowerShell：
   Set-Location ..\..\vendor
-  Expand-Archive -LiteralPath .\domain-memory-1.2.2.zip -DestinationPath .
-  py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.2.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
+  Expand-Archive -LiteralPath .\domain-memory-1.2.4.zip -DestinationPath .
+  py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.4.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
   Select-String '"version"' .\domain-memory\.claude-plugin\plugin.json
   Set-Location ..\repository\smart-ticket-dlc-base
 Git Bash：
   cd ../../vendor
-  unzip -qo domain-memory-1.2.2.zip
-  py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.2.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
+  unzip -qo domain-memory-1.2.4.zip
+  py -3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.4.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
   grep '"version"' domain-memory/.claude-plugin/plugin.json
   cd ../repository/smart-ticket-dlc-base
 2. 用白話告訴我核對結果與版本。如果出現 SHA MISMATCH，立刻停下，不要使用這份 Plugin，也不要嘗試修正。
@@ -141,8 +141,8 @@ Git Bash：
 請解出 domain-memory Plugin 並逐檔核對 SHA256，不要修改 Plugin 的任何檔案：
 1. 到學員包的 vendor 資料夾解出 Plugin、逐檔核對清單、顯示版本，再回到 Repo 根目錄：
   cd ../../vendor
-  unzip -qo domain-memory-1.2.2.zip
-  python3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.2.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
+  unzip -qo domain-memory-1.2.4.zip
+  python3.13 -c "import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.4.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)"
   grep '"version"' domain-memory/.claude-plugin/plugin.json
   cd ../repository/smart-ticket-dlc-base
 2. 用白話告訴我核對結果與版本。如果出現 SHA MISMATCH，立刻停下，不要使用這份 Plugin，也不要嘗試修正。
@@ -155,7 +155,7 @@ Git Bash：
 ```text
 請只檢查，不要修改任何檔案：
 1. notes/opening.md 的「檢查點 2 · Plugin 完整性」記著 SHA OK 95 files，沒有 SHA MISMATCH。
-2. 學員包 vendor/domain-memory/.claude-plugin/plugin.json 的版本是 "version": "1.2.2"。
+2. 學員包 vendor/domain-memory/.claude-plugin/plugin.json 的版本是 "version": "1.2.4"。
 全部符合只回「成功」，否則只回「失敗：」加一句原因。
 ```
 

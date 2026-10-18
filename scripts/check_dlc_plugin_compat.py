@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.2.2.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.2.4.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -75,6 +75,8 @@ QUOTED = [
     # 1.2: re-run verify-proposal (D2 checkpoint 4 ③); stale base and its remedy (facilitator guide)
     "nothing was written", "proposal base revision is stale; rebase-proposal",
     "approvals_retired",
+    # 1.2.3/1.2.4: ship-package stops before attesting on a stale base; a current-base rebase is a note
+    "the proposal base is stale; rebase-proposal", "the proposal base is current; nothing was written",
 ]
 ATTESTED = ["5538b6dbcba9e5c4468ceddec72b75b231f9688d", "38116f248f78befa51abac56405349301a5623c7"]
 REGISTRY_COMMITS = 7  # six JSON-era commits + the signed OKF migration (0.33.0)
