@@ -21,18 +21,18 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.1.1")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.2.2")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 1.1.1 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 1.2.2 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
     "migrate-registry", "validate", "export", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
     "dependents", "brief", "analyze-boundary", "upsert-candidate", "retract-candidate", "demote-local-reviews",
     "probe", "verify-evidence", "migrate-evidence", "recover-registry-update", "confirm-sources", "refresh-sources",
     "refresh-listing", "refine-sources", "amend-policy", "verify-git-governance", "install-git-hitl-hook",
     "install-pre-commit-hook", "governance-readiness", "verify-audit", "submit-proposal", "verify-proposal",
-    "ship-package", "boundary-impact", "promote-candidate", "recite", "record-test-result", "relocate-evidence",
-    "harvest", "discard-harvest", "harvest-candidates", "mcp-serve",
+    "rebase-proposal", "ship-package", "boundary-impact", "promote-candidate", "recite", "record-test-result",
+    "relocate-evidence", "harvest", "discard-harvest", "harvest-candidates", "mcp-serve",
 }
 # 可選 --registry-root：只有 domain-memory/ 已存在時才補。
 REGISTRY_OPTIONAL = {"readiness", "cite", "validate-change-package", "init-change-package", "change-coupling",
@@ -42,8 +42,8 @@ REPO_ROOT = {
     "verify-sources", "probe", "verify-evidence", "migrate-evidence", "init-domain-memory", "confirm-sources",
     "refresh-sources", "refresh-listing", "refine-sources", "init-signing-key", "scan-secrets",
     "verify-git-governance", "install-git-hitl-hook", "install-pre-commit-hook", "governance-readiness",
-    "submit-proposal", "verify-proposal", "ship-package", "quality-gates", "counterfactual", "cite",
-    "audit-attestations", "boundary-impact", "brief", "recite", "record-test-result", "recover-registry-update",
+    "submit-proposal", "verify-proposal", "rebase-proposal", "ship-package", "quality-gates", "counterfactual",
+    "cite", "audit-attestations", "boundary-impact", "brief", "recite", "record-test-result", "recover-registry-update",
     "relocate-evidence", "validate-change-package", "export", "compare-registry", "change-coupling", "harvest",
     "discard-harvest", "harvest-candidates", "coverage", "promote-candidate", "redraft-proposal", "supersede-proposal", "mcp-serve",
 }
@@ -54,7 +54,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.1.1.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.2.2.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 

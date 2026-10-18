@@ -1810,5 +1810,60 @@
   "pre_commit_demo": "D4 CP3: rename refused, 14 record lines, relocate-evidence hint, ends 'details: verify-evidence ... prints the full report, as this hook does when DOMAIN_MEMORY_HOOK_VERBOSE is set'; moved back, only ?? records/",
   "prompt_changes": "none (D4 CP1 guard kept: NOTE still imperative)",
   "registry_migration": "none (no signing, Maintainer key not used)"
+ },
+ "plugin_1_2_2_remeasure": {
+  "date": "2026-10-19",
+  "plugin": "domain-memory 1.2.2 (SkillHub 42819a57e, exported with git archive); minor: rebase-proposal (1.2.0), committed_digest in base revisions, stale-base and apply-race messages, discard-harvest accepts verified, verify-proposal re-run on verified/approved/applied exits 0 (1.2.1/1.2.2)",
+  "vendor_zip_sha256": "fcd479100c493f4e8b76967ba8a966ad286fa6ded2de15b14b34d6afa1edb047",
+  "plugin_files": 94,
+  "sha_ok_line": "SHA OK 95 files",
+  "cli_commands": "62 -> 63 (rebase-proposal)",
+  "maintainer_checks": "uvx ruff@0.16.7 check . passed; run_tests.py --jobs 4: 40 modules ok, test_support skip, failed: none",
+  "compat_before": "1.2.2 export: 28 PASS, 2 CHANGED (dmlib REGISTRY_REQUIRED and REPO_ROOT lack rebase-proposal)",
+  "compat_after": "1.2.2 vendored ZIP: 32 PASS, 0 CHANGED (dmlib adds rebase-proposal; QUOTED 71; verify-proposal on the reference CP-CORE-001/002 prints 'already applied at revision 1; nothing was written')",
+  "old_packages": "CP-CORE-001/002 in the reference Registry, the d2-d3c Recovery bundles and the three reference solutions: validate-change-package valid, verify-proposal 'already applied at revision 1; nothing was written', validate and verify-audit valid",
+  "recovery": {
+   "d1": [
+    162,
+    0,
+    0
+   ],
+   "d2": [
+    162,
+    0,
+    0
+   ],
+   "d3a": [
+    147,
+    12,
+    3
+   ],
+   "d3b": [
+    108,
+    32,
+    22
+   ],
+   "d3c": [
+    99,
+    31,
+    32
+   ],
+   "bundles_unchanged": true,
+   "d1_restored": "only audit ids, head digest and confirmed_at changed"
+  },
+  "reference_solution_counterfactuals": {
+   "d3a": "25/25 killed",
+   "d3b": "23/24 killed",
+   "d3c": "37/38 killed",
+   "survivors": "documented equivalent mutants PTS-003 min-points-1, PCR-004 days-by-datetime"
+  },
+  "rehearsal": "Windows, sandbox C:\\tmp\\dm122, candidate 59548f1ea4ab637d: opening CP2 (PowerShell and Git Bash), D2 CP1-6 with push, D2 Recovery (PowerShell step 2), D3a CP5, D4 CP1-3 all 成功",
+  "d2_base_revision": "own D2: submitted against HEAD '起始 Repo' (no Registry), so no committed_digest",
+  "verify_proposal_rerun": "D2 CP4 ③: 'already verified at revision 1; nothing was written', exit 0 (was ERROR exit 1 under 1.1.1)",
+  "ship_package": "D2 CP6: completed [attest-signed-commit, finalize-proposal, apply-approved-updates], status applied; verify-audit 11 events; push 'Git governance is valid for 2 commits.'",
+  "stale_base": "candidate added after the approval commit: ship-package errors 'finalize-proposal: proposal base revision is stale; rebase-proposal, then obtain fresh approval: the base Registry cannot be rebuilt from its observed commit, ...', status verified, next still names ship-package; rebase-proposal -> status submitted, proposal_revision 2, approvals_retired 1, attestation_removed true; second rebase refused 'the proposal base is current'; verify before re-approval refused; old commit refused 'carries another proposal or revision'; re-approve + new signed commit + ship -> applied, push 'for 3 commits.'; retract-candidate instead of rebase also lets ship-package apply",
+  "rebase_not_stale": "rebase-proposal on an unchanged Registry after the approval commit still rebases (approvals_retired 1): 'base is current' compares the whole revision including observed_commit",
+  "prompt_changes": "D2 CP4 ③ waits for 'already verified at revision 1; nothing was written'; facilitator guide FAQ 19 (stale base)",
+  "registry_migration": "none (no signing, Maintainer key not used)"
  }
 }

@@ -473,3 +473,39 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 - D4 檢查點 1–3（由 D3c Recovery 起）：`verify-sources` `stale`、exit 1，NOTE 為新文字；`verify-evidence` 99／31／32；coverage 16 條已審查規則全部 proven；5 條 stale 規則的測試都通過；檢查點 2 登記 1 筆候選（REFUND-004 → REFUND-005）；交接單七段、簽章 commit、pre-commit 擋下改名（14 筆紀錄、relocate-evidence 那一行、新結尾），搬回後只剩 `?? records/`；三個 ③ 都成功。
 
 未驗證：macOS 實機（只做靜態檢查）。
+
+## domain-memory 升級 1.2.2（2026-10-19）
+
+由 1.1.1 升級，現固定 1.2.2（SkillHub `42819a57e`，以 `git archive` 匯出；沒有使用 SkillHub 工作區）。1.2 是 minor 版，依版本政策讀 `git diff accf3235f 42819a57e -- .claude/skills/domain-memory` 與 CHANGELOG 1.2.0–1.2.2、跑相容性檢查、在沙箱演練後固定。Registry 版面、稽核事件與證據包格式都沒有改：參考 Registry、bundle、tag `dlc-d2-reviewed`、`REGISTRY_COMMITS` = 7、參考解答都不用遷移，不需要新的簽章 commit，沒有動用 Maintainer 金鑰。維護者的檢查在匯出上重跑：`uvx ruff@0.16.7 check .` 全部通過；`run_tests.py --jobs 4` 40 個模組 ok、`test_support` skip、failed: none。
+
+相容性檢查（`check_dlc_plugin_compat.py`）：匯出、修改前 28 PASS、2 CHANGED（dmlib `REGISTRY_REQUIRED`、`REPO_ROOT` 少 `rebase-proposal`）；封裝 ZIP、修改後 32 PASS、0 CHANGED。dmlib 兩組集合加 `rebase-proposal`（`cli_parser` 62 → 63 個指令）；`QUOTED` 68 → 71（`nothing was written`、`proposal base revision is stale; rebase-proposal`、`approvals_retired`）；參考 Registry 兩個 applied 套件加跑 `verify-proposal`。`test_tools.py` 加一行：送出並驗證後重跑 `verify-proposal` 要印 `already verified at revision 1; nothing was written`。
+
+逐項對照程式（維護者的摘要都屬實）：
+- 1.2.1／1.2.2 `verify-proposal`：狀態是 verified、approved、applied 時印 `already <status> at revision <n>; nothing was written`、exit 0；draft 仍拒絕。1.1.1 是 `ERROR: only a submitted proposal may be verified`、exit 1，所以 D2 檢查點 4 的 ③（重跑 `verify-proposal`、等 `Proposal test evidence verified.`）原本會誤判失敗，簡報備註因此寫「不重跑」。修正：③ 第 1 項改等 `already verified at revision 1; nothing was written`（實測 ③ 成功）。
+- 1.2.0 `rebase-proposal`：`proposal_revision` 加 1、`scm_attestation` 清空、`status` 回 `submitted`、`verified_at` 清空，保留測試結果，只寫審查包；印 `package`、`status`、`proposal_revision`、`base_registry_revision`、`approvals_retired`、`attestation_removed`、`next`。拒絕 draft、approved、applied、superseded 與「base 已是現在」的提案。
+- 1.2.0 訊息：過期 `proposal base revision is stale; rebase-proposal, then obtain fresh approval: <原因>`；自己寫的紀錄被改 `<asset>/<id>, which this proposal writes, changed since it was reviewed`；套用時的競態 `registry revision changed before update; run ship-package again`。學員頁、簡報都沒有引用舊字串。
+- 1.2.0 `committed_digest`：只有提交時 HEAD 裝著 Registry 才寫。自己做的 D2 在檢查點 3 提交時 HEAD 是「起始 Repo」，沒有 Registry，所以沒有這個欄位，之後任何 Registry 變動都會以「the base Registry cannot be rebuilt from its observed commit」判為過期（與 1.1.1 相同）。1.1.x 的套件照舊驗證：參考 Registry、d2–d3c Recovery 與三份參考解答的 CP-CORE-001／002 都是 `Change package is valid.`，`verify-proposal` 回 `already applied at revision 1; nothing was written`，`validate`、`verify-audit` 通過。
+- 1.2.0 `discard-harvest` 也收 verified 的套件；`registry.as_stored` 是新函式，沒有新檔案（仍 94 個 Plugin 檔案）。都不在學員路徑。
+
+`rebase-proposal` 放哪裡：只寫進主持指南常見問題第 19 條，不進 Runbook。學員路徑上唯一的提案是 D2 的 CP-D2-001，提交到套用之間 Registry 只靠提案本身改變；D3、D4 只登記候選，沒有待審的提案。要教「核准綁定的是那一版模型」，得在最緊的 D2（規格 R1）刻意製造一次過期再重新核准，多一次簽章 commit，又沒有現成的手動繞法可以取代。第 19 條給兩條路：提交後誤加的候選用 `retract-candidate` 撤回，模型回到核准的那一版，`ship-package` 直接通過；改動要留下才 `rebase-proposal`，夥伴重做檢查點 4 第二段與檢查點 5，push 時是 `for 3 commits.`。
+
+機械：`domain-memory-1.2.2.zip`（94 個 Plugin 檔案；學員核對仍印 `SHA OK 95 files`；ZIP SHA256 `fcd47910…edb047`），`git rm` 1.1.1 的 ZIP 與 SHA256SUMS；版本字串同步到 1.1.0 升級時列的同一批檔案（另含 `.agents/skills/course-authoring/SKILL.md` 鏡像）；觸及點文件更新，並把「常見問題第 19 條」的舊指涉改為第 16 條（0.27.2 那條）。
+
+量測（1.2.2，Windows）：
+- Recovery：`make_recovery.py` 對 d1–d3c 各跑一次，d2–d3c 位元組不變；d1 只有稽核事件 id、head 雜湊與 `confirmed_at` 變，還原為原版。current／shifted／stale：d1 162／0／0、d2 162／0／0、d3a 147／12／3、d3b 108／32／22、d3c 99／31／32（不變）。
+- 參考解答反事實（暫存複本）：d3a 25／25、d3b 23／24、d3c 37／38 killed，存活的仍是已記錄的等價 mutant（PTS-003 min-points-1、PCR-004 days-by-datetime）。
+
+演練（Windows，沙箱 `C:\tmp\dm122`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包 `59548f1ea4ab637d`，結束後刪除；沙箱產物：`py -3.13` 以編譯的小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`；Recovery 與 D2 範本的 zip 直接從候選資料夾解，不經真實下載資料夾）：
+- 開場檢查點 2：`SHA OK 95 files`、`"version": "1.2.2"`（PowerShell 與 Git Bash）。
+- D2 檢查點 1–6（由 D1 Recovery 起）：`ready`、反事實 killed、17 個 obligation passed、`Change package is valid.`、`Proposal submitted for human review.`、`Good "git" signature`、檢查點 4 ③ 重跑得到 `already verified at revision 1; nothing was written`、`Git governance is valid for 1 commit.`、`ship-package` `completed` 三步、`status` `applied`、`Registry is valid.`、`verify-audit` 11 個事件、push `for 2 commits.`、`[new branch]`；套用後 `verify-proposal` 回 `already applied at revision 1`。
+- 過期演練（從檢查點 5 之後的複本）：核准 commit 後再登記一筆候選，`ship-package` 停在 `finalize-proposal`，errors 是新訊息，`status` `verified`；`rebase-proposal` 回 `submitted`、`proposal_revision` 2、`approvals_retired` 1、`attestation_removed` true；再跑一次被拒（`the proposal base is current`）；未重新核准就 `verify-proposal` 被拒；拿舊的核准 commit `ship-package` 被拒（`carries another proposal or revision`）；重新核准、新簽章 commit 後 `applied`，push `for 3 commits.`。另一份複本改用 `retract-candidate` 撤回那筆候選，`ship-package` 直接 `applied`、`validate --require-reviewed` 通過。
+- D2 Recovery（步驟 2 用 PowerShell）：沿用金鑰、`ready`、簽章 commit、76 passed（1 warning）、162／0／0。
+- D3a 檢查點 5（在 D2 Recovery 上放入參考實作）：反事實 killed、登記 1 個 Context 與 1 條規則、`Registry is valid.`、夥伴簽章 commit。
+- D4 檢查點 1–3（由 D3c Recovery 起）：`verify-sources` `stale`、exit 1；99／31／32；16 條已審查規則全部 proven；5 條 stale 規則的測試都通過；登記 REFUND-005 候選；交接單簽章 commit；pre-commit 擋下改名（14 筆紀錄、relocate-evidence 那一行），搬回後只剩 `?? records/`。
+
+回報給維護者：
+- `rebase-proposal` 的「base 已是現在」比較整個 revision（含 `observed_commit`）：Registry 沒變、只是多了一個 commit（例如核准 commit 本身）時，它照樣 rebase 並作廢有效的核准（實測 `approvals_retired` 1）。CHANGELOG 說它拒絕 base 仍是現在的提案；建議改以 `require_current_registry_revision` 通過與否判斷。
+- `ship-package` 因過期停在 `finalize-proposal` 時，`next` 仍寫「the proposal is verified; ship-package --commit …」，沒有指向 `rebase-proposal`；而且第一步已寫入 attestation。
+- 由程式推論、未實測：1.1.x 提交、base 裡沒有 `committed_digest` 的提案，只要 HEAD 裝著 Registry，即使 HEAD 沒動，`rebase-proposal` 也會因為多出 `committed_digest` 而視為不同、照樣 rebase。
+
+未驗證：macOS 實機（只做靜態檢查：這次改的是 ```text 的 ③ 與主持指南，沒有 macOS 專屬指令）；Agent 在真實對話中看到過期訊息會不會自行執行 `rebase-proposal`（D2 檢查點 6 ② 與「失敗時」都要它停下）。

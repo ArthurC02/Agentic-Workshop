@@ -195,6 +195,9 @@ class GovernedLifecycleTest(unittest.TestCase):
         self.dm("record-approval", "--package-root", package, "--role", "domain-owner",
                 "--reviewer", "Maintainer <maintainer@example.com>", "--scope", "all")
         self.dm("verify-proposal", "--package-root", package)
+        # 1.2.1 起重跑 verify-proposal 不再拒絕（D2 檢查點 4 的 ③ 會重跑）。
+        self.assertIn("already verified at revision 1; nothing was written",
+                      self.dm("verify-proposal", "--package-root", package).stdout)
         # 未簽章 commit 不得當成核准證明：ship-package 在 attest 這一步就拒絕，什麼都不寫。
         self.git("add", "-A")
         self.git("-c", "commit.gpgsign=false", "commit", "-qm", "unsigned")

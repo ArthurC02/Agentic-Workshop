@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.1.1.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.2.2.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -72,6 +72,9 @@ QUOTED = [
     "source_depends_on_target", "target_depends_on_source", "completed", "applied", "Attention",
     "lies outside every Context", "belongs to context", "which the record does not name",
     "Installed Domain Memory pre-commit hook", "is renamed to", "relocate-evidence --from",
+    # 1.2: re-run verify-proposal (D2 checkpoint 4 ③); stale base and its remedy (facilitator guide)
+    "nothing was written", "proposal base revision is stale; rebase-proposal",
+    "approvals_retired",
 ]
 ATTESTED = ["5538b6dbcba9e5c4468ceddec72b75b231f9688d", "38116f248f78befa51abac56405349301a5623c7"]
 REGISTRY_COMMITS = 7  # six JSON-era commits + the signed OKF migration (0.33.0)
@@ -189,6 +192,8 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     checks = [["validate", "--require-reviewed"], ["verify-evidence"], ["verify-sources"], ["verify-audit"],
               *(["verify-git-governance", "--commit", sha] for sha in ATTESTED),
               *(["validate-change-package", "--package-root", f"domain-memory/changes/CP-CORE-00{n}"] for n in (1, 2)),
+              # 1.2.2: verify-proposal on an applied package is a harmless re-run (1.1.x packages unchanged).
+              *(["verify-proposal", "--package-root", f"domain-memory/changes/CP-CORE-00{n}"] for n in (1, 2)),
               ["install-git-hitl-hook"], ["governance-readiness"]]
     for args in checks:
         done = dm(repo, plugin, *args)
