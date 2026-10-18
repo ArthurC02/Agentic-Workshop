@@ -453,3 +453,23 @@ SkillHub 0.28.0（`5f6e046f6`）開始把 Registry 改存 OKF（Open Knowledge F
 演練（Windows，沙箱 `C:\tmp\dm100\rh`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包；沙箱產物：`py -3.13` 以編譯的小 shim 指向 uv 的 Python，doctor 因此報 py launcher `[!!]`）：開場檢查點 1–4（76 passed；換 1.1.0 後重跑檢查點 2：`SHA OK 95 files`、`"version": "1.1.0"`）；D1 檢查點 2–6（12 筆候選、`Registry is valid.`、`analyze-boundary` 兩個方向、`no_registered_collaboration`）；D2 檢查點 1–6（`ready`、反事實 killed、4 個 obligation passed、`Change package is valid.`、`Good "git" signature`、`Git governance is valid for 1 commit.`、`ship-package` `completed` 三步、`status` `applied`、`verify-audit` 8 個事件、push `for 2 commits.`、`[new branch]`）；D2 Recovery（沿用金鑰、`ready`、簽章 commit、76 passed、162／0／0）；D3a 檢查點 1–5（反事實 killed、改壞前測試沒過時 `verdict` `error`）；D3b 檢查點 4–5（`brief` Attention 14 筆，含 REFUND-004）；D3c 檢查點 2–5（`brief` 列出 REFUND-004、規則帶 `aggregate`、放錯 Context 被拒絕）；D4 檢查點 1–3（`stale`、44 筆 stale 引用、16 條規則全部 proven、pre-commit 擋下改名並給出 relocate-evidence 那一行、搬回後狀態乾淨）；回顧檢查點 2。D1–D3b 以 1.0.0 執行、D3c 起以 1.1.0 執行（兩版執行檔只差 `harvest`）。Git Bash 變體只由相容性檢查以 bash 跑過 pre-push 與 pre-commit。
 
 未驗證：macOS 實機（只做靜態檢查）；Agent 在真實對話中會不會只讀 Attention、不照 NOTE 執行 refresh-sources 或 recite；D4 檢查點 3 多一段 hook 示範後時間是否夠（D4 原本就常超時）。
+
+## domain-memory 1.1.1（patch）（2026-10-19）
+
+由 1.1.0 換成 1.1.1（SkillHub `accf3235f`，以 `git archive` 匯出；SkillHub HEAD 已往後走，不用工作區）。依版本政策，patch 修的是學員路徑上的提示文字，重跑檢查後採用。`git diff 8c7a8a47c accf3235f` 與 CHANGELOG 一致：沒有改指令、旗標、exit code 或版面；只改三處。
+- `run_tests.py` 把沒有測試的模組標成 `skip`（1.1.0 回報給維護者的 `test_support` exit 5 問題）。匯出上重跑：40 個模組 ok、`test_support` skip、failed: none；`uvx ruff@0.16.7 check .` 全部通過。
+- pre-commit 拒絕訊息結尾改為資訊句「details: verify-evidence … --staged … prints the full report, as this hook does when DOMAIN_MEMORY_HOOK_VERBOSE is set」，不再叫人帶變數重新 commit。
+- `verify-sources` 的 drift NOTE：`discovery_drifted` 才指向 `refresh-listing`，其他狀態寫「the selection is <status>, so run refresh-sources, then confirm-sources」。
+
+相容性檢查（封裝 ZIP）：30 PASS、0 CHANGED，`QUOTED` 仍 68 個。兩段改過的文字學員頁、簡報備註、主持指南都沒有引用，不用改。執行檔清單與 1.1.0 相同：94 個 Plugin 檔案，學員核對仍印 `SHA OK 95 files`；ZIP SHA256 `496c7926…6f5716`。`git rm` 1.1.0 的 ZIP 與 SHA256SUMS；版本字串同步到 1.1.0 升級時列的同一批檔案。Registry、bundle、Recovery、參考解答都不用動，沒有用到 Maintainer 金鑰。
+
+提示詞：
+- D4 檢查點 1 保留「出現 shifted、stale 或 exit 1 是預期中的結果，不要試著修好。」新 NOTE 仍是命令句（`so run refresh-sources, then confirm-sources`），`verify-evidence` 也印 `run recite on each to cite its current lines`；只靠「只讀不改」不夠。演練中 Agent 照提示詞沒有執行，所以不再加字。
+- D4 檢查點 3 本來就沒有針對舊提示的防護，新結尾只指向唯讀的報告指令，演練沒有誘發重新 commit；「萬一示範的 commit 成功了」與同一次執行啟用 venv 仍需要（hook 要在 PATH 上找 Python）。不改。
+
+演練（Windows，沙箱 `C:\tmp\dm111`，隔離 HOME／USERPROFILE／GIT_CONFIG_GLOBAL／APPDATA／LOCALAPPDATA，DLC 候選包 `9508f433ffb1dfd7`，結束後刪除）：
+- 開場檢查點 2：`SHA OK 95 files`、`"version": "1.1.1"`，③ 成功（PowerShell 與 Git Bash）。
+- D2 檢查點 1–6（由 D1 Recovery 起）：`ready`、反事實 killed、`Change package is valid.`、`Good "git" signature`、`Git governance is valid for 1 commit.`、`ship-package` `completed` 三步、`status` `applied`、`Registry is valid.`、`verify-audit` 11 個事件、push `for 2 commits.`、`[new branch]`；檢查點 5、6 的 ③ 成功；重跑 `ship-package` 回 `already applied; nothing was written`。
+- D4 檢查點 1–3（由 D3c Recovery 起）：`verify-sources` `stale`、exit 1，NOTE 為新文字；`verify-evidence` 99／31／32；coverage 16 條已審查規則全部 proven；5 條 stale 規則的測試都通過；檢查點 2 登記 1 筆候選（REFUND-004 → REFUND-005）；交接單七段、簽章 commit、pre-commit 擋下改名（14 筆紀錄、relocate-evidence 那一行、新結尾），搬回後只剩 `?? records/`；三個 ③ 都成功。
+
+未驗證：macOS 實機（只做靜態檢查）。

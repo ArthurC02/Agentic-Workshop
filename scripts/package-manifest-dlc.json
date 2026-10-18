@@ -327,7 +327,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "tools/README.md",
-          "sha256": "b55731ee0fa346e012a8e274271f7e1a3127037ff26a2826dfd71e9b3ff3e2f7"
+          "sha256": "ffbb155f085ebbf73f5a4741a17b16e6cd7a6374e55c50278dfae36282d0f3ff"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -342,12 +342,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "tools/dmlib.py",
-          "sha256": "7ba8e51be6baf43802f2676a0daaf4d4905176a59d1e3e1abbf16777e83c85b7"
+          "sha256": "47a467baf29c88dd9a15b8174b4da3b81024df48646630bdb702601709178311"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "tools/doctor.py",
-          "sha256": "04ae88a7ecb6f21d63c568a60938d63be151799fd657411013c90429210f884a"
+          "sha256": "510f409fb905f2e1f0fec4706459cdf580851dd5cc0ba761189ab7332b13aa19"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
@@ -370,14 +370,14 @@
           "sha256": "101c3770d3ec297ca72f1b18954cb9df88273400a077def5a998dca2e21cdba9"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.1.0.zip",
-          "destination": "vendor/domain-memory-1.1.0.zip",
-          "sha256": "32e53e66a733ad5b9a7c660687cf7bb3ccbd2dc3a172712cf1ba7badd9f60320"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.1.1.zip",
+          "destination": "vendor/domain-memory-1.1.1.zip",
+          "sha256": "496c7926a8963c0f0794b83633e59de6eec201802a4f6f4113e94e01106f5716"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.1.0.zip.SHA256SUMS",
-          "destination": "vendor/domain-memory-1.1.0.zip.SHA256SUMS",
-          "sha256": "5d8c05d332ed608f5cc5ec64fca2e27a3ad292fe9c1aa65bbd662469d0040b01"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.1.1.zip.SHA256SUMS",
+          "destination": "vendor/domain-memory-1.1.1.zip.SHA256SUMS",
+          "sha256": "c631281b0f935d40ecd90654655cb44f6c0e1c875c5beda219fd13e8b45461cb"
         }
       ],
       "generated": {}
@@ -4286,7 +4286,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "a9a01ff5de079d7bc8fccd526f0a9a6604133fd40c6bd380eb0eb6dae1dcc183"
+          "sha256": "b34ec456b2c31e3c198e6036022b8f131ea616dd9aa0359a56c107162e9d8f2f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -8019,12 +8019,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
-          "sha256": "09af9b1711a3d9df13ba630903a166c77271075f1efdcd4d550c2186ee49f568"
+          "sha256": "6e74c7da3cddce2e0bc1083b5280638372e550f569a2a662125352d52170698a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "f60c1ec7dc2b5b0b964dff8b9cbabf48aca47a6a7ccafd837c925315eba55cc2"
+          "sha256": "1549746710f9aa65ecddb408851a777cdc6e76863663f5a374da2b3b759f599b"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -8034,7 +8034,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "a38db22278cb455b666d139259167ba877450bd01b22a700e49acf942a9050f2"
+          "sha256": "04f306014b134b4c277b8bb44a14715783299a80f85e90f72e8e89a532a178a8"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",

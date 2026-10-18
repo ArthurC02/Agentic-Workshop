@@ -1794,5 +1794,21 @@
   "verify_sources_d4": "stale, exit 1, NOTE discovery drifted (3 matching paths unlisted)",
   "compare_registry": "d2 recovery + D3a–D4 candidates vs fc9efe2: overall precision 0.90, recall 1.0, copied_matches 52, overall_independent precision 0.45",
   "registry_migration": "none (OKF unchanged; no signing, Maintainer key not used)"
+ },
+ "plugin_1_1_1_remeasure": {
+  "date": "2026-10-19",
+  "plugin": "domain-memory 1.1.1 (SkillHub accf3235f, exported with git archive); patch: run_tests skip, pre-commit refusal ending, verify-sources NOTE wording",
+  "vendor_zip_sha256": "496c7926a8963c0f0794b83633e59de6eec201802a4f6f4113e94e01106f5716",
+  "plugin_files": 94,
+  "sha_ok_line": "SHA OK 95 files",
+  "maintainer_checks": "uvx ruff@0.16.7 check . passed; run_tests.py --jobs 4: 40 modules ok, test_support skip, failed: none",
+  "compat_after": "1.1.1 vendored ZIP: 30 PASS, 0 CHANGED (no dmlib or QUOTED change; QUOTED 68)",
+  "rehearsal": "Windows, candidate 9508f433ffb1dfd7: opening CP2, D2 CP1-6, D4 CP1-3 all 成功",
+  "ship_package": "D2 CP6: completed [attest-signed-commit, finalize-proposal, apply-approved-updates], status applied, errors []; verify-audit 11 events; push 'Git governance is valid for 2 commits.'",
+  "verify_sources_d4": "stale, exit 1, NOTE: discovery drifted: 0 listed paths gone, 3 matching paths unlisted; 1 selected source changed inside; verify-evidence checks the citations; the selection is stale, so run refresh-sources, then confirm-sources",
+  "verify_evidence_d4": "99 current, 31 shifted, 32 stale; coverage reviewed 16, proven 16",
+  "pre_commit_demo": "D4 CP3: rename refused, 14 record lines, relocate-evidence hint, ends 'details: verify-evidence ... prints the full report, as this hook does when DOMAIN_MEMORY_HOOK_VERBOSE is set'; moved back, only ?? records/",
+  "prompt_changes": "none (D4 CP1 guard kept: NOTE still imperative)",
+  "registry_migration": "none (no signing, Maintainer key not used)"
  }
 }

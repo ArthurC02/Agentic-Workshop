@@ -1,11 +1,11 @@
 # domain-memory 觸及點與換版步驟
 
 > 讀者：DLC 維護者。時機：domain-memory 換版前。可見性：內部，不發學員。
-> 更新日期：2026-10-19。目前固定 1.1.0（SkillHub `8c7a8a47c`），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉。
+> 更新日期：2026-10-19。目前固定 1.1.1（SkillHub `accf3235f`），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉。
 
 ## 0. 現況
 
-| 項目 | 0.27.2（舊） | 0.33.0 起（現行 1.1.0） |
+| 項目 | 0.27.2（舊） | 0.33.0 起（現行 1.1.1） |
 |---|---|---|
 | Registry 版面 | `domain-memory/registry/<資產>.json`＋`manifest.json` | `registry/index.md`＋`registry/<資產>/index.md`＋每筆一個 `registry/<資產>/<id>.md`（YAML 開頭區塊＋內文＋`# Relations` 連結） |
 | 狀態 | `status`（decisions 用 `review_status`）：candidate／reviewed | 檔案裡 `status`：draft／stable／deprecated；**指令與 `export` 輸出仍是 candidate／reviewed** |
@@ -30,14 +30,15 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | `readiness`、`quality-gates` | — | Runbook 01；`CHECKPOINTS.md`；主持人指南 | 不受影響 |
 | `init-domain-memory` | `--output --source --exclude --storage-mode tracked --data-classification internal --review-mode local-draft-only --source-authority` | Runbook 10；`make_recovery.py` d1；`test_tools.py`；參考 README | 不受影響（產出 OKF） |
 | `discover-sources`、`confirm-sources` | `--confirmed-by` | Runbook 10；`make_recovery.py`；`test_tools.py` | 不受影響 |
-| `verify-sources`、`verify-evidence`、`coverage` | （dmlib 補 `--source-map`、`--policy`；`coverage` 另補 `--repo-root`） | Runbook 10／19／29–59／60；RECOVERY.md；參考 README | 1.1 已處理：`verify-sources` 多 `discovered_but_unlisted` 與 NOTE「discovery drifted … run refresh-sources」；D3 之後仍是 `stale`（exit 1），D4 檢查點 1 只讀不改，提示詞已說不要試著修好 0.61 已處理：0.53 起 `coverage` 多 `rules_by_context`，0.54 起每個 Context 的已審查規則依證明分 `proven`／`unproven`／`unknown`，0.58 起多 `rule_totals`（D4 檢查點 1 新教「模型在哪些 Context 說了算」）；沒有 `changes/` 時 stderr 印 NOTE 請加 `--changes-root`（D1 檢查點 5 提示詞註明正常） |
+| `verify-sources`、`verify-evidence`、`coverage` | （dmlib 補 `--source-map`、`--policy`；`coverage` 另補 `--repo-root`） | Runbook 10／19／29–59／60；RECOVERY.md；參考 README | 1.1 已處理：`verify-sources` 多 `discovered_but_unlisted` 與 NOTE「discovery drifted … run refresh-sources」（1.1.1 起寫成「the selection is stale, so run refresh-sources, then confirm-sources」）；D3 之後仍是 `stale`（exit 1），D4 檢查點 1 只讀不改，提示詞已說不要試著修好 0.61 已處理：0.53 起 `coverage` 多 `rules_by_context`，0.54 起每個 Context 的已審查規則依證明分 `proven`／`unproven`／`unknown`，0.58 起多 `rule_totals`（D4 檢查點 1 新教「模型在哪些 Context 說了算」）；沒有 `changes/` 時 stderr 印 NOTE 請加 `--changes-root`（D1 檢查點 5 提示詞註明正常） |
 | `cite` | `--path --start --end` | `make_record.py`、`fill_package.py` | 不受影響（仍回 `source_kind`，寫入時 Plugin 去掉衍生欄位） |
 | `upsert-candidate` | `--asset --record-file`（多個） | `make_record.py --upsert` | 不受影響 |
 | `resolve-terms`、`get-context`、`get-record`、`analyze-boundary` | `--query`；`--id`；`--asset --id`（`--changes-root` 可選）；`--source-context --target-context` | Runbook 10／20／30／40／50／60；`fill_package.py`（`get-record`）；tools README | 1.1 已處理：`analyze-boundary` 一次回報 `source_depends_on_target` 與 `target_depends_on_source`，`status` 是 `known`／`policy_only`／`no_registered_collaboration`，不用對調再查（D1 檢查點 6、D3 工作規則第 10 條） 0.52 已處理：`resolve-terms` 的 mention 不再有 `authoritative`（0.52），改為每筆一次並列 `fields`、`summary`；`get-record --changes-root` 多 `proven_by`（D2 檢查點 6、D4 檢查點 1） 0.61：0.53 起沒給 `--changes-root` 也讀 `domain-memory/changes`，候選規則多一行 NOTE（沒有測試證明它，正常）；`proven_by` 每筆多 `working_directory`；0.54 起重新引用、沒有測試的提案不會讓規則失去證明 |
 | `counterfactual` | `--file --find --replace --test-command --expect`（＋dmlib `--save`） | Runbook 20／30／40／50；`test_tools.py`；tools README；參考解答 `run_counterfactuals.py` | 1.1 已處理：拒絕執行（找不到字串、改壞前測試就沒過、無法啟動）也輸出 JSON，`verdict` 是 `error`、exit 3、原因在 `reason`（D3 工作規則第 11 條：error 的 cf-*.json 刪掉重跑） 0.52 已處理：0.34 起不經 shell、以 shlex 拆字，Windows 寫 `./.venv/Scripts/python.exe`（反斜線被吃掉，沒有 `./` 時 CreateProcess 找不到）；`inconclusive`（逾時、改壞後無法載入、失敗不符 `--expect`）；0.45 起 `failure_evidence`（原 `failing_evidence`）；D2 用 `--expect` 0.61 已處理：0.54 起多 `failing_tests`（抓到它的測試；D3 檢查點 4 回報、D3a 檢查點 5 取「守住它的測試」）；0.58 起聚焦測試 survived 時 reason 建議對整個測試套件重跑（D3 工作規則第 11 條：同一組字串、TEST 換成 tests，存成下一個編號；實測 D3b 的等價 mutant 在整套仍 survived）；0.59 起 `--find` 重複時列出行號 |
 | `init-change-package`、`validate-change-package` | `--output`；`--package-root` | `fill_package.py` | 不受影響 |
 | `submit-proposal`、`record-approval`、`verify-proposal`、`ship-package` | `--package-root`；`--role --reviewer --scope`；`ship-package --commit HEAD` | Runbook 20；`d2-signing-checklist.md`、`d2-role-cards.md`；`test_tools.py` | 1.1 已處理：1.0 刪除 `attest-signed-commit`、`finalize-proposal`、`apply-approved-updates`（exit 2），改用 `ship-package --commit <sha>` 一步做完（確認簽章 commit 有授權且帶著提案 → 寫 attestation → 定案 → 套用；回 `completed`、`status` `applied`、`errors`）；DLC 刪除 `write_scm_attestation.py`，D2 檢查點 5 只驗證簽章 commit，檢查點 6 由提案者跑 `ship-package` 0.52 已處理：0.51 起 `verify-proposal` 要求測試紀錄的 `evidence` 與 obligation 的 `check` 相同，`fill_package.py` 的 `check` 改為完整測試指令並以 shlex、不經 shell 執行 0.61：0.59 起 `submit-proposal` 拒絕引用已確認來源以外路徑的升級紀錄（原本到 `apply-approved-updates` 才拒絕）；自己做的 D1 與 D1 Recovery 的證據都在已確認來源內，沒有碰到；`validate`、`verify-git-governance` 對已核准未套用的提案印 NOTE，D2 檢查點 5 時提案是 `verified`、不會出現 |
-| `install-pre-commit-hook` | （dmlib 補 `--registry-root`、`--repo-root`） | Runbook 60（檢查點 3）；簡報 70-d4；主持指南 | 1.1 已處理：D4 檢查點 3 新概念，夥伴裝上後以 `git mv` 示範被擋下（每筆一行「… is not in this commit」，最後一行「… is renamed to … run relocate-evidence --from … --to …」），再搬回原位 |\n| `init-signing-key`、`amend-policy`、`install-git-hitl-hook`、`governance-readiness`、`verify-git-governance`、`verify-audit`、`scan-secrets` | `--principal --key-file --sign-every-commit`；`--field --value --reason --verifier`；`--commit` | Runbook 20／29–59／60／70；RECOVERY.md；`make_recovery.py`；參考 README；簡報 30-d2 | 不受影響 0.61 已處理：0.58 起 `verify-git-governance` 的訊息帶 commit 數（`Git governance is valid for 1 commit.`），pre-push hook 一次檢查整個 push、只印一行（自己做的 D2：`for 2 commits.`；D2 Recovery：`for 8 commits.`） |
+| `install-pre-commit-hook` | （dmlib 補 `--registry-root`、`--repo-root`） | Runbook 60（檢查點 3）；簡報 70-d4；主持指南 | 1.1 已處理：D4 檢查點 3 新概念，夥伴裝上後以 `git mv` 示範被擋下（每筆一行「… is not in this commit」，最後一行「… is renamed to … run relocate-evidence --from … --to …」），再搬回原位；1.1.1 起拒絕訊息結尾改為資訊句「details: verify-evidence … --staged … prints the full report, as this hook does when DOMAIN_MEMORY_HOOK_VERBOSE is set」，不再叫人帶變數重新 commit |
+| `init-signing-key`、`amend-policy`、`install-git-hitl-hook`、`governance-readiness`、`verify-git-governance`、`verify-audit`、`scan-secrets` | `--principal --key-file --sign-every-commit`；`--field --value --reason --verifier`；`--commit` | Runbook 20／29–59／60／70；RECOVERY.md；`make_recovery.py`；參考 README；簡報 30-d2 | 不受影響 0.61 已處理：0.58 起 `verify-git-governance` 的訊息帶 commit 數（`Git governance is valid for 1 commit.`），pre-push hook 一次檢查整個 push、只印一行（自己做的 D2：`for 2 commits.`；D2 Recovery：`for 8 commits.`） |
 | `validate` | `--require-reviewed` | 幾乎每一頁；簡報 20／30／40 | 不受影響 |
 | `export` | `--registry-root`（`--commit --repo-root` 可選） | Runbook 20-d2 檢查點 3；`d2-signing-checklist.md`；`dmlib.registry_documents()`；相容性檢查 | 已處理 |
 | `migrate-registry` | `--registry-root` | 只在維護時（參考 Registry、參考解答） | 已處理 |
@@ -61,7 +62,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 
 ## 3. 學員看到或 ③ 檢查的 Plugin 輸出
 
-全部列在 `check_dlc_plugin_compat.py` 的 `QUOTED`；檢查時在本次執行的輸出或 Plugin 原始碼裡找得到才算 PASS。1.1.0 全部找得到（68 個；1.0 起新增 `ship-package` 的 `completed`／`applied`、`analyze-boundary` 兩個方向的鍵、`brief` 的 Attention 與 lies outside every Context、規則 `aggregate` 的拒絕訊息、pre-commit hook 的安裝與改名提示）。
+全部列在 `check_dlc_plugin_compat.py` 的 `QUOTED`；檢查時在本次執行的輸出或 Plugin 原始碼裡找得到才算 PASS。1.1.0、1.1.1 全部找得到（68 個；1.0 起新增 `ship-package` 的 `completed`／`applied`、`analyze-boundary` 兩個方向的鍵、`brief` 的 Attention 與 lies outside every Context、規則 `aggregate` 的拒絕訊息、pre-commit hook 的安裝與改名提示）。
 
 | 字串 | 出處 | 標記 |
 |---|---|---|
@@ -90,9 +91,9 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | Recovery d1 | `facilitator/recovery/d1/`（`make_recovery.py d1` 以 Plugin 現場產生，未簽章、未 commit Registry） | OKF |
 | Recovery d2～d3c | `facilitator/recovery/d2…d3c/`（從 bundle tag 重產，`repo.bundle` 帶簽章歷史） | OKF；Registry commit 7 個 |
 | 參考解答 d3a～d3c 的 `domain-memory/` | `evaluation/reference-solutions/*/domain-memory/`（含 D3 候選；不是 Git repo） | OKF（各跑過一次 `migrate-registry`） |
-| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-1.1.0.zip(.SHA256SUMS)` | 94 個 Plugin 檔案（1.0 起含 `scripts/domain_registry/commands/`、`mcp_server.py`），`SHA OK 95 files` |
+| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-1.1.1.zip(.SHA256SUMS)` | 94 個 Plugin 檔案（1.0 起含 `scripts/domain_registry/commands/`、`mcp_server.py`），`SHA OK 95 files` |
 | 打包清單 | `scripts/package-manifest-dlc.json` | 由 `release_materials.py` 自動 `--pin` |
-| 驗證證據 | `evaluation/dlc-validation-evidence.json` 的 `plugin_0_33_0_remeasure`、`plugin_0_52_0_remeasure`、`plugin_0_61_0_remeasure` | 已記 |
+| 驗證證據 | `evaluation/dlc-validation-evidence.json` 的 `plugin_0_33_0_remeasure`、`plugin_0_52_0_remeasure`、`plugin_0_61_0_remeasure`、`plugin_1_1_0_remeasure`、`plugin_1_1_1_remeasure` | 已記 |
 
 版本字串（換版時以舊版本號全文搜尋）：`07-dlc-ddd/README.md`、`participant/tools/{dmlib.py,doctor.py,README.md}`、`facilitator/facilitator-guide.md`、`evaluation/{observation-guide.md,dlc-validation-evidence.json,reference-registry/README.md}`、`materials-dlc/README.md`、Runbook `01-environment.md`、開場投影片 `10-opening.html`、`docs/instructions/11_DDD_DLC產製指令書.md`、`scripts/{build_delivery_dlc.py,test_build_delivery_dlc.py,check_dlc_plugin_compat.py,package-manifest-dlc.json}`。`doctor.py` 的 `PLUGIN_VERSION` 會把其他版本判為 `[!!]`。主持指南常見問題第 19 條的「Plugin 0.27.2 起」是行為的起始版本，不要改。
 
@@ -112,6 +113,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | 0.61.0（封裝 ZIP，修改後，2026-10-17） | 29 PASS、0 CHANGED（`QUOTED` 57 個；push 檢查改成「恰好一行 `… for 7 commits.`」） |
 | 1.0.0（`8ccb13ec0` 匯出，修改前，2026-10-18） | 24 PASS、5 CHANGED：dmlib 三組集合（加 `brief`、`dependents`、`harvest`、`install-pre-commit-hook`、`mcp-serve`、`refresh-listing`、`ship-package`，刪 `apply-approved-updates`、`attest-signed-commit`、`finalize-proposal`）；學員指令 `finalize-proposal`、`apply-approved-updates` 不存在；tools 自檢失敗 |
 | 1.1.0（`8c7a8a47c` 封裝 ZIP，修改後，2026-10-19） | 30 PASS、0 CHANGED（dmlib 加 `discard-harvest`；`QUOTED` 68 個；新增 pre-commit hook 擋下改名的檢查） |
+| 1.1.1（`accf3235f` 封裝 ZIP，2026-10-19） | 30 PASS、0 CHANGED（不用改 dmlib 與 `QUOTED`；只改 hook 拒絕訊息結尾與 NOTE 文字，學員頁沒有引用） |
 
 ## 6. 下次換版的步驟
 
