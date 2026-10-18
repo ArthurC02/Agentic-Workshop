@@ -36,7 +36,8 @@ $ErrorActionPreference = 'Stop'
 $orig = git rev-parse --show-toplevel; if ($LASTEXITCODE) { throw "not in the original Repo" }
 Set-Location (Split-Path $orig)
 if (Test-Path .\resume-d3c) { throw "resume-d3c already exists: delete ..\recovery-d3c and resume-d3c, then rerun" }
-Expand-Archive -Force -LiteralPath "$HOME\Downloads\recovery-dlc-d3c.zip" -DestinationPath ..\recovery-d3c
+$dl = (Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').'{374DE290-123F-4565-9164-39C4925E467B}'; if (-not $dl) { $dl = "$HOME\Downloads" }
+Expand-Archive -Force -LiteralPath "$dl\recovery-dlc-d3c.zip" -DestinationPath ..\recovery-d3c
 $b = (Get-ChildItem ..\recovery-d3c -Recurse -Filter repo.bundle | Select-Object -First 1).FullName; if (-not $b) { throw "repo.bundle not found" }; $rec = Split-Path $b
 Copy-Item -Recurse "$rec\smart-ticket-dlc-base" .\resume-d3c
 foreach ($d in 'notes', 'docs\handoffs') { if (Test-Path "$orig\$d") { Copy-Item -Recurse "$orig\$d" ".\resume-d3c\$d" } }
@@ -46,7 +47,8 @@ orig=$(git rev-parse --show-toplevel)
 cd "$orig/.."
 [ ! -e ./resume-d3c ] || { echo "resume-d3c already exists: delete ../recovery-d3c and resume-d3c, then rerun" >&2; exit 1; }
 mkdir -p ../recovery-d3c
-unzip -o -q ~/Downloads/recovery-dlc-d3c.zip -d ../recovery-d3c
+dl=$(cygpath -u "$(powershell.exe -NoProfile -Command "(Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').'{374DE290-123F-4565-9164-39C4925E467B}'" 2>/dev/null | tr -d '\r')" 2>/dev/null) || dl=~/Downloads
+unzip -o -q "$dl/recovery-dlc-d3c.zip" -d ../recovery-d3c
 rec=$(find ../recovery-d3c -name repo.bundle -exec dirname {} \; | head -1)
 [ -n "$rec" ] || { echo "repo.bundle not found" >&2; exit 1; }
 cp -r "$rec/smart-ticket-dlc-base" ./resume-d3c
