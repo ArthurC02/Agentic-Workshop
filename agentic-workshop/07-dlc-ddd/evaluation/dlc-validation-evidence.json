@@ -1899,5 +1899,15 @@
   "d4_cp1": "verify-sources stale exit 1 (changed docs/adr, src, tests; content_changed docs/requirements); verify-evidence 99/31/32 exit 1; verify-audit valid 66 events; coverage reviewed 16, proven 16; stale rules GROUP-001, GROUP-PAY-002, MEMBER-004, ORDER-002, REFUND-004; probe: 'Domain Memory at domain-memory: stale. 3 sources moved (docs/adr, src, tests); run refresh-sources, then have a developer run confirm-sources.' exit 1",
   "prompt_changes": "none (version strings only)",
   "registry_migration": "none (no signing, Maintainer key not used)"
+ },
+ "plugin_1_2_18_remeasure": {
+  "date": "2026-10-19",
+  "plugin": "domain-memory 1.2.18 (SkillHub f76ca1e54, git archive); 1.2.9-1.2.18: git timeout is a deadline killing the process tree (Windows job object), DOMAIN_MEMORY_GIT_TIMEOUT override, timeout refusal says when rerun is safe, three stale-base reasons, probe drift/inside-change clauses, missing-Registry refusals say check --registry-root and suggest the real path, new runtime files git.py, search.py, locate.py",
+  "files": "97 plugin files; learners see SHA OK 98 files",
+  "maintainer_checks": "ruff 0.16.7 clean; run_tests.py --jobs 4: 42 modules, failed none",
+  "compat": "32 PASS, 0 CHANGED; QUOTED 79",
+  "dlc_changes": "version strings and SHA count; dmlib.env defaults DOMAIN_MEMORY_GIT_TIMEOUT=60 when unset (test); dmlib --save writes no file when the command printed nothing (test); facilitator guide FAQ 19 names the two stale reasons, FAQ 20 timeout; D2 CP4 3 accepts any revision",
+  "rehearsal": "Windows: opening CP1-4 SHA OK 98 files; D1 Recovery 162/0/0; D2 CP1-6 17 obligations, applied, 11 events, push for 2 commits; stale base reason 'does not hold the Registry', rebase revision 2, re-approve, applied, push for 3 commits; mistyped --registry-root on validate/probe/confirm-sources suggests domain-memory and creates nothing; D3c Recovery 99/31/32, 66 events; D4 CP1 coverage 16 reviewed 16 proven; retro CP2 precision 1.0, copied 52, independent 5/5; DOMAIN_MEMORY_GIT_TIMEOUT=abc refused; 0.001 times out with 'nothing was written, so it is safe to run again'",
+  "unverified": "macOS real machine; pre-push hook still uses the plugin's 15 s default"
  }
 }

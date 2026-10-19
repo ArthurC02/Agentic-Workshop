@@ -569,3 +569,23 @@ DLC 碰到的地方（逐一 grep 過）：
 - `init-domain-memory` 的旗標組合大多在 CLI 先擋下、什麼都不建；只有通過 CLI 檢查、卻被政策驗證拒絕的情況（例如空白的 `--exclude`）才走到 1.2.7 的清除路徑。
 
 未驗證：macOS 實機（這次學員頁只改版本字串，沒有 macOS 專屬指令改動）；git 逾時本身（沒有在教室等級的慢機器上重現）。
+
+## domain-memory 1.2.18（patch）（2026-10-19）
+
+由 1.2.8 換成 1.2.18（SkillHub `f76ca1e54`，以 `git archive` 匯出），使用者指定為工作坊前的穩定版；維護者同意工作坊結束前只通知學員路徑的缺陷。維護者的檢查在匯出上重跑：ruff 全部通過；`run_tests.py --jobs 4` 42 個模組，failed: none。指令仍 63 個；新增執行期檔案 `git.py`、`search.py`、`locate.py`（維護者摘要說 1.2.14 檔數不變，實為多了 `locate.py`），Plugin 97 個檔案，學員核對改印 `SHA OK 98 files`。不需遷移，沒有用到 Maintainer 金鑰。
+
+DLC 的改動：
+- 版本字串與 `SHA OK 98 files`。
+- `dmlib.env()` 在學員沒設定時給 `DOMAIN_MEMORY_GIT_TIMEOUT=60`（教室機器的防毒或 OneDrive 會拖慢 `git verify-commit`、`ssh-keygen`）；已設定的值優先；有測試。push 時的 pre-push hook 不經過 dmlib，仍是 15 秒，主持指南常見問題第 20 條寫明。
+- `dmlib --save`：指令沒有輸出（被拒絕）時不再留下空檔、也不再說「輸出已存到」；有測試。
+- 主持指南常見問題第 19 條列出學員 D2 會遇到的兩種過期原因；第 20 條說明逾時訊息與調整方式。
+- D2 檢查點 4 的 ③ 接受任何 revision（重新定基後是 revision 2）。
+- 誤打 `--registry-root`：課程沒有任何提示叫 Agent 在找不到時建立 Domain Memory，只有 D1 檢查點 2 會 init，dmlib 一律補 `--registry-root domain-memory`；1.2.14 起拒絕訊息改成先檢查參數並建議正確路徑，演練中沒有建出第二個 Registry。
+
+相容性檢查：32 PASS、0 CHANGED；`QUOTED` 73 → 79（兩種過期原因、逾時訊息的片段、`must be a positive number of seconds`）。
+
+演練（Windows，兩個隔離沙箱，候選包 `62ca9530171475fd`，結束後刪除）：開場檢查點 1–4（`SHA OK 98 files`、1.2.18）；D1 Recovery 162／0／0；D2 檢查點 1–6（17 個 obligation、applied、11 個事件、push `for 2 commits.`）；過期情境得到 `commit … does not hold the Registry at domain-memory/registry …`，`rebase-proposal` 後 revision 2、重新核准與簽章、applied、push `for 3 commits.`；誤打 `domain-memry` 時 validate、probe、confirm-sources 都建議 `domain-memory`，沒有建立任何資料夾；D3c Recovery 99／31／32、66 個事件；D4 檢查點 1 coverage 已審查 16、proven 16；回顧檢查點 2 precision 1.0、copied 52、independent 5／5；`DOMAIN_MEMORY_GIT_TIMEOUT=abc` 被拒，`0.001` 逾時並說 `nothing was written, so it is safe to run again`。
+
+回報給維護者：檔數；`git ls-files '*source-map.json'` 也會比對到 `foo-source-map.json`；validate 的建議是絕對路徑、probe 與 confirm-sources 是相對路徑；pre-push hook 無法套用外層預設逾時。
+
+未驗證：macOS 實機。

@@ -26,7 +26,7 @@
 ## 候選包（dist/dlc-candidate）
 
 ```text
-py -3.13 -X utf8 scripts/vendor_dlc_plugin.py --source <git archive 匯出的 Plugin 資料夾>  # 重建 vendor/domain-memory-1.2.8.zip 與 .SHA256SUMS（--check 只比對）
+py -3.13 -X utf8 scripts/vendor_dlc_plugin.py --source <git archive 匯出的 Plugin 資料夾>  # 重建 vendor/domain-memory-1.2.18.zip 與 .SHA256SUMS（--check 只比對）
 py -3.13 -X utf8 scripts/build_delivery_dlc.py --pin     # 依 manifest 的 sources 重新列舉 files[]；審查 diff
 py -3.13 -X utf8 scripts/build_delivery_dlc.py           # 建 dist/dlc-candidate/<sha16>/，缺來源即失敗
 py -3.13 -X utf8 scripts/build_delivery_dlc.py --verify dist/dlc-candidate/<sha16>

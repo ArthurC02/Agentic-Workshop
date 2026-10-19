@@ -21,10 +21,10 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.2.8")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-1.2.18")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 1.2.8 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 1.2.18 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
     "migrate-registry", "validate", "export", "coverage", "lookup", "resolve-terms", "get-context", "get-record",
     "dependents", "brief", "analyze-boundary", "upsert-candidate", "retract-candidate", "demote-local-reviews",
@@ -54,7 +54,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.2.8.zip 解壓到 vendor/domain-memory/，"
+        "找不到 domain-memory Plugin。請把 vendor/domain-memory-1.2.18.zip 解壓到 vendor/domain-memory/，"
         "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 
@@ -99,7 +99,8 @@ def key_dir() -> Path:
 
 
 def env() -> dict[str, str]:
-    return {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+    # 教室的 Windows 有防毒或 OneDrive 時，git verify-commit／ssh-keygen 可能超過 Plugin 預設的 15 秒；使用者自己設的值優先。
+    return {"DOMAIN_MEMORY_GIT_TIMEOUT": "60", **os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
 
 
 def command_line(args: list[str], plugin: str | None = None) -> list[str]:
@@ -165,9 +166,12 @@ def main(argv: list[str]) -> int:
     if save is None:
         return subprocess.run(cmd, env=env()).returncode
     done = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=env())
+    sys.stderr.write(done.stderr)  # 1.0 起 Plugin 的 ERROR 與 NOTE 都印在 stderr，stdout 只有輸出本身
+    if not done.stdout.strip():  # 被拒絕時沒有輸出：不留空檔，免得下一步把它當成結果
+        print(f"[dm] 沒有輸出，未存檔 {save}（exit {done.returncode}）", file=sys.stderr)
+        return done.returncode
     Path(save).parent.mkdir(parents=True, exist_ok=True)
     Path(save).write_text(done.stdout, encoding="utf-8")
-    sys.stderr.write(done.stderr)  # 1.0 起 Plugin 的 ERROR 與 NOTE 都印在 stderr，stdout 只有輸出本身
     print(f"[dm] 輸出已存到 {save}（exit {done.returncode}）", file=sys.stderr)
     return done.returncode
 

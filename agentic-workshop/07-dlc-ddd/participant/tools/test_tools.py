@@ -12,6 +12,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
@@ -79,6 +80,25 @@ class UnitTests(unittest.TestCase):
             self.assertEqual(done.returncode, 0, done.stderr)
             self.assertTrue(done.stdout.startswith("python3.13 -X utf8 "), done.stdout)
             self.assertTrue(done.stdout.strip().endswith("dmlib.py readiness"), done.stdout)
+
+    def test_env_defaults_git_timeout_without_overriding(self):
+        saved = os.environ.pop("DOMAIN_MEMORY_GIT_TIMEOUT", None)
+        try:
+            self.assertEqual(dmlib.env()["DOMAIN_MEMORY_GIT_TIMEOUT"], "60")
+            os.environ["DOMAIN_MEMORY_GIT_TIMEOUT"] = "5"
+            self.assertEqual(dmlib.env()["DOMAIN_MEMORY_GIT_TIMEOUT"], "5")
+        finally:
+            os.environ.pop("DOMAIN_MEMORY_GIT_TIMEOUT", None) if saved is None else os.environ.__setitem__("DOMAIN_MEMORY_GIT_TIMEOUT", saved)
+
+    def test_save_skips_empty_output(self):
+        # A refused command prints only to stderr; --save must not leave an empty file behind.
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "out.json"
+            empty = subprocess.CompletedProcess([], 1, stdout="", stderr="ERROR: refused")
+            with mock.patch.object(dmlib, "command_line", return_value=["py"] * 5):
+                with mock.patch.object(dmlib.subprocess, "run", return_value=empty):
+                    self.assertEqual(dmlib.main(["validate", "--save", str(out)]), 1)
+            self.assertFalse(out.exists())
 
     def test_read_json_accepts_powershell_utf16(self):
         with tempfile.TemporaryDirectory() as tmp:

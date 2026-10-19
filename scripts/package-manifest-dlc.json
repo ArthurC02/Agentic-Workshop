@@ -327,7 +327,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/README.md",
           "destination": "tools/README.md",
-          "sha256": "dfa7f8f4e08c656531652505dd4f2d8c1126326acd91306f75506e9aa28c9ab9"
+          "sha256": "d86e6308a4705b5bb918752efebde61d43df778e16331279dd195aa44fcdbe1e"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dm.ps1",
@@ -342,12 +342,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/dmlib.py",
           "destination": "tools/dmlib.py",
-          "sha256": "2a7974e62b189467c56af79625046688b083d0a1c18af5bf910923daf4c1a938"
+          "sha256": "50f171da744c07ddfabdac4d370fff84a219cd2a9f9b0cf2938f0c41af5f2fde"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/doctor.py",
           "destination": "tools/doctor.py",
-          "sha256": "de2dc7a4842692084a78239507c505f88b0f5e584304e55fc9c84534b5a5c185"
+          "sha256": "bc53e2fa58652f6b6b5bd1a6b5380a9addd8e6d74a4ad5d27205cfe4b32ddca0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/fill_package.py",
@@ -367,17 +367,17 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/tools/test_tools.py",
           "destination": "tools/test_tools.py",
-          "sha256": "c210848f4f8a99384f4ebc28238d4c6eacad0f8f164396ed64582695ed07b3fb"
+          "sha256": "8133a757262ea94f42f67cb0ad70ed02e5dd6052b171447232d1c9e13633b38e"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.2.8.zip",
-          "destination": "vendor/domain-memory-1.2.8.zip",
-          "sha256": "6544504b440db8348964288ea5b542c2e2a2c5520a36182de195850b74397b58"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.2.18.zip",
+          "destination": "vendor/domain-memory-1.2.18.zip",
+          "sha256": "202e88775c02a97f523207c20b8f5b9aa57dc11a052fad9e38fbec6ff746deef"
         },
         {
-          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.2.8.zip.SHA256SUMS",
-          "destination": "vendor/domain-memory-1.2.8.zip.SHA256SUMS",
-          "sha256": "9918c919f57662b13af55dc8a5c8af444a50a58ae0ae3317d5ad7f6d909f949b"
+          "source": "agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-1.2.18.zip.SHA256SUMS",
+          "destination": "vendor/domain-memory-1.2.18.zip.SHA256SUMS",
+          "sha256": "8fa17e4a9b0e61f1455505f30411be9bdaae5d99e580920e4748193a1aaf2db9"
         }
       ],
       "generated": {}
@@ -4286,7 +4286,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "a515dccfad423dfacc7705514ab909f25223932c65960c4b48cf6c40c3ee1848"
+          "sha256": "181bc116ab4d5b6b6938fb666c711d7e772c018ad0bbd9fa907a92aa2a495736"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -8019,12 +8019,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/dlc-validation-evidence.json",
-          "sha256": "00e51fb61e2a0a17a7bdb2e2b156b1fbe07717657a10ac342674a6fb0f9375a2"
+          "sha256": "b19bc4d2bc9f50337289be0bd55c4ba4c77b884e19481646628fd438e23ee3c5"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/observation-guide.md",
-          "sha256": "f88269df271e4df22d2453a2f16e6c7917b4cd572c92dc276ec5ca229ae10c0d"
+          "sha256": "cda66617c107fa043d1baa08bb3cec538c8a68de5533fae9282e97c6855b1144"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/.gitattributes",
@@ -8034,7 +8034,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
           "destination": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/README.md",
-          "sha256": "bd0a8ba0bddebff464732ea1dfba428955ab4574744ab0d09f57de5fc47d27b3"
+          "sha256": "42299e8832b9e28db5669ff1d3b73575cf1cc44bc8e38fa2b4cd31fa3909c5e0"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/evaluation/reference-registry/counterfactual/cf-BOOKING-002.json",
