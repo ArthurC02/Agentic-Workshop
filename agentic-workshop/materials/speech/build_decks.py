@@ -43,8 +43,18 @@ def build_stage(stage, check=False):
             handout.append('```text\n' + slide['code'] + '\n```')
         if slide.get('prompt'):
             handout.extend(['### 交給 Agent 的指令', slide['prompt']])
+        handout.extend(slide.get('explain', []))  # handout-only depth: why it matters, limits, how to apply
+        if slide.get('read'):
+            handout.append('📖 延伸閱讀：' + '；'.join(slide['read']))
         handout.append('**人工確認**：' + slide['check'])
     handout.append('## 完成條件\n' + meta['handout_done'])
+    reading = {}  # 〈title〉 -> first full entry, from 📖 cards and `read`, in slide order
+    for slide in slides:
+        cards = [part for head, body in slide.get('cards', []) if head == '📖 延伸閱讀' for part in body.split('；')]
+        for entry in cards + slide.get('read', []):
+            reading.setdefault(entry.partition('〉')[0], entry)
+    if reading:
+        handout.append('## 延伸閱讀\n' + '\n'.join('- ' + entry for entry in reading.values()))
     handout_text = '\n\n'.join(handout) + '\n'
     downloads = [{'label': d['label'], 'name': d['name'],
                   'text': (stage / d['file']).read_text(encoding='utf-8')} for d in meta.get('downloads', [])]

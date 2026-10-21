@@ -71,7 +71,7 @@ Speech notes cite these after checking them in `docs/research/speech-agentic-sou
 Checked in `docs/research/speech-dlc-ddd-sources.md`. DDD Europe 2026 titles are session abstracts only (no results); cite them as such.
 | Topic | Cite (exact title) | Retired titles (do not use) |
 |---|---|---|
-| Language, Bounded Context, Context Map | Martin Fowler〈UbiquitousLanguage〉 (2006), 〈BoundedContext〉 (2014); DDD Crew〈The Bounded Context Canvas〉, 〈Context Mapping〉 | |
+| Language, Bounded Context, Context Map | Martin Fowler〈UbiquitousLanguage〉 (2006), 〈BoundedContext〉 (2014); Microsoft Azure Architecture Center〈Use Domain Analysis to Model Microservices〉; DDD Crew〈The Bounded Context Canvas〉, 〈Context Mapping〉 | |
 | Aggregates, events, ports | Vaughn Vernon〈Effective Aggregate Design, Part I〉 (2011); Martin Fowler〈DDD_Aggregate〉 (2013); Microsoft Azure Architecture Center〈Use Tactical DDD to Design Microservices〉, 〈Anti-Corruption Layer Pattern〉; Alberto Brandolini〈Introducing Event Storming〉 (2013); DDD Crew〈Aggregate Design Canvas〉; Alistair Cockburn〈Hexagonal Architecture〉 (2005); domainstorytelling.org〈Domain Storytelling Quick Start Guide〉 | |
 | Decision records and review | AWS Prescriptive Guidance〈Architectural decision record process〉; 〈About MADR〉 (MADR 4.0, 2024) | |
 | Boundaries from history, refactoring | Adam Tornhill《Your Code as a Crime Scene》 (2nd ed., 2024), 《Software Design X-Rays》 (2018); CodeScene 文件〈Change Coupling: Visualize Logical Dependencies〉; Martin Fowler〈Definition Of Refactoring〉 (2004) | |

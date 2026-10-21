@@ -3,9 +3,11 @@
 Rules (see .claude/skills/course-authoring/references.md):
 - every ```callout whose title starts with 技巧／新概念 contains a 📖 line;
 - every 〈title〉 in a 📖 line appears in references.md, and no retired title is used;
-- a page introduces at most MAX_NEW knowledge points.
+- a page introduces at most MAX_NEW knowledge points;
+- every speech slide's handout reading list (`read`) cites verified titles only.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_references.py
 """
+import json
 import re
 import sys
 import zipfile
@@ -104,6 +106,15 @@ def problems() -> list[str]:
                 if t in sections or t in allowed or ("本課程" in source and t in course):
                     continue
                 out.append(f"{where}: glossary term 「{cells[0]}」 cites unverified 〈{t}〉")
+    for deck in sorted((ROOT / "agentic-workshop").glob("materials*/speech/*/src/slides.json")):
+        where = deck.relative_to(ROOT).as_posix()
+        for slide in json.loads(deck.read_text(encoding="utf-8")):
+            for entry in slide.get("read", []):  # handout reading list: verified titles only
+                titles = TITLE.findall(entry)
+                if not titles:
+                    out.append(f"{where}: {slide['id']} reading entry has no 〈title〉: {entry}")
+                out += [f"{where}: {slide['id']} reads {'retired' if t in retired else 'unverified'} 〈{t}〉"
+                        for t in titles if t in retired or t not in allowed]
     return out
 
 
