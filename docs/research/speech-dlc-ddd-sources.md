@@ -8,7 +8,7 @@
 
 | 類別 | 數量 |
 |---|---|
-| 已查證來源（原頁打開並核對引文） | 57（S53–S60 於 2026-10-17 補查，見第 9 節） |
+| 已查證來源（原頁打開並核對引文） | 63（S53–S60 於 2026-10-17 補查，見第 9 節；S61–S66 於 2026-10-21 補查，見第 10 節） |
 | 部分查證（頁面存在，但關鍵數字或原文只見於二手來源） | 3（S43 的「900 萬行」、S48 的 FT 原文、S51 的 GitHub 原始檔） |
 | 未查證、不得引用的說法 | 8（見第 6 節） |
 
@@ -346,3 +346,29 @@
 | 04 `readable-model` | 每個概念一份 Markdown、關係寫成連結，人和 Agent 讀同一份 | S60：OKF 是「a directory of markdown files with YAML frontmatter」；「If you can `cat` a file, you can read OKF.」 |
 
 不要說：Tornhill 或 CodeScene「證明」一起變更就是 Bounded Context（原文只說可對照架構原則、找邏輯依賴）；MADR 規定一定要列決策者（範本註明這些欄位是選填）。
+
+## 10. 2026-10-21 補充：2026-08 至 10 月的實務報告
+
+用途：四場講解的講者備註補進近期的實務經驗與研究。2026-10-21 由研究代理以 WebFetch 打開原頁，再由編修者對下列每一筆重新打開原頁核對引文、日期與數字；引文每段不超過 25 個英文字。數字一律是作者或公司自己量的，不當成本課程的結果。
+
+| ID | 標題 | 作者／發布者 | 日期 | 網址 | 狀態 |
+|---|---|---|---|---|---|
+| S61 | When Spec-Driven Development Pays off | Nitin Garg／InfoQ | 2026-09-10 | https://www.infoq.com/articles/when-spec-driven-development-pays-off/ | ✅ |
+| S62 | TDD inside the agent loop - theater or actual value? | Birgitta Böckeler／martinfowler.com | 2026-08（系列索引的日期；文章頁沒有日期） | https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html | ✅ |
+| S63 | Towards Automated Domain Model Extraction from Source Code using Heuristics and Open-Source LLMs | Mancas、Ammam、Ali、Delcourt、Sahraoui／MODELS 2026（arXiv 2608.12228） | 2026-08-12 | https://arxiv.org/abs/2608.12228 | ✅ |
+| S64 | Redesigning source control at Anthropic | Anthropic | 2026-10-13（10-15 更新） | https://www.anthropic.com/research/redesigning-source-control | ✅ |
+| S65 | An Accidental Blackboard | Giles Edwards-Alexander／martinfowler.com | 2026-09-02 | https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html | ✅ |
+| S66 | Domain-Driven Design matters more when AI writes your code | Miłosz Smółka／Three Dots Labs | 2026-08-20 | https://threedots.tech/post/ddd-and-ai-coding/ | ✅（個人經驗，無數據） |
+
+| 場次與頁 | 用法 | 原文與數字 |
+|---|---|---|
+| 01 `language` | Agent 照名稱找程式、會想合併相似的實體 | S66：「Agents have access to your whole repository, and they'll look for the names you give them.」「They may naively try to unify similar entities」 |
+| 02 `separate` | 量變大，人仍審每一筆變更，改看意圖 | S64：「Our team members still review every change request for the system」；「the role of the engineers was to tell Claude "no."」合併數量是公司數字，不引用。 |
+| 02 `review` | 已核准的基準讓審查可追溯，不保證抓得更多 | S61：「automation flags divergence, while a named human decides what is correct」；recall 0.525 對 0.518（p=0.69），81% 發現指到具名條文（無基準 0%），約 48 對 27 分鐘；作者稱結果是方向性的。 |
+| 03 `tests-guard` | 紅燈要紅在對的理由上；用變異測試監看 | S62：「Watching a test go red is only proof of anything if someone is checking why it went red.」樣本很小，不引用數字。 |
+| 04 `external-memory` | 寫在 Repo 的計畫檔成了 Agent 之間的共用黑板 | S65：10 位工程師、四天；「We realised that the agents were using the plans to coordinate.」 |
+| 04 `eval` | 擷取領域模型對照人整理的參考模型；參考模型也不是唯一正解 | S63：類別 precision 0.84、recall 0.97（10 個 Java 專案、本機 LLaMA3.1-70B，作者自量）；「The reference models therefore represent one plausible conceptualization rather than a unique ground truth.」 |
+
+查過但不採用：Naresh Jain〈Are Harnesses Worth the Cost?〉（martinfowler.com，2026-10-13；作者是所用工具的創辦人，模型名稱無法查證）；Patrick Debois〈Context is the New Code〉（InfoQ，2026-09-30）與 Susan Chang〈Building Reusable Evaluation Frameworks for Agentic AI Products〉（InfoQ，2026-10-05）只有經驗法則、和既有來源重複；InfoQ〈Comprehension at AI Speed〉（2026-07-14）轉引未查證的 METR 與銀行案例數字。Thoughtworks Technology Radar 第 35 期在 2026-10-21 尚未發布，第 34 期仍是最新、沒有 DDD 條目。
+
+不要說：「有了已審查的模型，審查者會抓到更多錯」（S61 的結果相反）；「讓 Agent 先寫失敗的測試就安全」（S62：要有人確認失敗的原因）。

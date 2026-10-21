@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket DDD DLC 主持簡報</title>
-<!-- 主持人專用，不發給學員。build 15a1f01023099d0f inputs-sha256 15a1f01023099d0fd0abefb18fd60f5d64da75fffd83c05ce52d3f0274027d63 -->
+<!-- 主持人專用，不發給學員。build 9eada1097ae30376 inputs-sha256 9eada1097ae30376791ad63e2b025561e985ddf65d22ba739eb0979c538a5ac3 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -2030,8 +2030,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>看</b>：ship-package 的 completed 有三步、status 是 applied；Agent 回報 Registry is valid.（帶 --require-reviewed）與 verify-audit valid；push 由夥伴的 Agent 執行、沒有用 --no-verify 繞過 hook；是否把候選與 reviewed 混為一談。</p>
     <p><b>介入訊號</b>：ship-package 的 errors 點名 attest-signed-commit → HEAD 不是檢查點 4 的簽章 commit，或那個 commit 沒帶著審查包；不要重做 commit，找主持人。<code>validate --require-reviewed</code> 回一串「not reviewed」→ cp-d2.json 的 promote 少列了資產（用過 D1 Recovery 的組常漏 aggregates、interactions、decisions），請學員找主持人或改用 Recovery；第 60 分仍未完成 → 休息時私下提供 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人一起聊兩分鐘，再記「D2 決定」；挑第 2 題（哪一步只是照流程做完、哪一步真的擋得住錯）請 1–2 組分享（約 1 分鐘），回顧會再用到。</p>
-    <p><b>加深一層</b>：已審查事實帶 <code>verified</code>（by: human:maintainer@example.com、at: 核准時間），就像 ADR 的狀態寫 Accepted 並列出決策者；核准它的提案記在稽核紀錄，不在紀錄本身。Agent 用 get-record 取一條規則回報這兩個值。</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>規則有多可信，看證明它的測試</b>，花 30 秒講：get-record 加 --changes-root 會多一個 proven_by，列出審查包裡證明這條規則的 obligation 與 check。核准只說明有人同意；測試被刪、被放寬，這條規則就只剩「有人核准過」。D4 檢查點 1 會再跑一次這些測試。</p>
+    <p><b>加深一層（已審查事實）</b>：花 30 秒講兩個欄位。<code>verified</code>（by: human:maintainer@example.com、at: 核准時間）就像 ADR 的狀態寫 Accepted 並列出決策者，核准它的提案記在稽核紀錄；get-record 加 --changes-root 多一個 <code>proven_by</code>，列出證明這條規則的 obligation 與 check。核准只說明有人同意；測試被刪、被放寬，規則就只剩「有人核准過」。D4 檢查點 1 會再跑一次這些測試。</p>
   </aside>
 </section>
 
@@ -2190,8 +2189,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（19:00／第 89 分）</b>：「第 89 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3a-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
-    <p><b>加深一層（不變量）</b>：候選清單把同一個測試守住的規則排在一起。這幾條通常是同一個不變量的不同面向，該同屬一個 Context；分在兩個 Context 就問「那個測試要歸誰？」。之後送審時這個測試只記一次，其他規則列在 also_covers。</p>
-    <p><b>重構不是模型變更</b>：Agent 登記前逐項問名詞、負責的 Context、不變量或規則、邊界、事件或對外約定有沒有變；只搬移程式的部分不登記。</p>
+    <p><b>加深一層（不變量）</b>：候選清單把同一個測試守住的規則排在一起。這幾條通常是同一個不變量的不同面向，該同屬一個 Context；分在兩個 Context 就問「那個測試要歸誰？」。「重構不是模型變更」留到 D3b 檢查點 5 才講，這裡不提。</p>
   </aside>
 </section>
 
@@ -2785,7 +2783,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>驗收（看紀錄，不看表單填多少）</b>：<code>notes/d4.md</code> 有驗證結果與更新清單；<code>docs/handoffs/d4-next-agent.md</code> 七段齊全、Agent 的 id 核對清單全部查得到，已 commit。</p>
     <p><b>角色</b>：三個檢查點的提示詞都貼給提案者的 Agent；最後的 commit 由夥伴在自己的對話貼第二段。</p>
-    <p><b>時間</b>：D4 實際要 12–15 分鐘；第 165 分還沒完成就收在最低完成線：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」。</p>
+    <p><b>時間</b>：D4 實際要 11–13 分鐘；第 165 分還沒完成就收在最低完成線：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」。</p>
     <p><b>Recovery</b>：第 150 分決定改用 D3c Recovery 的組，揭曉後立即私下提供 <code data-code="dlc-rec-d3c"></code>（不等第 155 分）；切換要 5–7 分鐘，這些組 D4 只做最低完成線。</p>
   </aside>
 </section>
@@ -2804,7 +2802,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 改了程式，模型引用的原文可能只是移動，也可能內容變了。只是移動的不算問題；內容變了，代表模型落後程式：記下來交給下一次核准，不要叫 Agent 當場修。」</p>
     <p><b>背景</b>：Agent 回報裡，只是移動的叫 shifted，內容變了的叫 stale（過期）；兩種都是預期的。</p>
     <p><b>加深一層（D2 的「證明它的測試」）</b>：stale 的規則，Agent 用 get-record --changes-root 找出 proven_by 的測試再跑一次。還通過，行為多半沒變；失敗或沒有測試，模型才真的落後。D3c Recovery 實測 5 條 stale 規則都找得到測試、都通過。</p>
-    <p><b>第一次介紹（新概念：模型在哪些 Context 說了算）</b>：coverage 的 rules_by_context 列出每個 Context 有幾條已審查規則、幾條有測試證明。沒有已審查規則的 Context（自己做 D3 的組，D3 新增、只有候選的那幾個），下一個 Agent 在那裡沒有限制可依，寫進交接單的 Unknowns。D3c Recovery 實測 16 條全部 proven、沒有這種 Context。</p>
+    <p><b>同一張小卡（模型在哪些 Context 說了算）</b>：coverage 的 rules_by_context 列出每個 Context 有幾條已審查規則、幾條有測試證明。沒有已審查規則的 Context（自己做 D3 的組，D3 新增、只有候選的那幾個），下一個 Agent 在那裡沒有限制可依，寫進交接單的 Unknowns。D3c Recovery 實測 16 條全部 proven、沒有這種 Context。</p>
     <p><b>看</b>：學員是否讀了 Agent 的回報；stale 與 shifted 是否列成 asset:id 清單（清單只列 asset:id（檔案），行號不必列；數量以引用計，清單以 asset:id 合併，每張清單裡同一個 id 只列一次）；Agent 有沒有自己寫腳本或動手修。verify-sources 的 discovered_but_gone 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 []。</p>
     <p><b>介入訊號</b>：Agent 開始改檔 → 請學員貼「停下，只回報，不要修改」；stale 被略過 →「下一個 Agent 會把哪一筆當成限制？」</p>
   </aside>
@@ -2827,8 +2825,7 @@ ol.timeline > li[data-seg="dlc-retro"] { --seg-c: var(--navy); }
     <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動（shifted）的 reviewed 事實不登記，留給下一次核准。get-record 只查 stale 清單；同時在兩張清單的以 stale 處理；B 類最多 3 項（REFUND-004 先列），其餘列為未完成、留給交接單的 Unknowns。D3c Recovery 接手的組清單約 39 個 asset:id（8 個兩張都有），讀程式最花時間，所以才設上限。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
     <p><b>省時</b>：Agent 登記後自己檢查並在最後一行回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：有人想直接標成 reviewed → 提醒：沒有核准簽章就不是。</p>
-    <p><b>重構 ≠ 模型變更（加深一層）</b>：shifted 只是搬移；stale 也要逐項問意思有沒有變，只是重構的歸 C。</p>
-    <p><b>第一次介紹（新概念：重新證明同一條規則，還是寫一條新規則）</b>：意思沒變、只是引用的程式或測試搬家，是同一條規則，下一次核准沿用原 id 重新證明（Plugin 的 promote-candidate --amend）；意思變了才是新規則，用新 id 寫候選。分不清時問：原本證明它的測試現在該通過還是該失敗？</p>
+    <p><b>加深一層（D3b 的模型變更與重構）</b>：shifted 只是搬移；stale 也要逐項問意思有沒有變，只是重構的歸 C。落到已審查規則上：意思沒變、只是引用的程式或測試搬家，是同一條規則，下一次核准沿用原 id 重新證明（Plugin 的 promote-candidate --amend）；意思變了才是新規則，用新 id 寫候選。分不清時問：原本證明它的測試現在該通過還是該失敗？</p>
   </aside>
 </section>
 

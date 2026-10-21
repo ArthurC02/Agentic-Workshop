@@ -26,7 +26,7 @@
     "lead": "做變更的 Agent 不核准自己的變更；審查交給另一個乾淨的對話，或另一個人。",
     "cards": [["官方建議", "另開審查者，只看差異與標準，不看作者的推理。"], ["平台限制", "GitHub 的雲端 Agent 不能核准或合併自己的 PR。"], ["企業做法", "Stripe 自述：Agent 每週上千個 PR，全經人審。"]],
     "check": "D2 裡，「核准」這句話是在誰的對話裡說的？",
-    "notes": "5.5–7.5 分鐘。人工核准關卡（Gate）的加深一層。Claude Code 官方文件〈Best practices for Claude Code〉建議用新的審查者審 diff：「the agent doing the work isn't the one grading it.」GitHub〈Risks and mitigations for GitHub Copilot cloud agent〉：雲端 Agent「cannot approve or merge a pull request」。Stripe 工程部落格〈Minions: Stripe's one-shot, end-to-end coding agents〉（2026-02-09）自述每週超過一千個 PR 由 Agent 產出、全部交人審查；這是公司自己的數字。AWS Transform 的使用者指南也把「domains decomposition」列為要人核准的中間產物。D2 的設計：兩人共用一台機器，但各用自己的 Agent 對話。📖 延伸閱讀：〈Best practices for Claude Code〉（Claude Code 官方文件）；〈Building effective agents〉（Anthropic Engineering，2024）。"
+    "notes": "5.5–7.5 分鐘。人工核准關卡（Gate）的加深一層。Claude Code 官方文件〈Best practices for Claude Code〉建議用新的審查者審 diff：「the agent doing the work isn't the one grading it.」GitHub〈Risks and mitigations for GitHub Copilot cloud agent〉：雲端 Agent「cannot approve or merge a pull request」。Stripe 工程部落格〈Minions: Stripe's one-shot, end-to-end coding agents〉（2026-02-09）自述每週超過一千個 PR 由 Agent 產出、全部交人審查；這是公司自己的數字。AWS Transform 的使用者指南也把「domains decomposition」列為要人核准的中間產物。D2 的設計：兩人共用一台機器，但各用自己的 Agent 對話。Anthropic〈Redesigning source control at Anthropic〉（2026-10-13）：Agent 大量產生變更之後，「Our team members still review every change request for the system」，只是改看變更的意圖；團隊也寫到「the role of the engineers was to tell Claude \"no.\"」。合併數量是公司自己的數字，不當成效率證據；這裡只取一點：量變大，審查改看意圖，但人仍是說「不」的那一個。📖 延伸閱讀：〈Best practices for Claude Code〉（Claude Code 官方文件）；〈Building effective agents〉（Anthropic Engineering，2024）。"
   },
   {
     "id": "enforce", "chapter": "做與核准分開", "title": "口頭規則擋不住，寫成檢查",
@@ -63,7 +63,7 @@
     "lead": "AWS 的 ADR 審查會先安靜讀 10–15 分鐘，再逐條討論，最後接受、重做或退回。",
     "cards": [["標準是讓整體更好", "Google：確定讓程式更健康就核准，不求完美。"], ["退回要寫理由", "下次就不必重吵同一件事。"]],
     "check": "你核准前，親自打開過哪一行證據？",
-    "notes": "15–17 分鐘。AWS〈Architectural decision record process〉：會議先讀 10–15 分鐘，逐條討論，結果是接受、重做或拒絕；拒絕時「adds a reason for the rejection to prevent future discussions on the same topic.」Google Engineering Practices〈The Standard of Code Review〉：「approving a CL once it is in a state where it definitely improves the overall code health」。對照 D2 檢查點 4：夥伴回「退回：原因」不是失敗，是審查有在運作；沒有人追問的核准只是蓋章。📖 延伸閱讀：〈The Code Reviewer's Guide〉（Google Engineering Practices）。"
+    "notes": "15–17 分鐘。AWS〈Architectural decision record process〉：會議先讀 10–15 分鐘，逐條討論，結果是接受、重做或拒絕；拒絕時「adds a reason for the rejection to prevent future discussions on the same topic.」Google Engineering Practices〈The Standard of Code Review〉：「approving a CL once it is in a state where it definitely improves the overall code health」。對照 D2 檢查點 4：夥伴回「退回：原因」不是失敗，是審查有在運作；沒有人追問的核准只是蓋章。InfoQ〈When Spec-Driven Development Pays off〉（Nitin Garg，2026-09-10）做了小型實驗：審查者手上有人核准過的基準（approved baseline）時，抓到的漂移數和沒有時差不多（作者自稱的 recall 0.525 對 0.518），但 81% 的發現能指到具名的條文（沒有基準時 0%），審查時間約 48 對 27 分鐘。作者說結果只是方向性的。要講清楚：已審查的模型讓審查「說得出依據、可追溯」，不保證抓得更多；他的原則是「automation flags divergence, while a named human decides what is correct」，對應 D2 夥伴具名核准。📖 延伸閱讀：〈The Code Reviewer's Guide〉（Google Engineering Practices）。"
   },
   {
     "id": "tests-changed", "chapter": "審查證據", "title": "綠燈不等於安全",

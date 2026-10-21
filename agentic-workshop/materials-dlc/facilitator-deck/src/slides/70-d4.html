@@ -32,7 +32,7 @@
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>驗收（看紀錄，不看表單填多少）</b>：<code>notes/d4.md</code> 有驗證結果與更新清單；<code>docs/handoffs/d4-next-agent.md</code> 七段齊全、Agent 的 id 核對清單全部查得到，已 commit。</p>
     <p><b>角色</b>：三個檢查點的提示詞都貼給提案者的 Agent；最後的 commit 由夥伴在自己的對話貼第二段。</p>
-    <p><b>時間</b>：D4 實際要 12–15 分鐘；第 165 分還沒完成就收在最低完成線：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」。</p>
+    <p><b>時間</b>：D4 實際要 11–13 分鐘；第 165 分還沒完成就收在最低完成線：檢查點 1 + 只含 Unknowns 的交接單，其他段寫「未完成」。</p>
     <p><b>Recovery</b>：第 150 分決定改用 D3c Recovery 的組，揭曉後立即私下提供 <code data-code="dlc-rec-d3c"></code>（不等第 155 分）；切換要 5–7 分鐘，這些組 D4 只做最低完成線。</p>
   </aside>
 </section>
@@ -51,7 +51,7 @@
     <p><b>說（00:00／第 155 分）</b>：「第 155 分。輸入解鎖碼。D3 改了程式，模型引用的原文可能只是移動，也可能內容變了。只是移動的不算問題；內容變了，代表模型落後程式：記下來交給下一次核准，不要叫 Agent 當場修。」</p>
     <p><b>背景</b>：Agent 回報裡，只是移動的叫 shifted，內容變了的叫 stale（過期）；兩種都是預期的。</p>
     <p><b>加深一層（D2 的「證明它的測試」）</b>：stale 的規則，Agent 用 get-record --changes-root 找出 proven_by 的測試再跑一次。還通過，行為多半沒變；失敗或沒有測試，模型才真的落後。D3c Recovery 實測 5 條 stale 規則都找得到測試、都通過。</p>
-    <p><b>第一次介紹（新概念：模型在哪些 Context 說了算）</b>：coverage 的 rules_by_context 列出每個 Context 有幾條已審查規則、幾條有測試證明。沒有已審查規則的 Context（自己做 D3 的組，D3 新增、只有候選的那幾個），下一個 Agent 在那裡沒有限制可依，寫進交接單的 Unknowns。D3c Recovery 實測 16 條全部 proven、沒有這種 Context。</p>
+    <p><b>同一張小卡（模型在哪些 Context 說了算）</b>：coverage 的 rules_by_context 列出每個 Context 有幾條已審查規則、幾條有測試證明。沒有已審查規則的 Context（自己做 D3 的組，D3 新增、只有候選的那幾個），下一個 Agent 在那裡沒有限制可依，寫進交接單的 Unknowns。D3c Recovery 實測 16 條全部 proven、沒有這種 Context。</p>
     <p><b>看</b>：學員是否讀了 Agent 的回報；stale 與 shifted 是否列成 asset:id 清單（清單只列 asset:id（檔案），行號不必列；數量以引用計，清單以 asset:id 合併，每張清單裡同一個 id 只列一次）；Agent 有沒有自己寫腳本或動手修。verify-sources 的 discovered_but_gone 列出 D1 盤點時有、現在已刪的檔案；D3 只新增檔案，通常是 []。</p>
     <p><b>介入訊號</b>：Agent 開始改檔 → 請學員貼「停下，只回報，不要修改」；stale 被略過 →「下一個 Agent 會把哪一筆當成限制？」</p>
   </aside>
@@ -74,8 +74,7 @@
     <p><b>看</b>：Agent 是否等學員回覆才寫入；是否只更新有改變的事實；被改變的 reviewed 事實是以新 id 候選取代，而不是被覆寫；只是行號移動（shifted）的 reviewed 事實不登記，留給下一次核准。get-record 只查 stale 清單；同時在兩張清單的以 stale 處理；B 類最多 3 項（REFUND-004 先列），其餘列為未完成、留給交接單的 Unknowns。D3c Recovery 接手的組清單約 39 個 asset:id（8 個兩張都有），讀程式最花時間，所以才設上限。make_record 印出英文 <code>NOTE: … That is reach, not an error.</code> 只是提醒，記進 Unknowns。</p>
     <p><b>省時</b>：Agent 登記後自己檢查並在最後一行回成功／失敗，不另貼 ③。</p>
     <p><b>介入訊號</b>：有人想直接標成 reviewed → 提醒：沒有核准簽章就不是。</p>
-    <p><b>重構 ≠ 模型變更（加深一層）</b>：shifted 只是搬移；stale 也要逐項問意思有沒有變，只是重構的歸 C。</p>
-    <p><b>第一次介紹（新概念：重新證明同一條規則，還是寫一條新規則）</b>：意思沒變、只是引用的程式或測試搬家，是同一條規則，下一次核准沿用原 id 重新證明（Plugin 的 promote-candidate --amend）；意思變了才是新規則，用新 id 寫候選。分不清時問：原本證明它的測試現在該通過還是該失敗？</p>
+    <p><b>加深一層（D3b 的模型變更與重構）</b>：shifted 只是搬移；stale 也要逐項問意思有沒有變，只是重構的歸 C。落到已審查規則上：意思沒變、只是引用的程式或測試搬家，是同一條規則，下一次核准沿用原 id 重新證明（Plugin 的 promote-candidate --amend）；意思變了才是新規則，用新 id 寫候選。分不清時問：原本證明它的測試現在該通過還是該失敗？</p>
   </aside>
 </section>
 

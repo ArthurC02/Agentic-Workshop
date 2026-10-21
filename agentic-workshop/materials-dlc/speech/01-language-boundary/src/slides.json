@@ -32,7 +32,7 @@
     "lead": "Ubiquitous Language（通用語言）：團隊在對話、文件與程式裡，用同一套名詞。",
     "cards": [["同一套說法", "會議上怎麼說，程式裡的名稱就怎麼取。"], ["會跟著成長", "團隊越懂業務，語言和模型就跟著改。"]],
     "check": "說出一個「客服這樣說、程式卻那樣寫」的例子。",
-    "notes": "7.5–9 分鐘。Evans〈DDD Reference〉：「use the same language in diagrams, writing, and especially speech.」Microsoft Azure Architecture Center〈Use Domain Analysis to Model Microservices〉（2026-02）：「Teams use this language consistently in conversations, documentation, and code.」Fowler〈UbiquitousLanguage〉（2006）：語言與模型會隨團隊對領域的理解而演進。對 Agent 來說，程式裡的名稱是它最常讀到的語言；名稱不一致，它學到的就不一致。📖 延伸閱讀：〈UbiquitousLanguage〉（Martin Fowler，2006）；Eric Evans《Domain-Driven Design》（2003）第 2 章〈Communication and the Use of Language〉。"
+    "notes": "7.5–9 分鐘。Evans〈DDD Reference〉：「use the same language in diagrams, writing, and especially speech.」Microsoft Azure Architecture Center〈Use Domain Analysis to Model Microservices〉（2026-02）：「Teams use this language consistently in conversations, documentation, and code.」Fowler〈UbiquitousLanguage〉（2006）：語言與模型會隨團隊對領域的理解而演進。對 Agent 來說，程式裡的名稱是它最常讀到的語言；名稱不一致，它學到的就不一致。Three Dots Labs 的 Miłosz Smółka〈Domain-Driven Design matters more when AI writes your code〉（2026-08-20）從實作經驗補兩句：「Agents have access to your whole repository, and they'll look for the names you give them.」以及 Agent「may naively try to unify similar entities」，所以要寫明它們為什麼分開；這正是 D1 檢查點 3 不准 Agent 合併矛盾名稱的理由。這是個人經驗文章，沒有數據。📖 延伸閱讀：〈UbiquitousLanguage〉（Martin Fowler，2006）；Eric Evans《Domain-Driven Design》（2003）第 2 章〈Communication and the Use of Language〉。"
   },
   {
     "id": "candidate", "chapter": "通用語言", "title": "改一個名詞，就是改模型",

@@ -157,8 +157,7 @@
     <p><b>看</b>：ship-package 的 completed 有三步、status 是 applied；Agent 回報 Registry is valid.（帶 --require-reviewed）與 verify-audit valid；push 由夥伴的 Agent 執行、沒有用 --no-verify 繞過 hook；是否把候選與 reviewed 混為一談。</p>
     <p><b>介入訊號</b>：ship-package 的 errors 點名 attest-signed-commit → HEAD 不是檢查點 4 的簽章 commit，或那個 commit 沒帶著審查包；不要重做 commit，找主持人。<code>validate --require-reviewed</code> 回一串「not reviewed」→ cp-d2.json 的 promote 少列了資產（用過 D1 Recovery 的組常漏 aggregates、interactions、decisions），請學員找主持人或改用 Recovery；第 60 分仍未完成 → 休息時私下提供 Recovery，不延長；提醒：同一台機器自己核准，只是教學示範（R3）。</p>
     <p><b>收尾</b>：Runbook『完成後想一想』請兩人一起聊兩分鐘，再記「D2 決定」；挑第 2 題（哪一步只是照流程做完、哪一步真的擋得住錯）請 1–2 組分享（約 1 分鐘），回顧會再用到。</p>
-    <p><b>加深一層</b>：已審查事實帶 <code>verified</code>（by: human:maintainer@example.com、at: 核准時間），就像 ADR 的狀態寫 Accepted 並列出決策者；核准它的提案記在稽核紀錄，不在紀錄本身。Agent 用 get-record 取一條規則回報這兩個值。</p>
-    <p><b>新概念</b>：這裡第一次介紹<b>規則有多可信，看證明它的測試</b>，花 30 秒講：get-record 加 --changes-root 會多一個 proven_by，列出審查包裡證明這條規則的 obligation 與 check。核准只說明有人同意；測試被刪、被放寬，這條規則就只剩「有人核准過」。D4 檢查點 1 會再跑一次這些測試。</p>
+    <p><b>加深一層（已審查事實）</b>：花 30 秒講兩個欄位。<code>verified</code>（by: human:maintainer@example.com、at: 核准時間）就像 ADR 的狀態寫 Accepted 並列出決策者，核准它的提案記在稽核紀錄；get-record 加 --changes-root 多一個 <code>proven_by</code>，列出證明這條規則的 obligation 與 check。核准只說明有人同意；測試被刪、被放寬，規則就只剩「有人核准過」。D4 檢查點 1 會再跑一次這些測試。</p>
   </aside>
 </section>
 

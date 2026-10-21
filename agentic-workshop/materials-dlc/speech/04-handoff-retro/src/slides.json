@@ -26,7 +26,7 @@
     "lead": "第 01 場說過上下文有限；加深一層：長任務靠寫在外面的筆記，交接單只放 id 與路徑，需要時再讀。",
     "cards": [["筆記寫在外面", "共用模型與交接單在 Repo，不在對話裡。"], ["只放指標", "交接單放 id、檔案路徑；細節到模型裡查。"]],
     "check": "你的交接單，是貼了整段內容，還是只放查得到的 id？",
-    "notes": "5–6.5 分鐘。加深一層：「上下文是有限的資源」與「給太多反而變差」在第 01 場講過，不重講。新的一點來自同一篇 Anthropic〈Effective context engineering for AI agents〉：Agent 保留輕量的識別碼（檔案路徑、查詢、連結），需要時再載入；長任務用結構化筆記寫在上下文外面。第 01 場提過的 Chelsea Troy 也是同一個直覺：Bounded Context 的想法可以拿來管 Agent 的上下文。"
+    "notes": "5–6.5 分鐘。加深一層：「上下文是有限的資源」與「給太多反而變差」在第 01 場講過，不重講。實務案例：Giles Edwards-Alexander〈An Accidental Blackboard〉（martinfowler.com，2026-09-02）記錄 10 位工程師四天共用一個 Repo，發現「the agents were using the plans to coordinate」：寫在 Repo 裡的計畫檔成了 Agent 之間的共用黑板。D4 的交接單放在 docs/handoffs/、跟著 commit 走，也是同一個道理；這是一次團隊經驗，沒有數據。另一點來自同一篇 Anthropic〈Effective context engineering for AI agents〉：Agent 保留輕量的識別碼（檔案路徑、查詢、連結），需要時再載入；長任務用結構化筆記寫在上下文外面。第 01 場提過的 Chelsea Troy 也是同一個直覺：Bounded Context 的想法可以拿來管 Agent 的上下文。"
   },
   {
     "id": "readable-model", "chapter": "交接", "title": "人和 Agent 讀同一份模型",
@@ -58,7 +58,7 @@
     "prompt": "先不要修改任何檔案。請只讀程式，重新整理一份名詞、Context 與規則清單，這一步不要讀共用模型。整理完再和共用模型裡已審查的紀錄逐筆配對，列三張表：配對成功、已審查但你沒找到、你找到但沒有已審查紀錄的。最後算精確率與召回率，列完停下。",
     "cards": [["漏掉的", "人審過、Agent 沒找到：召回率低。"], ["多出的", "Agent 有、人沒認可：精確率低。"], ["先讀清單", "分數只看結構；漏掉與多出逐筆讀。"]],
     "check": "多出來的那幾筆，是 Agent 編的，還是人漏審的？",
-    "notes": "12–14.5 分鐘。新概念：用人審過的模型評估 Agent（eval）。人工審查過的模型就是基準答案（gold set）。精確率：Agent 提出的裡面，有多少是對的；召回率：該找到的裡面，Agent 找到多少（Google〈Classification: Accuracy, recall, precision, and related metrics〉）。Anthropic〈Demystifying evals for AI agents〉（2026-01）建議用人的判斷校準評分，而且「we do not take eval scores at face value」：要讀實際紀錄。所以分數之外一定讀兩張清單：多出的可能是編造（回扣第 01 場的幻覺），也可能是人沒審到的真規則；措辭不同但意思一樣的規則，也可能被算成漏掉。引用和基準答案一字不差的配對多半是照抄來的（例如核准後沒動過的紀錄），算分前要排除，否則分數看起來完美卻量不到 Agent 自己的能力。換模型、改提示詞、改擷取順序前後各跑一次，才知道有沒有變好。對照回顧檢查點 2。本 DLC 使用的模型工具有現成的比較指令，只是一種做法。示範提示詞，未實際執行。📖 延伸閱讀：〈Demystifying evals for AI agents〉（Anthropic Engineering，2026）；〈Classification: Accuracy, recall, precision, and related metrics〉（Google Machine Learning Crash Course）。"
+    "notes": "12–14.5 分鐘。新概念：用人審過的模型評估 Agent（eval）。人工審查過的模型就是基準答案（gold set）。精確率：Agent 提出的裡面，有多少是對的；召回率：該找到的裡面，Agent 找到多少（Google〈Classification: Accuracy, recall, precision, and related metrics〉）。Anthropic〈Demystifying evals for AI agents〉（2026-01）建議用人的判斷校準評分，而且「we do not take eval scores at face value」：要讀實際紀錄。所以分數之外一定讀兩張清單：多出的可能是編造（回扣第 01 場的幻覺），也可能是人沒審到的真規則；措辭不同但意思一樣的規則，也可能被算成漏掉。引用和基準答案一字不差的配對多半是照抄來的（例如核准後沒動過的紀錄），算分前要排除，否則分數看起來完美卻量不到 Agent 自己的能力。研究也這樣做：Mancas 等〈Towards Automated Domain Model Extraction from Source Code using Heuristics and Open-Source LLMs〉（MODELS 2026，arXiv 2026-08）用本機執行的開源模型從 10 個 Java 專案擷取領域模型，對照人整理的參考模型算 precision 與 recall（作者自量：類別 0.84／0.97）；作者自己提醒參考模型只是「one plausible conceptualization rather than a unique ground truth」。所以基準答案也要有人負責，分數不是真理。銀行在意的一點：他們因資料保密選擇本機模型。換模型、改提示詞、改擷取順序前後各跑一次，才知道有沒有變好。對照回顧檢查點 2。本 DLC 使用的模型工具有現成的比較指令，只是一種做法。示範提示詞，未實際執行。📖 延伸閱讀：〈Demystifying evals for AI agents〉（Anthropic Engineering，2026）；〈Classification: Accuracy, recall, precision, and related metrics〉（Google Machine Learning Crash Course）。"
   },
   {
     "id": "curated", "chapter": "模型維護", "title": "團隊共用的 Agent 指示是工程資產",

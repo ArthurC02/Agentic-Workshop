@@ -95,7 +95,7 @@
     "prompt": "先不要修改測試。請對每條不變量各做一次反事實檢查：暫時把守這條規則的程式改壞，跑測試，記錄 killed（被抓到）或 survived（沒被抓到），再把程式改回原狀。survived 的不要換改法，列出缺哪個測試，列完停下。",
     "cards": [["killed", "這條規則有測試守著。"], ["survived", "補一個會失敗的測試，不換較好抓的改法。"]],
     "check": "有沒有一條規則第一次是 survived？後來補了什麼測試？",
-    "notes": "24–26 分鐘。加深一層：「Agent 會改測試配合程式」（系統卡）與「變異測試是最誠實的訊號」（技術雷達）都在第 02 場講過，這裡只回扣一句，不重講。新的一點是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要；survived 時不換較好抓的改法，而是補一個會失敗的測試。示範提示詞未實際執行。"
+    "notes": "24–26 分鐘。加深一層：「Agent 會改測試配合程式」（系統卡）與「變異測試是最誠實的訊號」（技術雷達）都在第 02 場講過，這裡只回扣一句，不重講。新的一點是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要；survived 時不換較好抓的改法，而是補一個會失敗的測試。示範提示詞未實際執行。Birgitta Böckeler〈TDD inside the agent loop - theater or actual value?〉（martinfowler.com，2026-08）的實驗結論可以直接拿來講：「Watching a test go red is only proof of anything if someone is checking why it went red.」她改用變異測試來監看測試守不守得住，而不是寫長長的 TDD 指示。這就是 D2 起要事先寫 --expect、D3 只認測試本身失敗的原因：紅燈要紅在對的理由上。她的樣本很小、數字是自己量的，不引用數字。📖 延伸閱讀：〈TDD inside the agent loop - theater or actual value?〉（Birgitta Böckeler，2026）。"
   },
   {
     "id": "card-only", "chapter": "用測試守規則", "title": "需求沒寫的，Agent 會自己補",
