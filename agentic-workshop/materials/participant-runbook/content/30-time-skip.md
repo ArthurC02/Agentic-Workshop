@@ -129,7 +129,7 @@ Agent 複述完會接著裝環境。趁它安裝，讀它的複述，對照 ① 
 ```callout tip
 技巧：Token 節費
 **換專案就開新對話，只給規則、背景和要讀的檔案，不帶舊對話。**
-- Token（詞元）是 Agent 讀寫文字的計費與記憶單位
+- Token（詞元）是模型讀寫文字的單位：計費和一次對話能裝多少內容，都用它計算
 - 對話越長、貼得越多，就越貴，也越容易忘了前面講過的事
 📖 延伸閱讀：Anthropic 官方文件〈Context windows〉與〈Token counting〉、Anthropic Engineering 文章〈Effective context engineering for AI agents〉；你所用工具的官方文件通常有同名章節。
 ```

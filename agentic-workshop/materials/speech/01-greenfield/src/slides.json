@@ -135,7 +135,7 @@
     "lead": "開發者普遍在用 AI，但信任度不高；AI 會放大團隊原有的長處，也會放大短處。",
     "cards": [["差一點就對", "66% 開發者最大的挫折是 AI 的答案「差一點就對」；只有 33% 信任其準確度。"], ["放大器", "DORA：90% 在工作中用 AI；採用與交付量正相關，但與交付穩定度仍負相關。"], ["所以", "檢查、小步、審查不是多餘的手續，是讓速度不變成風險的方法。"], ["📖 延伸閱讀", "〈2025 Developer Survey — AI〉（Stack Overflow，2025）；〈Announcing the 2025 DORA Report〉（Google Cloud，2025）"]],
     "check": "你的團隊有哪一項基本功（測試、小批量、版本控制）還不夠，會被 AI 放大？",
-    "notes": "（第 37–39 分）Stack Overflow〈2025 Developer Survey — AI〉：84% 使用或打算使用 AI 工具；33% 信任準確度、46% 不信任；66% 最大挫折是「almost right, but not quite」；45.2% 認為除錯 AI 產生的程式碼更耗時；在工作中使用 AI Agent 的約 31%，還不是主流。Google Cloud〈Announcing the 2025 DORA Report〉（2025-09-24）：90% 受訪者在工作中使用 AI，超過 80% 認為生產力提升，30% 幾乎或完全不信任 AI 產生的程式碼；AI 採用與交付吞吐量正相關、與交付穩定度仍為負相關；原文「AI doesn't fix a team; it amplifies what's already there.」不要把「90% 使用 AI」說成「90% 使用 Agent」；也不要用單一的加速百分比當通則（Speech 05 會談量測）。"
+    "notes": "（第 37–39 分）Stack Overflow〈2025 Developer Survey — AI〉：84% 使用或打算使用 AI 工具；33% 信任準確度、46% 不信任；66% 最大挫折是「almost right, but not quite」；45.2% 認為除錯 AI 產生的程式碼更耗時；在工作中使用 AI Agent 的約 31%（這是 2025 年；2026 年調查中，用 AI 的開發者已有 66% 用 Coding Agent，Speech 05 再談）。Google Cloud〈Announcing the 2025 DORA Report〉（2025-09-24）：90% 受訪者在工作中使用 AI，超過 80% 認為生產力提升，30% 幾乎或完全不信任 AI 產生的程式碼；AI 採用與交付吞吐量正相關、與交付穩定度仍為負相關；原文「AI doesn't fix a team; it amplifies what's already there.」不要把「90% 使用 AI」說成「90% 使用 Agent」；也不要用單一的加速百分比當通則（Speech 05 會談量測）。"
   },
   {
     "id": "notes", "chapter": "帶回工作", "title": "把決定寫進檔案，不留在對話裡",

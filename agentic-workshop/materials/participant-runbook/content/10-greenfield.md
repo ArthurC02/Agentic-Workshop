@@ -27,7 +27,7 @@ section: Greenfield｜Tool
 
 ① 為什麼做這一步
 
-先講好規則，再讓 Agent 建好環境、用 Git 記下起點。有了起點，它之後才說得出「這次改了什麼」。
+先講好規則，再讓 Agent 建好環境、用 Git 存一版起點（Commit：專案在這一刻的存檔）。有了起點，它之後才說得出「這次改了什麼」。
 
 ```download
 id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository

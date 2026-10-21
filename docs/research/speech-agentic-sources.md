@@ -292,13 +292,21 @@
 
 ---
 
+## 2026-10 補充（查核日 2026-10-21，皆以 WebFetch 開啟原文）
+
+- 【已查核】Addy Osmani、Morgan Westlee Lunt、Qing Wang，〈How the Claude Code team does code review〉，claude.dev，2026-10-15，https://claude.dev/blog/solving-code-review-at-anthropic/ 。依變更風險分級：低風險在自動審查與安全檢查通過後不需人核准、一般一人、最高風險兩人。引文："A docs fix and an auto-updater change carry different risk, so they get different review." 用在第四場「關卡要設在哪裡？」。限制：廠商自家做法。
+- 【已查核】Anthropic Engineering，〈Redesigning source control at Anthropic〉，2026-10-13，https://www.anthropic.com/engineering/redesigning-source-control 。每天合併的變更 2026-05 約 2,500 次、9 月超過 30,000 次。引文："The bottleneck, now, is all of the developer infrastructure built for human scale: source control, builds, and CI." 用在第五場「水管變粗，瓶頸移到審查」。限制：廠商自家案例。
+- 【已查核】Addy Osmani，〈Brownfield Agentic Engineering〉，2026-09-14，https://addyosmani.com/blog/brownfield-agentic-engineering/ 。引文："Lock today’s behavior before you let anything improve it." 另："Write down what the code can’t say, and nothing else." 用在第三場「修 Bug：先讓測試紅，再讓它綠」。
+- 【已查核】Ryan Donovan，〈The results of the 2026 Developer Survey are here!〉，Stack Overflow Blog，2026-10-06，https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/ 。用 AI 的開發者 66% 用 Coding Agent；用助手或 Agent 的人 73% 天天用；20% 用在部署、維運或排查正式系統；93% 認為要附來源才信任。用在第五場「最花時間的是『差一點就對』」，並更新第一場 2025 年 31% 的說法。
+- 尚未發布（2026-10-21 查）：Thoughtworks Technology Radar Vol. 35、DORA 2026 年度報告。11 月再查。
+
 ## 不要宣稱的說法（流行但沒有根據或已過時）
 
 1. **「AI 讓開發者慢 19%」當成現況。** METR 自己已標示過時，2026 年更新顯示可能有加速但證據很弱。要講就兩份一起講。
 2. **「AI 讓開發者快 55%」或其他單一數字當成通則。** 這類數字多來自特定任務或早期實驗（例如 GitHub 2022 年的受控實驗【本次未查核】），不能推到所有工作。
 3. **「AI 能力每 7 個月翻倍」當成現行數據。** METR 2025-03 原文已加註部分圖表與翻倍時間過時，且 METR 不再更新該估計。
 4. **「Agent 寫了公司 X% 的程式碼」**（各大公司執行長的說法）。定義不一（補全、建議、PR？），本次未找到可查核的方法說明，不要引用。
-5. **「90% 開發者用 AI」等於「90% 使用 Agent」。** DORA 90% 是「在工作中使用 AI」；Stack Overflow 顯示 Agent 尚未成為主流（約 31%）。
+5. **「90% 開發者用 AI」等於「90% 使用 Agent」。** DORA 90% 是「在工作中使用 AI」；Stack Overflow 2025 年 Agent 約 31%；2026 年調查中，用 AI 的開發者有 66% 用 Coding Agent，但只有 20% 用在部署或維運正式系統。
 6. **「規則檔寫了就會被遵守」。** 官方文件明說規則檔是脈絡而非強制設定；一定要發生的事要做成 hook、CI 或權限。
 7. **「Context window 越大越好，全部丟進去就好」。** Anthropic 稱 context rot 在所有模型都會發生。
 8. **「調高推論強度就能救回品質」。** OpenAI 文件明說它是微調旋鈕，不是主要的補救方法。

@@ -27,12 +27,12 @@
   {"id":"bottleneck","chapter":"有沒有用","title":"水管變粗，瓶頸移到審查","lead":"個人產出變多，不等於公司交付變好。（Faros AI，2025-07）",
    "cards":[["產出","高採用團隊完成任務 +21%，合併的變更 +98%。"],["代價","審查時間 +91%、變更大小 +154%、每人 Bug +9%。"],["公司層級","交付指標與 AI 採用沒有顯著相關。"]],
    "check":"你的團隊，誰在審 Agent 的產出？他的時間被算進去了嗎？",
-   "notes":"（第 09.5–11.5 分）來源：Faros AI〈The AI Productivity Paradox Report 2025〉（2025-07-23），1 萬多位開發者、1,255 個團隊。限制：廠商報告、只是相關性不是因果。Thoughtworks Technology Radar 第 34 期（2026-04）把「用程式碼產出量衡量生產力」列為 Caution（警示）。第三場的 Spotify 背景 Agent 案例也談到審查成為新瓶頸。所以 Gate 與證據式交付不是多餘的流程，而是讓審查變快的設計。📖 延伸閱讀：〈The AI Productivity Paradox Report 2025〉（Faros AI, 2025）；〈Technology Radar Vol. 34〉（Thoughtworks, 2026）。"},
+   "notes":"（第 09.5–11.5 分）來源：Faros AI〈The AI Productivity Paradox Report 2025〉（2025-07-23），1 萬多位開發者、1,255 個團隊。限制：廠商報告、只是相關性不是因果。Thoughtworks Technology Radar 第 34 期（2026-04）把「用程式碼產出量衡量生產力」列為 Caution（警示）。第三場的 Spotify 背景 Agent 案例也談到審查成為新瓶頸。新例子：Anthropic〈Redesigning source control at Anthropic〉（2026-10-13）說每天合併的變更從 2026-05 約 2,500 次增加到 9 月超過 30,000 次，原文「The bottleneck, now, is all of the developer infrastructure built for human scale: source control, builds, and CI.」限制：廠商自家案例。所以 Gate 與證據式交付不是多餘的流程，而是讓審查變快的設計。📖 延伸閱讀：〈The AI Productivity Paradox Report 2025〉（Faros AI, 2025）；〈Redesigning source control at Anthropic〉（Anthropic, 2026）；〈Technology Radar Vol. 34〉（Thoughtworks, 2026）。"},
 
   {"id":"trust","chapter":"有沒有用","title":"最花時間的是「差一點就對」","lead":"第一場看過 Stack Overflow 2025 調查：最大的挫折是「差一點就對」。量測時，這段時間最容易漏算。",
    "cards":[["回顧第一場","只有 33% 信任準確度；66% 最大挫折是「差一點就對」。"],["量測的含意","驗證與修正的時間要算進成本，否則只量到「產出變快」。"]],
    "check":"你的量測有沒有把「驗證與修正」的時間算進去？",
-   "notes":"（第 11.5–13 分）加深一層：調查數字第一場講過，這裡只回扣兩個，重點放在量測：45% 認為除錯 AI 程式碼更耗時，這段時間不算進去，量出來的效益就會偏高。同一份調查也顯示 Agent 還不是主流：37.9% 不用也不打算用。差一點就對的產出最危險，因為看起來像完成；這就是為什麼要先有能自己跑的檢查，交付要附證據。"},
+   "notes":"（第 11.5–13 分）加深一層：調查數字第一場講過，這裡只回扣兩個，重點放在量測：45% 認為除錯 AI 程式碼更耗時，這段時間不算進去，量出來的效益就會偏高。一年後的變化：Stack Overflow〈The results of the 2026 Developer Survey are here!〉（2026-10-06）中，用 AI 的開發者有 66% 用 Coding Agent，用助手或 Agent 的人 73% 天天用；但只有 20% 用在部署或維運正式系統，93% 說要附來源才信得過。Agent 已經普及，「能驗證才信」沒有變。差一點就對的產出最危險，因為看起來像完成；這就是為什麼要先有能自己跑的檢查，交付要附證據。📖 延伸閱讀：〈The results of the 2026 Developer Survey are here!〉（Stack Overflow, 2026）。"},
 
   {"id":"measure","chapter":"怎麼量","title":"量什麼，才知道有沒有用","lead":"先建基準再導入；量交付與品質，不量程式碼行數。",
    "cards":[["交付","從開工到被接受的時間；等審查的時間。"],["品質","退回次數、上線後才發現的問題、哪一道關卡攔下了問題。"],["成本","Token 用量、人花在審查與修正的時間。"]],
