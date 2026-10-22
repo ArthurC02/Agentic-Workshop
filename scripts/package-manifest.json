@@ -554,7 +554,7 @@
         {
           "source": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
           "destination": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
-          "sha256": "651aa372d05cb6378b563fee7fd6ee0615fb72de0cb6a002a235da02d2209233"
+          "sha256": "e158596e01063693cd45999d619a8e5d3bc2ef99379062c13031bccabaaa5df4"
         }
       ],
       "generated": {}
@@ -1143,7 +1143,7 @@
         {
           "source": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
           "destination": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
-          "sha256": "0ee2c23414b0b59c3a33116c5a877a9b4e0564e7a7a01f0a0f06409509f9476d"
+          "sha256": "7c4fe85b9fb6e55f3a3053d97c3e4f03b19eaabb85ae049045f0425d20538c35"
         },
         {
           "source": "agentic-workshop/02-time-skip/facilitator/02-repository-delta-explanation.md",
@@ -1248,7 +1248,7 @@
         {
           "source": "agentic-workshop/06-runbook/workshop-runbook.md",
           "destination": "agentic-workshop/06-runbook/workshop-runbook.md",
-          "sha256": "89c9d5982ac665f41052a6c5674b709a555cd6ab3e044c3736bfab15d8bec8d6"
+          "sha256": "1a81e6b7e7f7fed3d4154616f7f8fee640bf1bb4ade989b202ec40324dd2c1e1"
         },
         {
           "source": "docs/contents/00_README_文件導覽.md",
@@ -1278,7 +1278,7 @@
         {
           "source": "docs/contents/05_工作坊執行流程.md",
           "destination": "docs/contents/05_工作坊執行流程.md",
-          "sha256": "57ad75ae26054b5fb4e20f2f3fc117ec35fa3e3f82aab76a168fc2bb86106eb6"
+          "sha256": "f66635d187571143b7a9dd1b2a4b510667a3453c39c3b131f2087565eea7b60e"
         },
         {
           "source": "docs/contents/06_成果物與驗收標準.md",
@@ -1293,7 +1293,7 @@
         {
           "source": "docs/contents/08_時程安排與主持指南.md",
           "destination": "docs/contents/08_時程安排與主持指南.md",
-          "sha256": "79fa6b11c31df0dc200fc14585de1069ea8de1eeeab478e6f5235097244848f5"
+          "sha256": "74baabcc047e60c807e8a52ddde1b54685c2774a63c66597ee60feb1daebf21d"
         },
         {
           "source": "docs/contents/09_範本與檢核表.md",
@@ -3153,7 +3153,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "14801c1d176328323d3114742ec40bdaf56e3e040c89c6c64655df83a37816ef"
+          "sha256": "cade1f5625903761c10443e6da2bfb473da11dd33587494ed99ba26b3fa33c0c"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3403,7 +3403,7 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "5c6d39f509443e101ce7c0806f463ff684c5019fd843b5fba6aba90a852e3e22"
+          "sha256": "1fc5707068301ca277305a26f14572e0e89617a6804d331c9a8c14ff2428fed1"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",

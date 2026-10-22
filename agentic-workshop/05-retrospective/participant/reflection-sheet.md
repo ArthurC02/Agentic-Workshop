@@ -7,7 +7,7 @@
 ## 今天的九個技巧
 
 - Greenfield：給 Agent 一份規則；先要計畫再動手；小步執行、每步驗收——規則寫進 `AGENTS.md`，不讓 Agent 一口氣寫完，每一小步都看證據再放行。
-- Time Skip：開新對話先給規則與脈絡——換專案就開新對話，先確認 Agent 讀到 `AGENTS.md`，再說明背景。
+- Time Skip：開新對話，確認 Agent 讀到規則檔——換專案就開新對話，先確認 Agent 讀到 `AGENTS.md`，再說明背景。
 - 個人分析：讓 Agent 帶你讀陌生專案——請 Agent 畫系統地圖、指出規則在哪、標出文件與程式不一致處。
 - 共同脈絡：把共識寫成檔案給 Agent——小組共識寫成 `notes/shared-context.md`，審查準則寫進 `AGENTS.md`，之後每個對話都會讀到。
 - B1：用失敗測試找 Bug：重現 → 定位 → 最小修正 → 驗證——先讓 Agent 證明 Bug 存在，再修，再用同一測試證明修好。

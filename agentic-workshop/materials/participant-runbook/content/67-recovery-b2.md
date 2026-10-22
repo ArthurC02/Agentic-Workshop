@@ -12,7 +12,7 @@ section: Brownfield｜Digital Worker
 現在在做什麼
 - **情境**：B2 還沒做完，但時間到了，要換到已完成 B2 的版本接著做 B3。
 - **你的目標**：保存原成果、換到復原包，確認版本正確後接續 B3。
-- **今天的技巧**：開新對話先給規則與脈絡（加深一層）：把原成果的 `notes/`、`AGENTS.md` 和 Skill 帶過來。
+- **今天的技巧**：開新對話，確認 Agent 讀到規則檔（加深一層）：把原成果的 `notes/`、`AGENTS.md` 和 Skill 帶過來。
 - **完成的樣子**：雜湊值相符、測試 55 passed、`/health` 正常；`notes/recovery-b2.md` 記下切換紀錄。
 ```
 

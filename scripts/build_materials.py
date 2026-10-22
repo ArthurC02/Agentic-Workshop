@@ -32,7 +32,7 @@ if str(SCRIPTS) not in sys.path:
 import build_delivery  # noqa: E402  (pure helpers only; never build()/repin)
 
 MATERIALS = ROOT / "agentic-workshop" / "materials"
-CANDIDATE_ID = "dfc56783631443e8"
+CANDIDATE_ID = "8d4ffae9c7261014"
 CANDIDATE = ROOT / "dist" / "p11-candidate" / CANDIDATE_ID
 
 SEGMENTS = ("opening", "greenfield", "timeskip", "analysis", "shared", "b1", "b2", "b3",
