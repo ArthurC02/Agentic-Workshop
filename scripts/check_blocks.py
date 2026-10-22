@@ -1,7 +1,8 @@
 """Check that every Runbook checkpoint uses the four blocks (course-authoring "Every segment page").
 
 Each `## 檢查點 N · …` / `## 步驟 N · …` section has block labels ① ② ③ (④ optional) in order, a ```text (or OS-tabbed ```prompt)
-prompt under ③ asking for 「成功」／「失敗」, and a 「失敗時」 rescue prompt. Knowledge density (course-authoring
+prompt under ③, and a 「失敗時」 rescue prompt. The ③ prompt: main course hands the check to the learner's `check` Skill
+(「用 check 檢查剛才這一段」, plus at most one condition); DLC asks for 「成功」／「失敗」 itself. Knowledge density (course-authoring
 「閱讀參數」): ① has at most 3 sentences and a checkpoint introduces at most 1 new 技巧／新概念 callout
 (加深一層 callouts revisit and don't count).
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_blocks.py
@@ -34,15 +35,20 @@ def sections(text: str):
         yield head, "\n".join(body)
 
 
-def problems(text: str) -> list[str]:
+def check_ok(prompt: str, main: bool) -> bool:
+    return "check" in prompt if main else ("成功" in prompt and "失敗" in prompt)
+
+
+def problems(text: str, main: bool = True) -> list[str]:
     out = []
     for head, body in sections(text):
         labels = re.findall(r"(?m)^([①②③④]) ", body)
         check = re.search(r"(?ms)^③ .*?```(?:text|prompt)\n(.*?)```", body)
         if labels[:3] != ["①", "②", "③"] or labels != sorted(set(labels)):
             out.append(f"{head}: block labels {labels}, want ① ② ③ (④) in order")
-        elif not (check and "成功" in check.group(1) and "失敗" in check.group(1)):
-            out.append(f"{head}: ③ needs a ```text／```prompt prompt asking for 「成功」／「失敗」")
+        elif not (check and check_ok(check.group(1), main)):
+            want = "using the check Skill (「用 check 檢查…」)" if main else "asking for 「成功」／「失敗」"
+            out.append(f"{head}: ③ needs a ```text／```prompt prompt {want}")
         elif "失敗時" not in body:
             out.append(f"{head}: no 「失敗時」 rescue prompt")
         why = re.search(r"(?ms)^① [^\n]*\n(.*?)(?=^② )", body)
@@ -58,6 +64,7 @@ def problems(text: str) -> list[str]:
 
 if __name__ == "__main__":
     found = [f"{p.relative_to(ROOT).as_posix()}: {m}" for folder in CONTENT
-             for p in sorted(folder.glob("*.md")) for m in problems(p.read_text(encoding="utf-8"))]
+             for p in sorted(folder.glob("*.md"))
+             for m in problems(p.read_text(encoding="utf-8"), main=folder == CONTENT[0])]
     print("\n".join(found) or "BLOCKS PASS")
     sys.exit(1 if found else 0)

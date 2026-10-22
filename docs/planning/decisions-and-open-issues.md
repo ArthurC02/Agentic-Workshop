@@ -589,3 +589,14 @@ DLC 的改動：
 回報給維護者：檔數；`git ls-files '*source-map.json'` 也會比對到 `foo-source-map.json`；validate 的建議是絕對路徑、probe 與 confirm-sources 是相對路徑；pre-push hook 無法套用外層預設逾時。
 
 未驗證：macOS 實機。
+
+## 主課程實戰化：AGENTS.md、標準 Skill、交辦式提示詞（2026-10-22）
+
+使用者回饋：提示詞要「更符合實際工作狀況，而不是只存在教科書上的格式」，AGENTS.md 這類實戰知識要進課程。決定：
+
+- 專案根目錄的 `AGENTS.md` 取代 `skills/team-rules.md`：Greenfield 檢查點 1 由 Agent 寫（「怎麼跑」從 README 整理，「工作規則」照 `04-agent-usage-guide.md` 範本）；B0 與兩份 Recovery 包附前任同事的 `AGENTS.md`（`scripts/package-manifest.json` generated，三份相同，不附 `CLAUDE.md`）；共同脈絡加「開工先讀 notes/shared-context.md」與「審查準則」；B1 教「同一個錯第二次，就寫進 AGENTS.md」。Time Skip 改成新對話確認 Agent 讀到它，讀不到用一句話補救。
+- Skill 改成標準格式（`<工具的專案 Skill 資料夾>/<name>/SKILL.md`，frontmatter `name`、`description`）：`check`、`fix-bug-with-test`、`b3-work-order`、回顧學員自己的 Skill；學員頁不寫工具名稱或路徑。
+- 一個只讀的 `check` Skill 取代每個檢查點各自的「只回成功／失敗」考卷：每個 ③ 一行「用 check 檢查剛才這一段」，必要時加一句這段的條件。
+- 提示詞像交辦同事：只寫這次要什麼、為什麼、完成的樣子、素材在哪；規則與做法不在提示詞重寫，答案（例如錯誤碼、付款失敗狀態）移到需求文件。DLC 維持五段式。
+
+理由：規則放在工具會自動讀的檔，學員回到工作直接用得上；Agent 不會自動讀 `skills/*.md`，每段都得叫它先讀，提示詞因此冗長且重複；標準 Skill 在主流工具會依 description 自動用上。查核的事實與設計見 `docs/planning/main-course-practice-first.md`；自動載入的版本條件寫在主持用的環境準備文件。風險：自動載入依工具版本，且提示詞變短更依賴 Agent 判斷，需三條路徑（Greenfield、Time Skip→回顧、Recovery）完整演練確認。

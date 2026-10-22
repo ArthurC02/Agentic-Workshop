@@ -3,7 +3,8 @@ import unittest
 import check_blocks as cb
 
 GOOD = ("## 檢查點 1 · 做事（第 1–2 分鐘）\n\n① 為什麼做這一步\n\n因為。\n\n② 貼給 Agent\n\n```text\n做\n```\n\n"
-        "③ 確認結果\n\n```text\n符合只回「成功」，否則回「失敗：」加原因。\n```\n\n失敗時：\n\n```text\n補\n```\n")
+        "③ 確認結果\n\n```text\n用 check 檢查剛才這一段。\n```\n\n失敗時：\n\n```text\n先停。發生什麼事？\n```\n")
+DLC = GOOD.replace("用 check 檢查剛才這一段。", "符合只回「成功」，否則回「失敗：」加原因。")
 
 
 class Problems(unittest.TestCase):
@@ -15,7 +16,10 @@ class Problems(unittest.TestCase):
         self.assertEqual(len(cb.problems(GOOD.replace("① ", "④ ", 1))), 1)
 
     def test_check_prompt_and_rescue_required(self):
-        self.assertEqual(len(cb.problems(GOOD.replace("「成功」", "好"))), 1)
+        self.assertEqual(len(cb.problems(GOOD.replace("check", "看看"))), 1)
+        self.assertEqual(cb.problems(DLC, main=False), [])
+        self.assertEqual(len(cb.problems(DLC.replace("「成功」", "好"), main=False)), 1)
+        self.assertEqual(len(cb.problems(DLC)), 1)  # the main course uses the check Skill
         self.assertEqual(len(cb.problems(GOOD.replace("失敗時：", "其他："))), 1)
 
     def test_heading_inside_fence_does_not_end_section(self):

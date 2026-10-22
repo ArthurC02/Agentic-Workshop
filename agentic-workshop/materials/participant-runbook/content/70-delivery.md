@@ -37,47 +37,37 @@ section: Delivery
 2. 主要 Agent 開始寫摘要後，在同一台電腦、同一個專案資料夾**開一個新對話**，貼 ③ 的審查提示詞，兩邊同時跑。工具一次只能開一個對話時，等主要 Agent 回完三句話再開新對話貼。
 
 ```text
-停止新增功能與測試，不要再修改任何程式。先核對 notes/b3.md：有驗收對照表（最後一行有測試總數）、變更審查三題答案、Gate 3 資料，「Gate 3」段落記著我的決定原話、條件、核准人與時間。缺的是我的 Gate 3 決定，就只問我一句「核准／附條件／退回？」，照原話補進 notes/b3.md（核准人和時間你自己記）再繼續；其他缺項在摘要寫成「未驗證」。
-接著請讀 notes/b3.md 與 b3-docs/delivery-template.md（交付摘要範本；只讀這兩個檔，不要回頭翻對話或讀整個專案），依範本十二欄，標題與順序照範本不變，把交付摘要寫進 notes/delivery.md：
-- 每一欄都附證據來源：notes/b3.md 的哪一段、哪個實際執行的指令、哪份文件。找不到證據的寫「未驗證」及原因，未驗證不能寫通過。
-- Completion Level 擇一並說明證據，不自動選 Level 3。
-- 修改檔案欄用白話寫每個檔案改了什麼、為什麼，附上 Gate 3 前的變更審查答案；沒有修改時寫「無修改」及原因，不虛構變更。
-- 驗收結果用驗收對照表呈現；測試只寫實際執行過的命令與結果，沒執行的寫「未執行」及原因。
-- Gate 決策照 notes/b3.md 的原文抄錄；寫出與 Gate 2 核准計畫的偏差，沒有偏差也要明寫（寫在 Deviations from Approved Plan 與 Recommended Decision）。
-- 另一個對話會審查這次的修改，把結論寫進 notes/b3.md 的「審查紀錄」；你不要寫或修改那一節，照範本在 Recommended Decision 指向它。
-寫完在對話給我核對用的三句話：你建議的 Level、測試結果、修改範圍。每句後面直接引用它的證據原文與位置（notes/b3.md 的段落或實際指令）；引用不出證據的，在摘要裡改成「未驗證」。再告訴我 notes 資料夾的完整路徑，然後停下等我們核對。不要自行修正或補做任何項目。
+B3 時間到，不再改程式，請寫交付摘要給主管：照 b3-docs/delivery-template.md 寫進 notes/delivery.md，素材只用 notes/b3.md。每一欄附證據位置，找不到證據的寫「未驗證」；Level 依證據選，不自動選 Level 3。notes/b3.md 缺我的 Gate 3 決定，就先問我一句。另一個對話會審查這次的修改、寫進 notes/b3.md 的「審查紀錄」，那一節你不要動。
+寫完給我三句話：建議的 Level、測試結果、修改範圍，每句後面引用證據原文和位置；再告訴我 notes 資料夾的完整路徑。
 ```
 
 等 Agent 寫摘要時，和小組聊 30 秒：Agent 建議的 Level 你們同意嗎？加上 Gate 紀錄、審查紀錄和缺項後，還會選同一級嗎？
 
 ③ 確認結果
 
-在新對話貼這段審查提示詞。它的回覆就是這一步的確認結果：最後一行回「成功」就往下；回「失敗」就貼下方「失敗時」。
+在新對話貼這段審查提示詞。它的回覆就是這一步的確認結果：最後一行回「成功」就往下；回「失敗」就貼下方「失敗時」。新對話會自己讀 `AGENTS.md` 的審查準則。
 
 ```text
-你是這次交付的審查者，不是寫程式的人。只讀、不修改：除了在 notes/b3.md 最後新增「審查紀錄」一節，不要建立、修改或刪除任何檔案，不要修程式，也不要 Commit。請依序做：
-1. 讀 skills/team-rules.md 的「審查準則」、b3-docs/b3-work-order.md 第 4 節（修改範圍）與第 7 節，以及 notes/b3.md（Gate 2 核准的計畫、驗收對照表、變更審查）。不要讀 notes/delivery.md。
-2. 自己實際執行 git status、git diff（對照「B3 起點」Commit）和用專案 .venv 執行的 pytest -q --collect-only，照審查準則回答三題「是／否／不確定」，各附指令與結果；再比對 notes/b3.md 寫的結果和你實際看到的是否一致。
-3. 照審查準則把發現分成「重要」與「小問題」（沒有就寫「無」），每條附證據位置，寫進 notes/b3.md 最後的「審查紀錄」；這一節最後一行寫「結論：建議放行」或「結論：不建議放行（一句原因）」。
-4. 在對話只回三行：重要幾條、小問題幾條、結論。最後一行只寫「成功」（審查紀錄已寫好，除了 notes/b3.md 沒有改任何檔案）或「失敗：」加一句原因。
+你是這次交付的審查者，不是寫程式的人，只讀不改。照 AGENTS.md 的審查準則審 B3 的修改：起點是「B3 起點」Commit（含 git status 列出、還沒 Commit 的新檔），核准範圍看 b3-docs/b3-work-order.md 第 4 節和 notes/b3.md 裡 Gate 2 核准的計畫；不要讀 notes/delivery.md。自己執行指令，比對 notes/b3.md 寫的和你看到的是否一致。
+結論寫進 notes/b3.md 最後的「審查紀錄」，最後一行寫「結論：建議放行」或「結論：不建議放行（一句原因）」。最後用 check 檢查：這個對話除了 notes/b3.md 沒有改任何檔案（對照你開始時的 git status）。對話只回四行：重要幾條、小問題幾條、結論，最後一行是 check 的結果。
 ```
 
 失敗時（在審查對話貼）：
 
 ```text
-不要修改程式，也不要改 notes/b3.md「審查紀錄」以外的內容。請用白話說明剛才哪一步沒做到；改到其他檔案就用 Git 還原那些檔案。照 skills/team-rules.md 的審查準則重新補寫「審查紀錄」，最後一行寫結論。
+先停。剛才哪一步沒做到？改到 notes/b3.md「審查紀錄」以外的檔案就用 Git 還原，再照審查準則重寫「審查紀錄」。
 ```
 
 審查對話回「成功」後，對主要 Agent 貼：
 
 ```text
-審查紀錄已寫好。把 notes/b3.md「審查紀錄」最後一行的結論照抄進 notes/delivery.md 的 Recommended Decision，取代「審查中」；不要改其他內容。
+審查紀錄寫好了。把 notes/b3.md「審查紀錄」最後一行的結論照抄進 notes/delivery.md 的 Recommended Decision，取代「審查中」，其他不動。
 ```
 
 主要 Agent 的摘要有句子你看不懂、覺得證據對不上，或審查紀錄有「重要」問題時，對主要 Agent 貼：
 
 ```text
-不要修改程式。摘要裡這幾句我看不懂或覺得證據對不上：請用白話重新解釋，並引用 notes/b3.md 的原文。對不上的，在 notes/delivery.md 改成「未驗證」並寫原因；notes/b3.md「審查紀錄」列的重要問題，照抄進 Risks and Limitations。
+摘要裡這幾句我看不懂或覺得證據對不上：請用白話重講，引用 notes/b3.md 的原文。對不上的在 notes/delivery.md 改成「未驗證」並寫原因；審查紀錄列的重要問題，照抄進 Risks and Limitations。
 ```
 
 ④ 補充
@@ -109,7 +99,7 @@ section: Delivery
 Agent 在檢查點 1 已告訴你 `notes/` 的完整路徑，就跳過 ② ③，直接填下方表單。沒給才貼：
 
 ```text
-請告訴我這個專案 notes 資料夾的完整路徑，並列出裡面的檔案。不要修改任何檔案。
+告訴我這個專案 notes 資料夾的完整路徑，列出裡面的檔案。
 ```
 
 ③ 確認結果
@@ -117,13 +107,13 @@ Agent 在檢查點 1 已告訴你 `notes/` 的完整路徑，就跳過 ② ③�
 只有貼了 ② 才需要：
 
 ```text
-請檢查你剛才給我的 notes 資料夾，不要修改任何檔案：裡面有 b3.md 與 delivery.md，而且 delivery.md 寫了 Completion Level。符合只回「成功」；不符只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：notes 裡有 b3.md 和 delivery.md，delivery.md 寫了 Completion Level。
 ```
 
 失敗時：
 
 ```text
-不要修改任何檔案。請找出 notes/b3.md 與 notes/delivery.md 實際在哪個資料夾，告訴我完整路徑；delivery.md 沒有 Completion Level，就告訴我缺了什麼。
+先停。notes/b3.md 和 notes/delivery.md 實際在哪個資料夾？delivery.md 缺了什麼？
 ```
 
 把結論記在下方表單，再按下方「下載全部填寫內容（ZIP）」：ZIP 裡每份表單一個 Markdown（.md）檔；瀏覽器擋下載時，改按各表單的「匯出 Markdown」。
@@ -139,7 +129,7 @@ Agent 在檢查點 1 已告訴你 `notes/` 的完整路徑，就跳過 ② ③�
 ```exportall
 ```
 
-依主持人指定方式交件：匯出的表單 ZIP，加上主要 Agent 電腦上的 `notes/` 資料夾。主要 Agent 那位同時把 `notes/` 與 `skills/` 傳給組員，回顧要用。
+依主持人指定方式交件：匯出的表單 ZIP，加上主要 Agent 電腦上的 `notes/` 資料夾。主要 Agent 那位同時把 `notes/`、`AGENTS.md` 和 Skill 資料夾傳給組員，回顧要用。
 
 ```callout sync
 ⏸ 看投影：第 79 分鐘請先停手，一起看 B3 揭曉

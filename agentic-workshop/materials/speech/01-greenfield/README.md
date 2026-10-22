@@ -27,12 +27,12 @@
 
 ## 內容依據與邊界
 
-- 主課事實：Greenfield Runbook（`agentic-workshop/materials/participant-runbook/content/10-greenfield.md`：工作規則 7 條、計畫提示詞、驗收對照表、變更審查四題、/docs 試用、`notes/greenfield.md`）、`15-gf-submission.md`、`00-welcome.md`（Tool → Teammate → Digital Worker）、Greenfield 需求與驗收條件（`agentic-workshop/01-greenfield/participant/02-business-requirements.md`、`03-acceptance-criteria.md`）、G0 架構（`starter-repository/docs/architecture.md`）。
+- 主課事實：Greenfield Runbook（`agentic-workshop/materials/participant-runbook/content/10-greenfield.md`：`AGENTS.md`（怎麼跑＋工作規則 8 條，範本在 `01-greenfield/participant/04-agent-usage-guide.md`）、check Skill、計畫提示詞、驗收對照表、變更審查、/docs 試用、`notes/greenfield.md`）、`15-gf-submission.md`、`00-welcome.md`（Tool → Teammate → Digital Worker）、Greenfield 需求與驗收條件（`agentic-workshop/01-greenfield/participant/02-business-requirements.md`、`03-acceptance-criteria.md`）、G0 架構（`starter-repository/docs/architecture.md`）。
 - 外部論點與案例：只用 `docs/research/speech-agentic-sources.md` 第一場與相關場次標為「已查核」的項目；「不要宣稱」清單中的說法一律不用。Airbnb 原頁面沒有日期，投影片不寫年份；Anthropic 遷移案例是廠商自家案例，備註要說明。
 - 學員看得到的文字（標題、內文、卡片、提示詞、人工確認）不放網址；延伸閱讀寫成「📖 延伸閱讀」卡片，只列〈標題〉（發布者，年份）。講者備註可寫發布者、日期與論點，同樣不放網址。
 - 工具中立：先講做法，產品只當例子（例如規則檔 AGENTS.md、CLAUDE.md、GEMINI.md）；不寫死模型名稱、價格或預設推論強度。
 
-本場第一次介紹：Tool 階段、Agent 迴圈、先給可執行的檢查、規格驅動開發、脈絡工程、工作規則、五段式提示詞、先探索再計畫、小步驗證、結構化輸出（驗收對照表）、看證據審查、notes/ 決策紀錄。只預告、不教：Context Window 與開新對話、交接檔（Speech 02）、模型選擇與推論強度、共用規則檔（Speech 03）、核准關卡與權限（Speech 04）、量測成效（Speech 05）。
+本場第一次介紹：Tool 階段、Agent 迴圈、先給可執行的檢查、規格驅動開發、脈絡工程、工作規則、交辦式提示詞、先探索再計畫、小步驗證、結構化輸出（驗收對照表）、看證據審查、notes/ 決策紀錄。只預告、不教：Context Window 與開新對話、交接檔（Speech 02）、模型選擇與推論強度、共用規則檔（Speech 03）、核准關卡與權限（Speech 04）、量測成效（Speech 05）。
 
 使用者故事、業務流程與 Gherkin 在主課沒有獨立檔案；本場說明怎麼請 Agent 補上，不宣稱主課做過。驗收對照表畫面是示意，不是實際輸出。
 

@@ -13,7 +13,7 @@ section: B3｜Digital Worker
 - **情境**：任務 `TASK-B3-001` 團體訂票：5–20 人訂同一班車、同一節車廂的連號座位，付款失敗整團取消。
 - **你的目標**：把整件任務交給 Agent；你只在三道 Gate（核准關卡）回一句決定，13 分鐘內如實交付。
 - **今天的技巧**：**委派整件任務：工作單＋三道關卡**。範圍、禁止事項和停止條件都寫在工作單裡，Agent 照著做。
-- **完成的樣子**：`skills/b3-work-order.md` 已存好；`notes/b3.md` 記著三道 Gate 的決定和驗收對照表；完成等級有證據。
+- **完成的樣子**：工作單已存成 `b3-work-order` Skill；`notes/b3.md` 記著三道 Gate 的決定和驗收對照表；完成等級有證據。
 ```
 
 ```callout warning
@@ -32,7 +32,7 @@ section: B3｜Digital Worker
 
 ## Agent 工作規則
 
-這段的規則都寫在工作單裡：它在下方「B3 文件包」裡，檢查點 1 由 Agent 存成 `skills/b3-work-order.md`。之後你不用再貼長提示詞，回一句話就好。
+這段的做法都寫在工作單裡：它在下方「B3 文件包」裡，檢查點 1 由 Agent 存成 `b3-work-order` Skill。之後你不用再貼長提示詞，回一句話就好。
 
 ```callout sync
 ⏸ 看投影：B2 沒做完的組貼紅色便利貼，主持人會走過去
@@ -42,7 +42,7 @@ section: B3｜Digital Worker
 ```callout warning
 用 Recovery 的組：走縮短版
 **切換後照下面縮短，第 76 分鐘照樣停手，目標 Level 1。**
-- Gate 1 約第 70–71 分、Gate 2 約第 73 分；例外事件 30 秒口頭判斷
+- Gate 1 約第 70–71 分、Gate 2 約第 73 分；例外事件等你們交完 Gate 2 再貼回應卡，30 秒口頭判斷
 - Gate 2 後不回「開始執行」，第 74 分直接貼「停止擴充」
 ```
 
@@ -69,12 +69,8 @@ id=b3-docs zip=participant-63-b3-governance.zip label=下載 B3 文件包
 ```
 
 ```text
-我們要開始 B3。請依序做：
-0. 先確認目前的資料夾是 B2 的專案：有 skills/team-rules.md，也有程式資料夾 src/smart_ticket。有 src/smart_ticket 但沒有 skills/team-rules.md，只回我一句：「缺 skills/team-rules.md：請回 B2 Recovery 的 ④ 貼規則」，不要做其他事。沒有 src/smart_ticket 的話（例如這裡只有 b3-docs、README.md 或 b3-work-order.md），立刻停下，只回我一句：「這裡不是 B2 專案：請用 VS Code 選單 File → Open Folder（中文介面：檔案 → 開啟資料夾）切到 smart-ticket-b0（用過 B2 Recovery 的是 recovery-b2），在那裡開新對話再貼一次。」不要在這裡做任何事。
-1. 讀 skills/team-rules.md 並遵守。
-2. 在下載資料夾找到 b3-docs.zip（找不到就問我位置；只有同名資料夾、沒有 ZIP，就用那個資料夾），只把裡面的 b3-docs 資料夾解壓縮到這個專案，成為 b3-docs/（ZIP 最外層的 PACKAGE-MANIFEST.json 不用）。
-3. 把 b3-docs/b3-work-order.md 複製成 skills/b3-work-order.md。
-4. 讀 skills/b3-work-order.md，照它第 2 節「開始」做完，交出 Gate 1 卡後停下；不要設計，也不要改程式。
+我們要開始 B3。先確認這裡是 B2 的專案（有 src/smart_ticket）；不是的話只回我一句「這裡不是 B2 專案：請用 VS Code 選單 File → Open Folder（中文介面：檔案 → 開啟資料夾）切到 smart-ticket-b0（用過 B2 Recovery 的是 recovery-b2），在那裡開新對話再貼一次」，其他什麼都別做。
+是的話：到下載資料夾找 b3-docs.zip（檔名可能多了 (1)；找不到就問我；只有同名資料夾就用那個資料夾），只把裡面的 b3-docs 資料夾解壓到這個專案。把 b3-docs/b3-work-order.md 存成 b3-work-order Skill（放在你這個工具會自動載入專案 Skill 的位置），告訴我完整路徑，再照工作單第 2 節開始，交出 Gate 1 卡就停下。
 ```
 
 ③ 確認結果
@@ -82,31 +78,31 @@ id=b3-docs zip=participant-63-b3-governance.zip label=下載 B3 文件包
 Gate 1 卡最後一行寫「自我檢查：成功」就往下；寫「失敗」就貼「失敗時」。沒看到這一行才貼：
 
 ```text
-請實際列出 skills 資料夾並執行 git log --oneline -3 再回答，不要憑記憶，也不要修改任何檔案：1. skills/b3-work-order.md 與 b3-docs/delivery-template.md 都存在；2. 有「B3 起點」Commit；3. notes/b3.md 有「已核准背景」和「Gate 1」兩段。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：b3-work-order Skill 和 b3-docs/ 都在，有「B3 起點」，notes/b3.md 有「已核准背景」和「Gate 1」。
 ```
 
 失敗時：
 
 ```text
-請補做缺的那一項：找不到 b3-docs.zip，就告訴我你在下載資料夾看到哪些檔案；缺 Commit 或 notes/b3.md 的段落，就照 skills/b3-work-order.md 第 2 節補上。不要改程式，補完重新給我 Gate 1 卡。
+先停。缺哪一項？找不到 b3-docs.zip 就告訴我下載資料夾裡有什麼；其他照工作單第 2 節補上，不要改程式，補完重新給我 Gate 1 卡。
 ```
 
 ④ 補充
 
 ```callout tip
 技巧：Skill（加深一層）
-**這次把「整件任務」寫成 Skill：工作單存成 `skills/b3-work-order.md`。**
-- Agent 自己往前走時，隨時可以回頭查
+**這次把「整件任務」寫成 Skill：工作單存成 `b3-work-order` Skill。**
+- Agent 自己往前走時，隨時可以回頭查；換新對話也找得到
 - 你不必每道 Gate 重貼規則，回一句話就好
 📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Claude Code 官方文件〈Best practices for Claude Code〉；你所用工具的官方文件通常有同名章節。
 ```
 
 ```callout tip
 技巧：Prompt 結構（加深一層）
-**工作單就是把提示詞的五個部分放大到整件任務。**
-- 【目標】需求；【背景】已核准背景
-- 【限制】修改範圍；【輸出格式】Gate 卡
-- 【停止條件】停下來問人的情況和三道 Gate
+**工作單就是把「交辦一件事」放大到整件任務。**
+- 要什麼、為什麼：需求與已核准背景
+- 完成的樣子：驗收條件與 Gate 卡；素材：任務卡
+- 再加上修改範圍，和停下來問人的情況
 📖 延伸閱讀：Anthropic 官方文件〈Prompt engineering overview〉與〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉；你所用工具的官方文件通常有同名章節。
 ```
 
@@ -132,13 +128,13 @@ Agent 會自己記下核准人和時間，接著交 Gate 2 卡。回覆後，在
 Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失敗」就貼「失敗時」。沒看到這一行才貼：
 
 ```text
-請實際打開 notes/b3.md 再回答，不要憑記憶，也不要修改任何檔案：「Gate 1」段落記著我的決定原話、核准人與時間；我核准時，也已有「Gate 2」段落。全部符合只回「成功」；不符只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：「Gate 1」記著我的原話、核准人與時間。
 ```
 
 失敗時：
 
 ```text
-請照 skills/b3-work-order.md 第 5 節，把我剛才的回覆照原話補進 notes/b3.md 的「Gate 1」段落；核准人和時間你自己查，不要問我。不要改程式，補完給我 Gate 2 卡。
+先停。照工作單第 5 節，把我剛才的回覆照原話補進 notes/b3.md 的「Gate 1」，核准人和時間你自己記，不要改程式，補完給我 Gate 2 卡。
 ```
 
 ④ 補充
@@ -162,7 +158,7 @@ Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失�
 Gate 1 核准後，Agent 會自己交 Gate 2 卡。照檢查點 2 的方式回覆，再到頁尾選 Gate 2 的決策。Agent 沒有自己交 Gate 2 卡時才貼：
 
 ```text
-依 skills/b3-work-order.md，給我 Gate 2 卡。
+依工作單，給我 Gate 2 卡。
 ```
 
 ③ 確認結果
@@ -170,13 +166,13 @@ Gate 1 核准後，Agent 會自己交 Gate 2 卡。照檢查點 2 的方式回�
 Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失敗」就貼「失敗時」。沒看到這一行才貼：
 
 ```text
-請實際打開 notes/b3.md 並執行 git status 再回答，不要憑記憶，也不要修改任何檔案：1. 「Gate 2」段落記著我的決定原話、核准的修改範圍、核准人與時間；2. 除了 notes/，沒有修改任何檔案。全部符合只回「成功」；不符只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：「Gate 2」記著我的原話和核准的修改範圍，除了 notes/ 沒有改任何檔案。
 ```
 
 失敗時：
 
 ```text
-請把我剛才的回覆照原話補進 notes/b3.md 的「Gate 2」段落；已經改了程式，就用 Git 還原那些檔案。在我回「開始執行」之前不要改程式。
+先停。把我剛才的回覆照原話補進 notes/b3.md 的「Gate 2」；已經改了程式就用 Git 還原。我回「開始執行」之前不要改程式。
 ```
 
 ④ 補充
@@ -210,7 +206,7 @@ Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失�
 3. **第 74 分鐘**，不論 Agent 做到哪裡，都貼：
 
 ```text
-停止擴充，依 skills/b3-work-order.md 第 7 節整理證據，交 Gate 3 卡。
+停止擴充，依工作單第 7 節整理證據，交 Gate 3 卡。
 ```
 
 4. 照前兩道 Gate 的方式回覆 Gate 3 卡，再到頁尾選 Gate 3 的決策。第 76 分鐘停止一切修改。
@@ -220,13 +216,13 @@ Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失�
 Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失敗」就貼「失敗時」。沒看到這一行才貼：
 
 ```text
-請實際打開 notes/b3.md 再回答，不要憑記憶，也不要修改任何檔案：1. 有驗收對照表（最多 7 列，最後一行有測試數）與變更審查三題答案，每題附了指令；2. 建議的完成等級附了任務卡「完成條件」原文；3. 「Gate 3」段落記著我的決定原話、核准人與時間。全部符合只回「成功」；不符只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：建議的完成等級附了任務卡「完成條件」原文，「Gate 3」記著我的原話。
 ```
 
 失敗時：
 
 ```text
-不要再改程式。請把缺的部分補進 notes/b3.md；做不到的寫「未驗證」與原因，不要宣稱已通過驗收。缺的是我的 Gate 3 決定，就只問我一句「核准／附條件／退回？」。
+不要再改程式。缺的補進 notes/b3.md；做不到的寫「未驗證」和原因，不要說已通過驗收。缺我的 Gate 3 決定，就只問我一句「核准／附條件／退回？」。
 ```
 
 ④ 補充
@@ -242,7 +238,7 @@ Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失�
 Gate 3 回覆後還不到第 76 分，才貼這段補驗文件範例；Agent 會給你 `/docs` 網址和一筆 5 人範例：
 
 ```text
-請補驗驗收對照表的文件那一列，不要改程式：先停止這個專案原本的伺服器（uvicorn smart_ticket，連同它開出的子程序），在背景用埠號 8000（先前改用 8001 的就用 8001）重新啟動；8000 被不是你啟動的程式占用就不要停它，改用 8001。實際執行 docs/ 裡的團體訂票 API 範例（暫存檔放專案外；文件沒有範例就記「未驗證（文件沒有範例）」），把結果另寫成 notes/b3.md 的「補驗」一節，不改 Gate 3 的驗收對照表與 Level。最後給我 /docs 網址和一筆可以直接貼上的團體訂票範例（班次 T001、5 位旅客；還沒有團體訂票 API 就直說，不要編範例）。最後一行只寫「自我檢查：成功」或「自我檢查：失敗：」加一句原因。
+不要改程式，補驗驗收對照表的文件那一列：重新啟動伺服器，實際執行 docs/ 裡的團體訂票 API 範例（暫存檔放專案外；文件沒有範例就記「未驗證（文件沒有範例）」），結果另寫成 notes/b3.md 的「補驗」，不改 Gate 3 的對照表和 Level。最後給我 /docs 網址和一筆可直接貼上的範例（班次 T001、5 位旅客）；還沒有團體訂票 API 就直說，不要編。
 ```
 
 在 `/docs` 點開團體訂票的 API，按「Try it out」，貼上範例，再按「Execute」：201 是成功，409 是不符商業規則。

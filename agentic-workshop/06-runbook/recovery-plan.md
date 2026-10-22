@@ -26,7 +26,7 @@
 
 ## Recovery包白名單與排除
 
-P11生成包時，逐版只取`src/smart_ticket/**`、`tests/**`、`requirements.txt`、`pyproject.toml`，以及與一般組相同的`docs/adr/`三份ADR、`docs/change-booking-guide.md`、`docs/discount-overview.md`（B2另含`docs/api-examples.md`），全取自該版參考答案本身。B1包的文件不得描述B2規則。測試呈現本階段起點的既有規則，不加入未來版本案例。主持另生成角色安全README、操作與Context摘要，不直接複製原Evaluation版README。
+P11生成包時，逐版只取`src/smart_ticket/**`、`tests/**`、`requirements.txt`、`pyproject.toml`，以及與一般組相同的`docs/adr/`三份ADR、`docs/change-booking-guide.md`、`docs/discount-overview.md`（B2另含`docs/api-examples.md`），全取自該版參考答案本身；另附生成的前任同事`AGENTS.md`（`scripts/package-manifest.json`的generated項目，與B0那份相同，含怎麼跑、工作規則與「檢查一段工作（check）」）。B1包的文件不得描述B2規則。測試呈現本階段起點的既有規則，不加入未來版本案例。主持另生成角色安全README、操作與Context摘要，不直接複製原Evaluation版README。
 
 B2參考版的`docs/api-examples.md`、`docs/discount-overview.md`原寫FULL_FARE，已更正為實際enum ADULT後才納入。文件不是自動正確的事實；程式、規則與Test需交叉確認。
 
@@ -41,7 +41,7 @@ B2參考版的`docs/api-examples.md`、`docs/discount-overview.md`原寫FULL_FAR
 1. 保存原成果、Diff、測試輸出／退出碼、Gate與未完成；記錄觸發、提示、階段／時間與主持決策。
 2. 核對已驗收來源及合格受控包，在新目錄開啟；不覆寫或刪除學員原Repo。
 3. 請Agent停止它啟動的舊Server、啟動新版本並回報Health與App版本／來源；學員核對回報，不自己操作指令。
-4. 建立新Agent Session或明確重建Context；記錄接手版本、完成／未完成、已確認規則及核准範圍。版本切換後不得沿用未確認的舊假設。
+4. 建立新Agent Session或明確重建Context：學員把原成果的`notes/`、`AGENTS.md`與Skill資料夾複製進新目錄（覆蓋包內`AGENTS.md`，不動程式）；`AGENTS.md`沒有「審查準則」時照Runbook Recovery頁的備用段補上；記錄接手版本、完成／未完成、已確認規則及核准範圍。版本切換後不得沿用未確認的舊假設。
 5. 用下一段任務與Gate接續；把Recovery來源能力與本組實際成果分開，核准人／時間／證據留存。
 
 若Server、Agent或包仍不可用，以現有材料完成需求、Impact、測試策略或證據Review並列缺項。時間不足仍保留三Gate最低要求與唯一例外，停止擴充，不延長90分鐘。

@@ -4,8 +4,8 @@
 
 | 觀察面向 | 預期行為 | 需要介入的訊號 |
 |---|---|---|
-| Teammate分析 | 用上「讓Agent帶你讀陌生專案」：`notes/analysis.md` 有系統地圖、規則位置與不一致處並標事實／假設／缺口；用上「把共識寫成檔案給Agent」：主要Agent寫出 `notes/shared-context.md`，B1開始時先請Agent讀它。 | 直接採最肯定的摘要，未查來源；共識只停在口頭；B1開始時沒有先讀 skills/team-rules.md。 |
-| B1技巧：用失敗測試找Bug | 先要Agent用失敗測試重現（測試名稱、期待值、實際值）並定位原因，再核准最小修正；修完用同一批測試證明修前失敗、修後通過；`notes/b1.md`逐步有重現、修正、審查、驗證四段紀錄。用上Agent技巧：提示詞以「請先讀skills/team-rules.md」開頭、測試只要摘要（Token節費），結束時有`skills/fix-bug-with-test.md`（Skill）。 | 一開始就叫Agent「修好」；修完只看總數，沒對照同一批測試；notes只有結論沒有證據；又整段重貼規則或貼完整測試輸出。 |
+| Teammate分析 | 用上「讓Agent帶你讀陌生專案」：`notes/analysis.md` 有系統地圖、規則位置與不一致處並標事實／假設／缺口；用上「把共識寫成檔案給Agent」：主要Agent寫出 `notes/shared-context.md`，`AGENTS.md` 有「開工先讀 notes/shared-context.md」與「審查準則」，`check` Skill 已建好。 | 直接採最肯定的摘要，未查來源；共識只停在口頭；B1開始時 `AGENTS.md` 還沒有審查準則（請學員先回共同脈絡頁檢查點2補上）。 |
+| B1技巧：用失敗測試找Bug | 先要Agent用失敗測試重現（測試名稱、期待值、實際值）並定位原因，再核准最小修正；修完用同一批測試證明修前失敗、修後通過；`notes/b1.md`逐步有重現、修正、審查、驗證四段紀錄。用上Agent技巧：提示詞只寫這次的事、規則靠 `AGENTS.md`，測試只要摘要（Token節費），結束時有標準格式的 `fix-bug-with-test` Skill（name、description 寫什麼時候用，內容不寫這次 Bug 的原因）；Agent 同一個錯犯第二次時，請它在 `AGENTS.md` 加一行。 | 一開始就叫Agent「修好」；修完只看總數，沒對照同一批測試；notes只有結論沒有證據；又整段重貼規則或貼完整測試輸出；同一個糾正說了兩次仍沒寫進 `AGENTS.md`。 |
 | 人員責任 | 人核准修改範圍、計畫，選主要Agent執行。 | 未核准即修改；人員只接受結果不審查。 |
 | 最小安全修復 | 針對學生計價，維持成人與既有優惠／順序。 | 全面重寫，提早新增多優惠政策或不相關API變更。 |
 | Regression | 正確斷言保留，完整套件真實執行，原相關失敗全部恢復；學員從變更審查第2、3題確認。 | 只跑單一測試、改期待值或Skip／XFail；學員沒問就接受。 |
@@ -26,7 +26,7 @@
 
 ## P8：Digital Worker觀察
 
-Agent主導需求、Impact、設計、Task Breakdown、Code／Test／Docs／摘要，人主導Challenge與Gate核准。觀察是否先Gate1核需求再設計、Gate2核範圍再修改、Gate3核變更審查回答／結果再交付，沒有把核准當形式。Agent技巧證據：`skills/b3-work-order.md`存在（工作單＝Skill）、Gate回報每次同一組標題、自主執行選較強模型、細節在`notes/b3.md`而對話只回摘要。
+Agent主導需求、Impact、設計、Task Breakdown、Code／Test／Docs／摘要，人主導Challenge與Gate核准。觀察是否先Gate1核需求再設計、Gate2核範圍再修改、Gate3核變更審查回答／結果再交付，沒有把核准當形式。Agent技巧證據：`b3-work-order` Skill存在（工作單＝Skill，標準格式，內容與 `b3-docs/b3-work-order.md` 相同）、Gate回報每次同一組標題、自主執行選較強模型、細節在`notes/b3.md`而對話只回摘要。
 
 關鍵證據為5／20及4／21界線、同車廂完整區段、建立失敗不留狀態、付款失敗整筆取消／全釋放／無Order、B2個別價及Audit／通知。人直接改Code、Agent跳Gate、Agent未附指令與輸出就宣稱通過、隱藏缺項或將Level2當完整交付均需介入。
 

@@ -13,6 +13,18 @@
 
 `GET /health` 已提供，不需修改。不存在的 Booking 應回傳 404；無效請求回傳明確錯誤。付款測試可控制失敗結果，不使用隨機失敗；失敗不得建立 Order 或錯誤標為已付款。
 
+## 錯誤與付款失敗（已定案）
+
+| 情況 | 處理 |
+|---|---|
+| 找不到 Trip、Booking 或 Order | 404 |
+| 旅客人數不符（0 人、超過 4 人） | 409；在 domain／application 檢查，不寫成輸入格式限制 |
+| 座位不足、重複付款、付款失敗 | 409 |
+| 輸入格式錯誤 | 沿用 FastAPI 預設的 422，回應內容不另外包裝 |
+| 其他錯誤的回應內容 | 沿用 `{"error":{"code":"...","message":"..."}}` |
+| 付款失敗之後 | Booking 維持 `PENDING_PAYMENT`、座位不釋放、不建立 Order，之後仍可再付款 |
+| 測試怎麼觸發付款失敗 | 把 `MockPaymentGateway.next_result` 設為 `PaymentStatus.FAILED`，不用隨機結果 |
+
 ## 商業規則
 
 | Rule ID | 規則 |

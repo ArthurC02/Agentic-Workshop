@@ -4,7 +4,7 @@
 
 全程人本來就不寫程式；到B3連核准方式也要變：人只透過三道Gate管Agent，只Challenge、Review、Approve／Reject與要求補證；Agent主導分析、設計、Code／Test／Docs及摘要。觀察的是授權內執行與成果可接受性。不因學員沒讀程式或沒自己打指令而判失敗；人看的是Gate提交、驗收對照表、變更審查回答與/docs試用結果。
 
-本段技巧是「委派整件任務：工作單＋三道關卡」。先觀察技巧有沒有用上：B3文件包是否由Agent解開、工作單存成`skills/b3-work-order.md`（不是口頭交代）；範圍與停止條件是否寫清楚；人是否只在Gate與停止條件介入，而非逐步下指令；`notes/b3.md`是否有已核准背景、Gate決策原文、驗收對照表與變更審查答案。同時看Agent技巧：工作單是否存成`skills/b3-work-order.md`（Skill）、Gate回報是否用固定的「Gate卡」（結構化輸出）、主要Agent是否選較強模型、對話是否只回摘要而細節寫進notes（Token節費）。每道Gate由Agent依工作單交Gate卡（是非題附原文＋建議＋「請回」），人只回「核准」「附條件：…」「退回：…」，有「要你決定」時加一句（例如「A 照建議」）；核准人與時間由Agent自己記；學員表單只選三個Gate決策（另有一個選填短句），證據以`notes/b3.md`為準，不因表單少填扣分。人照單接受Agent的建議決策而說不出核對了哪一題，記為形式性核准。
+本段技巧是「委派整件任務：工作單＋三道關卡」。先觀察技巧有沒有用上：B3文件包是否由Agent解開、工作單存成`b3-work-order` Skill（標準格式，放在工具會自動載入專案Skill的位置，例如Claude Code的`.claude/skills/b3-work-order/SKILL.md`、Codex的`.agents/skills/b3-work-order/SKILL.md`；不是口頭交代）；範圍與停止條件是否寫清楚；人是否只在Gate與停止條件介入，而非逐步下指令；`notes/b3.md`是否有已核准背景、Gate決策原文、驗收對照表與變更審查答案。同時看Agent技巧：工作單是否存成Skill、Agent是否照`AGENTS.md`的審查準則做變更審查、Gate回報是否用固定的「Gate卡」（結構化輸出）、主要Agent是否選較強模型、對話是否只回摘要而細節寫進notes（Token節費）。每道Gate由Agent依工作單交Gate卡（是非題附原文＋建議＋「請回」），人只回「核准」「附條件：…」「退回：…」，有「要你決定」時加一句（例如「A 照建議」）；核准人與時間由Agent自己記；學員表單只選三個Gate決策（另有一個選填短句），證據以`notes/b3.md`為準，不因表單少填扣分。人照單接受Agent的建議決策而說不出核對了哪一題，記為形式性核准。
 
 | Agent觀察 | 記錄的證據 |
 |---|---|

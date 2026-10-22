@@ -52,7 +52,7 @@
     "cards": [["換任務就開新的", "兩件不相關的事，不要擠在同一段對話裡。"], ["同一問題糾正兩次", "還是錯，就停：先整理學到的，再開新對話重來。"], ["重開不是浪費", "乾淨對話加更好的提示詞，幾乎總是勝過越補越長的對話。"]],
     "prompt": "先停下，不要再修改。請整理成一份新的提示詞：目標、已確認的事實、試過但無效的做法、限制、完成條件。我會把它貼到新對話重新開始。",
     "check": "新提示詞裡有沒有寫出「試過但無效的做法」，避免新對話重蹈覆轍？",
-    "explain": ["Claude Code 官方文件說：乾淨的對話加上更好的提示詞，幾乎總是勝過累積了一堆修正的長對話；並建議同一個問題糾正兩次還不對，就清掉重來。原因是錯誤的嘗試也留在脈絡裡佔位子，而且會一直把 Agent 往錯的方向拉。", "重開不等於從零開始。先請 Agent 用 Greenfield 學過的五段（目標、背景、限制、輸出格式、停止條件）整理成新的提示詞，再加上「試過但無效的做法」，新對話才不會重蹈覆轍。下週觀察自己：你通常糾正幾次才放棄？超過兩次就試試重開。"],
+    "explain": ["Claude Code 官方文件說：乾淨的對話加上更好的提示詞，幾乎總是勝過累積了一堆修正的長對話；並建議同一個問題糾正兩次還不對，就清掉重來。原因是錯誤的嘗試也留在脈絡裡佔位子，而且會一直把 Agent 往錯的方向拉。", "重開不等於從零開始。先請 Agent 用 Greenfield 學過的交辦四樣（要什麼、為什麼、完成的樣子、素材在哪）整理成新的提示詞，再加上「試過但無效的做法」，新對話才不會重蹈覆轍。下週觀察自己：你通常糾正幾次才放棄？超過兩次就試試重開。"],
     "read": ["〈Best practices for Claude Code〉（Anthropic，官方文件）"],
     "notes": "約 2.5 分鐘。Claude Code 官方〈Best practices for Claude Code〉原話：A clean session with a better prompt almost always outperforms a long session with accumulated corrections.（乾淨的對話加更好的提示詞，幾乎總是勝過累積了一堆修正的長對話。）文件同時建議：糾正兩次還不對就清掉重來。提示詞五部分（目標／背景／限制／輸出格式／停止條件）在 Greenfield 學過，這裡把它當重開的工具。可問：你通常糾正幾次才放棄？📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，持續更新）"
   },
@@ -91,7 +91,7 @@
     "check": "你團隊每次開工都要重講的一句話是什麼？它適合放進規則檔嗎？",
     "explain": ["AGENTS.md 是跨工具的開放慣例，官網稱它是「給 Agent 的 README」，現由 Linux 基金會旗下的 Agentic AI Foundation 維護，超過 6 萬個開源專案使用。", "規則可以分層：OpenAI Codex 文件說明，規則檔由根目錄往下合併，離工作檔案越近的越優先，合併後超過預設上限就不再加入；Gemini CLI 則分全域、專案、子目錄三層。提醒：規則檔仍然只是脈絡，不是鎖（第一場講過）。", "各家讀規則檔的方式不同，要先確認。以 Claude Code 為例，官方文件（2026-10 查）說：資料夾裡沒有 CLAUDE.md 時才讀 AGENTS.md；兩種都有時，預設只讀 CLAUDE.md，除非改設定，或在 CLAUDE.md 裡匯入 AGENTS.md。Gemini CLI 則要在設定裡把檔名改成 AGENTS.md 才會讀。所以兩種檔都放的專案，請 Agent 告訴你它實際讀進了哪幾份，不要假設。"],
     "read": ["〈Custom instructions with AGENTS.md〉（OpenAI，官方文件）", "〈How Claude remembers your project〉（Anthropic，官方文件）", "〈GEMINI.md〉（Google，官方文件）"],
-    "notes": "約 2.5 分鐘。AGENTS.md 官網說明它現由 Linux Foundation 旗下的 Agentic AI Foundation 維護，自稱 README for agents，超過 6 萬個開源專案使用。OpenAI Codex 文件：由根目錄往下合併，越靠近的檔優先，合併後超過預設上限就不再加入。Gemini CLI 有全域、專案、子目錄三層，檔名可設成 AGENTS.md。Claude Code 官方文件（2026-10 查）：沒有 CLAUDE.md 時才讀 AGENTS.md；兩者都有時預設只讀 CLAUDE.md。不要說「各家都會改讀 AGENTS.md」。「規則是脈絡，不是鎖」Speech 01 講過，這裡不重講，只補它怎麼每次自動被讀進來。工作坊的 skills/team-rules.md 下一場會出現，這裡不先講。📖 延伸閱讀：〈Custom instructions with AGENTS.md〉（OpenAI，持續更新）；〈How Claude remembers your project〉（Anthropic，持續更新）；〈GEMINI.md〉（Google，持續更新）"
+    "notes": "約 2.5 分鐘。AGENTS.md 官網說明它現由 Linux Foundation 旗下的 Agentic AI Foundation 維護，自稱 README for agents，超過 6 萬個開源專案使用。OpenAI Codex 文件：由根目錄往下合併，越靠近的檔優先，合併後超過預設上限就不再加入。Gemini CLI 有全域、專案、子目錄三層，檔名可設成 AGENTS.md。Claude Code 官方文件（2026-10 查）：沒有 CLAUDE.md 時才讀 AGENTS.md；兩者都有時預設只讀 CLAUDE.md。不要說「各家都會改讀 AGENTS.md」。「規則是脈絡，不是鎖」Speech 01 講過，這裡不重講，只補它怎麼每次自動被讀進來。工作坊的 B0 專案已附前任同事的 AGENTS.md；Time Skip 開新對話時先請 Agent 引用它的工作規則，確認真的讀到，讀不到就說「請先讀 AGENTS.md」。📖 延伸閱讀：〈Custom instructions with AGENTS.md〉（OpenAI，持續更新）；〈How Claude remembers your project〉（Anthropic，持續更新）；〈GEMINI.md〉（Google，持續更新）"
   },
   {
     "id": "bloat", "chapter": "05 規則檔", "title": "規則檔要短：每一行都在佔桌面",

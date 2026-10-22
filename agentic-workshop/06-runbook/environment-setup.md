@@ -6,7 +6,16 @@
 
 ## 學員電腦：由Agent代為準備
 
-全程人不碰程式：學員不自己打下列指令。學員在Agent對話貼上Greenfield 檢查點 1 的環境提示詞（建.venv、安裝requirements.txt、跑pytest -q並白話回報）與檢查點 4 的啟動提示詞（背景啟動8000埠伺服器、確認/health、給出/docs網址），由Agent代做；學員只在瀏覽器開/docs試API。主持事前要在每台學員電腦實測這條路徑可行（見[Preflight](preflight-checklist.md)），包括Agent有權限執行指令、能在背景啟動伺服器、瀏覽器能連到127.0.0.1。下列手動指令只供主持／環境準備人員驗證與排錯用。
+全程人不碰程式：學員不自己打下列指令。學員在Agent對話貼上Greenfield 檢查點 1 的提示詞（寫專案根目錄的`AGENTS.md`與`check` Skill，照它建.venv、安裝requirements.txt、跑pytest -q並白話回報）與檢查點 4 的啟動提示詞（背景啟動8000埠伺服器、確認/health、給出/docs網址），由Agent代做；學員只在瀏覽器開/docs試API。主持事前要在每台學員電腦實測這條路徑可行（見[Preflight](preflight-checklist.md)），包括Agent有權限執行指令、能在背景啟動伺服器、瀏覽器能連到127.0.0.1。下列手動指令只供主持／環境準備人員驗證與排錯用。
+
+## AGENTS.md與Skill自動載入
+
+課程把規則放在專案根目錄的`AGENTS.md`、固定做法放在標準Skill（`<工具的專案Skill資料夾>/<名稱>/SKILL.md`，開頭有name與description）；B0與兩份Recovery包附前任同事的`AGENTS.md`。學員頁不寫工具名稱，下列以常見工具為例，供主持事前確認與現場排錯（2026-10-22查核）：
+
+- Claude Code：v2.1.277起由內建外掛`cc-plugin-agents-md@builtin`讀`AGENTS.md`，預設只在工作資料夾及其上層都沒有`CLAUDE.md`／`CLAUDE.local.md`時才讀。版本較舊、停用該外掛，或剛從2.1.276以前升級後的第一個工作階段，有時讀不到；v2.1.281以前，經Bedrock或關閉遙測的工作階段只讀`CLAUDE.md`。補救二擇一：建一個只有一行`@AGENTS.md`的`CLAUDE.md`；或在`/config`把Project instructions設為`claude-md-and-agents-md`。專案Skill在`.claude/skills/<名稱>/SKILL.md`。
+- Codex：從Git根目錄往下到目前資料夾逐層讀`AGENTS.md`，合計預設上限32 KiB；專案Skill在`.agents/skills/<名稱>/SKILL.md`。
+- 現場讀不到時，學員照Runbook Time Skip檢查點2貼「請先讀AGENTS.md。再把你的工具設定成之後開新對話會自動讀它」，Agent會自己用上面的補救；不要發`CLAUDE.md`給學員。
+- Preflight時在每台學員電腦開新對話問「這個專案的工作規則是什麼？只引用AGENTS.md原文」，確認讀得到。
 
 ## 每版獨立準備
 

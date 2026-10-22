@@ -130,7 +130,7 @@ Reasoning Effort（推論強度）：同一個模型回答前「想多深」。�
 
 先不要修改。回答前請先告訴我：要把這件事做對，你還缺哪些資訊或檔案？哪些地方你只能用猜的？列完就停下，等我補齊再開始。
 
-答得不好時，最常見的原因不是模型不夠強，而是前三項沒做好：目標沒說清楚（五段式提示詞）、沒給對檔案（脈絡）、沒有能自己跑的檢查。這三項第一場都教過，這裡把它們排在「換模型、調強度」之前。
+答得不好時，最常見的原因不是模型不夠強，而是前三項沒做好：目標沒說清楚（交辦式提示詞）、沒給對檔案（脈絡）、沒有能自己跑的檢查。這三項第一場都教過，這裡把它們排在「換模型、調強度」之前。
 
 讓 Agent 先列出它缺什麼、哪裡只能用猜的，比讓它直接作答更容易發現需求不清。下次 Agent 答得不好，先貼上方的提示詞，補完它列的缺口再重問，比較前後差別。
 
@@ -146,11 +146,13 @@ Reasoning Effort（推論強度）：同一個模型回答前「想多深」。�
 
 - **最常見的有用限制**：「絕對不要提交密碼與金鑰」。
 
-每個人各寫各的提示詞，同一個 Agent 就會有好幾種做事方式。共用一份規則並放進版本控制，改規則就像改程式：有人提、有人審、留下紀錄。Thoughtworks 技術雷達第 34 期把團隊共同維護的規則列為建議採用；剛才共同脈絡段寫的 skills/team-rules.md 就是這個做法。
+每個人各寫各的提示詞，同一個 Agent 就會有好幾種做事方式。共用一份規則並放進版本控制，改規則就像改程式：有人提、有人審、留下紀錄。Thoughtworks 技術雷達第 34 期把團隊共同維護的規則列為建議採用；剛才共同脈絡段在 AGENTS.md 加上「開工先讀」與審查準則，就是這個做法。
 
 GitHub 部落格（2025-11）分析兩千五百多個開源專案的規則檔，歸納出好規則涵蓋六件事：怎麼執行、怎麼測試、專案結構、程式風格、版本控制習慣、邊界；最常見的有用限制是「絕對不要提交密碼與金鑰」。第二場說規則檔要短，這裡說要共用、有人維護，兩者要一起做到。
 
-📖 延伸閱讀：〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）
+什麼時候該加一行？Claude Code 官方文件的建議是：Agent 同一個錯犯第二次，或審查抓到它本來就該知道的事。B1 檢查點 3 的補充就是這一步：請 Agent 把那條更正寫進 AGENTS.md。
+
+📖 延伸閱讀：〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）；〈How Claude remembers your project〉（Anthropic，官方文件）
 
 **人工確認**：你團隊的規則裡，六件事缺了哪一件？
 
@@ -181,23 +183,23 @@ GitHub 部落格（2025-11）分析兩千五百多個開源專案的規則檔，
 
 ## 10. Skill：需要時才翻開的入職手冊
 
-Skill（技能檔）：一個資料夾加一份說明檔，寫一套做法；任務相關時 Agent 才讀全文。
+Skill（技能檔）：一個資料夾，SKILL.md 開頭寫 name 與 description；任務符合時 Agent 才讀全文。
 
-- **規則檔**：每次對話都整份讀進來，所以要短。
+- **AGENTS.md**：每次對話都整份讀進來，所以要短。
 
-- **Skill**：平常只看名稱與一句說明，用到才讀全文，可以寫得完整。
+- **Skill**：平常只看 name 與 description，用到才讀全文，可以寫得完整。
 
 - **開放格式**：多數主流 Coding Agent 都支援同一種格式；技術雷達列為試用。
 
-規則檔每次對話都整份讀進來，所以要短；Skill 平常只讓 Agent 看到名稱和一句說明，任務相關時才讀全文，這叫逐步揭露，所以可以寫得完整。Anthropic（2025-10）的比喻是：替 Agent 做 Skill，就像替新同事整理入職手冊。分法很簡單：每次都要遵守的放規則檔，某類任務才需要的放 Skill。
+AGENTS.md 每次對話都整份讀進來，所以要短；Skill 是一個資料夾，裡面的 SKILL.md 開頭寫 name（名稱）與 description（做什麼、什麼時候用），工具平常只讀這兩項，任務符合才讀全文，這叫逐步揭露，所以可以寫得完整。Anthropic（2025-10）的比喻是：替 Agent 做 Skill，就像替新同事整理入職手冊。分法很簡單：每次都要遵守的放 AGENTS.md，多步驟的固定做法放 Skill，例如今天的 check 與 fix-bug-with-test。
 
-Skill 已是開放格式：agentskills.io 列出 Claude Code、Codex、GitHub Copilot、Gemini CLI、Cursor 等工具都支援；Thoughtworks 技術雷達第 34 期把它列為「試用」（Trial）。工作坊用的是簡化版：skills/ 裡一份 Markdown 文件，請 Agent「先讀它並照做」，不需要工具內建的功能。
+Skill 已是開放格式：agentskills.io 列出 Claude Code、Codex、GitHub Copilot、Gemini CLI、Cursor 等工具都支援；Thoughtworks 技術雷達第 34 期把它列為「試用」（Trial）。工作坊用的就是這個標準格式：Agent 把 SKILL.md 放在它的工具會自動載入專案 Skill 的位置，例如 Claude Code 是專案的 .claude/skills/，Codex 是 .agents/skills/；也可以直接叫名稱使用。
 
-常見誤解是「Skill 寫了，Agent 就一定會用」。工具內建的 Skill 是靠名稱與一句說明判斷何時該讀，Anthropic 官方文件說，這句說明要同時寫出它做什麼、什麼時候用；寫得含糊就不會被選中。工作坊的簡化版則靠提示詞明說「先讀它」。Claude Code 成本文件也建議，把只有某類工作才用的指示從規則檔搬到 Skill：用到才載入，平常不佔每次對話的 Token。
+常見誤解是「Skill 寫了，Agent 就一定會用」。工具是靠 description 判斷何時該讀，所以這句要同時寫出它做什麼、什麼時候用；寫得含糊就不會被選中。Claude Code 成本文件也建議，把只有某類工作才用的指示從規則檔搬到 Skill：用到才載入，平常不佔每次對話的 Token。
 
-📖 延伸閱讀：〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）；〈Agent Skills〉（Anthropic，官方文件）
+📖 延伸閱讀：〈Agent Skills Overview〉（agentskills.io）；〈Extend Claude with skills〉（Anthropic，官方文件）；〈Build skills〉（OpenAI，官方文件）；〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
 
-**人工確認**：你的一條做法，該放規則檔（每次都要）還是 Skill（某類任務才要）？
+**人工確認**：你的一條做法，該放 AGENTS.md（每次都要）還是 Skill（某類任務才要）？
 
 ## 11. 什麼時候該寫 Skill
 
@@ -372,7 +374,7 @@ Tool：逐步下指令 → Teammate：核准計畫 → Digital Worker：只在�
 | Teammate（隊友） | Agent 先和你一起分析、比較，你核准計畫後它才動手，中途不必每一步都等你。 | 本課程〈歡迎與使用方式〉 |
 | 模型選擇 | 量大、明確的工作用較小較快的模型，要判斷的工作用較強的模型；先用預設，有證據再換。 | Anthropic〈Choosing the right model〉 |
 | 推論強度（Reasoning Effort） | 同一個模型回答時投入多少思考、花多少 Token；越高越慢越貴，是微調旋鈕，補不了需求不清。 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
-| Skill（技能檔） | 一個含說明檔（SKILL.md）的資料夾，寫一套做法；平常只讀名稱與一句說明，任務相關時才讀全文。工作坊用簡化版：skills/ 裡一份 Markdown。 | Anthropic〈Agent Skills〉 |
+| Skill（技能檔） | 一個資料夾，裡面的 SKILL.md 開頭寫 name（名稱）與 description（什麼時候用），內文寫一套做法；工具平常只讀這兩項，任務符合才讀全文。 | agentskills.io〈Agent Skills Overview〉；Claude Code 官方文件〈Extend Claude with skills〉 |
 | 三層邊界 | 規則分成一定做、先問我、絕不做；「先問我」那層就是人要親自決定的事。 | GitHub〈How to write a great agents.md: Lessons from over 2,500 repositories〉 |
 | 測試驅動開發（TDD） | 先為下一小段功能寫測試，再寫程式到測試通過，最後整理程式；常簡稱「紅、綠、重構」。 | Martin Fowler〈TestDrivenDevelopment〉 |
 | 重現 Bug 的失敗測試 | 修 Bug 前先寫一個現在會失敗的測試把問題重現出來；修好後同一個測試通過，就是不讀程式也看得懂的證據。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
@@ -390,8 +392,11 @@ Tool：逐步下指令 → Teammate：核准計畫 → Digital Worker：只在�
 - 〈Reasoning models〉（OpenAI，官方文件）
 - 〈Effort〉（Anthropic，官方文件）
 - 〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）
+- 〈How Claude remembers your project〉（Anthropic，官方文件）
+- 〈Agent Skills Overview〉（agentskills.io）
+- 〈Extend Claude with skills〉（Anthropic，官方文件）
+- 〈Build skills〉（OpenAI，官方文件）
 - 〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
-- 〈Agent Skills〉（Anthropic，官方文件）
 - 〈Brownfield Agentic Engineering〉（Addy Osmani，2026）
 - 〈Your job is to deliver code you have proven to work〉（Simon Willison，2025）
 - 〈TestDrivenDevelopment〉（Martin Fowler，2023）

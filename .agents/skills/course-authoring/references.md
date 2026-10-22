@@ -12,7 +12,9 @@ Format: `📖 延伸閱讀：〈組織〉官方文件〈標題〉…；你所用
 | Model choice | Anthropic 〈Choosing the right model〉; GitHub 〈Changing the AI model for GitHub Copilot Chat〉 | 〈Choosing a model〉, 〈Changing the AI model for Copilot Chat〉 |
 | Reasoning effort / thinking | Anthropic 〈Thinking〉, 〈Effort〉; OpenAI 〈Reasoning models〉 (has a "Reasoning effort" section) | 〈Building with extended thinking〉 |
 | Token, context | Anthropic 〈Context windows〉, 〈Token counting〉; Anthropic Engineering 〈Effective context engineering for AI agents〉 (2025-09-29) | |
-| Skill / rules file | Anthropic 〈Agent Skills〉; OpenAI Codex 〈Custom instructions with AGENTS.md〉; GitHub 〈Adding repository custom instructions for GitHub Copilot〉 | 「Codex 文件中的〈AGENTS.md〉說明」 |
+| Skill / rules file | Anthropic 〈Agent Skills〉; OpenAI Codex 〈Custom instructions with AGENTS.md〉; GitHub 〈Adding repository custom instructions for GitHub Copilot〉 | 「Codex 文件中的 AGENTS.md 說明」 (vague wording; cite the exact title in the next row) |
+| AGENTS.md auto-load, when to add a rule (「the same mistake a second time」), keep each file short; rules are context, not enforcement (checked 2026-10-22, facts in `docs/planning/main-course-practice-first.md` §1) | Claude Code 官方文件〈How Claude remembers your project〉; OpenAI〈AGENTS.md〉 (Codex docs, learn.chatgpt.com) | |
+| Skill standard (folder with `SKILL.md`, `name` + `description`; loaded by description) (checked 2026-10-22) | agentskills.io〈Agent Skills Overview〉; Claude Code 官方文件〈Extend Claude with skills〉; OpenAI〈Build skills〉 | |
 | Plan first, verify with tests, agent work rules | Claude Code 官方文件〈Best practices for Claude Code〉 | Anthropic Engineering 〈Claude Code: Best practices for agentic coding〉 (moved into the Claude Code docs) |
 | Testing | pytest 官方文件〈Get Started〉; skip／xfail: pytest 官方文件〈How to use skip and xfail to deal with tests that cannot succeed〉 | 〈Getting started〉 |
 | Change review / Diff | Google Engineering Practices 〈Google's Code Review Guidelines〉 (reviewer half: 〈The Code Reviewer's Guide〉); Git 官方文件〈git-diff〉 | 〈Code Review Developer Guide〉 |

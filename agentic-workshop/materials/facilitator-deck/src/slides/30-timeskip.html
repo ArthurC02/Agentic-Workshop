@@ -114,11 +114,11 @@
 
 <section class="slide slide-seg" data-seg="timeskip" data-title="Time Skip · 總覽" data-minute="29" data-timer="04:00" data-gates="timeskip">
   <p class="kicker">Time Skip · 29–33 · 技巧：開新對話先給規則與脈絡</p>
-  <h2 class="title">換專案就開新對話，先貼規則與背景</h2>
+  <h2 class="title">換專案就開新對話，先確認 Agent 讀到規則</h2>
   <ul class="seg-brief">
     <li><b>情境</b><span>上線 12 個月，你接手同事維護的既有系統 B0</span></li>
     <li><b>目標</b><span>停下 Greenfield，在 B0 開新對話，把環境跑起來</span></li>
-    <li><b>技巧</b><span>舊對話留在 Greenfield；新對話先給規則，再請 Agent 複述</span></li>
+    <li><b>技巧</b><span>舊對話留在 Greenfield；新對話先問規則，確認讀到 AGENTS.md</span></li>
   </ul>
   <ol class="timeline">
     <li data-seg="timeskip"><span class="tl-min">00:00</span><b>1 · 停手並取得 B0</b><span class="tl-due">第 31 分前</span></li>
@@ -127,10 +127,10 @@
   </ol>
   <p class="callout seg-start">從 Runbook『Time Skip：12 個月後』› 檢查點 1 開始</p>
   <aside class="notes">
-    <p><b>說（約 15 秒，學員邊下載邊聽）</b>：「這段的技巧是：換專案就開新對話，第一件事貼規則、說明背景，再請 Agent 複述。Agent 不記得上一個專案，沒給規則它就照自己的習慣做。不修改程式，分析從第 33 分鐘開始。」</p>
+    <p><b>說（約 15 秒，學員邊下載邊聽）</b>：「這段的技巧是：換專案就開新對話，第一件事確認 Agent 讀到這個專案的規則，再說背景。B0 裡有同事留下的 AGENTS.md，多數 Agent 開新對話會自己讀；沒讀到它就照自己的習慣做，所以要問一句確認。不修改程式，分析從第 33 分鐘開始。」</p>
     <p><b>操作</b>：說完翻到檢查點 1。時間軸依計時標出目前檢查點。</p>
     <p><b>可回答</b>：操作與活動範圍、環境安裝、啟動與測試指令。</p>
-    <p><b>巡場看</b>：B0 有沒有開新對話、第一件事有沒有貼規則與背景；是否還在改自己的 MVP、是否已叫 Agent 修程式、是否卡在環境。不因表單少填扣分。</p>
+    <p><b>巡場看</b>：B0 有沒有開新對話、Agent 有沒有引用得出 AGENTS.md；是否還在改自己的 MVP、是否已叫 Agent 修程式、是否卡在環境。不因表單少填扣分。</p>
   </aside>
 </section>
 
@@ -142,13 +142,13 @@
   <ol class="cp-flow">
     <li><b>在原本的對話貼 ②</b><span>Runbook『Time Skip：12 個月後』› 檢查點 1</span></li>
     <li><b>不等回覆，下載 B0</b><span>解壓縮，找到 <code>smart-ticket-b0</code> 資料夾</span></li>
-    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 的回覆</b><span>說清楚伺服器都停了就往下</span></li>
   </ol>
   <p class="cp-next"><b>第 31 分前完成</b><span>→ 下一步：在 B0 開新對話</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 29 分）</b>：「先停手：保留你的 Greenfield 現況，請原本的 Agent 停掉伺服器。B0 從 Runbook 下載，解壓縮到短路徑。這 12 個月系統加了會員、優惠、改退票、通知、座位和稽核；細節在 B0 的文件裡，個人分析時再請 Agent 讀。」</p>
     <p><b>看</b>：是否還在改自己的 MVP；解壓到太深的路徑或同步資料夾（Windows 路徑長度限制會讓檔案不完整）；用自己的 G1 代替 B0。</p>
-    <p><b>伺服器</b>：Greenfield 改用 8001 的，那台也要停。8000 被學員沒啟動、先前已回報過的程式占用，仍算成功，不必處理。② 已請 Agent 在最後一行自己回成功／失敗，學員不必再貼 ③；Agent 停伺服器時，學員同時下載解壓（省一次來回）。</p>
+    <p><b>伺服器</b>：Greenfield 改用 8001 的，那台也要停。8000 被學員沒啟動、先前已回報過的程式占用，仍算成功，不必處理。Agent 回覆說清楚它啟動的伺服器都停了就直接往下；沒說清楚才在 Greenfield 對話貼 ③（用 check 檢查）。Agent 停伺服器時，學員同時下載解壓（省一次來回）。</p>
     <p><b>介入</b>：不能用個人 G1 或已修好的 B1 代替 B0。下載失敗時由主持人提供同一份 B0，不讓學員各找替代版本。</p>
     <p><b>回答背景問題</b>：只描述模組與這 12 個月加了什麼；不說內部原因、修法、文件落差位置或後續任務。B0 延續 G1 的分層、四個核心 API、Health、固定資料與測試；重點是讓「理解與影響分析」成為必要能力，不是另一個產品。</p>
   </aside>
@@ -157,17 +157,19 @@
 <section class="slide slide-cp" data-seg="timeskip" data-title="檢查點 2 · 開新對話先貼規則與背景" data-minute="31">
   <p class="kicker">檢查點 2 / 3 · 第 31–32 分鐘</p>
   <h2 class="title">開新對話先貼規則與背景</h2>
-  <p class="cp-why"><b>為什麼</b>新對話先給規則與背景，再請 Agent 複述</p>
+  <p class="cp-why"><b>為什麼</b>換專案就開新對話，先確認 Agent 讀到規則</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>開新對話、貼 ②</b><span>在 <code>smart-ticket-b0</code> 開；Runbook › 檢查點 2</span></li>
-    <li><b>邊安裝邊讀複述</b><span>沒漏就往下，不等安裝完</span></li>
+    <li><b>沒讀到就貼補救那行</b><span>Runbook › 檢查點 2 ②</span></li>
+    <li><b>邊安裝邊對照原文</b><span>三點都有就往下，不等安裝完</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>複述有沒有漏：不改程式、先計畫再核准、沒做的標未驗證</p>
+  <p class="cp-judge"><b>你要判斷</b>引用的是 AGENTS.md 原文：不改程式、先計畫再核准、沒做的標未驗證</p>
   <p class="cp-next"><b>第 32 分前完成</b><span>→ 下一步：檢查點 3 請 Agent 建好環境並記下起點（不等安裝）</span></p>
   <aside class="notes">
-    <p><b>說（00:02／第 31 分）</b>：「這就是這段的技巧：新專案、新對話，第一件事貼規則和背景，再請 Agent 複述。舊對話裡的規則和背景都是 Greenfield 的，不適用。這也是 Token 節費：舊對話很長，帶過來每一句 Agent 都要重讀，越貴也越容易忘；需要的舊資訊已經在 notes 檔裡。」</p>
-    <p><b>看</b>：沿用 Greenfield 的對話｜沒貼規則就叫 Agent 做事｜Agent 複述漏了「不自己改程式、先計畫再核准、沒執行過的標未驗證」卻沒人追問。複述完 Agent 就會建 .venv、裝套件；學員趁安裝讀複述，沒漏就直接貼檢查點 3 ②（Agent 會排隊做完），不另貼 ③：環境結果由檢查點 3 一起回報。</p>
+    <p><b>說（00:02／第 31 分）</b>：「這就是這段的技巧：新專案、新對話，第一件事問 Agent 這個專案的規則，請它只引用 AGENTS.md 原文。舊對話裡的規則和背景都是 Greenfield 的，不適用。Agent 說沒自動讀到，就貼 Runbook 那一行：『請先讀 AGENTS.md。再把你的工具設定成之後開新對話會自動讀它，告訴我你改了什麼。』這也是 Token 節費：舊對話很長，帶過來每一句 Agent 都要重讀，越貴也越容易忘；需要的舊資訊已經在 AGENTS.md 和 notes 裡。」</p>
+    <p><b>看</b>：沿用 Greenfield 的對話｜Agent 自己編規則、不是引用原文，或漏了「程式由 Agent 做、改程式前先計畫等核准、沒執行過的標未驗證」卻沒人追問 → 請學員貼「請重新打開 AGENTS.md，逐字引用工作規則那一節。」｜Agent 說沒讀到、學員卻直接往下 → 請他貼補救那一行。引用完 Agent 就會建 .venv、裝套件；學員趁安裝對照三點，都有就直接貼檢查點 3 ②（Agent 會排隊做完），不另貼 ③：環境結果由檢查點 3 一起回報。</p>
+    <p><b>沒自動讀到時（主持參考，不投影）</b>：Claude Code 從 v2.1.277 起由內建外掛 <code>cc-plugin-agents-md@builtin</code> 讀 AGENTS.md，預設只在工作資料夾及上層都沒有 CLAUDE.md 或 CLAUDE.local.md 時；舊版、外掛停用、或從 2.1.276 以前升級後的第一個工作階段，有時讀不到；v2.1.281 以前，Bedrock 與關閉遙測的工作階段只讀 CLAUDE.md。補救一行貼了之後，Agent 可能自己建一個只有 <code>@AGENTS.md</code> 一行的 CLAUDE.md，或請學員在 /config → Project instructions 選 <code>claude-md-and-agents-md</code>，兩種都可以。Codex 從 Git 根目錄往下讀到目前資料夾的 AGENTS.md（合計預設上限 32 KiB）。上層資料夾已有學員自己的 CLAUDE.md，也會讓 Claude Code 不讀 AGENTS.md。不要對全場說建 CLAUDE.md；有需要就一對一協助。</p>
     <p><b>首次介紹</b>：Token（模型讀寫文字的單位，計費和對話能裝多少內容都用它算）與 Token 節費，約 30 秒，指著「技巧：Token 節費」小卡講。</p>
   </aside>
 </section>
@@ -186,7 +188,7 @@
   <aside class="notes">
     <p><b>說（00:03／第 32 分）</b>：「Agent 會先回報環境，再跑測試、確認版本、建 Git 起點，結果寫進 notes，最後一行自己回成功或失敗。有幾個測試失敗，之後小組要分析是不是同一個原因。文件不保證和程式同步，要交叉驗證。請先不要修改程式。」</p>
     <p><b>嚴禁揭露</b>：失敗原因、檔案位置、失敗數量、文件落差位置；只說「幾個」。學員問「是不是一個 Bug」→ 回「請小組分析是不是同一個原因」。</p>
-    <p><b>看</b>：沿用 G0 的 venv｜版本不是 B0（看 <code>app.version</code>；<code>app.title</code> 是 Smart Ticket Platform）｜學員自己打指令 → 改請 Agent 做｜把失敗說成「全部通過」或開始修測試 → 保留實際結果、先不改｜Git 要求姓名／Email → 照 Runbook 只在本資料夾設定，不加 <code>--global</code>｜起點 Commit 出現 <code>.pyc</code> → 請 Agent 補 <code>.gitignore</code> 並把暫存檔移出版本，之後的變更審查才乾淨。</p>
+    <p><b>看</b>：沿用 G0 的 venv｜版本不是 B0（看 <code>app.version</code>；<code>app.title</code> 是 Smart Ticket Platform）｜學員自己打指令 → 改請 Agent 做｜把失敗說成「全部通過」或開始修測試 → 保留實際結果、先不改｜Git 要求姓名／Email → AGENTS.md「怎麼跑」已寫只在本專案設定，不加 <code>--global</code>｜起點 Commit 出現 <code>.pyc</code> → 請 Agent 補 <code>.gitignore</code> 並把暫存檔移出版本，之後的變更審查才乾淨。</p>
     <p><b>版本不一致或環境起不來</b>：用主持人提供的同一份 B0，不讓學員各自換起點。可直接協助 Python、套件與啟動指令；記下耗時，不延後第 33 分的分析。</p>
     <p><b>停止（00:04／第 33 分）</b>：翻到「個人分析」總覽，開始 6 分鐘個人分析，不修改程式，不等安裝。還沒做完的照 Runbook 檢查點 3 ④「時間不夠時」：同一對話先貼檢查點 3 ②，再接著貼分析檢查點 1 ②；檢查點 3 回「失敗」的先貼「失敗時」，再做分析檢查點 1 ③。只有確認過的共同事實，才能當主要 Agent 的執行依據。</p>
     <p><b>收尾</b>：這段時間已滿，不在段落交界另開全場分享（會吃掉下一段約 1 分鐘）；請學員趁等 Agent 時看 Runbook「完成後想一想」，和旁邊的人聊。</p>

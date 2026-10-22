@@ -22,14 +22,16 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
   1. `① 為什麼做這一步`: the precondition and the meaning in 1–3 sentences. Where the step needs a human judgment (approve a plan, review an acceptance table, decide at a Gate, approve as partner), say here what the learner judges and how.
   2. `② 貼給 Agent`: the prompt that runs the step. If it contains OS-specific commands or paths, use a ```prompt block with `# windows` and `# macos` sections (rendered as Windows／macOS tabs, choice remembered); otherwise ```text.
      **Paste order follows reality** (user feedback, 2026-10-13: learners pasted Greenfield's rules before opening the repo): every paste block sits inside the checkpoint ② that first needs it, after the download／open-folder／new-conversation step. Never put a prompt above a segment's first checkpoint.
-  3. `③ 確認結果`: a short ```text prompt asking the Agent to check the step's 1–3 completion conditions (files, test counts, recorded decisions) and reply **only** 「成功」 or 「失敗：〈一句原因〉」, changing nothing. Then 「失敗時」 with one paste-ready rescue prompt.
+  3. `③ 確認結果`: main course: one ```text line handing the check to the learner's `check` Skill — 「用 check 檢查剛才這一段」, plus at most one sentence of this step's own condition when truly needed (the Skill is read-only, compares notes vs. actual command results vs. the approved plan／acceptance criteria, and ends with 「成功」 or 「失敗：〈一句原因〉」). A ② may end with 「做完用 check 檢查。」 to save a round trip; then ③ says to paste only when no 成功／失敗 line came back. DLC: a short prompt asking for 「成功」／「失敗」 itself. Then 「失敗時」 with one short, natural rescue (「先停，不要再改。發生什麼事？你建議怎麼做？」 style, plus what to restore when it matters).
   4. `④ 補充`: optional — 技巧／新概念 callouts, 💬 discussion, warnings. Keep only what passes the absolutely-necessary test.
   **Judge without switching pages** (user feedback, 2026-10-17: B3 Gate 1 sent learners to a separate task-card page): what a learner checks against during a checkpoint lives on the same page (a segment's task card goes in its own 「## 任務卡」 section, as in B1–B3), and the Agent's decision card quotes the governing source sentence verbatim (「原文（段落）：…」) under each question, so the learner compares in place.
 
-  `scripts/check_blocks.py` enforces ① ② ③ (④) in order, a 成功／失敗 ③ prompt, a 「失敗時」 line, and the knowledge-density limits in 「Reading parameters」.
+  `scripts/check_blocks.py` enforces ① ② ③ (④) in order, a ③ prompt using `check` (main) or asking 成功／失敗 (DLC), a 「失敗時」 line, and the knowledge-density limits in 「Reading parameters」.
 - **Callouts**: first line after the title is a **bold one-sentence takeaway**, then short bullets. `tip` callouts and `info` callouts titled 技巧／新概念 render folded (closed `<details>`, the bold lead shows as a preview); 現在在做什麼, warnings, 💬 and 時間不夠時 stay open (`callout_folds` in `scripts/materials_md.py`). Anything a learner must see without clicking goes in ①–③, never only in a folded callout.
-- **Prompts**:
-  - Use the five parts: 目標 / 背景・要讀的檔 / 限制 / 輸出格式 / 停止條件.
+- **Prompts** (user feedback, 2026-10-22: 「Prompt…更符合實際工作狀況，而不是只存在教科書上的格式」; design: `docs/planning/main-course-practice-first.md`):
+  - Main course: write it like assigning work to a colleague — only what this time, why, what done looks like, where the material is; 2–5 lines. Rules and procedures live in files the tool loads by itself (`AGENTS.md`, Skills), so never repeat 用白話／停下等我／不要改檔／report formats／server-stop details／venv paths／Git identity in a prompt. Keep only real decisions and real hand-offs. Never put answers the requester wouldn't know in a prompt (expected totals, which AC is usually missed, error codes): fixed decisions go into the requirement docs／task cards the Agent reads; gaps become open questions with suggested answers for the learner.
+  - Skills are standard: `<the tool's project Skill folder>/<name>/SKILL.md` with frontmatter `name` and `description` (when to use it). Learner pages say 「放在你這個工具會自動載入專案 Skill 的位置，告訴我完整路徑」 and never name a tool or a path.
+  - DLC: use the five parts 目標 / 背景・要讀的檔 / 限制 / 輸出格式 / 停止條件.
   - Put commands and arguments in the prompt verbatim, for the Agent to run.
   - Name the record file (main course: `notes/<段落>.md`).
   - Never leave `〈 〉` blanks for learners. If the Agent needs information, it asks for it.
@@ -96,18 +98,19 @@ Enforced by `check_blocks.py` (density) and `verify_typography.py` (renders both
 ## The six Agent techniques (main course) and where they first appear
 | Technique | First use |
 |---|---|
-| Prompt structure | Greenfield plan; deepened in B3 (the Work Order is the five parts at task scale) |
+| Prompt structure | Greenfield plan (要什麼、為什麼、完成的樣子、素材在哪); deepened in B3 (the Work Order is the same at task scale) |
 | Structured Output | Greenfield acceptance table; then B2 comparison, B3 Gate report, delivery summary |
 | Model choice / reasoning effort | First taught in analysis checkpoint 1 (Greenfield only says 「先仔細想過再回答」 in the prompt); deepened in B2 (high to compare, low to implement) and B3 |
 | Token saving | Time Skip (new conversation), analysis (named files, summaries) |
-| Skill | Shared context creates `skills/team-rules.md`; B1 `skills/fix-bug-with-test.md`; B3 Work Order as `skills/b3-work-order.md`; retro: the learner's own skill |
+| Rules file (`AGENTS.md`) | Greenfield CP1 (the Agent writes it: 怎麼跑 + 工作規則 from `04-agent-usage-guide.md`); Time Skip confirms auto-load in a new conversation (B0 ships the predecessor's `AGENTS.md`, also in both Recovery packages; never ship a `CLAUDE.md`); shared context adds 開工先讀 and 審查準則; B1 CP3 「同一個錯第二次，就加一行」 |
+| Skill | Greenfield CP1 `check` (B0's `AGENTS.md` carries the check steps until shared context moves them into a `check` Skill); taught at shared context; B1 `fix-bug-with-test`; B3 Work Order as `b3-work-order`; retro: the learner's own Skill, tried with two phrasings in a new conversation |
 
 Stay tool-neutral: no vendor product names, commands or config paths as requirements. Tool features such as a model menu, effort setting or native Skills are optional extras.
 
 ## Canonical live texts (copy from these, don't re-invent)
-- Agent work rules: the rules block in `materials/participant-runbook/content/10-greenfield.md` (Greenfield) and `30-time-skip.md` (Brownfield). From shared context onward, use 「請先讀 skills/team-rules.md」.
+- Agent work rules: Greenfield's 工作規則 template and 「怎麼跑」 list in `01-greenfield/participant/04-agent-usage-guide.md`; Brownfield's shipped `AGENTS.md` is the `generated` entry in `scripts/package-manifest.json` (participant-29-b0, recovery-52-b1, recovery-63-b2 — keep the three identical). Prompts never ask the Agent to read the rules: a new conversation loads `AGENTS.md` itself; Time Skip teaches the one-line rescue.
 - Acceptance table, change review, and the `/docs` Try-it-out flow: `10-greenfield.md`, `44-b1.md`.
-- Review policy (「審查準則」, a section of `skills/team-rules.md`): the verbatim text in the `39-shared-context.md` CP2 prompt. The fallback rules blocks in `53-recovery-b1.md` and `67-recovery-b2.md` carry the same text; change all three together. B1–B3 and the delivery review conversation cite it (「依 skills/team-rules.md 的審查準則」) instead of re-listing the questions.
+- Review policy (「審查準則」, a section of `AGENTS.md`): the verbatim text in the `39-shared-context.md` CP2 prompt. The fallback blocks in `53-recovery-b1.md` and `67-recovery-b2.md` carry the same text; change all three together. B1–B3 and the delivery review conversation cite it (「照 AGENTS.md 的審查準則」) instead of re-listing the questions.
 - External playbooks and frameworks (user feedback, 2026-10-22: 「參考他的內容，而不是設計。教學要能夠學以致用」): use their content (concrete practices, first steps, each practice's own indicators), never their design (stage names, artifact-chain labels, renamed Gates, invented rules of thumb). Keep course names (B3 Gates 需求理解／設計與修改範圍／交付) and describe the practice in plain words (「計畫開頭三行：要什麼、為什麼、限制」, not 意圖／規格). Every learner callout citing such a source carries at most one 「回到工作：…」 bullet with its concrete first step. Indicators are copied from the source per practice; the retro's 「回到工作：從哪一項開始」 list in `05-retrospective/participant/reflection-sheet.md` is the canonical copy. Learner pages never use intent.md／spec.md／REVIEW.md.
 - Four-block checkpoint and ```prompt Windows／macOS tabs: `materials/participant-runbook/content/10-greenfield.md` checkpoint 1.
 - DLC work rules: `materials-dlc/participant-runbook/content/01-environment.md`, `20-d2.md` (proposer and partner), `30-d3a.md`.
@@ -131,6 +134,6 @@ Stay tool-neutral: no vendor product names, commands or config paths as requirem
 
 ## Always
 - Delete content made obsolete, contradictory or duplicated by your edit. Do not only add.
-- Facilitator notes: situation and technique first, what to watch for, paste-ready hint prompts. Evaluation judges technique use plus evidence in `notes/` and `skills/`, never the number of form fields filled.
+- Facilitator notes: situation and technique first, what to watch for, paste-ready hint prompts. Evaluation judges technique use plus evidence in `notes/`, `AGENTS.md` and the Skills, never the number of form fields filled.
 - Plain Traditional Chinese with full-width punctuation (see `plain-language-review`). Preserve each file's line endings.
 - After editing, run `curriculum-review` for broad changes, `rehearsal` for changed prompts and commands (every block must run), `fact-check` for new or changed explanations, then `release-materials` (it commits DLC and main separately and pushes).

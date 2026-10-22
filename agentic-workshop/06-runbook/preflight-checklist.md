@@ -33,6 +33,7 @@ B0 pytest非零是已核准例外，只有失敗集合完全符合Manifest才可
 - [ ] Agent可用；個人分析、小組Shared Context及主要Agent／人員核准者已確認。
 - [ ] 每台學員電腦：貼上環境準備提示後，Agent能代為建立.venv、安裝依賴並回報pytest結果；能在背景啟動伺服器（埠號8000）、確認/health為status=ok；瀏覽器能開http://127.0.0.1:8000/docs並用Try it out執行一次（/docs的畫面從cdn.jsdelivr.net載入，需要網路；沒有網路時頁面空白，改請Agent用httpx實際呼叫API並列出狀態碼與回應）。學員全程不需自己打指令。
 - [ ] macOS學員電腦：Safari › 設定 › 一般，已取消「下載後打開『安全』的檔案」（或改用Chrome）；否則Safari會自動解開ZIP並把ZIP丟到垃圾桶，Recovery步驟1找不到ZIP算不出SHA256。
+- [ ] 在B0開新對話問「這個專案的工作規則是什麼？只引用AGENTS.md原文」，Agent能自動讀到`AGENTS.md`；讀不到時照[環境準備](environment-setup.md)「AGENTS.md與Skill自動載入」確認補救可行。Agent能把Skill放到工具會自動載入專案Skill的位置並說出完整路徑。
 - [ ] Agent能停止自己啟動的伺服器並換版重啟；Port佔用時Agent能改埠並告知新網址。
 - [ ] 三Gate與條件結案、唯一EXCEPTION-DW-001、60秒含69–70／可縮30秒已準備。
 - [ ] 90分鐘計時、觀察／提示／停止、收件與回顧材料可用；不排名、不強求Level3。

@@ -89,21 +89,21 @@
     "notes": "（第 19–21 分）新概念。Simon Willison〈Context engineering〉（2025-06-27）引用 Shopify 執行長 Tobi Lütke 的定義：「the art of providing all the context for the task to be plausibly solvable by the LLM.」Thoughtworks Technology Radar Vol. 34（2026-04）把 Context engineering 列為 Adopt（建議採用）。「一段真實範例勝過三段描述」出自 GitHub Blog〈How to write a great agents.md: Lessons from over 2,500 repositories〉（2025-11-19）。Prompt engineering（提示詞工程）沒有過時，只是術語轉向，寫清楚的提示詞仍是基本功。為什麼「多不等於好」留到 Speech 02 用 Context Window（脈絡視窗）解釋，這裡只預告。連回剛才：G0 把需求、驗收條件、架構放在固定檔案，就是替 Agent 準備好脈絡。📖 延伸閱讀：Anthropic Engineering〈Effective context engineering for AI agents〉。"
   },
   {"id": "rules", "chapter": "Agent 怎麼知道要做什麼", "title": "技巧：工作規則是每次都要的脈絡",
-    "lead": "每一步都會用到的要求（流程、邊界、回報格式）先講一次；之後每段提示詞就能短。",
+    "lead": "每次都要的要求寫進專案根目錄的 AGENTS.md；Agent 開工自動讀，提示詞只寫這次的事。",
     "cards": [["流程", "改之前先提計畫；只做核准的步驟，做完就停。"], ["邊界", "照分層放規則；不新增套件；不刪測試，不用跳過藏失敗。"], ["回報", "固定格式的驗收對照表與審查答案；沒執行的標「未驗證」。"], ["注意", "規則只能提醒；一定要發生的事，交給 hook 或權限把關。"]],
     "check": "Agent 每做完一步真的停下；每次回報都附上驗收對照表與審查答案。",
-    "explain": ["工作規則是把每一步都會用到的要求（流程、邊界、回報格式）先講一次，之後每段提示詞就能很短。剛才 Greenfield 檢查點 1 貼的 7 條規則就是這樣：做完一步就停、照分層放規則、不刪測試、固定格式回報。", "要知道它的限制：規則是給 Agent 的脈絡，只能提醒，不能強制，Agent 可能漏做。Anthropic〈The AI-native SDLC playbook〉說得很直接：Skill 是建議性的控制，hook（在固定時機一定會自動執行的檢查）才是背後確定會發生的那一層。一定要發生的事（例如不得刪測試），要靠 hook、測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。另外，開新對話時，貼過的規則不會自動帶過去；寫成每次自動讀的規則檔，是第二場的內容。"],
-    "read": ["〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）", "〈The AI-native SDLC playbook〉（Anthropic，2026）", "〈Automate actions with hooks〉（Anthropic，官方文件）"],
-    "notes": "（第 21–23 分）連回 Runbook Greenfield 檢查點 1 的 7 條工作規則。工具中立：這裡只講「每次都要的要求先講一次」這個做法。限制只講一句：規則檔只是建議，hook 才是強制。原文：「A skill is an advisory control while a hook is the deterministic layer behind it.」Claude Code hooks 文件：hook 讓「certain actions always happen rather than relying on the LLM to choose to run them」。一定要發生的事（例如不得刪測試）要靠 hook、測試、持續整合或權限把關，細節是 Speech 04 的主題。開新對話時貼上的規則不會自動帶過去，寫成每次自動讀的規則檔（例如 AGENTS.md）留到 Speech 02，團隊共用規則留到 Speech 03，這裡只預告。📖 延伸閱讀：GitHub 官方文件〈Adding repository custom instructions for GitHub Copilot〉；Anthropic〈The AI-native SDLC playbook〉。"},
+    "explain": ["工作規則是把每一步都會用到的要求（流程、邊界、回報格式）先寫下來，之後每段提示詞只要寫這次的事：要什麼、為什麼、完成的樣子、素材在哪。剛才 Greenfield 檢查點 1 請 Agent 在專案根目錄寫的 AGENTS.md 就是這樣：「怎麼跑」加上「工作規則」，例如做完一步就停、照分層放規則、不刪測試、固定格式回報。", "AGENTS.md 是給 Agent 看的專案說明，多數 Coding Agent 開新對話會自動讀它，但讀法各家不同。以 OpenAI Codex 為例，它從 Git 根目錄往下讀到目前資料夾，合計預設上限 32 KiB；以 Claude Code 為例，v2.1.277 起沒有 CLAUDE.md 時直接讀 AGENTS.md，兩者都有時只讀 CLAUDE.md，除非 CLAUDE.md 匯入 @AGENTS.md。讀不到時，開工先說一句「請先讀 AGENTS.md」。", "裡面只放每次都要的事（怎麼跑、慣例、邊界），每份最好在 200 行內；一步步的固定做法另存成 Skill，例如 check，用得上時 Agent 才讀全文，第三場細講。什麼時候加一行？Claude Code 官方文件的建議是：Agent 同一個錯犯第二次，或審查抓到它本來就該知道的事。", "要知道它的限制：規則是給 Agent 的脈絡，只能提醒，不能強制，Agent 可能漏做。Anthropic〈The AI-native SDLC playbook〉說得很直接：Skill 是建議性的控制，hook（在固定時機一定會自動執行的檢查）才是背後確定會發生的那一層。一定要發生的事（例如不得刪測試），要靠 hook、測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。Claude Code 官方文件也說，規則檔是脈絡，不是強制的設定。"],
+    "read": ["〈AGENTS.md〉（OpenAI，官方文件）", "〈How Claude remembers your project〉（Anthropic，官方文件）", "〈The AI-native SDLC playbook〉（Anthropic，2026）", "〈Automate actions with hooks〉（Anthropic，官方文件）"],
+    "notes": "（第 21–23 分）連回 Runbook Greenfield 檢查點 1：Agent 照範本寫的 AGENTS.md（怎麼跑＋工作規則）和 check Skill。工具中立：只說「多數 Coding Agent 會自動讀」，工具細節只當例子。OpenAI〈AGENTS.md〉：Codex 從專案根目錄（通常是 Git 根目錄）往下讀到目前資料夾，每層最多一個檔，越近越優先，合計預設 32 KiB。Claude Code〈How Claude remembers your project〉：沒有 CLAUDE.md 時直接讀 AGENTS.md（v2.1.277 起）；兩者都有時只讀 CLAUDE.md，除非 CLAUDE.md 匯入 @AGENTS.md。何時加一行，原文：「Claude makes the same mistake a second time」「A code review catches something Claude should have known」；只放每次都要的事實，多步驟流程放 Skill，每檔目標 200 行內。Skill 本身留到 Speech 03。限制只講一句：規則檔只是建議，hook 才是強制。原文：「A skill is an advisory control while a hook is the deterministic layer behind it.」Claude Code hooks 文件：hook 讓「certain actions always happen rather than relying on the LLM to choose to run them」。一定要發生的事（例如不得刪測試）要靠 hook、測試、持續整合或權限把關，細節是 Speech 04 的主題。同一份文件原文：「Claude treats them as context, not enforced configuration」。規則檔為什麼要短留到 Speech 02，團隊共用規則留到 Speech 03，這裡只預告。📖 延伸閱讀：OpenAI〈AGENTS.md〉；Claude Code 官方文件〈How Claude remembers your project〉；Anthropic〈The AI-native SDLC playbook〉。"},
   {
-    "id": "prompt", "chapter": "Agent 怎麼知道要做什麼", "title": "技巧：五段式提示詞",
-    "lead": "Agent 能推測意圖，但不會讀心。五段寫齊，它就不必自己猜。",
-    "code": "【目標】先不要修改程式，提出 4 步實作計畫\n【背景／要讀的檔】只讀需求、驗收條件、README、docs/\n【限制】固定 4 步；不放範圍外項目；付款失敗照我定的處理\n【輸出格式】寫進 notes/greenfield.md「計畫」：每步列規則與檔案\n【停止條件】寫完就停下等我",
-    "cards": [["模糊 vs 指名", "「修好訂票」→「AC-G-008 座位不足時不應建立訂票，請讓它通過」。"], ["缺一塊會怎樣", "沒寫停止條件，Agent 寫完計畫可能直接動手改程式。"]],
+    "id": "prompt", "chapter": "Agent 怎麼知道要做什麼", "title": "技巧：像交辦工作一樣寫提示詞",
+    "lead": "像交辦給同事：這次要什麼、為什麼、完成的樣子、素材在哪；規則已在 AGENTS.md，不用重寫。",
+    "code": "【要什麼】先別改程式，給我一份 4 步的實作計畫\n【為什麼】先看計畫，動手前就抓得出範圍外的項目\n【完成的樣子】寫進 notes/greenfield.md「計畫」，每步列 AC 和檔案\n【素材在哪】01 到 03 需求文件、程式裡的 TODO(GREENFIELD\n需求沒寫清楚的列成問題，每題附建議答案",
+    "cards": [["不用重寫的", "做完就停、回報格式、不刪測試：已在 AGENTS.md 與 Skill。"], ["沒寫清楚的", "讓 Agent 列成問題、附建議答案，由你決定。"]],
     "check": "提示詞指名了檔案、情境和「什麼算修好」；決策點用短回覆：「同意」「選 B」。",
-    "explain": ["Claude Code 官方文件的說法是：Agent 能推測意圖，但不會讀心。它建議提示詞指名檔案、情境與「什麼算修好」；模糊的提示詞會讓 Agent 掃過大量檔案，又慢又容易偏。", "五段各擋掉一種常見問題：少了【背景／要讀的檔】，Agent 會讀整個資料夾或憑印象；少了【限制】，它會擴大範圍、自己假設沒講清楚的處理方式；少了【停止條件】，寫完計畫可能直接動手改程式。下週每次交辦前，對照五段檢查一次；寫不出來的那一段，通常就是你自己還沒想清楚的地方。"],
-    "read": ["〈Prompting best practices〉（Anthropic，官方文件）", "〈Prompt engineering〉（OpenAI，官方文件）"],
-    "notes": "（第 23–25 分）新技巧，是 Runbook Greenfield 檢查點 2 計畫提示詞的縮寫版。Claude Code 官方文件〈Best practices for Claude Code〉：「Claude can infer intent, but it can't read your mind.」並建議指名檔案、情境與什麼算修好；模糊的提示詞會讓 Agent 掃大量檔案。逐段問學員：拿掉【背景／要讀的檔】會怎樣（Agent 讀整個資料夾，或只憑印象）；拿掉【限制】會怎樣（擴大範圍、自己假設付款失敗怎麼處理）。原提示詞的「先仔細想過再回答」和模型選擇、推論強度有關，留到 Speech 03。📖 延伸閱讀：Anthropic 官方文件〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉。"
+    "explain": ["Claude Code 官方文件的說法是：Agent 能推測意圖，但不會讀心。它建議提示詞指名檔案、情境與「什麼算修好」；模糊的提示詞會讓 Agent 掃過大量檔案，又慢又容易偏。", "四樣各擋掉一種常見問題：少了「素材在哪」，Agent 會讀整個資料夾或憑印象；少了「完成的樣子」，它不知道要交什麼、何時算做完；少了「為什麼」，遇到沒講到的情況只能自己猜。做完就停、回報格式、不刪測試這類每次都要的規則和固定做法，已寫在 AGENTS.md 與 Skill，工具會自己讀，提示詞只寫這次的事。", "需求沒寫清楚的，不要在提示詞裡替它補答案；請 Agent 列成問題、每題附建議答案，由你決定。下週每次交辦前，對照四樣檢查一次；寫不出來的那一樣，通常就是你自己還沒想清楚的地方。"],
+    "read": ["〈Prompt engineering overview〉（Anthropic，官方文件）", "〈Prompting best practices〉（Anthropic，官方文件）", "〈Prompt engineering〉（OpenAI，官方文件）"],
+    "notes": "（第 23–25 分）新技巧，是 Runbook Greenfield 檢查點 2 計畫提示詞的拆解，對應該頁「技巧：Prompt 結構」。Claude Code 官方文件〈Best practices for Claude Code〉：「Claude can infer intent, but it can't read your mind.」並建議指名檔案、情境與什麼算修好；模糊的提示詞會讓 Agent 掃大量檔案。逐樣問學員：拿掉「素材在哪」會怎樣（Agent 讀整個資料夾，或只憑印象）；拿掉「完成的樣子」會怎樣（不知道交什麼、何時停）。提示詞裡沒有「做完就停」「用白話」，因為那些已在 AGENTS.md；需求缺口（例如付款失敗怎麼處理）由 Agent 列成問題附建議答案，學員決定，講者不先寫進提示詞。原提示詞的「先仔細想過再回答」和模型選擇、推論強度有關，留到 Speech 03。📖 延伸閱讀：Anthropic 官方文件〈Prompt engineering overview〉與〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉。"
   },
   {
     "id": "plan", "chapter": "人怎麼確認", "title": "技巧：先探索、再計畫、再實作",
@@ -176,7 +176,7 @@
     "cards": [["答不出「檢查」", "先請 Agent 盤點現有檢查（第 4 頁的提示詞）。"], ["答不出「驗收條件」", "先請 Agent 訪談你、寫短規格（第 8 頁的提示詞）。"]],
     "check": "每人說出一題自己答不出來的，以及下一步要請 Agent 先做什麼。",
     "explain": ["五個問題各對應今天的一個做法：檢查（第 4 頁）、可判定的驗收條件（第 5 頁）、脈絡（第 10 頁）、先計畫（第 13 頁）、看證據審查（第 16 頁）。它們都不綁特定工具，換任何 Coding Agent 都適用。", "答不出來不是壞事，它告訴你交辦前要先補什麼。下週挑一件真實工作先問這五題；答不出的那一題，就變成你給 Agent 的第一個任務，例如先盤點檢查，或先訪談你、寫一份短規格。"],
-    "notes": "（第 40–44 分）討論 3 分鐘，請一組分享；時間不夠就由講者用一個學員的例子帶過五題。回到開場白板上的卡點，請學員說哪一題能解：環境類卡點不在本場範圍，提示詞類對應脈絡與五段式，審查類對應證據。五題分別對應第 4、5、10、13、16 頁，都是工具中立的做法，換任何 Coding Agent 都適用。"
+    "notes": "（第 40–44 分）討論 3 分鐘，請一組分享；時間不夠就由講者用一個學員的例子帶過五題。回到開場白板上的卡點，請學員說哪一題能解：環境類卡點不在本場範圍，提示詞類對應脈絡與交辦四樣，審查類對應證據。五題分別對應第 4、5、10、13、16 頁，都是工具中立的做法，換任何 Coding Agent 都適用。"
   },
   {
     "id": "next", "chapter": "帶回工作", "title": "下一場：Time Skip（時間快轉）",

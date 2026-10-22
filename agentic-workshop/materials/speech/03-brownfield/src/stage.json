@@ -15,7 +15,7 @@
     ["Teammate（隊友）", "Agent 先和你一起分析、比較，你核准計畫後它才動手，中途不必每一步都等你。", "本課程〈歡迎與使用方式〉"],
     ["模型選擇", "量大、明確的工作用較小較快的模型，要判斷的工作用較強的模型；先用預設，有證據再換。", "Anthropic〈Choosing the right model〉"],
     ["推論強度（Reasoning Effort）", "同一個模型回答時投入多少思考、花多少 Token；越高越慢越貴，是微調旋鈕，補不了需求不清。", "Anthropic〈Effort〉；OpenAI〈Reasoning models〉"],
-    ["Skill（技能檔）", "一個含說明檔（SKILL.md）的資料夾，寫一套做法；平常只讀名稱與一句說明，任務相關時才讀全文。工作坊用簡化版：skills/ 裡一份 Markdown。", "Anthropic〈Agent Skills〉"],
+    ["Skill（技能檔）", "一個資料夾，裡面的 SKILL.md 開頭寫 name（名稱）與 description（什麼時候用），內文寫一套做法；工具平常只讀這兩項，任務符合才讀全文。", "agentskills.io〈Agent Skills Overview〉；Claude Code 官方文件〈Extend Claude with skills〉"],
     ["三層邊界", "規則分成一定做、先問我、絕不做；「先問我」那層就是人要親自決定的事。", "GitHub〈How to write a great agents.md: Lessons from over 2,500 repositories〉"],
     ["測試驅動開發（TDD）", "先為下一小段功能寫測試，再寫程式到測試通過，最後整理程式；常簡稱「紅、綠、重構」。", "Martin Fowler〈TestDrivenDevelopment〉"],
     ["重現 Bug 的失敗測試", "修 Bug 前先寫一個現在會失敗的測試把問題重現出來；修好後同一個測試通過，就是不讀程式也看得懂的證據。", "Claude Code 官方文件〈Best practices for Claude Code〉"],

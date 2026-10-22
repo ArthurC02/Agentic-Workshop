@@ -12,12 +12,12 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/01-mission-brief.md",
           "destination": "agentic-workshop/01-greenfield/participant/01-mission-brief.md",
-          "sha256": "dcb5aa4a4224d596470e54b1eb91fc370bda733bc48cb28dfde297c2949cfc57"
+          "sha256": "bfea5e84c7d8333c4aca685f5f728556e4220e0103ef5f58b1623328e2693a67"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/02-business-requirements.md",
           "destination": "agentic-workshop/01-greenfield/participant/02-business-requirements.md",
-          "sha256": "d8288667d47cfd44a2cfa318f36878230b855ba89470f6bc2902160ff1da46af"
+          "sha256": "06697e2b83b67e40aaf36af79cca7f66bae9e5f21e86562c9b21d6599503de6c"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/03-acceptance-criteria.md",
@@ -27,12 +27,12 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
           "destination": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
-          "sha256": "8305b0ccc86ef101a78938af5917c9c83b86543a8fbd6685527c97eb911fdf80"
+          "sha256": "71c38a2a6cf9acc0d6c2610edeb96aa4b4e7292c2dda731d423306c7964d73a1"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/05-submission-checklist.md",
           "destination": "agentic-workshop/01-greenfield/participant/05-submission-checklist.md",
-          "sha256": "5559b52527960dc1d418a820b5257d7640a145058555128781e3b68e426b810d"
+          "sha256": "033e7bcb875463cda3157792bd387699cbf592e96e2cb0115fd6cbf4134f3189"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/starter-repository/.gitignore",
@@ -177,7 +177,7 @@
         {
           "source": "agentic-workshop/02-time-skip/participant/01-time-skip-announcement.md",
           "destination": "agentic-workshop/02-time-skip/participant/01-time-skip-announcement.md",
-          "sha256": "95bdbdce6bc1fde1a23844840be998727a0417fc0eb6a6fdcc4b76ae4e9a59c8"
+          "sha256": "5202643a14fb1f0c1c9a61f22879133c13409c4df5b95fdf87fec3012d9f8ca5"
         },
         {
           "source": "agentic-workshop/02-time-skip/participant/02-company-growth-summary.md",
@@ -435,7 +435,8 @@
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/architecture.md": "# B0 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n\n## 本版既有架構決策\n\n- [001-use-in-memory-repositories](adr/001-use-in-memory-repositories.md)\n- [002-introduce-discount-policy](adr/002-introduce-discount-policy.md)\n- [003-record-notifications-synchronously](adr/003-record-notifications-synchronously.md)\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/README.md": "# B0 接手版本\n\n第 29 分鐘發放，全員同一份。先建環境、跑測試、記下起點，不修改程式。\n來源案例Commit：392d920ce4510e5c2dd5df5ae2db25e9ab3b87e6。在B0開新的Agent對話。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試與Health，起點寫進notes/time-skip.md。\n\n公開操作Context：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)。保留本版既有文件，內容與程式及測試需交叉確認，不預設文件已完全同步。\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/context.md": "# B0 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nContext來自本版程式、測試與既有文件；先個人獨立分析，將不一致與資訊缺口記錄後再由小組交叉確認。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
-        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n"
+        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n",
+        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，最後一行寫通過／失敗／跳過數。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
       }
     },
     {
@@ -473,7 +474,7 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/04-shared-context-template.md",
           "destination": "agentic-workshop/03-brownfield/participant/04-shared-context-template.md",
-          "sha256": "a5b62714449dae0ab3a89fc69bdcdae341af74c3a5c1784af04112697bc04da7"
+          "sha256": "889f3765c941c6d6ee36531f3b60be62ee5b15c1cab931414342396d359dc58e"
         }
       ],
       "generated": {}
@@ -518,12 +519,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-docs-readme.md",
           "destination": "b3-docs/README.md",
-          "sha256": "5f7343e92e7bddf0c2734d5dfe39605e3fba595e9804a816c45d0fe6a9a6e052"
+          "sha256": "f837977e7a6ac1e9d988e413b0c778399bd37c97c79ff2f4c32b1db79aa0a45a"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
           "destination": "b3-docs/b3-work-order.md",
-          "sha256": "677de595c6402716a27a9480aea2121faec4dec8f021fbcee3568af4c569e5a2"
+          "sha256": "4bf11b01fc53a0e8a59aec3d24c105ccbea3e1d5089b1e0062328c2ffce98fe9"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
@@ -548,12 +549,12 @@
         {
           "source": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
           "destination": "agentic-workshop/05-retrospective/participant/maturity-comparison.md",
-          "sha256": "a6494bf464d2fc5aa44e53530aa0125d3dd6a4de0ee76f20a9f3cb999125f557"
+          "sha256": "5b90246212d5616cc399a1c120aabbee1b98bcf8d5713cb3584c34072a3b7225"
         },
         {
           "source": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
           "destination": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
-          "sha256": "06fb1dedd8b7ffb955173141d597c5b309d79062b451ee9cc61cdb5cecef8fa0"
+          "sha256": "651aa372d05cb6378b563fee7fd6ee0615fb72de0cb6a002a235da02d2209233"
         }
       ],
       "generated": {}
@@ -801,7 +802,8 @@
         "recovery-b1/docs/architecture.md": "# B0 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n",
         "recovery-b1/README.md": "# B1 受控接手版本\n\n讀者：學員與其Agent。發放：第52分鐘後，主持核准才接手。來源案例Commit：a1c1d45a26875feb2635f211059db5e8980035f7。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b1/docs/context.md": "# B1 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB1只恢復學生票75%，仍先匹配企業、提前、學生。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
-        "recovery-b1/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n"
+        "recovery-b1/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n",
+        "recovery-b1/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，最後一行寫通過／失敗／跳過數。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
       }
     },
     {
@@ -1062,7 +1064,8 @@
         "recovery-b2/docs/architecture.md": "# B2 Architecture\n\n\nAPI／Schemas處理HTTP Contract，Application協調Use Case，Domain提供模型、Fare／Discount與座位規則，Infrastructure提供本機Repository、Seed、固定Clock與Mock Gateway。Domain不依賴FastAPI；Repository Protocol保持Service與Adapter邊界。共享RLock保護單程序狀態更新，旅客輸入複製避免外部修改污染Booking。\n\n核心流程：Trip Query過濾可售班次；Booking驗證1–4人、容量及可選member，逐位計價並配置唯一座位；Payment成功更新PAID並建立唯一Order；Order保存付款當時金額。一般付款失敗仍pending、保留座位，不建立Order。\n\nChange僅處理已付款Booking，檢查目標容量後釋放原座位、保留新座位，更新班次與票價，記錄new-old Fare Difference，不執行補款／退款；Order仍是原付款快照。Refund更新REFUNDED、釋放座位及建立唯一Refund Record。Notification同步建立本機事件紀錄，Audit記錄建立及成功付款／改退票事件。\n\n八班固定Seed、可注入Clock與可控制Gateway便於重現測試；In-Memory不提供持久化或跨程序交易保證。既有架構選擇：本機Repository、Discount Policy與同步通知；重要結論需交叉核對程式與測試。\n\n## B2計價演化\n\nDiscount Policy收集各Passenger符合的候選，加入ADULT全額預設候選，再選rate最低的單一優惠；Fare Result包含Type／Rate／Amount。Booking建立與Change使用同一路徑，個別金額加總且回傳根層Applied Discounts；Schemas保留原Passenger三欄。DEBT-001以簡單候選政策改善，不導入Rule Engine；同步Notification仍保留，非計價服務不重寫。\n\n## 完成條件\n\n能說明模組責任、依賴與核心狀態流，辨識變更影響及需要驗證的假設。\n",
         "recovery-b2/README.md": "# B2 受控接手版本\n\n讀者：學員與其Agent。發放：第63分鐘後，主持核准才接手。來源案例Commit：cee098acc303398bfa1db0e130e09effeee25828。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)、[API範例](docs/api-examples.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b2/docs/context.md": "# B2 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB2逐旅客選最低rate單一優惠，建立與改票共用政策，回傳Applied Discounts。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
-        "recovery-b2/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n"
+        "recovery-b2/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n",
+        "recovery-b2/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，最後一行寫通過／失敗／跳過數。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
       }
     },
     {
@@ -1075,7 +1078,7 @@
         {
           "source": "Agent.md",
           "destination": "Agent.md",
-          "sha256": "bc17273a193f53d3123412cba5b0e75331d10b966d544b3c0e43949aad87762a"
+          "sha256": "3b5c6efa6429faadafc610fde1ec91bbe00ed351b4916c02ad9ad5881c21a27b"
         },
         {
           "source": "docs/planning/agent-work-history.md",
@@ -1120,12 +1123,12 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
-          "sha256": "58c2ca38f15ad0502f0587bfb2eed53f20b2d3fabe7f2fe7ce8a114c77a3a910"
+          "sha256": "d0eee5ec5841f512083b174e0f43ce41d47970c06811ba3a43d4c2c895422ab7"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
-          "sha256": "23ec50cd8c00dbbdbc68087b340077833d7d0411906a0eb7d544d4d192536dd6"
+          "sha256": "cbd33ae9576ae1e5dda8ed2a60e39e7f0ade9a7cd21555ddabf8bb18bb8c55bc"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
@@ -1140,7 +1143,7 @@
         {
           "source": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
           "destination": "agentic-workshop/02-time-skip/facilitator/01-transition-script.md",
-          "sha256": "1e016bf6fd2f1cee89b6d178ff17d16b8194111b7aaac3f0dc0afc439a9aa7df"
+          "sha256": "0ee2c23414b0b59c3a33116c5a877a9b4e0564e7a7a01f0a0f06409509f9476d"
         },
         {
           "source": "agentic-workshop/02-time-skip/facilitator/02-repository-delta-explanation.md",
@@ -1150,7 +1153,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/01-b0-facilitation-notes.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/01-b0-facilitation-notes.md",
-          "sha256": "fa84b1075253007b5c7719b7b5a77b210e879a6ba70d0faf859cca2106d9f0d4"
+          "sha256": "aa5fa43a2226d6452212b83f092e1d3960eb705422fc4d025a03abd96112f158"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/02-progressive-repository-hints.md",
@@ -1170,7 +1173,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/05-task-progressive-hints.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/05-task-progressive-hints.md",
-          "sha256": "b8b2629cd5ff77668d3823e0c4d3a4386e918d43a2158c58da5596c8f28bcf3d"
+          "sha256": "451bc345478425d461ba39e69ca2d9a6914f551d8225f3ff9f65b79eb525bbb0"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
@@ -1180,17 +1183,17 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/07-expected-participant-behavior.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/07-expected-participant-behavior.md",
-          "sha256": "5ac3313484a7fef6d224df39fddaecd1f510605772c699483f81402df423805c"
+          "sha256": "68281bc1a579079382e71a5150b2def985af071afefb02fa438fcc60d03fcf35"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
-          "sha256": "b8a844886e23945a2e3bc91f8b845fa7bfba00249b0e1dd05d4ff2d8e4dfba6d"
+          "sha256": "948e2c66adc0b14a19ec2171b2f081c7b4ad61b30c83f24bb91d38b0b91a76e3"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "5960b3bf498699c92d4079088235ae17531250e45c269ed2ac99cdcfdbf3506a"
+          "sha256": "c28400288f4f81373ab4ead113164243785d20a3bdf842c05eda9623831dfc6d"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -1210,7 +1213,7 @@
         {
           "source": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
           "destination": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
-          "sha256": "0843f91fdc3ffbc18322c88399db2e9b8d26050854d5e0e6bb6728fc16068d52"
+          "sha256": "654870f7d0d51fb30a45f1307d9121fcd3526a8d30eddb9e29c921d598a070e7"
         },
         {
           "source": "agentic-workshop/05-retrospective/facilitator/organization-adoption-prompts.md",
@@ -1220,17 +1223,17 @@
         {
           "source": "agentic-workshop/06-runbook/environment-setup.md",
           "destination": "agentic-workshop/06-runbook/environment-setup.md",
-          "sha256": "9f642dcc2968b11ff4b2803ba76acc389d1a95450b825af98848b9e2a74009c9"
+          "sha256": "9f53bf6b130abc4c3594f481d0e7b7e562ccd62aa8b9055c60eb2285b91716fa"
         },
         {
           "source": "agentic-workshop/06-runbook/preflight-checklist.md",
           "destination": "agentic-workshop/06-runbook/preflight-checklist.md",
-          "sha256": "95755f58106070bf77d65236678ef91452fd848f6950ff6d390d38f2cd48670f"
+          "sha256": "bc9a8928c47449e6386506f523aa7c4ad8af84e9295a8cf77c04005e7b78d3ba"
         },
         {
           "source": "agentic-workshop/06-runbook/recovery-plan.md",
           "destination": "agentic-workshop/06-runbook/recovery-plan.md",
-          "sha256": "339899dee6291685846255e8b632095e6b83edb027b389646ec7552de309acf1"
+          "sha256": "6cb4c95c2460eed2ef315a65600521c97852c7daccb422fa36eec0308485463e"
         },
         {
           "source": "agentic-workshop/06-runbook/rehearsal-record.md",
@@ -1245,7 +1248,7 @@
         {
           "source": "agentic-workshop/06-runbook/workshop-runbook.md",
           "destination": "agentic-workshop/06-runbook/workshop-runbook.md",
-          "sha256": "ac4c4bce559c5e37dc0fa14cb4544026226786c9c70265453bc28720f51ad302"
+          "sha256": "89c9d5982ac665f41052a6c5674b709a555cd6ab3e044c3736bfab15d8bec8d6"
         },
         {
           "source": "docs/contents/00_README_文件導覽.md",
@@ -1255,32 +1258,32 @@
         {
           "source": "docs/contents/01_工作坊定位與目標.md",
           "destination": "docs/contents/01_工作坊定位與目標.md",
-          "sha256": "a482b66ac0e33f995add288466628e59d5fa147a648c27eeccc873023616172f"
+          "sha256": "548bcd074e1a41de20ced7e80b818607626e6a01b06e30e6d5705882af77fb39"
         },
         {
           "source": "docs/contents/02_核心概念與共同語言.md",
           "destination": "docs/contents/02_核心概念與共同語言.md",
-          "sha256": "abac2e23a0cfd51f94571f1c6a677d2043393e73c04381957b2d71c9d83aaac3"
+          "sha256": "be93e7280685ca74a5f456110e318e6ff18cb611581176df7e539d418d2c03ab"
         },
         {
           "source": "docs/contents/03_角色分工與治理原則.md",
           "destination": "docs/contents/03_角色分工與治理原則.md",
-          "sha256": "8f93ec5391e4d4d736812b7d4fca47fba18d88aff8c768805a883d53e44ea8d5"
+          "sha256": "129f64651e09bf05ce5417afd2dcc5bf524e3486adbfd882a181c55d684abc26"
         },
         {
           "source": "docs/contents/04_工作坊前置準備.md",
           "destination": "docs/contents/04_工作坊前置準備.md",
-          "sha256": "39e95cbc1426e03fa0e0217db64625924f0872218795c35823ff6239e2991053"
+          "sha256": "8fb2664822a796f56762e2bc0e8523be4fc4a26354d3e9fd0b4ea780e6c86c68"
         },
         {
           "source": "docs/contents/05_工作坊執行流程.md",
           "destination": "docs/contents/05_工作坊執行流程.md",
-          "sha256": "9397157c9a09ab2cccf97dad4b3251dfbedb445dbd2186685b5621e4e6cddf5f"
+          "sha256": "57ad75ae26054b5fb4e20f2f3fc117ec35fa3e3f82aab76a168fc2bb86106eb6"
         },
         {
           "source": "docs/contents/06_成果物與驗收標準.md",
           "destination": "docs/contents/06_成果物與驗收標準.md",
-          "sha256": "3d3cdadabebd12a51f7792a0906781b9d93ea991644a1d7631ba75dd0fe171f0"
+          "sha256": "a1d3b2e8c9dee87be4f6f3c3e73fc90f128af58a3ef5f167749c42d25d1c267e"
         },
         {
           "source": "docs/contents/07_評估指標與回顧方法.md",
@@ -1290,12 +1293,12 @@
         {
           "source": "docs/contents/08_時程安排與主持指南.md",
           "destination": "docs/contents/08_時程安排與主持指南.md",
-          "sha256": "abe80601d8a603612784d31ba443e0f968ab3038364782a476994d4ef36e8eb7"
+          "sha256": "79fa6b11c31df0dc200fc14585de1069ea8de1eeeab478e6f5235097244848f5"
         },
         {
           "source": "docs/contents/09_範本與檢核表.md",
           "destination": "docs/contents/09_範本與檢核表.md",
-          "sha256": "4ec36d923bd4f650925b020eaeb3b08f735045e366314f94318026e32b47b53c"
+          "sha256": "8a6c3e2cd9d0cf7c784dcacb47d48640bc43e81cc6928721d8a29c10dd4b8da3"
         },
         {
           "source": "docs/instructions/00_Agentic工作坊素材產製總控指令書.md",
@@ -1355,7 +1358,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "a660b482314bfcd0d37c212f2facfb0b9f8915d8aed1383518e1486256a44441"
+          "sha256": "31ca9e110008c20e7bac85fbf95ff92ad3809b624d6451bc6aeabe67cefb2943"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -1370,7 +1373,7 @@
         {
           "source": "scripts/README.md",
           "destination": "scripts/README.md",
-          "sha256": "a3d67991809d194ef688d41c464e3d54379649383fcb36f0ddf0375ddf167c30"
+          "sha256": "4089e99e7a97c9dd87947c1bced7de1676fb2b6ab2d0c567f1c0258629417fec"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
@@ -1380,7 +1383,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
           "destination": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
-          "sha256": "677de595c6402716a27a9480aea2121faec4dec8f021fbcee3568af4c569e5a2"
+          "sha256": "4bf11b01fc53a0e8a59aec3d24c105ccbea3e1d5089b1e0062328c2ffce98fe9"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
@@ -1405,7 +1408,7 @@
         {
           "source": "agentic-workshop/01-greenfield/evaluation/01-mvp-evaluation-checklist.md",
           "destination": "agentic-workshop/01-greenfield/evaluation/01-mvp-evaluation-checklist.md",
-          "sha256": "5de48ad9b42f305a2706c1de4f751ce089a8e7ab4a04608925b4b2aa7fbcda25"
+          "sha256": "2c8fef3861c399faaf912be855c4879405692d0f18fe386f32208a7fc63b9232"
         },
         {
           "source": "agentic-workshop/01-greenfield/evaluation/02-rule-traceability-matrix.md",
@@ -3085,7 +3088,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/01-autonomy-and-governance-rubric.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/01-autonomy-and-governance-rubric.md",
-          "sha256": "695a0420cd7178366855fd59e0dce3f2e6fdf87fdb572624d90d4873816f1ec9"
+          "sha256": "220b2301025aa85064eab3b9666cbacc06fcc4f5b0456ba597e89ffae3f41968"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/02-approval-evidence-checklist.md",
@@ -3105,7 +3108,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
-          "sha256": "31d19e3ae88d94d32e22a416f0f96b36777d7a3c9e658d2181fc80260bda588a"
+          "sha256": "fc6759cde356207b10ff42d524ad9c5b1f5a1e156b4cf9fda60a8b15922d33d5"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/06-governance-validation-report.md",
@@ -3120,7 +3123,7 @@
         {
           "source": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
           "destination": "agentic-workshop/05-retrospective/evaluation/workshop-evaluation-index.md",
-          "sha256": "5b9b7ea482e00254107635afc42d8b8eeb984f1d3d5eeea69400e3b9f3ad9ab2"
+          "sha256": "8183b86a7b12cc4a43cc3c2fed30dd1d7f9b3ffd1fffba4fde69de565c200170"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/consistency-correction-report.md",
@@ -3150,7 +3153,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "ad78d7c7d50155c151cddd79520bc0614d9bc42ea4359c2b841036446657c8e6"
+          "sha256": "14801c1d176328323d3114742ec40bdaf56e3e040c89c6c64655df83a37816ef"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3390,17 +3393,17 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "ebf211a594d4aa397fd9b79e78565b5c267d21d38ef1a4b776a417458f4bba4c"
+          "sha256": "fb707e2d75eb279291f1f4c3a4132721adb6ce754424bc7ef160493c5aa22b1d"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "64b99adf54dcdcf67db398de57de07167d46dbcce79179a2112932124ee13687"
+          "sha256": "aea0da86afdfa1b639c68f29329b24542846d8e1120e9999c930f4893ee6ff06"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "a458d2936c85a4541eb62f55e338d74728340222f00deeeeb39c62f739db3609"
+          "sha256": "5c6d39f509443e101ce7c0806f463ff684c5019fd843b5fba6aba90a852e3e22"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
@@ -3425,7 +3428,7 @@
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/README.md",
           "destination": "agentic-workshop/materials/speech/01-greenfield/README.md",
-          "sha256": "fce45cd08e5405eb01dc79de37cc13125ac08dd0929c20b95365f626092a4332"
+          "sha256": "402256e2ef78019a8533e6da2af8f85d911b6674a15da65bf3150ad2572b4c66"
         },
         {
           "source": "agentic-workshop/materials/speech/01-greenfield/validation-evidence.json",
@@ -3440,7 +3443,7 @@
         {
           "source": "agentic-workshop/materials/speech/README.md",
           "destination": "agentic-workshop/materials/speech/README.md",
-          "sha256": "2156a80330586d0389c957581734fa8d1c84c1dd2ec46a9c24f86c56d8f148c1"
+          "sha256": "7c1d79368c22506acf391dea80f6687b8a3e8d8b7bcf464c080b26d3733e8996"
         },
         {
           "source": "agentic-workshop/materials/validation-evidence.json",

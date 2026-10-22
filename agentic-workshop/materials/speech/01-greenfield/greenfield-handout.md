@@ -8,7 +8,7 @@
 
 - 先給 Agent 能自己跑的檢查，再請它做事
 - 驗收條件寫成可判定的句子，預期值先從規則推
-- 用五段式提示詞與脈絡告訴它要做什麼
+- 像交辦工作一樣寫提示詞，規則放 AGENTS.md
 - 先計畫、小步放行、用固定欄位回報
 - 審查看證據，不看宣稱
 
@@ -210,7 +210,7 @@ Simon Willison〈Context engineering〉（2025-06）引用 Shopify 執行長 Tob
 
 ## 11. 技巧：工作規則是每次都要的脈絡
 
-每一步都會用到的要求（流程、邊界、回報格式）先講一次；之後每段提示詞就能短。
+每次都要的要求寫進專案根目錄的 AGENTS.md；Agent 開工自動讀，提示詞只寫這次的事。
 
 - **流程**：改之前先提計畫；只做核准的步驟，做完就停。
 
@@ -220,35 +220,41 @@ Simon Willison〈Context engineering〉（2025-06）引用 Shopify 執行長 Tob
 
 - **注意**：規則只能提醒；一定要發生的事，交給 hook 或權限把關。
 
-工作規則是把每一步都會用到的要求（流程、邊界、回報格式）先講一次，之後每段提示詞就能很短。剛才 Greenfield 檢查點 1 貼的 7 條規則就是這樣：做完一步就停、照分層放規則、不刪測試、固定格式回報。
+工作規則是把每一步都會用到的要求（流程、邊界、回報格式）先寫下來，之後每段提示詞只要寫這次的事：要什麼、為什麼、完成的樣子、素材在哪。剛才 Greenfield 檢查點 1 請 Agent 在專案根目錄寫的 AGENTS.md 就是這樣：「怎麼跑」加上「工作規則」，例如做完一步就停、照分層放規則、不刪測試、固定格式回報。
 
-要知道它的限制：規則是給 Agent 的脈絡，只能提醒，不能強制，Agent 可能漏做。Anthropic〈The AI-native SDLC playbook〉說得很直接：Skill 是建議性的控制，hook（在固定時機一定會自動執行的檢查）才是背後確定會發生的那一層。一定要發生的事（例如不得刪測試），要靠 hook、測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。另外，開新對話時，貼過的規則不會自動帶過去；寫成每次自動讀的規則檔，是第二場的內容。
+AGENTS.md 是給 Agent 看的專案說明，多數 Coding Agent 開新對話會自動讀它，但讀法各家不同。以 OpenAI Codex 為例，它從 Git 根目錄往下讀到目前資料夾，合計預設上限 32 KiB；以 Claude Code 為例，v2.1.277 起沒有 CLAUDE.md 時直接讀 AGENTS.md，兩者都有時只讀 CLAUDE.md，除非 CLAUDE.md 匯入 @AGENTS.md。讀不到時，開工先說一句「請先讀 AGENTS.md」。
 
-📖 延伸閱讀：〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）；〈The AI-native SDLC playbook〉（Anthropic，2026）；〈Automate actions with hooks〉（Anthropic，官方文件）
+裡面只放每次都要的事（怎麼跑、慣例、邊界），每份最好在 200 行內；一步步的固定做法另存成 Skill，例如 check，用得上時 Agent 才讀全文，第三場細講。什麼時候加一行？Claude Code 官方文件的建議是：Agent 同一個錯犯第二次，或審查抓到它本來就該知道的事。
+
+要知道它的限制：規則是給 Agent 的脈絡，只能提醒，不能強制，Agent 可能漏做。Anthropic〈The AI-native SDLC playbook〉說得很直接：Skill 是建議性的控制，hook（在固定時機一定會自動執行的檢查）才是背後確定會發生的那一層。一定要發生的事（例如不得刪測試），要靠 hook、測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。Claude Code 官方文件也說，規則檔是脈絡，不是強制的設定。
+
+📖 延伸閱讀：〈AGENTS.md〉（OpenAI，官方文件）；〈How Claude remembers your project〉（Anthropic，官方文件）；〈The AI-native SDLC playbook〉（Anthropic，2026）；〈Automate actions with hooks〉（Anthropic，官方文件）
 
 **人工確認**：Agent 每做完一步真的停下；每次回報都附上驗收對照表與審查答案。
 
-## 12. 技巧：五段式提示詞
+## 12. 技巧：像交辦工作一樣寫提示詞
 
-Agent 能推測意圖，但不會讀心。五段寫齊，它就不必自己猜。
+像交辦給同事：這次要什麼、為什麼、完成的樣子、素材在哪；規則已在 AGENTS.md，不用重寫。
 
-- **模糊 vs 指名**：「修好訂票」→「AC-G-008 座位不足時不應建立訂票，請讓它通過」。
+- **不用重寫的**：做完就停、回報格式、不刪測試：已在 AGENTS.md 與 Skill。
 
-- **缺一塊會怎樣**：沒寫停止條件，Agent 寫完計畫可能直接動手改程式。
+- **沒寫清楚的**：讓 Agent 列成問題、附建議答案，由你決定。
 
 ```text
-【目標】先不要修改程式，提出 4 步實作計畫
-【背景／要讀的檔】只讀需求、驗收條件、README、docs/
-【限制】固定 4 步；不放範圍外項目；付款失敗照我定的處理
-【輸出格式】寫進 notes/greenfield.md「計畫」：每步列規則與檔案
-【停止條件】寫完就停下等我
+【要什麼】先別改程式，給我一份 4 步的實作計畫
+【為什麼】先看計畫，動手前就抓得出範圍外的項目
+【完成的樣子】寫進 notes/greenfield.md「計畫」，每步列 AC 和檔案
+【素材在哪】01 到 03 需求文件、程式裡的 TODO(GREENFIELD
+需求沒寫清楚的列成問題，每題附建議答案
 ```
 
 Claude Code 官方文件的說法是：Agent 能推測意圖，但不會讀心。它建議提示詞指名檔案、情境與「什麼算修好」；模糊的提示詞會讓 Agent 掃過大量檔案，又慢又容易偏。
 
-五段各擋掉一種常見問題：少了【背景／要讀的檔】，Agent 會讀整個資料夾或憑印象；少了【限制】，它會擴大範圍、自己假設沒講清楚的處理方式；少了【停止條件】，寫完計畫可能直接動手改程式。下週每次交辦前，對照五段檢查一次；寫不出來的那一段，通常就是你自己還沒想清楚的地方。
+四樣各擋掉一種常見問題：少了「素材在哪」，Agent 會讀整個資料夾或憑印象；少了「完成的樣子」，它不知道要交什麼、何時算做完；少了「為什麼」，遇到沒講到的情況只能自己猜。做完就停、回報格式、不刪測試這類每次都要的規則和固定做法，已寫在 AGENTS.md 與 Skill，工具會自己讀，提示詞只寫這次的事。
 
-📖 延伸閱讀：〈Prompting best practices〉（Anthropic，官方文件）；〈Prompt engineering〉（OpenAI，官方文件）
+需求沒寫清楚的，不要在提示詞裡替它補答案；請 Agent 列成問題、每題附建議答案，由你決定。下週每次交辦前，對照四樣檢查一次；寫不出來的那一樣，通常就是你自己還沒想清楚的地方。
+
+📖 延伸閱讀：〈Prompt engineering overview〉（Anthropic，官方文件）；〈Prompting best practices〉（Anthropic，官方文件）；〈Prompt engineering〉（OpenAI，官方文件）
 
 **人工確認**：提示詞指名了檔案、情境和「什麼算修好」；決策點用短回覆：「同意」「選 B」。
 
@@ -420,7 +426,7 @@ Nygard 原文的 ADR 是一份短文字檔，只記一個重要決定，分五�
 **人工確認**：說出一項回到工作時，你最想先寫成文件或規則交給 Agent 的事。
 
 ## 完成條件
-說得出 Agent 怎麼知道做對了（先給檢查、可判定的驗收條件）、怎麼知道要做什麼（規格、脈絡、工作規則、五段式提示詞）、人怎麼確認（先計畫、小步驗證、結構化輸出、看證據審查），以及大規模案例的共同點；交辦自己的工作前問得出五個問題。
+說得出 Agent 怎麼知道做對了（先給檢查、可判定的驗收條件）、怎麼知道要做什麼（規格、脈絡、工作規則、交辦式提示詞）、人怎麼確認（先計畫、小步驗證、結構化輸出、看證據審查），以及大規模案例的共同點；交辦自己的工作前問得出五個問題。
 
 **下週可以做的事**
 
@@ -439,8 +445,10 @@ Nygard 原文的 ADR 是一份短文字檔，只記一個重要決定，分五�
 | Gherkin | 用 Given（前提）／When（操作）／Then（結果）寫情境的格式；接上測試工具後才成為可執行的規格。 | Cucumber 官方文件〈Gherkin Reference〉 |
 | 規格驅動開發（Spec-driven development） | 先把需求、設計、任務寫成檔案，Agent 照規格做、人照規格審；多數做法只在開工前寫規格。 | martinfowler.com〈Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl〉 |
 | 脈絡工程（Context engineering） | 提供讓任務「有可能被模型解出來」的全部脈絡；重點從怎麼問，移到給它看什麼。 | Simon Willison〈Context engineering〉 |
-| 五段式提示詞 | 目標、背景／要讀的檔、限制、輸出格式、停止條件；五段是本課程的寫法，官方文件的重點相同：寫清楚、給脈絡、指名檔案。 | Anthropic〈Prompting best practices〉 |
+| 交辦式提示詞 | 像交辦工作給同事：這次要什麼、為什麼、完成的樣子、素材在哪；規則和固定做法放在 AGENTS.md 與 Skill，不在提示詞重寫。四樣是本課程的寫法，官方文件的重點相同：寫清楚、給脈絡、指名檔案。 | Anthropic〈Prompting best practices〉 |
 | 結構化輸出（Structured Output） | 本課程指用提示詞要求固定欄位或標題回報；API 的同名功能則用 JSON 結構定義強制格式。 | Anthropic〈Structured outputs〉 |
+| AGENTS.md | 放在專案根目錄、給 Agent 看的說明：怎麼跑、工作規則；多數 Coding Agent 開新對話會自動讀，各工具讀法不同。 | OpenAI〈AGENTS.md〉；Claude Code 官方文件〈How Claude remembers your project〉 |
+| Skill（技能檔） | 一個資料夾，裡面的 SKILL.md 開頭寫 name（名稱）與 description（什麼時候用）；工具平常只讀這兩項，任務符合才讀全文。 | agentskills.io〈Agent Skills Overview〉 |
 | hook | 在固定時機（例如執行工具前、改檔後）自動執行的處理程式；和規則檔不同，它一定會執行。 | Claude Code 官方文件〈Glossary〉；Anthropic〈The AI-native SDLC playbook〉 |
 | 持續整合（CI，Continuous Integration） | 團隊成員頻繁（至少每天）把變更合併回共用的程式碼，每次合併都由自動建置與測試驗證。 | Martin Fowler〈Continuous Integration〉 |
 | PR（Pull Request） | 把一組程式變更提議合併進專案；合併前讓別人討論與審查。 | GitHub 官方文件〈Pull requests〉 |
@@ -459,9 +467,11 @@ Nygard 原文的 ADR 是一份短文字檔，只記一個重要決定，分五�
 - 〈Context engineering〉（Simon Willison，2025）
 - 〈Effective context engineering for AI agents〉（Anthropic，2025）
 - 〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）
-- 〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）
+- 〈AGENTS.md〉（OpenAI，官方文件）
+- 〈How Claude remembers your project〉（Anthropic，官方文件）
 - 〈The AI-native SDLC playbook〉（Anthropic，2026）
 - 〈Automate actions with hooks〉（Anthropic，官方文件）
+- 〈Prompt engineering overview〉（Anthropic，官方文件）
 - 〈Prompting best practices〉（Anthropic，官方文件）
 - 〈Prompt engineering〉（OpenAI，官方文件）
 - 〈Vibe engineering〉（Simon Willison，2025）
