@@ -10,7 +10,8 @@
 - 自主程度是設計出來的；關卡設在不可逆動作之前
 - 最小權限與沙箱；私密資料、不可信內容、對外傳送三缺一
 - 禁止事項做在平台上，不只寫在提示詞
-- 用另一個乾淨的對話與證據評估交付，決策要留紀錄
+- 寫的人不能核准自己：另開只讀的審查對話，依審查準則寫審查紀錄
+- 意圖 → 規格 → 計畫 → 審查紀錄 → 放行授權：每一步都留下檔
 
 ## 1. 把整件工作交給 Agent，要先設計什麼？
 
@@ -28,7 +29,7 @@ Digital Worker 是把整件任務交出去，人只在事先設好的關卡做�
 
 你沒寫程式，但做了委派最難的三件事：事先授權、在關卡決策、憑證據簽收。
 
-寫工作單：一次授權 → 守三道 Gate：只在關卡介入 → 讀交付摘要：憑證據簽收
+寫工作單：一次授權 → 守三道 Gate：意圖、規格與計畫、交付 → 讀交付摘要：憑證據簽收
 
 - **人負責**：設邊界、核准或退回、要求補證據，承擔最終交付責任。
 
@@ -108,17 +109,17 @@ Anthropic〈Measuring AI agent autonomy in practice〉（2026-02）分析自家�
 
 Human-in-the-loop（人在迴圈中）不是到處設關卡，而是設在「錯了代價最大」的前一刻。
 
-- **理解之後、動手之前**：確認 Agent 懂的需求和你要的一樣。
+- **意圖確認之後**：Agent 懂的要什麼、為什麼、限制，和你要的一樣。
 
-- **範圍確定之前**：核准要改哪些地方，這就是授權邊界。
+- **計畫核准之前**：核准規格與要改哪些地方，這就是授權邊界。
 
-- **不可逆動作之前**：刪資料、上線、付款、對外寄送，一律先問人。
+- **上線放行之前**：Agent 最多做到上線前；刪資料、付款、對外寄送也先問人。
 
-關卡設在三種地方：理解之後、動手之前（確認需求一致）；範圍確定之前（核准要改哪裡，也就是授權邊界）；不可逆動作之前（刪資料、上線、付款、對外寄送）。資安社群 OWASP 的〈LLM06:2025 Excessive Agency〉也把「高影響動作要人核准」列為緩解方法。
+關卡設在三種地方：意圖確認之後（Agent 懂的「要什麼、為什麼、限制」和你要的一樣）；計畫核准之前（核准規格與要改哪些地方，也就是授權邊界）；上線放行之前。Anthropic〈The AI-native SDLC playbook〉把最後一道說得很清楚：Agent 可以一路做到上線關卡前，但不能自己通過；正式上線要等指名的負責人放行。刪資料、付款、對外寄送這類不可逆動作也一樣。資安社群 OWASP 的〈LLM06:2025 Excessive Agency〉也把「高影響動作要人核准」列為緩解方法。
 
 關卡的力度也看風險。Claude Code 團隊公開的審查做法（2026-10）依變更本身的風險分級：低風險變更在自動檢查都通過後不需要人核准，一般變更一人審，最高風險兩人審；原文說，修文件和改自動更新程式的風險不同，審法也該不同。限制：這是單一廠商自家的做法。
 
-📖 延伸閱讀：〈How the Claude Code team does code review〉（Anthropic，2026）
+📖 延伸閱讀：〈The AI-native SDLC playbook〉（Anthropic，2026）；〈How the Claude Code team does code review〉（Anthropic，2026）
 
 **人工確認**：每一道關卡，你都說得出要看哪一項證據才放行嗎？
 
@@ -242,11 +243,11 @@ AWS 安全公告 AWS-2025-015（2025-07-23）說明：建置設定裡的 GitHub 
 
 - **做在平台上**：權限、隔離環境、自動檢查、合併前必須有人審。
 
-規則檔與提示詞是建議，Agent 多半會照做，但不保證。Claude Code 官方文件說得很清楚：規則檔是建議性的，hook（在固定時機自動執行的腳本或檢查）則確定會發生。所以風格、偏好、回報方式寫在規則裡；權限、隔離環境、自動檢查、合併前必須有人審，要做在平台上。
+規則檔與提示詞是建議，Agent 多半會照做，但不保證。Anthropic〈The AI-native SDLC playbook〉的說法是：Skill 是建議性的控制，hook（在固定時機一定會自動執行的腳本或檢查）才是背後確定會發生的那一層。所以風格、偏好、回報方式寫在規則裡；權限、隔離環境、自動檢查、合併前必須有人審，要做在平台上。
 
 例子：第三場的「絕不提交密碼與金鑰」，寫在規則裡只是提醒，做在平台上就是推送前自動掃描金鑰。下週挑一條你最怕被違反的規則，問它現在只是建議，還是平台擋得住。
 
-📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，官方文件）
+📖 延伸閱讀：〈The AI-native SDLC playbook〉（Anthropic，2026）；〈Best practices for Claude Code〉（Anthropic，官方文件）
 
 **人工確認**：挑一條你最怕被違反的規則：它現在是建議，還是平台擋得住？
 
@@ -268,25 +269,25 @@ Escalation（升級處理）：碰到停止條件，只停受影響的動作，�
 
 **人工確認**：你的工作單有沒有寫「碰到什麼要停」？沒有，Agent 只會自己猜。
 
-## 16. 做的人不當評分的人
+## 16. 寫的人不能核准自己
 
-請另一個乾淨的對話來審：它只看變更與驗收條件，不受原對話的想法影響。
+另開一個只讀的審查對話，依審查準則看變更與證據，寫下審查紀錄；放行仍由人決定。
 
-- **先跑算得出來的**：第三場講過：測試與格式檢查先過，AI 審查只當補充。
+- **同一份審查準則**：哪些算重要、哪些不用報；寫的人和審的人讀同一份。
 
-- **審查也會亂報**：被要求找問題時，沒問題也常報一些；報的問題要對得回需求。
+- **只建議，不核准**：審查紀錄最後一句「建議放行／不建議放行」，由人決定。
 
 ### 交給 Agent 的指令
 
-這是新的對話。請只讀 notes/delivery.md 與它引用的證據，不要修改任何檔案。逐項列出：結論、證據原文與位置；找不到證據的標「應改為未驗證」。只報會影響正確性或需求的問題，不報風格偏好。最後用一句話說哪一項最需要人確認。
+這是新的對話，你是審查者：只讀，不要修改任何檔案。先讀 skills/team-rules.md 的審查準則，再讀 notes/delivery.md 與它引用的證據。依準則把發現分成「重要」與「小問題」，每項附證據原文與位置；找不到證據的標「應改為未驗證」，不報風格偏好。寫成「審查紀錄」回覆我，最後一句只寫「建議放行」或「不建議放行」。
 
-Claude Code 官方文件建議用另一個乾淨的對話審查：獨立審查者只看到變更和你給的標準，不受原對話的想法影響。它也提醒，被要求找問題的審查者，即使工作沒問題通常也會報出一些，所以報的問題要對得回需求，只是偏好的先放一邊。
+Anthropic〈The AI-native SDLC playbook〉說，職責分開之所以成立，是因為寫程式的 Agent 根本沒有辦法核准自己的變更。實務做法是另開一個乾淨的對話當審查者：Claude Code 官方文件指出，獨立審查者只看到變更和你給的標準，不受原對話的想法影響。審查者也只給建議：官方的程式碼審查文件寫明，審查不會核准或擋下變更，合不合併仍由團隊決定。
 
-分工上，先跑算得出來的檢查（測試、格式檢查），AI 審查只當補充，這是第三場「事前給地圖，事後裝感測器」的延伸。
+審查要有依據。審查準則由人事先寫好：哪些算重要（例如超出核准範圍、測試變少、改了期待值、宣稱通過卻沒證據）、哪些不用報、一定要查什麼；官方文件的說法是，用它寫明團隊要標出什麼、算多嚴重、哪些略過。這也處理另一個問題：被要求找問題的審查者，即使工作沒問題通常也會報出一些；有了準則，報的問題就要對得回準則或驗收條件。分工上，測試與格式檢查這類算得出來的先跑，AI 審查只當補充，這是第三場「事前給地圖，事後裝感測器」的延伸。
 
-📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，官方文件）
+📖 延伸閱讀：〈The AI-native SDLC playbook〉（Anthropic，2026）；〈Customize Code Review〉（Anthropic，官方文件）；〈Best practices for Claude Code〉（Anthropic，官方文件）
 
-**人工確認**：審查列出的問題，你都對得回需求或驗收條件嗎？只是偏好的先放一邊。
+**人工確認**：審查紀錄的每個「重要」問題，你都對得回審查準則或驗收條件嗎？只是偏好的先放一邊。
 
 ## 17. 沒盯著的工作，靠證據審
 
@@ -304,21 +305,21 @@ Digital Worker 做事時你不在旁邊，交付摘要裡的證據就是你唯�
 
 **人工確認**：抽一句交付結論問「證據在哪？」，引用不出的就改成未驗證。
 
-## 18. 治理：事後查得到「憑什麼放行」
+## 18. 產物鏈：事後查得到「憑什麼放行」
 
-Governance（治理）不是多填表，而是每個決策都留下：誰、何時、根據什麼證據。
+每一步都留下一份下一步讀得到的檔；串起來，就能回答「誰、何時、根據什麼放行」。
 
-- **決策紀錄**：核准人、時間、結論、條件；Agent 照人的原話記，不代人核准。
+意圖：要什麼、為什麼、限制 → 規格：行為與驗收條件 → 計畫：改哪些檔、步驟、測試 → 審查紀錄：發現與建議 → 放行授權：誰、何時、根據什麼
 
-- **職責分開**：Agent 不能核准自己的變更；寫的人不當審的人。
+- **職責分開**：寫的人不核准自己；Agent 照人的原話記，不代人核准。
 
 - **定期回看**：每月抽查幾筆紀錄，看關卡有沒有真的擋下問題。
 
-治理不是多填表，而是每個決策都留下誰、何時、根據什麼證據；三個月後有人問「這次為什麼放行」，紀錄要答得出來。B3 的 Gate 決策紀錄就是最小的治理：Agent 照人的原話記，不代人核准。
+Anthropic〈The AI-native SDLC playbook〉把開發流程排成一條產物鏈：每一步都把一份檔交給下一步，下一步從讀它開始。意圖寫要什麼、為什麼、限制；規格寫行為與驗收條件；計畫寫改哪些檔、步驟、測試；審查紀錄寫發現與建議；最後由人放行。原文說，意圖、規格、計畫、變更內容與審查發現，合起來就是稽核軌跡。B3 的三道 Gate 與交付，就是這條鏈的縮小版。
 
-職責分開要做在平台上：GitHub 的雲端 Coding Agent 從平台上就不讓 Agent 核准或合併自己的變更。最常見的治理失敗是形式性核准：照單接受，卻說不出核對了哪一題。所以要定期回看，每月抽查幾筆紀錄，看關卡有沒有真的擋下問題。
+治理不是多填表，而是每個決策都留下誰、何時、根據什麼證據。職責分開要做在平台上：GitHub 的雲端 Coding Agent 從平台上就不讓 Agent 核准或合併自己的變更。最常見的治理失敗是形式性核准：照單接受，卻說不出核對了哪一題。所以要定期回看，每月抽查幾筆紀錄，看關卡有沒有真的擋下問題。
 
-📖 延伸閱讀：〈Risks and mitigations for GitHub Copilot cloud agent〉（GitHub，官方文件）
+📖 延伸閱讀：〈The AI-native SDLC playbook〉（Anthropic，2026）；〈Risks and mitigations for GitHub Copilot cloud agent〉（GitHub，官方文件）
 
 **人工確認**：三個月後有人問「這次為什麼放行」，你的紀錄答得出來嗎？
 
@@ -369,7 +370,7 @@ GitHub〈Octoverse〉報告（2025-10）說，Copilot coding agent 在 2025 年 
 **人工確認**：能說出你那件工作的一道關卡，以及在那裡要看的證據。
 
 ## 完成條件
-能說出：一份工作單的五個部分、你那件工作適合人當哪種角色、關卡該設在哪個不可逆動作之前、Agent 需要的最小權限與「三缺一」拿掉了哪一項、怎麼用另一個乾淨對話與證據評估交付；並說得出 Stripe、Spotify 等案例共同的三層：隔離環境、自動驗證、人審。
+能說出：一份工作單的五個部分、你那件工作適合人當哪種角色、關卡該設在哪個不可逆動作之前、Agent 需要的最小權限與「三缺一」拿掉了哪一項、怎麼用只讀的審查對話與審查準則評估交付、產物鏈上每一步留下什麼；並說得出 Stripe、Spotify 等案例共同的三層：隔離環境、自動驗證、人審。
 
 **下週可以做的事**
 
@@ -383,6 +384,9 @@ GitHub〈Octoverse〉報告（2025-10）說，Copilot coding agent 在 2025 年 
 | Digital Worker（數位員工） | 在核准範圍內獨立完成整件任務的 Agent；人只在事先設好的關卡做決定。 | 本課程〈歡迎與使用方式〉 |
 | Work Order（工作單） | 交給 Agent 的整件任務說明：目標、要讀的資料、能動與不能動、回報格式、停止與升級條件。 | 本課程〈B3 工作單（Work Order）〉 |
 | Gate（核准關卡） | Agent 交出資料後停下、由人做決定的檢查點；核准是決策，不等於通過驗收。 | 本課程〈B3 工作單（Work Order）〉；Anthropic Engineering〈Building effective agents〉 |
+| 意圖 | 一件工作要什麼、為什麼、有哪些限制，用三行寫下；規格與計畫都從它開始。 | Anthropic〈The AI-native SDLC playbook〉 |
+| 規格 | 依意圖寫出系統該有的行為與可判定的驗收條件，讓團隊能據以排計畫。 | Anthropic〈The AI-native SDLC playbook〉 |
+| 上線放行關卡（production gate） | Agent 最多做到正式上線前；上線要由指名的負責人放行，Agent 不能自己通過。 | Anthropic〈The AI-native SDLC playbook〉 |
 | 人在迴圈中（Human-in-the-loop） | Agent 在檢查點或碰到阻礙時停下來等人回饋；關卡設在錯了代價最大的前一刻。 | Anthropic Engineering〈Building effective agents〉 |
 | 自主等級 | 依人扮演的角色分五級：操作者、協作者、顧問、核准者、觀察者；是設計選擇，不是能力換來的。 | Feng 等〈Levels of Autonomy for AI Agents〉 |
 | 核准疲勞（Approval fatigue） | 要人核准的次數太多，核准變成反射動作；官方說，按到第十次就只是在點過去。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
@@ -393,12 +397,16 @@ GitHub〈Octoverse〉報告（2025-10）說，Copilot coding agent 在 2025 年 
 | 提示詞注入（Prompt injection） | 輸入或讀進來的內容藏著指令，改變模型原本該做的事；藏在網頁、檔案裡的叫間接注入。 | OWASP〈LLM01:2025 Prompt Injection〉 |
 | 致命三要素（三缺一） | 讀得到私密資料、會讀不可信的內容、能對外傳送，三者同時存在就危險；設計上至少拿掉一項。 | Simon Willison〈The lethal trifecta for AI agents〉 |
 | hook | 在固定時機（例如執行工具前、改檔後）自動執行的處理程式；和規則檔不同，它一定會執行。 | Claude Code 官方文件〈Glossary〉 |
+| 審查準則 | 團隊事先寫好的審查規則：哪些問題算「重要」、哪些不用報、一定要查什麼；寫的人和審的人讀同一份。本課程放在 skills/team-rules.md 的一節。 | Claude Code 官方文件〈Customize Code Review〉 |
+| 審查紀錄 | 另開一個只讀的審查對話，依審查準則把發現分成「重要／小問題」寫下，最後一句是「建議放行」或「不建議放行」；它只建議，放行由人決定。 | Anthropic〈The AI-native SDLC playbook〉；Claude Code 官方文件〈Code Review〉 |
+| 產物鏈 | 意圖 → 規格 → 計畫 → 審查紀錄 → 放行授權：每一步留下一份下一步讀得到的檔，串起來就是事後查核的依據。 | Anthropic〈The AI-native SDLC playbook〉 |
 | Escalation（升級處理） | Agent 碰到停止條件時，只停受影響的動作，附證據與選項交給人決定。 | 本課程〈B3 工作單（Work Order）〉 |
 
 ## 延伸閱讀
 - 〈Building effective agents〉（Anthropic，2024）
 - 〈Levels of Autonomy for AI Agents〉（Feng 等，2025）
 - 〈Measuring AI agent autonomy in practice〉（Anthropic，2026）
+- 〈The AI-native SDLC playbook〉（Anthropic，2026）
 - 〈How the Claude Code team does code review〉（Anthropic，2026）
 - 〈Beyond permission prompts: making Claude Code more secure and autonomous〉（Anthropic，2025）
 - 〈Best practices for Claude Code〉（Anthropic，官方文件）
@@ -409,5 +417,6 @@ GitHub〈Octoverse〉報告（2025-10）說，Copilot coding agent 在 2025 年 
 - 〈The lethal trifecta for AI agents〉（Simon Willison，2025）
 - 〈LLM01:2025 Prompt Injection〉（OWASP，2025）
 - 〈Security Update for Amazon Q Developer Extension for Visual Studio Code (Version #1.84)〉（AWS，2025）
+- 〈Customize Code Review〉（Anthropic，官方文件）
 - 〈Minions: Stripe's one-shot, end-to-end coding agents〉（Stripe，2026）
 - 〈Octoverse: A new developer joins GitHub every second as AI leads TypeScript to #1〉（GitHub，2025）

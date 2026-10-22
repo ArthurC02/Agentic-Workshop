@@ -79,6 +79,15 @@ Quotes and dates in `docs/research/speech-agentic-sources.md` 「2026-10-22 名�
 | Least privilege | NIST CSRC〈Glossary〉 (least privilege entry) | |
 | DORA software delivery metrics | DORA〈DORA's software delivery performance metrics〉 (2026-01-05; five metrics) | |
 
+## AI-native SDLC (main course redesign; checked 2026-10-22)
+Quotes and dates in `docs/research/speech-agentic-sources.md` 「2026-10-22 AI-native SDLC 查核」. These are Claude-specific; learner pages translate them into tool-neutral practice and keep the 「你所用工具的官方文件通常有同名章節」 tail.
+| Topic | Cite (exact title) | Retired titles (do not use) |
+|---|---|---|
+| Lifecycle, artifact chain, gates, metrics | Anthropic〈The AI-native SDLC playbook〉 (2026-08-21); Anthropic〈How Anthropic secures its AI-native software development lifecycle〉 (2026-07-21) | 「Claude Academy AI SDLC」 (no such course) |
+| Courses | Anthropic Academy〈Claude Code in Action〉, 〈AI Fluency for Builders〉, 〈Introduction to subagents〉, 〈Introduction to agent skills〉 | |
+| Plan mode, hooks, skills, subagents | Claude Code 官方文件〈Choose a permission mode〉, 〈Automate actions with hooks〉, 〈Extend Claude with skills〉, 〈Create custom subagents〉 | |
+| Review policy (REVIEW.md) | Claude Code 官方文件〈Code Review〉, 〈Customize Code Review〉 | |
+
 ## Speech decks: DDD with Agents (DLC speech 01–04)
 Checked in `docs/research/speech-dlc-ddd-sources.md`. DDD Europe 2026 titles are session abstracts only (no results); cite them as such.
 | Topic | Cite (exact title) | Retired titles (do not use) |

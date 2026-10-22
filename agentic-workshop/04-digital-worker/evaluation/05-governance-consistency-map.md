@@ -10,11 +10,11 @@
 | §3 固定原則 | participant/b3-work-order.md | Agent主導／不越界、人不Coding仍理解、重大動作有Gate、實際證據、停止升級、責任由人承擔 |
 | §4 Operating Rules | participant/b3-work-order.md | 人／Agent可做與不可做、先Gate再執行；學員不讀，Agent存成Skill照做 |
 | §5 Work Order | participant/b3-work-order.md | 固定Mission／Requirements／Rules／Context／Allowed／Prohibited／Deliverables／Tests／Gates／Stop／Timebox，Context留空而非猜測 |
-| §6 三Gate | participant/b3-work-order.md | Gate1理解／Gate2設計／Gate3交付均有Input、Human Review、Decision、Evidence；Gate2核准才改Code |
+| §6 三Gate | participant/b3-work-order.md | Gate1確認意圖／Gate2規格與計畫／Gate3交付均有Input、Human Review、Decision、Evidence；Gate2核准且回「開始執行」（核准計畫）才改Code |
 | §7 短格式 | participant/b3-work-order.md；facilitator/02-approval-gate-cues.md | 三種決策（核准／附條件／退回）、人的原話、審查過的題號、條件；核准人與時間由Agent自己記，不問人、不代核准 |
 | §8 停止升級 | participant/b3-work-order.md；06-exception-response-card.md | 停止條件（原10項併為6組）及Escalation六標題，衝突或超權不猜測 |
-| §9 Review | participant/b3-work-order.md（第7節） | 變更審查三題＋驗收對照表最多7列；未驗證如實標示（原審查清單已併入） |
-| §10 Delivery | participant/05-delivery-template.md | 十二欄、Level1–3、真實Test與未驗證、風險／偏差、Agent建議不等於人員決策 |
+| §9 Review | participant/b3-work-order.md（第7節）；skills/team-rules.md「審查準則」（共同脈絡CP2建立）；Runbook交付檢查點1 | 依審查準則答變更審查三題＋驗收對照表最多7列；未驗證如實標示；交付時另開只讀審查對話寫「審查紀錄」（重要／小問題、建議放行與否） |
+| §10 Delivery | participant/05-delivery-template.md | 十二欄、Level1–3、真實Test與未驗證、風險／偏差、Agent建議不等於人員決策；Not Implemented附三行下一輪意圖；Recommended Decision指向審查紀錄 |
 | §11 唯一事件 | facilitator/03-exception-injection.md | EXCEPTION-DW-001 SQLite；自然提出即不再注入，假設卡不冒稱真實提議，不安裝資料庫 |
 | §12 Response | participant/06-exception-response-card.md | 5欄Scope／Evidence／Risk／Decision／Instruction空白，未嵌入SQLite標準答案 |
 | §13 觀察 | facilitator/01-governance-observation-guide.md | Agent／人員行為、Challenge／Review／條件、Audit／Context／Session／成本時間觀測需求 |

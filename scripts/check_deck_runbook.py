@@ -19,7 +19,8 @@ Per edition (main, dlc):
    answered by the Runbook lock card instead). Every data-unlock and data-reveal-of slide carries the marker.
 6. B3 package (main): every `b3-docs/<file>` a B3 Runbook page (B3, exception card, delivery) names, and every
    include path, is a destination of participant-63-b3-governance in package-manifest.json; every 「第 n 分」 in the
-   work order's 時間 section appears on the B3 page; the Gate names on the B3 form appear in the work order and task card.
+   work order's 時間 section appears on the B3 page; the Gate names on the B3 form appear in the work order and task card,
+   whose Gate tables also name each Gate's stage (「1 需求理解：確認意圖」「2 設計與修改範圍：規格與計畫」).
 Unlock slides vs unlock-codes.json (group and minute) are already checked by build_materials.validate_slides.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_deck_runbook.py
 """
@@ -257,7 +258,8 @@ def problems(pages: list[dict], slides: list[dict], plan, checkpoints_md: str | 
 
 
 B3_PACKAGE = "participant-63-b3-governance"
-B3_GATES = ("需求理解", "設計與修改範圍", "交付")
+# Gate names with their stage in the intent → spec/plan chain; the B3 page and form use the part before 「：」.
+B3_GATES = ("需求理解：確認意圖", "設計與修改範圍：規格與計畫", "交付")
 
 
 def b3_package_problems(pages: dict[str, str], destinations: set[str], work_order: str, task_card: str) -> list[str]:
@@ -273,8 +275,8 @@ def b3_package_problems(pages: dict[str, str], destinations: set[str], work_orde
     wo = {int(n) for pair in re.findall(r"第 ?(\d+)(?:–(\d+))? ?分", times) for n in pair if n}
     out += [f"work order 時間 names 第 {n} 分, not on the B3 page" for n in sorted(wo - on_page)]
     for n, gate in enumerate(B3_GATES, 1):
-        if f"Gate {n} {gate}" not in page:
-            out.append(f"B3 page lacks Gate {n} {gate}")
+        if f"Gate {n} {gate.split('：')[0]}" not in page:
+            out.append(f"B3 page lacks Gate {n} {gate.split('：')[0]}")
         for label, doc in (("work order", work_order), ("task card", task_card)):
             if f"| {n} {gate}" not in doc:
                 out.append(f"{label} Gate table lacks 「{n} {gate}」")

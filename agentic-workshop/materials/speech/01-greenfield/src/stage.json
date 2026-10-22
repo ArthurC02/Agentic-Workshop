@@ -24,6 +24,7 @@
     ["脈絡工程（Context engineering）", "提供讓任務「有可能被模型解出來」的全部脈絡；重點從怎麼問，移到給它看什麼。", "Simon Willison〈Context engineering〉"],
     ["五段式提示詞", "目標、背景／要讀的檔、限制、輸出格式、停止條件；五段是本課程的寫法，官方文件的重點相同：寫清楚、給脈絡、指名檔案。", "Anthropic〈Prompting best practices〉"],
     ["結構化輸出（Structured Output）", "本課程指用提示詞要求固定欄位或標題回報；API 的同名功能則用 JSON 結構定義強制格式。", "Anthropic〈Structured outputs〉"],
+    ["hook", "在固定時機（例如執行工具前、改檔後）自動執行的處理程式；和規則檔不同，它一定會執行。", "Claude Code 官方文件〈Glossary〉；Anthropic〈The AI-native SDLC playbook〉"],
     ["持續整合（CI，Continuous Integration）", "團隊成員頻繁（至少每天）把變更合併回共用的程式碼，每次合併都由自動建置與測試驗證。", "Martin Fowler〈Continuous Integration〉"],
     ["PR（Pull Request）", "把一組程式變更提議合併進專案；合併前讓別人討論與審查。", "GitHub 官方文件〈Pull requests〉"],
     ["ADR（Architecture Decision Record，架構決策紀錄）", "一份短文字檔，只記一個重要的架構決定：背景、決定、狀態與後果。", "Michael Nygard〈Documenting Architecture Decisions〉"],

@@ -473,7 +473,7 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/04-shared-context-template.md",
           "destination": "agentic-workshop/03-brownfield/participant/04-shared-context-template.md",
-          "sha256": "aba15c84a8b91207e892e1b16f4838f1770b06fe249c40acf50f451b3c37b064"
+          "sha256": "e36b808fddcf16534ea83399e4a5078efae0d35240252f48ca4707163afcae9a"
         }
       ],
       "generated": {}
@@ -518,22 +518,22 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-docs-readme.md",
           "destination": "b3-docs/README.md",
-          "sha256": "a89448d6929d19bc4bcf9c324dcce91224cb376d9113bb9a45f4488c73943069"
+          "sha256": "ab3f48f8313e23c763bf1c3dacddf1edf9f01269c50b18586f7d8aa9a910e9b7"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
           "destination": "b3-docs/b3-work-order.md",
-          "sha256": "751e06d22e1346a1e35de6d75c76d3228f1cb46188ec0113b904427b0d52d1ba"
+          "sha256": "5ac1dd0ae70f61d84bb512a8859ec16c176aa1212d200cc50e5557f1128b75c5"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
           "destination": "b3-docs/task-card.md",
-          "sha256": "48b1e7d427d4b3293ae2ca3a69c516aaee97e019f6e806c021c896c7a0ed2a1a"
+          "sha256": "d01af800c5bb323232e1edd174f9a98709e49116934ed918a8fe9060e253e74c"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
           "destination": "b3-docs/delivery-template.md",
-          "sha256": "091f734e07c790adf219efa4f6b8b4701926144be9f8b7a9fd7b89a6ac4c1e99"
+          "sha256": "c6b199a81650d17e4094ee52b87419de64f46435bcaaf5e30710a5a235371c08"
         }
       ],
       "generated": {}
@@ -553,7 +553,7 @@
         {
           "source": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
           "destination": "agentic-workshop/05-retrospective/participant/reflection-sheet.md",
-          "sha256": "fbc04dfb0179099587f8fb6abc9abf659b300ebd9f328fa7f7bce24e93739238"
+          "sha256": "bb57e0089f7c0f5ca3309d590abb278eadf2f8feff6ae2276e643f7c9082d465"
         }
       ],
       "generated": {}
@@ -1125,7 +1125,7 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
-          "sha256": "277f4d23b04defea14ece54414b576e2f4e32acd44277c22fdb01eaa112b5082"
+          "sha256": "56ff9c0dde9e0d6c109ab63fc23a690a51a1713ac5b4a99e0437d7f4b46083e0"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
@@ -1185,12 +1185,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/01-governance-observation-guide.md",
-          "sha256": "7fe156ef488ba61e3e8673f4d7a2cee3f69cc976ff67217d989b86d8f724540e"
+          "sha256": "9291b7020c4de259295bf58961ae19294cc1df2cd3389c92f563ffe1fbe66ad0"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "f0f71ec978d9345de6e026cf31e6b3253bacd5cfc6b8a1cbea8c10b431651e84"
+          "sha256": "6cfe5ecda2e3bbced85cfa32a55686351b6978f92079afb3fad5ca4d2e10a026"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -1210,7 +1210,7 @@
         {
           "source": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
           "destination": "agentic-workshop/05-retrospective/facilitator/debrief-guide.md",
-          "sha256": "7631079b9ee70119447f0f5b255e9563c905802272ded16ead65e7b06744c582"
+          "sha256": "54f8bd822ebb1560205dfd636f463a1f2f9b01d50168298c1b4f2614d9dc6b7f"
         },
         {
           "source": "agentic-workshop/05-retrospective/facilitator/organization-adoption-prompts.md",
@@ -1245,7 +1245,7 @@
         {
           "source": "agentic-workshop/06-runbook/workshop-runbook.md",
           "destination": "agentic-workshop/06-runbook/workshop-runbook.md",
-          "sha256": "a3a5b83205c7ab2f05da46c08b39340a6df25011c547cdcfeeedc05f4ed13dba"
+          "sha256": "33c398d35786baa1870b326cccd42493490ca96c01f4ba3edede15b5ad16a687"
         },
         {
           "source": "docs/contents/00_README_文件導覽.md",
@@ -1375,17 +1375,17 @@
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
           "destination": "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
-          "sha256": "48b1e7d427d4b3293ae2ca3a69c516aaee97e019f6e806c021c896c7a0ed2a1a"
+          "sha256": "d01af800c5bb323232e1edd174f9a98709e49116934ed918a8fe9060e253e74c"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
           "destination": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
-          "sha256": "751e06d22e1346a1e35de6d75c76d3228f1cb46188ec0113b904427b0d52d1ba"
+          "sha256": "5ac1dd0ae70f61d84bb512a8859ec16c176aa1212d200cc50e5557f1128b75c5"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
           "destination": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
-          "sha256": "091f734e07c790adf219efa4f6b8b4701926144be9f8b7a9fd7b89a6ac4c1e99"
+          "sha256": "c6b199a81650d17e4094ee52b87419de64f46435bcaaf5e30710a5a235371c08"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md",
@@ -3090,7 +3090,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/02-approval-evidence-checklist.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/02-approval-evidence-checklist.md",
-          "sha256": "08fa95f76c17de8ecfcbf5958eadcdeafa7b19eed21af034ec931ee4e45d5392"
+          "sha256": "5a710aa92f92250b5d5076a4914d0b2b7e31616388a43e8d48d20d3b42d85f29"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/03-digital-worker-audit-template.md",
@@ -3105,7 +3105,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
           "destination": "agentic-workshop/04-digital-worker/evaluation/05-governance-consistency-map.md",
-          "sha256": "cd0c7ccfd24dc0c91ac2d2d4e783016658829d8dd9f8198de01afe3b5e21efce"
+          "sha256": "5f178269a6e1ce7022852730ca68cee855b2896a7ec1d32b2fe6aae8049a66ed"
         },
         {
           "source": "agentic-workshop/04-digital-worker/evaluation/06-governance-validation-report.md",
@@ -3150,7 +3150,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "319628baed904b1e6a37b5f2699c3e8d4f8f69c46b5e5dd9cc109eaedd66cf24"
+          "sha256": "0f29851a0feb0c6759a2bd3d79713046161eb911ee2f7218bd78ff04c3b50075"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3390,17 +3390,17 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "acf0585f5bd5434187bc5c54022d07943eaa68bb35407a6c888f9b36824f48d6"
+          "sha256": "49200fc53f37973d5ff03b65f802660bfbaf2df0df054dcbeb5692f1e352e377"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "594ab5ae7a6284d1ec15ae2bbe7c1cb365dc0df035f0a3499863a6fb102a4bf0"
+          "sha256": "7fe872f4da7412b132dc29704c4fa952c1c3fdebc406f3e26a754158a0a79f4b"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",
-          "sha256": "49b54004bc31f00b1ca30c95f67e7ff735055ad54524ca12af22d2c97d215819"
+          "sha256": "560e3648c41250653b473736708e98ad10f1fa0ee7c8fa18006afe710cce2bf2"
         },
         {
           "source": "agentic-workshop/materials/review-evidence/deck-ac-cases-fixed.png",
@@ -3440,7 +3440,7 @@
         {
           "source": "agentic-workshop/materials/speech/README.md",
           "destination": "agentic-workshop/materials/speech/README.md",
-          "sha256": "34cc89c4b28631cf9a4c5276556dd380265f27a784b33ac55121e476a5b2e167"
+          "sha256": "791a82a8cafb97726d3566ae3901472ae5bc92c1e2f84749f8a3640eb2865a77"
         },
         {
           "source": "agentic-workshop/materials/validation-evidence.json",

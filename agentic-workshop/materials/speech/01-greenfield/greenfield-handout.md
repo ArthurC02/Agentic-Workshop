@@ -218,13 +218,13 @@ Simon Willison〈Context engineering〉（2025-06）引用 Shopify 執行長 Tob
 
 - **回報**：固定格式的驗收對照表與審查答案；沒執行的標「未驗證」。
 
-- **注意**：規則是提醒，不是鎖：一定要發生的事，要靠檢查或權限把關。
+- **注意**：規則只能提醒；一定要發生的事，交給 hook 或權限把關。
 
 工作規則是把每一步都會用到的要求（流程、邊界、回報格式）先講一次，之後每段提示詞就能很短。剛才 Greenfield 檢查點 1 貼的 7 條規則就是這樣：做完一步就停、照分層放規則、不刪測試、固定格式回報。
 
-要知道它的限制：官方文件明說，規則是給 Agent 的脈絡，不是強制設定，Agent 可能漏做。一定要發生的事（例如不得刪測試），要靠測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。另外，開新對話時，貼過的規則不會自動帶過去；寫成每次自動讀的規則檔，是第二場的內容。
+要知道它的限制：規則是給 Agent 的脈絡，只能提醒，不能強制，Agent 可能漏做。Anthropic〈The AI-native SDLC playbook〉說得很直接：Skill 是建議性的控制，hook（在固定時機一定會自動執行的檢查）才是背後確定會發生的那一層。一定要發生的事（例如不得刪測試），要靠 hook、測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。另外，開新對話時，貼過的規則不會自動帶過去；寫成每次自動讀的規則檔，是第二場的內容。
 
-📖 延伸閱讀：〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）
+📖 延伸閱讀：〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）；〈The AI-native SDLC playbook〉（Anthropic，2026）；〈Automate actions with hooks〉（Anthropic，官方文件）
 
 **人工確認**：Agent 每做完一步真的停下；每次回報都附上驗收對照表與審查答案。
 
@@ -441,6 +441,7 @@ Nygard 原文的 ADR 是一份短文字檔，只記一個重要決定，分五�
 | 脈絡工程（Context engineering） | 提供讓任務「有可能被模型解出來」的全部脈絡；重點從怎麼問，移到給它看什麼。 | Simon Willison〈Context engineering〉 |
 | 五段式提示詞 | 目標、背景／要讀的檔、限制、輸出格式、停止條件；五段是本課程的寫法，官方文件的重點相同：寫清楚、給脈絡、指名檔案。 | Anthropic〈Prompting best practices〉 |
 | 結構化輸出（Structured Output） | 本課程指用提示詞要求固定欄位或標題回報；API 的同名功能則用 JSON 結構定義強制格式。 | Anthropic〈Structured outputs〉 |
+| hook | 在固定時機（例如執行工具前、改檔後）自動執行的處理程式；和規則檔不同，它一定會執行。 | Claude Code 官方文件〈Glossary〉；Anthropic〈The AI-native SDLC playbook〉 |
 | 持續整合（CI，Continuous Integration） | 團隊成員頻繁（至少每天）把變更合併回共用的程式碼，每次合併都由自動建置與測試驗證。 | Martin Fowler〈Continuous Integration〉 |
 | PR（Pull Request） | 把一組程式變更提議合併進專案；合併前讓別人討論與審查。 | GitHub 官方文件〈Pull requests〉 |
 | ADR（Architecture Decision Record，架構決策紀錄） | 一份短文字檔，只記一個重要的架構決定：背景、決定、狀態與後果。 | Michael Nygard〈Documenting Architecture Decisions〉 |
@@ -459,6 +460,8 @@ Nygard 原文的 ADR 是一份短文字檔，只記一個重要決定，分五�
 - 〈Effective context engineering for AI agents〉（Anthropic，2025）
 - 〈How to write a great agents.md: Lessons from over 2,500 repositories〉（GitHub，2025）
 - 〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）
+- 〈The AI-native SDLC playbook〉（Anthropic，2026）
+- 〈Automate actions with hooks〉（Anthropic，官方文件）
 - 〈Prompting best practices〉（Anthropic，官方文件）
 - 〈Prompt engineering〉（OpenAI，官方文件）
 - 〈Vibe engineering〉（Simon Willison，2025）

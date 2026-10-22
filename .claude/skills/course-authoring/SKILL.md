@@ -107,6 +107,8 @@ Stay tool-neutral: no vendor product names, commands or config paths as requirem
 ## Canonical live texts (copy from these, don't re-invent)
 - Agent work rules: the rules block in `materials/participant-runbook/content/10-greenfield.md` (Greenfield) and `30-time-skip.md` (Brownfield). From shared context onward, use 「請先讀 skills/team-rules.md」.
 - Acceptance table, change review, and the `/docs` Try-it-out flow: `10-greenfield.md`, `44-b1.md`.
+- Review policy (「審查準則」, a section of `skills/team-rules.md`): the verbatim text in the `39-shared-context.md` CP2 prompt. The fallback rules blocks in `53-recovery-b1.md` and `67-recovery-b2.md` carry the same text; change all three together. B1–B3 and the delivery review conversation cite it (「依 skills/team-rules.md 的審查準則」) instead of re-listing the questions.
+- Artifact chain words (main course): 意圖＝要什麼、為什麼、限制；規格＝行為與驗收條件；計畫＝改哪些檔、步驟、測試；B3 Gate 1＝確認意圖, Gate 2＝規格與計畫 (「開始執行」＝核准計畫). Learner pages never use intent.md／spec.md／REVIEW.md.
 - Four-block checkpoint and ```prompt Windows／macOS tabs: `materials/participant-runbook/content/10-greenfield.md` checkpoint 1.
 - DLC work rules: `materials-dlc/participant-runbook/content/01-environment.md`, `20-d2.md` (proposer and partner), `30-d3a.md`.
 - DLC D2 and later: one shared machine. The partner opens their own terminal and Agent conversation. Only that conversation runs keys, `record-approval`, signed commits and push. The proposer's Agent never commits, pushes, reads `.dlc-keys`, or approves.

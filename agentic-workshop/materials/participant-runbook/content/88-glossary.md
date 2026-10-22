@@ -29,7 +29,9 @@ section: 參考
 | Rule ID（規則編號） | 商業規則的編號，例如 `FARE-002`：學生為基礎票價的 75%。 | 本課程〈Greenfield Business Requirements〉 |
 | AC（驗收條件） | Acceptance Criteria，功能要被使用者或客戶接受前必須滿足、能判定符合與否的條件，例如 `AC-B1-001`。 | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
 | 驗收對照表 | Agent 回報測試結果的表：每條驗收條件一列，寫編號、白話內容、通過／失敗／未驗證、依據的測試名稱；最後一行是通過、失敗、跳過各幾個。 | 本課程〈Greenfield Acceptance Criteria〉 |
-| 變更審查 | 你不讀程式的修改內容（Diff），改請 Agent 回答固定的審查問題，這些回答就是審查答案。Greenfield 用白話答四題並建議放不放行，之後各段逐題答「是／否／不確定」；由你判斷要不要放行。 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
+| 變更審查 | 你不讀程式的修改內容（Diff），改請 Agent 回答固定的審查問題，這些回答就是審查答案。Greenfield 用白話答四題並建議放不放行，B1 起照審查準則逐題答「是／否／不確定」；由你判斷要不要放行。 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
+| 審查準則 | `skills/team-rules.md` 裡的一節，由人定：變更審查要答哪三題、哪些算「重要」、哪些是小問題或不用報。寫程式的 Agent 和另開對話的審查者都照這一份。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈Shared Context：把共識寫成檔案給 Agent〉 |
+| 審查紀錄 | 交付時另開一個只讀的對話當審查者，照審查準則檢查修改，把「重要／小問題」和「建議放行／不建議放行」寫進 `notes/b3.md`；寫程式的 Agent 不核准自己的成果。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈Delivery Summary 與交付〉 |
 | Skip／XFail | Skip 是略過測試；XFail 是把測試標成預期會失敗。兩者都不代表功能完成，不得用來隱藏失敗。 | pytest 官方文件〈How to use skip and xfail to deal with tests that cannot succeed〉 |
 | Regression（回歸問題） | 修改後，原本正常的功能被改壞。既有測試要保留並通過；因規則改變而過時的期待值，要附規則編號並經人核准才更新。 | ISTQB〈Glossary〉 |
 | Git／Commit | Git 記錄專案每一版的變化；Commit 是存下的一版，例如「G0 baseline」「B3 起點」。之後拿它比對「改了什麼」，也能還原。 | Pro Git〈About Version Control〉；Git 官方文件〈git-commit〉 |
@@ -49,6 +51,7 @@ section: 參考
 | Skill | 把反覆要用的做法寫成 Markdown 檔放在 `skills/`，之後只說「請先讀 skills/… 並照做」。工具內建的 Skill 是含 `SKILL.md` 的資料夾，平常只讀名稱與說明，用到才讀全文；今天用的是簡化版。 | Anthropic〈Agent Skills〉 |
 | Token 與節費 | Token 是模型讀寫文字的最小單位：計費和模型一次回答能參考多少內容（Context Window，脈絡視窗，包含整段對話與它正在寫的回答），都用它計算。節費：一個任務一個新對話、只讀指定的檔、要摘要不要整段輸出、把共識寫成檔案。 | Anthropic〈Context windows〉；Anthropic〈Token counting〉 |
 | 模型選擇 | 機械性的工作用快速、便宜的模型；分析陌生程式、比較取捨、自主執行用較強的模型。 | Anthropic〈Choosing the right model〉 |
+| 領先指標／落後指標 | 檢查一項行動有沒有效：領先指標是兩週內就看得到的過程數字（例如每週被退回的計畫數），落後指標是一季後才看得到的結果（例如上線後才發現的問題數）。「兩週」「一季」是本課程的經驗值，不是出處的規定。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈工作坊回顧〉 |
 | 推論強度（Reasoning Effort） | 同一個模型「想多深」、花多少 Token：分析、比較方案調高，小步修改調低。工具沒有這個設定時，提示詞寫「先仔細想過再回答」。 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
 
 ## B3 用語
@@ -60,4 +63,6 @@ section: 參考
 | Work Order（工作單） | 交給 Agent 的整件任務說明：範圍、禁止事項、停止條件與回報格式；B3 存成 `skills/b3-work-order.md`。 | 本課程〈B3 工作單（Work Order）〉 |
 | Escalation（升級處理） | Agent 遇到停止條件時停下，附證據與選項，交給人決定。 | 本課程〈B3 工作單（Work Order）〉 |
 | Atomicity／Compensation | Atomicity：一組動作要嘛全部完成、要嘛全部不做。Compensation：失敗時把已做的部分還原，例如團體付款失敗就釋放全部座位。 | 本課程〈TASK-B3-001：新增團體訂票能力〉 |
+| 意圖 | 要什麼、為什麼、限制，三行講清楚。Greenfield 計畫開頭寫一次；B3 的任務卡就是意圖，由 Gate 1 確認。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈TASK-B3-001：新增團體訂票能力〉 |
+| 規格／計畫 | 規格：做完後系統該有的行為與驗收條件；計畫：改哪些檔、分幾步、怎麼測。B3 的 Gate 2 卡分這兩節，回「開始執行」就是核准計畫。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈B3 工作單（Work Order）〉 |
 | Level（完成等級） | Level 1 分析完成、Level 2 核心流程完成、Level 3 完整交付；依證據擇一，不自動選 Level 3。 | 本課程〈TASK-B3-001：新增團體訂票能力〉 |

@@ -4,7 +4,7 @@
 > 前置：已取得Agent提交、Work Order及Approved Context。可見性：Evaluation內部。
 > 來源：[治理指令 §6–7／18](../../../docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md)。
 
-Gate 1 Requirement Understanding → Gate 2 Impact and Design → Gate 3 Delivery Review。Gate 1前不得跳過理解；Gate 2明確核准且前置條件已滿足後才修改程式；Gate 3Review後才接受交付。保留短紀錄，不要求完整會議逐字稿。
+Gate 1 Requirement Understanding（確認意圖：要什麼、為什麼、限制）→ Gate 2 Impact and Design（規格：行為與驗收條件；計畫：改哪些檔、步驟、測試；「開始執行」＝核准計畫）→ Gate 3 Delivery Review。交付時另有只讀審查對話寫的`notes/b3.md`「審查紀錄」，核對寫程式的Agent沒有核准自己。Gate 1前不得跳過理解；Gate 2明確核准且前置條件已滿足後才修改程式；Gate 3Review後才接受交付。保留短紀錄，不要求完整會議逐字稿。
 
 每Gate從學員`notes/b3.md`的Gate段落核對以下七欄（學員Runbook只選填決策，其餘由Agent照原文記錄），並補核准人、時間及Context／Submission版本；空白不代表核准，表單少填不扣分。
 

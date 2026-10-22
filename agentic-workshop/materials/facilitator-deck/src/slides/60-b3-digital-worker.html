@@ -23,7 +23,7 @@
     <li class="teammate">Teammate</li>
     <li class="dw active">Digital Worker</li>
   </ol>
-  <p class="quote fx fx-fade">到 B3，人不再逐步核准，只在三道 Gate 做決定：需求、設計、交付。</p>
+  <p class="quote fx fx-fade">到 B3，人不再逐步核准，只在三道 Gate 做決定：意圖、規格與計畫、交付。</p>
   <div class="cols-2">
     <div class="card teammate fx fx-up">
       <h3>人</h3>
@@ -90,7 +90,7 @@
 <section class="slide slide-cp" data-seg="b3" data-title="檢查點 2 · Gate 1：確認 Agent 懂需求" data-minute="64">
   <p class="kicker">檢查點 2 / 4 · 第 64–66 分鐘</p>
   <h2 class="title">Gate 1：確認 Agent 懂需求</h2>
-  <p class="cp-why"><b>為什麼</b>需求理解錯了，後面做得再快都白做</p>
+  <p class="cp-why"><b>為什麼</b>確認意圖：要什麼、為什麼、限制都和任務卡一致</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>對照原文看 5 題</b><span>每題下面附了任務卡原文</span></li>
@@ -100,7 +100,8 @@
   <p class="cp-judge"><b>你要判斷</b>每題都對得上附的原文才核准；待確認的由你們決定</p>
   <p class="cp-next"><b>第 66 分前決策</b><span>→ 下一步：檢查點 3 Gate 2</span></p>
   <aside class="notes">
-    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照每題下面附的任務卡原文回答那 5 個是非題；有疑問再看 B3 頁上方的任務卡。需求理解錯了，後面做得再快都白做。」</p>
+    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照每題下面附的任務卡原文回答那 5 個是非題；有疑問再看 B3 頁上方的任務卡。Gate 1 確認的是意圖：要什麼、為什麼、限制；理解錯了，後面做得再快都白做。」</p>
+    <p><b>意圖 → 規格 → 計畫（首次介紹，約 20 秒，指著 Runbook 本檢查點的「新概念」小卡）</b>：「任務卡就是意圖；Gate 1 確認 Agent 懂意圖，Gate 2 核准規格和計畫，Gate 3 看驗證和審查的證據。每一樣都寫進 notes/b3.md，下一步讀得到，你們也查得到。Greenfield 計畫開頭那三行意圖，就是同一件事。」</p>
     <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策：核准才進 Gate 2 設計，退回就要求修正。直接回『核准』『附條件：…』或『退回：…』；要你決定的題目不照建議才加一句，例如『A 改成…』。核准人和時間 Agent 自己記，接著自己交 Gate 2 卡。」</p>
     <p><b>看</b>：先看過再核准｜有質疑假設、風險、邊界和替代方案｜不跳 Gate。決策由人說，Agent 只照抄、不代填；小組先口頭說好，再到「B3 Gate 決策」選。</p>
     <p><b>附條件核准</b>：不等於可以忽略條件直接做。條件要具體、能驗證，而且先解除；要說清楚哪些已允許、哪些仍被擋、要回哪道 Gate。</p>
@@ -111,17 +112,17 @@
 <section class="slide slide-cp" data-seg="b3" data-title="檢查點 3 · Gate 2：核准設計與修改範圍" data-minute="66">
   <p class="kicker">檢查點 3 / 4 · 第 66–70 分鐘</p>
   <h2 class="title">Gate 2：核准設計與修改範圍</h2>
-  <p class="cp-why"><b>為什麼</b>你核准的範圍，就是 Agent 能自己動手的邊界</p>
+  <p class="cp-why"><b>為什麼</b>你核准的計畫，就是 Agent 能自己動手的邊界</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>看 Gate 2 卡</b><span>Gate 1 核准後 Agent 自己交</span></li>
+    <li><b>看 Gate 2 卡</b><span>分兩節：規格、計畫</span></li>
     <li><b>回一個詞</b><span>核准／附條件：…／退回：…</span></li>
     <li><b>選 Gate 2</b><span>在「B3 Gate 決策」選 Gate 2</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>都在工作單允許的範圍內，不只是「看起來合理」</p>
   <p class="cp-next"><b>第 69 分前決策</b><span>→ 下一步：看投影的例外事件</span></p>
   <aside class="notes">
-    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准後，Agent 會自己交 Gate 2 卡：影響、API、座位、全有或全無的處理、測試和風險。沒自動出現就貼 Runbook 檢查點 3 那一行。你們核准的範圍，就是 Agent 接下來能自己動手的邊界；Gate 2 核准、條件解除前，不能改程式。」</p>
+    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准後，Agent 會自己交 Gate 2 卡，分兩節：規格是行為與驗收條件（影響、API、座位、全有或全無的處理），計畫是改哪些檔、步驟、測試和風險。沒自動出現就貼 Runbook 檢查點 3 那一行。你們核准的計畫，就是 Agent 接下來能自己動手的邊界；回「開始執行」才算核准計畫，之前不能改程式。」</p>
     <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件</b>（Agent 已經自己提出 SQLite 的組，見下一頁備註）。</p>
     <p><b>看</b>：不以「看起來合理」代替範圍檢查｜核准範圍有寫明允許和不得修改的部分，記進 notes/b3.md｜條件沒滿足的範圍先停；偏離計畫要補證據或重新核准。Gate 2 決策前就改檔 → #1。</p>
     <p><b>可回答</b>：每節車廂幾個座位 → Gate 1 卡「要你決定」由 Agent 依程式現有資料提議、小組回「A 照建議」或改值。座位演算法或回應格式細節 → 任務卡不規定，由 Agent 在 Gate 2 提案、人審查。</p>

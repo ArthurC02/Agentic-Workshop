@@ -7,9 +7,9 @@
   "handout_intro": [
     "> 讀者：學員。時機：25 分鐘回顧講解。前置：已聽過前四段，或手邊有自己的 `notes/` 與 `skills/` 紀錄。",
     "本段以組織導入的研究證據與做法為主；範例提示詞選用，貼給你自己的 Coding Agent（能自己讀寫專案檔案、執行指令與測試的 AI），結果由你檢查。",
-    "**這一段帶走什麼**\n\n- AI 是放大器：導入前先補最弱的基本功\n- 感覺變快不等於真的變快：先建基準，還要重量\n- 產出變多時，瓶頸會移到審查\n- 從自己的紀錄長出 Skill，規則要有人維護\n- 30 天計畫：一件小事、一組數字、有停止標準"
+    "**這一段帶走什麼**\n\n- AI 是放大器：導入前先補最弱的基本功\n- 感覺變快不等於真的變快：先建基準，每項做法配領先與落後指標\n- 產出變多時，瓶頸會移到審查\n- 從自己的紀錄長出 Skill，改了就試跑；規則要有人維護\n- 出事後寫成下一輪意圖；放權先只讀，再一個環境一個環境開\n- 30 天計畫：一件小事、一組數字、有停止標準"
   ],
-  "handout_done": "帶走三項：用公開研究（DORA、METR、Faros AI、Stack Overflow）看清「感覺變快」與「交付變好」的差別、一個寫成 Skill 的重複做法，以及一份有基準、責任人與停止標準的 30 天導入計畫。\n\n**下週可以做的事**\n\n- 選一件小事，先量一次導入前的基準\n- 從 notes/ 找一個重複做法，寫成 Skill 並試用一次\n- 寫下 30 天計畫的責任人、期限、成功標準與停止標準",
+  "handout_done": "帶走三項：用公開研究（DORA、METR、Faros AI、Stack Overflow）看清「感覺變快」與「交付變好」的差別、一個寫成 Skill 的重複做法，以及一份有基準、責任人、領先與落後指標、停止標準的 30 天導入計畫。\n\n**下週可以做的事**\n\n- 選一件小事，先量一次導入前的基準\n- 從 notes/ 找一個重複做法，寫成 Skill 並試跑一次\n- 寫下 30 天計畫的責任人、期限、領先與落後指標，以及停止標準",
   "terms": [
     ["DORA", "DevOps Research and Assessment：Google Cloud 旗下的軟體交付研究計畫，每年發布報告。", "Google Cloud〈Announcing the 2025 DORA Report〉"],
     ["放大器", "DORA 2025 的結論：AI 會放大組織原有的長處與短處，不會自己修好一個團隊。", "DORA〈State of AI-assisted Software Development 2025〉"],
@@ -17,6 +17,11 @@
     ["DORA 軟體交付指標", "衡量交付量的變更前置時間、部署頻率、失敗部署復原時間，與衡量不穩定度的變更失敗率、部署重工率，共五項。", "DORA〈DORA's software delivery performance metrics〉"],
     ["小批量工作", "一次只改一小塊、儘快驗證；出錯時退回的成本小。", "Google Cloud〈Introducing DORA's inaugural AI Capabilities Model〉"],
     ["基準（baseline）", "導入前先量一次的數字，事後才有比較的依據；每個數字都要先講好分子、分母與資料來源。", "Anthropic〈Manage costs effectively〉"],
+    ["領先指標（leading indicator）", "做法一開始就看得到變化的數字（本課程取兩週內），判斷做法有沒有在動，例如計畫一次就核准的比例、每週退回次數。", "Anthropic〈The AI-native SDLC playbook〉"],
+    ["落後指標（lagging indicator）", "要等一段時間才穩定的結果數字（本課程取一季後），判斷交付有沒有真的變好，例如上線後才發現的問題數、重工次數。", "Anthropic〈The AI-native SDLC playbook〉"],
+    ["評估（eval）", "用固定的例子重跑 Agent，檢查結果是否符合預期；規則、Skill 或 hook 改了就重跑，結果變差先審過再採用。", "Anthropic〈The AI-native SDLC playbook〉"],
+    ["意圖", "一件工作要什麼、為什麼、有哪些限制，用三行寫下；規格與計畫都從它開始。", "Anthropic〈The AI-native SDLC playbook〉"],
+    ["監控門檻", "上線後由監控系統自動判斷的界線（例如錯誤率、回應時間）；超出就先診斷，再寫成下一輪的意圖。", "Anthropic〈The AI-native SDLC playbook〉"],
     ["信賴區間", "估計值可能落在的範圍；區間同時包含變快與變慢（跨過零）時，就不能確定有沒有變快。", "METR〈We are Changing our Developer Productivity Experiment Design〉"],
     ["認知債（Cognitive debt）", "程式能跑，但團隊裡沒有人真正懂它怎麼運作；Agent 改得越快越容易累積。", "Thoughtworks〈Technology Radar Vol. 34〉"]
   ]

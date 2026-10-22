@@ -65,7 +65,7 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 ```prompt
 # windows
 這個資料夾是 B2 的復原包。請依序做，遇到錯誤先說明原因，不要自行修改程式：
-1. 先一次問我兩件事：原成果資料夾的路徑，以及上一個對話的 SHA256 前 12 碼是否和按鈕旁相符；再把原成果的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，我會貼規則給你。
+1. 先一次問我兩件事：原成果資料夾的路徑，以及上一個對話的 SHA256 前 12 碼是否和按鈕旁相符；再把原成果的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，先繼續做後面的步驟，做完我再貼規則給你。
 2. 閱讀 README 與 docs/context.md，用白話告訴我這是不是 B2 完成後的版本。
 3. 用 py -3.13 -m venv .venv 建立虛擬環境。不必啟用，之後直接呼叫 .venv\Scripts\python.exe（Git Bash 寫 .venv/Scripts/python.exe）；版本不是 3.13 就停下告訴我。接著安裝 requirements.txt，執行 pytest -q，只回報通過／失敗／跳過各幾個。如果這裡沒有 .gitignore，建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（之後 Commit 才不會混進測試產生的暫存檔）。
 4. 在背景啟動伺服器（埠號 8000；8000 若被不是你啟動的程式占用，不要停它，告訴我它的名稱、PID（程序編號）和啟動指令，改用 8001，並把實際埠號寫進 notes/recovery-b2.md），確認 /health 回傳 status=ok，告訴我 /docs 的網址。
@@ -73,7 +73,7 @@ id=recovery-63-b2 zip=recovery-63-b2.zip label=下載受控 B2 Recovery
 6. 把切換原因與時間、原成果保存位置、SHA256 比對結果（第 1 步問過）、測試數與 health 的實際結果與結束碼，以及「B2 的政策由 Recovery 提供，不是本組自己完成」寫進 notes/recovery-b2.md。做完停下等我。
 # macos
 這個資料夾是 B2 的復原包。請依序做，遇到錯誤先說明原因，不要自行修改程式：
-1. 先一次問我兩件事：原成果資料夾的路徑，以及上一個對話的 SHA256 前 12 碼是否和按鈕旁相符；再把原成果的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，我會貼規則給你。
+1. 先一次問我兩件事：原成果資料夾的路徑，以及上一個對話的 SHA256 前 12 碼是否和按鈕旁相符；再把原成果的 notes 與 skills 資料夾複製到這裡（只複製這兩個，不要動程式；skills 不存在就跳過）。有 skills/team-rules.md 就讀它並遵守；沒有就告訴我，先繼續做後面的步驟，做完我再貼規則給你。
 2. 閱讀 README 與 docs/context.md，用白話告訴我這是不是 B2 完成後的版本。
 3. 用 python3.13 -m venv .venv 建立虛擬環境。不必啟用，之後直接呼叫 .venv/bin/python；版本不是 3.13 就停下告訴我。接著安裝 requirements.txt，執行 pytest -q，只回報通過／失敗／跳過各幾個。如果這裡沒有 .gitignore，建立一個，內容三行：__pycache__/、.venv/、.pytest_cache/（之後 Commit 才不會混進測試產生的暫存檔）。
 4. 在背景啟動伺服器（埠號 8000；8000 若被不是你啟動的程式占用，不要停它，告訴我它的名稱、PID（程序編號）和啟動指令，改用 8001，並把實際埠號寫進 notes/recovery-b2.md），確認 /health 回傳 status=ok，告訴我 /docs 的網址。
@@ -106,7 +106,8 @@ Agent 說沒有 `skills/team-rules.md` 時，才貼這段規則：
 5. 每次做完都執行 pytest -q，並用「驗收對照表」回報：每條驗收條件或規則一列，欄位固定為「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱」，最後一行寫通過／失敗／跳過的測試數。不要貼原始輸出，只給摘要。
 6. 每次修改後用白話說明：改了哪些檔案、各改了什麼、為什麼，以及有沒有超出我核准的範圍。
 7. 你沒有實際執行的事情，一律標「未驗證」。
-請把以上規則存成 skills/team-rules.md，之後我會說「請先讀 skills/team-rules.md」。
+審查準則：寫程式的 Agent 自己審、另開對話審查，都照這一節。先用 git status 與 git diff 對照這段的起點 Commit（提示詞沒指定就用最近一次 Commit），列出改了哪些檔案、各改什麼、為什麼（notes/、skills/、b3-docs/ 不列）。再回答三題「是／否／不確定」，各附實際指令與結果：(1) 改的檔案都在核准的計畫或範圍裡；(2) 測試總數沒有比這段開始時少，也沒有新增 skip 或 xfail；(3) 沒有刪除測試，除了經人核准的過時期待值，沒有修改既有測試的期待值（用 git diff 檢查 tests 資料夾；有改的逐一列出測試名稱、Rule ID 與核准紀錄位置）。分級：任一題是「否」或「不確定」，或宣稱通過卻沒有實際執行的指令與結果，是「重要」；文件措辭、命名不清楚是「小問題」；排版與寫法偏好不用報。
+請把以上規則存成 skills/team-rules.md，分「工作規則」「審查準則」兩節，之後我會說「請先讀 skills/team-rules.md」。存好後只回：「成功」（兩節都在）或「失敗：」加一句原因。
 ```
 
 完成後回到 [B3](#b3)，從檢查點 1 開始，走「用 Recovery 的組：走縮短版」，目標 Level 1。

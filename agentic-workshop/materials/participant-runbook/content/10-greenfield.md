@@ -97,8 +97,9 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ① 為什麼做這一步
 
-先看計畫，動手前就抓得出範圍外的項目。這一步 Agent 只提計畫、不改程式。下面三件都成立就核准：
+先看計畫，動手前就抓得出範圍外的項目。這一步 Agent 只提計畫、不改程式。下面四件都成立就核准：
 
+- 開頭三行意圖（要什麼、為什麼、限制）和任務說明、需求文件一致，沒有多加（不一致就回「意圖第 N 行不在需求文件裡，請刪掉並重寫計畫，然後停下」）
 - 每一步都標了規則編號和驗收條件編號（例如 `FARE-002`、`AC-G-005`），也寫了要改的檔案
 - 沒有範圍外的項目
 - 每個問題都附了建議答案；拿不準就舉手問主持人，不要讓 Agent 自己假設
@@ -109,13 +110,13 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 
 ```text
 【目標】先不要修改程式。提出 4 步的實作計畫。先仔細想過再回答。
-【背景／要讀的檔】只讀這些：上一層資料夾（或 docs\ 副本）的商業需求（02-business-requirements.md）與驗收條件（03-acceptance-criteria.md）、這個專案的 README 與 docs/，以及程式碼（.py）中標示 TODO(GREENFIELD 的地方。
+【背景／要讀的檔】只讀這些：上一層資料夾（或 docs\ 副本）的任務說明（01-mission-brief.md）、商業需求（02-business-requirements.md）與驗收條件（03-acceptance-criteria.md）、這個專案的 README 與 docs/，以及程式碼（.py）中標示 TODO(GREENFIELD 的地方。
 【限制】
 - 固定拆成 4 步：1 票價、2 班次查詢、3 建立訂票、4 付款與查詢訂單。
 - 每一步都要替這一步對應的驗收條件補上測試（例如建立訂票那步要有 1225 的測試，付款那步要有付款失敗不建立 Order 的測試），不能只靠移除 skip。
 - 不要放進前端、登入、會員、優惠、改退票或新套件等範圍外項目。
-- 下列事項需求文件沒有逐字寫明，請照這樣處理並寫進計畫：付款失敗時 Booking 維持 PENDING_PAYMENT、座位不釋放、不建立 Order、之後仍可再付款；找不到 Trip／Booking／Order 回 404；人數不符（0 人、超過 4 人）回 409，要在 domain／application 檢查，不要寫成輸入格式限制；座位不足、重複付款、付款失敗回 409；輸入格式錯誤沿用 422（回應內容用 FastAPI 預設，不另外包裝）；其他錯誤內容沿用 {"error":{"code":"...","message":"..."}}；測試要能指定付款失敗，不用隨機結果（把 MockPaymentGateway.next_result 設為 PaymentStatus.FAILED）。
-【輸出格式】寫進 notes/greenfield.md 的「計畫」段落。開頭寫你在 .py 檔找到幾個 TODO(GREENFIELD 標記。每一步固定四項：第幾步、完成後使用者能做什麼（白話）、對應的規則編號（Rule ID）與驗收條件（AC）、預計修改的檔案。最後列出還需要我決定的問題，每題附上你建議的答案。
+- 下列事項需求文件沒有逐字寫明，請照這樣處理，另列在計畫裡（不放進意圖三行）：付款失敗時 Booking 維持 PENDING_PAYMENT、座位不釋放、不建立 Order、之後仍可再付款；找不到 Trip／Booking／Order 回 404；人數不符（0 人、超過 4 人）回 409，要在 domain／application 檢查，不要寫成輸入格式限制；座位不足、重複付款、付款失敗回 409；輸入格式錯誤沿用 422（回應內容用 FastAPI 預設，不另外包裝）；其他錯誤內容沿用 {"error":{"code":"...","message":"..."}}；測試要能指定付款失敗，不用隨機結果（把 MockPaymentGateway.next_result 設為 PaymentStatus.FAILED）。
+【輸出格式】寫進 notes/greenfield.md 的「計畫」段落。開頭先用三行寫意圖：要什麼、為什麼、限制，都只照任務說明與需求文件寫，不自己加。下一行寫你在 .py 檔找到幾個 TODO(GREENFIELD 標記。每一步固定四項：第幾步、完成後使用者能做什麼（白話）、對應的規則編號（Rule ID）與驗收條件（AC）、預計修改的檔案。最後列出還需要我決定的問題，每題附上你建議的答案。
 【停止條件】寫完就停下等我，不要開始修改。
 ```
 
@@ -129,7 +130,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 ③ 確認結果
 
 ```text
-請檢查下列三件事，不要修改任何檔案：1. notes/greenfield.md 的「計畫」有 4 步，每步都有規則編號、驗收條件與預計修改的檔案；開頭寫的 TODO(GREENFIELD 數量，和用 Git 查「G0 baseline」那一版 .py 檔得到的數量一致（不要數現在的檔案，第 1、2 步已移除一些）；2. 「核准紀錄」寫了我的決定與核准時間；3. 這次只改了計畫第 1、2 步預計修改的檔案（notes/ 不算）。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
+請檢查下列三件事，不要修改任何檔案：1. notes/greenfield.md 的「計畫」開頭有三行意圖（要什麼、為什麼、限制），接著有 4 步，每步都有規則編號、驗收條件與預計修改的檔案；計畫寫的 TODO(GREENFIELD 數量，和用 Git 查「G0 baseline」那一版 .py 檔得到的數量一致（不要數現在的檔案，第 1、2 步已移除一些）；2. 「核准紀錄」寫了我的決定與核准時間；3. 這次只改了計畫第 1、2 步預計修改的檔案（notes/ 不算）。全部符合只回「成功」；有任何一項不符，只回「失敗：」加一句原因。
 ```
 
 失敗時：
@@ -145,6 +146,7 @@ id=g0 zip=participant-07-g0.zip label=下載 G0 Starter Repository
 **好的提示詞有五個部分，缺任何一塊，Agent 就會自己猜。**
 - 【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件】
 - 這一步的計畫提示詞就照五個部分寫
+- 計畫開頭的三行意圖，是請 Agent 先複述【目標】，你一眼就看出它有沒有理解錯
 📖 延伸閱讀：Anthropic 官方文件〈Prompt engineering overview〉與〈Prompting best practices〉、OpenAI 官方文件〈Prompt engineering〉；你所用工具的官方文件通常有同名章節。
 ```
 
@@ -235,7 +237,7 @@ Agent 說「計畫已全部完成」後貼這段。時間不夠、只放行到�
 5. 做完第 4 項就停下等我。我會在 /docs 依序試：成人加學生訂票（應為 1225、待付款）、付款（應回傳金額 1225、付款成功的 Order），再回「兩項都一致」或「第 N 項不一致：我看到…」。照我的回覆寫入「人工驗證」，把所有變更 Commit 成「Greenfield 交付」，告訴我，不要再修改程式。
 ```
 
-Agent 說 8000 被別的程式占用時，回「請改用 8001，並在最終驗收寫下實際埠號」。
+Agent 說 8000 被別的程式占用時，回「請改用沒人用的埠號（例如 8001），並在最終驗收寫下實際埠號」。
 
 Agent 工作的時候，先到 [Greenfield 回顧與交付決定](#gf-submission) 填交付決定。
 

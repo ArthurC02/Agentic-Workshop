@@ -92,8 +92,8 @@ class Problems(unittest.TestCase):
 
 
 class B3Package(unittest.TestCase):
-    WO = ("| 1 需求理解 |\n| 2 設計與修改範圍 |\n| 3 交付 |\n## 9. 時間\n第 66 分 Gate 1；第 69–70 分例外\n## 10. 交接\n第 99 分")
-    CARD = "| 1 需求理解 |\n| 2 設計與修改範圍 |\n| 3 交付 |"
+    WO = ("| 1 需求理解：確認意圖 |\n| 2 設計與修改範圍：規格與計畫 |\n| 3 交付 |\n## 9. 時間\n第 66 分 Gate 1；第 69–70 分例外\n## 10. 交接\n第 99 分")
+    CARD = "| 1 需求理解：確認意圖 |\n| 2 設計與修改範圍：規格與計畫 |\n| 3 交付 |"
     PAGE = ("path=b3-docs/task-card.md\n第 64–66 分鐘、第 69 分鐘、第 70 分\nGate 1 需求理解 Gate 2 設計與修改範圍 "
             "Gate 3 交付\n讀 b3-docs/b3-work-order.md")
     DEST = {"b3-docs/task-card.md", "b3-docs/b3-work-order.md"}
@@ -106,6 +106,10 @@ class B3Package(unittest.TestCase):
         found = cd.b3_package_problems({"60-b3.md": page, "70-delivery.md": "b3-docs/gone.md"}, self.DEST,
                                        self.WO, self.CARD.replace("2 設計與修改範圍", "2 Impact and Design"))
         self.assertEqual(len(found), 4, found)  # 05-old.md, gone.md, 第 69 分, task card Gate 2
+
+    def test_gate_table_without_stage(self):
+        found = cd.b3_package_problems({"60-b3.md": self.PAGE}, self.DEST, self.WO.replace("：確認意圖", ""), self.CARD)
+        self.assertEqual(found, ["work order Gate table lacks 「1 需求理解：確認意圖」"])
 
 
 if __name__ == "__main__":
