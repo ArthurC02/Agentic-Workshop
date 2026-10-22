@@ -14,7 +14,7 @@
 
 ## 1. 把整件工作交給 Agent，要先設計什麼？
 
-第四段 · Digital Worker（數位員工：在核准範圍內獨立完成整件任務的 Agent，即 AI 助手） · 概念講解
+第四段 · Digital Worker（數位員工：在核准範圍內獨立完成整件任務的 Agent） · 概念講解
 
 - **今天談的不是 B3 本身**：而是業界怎麼安全地委派：工作單、自主等級、關卡、權限、防護、評估與治理。
 
@@ -134,6 +134,8 @@ Approval fatigue（核准疲勞）：關卡太多，核准就變成反射動作�
 
 解法不是少審，而是把邊界做在環境上。Anthropic（2025-10）的沙箱文章說，用檔案系統與網路兩道隔離後，權限詢問減少 84%。邊界內的事不必問，只把真正的決策留給人；B3 只設三道 Gate、每道 1–3 分鐘，就是這個設計。
 
+這句話說的是「每個動作都要人按核准」的模式。現在有些工具改用另一個模型（分類器）先審查每個動作，只擋下或詢問看起來有風險的，例如 2026 年 Claude Code 在多數互動情境的預設模式。這減少了詢問，但審查的仍是模型，不是你；不可逆、高影響的動作，還是要在工作單裡寫成必須停下來問人的關卡。
+
 📖 延伸閱讀：〈Beyond permission prompts: making Claude Code more secure and autonomous〉（Anthropic，2025）；〈Best practices for Claude Code〉（Anthropic，官方文件）
 
 **人工確認**：你的關卡，每一道都有人真的會停下來看嗎？
@@ -152,7 +154,9 @@ OWASP〈LLM06:2025 Excessive Agency〉列出 Agent 權力過大的三個根因�
 
 OWASP 也在 2025-12 發布了專談 Agent 應用風險的十大風險清單。下週替你的工作列出 Agent 真正需要的權限，每多一項都要說得出理由。
 
-📖 延伸閱讀：〈LLM06:2025 Excessive Agency〉（OWASP，2025）
+美國國家標準技術研究院（NIST）的資安詞彙表把最小權限定義為：把使用者，或代表使用者執行的程式，所能取得的存取權限限制在完成指派工作所需的最小範圍。Agent 就是代表你執行的程式，所以同一條原則直接適用。
+
+📖 延伸閱讀：〈LLM06:2025 Excessive Agency〉（OWASP，2025）；〈Glossary〉（NIST CSRC，least privilege 條目）
 
 **人工確認**：列出你那件工作 Agent 真正需要的權限，多一項都要說得出理由。
 
@@ -196,7 +200,7 @@ Fortune 在 2025-07-23 報導：SaaStr 創辦人 Jason Lemkin 測試 Replit 的 
 
 ## 12. 三缺一：提示詞注入的致命組合
 
-Prompt injection（提示詞注入）：Agent 讀到的網頁、文件或留言裡藏著指令，它可能照做。
+Prompt injection（提示詞注入）：輸入或讀到的內容藏著指令，改變了 Agent 原本該做的事。
 
 - **① 讀得到私密資料**：程式碼、客戶資料、金鑰。
 
@@ -208,7 +212,9 @@ Simon Willison（2025-06）把三種能力同時存在稱為「致命三要素�
 
 目前沒有能完全擋住提示詞注入的方法，所以要從設計上拿掉其中一項，這就是「三缺一」。下週檢查你的工作單授權範圍，至少拿掉一項，例如不給對外網路，或不讓它讀外部內容。
 
-📖 延伸閱讀：〈The lethal trifecta for AI agents〉（Simon Willison，2025）
+OWASP〈LLM01:2025 Prompt Injection〉把它分成兩種：使用者直接在輸入裡下指令的，叫直接注入；指令藏在網頁、檔案等外部內容裡、被 Agent 讀進來的，叫間接注入，Coding Agent 最常碰到的是後者。OWASP 也說，以生成式模型的特性，目前不清楚有沒有萬無一失的防法，這正是要從設計上拿掉一項的原因。
+
+📖 延伸閱讀：〈The lethal trifecta for AI agents〉（Simon Willison，2025）；〈LLM01:2025 Prompt Injection〉（OWASP，2025）
 
 **人工確認**：三項同時成立就危險；你的工作單至少拿掉了哪一項？
 
@@ -236,7 +242,7 @@ AWS 安全公告 AWS-2025-015（2025-07-23）說明：建置設定裡的 GitHub 
 
 - **做在平台上**：權限、隔離環境、自動檢查、合併前必須有人審。
 
-規則檔與提示詞是建議，Agent 多半會照做，但不保證。Claude Code 官方文件說得很清楚：規則檔是建議性的，hook（在特定時機自動執行的檢查）則確定會發生。所以風格、偏好、回報方式寫在規則裡；權限、隔離環境、自動檢查、合併前必須有人審，要做在平台上。
+規則檔與提示詞是建議，Agent 多半會照做，但不保證。Claude Code 官方文件說得很清楚：規則檔是建議性的，hook（在固定時機自動執行的腳本或檢查）則確定會發生。所以風格、偏好、回報方式寫在規則裡；權限、隔離環境、自動檢查、合併前必須有人審，要做在平台上。
 
 例子：第三場的「絕不提交密碼與金鑰」，寫在規則裡只是提醒，做在平台上就是推送前自動掃描金鑰。下週挑一條你最怕被違反的規則，問它現在只是建議，還是平台擋得住。
 
@@ -371,6 +377,24 @@ GitHub〈Octoverse〉報告（2025-10）說，Copilot coding agent 在 2025 年 
 - 列出 Agent 真正需要的權限，拿掉「三缺一」中的一項
 - 找出那件工作裡最難回頭的動作，在它前面設一道關卡
 
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| Digital Worker（數位員工） | 在核准範圍內獨立完成整件任務的 Agent；人只在事先設好的關卡做決定。 | 本課程〈歡迎與使用方式〉 |
+| Work Order（工作單） | 交給 Agent 的整件任務說明：目標、要讀的資料、能動與不能動、回報格式、停止與升級條件。 | 本課程〈B3 工作單（Work Order）〉 |
+| Gate（核准關卡） | Agent 交出資料後停下、由人做決定的檢查點；核准是決策，不等於通過驗收。 | 本課程〈B3 工作單（Work Order）〉；Anthropic Engineering〈Building effective agents〉 |
+| 人在迴圈中（Human-in-the-loop） | Agent 在檢查點或碰到阻礙時停下來等人回饋；關卡設在錯了代價最大的前一刻。 | Anthropic Engineering〈Building effective agents〉 |
+| 自主等級 | 依人扮演的角色分五級：操作者、協作者、顧問、核准者、觀察者；是設計選擇，不是能力換來的。 | Feng 等〈Levels of Autonomy for AI Agents〉 |
+| 核准疲勞（Approval fatigue） | 要人核准的次數太多，核准變成反射動作；官方說，按到第十次就只是在點過去。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
+| 自動審查模式 | 由另一個模型（分類器）代替人審查大部分動作，只擋下或詢問看起來有風險的，例如 Claude Code 的 auto mode；詢問變少，但審查者仍是模型。 | Claude Code 官方文件〈Glossary〉 |
+| 最小權限（Least privilege） | 把使用者，或代表使用者執行的程式，所能取得的權限限制在完成指派工作所需的最小範圍。 | NIST CSRC〈Glossary〉 |
+| Agent 權力過大（Excessive Agency） | 功能、權限或自主給太多，讓 Agent 在出錯或被操縱時做出有害的動作。 | OWASP〈LLM06:2025 Excessive Agency〉 |
+| 沙箱（Sandbox） | 作業系統層級的檔案與網路隔離；Agent 在事先畫好的邊界內可以自由做事，不必每個指令都問。 | Claude Code 官方文件〈Glossary〉；Anthropic〈Beyond permission prompts: making Claude Code more secure and autonomous〉 |
+| 提示詞注入（Prompt injection） | 輸入或讀進來的內容藏著指令，改變模型原本該做的事；藏在網頁、檔案裡的叫間接注入。 | OWASP〈LLM01:2025 Prompt Injection〉 |
+| 致命三要素（三缺一） | 讀得到私密資料、會讀不可信的內容、能對外傳送，三者同時存在就危險；設計上至少拿掉一項。 | Simon Willison〈The lethal trifecta for AI agents〉 |
+| hook | 在固定時機（例如執行工具前、改檔後）自動執行的處理程式；和規則檔不同，它一定會執行。 | Claude Code 官方文件〈Glossary〉 |
+| Escalation（升級處理） | Agent 碰到停止條件時，只停受影響的動作，附證據與選項交給人決定。 | 本課程〈B3 工作單（Work Order）〉 |
+
 ## 延伸閱讀
 - 〈Building effective agents〉（Anthropic，2024）
 - 〈Levels of Autonomy for AI Agents〉（Feng 等，2025）
@@ -379,9 +403,11 @@ GitHub〈Octoverse〉報告（2025-10）說，Copilot coding agent 在 2025 年 
 - 〈Beyond permission prompts: making Claude Code more secure and autonomous〉（Anthropic，2025）
 - 〈Best practices for Claude Code〉（Anthropic，官方文件）
 - 〈LLM06:2025 Excessive Agency〉（OWASP，2025）
+- 〈Glossary〉（NIST CSRC，least privilege 條目）
 - 〈Risks and mitigations for GitHub Copilot cloud agent〉（GitHub，官方文件）
 - 〈An AI-powered coding tool wiped out a software company's database, then apologized for a 'catastrophic failure on my part'〉（Fortune，2025）
 - 〈The lethal trifecta for AI agents〉（Simon Willison，2025）
+- 〈LLM01:2025 Prompt Injection〉（OWASP，2025）
 - 〈Security Update for Amazon Q Developer Extension for Visual Studio Code (Version #1.84)〉（AWS，2025）
 - 〈Minions: Stripe's one-shot, end-to-end coding agents〉（Stripe，2026）
 - 〈Octoverse: A new developer joins GitHub every second as AI leads TypeScript to #1〉（GitHub，2025）

@@ -112,7 +112,7 @@ Reasoning Effort（推論強度）：同一個模型回答前「想多深」。�
 
 - **調高救不了模糊**：需求不清、脈絡不足，想再久也是猜。
 
-兩家主要廠商的說法一致。OpenAI〈Reasoning models〉：推論強度是微調旋鈕，不是救回品質的主要方法；最高檔位只在你的評測顯示有明顯好處時才用。Anthropic〈Effort〉：強度是給模型的行為訊號，不是嚴格的 Token 預算；低強度適合簡單、重視速度的工作，例如子 Agent，並建議用自己的評測決定。
+兩家主要廠商的說法一致。OpenAI〈Reasoning models〉：推論強度是微調旋鈕，不是救回品質的主要方法；很高的檔位（例如 xhigh）只在你的評測顯示有明顯好處時才用。Anthropic〈Effort〉：強度是給模型的行為訊號，不是嚴格的 Token 預算；低強度適合簡單、重視速度的工作，例如子 Agent，並建議用自己的評測決定。
 
 常見的誤解是「調高推論強度就能救回品質」。需求不清、脈絡不足時，想再久也是猜。工具沒有這項設定時，可以在提示詞寫「先仔細想過再回答」，但不要期待它補上缺的資訊。
 
@@ -193,6 +193,8 @@ Skill（技能檔）：一個資料夾加一份說明檔，寫一套做法；任
 
 Skill 已是開放格式：agentskills.io 列出 Claude Code、Codex、GitHub Copilot、Gemini CLI、Cursor 等工具都支援；Thoughtworks 技術雷達第 34 期把它列為「試用」（Trial）。工作坊用的是簡化版：skills/ 裡一份 Markdown 文件，請 Agent「先讀它並照做」，不需要工具內建的功能。
 
+常見誤解是「Skill 寫了，Agent 就一定會用」。工具內建的 Skill 是靠名稱與一句說明判斷何時該讀，Anthropic 官方文件說，這句說明要同時寫出它做什麼、什麼時候用；寫得含糊就不會被選中。工作坊的簡化版則靠提示詞明說「先讀它」。Claude Code 成本文件也建議，把只有某類工作才用的指示從規則檔搬到 Skill：用到才載入，平常不佔每次對話的 Token。
+
 📖 延伸閱讀：〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）；〈Agent Skills〉（Anthropic，官方文件）
 
 **人工確認**：你的一條做法，該放規則檔（每次都要）還是 Skill（某類任務才要）？
@@ -239,7 +241,9 @@ Simon Willison（2025-12）補了一個檢查法：把修正拿掉時，這個�
 
 下週修 Bug 前先問：有沒有一個測試能當裁判？沒有，就從請 Agent 寫第一個會失敗的測試開始。
 
-📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，官方文件）；〈Brownfield Agentic Engineering〉（Addy Osmani，2026）；〈Your job is to deliver code you have proven to work〉（Simon Willison，2025）
+「紅、綠」來自 Kent Beck 推廣的測試驅動開發（TDD）。Martin Fowler 的說明（2023）是三步：先為下一小段功能寫測試，再寫程式直到測試通過，最後整理新舊程式，常簡稱「紅、綠、重構」。修 Bug 時的紅燈，是把回報的問題重現成一個會失敗的測試；要確認它是因為這個 Bug 而失敗，不是測試本身寫錯。Michael Feathers 在《Working Effectively with Legacy Code》另外提出特性測試（characterization test）：先記錄舊程式「現在實際怎麼做」，不判斷對錯，改的時候才知道有沒有不小心改到別的行為。
+
+📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，官方文件）；〈Brownfield Agentic Engineering〉（Addy Osmani，2026）；〈Your job is to deliver code you have proven to work〉（Simon Willison，2025）；〈TestDrivenDevelopment〉（Martin Fowler，2023）
 
 **人工確認**：你看到的是同一個測試的前後對照，而不是 Agent 說「修好了」。
 
@@ -276,7 +280,7 @@ Birgitta Böckeler〈Harness engineering for coding agent users〉（martinfowle
 
 先不要修改任何檔案。請提出 2–3 個真的可行的方案，用表格比較：改動範圍（附檔案或測試名稱）、風險、可逆性、未確認的假設。最後寫你的建議與理由，然後停下等我選。
 
-有不只一種做法時，讓 Agent 先唯讀研究、用同一組欄位列出方案，你才能公平比較，也看得出哪個方案只是陪襯。Anthropic〈Our framework for developing safe and trustworthy agents〉（2025-08）主張預設唯讀、改動前要人核准：尤其在高風險決定前，人要保有控制權。
+有不只一種做法時，讓 Agent 先唯讀研究、用同一組欄位列出方案，你才能公平比較，也看得出哪個方案只是陪襯。Anthropic〈Our framework for developing safe and trustworthy agents〉（2025-08）的原則是：尤其在高風險決定前，人要保有控制權；文中以當時的 Claude Code 為例，預設唯讀，改動前要人核准。工具的預設會隨版本改變（2026 年的 Claude Code 在多數互動情境，預設改由另一個模型先審查動作），所以不要依賴預設：比較方案這一步，在提示詞寫明「先不要修改任何檔案」。
 
 這裡比 B2 多一欄「可逆性」，因為它直接決定你可以多快做決定（下一頁）。表格只是格式示意，不代表任何一組的方案。
 
@@ -361,6 +365,22 @@ Tool：逐步下指令 → Teammate：核准計畫 → Digital Worker：只在�
 - 把團隊規則歸成「一定做／先問我／絕不做」三層
 - 修下一個 Bug 前，先請 Agent 寫一個會失敗的測試
 
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| Brownfield／Greenfield | Brownfield 是已有程式碼的既有專案，要先讀懂、先鎖住現有行為再改；Greenfield 是從頭開始的新專案。 | Addy Osmani〈Brownfield Agentic Engineering〉 |
+| Teammate（隊友） | Agent 先和你一起分析、比較，你核准計畫後它才動手，中途不必每一步都等你。 | 本課程〈歡迎與使用方式〉 |
+| 模型選擇 | 量大、明確的工作用較小較快的模型，要判斷的工作用較強的模型；先用預設，有證據再換。 | Anthropic〈Choosing the right model〉 |
+| 推論強度（Reasoning Effort） | 同一個模型回答時投入多少思考、花多少 Token；越高越慢越貴，是微調旋鈕，補不了需求不清。 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
+| Skill（技能檔） | 一個含說明檔（SKILL.md）的資料夾，寫一套做法；平常只讀名稱與一句說明，任務相關時才讀全文。工作坊用簡化版：skills/ 裡一份 Markdown。 | Anthropic〈Agent Skills〉 |
+| 三層邊界 | 規則分成一定做、先問我、絕不做；「先問我」那層就是人要親自決定的事。 | GitHub〈How to write a great agents.md: Lessons from over 2,500 repositories〉 |
+| 測試驅動開發（TDD） | 先為下一小段功能寫測試，再寫程式到測試通過，最後整理程式；常簡稱「紅、綠、重構」。 | Martin Fowler〈TestDrivenDevelopment〉 |
+| 重現 Bug 的失敗測試 | 修 Bug 前先寫一個現在會失敗的測試把問題重現出來；修好後同一個測試通過，就是不讀程式也看得懂的證據。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
+| 特性測試（characterization test） | 記錄舊程式目前實際行為的測試，不判斷對錯；改程式時用來發現有沒有不小心改到別的行為。 | Michael Feathers《Working Effectively with Legacy Code》；Addy Osmani〈Brownfield Agentic Engineering〉 |
+| 事前引導／事後感測 | 規則檔、Skill、計畫在動手前引導 Agent；測試、格式檢查在動手後讓它自己修正。 | martinfowler.com〈Harness engineering for coding agent users〉 |
+| PR（Pull Request） | 把一組程式變更提議合併進專案；合併前讓別人討論與審查。 | GitHub 官方文件〈Pull requests〉 |
+| 認知債（Cognitive debt） | 程式能跑，但團隊裡沒有人真正懂它怎麼運作；Agent 改得越快越容易累積。 | Thoughtworks〈Technology Radar Vol. 34〉 |
+
 ## 延伸閱讀
 - 〈Best practices for Claude Code〉（Anthropic，官方文件）
 - 〈1,500+ PRs Later: Spotify's Journey with Our Background Coding Agent (Honk, Part 1)〉（Spotify Engineering，2025）
@@ -374,6 +394,7 @@ Tool：逐步下指令 → Teammate：核准計畫 → Digital Worker：只在�
 - 〈Agent Skills〉（Anthropic，官方文件）
 - 〈Brownfield Agentic Engineering〉（Addy Osmani，2026）
 - 〈Your job is to deliver code you have proven to work〉（Simon Willison，2025）
+- 〈TestDrivenDevelopment〉（Martin Fowler，2023）
 - 〈Harness engineering for coding agent users〉（martinfowler.com，2026）
 - 〈Our framework for developing safe and trustworthy agents〉（Anthropic，2025）
 - 〈Structured outputs〉（Anthropic，官方文件）

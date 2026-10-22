@@ -13,7 +13,7 @@
     "flow": ["規則檔", "你的訊息", "讀過的檔案", "指令輸出", "Agent 的回答"],
     "cards": [["全部都佔位子", "不只你打的字；讀的每個檔、跑的每個測試輸出都算。"], ["滿得很快", "讀幾個大檔、貼一次長輸出，桌面就堆滿了。"], ["越滿越不準", "官方文件直說：視窗越滿，表現越差。"]],
     "check": "說出兩樣你沒有打字、卻也佔了 Agent 工作桌的東西。",
-    "explain": ["除了你打的字，Agent 自己之前的回答也佔位子；而且你看不到的指令輸出和讀檔內容，往往最佔空間。", "Claude Code 官方文件直說：脈絡視窗很快就會滿，越滿表現越差。其他工具的官方文件也有同樣的章節。所以「視窗夠大」不代表可以隨便放：倉庫放得下，不代表每樣都拿在手上。"],
+    "explain": ["除了你打的字，Agent 自己之前的回答也佔位子；而且你看不到的指令輸出和讀檔內容，往往最佔空間。", "Claude Code 官方文件直說：脈絡視窗很快就會滿，越滿表現越差。其他工具的官方文件也有同樣的章節。所以「視窗夠大」不代表可以隨便放：倉庫放得下，不代表每樣都拿在手上。", "Anthropic 官方文件的定義：脈絡視窗是模型產生回答時能參考的全部文字，連它正在寫的回答都算在內；它是模型的「工作記憶」，和模型訓練時讀過的大量資料是兩回事。常見誤解是「Agent 記得上週的對話」：新對話的桌面是空的，它只看得到這次放上桌的東西，例如工具自動讀進來的規則檔。"],
     "read": ["〈Best practices for Claude Code〉（Anthropic，官方文件）", "〈Context windows〉（Anthropic，官方文件）"],
     "notes": "約 2 分鐘。比喻：工作桌越堆越亂，找東西越慢；倉庫是放得下，但不是每樣都拿在手上。Claude Code 官方文件原話：Claude's context window fills up fast, and performance degrades as it fills.（脈絡視窗很快就滿，越滿表現越差。）其他工具的文件也有同樣的章節。要強調：學員看不到的指令輸出、讀檔內容，才是最佔位子的。📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，持續更新）；〈Context windows〉（Anthropic，持續更新）"
   },
@@ -22,13 +22,13 @@
     "lead": "Context Rot（脈絡劣化）：內容越多，Agent 越難在裡面找到真正重要的那幾句。",
     "cards": [["注意力有預算", "每多一段無關內容，就從重要內容那裡分走一點注意力。"], ["目標是「少而準」", "給最少、但最有用的資訊，而不是全部倒進去。"], ["大視窗不是解藥", "官方說每個模型都會劣化；能放得下，不代表讀得好。"]],
     "check": "下次想說「把整個專案讀一遍」時，改成說出哪三個檔最重要。",
-    "explain": ["Anthropic〈Effective context engineering for AI agents〉（2025-09）用了兩個說法：模型有「注意力預算」，每多一段內容就分走一點注意力；所以目標是找出「最少、但訊號最強」的那一組內容。文中也指出，內容越多、越難準確想起其中細節的現象（脈絡劣化），在所有模型上都會發生。", "常見的誤解是「視窗越大越好，全部丟進去就好」。下週怎麼用：每貼一段內容前問自己「這段不給，Agent 會做錯嗎？」；想說「把整個專案讀一遍」時，改成指名最重要的三個檔。"],
-    "read": ["〈Effective context engineering for AI agents〉（Anthropic，2025）"],
+    "explain": ["Anthropic〈Effective context engineering for AI agents〉（2025-09）用了兩個說法：模型有「注意力預算」，每多一段內容就分走一點注意力；所以目標是找出「最少、但訊號最強」的那一組內容。文中也指出，內容越多、越難準確想起其中細節的現象（脈絡劣化），在所有模型上都會發生。", "常見的誤解是「視窗越大越好，全部丟進去就好」。下週怎麼用：每貼一段內容前問自己「這段不給，Agent 會做錯嗎？」；想說「把整個專案讀一遍」時，改成指名最重要的三個檔。", "Anthropic〈Context windows〉文件也直接寫：脈絡不是越多越好，Token 越多，準確度和回想能力越會下降，這就叫脈絡劣化（context rot）；所以放進什麼，和視窗有多大一樣重要。"],
+    "read": ["〈Effective context engineering for AI agents〉（Anthropic，2025）", "〈Context windows〉（Anthropic，官方文件）"],
     "notes": "約 2 分鐘。Anthropic 工程文章〈Effective context engineering for AI agents〉（2025-09-29）提出兩個說法：attention budget（注意力預算），以及目標是 the smallest possible set of high-signal tokens（最少但訊號最強的內容）。常見誤解是「視窗越大越好，全部丟進去就好」，原文說 context rot 在所有模型都會發生。經驗法則：每貼一段內容前，問自己「這段不給，Agent 會做錯嗎？」📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）"
   },
   {
     "id": "cost", "chapter": "02 Token 成本", "title": "長對話為什麼越來越貴",
-    "lead": "Token（詞元）是計費單位。Agent 每回答一次，都要把整段對話歷史重新讀一遍。",
+    "lead": "Token（詞元）是模型處理文字的單位，也是計費單位。Agent 每回答一次，都要把整段對話歷史重新讀一遍。",
     "flow": ["第 1 問：讀 1 份", "第 10 問：讀 10 份歷史", "第 50 問：讀 50 份歷史"],
     "cards": [["成本跟著桌面變大", "官方文件：處理的脈絡越多，用掉的 Token 越多。"], ["量級參考", "某工具官方估計：每人每個工作日約十幾美元；價格常變。"], ["省錢＝省干擾", "同一招讓 Agent 更準，也讓帳單變小。"]],
     "check": "你的對話裡，哪一段長輸出其實只要一行結論就夠？",
@@ -42,7 +42,7 @@
     "cards": [["指名範圍", "你剛才說了只讀哪些檔，這就是最便宜的省法。"], ["子 Agent 探索", "有些工具能派子 Agent 去讀，只回傳一兩千 Token 的摘要。"], ["沒有子 Agent 時", "開一個新對話專門探索，把摘要貼回主對話。"]],
     "prompt": "先不要修改檔案。請另外探索 tests/ 資料夾，回來只給我：測試分成哪幾類、各自在測什麼，最多 8 行。不要貼原始輸出，最後列出你讀了哪些檔，然後停下。",
     "check": "回報裡有沒有混進整段原始輸出？讀了哪些檔有沒有列出來？",
-    "explain": ["子 Agent 是主 Agent 派出去做一件事的另一個 Agent：它在自己的脈絡裡讀大量檔案，只把結論帶回來。Anthropic〈Effective context engineering for AI agents〉提到，子 Agent 通常只回傳約 1,000–2,000 個 Token 的濃縮摘要，主對話因此保持乾淨。", "不是每個工具都有子 Agent。沒有時，開一個新對話專門探索，請它寫摘要，再把摘要貼回主對話，效果相近。最便宜的省法則是你剛才做過的：指名只讀哪些檔。審摘要時看兩件事：有沒有混進整段原始輸出，以及有沒有列出讀了哪些檔，方便你追查。"],
+    "explain": ["子 Agent 是主 Agent 派出去做一件事的另一個 Agent：它在自己的脈絡裡讀大量檔案，只把結論帶回來。Anthropic〈Effective context engineering for AI agents〉提到，子 Agent 通常只回傳約 1,000–2,000 個 Token 的濃縮摘要，主對話因此保持乾淨。", "不是每個工具都有子 Agent。沒有時，開一個新對話專門探索，請它寫摘要，再把摘要貼回主對話，效果相近。最便宜的省法則是你剛才做過的：指名只讀哪些檔。審摘要時看兩件事：有沒有混進整段原始輸出，以及有沒有列出讀了哪些檔，方便你追查。", "Claude Code 官方詞彙表對子 Agent（subagent）的定義：在自己的脈絡視窗裡工作，有自己的系統提示與工具權限，做完交辦的事只把摘要交回主對話。官方建議的用途就是大量讀檔的探索，讓主對話保持乾淨。"],
     "read": ["〈Effective context engineering for AI agents〉（Anthropic，2025）"],
     "notes": "約 2 分鐘。第一張卡連回剛才指名要讀的檔，其餘是新內容。Anthropic〈Effective context engineering for AI agents〉（2025-09-29）提到子 Agent 在自己的脈絡裡大量讀檔，只回傳約 1,000–2,000 Token 的濃縮摘要，主對話保持乾淨。不是每個工具都有子 Agent，所以第三張卡給替代做法。示範提示詞只供示範，沒有實際執行就說未驗證。📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）"
   },
@@ -61,7 +61,7 @@
     "lead": "Compaction（壓縮）：對話接近上限時，把歷史摘要成短版，帶到新的視窗繼續。",
     "cards": [["好處", "不用從零開始，桌面清出空間。"], ["代價", "摘要會丟細節；被丟掉的可能正好是那條規則。"], ["人的做法", "重要決定先寫進檔案，不要只活在對話裡。"]],
     "check": "如果現在對話被壓縮，哪一個決定一定要先寫進檔案？",
-    "explain": ["Anthropic〈Effective context engineering for AI agents〉把長任務的做法分成兩種：壓縮，是把接近上限的對話摘要後帶到新的視窗；結構化筆記，是把待辦和重要決定寫在對話之外的檔案，需要時再讀回來。很多工具會在快滿時自動壓縮，也能手動要求，名稱各家不同。", "兩者最大的差別是誰決定留下什麼：壓縮由 Agent 判斷什麼重要，被丟掉的細節可能正好是那條規則；筆記檔則是你看得到、能檢查的。所以重要決定一做出來，就請 Agent 寫進檔案，不要只留在對話裡。"],
+    "explain": ["Anthropic〈Effective context engineering for AI agents〉把長任務的做法分成兩種：壓縮，是把接近上限的對話摘要後帶到新的視窗；結構化筆記，是把待辦和重要決定寫在對話之外的檔案，需要時再讀回來。很多工具會在快滿時自動壓縮，也能手動要求，名稱各家不同。", "兩者最大的差別是誰決定留下什麼：壓縮由 Agent 判斷什麼重要，被丟掉的細節可能正好是那條規則；筆記檔則是你看得到、能檢查的。所以重要決定一做出來，就請 Agent 寫進檔案，不要只留在對話裡。", "Claude Code 官方詞彙表也提醒：壓縮後，專案根目錄的規則檔會從檔案重新讀回，只在對話裡交代過的指示則可能遺失。這就是「重要決定寫進檔案」最直接的理由。"],
     "read": ["〈Effective context engineering for AI agents〉（Anthropic，2025）"],
     "notes": "約 2 分鐘。很多工具會在快滿時自動壓縮，也能手動要求；名稱各家不同，不必記指令。Anthropic〈Effective context engineering for AI agents〉（2025-09-29）把長任務的做法分成壓縮（把接近上限的對話摘要後帶到新視窗）與結構化筆記（把待辦或筆記寫在對話之外，之後再讀回）。重點在第三張卡：壓縮靠 Agent 判斷什麼重要，筆記檔是你能檢查的。📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）"
   },
@@ -87,11 +87,11 @@
   {
     "id": "rules-file", "chapter": "05 規則檔", "title": "規則檔：每次對話都會先讀的那一份",
     "lead": "把每次都要講的事寫成一份規則檔，Agent 每開一次新對話就自動讀進來。",
-    "cards": [["開放慣例 AGENTS.md", "像給 Agent 的 README；由 Linux 基金會旗下組織維護，多數 Coding Agent 都讀。"], ["各家也有自己的", "例如 CLAUDE.md、GEMINI.md；多半可以改讀 AGENTS.md。"], ["越近越優先", "多數工具由根目錄往下合併，離工作檔案越近的規則越優先。"]],
+    "cards": [["開放慣例 AGENTS.md", "像給 Agent 的 README；由 Linux 基金會旗下組織維護，多數 Coding Agent 都讀。"], ["各家也有自己的", "例如 CLAUDE.md、GEMINI.md；多半也能讀 AGENTS.md，規則各家不同。"], ["越近越優先", "多數工具由根目錄往下合併，離工作檔案越近的規則越優先。"]],
     "check": "你團隊每次開工都要重講的一句話是什麼？它適合放進規則檔嗎？",
-    "explain": ["AGENTS.md 是跨工具的開放慣例，官網稱它是「給 Agent 的 README」，現由 Linux 基金會旗下的 Agentic AI Foundation 維護，超過 6 萬個開源專案使用。", "規則可以分層：OpenAI Codex 文件說明，規則檔由根目錄往下合併，離工作檔案越近的越優先，合併後超過預設上限就不再加入；Gemini CLI 則分全域、專案、子目錄三層。提醒：規則檔仍然只是脈絡，不是鎖（第一場講過）。"],
+    "explain": ["AGENTS.md 是跨工具的開放慣例，官網稱它是「給 Agent 的 README」，現由 Linux 基金會旗下的 Agentic AI Foundation 維護，超過 6 萬個開源專案使用。", "規則可以分層：OpenAI Codex 文件說明，規則檔由根目錄往下合併，離工作檔案越近的越優先，合併後超過預設上限就不再加入；Gemini CLI 則分全域、專案、子目錄三層。提醒：規則檔仍然只是脈絡，不是鎖（第一場講過）。", "各家讀規則檔的方式不同，要先確認。以 Claude Code 為例，官方文件（2026-10 查）說：資料夾裡沒有 CLAUDE.md 時才讀 AGENTS.md；兩種都有時，預設只讀 CLAUDE.md，除非改設定，或在 CLAUDE.md 裡匯入 AGENTS.md。Gemini CLI 則要在設定裡把檔名改成 AGENTS.md 才會讀。所以兩種檔都放的專案，請 Agent 告訴你它實際讀進了哪幾份，不要假設。"],
     "read": ["〈Custom instructions with AGENTS.md〉（OpenAI，官方文件）", "〈How Claude remembers your project〉（Anthropic，官方文件）", "〈GEMINI.md〉（Google，官方文件）"],
-    "notes": "約 2.5 分鐘。AGENTS.md 官網說明它現由 Linux Foundation 旗下的 Agentic AI Foundation 維護，自稱 README for agents，超過 6 萬個開源專案使用。OpenAI Codex 文件：由根目錄往下合併，越靠近的檔優先，合併後超過預設上限就不再加入。Gemini CLI 有全域、專案、子目錄三層，檔名可設成 AGENTS.md。「規則是脈絡，不是鎖」Speech 01 講過，這裡不重講，只補它怎麼每次自動被讀進來。工作坊的 skills/team-rules.md 下一場會出現，這裡不先講。📖 延伸閱讀：〈Custom instructions with AGENTS.md〉（OpenAI，持續更新）；〈How Claude remembers your project〉（Anthropic，持續更新）；〈GEMINI.md〉（Google，持續更新）"
+    "notes": "約 2.5 分鐘。AGENTS.md 官網說明它現由 Linux Foundation 旗下的 Agentic AI Foundation 維護，自稱 README for agents，超過 6 萬個開源專案使用。OpenAI Codex 文件：由根目錄往下合併，越靠近的檔優先，合併後超過預設上限就不再加入。Gemini CLI 有全域、專案、子目錄三層，檔名可設成 AGENTS.md。Claude Code 官方文件（2026-10 查）：沒有 CLAUDE.md 時才讀 AGENTS.md；兩者都有時預設只讀 CLAUDE.md。不要說「各家都會改讀 AGENTS.md」。「規則是脈絡，不是鎖」Speech 01 講過，這裡不重講，只補它怎麼每次自動被讀進來。工作坊的 skills/team-rules.md 下一場會出現，這裡不先講。📖 延伸閱讀：〈Custom instructions with AGENTS.md〉（OpenAI，持續更新）；〈How Claude remembers your project〉（Anthropic，持續更新）；〈GEMINI.md〉（Google，持續更新）"
   },
   {
     "id": "bloat", "chapter": "05 規則檔", "title": "規則檔要短：每一行都在佔桌面",

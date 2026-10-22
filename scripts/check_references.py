@@ -4,7 +4,7 @@ Rules (see .claude/skills/course-authoring/references.md):
 - every ```callout whose title starts with 技巧／新概念 contains a 📖 line;
 - every 〈title〉 in a 📖 line appears in references.md, and no retired title is used;
 - a page introduces at most MAX_NEW knowledge points;
-- every speech slide's handout reading list (`read`) cites verified titles only.
+- every speech slide's handout reading list (`read`) and every handout term (`terms`) cites verified titles only.
 Run: uv run --no-project --python 3.13 python -X utf8 scripts/check_references.py
 """
 import json
@@ -115,6 +115,13 @@ def problems() -> list[str]:
                     out.append(f"{where}: {slide['id']} reading entry has no 〈title〉: {entry}")
                 out += [f"{where}: {slide['id']} reads {'retired' if t in retired else 'unverified'} 〈{t}〉"
                         for t in titles if t in retired or t not in allowed]
+        stage = json.loads((deck.parent / "stage.json").read_text(encoding="utf-8"))
+        for term, _, source in stage.get("terms", []):  # handout glossary: verified title, or 本課程〈course doc〉 like the Runbook glossary
+            titles = TITLE.findall(source)
+            if not titles:
+                out.append(f"{where}: term 「{term}」 has no 〈title〉 source")
+            out += [f"{where}: term 「{term}」 cites unverified 〈{t}〉" for t in titles
+                    if not ("本課程" in source and t in course) and (t in retired or t not in allowed)]
     return out
 
 

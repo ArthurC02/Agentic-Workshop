@@ -17,7 +17,8 @@ section: 參考
 | Tool → Teammate → Digital Worker | Agent 從工具、隊友到在核准範圍內自己做事的數位員工；三者差在人介入的方式：逐步下指令、核准計畫、只在 Gate 做決定。 | 本課程〈歡迎與使用方式〉；Anthropic Engineering〈Building effective agents〉 |
 | Greenfield／Brownfield | Greenfield 是從頭開始的新專案；Brownfield 是已有程式碼與文件的既有專案，要先讀懂再修改。 | 本課程〈Greenfield 任務：核心訂票 MVP〉；Michael Feathers《Working Effectively with Legacy Code》 |
 | G0／G1／B0／B1／B2／B3 | G0 是 Greenfield 的起始程式包；G1 是完整的 Greenfield 版本（任務卡的「原 G1 Regression」指當時留下、現在仍要通過的測試）；B0 是假設已上線 12 個月的既有程式；B1–B3 是接著的三段任務。 | 本課程〈歡迎與使用方式〉 |
-| MVP（最小可行產品） | 用最少的功能做出能實際使用的版本。今天指查班次、訂票、模擬付款與查訂單。 | Eric Ries《The Lean Startup》；本課程〈Greenfield 任務：核心訂票 MVP〉 |
+| MVP（最小可行產品） | 用最少的力氣做出、能拿給真實使用者驗證想法的版本；重點是學到東西，不只是功能少。今天指查班次、訂票、模擬付款與查訂單。 | Eric Ries《The Lean Startup》；本課程〈Greenfield 任務：核心訂票 MVP〉 |
+| Agent（Coding Agent） | 由 AI 模型自己決定步驟、使用工具（讀寫檔案、執行指令與測試）完成任務的程式；Coding Agent 專做軟體開發。聊天式助手只回文字，Agent 會自己動手、看結果再決定下一步。 | Anthropic Engineering〈Building effective agents〉；Claude Code 官方文件〈Glossary〉 |
 | 主要 Agent | 小組選定、代表全組執行工作的那一個 Agent。 | 本課程〈Shared Context：把共識寫成檔案給 Agent〉 |
 | Shared Context（共同脈絡） | 小組整理出的共同事實、分歧與待決事項，由 Agent 寫成 `notes/shared-context.md`。 | 本課程〈Shared Context：把共識寫成檔案給 Agent〉 |
 
@@ -26,7 +27,7 @@ section: 參考
 | 詞彙 | 白話解釋 | 出處 |
 |---|---|---|
 | Rule ID（規則編號） | 商業規則的編號，例如 `FARE-002`：學生為基礎票價的 75%。 | 本課程〈Greenfield Business Requirements〉 |
-| AC（驗收條件） | Acceptance Criteria，功能必須符合的要求，例如 `AC-B1-001`。 | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
+| AC（驗收條件） | Acceptance Criteria，功能要被使用者或客戶接受前必須滿足、能判定符合與否的條件，例如 `AC-B1-001`。 | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
 | 驗收對照表 | Agent 回報測試結果的表：每條驗收條件一列，寫編號、白話內容、通過／失敗／未驗證、依據的測試名稱；最後一行是通過、失敗、跳過各幾個。 | 本課程〈Greenfield Acceptance Criteria〉 |
 | 變更審查 | 你不讀程式的修改內容（Diff），改請 Agent 回答固定的審查問題，這些回答就是審查答案。Greenfield 用白話答四題並建議放不放行，之後各段逐題答「是／否／不確定」；由你判斷要不要放行。 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
 | Skip／XFail | Skip 是略過測試；XFail 是把測試標成預期會失敗。兩者都不代表功能完成，不得用來隱藏失敗。 | pytest 官方文件〈How to use skip and xfail to deal with tests that cannot succeed〉 |
@@ -44,11 +45,11 @@ section: 參考
 |---|---|---|
 | Agent 工作規則 | Agent 在整段對話都要遵守的約定：誰負責什麼、什麼時候停下、怎麼回報。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
 | Prompt 結構 | 好的提示詞有五個部分：目標、背景／要讀的檔、限制、輸出格式、停止條件。 | Anthropic〈Prompting best practices〉；OpenAI〈Prompt engineering〉 |
-| Structured Output（結構化輸出） | 要求 Agent 用固定格式回報（固定欄位的表格或固定標題），人看得快、能比對。 | Anthropic〈Structured outputs〉；OpenAI〈Structured model outputs〉 |
-| Skill | 把反覆要用的做法寫成 Markdown 檔放在 `skills/`，之後只說「請先讀 skills/… 並照做」。 | Anthropic〈Agent Skills〉 |
-| Token 與節費 | Token 是模型讀寫文字的單位：計費和一次對話能裝多少內容（Context Window，脈絡視窗），都用它計算。節費：一個任務一個新對話、只讀指定的檔、要摘要不要整段輸出、把共識寫成檔案。 | Anthropic〈Context windows〉；Anthropic〈Token counting〉 |
+| Structured Output（結構化輸出） | 要求 Agent 用固定格式回報（固定欄位的表格或固定標題），人看得快、能比對。API 的同名功能則用 JSON 結構定義強制格式，今天不需要。 | Anthropic〈Structured outputs〉；OpenAI〈Structured model outputs〉 |
+| Skill | 把反覆要用的做法寫成 Markdown 檔放在 `skills/`，之後只說「請先讀 skills/… 並照做」。工具內建的 Skill 是含 `SKILL.md` 的資料夾，平常只讀名稱與說明，用到才讀全文；今天用的是簡化版。 | Anthropic〈Agent Skills〉 |
+| Token 與節費 | Token 是模型讀寫文字的最小單位：計費和模型一次回答能參考多少內容（Context Window，脈絡視窗，包含整段對話與它正在寫的回答），都用它計算。節費：一個任務一個新對話、只讀指定的檔、要摘要不要整段輸出、把共識寫成檔案。 | Anthropic〈Context windows〉；Anthropic〈Token counting〉 |
 | 模型選擇 | 機械性的工作用快速、便宜的模型；分析陌生程式、比較取捨、自主執行用較強的模型。 | Anthropic〈Choosing the right model〉 |
-| 推論強度（Reasoning Effort） | 同一個模型「想多深」：分析、比較方案調高，小步修改調低。工具沒有這個設定時，提示詞寫「先仔細想過再回答」。 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
+| 推論強度（Reasoning Effort） | 同一個模型「想多深」、花多少 Token：分析、比較方案調高，小步修改調低。工具沒有這個設定時，提示詞寫「先仔細想過再回答」。 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
 
 ## B3 用語
 

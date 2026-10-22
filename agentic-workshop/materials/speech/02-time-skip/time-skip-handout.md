@@ -1,6 +1,6 @@
 # Time Skip：系統演化與接手
 
-> 讀者：學員。時機：25 分鐘觀念與技巧講解。前置：已聽過 Greenfield 講解，備妥可用的 Coding Agent（能讀寫檔案、協助寫程式的 AI 助手）。
+> 讀者：學員。時機：25 分鐘觀念與技巧講解。前置：已聽過 Greenfield 講解，備妥可用的 Coding Agent（能自己讀寫專案檔案、執行指令與測試的 AI）。
 
 本段不寫程式、不打指令。提示詞只供示範；沒有實際執行的結果，一律標為未驗證。
 
@@ -39,6 +39,8 @@ Context Window（脈絡視窗）：Agent 這一次回答時「攤在桌上」的
 
 Claude Code 官方文件直說：脈絡視窗很快就會滿，越滿表現越差。其他工具的官方文件也有同樣的章節。所以「視窗夠大」不代表可以隨便放：倉庫放得下，不代表每樣都拿在手上。
 
+Anthropic 官方文件的定義：脈絡視窗是模型產生回答時能參考的全部文字，連它正在寫的回答都算在內；它是模型的「工作記憶」，和模型訓練時讀過的大量資料是兩回事。常見誤解是「Agent 記得上週的對話」：新對話的桌面是空的，它只看得到這次放上桌的東西，例如工具自動讀進來的規則檔。
+
 📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，官方文件）；〈Context windows〉（Anthropic，官方文件）
 
 **人工確認**：說出兩樣你沒有打字、卻也佔了 Agent 工作桌的東西。
@@ -57,13 +59,15 @@ Anthropic〈Effective context engineering for AI agents〉（2025-09）用了兩
 
 常見的誤解是「視窗越大越好，全部丟進去就好」。下週怎麼用：每貼一段內容前問自己「這段不給，Agent 會做錯嗎？」；想說「把整個專案讀一遍」時，改成指名最重要的三個檔。
 
-📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）
+Anthropic〈Context windows〉文件也直接寫：脈絡不是越多越好，Token 越多，準確度和回想能力越會下降，這就叫脈絡劣化（context rot）；所以放進什麼，和視窗有多大一樣重要。
+
+📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）；〈Context windows〉（Anthropic，官方文件）
 
 **人工確認**：下次想說「把整個專案讀一遍」時，改成說出哪三個檔最重要。
 
 ## 4. 長對話為什麼越來越貴
 
-Token（詞元）是計費單位。Agent 每回答一次，都要把整段對話歷史重新讀一遍。
+Token（詞元）是模型處理文字的單位，也是計費單位。Agent 每回答一次，都要把整段對話歷史重新讀一遍。
 
 第 1 問：讀 1 份 → 第 10 問：讀 10 份歷史 → 第 50 問：讀 50 份歷史
 
@@ -100,6 +104,8 @@ Claude Code 官方〈Manage costs effectively〉說，Token 成本跟脈絡大�
 子 Agent 是主 Agent 派出去做一件事的另一個 Agent：它在自己的脈絡裡讀大量檔案，只把結論帶回來。Anthropic〈Effective context engineering for AI agents〉提到，子 Agent 通常只回傳約 1,000–2,000 個 Token 的濃縮摘要，主對話因此保持乾淨。
 
 不是每個工具都有子 Agent。沒有時，開一個新對話專門探索，請它寫摘要，再把摘要貼回主對話，效果相近。最便宜的省法則是你剛才做過的：指名只讀哪些檔。審摘要時看兩件事：有沒有混進整段原始輸出，以及有沒有列出讀了哪些檔，方便你追查。
+
+Claude Code 官方詞彙表對子 Agent（subagent）的定義：在自己的脈絡視窗裡工作，有自己的系統提示與工具權限，做完交辦的事只把摘要交回主對話。官方建議的用途就是大量讀檔的探索，讓主對話保持乾淨。
 
 📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）
 
@@ -140,6 +146,8 @@ Compaction（壓縮）：對話接近上限時，把歷史摘要成短版，帶�
 Anthropic〈Effective context engineering for AI agents〉把長任務的做法分成兩種：壓縮，是把接近上限的對話摘要後帶到新的視窗；結構化筆記，是把待辦和重要決定寫在對話之外的檔案，需要時再讀回來。很多工具會在快滿時自動壓縮，也能手動要求，名稱各家不同。
 
 兩者最大的差別是誰決定留下什麼：壓縮由 Agent 判斷什麼重要，被丟掉的細節可能正好是那條規則；筆記檔則是你看得到、能檢查的。所以重要決定一做出來，就請 Agent 寫進檔案，不要只留在對話裡。
+
+Claude Code 官方詞彙表也提醒：壓縮後，專案根目錄的規則檔會從檔案重新讀回，只在對話裡交代過的指示則可能遺失。這就是「重要決定寫進檔案」最直接的理由。
 
 📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic，2025）
 
@@ -194,13 +202,15 @@ Anthropic〈Effective harnesses for long-running agents〉（2025-11）描述長
 
 - **開放慣例 AGENTS.md**：像給 Agent 的 README；由 Linux 基金會旗下組織維護，多數 Coding Agent 都讀。
 
-- **各家也有自己的**：例如 CLAUDE.md、GEMINI.md；多半可以改讀 AGENTS.md。
+- **各家也有自己的**：例如 CLAUDE.md、GEMINI.md；多半也能讀 AGENTS.md，規則各家不同。
 
 - **越近越優先**：多數工具由根目錄往下合併，離工作檔案越近的規則越優先。
 
 AGENTS.md 是跨工具的開放慣例，官網稱它是「給 Agent 的 README」，現由 Linux 基金會旗下的 Agentic AI Foundation 維護，超過 6 萬個開源專案使用。
 
 規則可以分層：OpenAI Codex 文件說明，規則檔由根目錄往下合併，離工作檔案越近的越優先，合併後超過預設上限就不再加入；Gemini CLI 則分全域、專案、子目錄三層。提醒：規則檔仍然只是脈絡，不是鎖（第一場講過）。
+
+各家讀規則檔的方式不同，要先確認。以 Claude Code 為例，官方文件（2026-10 查）說：資料夾裡沒有 CLAUDE.md 時才讀 AGENTS.md；兩種都有時，預設只讀 CLAUDE.md，除非改設定，或在 CLAUDE.md 裡匯入 AGENTS.md。Gemini CLI 則要在設定裡把檔名改成 AGENTS.md 才會讀。所以兩種檔都放的專案，請 Agent 告訴你它實際讀進了哪幾份，不要假設。
 
 📖 延伸閱讀：〈Custom instructions with AGENTS.md〉（OpenAI，官方文件）；〈How Claude remembers your project〉（Anthropic，官方文件）；〈GEMINI.md〉（Google，官方文件）
 
@@ -248,6 +258,18 @@ Thoughtworks 技術雷達第 34 期（2026-04）把「規則檔膨脹」列為�
 - 想說「讀整個專案」時，改成指名最重要的三個檔
 - 長任務告一段落時，請 Agent 寫一份交接檔，抽一個數字追問依據
 - 請 Agent 逐行檢查團隊的規則檔，由你決定刪哪幾行
+
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| 脈絡視窗（Context Window） | 模型產生回答時能參考的全部文字，包含它正在寫的回答；是有上限的工作記憶，不是訓練資料。 | Anthropic〈Context windows〉 |
+| Token（詞元） | 模型處理文字的最小單位，可能是一個字、字的一部分或一個位元組；計費和脈絡視窗大小都用它算。 | Anthropic 官方文件〈Glossary〉 |
+| 脈絡劣化（Context rot） | Token 越多，模型的準確度與回想能力越會下降；每個模型都會發生。 | Anthropic〈Context windows〉 |
+| 子 Agent（Subagent） | 主 Agent 派出去的助手：在自己的脈絡視窗裡工作、有自己的工具權限，只把摘要交回主對話。 | Claude Code 官方文件〈Glossary〉 |
+| 壓縮（Compaction） | 對話接近脈絡上限時，把歷史摘要成短版繼續；只在對話裡交代的指示可能遺失。 | Claude Code 官方文件〈Glossary〉 |
+| 交接檔 | 寫在對話之外的進度紀錄：目前狀態、已做決定、未驗證、下一步；新對話靠它接手。 | Anthropic Engineering〈Effective harnesses for long-running agents〉 |
+| 規則檔 | 每次開新對話都自動讀進來的專案指示，例如 AGENTS.md、CLAUDE.md、GEMINI.md；它是給 Agent 的脈絡，不是強制設定。 | Anthropic〈How Claude remembers your project〉 |
+| AGENTS.md | 跨工具的開放規則檔格式，像「給 Agent 的 README」；各工具讀它的規則不同，例如 Claude Code 只在沒有 CLAUDE.md 時才讀。 | OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉；Claude Code 官方文件〈Glossary〉 |
 
 ## 延伸閱讀
 - 〈Best practices for Claude Code〉（Anthropic，官方文件）

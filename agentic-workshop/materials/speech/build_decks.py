@@ -48,6 +48,9 @@ def build_stage(stage, check=False):
             handout.append('📖 延伸閱讀：' + '；'.join(slide['read']))
         handout.append('**人工確認**：' + slide['check'])
     handout.append('## 完成條件\n' + meta['handout_done'])
+    if meta.get('terms'):  # [term, definition, source]: one table so learners can look a word up
+        handout.append('## 名詞解釋\n| 名詞 | 意思 | 出處 |\n|---|---|---|\n'
+                       + '\n'.join(f'| {t} | {d} | {s} |' for t, d, s in meta['terms']))
     reading = {}  # 〈title〉 -> first full entry, from 📖 cards and `read`, in slide order
     for slide in slides:
         cards = [part for head, body in slide.get('cards', []) if head == '📖 延伸閱讀' for part in body.split('；')]

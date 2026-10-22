@@ -10,7 +10,7 @@
 
 - 每個要點先用一般說法講清楚（例如「每次對話都會讀的規則檔」），再補一句「例如 CLAUDE.md、AGENTS.md、GEMINI.md」。不要只秀單一產品的指令或快捷鍵。
 - 本文件大量引用 Anthropic 文件，是因為它們公開、具體、有日期；同一個概念多半也能在 OpenAI、GitHub、Google 的文件找到對應（已在各點列出）。投影片上至少並列兩家，避免變成產品介紹。
-- 規則檔名稱的現況（已查核）：AGENTS.md 由 Linux Foundation 旗下的 Agentic AI Foundation 維護，多數 Coding Agent 都會讀；Gemini CLI 可把讀取檔名設成 AGENTS.md；Claude Code 可直接讀 AGENTS.md。所以「團隊共用一份規則檔」可以講成跨工具的做法。
+- 規則檔名稱的現況（已查核）：AGENTS.md 由 Linux Foundation 旗下的 Agentic AI Foundation 維護，多數 Coding Agent 都會讀；Gemini CLI 可把讀取檔名設成 AGENTS.md；Claude Code 只在沒有 CLAUDE.md 時才直接讀 AGENTS.md（2026-10-22 查，見文末名詞定義查核）。所以「團隊共用一份規則檔」可以講成跨工具的做法。
 - Skill（技能檔）已是開放格式（agentskills.io），Claude Code、Codex、GitHub Copilot、Gemini CLI、Cursor 等都支援，可以當作通用概念講。
 - 模型名稱、推論強度預設值、價格每幾個月就變。投影片只講原則（「先用預設，有證據再調高」），不要寫死模型名稱或金額。
 
@@ -300,6 +300,37 @@
 - 【已查核】Ryan Donovan，〈The results of the 2026 Developer Survey are here!〉，Stack Overflow Blog，2026-10-06，https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/ 。用 AI 的開發者 66% 用 Coding Agent；用助手或 Agent 的人 73% 天天用；20% 用在部署、維運或排查正式系統；93% 認為要附來源才信任。用在第五場「最花時間的是『差一點就對』」，並更新第一場 2025 年 31% 的說法。
 - 尚未發布（2026-10-21 查）：Thoughtworks Technology Radar Vol. 35、DORA 2026 年度報告。11 月再查。
 
+## 2026-10-22 名詞定義查核（講義「名詞解釋」與主課詞彙表）
+
+查核日 2026-10-22，皆以 WebFetch 或 curl 開啟原文。用途：五份講義 `stage.json` 的 `terms` 與 Runbook 詞彙表的定義。
+
+**兩項待決事項的結論**
+
+- **Claude Code 何時讀 AGENTS.md**【已查核】Claude Code 文件〈How Claude remembers your project〉，https://code.claude.com/docs/en/memory 。引文："By default, Claude reads `AGENTS.md` only when you have no `CLAUDE.md` in your working directory or above it." 另：兩者都有時讀 "Your `CLAUDE.md` files only"；直接讀 AGENTS.md 需 v2.1.277 以上，可在 `/config` 的 Project instructions 改成兩者都讀，或在 CLAUDE.md 用 `@AGENTS.md` 匯入。→ 改了 Speech 02 第 10 頁卡片（原「多半可以改讀 AGENTS.md」）、講義補充與講者備註、本文件開頭的工具中立說明。
+- **Claude Code 的預設權限模式**【已查核】Claude Code 文件〈Choose a permission mode〉，https://code.claude.com/docs/en/permission-modes 。引文："With Claude Code v2.1.283 or later, auto mode is the built-in starting permission mode for interactive terminal and VS Code sessions." Manual 模式的設定值是 `default`；`claude -p` 與 Agent SDK 仍從 Manual 開始。auto mode 由 "a second model, the classifier" 代替人審查動作。〈Glossary〉："A permission mode where a separate classifier model reviews actions instead of you"。最佳實務文件的「After the tenth approval you're clicking through rather than reviewing」現在明確指 Manual 模式。→ Speech 03 第 14 頁原寫 Anthropic 框架「主張預設唯讀」，那是 2025-08-04 文章對當時 Claude Code 的描述（引文："It has read-only permissions by default"），已改成「原則：高風險決定前人保有控制權；當時的預設唯讀，現在預設已變」；Speech 04 第 8 頁補一段自動審查模式不取代關卡。學員頁不寫版本號與指令。
+
+**名詞定義來源**
+
+- 【已查核】Claude Code 文件〈Glossary〉，https://code.claude.com/docs/en/glossary 。Agentic coding："as opposed to chat-based assistants that only respond with text you must apply yourself"；Agentic loop："gather context, take action, verify results, and repeat until done"；Subagent："runs in its own context window with a custom system prompt, specific tool access, and independent permissions"；Compaction："instructions given only in conversation may be lost"；Hook："Hooks are deterministic"；Sandboxing："OS-level filesystem and network isolation for the Bash tool"；AGENTS.md："If your repository has one and no CLAUDE.md, Claude reads it"。
+- 【已查核】Anthropic 平台文件〈Glossary〉，https://platform.claude.com/docs/en/about-claude/glossary 。Tokens："the smallest individual units of a language model"；Context window：模型的 "working memory"。
+- 【已查核】Anthropic〈Context windows〉，https://platform.claude.com/docs/en/build-with-claude/context-windows 。"including the response itself"；"more context isn't automatically better"；"a phenomenon known as context rot"。
+- 【已查核】Anthropic Engineering〈Building effective agents〉，2024-12-19。"Agents, on the other hand, are systems where LLMs dynamically direct their own processes and tool usage"；"Agents can then pause for human feedback at checkpoints or when encountering blockers."
+- 【已查核】Anthropic〈Our framework for developing safe and trustworthy agents〉，2025-08-04。"It has read-only permissions by default"；"humans should retain control over how their goals are pursued, particularly before high-stakes decisions are made."
+- 【已查核】Anthropic〈Effort〉（平台文件）。"Effort is a behavioral signal, not a strict token budget."；low："Simpler tasks that need the best speed and lowest costs, such as subagents"。OpenAI〈Reasoning models〉："Treat `reasoning.effort` as a tuning knob, not the primary way to recover quality."；xhigh："Only use when your evals show a clear benefit"（原講義寫「最高檔位」，現在最高是 max，已改為「很高的檔位（例如 xhigh）」）。
+- 【已查核】Anthropic〈Agent Skills〉（平台文件）。Level 1 metadata 永遠載入、SKILL.md 本文觸發時才讀（progressive disclosure）；"Use Skills only from trusted sources"。
+- 【已查核】Claude Code〈Manage costs effectively〉。"around $13 per developer per active day and $150-250 per developer per month, with costs remaining below $30 per active day for 90% of users"；"Token costs scale with context size"；"start with a small pilot group"。數字與講義一致。
+- 【已查核】OWASP〈LLM01:2025 Prompt Injection〉，https://genai.owasp.org/llmrisk/llm01-prompt-injection/ 。"A Prompt Injection Vulnerability occurs when user prompts alter the LLM's behavior or output in unintended ways."；間接注入："when an LLM accepts input from external sources, such as websites or files"；"it is unclear if there are fool-proof methods of prevention"。→ Speech 04 第 12 頁原定義只講間接注入，已補直接／間接。
+- 【已查核】NIST CSRC〈Glossary〉least privilege，https://csrc.nist.gov/glossary/term/least_privilege 。"A security principle that a system should restrict the access privileges of users (or processes acting on behalf of users) to the minimum necessary to accomplish assigned tasks."（CNSSI 4009-2022；NIST SP 800-12 Rev. 1）
+- 【已查核】Martin Fowler〈Continuous Integration〉，2024-01-18 修訂，https://martinfowler.com/articles/continuousIntegration.html 。"each member of a team merges their changes into a codebase together with their colleagues changes at least daily"；"verified by an automated build (including test)"。→ Speech 01 原寫「CI：每次提交程式就自動跑檢查的機制」只講一半，已改。
+- 【已查核】Martin Fowler〈TestDrivenDevelopment〉，2023-12-11，https://martinfowler.com/bliki/TestDrivenDevelopment.html 。"Test-Driven Development (TDD) is a technique for building software that guides software development by writing tests."；"often summarized as Red - Green - Refactor"。
+- 【已查核】GitHub 文件〈Pull requests〉（原〈About pull requests〉，頁面 H1 與 title 已改名），https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests 。"Pull requests are proposals to merge code changes into a project."
+- 【已查核】DORA〈DORA's software delivery performance metrics〉，2026-01-05 更新，https://dora.dev/guides/dora-metrics/ 。吞吐量：change lead time、deployment frequency、failed deployment recovery time；不穩定度：change fail rate、deployment rework rate，共五項。
+- 【已查核】Michael Nygard〈Documenting Architecture Decisions〉，2011-11-15。段落：Title、Context、Decision、Status、Consequences；"This section describes our response to these forces."
+- 【部分查核】ISTQB〈Glossary〉acceptance criteria："The criteria that a component or system must satisfy in order to be accepted by a user, customer, or other authorized entity."（v3.2 版本，經多個轉載確認；官方站為動態頁面，未直接開啟）
+- 【部分查核】Eric Ries 的 MVP 定義："that version of a new product which allows a team to collect the maximum amount of validated learning about customers with the least effort"，並說 MVP "is not about creating minimal products"（經 leanstartup.co 等轉載確認）。→ 詞彙表原寫「用最少的功能做出能實際使用的版本」，是常見誤讀，已改。
+- 【部分查核】Michael Feathers 的特性測試："a test that characterizes the actual behavior of a piece of code"（經 InfoQ 等轉載確認，書本原文未開啟）。
+- 【已查核】AGENTS.md 官網仍寫 "60k open-source projects"（curl 2026-10-22）。
+
 ## 不要宣稱的說法（流行但沒有根據或已過時）
 
 1. **「AI 讓開發者慢 19%」當成現況。** METR 自己已標示過時，2026 年更新顯示可能有加速但證據很弱。要講就兩份一起講。
@@ -314,6 +345,8 @@
 10. **「AI 寫的程式碼品質跟人一樣／更好」或「AI 程式碼一定比較爛」。** 現有數據（CodeRabbit）樣本小、由廠商發布；DORA 顯示對穩定度仍為負相關。只能說「要另外量品質」。
 11. **「Prompt engineering 已死」。** 只是術語轉向 context engineering；寫清楚的提示詞仍是基本功。
 12. **Stripe「每週 1,300 個 PR」、Spotify「10 天 1,000 個 PR」、Amazon Q「96 萬次安裝」、Replit「捏造 4,000 筆資料」。** 只見於二手報導，本次未從原始來源確認。要用就用已查核的數字（Stripe「每週超過一千個」、Spotify「超過 1,500 個」）。
+
+13. **「各家 Coding Agent 都會改讀 AGENTS.md」「Agent 預設唯讀」。** Claude Code 只在沒有 CLAUDE.md 時才讀 AGENTS.md；Claude Code 2026 年起多數互動情境預設 auto mode（分類器審查），不是唯讀。預設會變，學員頁只講「先確認你的工具」。
 
 ## 查核統計
 

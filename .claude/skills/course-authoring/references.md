@@ -67,6 +67,18 @@ Speech notes cite these after checking them in `docs/research/speech-agentic-sou
 | Large-scale cases | Anthropic〈How Anthropic runs large-scale code migrations with Claude Code〉 (2026); Airbnb Tech Blog〈Accelerating Large-Scale Test Migration with LLMs〉; Spotify Engineering〈1,500+ PRs Later: Spotify's Journey with Our Background Coding Agent (Honk, Part 1)〉 (2025); Stripe〈Minions: Stripe's one-shot, end-to-end coding agents〉 (2026); GitHub〈Octoverse: A new developer joins GitHub every second as AI leads TypeScript to #1〉 (2025); Anthropic Engineering〈Redesigning source control at Anthropic〉 (2026-10-13) | |
 | Adoption research | Google Cloud〈Announcing the 2025 DORA Report〉 (2025), 〈Introducing DORA's inaugural AI Capabilities Model〉 (2025); DORA〈State of AI-assisted Software Development 2025〉; Stack Overflow〈2025 Developer Survey — AI〉; METR〈We are Changing our Developer Productivity Experiment Design〉 (2026); Faros AI〈The AI Productivity Paradox Report 2025〉; Anthropic〈How AI is transforming work at Anthropic〉 (2025); Thoughtworks〈Technology Radar Vol. 34〉 (2026); Stack Overflow〈The results of the 2026 Developer Survey are here!〉 (2026-10-06) | |
 
+## Term definitions (main speech handout 「名詞解釋」 and glossary; checked 2026-10-22)
+Quotes and dates in `docs/research/speech-agentic-sources.md` 「2026-10-22 名詞定義查核」.
+| Topic | Cite (exact title) | Retired titles (do not use) |
+|---|---|---|
+| Agent product terms (agentic loop, subagent, compaction, hook, sandboxing, auto mode, AGENTS.md) | Claude Code 官方文件〈Glossary〉; permission modes: Claude Code 官方文件〈Choose a permission mode〉 | |
+| Model terms (token, context window, LLM) | Anthropic 官方文件〈Glossary〉 (platform glossary) | |
+| CI, TDD | Martin Fowler〈Continuous Integration〉 (2024-01 revision), 〈TestDrivenDevelopment〉 (2023) | |
+| Pull request | GitHub 官方文件〈Pull requests〉 | 〈About pull requests〉 (page retitled) |
+| Prompt injection | OWASP〈LLM01:2025 Prompt Injection〉 | |
+| Least privilege | NIST CSRC〈Glossary〉 (least privilege entry) | |
+| DORA software delivery metrics | DORA〈DORA's software delivery performance metrics〉 (2026-01-05; five metrics) | |
+
 ## Speech decks: DDD with Agents (DLC speech 01–04)
 Checked in `docs/research/speech-dlc-ddd-sources.md`. DDD Europe 2026 titles are session abstracts only (no results); cite them as such.
 | Topic | Cite (exact title) | Retired titles (do not use) |
@@ -74,6 +86,7 @@ Checked in `docs/research/speech-dlc-ddd-sources.md`. DDD Europe 2026 titles are
 | Language, Bounded Context, Context Map | Martin Fowler〈UbiquitousLanguage〉 (2006), 〈BoundedContext〉 (2014); Microsoft Azure Architecture Center〈Use Domain Analysis to Model Microservices〉; DDD Crew〈The Bounded Context Canvas〉, 〈Context Mapping〉 | |
 | Aggregates, events, ports | Vaughn Vernon〈Effective Aggregate Design, Part I〉 (2011); Martin Fowler〈DDD_Aggregate〉 (2013); Microsoft Azure Architecture Center〈Use Tactical DDD to Design Microservices〉, 〈Anti-Corruption Layer Pattern〉; Alberto Brandolini〈Introducing Event Storming〉 (2013); DDD Crew〈Aggregate Design Canvas〉; Alistair Cockburn〈Hexagonal Architecture〉 (2005); domainstorytelling.org〈Domain Storytelling Quick Start Guide〉 | |
 | Decision records and review | AWS Prescriptive Guidance〈Architectural decision record process〉; 〈About MADR〉 (MADR 4.0, 2024) | |
+| Term definitions (checked 2026-10-22; quotes in the sources file, section 11) | Microsoft .NET 架構指南〈Domain events: Design and implementation〉 (domain vs integration events); Stryker Mutator 文件〈What is mutation testing?〉, 〈Equivalent mutants〉; idempotency also IETF〈RFC 9110 HTTP Semantics〉 (above) | |
 | Boundaries from history, refactoring | Adam Tornhill《Your Code as a Crime Scene》 (2nd ed., 2024), 《Software Design X-Rays》 (2018); CodeScene 文件〈Change Coupling: Visualize Logical Dependencies〉; Martin Fowler〈Definition Of Refactoring〉 (2004) | |
 | Evaluating Agent output, shared model format | Anthropic Engineering〈Demystifying evals for AI agents〉 (2026); Google Machine Learning Crash Course〈Classification: Accuracy, recall, precision, and related metrics〉; Google Cloud〈Open Knowledge Format (OKF)〉 specification | |
 | Agents and context | Birgitta Böckeler／martinfowler.com〈Context Engineering for Coding Agents〉 (2026), 〈The role of developer skills in agentic coding〉 (2025); Spracklen 等〈We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs〉 (USENIX Security 2025); Anthropic〈Claude 3.7 Sonnet System Card〉 (2025) | |

@@ -9,5 +9,21 @@
     "本段講業界怎麼安全地把整件工作交給 Agent：工作單、自主等級、核准關卡、權限與沙箱、防護、評估與治理，附官方說法與真實案例。不寫程式、不打指令。範例提示詞是選用示範，貼給你自己的 Coding Agent，結果由你檢查；沒有實際執行的，一律當作未驗證。",
     "**這一段帶走什麼**\n\n- 工作單是五段式提示詞放大到整件任務\n- 自主程度是設計出來的；關卡設在不可逆動作之前\n- 最小權限與沙箱；私密資料、不可信內容、對外傳送三缺一\n- 禁止事項做在平台上，不只寫在提示詞\n- 用另一個乾淨的對話與證據評估交付，決策要留紀錄"
   ],
-  "handout_done": "能說出：一份工作單的五個部分、你那件工作適合人當哪種角色、關卡該設在哪個不可逆動作之前、Agent 需要的最小權限與「三缺一」拿掉了哪一項、怎麼用另一個乾淨對話與證據評估交付；並說得出 Stripe、Spotify 等案例共同的三層：隔離環境、自動驗證、人審。\n\n**下週可以做的事**\n\n- 替一件想委派的工作寫工作單草稿，標出「待決定」\n- 列出 Agent 真正需要的權限，拿掉「三缺一」中的一項\n- 找出那件工作裡最難回頭的動作，在它前面設一道關卡"
+  "handout_done": "能說出：一份工作單的五個部分、你那件工作適合人當哪種角色、關卡該設在哪個不可逆動作之前、Agent 需要的最小權限與「三缺一」拿掉了哪一項、怎麼用另一個乾淨對話與證據評估交付；並說得出 Stripe、Spotify 等案例共同的三層：隔離環境、自動驗證、人審。\n\n**下週可以做的事**\n\n- 替一件想委派的工作寫工作單草稿，標出「待決定」\n- 列出 Agent 真正需要的權限，拿掉「三缺一」中的一項\n- 找出那件工作裡最難回頭的動作，在它前面設一道關卡",
+  "terms": [
+    ["Digital Worker（數位員工）", "在核准範圍內獨立完成整件任務的 Agent；人只在事先設好的關卡做決定。", "本課程〈歡迎與使用方式〉"],
+    ["Work Order（工作單）", "交給 Agent 的整件任務說明：目標、要讀的資料、能動與不能動、回報格式、停止與升級條件。", "本課程〈B3 工作單（Work Order）〉"],
+    ["Gate（核准關卡）", "Agent 交出資料後停下、由人做決定的檢查點；核准是決策，不等於通過驗收。", "本課程〈B3 工作單（Work Order）〉；Anthropic Engineering〈Building effective agents〉"],
+    ["人在迴圈中（Human-in-the-loop）", "Agent 在檢查點或碰到阻礙時停下來等人回饋；關卡設在錯了代價最大的前一刻。", "Anthropic Engineering〈Building effective agents〉"],
+    ["自主等級", "依人扮演的角色分五級：操作者、協作者、顧問、核准者、觀察者；是設計選擇，不是能力換來的。", "Feng 等〈Levels of Autonomy for AI Agents〉"],
+    ["核准疲勞（Approval fatigue）", "要人核准的次數太多，核准變成反射動作；官方說，按到第十次就只是在點過去。", "Claude Code 官方文件〈Best practices for Claude Code〉"],
+    ["自動審查模式", "由另一個模型（分類器）代替人審查大部分動作，只擋下或詢問看起來有風險的，例如 Claude Code 的 auto mode；詢問變少，但審查者仍是模型。", "Claude Code 官方文件〈Glossary〉"],
+    ["最小權限（Least privilege）", "把使用者，或代表使用者執行的程式，所能取得的權限限制在完成指派工作所需的最小範圍。", "NIST CSRC〈Glossary〉"],
+    ["Agent 權力過大（Excessive Agency）", "功能、權限或自主給太多，讓 Agent 在出錯或被操縱時做出有害的動作。", "OWASP〈LLM06:2025 Excessive Agency〉"],
+    ["沙箱（Sandbox）", "作業系統層級的檔案與網路隔離；Agent 在事先畫好的邊界內可以自由做事，不必每個指令都問。", "Claude Code 官方文件〈Glossary〉；Anthropic〈Beyond permission prompts: making Claude Code more secure and autonomous〉"],
+    ["提示詞注入（Prompt injection）", "輸入或讀進來的內容藏著指令，改變模型原本該做的事；藏在網頁、檔案裡的叫間接注入。", "OWASP〈LLM01:2025 Prompt Injection〉"],
+    ["致命三要素（三缺一）", "讀得到私密資料、會讀不可信的內容、能對外傳送，三者同時存在就危險；設計上至少拿掉一項。", "Simon Willison〈The lethal trifecta for AI agents〉"],
+    ["hook", "在固定時機（例如執行工具前、改檔後）自動執行的處理程式；和規則檔不同，它一定會執行。", "Claude Code 官方文件〈Glossary〉"],
+    ["Escalation（升級處理）", "Agent 碰到停止條件時，只停受影響的動作，附證據與選項交給人決定。", "本課程〈B3 工作單（Work Order）〉"]
+  ]
 }

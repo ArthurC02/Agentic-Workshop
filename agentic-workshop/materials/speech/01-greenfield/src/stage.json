@@ -12,5 +12,21 @@
   "handout_done": "說得出 Agent 怎麼知道做對了（先給檢查、可判定的驗收條件）、怎麼知道要做什麼（規格、脈絡、工作規則、五段式提示詞）、人怎麼確認（先計畫、小步驗證、結構化輸出、看證據審查），以及大規模案例的共同點；交辦自己的工作前問得出五個問題。\n\n**下週可以做的事**\n\n- 挑一個專案，請 Agent 盤點現有檢查與沒被檢查到的需求（第 4 頁的提示詞）\n- 交辦一件工作前，先寫下完成時要看到的數字或畫面\n- 用交辦前的五個問題檢查一次，答不出的那題先補",
   "downloads": [
     {"label": "下載 Idea 範例", "file": "practice/idea.md", "name": "idea.md"}
+  ],
+  "terms": [
+    ["Agent", "由 AI 模型自己決定步驟、使用工具（讀寫檔案、執行指令）來完成任務的系統。", "Anthropic Engineering〈Building effective agents〉"],
+    ["Coding Agent", "專做軟體開發的 Agent：能自己讀檔、改檔、執行指令與測試；聊天式助手只回文字，要你自己貼上執行。", "Claude Code 官方文件〈Glossary〉"],
+    ["Agent 迴圈（agentic loop）", "收集脈絡、動手、驗證結果，重複到完成；每一步的結果決定下一步。", "Claude Code 官方文件〈Glossary〉"],
+    ["可執行的檢查", "Agent 自己能跑、會回報通過或失敗的檢查，例如測試、建置、畫面比對；有了它，Agent 能一直修到檢查通過。", "Claude Code 官方文件〈Best practices for Claude Code〉"],
+    ["驗收條件（AC，Acceptance Criteria）", "元件或系統要被使用者、客戶或其他授權者接受前必須滿足的條件；要寫到能判定符合或不符合。", "ISTQB〈Glossary〉"],
+    ["Gherkin", "用 Given（前提）／When（操作）／Then（結果）寫情境的格式；接上測試工具後才成為可執行的規格。", "Cucumber 官方文件〈Gherkin Reference〉"],
+    ["規格驅動開發（Spec-driven development）", "先把需求、設計、任務寫成檔案，Agent 照規格做、人照規格審；多數做法只在開工前寫規格。", "martinfowler.com〈Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl〉"],
+    ["脈絡工程（Context engineering）", "提供讓任務「有可能被模型解出來」的全部脈絡；重點從怎麼問，移到給它看什麼。", "Simon Willison〈Context engineering〉"],
+    ["五段式提示詞", "目標、背景／要讀的檔、限制、輸出格式、停止條件；五段是本課程的寫法，官方文件的重點相同：寫清楚、給脈絡、指名檔案。", "Anthropic〈Prompting best practices〉"],
+    ["結構化輸出（Structured Output）", "本課程指用提示詞要求固定欄位或標題回報；API 的同名功能則用 JSON 結構定義強制格式。", "Anthropic〈Structured outputs〉"],
+    ["持續整合（CI，Continuous Integration）", "團隊成員頻繁（至少每天）把變更合併回共用的程式碼，每次合併都由自動建置與測試驗證。", "Martin Fowler〈Continuous Integration〉"],
+    ["PR（Pull Request）", "把一組程式變更提議合併進專案；合併前讓別人討論與審查。", "GitHub 官方文件〈Pull requests〉"],
+    ["ADR（Architecture Decision Record，架構決策紀錄）", "一份短文字檔，只記一個重要的架構決定：背景、決定、狀態與後果。", "Michael Nygard〈Documenting Architecture Decisions〉"],
+    ["DORA", "DevOps Research and Assessment：Google Cloud 旗下的軟體交付研究計畫，每年發布報告。", "Google Cloud〈Announcing the 2025 DORA Report〉"]
   ]
 }

@@ -1,5 +1,5 @@
 [
-  {"id":"start","chapter":"開場","title":"把整件工作交給 Agent，要先設計什麼？","lead":"第四段 · Digital Worker（數位員工：在核准範圍內獨立完成整件任務的 Agent，即 AI 助手） · 概念講解",
+  {"id":"start","chapter":"開場","title":"把整件工作交給 Agent，要先設計什麼？","lead":"第四段 · Digital Worker（數位員工：在核准範圍內獨立完成整件任務的 Agent） · 概念講解",
    "cards":[["今天談的不是 B3 本身","而是業界怎麼安全地委派：工作單、自主等級、關卡、權限、防護、評估與治理。"],["怎麼聽","心裡選一件工作上想交給 Agent 的事，每頁都拿它對照。"]],
    "check":"想好一件你想委派的工作：它做錯了，誰會受影響？",
    "explain": ["Digital Worker 是把整件任務交出去，人只在事先設好的關卡做決定。能不能安全交出去，不取決於 Agent 多聰明，而取決於事前的設計：授權範圍、停止條件、關卡、權限與審查方式。這份講義整理業界做法、官方說法與真實事故，不包含 B3 的做法或例外事件內容。"],
@@ -50,15 +50,15 @@
   {"id":"fatigue","chapter":"核准關卡","title":"問太多次，人就開始亂按","lead":"Approval fatigue（核准疲勞）：關卡太多，核准就變成反射動作，等於沒有關卡。",
    "cards":[["官方提醒","按到第十次核准，你已經不是在審查，只是在點過去。"],["解法","用權限和隔離環境圈好邊界，邊界內不必問；只把真正的決策留給人。"]],
    "check":"你的關卡，每一道都有人真的會停下來看嗎？",
-   "explain": ["核准疲勞是真的：Claude Code 官方文件說，按到第十次核准，你已經不是在審查，只是在點過去。關卡一多，核准就變成反射動作，等於沒有關卡。", "解法不是少審，而是把邊界做在環境上。Anthropic（2025-10）的沙箱文章說，用檔案系統與網路兩道隔離後，權限詢問減少 84%。邊界內的事不必問，只把真正的決策留給人；B3 只設三道 Gate、每道 1–3 分鐘，就是這個設計。"],
+   "explain": ["核准疲勞是真的：Claude Code 官方文件說，按到第十次核准，你已經不是在審查，只是在點過去。關卡一多，核准就變成反射動作，等於沒有關卡。", "解法不是少審，而是把邊界做在環境上。Anthropic（2025-10）的沙箱文章說，用檔案系統與網路兩道隔離後，權限詢問減少 84%。邊界內的事不必問，只把真正的決策留給人；B3 只設三道 Gate、每道 1–3 分鐘，就是這個設計。", "這句話說的是「每個動作都要人按核准」的模式。現在有些工具改用另一個模型（分類器）先審查每個動作，只擋下或詢問看起來有風險的，例如 2026 年 Claude Code 在多數互動情境的預設模式。這減少了詢問，但審查的仍是模型，不是你；不可逆、高影響的動作，還是要在工作單裡寫成必須停下來問人的關卡。"],
    "read": ["〈Beyond permission prompts: making Claude Code more secure and autonomous〉（Anthropic，2025）", "〈Best practices for Claude Code〉（Anthropic，官方文件）"],
    "notes":"（第 15–16.5 分）Claude Code 最佳實務文件原文：After the tenth approval you're clicking through rather than reviewing。Anthropic 2025-10-20 的沙箱文章說，用檔案系統與網路兩道隔離後，權限詢問減少 84%。B3 只設三道 Gate、每道 1–3 分鐘，就是避免核准疲勞的設計。📖 延伸閱讀：〈Beyond permission prompts: making Claude Code more secure and autonomous〉（Anthropic, 2025）。"},
 
   {"id":"least-privilege","chapter":"權限與沙箱","title":"最小權限：門禁卡只開要去的樓層","lead":"OWASP 把「Agent 權力過大」列為十大風險之一，根因有三個「給太多」。",
    "cards":[["功能給太多","任務只要讀，卻給了能刪、能寄信的工具。"],["權限給太多","用管理員帳號跑，碰得到正式資料。"],["自主給太多","高影響動作不用人核准就能做。"]],
    "check":"列出你那件工作 Agent 真正需要的權限，多一項都要說得出理由。",
-   "explain": ["OWASP〈LLM06:2025 Excessive Agency〉列出 Agent 權力過大的三個根因：功能給太多、權限給太多、自主給太多。緩解方法是最小權限、高影響動作要人核准，而且授權檢查要做在下游系統，不交給模型自己判斷。白話說，給權限像給門禁卡：只開要去的樓層。", "OWASP 也在 2025-12 發布了專談 Agent 應用風險的十大風險清單。下週替你的工作列出 Agent 真正需要的權限，每多一項都要說得出理由。"],
-   "read": ["〈LLM06:2025 Excessive Agency〉（OWASP，2025）"],
+   "explain": ["OWASP〈LLM06:2025 Excessive Agency〉列出 Agent 權力過大的三個根因：功能給太多、權限給太多、自主給太多。緩解方法是最小權限、高影響動作要人核准，而且授權檢查要做在下游系統，不交給模型自己判斷。白話說，給權限像給門禁卡：只開要去的樓層。", "OWASP 也在 2025-12 發布了專談 Agent 應用風險的十大風險清單。下週替你的工作列出 Agent 真正需要的權限，每多一項都要說得出理由。", "美國國家標準技術研究院（NIST）的資安詞彙表把最小權限定義為：把使用者，或代表使用者執行的程式，所能取得的存取權限限制在完成指派工作所需的最小範圍。Agent 就是代表你執行的程式，所以同一條原則直接適用。"],
+   "read": ["〈LLM06:2025 Excessive Agency〉（OWASP，2025）", "〈Glossary〉（NIST CSRC，least privilege 條目）"],
    "notes":"（第 16.5–19 分）來源：OWASP GenAI Security Project〈LLM06:2025 Excessive Agency〉，三個根因 excessive functionality、permissions、autonomy。緩解：最小權限、高影響動作要人核准，而且授權檢查要做在下游系統，不交給模型自己判斷。OWASP 也在 2025-12-09 發布〈Top 10 for Agentic Applications for 2026〉，專談 Agent 應用的風險（各項名稱上台前請查原文）。📖 延伸閱讀：〈LLM06:2025 Excessive Agency〉（OWASP, 2025）。"},
 
   {"id":"sandbox","chapter":"權限與沙箱","title":"沙箱：先圍好場地，再放手","lead":"Sandbox（沙箱：隔離的執行環境）讓 Agent 在邊界內自由動手，邊界外什麼都碰不到。",
@@ -76,11 +76,11 @@
    "read": ["〈An AI-powered coding tool wiped out a software company's database, then apologized for a 'catastrophic failure on my part'〉（Fortune，2025）"],
    "notes":"（第 21.5–24 分）來源：Fortune（2025-07-23）。SaaStr 創辦人 Jason Lemkin 測試期間發生；Agent 還說資料無法復原，實際上可以。Replit 執行長稱這件事 Unacceptable and should never be possible。平衡說明：這是試用中的專案，資料最後救回；重點不是哪家產品不好，而是任何 Agent 只要拿得到正式資料庫的權限，口頭凍結都擋不住。網路上「捏造 4,000 筆假資料」的說法只見於單一媒體，不要引用。📖 延伸閱讀：〈An AI-powered coding tool wiped out a software company's database, then apologized for a 'catastrophic failure on my part'〉（Fortune, 2025）。"},
 
-  {"id":"trifecta","chapter":"防護與事故","title":"三缺一：提示詞注入的致命組合","lead":"Prompt injection（提示詞注入）：Agent 讀到的網頁、文件或留言裡藏著指令，它可能照做。",
+  {"id":"trifecta","chapter":"防護與事故","title":"三缺一：提示詞注入的致命組合","lead":"Prompt injection（提示詞注入）：輸入或讀到的內容藏著指令，改變了 Agent 原本該做的事。",
    "cards":[["① 讀得到私密資料","程式碼、客戶資料、金鑰。"],["② 會讀不可信內容","網頁、外部文件、別人提的問題單。"],["③ 能對外傳送","發請求、寄信、推到公開位置。"]],
    "check":"三項同時成立就危險；你的工作單至少拿掉了哪一項？",
-   "explain": ["Simon Willison（2025-06）把三種能力同時存在稱為「致命三要素」：讀得到私密資料、會讀不可信的內容、能對外傳送。藏在網頁、文件或問題單裡的指令，可能讓 Agent 把私密資料送出去。白話比喻：新同事桌上有機密文件、會照陌生人的紙條做事、手邊又有寄件權限，三者湊齊就會出事。", "目前沒有能完全擋住提示詞注入的方法，所以要從設計上拿掉其中一項，這就是「三缺一」。下週檢查你的工作單授權範圍，至少拿掉一項，例如不給對外網路，或不讓它讀外部內容。"],
-   "read": ["〈The lethal trifecta for AI agents〉（Simon Willison，2025）"],
+   "explain": ["Simon Willison（2025-06）把三種能力同時存在稱為「致命三要素」：讀得到私密資料、會讀不可信的內容、能對外傳送。藏在網頁、文件或問題單裡的指令，可能讓 Agent 把私密資料送出去。白話比喻：新同事桌上有機密文件、會照陌生人的紙條做事、手邊又有寄件權限，三者湊齊就會出事。", "目前沒有能完全擋住提示詞注入的方法，所以要從設計上拿掉其中一項，這就是「三缺一」。下週檢查你的工作單授權範圍，至少拿掉一項，例如不給對外網路，或不讓它讀外部內容。", "OWASP〈LLM01:2025 Prompt Injection〉把它分成兩種：使用者直接在輸入裡下指令的，叫直接注入；指令藏在網頁、檔案等外部內容裡、被 Agent 讀進來的，叫間接注入，Coding Agent 最常碰到的是後者。OWASP 也說，以生成式模型的特性，目前不清楚有沒有萬無一失的防法，這正是要從設計上拿掉一項的原因。"],
+   "read": ["〈The lethal trifecta for AI agents〉（Simon Willison，2025）", "〈LLM01:2025 Prompt Injection〉（OWASP，2025）"],
    "notes":"（第 24–26.5 分）來源：Simon Willison〈The lethal trifecta for AI agents: private data, untrusted content, and external communication〉（2025-06-16），原文：We need to avoid the lethal trifecta combination of tools ourselves to stay safe。白話比喻：新同事桌上有機密文件、會照陌生人紙條做事、手邊又有寄件權限，三者湊齊就會出事。目前沒有能完全擋住注入的方法，所以從設計上拿掉一項。📖 延伸閱讀：〈The lethal trifecta for AI agents〉（Simon Willison, 2025）。"},
 
   {"id":"supply-chain","chapter":"防護與事故","title":"事故二：Agent 的供應鏈也會被下毒","lead":"2025 年 7 月，Amazon Q Developer 的 VS Code 擴充套件 1.84.0 被植入「清除檔案」的提示詞。",
@@ -93,7 +93,7 @@
   {"id":"guardrails","chapter":"防護與事故","title":"護欄做在平台，不只寫在提示詞","lead":"規則檔與提示詞是「建議」；一定要發生或一定不能發生的事，交給自動機制。",
    "cards":[["寫在規則裡","風格、偏好、怎麼回報。Agent 多半會照做，但不保證。"],["做在平台上","權限、隔離環境、自動檢查、合併前必須有人審。"]],
    "check":"挑一條你最怕被違反的規則：它現在是建議，還是平台擋得住？",
-   "explain": ["規則檔與提示詞是建議，Agent 多半會照做，但不保證。Claude Code 官方文件說得很清楚：規則檔是建議性的，hook（在特定時機自動執行的檢查）則確定會發生。所以風格、偏好、回報方式寫在規則裡；權限、隔離環境、自動檢查、合併前必須有人審，要做在平台上。", "例子：第三場的「絕不提交密碼與金鑰」，寫在規則裡只是提醒，做在平台上就是推送前自動掃描金鑰。下週挑一條你最怕被違反的規則，問它現在只是建議，還是平台擋得住。"],
+   "explain": ["規則檔與提示詞是建議，Agent 多半會照做，但不保證。Claude Code 官方文件說得很清楚：規則檔是建議性的，hook（在固定時機自動執行的腳本或檢查）則確定會發生。所以風格、偏好、回報方式寫在規則裡；權限、隔離環境、自動檢查、合併前必須有人審，要做在平台上。", "例子：第三場的「絕不提交密碼與金鑰」，寫在規則裡只是提醒，做在平台上就是推送前自動掃描金鑰。下週挑一條你最怕被違反的規則，問它現在只是建議，還是平台擋得住。"],
    "read": ["〈Best practices for Claude Code〉（Anthropic，官方文件）"],
    "notes":"（第 28.5–30 分）加深一層：第一場說過「規則是提醒，不是鎖」，第三場的三層邊界也預告「絕不做」要用權限或自動檢查擋住，這裡就是那一步，不重講規則檔本身。Claude Code 最佳實務文件：規則檔是建議性的，hook（掛勾：特定時機自動執行的檢查）是確定會發生的。例子：第三場的「絕不提交密碼與金鑰」，在平台上就是推送前自動掃描金鑰。📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic, 持續更新）。"},
 

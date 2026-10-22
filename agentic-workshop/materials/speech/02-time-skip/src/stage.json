@@ -5,9 +5,19 @@
   "deck": "time-skip-deck.html",
   "handout": "time-skip-handout.md",
   "handout_intro": [
-    "> 讀者：學員。時機：25 分鐘觀念與技巧講解。前置：已聽過 Greenfield 講解，備妥可用的 Coding Agent（能讀寫檔案、協助寫程式的 AI 助手）。",
+    "> 讀者：學員。時機：25 分鐘觀念與技巧講解。前置：已聽過 Greenfield 講解，備妥可用的 Coding Agent（能自己讀寫專案檔案、執行指令與測試的 AI）。",
     "本段不寫程式、不打指令。提示詞只供示範；沒有實際執行的結果，一律標為未驗證。",
     "**這一段帶走什麼**\n\n- 脈絡視窗是工作桌：越滿越不準，也越貴\n- 給少而準的脈絡；大量讀檔先摘要\n- 糾正兩次還錯就重開，重要決定寫進檔案\n- 規則檔每次都會讀，所以要短、要修剪"
   ],
-  "handout_done": "能用自己的話說明：為什麼對話越長 Agent 越不準也越貴；何時該開新對話、何時讓它先摘要；交接檔要寫哪幾項、人要查哪幾項；規則檔為什麼要短、一定要發生的事為什麼要交給自動檢查。\n\n**下週可以做的事**\n\n- 想說「讀整個專案」時，改成指名最重要的三個檔\n- 長任務告一段落時，請 Agent 寫一份交接檔，抽一個數字追問依據\n- 請 Agent 逐行檢查團隊的規則檔，由你決定刪哪幾行"
+  "handout_done": "能用自己的話說明：為什麼對話越長 Agent 越不準也越貴；何時該開新對話、何時讓它先摘要；交接檔要寫哪幾項、人要查哪幾項；規則檔為什麼要短、一定要發生的事為什麼要交給自動檢查。\n\n**下週可以做的事**\n\n- 想說「讀整個專案」時，改成指名最重要的三個檔\n- 長任務告一段落時，請 Agent 寫一份交接檔，抽一個數字追問依據\n- 請 Agent 逐行檢查團隊的規則檔，由你決定刪哪幾行",
+  "terms": [
+    ["脈絡視窗（Context Window）", "模型產生回答時能參考的全部文字，包含它正在寫的回答；是有上限的工作記憶，不是訓練資料。", "Anthropic〈Context windows〉"],
+    ["Token（詞元）", "模型處理文字的最小單位，可能是一個字、字的一部分或一個位元組；計費和脈絡視窗大小都用它算。", "Anthropic 官方文件〈Glossary〉"],
+    ["脈絡劣化（Context rot）", "Token 越多，模型的準確度與回想能力越會下降；每個模型都會發生。", "Anthropic〈Context windows〉"],
+    ["子 Agent（Subagent）", "主 Agent 派出去的助手：在自己的脈絡視窗裡工作、有自己的工具權限，只把摘要交回主對話。", "Claude Code 官方文件〈Glossary〉"],
+    ["壓縮（Compaction）", "對話接近脈絡上限時，把歷史摘要成短版繼續；只在對話裡交代的指示可能遺失。", "Claude Code 官方文件〈Glossary〉"],
+    ["交接檔", "寫在對話之外的進度紀錄：目前狀態、已做決定、未驗證、下一步；新對話靠它接手。", "Anthropic Engineering〈Effective harnesses for long-running agents〉"],
+    ["規則檔", "每次開新對話都自動讀進來的專案指示，例如 AGENTS.md、CLAUDE.md、GEMINI.md；它是給 Agent 的脈絡，不是強制設定。", "Anthropic〈How Claude remembers your project〉"],
+    ["AGENTS.md", "跨工具的開放規則檔格式，像「給 Agent 的 README」；各工具讀它的規則不同，例如 Claude Code 只在沒有 CLAUDE.md 時才讀。", "OpenAI Codex 官方文件〈Custom instructions with AGENTS.md〉；Claude Code 官方文件〈Glossary〉"]
+  ]
 }

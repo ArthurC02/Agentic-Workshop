@@ -14,7 +14,7 @@
 
 ## 1. 剛才的順利，不是運氣
 
-G0（Greenfield 起始程式包）先備好了 16 條規則、15 項驗收條件與測試骨架；Agent（能讀寫檔案、協助寫程式的 AI 助手）因此知道什麼叫做對。
+G0（Greenfield 起始程式包）先備好了 16 條規則、15 項驗收條件與測試骨架；Agent（能自己讀寫檔案、執行指令來完成工作的 AI）因此知道什麼叫做對。
 
 - **本場回答三個問題**：Agent 怎麼知道做對了？怎麼知道要做什麼？人怎麼確認？
 
@@ -58,6 +58,8 @@ Agent 的運作方式是「做一點、看結果、再決定」。Anthropic 在�
 
 所以問題不在 Agent 勤不勤勞，而在它的迴圈裡有沒有可靠的回饋。如果唯一的回饋是它自己覺得「完成了」，那每一步都要靠你檢查。G0 先準備測試骨架，就是讓測試結果成為 Agent 的真相來源。
 
+這個迴圈也是 Agent 和聊天式 AI 助手的差別。Claude Code 官方詞彙表的說法是：聊天助手只回一段文字，要你自己貼上、自己執行；Agent 有工具，能讀檔、改檔、執行指令，看到結果再決定下一步。官方把這一圈稱為 agentic loop：收集脈絡、動手、驗證結果，重複到完成。常見誤解是「Agent 夠聰明，就不用給檢查」：迴圈轉得再快，沒有可靠的回饋，也只是很快地猜。
+
 **人工確認**：說得出剛才 Agent 每一步「看了什麼結果」才回報：是測試輸出，還是它自己覺得完成了。
 
 ## 4. 技巧：先給檢查，再請它做事
@@ -94,9 +96,9 @@ AC（Acceptance Criteria，驗收條件）：事先寫好、能明確判定符�
 
 - **寫給 Agent 的好處**：條件可判定，Agent 才能把它轉成測試，自己檢查。
 
-驗收條件寫得可判定，有兩個好處：人不讀程式也能判斷，因為你事先算好了預期數字；Agent 也能把條件直接變成測試，自己檢查。像「計價正常」這種句子，誰都沒辦法說它到底有沒有達成。
+驗收條件寫得可判定，有兩個好處：人不讀程式也能判斷，因為你事先算好了預期數字；Agent 也能把條件直接變成測試，自己檢查。像「計價正常」這種句子，誰都沒辦法說它到底有沒有達成。ISTQB 詞彙表的定義也是這個方向：驗收條件是元件或系統要被使用者、客戶或其他授權者接受前，必須滿足的條件。
 
-預期值要從規則推，而且要在看 Agent 回報之前就算好；先看回報再判斷，人很容易被一個看起來合理的數字說服。下週交辦任務前，先問自己：「完成時，我要看到什麼數字或畫面？」寫不出來，就請 Agent 先把需求改寫成可判定的條件，再由你確認。
+以 AC-G-005 為例：成人付基礎票價 700；學生是基礎票價的 75%，也就是 525；合計 1225，而且是整數。預期值要從規則推，而且要在看 Agent 回報之前就算好；先看回報再判斷，人很容易被一個看起來合理的數字說服。下週交辦任務前，先問自己：「完成時，我要看到什麼數字或畫面？」寫不出來，就請 Agent 先把需求改寫成可判定的條件，再由你確認。
 
 📖 延伸閱讀：〈Glossary〉（ISTQB，acceptance criteria 條目）
 
@@ -220,7 +222,7 @@ Simon Willison〈Context engineering〉（2025-06）引用 Shopify 執行長 Tob
 
 工作規則是把每一步都會用到的要求（流程、邊界、回報格式）先講一次，之後每段提示詞就能很短。剛才 Greenfield 檢查點 1 貼的 7 條規則就是這樣：做完一步就停、照分層放規則、不刪測試、固定格式回報。
 
-要知道它的限制：官方文件明說，規則是給 Agent 的脈絡，不是強制設定，Agent 可能漏做。一定要發生的事（例如不得刪測試），要靠測試、持續整合（CI：每次提交程式就自動跑檢查的機制）或權限把關，這是第四場的主題。另外，開新對話時，貼過的規則不會自動帶過去；寫成每次自動讀的規則檔，是第二場的內容。
+要知道它的限制：官方文件明說，規則是給 Agent 的脈絡，不是強制設定，Agent 可能漏做。一定要發生的事（例如不得刪測試），要靠測試、持續整合（CI：成員頻繁把變更合併回共用的程式碼，每次合併都自動建置與測試）或權限把關，這是第四場的主題。另外，開新對話時，貼過的規則不會自動帶過去；寫成每次自動讀的規則檔，是第二場的內容。
 
 📖 延伸閱讀：〈Adding repository custom instructions for GitHub Copilot〉（GitHub，官方文件）
 
@@ -385,6 +387,8 @@ Google Cloud 公布的 DORA 2025 報告（2025-09）：90% 受訪者在工作中
 
 交付摘要有七項：完成的功能與對應規則、驗收條件；修改的檔案；最後一次測試指令與總數；文件更新；未完成項目、仍被跳過的測試與風險；人和 Agent 各做了什麼；人工驗證。最容易被省略的是「未完成」與「未驗證」，偏偏這兩項是下一個人最需要的。
 
+Nygard 原文的 ADR 是一份短文字檔，只記一個重要決定，分五段：標題、背景（當時有哪些考量）、決定（我們要怎麼做）、狀態（提議中、已接受，或已被新決定取代）、後果（包含壞處）。下週可以請 Agent 把一個已核准的決定照這五段寫進 notes/；寫不出「後果」那段，通常代表取捨還沒想清楚。
+
 📖 延伸閱讀：〈Documenting Architecture Decisions〉（Michael Nygard，2011）
 
 **人工確認**：交付摘要如實列出未完成項目與「未驗證」，沒有把部分完成寫成完整交付。
@@ -423,6 +427,24 @@ Google Cloud 公布的 DORA 2025 報告（2025-09）：90% 受訪者在工作中
 - 挑一個專案，請 Agent 盤點現有檢查與沒被檢查到的需求（第 4 頁的提示詞）
 - 交辦一件工作前，先寫下完成時要看到的數字或畫面
 - 用交辦前的五個問題檢查一次，答不出的那題先補
+
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| Agent | 由 AI 模型自己決定步驟、使用工具（讀寫檔案、執行指令）來完成任務的系統。 | Anthropic Engineering〈Building effective agents〉 |
+| Coding Agent | 專做軟體開發的 Agent：能自己讀檔、改檔、執行指令與測試；聊天式助手只回文字，要你自己貼上執行。 | Claude Code 官方文件〈Glossary〉 |
+| Agent 迴圈（agentic loop） | 收集脈絡、動手、驗證結果，重複到完成；每一步的結果決定下一步。 | Claude Code 官方文件〈Glossary〉 |
+| 可執行的檢查 | Agent 自己能跑、會回報通過或失敗的檢查，例如測試、建置、畫面比對；有了它，Agent 能一直修到檢查通過。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
+| 驗收條件（AC，Acceptance Criteria） | 元件或系統要被使用者、客戶或其他授權者接受前必須滿足的條件；要寫到能判定符合或不符合。 | ISTQB〈Glossary〉 |
+| Gherkin | 用 Given（前提）／When（操作）／Then（結果）寫情境的格式；接上測試工具後才成為可執行的規格。 | Cucumber 官方文件〈Gherkin Reference〉 |
+| 規格驅動開發（Spec-driven development） | 先把需求、設計、任務寫成檔案，Agent 照規格做、人照規格審；多數做法只在開工前寫規格。 | martinfowler.com〈Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl〉 |
+| 脈絡工程（Context engineering） | 提供讓任務「有可能被模型解出來」的全部脈絡；重點從怎麼問，移到給它看什麼。 | Simon Willison〈Context engineering〉 |
+| 五段式提示詞 | 目標、背景／要讀的檔、限制、輸出格式、停止條件；五段是本課程的寫法，官方文件的重點相同：寫清楚、給脈絡、指名檔案。 | Anthropic〈Prompting best practices〉 |
+| 結構化輸出（Structured Output） | 本課程指用提示詞要求固定欄位或標題回報；API 的同名功能則用 JSON 結構定義強制格式。 | Anthropic〈Structured outputs〉 |
+| 持續整合（CI，Continuous Integration） | 團隊成員頻繁（至少每天）把變更合併回共用的程式碼，每次合併都由自動建置與測試驗證。 | Martin Fowler〈Continuous Integration〉 |
+| PR（Pull Request） | 把一組程式變更提議合併進專案；合併前讓別人討論與審查。 | GitHub 官方文件〈Pull requests〉 |
+| ADR（Architecture Decision Record，架構決策紀錄） | 一份短文字檔，只記一個重要的架構決定：背景、決定、狀態與後果。 | Michael Nygard〈Documenting Architecture Decisions〉 |
+| DORA | DevOps Research and Assessment：Google Cloud 旗下的軟體交付研究計畫，每年發布報告。 | Google Cloud〈Announcing the 2025 DORA Report〉 |
 
 ## 延伸閱讀
 - 〈Building effective agents〉（Anthropic，2024）

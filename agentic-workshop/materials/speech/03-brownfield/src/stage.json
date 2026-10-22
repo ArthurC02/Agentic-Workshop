@@ -9,5 +9,19 @@
     "這份講義整理技巧與人要判斷的事，不含任務解答。指令是示範用；沒有實際執行的結果一律視為未驗證。",
     "**這一段帶走什麼**\n\n- 接手舊系統：先問問題，結論要附出處\n- 答不好時先補需求與脈絡，最後才調模型與推論強度\n- 團隊規則進版本控制、邊界分三層、重複做法寫成 Skill\n- 修 Bug 先讓測試紅再綠；比較方案先看能不能還原\n- 程式能跑還不夠，人要說得出改了什麼、為什麼"
   ],
-  "handout_done": "說得出 Teammate 的介入方式（核准計畫，不盯每一步）；知道答不好時先補需求與脈絡、最後才調模型與推論強度；能分辨規則檔與 Skill，並為自己的工作寫下一條三層邊界規則，以及一個「先讓測試紅再綠」或「先比較再選」的做法。\n\n**下週可以做的事**\n\n- 接手陌生程式時，先請 Agent 說明資料流程，並標出哪些是「推測」\n- 把團隊規則歸成「一定做／先問我／絕不做」三層\n- 修下一個 Bug 前，先請 Agent 寫一個會失敗的測試"
+  "handout_done": "說得出 Teammate 的介入方式（核准計畫，不盯每一步）；知道答不好時先補需求與脈絡、最後才調模型與推論強度；能分辨規則檔與 Skill，並為自己的工作寫下一條三層邊界規則，以及一個「先讓測試紅再綠」或「先比較再選」的做法。\n\n**下週可以做的事**\n\n- 接手陌生程式時，先請 Agent 說明資料流程，並標出哪些是「推測」\n- 把團隊規則歸成「一定做／先問我／絕不做」三層\n- 修下一個 Bug 前，先請 Agent 寫一個會失敗的測試",
+  "terms": [
+    ["Brownfield／Greenfield", "Brownfield 是已有程式碼的既有專案，要先讀懂、先鎖住現有行為再改；Greenfield 是從頭開始的新專案。", "Addy Osmani〈Brownfield Agentic Engineering〉"],
+    ["Teammate（隊友）", "Agent 先和你一起分析、比較，你核准計畫後它才動手，中途不必每一步都等你。", "本課程〈歡迎與使用方式〉"],
+    ["模型選擇", "量大、明確的工作用較小較快的模型，要判斷的工作用較強的模型；先用預設，有證據再換。", "Anthropic〈Choosing the right model〉"],
+    ["推論強度（Reasoning Effort）", "同一個模型回答時投入多少思考、花多少 Token；越高越慢越貴，是微調旋鈕，補不了需求不清。", "Anthropic〈Effort〉；OpenAI〈Reasoning models〉"],
+    ["Skill（技能檔）", "一個含說明檔（SKILL.md）的資料夾，寫一套做法；平常只讀名稱與一句說明，任務相關時才讀全文。工作坊用簡化版：skills/ 裡一份 Markdown。", "Anthropic〈Agent Skills〉"],
+    ["三層邊界", "規則分成一定做、先問我、絕不做；「先問我」那層就是人要親自決定的事。", "GitHub〈How to write a great agents.md: Lessons from over 2,500 repositories〉"],
+    ["測試驅動開發（TDD）", "先為下一小段功能寫測試，再寫程式到測試通過，最後整理程式；常簡稱「紅、綠、重構」。", "Martin Fowler〈TestDrivenDevelopment〉"],
+    ["重現 Bug 的失敗測試", "修 Bug 前先寫一個現在會失敗的測試把問題重現出來；修好後同一個測試通過，就是不讀程式也看得懂的證據。", "Claude Code 官方文件〈Best practices for Claude Code〉"],
+    ["特性測試（characterization test）", "記錄舊程式目前實際行為的測試，不判斷對錯；改程式時用來發現有沒有不小心改到別的行為。", "Michael Feathers《Working Effectively with Legacy Code》；Addy Osmani〈Brownfield Agentic Engineering〉"],
+    ["事前引導／事後感測", "規則檔、Skill、計畫在動手前引導 Agent；測試、格式檢查在動手後讓它自己修正。", "martinfowler.com〈Harness engineering for coding agent users〉"],
+    ["PR（Pull Request）", "把一組程式變更提議合併進專案；合併前讓別人討論與審查。", "GitHub 官方文件〈Pull requests〉"],
+    ["認知債（Cognitive debt）", "程式能跑，但團隊裡沒有人真正懂它怎麼運作；Agent 改得越快越容易累積。", "Thoughtworks〈Technology Radar Vol. 34〉"]
+  ]
 }

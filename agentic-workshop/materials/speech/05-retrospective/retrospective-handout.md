@@ -2,7 +2,7 @@
 
 > 讀者：學員。時機：25 分鐘回顧講解。前置：已聽過前四段，或手邊有自己的 `notes/` 與 `skills/` 紀錄。
 
-本段以組織導入的研究證據與做法為主；範例提示詞選用，貼給你自己的 Coding Agent（能讀寫檔案、協助寫程式的 AI 助手），結果由你檢查。
+本段以組織導入的研究證據與做法為主；範例提示詞選用，貼給你自己的 Coding Agent（能自己讀寫專案檔案、執行指令與測試的 AI），結果由你檢查。
 
 **這一段帶走什麼**
 
@@ -18,7 +18,7 @@
 
 - **三個問題**：有沒有用要怎麼量？團隊怎麼一起用？風險在哪？
 
-- **怎麼聽**：對照你下週真的會交給 Agent（AI 助手）的一件工作。
+- **怎麼聽**：對照你下週真的會交給 Agent（能自己動手完成工作的 AI）的一件工作。
 
 **人工確認**：想好一件下週會交給 Agent 的工作，後面每頁都拿它來對照。
 
@@ -40,7 +40,7 @@ Tool → Teammate → Digital Worker：差別是人什麼時候介入；每一�
 
 第一場看過 DORA 2025：AI 放大原本的長處，也放大原本的短處。導入前要問：它會先放大你的哪一點？
 
-- **回顧第一場**：AI 採用與交付速度正相關，但與交付穩定度仍為負相關。
+- **回顧第一場**：AI 採用與交付量正相關，但與交付穩定度仍為負相關。
 
 - **導入前先盤點**：測試薄、審查慢、批量大：哪一項會先被放大？
 
@@ -134,7 +134,9 @@ Stack Overflow 2025 年調查中，45% 的開發者認為除錯 AI 程式碼更�
 
 每個數字都要事先講好口徑：分子、分母與資料來源，否則前後無法比較。本工作坊沒有量測效率或自主率，所以不要引用工作坊的數字當成效證據；要用的是你自己團隊導入前後的數字。
 
-📖 延伸閱讀：〈Manage costs effectively〉（Anthropic，官方文件）
+想和業界比較時，可以用 DORA 的軟體交付指標。dora.dev（2026-01 更新）列出五項：衡量交付量的變更前置時間（從提交到上線）、部署頻率、失敗部署的復原時間，以及衡量不穩定度的變更失敗率、部署重工率。常見誤解是「DORA 指標就是四項」：那是早年的版本，現在多了部署重工率。
+
+📖 延伸閱讀：〈Manage costs effectively〉（Anthropic，官方文件）；〈DORA's software delivery performance metrics〉（DORA，2026）
 
 **人工確認**：每個數字都有分子、分母與來源，而且導入前就量過一次。
 
@@ -171,6 +173,8 @@ Skill 不要憑空寫，要從 notes/ 裡你真的重複做過的事整理出來
 規則帶回團隊後，最常見的問題是沒人負責：越寫越長，沒人記得為什麼有某一行。Claude Code 官方文件建議把規則檔當程式碼對待：出問題時回頭檢查、定期修剪，並觀察 Agent 的行為有沒有真的改變。
 
 Agent 錯一次，就做一個決定：補一行規則，還是加一個自動檢查？一定要發生的事，補的是自動檢查。下週替團隊的規則檔指定一位負責人，排好第一次修剪的日期。
+
+官方文件也點出兩個常見症狀：Agent 明明有規則卻一直不照做，通常是規則檔太長，那一行被淹沒了；很多行都加上「重要」，等於沒有一行特別重要。所以修剪比加強調有效。
 
 📖 延伸閱讀：〈Best practices for Claude Code〉（Anthropic，官方文件）
 
@@ -231,6 +235,18 @@ Anthropic〈How AI is transforming work at Anthropic〉（2025-12）用問卷、
 - 從 notes/ 找一個重複做法，寫成 Skill 並試用一次
 - 寫下 30 天計畫的責任人、期限、成功標準與停止標準
 
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| DORA | DevOps Research and Assessment：Google Cloud 旗下的軟體交付研究計畫，每年發布報告。 | Google Cloud〈Announcing the 2025 DORA Report〉 |
+| 放大器 | DORA 2025 的結論：AI 會放大組織原有的長處與短處，不會自己修好一個團隊。 | DORA〈State of AI-assisted Software Development 2025〉 |
+| DORA AI 能力模型 | 七項會放大 AI 效益的能力：清楚的 AI 使用立場、健康的資料生態、AI 取得得到的內部資料、紮實的版本控制、小批量工作、以使用者為中心、高品質的內部平台。 | Google Cloud〈Introducing DORA's inaugural AI Capabilities Model〉 |
+| DORA 軟體交付指標 | 衡量交付量的變更前置時間、部署頻率、失敗部署復原時間，與衡量不穩定度的變更失敗率、部署重工率，共五項。 | DORA〈DORA's software delivery performance metrics〉 |
+| 小批量工作 | 一次只改一小塊、儘快驗證；出錯時退回的成本小。 | Google Cloud〈Introducing DORA's inaugural AI Capabilities Model〉 |
+| 基準（baseline） | 導入前先量一次的數字，事後才有比較的依據；每個數字都要先講好分子、分母與資料來源。 | Anthropic〈Manage costs effectively〉 |
+| 信賴區間 | 估計值可能落在的範圍；區間同時包含變快與變慢（跨過零）時，就不能確定有沒有變快。 | METR〈We are Changing our Developer Productivity Experiment Design〉 |
+| 認知債（Cognitive debt） | 程式能跑，但團隊裡沒有人真正懂它怎麼運作；Agent 改得越快越容易累積。 | Thoughtworks〈Technology Radar Vol. 34〉 |
+
 ## 延伸閱讀
 - 〈State of AI-assisted Software Development 2025〉（DORA，2025）
 - 〈Introducing DORA's inaugural AI Capabilities Model〉（Google Cloud，2025）
@@ -241,6 +257,7 @@ Anthropic〈How AI is transforming work at Anthropic〉（2025-12）用問卷、
 - 〈The results of the 2026 Developer Survey are here!〉（Stack Overflow，2026）
 - 〈2025 Developer Survey — AI〉（Stack Overflow，2025）
 - 〈Manage costs effectively〉（Anthropic，官方文件）
+- 〈DORA's software delivery performance metrics〉（DORA，2026）
 - 〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
 - 〈Best practices for Claude Code〉（Anthropic，官方文件）
 - 〈How AI is transforming work at Anthropic〉（Anthropic，2025）
