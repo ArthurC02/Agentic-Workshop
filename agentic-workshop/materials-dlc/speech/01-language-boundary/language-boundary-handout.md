@@ -60,15 +60,15 @@ Agent 沒聽過會議和茶水間的討論；對話一結束，就忘了你們�
 
 - **上下文有限**：塞太多，重要的規則反而被忽略。
 
-- **寫進 Repo**：語言與邊界寫成檔案，每個 Agent 都讀得到。
+- **寫進 Repo**：模型放 domain-memory，團隊決定寫進 AGENTS.md。
 
 Agent 每次開新對話都從零開始：它沒聽過你們的會議，也不知道上週大家同意用哪個名字。它能依靠的只有這次對話裡給它的內容，也就是上下文（context）。Anthropic 工程團隊 2025 年的文章說，上下文對 Agent 是關鍵但有限的資源；Birgitta Böckeler 2026 年在 martinfowler.com 也寫到，給太多上下文，Agent 的效果反而下降。
 
-所以團隊的語言與邊界要寫成檔案、放進 Repo，而且要短、要經人確認。本 DLC 用一個工具保存共用模型；換成 Repo 裡一份經過審查的 Markdown 詞彙表，道理相同。
+所以團隊的語言與邊界要寫成檔案、放進 Repo，而且要短、要經人確認。本 DLC 分兩處放：附證據、要核准的模型放在 domain-memory/；團隊自己的決定（選定的名字、不用的名字、邊界）每條一行，附出處，寫進專案根目錄 AGENTS.md 的「通用語言與邊界」。AGENTS.md 是給 Agent 看的專案說明，多數 Coding Agent 開新對話會自動讀它，下一個對話不必你重講，也會用同一個名字。換成 Repo 裡一份經過審查的 Markdown 詞彙表，道理相同。
 
-常見誤解：把所有文件都丟給 Agent 就好。內容越多，重要的規則越容易被淹沒；寫得短、寫得準，比寫得多有用。下週可以把團隊最常向新人解釋的三個名詞，寫成一頁放進 Repo。
+常見誤解：把所有文件都丟給 Agent 就好。內容越多，重要的規則越容易被淹沒；寫得短、寫得準，比寫得多有用。回到工作：把團隊最常向新人解釋的三個名詞，各寫一行定義和不用的名字，放進 Repo 的 AGENTS.md。
 
-📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic Engineering，2025）；〈Context Engineering for Coding Agents〉（Birgitta Böckeler／martinfowler.com，2026）
+📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic Engineering，2025）；〈Context Engineering for Coding Agents〉（Birgitta Böckeler／martinfowler.com，2026）；〈AGENTS.md〉（OpenAI，官方文件）
 
 **人工確認**：你的專案裡，有沒有一個名詞，不同人說的意思不一樣？
 
@@ -169,9 +169,9 @@ Agent 找名詞與證據；人決定標準名稱，並寫下「不要用的名�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請從我指定的文件、程式與測試裡，找出同一件事有兩個以上名字、或文件有而程式沒有的名詞。列成表：名詞、各處說法、證據（路徑:起-迄行）。不要替我選標準名稱，列完停下。
+我們要統一這個模組的用詞。先找出同一件事有兩個以上名字、或文件有而程式沒有的名詞，素材是 docs/、src/ 和 tests/。給我一張表：名詞、各處說法、證據行號；標準名稱我來選。
 
-這頁的指令示範分工：Agent 找出同一件事有幾個名字、各在哪裡出現；人決定標準名稱、寫定義，並寫下「以後不用的名字」。指令最後的「不要替我選」是關鍵：選名字就是定義模型，定義是人的事。
+這頁的指令示範分工：Agent 找出同一件事有幾個名字、各在哪裡出現；人決定標準名稱、寫定義，並寫下「以後不用的名字」。指令最後的「標準名稱我來選」是關鍵：選名字就是定義模型，定義是人的事。
 
 為什麼要寫「不用的名字」：Agent 下次讀到舊程式裡的舊名稱，如果詞彙表沒說它已停用，就可能把舊名稱帶回新程式。Forte Group 2026 年一篇廠商文章的說法是「拒絕才是決定所在」；這是觀點，不是研究。
 
@@ -269,7 +269,7 @@ Tornhill 稱為 change coupling：常在同一次 commit 一起改的模組，�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請從這個 Repo 的版本紀錄，找出最近一年最常在同一次 commit 裡一起修改的模組配對，列前 10 名：配對、一起改的次數、各自被改的次數。標出組裝程式、設定檔、分層資料夾這類跟什麼都一起改的項目。不要下邊界結論，列完停下。
+我想知道哪些模組其實綁在一起。從版本紀錄找出最近一年最常在同一次 commit 一起改的模組配對，給我前 10 名：配對、一起改的次數、各自被改的次數。組裝程式、設定檔這類跟什麼都一起改的標出來；邊界結論我來下。
 
 一起變更（change coupling）是指兩個以上的模組，在一段時間內常常一起被修改。CodeScene 的文件這樣定義，並建議拿結果和你的架構原則對照。Adam Tornhill 在《Your Code as a Crime Scene》（第二版，2024）與《Software Design X-Rays》（2018）介紹這類分析，資料就來自團隊本來就有的版本控制紀錄（Git 的 commit 歷史）。
 
@@ -291,7 +291,7 @@ DDD Crew 的 Bounded Context Canvas：先用業務語言寫目的，不寫技術
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請針對我指定的 Context，依 Bounded Context Canvas 的欄位提草稿：目的、它做的業務決定、使用的名詞、假設、待確認問題。每欄附證據（路徑:起-迄行），找不到的寫「待確認」。目的只列 2 個選項，由我決定。
+我想把這個 Context 寫成一張 Bounded Context Canvas，給新同事看。先填草稿：目的、它做的業務決定、使用的名詞、假設、待確認問題，每欄附證據行號，找不到的寫「待確認」。目的給我 2 個選項，我來定。
 
 Bounded Context Canvas（限界上下文畫布）是 DDD Crew（整理 DDD 工作坊工具的開源社群）提供的一張表，幫你把一個 Context 寫清楚。它的「目的」欄要求用業務語言寫幾句：這個 Context 為什麼存在、做什麼，不寫技術細節；其他欄位包括使用的名詞、它做的業務決定、假設與待確認問題。
 
@@ -337,7 +337,7 @@ Agent 很適合找「誰呼叫誰、誰讀誰的資料」，因為程式裡有�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請對照模型裡的 Context 與它們之間的協作，找出程式裡直接讀寫另一個 Context 資料或內部程式的地方。每筆附證據（路徑:起-迄行），寫出模型怎麼說、程式怎麼做。只列可疑處，不下結論，列完停下。
+我懷疑有 Context 繞過約定，直接讀寫別人的資料。對照模型裡的 Context 和它們的協作，列出可疑的地方：證據行號、模型怎麼說、程式怎麼做。是越界還是模型漏寫，我來判斷。
 
 邊界洩漏是指一個 Context 繞過約定好的介面，直接讀寫另一個 Context 的資料或內部程式。例如計價程式直接去改會員資料：金額算對、測試全過，但兩個 Context 從此綁在一起，之後改會員規則就可能悄悄弄壞計價。
 
@@ -399,6 +399,7 @@ Agent 找證據、人來定義；寫下來的都是候選，等另一個人核�
 - 〈Eric Evans Encourages DDD Practitioners to Experiment with LLMs〉（InfoQ，2024）
 - 〈Effective context engineering for AI agents〉（Anthropic Engineering，2025）
 - 〈Context Engineering for Coding Agents〉（Birgitta Böckeler／martinfowler.com，2026）
+- 〈AGENTS.md〉（OpenAI，官方文件）
 - 〈Best practices for Claude Code〉（Claude Code 官方文件）
 - 〈UbiquitousLanguage〉（Martin Fowler，2006）
 - Eric Evans《Domain-Driven Design》（2003）第 2 章〈Communication and the Use of Language〉

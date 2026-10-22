@@ -36,6 +36,8 @@ section: 參考
 
 | 詞彙 | 今天的用法 | 出處 |
 |---|---|---|
+| `AGENTS.md` | 放在 Repo 根目錄、給 Coding Agent 看的專案說明：怎麼跑、工作規則、審查準則，以及你們決定的名詞與邊界。多數 Coding Agent 開新對話會自動讀它；它是提醒，不是強制。讀不到就說「請先讀 AGENTS.md」。 | OpenAI〈AGENTS.md〉；Claude Code 官方文件〈How Claude remembers your project〉 |
+| Skill | 一套可重複使用的做法：一個資料夾裡的 `SKILL.md`，開頭 `name`、`description` 寫它叫什麼、什麼時候用；工具平常只讀名稱與說明，任務符合時才讀全文。今天開場裝好 5 個：`check`、`record-candidates`、`counterfactual`、`signed-commit`、`dlc-recovery`，提示詞寫「照 record-candidates…」就是用它。 | agentskills.io〈Agent Skills Overview〉；Anthropic〈Agent Skills〉 |
 | 來源（source） | 人確認過、可當證據的資料（路徑清單）。之後新增、刪除或改名檔案，Agent 會回報來源過期（`stale`）。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Before Step 0: Map repository sources〉 |
 | 證據（evidence）／`cite` | 指向某個檔案第幾行到第幾行的引用。Agent 寫進模型的每一句都要附證據；原文之後被改，Agent 會回報對不上。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
 | 候選（candidate） | 有證據、但還沒經過核准的主張。Agent 或任何人寫進模型的新內容都是候選，不可當成限制或事實。 | `vendor/domain-memory/references/reliability-architecture.md`〈State model〉 |

@@ -8,7 +8,7 @@
   <p class="muted">D1 沒做完或 D2 卡住：貼紅色便利貼，主持人會走過去</p>
   <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對）。同一台機器，但提案者和夥伴各用自己的 Agent 對話：夥伴另開終端機和新的 Agent 對話，兩人先各貼一次工作規則。每段提示詞都標了該由誰貼，檢查點頁也會寫是哪個對話。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D2 審查與核准（成對）。同一台機器，但提案者和夥伴各用自己的 Agent 對話：夥伴另開終端機和新的 Agent 對話，兩人各貼「開始前」那一行說明自己的角色；各能做什麼已寫在 AGENTS.md，Agent 會自己讀。每段提示詞都標了該由誰貼，檢查點頁也會寫是哪個對話。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 35 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
@@ -32,7 +32,7 @@
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『D2 審查與核准（成對）』›「開始前」</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備提案（變更審查包）；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就貼紅色便利貼，我們有降級路線。」</p>
-    <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼一次工作規則（Runbook「開始前」各有一段）。</p>
+    <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼 Runbook「開始前」的一行角色說明。兩個角色各能做什麼已寫在 AGENTS.md「兩個角色」，新對話會自己讀；夥伴的 Agent 先引用它說出這個對話不能做什麼，答不出來就請學員說「請先讀 AGENTS.md」。回到工作：誰能核准、誰只能提案，寫進團隊的 AGENTS.md，每個新對話都會照做；簽章提交這種一步步的做法，則是 signed-commit 這類 Skill。</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
     <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，私下提供給該組 <code data-code="dlc-rec-d2"></code>（已審查的 Domain Memory＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
@@ -48,12 +48,12 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「建立我的簽章金鑰」</b><span>Runbook『D2 審查與核准（成對）』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 38 分前完成</b><span>→ 下一步：檢查點 2 規定只有夥伴核准才算數（還是夥伴）</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 35 分）</b>：「第 35 分。輸入解鎖碼，從檢查點 1 開始。夥伴先建簽章金鑰，而且一定要在第一次提交共用模型檔案之前，否則之後 push 會被拒。金鑰放使用者資料夾的 .dlc-keys，不要放進 Repo，也不要放 .ssh。」</p>
-    <p><b>看</b>：夥伴是否另開了自己的 Agent 對話並貼了工作規則；Agent 回報的金鑰路徑在 <code>%USERPROFILE%\.dlc-keys\</code> 底下（不在 Repo 內）、signs_every_commit 為 true；Agent 沒有打開私鑰檔；兩人用同一種 shell。</p>
+    <p><b>看</b>：夥伴是否另開了自己的 Agent 對話、貼了「開始前」那一行，Agent 答得出這個對話不能做什麼；Agent 回報的金鑰路徑在 <code>%USERPROFILE%\.dlc-keys\</code> 底下（不在 Repo 內）、signs_every_commit 為 true；Agent 沒有打開私鑰檔；兩人用同一種 shell。</p>
     <p><b>介入訊號</b>：在提案者的 Agent 對話裡建立金鑰 → 停下，改在夥伴的對話做；金鑰落在會被 commit 的路徑 → 立即移走，請 Agent 確認 <code>git status</code>。</p>
     <p><b>技巧（加深一層）</b>：人工核准關卡——接回主課 B3 Gate：「Gate 是你決定 Agent 能否往下；今天多一條：提案的人不能核准自己。」花 30 秒講（Runbook 有「技巧・加深一層」框）。簽章 commit 與金鑰指紋只在學員問到時說：私鑰簽名、公鑰驗證，fingerprint 可公開。</p>
   </aside>
@@ -67,12 +67,12 @@
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「設定審查政策」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>提案者先下載 D2 範本</b><span>Runbook › 檢查點 3 的下載鈕</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 43 分前完成</b><span>→ 下一步：檢查點 3 整理提案並證明測試守得住（換提案者）</span></p>
   <aside class="notes">
     <p><b>說（03:00／第 38 分）</b>：「第 38 分。還是夥伴：把檢查點 2 的提示詞貼給你的 Agent，policy 三次修改的順序已寫好，不要讓 Agent 調換。governance-readiness 要說 ready，否則後面都會失敗。提案者趁這時先按檢查點 3 的下載鈕，把 D2 範本存到下載資料夾。」</p>
-    <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready（其他狀態是 needs-setup 或 working-memory）。</p>
+    <p><b>看</b>：Agent 回報的三次「舊值 → 新值」順序正確；fingerprint 是夥伴的；readiness 是 ready（其他狀態是 needs-setup 或 working-memory）。每次 amend-policy 都印出「every captured base revision is now stale」：這時還沒有提案，屬預期，不用處理。</p>
     <p><b>介入訊號</b>：readiness 是 needs-setup → 看 blocks 缺授權簽章者還是 hook；是 working-memory → review_mode 還沒改成 scm-verified；卡 5 分鐘上報。</p>
     <p><b>提示</b>：H1：請學員貼 Runbook 檢查點 2 的「失敗時」提示詞，讓 Agent 用白話解釋 blocks 缺哪一項，不要自己改設定。</p>
   </aside>
@@ -92,7 +92,7 @@
   <p class="cp-next"><b>第 48 分前完成</b><span>→ 下一步：檢查點 4 夥伴審查證據並決定核准（換夥伴）</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 43 分）</b>：「第 43 分。換提案者，用你自己的 Agent 對話。先讓 Agent 提兩個反事實方案，連同改壞後該看到的斷言，你選一個；只認 killed。D2 格式範本檢查點 2 時應已下載，Agent 會把它放進 worksheets。Agent 跑檢查時，提案者讀反事實檢查小卡、夥伴讀檢查點 4 ①。第 45 分我會看大家進度。」</p>
-    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各檔案候選數、方案改為 2 個；送出併進第二段，學員只回一句「送出」，不另貼第三段；送出後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
+    <p><b>省時</b>：下載移到檢查點 2（夥伴操作時）；第一段只回報各類別候選數、方案改為 2 個；送出併進第二段，學員只回一句「送出」，不另貼第三段；送出後 Agent 自己檢查並回成功／失敗，不另貼 ③。</p>
     <p><b>背景</b>：Change Package 放在 domain-memory/changes 底下，簽章 commit 會碰到 Registry 路徑，但不會改變 Registry 的雜湊值。</p>
     <p><b>看</b>：反事實方案是學員選的（不是 Agent 一路跑完）；Agent 回報 killed、reason 寫著符合 --expect，以及 failure_evidence 的斷言（範例是 700 == 595）；提案者的 Agent 沒有 record-approval 或 commit。</p>
     <p><b>介入訊號</b>：<b>45 分</b>：多數組尚未 submit → 把 Recovery 碼私下提供給卡住的組；任一步卡 5 分鐘即可私下提供給該組 <code data-code="dlc-rec-d2"></code>。</p>
@@ -117,7 +117,7 @@
   <aside class="notes">
     <p><b>說（13:00／第 48 分）</b>：「第 48 分。換夥伴，回到你自己的 Agent 對話。先讓 Agent 讀審查包、貼證據原文，你讀過再回核准或退回；只有你的回覆能讓簽章發生。看 git log --show-signature 有沒有 Good signature。」</p>
     <p><b>省時</b>：核准那段最後請 Agent 自己檢查並回成功／失敗（不重跑 verify-proposal），不另貼 ③；Agent 讀審查包時夥伴先讀「已審查事實」小卡。</p>
-    <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；commit 有沒有簽。</p>
+    <p><b>看</b>：核准指令出現在夥伴的對話；夥伴回核准前真的讀了 Agent 貼的證據（問他：「哪一行證據支持這條規則？」）；verify-proposal 回報 <code>Proposal test evidence verified.</code>；commit 有沒有簽。</p>
     <p><b>介入訊號</b>：在提案者的對話裡核准或 commit → 停下，說明為什麼要換到夥伴的對話；commit 未簽章 → 不要硬 push，請 Agent 解釋 sign-every-commit 設定與金鑰路徑。</p>
     <p><b>新概念</b>：這裡第一次介紹<b>已審查事實</b>（Runbook 檢查點 4 ④），花 30 秒講：經夥伴核准的模型是 Agent 必須遵守的限制，不能直接改寫；變更審查包在這裡順帶一句：它是夥伴要審的資料。</p>
     <p><b>讀紀錄本身</b>：Agent 會給出那條規則的紀錄檔路徑，請夥伴自己打開讀：人和 Agent 讀的是同一份文件，模型本身可以被審查。</p>
@@ -131,7 +131,7 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>夥伴的對話</i><b>貼 ②「驗證核准紀錄」</b><span>Runbook › 檢查點 5</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 56 分前完成</b><span>→ 下一步：檢查點 6 套用核准，模型成為事實（先提案者）</span></p>
   <aside class="notes">
@@ -149,7 +149,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「套用並驗證」</b><span>Runbook › 檢查點 6；這是第一段</span></li>
     <li><i>夥伴的對話</i><b>三個指令都成功才貼第二段</b><span>「簽章提交並 push」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 60 分前完成</b><span>→ 兩人聊「完成後想一想」、填「D2 決定」；下一步：休息</span></p>
   <aside class="notes">

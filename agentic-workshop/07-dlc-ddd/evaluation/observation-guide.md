@@ -22,11 +22,11 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 98 files`、`"version": "1.2.18"`，學員請 Agent 跑 ③ 確認結果、回「成功」才往下 |
-| O2 | H | 學員先貼工作規則、再貼提示詞，自己不打指令；Agent 的 Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py` |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 98 files`、`"version": "1.2.18"`，每步最後一行是 `check` Skill 的「成功」（沒有時學員貼 ③「用 check 檢查剛才這一段」）才往下 |
+| O2 | H | 學員只貼提示詞、不貼規則，自己不打指令；Agent 照 `AGENTS.md` 做事（Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py`）；5 個 Skill 已放到工具自動載入的位置，`AGENTS.md`「Skill」一節有它們的位置，起始 commit 含 `AGENTS.md` 與 Skill |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
-介入訊號：`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」；學員自己在終端機打指令或改指令 →「把 Runbook 的提示詞貼給 Agent，③ 回「失敗」就貼『失敗時』那一段」。
+介入訊號：`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」；學員自己在終端機打指令或改指令 →「把 Runbook 的提示詞貼給 Agent，check 回「失敗」就貼『失敗時』那一段」；Agent 沒照 `AGENTS.md` 做（沒經 dm 腳本、沒啟用 `.venv`）→ 請學員說「請先讀 AGENTS.md」，不重貼規則。
 
 ### 2.2 D1 共同語言與邊界（10–35）
 
@@ -38,8 +38,9 @@
 | O4 | A | `analyze-boundary` 用兩個不同 Context，學員能依 Agent 附的證據說出一個邊界洩漏 |
 | O5 | A | 劃 Context 時看得到兩種以上訊號（用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫），不是照資料夾分；同一個字兩種意思被記成兩個詞或先不建模，不是硬合成一個 |
 | O6 | E | 學員打開過一份規則紀錄檔（Markdown，開頭是狀態與證據、內文是敘述、最後是 `# Relations`），說得出裡面只有元素、關係與證據；選的缺口寫在 `notes/d1.md`，沒有寫進紀錄 |
+| O7 | A | `AGENTS.md`「通用語言與邊界」有學員自己的名詞處理與邊界判斷各一行、附 `notes/d1.md` 出處，寫的是學員的決定而不是 Agent 草稿原樣；之後各段的新對話照它用詞 |
 
-評估看 `notes/d1.md` 的證據與學員的決定（「D1 決定」只有三個選擇＋一個短文字），不因少填表扣分。
+評估看 `notes/d1.md`、`AGENTS.md`「通用語言與邊界」的證據與學員的決定（「D1 決定」只有三個選擇＋一個短文字），不因少填表扣分。
 
 介入訊號：Agent 憑空補 Compensation 實作或定義 →「證據在哪一行？」；學員對 Agent 的草稿一律回「同意」、沒看證據 →「挑一個，請 Agent 把它的 cite 原文念給你聽，你同意這個定義嗎？」
 
@@ -47,7 +48,7 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | H | 兩個 Agent 對話分清：`record-approval`、簽章 commit、push 只出現在 Maintainer 自己的 Agent 對話；proposer 的 Agent 沒碰 `.dlc-keys`、沒 commit（三人組由 Observer 看） |
+| O1 | H | 兩個 Agent 對話分清：`record-approval`、簽章 commit、push 只出現在 Maintainer 自己的 Agent 對話；proposer 的 Agent 沒碰 `.dlc-keys`、沒 commit（三人組由 Observer 看）；夥伴的 Agent 開頭引用了 `AGENTS.md`「兩個角色」，說得出自己不能做什麼 |
 | O2 | H | Maintainer 回「核准」前讀過 Agent 貼出的證據原文與測試結果，說得出一行證據支持哪條規則；不是 Agent 一停就回核准 |
 | O3 | E | counterfactual 方案由 proposer 選定，連同改壞後該看到的斷言（`--expect`）；結果只認 `killed`，`inconclusive` 不當成通過；Change Package 的測試結果來自實際執行（`fill_package.py`），沒有預填 PASS |
 | O4 | E | `notes/d2.md` 有 Agent 寫下的 readiness `ready`、obligation 結果、審查摘要與核准決定、簽章行；私鑰不在 Repo、不在截圖、不貼給 Agent |
@@ -64,7 +65,7 @@
 | C2 | A | Agent 每題提兩個選項＋證據，**學員自己選**（不是回「你決定」）；決策卡（`docs/handoffs/d3*.md`）在 Agent 改檔前完成，寫的是學員選的選項 |
 | C3 | H | Agent 先提計畫、學員回「同意」才動手；分段停下，學員看實際測試結果才回「繼續」；核心 AC 排在延伸之前、介面照卡上 API |
 | C4 | E | 學員看過 Agent 列的改壞方式才同意執行；每條登記的新規則有 `killed`；survived 時補測試用同一組字串重跑；未證明的在紀錄檔照實寫 |
-| C5 | E | 學員看過審查答案才同意登記；Agent 用 `make_record.py` 登記，措辭仍是候選；沒有執行 `record-approval`、`amend-policy`；D3b、D3c 的「模型有沒有變」逐筆對到變更簡報（`brief`）列出的已審查紀錄，不是 Agent 憑印象說「沒變」 |
+| C5 | E | 學員看過審查答案（照 `AGENTS.md`「審查準則」四題）才同意登記；Agent 照 `record-candidates` Skill（`make_record.py`）登記，措辭仍是候選；沒有執行 `record-approval`、`amend-policy`；D3b、D3c 的「模型有沒有變」逐筆對到變更簡報（`brief`）列出的已審查紀錄，不是 Agent 憑印象說「沒變」 |
 
 共同介入訊號：跳過選項直接叫 Agent 實作，或回「你決定」→「決策卡呢？owner 是誰選的？」；Agent 改既有測試期待值讓測試過 →「規格 R8 允許改寫哪些？理由寫在哪？」；只看 exit code →「`killed` 在哪？」
 
@@ -127,7 +128,7 @@
 
 ## 3. 輕量評分表（不排名）
 
-每組每條主軸給一個等級，附一句**觀察到的具體證據**（Agent 回報的指令輸出、`notes/` 或 `docs/handoffs/` 的紀錄、Diff 片段）。依「紀錄檔裡的證據＋學員有沒有做決定」判斷，不因表單少填扣分。沒有總分、不跨組比較；用途是課後回饋與改進教材。使用 Recovery 的段落標「Recovery」，不評該段產出，只評之後的行為。
+每組每條主軸給一個等級，附一句**觀察到的具體證據**（Agent 回報的指令輸出、`notes/` 或 `docs/handoffs/` 的紀錄、`AGENTS.md`「通用語言與邊界」裡學員寫的決定、Agent 照 Skill 做的痕跡（`check` 的成功／失敗行、`signed-commit` 先列檔案再 commit）、Diff 片段）。依「紀錄檔裡的證據＋學員有沒有做決定」判斷，不因表單少填扣分。沒有總分、不跨組比較；用途是課後回饋與改進教材。使用 Recovery 的段落標「Recovery」，不評該段產出，只評之後的行為。
 
 | 等級 | A. DDD 決策 | H. Human-in-the-loop | E. 證據與反事實紀律 |
 |---|---|---|---|

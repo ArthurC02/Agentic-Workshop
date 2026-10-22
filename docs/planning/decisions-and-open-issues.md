@@ -600,3 +600,14 @@ DLC 的改動：
 - 提示詞像交辦同事：只寫這次要什麼、為什麼、完成的樣子、素材在哪；規則與做法不在提示詞重寫，答案（例如錯誤碼、付款失敗狀態）移到需求文件。DLC 維持五段式。
 
 理由：規則放在工具會自動讀的檔，學員回到工作直接用得上；Agent 不會自動讀 `skills/*.md`，每段都得叫它先讀，提示詞因此冗長且重複；標準 Skill 在主流工具會依 description 自動用上。查核的事實與設計見 `docs/planning/main-course-practice-first.md`；自動載入的版本條件寫在主持用的環境準備文件。風險：自動載入依工具版本，且提示詞變短更依賴 Agent 判斷，需三條路徑（Greenfield、Time Skip→回顧、Recovery）完整演練確認。
+
+## DLC 實戰化：團隊 AGENTS.md、5 個 Skill、交辦式提示詞（2026-10-23）
+
+延續主課程同一則回饋（「參考內容，而不是設計」「Prompt 要符合實際工作狀況」「AGENTS.md 這類實戰知識要進課程」），DLC 照主課程的做法改，重點仍是和 Agent 一起做 DDD，domain-memory Plugin 只是工具。決定：
+
+- 起始 Repo 附團隊的 `AGENTS.md`（`scripts/package-manifest-dlc.json` 的 `participant-dlc-open` generated，落在 `repository/smart-ticket-dlc-base/`；不改 `repository/` 原始檔、不附 `CLAUDE.md`）：怎麼跑（Python 3.13 venv、`dm` 腳本在 Windows／macOS 的呼叫、Plugin 指紋核對、下載資料夾、換行）、Git 與金鑰（身分只設在 Repo、金鑰在 Repo 外 `~/.dlc-keys/<身分>/`）、工作規則、兩個角色（D2 起提案者／夥伴）、領域模型規則（`domain-memory/` 只經 Plugin 與輔助腳本寫入、候選與已審查、證據來源、改已審查要新 id 加核准）、通用語言與邊界（D1 檢查點 6 由學員的決定寫入）、審查準則（D3 的四題）、Skill。
+- 學員包 `skills/` 附 5 個標準 Skill（`check`、`record-candidates`、`counterfactual`、`signed-commit`、`dlc-recovery`），開場檢查點 1 由 Agent 放到工具會自動載入的位置並記進 `AGENTS.md`；起始 commit 一起進版本。Plugin 自帶的 Skill 不動，只在 `AGENTS.md` 指向 `vendor/domain-memory/` 當參考。
+- 每個 ③ 改成「用 check 檢查剛才這一段」（`check_blocks.py` 兩版一致）；提示詞改成交辦（`dm <指令>` 寫法，不再分 Windows／macOS 分頁）；固定格式移到學員包範本（D2 簽章清單、D3 決策卡、D4 交接範本；D3a、D4 檢查點 1 新增下載）；Recovery 步驟 1 在 `dlc-recovery` Skill（與 `make_recovery.SAVE_PS／SAVE_SH` 相同，`scripts/test_dlc_recovery_skill.py` 守著），步驟 2–3 在各 Recovery 包的 `RECOVERY.md`（由 `make_recovery.recovery_md` 重新產生；只重寫 RECOVERY.md，bundle 與簽章歷史未動）。
+- 提示詞總長 165,660 → 25,937 字（177 → 175 段，中位數 231 → 92，最長 5,914 → 629）。檢查點標題、分鐘、解鎖碼、表單 id 不變；`check_dlc_plugin_compat.py` 32 PASS／0 CHANGED，QUOTED 清單未改（從學員頁移走的 `"state": "brownfield"` 等三個 readiness 字樣與 `Proposal test evidence verified.` 改放主持人簡報備註）。
+- 演練（Windows，三條路徑：開場→D1→D2 含過期基準、D2 Recovery→D3a→D3b、D3b Recovery→D3c→D4→回顧）全部跑通；Claude Code 2.1.288／2.1.304 實測新對話自動讀 `AGENTS.md`、`check` Skill 依說明自動用上、`resume-<段>` 複製來的 Skill 也會載入；2.1.266 不讀 `AGENTS.md`（主持人指南常見問題第 21 列）。發現已修（D2 檢查點 4 驗證沒過就停、過期基準的兩列常見問題、D3b／D3c 的 brief 漏列、D4 範本的 id 查證與重複候選、Recovery 的 RECOVERY.md 完整路徑）。
+- 待決：D3a／D3b／D3c 的實作檢查點（7–9 分鐘）演練估計要 12–15 分鐘，D3c 整段約 37–40 分鐘，分鐘依規定未改；需求卡 03 沒有一定要改寫的既有測試，頁面改成「不改寫既有測試並附理由」也算對。

@@ -8,7 +8,7 @@
   <p class="muted">D3b 落後：貼紅色便利貼，主持人會走過去</p>
   <p class="sync-cue" data-sync="解鎖碼 主持人">⏸ 看投影</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話就先重貼 D3a 頁的工作規則。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3c 團體部分退款，從檢查點 1 開始。沿用提案者的 Agent 對話；換了新對話，開頭說一句你是提案者，Agent 會自己讀 AGENTS.md。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 30:00 段落計時（00:00＝第 125 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
@@ -49,7 +49,7 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②＋需求卡全文</b><span>Runbook『D3c 團體部分退款』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>對帳等式每一項從哪裡來；看懂了，之後才抓得到算錯</p>
   <p class="cp-next"><b>第 128 分前完成</b><span>→ 下一步：檢查點 2 Aggregate（聚合）邊界與不變量</span></p>
@@ -70,7 +70,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「選項與可改的測試」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>兩人聊完回選擇</b><span>看完可改的測試再回「同意」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每個要改寫的既有測試都對得到需求卡條目（PCR），才回「同意」</p>
   <p class="cp-next"><b>第 133 分前完成</b><span>→ 下一步：檢查點 3 交接單與 Agent 實作</span></p>
@@ -92,7 +92,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「照交接單實作」</b><span>Runbook › 檢查點 3</span></li>
     <li><b>計畫回「同意」</b><span>每段看過結果再回「繼續」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>第一步是唯一入口；每段失敗 0 個、只改允許的測試</p>
   <p class="cp-next"><b>第 142 分前完成</b><span>→ 下一步：檢查點 4 反事實檢查（沒做完也要進）</span></p>
@@ -113,7 +113,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
     <li><b>看過再回「同意」</b><span>你們同意後 Agent 才跑</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每一條新規則都有一處改壞方式才同意；只認 <code>killed</code></p>
   <p class="cp-next"><b>第 148 分前完成</b><span>→ 下一步：檢查點 5 審查變更，新知識寫回模型</span></p>
@@ -133,14 +133,14 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
     <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>四題都沒問題才同意；每條規則寫了它守的 Aggregate</p>
   <p class="cp-next"><b>第 152 分前完成</b><span>→ 下一步：檢查點 6 停手與揭曉對照</span></p>
   <aside class="notes">
     <p><b>說（23:00／第 148 分）</b>：「第 148 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3c-*.json</code> 會進 commit，屬預期。</p>
-    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對交接單「允許改寫的既有測試」與工作規則第 7 條（改既有測試要先停下說明、等學員同意）。</p>
+    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，請學員說「對照交接單『允許改寫的既有測試』和 AGENTS.md 工作規則第 7 條，不在清單內的改回來」（改既有測試要先停下說明、等學員同意）。</p>
     <p><b>第 150 分決定 Recovery</b>：掃一圈，核心還沒跑起來、Review 做不完的組，現在決定是否改用 D3c Recovery；決定的組揭曉後立即私下給碼（不等第 155 分），D4 只做最低完成線。</p>
     <p><b>重構不是模型變更</b>：Agent 先讀變更簡報（brief --base HEAD），逐筆問名詞、負責的 Context、不變量或規則、邊界、事件或對外約定有沒有變；只搬移程式的部分不登記。參考實作會列出 REFUND-004（一筆訂票只能退一次），這條意思變了，要新 id。</p>
     <p><b>加深一層</b>：<b>規則守的是哪個 Aggregate</b>（Runbook 檢查點 5 ④），花 30 秒講：d3c-records.json 的每條規則寫上 aggregate；規則和那個 Aggregate 不在同一個 Context，Plugin 直接拒絕登記（訊息含 belongs to context …, which the record does not name）。被拒絕不是工具故障，是邊界可能畫錯，請學員決定規則換 Context 還是 Aggregate 範圍不對，不讓 Agent 刪掉 aggregate 硬過。</p>
@@ -154,7 +154,7 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「整理 5 行決策摘要」</b><span>Runbook › 檢查點 6</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
     <li><b>對照投影的參考設計</b><span>兩人聊 ④ 三題，再填「D3c 揭曉對照」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看或 Agent 自己補的</p>

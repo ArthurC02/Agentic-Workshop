@@ -61,7 +61,7 @@
   <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
-    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載、解壓縮到習慣的位置（例如下載資料夾），用 Agent 開啟 <code>smart-ticket-dlc-base</code>，把工作規則和檢查點 1 的提示詞接在一起一次貼。</p>
+    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載、解壓縮到習慣的位置（例如下載資料夾），用 Agent 開啟 <code>smart-ticket-dlc-base</code>，開新對話貼檢查點 1 的提示詞：Agent 先把學員包的 5 個 Skill 放到會自動載入的位置，再照 <code>AGENTS.md</code> 備好環境。</p>
   </aside>
 </section>
 
@@ -71,7 +71,7 @@
   <ul class="seg-brief">
     <li><b>情境</b><span>你接手訂票後端，今天和 Agent 建立共用的領域模型</span></li>
     <li><b>目標</b><span>測試全過、工具可信、知道哪些錯只能靠人抓</span></li>
-    <li><b>今天的技巧</b><span>先講好「看到什麼算成功」，Agent 的回報對得上才往下</span></li>
+    <li><b>今天的技巧</b><span>做法寫在 AGENTS.md 和 Skill；提示詞只交代這次的事</span></li>
   </ul>
   <ol class="timeline">
     <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 確認起點：測試全部通過</b><span class="tl-due">第 3 分前</span></li>
@@ -82,7 +82,7 @@
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『開場與環境』› 檢查點 1</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
-    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 80 files）由 ③ 確認結果檢查。之後每段都一樣。</p>
+    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 98 files）由 check Skill 對照實際輸出檢查。之後每段都一樣。</p>
     <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 8 分）。</p>
     <p><b>降級</b>：第 10 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
   </aside>
@@ -95,15 +95,15 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>下載、解壓、開 Agent</b><span>解壓到下載資料夾，開 Repo 資料夾</span></li>
-    <li><b>規則接 ② 一次貼</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
+    <li><b>貼 ②「備好環境」</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 3 分前完成</b><span>→ 下一步：檢查點 2 備好可信的共用模型工具</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓縮後用 Agent 開啟 smart-ticket-dlc-base，把工作規則和提示詞接在一起一次貼，讓 Agent 安裝依賴、跑測試，要看到 76 passed；最後一行它會自己回成功或失敗。等安裝時先讀檢查點 2 的 ①。」</p>
-    <p><b>省時</b>：規則與檢查點 1 提示詞合成一次貼上（規則最後一句已改成「後面接著有指示就直接做」）；② 最後請 Agent 自我檢查並回成功／失敗，學員不必再貼 ③（沒看到才貼）。</p>
-    <p><b>看</b>：學員貼的內容開頭是不是工作規則；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
-    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 檢查點 1 的「失敗時」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源）；不要全場等。</p>
+    <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓縮後用 Agent 開啟 smart-ticket-dlc-base，開新對話貼提示詞：Agent 先把 5 個 Skill 放到會自動載入的位置，再照 AGENTS.md 安裝依賴、跑測試，要看到 76 passed；最後一行它會用 check 自己回成功或失敗。等安裝時先讀檢查點 1 的 ④ 小卡。」</p>
+    <p><b>AGENTS.md 與 Skill（花 20 秒講 ④ 小卡）</b>：專案的做法（怎麼跑、Git 與金鑰、工作規則、兩個角色、審查準則）已寫在 Repo 的 AGENTS.md，每個新對話會自己讀；一步步的做法在 5 個 Skill（check、record-candidates、counterfactual、signed-commit、dlc-recovery）。所以之後的提示詞只交代這次的事，每個 ③ 都是「用 check 檢查剛才這一段」；② 結尾多半已請 Agent 用 check，學員看到成功或失敗就不必再貼 ③。一句話帶過：AGENTS.md 放每次都要的事，Skill 放一步步的做法；回到工作的第一步，是把團隊每次都要重講的一件事寫進 AGENTS.md。</p>
+    <p><b>看</b>：Agent 回報了 Skill 的完整路徑，AGENTS.md「Skill」一節最後多了一行位置；Agent 是否在 Repo 根目錄、沒有跑 <code>pip install -e .</code>；回報是 76 passed 而不是 error。學員自己在打指令 → 提醒「把提示詞貼給 Agent 就好」。</p>
+    <p><b>介入訊號</b>：3 分鐘仍裝不起來 → 請學員貼 Runbook 檢查點 1 的「失敗時」提示詞，讓 Agent 先解釋錯誤（Python 版本、網路、pip 來源）；不要全場等。新對話的 Agent 答不出 AGENTS.md 的規則 → 請學員說「請先讀 AGENTS.md」。</p>
   </aside>
 </section>
 
@@ -115,7 +115,7 @@
   <ol class="cp-flow">
     <li><b>貼 ②「核對工具」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>等 Agent 回報</b><span>工具檔案全部相符才往下</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 5 分前完成</b><span>→ 下一步：檢查點 3 找出只能靠人審查的錯</span></p>
   <aside class="notes">
@@ -132,13 +132,13 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「兩個唯讀檢查」</b><span>Runbook › 檢查點 3</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 8 分前完成</b><span>→ 下一步：檢查點 4 確認環境並建立起始版本</span></p>
   <aside class="notes">
     <p><b>說（05:00／第 5 分）</b>：「第 5 分。檢查點 3：Agent 用兩個唯讀檢查看這個 Repo。記住：這個 Repo 沒有架構檢查，程式越過 Context 邊界只有你們抓得到，D3 審查時會再問。」</p>
-    <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] registry_tools.py ...</code>）；結果是 brownfield 還是 greenfield。</p>
-    <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → Agent 沒走 dm 腳本；請學員重貼工作規則（第 4 條要求 Plugin 一律經 dm 腳本）。</p>
+    <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] registry_tools.py ...</code>）；結果應是 <code>"state": "brownfield"</code>、<code>"confidence": "high"</code>，quality-gates 只有 <code>"tool": "pytest"</code>（沒有 lint、型別、架構檢查）。</p>
+    <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → Agent 沒走 dm 腳本；請學員說「照 AGENTS.md『怎麼跑』，Plugin 一律經 dm 腳本」，還是不行就說「請先讀 AGENTS.md」。</p>
     <p><b>提示</b>：H1：「請 Agent 說明它用哪種終端機、經過哪支 dm 腳本。」</p>
   </aside>
 </section>
@@ -157,7 +157,7 @@
   <p class="sync-cue" data-sync="夥伴">⏸ 看投影</p>
   <aside class="notes">
     <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它在 PATH 上找 python3 或 python（3.10 以上）；Windows 上常只有 py 啟動器或 Store 捷徑，所以 push 前要先啟用 .venv。這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
-    <p><b>省時</b>：② 第 6 項的回報和 ③ 檢查相同，已請 Agent 在最後一行自己回成功／失敗，學員不必再貼 ③；找夥伴放在等 Agent 的時間。</p>
+    <p><b>省時</b>：② 最後已請 Agent 用 check 自己檢查，最後一行回成功／失敗，學員不必再貼 ③；找夥伴放在等 Agent 的時間。</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
     <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（在同一個指令裡先啟用 .venv，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
   </aside>

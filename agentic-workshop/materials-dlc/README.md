@@ -5,8 +5,10 @@
 ## Runbook 的寫法（複製提示詞即可通關）
 
 - 每段頁首一張「現在在做什麼」卡（情境、目標、今天的技巧、完成的樣子），段落結尾用「完成後想一想」（3 題）收尾；檢查點總覽用條列（分鐘＋要做什麼），不用表格。
-- 每個檢查點分四塊：① 為什麼做這一步（人要判斷的事寫在這裡）→ ② 貼給 Agent（指令依系統不同時用 Windows／macOS 分頁）→ ③ 確認結果（Agent 只回「成功」或「失敗：原因」，下方接一段「失敗時」補救提示詞）→ ④ 補充（技巧／新概念小卡、「💬 討論一下」，有才出現）。
-- Plugin、`make_record.py`、Git 與 pytest 指令原樣寫進提示詞，由學員的 Coding Agent 執行並白話回報；需要人決定時，Agent 先列選項或草稿並停下，學員只回「同意」「選 B」「第 3 項不要」這類短回覆。學員頁面不放要學員自己打的指令區塊。
+- 每個檢查點分四塊：① 為什麼做這一步（人要判斷的事寫在這裡）→ ② 貼給 Agent（```text，多半以「做完用 check 檢查。」結尾）→ ③ 確認結果（一行「用 check 檢查剛才這一段」，最多再加一句這一步的條件；`check` Skill 只讀，最後一行回「成功」或「失敗：原因」；下方接一段「失敗時」補救提示詞）→ ④ 補充（技巧／新概念小卡、「💬 討論一下」，有才出現）。
+- 提示詞像交辦工作：只寫這次的事、完成的樣子和素材在哪。每次都要的做法在起始 Repo 附的團隊 `AGENTS.md`（`scripts/package-manifest-dlc.json` 中 `participant-dlc-open` 的 `generated` 項），一步步的固定做法在 5 個 Skill（`07-dlc-ddd/participant/skills/`，開場檢查點 1 由 Agent 安裝），固定格式在 worksheets；提示詞不貼規則、不重寫停下等我或回報格式。D2「開始前」每個對話只貼一行角色宣告；學員在 D1 把名詞與邊界的決定寫進 `AGENTS.md`「通用語言與邊界」。
+- Plugin 指令寫成 `dm <指令> <參數>`（`AGENTS.md` 對應到 `dm.ps1`／`dm.sh`，不分 Windows／macOS 分頁），固定參數原樣寫；由學員的 Coding Agent 執行並白話回報；需要人決定時，Agent 先列選項或草稿並停下，學員只回「同意」「選 B」「第 3 項不要」這類短回覆。學員頁面不放要學員自己打的指令區塊。
+- Recovery 頁三步：步驟 1 是 `dlc-recovery` Skill（與 `make_recovery.py` 的 `SAVE_PS`／`SAVE_SH` 一致，`scripts/test_dlc_recovery_skill.py` 檢查），步驟 2–3 是各包 `RECOVERY.md` 第 2–3 節。
 - 紀錄由 Agent 寫進學員 Repo：各段 `notes/<段落>.md`、決策卡與交接單在 `docs/handoffs/`。表單每段最多一張，只留人的決定，以下拉與勾選為主（最多 3 欄＋1 個短文字欄）。
 - D2 起兩人共用一台機器：夥伴另開終端機與自己的 Agent 對話，金鑰、`record-approval`、簽章 commit 與 push 只在那個對話裡、由夥伴讀過審查包後下指令（D3a–c 檢查點 5 與 D4 的 commit 也沿用它）；提案者的 Agent 不 commit、不 push、不讀 `.dlc-keys`，也不代替核准。
 - 檢查點名稱改動時，Runbook 標題、`CHECKPOINTS.md` 與簡報 `data-title`／時間軸要一起改。

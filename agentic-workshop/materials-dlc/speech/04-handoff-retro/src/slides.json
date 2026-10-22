@@ -47,7 +47,7 @@
   {
     "id": "cite", "chapter": "交接", "title": "看起來合理的名字最危險",
     "lead": "第 01 場看過：模型會編出看起來合理的名字。加深一層：交接單裡的每個 id，都要逐一查證。",
-    "prompt": "不要修改任何檔案。請把這份交接單引用的每個 id 與檔案路徑列出來，逐一到共用模型與 Repo 查證：查得到、查不到、或狀態不同（例如寫成已審查事實，其實是候選）。列成表，查不到的不要自己補，列完停下。",
+    "prompt": "交接單明天要給下一位，送出前幫我查證：引用的每個 id 與路徑，到共用模型和 Repo 查，標查得到、查不到或狀態不同（例如寫成已審查，其實是候選）。查不到的不要自己補。",
     "cards": [["為什麼會錯", "Agent 照格式「合理地」編出名字。"], ["人看什麼", "表裡有沒有「查不到」或「狀態不同」。"]],
     "check": "你的交接單裡，有沒有一個 id 第一次查不到？",
     "explain": ["第 01 場看過：模型會編出看起來合理的套件名稱。交接單裡的 id 是同一種風險：格式對、看起來合理，卻查不到，或狀態不對（例如寫成已審查事實，其實還是候選）。", "給了正確的上下文，也不保證照做：Böckeler 2025 年比較幾種規格驅動開發（先寫規格、再讓 Agent 實作）工具時寫到，她常看到 Agent 最後沒有遵守全部指示。所以交接單的每個 id 與路徑都要逐一查證，查不到的不要讓 Agent 自己補。", "下週可以在團隊的交接或 PR 範本加一條「引用的 id 與路徑都已查證」，並請 Agent 交出查證表，而不是只說「都查過了」。"],
@@ -57,7 +57,7 @@
   {
     "id": "drift", "chapter": "模型維護", "title": "模型會落後程式：定期回收",
     "lead": "程式一直在變，人與 Agent 都會照著既有寫法複製；模型和程式的落差要定期清，不是寫一次就好。",
-    "prompt": "不要修改任何檔案，也不要試著修好。請比對共用模型與目前的程式：列出模型有、但程式已經不同的規則，和程式有、但模型還沒記的規則，每筆附模型 id 與檔案路徑:行號。列成表，列完停下。",
+    "prompt": "這次大改完，我想知道模型和程式差多少。列出模型有、但程式已經不同的規則，和程式有、但模型還沒記的規則，每筆附模型 id 與行號。不要試著修好，落差怎麼處理我決定。",
     "cards": [["不要硬改", "落差寫成新候選或 Unknowns，等人核准。"], ["定期做", "每次大變更後跑一次，像垃圾回收。"], ["擋在門口", "引用沒跟上，commit 就進不來。"]],
     "check": "Agent 回報落差時，有沒有想自己「修好」它？",
     "explain": ["模型漂移是指共用模型和程式慢慢對不上：程式一直在變，模型沒跟上。Thoughtworks 技術雷達第 34 期指出，Agent 和人都會照著既有寫法複製，包括不好的寫法，所以漂移會累積；他們用垃圾回收比喻：要定期清，不是寫一次就好。", "清的方式：請 Agent 比對模型與程式，列出兩個方向的落差，但不要讓它自己修好。落差可能是程式改錯了，也可能是模型該更新了；哪一個是業務判斷，要寫成新候選或 Unknowns（未知事項）等人核准。", "也可以擋在門口：pre-commit hook（commit 前 Git 自動執行的檢查腳本）回報失敗時，Git 會在建立 commit 之前中止；D4 用它擋下改到被引用的程式、引用卻沒跟上的 commit。下週可以在每次大變更後排一次比對。", "課程例子：D3 加了新檔案，D4 一開始工具就回報「來源過期」；引用的程式只是換了位置叫 shifted，內容變了叫 stale。前者是重構留下的痕跡，重新指向即可；後者要逐項問：是程式改錯了，還是模型該更新？這兩種回報正是漂移的早期訊號，越早處理越便宜。"],
@@ -67,7 +67,7 @@
   {
     "id": "eval", "chapter": "模型維護", "title": "評估 Agent：和人審過的模型比",
     "lead": "讓 Agent 從程式重新整理一份模型，和人審查過的逐筆配對：它漏了什麼、多編了什麼。",
-    "prompt": "先不要修改任何檔案。請只讀程式，重新整理一份名詞、Context 與規則清單，這一步不要讀共用模型。整理完再和共用模型裡已審查的紀錄逐筆配對，列三張表：配對成功、已審查但你沒找到、你找到但沒有已審查紀錄的。最後算精確率與召回率，列完停下。",
+    "prompt": "換模型前，想先量一次你整理模型的能力。先只讀程式、不讀共用模型，整理一份名詞、Context 與規則清單；再和模型裡已審查的紀錄逐筆配對，給我三張表：配對成功、已審查但你沒找到、你找到但沒有已審查紀錄的，最後算精確率與召回率。",
     "cards": [["漏掉的", "人審過、Agent 沒找到：召回率低。"], ["多出的", "Agent 有、人沒認可：精確率低。"], ["先讀清單", "分數只看結構；漏掉與多出逐筆讀。"]],
     "check": "多出來的那幾筆，是 Agent 編的，還是人漏審的？",
     "explain": ["評估（eval）Agent 的做法：讓 Agent 只讀程式、重新整理一份模型，和人審查過的模型逐筆配對；人審過的模型就是基準答案。兩個指標依 Google 機器學習速成課程的定義：精確率（precision）是 Agent 提出的裡面有多少是對的；召回率（recall）是該找到的裡面 Agent 找到多少。", "算一次就懂：人審過的模型有 20 條規則，Agent 只讀程式整理出 18 條，其中 15 條配得上。精確率＝15÷18，約 0.83，表示 Agent 寫的有八成多是對的；召回率＝15÷20＝0.75，表示該找的找到四分之三。漏掉的 5 條和多出的 3 條才是要讀的地方。Google 機器學習速成課程也提醒，兩個指標常常此消彼長：要 Agent 寫得保守，精確率升、召回率降；要它寫得完整，反過來。", "分數不能只看數字。Anthropic 2026 年的〈Demystifying evals for AI agents〉說，他們不照單全收評估分數，要讀實際紀錄；用模型當評分者時，也要和人類專家校準。所以一定要讀兩張清單：多出的可能是 Agent 編的，也可能是人漏審的真規則；措辭不同、意思一樣的規則，可能被算成漏掉。和基準一字不差的配對多半是照抄來的，算分前要排除。", "研究也這樣做：Mancas 等人在 MODELS 2026 的論文，用本機執行的開源模型從 10 個 Java 專案擷取領域模型，對照人整理的參考模型，作者自量類別的精確率 0.84、召回率 0.97；作者也提醒，參考模型只是一種合理的理解，不是唯一正解。回到團隊：換模型、改提示詞前後各跑一次，才知道有沒有變好。"],
@@ -77,21 +77,21 @@
   {
     "id": "curated", "chapter": "模型維護", "title": "團隊共用的 Agent 指示是工程資產",
     "lead": "規則檔不是個人習慣：放進版本控制，像程式一樣審查與維護。",
-    "cards": [["放哪裡", "每次對話都會讀的規則檔，例如 AGENTS.md、CLAUDE.md。"], ["放什麼", "通用語言、不用的同義詞、哪些事要先問人。"], ["誰維護", "改規則也要審查，和改程式一樣。"]],
+    "cards": [["放哪裡", "專案根目錄的 AGENTS.md，開新對話自動讀。"], ["放什麼", "通用語言、不用的同義詞、哪些事要先問人。"], ["誰維護", "改規則也要審查，和改程式一樣。"]],
     "check": "你的團隊裡，有沒有一份大家共用、而且有人審查的規則檔？",
-    "explain": ["Thoughtworks 技術雷達第 34 期把「團隊共用、經過整理的 Agent 指示」列為 Adopt（建議採用）：把給 AI 的指引當成協作的工程資產，而不是個人習慣。條目並列多種工具的規則檔（例如 AGENTS.md、CLAUDE.md、.cursorrules），本課不指定工具。", "和 DDD 的關係：通用語言、不用哪些同義詞、哪個 Context 負責什麼、哪些事要先問人，是最值得放進共用指示的內容。這是主課 Skill 與共同規則的加深一層：規則檔放進版本控制，改規則也要審查，和改程式一樣。", "下週可以收集團隊成員各自的 Agent 規則檔，挑出大家都寫了的幾條，合成一份放進 Repo，並指定一位審查者。", "和 DDD 的對應：共用指示裡的名詞表，就是通用語言在 Agent 身上的那一份；它也該只屬於一個 Context。把兩個 Context 的名詞寫進同一份規則檔、又沒標明範圍，Agent 會把它們當成同一套語言，這正是第 01 場說的同字異義問題。"],
+    "explain": ["Thoughtworks 技術雷達第 34 期把「團隊共用、經過整理的 Agent 指示」列為 Adopt（建議採用）：把給 AI 的指引當成協作的工程資產，而不是個人習慣。條目並列多種工具的規則檔（例如 AGENTS.md、CLAUDE.md、.cursorrules），本課不指定工具。", "和 DDD 的關係：通用語言、不用哪些同義詞、哪個 Context 負責什麼、哪些事要先問人，是最值得放進共用指示的內容。這是主課 AGENTS.md 的加深一層：規則檔放進版本控制，改規則也要審查，和改程式一樣。今天的學員包就附了一份團隊 AGENTS.md，D1 你們把選定的名詞與邊界加進「通用語言與邊界」，每條附出處。", "回到工作：收集團隊成員各自的 Agent 規則檔，挑出大家都寫了的幾條，合成一份 AGENTS.md 放在 Repo 根目錄，並指定一位審查者。", "和 DDD 的對應：共用指示裡的名詞表，就是通用語言在 Agent 身上的那一份；它也該只屬於一個 Context。把兩個 Context 的名詞寫進同一份規則檔、又沒標明範圍，Agent 會把它們當成同一套語言，這正是第 01 場說的同字異義問題。"],
     "read": ["〈Curated shared instructions for software teams〉（Thoughtworks Technology Radar，2026）", "〈Custom instructions with AGENTS.md〉（OpenAI Codex 官方文件）"],
-    "notes": "14.5–16 分鐘。Thoughtworks Technology Radar 第 34 期（2026-04）把「Curated shared instructions for software teams」列為 Adopt（建議採用），原文：「treating AI guidance as a collaborative engineering asset rather than a personal workflow」。條目本身就並列多種工具的規則檔（AGENTS.md、CLAUDE.md、.cursorrules），本課不指定工具。和 DDD 的關係：通用語言、不用哪些同義詞、哪個 Context 負責什麼，是最值得放進共用指示的內容；社群也有人把對話裡的術語整理成詞彙表檔（只當佐證，不推薦安裝）。這是主課 Skill 與共同規則的加深一層。📖 延伸閱讀：〈Curated shared instructions for software teams〉（Thoughtworks Technology Radar，2026）；OpenAI Codex〈Custom instructions with AGENTS.md〉。"
+    "notes": "14.5–16 分鐘。Thoughtworks Technology Radar 第 34 期（2026-04）把「Curated shared instructions for software teams」列為 Adopt（建議採用），原文：「treating AI guidance as a collaborative engineering asset rather than a personal workflow」。條目本身就並列多種工具的規則檔（AGENTS.md、CLAUDE.md、.cursorrules），本課不指定工具。和 DDD 的關係：通用語言、不用哪些同義詞、哪個 Context 負責什麼，是最值得放進共用指示的內容；社群也有人把對話裡的術語整理成詞彙表檔（只當佐證，不推薦安裝）。這是主課 AGENTS.md 的加深一層：學員包附的團隊 AGENTS.md，D1 已加進學員自己的名詞與邊界。📖 延伸閱讀：〈Curated shared instructions for software teams〉（Thoughtworks Technology Radar，2026）；OpenAI Codex〈Custom instructions with AGENTS.md〉。"
   },
   {
     "id": "bloat", "chapter": "模型維護", "title": "指示越長，越容易被忽略",
     "lead": "每多一行指示，其他規則就多一分被忽略的機會。檢查每一行：刪掉它，Agent 會犯錯嗎？",
-    "prompt": "不要修改任何檔案。請逐行檢查團隊的規則檔：哪些行刪掉後你會犯錯、哪些和其他行重複、哪些只在特定工作才用得到。列成表，每行附原因，建議刪除或移出的也列出來。列完停下，由我決定。",
-    "cards": [["每次都用到", "留在規則檔。"], ["偶爾才用", "移到需要時才讀的文件或 Skill。"]],
+    "prompt": "我們的 AGENTS.md 越寫越長，想瘦身。逐行看：哪些刪掉你會犯錯、哪些和別行重複、哪些只有特定工作才用得到、可以移成 Skill。給我一張表，每行附原因；刪哪些我決定。",
+    "cards": [["每次都用到", "留在 AGENTS.md，越短越好。"], ["一步步的流程", "寫成 Skill，說明對上了才載入。"]],
     "check": "你的規則檔裡，有沒有一行刪掉也不會出錯？",
-    "explain": ["技術雷達第 34 期把「Agent 指示膨脹」列為 Caution（要小心）：指示越多，重要規則被忽略的可能性越高。Claude Code 官方文件也有同樣的提醒，並給了檢查題：刪掉這一行，Agent 會犯錯嗎？不會就刪。其他工具的官方文件通常有對應章節。", "處理方式：每次都用得到的留在規則檔；只有特定工作才用到的，移到需要時才讀的文件或 Skill。D4 交接單固定七段、沒內容就寫「無」，也是同一個理由：短、可預期。", "限制：刪過頭也會出錯；刪哪一行由人決定，Agent 只列建議與理由。"],
-    "read": ["〈Agent instruction bloat〉（Thoughtworks Technology Radar，2026）", "〈Best practices for Claude Code〉（Claude Code 官方文件）"],
-    "notes": "16–17.5 分鐘。Thoughtworks Radar 第 34 期把「Agent instruction bloat」列為 Caution（要小心）：「As instructions grow, the likelihood increases that important rules are ignored.」Claude Code 官方文件〈Best practices for Claude Code〉也這樣提醒，並給了檢查題：「Would removing this cause Claude to make mistakes?」其他工具的官方文件通常有對應章節。D4 交接單固定七段、沒內容寫「無」，也是同一個理由：短、可預期。示範提示詞未實際執行。📖 延伸閱讀：〈Agent instruction bloat〉（Thoughtworks Technology Radar，2026）；Claude Code 官方文件〈Best practices for Claude Code〉。"
+    "explain": ["技術雷達第 34 期把「Agent 指示膨脹」列為 Caution（要小心）：指示越多，重要規則被忽略的可能性越高。Claude Code 官方文件也有同樣的提醒，並給了檢查題：刪掉這一行，Agent 會犯錯嗎？不會就刪。其他工具的官方文件通常有對應章節。", "處理方式：每次都用得到的事實（怎麼跑、名詞、角色）留在 AGENTS.md；多步驟的固定做法寫成 Skill：一個資料夾放一份 SKILL.md，開頭用 name 與 description 寫清楚什麼時候用。工具開工時只讀每個 Skill 的名稱與說明，任務對上說明才讀全文，所以 Skill 不佔每次對話的篇幅；今天的 check、counterfactual、signed-commit 就是這樣。D4 交接單固定七段、沒內容就寫「無」，也是同一個理由：短、可預期。", "限制：刪過頭也會出錯；刪哪一行由人決定，Agent 只列建議與理由。", "回到工作：請 Agent 逐行檢查團隊的 AGENTS.md，把只在特定工作才用到的段落移成一個 Skill，再換兩種說法下任務，看它會不會自動被用上。"],
+    "read": ["〈Agent instruction bloat〉（Thoughtworks Technology Radar，2026）", "〈Best practices for Claude Code〉（Claude Code 官方文件）", "〈Agent Skills Overview〉（agentskills.io）"],
+    "notes": "16–17.5 分鐘。Thoughtworks Radar 第 34 期把「Agent instruction bloat」列為 Caution（要小心）：「As instructions grow, the likelihood increases that important rules are ignored.」Claude Code 官方文件〈Best practices for Claude Code〉也這樣提醒，並給了檢查題：「Would removing this cause Claude to make mistakes?」其他工具的官方文件通常有對應章節。處理方式：每次都要的事實留在 AGENTS.md；多步驟流程寫成 Skill（資料夾裡一份 SKILL.md，name 與 description 寫什麼時候用），工具開工只讀名稱與說明，對上才讀全文。學員包的 check、counterfactual、signed-commit 就是例子。D4 交接單固定七段、沒內容寫「無」，也是同一個理由：短、可預期。示範提示詞未實際執行。📖 延伸閱讀：〈Agent instruction bloat〉（Thoughtworks Technology Radar，2026）；Claude Code 官方文件〈Best practices for Claude Code〉；agentskills.io〈Agent Skills Overview〉。"
   },
   {
     "id": "limits", "chapter": "帶回團隊", "title": "說清楚：今天的簽章是教學示範",

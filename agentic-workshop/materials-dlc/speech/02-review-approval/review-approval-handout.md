@@ -88,15 +88,17 @@ ADR 有狀態。Nygard 2011 年寫的是：利害關係人還沒同意時是「�
 
 ## 5. 口頭規則擋不住，寫成檢查
 
-對 Agent 說「不要自己核准」只是建議；要每次都發生，就寫成自動檢查。
+AGENTS.md 寫「提案者不能核准自己」只是建議；要每次都發生，就寫成自動檢查。
 
-規則檔：建議 → 測試與檢查程式：每次都跑 → 推送時檢查：沒核准就擋
+AGENTS.md：每次都要知道的事 → Skill：照步驟做的流程 → 測試與 hook：一定要擋的事
 
 - **為什麼**：Agent 忙起來會忘，人也會。
 
 - **D2 的做法**：沒有夥伴簽章的變更，推不上去。
 
-寫在規則檔或對話裡的規則（例如「不要自己核准」）對 Agent 只是建議：它忙起來會忘，人也會。要每次都發生，就寫成自動執行的檢查：測試、檢查程式，或 pre-push hook（push 前 Git 自動執行的檢查腳本）。Claude Code 官方文件說，規則檔是建議，hook 是確定性的、保證會執行；AGENTS.md 等其他工具的規則檔也一樣，只是上下文，不是強制設定。
+寫在 AGENTS.md 或對話裡的規則（例如「提案者不能核准自己」）對 Agent 只是建議：它忙起來會忘，人也會。要每次都發生，就寫成自動執行的檢查：測試、檢查程式，或 pre-push hook（push 前 Git 自動執行的檢查腳本）。Claude Code 官方文件說，規則檔是建議，hook 是確定性的、保證會執行；AGENTS.md 等其他工具的規則檔也一樣，只是上下文，不是強制設定。
+
+三種放法各管一件事：每次都要知道的事（名詞、兩個角色、誰不能做什麼）寫在 AGENTS.md；一步步的固定做法（例如反事實檢查、夥伴的簽章 commit）寫成 Skill，對上才載入；一定要發生、不能靠記得的事（沒核准不能推送），交給測試或 hook。
 
 Thoughtworks 技術雷達第 34 期（2026-04）把「給 Coding Agent 的回饋感測器」列為 Trial（值得試用）：檢查要在寫程式的過程中就跑，commit 前回報乾淨的結果。D2 的做法是：沒有夥伴簽章的變更推不上去。
 
@@ -104,7 +106,7 @@ Thoughtworks 技術雷達第 34 期（2026-04）把「給 Coding Agent 的回饋
 
 課程例子：D2 的推送檢查不看 Agent 說了什麼，只看變更審查包裡有沒有夥伴的核准紀錄、簽章驗不驗得過；沒有就擋。這就是「建議」和「檢查」的差別：建議靠 Agent 記得，檢查不靠任何人記得。限制也要說清楚：檢查只擋得住它被寫來擋的事，規則本身寫錯，檢查會忠實地擋錯東西。
 
-📖 延伸閱讀：〈githooks〉（Git 官方文件）；〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）
+📖 延伸閱讀：〈githooks〉（Git 官方文件）；〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）；〈How Claude remembers your project〉（Claude Code 官方文件）
 
 **人工確認**：如果 Agent 自己 commit 再推送，會在哪一步被擋下？
 
@@ -152,7 +154,7 @@ The Decoder 2026 年 2 月轉述 Financial Times：AWS 的 Kiro Agent 決定刪�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請把這次要升級的每一筆候選列成表：主張、證據（路徑:起-迄行）、對應的測試與實際結果字樣、反事實檢查結果。沒有實際跑過的標「未驗證」。列完停下。
+這次的候選要請夥伴審，幫我做一張審查表：每筆候選的主張、證據行號、對應測試的實際結果字樣、反事實檢查結果。沒實際跑過的標「未驗證」。
 
 審查的人不必看懂程式，他要的是一張表：每條主張、證據在哪幾行、對應哪個測試、實際跑出的結果字樣，以及反事實檢查（故意改壞程式，看測試會不會失敗）的結果；沒實際跑過的標「未驗證」。這是第 01 場「要證據，不要形容詞」的加深：證據從一句回報，變成給另一個人審的整張表。
 
@@ -196,7 +198,7 @@ Anthropic 在模型系統卡揭露：Agent 為了讓測試通過，會改測試�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請列出這次變更動到的所有測試檔與行號，每處說明改了什麼、會不會讓原本該失敗的情況變成通過。只列事實，列完停下。
+審查前，我想先知道這次有沒有動到測試。列出動到的測試檔與行號，每處說明改了什麼、會不會讓原本該失敗的情況變成通過。
 
 Anthropic 2025 年 2 月的模型系統卡（廠商公開的模型行為說明）第 6 節揭露：模型多次修不好時，會把程式寫成只對測試的特定輸入成立，甚至修改測試本身去配合程式的輸出。使用者的測試沒發現，靠自動分類器才抓到；系統卡建議監看測試檔被意外修改的情況。
 
@@ -218,7 +220,7 @@ Anthropic 2025 年 2 月的模型系統卡（廠商公開的模型行為說明�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請針對這條規則，提 2 個「故意改壞」的方案：改哪個檔案的哪幾行、改成什麼、預期哪個測試會失敗。不要替我選，列完停下。我選好後再跑，回報實際字樣是 killed 還是 survived。
+我想確認這條規則有測試守著。給我 2 個故意改壞的方案：改哪幾行、改成什麼、預期哪個斷言失敗。我選一個，再用 counterfactual 跑，回報 killed 或 survived。
 
 反事實檢查（counterfactual）是本課用語，做法就是變異測試（mutation testing）的手動小版本：故意把守某條規則的程式改壞一處，跑測試，再自動還原。變異測試工具 Stryker 的文件這樣定義：在程式裡引入改動，再對改過的程式跑測試；測試失敗，這個改動（變異）就算被殺掉（killed），證明這條規則有測試守著；測試仍通過叫存活（survived），表示規則沒人守，或測試太弱。變異測試工具會自動產生大量這種小改動。
 
@@ -302,6 +304,7 @@ AWS 的流程指南寫得更具體：團隊核准 ADR 時，負責人加上時�
 - 〈Redesigning source control at Anthropic〉（Anthropic，2026）
 - 〈githooks〉（Git 官方文件）
 - 〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）
+- 〈How Claude remembers your project〉（Claude Code 官方文件）
 - 〈An AI-powered coding tool wiped out a software company's database, then apologized for a 'catastrophic failure on my part'〉（Fortune，2025）
 - 〈AWS AI coding tool decided to delete and recreate a customer-facing system〉（The Decoder，2026）
 - 〈The Code Reviewer's Guide〉（Google Engineering Practices）

@@ -61,3 +61,7 @@
 - 自動載入依工具版本：每次開新對話的第一個動作是確認讀到 AGENTS.md，讀不到就用一句話補救。
 - 提示詞變短，更依賴 Agent 判斷 → 三條路徑完整演練（Greenfield、Time Skip→回顧、Recovery），計時並比較成功率；任一段比現在慢或不穩，就在那段補回必要的句子。
 - course-authoring 的 ③ 規格、`check_blocks.py`、`check_deck_runbook.py` 要跟著改。
+
+## 6. DLC 照做（2026-10-23）
+
+同樣三件事套到 DLC，決定與數字見 decisions-and-open-issues.md「DLC 實戰化」。差別：DLC 的 `AGENTS.md` 是團隊已寫好的（學員接手既有專案），學員在 D1 把自己的名詞與邊界決定加進去；Skill 由學員包提供原稿，開場由 Agent 放到工具會自動載入的位置；兩人共用一台機器，角色寫在 `AGENTS.md`「兩個角色」，新對話第一句只說自己是誰。

@@ -11,7 +11,7 @@ section: 回顧
 ```callout info
 現在在做什麼
 - **情境**：今天留下了紀錄、交接單和共用模型；回到自己的專案時沒有 Runbook。
-- **你的目標**：找出共用模型與人工把關改變 Agent 輸出的證據，帶走提示詞與一項行動。
+- **你的目標**：找出共用模型與人工把關改變 Agent 輸出的證據，帶走提示詞、一條 `AGENTS.md` 或 Skill 建議，與一項行動。
 - **今天的技巧**：**請 Agent 從紀錄整理證據，人只判斷**；沒有證據就寫「未觀察」。
 - **完成的樣子**：`notes/retro.md` 有附證據的回顧；每人有 `notes/my-prompts-你的名字.md`；私鑰已刪、表單已匯出。
 ```
@@ -26,40 +26,27 @@ Agent 翻紀錄找證據，你們判斷證據站不站得住；記得的和紀�
 
 ② 貼給 Agent
 
-```prompt
-# windows
-我們要回顧今天的延伸課程。這一步只讀紀錄，不要修改程式或 domain-memory/。
-請讀 notes/ 裡今天的所有紀錄、docs/handoffs/ 裡的交接單、git log，並在 Repo 根目錄執行 ..\..\tools\dm.ps1 verify-audit（Git Bash 用 ../../tools/dm.sh verify-audit）。
-然後回答下面四題，每題一到三句，每句都附證據（哪個檔案的哪一段、哪個 commit 或哪個指令輸出）；找不到證據就寫「未觀察」，不要推測：
+```text
+回顧今天的延伸課程，只讀紀錄，不改程式和 domain-memory/。讀 notes/、docs/handoffs/、git log，再跑 dm verify-audit，回答下面四題，每題一到三句、每句附證據（檔案段落、commit 或指令輸出）；找不到證據就寫「未觀察」，不要推測：
 1. 哪一個已審查（reviewed）事實改變了 Agent 的輸出（任一個 Agent 對話都算）？原本會怎麼做、後來怎麼做？
 2. 哪一個候選差點被當成事實？是誰（我們或你）、在哪一段發現的？
 3. 哪一次反事實檢查（counterfactual）的結果出乎預期？學到什麼？
 4. 哪個知識缺口（查不到的名詞或還沒決定的問題）影響最大？影響了哪個決定？
-把回答寫進 notes/retro.md 的「檢查點 1 · 證據」小節（沒有這個檔就建立），在對話貼出四題的回答，然後停下等我回「同意」或「第 N 題改成…」。
-# macos
-我們要回顧今天的延伸課程。這一步只讀紀錄，不要修改程式或 domain-memory/。
-請讀 notes/ 裡今天的所有紀錄、docs/handoffs/ 裡的交接單、git log，並在 Repo 根目錄執行 source .venv/bin/activate && ../../tools/dm.sh verify-audit。
-然後回答下面四題，每題一到三句，每句都附證據（哪個檔案的哪一段、哪個 commit 或哪個指令輸出）；找不到證據就寫「未觀察」，不要推測：
-1. 哪一個已審查（reviewed）事實改變了 Agent 的輸出（任一個 Agent 對話都算）？原本會怎麼做、後來怎麼做？
-2. 哪一個候選差點被當成事實？是誰（我們或你）、在哪一段發現的？
-3. 哪一次反事實檢查（counterfactual）的結果出乎預期？學到什麼？
-4. 哪個知識缺口（查不到的名詞或還沒決定的問題）影響最大？影響了哪個決定？
-把回答寫進 notes/retro.md 的「檢查點 1 · 證據」小節（沒有這個檔就建立），在對話貼出四題的回答，然後停下等我回「同意」或「第 N 題改成…」。
+在對話貼出回答、記在 notes/retro.md，用 check 檢查後停下，等我回「同意」或「第 N 題改成…」。
 ```
 
 ③ 確認結果
 
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+
 ```text
-請只檢查，不要修改任何檔案：
-1. notes/retro.md 有「檢查點 1 · 證據」，四題都有回答。
-2. 每句回答都指得出檔案段落、commit 或指令輸出，找不到的寫「未觀察」。
-全部符合只回「成功」，否則只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：四題都有回答，每句都指得出證據，找不到的寫「未觀察」。
 ```
 
 失敗時：
 
 ```text
-不要修改程式或 domain-memory/。請逐句重新核對 notes/retro.md「檢查點 1 · 證據」：指不出證據的句子改成「未觀察」，列出你改了哪些句子，然後停下。
+先停，不要改程式或 domain-memory/。逐句重新核對 notes/retro.md 的回答：指不出證據的句子改成「未觀察」，列出你改了哪些句子。
 ```
 
 ## 檢查點 2 · 比較哪些人工把關擋得住錯（第 169–174 分鐘）
@@ -70,32 +57,25 @@ Agent 翻紀錄找證據，你們判斷證據站不站得住；記得的和紀�
 
 ② 貼給 Agent
 
-```prompt
-# windows
-請依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每一步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
-再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 最上面（最新）一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號，依終端機選一行：
-PowerShell：..\..\tools\dm.ps1 compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ..\..\tmp\retro-compare.json
-Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
-讀存下的結果，用白話回報：overall 的 precision 與 recall；copied_matches 與 overall_independent（引用和基準答案一字不差的配對標 copied_evidence，是核准後沒動過的紀錄，不算 Agent 自己的成果；overall_independent 把它們排除後才是誠實的分數）；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
-最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不要修改任何檔案，列完停下。
-# macos
-請依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每一步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
-再替 Agent 的成果打分：拿最後一次人核准的模型當基準答案，比對現在的模型。git log 最上面（最新）一個訊息含「套用」的 commit 就是人核准的版本，把下面的 COMMIT 換成它的編號：
-../../tools/dm.sh compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
-讀存下的結果，用白話回報：overall 的 precision 與 recall；copied_matches 與 overall_independent（引用和基準答案一字不差的配對標 copied_evidence，是核准後沒動過的紀錄，不算 Agent 自己的成果；overall_independent 把它們排除後才是誠實的分數）；每個類別的 missed（核准過、現在找不到）與 extra（核准後才出現、還沒有人審查）。分數只比結構、不比意思：extra 是下一次核准要審的清單；missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。
-最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不要修改任何檔案，列完停下。
+```text
+依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
+再替 Agent 的成果打分：以最後一次人核准的模型當基準答案（git log 最上面一個訊息含「套用」的 commit，換掉下面的 COMMIT），和現在的模型比對：
+dm compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
+用白話回報 overall 的 precision 與 recall；copied_matches 與 overall_independent（排除照抄的 copied_evidence 才是誠實的分數）；每個類別的 missed 與 extra，missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不改程式和 domain-memory/。做完用 check 檢查。
 ```
 
 ③ 確認結果
 
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+
 ```text
-請只檢查你剛才列的清單，不要修改任何檔案：每一步都有證據（查不到的寫明「紀錄中沒有」也算），也都有「一個人能不能自己完成」的判斷；比對結果有 precision、recall、overall_independent 與照抄的配對數，以及每個類別的 missed、extra（沒有就寫「無」）；最後有一句還缺什麼。全部符合只回「成功」，否則只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：每一步都有證據和「一個人能不能自己完成」，比對結果有 precision、recall、overall_independent 和每個類別的 missed、extra。
 ```
 
 失敗時：
 
 ```text
-請把清單裡缺證據或缺判斷的步驟補齊；查不到證據的寫「紀錄中沒有」。比對指令失敗時，貼出錯誤訊息，確認 COMMIT 是 git log 最上面（最新）一個訊息含「套用」的 commit。不要修改任何檔案，列完停下。
+先停，不要改任何檔案。缺了哪一步的證據或判斷？查不到的寫「紀錄中沒有」。比對指令失敗就貼出錯誤訊息，確認 COMMIT 是 git log 最上面一個訊息含「套用」的 commit。
 ```
 
 ④ 補充
@@ -130,35 +110,31 @@ Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-c
 
 ① 為什麼做這一步
 
-讓 Agent 從紀錄挑出有效的提示詞，改寫成任何專案都能用的版本；你只要挑。
+讓 Agent 從紀錄挑出有效的做法，改寫成回到工作就能交辦的提示詞，再建議一行該寫進 `AGENTS.md` 的規則，或一段該做成 Skill 的做法；你只要挑。
 - 每個人輪流貼一次第一段
 - 最後由一人貼第二段：小組從 Agent 提的行動選一項帶回團隊，也可以說你們自己的。Agent 會把它寫進 `notes/retro.md`
 
 ② 貼給 Agent
 
 ```text
-請先問我的名字，等我回答後再往下做。依 notes/ 與 docs/handoffs/ 裡今天的紀錄，以及 notes/retro.md，起草 5 段我回到自己的專案可以直接貼給 Agent 的提示詞，例如：交接前先驗證記憶、只引用查得到的 id、先列清單等人同意才寫入、故意改壞一處確認測試會抓到。
-每段寫：什麼時候用、提示詞本身、做完要看什麼證據、今天的例子（只寫紀錄裡真的發生的事，沒有就寫「未觀察」）。不要綁定今天的 Smart Ticket 專案；會因專案而變的部分用一句話說明要換成什麼。
-在對話列出 5 段的標題與一句說明，停下等我回「留第幾段」或「第 N 段改成…」。我選定後，只把我留下的寫進 notes/my-prompts-<我回答的名字>.md，寫完貼給我看。
+先問我的名字。依今天的 notes/、docs/handoffs/ 和 notes/retro.md，替我起草 5 段回到自己的專案就能交辦給 Agent 的提示詞，例如：交接前先驗證記憶、只引用查得到的 id、先列清單等人同意才寫入、故意改壞一處確認測試會抓到。像平常交辦工作一樣寫：這次要什麼、為什麼、完成的樣子、素材在哪；不綁定 Smart Ticket。每段附：什麼時候用、做完要看什麼證據、今天的例子（只寫紀錄裡真的有的，沒有寫「未觀察」）。
+列出 5 段的標題與一句說明，停下等我回「留第幾段」或「第 N 段改成…」。我選定後寫進 notes/my-prompts-<我的名字>.md，最後加一節「回到工作」：建議一行寫進我團隊的 AGENTS.md，或把最常用的一段寫成 Skill 草稿（name、description 寫清楚什麼時候用），附理由。寫完貼給我看。
 ```
 
 ```text
-請依 notes/retro.md，提出 3 個有證據佐證的改善行動，類別從這幾種選：Domain Memory 內容、來源選擇、審查流程、工具、Agent 提示詞、人員責任。每個寫一句做什麼、一句證據（今天的哪個紀錄）、一句怎麼確認有效。不要修改任何檔案，列完停下等我們選。我們選定後，把它寫進 notes/retro.md 的「檢查點 3 · 行動」小節。
+依 notes/retro.md 提出 3 個有證據的改善行動，類別從這幾種選：Domain Memory 內容、來源選擇、審查流程、工具、Agent 提示詞、人員責任。每個寫一句做什麼、一句證據（今天的哪個紀錄）、一句怎麼確認有效。列完停下等我們選，選定後記在 notes/retro.md。
 ```
 
 ③ 確認結果
 
 ```text
-請只檢查，不要修改任何檔案：
-1. notes/ 底下有用我的名字命名的 my-prompts 檔，裡面是我留下的提示詞，每段都有「做完要看什麼證據」。
-2. notes/retro.md 有「檢查點 3 · 行動」，寫著我們選的行動。
-全部符合只回「成功」，否則只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：notes/ 有用我的名字命名的 my-prompts 檔，每段有「做完要看什麼證據」，最後有「回到工作」一節；notes/retro.md 記了我們選的行動。
 ```
 
 失敗時：
 
 ```text
-請用白話說明缺了哪一個檔案或哪一段，再問我要留哪幾段或選哪一項行動，等我回覆後補上，然後停下。
+先停。缺了哪一個檔案或哪一段？問我要留哪幾段或選哪一項行動，等我回覆再補。
 ```
 
 ## 檢查點 4 · 匯出與結束（第 178–180 分鐘）
@@ -171,35 +147,25 @@ Git Bash：../../tools/dm.sh compare-registry --gold-root domain-memory --gold-c
 
 ② 貼給 Agent
 
-```prompt
-# windows
-請刪除今天練習用的簽章私鑰 signing-key（只刪這一個檔案，同一個資料夾裡的其他檔案不要動），再關掉這個 Repo 的「每個 commit 都要簽章」設定。
-PowerShell 執行：Remove-Item -Force "$env:USERPROFILE\.dlc-keys\maintainer\signing-key"
-Git Bash 執行：rm -f "$HOME/.dlc-keys/maintainer/signing-key"
-同一個資料夾的 signing-key.allowed_signers 要留著：它只有公鑰，Git 驗證今天的簽章 commit 時要讀它；刪了，git log 會把今天的簽章都顯示成無法驗證。signing-key.pub 與 signing.json 也只有可公開的內容，可以留著。
-再到 Repo 根目錄執行 git config --local --unset commit.gpgsign：金鑰刪掉後，這個 Repo 若仍要求每個 commit 都簽章，之後的 commit 都會失敗。repository 資料夾裡的 smart-ticket-dlc-base 與其他 resume- 開頭的 Repo（用過 Recovery 才有）也要做：到每一個的根目錄執行同一行；名稱以 -remote.git 結尾的是 push 用的遠端，跳過。這一行沒有任何輸出、結束碼是 5，代表那個 Repo 本來就沒開這個設定，不算失敗。
-執行後確認 signing-key 已經不存在、signing-key.allowed_signers 還在，並逐一列出每個 Repo 是「已關閉」還是「本來就沒開（結束碼 5）」，用一兩句話回報。
-# macos
-請刪除今天練習用的簽章私鑰 signing-key（只刪這一個檔案，同一個資料夾裡的其他檔案不要動），再關掉這個 Repo 的「每個 commit 都要簽章」設定。
-執行：rm -f "$HOME/.dlc-keys/maintainer/signing-key"
-同一個資料夾的 signing-key.allowed_signers 要留著：它只有公鑰，Git 驗證今天的簽章 commit 時要讀它；刪了，git log 會把今天的簽章都顯示成無法驗證。signing-key.pub 與 signing.json 也只有可公開的內容，可以留著。
-再到 Repo 根目錄執行 git config --local --unset commit.gpgsign：金鑰刪掉後，這個 Repo 若仍要求每個 commit 都簽章，之後的 commit 都會失敗。repository 資料夾裡的 smart-ticket-dlc-base 與其他 resume- 開頭的 Repo（用過 Recovery 才有）也要做：到每一個的根目錄執行同一行；名稱以 -remote.git 結尾的是 push 用的遠端，跳過。這一行沒有任何輸出、結束碼是 5，代表那個 Repo 本來就沒開這個設定，不算失敗。
-執行後確認 signing-key 已經不存在、signing-key.allowed_signers 還在，並逐一列出每個 Repo 是「已關閉」還是「本來就沒開（結束碼 5）」，用一兩句話回報。
+```text
+【夥伴的 Agent】今天結束，收掉練習用的簽章設定：
+1. 只刪 .dlc-keys/maintainer/ 底下的私鑰檔 signing-key，同一個資料夾的其他檔案都留著：signing-key.allowed_signers 只有公鑰，Git 驗證今天的簽章 commit 要讀它，刪了會全部顯示成無法驗證。
+2. repository 資料夾裡的 smart-ticket-dlc-base 和 resume- 開頭的 Repo（用過 Recovery 才有），各到根目錄執行 git config --local --unset commit.gpgsign，否則之後的 commit 都會失敗；-remote.git 結尾的是 push 用的遠端，跳過。沒有輸出、結束碼 5 代表本來就沒開，不算失敗。
+回報 signing-key 已不存在、signing-key.allowed_signers 還在，並逐一列出每個 Repo 是「已關閉」還是「本來就沒開（結束碼 5）」。做完用 check 檢查。
 ```
 
 ③ 確認結果（貼到夥伴的對話）
 
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+
 ```text
-請只檢查，不要修改任何檔案，也不要讀取金鑰內容：
-1. 使用者資料夾 .dlc-keys/maintainer/ 底下的 signing-key 已不存在，signing-key.allowed_signers 還在。
-2. repository 資料夾裡每個 Repo（-remote.git 結尾的除外）執行 git config --local --get commit.gpgsign 都沒有輸出。
-全部符合只回「成功」，否則只回「失敗：」加一句原因。
+用 check 檢查剛才這一段：signing-key 已不存在、signing-key.allowed_signers 還在，每個 Repo 的 git config --local --get commit.gpgsign 都沒有輸出。
 ```
 
 失敗時：
 
 ```text
-請用白話說明哪個檔案或哪個 Repo 的設定不符。只刪 signing-key 這一個檔案，signing-key.allowed_signers 不要動；列出你要執行的指令，等我同意再做。
+先停。哪個檔案或哪個 Repo 的設定不符？只刪 signing-key 這一個檔案，signing-key.allowed_signers 不要動；列出你要執行的指令，等我同意再做。
 ```
 
 ### 小組收尾

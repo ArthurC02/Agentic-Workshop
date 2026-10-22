@@ -10,7 +10,7 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 
 | 段落 | 內容 | 用到的檔案 |
 |---|---|---|
-| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選（有證據、但還沒審查的紀錄） | 原則與格式已寫在 Runbook D1 頁的提示詞裡；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
+| D1 | Agent 找證據、提草稿，你決定來源、詞彙、Context 與規則，Agent 登記為候選（有證據、但還沒審查的紀錄） | 做法寫在 Repo 的 `AGENTS.md` 與 `skills/record-candidates`；紀錄由 Agent 寫進 `notes/d1.md` 與 `d1-records.json` |
 | D2 | 兩人一組：一人提案、一人審查核准並簽章，把候選升為已審查（reviewed）事實 | `worksheets/d2-role-cards.md`、`worksheets/d2-signing-checklist.md` |
 | D3a | 實作需求卡 01：電子發票 | `scenarios/01-e-invoice.md`、`worksheets/d3-decision-card.md` |
 | D3b | 實作需求卡 02：點數折抵 | `scenarios/02-points-redemption.md`、`worksheets/d3-decision-card.md` |
@@ -19,7 +19,7 @@ D1–D4 是今天四段的代號；D3 再分 a、b、c 三張需求。
 
 每段的「檢查點」（段內的小關卡）都在 Runbook 對應的頁面。做法都一樣：
 
-1. 複製檢查點裡的提示詞，貼給你的 Coding Agent。Plugin 指令、輔助腳本、Git 與測試指令都寫在提示詞裡，由 Agent 執行並用白話回報；你不需要自己打指令。
+1. 複製檢查點裡的提示詞，貼給你的 Coding Agent。提示詞只交代這次的事；怎麼跑 Plugin、輔助腳本、Git 與測試，寫在 Repo 根目錄的 `AGENTS.md`（Agent 開新對話會自己讀），一步步的固定做法寫在 `skills/` 的 Skill。指令由 Agent 執行並用白話回報；你不需要自己打指令。
 2. 需要決定時，Agent 會先列出選項或草稿並停下；你只要回「同意」「選 B」「第 3 項不要」這類短回覆。
 3. 紀錄由 Agent 寫進 Repo 的 `notes/` 與 `docs/handoffs/`。Runbook 的表單只記你的決定，以下拉與勾選為主。
 
@@ -29,14 +29,15 @@ D2 的核准要特別注意：兩人共用一台機器，但夥伴另開一個�
 
 | 路徑 | 內容 |
 |---|---|
-| `repository/smart-ticket-dlc-base/` | 起始程式庫：上線 12 個月的 Smart Ticket 訂票後端 |
+| `repository/smart-ticket-dlc-base/` | 起始程式庫：上線 12 個月的 Smart Ticket 訂票後端；根目錄的 `AGENTS.md` 是給 Agent 的專案說明 |
+| `skills/` | 5 個 Skill（`check`、`record-candidates`、`counterfactual`、`signed-commit`、`dlc-recovery`）；開場由 Agent 放到它的工具會自動載入的位置 |
 | `scenarios/01-e-invoice.md` | 需求卡 01：串接外部電子發票服務 |
 | `scenarios/02-points-redemption.md` | 需求卡 02：會員點數折抵 |
 | `scenarios/03-group-partial-refund.md` | 需求卡 03：團體訂票部分取消退款 |
 | `worksheets/` | 各段紀錄的格式範本，由 Agent 照格式寫進紀錄檔（見上方段落表） |
 | `tools/` | 輔助腳本：代打 Plugin 長指令、產生 JSON、檢查環境；由 Agent 依提示詞執行（說明見 `tools/README.md`） |
 
-開場學員包裡還沒有 `worksheets/` 與 `scenarios/`：D1 的原則與格式直接寫在 Runbook D1 頁的提示詞裡，其餘範本與需求卡隨後面各段的學員包提供（該段解鎖後在 Runbook 下載）。
+開場學員包裡還沒有 `worksheets/` 與 `scenarios/`：D1 的做法在 `AGENTS.md` 與 Skill 裡，其餘範本與需求卡隨後面各段的學員包提供（該段解鎖後在 Runbook 下載）。
 
 程式庫的產品規則文件在 `docs/requirements/`，ADR（Architecture Decision Record，架構決策紀錄）在 `docs/adr/`。需求卡中的商業數字與驗收條件是唯一依據，不要自行補規則；卡片末尾的「待團隊決定的問題」由你們決定，Agent 把決定與理由記進紀錄檔。
 

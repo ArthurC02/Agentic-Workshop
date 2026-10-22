@@ -4,10 +4,10 @@
   <p class="kicker">第 70 分鐘 · 解鎖</p>
   <h2 class="title">D3a 電子發票 開始</h2>
   <p class="subtitle">電子發票：把外部服務擋在領域之外</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』；提案者先貼<b>「Agent 工作規則」</b>。</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開『D3a 電子發票』，從<b>檢查點 1</b> 開始。</p>
   <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
   <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提示詞都貼到提案者的 Agent 對話，先貼頁面上的 D3 工作規則，再從檢查點 1 開始；commit 還是由夥伴在自己的對話做。」</p>
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的 D3a 電子發票。提案者先按檢查點 1 的下載鈕存需求卡 01，再把提示詞貼到自己的 Agent 對話；做法都在 AGENTS.md 和 Skill，Agent 會自己讀。commit 還是由夥伴在自己的對話做。」</p>
     <p><b>操作</b>：在本頁按 <b>T</b> 啟動 25:00 段落計時（00:00＝第 70 分），翻頁時持續計時。本頁大字顯示解鎖碼；Recovery 碼不投影，見總覽頁備註。</p>
   </aside>
 </section>
@@ -28,7 +28,7 @@
     <li data-seg="dlc-d3a"><span class="tl-min">19:00</span><b>5 · 審查變更，新知識寫回模型</b><span class="tl-due">第 92 分前</span></li>
     <li data-seg="dlc-d3a"><span class="tl-min">22:00</span><b>6 · 停手<wbr>與揭曉對照</b><span class="tl-due">第 95 分前</span></li>
   </ol>
-  <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3a 電子發票』：先貼工作規則，再做檢查點 1</p>
+  <p class="callout seg-start"><b>從這裡開始</b>Runbook『D3a 電子發票』› 檢查點 1，先下載需求卡</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「D3a 電子發票：25 分鐘、六個檢查點。先讀需求卡、查事實，再由你們做設計決定；Agent 照交接單實作，證明測試守得住，人審查差異，最後看參考設計。」</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
@@ -46,12 +46,13 @@
   <p class="cp-why"><b>為什麼</b>先查已審查事實再設計；查不到的留給人決定</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><i>提案者的對話</i><b>貼 ②＋需求卡全文</b><span>Runbook『D3a 電子發票』› 檢查點 1</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>先下載需求卡 01</b><span>存到下載資料夾，不用解壓</span></li>
+    <li><i>提案者的對話</i><b>貼 ②「讀需求卡與事實」</b><span>Runbook『D3a 電子發票』› 檢查點 1</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-next"><b>第 73 分前完成</b><span>→ 下一步：檢查點 2 對外介面（Port）與邊界決策</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：讀完需求卡，貼檢查點 1 的提示詞，讓 Agent 向共用模型查已審查（reviewed）事實，已知與未知分開回報。」</p>
+    <p><b>說（00:00／第 70 分）</b>：「第 70 分。輸入解鎖碼，從檢查點 1 開始。先不要叫 Agent 寫程式：按下載鈕存需求卡 01，貼檢查點 1 的提示詞（Agent 會從下載資料夾取 zip，把需求卡存進 docs/scenarios/），讓 Agent 向共用模型查已審查（reviewed）事實，已知與未知分開回報。」</p>
     <p><b>看</b>：有沒有跳過提示詞直接叫 Agent 實作；Agent 是否真的執行了查詢，而不是憑記憶回答。留意逾時＝結果未知，不是失敗。</p>
     <p><b>介入訊號</b>：有人跳過查詢直接設計 → 請他先回答：這條規則的 reviewed 證據在哪？</p>
     <p><b>提示</b>：H1：「逾時代表什麼？對方可能已經開出發票了嗎？」</p>
@@ -68,7 +69,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「每題兩個選項」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>兩人聊完回選擇</b><span>看完不變量再回「同意」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>選項看證據；每條不變量說得出「怎樣算失敗」才同意</p>
   <p class="cp-next"><b>第 78 分前完成</b><span>→ 下一步：檢查點 3 交接單與 Agent 實作</span></p>
@@ -89,7 +90,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「照交接單實作」</b><span>Runbook › 檢查點 3</span></li>
     <li><b>計畫回「同意」</b><span>每段看過結果再回「繼續」</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>計畫沒違反交接單、核心在前；每段失敗 0 個、斷言沒被改</p>
   <p class="cp-next"><b>第 85 分前完成</b><span>→ 下一步：檢查點 4 反事實檢查（沒做完核心也要進）</span></p>
@@ -111,7 +112,7 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
     <li><b>看過再回「同意」</b><span>你們同意後 Agent 才跑</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>改的是守住規則的那一行才同意；只認 <code>killed</code></p>
   <p class="cp-next"><b>第 89 分前完成</b><span>→ 下一步：檢查點 5 審查變更，新知識寫回模型</span></p>
@@ -132,14 +133,14 @@
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「審查並登記候選」</b><span>Runbook › 檢查點 5；這是第一段</span></li>
     <li><i>夥伴的對話</i><b>貼第二段</b><span>讀過摘要回「同意」才簽章提交</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>四題都是「沒有」或「0 失敗」才同意；候選都有證據行號</p>
   <p class="cp-next"><b>第 92 分前完成</b><span>→ 下一步：檢查點 6 停手與揭曉對照</span></p>
   <aside class="notes">
     <p><b>說（19:00／第 89 分）</b>：「第 89 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3a-*.json</code> 會進 commit，屬預期。</p>
-    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，並重新核對工作規則第 7 條（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
+    <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，請學員說「照 AGENTS.md 工作規則第 7 條，把被放寬的斷言改回來」（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
     <p><b>加深一層（不變量）</b>：候選清單把同一個測試守住的規則排在一起。這幾條通常是同一個不變量的不同面向，該同屬一個 Context；分在兩個 Context 就問「那個測試要歸誰？」。「重構不是模型變更」留到 D3b 檢查點 5 才講，這裡不提。</p>
   </aside>
 </section>
@@ -151,7 +152,7 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「整理 5 行決策摘要」</b><span>Runbook › 檢查點 6</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
     <li><b>對照投影的參考設計</b><span>兩人聊 ④ 三題，再填「D3a 揭曉對照」</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>每個差異是有理由的取捨，還是漏看或 Agent 自己補的</p>

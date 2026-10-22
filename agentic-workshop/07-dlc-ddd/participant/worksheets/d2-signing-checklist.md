@@ -23,7 +23,14 @@
 
 編號前綴：CP＝Change Package、REQ＝需求、AC＝驗收條件、OB＝obligation（要通過的檢查）、INV＝不變量。
 
-`promote` 要列出 Registry 的**全部**候選，包括用過 Recovery 時帶進來的候選：每種有候選的類別都要有一個同名的鍵（`dm export` 輸出的頂層鍵，例如 `rules`、`vocabulary`）。候選清單照 Runbook D2 檢查點 3 第一步的指令產生：export 先存到 Repo 外的暫存檔，再只印出候選 id，不要把整份 export 讀進對話。自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
+`promote` 要列出 Registry 的**全部**候選，包括用過 Recovery 時帶進來的候選：每種有候選的類別都要有一個同名的鍵（`dm export` 輸出的頂層鍵，例如 `rules`、`vocabulary`）。候選清單這樣產生，不要把整份 export 讀進對話（可能有數十 KB，用過 Recovery 約 80 KB）：
+
+1. `dm export --save ../../tmp/export-d2.json`
+2. 用 `AGENTS.md` 的輔助腳本 Python（Windows `py -3.13 -X utf8`，macOS `python3.13 -X utf8`）執行，參數照寫：
+   `-c "import json;d=json.load(open('../../tmp/export-d2.json',encoding='utf-8'));C=lambda k,doc:[r['id'] for v in doc.values() if isinstance(v,list) for r in v if isinstance(r,dict) and 'id' in r and r.get('review_status' if k=='decisions' else 'status',doc.get('status'))=='candidate'];[print(k,len(C(k,doc)),*C(k,doc)) for k,doc in d.items()]"`
+   每個類別印一行：類別名、候選數、候選 id（decisions 類別看 `review_status`）。記下全部候選，依類別分開，寫 `promote` 要用。
+
+自己做的 D1 通常只有 `contexts`、`vocabulary`、`rules`；用過 D1 Recovery 的話，`aggregates`、`interactions`、`decisions` 也有候選，一樣要列。少列任何一個，`validate --require-reviewed`（檢查是否全部已審查）都會回報該筆「not reviewed」而不通過。
 
 ```json
 {
@@ -62,10 +69,11 @@
 ```
 
 - `test` 寫測試檔路徑（例如 `tests/integration/<檔名>.py`），工具會**實際執行**並記錄 exit code 與輸出雜湊；失敗就記 failed，不會幫你填 passed。
+- 每條規則的 `test` 要是真的會測到這條規則的測試檔。
 - 每條驗收條件與規則各產生一個 obligation，id 是 `OB-<原 id>`。
 - `counterfactual.obligation_id` 必須是上面某條規則的 `OB-<規則 id>`。
 - `owner_context`、`invariant` 是給 Agent 填的，不需要看懂；不變量 D3a 才介紹。
-- `open_questions` 放 `notes/d1.md`「缺口與查詢」選的缺口與其他還沒解決的問題。紀錄只放元素、關係與證據，問題不寫進紀錄。
+- `open_questions` 放 `notes/d1.md`「用客人的話找出模型缺口」選的缺口與其他還沒解決的問題。紀錄只放元素、關係與證據，問題不寫進紀錄。
 
 ## 3. `notes/d2.md` 要留下什麼
 
