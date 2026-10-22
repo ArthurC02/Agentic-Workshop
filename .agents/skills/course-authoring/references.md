@@ -83,7 +83,7 @@ Quotes and dates in `docs/research/speech-agentic-sources.md` 「2026-10-22 名�
 Quotes and dates in `docs/research/speech-agentic-sources.md` 「2026-10-22 AI-native SDLC 查核」. These are Claude-specific; learner pages translate them into tool-neutral practice and keep the 「你所用工具的官方文件通常有同名章節」 tail.
 | Topic | Cite (exact title) | Retired titles (do not use) |
 |---|---|---|
-| Lifecycle, artifact chain, gates, metrics | Anthropic〈The AI-native SDLC playbook〉 (2026-08-21); Anthropic〈How Anthropic secures its AI-native software development lifecycle〉 (2026-07-21) | 「Claude Academy AI SDLC」 (no such course) |
+| Practices, first steps, per-practice leading／lagging indicators (cite content, not its stage design) | Anthropic〈The AI-native SDLC playbook〉 (2026-08-21); Anthropic〈How Anthropic secures its AI-native software development lifecycle〉 (2026-07-21) | 「Claude Academy AI SDLC」 (no such course) |
 | Courses | Anthropic Academy〈Claude Code in Action〉, 〈AI Fluency for Builders〉, 〈Introduction to subagents〉, 〈Introduction to agent skills〉 | |
 | Plan mode, hooks, skills, subagents | Claude Code 官方文件〈Choose a permission mode〉, 〈Automate actions with hooks〉, 〈Extend Claude with skills〉, 〈Create custom subagents〉 | |
 | Review policy (REVIEW.md) | Claude Code 官方文件〈Code Review〉, 〈Customize Code Review〉 | |

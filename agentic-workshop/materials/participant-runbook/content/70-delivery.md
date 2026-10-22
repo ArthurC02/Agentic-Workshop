@@ -87,6 +87,7 @@ section: Delivery
 **寫程式的 Agent 不核准自己的成果；另開一個只讀的對話，照同一份審查準則審。**
 - 新對話沒看過寫程式的過程，只看檔案和指令結果，不替自己辯護
 - 審查準則由人定，寫的人和審的人讀同一份
+- 回到工作：審查的對話只報告、不修改，要不要放行由人決定
 📖 延伸閱讀：Anthropic〈The AI-native SDLC playbook〉、Claude Code 官方文件〈Best practices for Claude Code〉；你所用工具的官方文件通常有同名章節。
 ```
 

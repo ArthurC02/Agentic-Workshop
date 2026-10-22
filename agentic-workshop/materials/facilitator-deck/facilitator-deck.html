@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build ed5e39b0ddc2c18c inputs-sha256 ed5e39b0ddc2c18c3090a04614b25bb03dca1287555c900607183480164b44e4 -->
+<!-- 主持人專用，不發給學員。build ade2bd3faa0cb57d inputs-sha256 ade2bd3faa0cb57d9fc2a1958dc6b29499546ee555bddce089a115b1c3e7941a -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1778,12 +1778,12 @@ body.is-presenter #dk-black { display: none !important; }
     <li><b>看完貼「計畫核准」</b><span>不同意就加「第 N 題改成…」</span></li>
     <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>三行意圖照需求文件；每步有規則編號，沒有範圍外項目</p>
+  <p class="cp-judge"><b>你要判斷</b>開頭三行照需求文件；每步有規則編號，沒有範圍外項目</p>
   <p class="cp-next"><b>第 15 分前完成</b><span>→ 下一步：檢查點 3 小步做、每步驗收</span></p>
   <aside class="notes">
     <p><b>說（00:04／第 11 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 讀需求、找 TODO、提出固定 4 步的計畫寫進 notes，先不要改。每個問題它會附建議答案，你看完貼『計畫核准』，不同意某題就在第一行後加『第 N 題改成…』，這樣就核准最前面兩小步：票價和班次查詢都很小，一起做省一輪來回。」</p>
     <p><b>示範技巧</b>：指著計畫提示詞的五個標籤【目標】【背景／要讀的檔】【限制】【輸出格式】【停止條件】說「這就是 Prompt 結構」。巡場看學員有沒有刪掉某一塊。模型選擇與推論強度留到個人分析才講。</p>
-    <p><b>意圖三行</b>：計畫開頭先寫要什麼、為什麼、限制，只照需求文件；這是今天「意圖 → 計畫 → 驗證」的第一環，B3 的 Gate 1 會再用到。意圖多了需求文件沒有的功能或限制 → 先不核准，請學員回「意圖第 N 行不在需求文件裡，請刪掉並重寫計畫，然後停下」。</p>
+    <p><b>開頭三行</b>：計畫開頭先寫要什麼、為什麼、限制，只照需求文件；Agent 理解錯了一眼就看得出來，B3 的 Gate 1 也這樣做。多了需求文件沒有的功能或限制 → 先不核准，請學員回「開頭第 N 行不在需求文件裡，請刪掉並重寫計畫，然後停下」。</p>
     <p><b>看</b>：Agent 已開始改檔案 → 請學員貼檢查點 2 ④「核准前就改檔案」那段｜學員有沒有看過建議答案才回「同意」｜是否只核准前兩小步（說「全部做完」→ 提醒這段練的是小步放行）。</p>
     <p><b>需求澄清（已寫在計畫提示詞【限制】）</b>：付款失敗 → Booking 維持 <code>PENDING_PAYMENT</code>、座位不釋放、不建 Order、可再付款；找不到資源 404；人數不符 409（在 domain／application 檢查，不寫成輸入格式限制）；座位不足、重複付款、付款失敗也是 409；格式錯誤保留 422；付款失敗用 <code>MockPaymentGateway.next_result = PaymentStatus.FAILED</code> 模擬。AC-G-013 要求 Booking／Order 不存在回 404，Trip 不存在依澄清也回 404。</p>
     <p><b>找不到入口時</b>（一次一級）：H1 提醒「先要計畫」，貼「先仔細想過再回答。請列出所有 Greenfield TODO 與 Rule ID，用固定兩欄（TODO、對應需求的白話說明）回報，列完停下。」｜H2 貼「請用白話說明一個請求從進來到存資料經過哪幾層、各負責什麼。」｜H3 貼「請依 TODO 群組提出分段計畫寫進 notes/greenfield.md，讓我決定先做哪段。」（主持參考：<code>main.py</code>、<code>api/</code>、<code>application/</code>）</p>
@@ -2618,7 +2618,7 @@ body.is-presenter #dk-black { display: none !important; }
     <li class="teammate">Teammate</li>
     <li class="dw active">Digital Worker</li>
   </ol>
-  <p class="quote fx fx-fade">到 B3，人不再逐步核准，只在三道 Gate 做決定：意圖、規格與計畫、交付。</p>
+  <p class="quote fx fx-fade">到 B3，人不再逐步核准，只在三道 Gate 做決定：需求、設計、交付。</p>
   <div class="cols-2">
     <div class="card teammate fx fx-up">
       <h3>人</h3>
@@ -2685,7 +2685,7 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide slide-cp" data-seg="b3" data-title="檢查點 2 · Gate 1：確認 Agent 懂需求" data-minute="64">
   <p class="kicker">檢查點 2 / 4 · 第 64–66 分鐘</p>
   <h2 class="title">Gate 1：確認 Agent 懂需求</h2>
-  <p class="cp-why"><b>為什麼</b>確認意圖：要什麼、為什麼、限制都和任務卡一致</p>
+  <p class="cp-why"><b>為什麼</b>需求理解錯了，後面做得再快都白做</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>對照原文看 5 題</b><span>每題下面附了任務卡原文</span></li>
@@ -2695,8 +2695,7 @@ body.is-presenter #dk-black { display: none !important; }
   <p class="cp-judge"><b>你要判斷</b>每題都對得上附的原文才核准；待確認的由你們決定</p>
   <p class="cp-next"><b>第 66 分前決策</b><span>→ 下一步：檢查點 3 Gate 2</span></p>
   <aside class="notes">
-    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照每題下面附的任務卡原文回答那 5 個是非題；有疑問再看 B3 頁上方的任務卡。Gate 1 確認的是意圖：要什麼、為什麼、限制；理解錯了，後面做得再快都白做。」</p>
-    <p><b>意圖 → 規格 → 計畫（首次介紹，約 20 秒，指著 Runbook 本檢查點的「新概念」小卡）</b>：「任務卡就是意圖；Gate 1 確認 Agent 懂意圖，Gate 2 核准規格和計畫，Gate 3 看驗證和審查的證據。每一樣都寫進 notes/b3.md，下一步讀得到，你們也查得到。Greenfield 計畫開頭那三行意圖，就是同一件事。」</p>
+    <p><b>說（00:01／第 64 分）</b>：「Agent 交出 Gate 1 決策卡後，請對照每題下面附的任務卡原文回答那 5 個是非題；有疑問再看 B3 頁上方的任務卡。Agent 寫的要什麼、為什麼、限制，要和任務卡一致；需求理解錯了，後面做得再快都白做。」</p>
     <p><b>說（00:03／第 66 分）</b>：「請做 Gate 1 決策：核准才進 Gate 2 設計，退回就要求修正。直接回『核准』『附條件：…』或『退回：…』；要你決定的題目不照建議才加一句，例如『A 改成…』。核准人和時間 Agent 自己記，接著自己交 Gate 2 卡。」</p>
     <p><b>看</b>：先看過再核准｜有質疑假設、風險、邊界和替代方案｜不跳 Gate。決策由人說，Agent 只照抄、不代填；小組先口頭說好，再到「B3 Gate 決策」選。</p>
     <p><b>附條件核准</b>：不等於可以忽略條件直接做。條件要具體、能驗證，而且先解除；要說清楚哪些已允許、哪些仍被擋、要回哪道 Gate。</p>
@@ -2707,17 +2706,17 @@ body.is-presenter #dk-black { display: none !important; }
 <section class="slide slide-cp" data-seg="b3" data-title="檢查點 3 · Gate 2：核准設計與修改範圍" data-minute="66">
   <p class="kicker">檢查點 3 / 4 · 第 66–70 分鐘</p>
   <h2 class="title">Gate 2：核准設計與修改範圍</h2>
-  <p class="cp-why"><b>為什麼</b>你核准的計畫，就是 Agent 能自己動手的邊界</p>
+  <p class="cp-why"><b>為什麼</b>你核准的範圍，就是 Agent 能自己動手的邊界</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
-    <li><b>看 Gate 2 卡</b><span>分兩節：規格、計畫</span></li>
+    <li><b>看 Gate 2 卡</b><span>Gate 1 核准後 Agent 自己交</span></li>
     <li><b>回一個詞</b><span>核准／附條件：…／退回：…</span></li>
     <li><b>選 Gate 2</b><span>在「B3 Gate 決策」選 Gate 2</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>都在工作單允許的範圍內，不只是「看起來合理」</p>
   <p class="cp-next"><b>第 69 分前決策</b><span>→ 下一步：看投影的例外事件</span></p>
   <aside class="notes">
-    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准後，Agent 會自己交 Gate 2 卡，分兩節：規格是行為與驗收條件（影響、API、座位、全有或全無的處理），計畫是改哪些檔、步驟、測試和風險。沒自動出現就貼 Runbook 檢查點 3 那一行。你們核准的計畫，就是 Agent 接下來能自己動手的邊界；回「開始執行」才算核准計畫，之前不能改程式。」</p>
+    <p><b>說（00:03／第 66 分）</b>：「Gate 1 核准後，Agent 會自己交 Gate 2 卡：做完後的行為（影響、API、座位、全有或全無的處理），以及要改的檔案、步驟、測試和風險。沒自動出現就貼 Runbook 檢查點 3 那一行。你們核准的範圍，就是 Agent 接下來能自己動手的邊界；Gate 2 核准、條件解除前，不能改程式。」</p>
     <p><b>說（00:06／第 69 分）</b>：「請做 Gate 2 決策。」→ <b>翻到下一頁例外事件</b>（Agent 已經自己提出 SQLite 的組，見下一頁備註）。</p>
     <p><b>看</b>：不以「看起來合理」代替範圍檢查｜核准範圍有寫明允許和不得修改的部分，記進 notes/b3.md｜條件沒滿足的範圍先停；偏離計畫要補證據或重新核准。Gate 2 決策前就改檔 → #1。</p>
     <p><b>可回答</b>：每節車廂幾個座位 → Gate 1 卡「要你決定」由 Agent 依程式現有資料提議、小組回「A 照建議」或改值。座位演算法或回應格式細節 → 任務卡不規定，由 Agent 在 Gate 2 提案、人審查。</p>
@@ -3039,15 +3038,15 @@ body.is-presenter #dk-black { display: none !important; }
     <li><b>貼 ②、選一個行動</b><span>由一位成員的 Agent 提 3 個候選</span></li>
     <li><b>貼進表單、匯出</b><span>Agent 貼回那一行就不用貼 ③</span></li>
   </ol>
-  <p class="cp-judge"><b>你要判斷</b>行動說得出誰、何時，兩週和一季後各看什麼</p>
+  <p class="cp-judge"><b>你要判斷</b>行動挑「回到工作」一項，附它自己的領先、落後指標</p>
   <p class="cp-next"><b>第 90 分前完成</b><span>→ 填回顧表，匯出所有表單</span></p>
   <aside class="notes">
     <p><b>說（00:06／第 86 分）</b>：「小組口頭討論，不用寫：今天只看證據、不看程式，風險在哪？公司需要什麼角色或平台補這個盲點、誰該替交付簽名？組織導入的第一步是什麼？討論完請一位成員的 Agent 提 3 個行動候選，選一個。」</p>
     <p><b>講明代價</b>：只看驗收對照表、變更審查和 /docs 行為，抓不到「測試全過但寫法有問題」的程式（例如規則寫錯層、重複邏輯、日後難維護）。可引導到：懂程式的審查者抽查、自動化檢查（靜態分析、架構規則檢查）、平台留下紀錄（稽核紀錄、測試證據）。</p>
-    <p><b>首次介紹</b>：領先與落後指標，約 15 秒，指著 Runbook 檢查點 3 ④ 的小卡：「行動有沒有效，兩週內先看會動的過程數字，例如每週退回幾份計畫；一季後再看結果，例如上線後才發現的問題數。」學員分不清時，請 Agent 每個候選各附一個例子。</p>
+    <p><b>首次介紹</b>：從沒有前置條件的一項開始，約 15 秒，指著 Runbook 檢查點 3 ④ 的小卡和檢查點 1 下方提示詞清單的「回到工作：從哪一項開始」：「五項都不用先做別的；每項都寫了今天在哪練過、回去的第一步、它自己的領先和落後指標。挑一項，指標照抄，不要自己編。」</p>
     <p><b>組織導入（挑一兩題問）</b>：背景資料｜哪些資訊缺了造成錯誤？→ 有版本的脈絡檔（如 notes/shared-context.md）。規則｜哪些限制可以讓機器檢查？→ 自動檢查和人工 Gate 分開。流程｜哪道 Gate 有價值、哪道流於形式？→ 調整要交的證據和停止條件，不只是多加簽核。平台｜哪些指令、核准、例外和測試該自動留紀錄？SQLite 事件可當例子。</p>
     <p><b>評估用的五個面向（不投影）</b>：需求理解｜計畫與範圍控制｜證據與品質｜人員監督｜透明揭露，各 0–3 分。討論盲點時可追問「哪個面向缺證據」；只用來回顧和找平台需求，不排名；缺證據記「未觀察」（不等於 0 分），和 Level 分開。平台需求八項：Agent 權限範圍、規則強制、核准流程、稽核紀錄、測試證據、脈絡版本管理、Agent 對話管理、成本與執行時間觀測。收斂時至少留一項脈絡或規則改善、一項 Skill 或流程需求、一項平台需求，並連回 Gate 或例外的證據。</p>
-    <p><b>介入</b>：只喊「Agent 更聰明」→ 問「可以改哪份背景資料、哪道 Gate，或哪個能驗證的把關點？」行動太含糊 → 問「誰、在何時？兩週內看哪個數字會動（領先指標），一季後看哪個結果（落後指標）？」</p>
+    <p><b>介入</b>：只喊「Agent 更聰明」→ 問「可以改哪份背景資料、哪道 Gate，或哪個能驗證的把關點？」行動太含糊 → 問「誰、在何時、做五項裡哪一項的第一步？那一項的領先、落後指標是什麼？」</p>
     <p><b>省時</b>：討論從四題減為三題（暖身題「誰該替交付負責」併進第 2 題）；Agent 加好行動後把那一行貼回來，組員直接貼進表單，不另貼 ③；等 Agent 列候選時，還沒勾表單第 1 題的先勾。</p>
     <p><b>停止</b>：00:09（第 89 分）不開新議題；00:10（第 90 分）準時結束，確認已匯出表單、notes/my-prompts.md 自己帶走。翻到結束頁。</p>
   </aside>
