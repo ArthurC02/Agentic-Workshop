@@ -9,5 +9,22 @@
     "**這一段帶走什麼**\n- 不變量、Aggregate、領域事件各解決什麼問題，以及怎麼用「是／不是」檢查 Agent 提的概念\n- Port／Adapter 與防腐層讓外部說法不滲進領域程式；冪等處理「逾時是不知道」\n- 交給 Agent 的方式：先列不變量與證據，Agent 提選項，人來選\n- 測試會綠不代表規則有人守；搬程式不等於改模型\n\n每頁最後的段落是講解時來不及說的補充：概念的白話解釋、證據出處、限制與回到團隊的做法；提到的書與文章列在最後的「延伸閱讀」。",
     "本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。案例數字都是該公司自己說的，本工作坊沒有量測效率。本場不公布三張需求卡的參考設計。"
   ],
-  "handout_done": "能用自己的話說明不變量、Aggregate、領域事件、Port／Adapter 與防腐層、冪等各解決什麼問題；會用「是什麼／不是什麼」檢查 Agent 提的概念、分得出重構與模型變更；會用「先列不變量與證據、Agent 提選項、人來選」的方式把領域設計交給 Agent；知道測試會綠不代表規則有人守；說得出近期用領域模型引導 Agent 改舊系統的做法。\n\n## 下週可以做的事\n- 從需求文件挑一條規則，改寫成「怎樣算違反」的一句話，請 Agent 找出會在違反時失敗的測試；找不到就補一個。\n- 請 Agent 檢查領域程式裡有沒有外部服務的欄位名稱或錯誤碼，每筆附行號，由你決定改不改。\n- 在 PR 範本加一題：「這次有沒有改到名詞、負責者、規則或邊界？」"
+  "handout_done": "能用自己的話說明不變量、Aggregate、領域事件、Port／Adapter 與防腐層、冪等各解決什麼問題；會用「是什麼／不是什麼」檢查 Agent 提的概念、分得出重構與模型變更；會用「先列不變量與證據、Agent 提選項、人來選」的方式把領域設計交給 Agent；知道測試會綠不代表規則有人守；說得出近期用領域模型引導 Agent 改舊系統的做法。\n\n## 下週可以做的事\n- 從需求文件挑一條規則，改寫成「怎樣算違反」的一句話，請 Agent 找出會在違反時失敗的測試；找不到就補一個。\n- 請 Agent 檢查領域程式裡有沒有外部服務的欄位名稱或錯誤碼，每筆附行號，由你決定改不改。\n- 在 PR 範本加一題：「這次有沒有改到名詞、負責者、規則或邊界？」",
+  "terms": [
+    ["不變量（Invariant）", "每次操作（交易）完成時都必須成立、說得出怎樣算違反的業務規則；可以晚一點才成立的規則不算。", "〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）"],
+    ["業務規則", "業務對資料或行為的要求；其中必須在同一次操作裡立即成立的才是不變量，其他可以用事件事後完成。", "〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）"],
+    ["一致性邊界", "一次操作提交時，裡面的不變量都必須成立的資料範圍；邊界內全有或全無，邊界外事後同步。", "〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）"],
+    ["Aggregate（聚合）", "必須一起保持一致、當成一個單位修改的一組物件，也就是一個一致性邊界；可以只有一個物件。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）"],
+    ["Aggregate root（聚合根）", "Aggregate 裡唯一對外的入口物件；外界只持有它的參照，規則由它負責守住。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["Entity（實體）", "靠識別碼區分的物件，屬性改了仍是同一個，例如一筆訂票。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["Value Object（值物件）", "沒有識別碼、只由值決定、建立後不改的物件，例如一個金額。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["最終一致（eventual consistency）", "跨 Aggregate 或跨 Context 的資料不在同一次交易裡更新，而是事後（通常經由事件）在一段時間內變成一致。", "〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）"],
+    ["領域事件（Domain Event）", "領域專家在乎、已經發生的事，用過去式寫；「資料表多了一列」不算。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["整合事件（integration event）", "交易提交後，把已發生的事非同步通知其他 Context 或外部系統的事件；它成為雙方的約定。", "〈Domain events: Design and implementation〉（Microsoft .NET 架構指南）"],
+    ["Port（埠）", "應用程式和外界一段「有目的的對話」的介面，用自己的用語定義；分成外界驅動程式的一側，與程式需要外界能力的一側。", "〈Hexagonal Architecture〉（Alistair Cockburn，2005）"],
+    ["Adapter（轉接器）", "把 Port 的對話轉成某個外部技術或服務格式的實作；測試時可換成替身。", "〈Hexagonal Architecture〉（Alistair Cockburn，2005）"],
+    ["防腐層（ACL，Anticorruption Layer）", "下游自己蓋的翻譯層，用自己模型的說法取用上游功能；只翻譯，不放業務規則。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Anti-Corruption Layer Pattern〉（Microsoft Azure Architecture Center，2026）"],
+    ["冪等（Idempotency）", "同一個請求送很多次，產生的效果和送一次相同；第二次可以回「已處理過」。", "IETF〈RFC 9110 HTTP Semantics〉；Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉"],
+    ["重構（refactoring）", "改變程式內部結構，讓它更好懂、更好改，但不改外部可觀察的行為。", "〈Definition Of Refactoring〉（Martin Fowler，2004）"]
+  ]
 }

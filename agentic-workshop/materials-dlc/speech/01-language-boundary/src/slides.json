@@ -4,8 +4,8 @@
     "lead": "DDD（Domain-Driven Design，領域驅動設計）的作者 Evans，把它濃縮成三句話。",
     "cards": [["聚焦核心領域", "力氣花在讓業務與眾不同的那一塊。"], ["和領域專家一起建模", "模型是討論出來的，不是工程師自己想的。"], ["在明確邊界內說通用語言", "同一個範圍內，同一件事只有一個名字。"]],
     "check": "D1 裡哪一個決定你最沒把握？先記下來，最後一頁回來對照。",
-    "explain": ["Evans 在 2003 年的同名書中提出 DDD；2015 年他把定義與模式整理成免費公開的〈Domain-Driven Design Reference〉，這三句話就出自這份摘要。領域專家是真正懂這門業務的人，例如櫃檯、法遵、產品負責人；「模型」不是一張圖，而是團隊對業務的共同理解：有哪些名詞、哪些規則、誰負責什麼。", "有 Agent 寫程式時，這三句話更吃重：Agent 照它讀到的名詞取名、照它看到的規則寫判斷；名詞不一致、規則沒寫下來，它就照最常見的寫法猜。本 DLC 主要練第二、三句：Agent 幫忙找證據，定義由人和領域專家決定。", "常見誤解：DDD 不是一種資料夾結構，也不等於拆微服務；它首先是讓團隊說同一套話的做法。下週可以先挑一個團隊最常被說錯的名詞，寫一句定義，問一位懂業務的同事這樣對不對。"],
-    "read": ["〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    "explain": ["Evans 在 2003 年的同名書中提出 DDD；2015 年他把定義與模式整理成免費公開的〈Domain-Driven Design Reference〉，這三句話就出自這份摘要。領域專家是真正懂這門業務的人，例如櫃檯、法遵、產品負責人；「模型」不是一張圖，而是團隊對業務的共同理解：有哪些名詞、哪些規則、誰負責什麼。", "三句話裡的詞，Evans 的參考資料都有定義。領域（domain）是使用者把軟體用在哪一塊知識或活動，例如訂票、退票、會員點數；模型（model）是挑出領域的某些面向、能用來解決這個領域問題的一套抽象。所以模型一定有取捨：它只回答它要回答的問題。", "「聚焦核心領域」要先分出哪一塊是核心。微軟 Azure 架構中心依 DDD 把子領域（subdomain，業務裡相對獨立的一塊）分成三類：核心（讓公司和對手不同，值得投入最多設計）、支援（業務需要但不構成差異，例如開發票）、通用（業界早有現成做法，例如使用者帳號）。用詞各家略有不同：Evans 的參考資料只寫核心領域（Core Domain）與通用子領域（Generic Subdomains），「支援」這一類出自 Vernon 等後來的作者。對 Agent 協作的意義：核心那一塊最值得人花時間審查 Agent 的提案；通用那一塊，先找現成方案。", "有 Agent 寫程式時，這三句話更吃重：Agent 照它讀到的名詞取名、照它看到的規則寫判斷；名詞不一致、規則沒寫下來，它就照最常見的寫法猜。本 DLC 主要練第二、三句：Agent 幫忙找證據，定義由人和領域專家決定。", "常見誤解：DDD 不是一種資料夾結構，也不等於拆微服務；它首先是讓團隊說同一套話的做法。下週可以先挑一個團隊最常被說錯的名詞，寫一句定義，問一位懂業務的同事這樣對不對。"],
+    "read": ["〈Domain-Driven Design Reference〉（Eric Evans，2015）", "〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）"],
     "notes": "0–2 分鐘。本場講用 Coding Agent 做 DDD 的概念與做法，不是重做 D1：學員不讀程式、不打指令。三句話出自 Evans 的 DDD Reference，第三句原文是「Speak a ubiquitous language within an explicitly bounded context.」今天主要講第二、三句：Agent 能幫忙找語言與邊界的證據，定義仍由人和領域專家決定。不揭露 D3 三張需求卡的參考設計，未來梯次也會看到這份簡報。📖 延伸閱讀：〈Domain-Driven Design Reference〉（Eric Evans，2015）。"
   },
   {
@@ -40,7 +40,7 @@
     "lead": "Ubiquitous Language（通用語言）：團隊在對話、文件與程式裡，用同一套名詞。",
     "cards": [["同一套說法", "會議上怎麼說，程式裡的名稱就怎麼取。"], ["會跟著成長", "團隊越懂業務，語言和模型就跟著改。"]],
     "check": "說出一個「客服這樣說、程式卻那樣寫」的例子。",
-    "explain": ["通用語言是 DDD 的核心做法。Evans 要求同一套語言用在圖、文件，尤其是說話裡；Martin Fowler 2006 年的短文〈UbiquitousLanguage〉補充：語言和模型會隨團隊越懂業務而演進，不是定一次就不動。", "對 Agent 來說，程式裡的名稱是它最常讀到的語言。Three Dots Labs 的 Miłosz Smółka 在 2026 年 8 月的文章寫到：Agent 會在整個 Repo 裡找你給它的名字，也可能天真地把相似的實體合併。所以兩個看起來很像的名詞為什麼要分開，要寫下來。這是個人實作經驗，沒有數據。", "下週可以找一個「客服這樣說、程式那樣寫」的名詞，先記下兩邊的說法和出處，不急著改程式；改名本身就是改模型，下一頁會講。"],
+    "explain": ["通用語言是 DDD 的核心做法。Evans 要求同一套語言用在圖、文件，尤其是說話裡；Martin Fowler 2006 年的短文〈UbiquitousLanguage〉補充：語言和模型會隨團隊越懂業務而演進，不是定一次就不動。", "Evans 的定義更精確：通用語言是以領域模型為骨幹、在一個 Bounded Context 裡全體成員共用的語言，用來把團隊的每一項工作接到軟體上。微軟的說法是開發者和領域專家一起建立。重點有二：它屬於某一個 Context，不是全公司一套；它要用在程式裡，不只是一份名詞表。", "對 Agent 來說，程式裡的名稱是它最常讀到的語言。Three Dots Labs 的 Miłosz Smółka 在 2026 年 8 月的文章寫到：Agent 會在整個 Repo 裡找你給它的名字，也可能天真地把相似的實體合併。所以兩個看起來很像的名詞為什麼要分開，要寫下來。這是個人實作經驗，沒有數據。", "課程裡的例子：Smart Ticket 有「訂票（Booking）」和「訂單（Order）」兩個很像的名詞。依需求卡的說明，Order 是付款成功後才建立的訂單，Booking 在付款前就存在。Agent 看到兩個相似名詞，可能想合併成一個；但它們的建立時機與規則不同，合併了，「付款失敗仍保留座位」這類規則就沒有地方放。這種差別要寫進詞彙表，連同「不要混用」一起寫。", "下週可以找一個「客服這樣說、程式那樣寫」的名詞，先記下兩邊的說法和出處，不急著改程式；改名本身就是改模型，下一頁會講。"],
     "read": ["〈UbiquitousLanguage〉（Martin Fowler，2006）", "Eric Evans《Domain-Driven Design》（2003）第 2 章〈Communication and the Use of Language〉", "〈Domain-Driven Design matters more when AI writes your code〉（Miłosz Smółka／Three Dots Labs，2026）"],
     "notes": "7.5–9 分鐘。Evans〈DDD Reference〉：「use the same language in diagrams, writing, and especially speech.」Microsoft Azure Architecture Center〈Use Domain Analysis to Model Microservices〉（2026-02）：「Teams use this language consistently in conversations, documentation, and code.」Fowler〈UbiquitousLanguage〉（2006）：語言與模型會隨團隊對領域的理解而演進。對 Agent 來說，程式裡的名稱是它最常讀到的語言；名稱不一致，它學到的就不一致。Three Dots Labs 的 Miłosz Smółka〈Domain-Driven Design matters more when AI writes your code〉（2026-08-20）從實作經驗補兩句：「Agents have access to your whole repository, and they'll look for the names you give them.」以及 Agent「may naively try to unify similar entities」，所以要寫明它們為什麼分開；這正是 D1 檢查點 3 不准 Agent 合併矛盾名稱的理由。這是個人經驗文章，沒有數據。📖 延伸閱讀：〈UbiquitousLanguage〉（Martin Fowler，2006）；Eric Evans《Domain-Driven Design》（2003）第 2 章〈Communication and the Use of Language〉。"
   },
@@ -50,7 +50,7 @@
     "code": "詞彙：借閱（圖書館示意）\n  不用的名字：借書、租借\n  證據：docs/example.md:41-48\n  狀態：候選",
     "cards": [["候選", "附證據的主張，Agent 只能參考。"], ["事實", "經另一個人核准後才成立（下一場）。"]],
     "check": "挑一筆候選，打開證據的那幾行：真的在講這件事嗎？",
-    "explain": ["Evans 說：語言的改變就是模型的改變。所以 Agent 把「借書」改成「借閱」，不是改錯字，而是提議改模型。本課把 Agent 提出、附證據、還沒有人核准的主張叫「候選」；候選只能參考，不是必須遵守的規則。", "DDD Europe 2026 的 Philipp Kostyra 主張把 LLM 當成「可以犯錯的初級領域專家」：它的意見值得聽，但要有人確認。看證據不需要看懂程式，只要問兩件事：那幾行真的在講這件事嗎？有沒有被斷章取義？", "常見誤解：Agent 找得到證據就代表它對。證據只證明某處出現過這個說法，不證明這是團隊選定的說法；由誰、怎麼核准，下一場講。"],
+    "explain": ["Evans 說：語言的改變就是模型的改變。所以 Agent 把「借書」改成「借閱」，不是改錯字，而是提議改模型。本課把 Agent 提出、附證據、還沒有人核准的主張叫「候選」；候選只能參考，不是必須遵守的規則。", "DDD Europe 2026 的 Philipp Kostyra 主張把 LLM 當成「可以犯錯的初級領域專家」：它的意見值得聽，但要有人確認。看證據不需要看懂程式，只要問兩件事：那幾行真的在講這件事嗎？有沒有被斷章取義？", "常見誤解：Agent 找得到證據就代表它對。證據只證明某處出現過這個說法，不證明這是團隊選定的說法；由誰、怎麼核准，下一場講。", "這也是業界記錄決策的通用做法：架構決策紀錄（ADR）先標「提議」，同意後才標「接受」；本課的候選對應「提議」，第 02 場會把兩者對起來。課程裡的例子：Agent 提議把程式裡的 booking 和文件裡的「訂單」視為同一個詞，附上兩處出現的行號；它只是候選；上一頁說過兩者其實不同，這筆候選就該被退回，退回的理由也值得寫下來。"],
     "read": ["〈Domain-Driven Design Reference〉（Eric Evans，2015）", "〈Can AI be a Co-Domain Expert in Domain Modelling?〉（Philipp Kostyra／DDD Europe，2026）"],
     "notes": "9–11 分鐘。Evans〈DDD Reference〉：「Recognize that a change in the language is a change to the model.」所以 Agent 把「借書」改成「借閱」不是改錯字，是提議改模型，要由人看證據決定。Philipp Kostyra 在 DDD Europe 2026 的實作課主張把 LLM 當成「a junior domain expert that is allowed to be wrong」，正是候選的意思。範例是圖書館的示意，不是 Repo 的內容。人看證據不需要看懂程式：看那幾行是不是在講同一件事、有沒有被斷章取義。這是 DLC 第一個新概念，下一場才講事實。📖 延伸閱讀：〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Can AI be a Co-Domain Expert in Domain Modelling?〉（DDD Europe，2026）。"
   },
@@ -69,7 +69,7 @@
     "prompt": "先不要修改任何檔案。請從我指定的文件、程式與測試裡，找出同一件事有兩個以上名字、或文件有而程式沒有的名詞。列成表：名詞、各處說法、證據（路徑:起-迄行）。不要替我選標準名稱，列完停下。",
     "cards": [["人決定", "標準名稱、定義，以及哪些名字以後不用。"], ["不要用的名字", "寫進詞彙表，Agent 下次才不會換回來。"]],
     "check": "Agent 列的同義詞，你有沒有決定哪一個不用？",
-    "explain": ["這頁的指令示範分工：Agent 找出同一件事有幾個名字、各在哪裡出現；人決定標準名稱、寫定義，並寫下「以後不用的名字」。指令最後的「不要替我選」是關鍵：選名字就是定義模型，定義是人的事。", "為什麼要寫「不用的名字」：Agent 下次讀到舊程式裡的舊名稱，如果詞彙表沒說它已停用，就可能把舊名稱帶回新程式。Forte Group 2026 年一篇廠商文章的說法是「拒絕才是決定所在」；這是觀點，不是研究。", "發現矛盾時（文件說 A、程式做 B），先記成發現，不要讓 Agent 偷偷修掉：哪一邊才對，是業務問題。這頁的提示詞是示範，沒有實際執行過。"],
+    "explain": ["這頁的指令示範分工：Agent 找出同一件事有幾個名字、各在哪裡出現；人決定標準名稱、寫定義，並寫下「以後不用的名字」。指令最後的「不要替我選」是關鍵：選名字就是定義模型，定義是人的事。", "為什麼要寫「不用的名字」：Agent 下次讀到舊程式裡的舊名稱，如果詞彙表沒說它已停用，就可能把舊名稱帶回新程式。Forte Group 2026 年一篇廠商文章的說法是「拒絕才是決定所在」；這是觀點，不是研究。", "發現矛盾時（文件說 A、程式做 B），先記成發現，不要讓 Agent 偷偷修掉：哪一邊才對，是業務問題。這頁的提示詞是示範，沒有實際執行過。", "一筆好的詞彙紀錄長這樣：名詞「可用點數」，定義「會員目前可以拿來折抵的點數」，不要用的名字列出程式裡曾出現的其他寫法，證據指到需求卡與程式的行號。定義用業務的話寫，不寫「points_balance 欄位」這類實作細節；欄位名稱放在證據裡就好。"],
     "notes": "13–14.5 分鐘。示範提示詞，未實際執行就不要宣稱結果。對照 D1 檢查點 3。重點是「不要替我選」：選名字是定義，定義是人的事；矛盾先記成發現，不要偷偷修掉。Forte Group 的廠商文章（2026-09）說「rejection is where the decision lives.」：詞彙表最有用的一行，常是「不用哪個名字」。社群也有人把這件事做成 Agent Skill（例如 skills.sh 目錄的 ubiquitous-language），只當「有人這樣做」的佐證，不推薦安裝。"
   },
   {
@@ -77,16 +77,16 @@
     "lead": "Agent 會自信地說出不存在的名字；每個名詞都要附查得到的證據。",
     "cards": [["研究（2025）", "程式碼模型推薦的套件，商用模型至少 5.2% 不存在。"], ["防法", "證據寫成路徑與行號，再請工具確認原文還在。"]],
     "check": "Agent 提的名詞裡，有沒有一個在證據裡找不到？",
-    "explain": ["LLM 會自信地說出不存在的東西，稱為幻覺（hallucination）。2025 年 USENIX Security 研討會的論文測了 16 個程式碼生成模型：它們推薦的套件裡，商用模型平均至少 5.2%、開源模型 21.7% 根本不存在，總共出現 205,474 個不同的假套件名稱。", "這是套件名稱，不是領域名詞，但道理相通：越像真的名字越難發現。防法是每個名詞都附「路徑:起-迄行」的證據，並請工具或另一個步驟確認那幾行原文還在、還在講同一件事。Böckeler 也記錄過，就算給了正確的上下文，Agent 也不一定照做，所以查證不能省。", "引用數字時請回到論文摘要核對：摘要裡的比例就是上面兩個，看到其他比例（例如 19.7%）不要沿用。"],
+    "explain": ["LLM 會自信地說出不存在的東西，稱為幻覺（hallucination）。2025 年 USENIX Security 研討會的論文測了 16 個程式碼生成模型：它們推薦的套件裡，商用模型平均至少 5.2%、開源模型 21.7% 根本不存在，總共出現 205,474 個不同的假套件名稱。", "這是套件名稱，不是領域名詞，但道理相通：越像真的名字越難發現。防法是每個名詞都附「路徑:起-迄行」的證據，並請工具或另一個步驟確認那幾行原文還在、還在講同一件事。Böckeler 也記錄過，就算給了正確的上下文，Agent 也不一定照做，所以查證不能省。", "引用數字時請回到論文摘要核對：摘要裡的比例就是上面兩個，看到其他比例（例如 19.7%）不要沿用。", "一個實用的檢查：請 Agent 對每個名詞附「路徑:起-迄行」，再請另一個步驟只做一件事：打開那幾行，回報原文裡有沒有這個字。兩步分開，比讓同一個步驟「找完順便確認」可靠，因為查證的一方沒有替自己的答案辯護的動機。"],
     "read": ["〈We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs〉（Spracklen 等人，USENIX Security 2025）"],
     "notes": "14.5–16 分鐘。USENIX Security 2025 論文〈We Have a Package for You!〉：16 個程式碼生成模型推薦的套件中，幻覺比例商用模型平均至少 5.2%、開源模型 21.7%，共 205,474 個不同的假名稱。這是套件名稱，不是領域名詞，用來類比：越像真的名字越危險。Böckeler 也記錄過：給了上下文，Agent 也不一定照做。所以 D1 讓 Agent 驗證每段證據還對得上原文。第 04 場會加深「只准引用查得到的 id」，只回扣這組數字，不重講。不要說「19.7%」，查不到。📖 延伸閱讀：〈We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs〉（Spracklen 等人，USENIX Security 2025）。"
   },
   {
     "id": "context", "chapter": "邊界", "title": "Bounded Context：意思一致的範圍",
-    "lead": "Bounded Context（限界上下文）：在這個範圍內，同一個名詞的意思一致。",
+    "lead": "Bounded Context（限界上下文）：一個模型適用的範圍；在範圍內，同一個名詞只有一種意思。",
     "cards": [["同字異義是邊界訊號", "「帳戶」在登入和帳務是兩件事。"], ["不要硬統一", "大系統要一套全公司模型，既不可行也不划算。"]],
     "check": "你們公司哪個詞，換個部門意思就不一樣？",
-    "explain": ["Bounded Context（限界上下文）是一個明確的範圍，在這個範圍內，每個名詞只有一種意思。Martin Fowler 2014 年的短文以「客戶」「產品」為例：同一個詞，在不同部門可能指不同的東西。微軟 Azure 架構中心也用 account（帳戶）舉例，例如登入用的帳戶和帳務上的帳戶就是兩件事。", "Fowler 也說，大系統想要全公司只用一套模型，既不可行也不划算；與其硬統一，不如畫出邊界，在每個邊界內說清楚。對 Agent 而言，沒有標出邊界，它很容易把兩個「訂單」當成同一個，寫出把兩邊混在一起的程式。", "實際做法：Agent 發現同一個字有兩種意思時，不要讓它合併成一個名詞，由人決定這是兩個不同的名詞，還是兩個 Context 的界線。下週可以問問團隊：哪個詞一換部門，意思就變了？"],
+    "explain": ["Bounded Context（限界上下文）是一個明確的邊界，在邊界內有一個特定的模型被定義、也適用。Evans 的定義補了一句：這個邊界通常是一個子系統，或一個團隊負責的範圍。在範圍內，每個名詞只有一種意思。Martin Fowler 2014 年的短文以「客戶」「產品」為例：同一個詞，在不同部門可能指不同的東西。微軟 Azure 架構中心也用 account（帳戶）舉例，例如登入用的帳戶和帳務上的帳戶就是兩件事。", "Bounded Context 和子領域不一樣：子領域是業務這一側的劃分（業務自然分成哪幾塊），Bounded Context 是解法這一側的劃分（哪個模型在哪裡適用）。理想上一個 Context 對應一個子領域，但舊系統常常不是；Azure 的寫法是「每個 Bounded Context 包含一個代表特定子領域的領域模型」。", "Fowler 也說，大系統想要全公司只用一套模型，既不可行也不划算；與其硬統一，不如畫出邊界，在每個邊界內說清楚。對 Agent 而言，沒有標出邊界，它很容易把兩個「訂單」當成同一個，寫出把兩邊混在一起的程式。", "實際做法：Agent 發現同一個字有兩種意思時，不要讓它合併成一個名詞，由人決定這是兩個不同的名詞，還是兩個 Context 的界線。常見誤解：一個 Context 不等於一個微服務、一個資料夾或一張資料表；它是語言與模型的邊界，程式怎麼部署是另一個決定。下週可以問問團隊：哪個詞一換部門，意思就變了？"],
     "read": ["〈BoundedContext〉（Martin Fowler，2014）", "Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 2 章〈Domains, Subdomains, and Bounded Contexts〉", "〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）"],
     "notes": "16–17.5 分鐘。Fowler〈BoundedContext〉（2014）以 Customer、Product 為例：同一個詞在不同部門意思不同；大系統完全統一模型「will not be feasible or cost-effective」。Azure〈Use Domain Analysis to Model Microservices〉用 account 舉例。對 Agent：沒有標出 Context，它會把兩個「訂單」當成同一個。D1 檢查點 4 要每個 Context 說得出「它決定什麼」。📖 延伸閱讀：〈BoundedContext〉（Martin Fowler，2014）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 2 章〈Domains, Subdomains, and Bounded Contexts〉。 交給 Agent 時：它找到同一個字有兩種意思，不要讓它合併成一個名詞；由人決定這是兩個名詞，還是兩個 Context 的界線。"
   },
@@ -96,7 +96,7 @@
     "flow": ["語言", "邊界", "關係", "規則與 Aggregate"],
     "cards": [["Agent 較可靠", "找名詞、找誰呼叫誰：結果穩定、容易驗。"], ["Agent 較不可靠", "劃邊界、定 Aggregate：一錯就往後擴散。"]],
     "check": "D1 裡，你是先定好名詞才劃邊界，還是一起做？",
-    "explain": ["為什麼是這個順序：找名詞、找「誰呼叫誰」，程式裡有字面證據，結果穩定、容易驗；劃邊界、定 Aggregate 要綜合判斷，比較容易出錯。邊界一旦劃錯，之後每一條規則、每一個事件都會掛在錯的地方，越晚發現越難改。Aggregate 與規則第 03 場會講。", "限制：「哪些步驟 Agent 比較可靠」是實務觀察，不是研究結論，沒有數字支持。回到團隊，把它當成安全的預設順序，而不是定律。"],
+    "explain": ["為什麼是這個順序：找名詞、找「誰呼叫誰」，程式裡有字面證據，結果穩定、容易驗；劃邊界、定 Aggregate 要綜合判斷，比較容易出錯。邊界一旦劃錯，之後每一條規則、每一個事件都會掛在錯的地方，越晚發現越難改。Aggregate 與規則第 03 場會講。", "限制：「哪些步驟 Agent 比較可靠」是實務觀察，不是研究結論，沒有數字支持。回到團隊，把它當成安全的預設順序，而不是定律。", "為什麼「關係」排在邊界之後、規則之前：Context Map 要先有 Context 才畫得出來；而一條規則掛在哪個 Context、要不要跨 Context 協作，又要先知道 Context 之間是什麼關係。每一步的產出都是下一步的輸入，所以每一步都要人確認後再往下。"],
     "notes": "17.5–19.5 分鐘。新概念：擷取順序。名詞與呼叫關係在程式裡有字面證據，Agent 找得穩；邊界與 Aggregate 要綜合判斷，Agent 常切錯。邊界一旦錯，之後每一筆規則、事件都會掛在錯的 Context 下，修正成本隨紀錄數量變大；所以每一步驗過再往下。「可靠／不可靠」是實務觀察（本 DLC 使用的模型工具在擷取指引裡也這樣寫），不是研究結論，不要講成有數字。對照 D1：檢查點 3 先整理語言，檢查點 4 才劃 Context。第 03 場講規則與 Aggregate 時回扣這一頁。"
   },
   {
@@ -104,7 +104,7 @@
     "lead": "語言在這裡改變、資料只在這裡寫入、變更一起發生、只透過明確介面往來：重疊越多，邊界越可信。",
     "cards": [["一個訊號不夠", "資料夾或服務名稱，本身不是邊界。"], ["寧少勿多", "證據不夠就先不切，記成待確認。"]],
     "check": "你劃的 Context，有幾個訊號支持？只有一個的是哪個？",
-    "explain": ["四個訊號的證據來源不同：語言改變，看詞彙表與程式裡的名稱；資料寫入集中，看哪些程式會寫入這份資料；一起變更，看版本紀錄（下一頁）；明確介面，看跨模組的呼叫與事件。", "一個訊號不夠：資料夾可能只是當初的習慣，服務名稱可能早已名不符實。請 Agent 為每個候選 Context 列出它找到哪些訊號、各附證據；只有一個訊號的，人要特別看。", "寧可少切：證據不夠就先不切，記成待確認。切錯的邊界比沒切的更難修，因為之後的規則都會照著錯的邊界寫。"],
+    "explain": ["四個訊號的證據來源不同：語言改變，看詞彙表與程式裡的名稱；資料寫入集中，看哪些程式會寫入這份資料；一起變更，看版本紀錄（下一頁）；明確介面，看跨模組的呼叫與事件。", "一個訊號不夠：資料夾可能只是當初的習慣，服務名稱可能早已名不符實。請 Agent 為每個候選 Context 列出它找到哪些訊號、各附證據；只有一個訊號的，人要特別看。", "寧可少切：證據不夠就先不切，記成待確認。切錯的邊界比沒切的更難修，因為之後的規則都會照著錯的邊界寫。", "課程例子（只說訊號，不說答案）：如果「點數」這個字在會員相關的程式裡指餘額、在計價相關的程式裡指這次折抵的數量，這是「語言改變」的訊號；再看寫入點數餘額的程式是否只有一處、它們是否常一起修改、彼此是否只透過明確的函式往來。四個問題的答案指向同一處，才把邊界畫在那裡。"],
     "notes": "19.5–21 分鐘。邊界是證據的交集，不是資料夾。四個訊號：語言改變（前兩頁的同字異義）、資料的寫入集中在一處、需求變動時一起改、跨邊界只透過明確的介面或事件。請 Agent 每個候選 Context 列出它找到哪幾個訊號、各附證據；只有一個訊號的，人要特別看。寧可少切幾個有證據的 Context，也不要猜測性地多切。下一頁講第三個訊號怎麼找。"
   },
   {
@@ -133,7 +133,7 @@
     "flow": ["上游 Context", "提供資料或服務", "下游 Context", "跟著上游的變動改"],
     "cards": [["先畫現況", "照實記下誰依賴誰，改造之後再說。"], ["Agent 幫忙找", "誰呼叫誰、誰讀誰的資料，都附證據。"]],
     "check": "你的系統裡，哪個模組一改，別人就得跟著改？",
-    "explain": ["Context Map（上下文地圖）畫的是各個 Context 之間誰依賴誰。Evans 用河流比喻：上游城市倒進河裡的東西，會流到下游；上游 Context 一改，下游就得跟著改。他的建議是先照實畫出現有地形，改造之後再說。", "DDD Crew 的〈Context Mapping〉整理了這些關係的常見名稱，例如 Conformist（下游直接照用上游的模型）、Shared Kernel（兩邊共用一小塊模型）、Anticorruption Layer（防腐層，第 03 場會講）。名稱不必背，重點是看出誰會被誰的變動影響。", "Agent 很適合找「誰呼叫誰、誰讀誰的資料」，因為程式裡有字面證據；請它每一筆附出處，再由人判斷哪些依賴是設計好的、哪些是不知不覺長出來的。"],
+    "explain": ["Context Map（上下文地圖）記錄各個 Context 之間怎麼接觸。Evans 的定義比「誰依賴誰」多：要為每個模型畫出 Context、取好名字，並寫出模型之間的接觸點，包括哪裡需要明確翻譯、哪裡共用、哪裡刻意隔離，以及誰影響誰。他的建議是先照實畫出現有地形，改造之後再說。", "上游與下游是影響的方向，不是呼叫的方向。Evans 用河流比喻：上游城市倒進河裡的東西，會流到下游；上游的作為會影響下游成敗，下游的作為對上游影響不大。最常見的情況是下游呼叫上游提供的資料或服務，但用事件時，發出事件的上游並不呼叫誰。判斷時問：哪一邊改了，另一邊得跟著改？", "DDD Crew 的〈Context Mapping〉把團隊之間的關係分成三種，再列出常見的關係名稱。上下游關係：Customer-Supplier（下游的需求排進上游的計畫）、Conformist（下游直接照用上游的模型）、Anticorruption Layer（防腐層，下游自己翻譯，第 03 場會講）、Open Host Service（上游開放一套給所有人用的介面）與 Published Language（雙方用一份有文件的共用格式交換）。互相依賴：Partnership（兩邊一起規劃、一起成功或失敗）與 Shared Kernel（兩邊明確共用一小塊模型，改之前要先商量）。各走各的：Separate Ways（刻意不整合）。名稱不必背，重點是看出誰會被誰的變動影響。", "對照本 DLC 的工具：它把這些名稱記在兩個 Context 之間的一筆協作紀錄上，而且一律把提供的一方記成上游。這對上下游關係沒問題，但 Partnership 與 Shared Kernel 在 DDD Crew 的分類裡是互相依賴、沒有上下游；讀紀錄時要知道這是工具的簡化。Separate Ways 則不是一種協作，工具把它記成「禁止依賴」的規則。Shared Kernel 也不是一種 Context，是兩個 Context 之間的關係。", "Agent 很適合找「誰呼叫誰、誰讀誰的資料」，因為程式裡有字面證據；請它每一筆附出處，再由人判斷哪些依賴是設計好的、哪些是不知不覺長出來的，以及它屬於哪一種關係。"],
     "read": ["〈Context Mapping〉（DDD Crew）", "Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 3 章〈Context Maps〉"],
     "notes": "25–26.5 分鐘。Evans〈DDD Reference〉的 Context Map 一節：先畫現有地形，「Map the existing terrain. Take up transformations later.」上下游的河流比喻也在同一份參考資料。DDD Crew〈Context Mapping〉列出常見關係名稱（Conformist、Anticorruption Layer、Shared Kernel 等），第 03 場會講防腐層。D1 沒有要學員畫完整的 Context Map；這頁是下一頁邊界洩漏的背景。D1 檢查點 6 的邊界查詢一次回報兩個方向（誰依賴誰），學員對照程式時就是在畫這張地形圖。📖 延伸閱讀：〈Context Mapping〉（DDD Crew）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 3 章〈Context Maps〉。"
   },
@@ -143,7 +143,7 @@
     "prompt": "先不要修改任何檔案。請對照模型裡的 Context 與它們之間的協作，找出程式裡直接讀寫另一個 Context 資料或內部程式的地方。每筆附證據（路徑:起-迄行），寫出模型怎麼說、程式怎麼做。只列可疑處，不下結論，列完停下。",
     "cards": [["真的越界", "程式該改，經核准後再做。"], ["模型漏寫", "補一條 Context 之間的協作。"]],
     "check": "你判斷的那一處，理由是看了證據，還是聽了 Agent 的結論？",
-    "explain": ["邊界洩漏是指一個 Context 繞過約定好的介面，直接讀寫另一個 Context 的資料或內部程式。例如計價程式直接去改會員資料：金額算對、測試全過，但兩個 Context 從此綁在一起，之後改會員規則就可能悄悄弄壞計價。", "這種錯測試通常抓不到，因為功能結果是對的，需要人對照模型看。微軟 Azure 架構中心提醒，外部或舊系統的資料結構與 API 很容易滲進新程式。Agent 可以列出可疑處並附證據，但結論有兩種：真的越界（程式該改，核准後再改），或模型漏寫了一條合理的協作（補進模型）。兩種後續不同，所以由人判斷。", "在沒有自動架構檢查的 Repo，這類問題只能靠審查發現；第 03 場會講怎麼讓 Agent 在每次變更後都查一次。"],
+    "explain": ["邊界洩漏是指一個 Context 繞過約定好的介面，直接讀寫另一個 Context 的資料或內部程式。例如計價程式直接去改會員資料：金額算對、測試全過，但兩個 Context 從此綁在一起，之後改會員規則就可能悄悄弄壞計價。", "這種錯測試通常抓不到，因為功能結果是對的，需要人對照模型看。微軟 Azure 架構中心提醒，外部或舊系統的資料結構與 API 很容易滲進新程式。Agent 可以列出可疑處並附證據，但結論有兩種：真的越界（程式該改，核准後再改），或模型漏寫了一條合理的協作（補進模型）。兩種後續不同，所以由人判斷。", "在沒有自動架構檢查的 Repo，這類問題只能靠審查發現；第 03 場會講怎麼讓 Agent 在每次變更後都查一次。", "課程例子（虛構，不在練習 Repo 裡）：計價程式為了算折扣，直接把會員的點數餘額減掉。功能看起來對、測試也過，但「點數不得為負」這條規則從此有兩個地方在改，任何一邊漏了檢查，另一邊都不知道。看到這種寫法，要問的不是「能不能動」，而是「這份資料歸誰管、別人該透過什麼約定取用」。"],
     "read": ["〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）"],
     "notes": "26.5–28.5 分鐘。對照開場檢查點 3 與 D1 檢查點 6。這個 Repo 的自動檢查只有測試，沒有架構檢查，所以越界只能靠人看；例如計價程式直接改會員資料，金額算對、測試照樣全過。Azure〈Use Domain Analysis to Model Microservices〉提醒舊系統的資料結構會滲進新程式：「the external system's data schema or API might leak into the application.」兩種結論都合理，後續不同，所以由人判斷。示範提示詞，未實際執行。"
   },

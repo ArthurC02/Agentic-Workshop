@@ -8,7 +8,7 @@
 
 | 類別 | 數量 |
 |---|---|
-| 已查證來源（原頁打開並核對引文） | 63（S53–S60 於 2026-10-17 補查，見第 9 節；S61–S66 於 2026-10-21 補查，見第 10 節） |
+| 已查證來源（原頁打開並核對引文） | 67（S53–S60 於 2026-10-17 補查，見第 9 節；S61–S66 於 2026-10-21 補查，見第 10 節；S67–S70 於 2026-10-22 補查，並重新核對 S01、S07–S11、S16–S18、S20、S56、S59 的術語定義，見第 11 節） |
 | 部分查證（頁面存在，但關鍵數字或原文只見於二手來源） | 3（S43 的「900 萬行」、S48 的 FT 原文、S51 的 GitHub 原始檔） |
 | 未查證、不得引用的說法 | 8（見第 6 節） |
 
@@ -372,3 +372,79 @@
 查過但不採用：Naresh Jain〈Are Harnesses Worth the Cost?〉（martinfowler.com，2026-10-13；作者是所用工具的創辦人，模型名稱無法查證）；Patrick Debois〈Context is the New Code〉（InfoQ，2026-09-30）與 Susan Chang〈Building Reusable Evaluation Frameworks for Agentic AI Products〉（InfoQ，2026-10-05）只有經驗法則、和既有來源重複；InfoQ〈Comprehension at AI Speed〉（2026-07-14）轉引未查證的 METR 與銀行案例數字。Thoughtworks Technology Radar 第 35 期在 2026-10-21 尚未發布，第 34 期仍是最新、沒有 DDD 條目。
 
 不要說：「有了已審查的模型，審查者會抓到更多錯」（S61 的結果相反）；「讓 Agent 先寫失敗的測試就安全」（S62：要有人確認失敗的原因）。
+
+## 11. 2026-10-22 術語定義查核（四場講義的「名詞解釋」與 DLC 詞彙表）
+
+用途：逐一核對四場講義（標題、引言、卡片、補充段落）、DLC 詞彙表與 Runbook 技巧／新概念說明框用到的 DDD 與 Agent 術語。2026-10-22 重新打開原頁（Evans 的 PDF 下載後轉成文字）核對；引文每段不超過 25 個英文字。
+
+### 11.1 新來源
+
+| ID | 標題 | 作者／發布者 | 日期 | 網址 | 狀態 |
+|---|---|---|---|---|---|
+| S67 | Domain events: Design and implementation | Microsoft .NET 架構指南（.NET Microservices Architecture eBook） | 2024-01-03 更新 | https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation | ✅ |
+| S68 | What is mutation testing? | Stryker Mutator 文件 | 頁面無日期（2026-10-22 讀取） | https://stryker-mutator.io/docs/ | ✅ |
+| S69 | Equivalent mutants | Stryker Mutator 文件 | 頁面無日期（2026-10-22 讀取） | https://stryker-mutator.io/docs/mutation-testing-elements/equivalent-mutants/ | ✅ |
+| S70 | RFC 9110 HTTP Semantics，9.2.2 Idempotent Methods | IETF | 2022-06 | https://www.rfc-editor.org/rfc/rfc9110.txt | ✅（已在 references.md） |
+| S71 | Domain Storytelling Quick Start Guide（重新核對元素定義） | domainstorytelling.org | 頁面無日期（2026-10-22 讀取） | https://domainstorytelling.org/quick-start-guide | ✅（同 S16） |
+
+重新核對的既有來源與當天看到的版本：S17 Azure〈Use Domain Analysis to Model Microservices〉ms.date 2026-02-23、updated_at 2026-05-30；S18 Azure〈Use Tactical DDD to Design Microservices〉ms.date 2026-02-25、updated_at 2026-09-29（這一版有整合事件、Aggregate 可只有一個實體等內容）；S10 DDD Crew〈Context Mapping〉README；S11〈The Bounded Context Canvas〉README；S56 MADR 4.0.0（2024-09-17，仍是最新版）；S59 Google MLCC 2026-01-12 更新。
+
+### 11.2 逐詞原文
+
+| 術語 | 講義與詞彙表的寫法 | 原文 |
+|---|---|---|
+| Domain | 使用者把軟體用在哪一塊知識或活動 | S01：「A sphere of knowledge, influence, or activity.」 |
+| Model | 挑出領域某些面向、能用來解決問題的一套抽象 | S01：「A system of abstractions that describes selected aspects of a domain」 |
+| DDD 三句話 | 聚焦核心領域、和領域專家一起探索模型、在明確邊界內說通用語言 | S01：「Focus on the core domain.」「Explore models in a creative collaboration of domain practitioners and software practitioners.」 |
+| Ubiquitous Language | 以模型為骨幹、在一個 Bounded Context 內全體成員共用 | S01：「A language structured around the domain model and used by all team members within a bounded context」；S17：「a shared vocabulary that developers and domain experts create together within each bounded context」 |
+| Bounded Context | 一個特定模型被定義、也適用的明確邊界，通常是子系統或團隊範圍 | S01：「(typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.」 |
+| Subdomain：core／supporting／generic | 核心有競爭優勢；支援業務需要但不構成差異；通用是業界已解決的問題 | S17：「Core subdomains provide a competitive advantage.」「Supporting subdomains keep the business operational but don't differentiate it」「Generic subdomains represent problems that the industry already solved.」 |
+| Upstream／downstream | 上游的作為影響下游成敗，反過來影響不大 | S01：「the "upstream" group's actions affect project success of the "downstream" group, but the actions of the downstream do not significantly affect projects upstream.」 |
+| Context Map | 記錄接觸點：翻譯、共用、隔離、影響 | S01：「outlining explicit translation for any communication, highlighting any sharing, isolation mechanisms, and levels of influence.」 |
+| 團隊關係三分類 | 上下游、互相依賴、各走各的 | S10：「There are nine context map patterns and three different team relationships.」（Mutually Dependent、Upstream Downstream、Free 三節） |
+| Partnership | 兩邊一起規劃，一起成功或失敗 | S01：「Where development failure in either of two contexts would result in delivery failure for both, forge a partnership」 |
+| Shared Kernel | 明確共用一小塊模型；保持小；改之前要商量 | S01：「Designate with an explicit boundary some subset of the domain model that the teams agree to share. Keep this kernel small.」 |
+| Customer-Supplier | 下游的需求排進上游的計畫 | S01：「meaning downstream priorities factor into upstream planning.」 |
+| Conformist | 下游直接照用上游的模型 | S01：「slavishly adhering to the model of the upstream team.」 |
+| Anticorruption Layer | 下游自己蓋的隔離層，用自己的模型說話；很少需要改對方 | S01：「As a downstream client, create an isolating layer」；「requiring little or no modification to the other system.」 |
+| Open-host Service | 上游開放一套讓所有人整合的協定 | S01：「Open the protocol so that all who need to integrate with you can use it.」；「This places the provider of the service in the upstream position.」 |
+| Published Language | 有文件的共用語言，當成交換的媒介 | S01：「Use a well-documented shared language that can express the necessary domain information as a common medium of communication」 |
+| Separate Ways | 刻意不整合 | S01：「Declare a bounded context to have no connection to the others at all」 |
+| Entity | 靠識別碼區分 | S01：「When an object is distinguished by its identity, rather than its attributes, make this primary to its definition in the model.」 |
+| Value Object | 只在乎屬性、不可變、沒有識別碼 | S01：「Treat the value object as immutable.」；「Don't give a value object any identity」 |
+| Aggregate／root | Aggregate 是整個邊界；root 是唯一對外入口；可只有一個物件 | S01：「Choose one entity to be the root of each aggregate, and allow external objects to hold references to the root only」；S18：「An aggregate can consist of a single entity without child entities. What makes it an aggregate is the transactional boundary.」 |
+| Invariant | 每次操作（交易）完成時必須成立；不是每條業務規則都是 | S07：「When discussing invariants, we are referring to transactional consistency.」；「When the transaction commits, everything inside one boundary must be consistent.」 |
+| 一次交易一個 Aggregate | Vernon 的經驗法則 | S07：「a properly designed bounded context modifies only one aggregate instance per transaction in all cases.」並稱之為「a rule of thumb」 |
+| 最終一致 | 跨邊界的更新事後完成 | S01：「Across boundaries, handle updates asynchronously.」；S18：「Use eventual consistency across aggregates.」 |
+| Domain Event | 領域專家在乎、已經發生的事 | S01：「Something happened that domain experts care about.」；「Domain events are ordinarily immutable, as they are a record of something in the past.」 |
+| Domain vs integration event | 領域事件在同一個 Context 內；整合事件在提交後非同步通知其他 Context | S67：「Semantically, domain and integration events are the same thing」；「the purpose of integration events is to propagate committed transactions and updates to additional subsystems」；S18：「Internal domain events stay within a bounded context.」 |
+| Domain／Application Service | 講義未教，名詞解釋未收（核對以備講者問答） | S18：「Application services orchestrate use cases.」「They contain no business logic themselves.」 |
+| Repository | 講義未教（同上） | S01：「create a service that can provide the illusion of an in-memory collection of all objects of that aggregate's root type.」 |
+| Port | 一段有目的的對話；分 driving 與 driven 兩側 | S20：「A port identifies a purposeful conversation.」；「A primary actor is an actor that drives the application」；「A secondary actor is one that the application drives」 |
+| Adapter | 把 API 定義轉成裝置需要的訊號 | S20：「there is an adapter that converts the API definition to the signals needed by that device」 |
+| Idempotency | 多次相同請求的預期效果和一次相同 | S70：「the intended effect on the server of multiple identical requests with that method is the same as the effect for a single such request.」 |
+| ADR 段落與狀態 | 標題、背景、決定、狀態、後果；提議→接受；棄用或被取代 | S08：「A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed.」；「it may be marked as "deprecated" or "superseded"」 |
+| MADR 狀態 | 多了 rejected | S56 範本：「status: "{proposed \| rejected \| accepted \| deprecated \| … \| superseded by ADR-0123}"」 |
+| ADR 不可改寫 | 接受或拒絕後不改，用新 ADR 取代 | S09：「The team should treat ADRs as immutable documents after the team accepts or rejects them.」；「the owner adds a timestamp, version, and list of stakeholders.」 |
+| Mutation testing／killed／survived | 引入改動再跑測試；失敗叫 killed，通過叫 survived | S68：「Mutation testing introduces changes to your code, then runs your unit tests against the changed code.」「If your tests fail then the mutant is killed.」「If your tests passed, the mutant survived.」 |
+| Equivalent mutant | 改了卻不改變行為；工具無法確定地找出 | S69：「It is called equivalent mutant.」；「There is no definitive way for Stryker to find and ignore them.」 |
+| Precision／recall 取捨 | 兩者常此消彼長 | S59：「precision and recall often show an inverse relationship, where improving one of them worsens the other.」 |
+| Domain Storytelling 元素 | 角色、工作物件、活動；編號；一個故事一個情境，先畫順利路徑 | S71：「The actors' activities are shown as arrows and labeled with verbs from the domain language」；「We recommend you start with modeling the default case」 |
+| Bounded Context Canvas 策略分類 | core domain／supporting domain／generic | S11：「core domain: a key strategic initiative」「supporting domain: necessary but not a differentiator」「generic: a common capability found in many domains」 |
+
+### 11.3 來源之間的差異與本課的處理
+
+| 主題 | 差異 | 本課的處理 |
+|---|---|---|
+| 子領域分類 | Evans 的參考資料只有 Core Domain 與 Generic Subdomains；supporting 出自 Vernon 等後來的作者，Azure 與 DDD Crew 畫布都用三分類（畫布寫 supporting domain）。 | 講義用三分類，並註明 Evans 只寫兩類。 |
+| Shared Kernel、Partnership 的方向 | DDD Crew 把兩者歸為「互相依賴」，沒有上下游；本 DLC 的 Plugin 1.2.18 把它們記在一筆 Interaction 上，且「the producer is upstream」。 | 講義說明這是工具的簡化；詞彙表寫 Shared Kernel 是兩個 Context 之間的關係，不是一種 Context（與 Plugin 1.2.18 拒絕把 shared-kernel 當 subdomain 一致）。 |
+| Separate Ways | Evans 與 DDD Crew 把它列為 Context Map 的一種模式；Plugin 1.2.18 不把它當 Interaction，而是記成 `policy: forbidden`、`mode: none` 的依賴政策。 | 兩者意思一致（不整合）；講義說明 Plugin 記成「禁止依賴」的規則。 |
+| 領域事件的範圍 | Evans 的參考資料把分散式系統裡傳遞的事件也稱領域事件；Microsoft（S18、S67）區分同一 Context 內的領域事件與跨 Context 的整合事件；Plugin 的 Event 紀錄是「A committed business occurrence」並列出消費的 Context。 | 講義採用 Microsoft 的區分來教，同時說明各家用詞不同，審查時問「誰發、誰收、提交後才發嗎」。 |
+| Aggregate 的大小 | 舊版講義與詞彙表寫「橫跨多份資料」；S18 2026 版明寫 Aggregate 可以只有一個實體。 | 改成「一個一致性邊界，可以只有一個物件，至少守住一條不變量」。 |
+| 不變量的時間點 | 舊版講義寫「任何時候都必須成立」；S07 說指的是交易一致性（提交時成立）。需求卡 03 PCR-008 原文寫「任何時刻」。 | 講義改成「每次操作完成時」（詞彙表原本就這樣寫），並說明需求卡的「任何時刻」指任何一次操作完成後去查。 |
+| 上下游的判斷 | 舊版詞彙表寫「被依賴的是上游」；S01 的定義是影響方向。用事件時，上游不呼叫下游。 | 改成「上游的改變會影響下游；常見的是下游呼叫上游提供的資料或服務」。 |
+| Port 的方向 | 舊版詞彙表只寫「領域程式需要的對外能力」（driven 一側）；S20 的 Port 也包含 driving 一側。 | 詞彙表與 D3a 說明框註明今天用的是 driven 一側。 |
+| ADR 狀態名稱 | Nygard：proposed、accepted、deprecated、superseded；MADR 4.0 多了 rejected；AWS：Proposed、Accepted、Rejected、Superseded，需要重做時仍為 Proposed。 | 講義列出三者差異，建議團隊選一套寫進範本。 |
+| 冪等 | RFC 9110 談的是「預期效果」相同，不是回應相同；同時送出不在冪等的保證範圍內。 | 講義與詞彙表改成「效果」相同，並說明同時送出要另外靠鎖或唯一性檢查。 |
+
+不要說：「Aggregate 就是一條不變量」（舊版 03 講義「是／不是」表的寫法，已改）；「survived 一定代表測試太弱」（可能是等價變異，S69）；「Shared Kernel 是一種 Context」。

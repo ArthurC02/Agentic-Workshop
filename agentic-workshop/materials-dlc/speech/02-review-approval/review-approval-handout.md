@@ -32,6 +32,8 @@ Nygard（2011）：專案裡最難追的，是當初為什麼這樣決定。
 
 ADR（Architecture Decision Record，架構決策紀錄）是 Michael Nygard 2011 年提出的做法：每個重要的設計決定寫一份短紀錄，包含標題、背景、決定、狀態與後果。他的理由是：專案進行中最難追的，就是當初為什麼這樣決定；沒有紀錄，後來的人只剩兩條路，盲目照做或盲目推翻。
 
+Nygard 原文的五段各有一句說明：標題用簡短的名詞片語；背景寫當時有哪些力量在拉扯（技術、政治、社會與專案本身）；決定寫我們怎麼回應這些力量；狀態寫提議或已接受；後果寫套用決定之後的情況，好的壞的都寫。課程例子：需求卡 02 規定「點數折抵不是優惠類型，不參加單一優惠比較」。寫成 ADR，背景是「現行計價逐位選最有利的單一優惠」，決定是「先算優惠、再用整筆總額算折抵」，後果是「折抵不改變每位旅客的優惠金額」。Agent 看到這份紀錄，就不會把折抵當成第三種優惠塞進比較。
+
 AWS 的 ADR 流程指南也強調，紀錄的重點是「為什麼這樣決定」，而不是「怎麼實作」。對 Agent 來說這更關鍵：它沒參加當初的會議，只看得到 Repo；沒寫下理由的決定，在它看來就像可以隨手改掉的程式。
 
 下週可以挑團隊最近一個重要的設計決定，用這五段寫成一頁放進 Repo，不超過一個畫面。
@@ -50,13 +52,15 @@ ADR 有狀態：提議、接受、被取代。本課的候選、已審查事實�
 
 - **要改就取代**：提新的候選，舊的保留可查。
 
-ADR 有狀態：提議（Proposed）、接受（Accepted），被新決定推翻時標成被取代（Superseded），舊的保留可查。AWS 的流程指南說，ADR 一旦被接受就不再改寫；被拒絕的提案也要寫下理由，免得下次重吵同一件事。
+ADR 有狀態。Nygard 2011 年寫的是：利害關係人還沒同意時是「提議」（proposed），同意後是「接受」（accepted）；後來的決定改變或推翻它時，標成「棄用」（deprecated）或「被取代」（superseded），並指向取代它的那一份，舊的保留可查。MADR 4.0 範本的狀態欄多列了「拒絕」（rejected）。AWS 的流程指南說，ADR 被接受或拒絕後就不再改寫；要改，就提一份新的 ADR，新的被接受後，舊的標成被取代。被拒絕的提案也要寫下理由，免得下次重吵同一件事。
 
-本課的用語一一對應：Agent 提的候選＝提議；經另一個人核准的已審查事實＝接受；要改已審查事實，就提一筆新候選，核准後取代舊的。已審查事實不是永遠不能變，而是只能透過同一套審查流程改。
+本課的用語一一對應：Agent 提的候選＝提議；經另一個人核准的已審查事實＝接受；夥伴回「退回：原因」就是不接受，理由寫在提案的紀錄裡；要改已審查事實，就提一筆新候選，核准後取代舊的。已審查事實不是永遠不能變，而是只能透過同一套審查流程改。
+
+各來源的狀態名稱不完全一樣：Nygard 有「棄用」，AWS 只講提議、接受、拒絕、被取代；AWS 還有「需要重做」的情況，那時狀態仍是提議。不必背哪一套，團隊選一套寫進範本，所有人用同一套就好。
 
 常見誤解：Agent 發現事實「好像過時了」就直接改。正確做法是讓它提新候選、附證據，等人核准。下週可以看看團隊的設計文件有沒有狀態欄位，還是改了就直接覆蓋。
 
-📖 延伸閱讀：〈Architectural decision record process〉（AWS Prescriptive Guidance）；〈Documenting Architecture Decisions〉（Michael Nygard，2011）
+📖 延伸閱讀：〈Architectural decision record process〉（AWS Prescriptive Guidance）；〈Documenting Architecture Decisions〉（Michael Nygard，2011）；〈About MADR〉（MADR 4.0，2024）
 
 **人工確認**：Agent 想改一條已審查事實時，正確的做法是什麼？
 
@@ -75,6 +79,8 @@ ADR 有狀態：提議（Proposed）、接受（Accepted），被新決定推翻
 業界也這樣做：GitHub 的雲端 Agent 不能核准或合併自己的 PR（Pull Request，合併請求）；Stripe 2026 年自述每週超過一千個由 Agent 產出的 PR，全部交人審查；Anthropic 2026 年 10 月分享，Agent 大量產生變更後，團隊成員仍審每一筆，只是改看變更的意圖。這些數字都是公司自己說的，不當成效率證據。
 
 限制：D2 為了教學讓兩人共用一台機器、各開自己的 Agent 對話。這能練習分工，但不能證明真的有兩個人；真實團隊要補什麼，第 04 場會講。
+
+為什麼「另一個人」有用：做的人知道自己的意圖，讀證據時會自動補上沒寫出來的部分；審查的人只看得到寫下來的東西，缺什麼一眼就看出來。對 Agent 也一樣：同一個對話裡自評，它會沿用剛才的推理；換一個沒看過推理的對話來審，才比較接近第二雙眼睛。但乾淨的對話仍是同一類模型，可能有同樣的盲點，所以模型變更的核准仍要由人來做。
 
 📖 延伸閱讀：〈Best practices for Claude Code〉（Claude Code 官方文件）；〈Building effective agents〉（Anthropic Engineering，2024）；〈Risks and mitigations for GitHub Copilot cloud agent〉（GitHub 官方文件）；〈Minions: Stripe's one-shot, end-to-end coding agents〉（Stripe，2026）；〈Redesigning source control at Anthropic〉（Anthropic，2026）
 
@@ -95,6 +101,8 @@ ADR 有狀態：提議（Proposed）、接受（Accepted），被新決定推翻
 Thoughtworks 技術雷達第 34 期（2026-04）把「給 Coding Agent 的回饋感測器」列為 Trial（值得試用）：檢查要在寫程式的過程中就跑，commit 前回報乾淨的結果。D2 的做法是：沒有夥伴簽章的變更推不上去。
 
 限制：本機的檢查可以被跳過，第 04 場會講。下週可以找出團隊一條「大家都知道、卻常被忘記」的規則，想想能不能寫成一個會失敗的測試或檢查。
+
+課程例子：D2 的推送檢查不看 Agent 說了什麼，只看變更審查包裡有沒有夥伴的核准紀錄、簽章驗不驗得過；沒有就擋。這就是「建議」和「檢查」的差別：建議靠 Agent 記得，檢查不靠任何人記得。限制也要說清楚：檢查只擋得住它被寫來擋的事，規則本身寫錯，檢查會忠實地擋錯東西。
 
 📖 延伸閱讀：〈githooks〉（Git 官方文件）；〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）
 
@@ -152,6 +160,8 @@ The Decoder 2026 年 2 月轉述 Financial Times：AWS 的 Kiro Agent 決定刪�
 
 限制：表格整齊不代表內容正確，主張和證據講的可能不是同一件事，所以下一頁講怎麼審。
 
+課程例子：一列可能長這樣。主張「會員可用點數不得為負」；證據指到需求卡 02 的那一條與程式裡扣點的那幾行；對應測試是一個「餘額不足時拒絕並不扣點」的測試，實際字樣「1 passed」；反事實檢查把扣點前的餘額判斷拿掉，實際字樣 killed。四欄都對得上，夥伴才有東西可審；任何一欄寫「應該會過」，就標「未驗證」。
+
 📖 延伸閱讀：〈Architectural decision record process〉（AWS Prescriptive Guidance）
 
 **人工確認**：表裡有沒有一筆，主張和證據講的不是同一件事？
@@ -169,6 +179,8 @@ AWS 的 ADR 流程建議審查會議這樣開：先安靜讀 10–15 分鐘，�
 InfoQ 2026 年 9 月一篇文章（Nitin Garg）做了小型實驗：審查者手上有人核准過的基準時，抓到的問題比例和沒有時差不多（作者自量的召回率，0.525 對 0.518），但 81% 的發現能指到具名的條文（沒有基準時 0%），審查時間約 48 對 27 分鐘。作者說結果只是方向性的。意思是：已審查的模型讓審查說得出依據、可以追溯，不保證抓到更多錯。
 
 D2 裡夥伴回「退回：原因」不是失敗，而是審查有在運作；沒有人追問的核准只是蓋章。下週審同事的變更時，核准前至少親自打開一行證據。
+
+審查時可以問的三題，不需要看懂程式：這條主張的證據真的在講這件事嗎？對應的測試會在規則被違反時失敗嗎（看反事實檢查）？這次有沒有動到既有測試？三題都答得出來就核准；答不出來就退回，把答不出來的那一題寫成理由。
 
 📖 延伸閱讀：〈The Code Reviewer's Guide〉（Google Engineering Practices）；〈When Spec-Driven Development Pays off〉（Nitin Garg／InfoQ，2026）
 
@@ -208,13 +220,15 @@ Anthropic 2025 年 2 月的模型系統卡（廠商公開的模型行為說明�
 
 先不要修改任何檔案。請針對這條規則，提 2 個「故意改壞」的方案：改哪個檔案的哪幾行、改成什麼、預期哪個測試會失敗。不要替我選，列完停下。我選好後再跑，回報實際字樣是 killed 還是 survived。
 
-反事實檢查（counterfactual）是變異測試（mutation testing）的手動小版本：故意把守某條規則的程式改壞一處，跑測試，再自動還原。測試失敗叫 killed（被抓到），證明這條規則有測試守著；測試仍通過叫 survived（存活），表示規則沒人守，或測試太弱。變異測試工具則會自動產生大量這種小改動。
+反事實檢查（counterfactual）是本課用語，做法就是變異測試（mutation testing）的手動小版本：故意把守某條規則的程式改壞一處，跑測試，再自動還原。變異測試工具 Stryker 的文件這樣定義：在程式裡引入改動，再對改過的程式跑測試；測試失敗，這個改動（變異）就算被殺掉（killed），證明這條規則有測試守著；測試仍通過叫存活（survived），表示規則沒人守，或測試太弱。變異測試工具會自動產生大量這種小改動。
+
+survived 還有第三種可能：改動根本沒改變程式的行為，Stryker 稱為等價變異（equivalent mutant），例如兩個值相等時，把「大於等於」改成「小於等於」結果一樣。這種情況沒有測試抓得到，也不需要抓；所以改法要改在規則本身，事先說得出「改完後，哪個情況的結果會不同」。Stryker 的文件也說，它沒有確定的方法自動找出等價變異，只能靠人一個一個判斷。
 
 Thoughtworks 技術雷達第 34 期稱變異測試是評估測試抓錯能力「最誠實的訊號」，也提醒 AI 產生的測試可能永遠是綠的。改法由人選，是因為 Agent 容易挑最好抓的改法，讓結果好看。
 
-兩個常見誤讀：指令沒報錯不等於 killed，要看實際字樣；測試要因為對的原因失敗，所以事先寫下預期哪個斷言失敗，如果是程式根本載入不了才失敗，不算證明。
+兩個常見誤讀：指令沒報錯不等於 killed，要看實際字樣；測試要因為對的原因失敗，所以事先寫下預期哪個斷言失敗，如果是程式根本載入不了才失敗，不算證明，本課的工具會標成 inconclusive（無法判斷）。
 
-📖 延伸閱讀：〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）
+📖 延伸閱讀：〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）；〈What is mutation testing?〉（Stryker Mutator 文件）；〈Equivalent mutants〉（Stryker Mutator 文件）
 
 **人工確認**：你選的改法，改到的是規則本身，還是無關的字串？
 
@@ -229,6 +243,8 @@ ADR 被接受時寫下決策者與日期；模型裡的已審查事實也一樣�
 - **沒被改過**：簽章驗得出；套用前 Agent 再驗一次。
 
 核准紀錄要回答三個問題：誰核准、何時核准、核准的是哪一份。MADR（一個常用的 ADR 範本，4.0 版，2024）在狀態與日期旁邊有「決策者」欄位；本課的已審查事實就是「接受」加上核准者與時間。範本註明這些欄位是選填，但對需要稽核的團隊很有用。
+
+AWS 的流程指南寫得更具體：團隊核准 ADR 時，負責人加上時間戳記、版本與利害關係人名單，再把狀態改成「接受」。對應到本課：核准者與時間記在已審查事實上，核准的是哪一份，靠簽章的 commit 指認。
 
 紀錄本身只寫誰、何時；當初的審查包與討論留在版本與稽核歷史裡，要追查時找得到，不必抄進每筆紀錄。「沒被改過」要靠工具驗證：業界常見做法是簽章的 commit（用金鑰替 commit 簽章，別人能驗出內容沒被改）加上必要審查。
 
@@ -258,9 +274,27 @@ ADR 被接受時寫下決策者與日期；模型裡的已審查事實也一樣�
 - 在團隊的審查清單加兩行：「是否修改了既有測試？理由？」「核准前打開過哪一行證據？」
 - 列出一個現在只靠一個人說了算的動作，想想能不能改成擋得住的檢查。
 
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| ADR（Architecture Decision Record，架構決策紀錄） | 記錄一個重要設計決定的短文件：標題、背景、決定、狀態、後果；重點是為什麼，不是怎麼實作。 | 〈Documenting Architecture Decisions〉（Michael Nygard，2011）；〈Architectural decision record process〉（AWS Prescriptive Guidance） |
+| ADR 的狀態 | 提議（proposed）→ 接受（accepted）或拒絕（rejected）；之後被新決定改變時標成棄用（deprecated）或被取代（superseded）。 | 〈Documenting Architecture Decisions〉（Michael Nygard，2011）；〈About MADR〉（MADR 4.0，2024） |
+| 被取代（superseded） | 新的 ADR 被接受後，舊的標成被取代並指向新的；舊的不刪，仍可查。 | 〈Architectural decision record process〉（AWS Prescriptive Guidance） |
+| 已審查事實（reviewed） | 本課用語：經另一個人核准、Agent 必須遵守的模型內容，對應 ADR 的「接受」；不能直接改寫，只能被新提案取代。 | 〈Architectural decision record process〉（AWS Prescriptive Guidance） |
+| 決策者（decision-makers） | MADR 範本的選填欄位，列出參與決定的人；和日期一起回答「誰、何時」。 | 〈About MADR〉（MADR 4.0，2024） |
+| 變更審查的標準 | 確定讓整體程式更健康就核准，不求完美；退回要寫理由。 | 〈The Code Reviewer's Guide〉（Google Engineering Practices） |
+| Git hook（pre-push hook） | Git 在特定時機自動執行的腳本；pre-push 在推送前執行，回報失敗就中止推送。 | 〈githooks〉（Git 官方文件） |
+| 回饋感測器（feedback sensors） | 在 Agent 寫程式的過程中自動執行、回報結果的檢查，例如測試與靜態檢查。 | 〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026） |
+| 變異測試（mutation testing） | 在程式裡引入小改動，再跑測試，看測試能不能發現；用來評估測試抓錯的能力。 | 〈What is mutation testing?〉（Stryker Mutator 文件） |
+| killed／survived | 改動後測試失敗叫 killed（被抓到）；測試仍通過叫 survived（沒被抓到）。 | 〈What is mutation testing?〉（Stryker Mutator 文件） |
+| 等價變異（equivalent mutant） | 改了程式卻沒改變行為的改動；沒有測試抓得到，只能靠人判斷，所以 survived 不一定代表測試太弱。 | 〈Equivalent mutants〉（Stryker Mutator 文件） |
+| 反事實檢查（counterfactual） | 本課用語：變異測試的手動小版本，由人選一處改壞、跑指定測試、再還原，只認因預期斷言失敗的 killed。 | 〈What is mutation testing?〉（Stryker Mutator 文件） |
+| 簽章 commit | 用金鑰簽過名的 commit，別人能驗出是誰提交、內容沒被改。 | 〈git-commit〉（Git 官方文件） |
+
 ## 延伸閱讀
 - 〈Documenting Architecture Decisions〉（Michael Nygard，2011）
 - 〈Architectural decision record process〉（AWS Prescriptive Guidance）
+- 〈About MADR〉（MADR 4.0，2024）
 - 〈Best practices for Claude Code〉（Claude Code 官方文件）
 - 〈Building effective agents〉（Anthropic Engineering，2024）
 - 〈Risks and mitigations for GitHub Copilot cloud agent〉（GitHub 官方文件）
@@ -273,5 +307,6 @@ ADR 被接受時寫下決策者與日期；模型裡的已審查事實也一樣�
 - 〈The Code Reviewer's Guide〉（Google Engineering Practices）
 - 〈When Spec-Driven Development Pays off〉（Nitin Garg／InfoQ，2026）
 - 〈Claude 3.7 Sonnet System Card〉（Anthropic，2025）
-- 〈About MADR〉（MADR 4.0，2024）
+- 〈What is mutation testing?〉（Stryker Mutator 文件）
+- 〈Equivalent mutants〉（Stryker Mutator 文件）
 - 〈git-commit〉（Git 官方文件）

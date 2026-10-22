@@ -9,5 +9,22 @@
     "**這一段帶走什麼**\n- 交接最常掉的是「為什麼」；共用模型與交接單是 Agent 的外部記憶\n- 人和 Agent 讀同一份模型；交接單裡的每個 id 都要查證\n- 模型會漂移，要定期比對；用人審過的模型評估 Agent，分數之外要讀清單\n- 團隊共用的指示要短、有人審查；今天的簽章只是教學示範\n\n每頁最後的段落是講解時來不及說的補充：概念的白話解釋、證據出處、限制與回到團隊的做法；提到的書與文章列在最後的「延伸閱讀」。",
     "本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。案例數字都是對方自己說的，本工作坊沒有量測效率。"
   ],
-  "handout_done": "說得出交接為什麼要寫理由、共用模型為什麼是 Agent 的外部記憶、為什麼要讓人和 Agent 讀同一份模型、怎麼用人審過的模型評估 Agent 漏了什麼與多編了什麼、看起來合理的 id 為什麼要逐一查證；知道模型漂移要定期回收、團隊共用指示要短且有人審查；說得出成對簽章的限制，帶走一項回到團隊的行動。\n\n## 下週可以做的事\n- 從一個 Context 開始：挑一個常吵的名詞或規則，寫進 Repo、請一位同事核准。\n- 收集團隊各自的 Agent 規則檔，合成一份共用、有人審查的版本，逐行問「刪掉會出錯嗎」。\n- 確認主要分支是否設定為「沒經另一個人核准就合併不了」；沒有的話，提給團隊討論。"
+  "handout_done": "說得出交接為什麼要寫理由、共用模型為什麼是 Agent 的外部記憶、為什麼要讓人和 Agent 讀同一份模型、怎麼用人審過的模型評估 Agent 漏了什麼與多編了什麼、看起來合理的 id 為什麼要逐一查證；知道模型漂移要定期回收、團隊共用指示要短且有人審查；說得出成對簽章的限制，帶走一項回到團隊的行動。\n\n## 下週可以做的事\n- 從一個 Context 開始：挑一個常吵的名詞或規則，寫進 Repo、請一位同事核准。\n- 收集團隊各自的 Agent 規則檔，合成一份共用、有人審查的版本，逐行問「刪掉會出錯嗎」。\n- 確認主要分支是否設定為「沒經另一個人核准就合併不了」；沒有的話，提給團隊討論。",
+  "terms": [
+    ["上下文（context）", "這次對話裡交給模型的全部內容；對 Agent 是關鍵但有限的資源，給太多反而會變差。", "〈Effective context engineering for AI agents〉（Anthropic Engineering，2025）"],
+    ["外部記憶（結構化筆記）", "寫在對話之外、需要時再讀的筆記與識別碼（檔案路徑、id）；共用模型與交接單就是這一種。", "〈Effective context engineering for AI agents〉（Anthropic Engineering，2025）"],
+    ["Domain Storytelling（領域故事敘述）", "用編號的句子講一個具體的業務情境：角色對工作物件做了什麼活動。", "〈Domain Storytelling Quick Start Guide〉（domainstorytelling.org）"],
+    ["角色／工作物件／活動", "角色是主動做事的人或系統；工作物件是被建立、處理或交換的東西；活動是標上領域動詞的箭頭。", "〈Domain Storytelling Quick Start Guide〉（domainstorytelling.org）"],
+    ["ADR（架構決策紀錄）放在 Repo", "決策紀錄跟著程式放在版本控制裡，團隊換人也看得到當初的理由。", "〈Documenting Architecture Decisions〉（Michael Nygard，2011）"],
+    ["模型漂移（architecture drift）", "程式一直在變、模型與架構規則沒跟上，兩者慢慢對不上；要定期比對清理。", "〈Architecture drift reduction with LLMs〉（Thoughtworks Technology Radar，2026）"],
+    ["pre-commit hook", "Git 在建立 commit 前自動執行的腳本；回報失敗時，commit 不會建立。", "〈githooks〉（Git 官方文件）"],
+    ["評估（eval）", "用固定的基準與方法量 Agent 的輸出；分數不照單全收，要讀實際紀錄。", "〈Demystifying evals for AI agents〉（Anthropic Engineering，2026）"],
+    ["精確率（precision）", "Agent 提出的項目裡，真的對的比例。", "〈Classification: Accuracy, recall, precision, and related metrics〉（Google Machine Learning Crash Course）"],
+    ["召回率（recall）", "該找到的項目裡，Agent 找到的比例。", "〈Classification: Accuracy, recall, precision, and related metrics〉（Google Machine Learning Crash Course）"],
+    ["參考模型（基準答案）", "人整理、審查過的模型，拿來和 Agent 的輸出比對；它是一種合理的理解，不是唯一正解。", "〈Towards Automated Domain Model Extraction from Source Code using Heuristics and Open-Source LLMs〉（Mancas 等人，MODELS 2026）"],
+    ["團隊共用的 Agent 指示", "放進版本控制、像程式一樣審查與維護的規則檔，例如 AGENTS.md、CLAUDE.md。", "〈Curated shared instructions for software teams〉（Thoughtworks Technology Radar，2026）"],
+    ["Agent 指示膨脹", "規則檔越寫越長，重要規則被忽略的可能性跟著升高。", "〈Agent instruction bloat〉（Thoughtworks Technology Radar，2026）"],
+    ["Open Knowledge Format（OKF）", "每個概念一份 Markdown 檔、開頭加一小段 YAML 欄位的知識格式；人和 Agent 讀同一份。", "〈Open Knowledge Format (OKF)〉規格（Google Cloud）"],
+    ["Shared Kernel（共用核心）", "兩個 Context 明確約定共用的一小塊模型；要保持小，改之前要和對方商量。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"]
+  ]
 }

@@ -11,7 +11,7 @@
     "lead": "Nygard（2011）：專案裡最難追的，是當初為什麼這樣決定。",
     "cards": [["沒寫下來", "後來的人只能盲目照做，或盲目推翻。"], ["寫成 ADR", "背景、決定、狀態、後果，一份短短的紀錄。"]],
     "check": "你們團隊上一個重要的設計決定，理由寫在哪裡？",
-    "explain": ["ADR（Architecture Decision Record，架構決策紀錄）是 Michael Nygard 2011 年提出的做法：每個重要的設計決定寫一份短紀錄，包含標題、背景、決定、狀態與後果。他的理由是：專案進行中最難追的，就是當初為什麼這樣決定；沒有紀錄，後來的人只剩兩條路，盲目照做或盲目推翻。", "AWS 的 ADR 流程指南也強調，紀錄的重點是「為什麼這樣決定」，而不是「怎麼實作」。對 Agent 來說這更關鍵：它沒參加當初的會議，只看得到 Repo；沒寫下理由的決定，在它看來就像可以隨手改掉的程式。", "下週可以挑團隊最近一個重要的設計決定，用這五段寫成一頁放進 Repo，不超過一個畫面。"],
+    "explain": ["ADR（Architecture Decision Record，架構決策紀錄）是 Michael Nygard 2011 年提出的做法：每個重要的設計決定寫一份短紀錄，包含標題、背景、決定、狀態與後果。他的理由是：專案進行中最難追的，就是當初為什麼這樣決定；沒有紀錄，後來的人只剩兩條路，盲目照做或盲目推翻。", "Nygard 原文的五段各有一句說明：標題用簡短的名詞片語；背景寫當時有哪些力量在拉扯（技術、政治、社會與專案本身）；決定寫我們怎麼回應這些力量；狀態寫提議或已接受；後果寫套用決定之後的情況，好的壞的都寫。課程例子：需求卡 02 規定「點數折抵不是優惠類型，不參加單一優惠比較」。寫成 ADR，背景是「現行計價逐位選最有利的單一優惠」，決定是「先算優惠、再用整筆總額算折抵」，後果是「折抵不改變每位旅客的優惠金額」。Agent 看到這份紀錄，就不會把折抵當成第三種優惠塞進比較。", "AWS 的 ADR 流程指南也強調，紀錄的重點是「為什麼這樣決定」，而不是「怎麼實作」。對 Agent 來說這更關鍵：它沒參加當初的會議，只看得到 Repo；沒寫下理由的決定，在它看來就像可以隨手改掉的程式。", "下週可以挑團隊最近一個重要的設計決定，用這五段寫成一頁放進 Repo，不超過一個畫面。"],
     "read": ["〈Documenting Architecture Decisions〉（Michael Nygard，2011）", "〈Architectural decision record process〉（AWS Prescriptive Guidance）"],
     "notes": "1.5–3.5 分鐘。Michael Nygard〈Documenting Architecture Decisions〉（Cognitect，2011-11-15）提出 ADR（Architecture Decision Record，架構決策紀錄）：「One of the hardest things to track during the life of a project is the motivation behind certain decisions.」沒有紀錄，後來的人只剩「blind acceptance or blind reversal」。ADR 的段落是標題、背景、決定、狀態、後果。AWS Prescriptive Guidance 也強調紀錄重點是「為什麼」而不是「怎麼做」。對 Agent 更重要：它沒參加當初的會議，只看得到 Repo。📖 延伸閱讀：〈Documenting Architecture Decisions〉（Michael Nygard，2011）。"
   },
@@ -21,8 +21,8 @@
     "flow": ["提議＝候選", "接受＝已審查事實", "被取代＝新候選核准後"],
     "cards": [["接受後不改寫", "Agent 必須遵守，不能直接修改。"], ["要改就取代", "提新的候選，舊的保留可查。"]],
     "check": "Agent 想改一條已審查事實時，正確的做法是什麼？",
-    "explain": ["ADR 有狀態：提議（Proposed）、接受（Accepted），被新決定推翻時標成被取代（Superseded），舊的保留可查。AWS 的流程指南說，ADR 一旦被接受就不再改寫；被拒絕的提案也要寫下理由，免得下次重吵同一件事。", "本課的用語一一對應：Agent 提的候選＝提議；經另一個人核准的已審查事實＝接受；要改已審查事實，就提一筆新候選，核准後取代舊的。已審查事實不是永遠不能變，而是只能透過同一套審查流程改。", "常見誤解：Agent 發現事實「好像過時了」就直接改。正確做法是讓它提新候選、附證據，等人核准。下週可以看看團隊的設計文件有沒有狀態欄位，還是改了就直接覆蓋。"],
-    "read": ["〈Architectural decision record process〉（AWS Prescriptive Guidance）", "〈Documenting Architecture Decisions〉（Michael Nygard，2011）"],
+    "explain": ["ADR 有狀態。Nygard 2011 年寫的是：利害關係人還沒同意時是「提議」（proposed），同意後是「接受」（accepted）；後來的決定改變或推翻它時，標成「棄用」（deprecated）或「被取代」（superseded），並指向取代它的那一份，舊的保留可查。MADR 4.0 範本的狀態欄多列了「拒絕」（rejected）。AWS 的流程指南說，ADR 被接受或拒絕後就不再改寫；要改，就提一份新的 ADR，新的被接受後，舊的標成被取代。被拒絕的提案也要寫下理由，免得下次重吵同一件事。", "本課的用語一一對應：Agent 提的候選＝提議；經另一個人核准的已審查事實＝接受；夥伴回「退回：原因」就是不接受，理由寫在提案的紀錄裡；要改已審查事實，就提一筆新候選，核准後取代舊的。已審查事實不是永遠不能變，而是只能透過同一套審查流程改。", "各來源的狀態名稱不完全一樣：Nygard 有「棄用」，AWS 只講提議、接受、拒絕、被取代；AWS 還有「需要重做」的情況，那時狀態仍是提議。不必背哪一套，團隊選一套寫進範本，所有人用同一套就好。", "常見誤解：Agent 發現事實「好像過時了」就直接改。正確做法是讓它提新候選、附證據，等人核准。下週可以看看團隊的設計文件有沒有狀態欄位，還是改了就直接覆蓋。"],
+    "read": ["〈Architectural decision record process〉（AWS Prescriptive Guidance）", "〈Documenting Architecture Decisions〉（Michael Nygard，2011）", "〈About MADR〉（MADR 4.0，2024）"],
     "notes": "3.5–5.5 分鐘。Nygard 的狀態是 proposed、accepted，被推翻時「we will keep the old one around, but mark it as superseded.」AWS〈Architectural decision record process〉：「When the team accepts an ADR, it becomes immutable.」被拒絕的提案也要寫理由，避免下次重吵同一件事。本課的已審查事實（reviewed）就是 Accepted：不是不能變，而是只能透過同一套審查流程被取代。第 03 場的新知識也會先寫成候選。📖 延伸閱讀：〈Architectural decision record process〉（AWS Prescriptive Guidance）。"
   },
   {
@@ -30,7 +30,7 @@
     "lead": "做變更的 Agent 不核准自己的變更；審查交給另一個乾淨的對話，或另一個人。",
     "cards": [["官方建議", "另開審查者，只看差異與標準，不看作者的推理。"], ["平台限制", "GitHub 的雲端 Agent 不能核准或合併自己的 PR。"], ["企業做法", "Stripe 自述：Agent 每週上千個 PR，全經人審。"]],
     "check": "D2 裡，「核准」這句話是在誰的對話裡說的？",
-    "explain": ["「球員不兼裁判」：做變更的人不核准自己的變更。這是人工核准關卡（Gate）的加深一層：主課學過在關卡由人決定，這裡再加一條，核准的必須是另一個人，或至少是一個看不到作者推理的乾淨對話。Claude Code 官方文件建議另開審查者審差異，理由是做事的 Agent 不該替自己打分數。", "業界也這樣做：GitHub 的雲端 Agent 不能核准或合併自己的 PR（Pull Request，合併請求）；Stripe 2026 年自述每週超過一千個由 Agent 產出的 PR，全部交人審查；Anthropic 2026 年 10 月分享，Agent 大量產生變更後，團隊成員仍審每一筆，只是改看變更的意圖。這些數字都是公司自己說的，不當成效率證據。", "限制：D2 為了教學讓兩人共用一台機器、各開自己的 Agent 對話。這能練習分工，但不能證明真的有兩個人；真實團隊要補什麼，第 04 場會講。"],
+    "explain": ["「球員不兼裁判」：做變更的人不核准自己的變更。這是人工核准關卡（Gate）的加深一層：主課學過在關卡由人決定，這裡再加一條，核准的必須是另一個人，或至少是一個看不到作者推理的乾淨對話。Claude Code 官方文件建議另開審查者審差異，理由是做事的 Agent 不該替自己打分數。", "業界也這樣做：GitHub 的雲端 Agent 不能核准或合併自己的 PR（Pull Request，合併請求）；Stripe 2026 年自述每週超過一千個由 Agent 產出的 PR，全部交人審查；Anthropic 2026 年 10 月分享，Agent 大量產生變更後，團隊成員仍審每一筆，只是改看變更的意圖。這些數字都是公司自己說的，不當成效率證據。", "限制：D2 為了教學讓兩人共用一台機器、各開自己的 Agent 對話。這能練習分工，但不能證明真的有兩個人；真實團隊要補什麼，第 04 場會講。", "為什麼「另一個人」有用：做的人知道自己的意圖，讀證據時會自動補上沒寫出來的部分；審查的人只看得到寫下來的東西，缺什麼一眼就看出來。對 Agent 也一樣：同一個對話裡自評，它會沿用剛才的推理；換一個沒看過推理的對話來審，才比較接近第二雙眼睛。但乾淨的對話仍是同一類模型，可能有同樣的盲點，所以模型變更的核准仍要由人來做。"],
     "read": ["〈Best practices for Claude Code〉（Claude Code 官方文件）", "〈Building effective agents〉（Anthropic Engineering，2024）", "〈Risks and mitigations for GitHub Copilot cloud agent〉（GitHub 官方文件）", "〈Minions: Stripe's one-shot, end-to-end coding agents〉（Stripe，2026）", "〈Redesigning source control at Anthropic〉（Anthropic，2026）"],
     "notes": "5.5–7.5 分鐘。人工核准關卡（Gate）的加深一層。Claude Code 官方文件〈Best practices for Claude Code〉建議用新的審查者審 diff：「the agent doing the work isn't the one grading it.」GitHub〈Risks and mitigations for GitHub Copilot cloud agent〉：雲端 Agent「cannot approve or merge a pull request」。Stripe 工程部落格〈Minions: Stripe's one-shot, end-to-end coding agents〉（2026-02-09）自述每週超過一千個 PR 由 Agent 產出、全部交人審查；這是公司自己的數字。AWS Transform 的使用者指南也把「domains decomposition」列為要人核准的中間產物。D2 的設計：兩人共用一台機器，但各用自己的 Agent 對話。Anthropic〈Redesigning source control at Anthropic〉（2026-10-13）：Agent 大量產生變更之後，「Our team members still review every change request for the system」，只是改看變更的意圖；團隊也寫到「the role of the engineers was to tell Claude \"no.\"」。合併數量是公司自己的數字，不當成效率證據；這裡只取一點：量變大，審查改看意圖，但人仍是說「不」的那一個。📖 延伸閱讀：〈Best practices for Claude Code〉（Claude Code 官方文件）；〈Building effective agents〉（Anthropic Engineering，2024）。"
   },
@@ -40,7 +40,7 @@
     "flow": ["規則檔：建議", "測試與檢查程式：每次都跑", "推送時檢查：沒核准就擋"],
     "cards": [["為什麼", "Agent 忙起來會忘，人也會。"], ["D2 的做法", "沒有夥伴簽章的變更，推不上去。"]],
     "check": "如果 Agent 自己 commit 再推送，會在哪一步被擋下？",
-    "explain": ["寫在規則檔或對話裡的規則（例如「不要自己核准」）對 Agent 只是建議：它忙起來會忘，人也會。要每次都發生，就寫成自動執行的檢查：測試、檢查程式，或 pre-push hook（push 前 Git 自動執行的檢查腳本）。Claude Code 官方文件說，規則檔是建議，hook 是確定性的、保證會執行；AGENTS.md 等其他工具的規則檔也一樣，只是上下文，不是強制設定。", "Thoughtworks 技術雷達第 34 期（2026-04）把「給 Coding Agent 的回饋感測器」列為 Trial（值得試用）：檢查要在寫程式的過程中就跑，commit 前回報乾淨的結果。D2 的做法是：沒有夥伴簽章的變更推不上去。", "限制：本機的檢查可以被跳過，第 04 場會講。下週可以找出團隊一條「大家都知道、卻常被忘記」的規則，想想能不能寫成一個會失敗的測試或檢查。"],
+    "explain": ["寫在規則檔或對話裡的規則（例如「不要自己核准」）對 Agent 只是建議：它忙起來會忘，人也會。要每次都發生，就寫成自動執行的檢查：測試、檢查程式，或 pre-push hook（push 前 Git 自動執行的檢查腳本）。Claude Code 官方文件說，規則檔是建議，hook 是確定性的、保證會執行；AGENTS.md 等其他工具的規則檔也一樣，只是上下文，不是強制設定。", "Thoughtworks 技術雷達第 34 期（2026-04）把「給 Coding Agent 的回饋感測器」列為 Trial（值得試用）：檢查要在寫程式的過程中就跑，commit 前回報乾淨的結果。D2 的做法是：沒有夥伴簽章的變更推不上去。", "限制：本機的檢查可以被跳過，第 04 場會講。下週可以找出團隊一條「大家都知道、卻常被忘記」的規則，想想能不能寫成一個會失敗的測試或檢查。", "課程例子：D2 的推送檢查不看 Agent 說了什麼，只看變更審查包裡有沒有夥伴的核准紀錄、簽章驗不驗得過；沒有就擋。這就是「建議」和「檢查」的差別：建議靠 Agent 記得，檢查不靠任何人記得。限制也要說清楚：檢查只擋得住它被寫來擋的事，規則本身寫錯，檢查會忠實地擋錯東西。"],
     "read": ["〈githooks〉（Git 官方文件）", "〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）"],
     "notes": "7.5–9.5 分鐘。Claude Code 官方文件：「Unlike CLAUDE.md instructions which are advisory, hooks are deterministic」；AGENTS.md 等其他工具的規則檔也一樣，是上下文，不是強制設定。Thoughtworks Technology Radar Vol. 34（2026-04）把〈Feedback sensors for coding agents〉列為 Trial：檢查要在寫程式的過程中跑，commit 前回報乾淨的結果。對照 D2 檢查點 1、2。不要展開金鑰與 hook 細節；這套檢查的限制留到第 04 場。📖 延伸閱讀：〈githooks〉（Git 官方文件）。"
   },
@@ -67,7 +67,7 @@
     "prompt": "先不要修改任何檔案。請把這次要升級的每一筆候選列成表：主張、證據（路徑:起-迄行）、對應的測試與實際結果字樣、反事實檢查結果。沒有實際跑過的標「未驗證」。列完停下。",
     "cards": [["看理由", "為什麼這樣定，比怎麼實作重要。"], ["看實際字樣", "passed、killed 要來自實際執行。"]],
     "check": "表裡有沒有一筆，主張和證據講的不是同一件事？",
-    "explain": ["審查的人不必看懂程式，他要的是一張表：每條主張、證據在哪幾行、對應哪個測試、實際跑出的結果字樣，以及反事實檢查（故意改壞程式，看測試會不會失敗）的結果；沒實際跑過的標「未驗證」。這是第 01 場「要證據，不要形容詞」的加深：證據從一句回報，變成給另一個人審的整張表。", "主課的變更審查看程式改了什麼；這裡看模型要改成什麼、為什麼。AWS 的 ADR 流程指南說，紀錄著重決定的理由，而不是實作方式；審查表把「為什麼」放前面，比放實作細節有用。", "限制：表格整齊不代表內容正確，主張和證據講的可能不是同一件事，所以下一頁講怎麼審。"],
+    "explain": ["審查的人不必看懂程式，他要的是一張表：每條主張、證據在哪幾行、對應哪個測試、實際跑出的結果字樣，以及反事實檢查（故意改壞程式，看測試會不會失敗）的結果；沒實際跑過的標「未驗證」。這是第 01 場「要證據，不要形容詞」的加深：證據從一句回報，變成給另一個人審的整張表。", "主課的變更審查看程式改了什麼；這裡看模型要改成什麼、為什麼。AWS 的 ADR 流程指南說，紀錄著重決定的理由，而不是實作方式；審查表把「為什麼」放前面，比放實作細節有用。", "限制：表格整齊不代表內容正確，主張和證據講的可能不是同一件事，所以下一頁講怎麼審。", "課程例子：一列可能長這樣。主張「會員可用點數不得為負」；證據指到需求卡 02 的那一條與程式裡扣點的那幾行；對應測試是一個「餘額不足時拒絕並不扣點」的測試，實際字樣「1 passed」；反事實檢查把扣點前的餘額判斷拿掉，實際字樣 killed。四欄都對得上，夥伴才有東西可審；任何一欄寫「應該會過」，就標「未驗證」。"],
     "read": ["〈Architectural decision record process〉（AWS Prescriptive Guidance）"],
     "notes": "13–15 分鐘。對照 D2 檢查點 3。這是上一場「要證據，不要形容詞」的加深一層：證據從一句回報，變成給另一個人審的整張表。AWS 的 ADR 流程：紀錄著重「the reason for the decision rather than how the team implemented it.」主課的變更審查看程式改了什麼；這裡看模型要改成什麼、證據在哪。示範提示詞，未實際執行。"
   },
@@ -76,7 +76,7 @@
     "lead": "AWS 的 ADR 審查會先安靜讀 10–15 分鐘，再逐條討論，最後接受、重做或退回。",
     "cards": [["標準是讓整體更好", "Google：確定讓程式更健康就核准，不求完美。"], ["退回要寫理由", "下次就不必重吵同一件事。"]],
     "check": "你核准前，親自打開過哪一行證據？",
-    "explain": ["AWS 的 ADR 流程建議審查會議這樣開：先安靜讀 10–15 分鐘，再逐條討論，結果是接受、要求重做或拒絕；拒絕時寫下理由，避免下次重吵。Google 的程式碼審查準則則說，標準是確定讓整體程式更健康就核准，不求完美。兩者合起來：審查要真的讀證據，但不是無止境地挑錯。", "InfoQ 2026 年 9 月一篇文章（Nitin Garg）做了小型實驗：審查者手上有人核准過的基準時，抓到的問題比例和沒有時差不多（作者自量的召回率，0.525 對 0.518），但 81% 的發現能指到具名的條文（沒有基準時 0%），審查時間約 48 對 27 分鐘。作者說結果只是方向性的。意思是：已審查的模型讓審查說得出依據、可以追溯，不保證抓到更多錯。", "D2 裡夥伴回「退回：原因」不是失敗，而是審查有在運作；沒有人追問的核准只是蓋章。下週審同事的變更時，核准前至少親自打開一行證據。"],
+    "explain": ["AWS 的 ADR 流程建議審查會議這樣開：先安靜讀 10–15 分鐘，再逐條討論，結果是接受、要求重做或拒絕；拒絕時寫下理由，避免下次重吵。Google 的程式碼審查準則則說，標準是確定讓整體程式更健康就核准，不求完美。兩者合起來：審查要真的讀證據，但不是無止境地挑錯。", "InfoQ 2026 年 9 月一篇文章（Nitin Garg）做了小型實驗：審查者手上有人核准過的基準時，抓到的問題比例和沒有時差不多（作者自量的召回率，0.525 對 0.518），但 81% 的發現能指到具名的條文（沒有基準時 0%），審查時間約 48 對 27 分鐘。作者說結果只是方向性的。意思是：已審查的模型讓審查說得出依據、可以追溯，不保證抓到更多錯。", "D2 裡夥伴回「退回：原因」不是失敗，而是審查有在運作；沒有人追問的核准只是蓋章。下週審同事的變更時，核准前至少親自打開一行證據。", "審查時可以問的三題，不需要看懂程式：這條主張的證據真的在講這件事嗎？對應的測試會在規則被違反時失敗嗎（看反事實檢查）？這次有沒有動到既有測試？三題都答得出來就核准；答不出來就退回，把答不出來的那一題寫成理由。"],
     "read": ["〈The Code Reviewer's Guide〉（Google Engineering Practices）", "〈When Spec-Driven Development Pays off〉（Nitin Garg／InfoQ，2026）"],
     "notes": "15–17 分鐘。AWS〈Architectural decision record process〉：會議先讀 10–15 分鐘，逐條討論，結果是接受、重做或拒絕；拒絕時「adds a reason for the rejection to prevent future discussions on the same topic.」Google Engineering Practices〈The Standard of Code Review〉：「approving a CL once it is in a state where it definitely improves the overall code health」。對照 D2 檢查點 4：夥伴回「退回：原因」不是失敗，是審查有在運作；沒有人追問的核准只是蓋章。InfoQ〈When Spec-Driven Development Pays off〉（Nitin Garg，2026-09-10）做了小型實驗：審查者手上有人核准過的基準（approved baseline）時，抓到的漂移數和沒有時差不多（作者自稱的 recall 0.525 對 0.518），但 81% 的發現能指到具名的條文（沒有基準時 0%），審查時間約 48 對 27 分鐘。作者說結果只是方向性的。要講清楚：已審查的模型讓審查「說得出依據、可追溯」，不保證抓得更多；他的原則是「automation flags divergence, while a named human decides what is correct」，對應 D2 夥伴具名核准。📖 延伸閱讀：〈The Code Reviewer's Guide〉（Google Engineering Practices）。"
   },
@@ -96,8 +96,8 @@
     "prompt": "先不要修改任何檔案。請針對這條規則，提 2 個「故意改壞」的方案：改哪個檔案的哪幾行、改成什麼、預期哪個測試會失敗。不要替我選，列完停下。我選好後再跑，回報實際字樣是 killed 還是 survived。",
     "cards": [["killed", "測試失敗了：這條規則有測試守著。"], ["survived", "測試仍通過：規則沒人守，或測試太弱。"]],
     "check": "你選的改法，改到的是規則本身，還是無關的字串？",
-    "explain": ["反事實檢查（counterfactual）是變異測試（mutation testing）的手動小版本：故意把守某條規則的程式改壞一處，跑測試，再自動還原。測試失敗叫 killed（被抓到），證明這條規則有測試守著；測試仍通過叫 survived（存活），表示規則沒人守，或測試太弱。變異測試工具則會自動產生大量這種小改動。", "Thoughtworks 技術雷達第 34 期稱變異測試是評估測試抓錯能力「最誠實的訊號」，也提醒 AI 產生的測試可能永遠是綠的。改法由人選，是因為 Agent 容易挑最好抓的改法，讓結果好看。", "兩個常見誤讀：指令沒報錯不等於 killed，要看實際字樣；測試要因為對的原因失敗，所以事先寫下預期哪個斷言失敗，如果是程式根本載入不了才失敗，不算證明。"],
-    "read": ["〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）"],
+    "explain": ["反事實檢查（counterfactual）是本課用語，做法就是變異測試（mutation testing）的手動小版本：故意把守某條規則的程式改壞一處，跑測試，再自動還原。變異測試工具 Stryker 的文件這樣定義：在程式裡引入改動，再對改過的程式跑測試；測試失敗，這個改動（變異）就算被殺掉（killed），證明這條規則有測試守著；測試仍通過叫存活（survived），表示規則沒人守，或測試太弱。變異測試工具會自動產生大量這種小改動。", "survived 還有第三種可能：改動根本沒改變程式的行為，Stryker 稱為等價變異（equivalent mutant），例如兩個值相等時，把「大於等於」改成「小於等於」結果一樣。這種情況沒有測試抓得到，也不需要抓；所以改法要改在規則本身，事先說得出「改完後，哪個情況的結果會不同」。Stryker 的文件也說，它沒有確定的方法自動找出等價變異，只能靠人一個一個判斷。", "Thoughtworks 技術雷達第 34 期稱變異測試是評估測試抓錯能力「最誠實的訊號」，也提醒 AI 產生的測試可能永遠是綠的。改法由人選，是因為 Agent 容易挑最好抓的改法，讓結果好看。", "兩個常見誤讀：指令沒報錯不等於 killed，要看實際字樣；測試要因為對的原因失敗，所以事先寫下預期哪個斷言失敗，如果是程式根本載入不了才失敗，不算證明，本課的工具會標成 inconclusive（無法判斷）。"],
+    "read": ["〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）", "〈What is mutation testing?〉（Stryker Mutator 文件）", "〈Equivalent mutants〉（Stryker Mutator 文件）"],
     "notes": "19–21.5 分鐘。這是變異測試（mutation testing）的手動小版本：工具會自動產生大量小改動，看測試殺掉幾個。Thoughtworks Technology Radar Vol. 34（2026-04）在〈Feedback sensors for coding agents〉稱變異測試是評估測試抓錯能力「the most honest signal」，也提醒 AI 產生的測試可能永遠是綠的。為什麼人選改法：Agent 容易挑最好抓的改法。指令沒報錯不等於 killed，要看實際字樣；也要因為對的原因失敗：先寫下預期看到哪個斷言失敗，測試因別的錯（例如程式根本載入不了）而失敗不算證明，本 DLC 的工具會把這種結果標成 inconclusive。第 03 場會加深：每條新規則各改壞一次。📖 延伸閱讀：〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）。"
   },
   {
@@ -105,7 +105,7 @@
     "lead": "ADR 被接受時寫下決策者與日期；模型裡的已審查事實也一樣，要查得到誰、何時核准。",
     "cards": [["誰與何時", "每筆已審查事實附核准者與時間。"], ["提案留在歷史", "紀錄不抄提案；要查時從歷史找得到。"], ["沒被改過", "簽章驗得出；套用前 Agent 再驗一次。"]],
     "check": "三個月後有人問「這條規則誰核准的」，你從哪裡查？",
-    "explain": ["核准紀錄要回答三個問題：誰核准、何時核准、核准的是哪一份。MADR（一個常用的 ADR 範本，4.0 版，2024）在狀態與日期旁邊有「決策者」欄位；本課的已審查事實就是「接受」加上核准者與時間。範本註明這些欄位是選填，但對需要稽核的團隊很有用。", "紀錄本身只寫誰、何時；當初的審查包與討論留在版本與稽核歷史裡，要追查時找得到，不必抄進每筆紀錄。「沒被改過」要靠工具驗證：業界常見做法是簽章的 commit（用金鑰替 commit 簽章，別人能驗出內容沒被改）加上必要審查。", "下週可以問：三個月後有人問「這條規則誰核准的」，你們團隊從哪裡查得到？查不到，就是值得補的地方。"],
+    "explain": ["核准紀錄要回答三個問題：誰核准、何時核准、核准的是哪一份。MADR（一個常用的 ADR 範本，4.0 版，2024）在狀態與日期旁邊有「決策者」欄位；本課的已審查事實就是「接受」加上核准者與時間。範本註明這些欄位是選填，但對需要稽核的團隊很有用。", "AWS 的流程指南寫得更具體：團隊核准 ADR 時，負責人加上時間戳記、版本與利害關係人名單，再把狀態改成「接受」。對應到本課：核准者與時間記在已審查事實上，核准的是哪一份，靠簽章的 commit 指認。", "紀錄本身只寫誰、何時；當初的審查包與討論留在版本與稽核歷史裡，要追查時找得到，不必抄進每筆紀錄。「沒被改過」要靠工具驗證：業界常見做法是簽章的 commit（用金鑰替 commit 簽章，別人能驗出內容沒被改）加上必要審查。", "下週可以問：三個月後有人問「這條規則誰核准的」，你們團隊從哪裡查得到？查不到，就是值得補的地方。"],
     "read": ["〈About MADR〉（MADR 4.0，2024）", "〈git-commit〉（Git 官方文件）"],
     "notes": "21.5–23.5 分鐘。對照 D2 檢查點 5、6。MADR 4.0 的 ADR 範本在狀態與日期旁邊有 decision-makers 欄位：「list everyone involved in the decision」。已審查事實就是 Accepted 加上決策者：紀錄本身只寫誰、何時；當初那份審查包與核准過程留在版本與稽核歷史裡，要追查時找得到，不必抄進每筆紀錄（呼應前面：紀錄只放模型）。「沒被改過」要靠工具驗：業界常見做法是簽章 commit 加上必要審查。本 DLC 用的模型工具在每筆已審查紀錄寫入核准者與時間，提案記在稽核紀錄；工具可以換，道理相同。📖 延伸閱讀：〈About MADR〉（MADR 4.0）；〈git-commit〉（Git 官方文件）的 -S 選項說明。"
   },

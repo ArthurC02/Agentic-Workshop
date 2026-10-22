@@ -11,17 +11,17 @@
     "lead": "第 01 場說過 Agent 沒有走廊記憶；加深一層：做設計時，需求講不清楚，它就自己下結論。",
     "cards": [["Agent 常見的錯", "沒講清楚的規則，它會補一個看起來合理的。"], ["模型提供什麼", "名詞、規則、邊界寫下來，Agent 才有依據。"], ["人保留什麼", "哪條規則成立、歸誰負責，由人決定。"]],
     "check": "你最近交給 Agent 的工作，有沒有一條規則是它自己補的？",
-    "explain": ["Birgitta Böckeler 2025 年在 martinfowler.com 記錄自己用 Agent 寫程式的觀察：沒有詳細描述功能需求時，AI 會跳到錯誤的結論，而且常一次做很廣，而不是一小段一小段做出能用的功能。這就是先建共用模型、再讓 Agent 寫程式的理由：名詞、規則、邊界寫下來，Agent 才有依據，不必自己補。", "分工很清楚：模型提供 Agent 依據；哪條規則成立、歸哪個 Bounded Context（限界上下文：名詞意思一致的範圍）負責，仍由人決定。Agent 自己補的每一條規則，都是一條沒人核准的規則。", "下週可以檢查最近交給 Agent 的一件工作：產出裡有沒有一個數字、狀態或判斷，是你沒給、它自己補的？"],
+    "explain": ["Birgitta Böckeler 2025 年在 martinfowler.com 記錄自己用 Agent 寫程式的觀察：沒有詳細描述功能需求時，AI 會跳到錯誤的結論，而且常一次做很廣，而不是一小段一小段做出能用的功能。這就是先建共用模型、再讓 Agent 寫程式的理由：名詞、規則、邊界寫下來，Agent 才有依據，不必自己補。", "分工很清楚：模型提供 Agent 依據；哪條規則成立、歸哪個 Bounded Context（限界上下文：名詞意思一致的範圍）負責，仍由人決定。Agent 自己補的每一條規則，都是一條沒人核准的規則。", "下週可以檢查最近交給 Agent 的一件工作：產出裡有沒有一個數字、狀態或判斷，是你沒給、它自己補的？", "這也是 DDD 和 Agent 最直接的連結：Evans 說模型是「挑出領域的某些面向、能用來解決問題的一套抽象」。Agent 沒有這套抽象，就只能從程式的表面形狀猜；交給它的模型越明確，它猜的空間越小。限制：模型寫了不代表 Agent 照做，第 04 場會講怎麼查證。"],
     "read": ["〈The role of developer skills in agentic coding〉（Birgitta Böckeler／martinfowler.com，2025）"],
     "notes": "2–4 分鐘。Birgitta Böckeler 在 martinfowler.com 的實測紀錄（2025-03）寫到：沒有詳細描述功能需求時，「AI jumps to the wrong conclusions」，而且常常一次做很廣，而不是一小段一小段做出能用的功能。「沒有走廊記憶」與 Evans 2026 主題演講「模型仍重要」都在第 01 場講過，這裡只回扣一句，不重講。這就是先建共用模型、再讓 Agent 寫程式的理由。📖 延伸閱讀：〈The role of developer skills in agentic coding〉（Birgitta Böckeler／martinfowler.com，2025）。"
   },
   {
     "id": "invariant", "chapter": "不變量與 Aggregate", "title": "不變量：c 一定等於 a + b",
-    "lead": "Invariant（不變量）是任何時候都必須成立的業務規則。Vernon 的例子：a 是 2、b 是 3，c 就必須是 5。",
+    "lead": "Invariant（不變量）是每次操作完成時都必須成立的業務規則。Vernon 的例子：a 是 2、b 是 3，c 就必須是 5。",
     "flow": ["改了 a 或 b", "同一次操作裡重算 c", "結束時 c = a + b"],
     "cards": [["寫得好", "說得出怎樣算失敗：c 不等於 a + b。"], ["寫不好", "「金額要正確」：沒辦法判斷何時失敗。"]],
     "check": "挑一條你們寫的不變量：怎樣算它被破壞了？",
-    "explain": ["不變量（Invariant）是任何時候都必須成立的業務規則。Vaughn Vernon 2011 年的〈Effective Aggregate Design〉用最小的例子說明：c 必須等於 a + b；a 是 2、b 是 3，c 就必須是 5。只要 a 或 b 改了，c 必須在同一次操作裡跟著改，否則規則就被破壞。換成業務語言：訂單總額等於各明細小計加總。", "判斷一條不變量寫得好不好，只問一題：說得出它失敗的樣子嗎？「c 不等於 a + b」可以判斷；「金額要正確」沒辦法判斷何時失敗。說不出失敗樣子的規則，Agent 也寫不出會失敗的測試。", "下週可以從團隊的需求文件挑一條規則，改寫成「怎樣算違反」的一句話，再問 Agent 現有測試裡有沒有一個會在違反時失敗。"],
+    "explain": ["不變量（Invariant）是每次操作完成時都必須成立的業務規則。Vaughn Vernon 2011 年的〈Effective Aggregate Design〉用最小的例子說明：c 必須等於 a + b；a 是 2、b 是 3，c 就必須是 5。只要 a 或 b 改了，c 必須在同一次操作裡跟著改，否則規則就被破壞。換成業務語言：訂單總額等於各明細小計加總。", "「每次操作完成時」比「任何時候」準確：Vernon 說，談不變量時指的是交易一致性，也就是一次操作提交時就必須成立、全有或全無；操作進行到一半，資料可以暫時不一致。也因此，不是每條業務規則都是不變量。有些規則允許晚一點才成立，例如「付款成功後寄出通知」，可以用事件在事後完成，這叫最終一致（eventual consistency）。Vernon 的規則名稱「在一致性邊界內建模真正的不變量」，「真正的」就是提醒：只有必須立即成立的規則，才拿來決定哪些資料要放在同一個 Aggregate。", "判斷一條不變量寫得好不好，只問一題：說得出它失敗的樣子嗎？「c 不等於 a + b」可以判斷；「金額要正確」沒辦法判斷何時失敗。說不出失敗樣子的規則，Agent 也寫不出會失敗的測試。", "課程裡的例子：需求卡 03 寫明，團體訂票在任何時刻都要滿足「已退款金額加總 + 已收手續費加總 + 有效旅客票價加總 = Order 金額」，這就是一條 c = a + b 型的不變量（卡上的「任何時刻」，指任何一次操作完成後去查都要成立）；需求卡 02 的「會員可用點數不得為負」也是。這兩條都說得出失敗的樣子：等式兩邊對不上、餘額出現負數。由哪個 Aggregate 守、和誰放在同一個邊界，是 D3 由你們做的決定。", "對 Agent 更要緊的原因：Agent 會照它看到的程式路徑補判斷，多一條路徑就可能少一次檢查。不變量寫成一句「怎樣算違反」，它才能對每一條路徑寫出同一個會失敗的測試。下週可以從團隊的需求文件挑一條規則，改寫成「怎樣算違反」的一句話，再問 Agent 現有測試裡有沒有一個會在違反時失敗。"],
     "read": ["〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）", "Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 10 章〈Aggregates〉"],
     "notes": "4–6 分鐘。Vaughn Vernon〈Effective Aggregate Design〉第一部分（2011）原文：「An invariant is a business rule that must always be consistent.」c = a + b 的意思：a、b 任何一個改了，c 必須在同一次操作裡跟著改，否則規則就被破壞。換成業務語言：訂單總額等於各明細小計加總。人判斷不變量寫得好不好，只問一題：說得出失敗的樣子嗎？說不出來的，Agent 也寫不出會失敗的測試。對照 D3 各段檢查點 2。📖 延伸閱讀：〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 10 章〈Aggregates〉。"
   },
@@ -30,9 +30,9 @@
     "lead": "Aggregate（聚合）是一組必須一起保持一致、可以當成一個單位處理的資料。Fowler 的例子：訂單和它的明細行。",
     "cards": [["唯一入口", "外界只拿得到訂單（根），不能直接改某一行明細。"], ["一起成立", "入口先檢查全部規則，再一次寫入。"]],
     "check": "如果有人能直接改明細，訂單總額的規則還守得住嗎？",
-    "explain": ["Aggregate（聚合）是一組必須一起保持一致、可以當成一個單位處理的資料。Martin Fowler 2013 年用訂單和它的明細行舉例：明細是分開的物件，但和訂單當成一個單位處理。Evans 的定義再加一條：外界只能拿到入口物件（Aggregate root，聚合根）的參照，不能直接碰內部的明細。", "為什麼要唯一入口：「訂單總額等於明細加總」這條不變量，只能由同一個入口守住。入口先檢查全部規則，再一次寫入；如果 Agent 另外寫了一條路徑直接改明細，總額就可能和明細對不上，而每條路徑各自看起來都沒錯。", "常見誤解：Aggregate 不是資料表，也不是「有子物件的類別」；沒有一條要一起守的不變量，就不需要 Aggregate。一個 Aggregate 也只屬於一個 Bounded Context（Vernon《Implementing Domain-Driven Design》第 10 章）。"],
+    "explain": ["Aggregate（聚合）是一組必須一起保持一致、可以當成一個單位處理的資料。Martin Fowler 2013 年用訂單和它的明細行舉例：明細是分開的物件，但和訂單當成一個單位處理。Evans 的定義再加一條：每個 Aggregate 選一個物件當根，外界只能持有根的參照，不能直接碰內部的明細；規則由根負責守住。", "Aggregate 和 Aggregate root 是兩件事：Aggregate 是整個一致性邊界，裡面可能有好幾個物件；Aggregate root（聚合根）是邊界裡唯一對外的入口物件，例如「訂單」這個 Aggregate 的根是訂單本身，明細行在邊界內。Aggregate 也可以只有根一個物件：微軟 Azure 架構中心 2026 年的版本特別註明，讓它成為 Aggregate 的是交易邊界，不是子物件的數量。", "邊界裡的物件分兩種：Entity（實體）有自己的識別碼，屬性改了仍是同一個，例如一筆訂票；Value Object（值物件）沒有識別碼，只由值決定、建立後不改，例如「新台幣 700 元」這個金額。根一定是 Entity。", "為什麼要唯一入口：「訂單總額等於明細加總」這條不變量，只能由同一個入口守住。入口先檢查全部規則，再一次寫入；如果 Agent 另外寫了一條路徑直接改明細，總額就可能和明細對不上，而每條路徑各自看起來都沒錯。", "常見誤解：Aggregate 不是資料表，也不是「有子物件的類別」；沒有一條要一起守的不變量，就不需要 Aggregate。一個 Aggregate 也只屬於一個 Bounded Context（Vernon《Implementing Domain-Driven Design》第 10 章）。審查 Agent 的設計時，可以請它對每個 Aggregate 回答兩題：根是哪個物件？它守住哪一條不變量？答不出第二題的，多半只是資料分組。"],
     "read": ["〈DDD_Aggregate〉（Martin Fowler，2013）", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
-    "notes": "6–8 分鐘。Martin Fowler〈DDD_Aggregate〉（2013）把 Aggregate 說成「a cluster of domain objects that can be treated as a single unit」，例子就是訂單與明細：分開的物件，但當成一個單位處理。Eric Evans 的定義摘要：外部物件只能持有根的參照（「allow external objects to hold references to the root only」），入口叫 Aggregate root。為什麼重要：總額等於明細加總這條不變量，只能由同一個入口守住；如果 Agent 另外寫了一條路徑直接改明細，規則就破了。D3c 哪些資料放在同一個邊界由學員決定，不要給答案。D3c 檢查點 5 登記規則時會寫上它守的 Aggregate；本 DLC 用的模型工具會拒絕和 Aggregate 不在同一個 Context 的規則，因為一個 Aggregate 只活在一個 Bounded Context 裡（Vernon 第 10 章）。被拒絕時是邊界的問題，讓學員決定，不讓 Agent 刪掉欄位硬過。📖 延伸閱讀：〈DDD_Aggregate〉（Martin Fowler，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）。"
+    "notes": "6–8 分鐘。Martin Fowler〈DDD_Aggregate〉（2013）把 Aggregate 說成「a cluster of domain objects that can be treated as a single unit」，例子就是訂單與明細：分開的物件，但當成一個單位處理。Eric Evans 的定義摘要：外部物件只能持有根的參照（「allow external objects to hold references to the root only」），入口叫 Aggregate root。Aggregate 是整個邊界、root 是入口物件，不要混用；Azure 2026 版註明 Aggregate 可以只有一個物件，決定它的是交易邊界。為什麼重要：總額等於明細加總這條不變量，只能由同一個入口守住；如果 Agent 另外寫了一條路徑直接改明細，規則就破了。D3c 哪些資料放在同一個邊界由學員決定，不要給答案。D3c 檢查點 5 登記規則時會寫上它守的 Aggregate；本 DLC 用的模型工具會拒絕和 Aggregate 不在同一個 Context 的規則，因為一個 Aggregate 只活在一個 Bounded Context 裡（Vernon 第 10 章）。被拒絕時是邊界的問題，讓學員決定，不讓 Agent 刪掉欄位硬過。📖 延伸閱讀：〈DDD_Aggregate〉（Martin Fowler，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）。"
   },
   {
     "id": "small-aggregate", "chapter": "不變量與 Aggregate", "title": "Aggregate 要小：無人機外送",
@@ -40,26 +40,26 @@
     "flow": ["外送只存無人機 id", "外送完成：發出事件", "帳務收到後開發票"],
     "cards": [["為什麼要小", "越大越容易同時被改，也越難一起成功。"], ["經驗法則", "服務不小於一個 Aggregate，不大於一個 Bounded Context。"]],
     "check": "你們的邊界裡，有沒有一份資料其實可以事後再同步？",
-    "explain": ["Aggregate 要小：只放必須在同一次交易裡一致的資料。微軟 Azure 架構中心的無人機外送範例：外送（Delivery）不直接持有無人機物件，只記無人機的 id；外送完成時發出「外送已完成」事件，帳務收到後再開發票。Evans 的摘要說：邊界內同步套用一致性規則，跨邊界則非同步（事後）處理。", "為什麼要小：Aggregate 越大，越容易被兩個人同時修改而衝突，一次要一起成功的東西也越多。Azure 的經驗法則：一個服務不小於一個 Aggregate、不大於一個 Bounded Context。", "取捨由人做：哪些資料一定要全有或全無、哪些可以晚一點同步，是業務問題，不是技術偏好。可以請 Agent 列出每份資料「如果晚一點才一致，會發生什麼事」，再由懂業務的人決定。"],
+    "explain": ["Aggregate 要小：只放必須在同一次交易裡一致的資料。微軟 Azure 架構中心的無人機外送範例：外送（Delivery）不直接持有無人機物件，只記無人機的 id；外送完成時發出「外送已完成」事件。Evans 的摘要說：邊界內同步套用一致性規則，跨邊界則非同步（事後）處理。", "這個例子還有一層：外送屬於配送 Context，開發票屬於帳務 Context。Azure 2026 年的版本把跨 Context 送出的「外送已完成」稱為整合事件（integration event）：在原本的交易提交後，經訊息系統非同步送出，帳務 Context 收到後才開發票。同一個 Context 裡、在 Aggregate 之間傳的叫領域事件；兩者都是「已經發生的事」，下一頁再分。", "為什麼要小：Aggregate 越大，越容易被兩個人同時修改而衝突，一次要一起成功的東西也越多。Vernon 的經驗法則是一次交易只改一個 Aggregate；Azure 的經驗法則：一個服務不小於一個 Aggregate、不大於一個 Bounded Context。", "取捨由人做：哪些資料一定要全有或全無、哪些可以晚一點同步，是業務問題，不是技術偏好。Azure 的領域事件說明也這樣寫：一個操作需不需要跨 Aggregate 的單一交易，要由領域專家判斷。可以請 Agent 列出每份資料「如果晚一點才一致，會發生什麼事」，再由懂業務的人決定。", "常見誤讀：「事後同步」不是「可以不一致」。放寬即時一致時，要說得出多久內會一致、送丟或重複送到時怎麼補救；說不出來，就表示這份資料其實該留在同一個邊界裡。"],
     "read": ["〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）", "〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）"],
-    "notes": "8–10.5 分鐘。Microsoft Azure Architecture Center〈Use Tactical DDD to Design Microservices〉（2026-02 更新）的無人機外送範例：Delivery 不直接抓住無人機物件，只存 DroneId；外送完成時發出 DeliveryCompleted 事件，帳務再去開發票。原文規則：「Include only the data that must remain consistent within a single transaction.」Evans 的摘要：邊界內同步套用一致性規則，跨邊界非同步處理。經驗法則原文：服務「no smaller than an aggregate and no larger than a bounded context」。和 D3c 的關係：哪些資料一定要全有或全無，是人要做的取捨；不說參考設計。📖 延伸閱讀：〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）；〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）。"
+    "notes": "8–10.5 分鐘。Microsoft Azure Architecture Center〈Use Tactical DDD to Design Microservices〉（2026-02 更新）的無人機外送範例：Delivery 不直接抓住無人機物件，只存 DroneId；外送完成時發出 DeliveryCompleted；2026 版原文把它寫成跨到帳務 Context 的整合事件（「publishes a DeliveryCompleted integration event」），交易提交後非同步送出，帳務再去開發票。原文規則：「Include only the data that must remain consistent within a single transaction.」Evans 的摘要：邊界內同步套用一致性規則，跨邊界非同步處理。經驗法則原文：服務「no smaller than an aggregate and no larger than a bounded context」。和 D3c 的關係：哪些資料一定要全有或全無，是人要做的取捨；不說參考設計。📖 延伸閱讀：〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）；〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）。"
   },
   {
     "id": "domain-event", "chapter": "不變量與 Aggregate", "title": "領域事件：領域專家在乎的事",
     "lead": "「資料表多了一列」不是領域事件；「外送取消了」才是。用過去式寫，懂業務的人一聽就懂。",
     "cards": [["找事件的方法", "EventStorming：橘色便利貼寫事件，照時間排。"], ["跨邊界同步", "邊界外的資料，靠事件事後更新。"], ["交給 Agent", "請它從程式列出事件，人刪掉技術動作。"]],
     "check": "Agent 列的事件裡，有沒有一個其實只是技術動作？",
-    "explain": ["領域事件（Domain Event）是「領域專家在乎的、已經發生的事」，用過去式寫。Evans 的定義就是這句話；Azure 用一組對比說明：「資料表多了一列」不算，「外送取消了」才算。判斷方法：懂業務、不懂程式的人一聽就懂，而且會在乎。", "找事件的工作坊方法之一是 EventStorming（事件風暴），Alberto Brandolini 2013 年提出：大家用橘色便利貼寫領域事件，貼在長紙卷上照時間排。今天只借它的規則：過去式、業務語言。領域事件也是跨 Aggregate 同步的方式：邊界外的資料，收到事件後再更新。", "交給 Agent 時，先請它從程式與紀錄列一版事件，人刪掉「已儲存」「已呼叫 API」這類技術動作。常見錯誤是把每個資料庫操作都當成事件。"],
-    "read": ["〈Introducing Event Storming〉（Alberto Brandolini，2013）", "〈Domain-Driven Design Reference〉（Eric Evans，2015）", "〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）"],
+    "explain": ["領域事件（Domain Event）是「領域專家在乎的、已經發生的事」，用過去式寫。Evans 的定義就是這句話；Azure 用一組對比說明：「資料表多了一列」不算，「外送取消了」才算。判斷方法：懂業務、不懂程式的人一聽就懂，而且會在乎。Evans 也說，領域事件記的是過去，通常不再修改，並帶著發生時間與相關的 id。", "找事件的工作坊方法之一是 EventStorming（事件風暴），Alberto Brandolini 2013 年提出：大家用橘色便利貼寫領域事件，貼在長紙卷上照時間排。今天只借它的規則：過去式、業務語言。領域事件也是跨 Aggregate 同步的方式：邊界外的資料，收到事件後再更新。", "領域事件和整合事件（integration event）要分開想。微軟的說明是：兩者在意義上一樣，都是「剛發生了什麼」；差在用途。領域事件在同一個 Context 裡通知其他 Aggregate，通常在同一個程式內處理；整合事件把已提交的結果傳給其他 Context 或外部系統，一定是非同步送出，而且只在交易成功提交後才發。各家用詞不完全一致：Evans 的參考資料把分散式系統裡傳遞的事件也叫領域事件；本 DLC 的工具把「跨 Context、有消費者的已提交業務事件」記成一筆事件紀錄。審查時不必爭名稱，要問清楚三件事：誰負責發出、誰會收到、只在提交後才發嗎？", "對 Agent 的意義：跨 Context 的事件一發出去，就成了對方依賴的約定；Agent 改欄位名稱或發出時機，等於改約定。而且整合事件可能重複送到，接收端要能冪等處理（後面會講）。課程例子：「訂票已付款」是業務在乎的事；「booking 表更新了 status 欄位」不是。", "交給 Agent 時，先請它從程式與紀錄列一版事件，人刪掉「已儲存」「已呼叫 API」這類技術動作。常見錯誤是把每個資料庫操作都當成事件。"],
+    "read": ["〈Introducing Event Storming〉（Alberto Brandolini，2013）", "〈Domain-Driven Design Reference〉（Eric Evans，2015）", "〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）", "〈Domain events: Design and implementation〉（Microsoft .NET 架構指南）"],
     "notes": "10.5–12.5 分鐘。Evans 的定義：「Something happened that domain experts care about.」Azure 用同一組對比說明：「a record was inserted into a table」不算，「a delivery was canceled」才算。Alberto Brandolini 2013 年介紹 EventStorming：用橘色便利貼寫領域事件，貼在長紙卷上照時間排（「the convention is to use orange stickies for this purpose」）。今天不教完整工作坊，只借它的規則：事件用過去式、用業務語言。Agent 的用法：先從程式與紀錄列一版，人刪掉「已儲存」「已呼叫 API」這種技術動作。這也接上前一頁：跨 Aggregate 的同步就是靠事件。📖 延伸閱讀：〈Introducing Event Storming〉（Alberto Brandolini，2013）；Eric Evans〈Domain-Driven Design Reference〉（2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）。"
   },
   {
     "id": "definitions", "chapter": "不變量與 Aggregate", "title": "定義要寫「是什麼」，也寫「不是什麼」",
     "lead": "Agent 最常把相近的東西當成這個概念；給它判斷用的定義時，連同「不是」一起給。",
-    "prompt": "先不要修改任何檔案。請把這次提出的 Aggregate、規則與領域事件候選，逐一對照下面的定義：Aggregate 是由一個根守住、橫跨多個物件的一條不變量，不是資料表；規則是能被推翻的敘述，不是測試名稱；領域事件是提交後業務在乎的事，不是技術通知。不符合的標出來、說明理由，不要自己改，列完停下。",
-    "cards": [["Aggregate", "是：根守住的跨物件不變量；不是：資料表。"], ["規則", "是：能被推翻的敘述；不是：測試名稱。"], ["領域事件", "是：提交後業務在乎的事；不是：技術通知。"]],
+    "prompt": "先不要修改任何檔案。請把這次提出的 Aggregate、規則與領域事件候選，逐一對照下面的定義：Aggregate 是一個一致性邊界，由一個根守住至少一條不變量，不是資料表；規則是能被推翻的敘述，不是測試名稱；領域事件是提交後業務在乎的事，不是技術通知。不符合的標出來、說明理由，不要自己改，列完停下。",
+    "cards": [["Aggregate", "是：根守住不變量的一致性邊界；不是：資料表。"], ["規則", "是：能被推翻的敘述；不是：測試名稱。"], ["領域事件", "是：提交後業務在乎的事；不是：技術通知。"]],
     "check": "D3 的候選裡，有沒有一個其實落在「不是」那一欄？",
-    "explain": ["給 Agent 判斷用的定義，要同時寫「是什麼」和「不是什麼」，因為 Agent 最常犯的錯，是把相近的東西當成這個概念。前三頁可以收成一張表：Aggregate 是由一個根守住、橫跨多個物件的不變量，不是資料表；規則是說得出怎樣算違反的敘述，不是測試名稱；領域事件是業務在乎、已經發生的事，不是技術通知。", "測試名稱只是線索，真正的證據是會在規則被違反時失敗的測試。看起來像、但缺少定義性質的候選，寧可不記，或只記成較弱的概念（例如一個名詞）。第 01 場說過 Agent 定 Aggregate 較不可靠，這張表就是人審查時的標準。", "下週可以把這張「是／不是」表放進團隊共用的 Agent 規則檔，讓每次整理模型都用同一套標準。"],
+    "explain": ["給 Agent 判斷用的定義，要同時寫「是什麼」和「不是什麼」，因為 Agent 最常犯的錯，是把相近的東西當成這個概念。前三頁可以收成一張表：Aggregate 是由一個根守住至少一條不變量的一致性邊界，不是資料表；規則是說得出怎樣算違反的敘述，不是測試名稱；領域事件是業務在乎、已經發生的事，不是技術通知。", "這張表也是給人自己用的：Aggregate 的定義性質是「有一條必須在同一次操作裡成立的不變量」，不是「有子物件」；規則的定義性質是「說得出怎樣算違反」；領域事件的定義性質是「已經發生、業務在乎」。三個「不是」正好是 Agent 最常提交的近似品：一張資料表、一個測試名稱、一個「已儲存」通知。", "測試名稱只是線索，真正的證據是會在規則被違反時失敗的測試。看起來像、但缺少定義性質的候選，寧可不記，或只記成較弱的概念（例如一個名詞）。第 01 場說過 Agent 定 Aggregate 較不可靠，這張表就是人審查時的標準。", "下週可以把這張「是／不是」表放進團隊共用的 Agent 規則檔，讓每次整理模型都用同一套標準。"],
     "notes": "12.5–15 分鐘。新概念：用「是／不是」寫定義。前三頁的概念收成一張表，給 Agent 當檢查標準。Aggregate 回扣 Vernon 的不變量：沒有一條要一起守的不變量，就不是 Aggregate，只是有子物件的類別或一張表。規則要說得出怎樣算違反；測試名稱只是線索，斷言拒絕情況的測試才是證據。領域事件回扣 Evans 與 Azure：已儲存、已呼叫 API 不算。看起來像但缺定義性質時，寧可不記，或只記成較弱的概念（例如一個名詞）。第 01 場說 Agent 定 Aggregate 不可靠，這張表就是人審查時的標準。示範提示詞，未實際執行。"
   },
   {
@@ -68,7 +68,7 @@
     "prompt": "先不要修改任何程式。請依需求文件與共用模型，列出這個功能的每條不變量，每條寫一句「怎樣算失敗」。再提 2 個一致性邊界的選項（A、B）：各自哪些資料一起改、哪些用事件事後同步、放寬時怎麼補救。每點附證據：檔案路徑:行號或模型裡的 id。不要替我選，列完停下。",
     "cards": [["證據來自事實", "選項要指到模型或程式，不是 Agent 的偏好。"], ["回覆很短", "「選 A」；想混合就直接說。"]],
     "check": "每條不變量都說得出失敗的樣子嗎？選項的取捨你看得懂嗎？",
-    "explain": ["DDD Crew（整理 DDD 工作坊工具的開源社群）的〈Aggregate Design Canvas〉（聚合設計畫布）把「不變量」和「修正政策」放在同一張畫布上。修正政策是指：放寬即時一致時（例如允許晚一點同步），出錯了怎麼補救。原文說，兩者並列能讓設計的取捨看得見。", "這頁的指令就是請 Agent 先填這兩欄，再提兩個邊界選項，各寫哪些資料一起改、哪些用事件事後同步、出錯怎麼補救，每點附證據；人只做選擇，回「選 A」或說想怎麼混合。這是主課「比較方案」的加深：比較的依據換成已審查的模型，而不是 Agent 的偏好。", "限制：Agent 提的兩個選項不代表只有兩種可能；看完覺得都不對，可以請它再提，或自己描述第三種。"],
+    "explain": ["DDD Crew（整理 DDD 工作坊工具的開源社群）的〈Aggregate Design Canvas〉（聚合設計畫布）把「不變量」和「修正政策」放在同一張畫布上。修正政策是指：放寬即時一致時（例如允許晚一點同步），出錯了怎麼補救。原文說，兩者並列能讓設計的取捨看得見。", "這頁的指令就是請 Agent 先填這兩欄，再提兩個邊界選項，各寫哪些資料一起改、哪些用事件事後同步、出錯怎麼補救，每點附證據；人只做選擇，回「選 A」或說想怎麼混合。這是主課「比較方案」的加深：比較的依據換成已審查的模型，而不是 Agent 的偏好。", "限制：Agent 提的兩個選項不代表只有兩種可能；看完覺得都不對，可以請它再提，或自己描述第三種。", "課程例子：需求卡 02 的點數折抵，至少有「可用點數不得為負」「合計預留不得超過原可用點數」兩條要同時成立的規則；兩個訂票請求同時扣同一份點數時，哪些資料必須在同一次操作裡一起檢查、哪些可以事後同步，就是邊界選項要回答的問題。Agent 提的 A、B 兩案，要各自說得出這兩條規則在同時送出時怎麼守住。"],
     "read": ["〈Aggregate Design Canvas〉（DDD Crew）"],
     "notes": "15–17.5 分鐘。DDD Crew 的〈Aggregate Design Canvas〉把「不變量」和「修正政策」（放寬即時一致時怎麼補救）放在同一張畫布，原文說這樣「will make design trade-offs explicit」。這頁的提示詞就是請 Agent 先填畫布的這兩欄，人只做選擇。這是主課 B2「比較方案」與 D3 檢查點 2 的加深：比較的依據換成已審查的模型。示範提示詞未實際執行，不要宣稱結果。📖 延伸閱讀：〈Aggregate Design Canvas〉（DDD Crew）。"
   },
@@ -78,7 +78,7 @@
     "flow": ["領域程式", "Port（自己的用語）", "Adapter（翻譯）", "外部服務"],
     "cards": [["原始用意", "人、程式、測試都能用同一種方式驅動系統。"], ["好處", "換服務商、用假服務測逾時，只動 Adapter。"]],
     "check": "領域程式裡，有沒有出現外部服務的欄位名稱？",
-    "explain": ["Port／Adapter 出自 Alistair Cockburn 2005 年的〈Hexagonal Architecture〉（六角形架構）。Port 是領域程式用自己的業務用語說「我需要什麼能力」的介面；Adapter 是把這個需求翻成真實外部服務格式的實作。Cockburn 的原始用意：讓應用程式能同樣地被使用者、其他程式、自動測試或批次腳本驅動，並能和資料庫、外部裝置分開開發與測試。", "比喻（本課的說法，不是原文）：Port 是你家插座的規格，Adapter 是出國用的轉接頭。好處：換服務商、或用假服務測試逾時，只動 Adapter，領域程式不變。對 Agent 也有用：它改外部串接時，影響範圍被限制在 Adapter。", "判斷訊號：領域程式裡出現外部服務的欄位名稱或錯誤碼，代表外部的說法已經滲進來。要不要為某個外部服務定義 Port，是設計取捨，由人決定。"],
+    "explain": ["Port／Adapter 出自 Alistair Cockburn 2005 年的〈Hexagonal Architecture〉（六角形架構）。Cockburn 的定義：一個 Port 代表一段「有目的的對話」，由應用程式用自己的話定義；Adapter 負責把這段對話轉成某個外部技術或裝置需要的格式。原始用意：讓應用程式能同樣地被使用者、其他程式、自動測試或批次腳本驅動，並能和資料庫、外部裝置分開開發與測試。", "Port 有兩種方向。驅動應用程式的一側（primary／driving），例如使用者介面、API、自動測試從這裡呼叫進來；被應用程式驅動的一側（secondary／driven），例如資料庫、發票服務，是程式需要外界提供的能力。投影片與 D3a 講的「用業務用語說我需要什麼」是後一種；卡片上的「人、程式、測試都能驅動」是前一種。兩種都是 Port。", "比喻（本課的說法，不是原文）：Port 是你家插座的規格，Adapter 是出國用的轉接頭。好處：換服務商、或用假服務測試逾時，只動 Adapter，領域程式不變。對 Agent 也有用：它改外部串接時，影響範圍被限制在 Adapter。", "課程例子：需求卡 01 的發票服務商「可能變慢、逾時或停機」。如果領域程式裡寫滿服務商的欄位名與錯誤碼，換服務商或測逾時都得動到業務邏輯；用自己的話描述「開立發票」這個需要，測試時接一個會逾時的替身，就能在不連外的情況下驗證逾時處理。要不要這樣做、Port 叫什麼，是 D3a 由你們決定的。", "判斷訊號：領域程式裡出現外部服務的欄位名稱或錯誤碼，代表外部的說法已經滲進來。常見誤讀：Port 不等於「每個類別都要配一個介面」；只有一種實作、也不需要替身測試的地方，多一層介面只是多一層間接。要不要為某個外部服務定義 Port，是設計取捨，由人決定。"],
     "read": ["〈Hexagonal Architecture〉（Alistair Cockburn，2005）", "Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉"],
     "notes": "17.5–19 分鐘。Alistair Cockburn〈Hexagonal Architecture〉（2005）的意圖原文：讓應用程式「equally be driven by users, programs, automated test or batch scripts」，並能和資料庫、外部裝置分開開發與測試。比喻：Port 是你家插座的規格，Adapter 是出國用的轉接頭（比喻是本課的說法，不是原文）。要不要定義 Port、由誰翻譯，是 D3a 需求卡留給學員決定的問題，不給答案。📖 延伸閱讀：〈Hexagonal Architecture〉（Alistair Cockburn，2005）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉。"
   },
@@ -87,17 +87,17 @@
     "lead": "Anticorruption Layer（防腐層）是下游自己蓋的翻譯層，讓外部系統的說法不滲進自己的模型。",
     "cards": [["只翻譯", "不放業務規則，也不負責流程編排。"], ["有成本", "多一層呼叫與維護；舊系統遷移時要決定留多久。"], ["也可以不蓋", "外部模型夠好時，直接照用也是一種選擇。"]],
     "check": "你們的翻譯層裡，有沒有藏著一條業務規則？",
-    "explain": ["防腐層（ACL，Anticorruption Layer；不是存取控制清單）是下游自己蓋的翻譯層：用自己領域模型的說法，提供上游系統的功能，讓外部系統的說法不滲進自己的模型。這是 Evans 的定義。", "微軟 Azure 架構中心的〈Anti-Corruption Layer Pattern〉（2026 年 5 月更新）有兩個提醒：不要在這一層放業務規則或流程編排，它只翻譯；它也會增加兩個系統之間的延遲，多一個要維護的元件。舊系統遷移時，要決定它是永久保留還是過渡用。", "也可以不蓋：外部模型夠好時，直接照用也是一種關係，叫 Conformist（跟隨上游模型）。防腐層是付出成本換隔離，不是免費的好東西。審查時可以問 Agent：這一層裡有沒有藏著一條業務規則？"],
+    "explain": ["防腐層（ACL，Anticorruption Layer；不是存取控制清單）是下游自己蓋的翻譯層：用自己領域模型的說法，提供上游系統的功能，讓外部系統的說法不滲進自己的模型。這是 Evans 的定義。", "放在 Context Map 裡看：防腐層是下游保護自己的做法，上游通常不用改。Evans 寫明這一層透過對方現有的介面溝通，「很少或不需要修改對方系統」，並視需要在兩個模型之間單向或雙向翻譯。對 Agent 的提醒：它在翻譯層順手加「金額小於 0 就拒絕」這類判斷，看起來很周到，其實是把業務規則放錯地方；規則該留在自己的領域程式，翻譯層只做格式與代碼的對應。", "微軟 Azure 架構中心的〈Anti-Corruption Layer Pattern〉（2026 年 5 月更新）有兩個提醒：不要在這一層放業務規則或流程編排，它只翻譯；它也會增加兩個系統之間的延遲，多一個要維護的元件。舊系統遷移時，要決定它是永久保留還是過渡用。", "也可以不蓋：外部模型夠好時，直接照用也是一種關係，叫 Conformist（跟隨上游模型）。防腐層是付出成本換隔離，不是免費的好東西。審查時可以問 Agent：這一層裡有沒有藏著一條業務規則？"],
     "read": ["〈Anti-Corruption Layer Pattern〉（Microsoft Azure Architecture Center，2026）", "〈Context Mapping〉（DDD Crew）", "Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉"],
     "notes": "19–21 分鐘。Evans 的定義：建立一個隔離層，用「your own domain model」的說法提供上游系統的功能。Azure〈Anti-Corruption Layer Pattern〉（2026-05 更新）的兩個提醒：「Avoid placing business rules or orchestration in the layer.」以及它會增加兩個系統之間的延遲。第三張卡是 Context Map 的另一種關係：Conformist（照著上游的模型走）；DDD Crew 的 Context Mapping 速查表列了所有關係的名稱，可當延伸。講防腐層的成本，是為了避免學員把它當成免費的好東西。📖 延伸閱讀：〈Anti-Corruption Layer Pattern〉（Microsoft Azure Architecture Center，2026）；〈Context Mapping〉（DDD Crew）；Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉。"
   },
   {
     "id": "idempotency", "chapter": "外部系統", "title": "冪等：逾時是「不知道」",
-    "lead": "Idempotency（冪等）：同一個請求送很多次，結果和送一次一樣。外部服務逾時，你不知道它到底收到沒有。",
+    "lead": "Idempotency（冪等）：同一個請求送很多次，效果和送一次一樣。外部服務逾時，你不知道它到底收到沒有。",
     "cards": [["為什麼需要", "逾時後重送，最怕多開一張、多扣一次。"], ["人要確認", "重送與同時送出，結果都只算一次。"]],
     "check": "逾時後重送，你怎麼知道對方沒有處理兩次？",
-    "explain": ["冪等（Idempotency）是指同一個請求送很多次，結果和送一次一樣。為什麼需要：呼叫外部服務逾時，你不知道對方到底有沒有收到；逾時不是成功、也不是失敗，而是「不知道」。這時只能重送，而重送最怕多開一張單、多扣一次款。", "Gregor Hohpe 與 Bobby Woolf 的《Enterprise Integration Patterns》（2003）把能安全處理重複訊息的接收端稱為 Idempotent Receiver（冪等接收者）。外部服務的回應因此不能只分成功與失敗，至少還要有「不知道」這一類。", "Agent 很容易只寫「成功」「失敗」兩種分支。審查時請它說明：逾時那一條怎麼處理？同一個請求重送或同時送出兩次，結果算幾次？"],
-    "read": ["Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉"],
+    "explain": ["冪等（Idempotency）是指同一個請求送很多次，產生的效果和送一次一樣。為什麼需要：呼叫外部服務逾時，你不知道對方到底有沒有收到；逾時不是成功、也不是失敗，而是「不知道」。這時只能重送，而重送最怕多開一張單、多扣一次款。", "權威定義有兩個常用版本。HTTP 標準 RFC 9110 說：同一個方法的多次相同請求，對伺服器的預期效果和送一次相同，就是冪等。Gregor Hohpe 與 Bobby Woolf 的《Enterprise Integration Patterns》（2003）把能安全處理重複訊息的接收端稱為 Idempotent Receiver（冪等接收者）。兩者講的都是「效果」只發生一次，不是「回應」每次都一模一樣：第二次可以回「已經處理過」。", "做法通常是一個穩定的鍵。需求卡 01 的「商家訂單編號」就是這種鍵：服務商用它判斷是否重複開立。外部服務的回應因此不能只分成功與失敗，至少還要有「不知道」這一類，再用同一個鍵重送。", "常見誤讀：冪等只保證重送安全，不保證兩個請求「同時」送進來也只算一次；同時送出要另外靠鎖或唯一性檢查。Agent 很容易只寫「成功」「失敗」兩種分支。審查時請它說明：逾時那一條怎麼處理？同一個請求重送或同時送出兩次，結果算幾次？"],
+    "read": ["Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉", "IETF〈RFC 9110 HTTP Semantics〉"],
     "notes": "21–22.5 分鐘。逾時不是成功、也不是失敗，是「不知道」；所以外部服務的回應要分類，不能只分成功與失敗。冪等和 D3b 的預留與歸還是同一類問題：重送與同時發生。Agent 很容易只寫「成功」「失敗」兩種分支，審查時請它說明逾時那一條怎麼處理。📖 延伸閱讀：Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉。"
   },
   {
@@ -116,7 +116,7 @@
     "prompt": "先不要修改測試。請對每條不變量各做一次反事實檢查：暫時把守這條規則的程式改壞，跑測試，記錄 killed（被抓到）或 survived（沒被抓到），再把程式改回原狀。survived 的不要換改法，列出缺哪個測試，列完停下。",
     "cards": [["killed", "這條規則有測試守著。"], ["survived", "補一個會失敗的測試，不換較好抓的改法。"]],
     "check": "有沒有一條規則第一次是 survived？後來補了什麼測試？",
-    "explain": ["第 02 場講過兩件事：Agent 可能改測試去配合程式，以及反事實檢查（故意改壞程式，看測試抓不抓得到）。這裡加深的是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要各改壞一次。survived（測試沒抓到）時，不換一個比較好抓的改法，而是補一個會失敗的測試。", "Birgitta Böckeler 2026 年 8 月的實驗文章結論很直接：看著測試變紅，只有在有人確認它為什麼變紅時才算證明。TDD（Test-Driven Development，測試驅動開發）是先寫會失敗的測試、再寫程式讓它通過；她發現與其給 Agent 長長的 TDD 指示，不如用變異測試監看測試守不守得住。她的樣本很小，數字不引用。", "所以要事先寫下預期哪個斷言失敗，只認測試因為規則被破壞而失敗。不要說「讓 Agent 先寫失敗的測試就安全」：要有人確認失敗的原因。"],
+    "explain": ["第 02 場講過兩件事：Agent 可能改測試去配合程式，以及反事實檢查（故意改壞程式，看測試抓不抓得到）。這裡加深的是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要各改壞一次。survived（測試沒抓到）時，不換一個比較好抓的改法，而是補一個會失敗的測試。", "Birgitta Böckeler 2026 年 8 月的實驗文章結論很直接：看著測試變紅，只有在有人確認它為什麼變紅時才算證明。TDD（Test-Driven Development，測試驅動開發）是先寫會失敗的測試、再寫程式讓它通過；她發現與其給 Agent 長長的 TDD 指示，不如用變異測試監看測試守不守得住。她的樣本很小，數字不引用。", "所以要事先寫下預期哪個斷言失敗，只認測試因為規則被破壞而失敗。不要說「讓 Agent 先寫失敗的測試就安全」：要有人確認失敗的原因。", "什麼叫「對的理由」：把守住點數不得為負的那行判斷拿掉，應該失敗的是斷言餘額的那個測試；如果失敗的是一個無關的匯入錯誤，或測試因逾時才失敗，就不算抓到。這也是反事實檢查要先寫下預期斷言（`--expect`）的原因。"],
     "read": ["〈TDD inside the agent loop - theater or actual value?〉（Birgitta Böckeler／martinfowler.com，2026）"],
     "notes": "24–26 分鐘。加深一層：「Agent 會改測試配合程式」（系統卡）與「變異測試是最誠實的訊號」（技術雷達）都在第 02 場講過，這裡只回扣一句，不重講。新的一點是範圍：D2 只要求至少一條反事實檢查，D3 每條新規則都要；survived 時不換較好抓的改法，而是補一個會失敗的測試。示範提示詞未實際執行。Birgitta Böckeler〈TDD inside the agent loop - theater or actual value?〉（martinfowler.com，2026-08）的實驗結論可以直接拿來講：「Watching a test go red is only proof of anything if someone is checking why it went red.」她改用變異測試來監看測試守不守得住，而不是寫長長的 TDD 指示。這就是 D2 起要事先寫 --expect、D3 只認測試本身失敗的原因：紅燈要紅在對的理由上。她的樣本很小、數字是自己量的，不引用數字。📖 延伸閱讀：〈TDD inside the agent loop - theater or actual value?〉（Birgitta Böckeler，2026）。"
   },
@@ -161,7 +161,7 @@
     "prompt": "先不要修改任何檔案。請先列出這次改動碰到引用行的模型紀錄，再對每一筆逐項判斷模型有沒有改：名詞、決定歸哪個 Context、不變量或規則、邊界與允許的依賴、事件或約定。每項回答「有改」或「沒改」並附證據（路徑:起-迄行）。全部沒改就回「只是重構」，並列出位置變了、要重新指向的證據。列完停下。",
     "cards": [["是模型變更", "改名詞、換負責者、改不變量或邊界。"], ["不是", "改檔名、搬資料夾、拆函式。"]],
     "check": "D3 寫回模型的候選，有沒有一筆其實只是重構？",
-    "explain": ["重構（refactoring）依 Martin Fowler 2004 年的定義，是改變程式的內部結構，讓它更容易理解、修改成本更低，而且不改變外部可觀察的行為。對模型也一樣：逐一問名詞、決定歸哪個 Context、不變量或規則、邊界與允許的依賴、事件或約定有沒有變；全都沒變，就只是重構，模型不改，只把證據改指到新位置。", "兩個方向的錯都常見：Agent 把「檔案搬了」當成模型變了，提出一堆沒必要的候選，增加審查負擔；反過來，改名看起來像小重構，其實是改模型（第 01 場：改一個名詞就是改模型），要提候選、等核准。", "下週可以在團隊的 PR（合併請求）範本加一題：「這次有沒有改到名詞、負責者、規則或邊界？」有就附模型變更，沒有就標明只是重構。"],
+    "explain": ["重構（refactoring）依 Martin Fowler 2004 年的定義，是改變程式的內部結構，讓它更容易理解、修改成本更低，而且不改變外部可觀察的行為。對模型也一樣：逐一問名詞、決定歸哪個 Context、不變量或規則、邊界與允許的依賴、事件或約定有沒有變；全都沒變，就只是重構，模型不改，只把證據改指到新位置。", "兩個方向的錯都常見：Agent 把「檔案搬了」當成模型變了，提出一堆沒必要的候選，增加審查負擔；反過來，改名看起來像小重構，其實是改模型（第 01 場：改一個名詞就是改模型），要提候選、等核准。", "下週可以在團隊的 PR（合併請求）範本加一題：「這次有沒有改到名詞、負責者、規則或邊界？」有就附模型變更，沒有就標明只是重構。", "灰色地帶：把「預留」改名成「凍結」看起來只是改字，其實改了通用語言，是模型變更；把計價程式從一個檔案搬到另一個檔案、名稱與規則都沒變，是重構。拿不準時問一題：原本證明這條規則的測試，改完後應該仍然通過嗎？仍然通過是重構，應該失敗是規則變了。"],
     "read": ["〈Definition Of Refactoring〉（Martin Fowler，2004）"],
     "notes": "34.5–38 分鐘。新概念：重構與模型變更的分界。Fowler〈Definition Of Refactoring〉：重構是「a change made to the internal structure of software to make it easier to understand and cheaper to modify」，而且不改變可觀察的行為。對模型來說同理：逐個元素問有沒有變；全都沒變，就不提新候選，只把證據改指新位置。Agent 常把「檔案搬了」當成模型變了，提出一堆沒必要的候選，增加審查負擔；反過來，改名其實是改模型（第 01 場：改一個名詞就是改模型）。對照 D3 各段「新知識寫回模型」與 D4 檢查點 1–2。D3b、D3c 的 Agent 先讀模型工具的變更簡報（brief），它列出改動碰到引用行的已審查紀錄，Agent 從這份清單逐筆問，不靠記憶猜哪些事實受影響。示範提示詞，未實際執行。📖 延伸閱讀：〈Definition Of Refactoring〉（Martin Fowler，2004）。"
   },

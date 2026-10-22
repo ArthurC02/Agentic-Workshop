@@ -9,5 +9,20 @@
     "**這一段帶走什麼**\n- 決策紀錄（ADR）的提議、接受、取代，對應本課的候選、已審查事實、新候選取代\n- 做的人不核准自己的變更；口頭規則擋不住，要寫成檢查\n- 審查要看的證據：主張對證據、測試有沒有被改、反事實檢查只認 killed\n- 核准紀錄要查得到誰、何時、核准哪一份\n\n每頁最後的段落是講解時來不及說的補充：概念的白話解釋、證據出處、限制與回到團隊的做法；提到的書與文章列在最後的「延伸閱讀」。",
     "本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。"
   ],
-  "handout_done": "說得出決策紀錄（ADR）的提議、接受、取代和本課的候選、已審查事實怎麼對應；紀錄為什麼只放模型、核准紀錄為什麼要寫誰與何時；為什麼做的人不能核准自己的變更、規則為什麼要寫成檢查；審查時要看哪些證據、為什麼要查測試有沒有被改、反事實檢查為什麼只認 killed；知道下一場要依已審查事實做新需求。\n\n## 下週可以做的事\n- 挑一個最近的設計決定，寫成一頁 ADR（背景、決定、狀態、後果），請一位同事審查。\n- 在團隊的審查清單加兩行：「是否修改了既有測試？理由？」「核准前打開過哪一行證據？」\n- 列出一個現在只靠一個人說了算的動作，想想能不能改成擋得住的檢查。"
+  "handout_done": "說得出決策紀錄（ADR）的提議、接受、取代和本課的候選、已審查事實怎麼對應；紀錄為什麼只放模型、核准紀錄為什麼要寫誰與何時；為什麼做的人不能核准自己的變更、規則為什麼要寫成檢查；審查時要看哪些證據、為什麼要查測試有沒有被改、反事實檢查為什麼只認 killed；知道下一場要依已審查事實做新需求。\n\n## 下週可以做的事\n- 挑一個最近的設計決定，寫成一頁 ADR（背景、決定、狀態、後果），請一位同事審查。\n- 在團隊的審查清單加兩行：「是否修改了既有測試？理由？」「核准前打開過哪一行證據？」\n- 列出一個現在只靠一個人說了算的動作，想想能不能改成擋得住的檢查。",
+  "terms": [
+    ["ADR（Architecture Decision Record，架構決策紀錄）", "記錄一個重要設計決定的短文件：標題、背景、決定、狀態、後果；重點是為什麼，不是怎麼實作。", "〈Documenting Architecture Decisions〉（Michael Nygard，2011）；〈Architectural decision record process〉（AWS Prescriptive Guidance）"],
+    ["ADR 的狀態", "提議（proposed）→ 接受（accepted）或拒絕（rejected）；之後被新決定改變時標成棄用（deprecated）或被取代（superseded）。", "〈Documenting Architecture Decisions〉（Michael Nygard，2011）；〈About MADR〉（MADR 4.0，2024）"],
+    ["被取代（superseded）", "新的 ADR 被接受後，舊的標成被取代並指向新的；舊的不刪，仍可查。", "〈Architectural decision record process〉（AWS Prescriptive Guidance）"],
+    ["已審查事實（reviewed）", "本課用語：經另一個人核准、Agent 必須遵守的模型內容，對應 ADR 的「接受」；不能直接改寫，只能被新提案取代。", "〈Architectural decision record process〉（AWS Prescriptive Guidance）"],
+    ["決策者（decision-makers）", "MADR 範本的選填欄位，列出參與決定的人；和日期一起回答「誰、何時」。", "〈About MADR〉（MADR 4.0，2024）"],
+    ["變更審查的標準", "確定讓整體程式更健康就核准，不求完美；退回要寫理由。", "〈The Code Reviewer's Guide〉（Google Engineering Practices）"],
+    ["Git hook（pre-push hook）", "Git 在特定時機自動執行的腳本；pre-push 在推送前執行，回報失敗就中止推送。", "〈githooks〉（Git 官方文件）"],
+    ["回饋感測器（feedback sensors）", "在 Agent 寫程式的過程中自動執行、回報結果的檢查，例如測試與靜態檢查。", "〈Feedback sensors for coding agents〉（Thoughtworks Technology Radar，2026）"],
+    ["變異測試（mutation testing）", "在程式裡引入小改動，再跑測試，看測試能不能發現；用來評估測試抓錯的能力。", "〈What is mutation testing?〉（Stryker Mutator 文件）"],
+    ["killed／survived", "改動後測試失敗叫 killed（被抓到）；測試仍通過叫 survived（沒被抓到）。", "〈What is mutation testing?〉（Stryker Mutator 文件）"],
+    ["等價變異（equivalent mutant）", "改了程式卻沒改變行為的改動；沒有測試抓得到，只能靠人判斷，所以 survived 不一定代表測試太弱。", "〈Equivalent mutants〉（Stryker Mutator 文件）"],
+    ["反事實檢查（counterfactual）", "本課用語：變異測試的手動小版本，由人選一處改壞、跑指定測試、再還原，只認因預期斷言失敗的 killed。", "〈What is mutation testing?〉（Stryker Mutator 文件）"],
+    ["簽章 commit", "用金鑰簽過名的 commit，別人能驗出是誰提交、內容沒被改。", "〈git-commit〉（Git 官方文件）"]
+  ]
 }

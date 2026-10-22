@@ -40,13 +40,15 @@ Birgitta Böckeler 2025 年在 martinfowler.com 記錄自己用 Agent 寫程式�
 
 下週可以檢查最近交給 Agent 的一件工作：產出裡有沒有一個數字、狀態或判斷，是你沒給、它自己補的？
 
+這也是 DDD 和 Agent 最直接的連結：Evans 說模型是「挑出領域的某些面向、能用來解決問題的一套抽象」。Agent 沒有這套抽象，就只能從程式的表面形狀猜；交給它的模型越明確，它猜的空間越小。限制：模型寫了不代表 Agent 照做，第 04 場會講怎麼查證。
+
 📖 延伸閱讀：〈The role of developer skills in agentic coding〉（Birgitta Böckeler／martinfowler.com，2025）
 
 **人工確認**：你最近交給 Agent 的工作，有沒有一條規則是它自己補的？
 
 ## 3. 不變量：c 一定等於 a + b
 
-Invariant（不變量）是任何時候都必須成立的業務規則。Vernon 的例子：a 是 2、b 是 3，c 就必須是 5。
+Invariant（不變量）是每次操作完成時都必須成立的業務規則。Vernon 的例子：a 是 2、b 是 3，c 就必須是 5。
 
 改了 a 或 b → 同一次操作裡重算 c → 結束時 c = a + b
 
@@ -54,11 +56,15 @@ Invariant（不變量）是任何時候都必須成立的業務規則。Vernon �
 
 - **寫不好**：「金額要正確」：沒辦法判斷何時失敗。
 
-不變量（Invariant）是任何時候都必須成立的業務規則。Vaughn Vernon 2011 年的〈Effective Aggregate Design〉用最小的例子說明：c 必須等於 a + b；a 是 2、b 是 3，c 就必須是 5。只要 a 或 b 改了，c 必須在同一次操作裡跟著改，否則規則就被破壞。換成業務語言：訂單總額等於各明細小計加總。
+不變量（Invariant）是每次操作完成時都必須成立的業務規則。Vaughn Vernon 2011 年的〈Effective Aggregate Design〉用最小的例子說明：c 必須等於 a + b；a 是 2、b 是 3，c 就必須是 5。只要 a 或 b 改了，c 必須在同一次操作裡跟著改，否則規則就被破壞。換成業務語言：訂單總額等於各明細小計加總。
+
+「每次操作完成時」比「任何時候」準確：Vernon 說，談不變量時指的是交易一致性，也就是一次操作提交時就必須成立、全有或全無；操作進行到一半，資料可以暫時不一致。也因此，不是每條業務規則都是不變量。有些規則允許晚一點才成立，例如「付款成功後寄出通知」，可以用事件在事後完成，這叫最終一致（eventual consistency）。Vernon 的規則名稱「在一致性邊界內建模真正的不變量」，「真正的」就是提醒：只有必須立即成立的規則，才拿來決定哪些資料要放在同一個 Aggregate。
 
 判斷一條不變量寫得好不好，只問一題：說得出它失敗的樣子嗎？「c 不等於 a + b」可以判斷；「金額要正確」沒辦法判斷何時失敗。說不出失敗樣子的規則，Agent 也寫不出會失敗的測試。
 
-下週可以從團隊的需求文件挑一條規則，改寫成「怎樣算違反」的一句話，再問 Agent 現有測試裡有沒有一個會在違反時失敗。
+課程裡的例子：需求卡 03 寫明，團體訂票在任何時刻都要滿足「已退款金額加總 + 已收手續費加總 + 有效旅客票價加總 = Order 金額」，這就是一條 c = a + b 型的不變量（卡上的「任何時刻」，指任何一次操作完成後去查都要成立）；需求卡 02 的「會員可用點數不得為負」也是。這兩條都說得出失敗的樣子：等式兩邊對不上、餘額出現負數。由哪個 Aggregate 守、和誰放在同一個邊界，是 D3 由你們做的決定。
+
+對 Agent 更要緊的原因：Agent 會照它看到的程式路徑補判斷，多一條路徑就可能少一次檢查。不變量寫成一句「怎樣算違反」，它才能對每一條路徑寫出同一個會失敗的測試。下週可以從團隊的需求文件挑一條規則，改寫成「怎樣算違反」的一句話，再問 Agent 現有測試裡有沒有一個會在違反時失敗。
 
 📖 延伸閱讀：〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 10 章〈Aggregates〉
 
@@ -72,11 +78,15 @@ Aggregate（聚合）是一組必須一起保持一致、可以當成一個單�
 
 - **一起成立**：入口先檢查全部規則，再一次寫入。
 
-Aggregate（聚合）是一組必須一起保持一致、可以當成一個單位處理的資料。Martin Fowler 2013 年用訂單和它的明細行舉例：明細是分開的物件，但和訂單當成一個單位處理。Evans 的定義再加一條：外界只能拿到入口物件（Aggregate root，聚合根）的參照，不能直接碰內部的明細。
+Aggregate（聚合）是一組必須一起保持一致、可以當成一個單位處理的資料。Martin Fowler 2013 年用訂單和它的明細行舉例：明細是分開的物件，但和訂單當成一個單位處理。Evans 的定義再加一條：每個 Aggregate 選一個物件當根，外界只能持有根的參照，不能直接碰內部的明細；規則由根負責守住。
+
+Aggregate 和 Aggregate root 是兩件事：Aggregate 是整個一致性邊界，裡面可能有好幾個物件；Aggregate root（聚合根）是邊界裡唯一對外的入口物件，例如「訂單」這個 Aggregate 的根是訂單本身，明細行在邊界內。Aggregate 也可以只有根一個物件：微軟 Azure 架構中心 2026 年的版本特別註明，讓它成為 Aggregate 的是交易邊界，不是子物件的數量。
+
+邊界裡的物件分兩種：Entity（實體）有自己的識別碼，屬性改了仍是同一個，例如一筆訂票；Value Object（值物件）沒有識別碼，只由值決定、建立後不改，例如「新台幣 700 元」這個金額。根一定是 Entity。
 
 為什麼要唯一入口：「訂單總額等於明細加總」這條不變量，只能由同一個入口守住。入口先檢查全部規則，再一次寫入；如果 Agent 另外寫了一條路徑直接改明細，總額就可能和明細對不上，而每條路徑各自看起來都沒錯。
 
-常見誤解：Aggregate 不是資料表，也不是「有子物件的類別」；沒有一條要一起守的不變量，就不需要 Aggregate。一個 Aggregate 也只屬於一個 Bounded Context（Vernon《Implementing Domain-Driven Design》第 10 章）。
+常見誤解：Aggregate 不是資料表，也不是「有子物件的類別」；沒有一條要一起守的不變量，就不需要 Aggregate。一個 Aggregate 也只屬於一個 Bounded Context（Vernon《Implementing Domain-Driven Design》第 10 章）。審查 Agent 的設計時，可以請它對每個 Aggregate 回答兩題：根是哪個物件？它守住哪一條不變量？答不出第二題的，多半只是資料分組。
 
 📖 延伸閱讀：〈DDD_Aggregate〉（Martin Fowler，2013）；〈Domain-Driven Design Reference〉（Eric Evans，2015）
 
@@ -92,11 +102,15 @@ Aggregate（聚合）是一組必須一起保持一致、可以當成一個單�
 
 - **經驗法則**：服務不小於一個 Aggregate，不大於一個 Bounded Context。
 
-Aggregate 要小：只放必須在同一次交易裡一致的資料。微軟 Azure 架構中心的無人機外送範例：外送（Delivery）不直接持有無人機物件，只記無人機的 id；外送完成時發出「外送已完成」事件，帳務收到後再開發票。Evans 的摘要說：邊界內同步套用一致性規則，跨邊界則非同步（事後）處理。
+Aggregate 要小：只放必須在同一次交易裡一致的資料。微軟 Azure 架構中心的無人機外送範例：外送（Delivery）不直接持有無人機物件，只記無人機的 id；外送完成時發出「外送已完成」事件。Evans 的摘要說：邊界內同步套用一致性規則，跨邊界則非同步（事後）處理。
 
-為什麼要小：Aggregate 越大，越容易被兩個人同時修改而衝突，一次要一起成功的東西也越多。Azure 的經驗法則：一個服務不小於一個 Aggregate、不大於一個 Bounded Context。
+這個例子還有一層：外送屬於配送 Context，開發票屬於帳務 Context。Azure 2026 年的版本把跨 Context 送出的「外送已完成」稱為整合事件（integration event）：在原本的交易提交後，經訊息系統非同步送出，帳務 Context 收到後才開發票。同一個 Context 裡、在 Aggregate 之間傳的叫領域事件；兩者都是「已經發生的事」，下一頁再分。
 
-取捨由人做：哪些資料一定要全有或全無、哪些可以晚一點同步，是業務問題，不是技術偏好。可以請 Agent 列出每份資料「如果晚一點才一致，會發生什麼事」，再由懂業務的人決定。
+為什麼要小：Aggregate 越大，越容易被兩個人同時修改而衝突，一次要一起成功的東西也越多。Vernon 的經驗法則是一次交易只改一個 Aggregate；Azure 的經驗法則：一個服務不小於一個 Aggregate、不大於一個 Bounded Context。
+
+取捨由人做：哪些資料一定要全有或全無、哪些可以晚一點同步，是業務問題，不是技術偏好。Azure 的領域事件說明也這樣寫：一個操作需不需要跨 Aggregate 的單一交易，要由領域專家判斷。可以請 Agent 列出每份資料「如果晚一點才一致，會發生什麼事」，再由懂業務的人決定。
+
+常見誤讀：「事後同步」不是「可以不一致」。放寬即時一致時，要說得出多久內會一致、送丟或重複送到時怎麼補救；說不出來，就表示這份資料其實該留在同一個邊界裡。
 
 📖 延伸閱讀：〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）；〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）
 
@@ -112,13 +126,17 @@ Aggregate 要小：只放必須在同一次交易裡一致的資料。微軟 Azu
 
 - **交給 Agent**：請它從程式列出事件，人刪掉技術動作。
 
-領域事件（Domain Event）是「領域專家在乎的、已經發生的事」，用過去式寫。Evans 的定義就是這句話；Azure 用一組對比說明：「資料表多了一列」不算，「外送取消了」才算。判斷方法：懂業務、不懂程式的人一聽就懂，而且會在乎。
+領域事件（Domain Event）是「領域專家在乎的、已經發生的事」，用過去式寫。Evans 的定義就是這句話；Azure 用一組對比說明：「資料表多了一列」不算，「外送取消了」才算。判斷方法：懂業務、不懂程式的人一聽就懂，而且會在乎。Evans 也說，領域事件記的是過去，通常不再修改，並帶著發生時間與相關的 id。
 
 找事件的工作坊方法之一是 EventStorming（事件風暴），Alberto Brandolini 2013 年提出：大家用橘色便利貼寫領域事件，貼在長紙卷上照時間排。今天只借它的規則：過去式、業務語言。領域事件也是跨 Aggregate 同步的方式：邊界外的資料，收到事件後再更新。
 
+領域事件和整合事件（integration event）要分開想。微軟的說明是：兩者在意義上一樣，都是「剛發生了什麼」；差在用途。領域事件在同一個 Context 裡通知其他 Aggregate，通常在同一個程式內處理；整合事件把已提交的結果傳給其他 Context 或外部系統，一定是非同步送出，而且只在交易成功提交後才發。各家用詞不完全一致：Evans 的參考資料把分散式系統裡傳遞的事件也叫領域事件；本 DLC 的工具把「跨 Context、有消費者的已提交業務事件」記成一筆事件紀錄。審查時不必爭名稱，要問清楚三件事：誰負責發出、誰會收到、只在提交後才發嗎？
+
+對 Agent 的意義：跨 Context 的事件一發出去，就成了對方依賴的約定；Agent 改欄位名稱或發出時機，等於改約定。而且整合事件可能重複送到，接收端要能冪等處理（後面會講）。課程例子：「訂票已付款」是業務在乎的事；「booking 表更新了 status 欄位」不是。
+
 交給 Agent 時，先請它從程式與紀錄列一版事件，人刪掉「已儲存」「已呼叫 API」這類技術動作。常見錯誤是把每個資料庫操作都當成事件。
 
-📖 延伸閱讀：〈Introducing Event Storming〉（Alberto Brandolini，2013）；〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）
+📖 延伸閱讀：〈Introducing Event Storming〉（Alberto Brandolini，2013）；〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）；〈Domain events: Design and implementation〉（Microsoft .NET 架構指南）
 
 **人工確認**：Agent 列的事件裡，有沒有一個其實只是技術動作？
 
@@ -126,7 +144,7 @@ Aggregate 要小：只放必須在同一次交易裡一致的資料。微軟 Azu
 
 Agent 最常把相近的東西當成這個概念；給它判斷用的定義時，連同「不是」一起給。
 
-- **Aggregate**：是：根守住的跨物件不變量；不是：資料表。
+- **Aggregate**：是：根守住不變量的一致性邊界；不是：資料表。
 
 - **規則**：是：能被推翻的敘述；不是：測試名稱。
 
@@ -134,9 +152,11 @@ Agent 最常把相近的東西當成這個概念；給它判斷用的定義時�
 
 ### 交給 Agent 的指令
 
-先不要修改任何檔案。請把這次提出的 Aggregate、規則與領域事件候選，逐一對照下面的定義：Aggregate 是由一個根守住、橫跨多個物件的一條不變量，不是資料表；規則是能被推翻的敘述，不是測試名稱；領域事件是提交後業務在乎的事，不是技術通知。不符合的標出來、說明理由，不要自己改，列完停下。
+先不要修改任何檔案。請把這次提出的 Aggregate、規則與領域事件候選，逐一對照下面的定義：Aggregate 是一個一致性邊界，由一個根守住至少一條不變量，不是資料表；規則是能被推翻的敘述，不是測試名稱；領域事件是提交後業務在乎的事，不是技術通知。不符合的標出來、說明理由，不要自己改，列完停下。
 
-給 Agent 判斷用的定義，要同時寫「是什麼」和「不是什麼」，因為 Agent 最常犯的錯，是把相近的東西當成這個概念。前三頁可以收成一張表：Aggregate 是由一個根守住、橫跨多個物件的不變量，不是資料表；規則是說得出怎樣算違反的敘述，不是測試名稱；領域事件是業務在乎、已經發生的事，不是技術通知。
+給 Agent 判斷用的定義，要同時寫「是什麼」和「不是什麼」，因為 Agent 最常犯的錯，是把相近的東西當成這個概念。前三頁可以收成一張表：Aggregate 是由一個根守住至少一條不變量的一致性邊界，不是資料表；規則是說得出怎樣算違反的敘述，不是測試名稱；領域事件是業務在乎、已經發生的事，不是技術通知。
+
+這張表也是給人自己用的：Aggregate 的定義性質是「有一條必須在同一次操作裡成立的不變量」，不是「有子物件」；規則的定義性質是「說得出怎樣算違反」；領域事件的定義性質是「已經發生、業務在乎」。三個「不是」正好是 Agent 最常提交的近似品：一張資料表、一個測試名稱、一個「已儲存」通知。
 
 測試名稱只是線索，真正的證據是會在規則被違反時失敗的測試。看起來像、但缺少定義性質的候選，寧可不記，或只記成較弱的概念（例如一個名詞）。第 01 場說過 Agent 定 Aggregate 較不可靠，這張表就是人審查時的標準。
 
@@ -162,6 +182,8 @@ DDD Crew（整理 DDD 工作坊工具的開源社群）的〈Aggregate Design Ca
 
 限制：Agent 提的兩個選項不代表只有兩種可能；看完覺得都不對，可以請它再提，或自己描述第三種。
 
+課程例子：需求卡 02 的點數折抵，至少有「可用點數不得為負」「合計預留不得超過原可用點數」兩條要同時成立的規則；兩個訂票請求同時扣同一份點數時，哪些資料必須在同一次操作裡一起檢查、哪些可以事後同步，就是邊界選項要回答的問題。Agent 提的 A、B 兩案，要各自說得出這兩條規則在同時送出時怎麼守住。
+
 📖 延伸閱讀：〈Aggregate Design Canvas〉（DDD Crew）
 
 **人工確認**：每條不變量都說得出失敗的樣子嗎？選項的取捨你看得懂嗎？
@@ -176,11 +198,15 @@ Port 用自己的業務用語說「我需要什麼」；Adapter 把它翻成外�
 
 - **好處**：換服務商、用假服務測逾時，只動 Adapter。
 
-Port／Adapter 出自 Alistair Cockburn 2005 年的〈Hexagonal Architecture〉（六角形架構）。Port 是領域程式用自己的業務用語說「我需要什麼能力」的介面；Adapter 是把這個需求翻成真實外部服務格式的實作。Cockburn 的原始用意：讓應用程式能同樣地被使用者、其他程式、自動測試或批次腳本驅動，並能和資料庫、外部裝置分開開發與測試。
+Port／Adapter 出自 Alistair Cockburn 2005 年的〈Hexagonal Architecture〉（六角形架構）。Cockburn 的定義：一個 Port 代表一段「有目的的對話」，由應用程式用自己的話定義；Adapter 負責把這段對話轉成某個外部技術或裝置需要的格式。原始用意：讓應用程式能同樣地被使用者、其他程式、自動測試或批次腳本驅動，並能和資料庫、外部裝置分開開發與測試。
+
+Port 有兩種方向。驅動應用程式的一側（primary／driving），例如使用者介面、API、自動測試從這裡呼叫進來；被應用程式驅動的一側（secondary／driven），例如資料庫、發票服務，是程式需要外界提供的能力。投影片與 D3a 講的「用業務用語說我需要什麼」是後一種；卡片上的「人、程式、測試都能驅動」是前一種。兩種都是 Port。
 
 比喻（本課的說法，不是原文）：Port 是你家插座的規格，Adapter 是出國用的轉接頭。好處：換服務商、或用假服務測試逾時，只動 Adapter，領域程式不變。對 Agent 也有用：它改外部串接時，影響範圍被限制在 Adapter。
 
-判斷訊號：領域程式裡出現外部服務的欄位名稱或錯誤碼，代表外部的說法已經滲進來。要不要為某個外部服務定義 Port，是設計取捨，由人決定。
+課程例子：需求卡 01 的發票服務商「可能變慢、逾時或停機」。如果領域程式裡寫滿服務商的欄位名與錯誤碼，換服務商或測逾時都得動到業務邏輯；用自己的話描述「開立發票」這個需要，測試時接一個會逾時的替身，就能在不連外的情況下驗證逾時處理。要不要這樣做、Port 叫什麼，是 D3a 由你們決定的。
+
+判斷訊號：領域程式裡出現外部服務的欄位名稱或錯誤碼，代表外部的說法已經滲進來。常見誤讀：Port 不等於「每個類別都要配一個介面」；只有一種實作、也不需要替身測試的地方，多一層介面只是多一層間接。要不要為某個外部服務定義 Port，是設計取捨，由人決定。
 
 📖 延伸閱讀：〈Hexagonal Architecture〉（Alistair Cockburn，2005）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉
 
@@ -198,6 +224,8 @@ Anticorruption Layer（防腐層）是下游自己蓋的翻譯層，讓外部系
 
 防腐層（ACL，Anticorruption Layer；不是存取控制清單）是下游自己蓋的翻譯層：用自己領域模型的說法，提供上游系統的功能，讓外部系統的說法不滲進自己的模型。這是 Evans 的定義。
 
+放在 Context Map 裡看：防腐層是下游保護自己的做法，上游通常不用改。Evans 寫明這一層透過對方現有的介面溝通，「很少或不需要修改對方系統」，並視需要在兩個模型之間單向或雙向翻譯。對 Agent 的提醒：它在翻譯層順手加「金額小於 0 就拒絕」這類判斷，看起來很周到，其實是把業務規則放錯地方；規則該留在自己的領域程式，翻譯層只做格式與代碼的對應。
+
 微軟 Azure 架構中心的〈Anti-Corruption Layer Pattern〉（2026 年 5 月更新）有兩個提醒：不要在這一層放業務規則或流程編排，它只翻譯；它也會增加兩個系統之間的延遲，多一個要維護的元件。舊系統遷移時，要決定它是永久保留還是過渡用。
 
 也可以不蓋：外部模型夠好時，直接照用也是一種關係，叫 Conformist（跟隨上游模型）。防腐層是付出成本換隔離，不是免費的好東西。審查時可以問 Agent：這一層裡有沒有藏著一條業務規則？
@@ -208,19 +236,21 @@ Anticorruption Layer（防腐層）是下游自己蓋的翻譯層，讓外部系
 
 ## 11. 冪等：逾時是「不知道」
 
-Idempotency（冪等）：同一個請求送很多次，結果和送一次一樣。外部服務逾時，你不知道它到底收到沒有。
+Idempotency（冪等）：同一個請求送很多次，效果和送一次一樣。外部服務逾時，你不知道它到底收到沒有。
 
 - **為什麼需要**：逾時後重送，最怕多開一張、多扣一次。
 
 - **人要確認**：重送與同時送出，結果都只算一次。
 
-冪等（Idempotency）是指同一個請求送很多次，結果和送一次一樣。為什麼需要：呼叫外部服務逾時，你不知道對方到底有沒有收到；逾時不是成功、也不是失敗，而是「不知道」。這時只能重送，而重送最怕多開一張單、多扣一次款。
+冪等（Idempotency）是指同一個請求送很多次，產生的效果和送一次一樣。為什麼需要：呼叫外部服務逾時，你不知道對方到底有沒有收到；逾時不是成功、也不是失敗，而是「不知道」。這時只能重送，而重送最怕多開一張單、多扣一次款。
 
-Gregor Hohpe 與 Bobby Woolf 的《Enterprise Integration Patterns》（2003）把能安全處理重複訊息的接收端稱為 Idempotent Receiver（冪等接收者）。外部服務的回應因此不能只分成功與失敗，至少還要有「不知道」這一類。
+權威定義有兩個常用版本。HTTP 標準 RFC 9110 說：同一個方法的多次相同請求，對伺服器的預期效果和送一次相同，就是冪等。Gregor Hohpe 與 Bobby Woolf 的《Enterprise Integration Patterns》（2003）把能安全處理重複訊息的接收端稱為 Idempotent Receiver（冪等接收者）。兩者講的都是「效果」只發生一次，不是「回應」每次都一模一樣：第二次可以回「已經處理過」。
 
-Agent 很容易只寫「成功」「失敗」兩種分支。審查時請它說明：逾時那一條怎麼處理？同一個請求重送或同時送出兩次，結果算幾次？
+做法通常是一個穩定的鍵。需求卡 01 的「商家訂單編號」就是這種鍵：服務商用它判斷是否重複開立。外部服務的回應因此不能只分成功與失敗，至少還要有「不知道」這一類，再用同一個鍵重送。
 
-📖 延伸閱讀：Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉
+常見誤讀：冪等只保證重送安全，不保證兩個請求「同時」送進來也只算一次；同時送出要另外靠鎖或唯一性檢查。Agent 很容易只寫「成功」「失敗」兩種分支。審查時請它說明：逾時那一條怎麼處理？同一個請求重送或同時送出兩次，結果算幾次？
+
+📖 延伸閱讀：Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉；IETF〈RFC 9110 HTTP Semantics〉
 
 **人工確認**：逾時後重送，你怎麼知道對方沒有處理兩次？
 
@@ -263,6 +293,8 @@ Agent 很容易只寫「成功」「失敗」兩種分支。審查時請它說�
 Birgitta Böckeler 2026 年 8 月的實驗文章結論很直接：看著測試變紅，只有在有人確認它為什麼變紅時才算證明。TDD（Test-Driven Development，測試驅動開發）是先寫會失敗的測試、再寫程式讓它通過；她發現與其給 Agent 長長的 TDD 指示，不如用變異測試監看測試守不守得住。她的樣本很小，數字不引用。
 
 所以要事先寫下預期哪個斷言失敗，只認測試因為規則被破壞而失敗。不要說「讓 Agent 先寫失敗的測試就安全」：要有人確認失敗的原因。
+
+什麼叫「對的理由」：把守住點數不得為負的那行判斷拿掉，應該失敗的是斷言餘額的那個測試；如果失敗的是一個無關的匯入錯誤，或測試因逾時才失敗，就不算抓到。這也是反事實檢查要先寫下預期斷言（`--expect`）的原因。
 
 📖 延伸閱讀：〈TDD inside the agent loop - theater or actual value?〉（Birgitta Böckeler／martinfowler.com，2026）
 
@@ -360,6 +392,8 @@ DDD Europe 2026 有一場經驗分享（Cyrille Martraire 與 Olivier Penhoat）
 
 下週可以在團隊的 PR（合併請求）範本加一題：「這次有沒有改到名詞、負責者、規則或邊界？」有就附模型變更，沒有就標明只是重構。
 
+灰色地帶：把「預留」改名成「凍結」看起來只是改字，其實改了通用語言，是模型變更；把計價程式從一個檔案搬到另一個檔案、名稱與規則都沒變，是重構。拿不準時問一題：原本證明這條規則的測試，改完後應該仍然通過嗎？仍然通過是重構，應該失敗是規則變了。
+
 📖 延伸閱讀：〈Definition Of Refactoring〉（Martin Fowler，2004）
 
 **人工確認**：D3 寫回模型的候選，有沒有一筆其實只是重構？
@@ -384,6 +418,25 @@ DDD Europe 2026 有一場經驗分享（Cyrille Martraire 與 Olivier Penhoat）
 - 請 Agent 檢查領域程式裡有沒有外部服務的欄位名稱或錯誤碼，每筆附行號，由你決定改不改。
 - 在 PR 範本加一題：「這次有沒有改到名詞、負責者、規則或邊界？」
 
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| 不變量（Invariant） | 每次操作（交易）完成時都必須成立、說得出怎樣算違反的業務規則；可以晚一點才成立的規則不算。 | 〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011） |
+| 業務規則 | 業務對資料或行為的要求；其中必須在同一次操作裡立即成立的才是不變量，其他可以用事件事後完成。 | 〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011） |
+| 一致性邊界 | 一次操作提交時，裡面的不變量都必須成立的資料範圍；邊界內全有或全無，邊界外事後同步。 | 〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011） |
+| Aggregate（聚合） | 必須一起保持一致、當成一個單位修改的一組物件，也就是一個一致性邊界；可以只有一個物件。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026） |
+| Aggregate root（聚合根） | Aggregate 裡唯一對外的入口物件；外界只持有它的參照，規則由它負責守住。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| Entity（實體） | 靠識別碼區分的物件，屬性改了仍是同一個，例如一筆訂票。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| Value Object（值物件） | 沒有識別碼、只由值決定、建立後不改的物件，例如一個金額。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 最終一致（eventual consistency） | 跨 Aggregate 或跨 Context 的資料不在同一次交易裡更新，而是事後（通常經由事件）在一段時間內變成一致。 | 〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026） |
+| 領域事件（Domain Event） | 領域專家在乎、已經發生的事，用過去式寫；「資料表多了一列」不算。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 整合事件（integration event） | 交易提交後，把已發生的事非同步通知其他 Context 或外部系統的事件；它成為雙方的約定。 | 〈Domain events: Design and implementation〉（Microsoft .NET 架構指南） |
+| Port（埠） | 應用程式和外界一段「有目的的對話」的介面，用自己的用語定義；分成外界驅動程式的一側，與程式需要外界能力的一側。 | 〈Hexagonal Architecture〉（Alistair Cockburn，2005） |
+| Adapter（轉接器） | 把 Port 的對話轉成某個外部技術或服務格式的實作；測試時可換成替身。 | 〈Hexagonal Architecture〉（Alistair Cockburn，2005） |
+| 防腐層（ACL，Anticorruption Layer） | 下游自己蓋的翻譯層，用自己模型的說法取用上游功能；只翻譯，不放業務規則。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Anti-Corruption Layer Pattern〉（Microsoft Azure Architecture Center，2026） |
+| 冪等（Idempotency） | 同一個請求送很多次，產生的效果和送一次相同；第二次可以回「已處理過」。 | IETF〈RFC 9110 HTTP Semantics〉；Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉 |
+| 重構（refactoring） | 改變程式內部結構，讓它更好懂、更好改，但不改外部可觀察的行為。 | 〈Definition Of Refactoring〉（Martin Fowler，2004） |
+
 ## 延伸閱讀
 - 〈The role of developer skills in agentic coding〉（Birgitta Böckeler／martinfowler.com，2025）
 - 〈Effective Aggregate Design, Part I〉（Vaughn Vernon，2011）
@@ -392,6 +445,7 @@ DDD Europe 2026 有一場經驗分享（Cyrille Martraire 與 Olivier Penhoat）
 - 〈Domain-Driven Design Reference〉（Eric Evans，2015）
 - 〈Use Tactical DDD to Design Microservices〉（Microsoft Azure Architecture Center，2026）
 - 〈Introducing Event Storming〉（Alberto Brandolini，2013）
+- 〈Domain events: Design and implementation〉（Microsoft .NET 架構指南）
 - 〈Aggregate Design Canvas〉（DDD Crew）
 - 〈Hexagonal Architecture〉（Alistair Cockburn，2005）
 - Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 4 章〈Architecture〉
@@ -399,6 +453,7 @@ DDD Europe 2026 有一場經驗分享（Cyrille Martraire 與 Olivier Penhoat）
 - 〈Context Mapping〉（DDD Crew）
 - Eric Evans《Domain-Driven Design》（2003）第 14 章〈Maintaining Model Integrity〉
 - Gregor Hohpe & Bobby Woolf《Enterprise Integration Patterns》（2003）〈Idempotent Receiver〉
+- IETF〈RFC 9110 HTTP Semantics〉
 - 〈Architecture drift reduction with LLMs〉（Thoughtworks Technology Radar，2026）
 - 〈TDD inside the agent loop - theater or actual value?〉（Birgitta Böckeler／martinfowler.com，2026）
 - 〈How is Google using AI for internal code migrations?〉（Nikolov 等人，2025）

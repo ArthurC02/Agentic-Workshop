@@ -16,20 +16,20 @@ section: 參考
 |---|---|---|
 | 領域模型／共用模型（Domain Memory） | 領域模型：挑出業務的重點，整理成能用來解決問題的一套說法（詞彙、Context、規則與邊界）。今天把它寫成檔案存在 Repo 裡，團隊和 Agent 共用、經人審查，叫共用模型（Domain Memory）。 | Evans〈Domain-Driven Design Reference〉；`vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | DDD（Domain-Driven Design，領域驅動設計） | 先分清楚業務的名詞、規則與責任，再讓程式結構跟著業務邊界走的設計方法。 | Evans《Domain-Driven Design》；Vernon《Implementing Domain-Driven Design》〈Getting Started with DDD〉 |
-| 通用語言（Ubiquitous Language） | 同一個 Context 內，團隊、文件、程式與測試對同一件事用同一個名字與定義；今天記在共用模型的詞彙（vocabulary）。 | Evans《Domain-Driven Design》〈Communication and the Use of Language〉 |
-| Bounded Context（限界上下文，簡稱 Context） | 在這個範圍內，同一個名詞或規則的意思一致；每個 Context 寫一句「它決定什麼」。要多個訊號一致才劃：用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫；資料夾名稱本身不算。同一個字有兩種意思，常是兩個 Context 的訊號。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉；`vendor/domain-memory/references/extraction.md`〈The order of work〉 |
+| 通用語言（Ubiquitous Language） | 同一個 Context 內，團隊、文件、程式與測試對同一件事用同一個名字與定義，由開發者和懂業務的人一起決定；今天記在共用模型的詞彙（vocabulary）。 | Evans《Domain-Driven Design》〈Communication and the Use of Language〉 |
+| Bounded Context（限界上下文，簡稱 Context） | 一個模型適用的明確範圍（常是一個子系統或一個團隊負責的範圍）：在範圍內，同一個名詞或規則只有一種意思；每個 Context 寫一句「它決定什麼」。要多個訊號一致才劃：用語改變、資料只在一處寫入、一起修改、只透過明確介面呼叫；資料夾名稱本身不算。同一個字有兩種意思，常是兩個 Context 的訊號。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉；`vendor/domain-memory/references/extraction.md`〈The order of work〉 |
 | Owner Context（負責的 Context） | 對某個名詞或規則有最終決定權、負責保存與修改它的 Context；其他 Context 只能透過約定取用。例：D3a 決定「發票」歸誰管。 | Vernon《Implementing Domain-Driven Design》〈Domains, Subdomains, and Bounded Contexts〉；`vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | Contract（約定） | Context 之間約定交換的資料或介面；另一方只透過它取得資料，不碰對方內部。例：付款 Context 只用「付款結果」通知發票 Context。 | Vernon《Implementing Domain-Driven Design》〈Context Maps〉；`vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉 |
 | 邊界洩漏 | 一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式。例：計價程式直接改會員的點數欄位。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
-| Context Map（上游／下游） | 畫出 Context 之間誰依賴誰：被依賴的一方是上游，依賴的一方是下游。`analyze-boundary` 一次回報兩個方向。D1 檢查點 6 用到。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
-| Aggregate（聚合）／Aggregate root（聚合根） | Aggregate 是必須**一起**保持一致的一組資料；外界只能從一個入口物件（Aggregate root）修改它。它守住一條橫跨多份資料的規則；不是一張資料表，也不是「有子物件的類別」。規則可以寫上它守的 Aggregate；兩者不在同一個 Context，模型會拒絕登記（D3c）。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉；`vendor/domain-memory/references/registry-schema.md` |
-| 不變量（Invariant，INV） | 每次操作結束時都必須成立的業務規則，可以寫成一個會失敗的測試。例：會員點數餘額不得為負。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
+| Context Map（上游／下游） | 記錄 Context 之間怎麼接觸：誰影響誰、哪裡要翻譯、哪裡共用。上游的改變會影響下游，反過來影響不大；常見的是下游呼叫上游提供的資料或服務。Shared Kernel（兩邊共用一小塊模型）是兩個 Context 之間的關係，不是一種 Context。`analyze-boundary` 一次回報兩個方向。D1 檢查點 6 用到。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
+| Aggregate（聚合）／Aggregate root（聚合根） | Aggregate 是一個一致性邊界：裡面的資料必須在同一次操作裡**一起**保持一致，可以只有一個物件。Aggregate root 是邊界裡唯一對外的入口物件，外界只能透過它修改。Aggregate 至少守住一條不變量；不是一張資料表，也不是「有子物件的類別」。規則可以寫上它守的 Aggregate；兩者不在同一個 Context，模型會拒絕登記（D3c）。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉；`vendor/domain-memory/references/registry-schema.md` |
+| 不變量（Invariant，INV） | 每次操作結束時都必須成立的業務規則，可以寫成一個會失敗的測試；允許晚一點才成立的規則（事後同步）不算。例：會員點數餘額不得為負。 | Evans《Domain-Driven Design》〈The Life Cycle of a Domain Object〉；Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
 | 一致性邊界 | 每次操作結束時，不變量都必須成立的那一組資料的範圍。邊界內全有或全無；邊界外可以事後再同步。一個測試同時守住好幾條規則（審查包記為 `also_covers`），常是它們同屬一個邊界的訊號。 | Vernon《Implementing Domain-Driven Design》〈Aggregates〉 |
-| Port／Adapter | Port 是領域程式需要的對外能力介面，用自己的業務用語描述；Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。 | Vernon《Implementing Domain-Driven Design》〈Architecture〉；`vendor/domain-memory/references/ports-and-adapters.md`〈Ports and adapters〉 |
-| 防腐層（ACL，Anticorruption Layer；不是存取控制清單） | 把外部系統的資料格式與錯誤碼翻譯成自己用語的那一層。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
-| 冪等（Idempotency） | 同一個請求重送多次，結果和送一次相同。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。 | Hohpe & Woolf《Enterprise Integration Patterns》〈Idempotent Receiver〉；`vendor/domain-memory/references/pattern-verification.md`〈Verification questions〉 |
+| Port／Adapter | Port 是程式和外界往來的介面，用自己的業務用語定義；今天用的是「程式需要外界提供的能力」這一種（另一種是外界呼叫程式的入口）。Adapter 是接上真實外部系統的實作。測試時用替身（Fake）實作同一個 Port。 | Vernon《Implementing Domain-Driven Design》〈Architecture〉；`vendor/domain-memory/references/ports-and-adapters.md`〈Ports and adapters〉 |
+| 防腐層（ACL，Anticorruption Layer；不是存取控制清單） | 下游自己蓋的一層，把外部系統的資料格式與錯誤碼翻譯成自己用語；只翻譯，不放業務規則。 | Evans《Domain-Driven Design》〈Maintaining Model Integrity〉；Vernon《Implementing Domain-Driven Design》〈Context Maps〉 |
+| 冪等（Idempotency） | 同一個請求重送多次，產生的效果和送一次相同；第二次可以回「已處理過」。通常靠一個穩定的鍵（例如訂單編號）判斷是否已處理過。 | Hohpe & Woolf《Enterprise Integration Patterns》〈Idempotent Receiver〉；IETF〈RFC 9110 HTTP Semantics〉；`vendor/domain-memory/references/pattern-verification.md`〈Verification questions〉 |
 | 預留與歸還 | 先扣下點數（預留），付款成功才確定；團體付款失敗或退票時全數歸還（一般訂票付款失敗仍保留），重複歸還也只算一次。D3b 用到。 | 本課程〈需求卡 02：會員點數折抵〉 |
-| ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件。 | Michael Nygard〈Documenting Architecture Decisions〉 |
+| ADR（Architecture Decision Record，架構決策紀錄） | 記錄「當時做了什麼架構決定、為什麼」的短文件；有狀態：提議、接受，之後可能被新的決定取代。 | Michael Nygard〈Documenting Architecture Decisions〉；AWS Prescriptive Guidance〈Architectural decision record process〉 |
 | 模型變更與重構 | 名詞、負責的 Context、不變量或規則、邊界、事件或對外約定，有任何一項改了才是模型變更，要寫成新候選；只搬移或整理程式、這些都沒變的是重構，只要重新引用證據。變更簡報（`brief`）列出改動碰到引用的已審查紀錄，Agent 逐筆判斷（D3b 起）。 | Martin Fowler〈Definition Of Refactoring〉；`vendor/domain-memory/references/extraction.md`〈From a change〉；`vendor/domain-memory/references/script-api.md` |
 
 ## 和 Agent 協作的技巧
@@ -47,7 +47,7 @@ section: 參考
 | 夥伴（Maintainer，持鑰人） | 在自己的 Agent 對話裡建立簽章金鑰、審查並核准、做簽章 commit 與 push。 | 本課程〈D2 審查與核准（成對）〉 |
 | 交接單（Handoff） | 記錄你們決定的文件，交給 Agent 或同事，存在 `docs/handoffs/`；Agent 只照它做，不自己補決定。主課工作單（Work Order）的加深：多了用到的已審查事實與 Unknowns。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
 | Forces／Unknowns（未知事項）／Proof obligations（必須用測試證明的事） | 交接單的三段。Forces：影響決定的考量與限制；Unknowns：還沒決定的事，不能讓 Agent 自己補；Proof obligations：每條規則用哪個測試證明。 | `vendor/domain-memory/references/implementation-handoff.md`〈Handoff contents〉 |
-| 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了，而且失敗輸出符合事先寫下的斷言（`--expect`）；`survived`：沒有測試守住它；`inconclusive`：逾時、改壞後程式無法載入，或失敗的不是預期的斷言，都不算證明。做法類似變異測試（mutation testing）。 | `vendor/domain-memory/references/script-api.md`〈Checks on the code being written〉 |
+| 反事實檢查（counterfactual） | 故意把守住某條規則的一段程式改壞，跑指定測試，再原樣還原。`killed`：測試抓到了，而且失敗輸出符合事先寫下的斷言（`--expect`）；`survived`：沒有測試守住它；`inconclusive`：逾時、改壞後程式無法載入，或失敗的不是預期的斷言，都不算證明。做法類似變異測試（mutation testing）；改法如果根本沒改變行為，也會 `survived`，所以改法要改在規則本身。 | `vendor/domain-memory/references/script-api.md`〈Checks on the code being written〉 |
 
 ## 工具與環境（Agent 會處理；在回報裡看到時再查）
 

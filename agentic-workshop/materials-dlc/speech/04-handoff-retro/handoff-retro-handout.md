@@ -55,11 +55,13 @@ Domain Storytelling 的寫法：誰（角色）做了什麼（動詞）、對什
 4  帳務      開立    發票
 ```
 
-Domain Storytelling（領域故事敘述）用故事整理業務流程：誰（角色）做了什麼（動詞）、對什麼（工作物件），照發生順序編號。domainstorytelling.org 的快速入門說，角色的活動畫成箭頭，標上領域語言的動詞。投影片沿用第 03 場的無人機外送例子。
+Domain Storytelling（領域故事敘述）用故事整理業務流程：誰（角色）做了什麼（動詞）、對什麼（工作物件），照發生順序編號。domainstorytelling.org 的快速入門這樣定義三個元素：角色是在故事裡主動做事的一方，可以是人、一群人或一個軟體系統；工作物件是角色建立、處理或交換的東西，例如文件、實物或數位資料；活動畫成箭頭，標上領域語言的動詞，並在箭頭起點加上順序編號。投影片沿用第 03 場的無人機外送例子。
 
-用在交接：交接單前面放一段 5 句以內的編號故事，接手的人和 Agent 先知道業務流程，再看細節。懂業務的人不讀程式也能指出哪一句不對；名詞和動詞都來自通用語言，Agent 不必猜。可以請 Agent 從程式與模型草擬，再由人逐句改。
+一個故事講一個具體情境，不是畫出所有可能。快速入門建議先畫最常見的情況（約八成時候發生的「順利路徑」）；重要的變化各自另畫一個故事，其他的例外與錯誤用註記寫在旁邊，不要塞進同一個故事。
 
-限制：一段故事只描述一條主要流程，例外與錯誤情況要另外列。
+課程例子（現有的整筆退票行為）：1 旅客 申請退票 訂票；2 Smart Ticket 釋放 座位；3 Smart Ticket 建立 退款紀錄。三句就說清楚順利路徑；「還沒付款的訂票不能退」這類例外（規則 REFUND-001），用註記另外寫。
+
+用在交接：交接單前面放一段 5 句以內的編號故事，接手的人和 Agent 先知道業務流程，再看細節。懂業務的人不讀程式也能指出哪一句不對；名詞和動詞都來自通用語言，Agent 不必猜。可以請 Agent 從程式與模型草擬，再由人逐句改。常見誤讀：故事不是流程圖，不畫判斷分支；要畫分支，就是兩個故事。
 
 📖 延伸閱讀：〈Domain Storytelling Quick Start Guide〉（domainstorytelling.org）
 
@@ -78,6 +80,8 @@ Domain Storytelling（領域故事敘述）用故事整理業務流程：誰（�
 實務例子：Giles Edwards-Alexander 2026 年 9 月在 martinfowler.com 記錄，10 位工程師四天共用一個 Repo，發現 Agent 會用寫在 Repo 裡的計畫檔彼此協調，計畫檔成了共用黑板。這是一次團隊經驗，沒有數據。
 
 下週可以把交接或計畫寫成 Repo 裡的檔案、跟著 commit 走，而不是貼在聊天室；下一個人和下一個 Agent 都從同一份開始。
+
+對照 DDD：交接單裡寫「依規則 FARE-005」而不是把規則全文貼進來，就是 Anthropic 說的輕量識別碼。好處有兩個：上下文省下來給真正要做的工作；規則改了，交接單不必跟著改，因為它只指向最新的已審查版本。代價是接手的 Agent 必須真的去查，所以下一頁要逐一查證。
 
 📖 延伸閱讀：〈Effective context engineering for AI agents〉（Anthropic Engineering，2025）；〈An Accidental Blackboard〉（Giles Edwards-Alexander／martinfowler.com，2026）
 
@@ -153,6 +157,8 @@ Domain Storytelling（領域故事敘述）用故事整理業務流程：誰（�
 
 也可以擋在門口：pre-commit hook（commit 前 Git 自動執行的檢查腳本）回報失敗時，Git 會在建立 commit 之前中止；D4 用它擋下改到被引用的程式、引用卻沒跟上的 commit。下週可以在每次大變更後排一次比對。
 
+課程例子：D3 加了新檔案，D4 一開始工具就回報「來源過期」；引用的程式只是換了位置叫 shifted，內容變了叫 stale。前者是重構留下的痕跡，重新指向即可；後者要逐項問：是程式改錯了，還是模型該更新？這兩種回報正是漂移的早期訊號，越早處理越便宜。
+
 📖 延伸閱讀：〈Architecture drift reduction with LLMs〉（Thoughtworks Technology Radar，2026）；〈githooks〉（Git 官方文件）
 
 **人工確認**：Agent 回報落差時，有沒有想自己「修好」它？
@@ -172,6 +178,8 @@ Domain Storytelling（領域故事敘述）用故事整理業務流程：誰（�
 先不要修改任何檔案。請只讀程式，重新整理一份名詞、Context 與規則清單，這一步不要讀共用模型。整理完再和共用模型裡已審查的紀錄逐筆配對，列三張表：配對成功、已審查但你沒找到、你找到但沒有已審查紀錄的。最後算精確率與召回率，列完停下。
 
 評估（eval）Agent 的做法：讓 Agent 只讀程式、重新整理一份模型，和人審查過的模型逐筆配對；人審過的模型就是基準答案。兩個指標依 Google 機器學習速成課程的定義：精確率（precision）是 Agent 提出的裡面有多少是對的；召回率（recall）是該找到的裡面 Agent 找到多少。
+
+算一次就懂：人審過的模型有 20 條規則，Agent 只讀程式整理出 18 條，其中 15 條配得上。精確率＝15÷18，約 0.83，表示 Agent 寫的有八成多是對的；召回率＝15÷20＝0.75，表示該找的找到四分之三。漏掉的 5 條和多出的 3 條才是要讀的地方。Google 機器學習速成課程也提醒，兩個指標常常此消彼長：要 Agent 寫得保守，精確率升、召回率降；要它寫得完整，反過來。
 
 分數不能只看數字。Anthropic 2026 年的〈Demystifying evals for AI agents〉說，他們不照單全收評估分數，要讀實際紀錄；用模型當評分者時，也要和人類專家校準。所以一定要讀兩張清單：多出的可能是 Agent 編的，也可能是人漏審的真規則；措辭不同、意思一樣的規則，可能被算成漏掉。和基準一字不差的配對多半是照抄來的，算分前要排除。
 
@@ -196,6 +204,8 @@ Thoughtworks 技術雷達第 34 期把「團隊共用、經過整理的 Agent �
 和 DDD 的關係：通用語言、不用哪些同義詞、哪個 Context 負責什麼、哪些事要先問人，是最值得放進共用指示的內容。這是主課 Skill 與共同規則的加深一層：規則檔放進版本控制，改規則也要審查，和改程式一樣。
 
 下週可以收集團隊成員各自的 Agent 規則檔，挑出大家都寫了的幾條，合成一份放進 Repo，並指定一位審查者。
+
+和 DDD 的對應：共用指示裡的名詞表，就是通用語言在 Agent 身上的那一份；它也該只屬於一個 Context。把兩個 Context 的名詞寫進同一份規則檔、又沒標明範圍，Agent 會把它們當成同一套語言，這正是第 01 場說的同字異義問題。
 
 📖 延伸閱讀：〈Curated shared instructions for software teams〉（Thoughtworks Technology Radar，2026）；〈Custom instructions with AGENTS.md〉（OpenAI Codex 官方文件）
 
@@ -269,9 +279,13 @@ AI 不會修好團隊，只會放大原有的長處與短處。先挑一個常�
 
 - **一個審查角色**：誰負責核准共用模型，要有人擔任。
 
-Google Cloud 2025 年 DORA 報告（研究軟體交付表現的年度報告）的結論之一：AI 不會修好一個團隊，只會放大原本就有的長處與短處。Evans 對 Shared Kernel（兩個團隊共用的一小塊模型）的提醒是：共用的部分要小，改之前要和另一個團隊商量。
+Google Cloud 2025 年 DORA 報告（研究軟體交付表現的年度報告）的結論之一：AI 不會修好一個團隊，只會放大原本就有的長處與短處。
+
+Evans 對 Shared Kernel 的提醒也適用於共用模型。Shared Kernel 是兩個 Context 之間的一種關係：兩個團隊明確約定共用一小塊模型與相關程式，雙方因此互相依賴。Evans 說這一塊要保持小，改之前要和另一個團隊商量。團隊共用的模型與規則檔也一樣：共用的部分越大，越多人要一起同意才能改。
 
 兩句合起來就是導入建議：先挑一個常吵的名詞或規則，寫進共用模型、有人審查，再讓 Agent 依它工作、用測試守著；一次一個 Context，和第 03 場舊系統現代化的「一次一塊、每步驗證」一致。也要有人擔任共用模型的審查角色。
+
+第一個 Context 怎麼挑：選規則你們最懂、最常被問、而且有測試的那一塊，最好是讓公司與眾不同的核心子領域；通用的那一塊（例如登入）先用現成方案，不必先建模。三個月後回頭看：Agent 在這一塊的提案被退回的次數有沒有變少，就是有沒有用的證據。
 
 Evans 2024 年鼓勵 DDD 實踐者現在就開始學 LLM、做實驗，也說他的看法會因為變化太快而過時。今天的做法也一樣：回去要用自己的紀錄驗證，而不是照單全收。
 
@@ -286,6 +300,25 @@ Evans 2024 年鼓勵 DDD 實踐者現在就開始學 LLM、做實驗，也說他
 - 從一個 Context 開始：挑一個常吵的名詞或規則，寫進 Repo、請一位同事核准。
 - 收集團隊各自的 Agent 規則檔，合成一份共用、有人審查的版本，逐行問「刪掉會出錯嗎」。
 - 確認主要分支是否設定為「沒經另一個人核准就合併不了」；沒有的話，提給團隊討論。
+
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| 上下文（context） | 這次對話裡交給模型的全部內容；對 Agent 是關鍵但有限的資源，給太多反而會變差。 | 〈Effective context engineering for AI agents〉（Anthropic Engineering，2025） |
+| 外部記憶（結構化筆記） | 寫在對話之外、需要時再讀的筆記與識別碼（檔案路徑、id）；共用模型與交接單就是這一種。 | 〈Effective context engineering for AI agents〉（Anthropic Engineering，2025） |
+| Domain Storytelling（領域故事敘述） | 用編號的句子講一個具體的業務情境：角色對工作物件做了什麼活動。 | 〈Domain Storytelling Quick Start Guide〉（domainstorytelling.org） |
+| 角色／工作物件／活動 | 角色是主動做事的人或系統；工作物件是被建立、處理或交換的東西；活動是標上領域動詞的箭頭。 | 〈Domain Storytelling Quick Start Guide〉（domainstorytelling.org） |
+| ADR（架構決策紀錄）放在 Repo | 決策紀錄跟著程式放在版本控制裡，團隊換人也看得到當初的理由。 | 〈Documenting Architecture Decisions〉（Michael Nygard，2011） |
+| 模型漂移（architecture drift） | 程式一直在變、模型與架構規則沒跟上，兩者慢慢對不上；要定期比對清理。 | 〈Architecture drift reduction with LLMs〉（Thoughtworks Technology Radar，2026） |
+| pre-commit hook | Git 在建立 commit 前自動執行的腳本；回報失敗時，commit 不會建立。 | 〈githooks〉（Git 官方文件） |
+| 評估（eval） | 用固定的基準與方法量 Agent 的輸出；分數不照單全收，要讀實際紀錄。 | 〈Demystifying evals for AI agents〉（Anthropic Engineering，2026） |
+| 精確率（precision） | Agent 提出的項目裡，真的對的比例。 | 〈Classification: Accuracy, recall, precision, and related metrics〉（Google Machine Learning Crash Course） |
+| 召回率（recall） | 該找到的項目裡，Agent 找到的比例。 | 〈Classification: Accuracy, recall, precision, and related metrics〉（Google Machine Learning Crash Course） |
+| 參考模型（基準答案） | 人整理、審查過的模型，拿來和 Agent 的輸出比對；它是一種合理的理解，不是唯一正解。 | 〈Towards Automated Domain Model Extraction from Source Code using Heuristics and Open-Source LLMs〉（Mancas 等人，MODELS 2026） |
+| 團隊共用的 Agent 指示 | 放進版本控制、像程式一樣審查與維護的規則檔，例如 AGENTS.md、CLAUDE.md。 | 〈Curated shared instructions for software teams〉（Thoughtworks Technology Radar，2026） |
+| Agent 指示膨脹 | 規則檔越寫越長，重要規則被忽略的可能性跟著升高。 | 〈Agent instruction bloat〉（Thoughtworks Technology Radar，2026） |
+| Open Knowledge Format（OKF） | 每個概念一份 Markdown 檔、開頭加一小段 YAML 欄位的知識格式；人和 Agent 讀同一份。 | 〈Open Knowledge Format (OKF)〉規格（Google Cloud） |
+| Shared Kernel（共用核心） | 兩個 Context 明確約定共用的一小塊模型；要保持小，改之前要和對方商量。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
 
 ## 延伸閱讀
 - 〈Documenting Architecture Decisions〉（Michael Nygard，2011）

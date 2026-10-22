@@ -24,11 +24,15 @@ DDD（Domain-Driven Design，領域驅動設計）的作者 Evans，把它濃縮
 
 Evans 在 2003 年的同名書中提出 DDD；2015 年他把定義與模式整理成免費公開的〈Domain-Driven Design Reference〉，這三句話就出自這份摘要。領域專家是真正懂這門業務的人，例如櫃檯、法遵、產品負責人；「模型」不是一張圖，而是團隊對業務的共同理解：有哪些名詞、哪些規則、誰負責什麼。
 
+三句話裡的詞，Evans 的參考資料都有定義。領域（domain）是使用者把軟體用在哪一塊知識或活動，例如訂票、退票、會員點數；模型（model）是挑出領域的某些面向、能用來解決這個領域問題的一套抽象。所以模型一定有取捨：它只回答它要回答的問題。
+
+「聚焦核心領域」要先分出哪一塊是核心。微軟 Azure 架構中心依 DDD 把子領域（subdomain，業務裡相對獨立的一塊）分成三類：核心（讓公司和對手不同，值得投入最多設計）、支援（業務需要但不構成差異，例如開發票）、通用（業界早有現成做法，例如使用者帳號）。用詞各家略有不同：Evans 的參考資料只寫核心領域（Core Domain）與通用子領域（Generic Subdomains），「支援」這一類出自 Vernon 等後來的作者。對 Agent 協作的意義：核心那一塊最值得人花時間審查 Agent 的提案；通用那一塊，先找現成方案。
+
 有 Agent 寫程式時，這三句話更吃重：Agent 照它讀到的名詞取名、照它看到的規則寫判斷；名詞不一致、規則沒寫下來，它就照最常見的寫法猜。本 DLC 主要練第二、三句：Agent 幫忙找證據，定義由人和領域專家決定。
 
 常見誤解：DDD 不是一種資料夾結構，也不等於拆微服務；它首先是讓團隊說同一套話的做法。下週可以先挑一個團隊最常被說錯的名詞，寫一句定義，問一位懂業務的同事這樣對不對。
 
-📖 延伸閱讀：〈Domain-Driven Design Reference〉（Eric Evans，2015）
+📖 延伸閱讀：〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）
 
 **人工確認**：D1 裡哪一個決定你最沒把握？先記下來，最後一頁回來對照。
 
@@ -96,7 +100,11 @@ Ubiquitous Language（通用語言）：團隊在對話、文件與程式裡，�
 
 通用語言是 DDD 的核心做法。Evans 要求同一套語言用在圖、文件，尤其是說話裡；Martin Fowler 2006 年的短文〈UbiquitousLanguage〉補充：語言和模型會隨團隊越懂業務而演進，不是定一次就不動。
 
+Evans 的定義更精確：通用語言是以領域模型為骨幹、在一個 Bounded Context 裡全體成員共用的語言，用來把團隊的每一項工作接到軟體上。微軟的說法是開發者和領域專家一起建立。重點有二：它屬於某一個 Context，不是全公司一套；它要用在程式裡，不只是一份名詞表。
+
 對 Agent 來說，程式裡的名稱是它最常讀到的語言。Three Dots Labs 的 Miłosz Smółka 在 2026 年 8 月的文章寫到：Agent 會在整個 Repo 裡找你給它的名字，也可能天真地把相似的實體合併。所以兩個看起來很像的名詞為什麼要分開，要寫下來。這是個人實作經驗，沒有數據。
+
+課程裡的例子：Smart Ticket 有「訂票（Booking）」和「訂單（Order）」兩個很像的名詞。依需求卡的說明，Order 是付款成功後才建立的訂單，Booking 在付款前就存在。Agent 看到兩個相似名詞，可能想合併成一個；但它們的建立時機與規則不同，合併了，「付款失敗仍保留座位」這類規則就沒有地方放。這種差別要寫進詞彙表，連同「不要混用」一起寫。
 
 下週可以找一個「客服這樣說、程式那樣寫」的名詞，先記下兩邊的說法和出處，不急著改程式；改名本身就是改模型，下一頁會講。
 
@@ -124,6 +132,8 @@ Evans 說：語言的改變就是模型的改變。所以 Agent 把「借書」�
 DDD Europe 2026 的 Philipp Kostyra 主張把 LLM 當成「可以犯錯的初級領域專家」：它的意見值得聽，但要有人確認。看證據不需要看懂程式，只要問兩件事：那幾行真的在講這件事嗎？有沒有被斷章取義？
 
 常見誤解：Agent 找得到證據就代表它對。證據只證明某處出現過這個說法，不證明這是團隊選定的說法；由誰、怎麼核准，下一場講。
+
+這也是業界記錄決策的通用做法：架構決策紀錄（ADR）先標「提議」，同意後才標「接受」；本課的候選對應「提議」，第 02 場會把兩者對起來。課程裡的例子：Agent 提議把程式裡的 booking 和文件裡的「訂單」視為同一個詞，附上兩處出現的行號；它只是候選；上一頁說過兩者其實不同，這筆候選就該被退回，退回的理由也值得寫下來。
 
 📖 延伸閱讀：〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Can AI be a Co-Domain Expert in Domain Modelling?〉（Philipp Kostyra／DDD Europe，2026）
 
@@ -167,6 +177,8 @@ Agent 找名詞與證據；人決定標準名稱，並寫下「不要用的名�
 
 發現矛盾時（文件說 A、程式做 B），先記成發現，不要讓 Agent 偷偷修掉：哪一邊才對，是業務問題。這頁的提示詞是示範，沒有實際執行過。
 
+一筆好的詞彙紀錄長這樣：名詞「可用點數」，定義「會員目前可以拿來折抵的點數」，不要用的名字列出程式裡曾出現的其他寫法，證據指到需求卡與程式的行號。定義用業務的話寫，不寫「points_balance 欄位」這類實作細節；欄位名稱放在證據裡就好。
+
 **人工確認**：Agent 列的同義詞，你有沒有決定哪一個不用？
 
 ## 9. 小心：Agent 會編出合理的名字
@@ -183,23 +195,27 @@ LLM 會自信地說出不存在的東西，稱為幻覺（hallucination）。202
 
 引用數字時請回到論文摘要核對：摘要裡的比例就是上面兩個，看到其他比例（例如 19.7%）不要沿用。
 
+一個實用的檢查：請 Agent 對每個名詞附「路徑:起-迄行」，再請另一個步驟只做一件事：打開那幾行，回報原文裡有沒有這個字。兩步分開，比讓同一個步驟「找完順便確認」可靠，因為查證的一方沒有替自己的答案辯護的動機。
+
 📖 延伸閱讀：〈We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs〉（Spracklen 等人，USENIX Security 2025）
 
 **人工確認**：Agent 提的名詞裡，有沒有一個在證據裡找不到？
 
 ## 10. Bounded Context：意思一致的範圍
 
-Bounded Context（限界上下文）：在這個範圍內，同一個名詞的意思一致。
+Bounded Context（限界上下文）：一個模型適用的範圍；在範圍內，同一個名詞只有一種意思。
 
 - **同字異義是邊界訊號**：「帳戶」在登入和帳務是兩件事。
 
 - **不要硬統一**：大系統要一套全公司模型，既不可行也不划算。
 
-Bounded Context（限界上下文）是一個明確的範圍，在這個範圍內，每個名詞只有一種意思。Martin Fowler 2014 年的短文以「客戶」「產品」為例：同一個詞，在不同部門可能指不同的東西。微軟 Azure 架構中心也用 account（帳戶）舉例，例如登入用的帳戶和帳務上的帳戶就是兩件事。
+Bounded Context（限界上下文）是一個明確的邊界，在邊界內有一個特定的模型被定義、也適用。Evans 的定義補了一句：這個邊界通常是一個子系統，或一個團隊負責的範圍。在範圍內，每個名詞只有一種意思。Martin Fowler 2014 年的短文以「客戶」「產品」為例：同一個詞，在不同部門可能指不同的東西。微軟 Azure 架構中心也用 account（帳戶）舉例，例如登入用的帳戶和帳務上的帳戶就是兩件事。
+
+Bounded Context 和子領域不一樣：子領域是業務這一側的劃分（業務自然分成哪幾塊），Bounded Context 是解法這一側的劃分（哪個模型在哪裡適用）。理想上一個 Context 對應一個子領域，但舊系統常常不是；Azure 的寫法是「每個 Bounded Context 包含一個代表特定子領域的領域模型」。
 
 Fowler 也說，大系統想要全公司只用一套模型，既不可行也不划算；與其硬統一，不如畫出邊界，在每個邊界內說清楚。對 Agent 而言，沒有標出邊界，它很容易把兩個「訂單」當成同一個，寫出把兩邊混在一起的程式。
 
-實際做法：Agent 發現同一個字有兩種意思時，不要讓它合併成一個名詞，由人決定這是兩個不同的名詞，還是兩個 Context 的界線。下週可以問問團隊：哪個詞一換部門，意思就變了？
+實際做法：Agent 發現同一個字有兩種意思時，不要讓它合併成一個名詞，由人決定這是兩個不同的名詞，還是兩個 Context 的界線。常見誤解：一個 Context 不等於一個微服務、一個資料夾或一張資料表；它是語言與模型的邊界，程式怎麼部署是另一個決定。下週可以問問團隊：哪個詞一換部門，意思就變了？
 
 📖 延伸閱讀：〈BoundedContext〉（Martin Fowler，2014）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 2 章〈Domains, Subdomains, and Bounded Contexts〉；〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）
 
@@ -219,6 +235,8 @@ Fowler 也說，大系統想要全公司只用一套模型，既不可行也不�
 
 限制：「哪些步驟 Agent 比較可靠」是實務觀察，不是研究結論，沒有數字支持。回到團隊，把它當成安全的預設順序，而不是定律。
 
+為什麼「關係」排在邊界之後、規則之前：Context Map 要先有 Context 才畫得出來；而一條規則掛在哪個 Context、要不要跨 Context 協作，又要先知道 Context 之間是什麼關係。每一步的產出都是下一步的輸入，所以每一步都要人確認後再往下。
+
 **人工確認**：D1 裡，你是先定好名詞才劃邊界，還是一起做？
 
 ## 12. 邊界：多個訊號都指向同一處
@@ -234,6 +252,8 @@ Fowler 也說，大系統想要全公司只用一套模型，既不可行也不�
 一個訊號不夠：資料夾可能只是當初的習慣，服務名稱可能早已名不符實。請 Agent 為每個候選 Context 列出它找到哪些訊號、各附證據；只有一個訊號的，人要特別看。
 
 寧可少切：證據不夠就先不切，記成待確認。切錯的邊界比沒切的更難修，因為之後的規則都會照著錯的邊界寫。
+
+課程例子（只說訊號，不說答案）：如果「點數」這個字在會員相關的程式裡指餘額、在計價相關的程式裡指這次折抵的數量，這是「語言改變」的訊號；再看寫入點數餘額的程式是否只有一處、它們是否常一起修改、彼此是否只透過明確的函式往來。四個問題的答案指向同一處，才把邊界畫在那裡。
 
 **人工確認**：你劃的 Context，有幾個訊號支持？只有一個的是哪個？
 
@@ -293,11 +313,15 @@ Evans 的比喻：兩座城在同一條河邊，上游倒進河裡的東西，�
 
 - **Agent 幫忙找**：誰呼叫誰、誰讀誰的資料，都附證據。
 
-Context Map（上下文地圖）畫的是各個 Context 之間誰依賴誰。Evans 用河流比喻：上游城市倒進河裡的東西，會流到下游；上游 Context 一改，下游就得跟著改。他的建議是先照實畫出現有地形，改造之後再說。
+Context Map（上下文地圖）記錄各個 Context 之間怎麼接觸。Evans 的定義比「誰依賴誰」多：要為每個模型畫出 Context、取好名字，並寫出模型之間的接觸點，包括哪裡需要明確翻譯、哪裡共用、哪裡刻意隔離，以及誰影響誰。他的建議是先照實畫出現有地形，改造之後再說。
 
-DDD Crew 的〈Context Mapping〉整理了這些關係的常見名稱，例如 Conformist（下游直接照用上游的模型）、Shared Kernel（兩邊共用一小塊模型）、Anticorruption Layer（防腐層，第 03 場會講）。名稱不必背，重點是看出誰會被誰的變動影響。
+上游與下游是影響的方向，不是呼叫的方向。Evans 用河流比喻：上游城市倒進河裡的東西，會流到下游；上游的作為會影響下游成敗，下游的作為對上游影響不大。最常見的情況是下游呼叫上游提供的資料或服務，但用事件時，發出事件的上游並不呼叫誰。判斷時問：哪一邊改了，另一邊得跟著改？
 
-Agent 很適合找「誰呼叫誰、誰讀誰的資料」，因為程式裡有字面證據；請它每一筆附出處，再由人判斷哪些依賴是設計好的、哪些是不知不覺長出來的。
+DDD Crew 的〈Context Mapping〉把團隊之間的關係分成三種，再列出常見的關係名稱。上下游關係：Customer-Supplier（下游的需求排進上游的計畫）、Conformist（下游直接照用上游的模型）、Anticorruption Layer（防腐層，下游自己翻譯，第 03 場會講）、Open Host Service（上游開放一套給所有人用的介面）與 Published Language（雙方用一份有文件的共用格式交換）。互相依賴：Partnership（兩邊一起規劃、一起成功或失敗）與 Shared Kernel（兩邊明確共用一小塊模型，改之前要先商量）。各走各的：Separate Ways（刻意不整合）。名稱不必背，重點是看出誰會被誰的變動影響。
+
+對照本 DLC 的工具：它把這些名稱記在兩個 Context 之間的一筆協作紀錄上，而且一律把提供的一方記成上游。這對上下游關係沒問題，但 Partnership 與 Shared Kernel 在 DDD Crew 的分類裡是互相依賴、沒有上下游；讀紀錄時要知道這是工具的簡化。Separate Ways 則不是一種協作，工具把它記成「禁止依賴」的規則。Shared Kernel 也不是一種 Context，是兩個 Context 之間的關係。
+
+Agent 很適合找「誰呼叫誰、誰讀誰的資料」，因為程式裡有字面證據；請它每一筆附出處，再由人判斷哪些依賴是設計好的、哪些是不知不覺長出來的，以及它屬於哪一種關係。
 
 📖 延伸閱讀：〈Context Mapping〉（DDD Crew）；Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 3 章〈Context Maps〉
 
@@ -320,6 +344,8 @@ Agent 很適合找「誰呼叫誰、誰讀誰的資料」，因為程式裡有�
 這種錯測試通常抓不到，因為功能結果是對的，需要人對照模型看。微軟 Azure 架構中心提醒，外部或舊系統的資料結構與 API 很容易滲進新程式。Agent 可以列出可疑處並附證據，但結論有兩種：真的越界（程式該改，核准後再改），或模型漏寫了一條合理的協作（補進模型）。兩種後續不同，所以由人判斷。
 
 在沒有自動架構檢查的 Repo，這類問題只能靠審查發現；第 03 場會講怎麼讓 Agent 在每次變更後都查一次。
+
+課程例子（虛構，不在練習 Repo 裡）：計價程式為了算折扣，直接把會員的點數餘額減掉。功能看起來對、測試也過，但「點數不得為負」這條規則從此有兩個地方在改，任何一邊漏了檢查，另一邊都不知道。看到這種寫法，要問的不是「能不能動」，而是「這份資料歸誰管、別人該透過什麼約定取用」。
 
 📖 延伸閱讀：〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）
 
@@ -345,8 +371,28 @@ Agent 找證據、人來定義；寫下來的都是候選，等另一個人核�
 - 請 Agent 列出一個你熟悉模組裡的同義詞與證據，親自打開幾行證據核對。
 - 拿一個有一兩年歷史的 Repo，請 Agent 列出最常一起修改的模組，對照你心中的邊界。
 
+## 名詞解釋
+| 名詞 | 意思 | 出處 |
+|---|---|---|
+| DDD（Domain-Driven Design，領域驅動設計） | 聚焦核心領域、和領域專家一起探索模型、在明確邊界內說通用語言的軟體開發方法。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 領域（domain） | 使用者把軟體用在哪一塊知識或活動，例如訂票、退票。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 模型（model） | 挑出領域的某些面向、能用來解決這個領域問題的一套抽象；不是一張圖，而是團隊的共同理解。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 子領域（subdomain）：核心／支援／通用 | 業務裡相對獨立的一塊。核心讓公司與眾不同、最值得投入；支援是業務需要但不構成差異；通用是業界已有現成做法。 | 〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026） |
+| 領域專家 | 真正懂這門業務的人，例如櫃檯、法遵、產品負責人；模型要和他們一起建立。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 通用語言（Ubiquitous Language） | 以模型為骨幹、在一個 Bounded Context 內全體成員共用的語言；說的、寫的、程式裡都用同一套。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈UbiquitousLanguage〉（Martin Fowler，2006） |
+| Bounded Context（限界上下文） | 一個特定模型被定義、也適用的明確邊界，通常是一個子系統或一個團隊負責的範圍；範圍內每個名詞只有一種意思。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈BoundedContext〉（Martin Fowler，2014） |
+| 候選 | 本課用語：Agent 提出、附證據、還沒有人核准的主張；只能參考，對應 ADR 的「提議」。 | 〈Documenting Architecture Decisions〉（Michael Nygard，2011） |
+| 一起變更（change coupling） | 兩個以上的模組在一段時間內常常一起被修改；是邊界訊號之一，不是證明。 | 〈Change Coupling: Visualize Logical Dependencies〉（CodeScene 文件） |
+| Bounded Context Canvas（限界上下文畫布） | 把一個 Context 寫清楚的表格：目的、策略分類、使用的名詞、業務決定、假設、待確認問題等欄位。 | 〈The Bounded Context Canvas〉（DDD Crew） |
+| Context Map（上下文地圖） | 記錄各個 Context 之間的接觸點：誰影響誰、哪裡要翻譯、哪裡共用、哪裡隔離。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Context Mapping〉（DDD Crew） |
+| 上游／下游 | 上游的作為會影響下游的成敗，反過來影響不大；判斷看「誰改了，另一邊得跟著改」，不是看誰呼叫誰。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| Shared Kernel（共用核心） | 兩個 Context 明確約定共用的一小塊模型與程式；要保持小，改之前要和對方商量。是兩個 Context 之間的關係，不是一種 Context。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Context Mapping〉（DDD Crew） |
+| Separate Ways（各走各的） | 刻意讓兩個 Context 完全不整合，各自找簡單的解法；它是「不協作」的決定。 | 〈Domain-Driven Design Reference〉（Eric Evans，2015） |
+| 邊界洩漏 | 本課用語：一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式；外部系統的資料結構滲進來也是。 | 〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026） |
+
 ## 延伸閱讀
 - 〈Domain-Driven Design Reference〉（Eric Evans，2015）
+- 〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）
 - 〈Opening Keynote Eric Evans〉（DDD Europe，2026）
 - 〈Accelerate your Strategic Design with LLMs〉（Thomas Coopman／DDD Europe，2026）
 - 〈The Curse of Unbounded Contexts: Using Domains as LLM Consumers〉（Chelsea Troy／DDD Europe，2026）
@@ -364,7 +410,6 @@ Agent 找證據、人來定義；寫下來的都是候選，等另一個人核�
 - 〈We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs〉（Spracklen 等人，USENIX Security 2025）
 - 〈BoundedContext〉（Martin Fowler，2014）
 - Vaughn Vernon《Implementing Domain-Driven Design》（2013）第 2 章〈Domains, Subdomains, and Bounded Contexts〉
-- 〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）
 - 〈Change Coupling: Visualize Logical Dependencies〉（CodeScene 文件）
 - 〈The Bounded Context Canvas〉（DDD Crew）
 - 〈Context Mapping〉（DDD Crew）

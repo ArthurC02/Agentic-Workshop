@@ -9,5 +9,22 @@
     "**這一段帶走什麼**\n- DDD 的三句話，以及為什麼 Agent 寫程式時更需要寫在 Repo 裡的共用語言\n- 候選與事實：Agent 提的名詞要附證據，等人核准才算數\n- 交給 Agent 的順序：先整理語言、再劃邊界；邊界要多個訊號都指向同一處\n- 邊界洩漏測試抓不到，要由人看證據判斷\n\n每頁最後的段落是講解時來不及說的補充：概念的白話解釋、證據出處、限制與回到團隊的做法；提到的書與文章列在最後的「延伸閱讀」。",
     "本場講概念與技巧，不需要寫程式或打指令。頁面上的提示詞是示範，想試再貼給自己的 Agent；沒有實際執行的結果，一律視為未驗證。"
   ],
-  "handout_done": "說得出 DDD 的三句話、為什麼 Agent 需要寫在 Repo 裡的共用語言、候選和事實差在哪；知道為什麼要讓 Agent 先整理語言、再劃邊界，邊界要多個訊號（包括版本紀錄裡的一起變更）都指向同一處；知道怎麼請 Agent 從文件與程式整理詞彙表與 Context 畫布、怎麼防 Agent 編出不存在的名字，以及邊界洩漏要由人看證據判斷；知道下一場要讓另一個人審查核准。\n\n## 下週可以做的事\n- 挑一個團隊最常被說錯的名詞，寫一句定義和「不要用的名字」，請懂業務的同事確認。\n- 請 Agent 列出一個你熟悉模組裡的同義詞與證據，親自打開幾行證據核對。\n- 拿一個有一兩年歷史的 Repo，請 Agent 列出最常一起修改的模組，對照你心中的邊界。"
+  "handout_done": "說得出 DDD 的三句話、為什麼 Agent 需要寫在 Repo 裡的共用語言、候選和事實差在哪；知道為什麼要讓 Agent 先整理語言、再劃邊界，邊界要多個訊號（包括版本紀錄裡的一起變更）都指向同一處；知道怎麼請 Agent 從文件與程式整理詞彙表與 Context 畫布、怎麼防 Agent 編出不存在的名字，以及邊界洩漏要由人看證據判斷；知道下一場要讓另一個人審查核准。\n\n## 下週可以做的事\n- 挑一個團隊最常被說錯的名詞，寫一句定義和「不要用的名字」，請懂業務的同事確認。\n- 請 Agent 列出一個你熟悉模組裡的同義詞與證據，親自打開幾行證據核對。\n- 拿一個有一兩年歷史的 Repo，請 Agent 列出最常一起修改的模組，對照你心中的邊界。",
+  "terms": [
+    ["DDD（Domain-Driven Design，領域驅動設計）", "聚焦核心領域、和領域專家一起探索模型、在明確邊界內說通用語言的軟體開發方法。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["領域（domain）", "使用者把軟體用在哪一塊知識或活動，例如訂票、退票。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["模型（model）", "挑出領域的某些面向、能用來解決這個領域問題的一套抽象；不是一張圖，而是團隊的共同理解。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["子領域（subdomain）：核心／支援／通用", "業務裡相對獨立的一塊。核心讓公司與眾不同、最值得投入；支援是業務需要但不構成差異；通用是業界已有現成做法。", "〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）"],
+    ["領域專家", "真正懂這門業務的人，例如櫃檯、法遵、產品負責人；模型要和他們一起建立。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["通用語言（Ubiquitous Language）", "以模型為骨幹、在一個 Bounded Context 內全體成員共用的語言；說的、寫的、程式裡都用同一套。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈UbiquitousLanguage〉（Martin Fowler，2006）"],
+    ["Bounded Context（限界上下文）", "一個特定模型被定義、也適用的明確邊界，通常是一個子系統或一個團隊負責的範圍；範圍內每個名詞只有一種意思。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈BoundedContext〉（Martin Fowler，2014）"],
+    ["候選", "本課用語：Agent 提出、附證據、還沒有人核准的主張；只能參考，對應 ADR 的「提議」。", "〈Documenting Architecture Decisions〉（Michael Nygard，2011）"],
+    ["一起變更（change coupling）", "兩個以上的模組在一段時間內常常一起被修改；是邊界訊號之一，不是證明。", "〈Change Coupling: Visualize Logical Dependencies〉（CodeScene 文件）"],
+    ["Bounded Context Canvas（限界上下文畫布）", "把一個 Context 寫清楚的表格：目的、策略分類、使用的名詞、業務決定、假設、待確認問題等欄位。", "〈The Bounded Context Canvas〉（DDD Crew）"],
+    ["Context Map（上下文地圖）", "記錄各個 Context 之間的接觸點：誰影響誰、哪裡要翻譯、哪裡共用、哪裡隔離。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Context Mapping〉（DDD Crew）"],
+    ["上游／下游", "上游的作為會影響下游的成敗，反過來影響不大；判斷看「誰改了，另一邊得跟著改」，不是看誰呼叫誰。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["Shared Kernel（共用核心）", "兩個 Context 明確約定共用的一小塊模型與程式；要保持小，改之前要和對方商量。是兩個 Context 之間的關係，不是一種 Context。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）；〈Context Mapping〉（DDD Crew）"],
+    ["Separate Ways（各走各的）", "刻意讓兩個 Context 完全不整合，各自找簡單的解法；它是「不協作」的決定。", "〈Domain-Driven Design Reference〉（Eric Evans，2015）"],
+    ["邊界洩漏", "本課用語：一個 Context 繞過約定，直接讀寫另一個 Context 的資料或內部程式；外部系統的資料結構滲進來也是。", "〈Use Domain Analysis to Model Microservices〉（Microsoft Azure Architecture Center，2026）"]
+  ]
 }
