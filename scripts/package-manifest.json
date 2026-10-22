@@ -1123,12 +1123,12 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
-          "sha256": "d0eee5ec5841f512083b174e0f43ce41d47970c06811ba3a43d4c2c895422ab7"
+          "sha256": "a6e3c2c3f2a6933a161e88c6aa27a02cd4660f34786e6e20c58e8e3349cc00f4"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
-          "sha256": "cbd33ae9576ae1e5dda8ed2a60e39e7f0ade9a7cd21555ddabf8bb18bb8c55bc"
+          "sha256": "59bae28f064abb8bbd48dbfa6a791b50d296cee0a7aa4e55a2def3d70d5e6977"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
@@ -1298,7 +1298,7 @@
         {
           "source": "docs/contents/09_範本與檢核表.md",
           "destination": "docs/contents/09_範本與檢核表.md",
-          "sha256": "8a6c3e2cd9d0cf7c784dcacb47d48640bc43e81cc6928721d8a29c10dd4b8da3"
+          "sha256": "860acde2b13a0afcdd393bdd8b4cf2a683b152e71afe1234fc3e947284f020e5"
         },
         {
           "source": "docs/instructions/00_Agentic工作坊素材產製總控指令書.md",
@@ -1358,7 +1358,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "31ca9e110008c20e7bac85fbf95ff92ad3809b624d6451bc6aeabe67cefb2943"
+          "sha256": "514533806b497f8790e3c31a16dea2a04ec19ca993f43600aa1a8c8d030b286d"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -3153,7 +3153,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "cade1f5625903761c10443e6da2bfb473da11dd33587494ed99ba26b3fa33c0c"
+          "sha256": "0f9bf25358f18084b018b1f4f819427f0e9e1369767dcafcc226809c198c7a50"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
