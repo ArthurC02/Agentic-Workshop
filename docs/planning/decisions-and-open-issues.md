@@ -611,3 +611,10 @@ DLC 的改動：
 - 提示詞總長 165,660 → 25,937 字（177 → 175 段，中位數 231 → 92，最長 5,914 → 629）。檢查點標題、分鐘、解鎖碼、表單 id 不變；`check_dlc_plugin_compat.py` 32 PASS／0 CHANGED，QUOTED 清單未改（從學員頁移走的 `"state": "brownfield"` 等三個 readiness 字樣與 `Proposal test evidence verified.` 改放主持人簡報備註）。
 - 演練（Windows，三條路徑：開場→D1→D2 含過期基準、D2 Recovery→D3a→D3b、D3b Recovery→D3c→D4→回顧）全部跑通；Claude Code 2.1.288／2.1.304 實測新對話自動讀 `AGENTS.md`、`check` Skill 依說明自動用上、`resume-<段>` 複製來的 Skill 也會載入；2.1.266 不讀 `AGENTS.md`（主持人指南常見問題第 21 列）。發現已修（D2 檢查點 4 驗證沒過就停、過期基準的兩列常見問題、D3b／D3c 的 brief 漏列、D4 範本的 id 查證與重複候選、Recovery 的 RECOVERY.md 完整路徑）。
 - 待決：D3a／D3b／D3c 的實作檢查點（7–9 分鐘）演練估計要 12–15 分鐘，D3c 整段約 37–40 分鐘，分鐘依規定未改；需求卡 03 沒有一定要改寫的既有測試，頁面改成「不改寫既有測試並附理由」也算對。
+
+## DLC 待決事項定案（2026-10-23）
+
+- D3 時間：段落總長不變，D3a 檢查點 5 改 5 分鐘、D3b 改 8 分鐘；每個 D3 加計時的最低完成線，Recovery 組直接照最低完成線做（commit `4ade740`）。
+- 需求卡 03：使用者同意「不改寫既有測試並附理由」也算完成，不強迫改寫一個測試。
+- D3a 與 D4 檢查點 1 各新增一個下載包（工作表），使用者同意。
+- Codex 0.162（VS Code 擴充套件內附）實測：主課程 B0 與 DLC 的 `AGENTS.md` 都自動載入（逐字引用），五個 DLC Skill 都被發現，「用 check 檢查剛才這一段」自動使用 check Skill 並正確回「失敗：…」。
