@@ -107,7 +107,7 @@
 <section class="slide slide-cp" data-seg="dlc-d3b" data-title="檢查點 4 · 反事實檢查" data-minute="109">
   <p class="kicker">檢查點 4 / 6 · 第 109–114 分鐘</p>
   <h2 class="title">反事實檢查</h2>
-  <p class="cp-why"><b>為什麼</b>和 D3a 一樣要看到 <code>killed</code>；預留與歸還各至少一條</p>
+  <p class="cp-why"><b>為什麼</b>和 D3a 一樣：要登記的 2 條要 <code>killed</code>；預留與歸還各一條</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
@@ -119,7 +119,7 @@
   <aside class="notes">
     <p><b>說（14:00／第 109 分）</b>：「第 109 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
     <p><b>建議現場做的 4 個</b>：上限以優惠後總額計（改成原價；只有 M002 665 抓得到）、預留在寫入前（移到寫入之後）、團體付款失敗歸還（移除 restore）、退款現金＝Order.amount（改讀 <code>payable_amount</code>；沒有「改票後退票」的測試就會存活）。第一個與最後一個是「先 survived 再補測試」的好示範。</p>
-    <p><b>看</b>：是否每條新規則都有 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
+    <p><b>看</b>：預留與歸還是否各有一條 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
     <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 請學員貼：「這不算 killed，請說明原因，不要換字串。」；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
   </aside>
 </section>

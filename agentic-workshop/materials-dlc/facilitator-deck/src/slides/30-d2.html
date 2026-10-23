@@ -36,7 +36,7 @@
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
     <p><b>時間（演練實測）</b>：每次 check 都實際重跑 Plugin 指令或測試，約 1 分鐘，已算在各檢查點時間裡；② 已回成功／失敗就不要另貼 ③ 再跑一次。檢查點 2 的 <code>amend-policy</code> 印出 base revision 過期、要重新核准，是因為還沒有提案，屬正常（AGENTS.md 有寫）。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
-    <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，私下提供給該組 <code data-code="dlc-rec-d2"></code>（已審查的 Domain Memory＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
+    <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，私下提供給該組 <code data-code="dlc-rec-d2"></code>（已審查的 Domain Memory＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 同時建環境、跑測試，等那個 commit 出現再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
     <p><b>R3 要明講</b>：<code>record-approval</code> 只比對字串，同機雙身分仍可通過；今天是教學示範，不是安全保證。<b>奇數組</b>：第三人當觀察員（Observer），看核准與簽章是否只出現在夥伴的 Agent 對話，並一起看 <code>verify-audit</code> 結果。</p>
     <p><b>金鑰</b>：一律放 Repo 外的 <code>%USERPROFILE%\.dlc-keys\&lt;代號&gt;\</code>（Git Bash <code>~/.dlc-keys/&lt;代號&gt;/</code>）；不放 Repo 內（scan-secrets 會掃忽略目錄）、不放 <code>~/.ssh</code>。私鑰不得進 commit、ZIP 或截圖；課後刪除。</p>
   </aside>

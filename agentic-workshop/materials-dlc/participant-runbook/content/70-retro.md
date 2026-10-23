@@ -37,7 +37,7 @@ Agent 翻紀錄找證據，你們判斷證據站不站得住；記得的和紀�
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：四題都有回答，每句都指得出證據，找不到的寫「未觀察」。
@@ -61,12 +61,12 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
 再替 Agent 的成果打分：以最後一次人核准的模型當基準答案（git log 最上面一個訊息含「套用」的 commit，換掉下面的 COMMIT），和現在的模型比對：
 dm compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
-用白話回報 overall 的 precision 與 recall；copied_matches 與 overall_independent（排除照抄的 copied_evidence 才是誠實的分數）；每個類別的 missed 與 extra，missed 不是 0 就指出是哪一筆、可能是哪一段改掉的；extra 的 id 可能是被配走的另一筆，對照 dm export 再下結論。最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不改程式和 domain-memory/。做完用 check 檢查。
+用白話回報 overall 的 precision 與 recall；copied_matches 與 overall_independent（排除照抄的 copied_evidence 才是誠實的分數）；每個類別的 missed 與 extra，missed 不是 0 就指出是哪一筆、可能是哪一段改掉的；extra 的 id 可能是被配走的另一筆，對照 dm export 再下結論。最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不改程式和 domain-memory/。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：每一步都有證據和「一個人能不能自己完成」，比對結果有 precision、recall、overall_independent 和每個類別的 missed、extra。
@@ -151,12 +151,12 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 【夥伴的 Agent】今天結束，收掉練習用的簽章設定：
 1. 只刪 .dlc-keys/maintainer/ 底下的私鑰檔 signing-key，同一個資料夾的其他檔案都留著：signing-key.allowed_signers 只有公鑰，Git 驗證今天的簽章 commit 要讀它，刪了會全部顯示成無法驗證。
 2. repository 資料夾裡的 smart-ticket-dlc-base 和 resume- 開頭的 Repo（用過 Recovery 才有），各到根目錄執行 git config --local --unset commit.gpgsign，否則之後的 commit 都會失敗；-remote.git 結尾的是 push 用的遠端，跳過。沒有輸出、結束碼 5 代表本來就沒開，不算失敗。
-回報 signing-key 已不存在、signing-key.allowed_signers 還在，並逐一列出每個 Repo 是「已關閉」還是「本來就沒開（結束碼 5）」。做完用 check 檢查。
+回報 signing-key 已不存在、signing-key.allowed_signers 還在，並逐一列出每個 Repo 是「已關閉」還是「本來就沒開（結束碼 5）」。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果（貼到夥伴的對話）
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：signing-key 已不存在、signing-key.allowed_signers 還在，每個 Repo 的 git config --local --get commit.gpgsign 都沒有輸出。

@@ -43,14 +43,14 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 這是 Smart Ticket 的訂票後端，今天要和你一起替它建立團隊共用的領域模型。專案的做法寫在 AGENTS.md；學員包的 skills 資料夾（在上兩層）有 5 個 Skill。這一步先把環境準備好，不改程式：
 1. 把那 5 個 Skill 原樣放到你這個工具會自動載入專案 Skill 的位置，在 AGENTS.md「Skill」一節最後加一行它們的位置（從 Repo 根目錄算起的路徑）。
 2. 照 AGENTS.md 建好 venv、裝好套件、跑一次全部測試，結果記在 notes/opening.md。
-做完告訴我 Skill 的完整路徑，再用 check 檢查。
+做完告訴我 Skill 的完整路徑，再用 check 檢查，最後一行寫成功或失敗。
 ```
 
-Agent 安裝套件、跑測試約要一到三分鐘，趁這時先讀下方 ④ 的小卡。
+Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許。安裝套件、跑測試約要一到三分鐘，趁這時先讀下方 ④ 的小卡。
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：測試全部通過、沒有 warning，5 個 Skill 都在。
@@ -82,12 +82,12 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 ② 貼給 Agent
 
 ```text
-照 AGENTS.md 解出 domain-memory Plugin、逐檔核對指紋，告訴我核對結果和版本，記在 notes/opening.md。核對不符就停下，不要用它。做完用 check 檢查。
+照 AGENTS.md 解出 domain-memory Plugin、逐檔核對指紋，告訴我核對結果和版本，記在 notes/opening.md。核對不符就停下，不要用它。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：核對結果是 SHA OK，版本是 1.2.18。
@@ -108,12 +108,12 @@ Agent 用兩個只讀不改的檢查看這個 Repo：它是已有程式的既有
 ② 貼給 Agent
 
 ```text
-用 Plugin 看看這個 Repo：跑 dm readiness 和 dm quality-gates（都是唯讀）。用白話告訴我：它判斷這是新專案還是既有專案、有多少把握；有哪些自動檢查（測試、lint 程式風格檢查、型別、架構）；所以你之後改程式時，哪些問題只能靠測試和人的審查才抓得到。記在 notes/opening.md，附關鍵輸出原文。做完用 check 檢查。
+用 Plugin 看看這個 Repo：跑 dm readiness 和 dm quality-gates（都是唯讀）。用白話告訴我：它判斷這是新專案還是既有專案、有多少把握；有哪些自動檢查（測試、lint 程式風格檢查、型別、架構）；所以你之後改程式時，哪些問題只能靠測試和人的審查才抓得到。記在 notes/opening.md，附關鍵輸出原文。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：notes/opening.md 照實記下 readiness 和 quality-gates 的結果。
@@ -135,14 +135,14 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
 
 ```text
 最後把起點存起來：照 AGENTS.md 建立 Git Repo（身分只設在這個 Repo），做一次環境健檢，把結果記進 notes/opening.md，再把現在全部的檔案 commit 成「起始 Repo」。這時還沒有 domain-memory/，不用簽章。
-告訴我 venv 的 Python 版本和路徑、健檢最後一行和有沒有 [!!]、commit 後工作區是不是乾淨的。做完用 check 檢查。
+告訴我 venv 的 Python 版本和路徑、健檢最後一行和有沒有 [!!]、commit 後工作區是不是乾淨的。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 等 Agent 時，還沒有 D2 夥伴的先找好（見本頁最後的「⏸ 看投影」）。
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：Python 是 3.13，健檢沒有 [!!]，起始 commit 裡有 AGENTS.md 和 Skill、沒有 domain-memory/，工作區是乾淨的。

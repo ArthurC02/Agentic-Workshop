@@ -68,7 +68,7 @@
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「每題兩個選項」</b><span>Runbook › 檢查點 2</span></li>
-    <li><b>兩人聊完回選擇</b><span>看完不變量再回「同意」</span></li>
+    <li><b>兩人聊完回一行選擇</b><span>Unknowns 可回「照建議」</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>選項看證據；每條不變量說得出「怎樣算失敗」才同意</p>
@@ -107,7 +107,7 @@
 <section class="slide slide-cp" data-seg="dlc-d3a" data-title="檢查點 4 · 反事實檢查" data-minute="83">
   <p class="kicker">檢查點 4 / 6 · 第 83–87 分鐘</p>
   <h2 class="title">反事實檢查</h2>
-  <p class="cp-why"><b>為什麼</b>把每條新規則改壞，測試必須失敗（<code>killed</code>）</p>
+  <p class="cp-why"><b>為什麼</b>把要登記的 2 條規則改壞，測試必須失敗（<code>killed</code>）</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><i>提案者的對話</i><b>貼 ②「列出改壞方式」</b><span>Runbook › 檢查點 4</span></li>
@@ -118,8 +118,8 @@
   <p class="cp-next"><b>第 87 分前完成</b><span>→ 下一步：檢查點 5 審查變更，新知識寫回模型</span></p>
   <aside class="notes">
     <p><b>說（13:00／第 83 分）</b>：「第 83 分。證明測試真的守得住規則：把規則弄壞，測試必須失敗，也就是 killed。只認 killed 字樣；只看到亂碼或 ERROR 都不算。」</p>
-    <p><b>建議現場做的 3 個</b>：重試上限（<code>MAX_ISSUE_ATTEMPTS</code> 5 → 6）、鎖外呼叫（把 Port 呼叫包回 <code>with self.store.lock:</code>）、冪等鍵（<code>merchant_order_no</code> 改成每次隨機）。參考解答三個都 killed。</p>
-    <p><b>看</b>：是否每條新規則都有 killed；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
+    <p><b>建議現場挑 2 個</b>（Runbook 只跑要登記的 2 條，其餘標未證明）：重試上限（<code>MAX_ISSUE_ATTEMPTS</code> 5 → 6）、鎖外呼叫（把 Port 呼叫包回 <code>with self.store.lock:</code>）、冪等鍵（<code>merchant_order_no</code> 改成每次隨機）。參考解答三個都 killed。</p>
+    <p><b>看</b>：要登記的 2 條是否都有 killed、是不是核心不變量；--expect 是否從實際斷言那一行複製（pytest 會縮寫長 tuple）；學員是否先看過 Agent 列的改壞方式才同意；survived 時是否補測試而不是換字串；Agent 是否照抄 <code>.venv\Scripts\python.exe</code>（反斜線）。</p>
     <p><b>介入訊號</b>：只看到亂碼或 ERROR 而沒有 killed → 請學員貼：「這不算 killed，請說明原因，不要換字串。」；時間不足 → 先證明最重要的規則，其餘如實標示未證明。</p>
     <p><b>新概念</b>：這裡正式介紹<b>不變量</b>（Runbook 檢查點 4 ④），花 30 秒講：每次操作結束都必須成立；寫得好就能變成「規則被破壞就失敗」的測試。</p>
   </aside>
@@ -141,7 +141,7 @@
     <p><b>說（17:00／第 87 分）</b>：「第 87 分。人 Review：讓 Agent 回答四個審查問題，看既有測試有沒有被放寬。你們同意後 Agent 才登記候選；它還不是 reviewed，不要在紀錄裡自稱 reviewed。」</p>
     <p><b>看</b>：學員是否看了審查答案才回同意；候選的措辭是否仍保持候選；Agent 沒有執行 <code>record-approval</code> 或 <code>amend-policy</code>；新增的檔案只出現在 <code>git status</code>（<code>??</code>），審查答案有沒有算進去；夥伴 commit 用 <code>git add -A -- . ':!records'</code>，<code>records/</code> 不進 commit，<code>cf-d3a-*.json</code> 會進 commit，屬預期。</p>
     <p><b>介入訊號</b>：發現刪除或弱化既有測試 → 要求還原，請學員說「照 AGENTS.md 工作規則第 7 條，把被放寬的斷言改回來」（改既有測試要先停下說明、等學員同意；只改建構方式、斷言不變的接線修改可以接受）。</p>
-    <p><b>候選上限</b>：killed 規則最多登記 2 條（加上新增的 Context），其餘列在 notes 留給 D4；5 分鐘要做完審查、登記與夥伴 commit，清單太長就請學員說「只登記最重要的 2 條」。</p>
+    <p><b>候選上限</b>：只登記檢查點 4 證明 killed 的 2 條規則（加上新增的 Context），未證明的列在 notes 留給 D4；5 分鐘要做完審查、登記與夥伴 commit。</p>
     <p><b>加深一層（不變量）</b>：候選清單把同一個測試守住的規則排在一起。這幾條通常是同一個不變量的不同面向，該同屬一個 Context；分在兩個 Context 就問「那個測試要歸誰？」。「重構不是模型變更」留到 D3b 檢查點 5 才講，這裡不提。</p>
   </aside>
 </section>

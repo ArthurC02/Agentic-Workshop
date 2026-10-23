@@ -55,6 +55,6 @@ for d in notes docs/handoffs AGENTS.md; do if [ -e "$orig/$d" ]; then cp -r "$or
 `../../recovery-SEG/recovery-dlc-SEG/RECOVERY.md` 寫著這個 Recovery 的內容、接下來的指令和「看到什麼算成功」，照它做：
 
 - D1：提案者在 `resume-d1` 開新對話，做 RECOVERY.md 第 2 節。
-- D2 起：**夥伴**在 `resume-SEG` 開自己的新對話，做第 2 節（接手簽章；commit 前停下給夥伴看檔案清單，等「同意」）；**提案者**在 `resume-SEG` 開自己的新對話，做第 3 節（建環境並驗證）。
+- D2 起：**夥伴**在 `resume-SEG` 開自己的新對話，做第 2 節（接手簽章；commit 前停下給夥伴看檔案清單，等「同意」）；**提案者**同時在 `resume-SEG` 開自己的新對話，做第 3 節（建環境並驗證）。兩邊不用互等：提案者先建環境、跑測試；`dm` 的驗證（`validate`、`verify-audit`、`verify-evidence`）等 `git log` 出現夥伴的簽章 commit「… Recovery：授權本組金鑰」才跑，還沒出現就停下等使用者說「夥伴好了」。
 
 每段指令一樣整段在同一次執行裡跑，任何一步失敗就停下貼出錯誤，不改設定、不換寫法。結果寫進 `notes/recovery-SEG.md`。

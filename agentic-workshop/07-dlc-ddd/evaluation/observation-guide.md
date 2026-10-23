@@ -12,7 +12,7 @@
 |---|---|---|
 | **A. DDD 決策** | owner Context、不變量、一致性邊界、Port／Adapter 位置，是不是**人**先決定、寫下理由 | 決策卡在 Agent 動手前就寫好，Agent 的計畫沿用它；有人問「這條規則的家在哪」 |
 | **H. Human-in-the-loop** | 人有沒有在每個停點真的看過輸出、核准計畫、Review Diff；有沒有讓 Agent 自行宣稱完成 | 「先提計畫、停下等我」被遵守；人要 Agent 回報實際的 `pytest -q` 與指令結果，而不是只接受它的總結；Agent 停下時人真的回覆決定，Agent 沒有在人同意前寫入 |
-| **E. 證據與反事實紀律** | reviewed 事實與候選分得清；每條新規則有 `killed`；只認 `killed` 字樣；survived 時補測試而不是換字串 | 紀錄檔寫「未證明」而不是假裝完成；候選不自稱 reviewed |
+| **E. 證據與反事實紀律** | reviewed 事實與候選分得清；要登記的新規則都有 `killed`（D3c 每一條）；只認 `killed` 字樣；survived 時補測試而不是換字串 | 紀錄檔寫「未證明」而不是假裝完成；候選不自稱 reviewed |
 
 ## 2. 各段觀察項與介入訊號
 
@@ -132,7 +132,7 @@
 
 | 等級 | A. DDD 決策 | H. Human-in-the-loop | E. 證據與反事實紀律 |
 |---|---|---|---|
-| **看得到** | 決策卡先於實作，owner／不變量／邊界有理由，Agent 照做 | 每個停點都有人看實際輸出、核准計畫、Review Diff | reviewed／候選分清；每條新規則 `killed` 或如實標未證明；survived 會補測試 |
+| **看得到** | 決策卡先於實作，owner／不變量／邊界有理由，Agent 照做 | 每個停點都有人看實際輸出、核准計畫、Review Diff | reviewed／候選分清；要登記的新規則 `killed`，其餘如實標未證明；survived 會補測試 |
 | **部分** | 有決策但事後補寫，或理由只有名稱 | 有停點但常直接接受 Agent 總結 | 有 counterfactual 但只看 exit code，或未證明的沒標 |
 | **還沒看到** | 需求卡直接丟給 Agent | Agent 自行跑到底 | 候選自稱 reviewed；沒有 counterfactual |
 

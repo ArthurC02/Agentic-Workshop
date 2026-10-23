@@ -21,16 +21,17 @@ id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
 先記下原 Repo 做到哪裡，再把 Recovery 解成和原 Repo 同一層的 `resume-d1`；原 Repo 不動。
 - 按上方按鈕下載 `recovery-dlc-d1.zip`，存到「下載」資料夾
 - 把下方提示詞貼給**原本**的 Agent
+- Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許
 
 ② 貼給 Agent
 
 ```text
-我要改用 D1 Recovery 接續，recovery-dlc-d1.zip 在下載資料夾。照 dlc-recovery 做步驟 1：先問我做到哪、為什麼沒完成，原 Repo 不動。做完用 check 檢查。
+我要改用 D1 Recovery 接續，recovery-dlc-d1.zip 在下載資料夾。照 dlc-recovery 做步驟 1：先問我做到哪、為什麼沒完成，原 Repo 不動。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：resume-d1 已建立，原 Repo 沒有被改動。
@@ -53,12 +54,12 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 ② 貼給 Agent
 
 ```text
-我要改用 D1 Recovery 接續。照 ../../recovery-d1/recovery-dlc-d1/RECOVERY.md 第 2 節還原並驗證，domain-memory/ 不要 commit。做完用 check 檢查。
+我要改用 D1 Recovery 接續。照 ../../recovery-d1/recovery-dlc-d1/RECOVERY.md 第 2 節還原並驗證，domain-memory/ 不要 commit。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
-Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：測試全部 passed，Registry is valid.，domain-memory/ 還是未追蹤。
