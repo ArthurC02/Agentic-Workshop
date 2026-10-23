@@ -61,7 +61,7 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 依 notes/、docs/handoffs/ 與 git log，把今天每個人工把關點列成清單（來源與定義的決定、夥伴核准、D3 的選項與交接單、反事實檢查、交接單的引用查證），每步一行：步驟、留下了什麼證據、同一個人在同一台機器上能不能自己完成。
 再替 Agent 的成果打分：以最後一次人核准的模型當基準答案（git log 最上面一個訊息含「套用」的 commit，換掉下面的 COMMIT），和現在的模型比對：
 dm compare-registry --gold-root domain-memory --gold-commit COMMIT --candidate-root domain-memory --save ../../tmp/retro-compare.json
-用白話回報 overall 的 precision 與 recall；copied_matches 與 overall_independent（排除照抄的 copied_evidence 才是誠實的分數）；每個類別的 missed 與 extra，missed 不是 0 就指出是哪一筆、可能是哪一段改掉的。最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不改程式和 domain-memory/。做完用 check 檢查。
+用白話回報 overall 的 precision 與 recall；copied_matches 與 overall_independent（排除照抄的 copied_evidence 才是誠實的分數）；每個類別的 missed 與 extra，missed 不是 0 就指出是哪一筆、可能是哪一段改掉的；extra 的 id 可能是被配走的另一筆，對照 dm export 再下結論。最後補一句：要證明「真的有另一個人審查過」，還缺什麼。不改程式和 domain-memory/。做完用 check 檢查。
 ```
 
 ③ 確認結果

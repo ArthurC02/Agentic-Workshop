@@ -38,7 +38,7 @@
 - **External systems（外部系統）**：每個外部系統：領域程式要它做什麼、必須分辨哪些結果、測試用什麼替身。
 - **Unknowns（未知事項）**：需求卡上仍未決定的問題；`verify-sources` 回報過期（stale）的來源與還沒經過來源確認的新檔案，註明留給下一次成對核准；沒有已審查規則的 Context；`notes/d4.md` 列為未完成的事實；查不到的 id。
 - **Proof obligations（必須用測試證明的事）**：規則或驗收條件編號 → 測試名稱，加上最後一次完整 `pytest -q` 的 passed／failed 數。
-- **Counterfactual check（反事實檢查結果）**：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed。每列寫規則 id｜改壞的地方（檔案:行，原字串 → 改後）｜測試｜結果，只列實際看到 killed 的，沒有就寫「未證明」。用過 Recovery 時沒有 D3 的反事實紀錄：寫「未證明」，並在 Unknowns 註明「Recovery 不含」。
+- **Counterfactual check（反事實檢查結果）**：故意改壞一處程式，確認測試會失敗；抓到就顯示 killed。每列寫規則 id｜改壞的地方（檔案:行，原字串 → 改後）｜測試｜結果，只列實際看到 killed 的，沒有就寫「未證明」。Recovery 提供的段落沒有反事實紀錄：那幾段寫「未證明」，並在 Unknowns 註明「Recovery 不含」；自己做的段落照實列。
 
 核對時問 Agent 這四件事就夠了：
 

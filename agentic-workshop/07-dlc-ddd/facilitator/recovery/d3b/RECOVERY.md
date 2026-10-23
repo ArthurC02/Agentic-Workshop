@@ -87,7 +87,7 @@ fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf
 )
 ```
 
-Agent 把結果寫進 `notes/recovery-d3b.md` 的「簽章接手」（fingerprint 只寫前 12 碼），列出這次要 commit 的檔案，夥伴回「同意」後：
+Agent 把結果寫進 `notes/recovery-d3b.md` 的「簽章接手」（fingerprint 只寫前 12 碼），列出這次要 commit 的檔案（`amend-policy` 改過的 `domain-memory/` 政策檔與稽核紀錄也在裡面，屬預期），夥伴回「同意」後：
 
 ```powershell
 git add -A -- . ':!records'

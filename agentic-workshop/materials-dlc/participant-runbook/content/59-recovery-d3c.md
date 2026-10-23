@@ -50,7 +50,7 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 
 Recovery 的簽章歷史來自另一把金鑰。夥伴還原歷史後，改用自己的金鑰簽章，之後的 commit 才通得過推送檢查。
 - 夥伴結束原 Repo 裡自己的 Agent 對話，在 `resume-d3c` 另開一個終端機，啟動自己的**新**對話
-- Agent 列出要 commit 的檔案時，確認裡面沒有私鑰檔 `signing-key`、沒有 `records/`，再回「同意」
+- Agent 列出要 commit 的檔案時，確認裡面沒有私鑰檔 `signing-key`、沒有 `records/`，再回「同意」；`domain-memory/` 的政策檔和稽核紀錄（接手金鑰時改的）在清單裡是預期的
 
 ② 貼給 Agent
 

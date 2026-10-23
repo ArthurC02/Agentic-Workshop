@@ -46,7 +46,7 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 做完告訴我 Skill 的完整路徑，再用 check 檢查。
 ```
 
-Agent 安裝套件約要一分鐘，趁這時先讀下方 ④ 的小卡。
+Agent 安裝套件、跑測試約要一到三分鐘，趁這時先讀下方 ④ 的小卡。
 
 ③ 確認結果
 

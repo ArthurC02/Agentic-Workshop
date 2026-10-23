@@ -34,6 +34,7 @@
     <p><b>說（約 20 秒）</b>：「D2 兩人一組：提案者的 Agent 準備提案（變更審查包）；夥伴持簽章金鑰，在自己的 Agent 對話裡讀審查包、自己回核准，Agent 才簽章。提案者的 Agent 不碰金鑰、不核准、不 commit。順序已寫在提示詞裡，照貼即可。卡 5 分鐘就貼紅色便利貼，我們有降級路線。」</p>
     <p><b>開始前</b>：夥伴另開終端機和新的 Agent 對話，兩人各貼 Runbook「開始前」的一行角色說明。兩個角色各能做什麼已寫在 AGENTS.md「兩個角色」，新對話會自己讀；夥伴的 Agent 先引用它說出這個對話不能做什麼，答不出來就請學員說「請先讀 AGENTS.md」。回到工作：誰能核准、誰只能提案，寫進團隊的 AGENTS.md，每個新對話都會照做；簽章提交這種一步步的做法，則是 signed-commit 這類 Skill。</p>
     <p><b>操作</b>：說完翻到檢查點 1；之後每到時間點翻到下一頁。</p>
+    <p><b>時間（演練實測）</b>：每次 check 都實際重跑 Plugin 指令或測試，約 1 分鐘，已算在各檢查點時間裡；② 已回成功／失敗就不要另貼 ③ 再跑一次。檢查點 2 的 <code>amend-policy</code> 印出 base revision 過期、要重新核准，是因為還沒有提案，屬正常（AGENTS.md 有寫）。</p>
     <p><b>固定順序（Spike）</b>：簽章在第一個 Registry commit 前設定 → <code>amend-policy</code> 依序 authorized_signers、review_trigger git-push、review_mode scm-verified → hook → governance-readiness ready → Change Package 放 <code>domain-memory/changes/&lt;id&gt;/</code>。</p>
     <p><b>降級</b>：第 45 分鐘或任一步卡 5 分鐘，私下提供給該組 <code data-code="dlc-rec-d2"></code>（已審查的 Domain Memory＋簽章歷史）：照 Recovery 頁三步切換；夥伴在 <code>resume-d2</code> 自己的 Agent 對話以自己的金鑰接手並做一次簽章 commit，提案者的 Agent 再跑 <code>validate --require-reviewed</code> 與 <code>verify-audit</code>。Recovery 不作為小組成果評分。</p>
     <p><b>R3 要明講</b>：<code>record-approval</code> 只比對字串，同機雙身分仍可通過；今天是教學示範，不是安全保證。<b>奇數組</b>：第三人當觀察員（Observer），看核准與簽章是否只出現在夥伴的 Agent 對話，並一起看 <code>verify-audit</code> 結果。</p>

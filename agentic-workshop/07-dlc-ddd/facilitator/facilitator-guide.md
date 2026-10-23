@@ -177,8 +177,8 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 1. 學員貼提示詞：Agent 存下需求卡（D3a 由提案者下載 `participant-dlc-d3a.zip`，Agent 照 `AGENTS.md` 解到 `../../pkg-d3a`，需求卡與決策卡都在裡面；D3b、D3c 學員按需求卡的「複製 Markdown」接在提示詞後面）、執行 `resolve-terms`／`get-context`，已知事實與知識缺口分開寫進 `notes/d3*.md`。
 2. Agent 每題提兩個選項＋證據（「類別:id」或「檔案路徑:行號」），**人**討論後以短回覆選擇（例如「1A、2B」）；`analyze-boundary` 一次回報兩個方向（`source_depends_on_target`、`target_depends_on_source`），兩邊都空才是 `no_registered_collaboration`；Agent 依選擇寫成交接單（`docs/handoffs/d3*.md`），人確認不變量後回「同意」。
 3. Agent 依交接單先提計畫、等「同意」，分兩段實作，每段停下回報**實際**測試結果，人回「繼續」才往下。
-4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 寫 `./.venv/Scripts/python.exe`（不經 shell，見常見問題第 2 條）並帶 `-W ignore::DeprecationWarning`，讓套件過時警告（例如用 D2 Recovery 時）不混進 `failure_evidence`。`inconclusive` 不算 killed 也不算 survived：逾時就縮小測試範圍，改壞後程式無法載入就換改法；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
-5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題；D3b、D3c 再讀變更簡報 `brief --base HEAD --markdown`，只看 Attention 裡改動碰到引用行的已審查紀錄，逐筆判斷模型有沒有變（名詞、負責的 Context、不變量或規則、邊界、事件或對外約定），只搬移程式的重構不登記（「模型變更與重構」在 D3b 檢查點 5 才第一次講；「lies outside every Context」是因為 Context 沒登記程式路徑，略過；不執行它建議的 `recite`）；D3c 的規則在 `d3c-records.json` 寫上 `aggregate`，規則和 Aggregate 不在同一個 Context 時 Plugin 拒絕登記，讓學員決定哪一邊放錯；人同意後提案者的 Agent 才照 `record-candidates` Skill（`make_record.py`）登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**照 `signed-commit` Skill 做簽章 commit（與 D2 相同）。
+4. Agent 先列出每條新規則要改壞哪裡，人同意後才執行 `counterfactual`；只認 `killed`，survived 補測試用同一組字串重跑。Agent 指出沒有任何輸入分辨得出改壞前後（等價，例如另一段程式也擋住，或輸入不可能落在那個邊界，如 D3a 5% 稅額下整數總額永遠不會落在 .5）時，學員確認後標「等價、未證明」，那個 survived 的 cf 檔保留並一起 commit。`--test-command` 寫 `./.venv/Scripts/python.exe`（不經 shell，見常見問題第 2 條）並帶 `-W ignore::DeprecationWarning`，讓套件過時警告（例如用 D2 Recovery 時）不混進 `failure_evidence`。`inconclusive` 不算 killed 也不算 survived：逾時就縮小測試範圍，改壞後程式無法載入就換改法；被測行為改變、測試讀結果時出錯（例如回應少了欄位的 KeyError）算 killed；改壞的程式自己意外崩潰（和規則無關的 NameError、KeyError、TypeError、AttributeError；演練：不加 `--expect` 時 Plugin 照樣寫 killed，`failure_evidence` 只有一串 FAILED）算 inconclusive，除非規則本身就是丟出或傳出那個例外（例如服務商替身的 ConnectionError）；`failure_evidence` 的斷言不是守住規則的那一行、或看不到斷言時，加 `--expect`（具體斷言值，不能只寫 `assert`）重跑；只有被拒絕執行、沒有 verdict 的那次留下的 cf 檔，重跑前先刪掉。
+5. Agent 用 `git status --short`（新檔只出現在這裡）、`git diff` 與測試回答四個審查問題；D3b、D3c 再讀變更簡報 `brief --base HEAD --markdown`，只看 Attention 裡改動碰到引用行的已審查紀錄，逐筆判斷模型有沒有變（名詞、負責的 Context、不變量或規則、邊界、事件或對外約定），只搬移程式的重構不登記（「模型變更與重構」在 D3b 檢查點 5 才第一次講；「lies outside every Context」是因為 Context 沒登記程式路徑，這些行不算進摘要，但它們點名、又在檢查點 1 清單上的事實仍逐筆看；不執行它建議的 `recite`）；D3c 的規則在 `d3c-records.json` 寫上 `aggregate`，規則和 Aggregate 不在同一個 Context 時 Plugin 拒絕登記，讓學員決定哪一邊放錯；人同意後提案者的 Agent 才照 `record-candidates` Skill（`make_record.py`）登記，**仍是候選**；提案者的 Agent 不得執行 `record-approval`、`amend-policy`、`git commit`／`push`。夥伴讀過紀錄後，在**自己的 Agent 對話**照 `signed-commit` Skill 做簽章 commit（與 D2 相同）。
 6. 停手 → Agent 整理決策摘要 →「請先停手」頁 → 兩頁揭曉 → 學員填一張揭曉對照表單（兩個下拉、一個勾選、一句話）→ 收尾：Runbook 檢查點 6 ④ 的三題請兩人對照參考設計時一起聊，挑第 3 題請 1–2 組分享（約 1 分鐘）。
 
 **巡場看流程**：每組是否「貼提示詞 → 看 Agent 回報 → 自己做決定 → 讓 Agent 記錄」。決策點（檢查點 2–5）學員要自己選，回「你決定」就介入。卡住時給可直接貼的補救提示詞，不替學員決定：
@@ -209,27 +209,27 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 | 分鐘 | 檢查點 | 決策點 |
 |---|---|---|
-| 70–73 | 1 · 讀需求卡與已審查事實 | 宣布核心／延伸與 API 小節。H1：「逾時代表什麼？對方可能已經開出發票了嗎？」 |
-| 73–78 | 2 · 對外介面（Port）與邊界決策 | 發票歸哪個 Context？Port 放哪層？誰把 Order 翻成發票語言？H2：「付款 Gateway 沒有 Port，這次要照做還是改？」 |
-| 78–85 | 3 · 交接單與 Agent 實作 | 盯鎖：`pay_group` 持有 RLock 時呼叫 `pay`；盯「付款請求內同步重試 5 次」 |
-| 85–89 | 4 · 反事實檢查 | 先做建議的 3 個 |
-| 89–92 | 5 · 審查變更，新知識寫回模型 | 有沒有供應商代碼（`9001`、`2001`）出現在 Domain／Service；候選清單把同一個測試守住的規則排在一起（加深「不變量」：同一個不變量的不同面向，該同屬一個 Context），H：「這幾條規則分在兩個 Context，那個測試要歸誰？」 |
+| 70–72 | 1 · 讀需求卡與已審查事實 | 宣布核心／延伸與 API 小節。H1：「逾時代表什麼？對方可能已經開出發票了嗎？」 |
+| 72–76 | 2 · 對外介面（Port）與邊界決策 | 發票歸哪個 Context？Port 放哪層？誰把 Order 翻成發票語言？H2：「付款 Gateway 沒有 Port，這次要照做還是改？」 |
+| 76–83 | 3 · 交接單與 Agent 實作 | 盯鎖：`pay_group` 持有 RLock 時呼叫 `pay`；盯「付款請求內同步重試 5 次」 |
+| 83–87 | 4 · 反事實檢查 | 先做建議的 3 個；第 87 分沒跑完的標「未證明」 |
+| 87–92 | 5 · 審查變更，新知識寫回模型 | killed 規則最多登記 2 條，其餘留給 D4；有沒有供應商代碼（`9001`、`2001`）出現在 Domain／Service；候選清單把同一個測試守住的規則排在一起（加深「不變量」：同一個不變量的不同面向，該同屬一個 Context），H：「這幾條規則分在兩個 Context，那個測試要歸誰？」 |
 | 92–95 | 6 · 停手與揭曉對照 | 揭曉：新的 Invoicing Context；Port `InvoiceIssuer` 只回 ISSUED／REJECTED／UNAVAILABLE；Adapter 翻譯代碼、逾時、連線失敗；鎖內只建 PENDING，鎖外呼叫一次；冪等鍵＝order_id |
 
-時間判斷：參考解答完整 15 條 AC 約 340 行程式＋320 行測試，25 分鐘只夠核心切片。第 85 分 Agent 還沒做完核心也要進 counterfactual。
+時間判斷：參考解答完整 15 條 AC 約 340 行程式＋320 行測試，25 分鐘只夠核心切片；演練實測檢查點 3 要 12–15 分鐘。Runbook 頁首的「最低完成線」有時間點：第 83 分還沒做完核心，就請 Agent 做完手上這一步、跑完整測試收尾，進 counterfactual（每條核心不變量一條 killed）；第 87 分不論做到哪都進 Review。改用 D2 Recovery 的組直接照這條線做。
 
 ### 3.7 D3b 點數折抵（95–125，群組 `dlc-d3b`）
 
 | 分鐘 | 檢查點 | 決策點 |
 |---|---|---|
-| 95–98 | 1 · 讀需求卡與已審查事實 | 宣布核心／延伸與 API 小節。H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」 |
-| 98–103 | 2 · 決定負責的 Context 與不變量 | 點數歸誰、理由；30% 上限歸誰；reserve／restore 的時機。H2：「預留要不要成為獨立概念？」 |
-| 103–111 | 3 · 交接單與 Agent 實作 | 盯「點數塞進 `DiscountPolicy`」與「從 `total_fare` 扣點」；扣點位置要在座位規劃之後、寫入之前 |
-| 111–116 | 4 · 反事實檢查 | 建議的 4 個，其中「上限以優惠後總額」「退款＝Order.amount」是先 survived 再補測試的好示範 |
-| 116–121 | 5 · 審查變更，新知識寫回模型 | 商業數字（30、100）是否只有一個家 |
-| 121–125 | 6 · 停手與揭曉對照 | 揭曉：Membership 擁有點數與折抵規則（含 30% 上限）；Pricing 與三條計價迴圈一行不改；Booking 記折抵點數、推導 `payable_amount`；閘道扣 `payable_amount`＝Order.amount；發票自動是 500 → 476＋24 |
+| 95–97 | 1 · 讀需求卡與已審查事實 | 宣布核心／延伸與 API 小節。H1：「折抵要加在哪裡，才不會漏掉其中一條計價路徑？」 |
+| 97–101 | 2 · 決定負責的 Context 與不變量 | 點數歸誰、理由；30% 上限歸誰；reserve／restore 的時機。H2：「預留要不要成為獨立概念？」 |
+| 101–109 | 3 · 交接單與 Agent 實作 | 盯「點數塞進 `DiscountPolicy`」與「從 `total_fare` 扣點」；扣點位置要在座位規劃之後、寫入之前 |
+| 109–114 | 4 · 反事實檢查 | 建議的 4 個，其中「上限以優惠後總額」「退款＝Order.amount」是先 survived 再補測試的好示範 |
+| 114–122 | 5 · 審查變更，新知識寫回模型 | 商業數字（30、100）是否只有一個家；killed 規則最多登記 2 條、取代舊事實的候選最多 3 項，已有新規則取代的舊事實只在 notes 寫「舊 id → 新規則 id」；brief 裡含「lies outside every Context」的行不算進摘要，但它點名、又在檢查點 1 清單上的事實仍逐筆看（演練：`MEMBER-004` 只出現在這種行） |
+| 122–125 | 6 · 停手與揭曉對照 | 揭曉：Membership 擁有點數與折抵規則（含 30% 上限）；Pricing 與三條計價迴圈一行不改；Booking 記折抵點數、推導 `payable_amount`；閘道扣 `payable_amount`＝Order.amount；發票自動是 500 → 476＋24 |
 
-時間判斷：程式只約 +80 行，核心切片可行；省下的時間給 Review。D3a 未完成的組，揭曉 D3a 後已可用 `dlc-rec-d3a` 接續，本段不用從頭補 D3a。
+時間判斷：程式只約 +80 行，核心切片可行；省下的時間給 Review（本段 8 分鐘：brief、候選、夥伴 commit，演練實測 5 分鐘不夠）。最低完成線：第 109 分檢查點 3 沒做完就收尾進 counterfactual，第 114 分一定進 Review。D3a 未完成的組，揭曉 D3a 後已可用 `dlc-rec-d3a` 接續，本段不用從頭補 D3a；切換用掉 8–10 分鐘，直接照最低完成線做。
 
 ### 3.8 D3c 團體部分退款（125–155，群組 `dlc-d3c`）
 
@@ -242,7 +242,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 148–152 | 5 · 審查變更，新知識寫回模型 | **不可壓縮**。看整筆退票路徑、恆等式在哪裡成立、座位四份是否一致 |
 | 152–155 | 6 · 停手與揭曉對照 | 揭曉：團體 Booking 擁有旅客取消（`cancel_passengers` 唯一入口，全部檢查完才寫入）；費率帶與 D ≤ 0 不受理在同一模組、逐位向下取整；只釋放被取消旅客的座位；退款紀錄改 append-only 清單；部分取消過不可整筆退 |
 
-**時間風險：這是三張卡最重的一張**。參考解答 +141 行、是唯一需要改既有資料結構的一張；核心切片勉強放得下，前提是學員從第 125 分就照卡上的 API 做。規格 R2 允許只完成 Aggregate 與兩條規則。寧可少做 AC，也不要吃掉第 148–152 分的 Review：本段教學重點全在 Review。
+**時間風險：這是三張卡最重的一張**。參考解答 +141 行、是唯一需要改既有資料結構的一張；核心切片勉強放得下，前提是學員從第 125 分就照卡上的 API 做。規格 R2 允許只完成 Aggregate 與兩條規則（Runbook 頁首的「最低完成線」：第 142 分沒做完就收尾進 counterfactual，第 148 分一定進 Review；改用 D3b Recovery 的組直接照這條線做）。寧可少做 AC，也不要吃掉第 148–152 分的 Review：本段教學重點全在 Review。
 
 ### 3.9 D4 交接（155–165，群組 `dlc-d4`）
 
@@ -254,7 +254,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 
 **時間**：D4 實際要 11–13 分鐘（檢查點 2、3 由 Agent 自己回成功／失敗之後），10 分鐘做不完是常態。第 165 分還沒完成就收在最低完成線：「檢查點 1 + 只含 Unknowns 的交接單，其他段寫『未完成』」，夥伴 commit 後進回顧。第 150 分決定改用 D3c Recovery 的組（切換要 5–7 分鐘，會吃掉大半個 D4），D4 一開始就只做這條線。
 
-看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。第 150 分決定切換的組用 `dlc-rec-d3c` 接續 D4（見 §4）；Recovery 沒有 D3 的交接單、情境卡與 `cf-*.json`，Counterfactual check 一律寫「未證明」，Unknowns 註明「Recovery 不含」。
+看什麼：Agent 是否等學員回覆才寫入；commit 是否在 Maintainer 的對話執行；id 核對清單是否全部查得到（查不到的移到 Unknowns，而不是換成猜的 id）；候選沒有寫成 reviewed。第 150 分決定切換的組用 `dlc-rec-d3c` 接續 D4（見 §4）；Recovery 提供的段落沒有交接單、情境卡與 `cf-*.json`：Counterfactual check 那幾段寫「未證明」，Unknowns 註明「Recovery 不含」；自己做的段落照實列。
 
 收尾（第 165 分前）：請學員看 Runbook「完成後想一想」，挑第 2 題請 1–2 組分享（約 1 分鐘）。回顧檢查點 2 會再引用各段的答案。
 
@@ -299,7 +299,7 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 6 | `ssh-keygen` 行為不同、金鑰路徑找不到；或驗證簽章時出現 `Git commit signature was not checked`，後面接 `cannot spawn ssh-keygen`（Windows）或 `cannot run ssh-keygen`（macOS） | Git Bash 與 PowerShell 的 `ssh-keygen` 不同；後者是 Git 在目前的 PATH 找不到或啟動不了 `ssh-keygen`，簽章沒有被檢查，不是簽章錯 | 兩者皆可，但同一組全程用同一種 shell。找不到時先跑開場的 `doctor.py`（會檢查 `ssh-keygen`）；Windows 在「選用功能」啟用 OpenSSH Client，或改在 Git Bash 執行；macOS 確認 `which ssh-keygen` 指到內建的 `/usr/bin/ssh-keygen`。再驗證一次 |
 | 7 | clone／還原後 `verify-evidence` 把引用全部報成 `stale`（`verify-sources` 則把來源列在 `content_changed`） | `core.autocrlf=true` 轉換換行，Plugin 以原始位元組算雜湊 | 起始 Repo 已有 `.gitattributes`（`* -text`）；在已 `git init` 的 Repo 執行 `doctor.py` 時也會檢查。不要刪它。Recovery 第一次寫入後 registry 檔整檔換行改變（CRLF→LF）是預期，diff 很大但雜湊與稽核不受影響 |
 | 8 | push 時 hook 輸出亂碼或編碼錯誤 | hook 內 Python 用系統編碼 | `AGENTS.md`「Git 與金鑰」已要求 push 前設 `PYTHONUTF8=1`（PowerShell `$env:PYTHONUTF8 = '1'`，Git Bash `export PYTHONUTF8=1`）；Agent 漏了就請學員說「先讀 AGENTS.md『Git 與金鑰』再 push」 |
-| 9 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒） |
+| 9 | 安裝很久或有人跑 `pip install -e .` | 不需要可編輯安裝 | 只用 `pip install -r requirements.txt`（約 50 秒；連同建 venv 與第一次測試，演練實測約 1–3 分鐘）。之後每次 `check` 都實際重跑指令，約 1 分鐘，已算在檢查點時間裡 |
 | 10 | `scan-secrets` 有 finding | 金鑰放進 Repo 內（含被 `.gitignore` 忽略的資料夾，只有 `.git`、`.venv`、`node_modules` 不掃；Repo 外的 `.ssh` 不會被掃到） | 金鑰只放 `%USERPROFILE%\.dlc-keys\<代號>\`（Git Bash `~/.dlc-keys/<代號>/`），預期 exit 0；另外，不要和 `~/.ssh` 的個人金鑰共用，那是不共用金鑰的規則，不是 scan-secrets 會抓的問題 |
 | 11 | PowerShell 說「已停用指令碼」 | 執行原則 | `Set-ExecutionPolicy -Scope Process Bypass -Force`（只影響目前視窗） |
 | 12 | macOS：下載資料夾沒有 zip，只有同名資料夾 | Safari 預設「下載後打開『安全』的檔案」，自動解開後把 zip 丟到垃圾桶 | Safari › 設定 › 一般 取消該項，或改用 Chrome，再重新下載。Recovery 的 macOS 指令找不到 zip 時會印出這個提示 |
@@ -316,13 +316,15 @@ Recovery：第 35 分鐘 D1 未完成的組，私下提供 `dlc-rec-d1`（Repo�
 | 23 | `check` 回「失敗：…」，但學員看 Agent 的回報覺得這一步做對了 | `check` 對照的是 notes、實際指令結果和學員的決定，三樣有一樣對不上就失敗；常見是 notes 沒寫、或寫的和實際輸出不一致，也可能真的漏了一步 | 請學員問：「是哪一個條件沒過？貼出你檢查時執行的指令和輸出。」只是 notes 沒寫或寫錯，就請 Agent 補正後再「用 check 檢查剛才這一段」；真的漏做就照「失敗時」處理。不要讓 Agent 改測試、改 Registry 或放寬條件來換成功 |
 | 24 | D2 檢查點 4 第二段：夥伴的 Agent 跑 `verify-proposal` 回 `ERROR: proposal base revision is stale; rebase-proposal, then obtain fresh approval: …`（exit 1）；或沒停下照樣 commit，檢查點 6 的 `ship-package` 回 `finalize-proposal: only a verified proposal may be finalized`、`status` 仍是 `submitted` | 提交提案後、夥伴核准前，模型又被改過（例如提案者的 Agent 又登記了候選）。演練實測：此時 `ship-package` 會先寫入簽章證明（`completed` 有 `attest-signed-commit`），和第 19 列「什麼都沒寫入」不同 | Runbook 檢查點 4 第二段已要求 `verify-proposal` 沒回 `Proposal test evidence verified.` 就停下、不 commit。處理同第 19 列：誤加的候選用 `retract-candidate` 撤回後重跑檢查點 4 第二段；要留下就 `rebase-proposal`，再重貼檢查點 4 第二段、檢查點 5、檢查點 6 |
 | 25 | 走第 19／24 列的 `rebase-proposal` 之後，檢查點 6 的 ③ 回失敗：`validate --require-reviewed` 說某筆 `is not reviewed` | `rebase-proposal` 不改提案內容，提交後才登記的候選不會跟著升級（演練實測） | 屬預期，不算這組失敗：請提案者的 Agent 把這筆候選和原因記進 `notes/d2.md`，留到下一次核准；其他項目（applied、`verify-audit` valid、push）照常確認。不要為了讓 ③ 通過而手改紀錄或撤回已核准的內容 |
+| 26 | D2 檢查點 2 或 Recovery 步驟 2：`amend-policy` 印出 `The Registry revision moved once, so every captured base revision is now stale and needs fresh approval.` | 改政策會讓 Registry 版本前進一次；已送出、還沒套用的提案就得重新核准 | 這時還沒有提案，屬正常提醒，不用處理（`AGENTS.md`「領域模型」已寫）。Agent 想因此重做或停下時，請學員說「照 AGENTS.md，這時沒有提案，繼續」。檢查點 3 送出提案之後才跑 `amend-policy`，就照第 19／24 列處理 |
+| 27 | `make_record.py --batch` 只回報一筆錯誤就停了 | 批次在第一筆沒通過的紀錄就停下，後面的還沒檢查 | 屬預期（`record-candidates` Skill 已寫）：修好那一筆再重跑，直到全部通過；不要讓 Agent 改成一筆一筆手寫進 `domain-memory/` |
 
 ## 6. 時間風險
 
 | 風險 | 早期訊號 | 處置 |
 |---|---|---|
 | D1、D2 各 25 分鐘偏緊（規格 R1） | 第 22 分還不到 3 個詞；第 45 分還沒 submit | 不延長；第 35 分 `dlc-rec-d1`、第 45 分或卡 5 分鐘 `dlc-rec-d2` |
-| D3 依序進行，一段落後連鎖拖延（R2） | 第 85／111／142 分 Agent 還在寫核心 | 照樣進 counterfactual 與 Review；揭曉後用 `dlc-rec-d3*` 接續下一段 |
+| D3 依序進行，一段落後連鎖拖延（R2） | 第 83／109／142 分 Agent 還在寫核心 | 照各頁「最低完成線」收尾，照樣進 counterfactual 與 Review（第 87／114／148 分）；揭曉後用 `dlc-rec-d3*` 接續下一段，下一段直接照最低完成線做 |
 | **D3c 最重** | 第 133 分還在討論邊界；第 142 分核心未完成 | 只做 Aggregate 與兩條規則也合格；**保住第 148–152 分 Review**；延伸全部放棄 |
 | Agent 自己發明 API | 交接單沒提 API、Agent 計畫裡出現卡上沒有的路徑 | 叫他們回到卡上「API」小節，Handoff 明寫「介面照卡」 |
 | 延伸 AC 吃掉時間 | 在核心沒做完前做發票資訊驗證、Audit、查詢欄位 | 指著卡上的［延伸］標記：「這些最後做」 |

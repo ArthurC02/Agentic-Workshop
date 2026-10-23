@@ -6,8 +6,8 @@ Usage:
     py -3.13 -X utf8 scripts/build_delivery_dlc.py --verify <dir>     # inspect an existing candidate
 
 Same manifest schema as package-manifest.json plus one key per package: "sources" (glob patterns relative
-to the repo root) and optional "destination_root" {"from", "to"} (recovery packages; participant-dlc-open uses
-"to": "" so it unpacks to repository/, tools/, vendor/ with short paths). The build fails when
+to the repo root) and optional "destination_root" {"from", "to"} (recovery packages; the participant-dlc-* packages use
+"to": "" so they unpack to repository/, tools/, vendor/, worksheets/, scenarios/ with short paths). The build fails when
 a declared source matches nothing; --allow-missing (dev only) skips those sources with a warning, and a
 package left without files is skipped and listed under "missing_packages" in build-evidence.json.
 Pinned files must equal what the sources enumerate (no unpinned additions, no vanished files, no drift).

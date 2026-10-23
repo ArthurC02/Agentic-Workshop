@@ -16,7 +16,7 @@ description: 把使用者同意的詞彙、Context、規則等登記成 domain-m
    - id 用小寫英文加連字號；規則 id 沿用文件裡的規則編號。
    - 兩個 Context 確實共用同一個定義，才寫 `"context": ["id1", "id2"]`。同一個詞在兩個 Context 意思不同，各寫一筆（不同 id），互加 `"not_same_as": ["對方的 id"]`。使用者選了別名，加 `"synonyms": ["別名"]`；別名不可重複，也不可和任何詞彙的名稱相同。
    - Context id 改了，同步改詞彙和規則的 `context`。
-2. 先試產生、不登記：`<py> -X utf8 ../../tools/make_record.py --batch d1-records.json`。只回報沒通過的那幾筆與原因（全部通過就說「全部通過」）。
+2. 先試產生、不登記：`<py> -X utf8 ../../tools/make_record.py --batch d1-records.json`。它遇到第一筆沒通過就停下：回報第一筆沒通過的與原因，修好再重跑，直到全部通過（全部通過就說「全部通過」）。
 3. 使用者要登記時，同一個指令加 `--upsert`（同一種資產一起登記：全部成功或全部不登記）。
 
 ## 單筆（D3、D4）

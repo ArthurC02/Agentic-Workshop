@@ -328,12 +328,12 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/skills/check/SKILL.md",
           "destination": "skills/check/SKILL.md",
-          "sha256": "933fe5bf9dac8c723519e65c2de9ed0c34aa384e10d1f6616570aa86111ef3ed"
+          "sha256": "14b3a511a50a317c2c48df39e143cb4c08532773638b8d4149bba5ef16af6c6a"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/skills/counterfactual/SKILL.md",
           "destination": "skills/counterfactual/SKILL.md",
-          "sha256": "8af8d0c216937873668d15b9dd1df17c8fec4a8d870de852ce7d767573b1c3b9"
+          "sha256": "bee84f8711419943cb1002838cfe722a3eeb68e303d533f6ce61466d62ea1d41"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/skills/dlc-recovery/SKILL.md",
@@ -343,7 +343,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/skills/record-candidates/SKILL.md",
           "destination": "skills/record-candidates/SKILL.md",
-          "sha256": "dce5d3e90b709cf57a1ea2ad4b022d968ddafc30746766d7539ea7637b01be9e"
+          "sha256": "c05163a68c2fe1c6aaf926ae4fe9ebc2a66dec711cb584a9a59bacb524ebf2cf"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/skills/signed-commit/SKILL.md",
@@ -407,7 +407,7 @@
         }
       ],
       "generated": {
-        "repository/smart-ticket-dlc-base/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的訂票後端。團隊正用 DDD（Domain-Driven Design，領域驅動設計）替它建立共用的領域模型，存在 `domain-memory/`，由 domain-memory Plugin 管理。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- 指令都在 Repo 根目錄（開啟的資料夾：`smart-ticket-dlc-base`，改用 Recovery 時是 `resume-` 開頭的資料夾）執行。學員包的 `tools/`、`vendor/`、`skills/`、`worksheets/` 在上兩層 `../../`；很長的輸出存到 `../../tmp/`。\n- Python 固定 3.13，虛擬環境在 `.venv`。每個指令可能在新的終端機程序執行，啟用過的 venv 不會延續，所以直接呼叫裡面的 Python。找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）；輔助腳本 `py -3.13 -X utf8 ..\\..\\tools\\<腳本>.py`。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`；輔助腳本 `python3.13 -X utf8 ../../tools/<腳本>.py`。\n- 安裝：`<Python> -m pip install -r requirements.txt`，不要 `pip install -e .`。測試：`<Python> -m pytest -q`，回報最後一行（起點是全部通過、沒有 warning）。\n- Plugin 一律經學員包的 dm 腳本，不直接執行 Plugin 裡的程式（例如 `registry_tools.py`）：\n  - Windows PowerShell：`..\\..\\tools\\dm.ps1 <指令>`；每個新的 PowerShell 程序先執行 `Set-ExecutionPolicy -Scope Process Bypass -Force`。不要加 `2>&1` 或 `*>&1`：Plugin 的提示訊息會被當成錯誤。\n  - Windows Git Bash：`../../tools/dm.sh <指令>`（反斜線換斜線，參數不變）。\n  - macOS：`../../tools/dm.sh <指令>`；出現 permission denied 先執行一次 `chmod +x ../../tools/dm.sh`。\n  - 存輸出用 `--save 檔案`（PowerShell 的 `>` 會存成 UTF-16）。`export`、`verify-evidence` 的輸出很長：存檔後只讀需要的欄位，不整份讀進對話。\n  - 參數與輸出的讀法：`../../tools/README.md` 與各腳本的 `--help`；Plugin 本身的說明在 `../../vendor/domain-memory/`，只讀參考。\n  - 提示詞寫 `dm <指令>` 時，就是依你的終端機用上面的 dm 腳本執行，參數照寫。\n- Plugin 第一次用之前：在 `../../vendor` 解出 `domain-memory-1.2.18.zip`（Windows `Expand-Archive`，Git Bash／macOS `unzip -qo`），逐檔核對 `domain-memory-1.2.18.zip.SHA256SUMS`，在 `../../vendor` 執行（macOS 把 `py -3.13` 換成 `python3.13`）：\n  `py -3.13 -c \"import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.18.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)\"`\n  出現 `SHA MISMATCH` 立刻停下，不使用、也不修正這份 Plugin。版本看 `domain-memory/.claude-plugin/plugin.json` 的 `\"version\"`。\n- 環境健檢：在 `git init` 之後、同一次執行裡先啟用 `.venv`（它檢查 PATH 上的 python 和這個 Repo 的 Git 設定），再跑 `doctor.py`（Windows `py -3.13 -X utf8 ..\\..\\tools\\doctor.py`；macOS `python -X utf8 ../../tools/doctor.py`）。最後一行應是「全部必要項目通過。」；`[!!]` 要處理，`[--]` 只是提醒。Windows 上 venv 的 python 路徑要在 `.venv\\Scripts` 底下、不含 `WindowsApps`。\n- 要讀「下載」資料夾裡的課程 zip：Windows 用 `(Get-ItemProperty 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders').'{374DE290-123F-4565-9164-39C4925E467B}'` 查實際位置（查不到用 `$HOME\\Downloads`）；macOS 是 `~/Downloads`。找不到 zip 就停下告訴使用者，不自己猜內容。\n- JSON 輸入檔（例如 `d1-records.json`、`cp-d2.json`）用你的檔案編輯工具寫成 UTF-8，不用 PowerShell 的 `>`、`Out-File` 或 `Set-Content`。\n- 換行：Plugin 用原始位元組核對證據，這個 Repo 也混用 CRLF 與 LF。改檔時保留每個檔案原本的換行，只改需要的那幾行，不整檔重寫。看差異用 `git diff --ignore-cr-at-eol`；`git status` 有列、diff 沒內容的是只改了換行，另外列；新增的檔案（`??`）不在 diff 裡，要一起算。\n- 紀錄寫在 `notes/`，每段一個檔；交接單寫在 `docs/handoffs/`。\n\n## Git 與金鑰\n\n- Git 身分只設在這個 Repo（`git config --local`，不用 `--global`）：`DLC Proposer`、`proposer@example.com`。夥伴的 commit 在指令裡帶身分：`git -c \"user.name=DLC Maintainer\" -c \"user.email=maintainer@example.com\" commit -S -m \"…\"`。\n- 簽章金鑰在 Repo 外：Windows `%USERPROFILE%\\.dlc-keys\\<身分>\\`（PowerShell 寫 `\"$env:USERPROFILE\\.dlc-keys\\…\"`），Git Bash／macOS `~/.dlc-keys/<身分>/`。私鑰檔 `signing-key`（沒有副檔名）絕不讀取、顯示、複製或移動；`signing.json` 只有可公開的 fingerprint，可以讀。\n- commit 不含 `records/`（`make_record.py` 的暫存）：`git add -A -- . ':!records'`。\n- 不用 `--no-verify` 或任何方式繞過 hook；被擋下就貼出訊息、用白話解釋原因、停下。\n- push 或 commit 會觸發 hook 時，在同一次執行裡先啟用 `.venv`（PowerShell `.\\.venv\\Scripts\\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate`）並設 `PYTHONUTF8=1`：hook 在 PATH 上找 Python 3.10 以上。\n\n## 工作規則\n\n1. 指令、程式和測試都由你做；使用者不打指令、不讀程式。用白話回報做了什麼、結果是什麼，引用關鍵的實際輸出字樣（例如「76 passed」「Registry is valid.」），不貼整段原始輸出。英文術語第一次出現時加中文。\n2. 要使用者決定的事（來源、名詞、Context、規則、邊界、不變量、核准），你只提選項或草稿，每項附證據：`路徑:起-迄`（行號要實際打開檔案核對）或 Registry 的「類別:id」。然後停下等回覆，不替使用者決定。\n3. 每做完一步就停下等使用者，不自動進行下一步。\n4. 沒有實際執行的事一律標「未驗證」；查不到就說查不到，不自己補。\n5. 每個檢查點的結果寫進這段的紀錄檔 `notes/<段落>.md`（例如 `notes/d1.md`、`notes/d3a.md`；沒有就建立），用檢查點名稱當標題，不用等提醒。\n6. 使用者回覆決定（「同意」「選 B」「核准」「退回：…」）時，把決定、決定的人和電腦的目前時間記進這段的 notes。\n7. 不刪除、放寬或跳過既有測試（不用 skip、xfail），不把正確的期待值改成符合錯誤的輸出；一定要改既有測試時，先停下說明理由，等使用者同意。\n8. 沒有使用者的指示，不 commit、不 push。\n\n## 兩個角色（D2 起）\n\nD2 起兩人共用這台機器和 Repo，各用自己的 Agent 對話。對話開頭使用者會說自己是提案者還是夥伴；沒說就先問。\n\n- **提案者的對話**：準備證據與提案（查詢、實作、反事實檢查、變更審查包、送出提案、核准後的套用）。不執行 `init-signing-key`、`amend-policy`、`install-git-hitl-hook`、`record-approval`，不 commit、不 push，不讀 `.dlc-keys` 底下任何檔案，也不改 Git 的簽章設定。\n- **夥伴（Maintainer，持鑰人）的對話**：持有簽章金鑰，審查並核准。審查時只讀、只回報；`record-approval`、簽章 commit 和 push，只在夥伴明確回覆「核准」或「同意」之後做。除了 `record-approval` 寫入的部分，不改提案者準備的程式、測試或 `domain-memory/changes/`。\n- 提案者不能核准自己的提案。\n\n## 領域模型（domain-memory/）\n\n- `domain-memory/` 只經 Plugin 指令和學員包的輔助腳本（`make_record.py`、`fill_package.py`）寫入，不手動編輯裡面任何檔案。\n- 新寫進模型的都是候選（candidate）：附證據的主張，不是事實，不能當成限制，也不寫成「已確認」。\n- 只有夥伴核准、Plugin 套用過的已審查（reviewed）事實才是限制。是不是 reviewed 以指令輸出為準：每筆看自己的 `status`（decisions 類別看 `review_status`）；紀錄檔裡的 `stable`／`draft` 是同一件事的存檔寫法。\n- 已審查事實不能改寫：行為變了，就用新 id 登記一條候選，等下一次核准取代。\n- 來源（哪些資料算證據）由使用者決定。必選 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`；排除規則固定為 `**/__pycache__/**`（測試執行後產生的快取）；`.venv/` 不是來源。\n- 證據只引用已確認的來源：`docs/requirements/`、`docs/adr/`、`src/`，以及 `tests/` 底下的 `test_*.py`。其他檔案（例如 `docs/architecture.md`、`README.md`、`conftest.py`、`notes/`）的證據之後無法升為已審查。D3 新增、還不在來源清單的檔案要加 `--allow-unclassified`，只能當候選；Plugin 印出 `NOTE: … That is reach, not an error.` 是提醒，不是錯誤。\n- 模型只放元素、關係與證據。還沒解決的問題和缺口寫進 notes 或提案的開放問題，不寫進模型。\n- D3 改了程式之後，`verify-evidence` 對已審查紀錄回報 `stale`、`shifted`（甚至印出 failed、建議 `recite`）是預期的：列出 asset:id，不執行 `recite`，留給 D4 處理。\n- 審查變更影響了哪些模型紀錄：`dm brief --base HEAD --markdown --save ../../tmp/brief-<段落>.md`，只讀 Attention 一節；以 `lies outside every Context` 開頭的行和 `No Context records an implementation_path` 那一行略過（Context 沒登記程式路徑），也不照它的建議執行 `recite`。\n- 需求或對話用到領域名詞，先用 `resolve-terms`、`get-context` 查；查不到是知識缺口，列出來問，不自己補定義。 `resolve-terms` 的 `match_kind: name` 只代表詞彙名稱出現在句子裡；句子講的概念比那個詞彙寬（例如「有效旅客」命中「旅客」），仍算缺口。\n\n## 通用語言與邊界（我們的決定）\n\n使用者決定的名詞與邊界寫在這裡，每條一行，附出處（`notes/` 的哪一段）。和模型的已審查事實衝突時，以模型為準並告訴使用者。\n\n- （還沒有）\n\n## 審查準則\n\n審查一段變更（自己審，或另開對話審）都照這一節：先跑 `git status --short`、`git diff --stat --ignore-cr-at-eol`、`git diff --ignore-cr-at-eol -- tests` 和完整測試，再回答四題，各附實際指令與結果：\n\n1. 改了哪些檔案？有沒有交接單和核准計畫以外的檔案？（新增的檔案算進去，只改換行的另外列）\n2. 有沒有刪除、放寬或跳過既有測試的斷言？\n3. 做法有沒有違反交接單的邊界或禁止的相依關係？這個 Repo 沒有架構檢查，越界只能靠這題人工審查。\n4. 測試通過幾個、失敗幾個？\n\n任一題是「有」或答不出來，或宣稱通過卻沒有實際執行的指令，標「重要」並停下。\n\n## Skill\n\n一步步的固定做法放在 Skill（學員包 `../../skills/` 是原稿）：`check`（檢查一段工作，只讀）、`record-candidates`（登記候選）、`counterfactual`（反事實檢查）、`signed-commit`（夥伴的簽章 commit）、`dlc-recovery`（改用 Recovery 接續）。工具還沒載入某個 Skill（例如同一個對話裡剛放好），就直接讀它的 `SKILL.md` 照做。\n"
+        "repository/smart-ticket-dlc-base/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的訂票後端。團隊正用 DDD（Domain-Driven Design，領域驅動設計）替它建立共用的領域模型，存在 `domain-memory/`，由 domain-memory Plugin 管理。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- 指令都在 Repo 根目錄（開啟的資料夾：`smart-ticket-dlc-base`，改用 Recovery 時是 `resume-` 開頭的資料夾）執行。學員包的 `tools/`、`vendor/`、`skills/`、`worksheets/` 在上兩層 `../../`；很長的輸出存到 `../../tmp/`。\n- Python 固定 3.13，虛擬環境在 `.venv`。每個指令可能在新的終端機程序執行，啟用過的 venv 不會延續，所以直接呼叫裡面的 Python。找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）；輔助腳本 `py -3.13 -X utf8 ..\\..\\tools\\<腳本>.py`。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`；輔助腳本 `python3.13 -X utf8 ../../tools/<腳本>.py`。\n- 安裝：`<Python> -m pip install -r requirements.txt`，不要 `pip install -e .`。測試：`<Python> -m pytest -q`，回報最後一行（起點是全部通過、沒有 warning）。\n- Plugin 一律經學員包的 dm 腳本，不直接執行 Plugin 裡的程式（例如 `registry_tools.py`）：\n  - Windows PowerShell：`..\\..\\tools\\dm.ps1 <指令>`；每個新的 PowerShell 程序先執行 `Set-ExecutionPolicy -Scope Process Bypass -Force`。不要加 `2>&1` 或 `*>&1`：Plugin 的提示訊息會被當成錯誤。\n  - Windows Git Bash：`../../tools/dm.sh <指令>`（反斜線換斜線，參數不變）。\n  - macOS：`../../tools/dm.sh <指令>`；出現 permission denied 先執行一次 `chmod +x ../../tools/dm.sh`。\n  - 存輸出用 `--save 檔案`（PowerShell 的 `>` 會存成 UTF-16）。`export`、`verify-evidence` 的輸出很長：存檔後只讀需要的欄位，不整份讀進對話。\n  - 參數與輸出的讀法：`../../tools/README.md` 與各腳本的 `--help`；Plugin 本身的說明在 `../../vendor/domain-memory/`，只讀參考。\n  - 提示詞寫 `dm <指令>` 時，就是依你的終端機用上面的 dm 腳本執行，參數照寫。\n- Plugin 第一次用之前：在 `../../vendor` 解出 `domain-memory-1.2.18.zip`（Windows `Expand-Archive`，Git Bash／macOS `unzip -qo`），逐檔核對 `domain-memory-1.2.18.zip.SHA256SUMS`，在 `../../vendor` 執行（macOS 把 `py -3.13` 換成 `python3.13`）：\n  `py -3.13 -c \"import hashlib,pathlib;s=[l.split('  ',1) for l in pathlib.Path('domain-memory-1.2.18.zip.SHA256SUMS').read_text(encoding='utf-8').splitlines() if l.strip()];bad=[p for h,p in s if hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()!=h];print('SHA OK', len(s), 'files') if not bad else print('SHA MISMATCH', bad)\"`\n  出現 `SHA MISMATCH` 立刻停下，不使用、也不修正這份 Plugin。版本看 `domain-memory/.claude-plugin/plugin.json` 的 `\"version\"`。\n- 環境健檢：在 `git init` 之後、同一次執行裡先啟用 `.venv`（它檢查 PATH 上的 python 和這個 Repo 的 Git 設定），再跑 `doctor.py`（Windows `py -3.13 -X utf8 ..\\..\\tools\\doctor.py`；macOS `python -X utf8 ../../tools/doctor.py`）。最後一行應是「全部必要項目通過。」；`[!!]` 要處理，`[--]` 只是提醒。Windows 上 venv 的 python 路徑要在 `.venv\\Scripts` 底下、不含 `WindowsApps`。\n- 要讀「下載」資料夾裡的課程 zip：Windows 用 `(Get-ItemProperty 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders').'{374DE290-123F-4565-9164-39C4925E467B}'` 查實際位置（查不到用 `$HOME\\Downloads`）；macOS 是 `~/Downloads`。找不到 zip 就停下告訴使用者，不自己猜內容。\n- JSON 輸入檔（例如 `d1-records.json`、`cp-d2.json`）用你的檔案編輯工具寫成 UTF-8，不用 PowerShell 的 `>`、`Out-File` 或 `Set-Content`。\n- 換行：Plugin 用原始位元組核對證據，這個 Repo 也混用 CRLF 與 LF。改檔時保留每個檔案原本的換行，只改需要的那幾行，不整檔重寫。看差異用 `git diff --ignore-cr-at-eol`；`git status` 有列、diff 沒內容的是只改了換行，另外列；新增的檔案（`??`）不在 diff 裡，要一起算。\n- 紀錄寫在 `notes/`，每段一個檔；交接單寫在 `docs/handoffs/`。\n\n## Git 與金鑰\n\n- Git 身分只設在這個 Repo（`git config --local`，不用 `--global`）：`DLC Proposer`、`proposer@example.com`。夥伴的 commit 在指令裡帶身分：`git -c \"user.name=DLC Maintainer\" -c \"user.email=maintainer@example.com\" commit -S -m \"…\"`。\n- 簽章金鑰在 Repo 外：Windows `%USERPROFILE%\\.dlc-keys\\<身分>\\`（PowerShell 寫 `\"$env:USERPROFILE\\.dlc-keys\\…\"`），Git Bash／macOS `~/.dlc-keys/<身分>/`。私鑰檔 `signing-key`（沒有副檔名）絕不讀取、顯示、複製或移動；`signing.json` 只有可公開的 fingerprint，可以讀。\n- commit 不含 `records/`（`make_record.py` 的暫存）：`git add -A -- . ':!records'`。\n- 不用 `--no-verify` 或任何方式繞過 hook；被擋下就貼出訊息、用白話解釋原因、停下。\n- push 或 commit 會觸發 hook 時，在同一次執行裡先啟用 `.venv`（PowerShell `.\\.venv\\Scripts\\Activate.ps1`；Git Bash `source .venv/Scripts/activate`；macOS `source .venv/bin/activate`）並設 `PYTHONUTF8=1`：hook 在 PATH 上找 Python 3.10 以上。\n\n## 工作規則\n\n1. 指令、程式和測試都由你做；使用者不打指令、不讀程式。用白話回報做了什麼、結果是什麼，引用關鍵的實際輸出字樣（例如「76 passed」「Registry is valid.」），不貼整段原始輸出。英文術語第一次出現時加中文。\n2. 要使用者決定的事（來源、名詞、Context、規則、邊界、不變量、核准），你只提選項或草稿，每項附證據：`路徑:起-迄`（行號要實際打開檔案核對）或 Registry 的「類別:id」。然後停下等回覆，不替使用者決定。\n3. 每做完一步就停下等使用者，不自動進行下一步。\n4. 沒有實際執行的事一律標「未驗證」；查不到就說查不到，不自己補。\n5. 每個檢查點的結果寫進這段的紀錄檔 `notes/<段落>.md`（例如 `notes/d1.md`、`notes/d3a.md`；沒有就建立），用檢查點名稱當標題（提示詞指定標題時用提示詞的），不用等提醒。\n6. 使用者回覆決定（「同意」「選 B」「核准」「退回：…」）時，把決定、決定的人和電腦的目前時間記進這段的 notes。\n7. 不刪除、放寬或跳過既有測試（不用 skip、xfail），不把正確的期待值改成符合錯誤的輸出；一定要改既有測試時，先停下說明理由，等使用者同意。\n8. 沒有使用者的指示，不 commit、不 push。\n\n## 兩個角色（D2 起）\n\nD2 起兩人共用這台機器和 Repo，各用自己的 Agent 對話。對話開頭使用者會說自己是提案者還是夥伴；沒說就先問。\n\n- **提案者的對話**：準備證據與提案（查詢、實作、反事實檢查、變更審查包、送出提案、核准後的套用）。不執行 `init-signing-key`、`amend-policy`、`install-git-hitl-hook`、`record-approval`，不 commit、不 push，不讀 `.dlc-keys` 底下任何檔案，也不改 Git 的簽章設定。\n- **夥伴（Maintainer，持鑰人）的對話**：持有簽章金鑰，審查並核准。審查時只讀、只回報；`record-approval`、簽章 commit 和 push，只在夥伴明確回覆「核准」或「同意」之後做。除了 `record-approval` 寫入的部分，不改提案者準備的程式、測試或 `domain-memory/changes/`。\n- 提案者不能核准自己的提案。\n\n## 領域模型（domain-memory/）\n\n- `domain-memory/` 只經 Plugin 指令和學員包的輔助腳本（`make_record.py`、`fill_package.py`）寫入，不手動編輯裡面任何檔案。\n- 新寫進模型的都是候選（candidate）：附證據的主張，不是事實，不能當成限制，也不寫成「已確認」。\n- 只有夥伴核准、Plugin 套用過的已審查（reviewed）事實才是限制。是不是 reviewed 以指令輸出為準：每筆看自己的 `status`（decisions 類別看 `review_status`）；紀錄檔裡的 `stable`／`draft` 是同一件事的存檔寫法。\n- 已審查事實不能改寫：行為變了，就用新 id 登記一條候選，等下一次核准取代。\n- 來源（哪些資料算證據）由使用者決定。必選 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`；排除規則固定為 `**/__pycache__/**`（測試執行後產生的快取）；`.venv/` 不是來源。\n- 證據只引用已確認的來源：`docs/requirements/`、`docs/adr/`、`src/`，以及 `tests/` 底下的 `test_*.py`。其他檔案（例如 `docs/architecture.md`、`README.md`、`conftest.py`、`notes/`）的證據之後無法升為已審查。D3 新增、還不在來源清單的檔案要加 `--allow-unclassified`，只能當候選；Plugin 印出 `NOTE: … That is reach, not an error.` 是提醒，不是錯誤。\n- 模型只放元素、關係與證據。還沒解決的問題和缺口寫進 notes 或提案的開放問題，不寫進模型。\n- `amend-policy` 印出 `every captured base revision is now stale and needs fresh approval`：沒有已送出、還沒套用的提案時是正常提醒，不用處理；有的話，那份提案要重新核准，停下告訴使用者。\n- D3 改了程式之後，`verify-evidence` 對已審查紀錄回報 `stale`、`shifted`（甚至印出 failed、建議 `recite`）是預期的：列出 asset:id，不執行 `recite`，留給 D4 處理。\n- 審查變更影響了哪些模型紀錄：`dm brief --base HEAD --markdown --save ../../tmp/brief-<段落>.md`，只讀 Attention 一節；含 `lies outside every Context` 的行和 `No Context records an implementation_path` 那一行不算進 brief 的摘要（Context 沒登記程式路徑），也不照它的建議執行 `recite`。但這些行點名的事實若在這段檢查點 1 記下的已審查事實裡，仍要逐筆看：brief 沒列的也逐筆看。\n- 需求或對話用到領域名詞，先用 `resolve-terms`、`get-context` 查；查不到是知識缺口，列出來問，不自己補定義。 `resolve-terms` 的 `match_kind: name` 只代表詞彙名稱出現在句子裡；句子講的概念比那個詞彙寬（例如「有效旅客」命中「旅客」），仍算缺口。\n\n## 通用語言與邊界（我們的決定）\n\n使用者決定的名詞與邊界寫在這裡，每條一行，附出處（`notes/` 的哪一段）。和模型的已審查事實衝突時，以模型為準並告訴使用者。\n\n- （還沒有）\n\n## 審查準則\n\n審查一段變更（自己審，或另開對話審）都照這一節：先跑 `git status --short`、`git diff --stat --ignore-cr-at-eol`、`git diff --ignore-cr-at-eol -- tests` 和完整測試，再回答四題，各附實際指令與結果：\n\n1. 改了哪些檔案？有沒有交接單和核准計畫以外的檔案？（新增的檔案算進去，只改換行的另外列）\n2. 有沒有刪除、放寬或跳過既有測試的斷言？\n3. 做法有沒有違反交接單的邊界或禁止的相依關係？這個 Repo 沒有架構檢查，越界只能靠這題人工審查。\n4. 測試通過幾個、失敗幾個？\n\n任一題是「有」或答不出來，或宣稱通過卻沒有實際執行的指令，標「重要」並停下。\n\n## Skill\n\n一步步的固定做法放在 Skill（學員包 `../../skills/` 是原稿）：`check`（檢查一段工作，只讀）、`record-candidates`（登記候選）、`counterfactual`（反事實檢查）、`signed-commit`（夥伴的簽章 commit）、`dlc-recovery`（改用 Recovery 接續）。工具還沒載入某個 Skill（例如同一個對話裡剛放好），就直接讀它的 `SKILL.md` 照做。\n"
       }
     },
     {
@@ -419,15 +419,19 @@
       "sources": [
         "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-*.md"
       ],
+      "destination_root": {
+        "from": "agentic-workshop/07-dlc-ddd/participant",
+        "to": ""
+      },
       "files": [
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-role-cards.md",
+          "destination": "worksheets/d2-role-cards.md",
           "sha256": "fa4a029ccd9ddd7594863053b8b89aef51e9104be9c2ace1be68e677035bb384"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d2-signing-checklist.md",
+          "destination": "worksheets/d2-signing-checklist.md",
           "sha256": "c2ff9e980652147665033996cba0e35aa5458384ed3ea650d2cf9cff6f04dd26"
         }
       ],
@@ -443,15 +447,19 @@
         "agentic-workshop/07-dlc-ddd/participant/scenarios/01-*.md",
         "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-*.md"
       ],
+      "destination_root": {
+        "from": "agentic-workshop/07-dlc-ddd/participant",
+        "to": ""
+      },
       "files": [
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/01-e-invoice.md",
+          "destination": "scenarios/01-e-invoice.md",
           "sha256": "697501cb287bf13749ca7e65e318d681a27e5757e49c643712277cc056d36b39"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d3-decision-card.md",
+          "destination": "worksheets/d3-decision-card.md",
           "sha256": "69dfe39b2203726fe880dce55a9510118e5be3f7a06e7c7cef603d53b061a140"
         }
       ],
@@ -466,10 +474,14 @@
       "sources": [
         "agentic-workshop/07-dlc-ddd/participant/scenarios/02-*.md"
       ],
+      "destination_root": {
+        "from": "agentic-workshop/07-dlc-ddd/participant",
+        "to": ""
+      },
       "files": [
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/02-points-redemption.md",
+          "destination": "scenarios/02-points-redemption.md",
           "sha256": "50ac461941671b5e4baa7ecb5b421033f5f1ab58870f6b024d46eb9d456fb834"
         }
       ],
@@ -484,10 +496,14 @@
       "sources": [
         "agentic-workshop/07-dlc-ddd/participant/scenarios/03-*.md"
       ],
+      "destination_root": {
+        "from": "agentic-workshop/07-dlc-ddd/participant",
+        "to": ""
+      },
       "files": [
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/scenarios/03-group-partial-refund.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/scenarios/03-group-partial-refund.md",
+          "destination": "scenarios/03-group-partial-refund.md",
           "sha256": "aac1e82addec26004b13ad1c446252d5c4b6dc52cc2d2eb84826c60637712322"
         }
       ],
@@ -502,11 +518,15 @@
       "sources": [
         "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-*.md"
       ],
+      "destination_root": {
+        "from": "agentic-workshop/07-dlc-ddd/participant",
+        "to": ""
+      },
       "files": [
         {
           "source": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
-          "destination": "agentic-workshop/07-dlc-ddd/participant/worksheets/d4-handoff-template.md",
-          "sha256": "edec288a5578e3302ea35b9a97b39acdf80ccbbd8a5ba93710beb42db2f5f821"
+          "destination": "worksheets/d4-handoff-template.md",
+          "sha256": "a490c4108b79deb3e0af2cc8e750785d4f20726add4e7304e8b11fe13347a895"
         }
       ],
       "generated": {}
@@ -1220,7 +1240,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "recovery-dlc-d2/RECOVERY.md",
-          "sha256": "68d5618865e57f28601adc982b03102ca2a61f0be64471b09289812d3023c7f4"
+          "sha256": "5bd9268d4b3814ff52bd18ec13bd95ed5c53c816fe8e1648822a1a9a123d8c94"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -1967,7 +1987,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "recovery-dlc-d3a/RECOVERY.md",
-          "sha256": "63d7ecdeeca2086e432c71c48d950036f0f25498677dc7c2e89ae6e611f333d5"
+          "sha256": "6d5136c1c36aee5abda24587a5b98f24e3a031e81c9b3e589c7f2bc10d4a7341"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -2739,7 +2759,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "recovery-dlc-d3b/RECOVERY.md",
-          "sha256": "20b8308613f4e0b2d0e1c889ca42f4f62222787ff295e396e66652582672f848"
+          "sha256": "030fe74ce7695a05175a6b3fae0fa6d4dc82599cae1acf36ee7532220162097c"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -3521,7 +3541,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "recovery-dlc-d3c/RECOVERY.md",
-          "sha256": "096f4c0f29c8083f504cf58f54a7779a51651b28b847f107c51492bc2e6beac6"
+          "sha256": "4c9418affb1ac8748e2e77831fca87df5e720fcfff62713e1ca56e54e822d615"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -4314,7 +4334,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/facilitator-guide.md",
-          "sha256": "2e60731861f885dc693e82bc4820ea3a75129777d82c7994ef13a3aa6f0d1929"
+          "sha256": "3daca9b1764f14163da33aa02778e940042735a037d1ee57d9710efffd1ab74f"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d1/RECOVERY.md",
@@ -4994,7 +5014,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/RECOVERY.md",
-          "sha256": "68d5618865e57f28601adc982b03102ca2a61f0be64471b09289812d3023c7f4"
+          "sha256": "5bd9268d4b3814ff52bd18ec13bd95ed5c53c816fe8e1648822a1a9a123d8c94"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d2/keys/maintainer.allowed_signers",
@@ -5724,7 +5744,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/RECOVERY.md",
-          "sha256": "63d7ecdeeca2086e432c71c48d950036f0f25498677dc7c2e89ae6e611f333d5"
+          "sha256": "6d5136c1c36aee5abda24587a5b98f24e3a031e81c9b3e589c7f2bc10d4a7341"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3a/keys/maintainer.allowed_signers",
@@ -6479,7 +6499,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/RECOVERY.md",
-          "sha256": "20b8308613f4e0b2d0e1c889ca42f4f62222787ff295e396e66652582672f848"
+          "sha256": "030fe74ce7695a05175a6b3fae0fa6d4dc82599cae1acf36ee7532220162097c"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3b/keys/maintainer.allowed_signers",
@@ -7244,7 +7264,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/RECOVERY.md",
-          "sha256": "096f4c0f29c8083f504cf58f54a7779a51651b28b847f107c51492bc2e6beac6"
+          "sha256": "4c9418affb1ac8748e2e77831fca87df5e720fcfff62713e1ca56e54e822d615"
         },
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/d3c/keys/maintainer.allowed_signers",
@@ -8024,7 +8044,7 @@
         {
           "source": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
           "destination": "agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py",
-          "sha256": "54bdba830c49efcfce62e5a6870095e9d5c852b66ccd306e83679655ab266f9c"
+          "sha256": "24d70884c4dc93e34ae587c765c1465660208c4119aafee6f6e4fc2bd412a1df"
         }
       ],
       "generated": {}

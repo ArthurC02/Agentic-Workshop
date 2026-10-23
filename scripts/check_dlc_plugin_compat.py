@@ -53,6 +53,8 @@ LEARNER_COMMANDS = {
     "amend-policy": ["--field", "--value", "--reason", "--verifier"], "install-git-hitl-hook": [],
     "governance-readiness": [], "verify-git-governance": ["--commit"], "verify-audit": [], "scan-secrets": [],
     "export": ["--commit"], "compare-registry": ["--gold-root", "--gold-commit", "--candidate-root"],
+    # D2 checkpoint 4 rescue when the proposal base went stale (facilitator guide FAQ 19/24)
+    "retract-candidate": [], "rebase-proposal": ["--package-root"],
 }
 # Plugin output the learner-facing text quotes or a ③ check waits for (inventory section 3).
 QUOTED = [
@@ -75,6 +77,8 @@ QUOTED = [
     # 1.2: re-run verify-proposal (D2 checkpoint 4 ③); stale base and its remedy (facilitator guide)
     "nothing was written", "proposal base revision is stale; rebase-proposal",
     "approvals_retired",
+    # AGENTS.md: amend-policy note that is normal before any proposal exists
+    "every captured base revision is now stale and needs fresh approval",
     # 1.2.3/1.2.4: ship-package stops before attesting on a stale base; a current-base rebase is a note
     "the proposal base is stale; rebase-proposal", "the proposal base is current; nothing was written",
     # 1.2.9/1.2.10: why a stale base cannot be compared, and the git deadline (facilitator guide FAQ 19 and 20)
