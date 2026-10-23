@@ -27,7 +27,7 @@
         {
           "source": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
           "destination": "agentic-workshop/01-greenfield/participant/04-agent-usage-guide.md",
-          "sha256": "71c38a2a6cf9acc0d6c2610edeb96aa4b4e7292c2dda731d423306c7964d73a1"
+          "sha256": "22692df9ab1f3ac865f805a600816eb8ebe366090d7e9578d36a9723a6a8eb2c"
         },
         {
           "source": "agentic-workshop/01-greenfield/participant/05-submission-checklist.md",
@@ -436,7 +436,7 @@
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/README.md": "# B0 接手版本\n\n第 29 分鐘發放，全員同一份。先建環境、跑測試、記下起點，不修改程式。\n來源案例Commit：392d920ce4510e5c2dd5df5ae2db25e9ab3b87e6。在B0開新的Agent對話。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試與Health，起點寫進notes/time-skip.md。\n\n公開操作Context：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)。保留本版既有文件，內容與程式及測試需交叉確認，不預設文件已完全同步。\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/context.md": "# B0 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nContext來自本版程式、測試與既有文件；先個人獨立分析，將不一致與資訊缺口記錄後再由小組交叉確認。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
         "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n",
-        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，最後一行寫通過／失敗／跳過數。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
+        "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，表格後一行寫通過／失敗／跳過數（有用 check 時，這行放在 check 的「成功／失敗」那行之前）。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
       }
     },
     {
@@ -524,7 +524,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
           "destination": "b3-docs/b3-work-order.md",
-          "sha256": "4bf11b01fc53a0e8a59aec3d24c105ccbea3e1d5089b1e0062328c2ffce98fe9"
+          "sha256": "cb0441bf62225bfd301a39a96e6493b185fe57ba1c5b2f726f1fba1379728cf5"
         },
         {
           "source": "agentic-workshop/03-brownfield/participant/task-cards/03-b3-group-booking.md",
@@ -534,7 +534,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
           "destination": "b3-docs/delivery-template.md",
-          "sha256": "01690432994606db295e26f2327e999c090642bfe7a60f99531e7d4cb8ae52bb"
+          "sha256": "f22b1f53cb0125c93f9770c3455b62327fa4a38260ead96922444e7067457590"
         }
       ],
       "generated": {}
@@ -803,7 +803,7 @@
         "recovery-b1/README.md": "# B1 受控接手版本\n\n讀者：學員與其Agent。發放：第52分鐘後，主持核准才接手。來源案例Commit：a1c1d45a26875feb2635f211059db5e8980035f7。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b1/docs/context.md": "# B1 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB1只恢復學生票75%，仍先匹配企業、提前、學生。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
         "recovery-b1/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n",
-        "recovery-b1/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，最後一行寫通過／失敗／跳過數。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
+        "recovery-b1/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，表格後一行寫通過／失敗／跳過數（有用 check 時，這行放在 check 的「成功／失敗」那行之前）。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
       }
     },
     {
@@ -1065,7 +1065,7 @@
         "recovery-b2/README.md": "# B2 受控接手版本\n\n讀者：學員與其Agent。發放：第63分鐘後，主持核准才接手。來源案例Commit：cee098acc303398bfa1db0e130e09effeee25828。\n保留原成果與Gate記錄，在新目錄開啟；本包不是本組自行完成的證據。重新建立Agent Session／Context。\nPython3.13；在本目錄建立venv，以venv Python執行 `python -m pip install -r requirements.txt`、`python -m pytest -q`。\n啟動：`python -m uvicorn smart_ticket.main:app --app-dir src`；GET /health、/openapi.json。\n[商業規則](docs/business-rules.md)、[架構](docs/architecture.md)、[API摘要](docs/api-summary.md)、[Context](docs/context.md)。\n完成：確認來源、測試、Health、Context與主持核准；切勿覆寫原成果。\n\n其他文件：[改票指南](docs/change-booking-guide.md)、[優惠概覽](docs/discount-overview.md)、[API範例](docs/api-examples.md)；架構決策紀錄在 docs/adr/。\n",
         "recovery-b2/docs/context.md": "# B2 Context\n\n讀者：學員與Agent。時機：受控接手。前置：主持核准、保留原成果。\n本機In-Memory、固定Seed／Clock、可控制模擬付款，沒有外部DB或真金流。\n一般訂票1–4人；學生75%、成人100%，提前14天85%、企業95%，優惠不疊加。\nB2逐旅客選最低rate單一優惠，建立與改票共用政策，回傳Applied Discounts。\n一般付款失敗仍Pending且保留座位；付款成功唯一Order；已付款可改退票；改票記錄new-old差額，不執行金流。\n下一階段授權以當時另發任務為準；本包沒有未來能力或答案。\n完成：列接手版本、已確認／未確認規則、未完成與下一步核准範圍。\n",
         "recovery-b2/docs/api-summary.md": "# API操作摘要\n\n讀者：學員與Agent。時機：接手Smoke。前置：啟動本版Server、固定Seed狀態。\nGET /trips；GET /members/M002；POST /bookings：\n```json\n{\"trip_id\":\"T001\",\"passengers\":[{\"passenger_id\":\"P1\",\"name\":\"Demo\",\"passenger_type\":\"ADULT\"}]}\n```\nPassengerType只使用ADULT或STUDENT；不要使用其他旅客Type，Discount Type依本版本實際Contract核對。\nPOST /bookings/{booking_id}/pay；GET /orders/{order_id}；POST /bookings/{booking_id}/change，Body為{\"target_trip_id\":\"T005\"}；POST /bookings/{booking_id}/refund。\nGET /bookings/{booking_id}/notifications、/audit-log。詳細Contract以本版 /openapi.json 為準。\n完成：確認Health與版本Contract，核對建立／付款／改退票與本機紀錄；不以文字摘要代替測試。\n",
-        "recovery-b2/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，最後一行寫通過／失敗／跳過數。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
+        "recovery-b2/AGENTS.md": "# Smart Ticket：給 Coding Agent 的專案說明\n\n已上線 12 個月的車票預訂服務。在這個專案工作的 Agent，每次開工先讀這份。\n\n## 怎麼跑\n\n- Python 固定 3.13，虛擬環境在 `.venv`。不用啟用，直接呼叫裡面的 Python；找不到 3.13 就停下告訴使用者，不改用其他版本。\n  - Windows：建立 `py -3.13 -m venv .venv`；Python 是 `.venv\\Scripts\\python.exe`（Git Bash 寫 `.venv/Scripts/python.exe`）。\n  - macOS：建立 `python3.13 -m venv .venv`；Python 是 `.venv/bin/python`。\n- 安裝：`<Python> -m pip install -r requirements.txt`。\n- 測試：`<Python> -m pytest -q`；回報只給通過／失敗／跳過數與失敗測試名稱。\n- 伺服器：在背景執行 `<Python> -m uvicorn smart_ticket.main:app --app-dir src --port 8000`，確認 `http://127.0.0.1:8000/health` 回 `status=ok`，`/docs` 在同一個埠號。\n  - 8000 被不是你啟動的程式占用：不要停它，告訴使用者它的名稱和 PID（程序編號），改用 8001，並把實際埠號寫進這段的 notes。\n  - 換版本、重新啟動或結束時，先停掉你啟動的伺服器，連同它開出的子程序；不是你啟動的不要停。\n- Git：還沒有 Git 就 `git init`；`.gitignore` 至少有 `__pycache__/`、`.venv/`、`.pytest_cache/`。Git 要姓名或 Email 時只在這個專案設定（不用 `--global`）：名字 `workshop`、Email `you@example.com`。\n- 紀錄寫在 `notes/`，每段一個檔；notes 只放紀錄，不算程式修改。\n\n## 工作規則\n\n1. 程式、測試和指令都由你做；使用者不讀程式，請用白話說明，英文術語第一次出現時加中文。\n2. 改程式前先提計畫，等使用者核准；只做核准的步驟，做完停下。只是分析、比較或檢查時，除了 notes/ 不改任何檔案。\n3. 只處理任務卡範圍，做最小修改：不全面重寫、不改無關的 API，不新增套件、服務或優惠政策。\n4. 不刪除、弱化或隱藏測試，不用 skip／xfail，不把正確的期待值改成符合錯誤的輸出。因規則改變而過時的期待值，先列出測試名稱、舊期待與規則編號（Rule ID），經使用者核准才更新。\n5. 改完跑測試，用驗收對照表回報：每條驗收條件或規則一列，欄位是「編號、白話內容、結果（通過／失敗／未驗證）、依據的測試名稱（文件類寫文件位置）」，表格後一行寫通過／失敗／跳過數（有用 check 時，這行放在 check 的「成功／失敗」那行之前）。\n6. 改完用白話說明改了哪些檔案、各改什麼、為什麼，有沒有超出核准範圍。\n7. 使用者核准時，把核准內容、核准人和電腦的目前時間記進這段的 notes，不用問；核准人看 `notes/shared-context.md` 的「分工」，還沒有這個檔就記「使用者」。\n8. 沒有實際執行的事一律標「未驗證」。\n\n## 檢查一段工作（check）\n\n使用者說「用 check 檢查」時照這幾步做，只讀不改：\n\n1. 找出這一段該完成什麼：已核准的計畫、任務卡或驗收條件，以及使用者這次另外指定的條件。\n2. 自己執行指令取得實際結果，不憑記憶：測試、git status／git log、檔案和段落是否存在，有伺服器就查 /health。\n3. 對照三樣：notes 裡寫的、實際結果、核准的計畫與驗收條件；列出對不上的地方並附證據。\n4. 最後一行只寫「成功」，或「失敗：」加一句原因。\n"
       }
     },
     {
@@ -1123,12 +1123,12 @@
         {
           "source": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/01-facilitation-guide.md",
-          "sha256": "a6e3c2c3f2a6933a161e88c6aa27a02cd4660f34786e6e20c58e8e3349cc00f4"
+          "sha256": "2fa8268294c7e88d5719282129a6dd788162a6d861ccfd2a60196cd37f693fa5"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
           "destination": "agentic-workshop/01-greenfield/facilitator/02-timing-and-cues.md",
-          "sha256": "59bae28f064abb8bbd48dbfa6a791b50d296cee0a7aa4e55a2def3d70d5e6977"
+          "sha256": "7842d3594bf4fdaebd08af8d4d06fc3d05d4fd00e3b579ce9fecee9ce6f5e6ad"
         },
         {
           "source": "agentic-workshop/01-greenfield/facilitator/03-progressive-hints.md",
@@ -1178,7 +1178,7 @@
         {
           "source": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
           "destination": "agentic-workshop/03-brownfield/facilitator/06-timebox-and-stop-rules.md",
-          "sha256": "651a06ed85d5cc197f5ea1483eca79fc9cca76b3dbe8a68c4e1545a6fea3d746"
+          "sha256": "4bdf8f8ca949d657ac4717c24a3b276dd12d67fa9a0f842f859a0c84aa4c5852"
         },
         {
           "source": "agentic-workshop/03-brownfield/facilitator/07-expected-participant-behavior.md",
@@ -1193,7 +1193,7 @@
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
           "destination": "agentic-workshop/04-digital-worker/facilitator/02-approval-gate-cues.md",
-          "sha256": "c28400288f4f81373ab4ead113164243785d20a3bdf842c05eda9623831dfc6d"
+          "sha256": "ecdb299e4525865e986a40e9a05ec18559f04dce78cf48c5d5c8737520513d8f"
         },
         {
           "source": "agentic-workshop/04-digital-worker/facilitator/03-exception-injection.md",
@@ -1238,7 +1238,7 @@
         {
           "source": "agentic-workshop/06-runbook/rehearsal-record.md",
           "destination": "agentic-workshop/06-runbook/rehearsal-record.md",
-          "sha256": "a191e2936250385b2661fb5bc04ab0b4e7a8aed0417d60258730abcd34806cb2"
+          "sha256": "aba258176ed5db9db67fcc9e454c4425fa178530ec916400f8ae2907948deb7a"
         },
         {
           "source": "agentic-workshop/06-runbook/release-checklist.md",
@@ -1358,7 +1358,7 @@
         {
           "source": "docs/planning/decisions-and-open-issues.md",
           "destination": "docs/planning/decisions-and-open-issues.md",
-          "sha256": "514533806b497f8790e3c31a16dea2a04ec19ca993f43600aa1a8c8d030b286d"
+          "sha256": "43845288c9cbbfeb563b6a78a6edc91b5c6efe588b0ae99b88afb6cddad01d73"
         },
         {
           "source": "docs/planning/production-roadmap.md",
@@ -1383,12 +1383,12 @@
         {
           "source": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
           "destination": "agentic-workshop/04-digital-worker/participant/b3-work-order.md",
-          "sha256": "4bf11b01fc53a0e8a59aec3d24c105ccbea3e1d5089b1e0062328c2ffce98fe9"
+          "sha256": "cb0441bf62225bfd301a39a96e6493b185fe57ba1c5b2f726f1fba1379728cf5"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
           "destination": "agentic-workshop/04-digital-worker/participant/05-delivery-template.md",
-          "sha256": "01690432994606db295e26f2327e999c090642bfe7a60f99531e7d4cb8ae52bb"
+          "sha256": "f22b1f53cb0125c93f9770c3455b62327fa4a38260ead96922444e7067457590"
         },
         {
           "source": "agentic-workshop/04-digital-worker/participant/06-exception-response-card.md",
@@ -3153,7 +3153,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "0f9bf25358f18084b018b1f4f819427f0e9e1369767dcafcc226809c198c7a50"
+          "sha256": "9bbb0f757ae5f42926f0739d7ce2237e90527c9fe81b2c88b7a27f1e7ad9134f"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3393,12 +3393,12 @@
         {
           "source": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/60-b3-overview.md",
-          "sha256": "fb707e2d75eb279291f1f4c3a4132721adb6ce754424bc7ef160493c5aa22b1d"
+          "sha256": "7f82ddd6276422594824e0e56802760f3aedac97b1f733f09d17104381dae62d"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
           "destination": "agentic-workshop/materials/participant-runbook/content/70-delivery.md",
-          "sha256": "aea0da86afdfa1b639c68f29329b24542846d8e1120e9999c930f4893ee6ff06"
+          "sha256": "36ceea69f82a0381a63d5b969ea5d081d52dccf87f0d08266417c625437917c5"
         },
         {
           "source": "agentic-workshop/materials/participant-runbook/content/80-retrospective.md",

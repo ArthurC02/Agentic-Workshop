@@ -61,7 +61,7 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ```text
 這是 B1 的復原包，我們從這裡接著做。先一次問我兩件事：原成果資料夾的路徑，以及 SHA256 前 12 碼和按鈕旁的是否相符。
-再把原成果的 notes/、AGENTS.md 和你放 Skill 的資料夾複製過來（覆蓋這裡的 AGENTS.md，不動程式），然後重讀 AGENTS.md：裡面還指向原成果資料夾的路徑改成這裡的；沒有「審查準則」一節就直接告訴我。
+再把原成果的 notes/、AGENTS.md 和你放 Skill 的資料夾複製過來（覆蓋這裡的 AGENTS.md，不動程式；原成果沒有哪一樣就跳過，回報時說一聲），然後重讀 AGENTS.md：裡面還指向原成果資料夾的路徑改成這裡的；沒有「審查準則」一節就直接告訴我。
 接著照 AGENTS.md 建好環境、跑測試、啟動伺服器，給我 /docs 網址；讀 README 和 docs/context.md，告訴我這是不是 B1 完成後的版本；讀 notes/b1.md，告訴我原成果還有哪些沒做完。
 最後把切換紀錄寫進 notes/recovery-b1.md：原因與時間、原成果位置、SHA256 比對、測試數、health 結果，以及「B1 的修正由 Recovery 提供，不是本組自己完成」。做完用 check 檢查。
 ```

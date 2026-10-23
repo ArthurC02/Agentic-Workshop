@@ -28,7 +28,7 @@ section: 參考
 |---|---|---|
 | Rule ID（規則編號） | 商業規則的編號，例如 `FARE-002`：學生為基礎票價的 75%。 | 本課程〈Greenfield Business Requirements〉 |
 | AC（驗收條件） | Acceptance Criteria，功能要被使用者或客戶接受前必須滿足、能判定符合與否的條件，例如 `AC-B1-001`。 | ISTQB〈Glossary〉；本課程〈Greenfield Acceptance Criteria〉 |
-| 驗收對照表 | Agent 回報測試結果的表：每條驗收條件一列，寫編號、白話內容、通過／失敗／未驗證、依據的測試名稱；最後一行是通過、失敗、跳過各幾個。 | 本課程〈Greenfield Acceptance Criteria〉 |
+| 驗收對照表 | Agent 回報測試結果的表：每條驗收條件一列，寫編號、白話內容、通過／失敗／未驗證、依據的測試名稱；表格後一行是通過、失敗、跳過各幾個。 | 本課程〈Greenfield Acceptance Criteria〉 |
 | 變更審查 | 你不讀程式的修改內容（Diff），改請 Agent 回答固定的審查問題，這些回答就是審查答案。Greenfield 用白話答四題並建議放不放行，B1 起照審查準則逐題答「是／否／不確定」；由你判斷要不要放行。 | Google Engineering Practices〈Google's Code Review Guidelines〉；本課程〈Coding Agent Usage Guide〉 |
 | 審查準則 | `AGENTS.md` 裡的一節，由人定：變更審查要答哪三題、哪些算「重要」、哪些是小問題（最多報 5 條）或不用報。寫程式的 Agent 和另開對話的審查者都照這一份。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈Shared Context：把共識寫成檔案給 Agent〉 |
 | 審查紀錄 | 交付時另開一個只讀的對話當審查者，照審查準則檢查修改，把「重要／小問題」和「建議放行／不建議放行」寫進 `notes/b3.md`；寫程式的 Agent 不核准自己的成果。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈Delivery Summary 與交付〉 |

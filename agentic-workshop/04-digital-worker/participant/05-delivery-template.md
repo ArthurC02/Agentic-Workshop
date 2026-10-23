@@ -1,7 +1,7 @@
 # Digital Worker Delivery Summary
 
 > 讀者：主要 Coding Agent 與小組。
-> 什麼時候用：B3 結束後（第 76–78 分鐘），由 Agent 依此格式把交付摘要（Delivery Summary）寫進 `notes/delivery.md`，人核對。這是結構化輸出，規則：
+> 什麼時候用：B3 結束後（第 76–79 分鐘），由 Agent 依此格式把交付摘要（Delivery Summary）寫進 `notes/delivery.md`，人核對。這是結構化輸出，規則：
 > - 固定十二個英文標題，名稱與順序都不變（主管才能逐欄比對）；每個標題下第一句是中文意思。
 > - 每一欄都附證據來源（`notes/b3.md` 哪一段、哪個測試指令或文件）。
 > - 沒有證據的寫「未驗證」。
