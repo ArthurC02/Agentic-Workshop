@@ -17,7 +17,7 @@ Every page, section, callout and sentence must pass: "would the learner fail or 
 
 ## Every segment page
 - Top: a 「現在在做什麼」 callout with four lines: 情境 / 你的目標 / 今天的技巧 / 完成的樣子.
-- Checkpoints: at most 3 (Greenfield and B3: at most 4; DLC segments run 15–25 min, so at most 6). Use the title format `## 檢查點 N · 〈動詞句〉（第 a–b 分鐘）`. The overview is a short list, not a table.
+- Checkpoints: at most 3 (Greenfield and B3: at most 4; DLC segments run 23–50 min since the 2026-10-24 lengthening to 255 min, so at most 6). Use the title format `## 檢查點 N · 〈動詞句〉（第 a–b 分鐘）`. The overview is a short list, not a table.
 - Every checkpoint uses four blocks, in this order, each starting with its label line (user rule, 2026-10-10):
   1. `① 為什麼做這一步`: the precondition and the meaning in 1–3 sentences. Where the step needs a human judgment (approve a plan, review an acceptance table, decide at a Gate, approve as partner), say here what the learner judges and how.
   2. `② 貼給 Agent`: the prompt that runs the step. If it contains OS-specific commands or paths, use a ```prompt block with `# windows` and `# macos` sections (rendered as Windows／macOS tabs, choice remembered); otherwise ```text.

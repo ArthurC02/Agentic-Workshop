@@ -13,15 +13,15 @@
   var THUMB_W = 288;
 
   var PLAN = [
-    { seg: "dlc-opening", label: "開場", start: 0, end: 10 },
-    { seg: "dlc-d1", label: "D1 語言與邊界", start: 10, end: 35 },
-    { seg: "dlc-d2", label: "D2 審查核准", start: 35, end: 60 },
-    { seg: "dlc-break", label: "休息", start: 60, end: 70 },
-    { seg: "dlc-d3a", label: "D3a 電子發票", start: 70, end: 95 },
-    { seg: "dlc-d3b", label: "D3b 點數折抵", start: 95, end: 125 },
-    { seg: "dlc-d3c", label: "D3c 部分退款", start: 125, end: 155 },
-    { seg: "dlc-d4", label: "D4 交接", start: 155, end: 165 },
-    { seg: "dlc-retro", label: "回顧", start: 165, end: 180 }
+    { seg: "dlc-opening", label: "開場", start: 0, end: 14 },
+    { seg: "dlc-d1", label: "D1 語言與邊界", start: 14, end: 43 },
+    { seg: "dlc-d2", label: "D2 審查核准", start: 43, end: 70 },
+    { seg: "dlc-break", label: "休息", start: 70, end: 80 },
+    { seg: "dlc-d3a", label: "D3a 電子發票", start: 80, end: 120 },
+    { seg: "dlc-d3b", label: "D3b 點數折抵", start: 120, end: 170 },
+    { seg: "dlc-d3c", label: "D3c 部分退款", start: 170, end: 217 },
+    { seg: "dlc-d4", label: "D4 交接", start: 217, end: 240 },
+    { seg: "dlc-retro", label: "回顧", start: 240, end: 255 }
   ];
 
   // DLC reuses the three stage colours: tool = 開場, teammate = 建立 Domain Memory, dw = 用它驅動變更.

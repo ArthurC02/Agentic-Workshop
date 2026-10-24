@@ -1,7 +1,7 @@
 ---
 id: recovery-d3c
 title: D3c Recovery 切換
-minute: 155-165
+minute: 217-240
 group: dlc-rec-d3c
 section: D3｜照模型做變更
 ---
@@ -23,6 +23,7 @@ id=recovery-dlc-d3c zip=recovery-dlc-d3c.zip label=下載 D3c Recovery
 先記下原 Repo 做到哪裡，再把 Recovery 解成和原 Repo 同一層的 `resume-d3c`；原 Repo 不動。
 - 按上方按鈕下載 `recovery-dlc-d3c.zip`，存到「下載」資料夾
 - 把下方提示詞貼到**原本**的提案者 Agent 對話
+- Agent 會先問做到哪、為什麼沒完成，最後一行是「等你們回答」：回一句就好，例如「做到檢查點 2，時間不夠」
 - Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許
 
 ② 貼給 Agent
@@ -89,12 +90,12 @@ Recovery 的簽章歷史來自另一把金鑰。夥伴還原歷史後，改用�
 ② 貼給 Agent
 
 ```text
-我是提案者。我們改用 D3c Recovery，夥伴正在自己的對話做第 2 節。照 ../../recovery-d3c/recovery-dlc-d3c/RECOVERY.md 第 3 節，先建環境、跑測試；dm 的驗證等 git log 出現夥伴的簽章 commit「D3c Recovery：授權本組金鑰」才跑，還沒出現就停下，等我說「夥伴好了」；證據的 shifted、stale 留到 D4，不要修。做完用 check 檢查，最後一行寫成功或失敗。
+我是提案者。我們改用 D3c Recovery，夥伴正在自己的對話做第 2 節。照 ../../recovery-d3c/recovery-dlc-d3c/RECOVERY.md 第 3 節，先建環境、跑測試；dm 的驗證等 git log 出現夥伴的簽章 commit「D3c Recovery：授權本組金鑰」才跑，還沒出現就停下，最後一行寫「等待夥伴」，等我說「夥伴好了」；證據的 shifted、stale 留到 D4，不要修。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
-回報最後一行已是成功就不用再貼；沒有才貼：
+Agent 最後一行是「等待夥伴」不算失敗：等夥伴的步驟 2 回「成功」，再回「夥伴好了」。之後回報最後一行已是成功就不用再貼；沒有才貼：
 
 ```text
 用 check 檢查剛才這一段：Registry is valid.；verify-evidence 有 shifted、stale 是預期的，missing、invalid 都是 0。

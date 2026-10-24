@@ -1,6 +1,6 @@
 # DDD DLC（和 Coding Agent 一起做領域驅動設計）
 
-主課（Tool → Teammate → Digital Worker）之後的 180 分鐘加課：學員帶著 Coding Agent 做 DDD（通用語言、Bounded Context、負責的 Context、Port／Adapter、不變量、Aggregate），Agent 找證據與實作、人做決定並用證據驗收。domain-memory Plugin 1.2.18 只用來保存經審查的共用模型。起始 Repo 附團隊的 `AGENTS.md`（怎麼跑、工作規則、兩個角色、領域模型規則、審查準則），學員包附 5 個標準 Skill（`check`、`record-candidates`、`counterfactual`、`signed-commit`、`dlc-recovery`），開場由 Agent 放到工具會自動載入的位置；提示詞只交代這次的事。九段：開場、D1 共同語言與邊界、D2 審查與核准（成對簽章）、休息、D3a 電子發票、D3b 點數折抵、D3c 團體部分退款、D4 交接、回顧。
+主課（Tool → Teammate → Digital Worker）之後的 255 分鐘加課：學員帶著 Coding Agent 做 DDD（通用語言、Bounded Context、負責的 Context、Port／Adapter、不變量、Aggregate），Agent 找證據與實作、人做決定並用證據驗收。domain-memory Plugin 1.2.18 只用來保存經審查的共用模型。起始 Repo 附團隊的 `AGENTS.md`（怎麼跑、工作規則、兩個角色、領域模型規則、審查準則），學員包附 5 個標準 Skill（`check`、`record-candidates`、`counterfactual`、`signed-commit`、`dlc-recovery`），開場由 Agent 放到工具會自動載入的位置；提示詞只交代這次的事。九段：開場、D1 共同語言與邊界、D2 審查與核准（成對簽章）、休息、D3a 電子發票、D3b 點數折抵、D3c 團體部分退款、D4 交接、回顧。
 
 學員操作方式：Runbook 每個檢查點給一段像交辦同事的提示詞，學員的 Coding Agent 照提示詞、`AGENTS.md` 與 Skill 執行 Plugin、輔助腳本與 Git 指令並白話回報，③ 一律「用 check 檢查」；需要決定時 Agent 先列選項並停下，學員以短回覆決定。紀錄由 Agent 寫進學員 Repo 的 `notes/` 與 `docs/handoffs/`，表單只留人的決定。D2 起兩人共用一台機器：夥伴另開終端機與自己的 Agent 對話，金鑰、核准、簽章 commit 與 push 只在那個對話執行（D3、D4 的 commit 也是）；提案者的 Agent 不 commit、不 push、不碰金鑰、不代替核准。
 

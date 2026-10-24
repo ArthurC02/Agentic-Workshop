@@ -1,7 +1,7 @@
 ---
 id: recovery-d1
 title: D1 Recovery 切換
-minute: 35-60
+minute: 43-70
 group: dlc-rec-d1
 section: D1｜共同語言與邊界
 ---
@@ -21,6 +21,7 @@ id=recovery-dlc-d1 zip=recovery-dlc-d1.zip label=下載 D1 Recovery
 先記下原 Repo 做到哪裡，再把 Recovery 解成和原 Repo 同一層的 `resume-d1`；原 Repo 不動。
 - 按上方按鈕下載 `recovery-dlc-d1.zip`，存到「下載」資料夾
 - 把下方提示詞貼給**原本**的 Agent
+- Agent 會先問做到哪、為什麼沒完成，最後一行是「等你們回答」：回一句就好，例如「做到檢查點 4，時間不夠」
 - Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許
 
 ② 貼給 Agent

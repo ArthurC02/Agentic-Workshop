@@ -1,82 +1,82 @@
 {
-  "candidate_id": "721835982a08b6bc",
-  "total_minutes": 180,
+  "candidate_id": "64f3093aedfe23b2",
+  "total_minutes": 255,
   "plan": [
     [
       "dlc-opening",
       0,
-      10,
+      14,
       "開場"
     ],
     [
       "dlc-d1",
-      10,
-      35,
+      14,
+      43,
       "D1 語言與邊界"
     ],
     [
       "dlc-d2",
-      35,
-      60,
+      43,
+      70,
       "D2 審查核准"
     ],
     [
       "dlc-break",
-      60,
       70,
+      80,
       "休息"
     ],
     [
       "dlc-d3a",
-      70,
-      95,
+      80,
+      120,
       "D3a 電子發票"
     ],
     [
       "dlc-d3b",
-      95,
-      125,
+      120,
+      170,
       "D3b 點數折抵"
     ],
     [
       "dlc-d3c",
-      125,
-      155,
+      170,
+      217,
       "D3c 部分退款"
     ],
     [
       "dlc-d4",
-      155,
-      165,
+      217,
+      240,
       "D4 交接"
     ],
     [
       "dlc-retro",
-      165,
-      180,
+      240,
+      255,
       "回顧"
     ]
   ],
   "recovery_downloads": {
     "recovery-dlc-d1.zip": [
       "dlc-rec-d1",
-      35
+      43
     ],
     "recovery-dlc-d2.zip": [
       "dlc-rec-d2",
-      45
+      51
     ],
     "recovery-dlc-d3a.zip": [
       "dlc-rec-d3a",
-      95
+      120
     ],
     "recovery-dlc-d3b.zip": [
       "dlc-rec-d3b",
-      125
+      170
     ],
     "recovery-dlc-d3c.zip": [
       "dlc-rec-d3c",
-      155
+      217
     ]
   },
   "forbidden_markers": [

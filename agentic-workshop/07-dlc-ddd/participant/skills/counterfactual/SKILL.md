@@ -18,7 +18,7 @@ description: 反事實檢查：故意改壞一處程式、跑指定的測試，�
 
 ## 2. 同意後，每條執行一次
 
-存檔名照提示詞給的（例如 `cf-d2.json`、`cf-d3a-1.json`、`cf-d3a-2.json`）。有 EXPECT 才加 `--expect "EXPECT"`。
+存檔名照提示詞給的（例如 `cf-d2.json`、`cf-d3a-1.json`、`cf-d3a-2.json`）。有 EXPECT 才加 `--expect "EXPECT"`。多條時在同一次執行裡依序跑完（一條一行指令），全部跑完再一起讀結果；方案階段已核對過 FIND 只出現一次，不用再查。
 
 - Windows PowerShell：`..\..\tools\dm.ps1 counterfactual --file FILE --find "FIND" --replace "REPLACE" --expect "EXPECT" --test-command './.venv/Scripts/python.exe -m pytest -q -W ignore::DeprecationWarning TEST' --save cf-….json`
 - Windows Git Bash：`../../tools/dm.sh counterfactual`，其餘參數相同（`--test-command` 一樣是 `./.venv/Scripts/python.exe`）。

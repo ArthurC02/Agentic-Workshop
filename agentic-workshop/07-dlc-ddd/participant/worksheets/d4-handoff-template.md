@@ -16,7 +16,7 @@
 
 - 只對 stale 清單的每一筆用 `get-record` 查是候選還是 reviewed；shifted 清單不用查：`notes/` 裡 D3 登記過的候選歸 A，其餘歸 C。同時出現在兩張清單的，以 stale 處理。
 - A 的新行號：shifted 的重新執行一次 `verify-evidence`（唯讀），看那筆結果的 `lines`；stale 的先讀檔，找出現在講這件事的那幾行。列出 `asset:id`、舊證據、新證據（`路徑:起-迄`）。
-- B 最多 3 項：`rules:REFUND-004` 有變就先列，再挑最重要的 2 項；其餘只列 `asset:id`、標「未完成」，留給交接單的 Unknowns。D3 已經登記了取代它的候選，就寫那個 id，不另登記。每項列出原本的 `asset:id`、新候選 id、一句可以用測試推翻的敘述、證據、所屬 context id。
+- B 最多 3 項：`rules:REFUND-004` 有變就先列，再挑最重要的 2 項；其餘只列 `asset:id`、標「未完成」，留給交接單的 Unknowns。D3 已經登記了取代它的候選，就寫那個 id，不另登記。每項列出原本的 `asset:id`、新候選 id、一句可以用測試推翻的敘述、證據、所屬 context id。新候選 id 不用需求卡驗收條件的編號（`EINV-`、`PTS-`、`PCR-` 開頭），用小寫英文加連字號描述它，免得和下面說的需求卡編號混淆。
 - C 的理由寫「意思沒變：reviewed 不能覆寫，下一次核准沿用同一個 id 重新證明」，只列筆數。
 - 登記後在 `notes/d4.md` 寫下剩下的 shifted 與 stale 筆數與原因，來不及登記的列為「未完成」。
 

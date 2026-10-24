@@ -9,73 +9,73 @@
     },
     {
       "id": "dlc-d1",
-      "minute": 10,
+      "minute": 14,
       "code": "DLC-D1-10",
       "label": "D1 共同語言與邊界"
     },
     {
       "id": "dlc-d2",
-      "minute": 35,
+      "minute": 43,
       "code": "DLC-D2-35",
       "label": "D2 審查與核准"
     },
     {
       "id": "dlc-d3a",
-      "minute": 70,
+      "minute": 80,
       "code": "DLC-D3A-70",
       "label": "D3a 電子發票"
     },
     {
       "id": "dlc-d3b",
-      "minute": 95,
+      "minute": 120,
       "code": "DLC-D3B-95",
       "label": "D3b 點數折抵"
     },
     {
       "id": "dlc-d3c",
-      "minute": 125,
+      "minute": 170,
       "code": "DLC-D3C-125",
       "label": "D3c 團體部分退款"
     },
     {
       "id": "dlc-d4",
-      "minute": 155,
+      "minute": 217,
       "code": "DLC-D4-155",
       "label": "D4 交接"
     },
     {
       "id": "dlc-retro",
-      "minute": 165,
+      "minute": 240,
       "code": "DLC-RETRO-165",
       "label": "回顧"
     },
     {
       "id": "dlc-rec-d1",
-      "minute": 35,
+      "minute": 43,
       "code": "RESUME-DLC-D1-35",
       "label": "D1 Recovery（主持按需提供）"
     },
     {
       "id": "dlc-rec-d2",
-      "minute": 45,
+      "minute": 51,
       "code": "RESUME-DLC-D2-45",
       "label": "D2 Recovery（主持按需提供）"
     },
     {
       "id": "dlc-rec-d3a",
-      "minute": 95,
+      "minute": 120,
       "code": "RESUME-DLC-D3A-95",
       "label": "D3a Recovery（揭曉後，主持按需提供）"
     },
     {
       "id": "dlc-rec-d3b",
-      "minute": 125,
+      "minute": 170,
       "code": "RESUME-DLC-D3B-125",
       "label": "D3b Recovery（揭曉後，主持按需提供）"
     },
     {
       "id": "dlc-rec-d3c",
-      "minute": 155,
+      "minute": 217,
       "code": "RESUME-DLC-D3C-155",
       "label": "D3c Recovery（揭曉後，主持按需提供）"
     }

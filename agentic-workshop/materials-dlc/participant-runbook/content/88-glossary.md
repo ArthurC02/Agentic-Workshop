@@ -1,7 +1,7 @@
 ---
 id: glossary
 title: 詞彙表
-minute: 00-180
+minute: 00-255
 group: open
 section: 參考
 ---

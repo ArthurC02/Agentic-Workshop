@@ -36,6 +36,7 @@ description: 把使用者同意的詞彙、Context、規則等登記成 domain-m
 1. 執行 `<dm> validate` 和 `<dm> verify-evidence`。
 2. 回報：登記了哪些 asset:id、失敗的有哪些與原因、validate 的結果、verify-evidence 的 current、shifted、stale、missing、invalid 各幾個。
 3. 不把任何紀錄寫成 reviewed。已審查的紀錄不能覆寫：行為變了，就用新 id 登記一條候選。
+4. D3、D4 的新 id 不用需求卡驗收條件的編號（`EINV-`、`PTS-`、`PCR-` 開頭），免得和需求卡混淆：用小寫英文加連字號描述它（例如 `points-reserve-on-booking`）。
 
 ## 失敗時
 

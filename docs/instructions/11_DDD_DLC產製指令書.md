@@ -22,6 +22,7 @@
 13. 2026-10-07 依最終驗證報告（`evaluation/dlc-final-report.md`）對齊已建成設計，不放寬任何安全要求：(a) **D3 參考解答**的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實以**候選**（`upsert-candidate`）登記；D3 不產出已 finalize 的 Change Package（受治理的晉升是 D2 的課題，D4 負責交接）。驗證改為對各參考解答的 `domain-memory/` 執行 `validate`、`verify-audit`、`coverage`；已變動檔案上的 stale evidence 為預期並須列出。(b) **開場**：環境／下載頁屬解鎖群組 `dlc-opening`（第 0 分鐘，碼寫在第一張解鎖投影片），因為開放頁不得提供下載；只有開始之前、Runbook 用法、詞彙表為 `open`。開場有四個檢查點（見 `materials-dlc/CHECKPOINTS.md`）：安裝相依套件與測試／Plugin 解出與 SHA 核對／readiness 與 quality-gates／確認真實 Python。(c) **實際檔名**：DLC 建置測試為 `scripts/test_build_materials.py`（`EditionTests`）與 `scripts/test_build_delivery_dlc.py`；DLC 包驗證器為 `scripts/build_delivery_dlc.py --verify <dir>`；Plugin 封裝為 `scripts/vendor_dlc_plugin.py`；Recovery 產生器為 `agentic-workshop/07-dlc-ddd/facilitator/recovery/make_recovery.py`（資料夾 d1、d2、d3a、d3b、d3c）；不存在 `scripts/test_build_materials_dlc.py`、`scripts/validate_dlc.py`。(d) **檢查點時窗例外**：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分（d3a／d3b／d3c）、D3c 步驟 4 為 6 分，超過每步 5 分鐘，列為已接受例外；緩解：情境卡把 AC 分成核心與延伸，時間不足只做核心。(e) **RECOVERY 接手**會把維護者**公鑰**（allowed-signers 一行）複製到學員的 `~/.dlc-keys`；僅公鑰，可接受，私鑰仍不得出現在任何包內。
 14. 2026-10-15 使用者指示：DLC 重點是用 Agentic 方式進行 DDD，不是 domain-memory Plugin。學員面向的標題、①、④、投影、詞彙表以 DDD 技巧與 Agent 技巧為主；Plugin 指令與治理機制留在提示詞與 Agent 端，§3.3 操作順序與指令不變。本項取代第 2 點「DDD 概念一律透過 domain-memory Plugin 操作來教」的措辭。
 15. 2026-10-23 提示詞改為交辦工作的寫法（與主課一致）：規則與做法不再貼進對話，改放起始 Repo 附的團隊 `AGENTS.md`（`scripts/package-manifest-dlc.json` 中 `participant-dlc-open` 的 `generated` 項）與 5 個 Skill（`07-dlc-ddd/participant/skills/`，開場檢查點 1 由 Agent 安裝）；Plugin 指令寫成 `dm <指令>`，由 `AGENTS.md` 對應到各系統的 dm 腳本，不再分 PowerShell／bash 兩版；每個 ③ 是「用 check 檢查剛才這一段」；D2「開始前」每個對話只貼一行角色宣告；Recovery 步驟 1 是 `dlc-recovery` Skill，步驟 2–3 是 `RECOVERY.md` 第 2–3 節。本項取代 §4 的「提示詞結尾固定『停下等我』」（停下的規則在 `AGENTS.md`）與 §4.1 的「PowerShell 與 bash 兩版」。
+16. 2026-10-24 使用者核准依真 Agent 實測延長時程（「可以，先量開場–D2 再一次排定」）：合計 180 → 255 分鐘（開場 14、D1 29、D2 27、休息 10、D3a 40、D3b 50、D3c 47、D4 23、回顧 15），內容不刪，只改效率（check 沒改程式就沿用測試結果、D2 提案者在夥伴做檢查點 1、2 時先貼檢查點 3 第一段、D3c 反事實檢查一批跑完、範例只示範一次、Unknowns 在檢查點 2 定案）。解鎖碼字串與表單 id 不變，群組與 Recovery 的最早分鐘依新時程平移（第 3.2 節）；Recovery 切換約 12 分鐘，與下一段開頭重疊。依實測重排後多個檢查點超過 5 分鐘（例如 D3 檢查點 5 為 11／14／11 分），屬本項核准的例外。
 
 ## 2. 產出
 
@@ -50,19 +51,19 @@
 
 ## 3. 時程、檢查點與解鎖
 
-### 3.1 時程（合計 180 分鐘，連續無重疊）
+### 3.1 時程（合計 255 分鐘，連續無重疊；2026-10-24 起，見第 1 節第 16 項）
 
 | 分鐘 | 段落 id | 名稱 | 主要操作（全部經 `tools/dm.*` 執行） |
 |---|---|---|---|
-| 0–10 | `dlc-opening` | 開場與環境 | 安裝依賴、解出 Plugin 並核對 SHA、`readiness`、`quality-gates`、`python --version` |
-| 10–35 | `dlc-d1` | 共同語言與邊界 | `discover-sources` → 人工選來源 → `init-domain-memory` → `confirm-sources` → 以 `cite` 建 vocabulary／contexts／rules 候選 → `coverage` → `resolve-terms` → `get-context` → `analyze-boundary`（至少 2 個 Context） |
-| 35–60 | `dlc-d2` | 審查與核准（成對） | `init-signing-key --key-file <忽略目錄或 %TEMP%> --sign-every-commit` → `amend-policy`（依 3.3 順序）→ `install-git-hitl-hook` → `governance-readiness` → Change Package → 夥伴 `record-approval` → 簽章 commit → `verify-git-governance` → 提案者 `ship-package --commit HEAD`（attestation、finalize、apply 一步）→ `validate --require-reviewed` → `verify-audit` |
-| 60–70 | `dlc-break` | 休息 | — |
-| 70–95 | `dlc-d3a` | 電子發票 | Port／Adapter、ACL、失敗隔離、冪等 |
-| 95–125 | `dlc-d3b` | 點數折抵 | 決定 owner Context；跨 Membership／Pricing／Payment 的不變量；reserve／restore |
-| 125–155 | `dlc-d3c` | 團體部分退款 | Aggregate 一致性邊界；每條新規則都有 counterfactual |
-| 155–165 | `dlc-d4` | 交接 | `verify-sources`、`verify-evidence`、`verify-audit`；以 `upsert-candidate` 更新已變動事實；依 `implementation-handoff.md` 寫給下一個 Agent 的 Handoff |
-| 165–180 | `dlc-retro` | 回顧 | 反思表；Domain Memory 對 Agent 行為的影響 |
+| 0–14 | `dlc-opening` | 開場與環境 | 安裝依賴、解出 Plugin 並核對 SHA、`readiness`、`quality-gates`、`python --version` |
+| 14–43 | `dlc-d1` | 共同語言與邊界 | `discover-sources` → 人工選來源 → `init-domain-memory` → `confirm-sources` → 以 `cite` 建 vocabulary／contexts／rules 候選 → `coverage` → `resolve-terms` → `get-context` → `analyze-boundary`（至少 2 個 Context） |
+| 43–70 | `dlc-d2` | 審查與核准（成對） | `init-signing-key --key-file <忽略目錄或 %TEMP%> --sign-every-commit` → `amend-policy`（依 3.3 順序）→ `install-git-hitl-hook` → `governance-readiness` → Change Package → 夥伴 `record-approval` → 簽章 commit → `verify-git-governance` → 提案者 `ship-package --commit HEAD`（attestation、finalize、apply 一步）→ `validate --require-reviewed` → `verify-audit` |
+| 70–80 | `dlc-break` | 休息 | — |
+| 80–120 | `dlc-d3a` | 電子發票 | Port／Adapter、ACL、失敗隔離、冪等 |
+| 120–170 | `dlc-d3b` | 點數折抵 | 決定 owner Context；跨 Membership／Pricing／Payment 的不變量；reserve／restore |
+| 170–217 | `dlc-d3c` | 團體部分退款 | Aggregate 一致性邊界；每條新規則都有 counterfactual |
+| 217–240 | `dlc-d4` | 交接 | `verify-sources`、`verify-evidence`、`verify-audit`；以 `upsert-candidate` 更新已變動事實；依 `implementation-handoff.md` 寫給下一個 Agent 的 Handoff |
+| 240–255 | `dlc-retro` | 回顧 | 反思表；Domain Memory 對 Agent 行為的影響 |
 
 Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PLAN 必須一致，DLC 測試必須解析兩者比對。
 
@@ -72,18 +73,18 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 |---|---|---|---|
 | 00 | `open` | 開始之前、Runbook 用法、詞彙表（不得提供下載） | 不鎖 |
 | 00 | `dlc-opening` | 環境準備、Plugin 與起始 Repo 下載（碼寫在第一張解鎖投影片） | 一般 |
-| 10 | `dlc-d1` | D1 步驟、來源選擇表 | 一般 |
-| 35 | `dlc-d2` | D2 步驟、角色卡、成對簽章流程 | 一般 |
-| 70 | `dlc-d3a` | 情境卡 01、D3 決策卡 | 一般 |
-| 95 | `dlc-d3b` | 情境卡 02 | 一般 |
-| 125 | `dlc-d3c` | 情境卡 03 | 一般 |
-| 155 | `dlc-d4` | D4 步驟、Handoff 範本 | 一般 |
-| 165 | `dlc-retro` | 反思表 | 一般 |
-| 35 | `dlc-rec-d1` | Repo＋已確認 source map＋D1 候選集 | Recovery |
-| 45 | `dlc-rec-d2` | 主持人 reviewed Registry（D2 預設降級，成對簽章任一步卡住 5 分鐘即可公布） | Recovery |
-| 95 | `dlc-rec-d3a` | D3a 參考解答清理版（揭曉後） | Recovery |
-| 125 | `dlc-rec-d3b` | D3b 參考解答清理版（揭曉後） | Recovery |
-| 155 | `dlc-rec-d3c` | D3c 參考解答清理版（揭曉後） | Recovery |
+| 14 | `dlc-d1` | D1 步驟、來源選擇表 | 一般 |
+| 43 | `dlc-d2` | D2 步驟、角色卡、成對簽章流程 | 一般 |
+| 80 | `dlc-d3a` | 情境卡 01、D3 決策卡 | 一般 |
+| 120 | `dlc-d3b` | 情境卡 02 | 一般 |
+| 170 | `dlc-d3c` | 情境卡 03 | 一般 |
+| 217 | `dlc-d4` | D4 步驟、Handoff 範本 | 一般 |
+| 240 | `dlc-retro` | 反思表 | 一般 |
+| 43 | `dlc-rec-d1` | Repo＋已確認 source map＋D1 候選集 | Recovery |
+| 51 | `dlc-rec-d2` | 主持人 reviewed Registry（D2 預設降級，成對簽章任一步卡住 5 分鐘即可公布） | Recovery |
+| 120 | `dlc-rec-d3a` | D3a 參考解答清理版（揭曉後） | Recovery |
+| 170 | `dlc-rec-d3b` | D3b 參考解答清理版（揭曉後） | Recovery |
+| 217 | `dlc-rec-d3c` | D3c 參考解答清理版（揭曉後） | Recovery |
 
 - Recovery 碼與一般碼分開、只視需要公布；Recovery 不得作為小組成果評分。`dlc-rec-d3*` 只能在對應段揭曉頁之後公布。
 - RECOVERY 接手會把維護者公鑰（allowed-signers 一行）複製到學員 `~/.dlc-keys`：僅公鑰，可接受。
@@ -103,39 +104,39 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 
 每段 Runbook 必須有：目標一句、檢查點步驟（每步 ≤ 5 分鐘；例外見第 1 節第 13 項(d)）、提示詞（結尾固定「停下等我」）、確認表單（附建議膠囊選項）、卡關時的 Recovery 指引。投影顯示時間、檢查點與學員下一步要做的事（2026-10-11 變更），不顯示主持專用內容。
 
-### 4.1 開場與環境（0–10）
+### 4.1 開場與環境（0–14）
 
 - 檢查點（四個，名稱見 `materials-dlc/CHECKPOINTS.md`）分別確認：測試 76 passed；Plugin 解出並通過 SHA 核對；`readiness`（brownfield）與 `quality-gates`（列出 pytest）；真實 Python（非 Store 別名）。環境／下載頁屬 `dlc-opening` 群組。
 - 驗收：四點都有可複製指令（PowerShell 與 bash 兩版），且每點有「看到什麼算成功」的輸出片段。
 
-### 4.2 D1 共同語言與邊界（10–35）
+### 4.2 D1 共同語言與邊界（14–43）
 
 - 檢查點：D1-1 人工從 `discover-sources` 結果勾選來源（必含 `docs/requirements/`、`docs/adr/`、`src/`、`tests/`，排除 `**/__pycache__/**`）；D1-2 `init-domain-memory`（`--storage-mode tracked --review-mode local-draft-only`）＋`confirm-sources`；D1-3 以 `make_record.py`（內部呼叫 `cite`）建立 ≥5 個 vocabulary、≥2 個 contexts、≥2 個 rules 候選；D1-4 `coverage`、`resolve-terms`（用一句話查詢）、`get-context`、`analyze-boundary`（兩個不同 Context）。
 - 教學重點：名稱矛盾（Fare Policy／Discount Policy、Compensation 無對應程式）、Context 邊界洩漏，均須讓學員在 `cite` 的證據中親眼看到。
 - 驗收：`validate` 通過；`verify-evidence` 全部 current；每個候選至少一個 `cite` 證據；所有規則證據都在已確認來源內。
 
-### 4.3 D2 審查與核准（35–60，成對）
+### 4.3 D2 審查與核准（43–70，成對）
 
 - 角色：proposer（操作者機器）與 maintainer 夥伴（持鑰、核准、簽章）。兩人共用同一台機器時，夥伴金鑰一律放在 Repo 外的 `%USERPROFILE%\.dlc-keys\<夥伴代號>\`（Git Bash：`~/.dlc-keys/<夥伴代號>/`），不放 Repo 內的 `.dlc-keys/`、不放 `~/.ssh`。
 - 檢查點：D2-1 夥伴 `init-signing-key`；D2-2 三次 `amend-policy`＋hook＋`governance-readiness` ready；D2-3 proposer 以 `fill_package.py` 建 Change Package 並 `validate-change-package`、`submit-proposal`；D2-4 夥伴 `record-approval`、`verify-proposal`、簽章 commit；D2-5 夥伴 `verify-git-governance --commit HEAD`；D2-6 提案者 `ship-package --commit HEAD` → `validate --require-reviewed` → `verify-audit`，夥伴簽章 commit 並 push。
 - 降級：任一步卡 5 分鐘，公布 `dlc-rec-d2`，小組改為對 reviewed Registry 執行 `validate --require-reviewed` 與 `verify-audit`，並觀看主持人示範簽章段落。
 - 驗收：參考 Registry 與成對流程皆 `validate --require-reviewed` OK、`verify-audit` OK；`git log --show-signature` 可見核准 commit 已簽章；私鑰不在任何 commit、ZIP 或 Runbook 中。
 
-### 4.4 D3 共同規則（70–155）
+### 4.4 D3 共同規則（80–217）
 
 每個情境依同一節奏：讀情境卡 → `get-context`／`resolve-terms` 取得 reviewed 事實 → 寫 D3 決策卡（owner Context、不變量、外部系統、未知項）→ 交 Agent 實作 → 測試 → 每條新規則跑 `counterfactual` → 讀 `brief --base HEAD` 判斷哪些已審查事實被改變（D3b 起）→ 以 `upsert-candidate` 登記新事實（候選，不得自稱 reviewed；D3c 規則寫上所守的 `aggregate`）。參考解答的 Registry 狀態 = D2 reviewed Registry ＋ 新增／變更事實候選；D3 不 finalize Change Package（見第 1 節第 13 項）。
-- 檢查點時窗：D3 步驟 3「Handoff 與 Agent 實作」為 7／8／9 分、D3c 步驟 4 為 6 分，屬已接受例外；緩解為情境卡 AC 的核心／延伸切分。
+- 檢查點時窗：依 2026-10-24 實測重排（`materials-dlc/CHECKPOINTS.md`），D3 檢查點 3「Handoff 與 Agent 實作」為 9／12／11 分、檢查點 5 為 11／14／11 分，屬第 1 節第 16 項核准的例外；緩解為情境卡 AC 的核心／延伸切分。
 
-- **D3a 電子發票（70–95）**：`InvoiceIssuer` 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；ACL 把 Order 翻譯為發票語言；付款成功不得因發票失敗撤銷；以 order_id 冪等；不得持鎖做外部呼叫。驗收：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。
-- **D3b 點數折抵（95–125）**：先決定 owner Context 並記錄理由；餘額不為負、折抵後應付 ≥ 0 且為整數、先折扣後折抵；建立時 reserve、付款失敗或取消時 restore，不重複扣點。驗收：一般、團體、改票三條計價路徑都有測試，付款失敗返點有測試。
-- **D3c 團體部分退款（125–155）**：Booking 為 Aggregate root，`cancel_passengers` 為唯一入口；累計退款 ≤ 已付金額；座位數 = 剩餘旅客數；同一旅客不得重複取消；全部取消等同整張退票。驗收：**每一條**新規則都有一次 killed 的 counterfactual 紀錄。
+- **D3a 電子發票（80–120）**：`InvoiceIssuer` 類 Port 在 domain／application 邊界，Adapter 在 infrastructure；ACL 把 Order 翻譯為發票語言；付款成功不得因發票失敗撤銷；以 order_id 冪等；不得持鎖做外部呼叫。驗收：Fake Adapter 可注入暫時性與永久性失敗，兩者各有測試。
+- **D3b 點數折抵（120–170）**：先決定 owner Context 並記錄理由；餘額不為負、折抵後應付 ≥ 0 且為整數、先折扣後折抵；建立時 reserve、付款失敗或取消時 restore，不重複扣點。驗收：一般、團體、改票三條計價路徑都有測試，付款失敗返點有測試。
+- **D3c 團體部分退款（170–217）**：Booking 為 Aggregate root，`cancel_passengers` 為唯一入口；累計退款 ≤ 已付金額；座位數 = 剩餘旅客數；同一旅客不得重複取消；全部取消等同整張退票。驗收：**每一條**新規則都有一次 killed 的 counterfactual 紀錄。
 
-### 4.5 D4 交接（155–165）
+### 4.5 D4 交接（217–240）
 
 - 檢查點：D4-1 `verify-sources`、`verify-evidence`、`verify-audit`；D4-2 對 D3 改變的事實 `upsert-candidate`；D4-3 依 `implementation-handoff.md` 七段（Domain facts、Forces、Decision、External systems、Unknowns、Proof obligations、Counterfactual check）填 Handoff 範本，夥伴簽章 commit 後 `install-pre-commit-hook` 並示範一次被擋下的改名 commit。
 - 驗收：Handoff 範本七段齊全且只引用 Registry 中存在的 id。
 
-### 4.6 回顧（165–180）
+### 4.6 回顧（240–255）
 
 反思表至少問：哪個 reviewed 事實改變了 Agent 的輸出；哪個候選差點被當成事實；自我核准的儀式感與真實治理差在哪裡。
 
@@ -188,7 +189,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 6. **成對簽章演練**：以兩個不同身分在乾淨複本上完整跑一次 D2，push 至本機 bare remote 被 hook 接受；另以未簽章 commit 驗證 push 被拒。
 7. **輔助腳本**：每支自檢通過；以腳本重做 D1、D2 的計時（記錄分鐘數）。
 8. **建置**：`build_materials.py --edition dlc` 兩次輸出位元組相同；`--edition dlc --check` 為 UP-TO-DATE；主課 `build_materials.py --check` 仍 UP-TO-DATE。
-9. **DLC 測試**：`scripts/test_build_materials.py`（EditionTests）與 `scripts/test_build_delivery_dlc.py` 覆蓋 PLAN 連續且合計 180、Python／JS PLAN 一致、每個一般群組有對應 `data-unlock` 投影片且分鐘等於段落起點、碼與鎖定頁明文不出現在輸出、無外部 URL、forbidden marker 為零、下載 ZIP 雜湊屬於 DLC evidence、localStorage 鍵皆為 `stwdlc:`。
+9. **DLC 測試**：`scripts/test_build_materials.py`（EditionTests）與 `scripts/test_build_delivery_dlc.py` 覆蓋 PLAN 連續且合計 255、Python／JS PLAN 一致、每個一般群組有對應 `data-unlock` 投影片且分鐘等於段落起點、碼與鎖定頁明文不出現在輸出、無外部 URL、forbidden marker 為零、下載 ZIP 雜湊屬於 DLC evidence、localStorage 鍵皆為 `stwdlc:`。
 10. **全域**：`python -X utf8 scripts/validate_workshop.py --static-only`、`scripts/validate_consistency_corrections.py`、`python -m unittest discover -s scripts -p "test_*.py"` 與 `python -X utf8 scripts/build_delivery_dlc.py --verify <dir>` 通過；`git status` 確認主課 manifest 與凍結候選未變、`dist/` 未被追蹤、無私鑰檔被追蹤（`scan-secrets` exit 0；金鑰在 Repo 外，預期無 finding）。
 11. **Leakage**：解開全部一般群組後，Runbook 不含 evaluation 原文、參考解答程式、觀察指引或評分表字句；Recovery 包內容符合第 3.2 節。
 12. **瀏覽器冒煙**：實際瀏覽器以 `file://` 開啟兩份 HTML，完成翻頁、解鎖、下載、表單暫存、匯出、與主課 Runbook 同時開啟不互相污染，並截圖審視版面。
@@ -199,7 +200,7 @@ Python `PLAN` 與 `materials-dlc/facilitator-deck/src/js/10-deck-core.js` 的 PL
 
 | # | 風險 | 處置 |
 |---|---|---|
-| R1 | D1、D2 各 25 分鐘偏緊（Spike：候選 20–30 分、Change Package 30–45 分，主要耗在手打 JSON） | 輔助腳本；第 7.7 節實測計時；超時即公布 Recovery，不延長段落 |
+| R1 | D1、D2 偏緊（2026-10-24 起 29、27 分鐘）（Spike：候選 20–30 分、Change Package 30–45 分，主要耗在手打 JSON） | 輔助腳本；第 7.7 節實測計時；超時即公布 Recovery，不延長段落 |
 | R2 | D3 三情境依序進行，任一段落後會連鎖拖延 | 每段揭曉後即可公布 `dlc-rec-d3*`；D3c 允許只完成 Aggregate 與兩條規則 |
 | R3 | 自我核准淪為儀式：`record-approval` 只比對字串，同機雙身分仍可通過 | 成對分工；主持人明講此為教學示範而非安全保證；回顧題目直接討論 |
 | R4 | 私鑰外洩至 commit、ZIP 或螢幕截圖 | 金鑰放 Repo 外的 `%USERPROFILE%\.dlc-keys\`；`scan-secrets` 與打包檢查；課後提示刪除 |
@@ -258,7 +259,7 @@ Final Decision 僅可為 `PASS FOR WORKSHOP USE` 或 `FAIL`；任何第 7 節項
 
 - 第 2 節產出齊備，且未新增表外頂層資料夾。
 - Plugin 1.2.18 原樣封裝，SHA 清單核對通過。
-- 時程連續、合計 180 分鐘，九段與第 3.1 節一致；每個 D 段有檢查點、「停下等我」提示詞、確認表單、獨立解鎖碼與 Recovery。
+- 時程連續、合計 255 分鐘，九段與第 3.1 節一致；每個 D 段有檢查點、「停下等我」提示詞、確認表單、獨立解鎖碼與 Recovery。
 - 第 3.3 節操作順序與第 5.2 節 Windows 陷阱在 Runbook 與參考解答中一致處理。
 - 三個參考解答測試全綠；其 `domain-memory/` 的 `validate`、`verify-audit`、`coverage` OK（stale evidence 已列出）；reference Registry（D2）`validate --require-reviewed` 與 `verify-audit` OK；每條新規則有 killed counterfactual。
 - Participant、Facilitator、Evaluation 隔離，Leakage Check 通過，私鑰未被追蹤或打包。

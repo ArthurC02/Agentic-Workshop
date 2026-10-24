@@ -1,7 +1,7 @@
 ---
 id: environment
 title: 開場與環境
-minute: 00-10
+minute: 00-14
 group: dlc-opening
 section: 開始之前
 ---
@@ -11,7 +11,7 @@ section: 開始之前
 ```callout info
 現在在做什麼
 - **情境**：你接手 Smart Ticket 的訂票後端，今天要和 Agent 一起替它建立團隊共用的領域模型。專案裡有團隊留下的 `AGENTS.md`。
-- **你的目標**：10 分鐘內讓 Agent 照 `AGENTS.md` 備好環境、裝好 Skill：測試全過、模型工具可信，並找出哪些錯只能靠人審查。
+- **你的目標**：14 分鐘內讓 Agent 照 `AGENTS.md` 備好環境、裝好 Skill：測試全過、模型工具可信，並找出哪些錯只能靠人審查。
 - **今天的技巧**：做法寫在 `AGENTS.md` 和 Skill，提示詞只交代這次的事；每一步用 `check` 對照實際結果。
 - **完成的樣子**：`notes/opening.md` 有四個檢查點的結果；起始版本（起始 commit）已建立，裡面有 `AGENTS.md` 和 Skill。
 ```
@@ -23,7 +23,7 @@ section: 開始之前
 - macOS 用 Safari 下載的人：到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，或改用 Chrome。
 - 一個能讀寫本機資料夾、執行終端機指令的 Coding Agent（主課用過的即可）。
 
-## 檢查點 1 · 確認起點：測試全部通過（第 0–3 分鐘）
+## 檢查點 1 · 確認起點：測試全部通過（第 0–6 分鐘）
 
 ① 為什麼做這一步
 
@@ -35,7 +35,7 @@ id=participant-dlc-open zip=participant-dlc-open.zip label=下載學員包（起
 
 ② 貼給 Agent
 
-1. 按上方按鈕下載 `participant-dlc-open.zip`，解壓縮到你習慣的位置（例如下載資料夾）：Windows 在檔案上按右鍵選「全部解壓縮」；macOS 按兩下 zip。
+1. 按上方按鈕下載 `participant-dlc-open.zip`，解壓縮到你習慣的位置（例如下載資料夾）：Windows 在檔案上按右鍵選「全部解壓縮」；macOS 按兩下 zip。主持人說明時已做好就跳過。
 2. 用 Agent 開啟解出來的 `participant-dlc-open` › `repository` › `smart-ticket-dlc-base` 資料夾（Repo 根目錄），開新的 Agent 對話。
 3. 貼上：
 
@@ -73,7 +73,7 @@ Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許。安�
 📖 延伸閱讀：OpenAI〈AGENTS.md〉、Claude Code 官方文件〈How Claude remembers your project〉、agentskills.io〈Agent Skills Overview〉；你所用工具的官方文件通常有同名章節。
 ```
 
-## 檢查點 2 · 備好可信的共用模型工具（第 3–5 分鐘）
+## 檢查點 2 · 備好可信的共用模型工具（第 6–8 分鐘）
 
 ① 為什麼做這一步
 
@@ -99,7 +99,7 @@ Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許。安�
 先停，不要動 Plugin 的任何檔案。是哪一步沒成功：找不到 zip、解壓縮失敗、核對不符，還是版本不對？列出不符的檔案，等我和主持人決定。
 ```
 
-## 檢查點 3 · 找出只能靠人審查的錯（第 5–8 分鐘）
+## 檢查點 3 · 找出只能靠人審查的錯（第 8–11 分鐘）
 
 ① 為什麼做這一步
 
@@ -125,7 +125,7 @@ Agent 用兩個只讀不改的檢查看這個 Repo：它是已有程式的既有
 先停，不要改任何檔案。readiness 或 quality-gates 的輸出哪裡和你預期不同？可能的原因是什麼？你建議怎麼做？
 ```
 
-## 檢查點 4 · 確認環境並建立起始版本（第 8–10 分鐘）
+## 檢查點 4 · 確認環境並建立起始版本（第 11–14 分鐘）
 
 ① 為什麼做這一步
 
@@ -157,10 +157,10 @@ Agent 確認用的是真正的 Python 3.13，並建立起始版本（起始 comm
 ④ 補充
 
 ```callout danger
-第 10 分鐘仍未通過
+第 14 分鐘仍未通過
 不要在活動中更換 Python 版本或工具。告知主持人，從 D1 起先和夥伴共用一台已通過的機器。
 ```
 
 ```callout sync
-⏸ 看投影：第 8 分鐘找好 D2 夥伴，D2 起兩人一組
+⏸ 看投影：第 11 分鐘找好 D2 夥伴，D2 起兩人一組
 ```

@@ -20,8 +20,8 @@
 | 鍵 | 內容 |
 |---|---|
 | `candidate_id` | `dist/dlc-candidate/<id>/` 的 16 碼 id（DLC manifest SHA256 前 16 碼） |
-| `total_minutes` / `plan` | 180 分鐘；段落 id 採規格 §3.1 的 `dlc-` 前綴（`dlc-opening` … `dlc-retro`）。builder 對段落 id 無格式限制，只要求與投影片 `data-seg` 及 `facilitator-deck/src/js/10-deck-core.js` 的 JS PLAN（含標籤）完全一致，故不需去掉前綴。 |
-| `recovery_downloads` | `{"recovery-dlc-<段>.zip": ["dlc-rec-<段>", 最早分鐘]}`：d1=35、d2=45、d3a=95、d3b=125、d3c=155（規格 §3.2）。分鐘必須等於候選包 `build-evidence.json` 的 `release_minute`；主課專用的 B1/B2 版本檢查不套用於 DLC。Recovery ZIP 只能在對應 `dlc-rec-*` 群組頁以 `download` 發放，不可 `include`。 |
+| `total_minutes` / `plan` | 255 分鐘（2026-10-24 依實測由 180 延長）；段落 id 採規格 §3.1 的 `dlc-` 前綴（`dlc-opening` … `dlc-retro`）。builder 對段落 id 無格式限制，只要求與投影片 `data-seg` 及 `facilitator-deck/src/js/10-deck-core.js` 的 JS PLAN（含標籤）完全一致，故不需去掉前綴。 |
+| `recovery_downloads` | `{"recovery-dlc-<段>.zip": ["dlc-rec-<段>", 最早分鐘]}`：d1=43、d2=51、d3a=120、d3b=170、d3c=217（規格 §3.2）。分鐘必須等於候選包 `build-evidence.json` 的 `release_minute`；主課專用的 B1/B2 版本檢查不套用於 DLC。Recovery ZIP 只能在對應 `dlc-rec-*` 群組頁以 `download` 發放，不可 `include`。 |
 | `forbidden_markers` | 規格 §5.1：`facilitator`、`evaluation`、`reference-solution`、`reference answer`、`標準答案`、`observation-guide`、`rubric`、`評分表`、`reference-registry`（`STUDENT_FARE_RATE` 不列入） |
 | `marker_exemptions` | 只允許 `[頁 id, 精確片語]`，每條須在此說明理由（目前無）。 |
 

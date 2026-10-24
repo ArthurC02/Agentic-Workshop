@@ -1,19 +1,32 @@
-<!-- ===================== 開場 0–10 ===================== -->
+<!-- ===================== 開場 0–14 ===================== -->
 
 <section class="slide slide-title" data-seg="dlc-opening" data-title="DLC 開場" data-minute="0">
-  <p class="kicker">DDD（Domain-Driven Design，領域驅動設計）延伸課程（DLC）· 180 分鐘</p>
+  <p class="kicker">DDD（Domain-Driven Design，領域驅動設計）延伸課程（DLC）· 255 分鐘</p>
   <h1 class="title">和 Coding Agent 一起做 DDD</h1>
   <p class="subtitle">Agent 找證據、人定義模型，再照模型改程式、用測試證明</p>
   <div class="cols-3">
-    <div class="card fx fx-up"><div class="big-number">180</div><p class="muted">分鐘 · 九個時段</p></div>
+    <div class="card fx fx-up"><div class="big-number">255</div><p class="muted">分鐘 · 九個時段</p></div>
     <div class="card fx fx-up"><div class="big-number">3</div><p class="muted">個情境依序全做</p></div>
     <div class="card fx fx-up"><div class="big-number">2</div><p class="muted">人一組（D2 起）</p></div>
   </div>
   <p class="muted">DLC 是延伸課程，原指遊戲的追加內容。D1–D4 是今天四段的代號，D3 再分 a、b、c 三張需求卡。</p>
   <aside class="notes">
-    <p><b>開場前</b>：選定<b>計時者</b>與<b>證據記錄者</b>。接著講「為什麼」「怎麼進行」兩頁（共約 2 分鐘），再翻到解鎖頁；10:00 計時在總覽頁按 <b>T</b> 啟動。</p>
-    <p><b>說</b>：「主課你們看過 Agent 從工具、隊友，到能獨立執行任務的數位員工。今天 180 分鐘加課，主題是：怎麼帶著 Coding Agent 做 DDD。Agent 找證據、做苦工；你定義模型、做決定、看證據驗收。domain-memory 只是保存共用模型的工具。」</p>
+    <p><b>開場前</b>：選定<b>計時者</b>與<b>證據記錄者</b>。下一頁是解鎖頁：請大家輸入解鎖碼、下載並解壓縮學員包，邊做邊聽「為什麼」「怎麼進行」兩頁（共約 2 分鐘）；14:00 計時在總覽頁按 <b>T</b> 啟動。</p>
+    <p><b>說</b>：「主課你們看過 Agent 從工具、隊友，到能獨立執行任務的數位員工。今天 255 分鐘加課，主題是：怎麼帶著 Coding Agent 做 DDD。Agent 找證據、做苦工；你定義模型、做決定、看證據驗收。domain-memory 只是保存共用模型的工具。」</p>
     <p><b>前提</b>：對象是已完成主課的學員；DDD 概念透過和 Agent 一起做真實決定來學，不另開理論講堂；domain-memory 只保存共用模型，指令全由 Agent 執行。</p>
+  </aside>
+</section>
+
+<section class="slide slide-title" data-seg="dlc-opening" data-title="解鎖 開場" data-minute="0" data-unlock="dlc-opening">
+  <p class="kicker">第 0 分鐘 · 解鎖</p>
+  <h2 class="title">開場與環境 開始</h2>
+  <p class="subtitle">先下載學員包並解壓縮，邊做邊聽說明</p>
+  <p class="lead">在 Runbook 輸入解鎖碼，打開『開場與環境』，按檢查點 1 的下載鈕。</p>
+  <p class="muted">每個檢查點：先貼 ② 給 Agent，再貼 ③ 確認結果；Agent 回「成功」才往下。</p>
+  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
+  <aside class="notes">
+    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，先按檢查點 1 的下載鈕，把學員包下載、解壓縮，邊做邊聽我說明；說完再從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
+    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載、解壓縮到習慣的位置（例如下載資料夾），用 Agent 開啟 <code>smart-ticket-dlc-base</code>，開新對話貼檢查點 1 的提示詞：Agent 先把學員包的 5 個 Skill 放到會自動載入的位置，再照 <code>AGENTS.md</code> 備好環境。</p>
   </aside>
 </section>
 
@@ -26,25 +39,25 @@
     <div class="card fx fx-up"><span class="chip">目的</span><h3>照模型設計，用測試證明</h3><p>Agent 依已審查事實設計、實作，再用測試證明規則真的守得住。</p></div>
   </div>
   <aside class="notes">
-    <p><b>說（解鎖前，約 1 分鐘）</b>：「Agent 每次對話都從零開始，同一件事還常換說法。今天你們先和 Agent 建一份有證據、經審查的共用模型，再照它做三個變更。」</p>
+    <p><b>說（學員邊下載邊聽，約 1 分鐘）</b>：「Agent 每次對話都從零開始，同一件事還常換說法。今天你們先和 Agent 建一份有證據、經審查的共用模型，再照它做三個變更。」</p>
     <p><b>注意</b>：只講動機，不示範指令；不提前說明 D3 情境細節。</p>
   </aside>
 </section>
 
 <section class="slide" data-seg="dlc-opening" data-title="今天怎麼進行" data-minute="0">
-  <p class="kicker">180 分鐘</p>
+  <p class="kicker">255 分鐘</p>
   <h2 class="title">建模型、核准、用它做三個變更、交接</h2>
   <ol class="timeline">
-    <li data-seg="dlc-d1"><span class="tl-min">10–35</span><b>D1 · 語言與邊界</b></li>
-    <li data-seg="dlc-d2"><span class="tl-min">35–60</span><b>D2 · 審查核准</b></li>
-    <li data-seg="dlc-d3a"><span class="tl-min">70–95</span><b>D3a · 電子發票</b></li>
-    <li data-seg="dlc-d3b"><span class="tl-min">95–125</span><b>D3b · 點數折抵</b></li>
-    <li data-seg="dlc-d3c"><span class="tl-min">125–155</span><b>D3c · 部分退款</b></li>
-    <li data-seg="dlc-d4"><span class="tl-min">155–180</span><b>D4 交接 · 回顧</b></li>
+    <li data-seg="dlc-d1"><span class="tl-min">14–43</span><b>D1 · 語言與邊界</b></li>
+    <li data-seg="dlc-d2"><span class="tl-min">43–70</span><b>D2 · 審查核准</b></li>
+    <li data-seg="dlc-d3a"><span class="tl-min">80–120</span><b>D3a · 電子發票</b></li>
+    <li data-seg="dlc-d3b"><span class="tl-min">120–170</span><b>D3b · 點數折抵</b></li>
+    <li data-seg="dlc-d3c"><span class="tl-min">170–217</span><b>D3c · 部分退款</b></li>
+    <li data-seg="dlc-d4"><span class="tl-min">217–255</span><b>D4 交接 · 回顧</b></li>
   </ol>
   <p class="callout"><b>投影告訴你做到哪、何時停；Runbook 告訴你怎麼做。</b>③ 回『成功』貼綠色便利貼；卡住貼紅色，主持人會走過去</p>
   <aside class="notes">
-    <p><b>說（解鎖前，約 1 分鐘）</b>：「60–70 分休息。每段都從 Runbook 解鎖，投影會列出每個檢查點要貼哪一段、要判斷什麼；每個檢查點貼提示詞，Agent 做完停下回報，需要決定時你回一句話，紀錄由 Agent 寫。每段結尾先小組討論，再把結論記進表單。D3 三個情境全做，依序累積。」</p>
+    <p><b>說（學員邊下載邊聽，約 1 分鐘）</b>：「70–80 分休息。每段都從 Runbook 解鎖，投影會列出每個檢查點要貼哪一段、要判斷什麼；每個檢查點貼提示詞，Agent 做完停下回報，需要決定時你回一句話，紀錄由 Agent 寫。每段結尾先小組討論，再把結論記進表單。D3 三個情境全做，依序累積。」</p>
     <p><b>⏸ 看投影</b>：Runbook 只在真的要抬頭時放深藍色「⏸ 看投影」提示（解鎖、找夥伴、停手、揭曉、Recovery）；投影上對應的頁右上角有同一個標記。說一次：「看到它就抬頭。」</p>
     <p><b>便利貼</b>：每人桌上綠、紅便利貼各一疊。③ 回「成功」貼綠色；卡住、或貼了「失敗時」還是不行就貼紅色。<b>每個檢查點截止時掃一眼全場顏色</b>：紅色先過去；截止時還沒貼綠色的，走過去問一句卡在哪。</p>
     <p><b>規則</b>：每段有獨立解鎖碼；卡住時主持人才視需要私下提供 Recovery，Recovery 不作為小組成果評分。</p>
@@ -52,45 +65,32 @@
   </aside>
 </section>
 
-<section class="slide slide-title" data-seg="dlc-opening" data-title="解鎖 開場" data-minute="0" data-unlock="dlc-opening">
-  <p class="kicker">第 0 分鐘 · 解鎖</p>
-  <h2 class="title">開場與環境 開始</h2>
-  <p class="subtitle">下載學員包，讓 Agent 備好環境</p>
-  <p class="lead">在 Runbook 輸入解鎖碼，打開『開場與環境』，從<b>檢查點 1</b> 開始。</p>
-  <p class="muted">每個檢查點：先貼 ② 給 Agent，再貼 ③ 確認結果；Agent 回「成功」才往下。</p>
-  <p class="sync-cue" data-sync="解鎖碼">⏸ 看投影</p>
-  <aside class="notes">
-    <p><b>說</b>：「請輸入解鎖碼，打開 Runbook 的開場與環境，下載學員包，從檢查點 1 開始。今天的節奏是：複製提示詞給 Agent、看 Agent 白話回報、需要時回一句話做決定，紀錄由 Agent 寫。你們不用自己打指令。每個檢查點的步驟，投影上也會列出來。」</p>
-    <p><b>操作</b>：本頁大字顯示解鎖碼。學員包內含起始 Repo、輔助工具與 Plugin；學員自己下載、解壓縮到習慣的位置（例如下載資料夾），用 Agent 開啟 <code>smart-ticket-dlc-base</code>，開新對話貼檢查點 1 的提示詞：Agent 先把學員包的 5 個 Skill 放到會自動載入的位置，再照 <code>AGENTS.md</code> 備好環境。</p>
-  </aside>
-</section>
-
-<section class="slide slide-seg" data-seg="dlc-opening" data-title="開場與環境 · 總覽" data-minute="0" data-timer="10:00" data-gates="dlc-opening">
-  <p class="kicker">開場與環境 · 第 0–10 分鐘</p>
-  <h2 class="title">開場 10 分鐘：環境就緒</h2>
+<section class="slide slide-seg" data-seg="dlc-opening" data-title="開場與環境 · 總覽" data-minute="0" data-timer="14:00" data-gates="dlc-opening">
+  <p class="kicker">開場與環境 · 第 0–14 分鐘</p>
+  <h2 class="title">開場 14 分鐘：環境就緒</h2>
   <ul class="seg-brief">
     <li><b>情境</b><span>你接手訂票後端，今天和 Agent 建立共用的領域模型</span></li>
     <li><b>目標</b><span>測試全過、工具可信、知道哪些錯只能靠人抓</span></li>
     <li><b>今天的技巧</b><span>做法寫在 AGENTS.md 和 Skill；提示詞只交代這次的事</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 確認起點：測試全部通過</b><span class="tl-due">第 3 分前</span></li>
-    <li data-seg="dlc-opening"><span class="tl-min">03:00</span><b>2 · 備好可信的共用模型工具</b><span class="tl-due">第 5 分前</span></li>
-    <li data-seg="dlc-opening"><span class="tl-min">05:00</span><b>3 · 找出只能靠人審查的錯</b><span class="tl-due">第 8 分前</span></li>
-    <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>4 · 確認環境並建立起始版本</b><span class="tl-due">第 10 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">00:00</span><b>1 · 確認起點：測試全部通過</b><span class="tl-due">第 6 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">06:00</span><b>2 · 備好可信的共用模型工具</b><span class="tl-due">第 8 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">08:00</span><b>3 · 找出只能靠人審查的錯</b><span class="tl-due">第 11 分前</span></li>
+    <li data-seg="dlc-opening"><span class="tl-min">11:00</span><b>4 · 確認環境並建立起始版本</b><span class="tl-due">第 14 分前</span></li>
   </ol>
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『開場與環境』› 檢查點 1</p>
   <aside class="notes">
-    <p><b>說（約 20 秒）</b>：「10 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
+    <p><b>說（約 20 秒）</b>：「14 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
     <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 98 files）由 check Skill 對照實際輸出檢查。之後每段都一樣。</p>
-    <p><b>操作</b>：本頁按 <b>T</b> 啟動 10:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 8 分）。</p>
-    <p><b>時間（演練實測）</b>：檢查點 1 安裝套件加第一次測試約 1–3 分鐘（實測 157 秒）；之後每次 check 都實際重跑測試或 Plugin 指令，約 1 分鐘，已算在各檢查點時間裡。Agent 跑 check 時學員讀 ④，不要另貼 ③ 重跑一次。</p>
-    <p><b>降級</b>：第 10 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
+    <p><b>操作</b>：本頁按 <b>T</b> 啟動 14:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 11 分）。</p>
+    <p><b>時間（演練實測）</b>：開場四個檢查點約 15 分鐘，檢查點 1 最久（約 7 分鐘：Agent 建 venv、安裝套件加第一次測試約 2–3 分鐘）；學員包在開場說明時就下載好，可省下約 1.5 分鐘。check 在程式沒改時沿用上次測試結果，不重跑。Agent 跑 check 時學員讀 ④，不要另貼 ③ 重跑一次。</p>
+    <p><b>降級</b>：第 14 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
   </aside>
 </section>
 
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 1 · 確認起點：測試全部通過" data-minute="0">
-  <p class="kicker">檢查點 1 / 4 · 第 0–3 分鐘</p>
+  <p class="kicker">檢查點 1 / 4 · 第 0–6 分鐘</p>
   <h2 class="title">確認起點：測試全部通過</h2>
   <p class="cp-why"><b>為什麼</b>每個決定最後都用測試證明；先確認起點全部通過</p>
   <p class="cp-label">現在做</p>
@@ -99,7 +99,7 @@
     <li><b>貼 ②「備好環境」</b><span>Runbook『開場與環境』› 檢查點 1</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-next"><b>第 3 分前完成</b><span>→ 下一步：檢查點 2 備好可信的共用模型工具</span></p>
+  <p class="cp-next"><b>第 6 分前完成</b><span>→ 下一步：檢查點 2 備好可信的共用模型工具</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 0 分）</b>：「第 0 分。請開 Runbook 的開場與環境，從檢查點 1 開始：解壓縮後用 Agent 開啟 smart-ticket-dlc-base，開新對話貼提示詞：Agent 先把 5 個 Skill 放到會自動載入的位置，再照 AGENTS.md 安裝依賴、跑測試，要看到 76 passed；最後一行它會用 check 自己回成功或失敗。等安裝時先讀檢查點 1 的 ④ 小卡。」</p>
     <p><b>AGENTS.md 與 Skill（花 20 秒講 ④ 小卡）</b>：專案的做法（怎麼跑、Git 與金鑰、工作規則、兩個角色、審查準則）已寫在 Repo 的 AGENTS.md，每個新對話會自己讀；一步步的做法在 5 個 Skill（check、record-candidates、counterfactual、signed-commit、dlc-recovery）。所以之後的提示詞只交代這次的事，每個 ③ 都是「用 check 檢查剛才這一段」；② 結尾多半已請 Agent 用 check，學員看到成功或失敗就不必再貼 ③。一句話帶過：AGENTS.md 放每次都要的事，Skill 放一步步的做法；回到工作的第一步，是把團隊每次都要重講的一件事寫進 AGENTS.md。</p>
@@ -108,8 +108,8 @@
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 2 · 備好可信的共用模型工具" data-minute="3">
-  <p class="kicker">檢查點 2 / 4 · 第 3–5 分鐘</p>
+<section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 2 · 備好可信的共用模型工具" data-minute="6">
+  <p class="kicker">檢查點 2 / 4 · 第 6–8 分鐘</p>
   <h2 class="title">備好可信的共用模型工具</h2>
   <p class="cp-why"><b>為什麼</b>Agent 會照共用模型做事；存模型的工具要先確認沒被改過</p>
   <p class="cp-label">現在做</p>
@@ -118,16 +118,16 @@
     <li><b>等 Agent 回報</b><span>工具檔案全部相符才往下</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-next"><b>第 5 分前完成</b><span>→ 下一步：檢查點 3 找出只能靠人審查的錯</span></p>
+  <p class="cp-next"><b>第 8 分前完成</b><span>→ 下一步：檢查點 3 找出只能靠人審查的錯</span></p>
   <aside class="notes">
-    <p><b>說（03:00／第 3 分）</b>：「第 3 分。檢查點 2：我們要建的共用模型，Agent 會一直照著它做事，所以存它的工具要先確認沒被動過；Agent 核對，你看成功就好。」</p>
+    <p><b>說（06:00／第 6 分）</b>：「第 6 分。檢查點 2：我們要建的共用模型，Agent 會一直照著它做事，所以存它的工具要先確認沒被動過；Agent 核對，你看成功就好。」</p>
     <p><b>看</b>：Agent 回報是否為 <code>SHA OK 98 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
     <p><b>介入訊號</b>：<code>SHA MISMATCH</code> → 重新下載學員包再請 Agent 重跑，不要讓 Agent 修改 Plugin 檔案。</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 3 · 找出只能靠人審查的錯" data-minute="5">
-  <p class="kicker">檢查點 3 / 4 · 第 5–8 分鐘</p>
+<section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 3 · 找出只能靠人審查的錯" data-minute="8">
+  <p class="kicker">檢查點 3 / 4 · 第 8–11 分鐘</p>
   <h2 class="title">找出只能靠人審查的錯</h2>
   <p class="cp-why"><b>為什麼</b>這個 Repo 沒有架構檢查；越界只能靠你審查</p>
   <p class="cp-label">現在做</p>
@@ -135,17 +135,17 @@
     <li><b>貼 ②「兩個唯讀檢查」</b><span>Runbook › 檢查點 3</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-next"><b>第 8 分前完成</b><span>→ 下一步：檢查點 4 確認環境並建立起始版本</span></p>
+  <p class="cp-next"><b>第 11 分前完成</b><span>→ 下一步：檢查點 4 確認環境並建立起始版本</span></p>
   <aside class="notes">
-    <p><b>說（05:00／第 5 分）</b>：「第 5 分。檢查點 3：Agent 用兩個唯讀檢查看這個 Repo。記住：這個 Repo 沒有架構檢查，程式越過 Context 邊界只有你們抓得到，D3 審查時會再問。」</p>
+    <p><b>說（08:00／第 8 分）</b>：「第 8 分。檢查點 3：Agent 用兩個唯讀檢查看這個 Repo。記住：這個 Repo 沒有架構檢查，程式越過 Context 邊界只有你們抓得到，D3 審查時會再問。」</p>
     <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] registry_tools.py ...</code>）；結果應是 <code>"state": "brownfield"</code>、<code>"confidence": "high"</code>，quality-gates 只有 <code>"tool": "pytest"</code>（沒有 lint、型別、架構檢查）。</p>
     <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → Agent 沒走 dm 腳本；請學員說「照 AGENTS.md『怎麼跑』，Plugin 一律經 dm 腳本」，還是不行就說「請先讀 AGENTS.md」。</p>
     <p><b>提示</b>：H1：「請 Agent 說明它用哪種終端機、經過哪支 dm 腳本。」</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 4 · 確認環境並建立起始版本" data-minute="8">
-  <p class="kicker">檢查點 4 / 4 · 第 8–10 分鐘</p>
+<section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 4 · 確認環境並建立起始版本" data-minute="11">
+  <p class="kicker">檢查點 4 / 4 · 第 11–14 分鐘</p>
   <h2 class="title">確認環境並建立起始版本</h2>
   <p class="cp-why"><b>為什麼</b>確認 Python 並建立起始版本；D2 推送檢查要用到</p>
   <p class="cp-label">現在做</p>
@@ -154,10 +154,10 @@
     <li><b>等的時候找 D2 夥伴</b><span>還沒有夥伴的現在找</span></li>
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
-  <p class="cp-next"><b>第 10 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
+  <p class="cp-next"><b>第 14 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
   <p class="sync-cue" data-sync="夥伴">⏸ 看投影</p>
   <aside class="notes">
-    <p><b>說（08:00／第 8 分）</b>：「第 8 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它在 PATH 上找 python3 或 python（3.10 以上）；Windows 上常只有 py 啟動器或 Store 捷徑，所以 push 前要先啟用 .venv。這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
+    <p><b>說（11:00／第 11 分）</b>：「第 11 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它在 PATH 上找 python3 或 python（3.10 以上）；Windows 上常只有 py 啟動器或 Store 捷徑，所以 push 前要先啟用 .venv。這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
     <p><b>省時</b>：② 最後已請 Agent 用 check 自己檢查，最後一行回成功／失敗，學員不必再貼 ③；找夥伴放在等 Agent 的時間。</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
     <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（在同一個指令裡先啟用 .venv，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>

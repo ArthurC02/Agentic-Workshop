@@ -35,14 +35,14 @@ VENDOR_PACKED = "vendor/domain-memory-1.2.18.zip"  # its path inside participant
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
     "participant-dlc-open": ("participant", 0),
-    "participant-dlc-d2": ("participant", 35), "participant-dlc-d3a": ("participant", 70),
-    "participant-dlc-d3b": ("participant", 95), "participant-dlc-d3c": ("participant", 125),
-    "participant-dlc-d4": ("participant", 155),
+    "participant-dlc-d2": ("participant", 43), "participant-dlc-d3a": ("participant", 80),
+    "participant-dlc-d3b": ("participant", 120), "participant-dlc-d3c": ("participant", 170),
+    "participant-dlc-d4": ("participant", 217),
     # Recovery packages are participant-role downloads (build_materials.Candidate requires it), released
     # only through their own dlc-rec-* unlock group at these minutes (spec 3.2).
-    "recovery-dlc-d1": ("participant", 35), "recovery-dlc-d2": ("participant", 45),
-    "recovery-dlc-d3a": ("participant", 95), "recovery-dlc-d3b": ("participant", 125),
-    "recovery-dlc-d3c": ("participant", 155),
+    "recovery-dlc-d1": ("participant", 43), "recovery-dlc-d2": ("participant", 51),
+    "recovery-dlc-d3a": ("participant", 120), "recovery-dlc-d3b": ("participant", 170),
+    "recovery-dlc-d3c": ("participant", 217),
     "facilitator-dlc-before-session": ("facilitator", -1), "evaluation-dlc-private": ("evaluation", -1)}
 EXCLUDED_DIRS = {".git", ".venv", "venv", "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache", ".dlc-keys"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}

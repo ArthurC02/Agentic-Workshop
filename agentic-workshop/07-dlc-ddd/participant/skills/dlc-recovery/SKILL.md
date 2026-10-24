@@ -11,7 +11,7 @@ description: 改用某一段的 Recovery（復原包）接續：保存原 Repo �
 
 原 Repo 不改名、不覆寫、不刪除，也不 commit，什麼都不寫進原 Repo。
 
-1. 在原 Repo 執行 `git status` 和 `git log --oneline -3`，問使用者：這段做到第幾個檢查點、為什麼沒完成。先記在對話裡。
+1. 在原 Repo 執行 `git status` 和 `git log --oneline -3`，問使用者：這段做到第幾個檢查點、為什麼沒完成。先記在對話裡，停下；這時不用 check，最後一行只寫「等你們回答」（不是失敗）。
 2. 從原 Repo 根目錄執行下面這段，整段原樣執行，任何一行失敗都會停下。它把 Recovery 解到學員包的 `recovery-SEG`，複製成和原 Repo 同一層的 `resume-SEG`（`../../tools` 才找得到），並把原 Repo 的 `notes/`、`docs/handoffs/`、`AGENTS.md` 一起帶過去。
    - Windows PowerShell（不要加 `2>&1` 或 `*>&1`）：
 
@@ -55,6 +55,6 @@ for d in notes docs/handoffs AGENTS.md; do if [ -e "$orig/$d" ]; then cp -r "$or
 `../../recovery-SEG/recovery-dlc-SEG/RECOVERY.md` 寫著這個 Recovery 的內容、接下來的指令和「看到什麼算成功」，照它做：
 
 - D1：提案者在 `resume-d1` 開新對話，做 RECOVERY.md 第 2 節。
-- D2 起：**夥伴**在 `resume-SEG` 開自己的新對話，做第 2 節（接手簽章；commit 前停下給夥伴看檔案清單，等「同意」）；**提案者**同時在 `resume-SEG` 開自己的新對話，做第 3 節（建環境並驗證）。兩邊不用互等：提案者先建環境、跑測試；`dm` 的驗證（`validate`、`verify-audit`、`verify-evidence`）等 `git log` 出現夥伴的簽章 commit「… Recovery：授權本組金鑰」才跑，還沒出現就停下等使用者說「夥伴好了」。
+- D2 起：**夥伴**在 `resume-SEG` 開自己的新對話，做第 2 節（接手簽章；commit 前停下給夥伴看檔案清單，等「同意」）；**提案者**同時在 `resume-SEG` 開自己的新對話，做第 3 節（建環境並驗證）。兩邊不用互等：提案者先建環境、跑測試；`dm` 的驗證（`validate`、`verify-audit`、`verify-evidence`）等 `git log` 出現夥伴的簽章 commit「… Recovery：授權本組金鑰」才跑，還沒出現就停下，這時不用 check，最後一行只寫「等待夥伴」（不是失敗），等使用者說「夥伴好了」。
 
 每段指令一樣整段在同一次執行裡跑，任何一步失敗就停下貼出錯誤，不改設定、不換寫法。結果寫進 `notes/recovery-SEG.md`。

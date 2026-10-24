@@ -111,7 +111,7 @@ def load_edition(name: str = "main") -> Edition:
     if not path.exists():
         raise BuildError("DLC edition is not set up yet", [
             f"missing {path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path}",
-            'expected JSON: {"candidate_id": "<hash16 under dist/dlc-candidate/>", "total_minutes": 180, '
+            'expected JSON: {"candidate_id": "<hash16 under dist/dlc-candidate/>", "total_minutes": 255, '
             '"plan": [["opening", 0, 10, "開場"], ...], "marker_exemptions": [["page-id", "exact phrase"]]}'])
     try:
         cfg = json.loads(read_text(path))
