@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-1.2.18.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-4.2.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -41,7 +41,7 @@ LEARNER_COMMANDS = {
     "discover-sources": [], "verify-sources": ["--source-map", "--policy"], "verify-evidence": [],
     "init-domain-memory": ["--output", "--source", "--exclude", "--storage-mode", "--data-classification",
                            "--review-mode", "--source-authority"],
-    "confirm-sources": ["--confirmed-by"], "cite": ["--path", "--start", "--end"],
+    "confirm-sources": ["--confirmed-by"], "cite": ["--path", "--lines"],
     "upsert-candidate": ["--asset", "--record-file"], "resolve-terms": ["--query"], "get-context": ["--id"],
     "get-record": ["--asset", "--id", "--changes-root"], "analyze-boundary": ["--source-context", "--target-context"],
     "counterfactual": ["--file", "--find", "--replace", "--test-command", "--expect"],
@@ -50,7 +50,7 @@ LEARNER_COMMANDS = {
     "verify-proposal": ["--package-root"], "ship-package": ["--package-root", "--commit"],
     "init-signing-key": ["--principal", "--key-file", "--sign-every-commit"],
     "brief": ["--base", "--markdown"], "install-pre-commit-hook": [],
-    "amend-policy": ["--field", "--value", "--reason", "--verifier"], "install-git-hitl-hook": [],
+    "amend-policy": ["--set", "--reason", "--verifier"], "install-git-hitl-hook": [],
     "governance-readiness": [], "verify-git-governance": ["--commit"], "verify-audit": [], "scan-secrets": [],
     "export": ["--commit"], "compare-registry": ["--gold-root", "--gold-commit", "--candidate-root"],
     # D2 checkpoint 4 rescue when the proposal base went stale (facilitator guide FAQ 19/24)

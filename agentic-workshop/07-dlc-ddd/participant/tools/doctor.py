@@ -20,7 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
-PLUGIN_VERSION = "1.2.18"
+PLUGIN_VERSION = "4.2.0"
 WINDOWS = os.name == "nt"
 
 

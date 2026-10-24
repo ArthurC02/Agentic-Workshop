@@ -32,7 +32,7 @@
 
 七段：
 
-- **Domain facts（領域事實）**：第一行寫模型版本：已審查模型所在的 commit，也就是 `git log` 最上面（最新）一個訊息含「套用」的 commit，寫前 12 碼。先執行 `export --commit 那個編號 --save ../../tmp/model-reviewed.json` 確認讀得到（exit 0；輸出很長，不讀進對話），再寫「下一個 Agent 可用 export --commit 這個編號讀到當時的模型；之後的候選在工作區」。接著寫 reviewed 的 Context、詞彙與規則；D3 新增的候選（標明尚未審查、不可當成限制）；D3 之後已不成立、要由新候選取代的 reviewed 事實（舊 id → 新候選 id）。
+- **Domain facts（領域事實）**：第一行寫模型版本：已審查模型所在的 commit，也就是 `git log` 最上面（最新）一個訊息含「套用」的 commit，寫前 12 碼。先執行 `export --commit 那個編號 --save ../../tmp/model-reviewed.json` 確認讀得到（exit 0；輸出很長，不讀進對話；exit 1 時改用它之後最近一個讀得到的 commit，Recovery 的舊歷史會這樣，不用問），再寫「下一個 Agent 可用 export --commit 這個編號讀到當時的模型；之後的候選在工作區」。接著寫 reviewed 的 Context、詞彙與規則；D3 新增的候選（標明尚未審查、不可當成限制）；D3 之後已不成立、要由新候選取代的 reviewed 事實（舊 id → 新候選 id）。
 - **Forces（影響決定的考量與限制）**：哪些資料必須同時成立；外部系統失敗與重試，以及冪等鍵（重送多次也只處理一次所依據的鍵）；預留與歸還、部分取消。
 - **Decision（決定）**：今天做出的設計決定，各一句，附需求卡驗收條件編號或規則 id。
 - **External systems（外部系統）**：每個外部系統：領域程式要它做什麼、必須分辨哪些結果、測試用什麼替身。

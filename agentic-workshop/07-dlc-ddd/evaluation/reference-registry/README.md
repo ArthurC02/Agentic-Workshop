@@ -43,7 +43,7 @@ de53623 下面的三個 commit 是 2026-10-15 升級 Plugin 0.22.0 時加的：�
   - macOS：`chmod 700 ~/.dlc-keys ~/.dlc-keys/maintainer-2 && chmod 600 ~/.dlc-keys/maintainer-2/id_ed25519`
 - 另存一份到密碼管理器（例如安全筆記），換電腦時從那裡還原，再套上面的權限。不要 commit、不要放 OneDrive／iCloud 等同步資料夾、不要用通訊軟體傳。
 - 確認可用（兩個系統指令相同；Windows 用 PowerShell 時把 `~` 換成 `$env:USERPROFILE`）：`ssh-keygen -lf ~/.dlc-keys/maintainer-2/id_ed25519` 印出上面的指紋。
-- 遺失時不必救回：照上面 b603d3c 的做法，用 `amend-policy --field authorized_signers` 再授權一把新金鑰，由新金鑰簽章即可；舊 commit 仍由原公鑰驗證。
+- 遺失時不必救回：照上面 b603d3c 的做法，用 `amend-policy --set authorized_signers=…` 再授權一把新金鑰，由新金鑰簽章即可；舊 commit 仍由原公鑰驗證。
 
 ## 模型摘要
 
@@ -89,7 +89,7 @@ Git Bash 相同，改用 `../tools/dm.sh` 與 `source .venv/Scripts/activate`。
 
 ```bash
 ../tools/dm.sh init-signing-key --principal partner@example.com --key-file ~/.dlc-keys/partner/id_ed25519 --sign-every-commit
-../tools/dm.sh amend-policy --field authorized_signers --value "SHA256:Zgznp4qU2GZH6Vmr2/RHtQzVnE+CbK2meH71Cq9BAH0,SHA256:GtKS8fENiTCqtsSZviOYPomnWfgLk3xRSOmBy5MueCs,<新 fingerprint>" --reason "Recovery 後由本組接手簽章"
+../tools/dm.sh amend-policy --set "authorized_signers=SHA256:Zgznp4qU2GZH6Vmr2/RHtQzVnE+CbK2meH71Cq9BAH0,SHA256:GtKS8fENiTCqtsSZviOYPomnWfgLk3xRSOmBy5MueCs,<新 fingerprint>" --reason "Recovery 後由本組接手簽章"
 cat <本資料夾>/keys/maintainer.allowed_signers >> ~/.dlc-keys/partner/id_ed25519.allowed_signers
 ../tools/dm.sh install-git-hitl-hook
 git add domain-memory && git commit -m "接手 Recovery：授權本組金鑰"

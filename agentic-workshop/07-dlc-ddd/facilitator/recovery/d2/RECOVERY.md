@@ -61,7 +61,7 @@ Get-Content "$rec\keys\maintainer.allowed_signers" | Add-Content (git config --l
 git log --format='%h %G? %GS %s'
 $old = (Get-Content domain-memory\domain-memory-policy.json -Raw | ConvertFrom-Json).review_governance.authorized_signers -join ','
 $fp = (Get-Content "$env:USERPROFILE\.dlc-keys\maintainer\signing.json" -Raw | ConvertFrom-Json).fingerprint
-..\..\tools\dm.ps1 amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"; if ($LASTEXITCODE) { throw "amend-policy failed" }
+..\..\tools\dm.ps1 amend-policy --set "authorized_signers=$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"; if ($LASTEXITCODE) { throw "amend-policy failed" }
 ..\..\tools\dm.ps1 install-git-hitl-hook; if ($LASTEXITCODE) { throw "install-git-hitl-hook failed" }
 ..\..\tools\dm.ps1 governance-readiness
 ```
@@ -81,7 +81,7 @@ cat "$rec/keys/maintainer.allowed_signers" >> "$(git config --local gpg.ssh.allo
 git log --format='%h %G? %GS %s'
 old=$(py -3.13 -c "import json;print(','.join(json.load(open('domain-memory/domain-memory-policy.json',encoding='utf-8'))['review_governance']['authorized_signers']))")
 fp=$(py -3.13 -c "import json,sys;print(json.load(open(sys.argv[1],encoding='utf-8'))['fingerprint'])" "$HOME/.dlc-keys/maintainer/signing.json")
-../../tools/dm.sh amend-policy --field authorized_signers --value "$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
+../../tools/dm.sh amend-policy --set "authorized_signers=$old,$fp" --reason "Recovery 後由本組金鑰接手簽章"
 ../../tools/dm.sh install-git-hitl-hook
 ../../tools/dm.sh governance-readiness
 )

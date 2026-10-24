@@ -1909,5 +1909,17 @@
   "dlc_changes": "version strings and SHA count; dmlib.env defaults DOMAIN_MEMORY_GIT_TIMEOUT=60 when unset (test); dmlib --save writes no file when the command printed nothing (test); facilitator guide FAQ 19 names the two stale reasons, FAQ 20 timeout; D2 CP4 3 accepts any revision",
   "rehearsal": "Windows: opening CP1-4 SHA OK 98 files; D1 Recovery 162/0/0; D2 CP1-6 17 obligations, applied, 11 events, push for 2 commits; stale base reason 'does not hold the Registry', rebase revision 2, re-approve, applied, push for 3 commits; mistyped --registry-root on validate/probe/confirm-sources suggests domain-memory and creates nothing; D3c Recovery 99/31/32, 66 events; D4 CP1 coverage 16 reviewed 16 proven; retro CP2 precision 1.0, copied 52, independent 5/5; DOMAIN_MEMORY_GIT_TIMEOUT=abc refused; 0.001 times out with 'nothing was written, so it is safe to run again'",
   "unverified": "macOS real machine; pre-push hook still uses the plugin's 15 s default"
+ },
+ "plugin_4_2_0_remeasure": {
+  "date": "2026-10-24",
+  "plugin": "domain-memory 4.2.0 (SkillHub fefcbc5bb on origin/main, git archive; SkillHub working tree not used)",
+  "files": "85 plugin files; learners see SHA OK 86 files",
+  "compat": "export before changes 15 PASS, 7 CHANGED; vendored ZIP after changes 32 PASS, 0 CHANGED; QUOTED 80",
+  "plugin_changes_affecting_dlc": "3.0.0 cite --start/--end -> --lines, amend-policy --field/--value -> --set, --repo-root dropped on ten readers; 2.0.0 export --commit cannot read JSON-era commits (fc9efe2); references registry-maintenance.md and packaging.md removed, reliability-architecture 'Update protocol' heading gone; 4.0.0 github-pr removed (unused), new policy fields distinct_signer/project_profile/schema_conventions (old policies validate unchanged)",
+  "dlc_changes": "vendored 4.2.0 ZIP; dmlib command sets from the 4.2.0 parser; make_record cite --lines; test_tools --set and resolve-terms without --repo-root; Runbook D2 CP2, make_recovery and RECOVERY.md amend-policy --set; d4-handoff-template falls back to the next readable commit; counterfactual Skill: --expect is a regex; glossary and D4 plugin doc citations",
+  "recovery": "make_recovery d1, d2, d3a, d3b, d3c regenerated; d1 policy gains the three new sections; d2-d3c unchanged; reference history not re-signed",
+  "rehearsal": "Windows, real claude -p 2.1.288, sandbox C:\\tmp\\dm420-d1, candidate 3792a68a50c48ccb: opening CP1-4 (SHA OK 86 files, 4.2.0, brownfield/high, pytest); D1 CP1-6 (14 candidates, validate valid, 32 citations current); D2 CP1-6 (amend-policy --set x3, governance-readiness ready, 4 obligations, killed, applied, 8 events, push for 2 commits); D3a CP1-5 (110 passed, 3 candidates, signed commit); D3c Recovery steps 1-3 (amend-policy --set takeover, 179 passed, 99/31/32, 66 events); D4 CP1-3 (5 stale rules' tests pass, 3 new candidates, pre-commit hook refused a rename naming 13 records with relocate-evidence)",
+  "sandbox_limits": "-p has no approval dialog: opening CP1 .claude/skills write refused twice (BLOCKED; learner clicks allow), Agent then read ../../skills per AGENTS.md; py launcher lacks python.org 3.13 so doctor shows one [!!]",
+  "unverified": "macOS real machine"
  }
 }

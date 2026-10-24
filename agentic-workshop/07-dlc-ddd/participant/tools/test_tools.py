@@ -47,7 +47,8 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(dmlib.expand(["validate"], True),
                          ["validate", "--registry-root", "domain-memory", "--repo-root", "."])
         self.assertEqual(dmlib.expand(["cite", "--path", "a"], False), ["cite", "--path", "a", "--repo-root", "."])
-        self.assertEqual(dmlib.expand(["record-approval", "--role", "r"], True), ["record-approval", "--role", "r"])
+        self.assertEqual(dmlib.expand(["resolve-terms", "--query", "q"], True),  # 3.0 起讀取指令不收 --repo-root
+                         ["resolve-terms", "--query", "q", "--registry-root", "domain-memory"])
         self.assertEqual(dmlib.expand(["validate", "--registry-root", "x"], True),
                          ["validate", "--registry-root", "x", "--repo-root", "."])
         default = dmlib.expand(["init-signing-key", "--principal", "m@x.com"], False)
@@ -187,9 +188,9 @@ class GovernedLifecycleTest(unittest.TestCase):
                                  str(dmlib.key_dir() / "m" / "id_ed25519"), "--sign-every-commit").stdout)
         self.assertTrue(str(dmlib.key_dir()).startswith(str(self.home)))
         self.assertFalse((self.repo / ".dlc-keys").exists())
-        self.dm("amend-policy", "--field", "authorized_signers", "--value", key["fingerprint"], "--reason", "t")
-        self.dm("amend-policy", "--field", "review_trigger", "--value", "git-push", "--reason", "t")
-        self.dm("amend-policy", "--field", "review_mode", "--value", "scm-verified", "--verifier",
+        self.dm("amend-policy", "--set", f"authorized_signers={key['fingerprint']}", "--reason", "t")
+        self.dm("amend-policy", "--set", "review_trigger=git-push", "--reason", "t")
+        self.dm("amend-policy", "--set", "review_mode=scm-verified", "--verifier",
                 "git-signed-commit", "--reason", "t")
         package = "domain-memory/changes/CP-T-001"
         spec = {"package": package, "requirement_id": "REQ-T-001", "proposal_id": "CP-T-001",

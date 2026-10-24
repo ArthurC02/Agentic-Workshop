@@ -72,7 +72,7 @@ def parse_evidence(spec: str) -> tuple[str, int, int]:
 
 def cite(spec: str, allow_unclassified: bool, plugin: str | None) -> dict:
     path, start, end = parse_evidence(spec)
-    citation = dmlib.run_json(["cite", "--path", path, "--start", str(start), "--end", str(end)], plugin)
+    citation = dmlib.run_json(["cite", "--path", path, "--lines", f"{start}-{end}"], plugin)
     if citation.get("source_kind") == "unclassified" and not allow_unclassified:
         raise SystemExit(
             f"{spec} 不在已確認來源（{CLASSIFIED_HINT}）內：這種證據之後無法升為 reviewed。"

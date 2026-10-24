@@ -55,7 +55,7 @@ section: 參考
 
 | 詞彙 | 今天的用法 | 出處 |
 |---|---|---|
-| Plugin（domain-memory） | 保存共用模型的工具；指令都寫在提示詞裡，由 Agent 執行。 | `vendor/domain-memory/references/packaging.md`〈Packaging modes〉 |
+| Plugin（domain-memory） | 保存共用模型的工具；指令都寫在提示詞裡，由 Agent 執行。 | `vendor/domain-memory/references/host-integration.md`〈Host integration〉 |
 | Registry／record／`asset:id` | Registry 是共用模型的資料檔，也就是 `domain-memory/` 裡的檔案；每筆資料叫 record，引用時寫成 `asset:id`（類別:id），例如 `rules:FARE-005`。每筆 record 是一份人讀得懂的 Markdown 文件：開頭記狀態與證據，內文是敘述，最後列出和其他 record 的關係；只放元素、關係與證據。檔案裡的 `draft`／`stable` 就是指令輸出的 `candidate`／`reviewed`，以指令輸出為準。 | `vendor/domain-memory/references/registry-schema.md`〈Domain Registry schema〉、〈Concept files〉 |
 | 評估（eval）／precision／recall | 拿人審查過的版本當基準答案，比對 Agent 的輸出。precision：Agent 寫的有多少在基準答案裡；recall：基準答案有多少被寫到。只比結構，要讀漏掉（missed）與多出（extra）的清單；引用和基準答案一字不差的配對（`copied_evidence`）是照抄的，誠實的分數看排除它們的 `overall_independent`。回顧時用到。 | Anthropic Engineering〈Demystifying evals for AI agents〉；Google Machine Learning Crash Course〈Classification: Accuracy, recall, precision, and related metrics〉 |
 | 證據狀態：current／shifted／stale／missing／invalid | current：仍一致。shifted：引用的那幾行沒變，只是移到同一個檔案的別處，不算失敗。stale：引用的內容變了，常常只是程式改了、模型還沒跟上。missing：檔案不存在。invalid：寫法或行號不對。 | `vendor/domain-memory/references/evidence-rules.md`〈Evidence rules〉 |
@@ -63,7 +63,7 @@ section: 參考
 | 變更審查包（Change Package，CP） | 一次變更的審查資料：要升級哪些候選、每條規則要通過的檢查（obligation，通常是一個測試指令）與實際執行結果。例：D2 的 `CP-D2-001`。 | `vendor/domain-memory/references/seven-step-workflow.md`〈Step 7: Prepare, verify, and review the package〉 |
 | 簽章 commit／金鑰指紋／核准紀錄 | 用夥伴私鑰（ed25519 類型）簽過名的 commit，證明是持鑰人提交的。金鑰指紋（fingerprint）辨識是哪一把金鑰，可以公開；私鑰不可外流。寫進變更審查包、指向這個 commit 的證據叫核准紀錄（attestation），由 `ship-package` 確認簽章後寫入。 | Git 官方文件〈git-commit〉；OpenSSH 官方文件〈ssh-keygen〉；`vendor/domain-memory/references/reliability-architecture.md`〈Approval and test attestations〉 |
 | Git hook／推送檢查／提交前檢查 | pre-push hook 是 Git 在推送（push）前自動執行的腳本，今天用它檢查有沒有核准與簽章。pre-commit hook 在 commit 前執行：D4 裝上，擋下讓模型引用失效的 commit。 | Git 官方文件〈githooks〉；`vendor/domain-memory/references/script-api.md` |
-| 稽核紀錄（audit） | 模型每次變動都附加一筆稽核事件；`verify-audit` 回 `valid` 代表沒被竄改。 | `vendor/domain-memory/references/reliability-architecture.md`〈Update protocol〉 |
+| 稽核紀錄（audit） | 模型每次變動都附加一筆稽核事件；`verify-audit` 回 `valid` 代表沒被竄改。 | `vendor/domain-memory/references/reliability-architecture.md`〈The audit log〉 |
 | `record-approval`／`amend-policy` | 記錄核准決定、修改審查規則的指令，只由夥伴的 Agent 執行。 | `vendor/domain-memory/references/script-api.md`〈File-backed Domain Memory API〉 |
 | SHA256／雜湊 | 由檔案內容算出的固定長度字串，像檔案的指紋；一個位元組被改，值就不同。開場用它確認工具沒被改過。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
 | venv（Python 虛擬環境） | 每個專案各自獨立的一套 Python 套件，放在 `.venv` 資料夾。 | Python 官方文件〈venv — Creation of virtual environments〉 |

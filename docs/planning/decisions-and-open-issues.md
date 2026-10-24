@@ -590,6 +590,32 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 4.2.0（2026-10-24）
+
+使用者要求取得最新版：由 1.2.18 換成 4.2.0（SkillHub `fefcbc5bb`，origin/main，以 `git archive` 匯出；SkillHub 工作區有未提交的修改，沒有使用）。1.2.18 的凍結解除。
+
+影響 DLC 的變更（CHANGELOG 1.2.19–4.2.0）：
+- 3.0.0 刪掉每個指令的第二種輸入寫法：`cite --start --end` → `--lines 起-迄`；`amend-policy --field --value` → `--set 欄位=值`；十個讀取指令（`resolve-terms`、`get-context`、`get-record`、`analyze-boundary`、`verify-audit` 等）不再收 `--repo-root`。
+- 2.0.0 起只認 OKF 版面：`export --commit` 讀不到參考歷史 JSON 時代的 commit（`fc9efe2`「CP-CORE-002：finalize 並套用」）；1.2.18 讀得到。Recovery 組在 D4 寫模型版本時會碰到。
+- 2.1.9／2.10.0 刪掉 `references/registry-maintenance.md`、`packaging.md`（課程引用的兩處改指到 `skills/domain-memory-maintain/SKILL.md`、`SKILL.md`）；`reliability-architecture.md` 的〈Update protocol〉改為〈The audit log〉。
+- 4.0.0 刪 `github-pr` 驗證者（DLC 只用 `git-signed-commit`，不受影響）；新政策多 `distinct_signer`（預設 false）、`project_profile`、`schema_conventions`，沒有這些欄位的舊政策（參考歷史）照常驗證，不用重新簽章。
+- 4.2.0 走訪 Repo 時跳過 git 忽略的檔案；D1 開場在 `git init` 之前跑 readiness，照常回 `brownfield`、`high`。
+
+DLC 的改動：
+- 封裝 `domain-memory-4.2.0.zip`（85 個檔案，學員看到 `SHA OK 86 files`），刪 1.2.18 的 ZIP 與 SHA256SUMS；版本字串（README、主持指南、觀察指南、指令書 11、tools、Runbook 開場檢查點 2、`AGENTS.md` generated、course-authoring）。
+- `dmlib` 三組指令集合照 4.2.0 parser；`make_record.py` 改用 `cite --lines`；`test_tools.py` 改 `--set`，並改測 `resolve-terms` 不補 `--repo-root`。
+- Runbook D2 檢查點 2、`make_recovery.py` 與四份 RECOVERY.md、參考 README 改 `amend-policy --set`。
+- `d4-handoff-template.md`：模型版本的 commit `export` 讀不到時，改用之後最近一個讀得到的（Recovery 的舊歷史），不用問。
+- `counterfactual` Skill：`--expect` 是正規表示式，挑不含括號等符號的片段（演練中 tuple 斷言兩次 inconclusive；1.2.18 起就是這樣，不是新版造成）。
+- 詞彙表與 D4 的 Plugin 文件引用改到 4.2.0 還在的頁面。
+- `check_dlc_plugin_compat.py`：學員旗標改 `cite --lines`、`amend-policy --set`。
+
+相容性檢查：匯出改檔前 15 PASS、7 CHANGED；改後封裝 ZIP 32 PASS、0 CHANGED（`QUOTED` 80 個）。Recovery 五段重產通過（d1 的政策多三個新欄位，d2～d3c 不變，參考歷史不用重新簽章）。
+
+演練（Windows，真的 `claude -p` 2.1.288，沙箱 `C:\tmp\dm420-d1`，候選包 `3792a68a50c48ccb`，結束後刪除）：開場檢查點 1–4（`SHA OK 86 files`、4.2.0；readiness `"state": "brownfield"`、`"confidence": "high"`，quality-gates `"tool": "pytest"`）；D1 檢查點 1–6（14 筆候選，validate 通過，證據 32 筆全部 current）；D2 檢查點 1–6（`amend-policy --set` 三次、`governance-readiness` ready、4 個 obligation、killed、applied、8 個事件、push `for 2 commits.`）；D3a 檢查點 1–5（110 passed，3 筆候選，簽章 commit）；D3c Recovery 三步（`amend-policy --set` 接手金鑰、179 passed、證據 99／31／32、66 個事件）；D4 檢查點 1–3（stale 規則 GROUP-001、GROUP-PAY-002、MEMBER-004、ORDER-002、REFUND-004 的測試全過；3 筆新候選；pre-commit hook 擋下改名、點名 13 筆、`relocate-evidence` 建議）。沙箱限制：`-p` 沒有允許視窗，開場檢查點 1 建 `.claude/skills` 兩次被拒（BLOCKED；學員按允許即可），之後 Agent 照 `AGENTS.md` 讀 `../../skills/` 原稿；`py` 啟動器沒有 python.org 的 3.13，健檢一項 [!!]。
+
+未驗證：macOS 實機。
+
 ## 主課程實戰化：AGENTS.md、標準 Skill、交辦式提示詞（2026-10-22）
 
 使用者回饋：提示詞要「更符合實際工作狀況，而不是只存在教科書上的格式」，AGENTS.md 這類實戰知識要進課程。決定：
