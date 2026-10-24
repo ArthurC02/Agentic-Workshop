@@ -141,29 +141,29 @@ Anthropic〈The AI-native SDLC playbook〉替每一項做法各列了一個領�
 
 **人工確認**：每項行動都配那項做法自己的領先、落後指標，各有分子、分母與來源，導入前量過一次。
 
-## 9. 寫自己的 Skill：從紀錄長出來
+## 9. 寫自己的 Skill：先備好例子，再到新對話試
 
-Skill（技能檔）第三場講過；加深一層：不要憑空寫，從 notes/ 裡你真的重複做過的事整理出來。
+Skill（技能檔）第三場講過；加深一層：從 notes/ 真的重複過的事長出來，先備好測試例子，再在新對話試。
 
-- **值得寫**：做過三次以上、步驟固定、結果能檢查。
+- **先寫 3 個例子**：2 個該用上、1 個相近但不該用上；先看沒有 Skill 時做得如何。
 
-- **只寫 Agent 猜不到的**：你們的慣例、檢查方式、要交的證據。
+- **到新對話試**：寫的對話知道太多；沒看過過程的新對話才測得出缺口。
 
-- **改了就試跑**：拿一個舊例子在新對話照著走；規則或 Skill 改了就重跑。
+- **沒用上就改說明**：先改 description 的「什麼時候用」，再重測。
 
 ### 交給 Agent 的指令
 
-請讀 notes/ 裡的紀錄，找出我做過多次、步驟固定的一個做法，先告訴我是哪一個並等我確認。確認後寫成一個 Skill：description 寫清楚什麼時候用，內文寫步驟、要交的證據、回報格式；放在你這個工具會自動載入專案 Skill 的位置，告訴我完整路徑。紀錄沒有的寫「未觀察」，不要編。寫完停下等我。
+從 notes/ 找出我一直重複交代的一個做法，等我確認。再問我 3 題（我怎麼說、哪些步驟固定、看什麼證據），照答案寫成 Skill，放在工具會自動載入的位置。最後給我 3 句測試交辦：2 句該用上、1 句不該用上，都不提名稱。
 
-Skill 不要憑空寫，要從 notes/ 裡你真的重複做過的事整理出來；紀錄沒有的寫「未觀察」，這樣寫出來的 Skill 有證據撐著。只寫 Agent 猜不到的事：你們的慣例、檢查方式、要交的證據。
+Anthropic〈Skill authoring best practices〉建議先建評估：寫 Skill 之前先準備至少 3 個真實情境，看沒有 Skill 時 Agent 哪裡做不好，再只寫補那些缺口的內容。今天回顧把它縮小成 3 句交辦：2 句該用上、1 句相近但不該用上。
 
-「做過三次以上才寫」是本工作坊的經驗法則，不是研究結論。
+測試要在新對話：官方把寫 Skill 的叫 Claude A、用 Skill 的叫 Claude B；寫的那個對話帶著太多背景，會遮住說明不清的地方。Claude Code 文件也建議蒐集幾個真實提示詞，在新的對話裡各跑一次有 Skill、一次關掉 Skill，比較差別。沒被用上時先查 description；Anthropic Academy〈Introduction to agent skills〉有一節專講 Skill 不觸發時怎麼排除。
 
-寫完先試跑，這就是最小的評估（eval）。Anthropic〈The AI-native SDLC playbook〉把評估比作傳統流程裡關卡前的品質檢查：規則檔、Skill 或 hook（在固定時機自動執行的檢查）會引導 Agent 的行為，所以每次修改都要重跑同一組例子；通過率變差的修改，先審過再採用。今天回顧時可以選做：拿 notes/ 裡的一個例子，在新對話照 Skill 走一遍（只讀、不改檔），看哪一步沒照做，必要時改一句再收。
+寫完先試跑，這就是最小的評估（eval）。Anthropic〈The AI-native SDLC playbook〉把評估比作傳統流程裡關卡前的品質檢查：規則檔、Skill 或 hook（在固定時機自動執行的檢查）改了就重跑同一組例子；通過率變差的修改，先審過再採用。分享很簡單：Commit 到專案的 Repo，團隊開新對話就會載入。
 
-📖 延伸閱讀：〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）；〈The AI-native SDLC playbook〉（Anthropic，2026）
+📖 延伸閱讀：〈Skill authoring best practices〉（Anthropic，官方文件）；〈Introduction to agent skills〉（Anthropic Academy）；〈The AI-native SDLC playbook〉（Anthropic，2026）
 
-**人工確認**：每一步都能在紀錄找到出處；寫完先試跑一次，之後每改一次就重跑。
+**人工確認**：新對話裡，該用上的都用上、不該用的沒用上嗎？沒用上，要改的是 description 還是步驟？
 
 ## 10. 團隊規則：誰維護、多久修一次
 
@@ -259,7 +259,7 @@ Anthropic〈How AI is transforming work at Anthropic〉（2025-12）用問卷、
 **下週可以做的事**
 
 - 選一件小事，先量一次導入前的基準
-- 從 notes/ 找一個重複做法，寫成 Skill 並試跑一次
+- 從 notes/ 找一個重複做法，寫成 Skill，在新對話用 3 句交辦試跑（2 句該用上、1 句不該用上）
 - 從「回到工作」五項挑一項，寫下 30 天計畫的責任人、期限、那一項的領先與落後指標，以及停止標準
 
 ## 名詞解釋
@@ -289,6 +289,7 @@ Anthropic〈How AI is transforming work at Anthropic〉（2025-12）用問卷、
 - 〈Manage costs effectively〉（Anthropic，官方文件）
 - 〈The AI-native SDLC playbook〉（Anthropic，2026）
 - 〈DORA's software delivery performance metrics〉（DORA，2026）
-- 〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
+- 〈Skill authoring best practices〉（Anthropic，官方文件）
+- 〈Introduction to agent skills〉（Anthropic Academy）
 - 〈Best practices for Claude Code〉（Anthropic，官方文件）
 - 〈How AI is transforming work at Anthropic〉（Anthropic，2025）

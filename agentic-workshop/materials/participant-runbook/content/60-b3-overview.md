@@ -92,9 +92,9 @@ Gate 1 卡最後一行寫「自我檢查：成功」就往下；寫「失敗」�
 ```callout tip
 技巧：Skill（加深一層）
 **這次把「整件任務」寫成 Skill：工作單存成 `b3-work-order` Skill。**
-- Agent 自己往前走時，隨時可以回頭查；換新對話也找得到
-- 你不必每道 Gate 重貼規則，回一句話就好
-📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Claude Code 官方文件〈Best practices for Claude Code〉；你所用工具的官方文件通常有同名章節。
+- 整件任務的 Skill 比較大：分節寫步驟、每道 Gate 要答的是非題和停下來問人的條件；description 一樣寫「做什麼＋什麼時候用」
+- Agent 自己往前走時，隨時可以回頭查；換新對話也找得到，你不必每道 Gate 重貼規則
+📖 延伸閱讀：Anthropic 官方文件〈Agent Skills〉、Anthropic 官方文件〈Skill authoring best practices〉；你所用工具的官方文件通常有同名章節。
 ```
 
 ```callout tip

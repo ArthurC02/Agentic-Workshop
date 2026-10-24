@@ -23,9 +23,9 @@
   </ul>
   <ol class="timeline">
     <li data-seg="greenfield"><span class="tl-min">00:00</span><b>1 · 規則與環境</b><span class="tl-due">第 12 分前</span></li>
-    <li data-seg="greenfield"><span class="tl-min">05:00</span><b>2 · 先要計畫</b><span class="tl-due">第 18 分前</span></li>
-    <li data-seg="greenfield"><span class="tl-min">11:00</span><b>3 · 小步驗收</b><span class="tl-due">第 25 分前</span></li>
-    <li data-seg="greenfield"><span class="tl-min">18:00</span><b>4 · 親自驗證交付</b><span class="tl-due">第 29 分前</span></li>
+    <li data-seg="greenfield"><span class="tl-min">05:00</span><b>2 · 先要計畫</b><span class="tl-due">第 17 分前</span></li>
+    <li data-seg="greenfield"><span class="tl-min">10:00</span><b>3 · 小步驗收</b><span class="tl-due">第 24 分前</span></li>
+    <li data-seg="greenfield"><span class="tl-min">17:00</span><b>4 · 親自驗證交付</b><span class="tl-due">第 29 分前</span></li>
   </ol>
   <p class="callout seg-start">從 Runbook『Greenfield 任務』› 檢查點 1 開始</p>
   <aside class="notes">
@@ -60,7 +60,7 @@
 </section>
 
 <section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 2 · 先要計畫，再核准" data-minute="12">
-  <p class="kicker">檢查點 2 / 4 · 第 12–18 分鐘</p>
+  <p class="kicker">檢查點 2 / 4 · 第 12–17 分鐘</p>
   <h2 class="title">先要計畫，再核准</h2>
   <p class="cp-why"><b>為什麼</b>先看計畫，動手前就抓得出範圍外的項目</p>
   <p class="cp-label">現在做</p>
@@ -70,7 +70,7 @@
     <li><b>看 Agent 最後一行</b><span>『成功』就往下；『失敗』就貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>開頭三行照需求文件；每步有規則編號，沒有範圍外項目</p>
-  <p class="cp-next"><b>第 18 分前完成</b><span>→ 下一步：檢查點 3 小步做、每步驗收</span></p>
+  <p class="cp-next"><b>第 17 分前完成</b><span>→ 下一步：檢查點 3 小步做、每步驗收</span></p>
   <aside class="notes">
     <p><b>說（00:05／第 12 分）</b>：「第二個技巧：先要計畫再動手。請 Agent 讀需求、找 TODO、提出固定 4 步的計畫寫進 notes，先不要改。每個問題它會附建議答案，你看完貼『計畫核准』，不同意某題就在第一行後加『第 N 題改成…』，這樣就核准最前面兩小步：票價和班次查詢都很小，一起做省一輪來回。Agent 做完會自己用 check 檢查，最後一行回『成功』就不用再貼 ③。」</p>
     <p><b>示範技巧</b>：指著計畫提示詞說「這就是 Prompt 結構：像交辦同事，只寫這次要什麼、為什麼、完成的樣子、素材在哪；規則已在 AGENTS.md，不用重寫」。巡場看學員有沒有在提示詞裡另外加一長串規則。模型選擇與推論強度留到個人分析才講。</p>
@@ -82,8 +82,8 @@
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 3 · 小步做、每步驗收" data-minute="18">
-  <p class="kicker">檢查點 3 / 4 · 第 18–25 分鐘</p>
+<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 3 · 小步做、每步驗收" data-minute="17">
+  <p class="kicker">檢查點 3 / 4 · 第 17–24 分鐘</p>
   <h2 class="title">小步做、每步驗收</h2>
   <p class="cp-why"><b>為什麼</b>每次只放行一小步，錯了只要退一小步</p>
   <p class="cp-label">現在做（放行兩次）</p>
@@ -93,22 +93,22 @@
     <li><b>看 Agent 最後一行</b><span>說『計畫已全部完成』且『成功』就往下</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>做到訂票時自己手算：700 ＋ 525 ＝ 1225</p>
-  <p class="cp-next"><b>第 25 分前完成</b><span>→ 下一步：檢查點 4，沒做到付款也照樣進</span></p>
+  <p class="cp-next"><b>第 24 分前完成</b><span>→ 下一步：檢查點 4，沒做到付款也照樣進</span></p>
   <aside class="notes">
-    <p><b>說（00:11／第 18 分）</b>：「第三個技巧：小步執行、每步驗收。Agent 停在第 1、2 步，看它附的驗收對照表和審查答案，三件事都成立才貼放行：它會記進 notes、存一版，再把第 3、4 步一起做。第 3、4 步回報後同樣判斷、貼同一段放行；它說『計畫已全部完成』，最後一行回『成功』就往下，沒有才貼 ③。出錯只要退回這一段。每一段的回報格式都一樣，這就是結構化輸出。」</p>
-    <p><b>說（00:14／第 21 分）</b>：「還有 4 分鐘。第 1、2 步還沒放行的，現在就看審查答案決定；第 3、4 步做完一樣停下驗收。」</p>
+    <p><b>說（00:10／第 17 分）</b>：「第三個技巧：小步執行、每步驗收。Agent 停在第 1、2 步，看它附的驗收對照表和審查答案，三件事都成立才貼放行：它會記進 notes、存一版，再把第 3、4 步一起做。第 3、4 步回報後同樣判斷、貼同一段放行；它說『計畫已全部完成』，最後一行回『成功』就往下，沒有才貼 ③。出錯只要退回這一段。每一段的回報格式都一樣，這就是結構化輸出。」</p>
+    <p><b>說（00:13／第 20 分）</b>：「還有 4 分鐘。第 1、2 步還沒放行的，現在就看審查答案決定；第 3、4 步做完一樣停下驗收。」</p>
     <p><b>看 → 介入</b>：驗收對照表欄位不固定 → 貼「照 AGENTS.md 工作規則第 5 條重給驗收對照表。」｜沒附變更審查 → 貼「照 AGENTS.md 工作規則第 6 條補上變更審查。」｜建立訂票時回應轉換出錯（起始程式讀不到旅客資料，已知小問題）→ 貼檢查點 3 ④ 那段，最小修改、不改測試｜Agent 做完第 3、4 步沒停、直接收尾 → 叫它停下，補這一段的驗收｜看到「全部通過」就接受 → 請 Agent 列出每條結果和測試名稱｜只貼原始輸出 → 要求改用驗收對照表｜notes 沒有逐步紀錄 → 貼放行提示詞｜規則寫進 Router → 現場不糾正，回顧時帶過分層原則。</p>
     <p><b>票價不對</b>：H1 學員手算成人＋學生總額，貼「請實際呼叫 API 建一筆 T001 成人加學生的訂票，告訴我總價。」｜H2「請對照 FARE-001–004 逐條說明目前怎麼算，哪條不符。」｜H3「請在驗收對照表列出票價各條規則與對應測試，說明乘率、整數與總額怎麼驗。」</p>
     <p><b>測試資料沒重置</b>：H1「單獨重跑失敗的那個測試，結果跟執行順序有關嗎？」｜H2「需求說每個測試前要重置資料，現在有沒有測試共用資料？」｜H3「給我最小的修正做法，先別改。」（主持參考：<code>tests/conftest.py</code>）</p>
     <p><b>付款／訂單</b>：H1 學員用白話說出成功與重複付款該發生什麼，在 /docs 付兩次看結果｜H2「對照 PAYMENT-001–003、ORDER-001–002，逐條說目前的行為。」｜H3「付款失敗時會不會產生 Order 或誤轉 PAID？附測試名稱。」</p>
     <p>看到刪測試或放寬期待值 → 請學員問 Agent「這個測試原本在檢查哪條規則？」</p>
-    <p><b>進度</b>：第 20 分放行第 1、2 步算正常；第 25 分還沒做完付款 → 停在已核准的那一段，直接進檢查點 4。</p>
+    <p><b>進度</b>：第 20 分放行第 1、2 步算正常；第 24 分還沒做完付款 → 停在已核准的那一段，直接進檢查點 4。</p>
     <p><b>首次介紹</b>：結構化輸出，連同變更審查（含 skip／xfail 是什麼）約 30 秒，指著「技巧：Structured Output」小卡講。Token 到 Time Skip 才介紹。</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 4 · 親自走一次流程並交付" data-minute="25">
-  <p class="kicker">檢查點 4 / 4 · 第 25–29 分鐘</p>
+<section class="slide slide-cp" data-seg="greenfield" data-title="檢查點 4 · 親自走一次流程並交付" data-minute="24">
+  <p class="kicker">檢查點 4 / 4 · 第 24–29 分鐘</p>
   <h2 class="title">親自走一次流程並交付</h2>
   <p class="cp-why"><b>為什麼</b>不再加新功能；最後的驗收由你親自在 <code>/docs</code> 做</p>
   <p class="cp-label">現在做</p>
@@ -120,7 +120,7 @@
   <p class="cp-judge"><b>你要判斷</b>你在 <code>/docs</code> 看到的和預期一致，照實回覆</p>
   <p class="cp-next"><b>第 29 分前完成</b><span>→ 下一步：停手，一起看 Greenfield 揭曉</span></p>
   <aside class="notes">
-    <p><b>說（00:18／第 25 分）</b>：「不再加新功能。貼檢查點 4 的提示詞：Agent 先啟動伺服器給你 /docs 網址，再邊補測試、邊寫交付摘要。等網址的時候，先到『Greenfield 回顧與交付決定』頁填表單。拿到網址就親自試訂票和付款，回它一行，例如『兩項都一致』；它寫進人工驗證，Commit 成 Greenfield 交付。」8000 被占用 → 學員回「請改用沒人用的埠號（例如 8001），並在最終驗收寫下實際埠號」。</p>
+    <p><b>說（00:17／第 24 分）</b>：「不再加新功能。貼檢查點 4 的提示詞：Agent 先啟動伺服器給你 /docs 網址，再邊補測試、邊寫交付摘要。等網址的時候，先到『Greenfield 回顧與交付決定』頁填表單。拿到網址就親自試訂票和付款，回它一行，例如『兩項都一致』；它寫進人工驗證，Commit 成 Greenfield 交付。」8000 被占用 → 學員回「請改用沒人用的埠號（例如 8001），並在最終驗收寫下實際埠號」。</p>
     <p><b>看</b>：學員親自在 <code>/docs</code> 走完流程（Agent 要呼叫 API 時用 Python，不用 curl，Windows 的 curl 會弄亂中文）；交付摘要附實際指令和驗收對照表，沒跑的標未驗證；仍被跳過的測試要列出，不刪測試掩蓋失敗。</p>
     <p><b>時間不夠</b>：H1 先貼「請列出已完成、未驗證與尚未開始的項目」｜H2 停止擴充，先驗證已做的流程，再請 Agent 補最少的文件與限制｜H3 請 Agent 照 Runbook 把交付摘要寫進 notes，未完成如實標記。</p>
     <p><b>停止（00:22／第 29 分）</b>：翻到「請先停手」頁。沒做完整 MVP 也照收 <code>notes/greenfield.md</code> 和交付表單；不宣稱未驗證的功能通過。</p>

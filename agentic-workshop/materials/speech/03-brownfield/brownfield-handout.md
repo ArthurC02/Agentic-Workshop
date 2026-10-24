@@ -201,27 +201,29 @@ Skill 已是開放格式：agentskills.io 列出 Claude Code、Codex、GitHub Co
 
 **人工確認**：你的一條做法，該放 AGENTS.md（每次都要）還是 Skill（某類任務才要）？
 
-## 11. 什麼時候該寫 Skill
+## 11. 怎麼寫 Skill：從真實工作長出來
 
-做過一次、確認可行、還會再做，才整理成 Skill。
+先不用 Skill 做完一次，留意你一直重複交代什麼，再請 Agent 寫成 Skill。
 
-- **寫通用做法**：步驟、每步要交的證據、禁止事項、回報格式。
+- **description 寫兩件事**：第三人稱：做什麼＋什麼時候用，放進使用者會說的字。
 
-- **不寫這一次的答案**：寫進某次 Bug 的原因，下次反而會誤導。
+- **只寫 Agent 不知道的**：你們的步驟和要交的證據；不寫這一次的答案。
 
 - **只裝信任的來源**：Skill 能叫 Agent 做事；別人的 Skill 要先讀過再用。
 
 ### 交給 Agent 的指令
 
-先不要修改程式。請把我們剛才完成的做法整理成一份 Skill 草稿：適用情境、步驟、每步要交的證據、禁止事項、回報格式。不要寫入這次問題的具體原因或修改內容。寫好給我看，等我核准再存檔。
+先不要修改程式。請把我們剛才完成的做法整理成一份 Skill 草稿：name 用小寫英文加連字號、和資料夾同名；description 用第三人稱寫它做什麼、什麼時候用，放進我們平常會說的字；內文只寫步驟、每步要交的證據、回報格式，你本來就懂的不用解釋，也不寫這次問題的具體原因。寫好給我看，等我核准再存檔。
 
-做過一次、確認可行、還會再做，才值得整理成 Skill。寫的是通用做法：步驟、每步要交的證據、禁止事項、回報格式。最常見的錯誤是把這一次的具體原因或修改內容寫進去，下次遇到不同的問題，反而會把 Agent 帶偏。
+Anthropic〈Skill authoring best practices〉的做法：先不用 Skill 完成一次任務，留意自己一直重複提供的背景或步驟；把這個可重用的做法交給 Agent 寫成 Skill；再審一遍，刪掉 Agent 本來就懂的（官方的說法是只補它還不知道的脈絡）；最後在新對話拿類似的任務測，依觀察改。官方也說，不需要特別的系統提示詞或「寫 Skill 的 Skill」，直接請 Agent 幫忙就好。
 
-安全提醒：Skill 能叫 Agent 做事，Anthropic 建議只從信任的來源安裝，別人的 Skill 要先讀過再用。Thoughtworks 技術雷達第 34 期也把「Skill 當成可執行的入職文件」列為評估中。下週想一件每次都要跟新人講一次的事，那就是你的第一個 Skill 候選。
+description 最關鍵：工具靠它決定什麼時候用。官方建議同時寫做什麼和什麼時候用、一律用第三人稱、放進具體的關鍵字；「幫忙處理文件」這種含糊說法不會被選中。name 用小寫英文、數字和連字號，64 字以內，和資料夾同名（agentskills.io〈Specification〉）。最常見的錯誤是把這一次的具體原因寫進去，下次遇到不同問題反而把 Agent 帶偏。
 
-📖 延伸閱讀：〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
+安全提醒：Skill 能叫 Agent 做事，Anthropic 建議只從信任的來源安裝，別人的 Skill 要先讀過再用。下週想一件每次都要跟新人講一次的事，那就是你的第一個 Skill 候選。
 
-**人工確認**：草稿裡有沒有混進這一次的具體原因？換一個新問題還能照著用嗎？
+📖 延伸閱讀：〈Skill authoring best practices〉（Anthropic，官方文件）；〈Specification〉（agentskills.io）；〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
+
+**人工確認**：description 看得出做什麼、什麼時候用嗎？草稿裡有沒有混進這一次的答案？
 
 ## 12. 修 Bug：先讓測試紅，再讓它綠
 
@@ -374,7 +376,8 @@ Tool：逐步下指令 → Teammate：核准計畫 → Digital Worker：只在�
 | Teammate（隊友） | Agent 先和你一起分析、比較，你核准計畫後它才動手，中途不必每一步都等你。 | 本課程〈歡迎與使用方式〉 |
 | 模型選擇 | 量大、明確的工作用較小較快的模型，要判斷的工作用較強的模型；先用預設，有證據再換。 | Anthropic〈Choosing the right model〉 |
 | 推論強度（Reasoning Effort） | 同一個模型回答時投入多少思考、花多少 Token；越高越慢越貴，是微調旋鈕，補不了需求不清。 | Anthropic〈Effort〉；OpenAI〈Reasoning models〉 |
-| Skill（技能檔） | 一個資料夾，裡面的 SKILL.md 開頭寫 name（名稱）與 description（什麼時候用），內文寫一套做法；工具平常只讀這兩項，任務符合才讀全文。 | agentskills.io〈Agent Skills Overview〉；Claude Code 官方文件〈Extend Claude with skills〉 |
+| Skill（技能檔） | 一個資料夾，裡面的 SKILL.md 開頭寫 name（名稱，和資料夾同名）與 description（做什麼、什麼時候用），內文寫一套做法；工具平常只讀這兩項，任務符合才讀全文。 | agentskills.io〈Agent Skills Overview〉；agentskills.io〈Specification〉 |
+| description 與觸發（trigger） | description 用第三人稱寫 Skill 做什麼、什麼時候用，放進使用者會說的字；工具拿你的話和它比對，符合就自己用上，叫觸發。沒觸發先改 description。 | Anthropic 官方文件〈Skill authoring best practices〉；Anthropic Academy〈Introduction to agent skills〉 |
 | 三層邊界 | 規則分成一定做、先問我、絕不做；「先問我」那層就是人要親自決定的事。 | GitHub〈How to write a great agents.md: Lessons from over 2,500 repositories〉 |
 | 測試驅動開發（TDD） | 先為下一小段功能寫測試，再寫程式到測試通過，最後整理程式；常簡稱「紅、綠、重構」。 | Martin Fowler〈TestDrivenDevelopment〉 |
 | 重現 Bug 的失敗測試 | 修 Bug 前先寫一個現在會失敗的測試把問題重現出來；修好後同一個測試通過，就是不讀程式也看得懂的證據。 | Claude Code 官方文件〈Best practices for Claude Code〉 |
@@ -397,6 +400,8 @@ Tool：逐步下指令 → Teammate：核准計畫 → Digital Worker：只在�
 - 〈Extend Claude with skills〉（Anthropic，官方文件）
 - 〈Build skills〉（OpenAI，官方文件）
 - 〈Equipping agents for the real world with Agent Skills〉（Anthropic，2025）
+- 〈Skill authoring best practices〉（Anthropic，官方文件）
+- 〈Specification〉（agentskills.io）
 - 〈Brownfield Agentic Engineering〉（Addy Osmani，2026）
 - 〈Your job is to deliver code you have proven to work〉（Simon Willison，2025）
 - 〈TestDrivenDevelopment〉（Martin Fowler，2023）

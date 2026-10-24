@@ -1,6 +1,6 @@
 ---
 name: b3-work-order
-description: TASK-B3-001 團體訂票的工作單：開始 B3、交 Gate 卡、讀人的 Gate 回覆、例外事件、停止擴充與 Gate 3 時使用。
+description: 規定 TASK-B3-001 團體訂票整件任務怎麼做：範圍、三道 Gate 卡、停下來問人的條件、例外事件與交接。開始 B3、交 Gate 卡、讀人的 Gate 回覆（核准／附條件／退回）、遇到例外、停止擴充與 Gate 3 時使用。
 ---
 
 # B3 工作單（Work Order）

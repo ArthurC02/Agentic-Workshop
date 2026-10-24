@@ -124,8 +124,8 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 
 ```callout tip
 技巧：Skill（可重複使用的工作說明）
-**Skill 是一個資料夾，裡面的 `SKILL.md` 寫一套固定做法；開頭的 `name`、`description` 寫它叫什麼、什麼時候用。**
-- 工具平常只讀名稱和說明，任務符合說明時才讀全文，所以說明要寫清楚「什麼時候用」
+**Skill 是一個資料夾，裡面的 `SKILL.md` 寫一套固定做法；開頭的 `name` 是資料夾名稱，`description` 寫它做什麼、什麼時候用。**
+- 工具平常只讀名稱和說明，任務符合說明時才讀全文，所以說明要用第三人稱寫清楚「做什麼＋什麼時候用」，放進使用者會說的字
 - 每次都要的事放 AGENTS.md，一步步的做法放 Skill；AGENTS.md 太長，Agent 反而容易漏
 - 回到工作：把團隊常做的一件事寫成 Skill，換幾種說法下任務，看它會不會自己被用上
 📖 延伸閱讀：agentskills.io〈Agent Skills Overview〉、Claude Code 官方文件〈Extend Claude with skills〉、OpenAI〈Build skills〉；你所用工具的官方文件通常有同名章節。

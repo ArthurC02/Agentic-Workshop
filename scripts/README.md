@@ -36,6 +36,8 @@ Agent 工具同步：`scripts/sync_harness.py`。`.claude/skills/` 與 `.claude/
 
 台灣繁體中文檢查：`scripts/check_zh_tw.py`。課程素材、docs/ 與 .claude 的文字必須是繁體字並使用台灣詞彙；發布流程會先執行。
 
+Skill 格式檢查：`scripts/test_skill_spec.py`（隨單元測試執行）。課程發出或要 Agent 複製的每個 Skill（main 的 `check` 範本、`b3-work-order`、DLC 五個 Skill）都要符合 agentskills.io〈Specification〉：frontmatter 從第一行開始，`name` 是小寫英文、數字和連字號且和資料夾同名，`description` 1–1024 字，內文少於 500 行。
+
 知識點出處檢查：`scripts/check_references.py`。每個「技巧／新概念」說明框和詞彙表的每一列，都必須引用 `.claude/skills/course-authoring/references.md` 中已查證的出處；Plugin 章節與本課程文件標題也必須真的存在。
 
 檢查點四塊檢查：`scripts/check_blocks.py`。主課與 DLC Runbook 的每個「檢查點／步驟」都要依序有 ① 為什麼做這一步、② 貼給 Agent、③ 確認結果（主課是用 check Skill 的一行提示詞「用 check 檢查…」，DLC 是要 Agent 只回「成功」或「失敗」的提示詞，加上「失敗時」補救提示詞），④ 補充可省略；另外 ① 最多 3 句（以「。！？」結尾計算，引號內的不算），每個檢查點最多 1 個新的「技巧／新概念」說明框（加深一層不算）。發布流程會先執行。

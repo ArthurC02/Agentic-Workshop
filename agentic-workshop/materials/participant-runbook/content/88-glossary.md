@@ -49,7 +49,8 @@ section: 參考
 | AGENTS.md | 放在專案根目錄、給 Coding Agent 看的說明：怎麼跑、工作規則、審查準則。多數 Coding Agent 開新對話會自動讀它；它是提醒，不是強制。同一個錯犯第二次，就加一行。 | OpenAI〈AGENTS.md〉；Claude Code 官方文件〈How Claude remembers your project〉 |
 | Prompt 結構 | 像交辦工作一樣，說清楚這次要什麼、為什麼、完成的樣子、素材在哪；每次都要的規則放在 `AGENTS.md`，不用重寫。 | Anthropic〈Prompting best practices〉；OpenAI〈Prompt engineering〉 |
 | Structured Output（結構化輸出） | 要求 Agent 用固定格式回報（固定欄位的表格或固定標題），人看得快、能比對。API 的同名功能則用 JSON 結構定義強制格式，今天不需要。 | Anthropic〈Structured outputs〉；OpenAI〈Structured model outputs〉 |
-| Skill | 一套可重複使用的做法：一個資料夾裡的 `SKILL.md`，開頭 `name`、`description` 寫它叫什麼、什麼時候用。工具平常只讀名稱與說明，任務符合時才讀全文；放在工具會自動載入專案 Skill 的位置。今天有 `check`、`fix-bug-with-test`、`b3-work-order`。 | agentskills.io〈Agent Skills Overview〉；Anthropic〈Agent Skills〉 |
+| Skill | 一套可重複使用的做法：一個資料夾裡的 `SKILL.md`，開頭 `name`（和資料夾同名，小寫英文、數字和連字號）、`description` 寫它做什麼、什麼時候用。工具平常只讀名稱與說明，任務符合時才讀全文；放在工具會自動載入專案 Skill 的位置。今天有 `check`、`fix-bug-with-test`、`b3-work-order`，回顧再寫一份你自己的。 | agentskills.io〈Agent Skills Overview〉；agentskills.io〈Specification〉 |
+| description（Skill 說明）與觸發 | `description` 用第三人稱寫 Skill 做什麼、什麼時候用，放進使用者會說的關鍵字；工具拿你的話和它比對，符合就自己用上，這叫觸發（trigger）。沒被用上，先改 description，再開新對話換幾種說法測。 | Anthropic 官方文件〈Skill authoring best practices〉；Anthropic Academy〈Introduction to agent skills〉 |
 | Token 與節費 | Token 是模型讀寫文字的最小單位：計費和模型一次回答能參考多少內容（Context Window，脈絡視窗，包含整段對話與它正在寫的回答），都用它計算。節費：一個任務一個新對話、只讀指定的檔、要摘要不要整段輸出、把共識寫成檔案。 | Anthropic〈Context windows〉；Anthropic〈Token counting〉 |
 | 模型選擇 | 機械性的工作用快速、便宜的模型；分析陌生程式、比較取捨、自主執行用較強的模型。 | Anthropic〈Choosing the right model〉 |
 | 領先指標／落後指標 | 檢查一項做法有沒有效的兩個數字，每項做法各有自己的一組：領先指標是很快就會動的過程數字（例如規則檔：Agent 重犯同一個錯的次數），落後指標是要等一段時間的結果（例如新人第一次把修改合併進主線要多久）。 | Anthropic〈The AI-native SDLC playbook〉；本課程〈工作坊回顧〉 |
