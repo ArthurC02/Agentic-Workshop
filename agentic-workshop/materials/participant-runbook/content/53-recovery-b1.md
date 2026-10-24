@@ -16,7 +16,7 @@ section: Brownfield｜Teammate
 - **完成的樣子**：雜湊值相符、測試 44 passed、`/health` 正常；`notes/recovery-b1.md` 記下切換紀錄。
 ```
 
-先按下方按鈕下載復原包，存在瀏覽器預設的下載資料夾即可。記下按鈕旁的 SHA256 雜湊：它是檔案的指紋，用來確認檔案沒被改過。
+切換約需 9 分鐘（實測，含建環境與跑測試）。先按下方按鈕下載復原包，存在瀏覽器預設的下載資料夾即可。記下按鈕旁的 SHA256 雜湊：它是檔案的指紋，用來確認檔案沒被改過。
 
 ```download
 id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
@@ -34,13 +34,15 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ```text
 我們要切換到 B1 復原包。先把目前狀態 Commit，把變更、最後一次測試結果和沒做完的事寫進 notes/b1.md，再停掉你啟動的伺服器。
-接著到下載資料夾找 recovery-52-b1.zip（檔名可能多了 (1)；找不到就問我；只有同名資料夾、沒有 ZIP，就提醒我 Safari 可能已自動解開，要到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」再重新下載），算出 SHA256 貼給我，解壓到原成果旁邊的新資料夾 resume-b1-52，告訴我裡面 recovery-b1 和原成果資料夾的完整路徑。
+接著到下載資料夾找 recovery-52-b1.zip（檔名可能多了 (1)；找不到就問我；只有同名資料夾、沒有 ZIP，就提醒我 Safari 可能已自動解開，要到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」再重新下載），算出 SHA256 貼給我，解壓到原成果旁邊的新資料夾 resume-b1-52。把原成果資料夾的完整路徑和 SHA256 寫進 resume-b1-52/handoff.md，再告訴我 recovery-b1 的完整路徑。做完用 check 檢查，最後一行寫成功或失敗。
 ```
 
 ③ 確認結果
 
+Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下方「失敗時」。沒看到成功或失敗時才貼：
+
 ```text
-用 check 檢查剛才這一段：原成果已 Commit，你啟動的伺服器已停止，resume-b1-52 裡有 recovery-b1。
+用 check 檢查剛才這一段：原成果已 Commit，你啟動的伺服器已停止，resume-b1-52 裡有 recovery-b1 和 handoff.md。
 ```
 
 失敗時：
@@ -57,13 +59,13 @@ id=recovery-52-b1 zip=recovery-52-b1.zip label=下載受控 B1 Recovery
 
 ② 貼給 Agent
 
-在 `recovery-b1` 資料夾開一個**新的** Agent 對話，貼上：
+在 `recovery-b1` 資料夾開一個**新的** Agent 對話，貼上。Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許。
 
 ```text
-這是 B1 的復原包，我們從這裡接著做。先一次問我兩件事：原成果資料夾的路徑，以及 SHA256 前 12 碼和按鈕旁的是否相符。
-再把原成果的 notes/、AGENTS.md 和你放 Skill 的資料夾複製過來（覆蓋這裡的 AGENTS.md，不動程式；原成果沒有哪一樣就跳過，回報時說一聲），然後重讀 AGENTS.md：裡面還指向原成果資料夾的路徑改成這裡的；沒有「審查準則」一節就直接告訴我。
+這是 B1 的復原包，我們從這裡接著做。主持人已給解鎖碼，就是核准我們接手；SHA256 我比對過，和下載按鈕旁的相符；原成果資料夾的路徑在上一層的 handoff.md。
+先把原成果的 notes/、AGENTS.md 和你放 Skill 的資料夾複製過來（覆蓋這裡的 AGENTS.md，不動程式；原成果沒有哪一樣就跳過，回報時說一聲），然後重讀 AGENTS.md：裡面還指向原成果資料夾的路徑改成這裡的；沒有「審查準則」一節就直接告訴我。
 接著照 AGENTS.md 建好環境、跑測試、啟動伺服器，給我 /docs 網址；讀 README 和 docs/context.md，告訴我這是不是 B1 完成後的版本；讀 notes/b1.md，告訴我原成果還有哪些沒做完。
-最後把切換紀錄寫進 notes/recovery-b1.md：原因與時間、原成果位置、SHA256 比對、測試數、health 結果，以及「B1 的修正由 Recovery 提供，不是本組自己完成」。做完用 check 檢查。
+最後把切換紀錄寫進 notes/recovery-b1.md：原因與時間、主持人核准接手（給了解鎖碼）、原成果位置、SHA256 比對、測試數、health 結果，以及「B1 的修正由 Recovery 提供，不是本組自己完成」。做完用 check 檢查。
 ```
 
 ③ 確認結果

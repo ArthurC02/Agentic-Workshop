@@ -9,21 +9,21 @@
     <li><b>技巧</b><span>先要系統地圖、只讀重點檔，每個結論都要附來源</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 請 Agent 畫系統地圖、指出規則在哪</b><span class="tl-due">第 36 分前</span></li>
-    <li data-seg="analysis"><span class="tl-min">03:00</span><b>2 · 請 Agent 標出文件與程式不一致處</b><span class="tl-due">第 39 分前</span></li>
+    <li data-seg="analysis"><span class="tl-min">00:00</span><b>1 · 請 Agent 畫系統地圖、指出規則在哪</b><span class="tl-due">第 37 分前</span></li>
+    <li data-seg="analysis"><span class="tl-min">02:00</span><b>2 · 請 Agent 標出文件與程式不一致處</b><span class="tl-due">第 39 分前</span></li>
   </ol>
   <p class="callout seg-start">從 Runbook『個人 Agent 分析』› 檢查點 1 開始（不用解鎖碼）</p>
   <aside class="notes">
     <p><b>說（約 20 秒，先講技巧再講步驟）</b>：「接手陌生專案，不用自己讀程式，讓 Agent 帶你讀：先要一張系統地圖，再問規則寫在哪，最後請它標出文件和程式說法不一致的地方。每個結論都要附來源，寫進 notes/analysis.md。每人用自己的 Agent，先不要改程式。分析最需要想，所以這段第一次講模型選擇與推論強度：工具能設定就選較強的模型、調高推論強度。但不要叫它讀整個專案，提示詞已經請它先列目錄、只讀重點檔，這是 Token 節費。」</p>
-    <p><b>操作</b>：本段沒有解鎖頁（第 29 分已一起解開）。按 <b>T</b> 啟動 6:00 段落計時（00:00＝第 33 分），說完翻到檢查點 1。</p>
+    <p><b>操作</b>：本段沒有解鎖頁（第 29 分已一起解開）。第 35 分（Time Skip 檢查點 3 結束）翻到本頁，按 <b>T</b> 啟動段落計時（00:00＝第 35 分；計時器上限仍顯示 6:00，到 04:00＝第 39 分就收分析），說完翻到檢查點 1。</p>
     <p><b>系統架構（主持參考）</b>：API／Schemas → Application → Domain；Infrastructure 放記憶體 Repository、固定 Seed、Clock、模擬付款。查詢讀 Trip；訂票驗證旅客與容量、計價並保留座位；付款建立 Order；改退票協調班次容量與紀錄；相關事件留下通知與稽核紀錄。</p>
     <p><b>可接受</b>：不同的調查順序和地圖格式。<b>不接受</b>：沒有證據的結論、弱化測試。看 <code>notes/analysis.md</code> 和技巧，不因表單少填扣分。</p>
     <p><b>不可揭露</b>：任務解答、學生票率錯誤、檔案位置、失敗數量、文件落差位置。不允許修改程式。</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="analysis" data-title="檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="33">
-  <p class="kicker">檢查點 1 / 2 · 第 33–36 分鐘</p>
+<section class="slide slide-cp" data-seg="analysis" data-title="檢查點 1 · 請 Agent 畫系統地圖、指出規則在哪" data-minute="35">
+  <p class="kicker">檢查點 1 / 2 · 第 35–37 分鐘</p>
   <h2 class="title">請 Agent 畫系統地圖、指出規則在哪</h2>
   <p class="cp-why"><b>為什麼</b>先別問 Bug 在哪，先要一張系統地圖</p>
   <p class="cp-label">現在做</p>
@@ -33,37 +33,37 @@
     <li><b>等的時候讀技巧小卡</b><span>最後一行『成功』就往下</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>地圖說得出誰負責什麼、依賴誰，而不是一串檔名</p>
-  <p class="cp-next"><b>第 36 分前完成</b><span>→ 下一步：檢查點 2 標出文件與程式不一致處</span></p>
+  <p class="cp-next"><b>第 37 分前完成</b><span>→ 下一步：檢查點 2 標出文件與程式不一致處</span></p>
   <aside class="notes">
-    <p><b>說（00:00／第 33 分）</b>：「有模型選單的先選強的，再貼檢查點 1 的提示詞：Agent 會畫系統地圖、指出規則在哪、跑一次測試並啟動伺服器，寫進 notes，最後一行自己回成功或失敗。它讀檔的一兩分鐘，先讀 ④ 的兩張技巧小卡。你看它的說明就好，不用讀程式。」</p>
+    <p><b>說（00:00／第 35 分）</b>：「有模型選單的先選強的，再貼檢查點 1 的提示詞：Agent 會畫系統地圖、指出規則在哪、跑一次測試並啟動伺服器，寫進 notes，最後一行自己回成功或失敗。它讀檔的一兩分鐘，先讀 ④ 的兩張技巧小卡。你看它的說明就好，不用讀程式。」</p>
     <p><b>省時</b>：② 最後寫了「做完用 check 檢查」，Agent 最後一行已回成功／失敗，學員不必再貼 ③（沒看到才貼）。模型選擇的 30 秒介紹放在 Agent 讀檔時講。</p>
     <p><b>看 → 介入</b>：Agent 說「讀了整個專案」→ 請學員要它列出實際讀了哪些檔（Token 節費）｜只列檔名 → 問「這部分負責什麼？依賴誰？」｜Agent 提前改程式或動測試 → 叫它停下並還原｜版本或環境錯誤 → 先協助，確認是同一份 B0｜Port 8000 被佔用 → 先確認是不是 Greenfield 的伺服器沒停；是別的程式就讓 Agent 改用 8001｜分析停滯 → 用下面的提示。</p>
     <p><b>不知從哪開始</b>（先提醒「先要系統地圖」，一次一級）：H1「先用白話畫一張系統地圖給我，寫進 notes/analysis.md。」｜H2「把失敗的測試對到規則編號和 ADR，列成一張表。」｜H3「一筆訂票的票價，是經過哪些部分算出來的？」</p>
     <p><b>首次介紹</b>：模型選擇與推論強度，約 30 秒，指著 Runbook 小卡講；工具有設定就當場切一次，沒有就說提示詞裡「先仔細想過再回答」是替代。Token 節費是加深一層，不重講定義。</p>
-    <p><b>提示原則（33–44 分停滯時）</b>：逐級給，不跳級；不一次給全表、不給完整程式；提示後要求把補到的證據寫進 notes；記下提示和原因。</p>
+    <p><b>提示原則（35–44 分停滯時）</b>：逐級給，不跳級；不一次給全表、不給完整程式；提示後要求把補到的證據寫進 notes；記下提示和原因。</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="analysis" data-title="檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="36">
-  <p class="kicker">檢查點 2 / 2 · 第 36–39 分鐘</p>
+<section class="slide slide-cp" data-seg="analysis" data-title="檢查點 2 · 請 Agent 標出文件與程式不一致處" data-minute="37">
+  <p class="kicker">檢查點 2 / 2 · 第 37–39 分鐘</p>
   <h2 class="title">請 Agent 標出文件與程式不一致處</h2>
   <p class="cp-why"><b>為什麼</b>文件是線索不是結論；追問一個「事實」的證據</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「三方對照」</b><span>Runbook › 檢查點 2</span></li>
     <li><b>回「追問第 N 個」</b><span>挑一個事實；第 39 分到了就跳過</span></li>
-    <li><b>貼 ③ 確認結果</b><span>回『成功』就往下；回『失敗』就貼『失敗時』</span></li>
+    <li><b>看 Agent 最後一行</b><span>成功→往下；失敗→貼『失敗時』</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>「事實」都有來源；說「可能」的已標成假設</p>
   <p class="cp-next"><b>第 39 分前完成</b><span>→ 下一步：Runbook『Shared Context：小組比較分析』</span></p>
   <aside class="notes">
-    <p><b>說（00:03／第 36 分）</b>：「請 Agent 對照文件、測試和程式，標出不一致的地方，每個結論標事實、假設或缺口。寫完它會列出最多 5 條事實的編號，你回『追問第 N 個』就好；到第 39 分還沒追問就跳過。最後貼 ③，用 check 檢查每條事實都附了來源。查不清的寫進『還不確定的事』，不要寫成已證實。」</p>
-    <p><b>看</b>：至少追問過一個結論的證據（這段技巧的關鍵）；事實附了來源。完成條件：<code>notes/analysis.md</code> 能給小組比較；沒跑的測試、沒驗證的原因，不寫成已證實。</p>
+    <p><b>說（00:02／第 37 分）</b>：「請 Agent 對照文件、測試和程式，把不一致的地方列成待確認的問題，先不找原因，每個結論標事實、假設或缺口。寫完它會列出最多 5 條事實的編號，你回『追問第 N 個』就好；到第 39 分還沒追問就跳過。Agent 最後一行會自己回 check 的成功或失敗，沒看到才貼 ③。查不清的寫進『還不確定的事』，不要寫成已證實。」</p>
+    <p><b>看</b>：至少追問過一個結論的證據（這段技巧的關鍵）；事實附了來源。完成條件：<code>notes/analysis.md</code> 能給小組比較；沒跑的測試、沒驗證的原因，不寫成已證實。提示詞請 Agent 只說到模組、不比對程式數值、不指出哪一行，重現與定位留給 B1 檢查點 1；Agent 仍直接說出原因與位置時不必糾正，但不要當場公開討論。</p>
     <p><b>只看文件</b>（提醒「文件是線索不是結論」）：H1「這個結論有測試或實際執行結果嗎？」｜H2「請找出對應測試，重新執行並貼出結果」｜H3「請比對改票的實際行為與 docs 說法，列出不一致處」。</p>
     <p><b>只改測試</b>（提醒「先對照規則，不動測試」）：H1「先不要改測試。公開規則和這個測試的期待一致嗎？」｜H2「請對照 business-rules 與原測試期待值，說明哪一邊有根據」｜H3「請用白話說明目前票價與優惠怎麼算，不要修改」。</p>
     <p><b>想全面重寫</b>（提醒「分析階段只讀不改」）：H1「哪些差異是現在必須處理的？」｜H2「請只根據失敗測試，說明最少要碰哪些部分」｜H3「請把範圍限制在計價規則與受影響的服務，寫進待決事項」。</p>
     <p><b>學員已自己找到 85 才能用</b>（會透露數值與計價位置）：H1「這個折扣適用的對象和規則寫的一樣嗎？」｜H2「請對照 FARE-002 與相關測試」｜H3「請說明旅客類型如何影響票價計算」。</p>
-    <p><b>停止（00:06／第 39 分）</b>：收分析，沒查清的如實記錄。翻到共同脈絡總覽。</p>
+    <p><b>停止（00:04／第 39 分）</b>：收分析，沒查清的如實記錄。翻到共同脈絡總覽。</p>
     <p><b>收尾</b>：這段時間已滿，不在段落交界另開全場分享（會吃掉下一段約 1 分鐘）；請學員趁等 Agent 時看 Runbook「完成後想一想」，和旁邊的人聊。</p>
   </aside>
 </section>
@@ -77,8 +77,8 @@
     <li><b>技巧</b><span>口頭講過 Agent 會忘；寫進 AGENTS.md，每個對話都讀得到</span></li>
   </ul>
   <ol class="timeline">
-    <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較各自的分析，選出主要 Agent</b><span class="tl-due">第 42 分前</span></li>
-    <li data-seg="shared"><span class="tl-min">03:00</span><b>2 · 請主要 Agent 寫成共同脈絡檔</b><span class="tl-due">第 44 分前</span></li>
+    <li data-seg="shared"><span class="tl-min">00:00</span><b>1 · 比較各自的分析，選出主要 Agent</b><span class="tl-due">第 41 分前</span></li>
+    <li data-seg="shared"><span class="tl-min">02:00</span><b>2 · 請主要 Agent 寫成共同脈絡檔</b><span class="tl-due">第 44 分前</span></li>
   </ol>
   <p class="callout seg-start">從 Runbook『Shared Context：小組比較分析』› 檢查點 1 開始</p>
   <aside class="notes">
@@ -89,7 +89,7 @@
 </section>
 
 <section class="slide slide-cp" data-seg="shared" data-title="檢查點 1 · 比較各自的分析，選出主要 Agent" data-minute="39">
-  <p class="kicker">檢查點 1 / 2 · 第 39–42 分鐘</p>
+  <p class="kicker">檢查點 1 / 2 · 第 39–41 分鐘</p>
   <h2 class="title">比較各自的分析，選出主要 Agent</h2>
   <p class="cp-why"><b>為什麼</b>每個人的 Agent 先把分析濃縮成 5 行，小組才比得起來</p>
   <p class="cp-label">現在做</p>
@@ -99,17 +99,17 @@
     <li><b>💬 口頭比較 5 行</b><span>說完把分工一兩句打進聊天室</span></li>
   </ol>
   <p class="cp-judge"><b>你要判斷</b>說得出一條附來源的共同事實、一個分歧</p>
-  <p class="cp-next"><b>第 42 分前完成</b><span>→ 下一步：主要 Agent 寫共同脈絡檔</span></p>
+  <p class="cp-next"><b>第 41 分前完成</b><span>→ 下一步：主要 Agent 寫共同脈絡檔</span></p>
   <aside class="notes">
     <p><b>說（00:00／第 39 分）</b>：「請各自的 Agent 把 notes/analysis.md 濃縮成 5 行，放在一起比較，找出共同事實和分歧，選定主要 Agent。不要把每個人的完整對話直接拼起來。等 Agent 濃縮時，先決定誰的電腦當主要 Agent、誰當核准者；說完，主要 Agent 那位把分工一兩句打進聊天室，下一步直接複製。」</p>
-    <p><b>省時</b>：② 最後寫了「做完用 check 檢查」，Agent 已回成功／失敗就不另貼 ③；選角色放進等待時間；分工句在本檢查點寫好，檢查點 2 只剩貼上與看複述。</p>
+    <p><b>省時</b>：這步不跑 check（實測 check 曾誤報「analysis.md 被別人改過」，多花近 2 分鐘），學員自己看 5 行有沒有標記、和前面各節一致，對不上才貼 ③；選角色放進等待時間；分工句在本檢查點寫好，檢查點 2 只剩貼上與看複述。</p>
     <p><b>看</b>：小組有沒有真的開口比較（Runbook 的「💬 討論一下」口頭即可）；共同事實附了來源；分歧說得出怎麼驗證。</p>
     <p><b>小組結論矛盾</b>（提醒「先分事實、假設、缺口」，一次一級）：H1「請各自的 Agent 把結論標成事實（來源）、假設或缺口」｜H2「有分歧的結論，請兩邊的 Agent 各自重跑相關測試並貼出結果」｜H3「請說明同一個訂票請求從 API 到計價規則經過哪些部分」。提示後要小組補證據，不替小組核准計畫。</p>
   </aside>
 </section>
 
-<section class="slide slide-cp" data-seg="shared" data-title="檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="42">
-  <p class="kicker">檢查點 2 / 2 · 第 42–44 分鐘</p>
+<section class="slide slide-cp" data-seg="shared" data-title="檢查點 2 · 請主要 Agent 寫成共同脈絡檔" data-minute="41">
+  <p class="kicker">檢查點 2 / 2 · 第 41–44 分鐘</p>
   <h2 class="title">請主要 Agent 寫成共同脈絡檔</h2>
   <p class="cp-why"><b>為什麼</b>口頭講過 Agent 會忘；寫進 AGENTS.md，每個對話都讀到</p>
   <p class="cp-label">現在做</p>
@@ -120,7 +120,7 @@
   <p class="cp-judge"><b>你要判斷</b>沒把假設說成事實，也沒自己加修改計畫</p>
   <p class="cp-next"><b>第 44 分前完成</b><span>→ 在「共同脈絡確認」記下結論；下一步：B1 解鎖</span></p>
   <aside class="notes">
-    <p><b>說（00:03／第 42 分）</b>：「還有 2 分鐘。在主要 Agent 的對話一次貼完三樣：檢查點 2 的提示詞、一兩句分工與共識、大家的 5 行摘要。它會寫好 notes/shared-context.md，在 AGENTS.md 加上『開工先讀』和審查準則，再把 AGENTS.md 裡『檢查一段工作』的步驟搬成 check Skill；用 3 句複述、最多列 3 個疑點，最後一行自己回成功或失敗，不用再貼 ③。等它寫檔時，其他人先填表單第 1 題，再讀 ④ 的 Skill 小卡：每次都要的事放 AGENTS.md，一步步的做法放 Skill。審查準則這裡只建立，B1 檢查點 2 第一次用時才介紹。從 B1 起，提示詞不用再叫 Agent 讀規則，開新對話它會自己讀 AGENTS.md。」</p>
+    <p><b>說（00:02／第 41 分）</b>：「還有 3 分鐘。在主要 Agent 的對話一次貼完三樣：檢查點 2 的提示詞、一兩句分工與共識、大家的 5 行摘要。它會寫好 notes/shared-context.md，在 AGENTS.md 加上『開工先讀』和審查準則，再把 AGENTS.md 裡『檢查一段工作』的步驟搬成 check Skill；用 3 句複述、最多列 3 個疑點，最後一行自己回成功或失敗，不用再貼 ③（提示詞已說 check 不用跑測試，實測省約 30 秒）。等它寫檔時，其他人先填表單第 1 題，再讀 ④ 的 Skill 小卡：每次都要的事放 AGENTS.md，一步步的做法放 Skill。審查準則這裡只建立，B1 檢查點 2 第一次用時才介紹。從 B1 起，提示詞不用再叫 Agent 讀規則，開新對話它會自己讀 AGENTS.md。」</p>
     <p><b>看</b>：複述有沒有把分歧或假設說成事實、有沒有自己加修改計畫；「已知限制」只記限制，不預先核准修改。共同脈絡不等於任務授權。表單第 1 題（角色）可在等 Agent 時先選；第 2 題在小組一起確認複述後才選，記的是討論結論。</p>
     <p><b>完成條件</b>：主要 Agent 的專案有 <code>notes/shared-context.md</code>（共同事實附來源、分歧與驗證方式、限制、待決事項、分工）；<code>AGENTS.md</code> 最上面有「開工先讀 notes/shared-context.md」、多了「審查準則」一節（三題與「重要／小問題」分級，照 Runbook 原文），「檢查一段工作」那一節換成一行 check Skill 的完整路徑；check Skill 有 <code>name</code>、<code>description</code>。工具沒有 Skill 功能也照樣用：Agent 照那一行路徑去讀。</p>
     <p><b>之後各段</b>：任務範圍、計畫與核准紀錄寫進該段的 notes 檔（如 <code>notes/b1.md</code>）；共同脈絡檔只補共識的變化。</p>

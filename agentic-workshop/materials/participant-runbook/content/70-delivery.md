@@ -33,11 +33,11 @@ section: Delivery
 
 ② 貼給 Agent
 
-1. 複製下方提示詞貼給主要 Agent；交付摘要範本（Delivery Summary）已在 B3 文件包裡，Agent 會自己讀。它會先核對 B3 的 Gate 3 紀錄，缺了你的決定就問你，回「核准」「附條件：…」或「退回：…」即可。
+1. 複製下方提示詞貼給主要 Agent；交付摘要範本（Delivery Summary）已在 B3 文件包裡，Agent 會自己讀。它會先核對 B3 的 Gate 3 紀錄：有 Gate 3 卡但缺你的決定就問你，回「核准」「附條件：…」或「退回：…」即可；還沒有 Gate 3 卡（Recovery 組時間到）就記「未進行」，不問你。
 2. 主要 Agent 開始寫摘要後，在同一台電腦、同一個專案資料夾**開一個新對話**，貼 ③ 的審查提示詞，兩邊同時跑。工具一次只能開一個對話時，等主要 Agent 回完三句話再開新對話貼。
 
 ```text
-B3 時間到，不再改程式，請寫交付摘要給主管：照 b3-docs/delivery-template.md 寫進 notes/delivery.md，素材只用 notes/b3.md。每一欄附證據位置，找不到證據的寫「未驗證」；Level 依證據選，不自動選 Level 3。notes/b3.md 缺我的 Gate 3 決定，就先問我一句。另一個對話會審查這次的修改、寫進 notes/b3.md 的「審查紀錄」，那一節你不要動。
+B3 時間到，不再改程式，請寫交付摘要給主管：照 b3-docs/delivery-template.md 寫進 notes/delivery.md，素材只用 notes/b3.md。每一欄附證據位置，找不到證據的寫「未驗證」；Level 依證據選，不自動選 Level 3。notes/b3.md 有 Gate 3 卡但缺我的決定，就附卡上的建議先問我一句；還沒有 Gate 3 卡，就在「Gate 3」寫「未進行（時間到）」，不要補問。另一個對話會同時審查這次的修改、寫進 notes/b3.md 的「審查紀錄」，那一節你不要動，也不用等它。
 寫完給我三句話：建議的 Level、測試結果、修改範圍，每句後面引用證據原文和位置；再告訴我 notes 資料夾的完整路徑。
 ```
 
@@ -56,12 +56,6 @@ B3 時間到，不再改程式，請寫交付摘要給主管：照 b3-docs/deliv
 
 ```text
 先停。剛才哪一步沒做到？改到 notes/b3.md「審查紀錄」以外的檔案就用 Git 還原，再照審查準則重寫「審查紀錄」。
-```
-
-審查對話回「成功」後，對主要 Agent 貼：
-
-```text
-審查紀錄寫好了。把 notes/b3.md「審查紀錄」最後一行的結論照抄進 notes/delivery.md 的 Recommended Decision，取代「審查中」，Risks 裡提到審查進行中的句子一併更新，其他不動。
 ```
 
 主要 Agent 的摘要有句子你看不懂、覺得證據對不上，或審查紀錄有「重要」問題時，對主要 Agent 貼：

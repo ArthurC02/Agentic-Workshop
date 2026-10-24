@@ -36,14 +36,16 @@ section: B3｜Digital Worker
 
 ```callout sync
 ⏸ 看投影：B2 沒做完的組貼紅色便利貼，主持人會走過去
-拿到解鎖碼後，先到 [B2 Recovery](#recovery-b2) 切換，約需 5 分鐘。
+拿到解鎖碼後，先到 [B2 Recovery](#recovery-b2) 切換，約需 9 分鐘。
 ```
 
 ```callout warning
 用 Recovery 的組：走縮短版
-**切換後照下面縮短，第 76 分鐘照樣停手，目標 Level 1。**
-- Gate 1 約第 70–71 分、Gate 2 約第 73 分；例外事件等你們交完 Gate 2 再貼回應卡，30 秒口頭判斷
-- Gate 2 後不回「開始執行」，第 74 分直接貼「停止擴充」
+**切換後只做 Gate 1，如實交「未達 Level 1（Gate 2 未進行）」；第 76 分鐘照樣停手。**
+- 文件包和第 69 分的例外事件，在 Recovery 等 Agent 建環境時已處理（例外只口頭判斷、填表單）
+- 檢查點 1 不開新對話，在 Recovery 那個對話接著貼；Gate 1 卡約第 73 分
+- 回覆 Gate 1 後，Agent 不做 Gate 2，直接交 Gate 3 卡，照常回覆
+- 第 76 分還沒看到 Gate 3 卡就不等，到 [交付](#delivery) 貼提示詞；頁尾 Gate 3 選「未進行」
 ```
 
 ## 任務卡
@@ -60,9 +62,9 @@ zip=participant-63-b3-governance.zip path=b3-docs/task-card.md
 
 ② 貼給 Agent
 
-1. 按下方按鈕下載 B3 文件包（`b3-docs.zip`），存在瀏覽器預設的下載資料夾即可。下載後不用解壓縮、不用打開；VS Code 保持開著 `smart-ticket-b0`（或 `recovery-b2`）。
-2. 在這個 B2 用的專案資料夾（用過 B2 Recovery 的是 `recovery-b2`），在主要 Agent **開一個新對話**。工具有模型選單，就選推論能力較強的模型；沒有就用預設。
-3. 貼上下方提示詞。Agent 會解開文件包、記下起點，再交出 Gate 1 卡（可能到第 65 分才出來）。
+1. 按下方按鈕下載 B3 文件包（`b3-docs.zip`），存在瀏覽器預設的下載資料夾即可（Recovery 時已下載就跳過）。下載後不用解壓縮、不用打開；VS Code 保持開著 `smart-ticket-b0`（或 `recovery-b2`）。
+2. 在這個 B2 用的專案資料夾，在主要 Agent **開一個新對話**（用過 B2 Recovery 的組不開，在 `recovery-b2` 的 Recovery 對話接著貼）。工具有模型選單，就選推論能力較強的模型；沒有就用預設。
+3. 貼上下方提示詞。Agent 會解開文件包、記下起點，再交出 Gate 1 卡（可能到第 65 分才出來）。Agent 建立 Skill 資料夾時，工具若跳出允許視窗，按允許。
 
 ```download
 id=b3-docs zip=participant-63-b3-governance.zip label=下載 B3 文件包
@@ -155,7 +157,7 @@ Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失�
 
 ② 貼給 Agent
 
-Gate 1 核准後，Agent 會自己交 Gate 2 卡。照檢查點 2 的方式回覆，再到頁尾選 Gate 2 的決策。Agent 沒有自己交 Gate 2 卡時才貼：
+Gate 1 核准後，Agent 會自己交 Gate 2 卡。照檢查點 2 的方式回覆，再到頁尾選 Gate 2 的決策（走縮短版的組沒有 Gate 2，選「未進行」）。Agent 沒有自己交 Gate 2 卡時才貼：
 
 ```text
 依工作單，給我 Gate 2 卡。
@@ -196,7 +198,7 @@ Agent 回覆的最後一行寫「自我檢查：成功」就往下；寫「失�
 
 ② 貼給 Agent
 
-1. 例外事件處理完、Gate 2 的條件也解除後，回覆（用 Recovery 走縮短版的組不回，直接跳到第 3 步）：
+1. 例外事件處理完、Gate 2 的條件也解除後，回覆（用 Recovery 走縮短版的組不回：Agent 已直接交 Gate 3 卡，跳到第 4 步）：
 
 ```text
 開始執行
