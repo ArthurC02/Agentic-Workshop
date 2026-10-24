@@ -1,12 +1,12 @@
 ---
 id: recovery-b2
 title: B2 Recovery 切換
-minute: 63-76
+minute: 79-99
 group: recovery-b2
 section: Brownfield｜Digital Worker
 ---
 
-# B2 Recovery：第 63 分鐘，必要時才切換
+# B2 Recovery：第 79 分鐘，必要時才切換
 
 ```callout info
 現在在做什麼
@@ -68,10 +68,9 @@ Agent 最後一行已回「成功」就不用再貼；回「失敗」就貼下�
 最後把切換紀錄寫進 notes/recovery-b2.md：原因與時間、主持人核准接手（給了解鎖碼）、原成果位置、SHA256 比對、測試數、health 結果，以及「B2 的政策由 Recovery 提供，不是本組自己完成」。做完用 check 檢查。
 ```
 
-Agent 建環境、跑測試要 2 分鐘多，這段時間只做兩件事：
+Agent 建環境、跑測試要 2 分鐘多，這段時間到 [B3](#b3) 檢查點 1 按「下載 B3 文件包」，存在預設的下載資料夾，不用解壓縮。
 
-- 到 [B3](#b3) 檢查點 1 按「下載 B3 文件包」，存在預設的下載資料夾，不用解壓縮
-- 投影出現例外事件卡（第 69 分）時，小組 30 秒口頭判斷，到 [例外回應卡](#b3-exception-card) 填表單，不貼提示詞
+投影出現例外事件卡（第 88 分）時，不論做到哪裡，小組 30 秒口頭判斷，到 [例外回應卡](#b3-exception-card) 填表單，不貼提示詞。
 
 ③ 確認結果
 

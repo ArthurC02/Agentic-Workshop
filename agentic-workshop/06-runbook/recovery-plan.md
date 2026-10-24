@@ -6,11 +6,11 @@
 
 | 觸發／時點 | 可用來源 | 處置與界線 |
 |---|---|---|
-| G0環境／進度阻擋，29分鐘前 | 重新取得乾淨G0；G1只供必要主持受控示範 | 留原成果／缺項；不拿G1當個人已完成，不提前發Brownfield答案。 |
-| 29–33 Time Skip／B0來源或啟動異常 | 正式B0或同源clean-copy，保留Bug | 全員統一B0；不可發診斷修復副本或B1替代初始分析。 |
-| 52分鐘B1未完成但需進B2 | 已驗收B1受控Recovery | 只提供已結束B1能力，不含B2／B3；原B1成果保留，不算自行修復。 |
-| 63分鐘B2未完成但需進B3 | 已驗收B2受控Recovery | 只提供B2能力，不含B3團體解答；重新確認Context再做三Gate。 |
-| B3阻擋／76分鐘到 | 保留當前學員成果與Gate | 分析／Review降級或Level1／2摘要，不發B3標準解答充作起點，不由人補Code。 |
+| G0環境／進度阻擋，30分鐘前 | 重新取得乾淨G0；G1只供必要主持受控示範 | 留原成果／缺項；不拿G1當個人已完成，不提前發Brownfield答案。 |
+| 30–39 Time Skip／B0來源或啟動異常 | 正式B0或同源clean-copy，保留Bug | 全員統一B0；不可發診斷修復副本或B1替代初始分析。 |
+| 62分鐘B1未完成但需進B2 | 已驗收B1受控Recovery | 只提供已結束B1能力，不含B2／B3；原B1成果保留，不算自行修復。 |
+| 79分鐘B2未完成但需進B3 | 已驗收B2受控Recovery | 只提供B2能力，不含B3團體解答；重新確認Context再做三Gate。 |
+| B3阻擋／99分鐘到 | 保留當前學員成果與Gate | 分析／Review降級或Level1／2摘要，不發B3標準解答充作起點，不由人補Code。 |
 
 先提醒Rule→要求證據→回到Gate→漸進Hint→合格Recovery。若條件未解除或受控包未驗證，直接採分析／Review降級；不為接續而分享完整Evaluation或作者Repo。
 
@@ -44,6 +44,6 @@ B2參考版的`docs/api-examples.md`、`docs/discount-overview.md`原寫FULL_FAR
 4. 建立新Agent Session或明確重建Context：學員把原成果的`notes/`、`AGENTS.md`與Skill資料夾複製進新目錄（覆蓋包內`AGENTS.md`，不動程式）；`AGENTS.md`沒有「審查準則」時照Runbook Recovery頁的備用段補上；記錄接手版本、完成／未完成、已確認規則及核准範圍。版本切換後不得沿用未確認的舊假設。
 5. 用下一段任務與Gate接續；把Recovery來源能力與本組實際成果分開，核准人／時間／證據留存。
 
-若Server、Agent或包仍不可用，以現有材料完成需求、Impact、測試策略或證據Review並列缺項。時間不足仍保留三Gate最低要求與唯一例外，停止擴充，不延長90分鐘。
+若Server、Agent或包仍不可用，以現有材料完成需求、Impact、測試策略或證據Review並列缺項。時間不足仍保留三Gate最低要求與唯一例外，停止擴充，不延長120分鐘。
 
 完成條件：來源、白名單、角色安全內容、實際包驗證與切換紀錄齊備才可發放。包與Recovery技術結果見[一致性修正報告](evaluation/consistency-correction-report.md)；真人切換、新Session／Context及現場可用性仍待演練。

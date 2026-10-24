@@ -1,6 +1,6 @@
 # Greenfield MVP 評估清單
 
-> 讀者：Evaluation、Facilitator。時機：20 分鐘摘要、22 分鐘收件後評估。
+> 讀者：Evaluation、Facilitator。時機：20 分鐘摘要、23 分鐘收件後評估。
 > 前置：取得本次提交（含 `notes/greenfield.md` 與交付表單）、Participant 需求／AC、測試輸出與人機分工摘要；閱讀 [G0 指令](../../../docs/instructions/02_Greenfield_Starter_Kit產製指令書.md)。
 > 可見性：Evaluation／Facilitator 內部；不將內部驗收說明當解答發放。
 

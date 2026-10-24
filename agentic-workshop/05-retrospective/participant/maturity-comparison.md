@@ -1,6 +1,6 @@
 # Tool → Teammate → Digital Worker比較
 
-> 讀者：參與者。時機：第80–90分鐘回顧。前置：已體驗活動並保留實際成果與Gate紀錄。可見性：Participant。
+> 讀者：參與者。時機：第105–120分鐘回顧。前置：已體驗活動並保留實際成果與Gate紀錄。可見性：Participant。
 
 | 面向 | Tool | Teammate | Digital Worker |
 |---|---|---|---|

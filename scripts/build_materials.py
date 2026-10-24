@@ -32,15 +32,15 @@ if str(SCRIPTS) not in sys.path:
 import build_delivery  # noqa: E402  (pure helpers only; never build()/repin)
 
 MATERIALS = ROOT / "agentic-workshop" / "materials"
-CANDIDATE_ID = "e040125064fda539"
+CANDIDATE_ID = "ec4d96915d30add6"
 CANDIDATE = ROOT / "dist" / "p11-candidate" / CANDIDATE_ID
 
 SEGMENTS = ("opening", "greenfield", "timeskip", "analysis", "shared", "b1", "b2", "b3",
             "delivery", "retro", "reveal")
 # (segment, start minute, end minute, label) -- component spec B2.
-PLAN = (("opening", 0, 7, "開場"), ("greenfield", 7, 29, "Greenfield"), ("timeskip", 29, 33, "Time Skip"),
-        ("analysis", 33, 39, "個人分析"), ("shared", 39, 44, "Shared Context"), ("b1", 44, 52, "B1"),
-        ("b2", 52, 63, "B2"), ("b3", 63, 76, "B3"), ("delivery", 76, 80, "交付"), ("retro", 80, 90, "回顧"))
+PLAN = (("opening", 0, 7, "開場"), ("greenfield", 7, 30, "Greenfield"), ("timeskip", 30, 39, "Time Skip"),
+        ("analysis", 39, 46, "個人分析"), ("shared", 46, 52, "Shared Context"), ("b1", 52, 62, "B1"),
+        ("b2", 62, 79, "B2"), ("b3", 79, 99, "B3"), ("delivery", 99, 105, "交付"), ("retro", 105, 120, "回顧"))
 FORBIDDEN_MARKERS = ("facilitator", "evaluation", "reference-solution", "reference answer", "標準答案",
                      "STUDENT_FARE_RATE", "intentional failure manifest")
 # Same expressions as build_delivery.content_policy (B0 pedagogy guard), applied to rendered pages
@@ -52,8 +52,8 @@ LOCAL_URL_RE = re.compile(r"https?://(?:127\.0\.0\.1|localhost)(?=[:/]|$)", re.I
 # XML namespace identifiers are not network requests (e.g. createElementNS in JS).
 NAMESPACE_URLS = ("http://www.w3.org/2000/svg", "http://www.w3.org/1999/xhtml", "http://www.w3.org/1999/xlink")
 WINDOW = 30
-RECOVERY_DOWNLOADS = {"recovery-52-b1.zip": ("recovery-b1", 52),
-                      "recovery-63-b2.zip": ("recovery-b2", 63)}
+RECOVERY_DOWNLOADS = {"recovery-52-b1.zip": ("recovery-b1", 62),
+                      "recovery-63-b2.zip": ("recovery-b2", 79)}
 RECOVERY_GROUPS = {group: minute for group, minute in RECOVERY_DOWNLOADS.values()}
 # Reviewed exemptions for forbidden markers: (page id, exact phrase that contains the marker).
 # Only a hit lying fully inside the phrase on that page is tolerated; it is still printed every build.
@@ -61,7 +61,7 @@ RECOVERY_GROUPS = {group: minute for group, minute in RECOVERY_DOWNLOADS.values(
 #   04-digital-worker/participant/06-exception-response-card.md) that states the blank card does NOT
 #   pre-release the scenario or the answer. Remove this entry to make the build strict again.
 MARKER_EXEMPTIONS = ()
-TOTAL_MINUTES = 90
+TOTAL_MINUTES = 120
 STORAGE_PREFIX_TOKEN = "{{STORAGE_PREFIX}}"
 
 
@@ -390,9 +390,9 @@ def scan_urls(texts: dict[str, str], allow_namespaces: bool = False) -> list[str
 
 
 def scan_b0_policy(pages: list[dict], texts: dict[str, str], group_minutes: dict[str, int]) -> list[str]:
-    """Pages visible before B1 (44) must not disclose the B0 diagnosis; before B2 (52) not the priority."""
-    b1 = group_minutes.get("b1", 44)
-    b2 = group_minutes.get("b2", 52)
+    """Pages visible before B1 (52) must not disclose the B0 diagnosis; before B2 (62) not the priority."""
+    b1 = group_minutes.get("b1", 52)
+    b2 = group_minutes.get("b2", 62)
     hits = []
     for page in pages:
         minute = 0 if page["group"] == "open" else group_minutes.get(page["group"], 0)

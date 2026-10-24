@@ -1,6 +1,6 @@
 # B1 Expected Participant Behavior
 
-> 讀者：主持人與觀察人員。時機：Shared Context後第44–52分鐘。前置：了解B1規則與範圍。可見性：Facilitator。
+> 讀者：主持人與觀察人員。時機：Shared Context後第52–62分鐘。前置：了解B1規則與範圍。可見性：Facilitator。
 
 | 觀察面向 | 預期行為 | 需要介入的訊號 |
 |---|---|---|
@@ -30,7 +30,7 @@ Agent主導需求、Impact、設計、Task Breakdown、Code／Test／Docs／摘�
 
 關鍵證據為5／20及4／21界線、同車廂完整區段、建立失敗不留狀態、付款失敗整筆取消／全釋放／無Order、B2個別價及Audit／通知。人直接改Code、Agent跳Gate、Agent未附指令與輸出就宣稱通過、隱藏缺項或將Level2當完整交付均需介入。
 
-如實區分Level1分析、Level2核心、Level3完整交付，保留未完成與核准／拒絕證據；不要求學員在13分鐘無條件達標準答案全部規格。
+如實區分Level1分析、Level2核心、Level3完整交付，保留未完成與核准／拒絕證據；不要求學員在20分鐘無條件達標準答案全部規格。
 
 ## 完成條件
 

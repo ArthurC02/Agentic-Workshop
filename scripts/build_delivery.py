@@ -12,12 +12,12 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "scripts/package-manifest.json"
 FORBIDDEN = {".git", ".venv", "__pycache__", ".pytest_cache"}
-RELEASES = {"participant-07-g0": ("participant", 7), "participant-29-time-skip": ("participant", 29),
-            "participant-29-b0": ("participant", 29), "participant-33-analysis": ("participant", 33),
-            "participant-39-shared-context": ("participant", 39), "participant-44-b1": ("participant", 44),
-            "participant-52-b2": ("participant", 52), "participant-63-b3-governance": ("participant", 63),
-            "participant-80-retrospective": ("participant", 80), "recovery-52-b1": ("participant", 52),
-            "recovery-63-b2": ("participant", 63), "facilitator-before-session": ("facilitator", -1),
+RELEASES = {"participant-07-g0": ("participant", 7), "participant-29-time-skip": ("participant", 30),
+            "participant-29-b0": ("participant", 30), "participant-33-analysis": ("participant", 39),
+            "participant-39-shared-context": ("participant", 46), "participant-44-b1": ("participant", 52),
+            "participant-52-b2": ("participant", 62), "participant-63-b3-governance": ("participant", 79),
+            "participant-80-retrospective": ("participant", 105), "recovery-52-b1": ("participant", 62),
+            "recovery-63-b2": ("participant", 79), "facilitator-before-session": ("facilitator", -1),
             "evaluation-private": ("evaluation", -1)}
 B0_ROOT = "agentic-workshop/03-brownfield/participant/repository/smart-ticket-b0"
 B0_CONTEXT_FILES = ("docs/change-booking-guide.md", "docs/discount-overview.md",
@@ -154,9 +154,9 @@ def build() -> dict:
                     relative = source.relative_to(ROOT / B0_ROOT).as_posix()
                     if not (relative.startswith("src/smart_ticket/") or relative.startswith("tests/") or relative in {"requirements.txt", "pyproject.toml", *B0_CONTEXT_FILES}):
                         raise ValueError("Unapproved B0 source: " + relative)
-                if source.name.startswith("03-b3-") and package["release_minute"] < 63:
+                if source.name.startswith("03-b3-") and package["release_minute"] < 79:
                     raise ValueError("Premature B3 release")
-                if source.name.startswith("02-b2-") and package["release_minute"] < 52:
+                if source.name.startswith("02-b2-") and package["release_minute"] < 62:
                     raise ValueError("Premature B2 release")
             data = source.read_bytes()
             if digest(data) != entry["sha256"]:

@@ -7,11 +7,11 @@
 
 ## 1. 成品
 
-各階段的概念與操作教學Deck另存於 [speech/](speech/README.md)。第一階段Greenfield採45分鐘、18頁獨立Deck與操作講義；與下列90分鐘主持流程的整合時間另行安排。
+各階段的概念與操作教學Deck另存於 [speech/](speech/README.md)。第一階段Greenfield採45分鐘、18頁獨立Deck與操作講義；與下列120分鐘主持流程的整合時間另行安排。
 
 | 檔案 | 用途 | 發給誰 |
 |---|---|---|
-| `facilitator-deck/facilitator-deck.html` | 90 分鐘主持簡報，含講者視窗、計時器、解鎖碼頁與答案揭曉頁 | 只給主持人 |
+| `facilitator-deck/facilitator-deck.html` | 120 分鐘主持簡報，含講者視窗、計時器、解鎖碼頁與答案揭曉頁 | 只給主持人 |
 | `participant-runbook/runbook.html` | 學員從頭用到尾的單一檔案；內嵌 G0／B0 與視需要 B1／B2 Recovery 下載 | 開場前發給每位學員 |
 | `unlock-codes.json` | 各揭露時點的寫死解鎖碼 | 只給主持人 |
 
@@ -32,11 +32,11 @@
 
 1. 開場前，執行 `scripts/package_materials.py`，生成 `dist/materials/participant-materials.zip`（只含 `runbook.html`）。只發此 ZIP 或 HTML，不發整個 `participant-runbook/`（`content/`會提前透露任務）、`materials/`或作者 Repo。把成品放到共用資料夾、Teams 檔案區或 USB 發給學員。銀行郵件閘道可能擋 `.html` 附件，不建議用 Email。
 2. 提醒學員：先把檔案存到本機（不要直接在壓縮檔或郵件附件預覽中開啟），並整場使用同一個瀏覽器，表單暫存與解鎖狀態存在該瀏覽器中。
-3. 第 07 分鐘公布 Greenfield 解鎖碼後，學員在 Runbook 下載 G0；第 29 分鐘公布 Time Skip 解鎖碼後下載 B0。
+3. 第 07 分鐘公布 Greenfield 解鎖碼後，學員在 Runbook 下載 G0；第 30 分鐘公布 Time Skip 解鎖碼後下載 B0。
 4. 學員晚到或換電腦時，再念一次已公布的活動解鎖碼即可補上。
-5. 52分鐘進B2／63分鐘進B3，主持人視需要向核准小組提供講者視窗／`unlock-codes.json`中的獨立Recovery碼，學員到相應Recovery頁下載並依步驟切換。保留原成果、未完成、來源與核准原因，接續基線不算小組自行完成；B3開始後不再換版。
+5. 62分鐘進B2／79分鐘進B3，主持人視需要向核准小組提供講者視窗／`unlock-codes.json`中的獨立Recovery碼，學員到相應Recovery頁下載並依步驟切換。保留原成果、未完成、來源與核准原因，接續基線不算小組自行完成；B3開始後不再換版。
 
-解鎖碼只防止學員提早翻看，不是密碼學保護。Runbook 不含主持提示或 Evaluation 原稿；另內嵌已驗收 B1／B2 Recovery 接續基線，由主持人只於52／63分鐘視需要提供獨立碼，不向全場公布 Recovery 碼，不提供 B3 解答。編碼不構成權限安全。
+解鎖碼只防止學員提早翻看，不是密碼學保護。Runbook 不含主持提示或 Evaluation 原稿；另內嵌已驗收 B1／B2 Recovery 接續基線，由主持人只於62／79分鐘視需要提供獨立碼，不向全場公布 Recovery 碼，不提供 B3 解答。編碼不構成權限安全。
 
 ## 4. 事前 Preflight 補充項
 
@@ -49,7 +49,7 @@
 - [ ] 表單會自動暫存，關閉再開仍保留；「匯出 Markdown」可以下載 `.md` 檔。
 - [ ] 主持電腦可以開啟講者視窗（瀏覽器未封鎖彈出視窗）並同步翻頁。
 
-若公司政策封鎖瀏覽器下載，改由主持人在第 07、29 分鐘從共用資料夾提供候選包中的 `participant-07-g0.zip`、`participant-29-b0.zip`；兩者與 Runbook 內嵌版本的 SHA256 相同。
+若公司政策封鎖瀏覽器下載，改由主持人在第 07、30 分鐘從共用資料夾提供候選包中的 `participant-07-g0.zip`、`participant-29-b0.zip`；兩者與 Runbook 內嵌版本的 SHA256 相同。
 
 ## 5. 修改與重新建置
 
@@ -64,8 +64,8 @@
 & '.\.codex-tmp\b3-env\Scripts\python.exe' -X utf8 -m unittest discover -s scripts -p 'test_*materials*.py'
 ```
 
-建置會驗證候選包雜湊、時程連續加總 90 分鐘、解鎖碼與鎖定內容不以明文出現、Runbook 不含主持／評估內容或外部網址；任何一項失敗都不會產出檔案。修改解鎖碼只需改 `unlock-codes.json` 後重新建置。
+建置會驗證候選包雜湊、時程連續加總 120 分鐘、解鎖碼與鎖定內容不以明文出現、Runbook 不含主持／評估內容或外部網址；任何一項失敗都不會產出檔案。修改解鎖碼只需改 `unlock-codes.json` 後重新建置。
 
 ## 完成條件
 
-主持人能用簡報走完 90 分鐘並在正確時點公布解鎖碼與揭曉答案；學員只拿到一個 `runbook.html` 即可完成全部活動；修改後重新建置與檢查通過。真人演練結果另記於 [演練紀錄](../06-runbook/rehearsal-record.md)。
+主持人能用簡報走完 120 分鐘並在正確時點公布解鎖碼與揭曉答案；學員只拿到一個 `runbook.html` 即可完成全部活動；修改後重新建置與檢查通過。真人演練結果另記於 [演練紀錄](../06-runbook/rehearsal-record.md)。

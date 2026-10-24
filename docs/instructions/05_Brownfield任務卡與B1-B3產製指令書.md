@@ -53,26 +53,26 @@ B3：New Feature
 
 ## 2. 工作坊時間配置
 
-Brownfield 整體建議配置 **51 分鐘**：
+Brownfield 整體建議配置 **75 分鐘**：
 
 ```text
-Time Skip 與重新分組              4 分鐘
-個人 Agent 獨立分析 B0            6 分鐘
-小組比較結果並建立 Shared Context  5 分鐘
-B1 Bug Fix                        8 分鐘
-B2 Rule Change                   11 分鐘
-B3 Group Booking                 13 分鐘
-交付摘要與階段收斂                4 分鐘
+Time Skip 與重新分組              9 分鐘
+個人 Agent 獨立分析 B0            7 分鐘
+小組比較結果並建立 Shared Context  6 分鐘
+B1 Bug Fix                       10 分鐘
+B2 Rule Change                   17 分鐘
+B3 Group Booking                 20 分鐘
+交付摘要與階段收斂                6 分鐘
 ```
 
 總工作坊時間參考：
 
 ```text
 開場與說明               7 分鐘
-Greenfield               22 分鐘
-Time Skip + Brownfield   51 分鐘
-回顧與組織導入收斂       10 分鐘
-總計                     90 分鐘
+Greenfield               23 分鐘
+Time Skip + Brownfield   75 分鐘
+回顧與組織導入收斂       15 分鐘
+總計                    120 分鐘
 ```
 
 後續 Runbook 可微調 1 至 2 分鐘，但不得壓縮 Brownfield 至無法完成 A → B → C 的演化體驗。
@@ -792,7 +792,7 @@ b3-group-booking
 
 ## 27. 參與者完成度分級
 
-由於 B3 僅有約 13 分鐘，不要求所有小組一定完成完整 Reference Solution。
+由於 B3 僅有約 20 分鐘，不要求所有小組一定完成完整 Reference Solution。
 
 ### Level 1：Analysis Complete
 
@@ -824,19 +824,19 @@ b3-group-booking
 ```text
 Brownfield 分組完成
   ↓
-個人 Agent 分析 6 分鐘
+個人 Agent 分析 7 分鐘
   ↓
-Shared Context 5 分鐘
+Shared Context 6 分鐘
   ↓
-揭露 B1，8 分鐘
+揭露 B1，10 分鐘
   ↓
-揭露 B2，11 分鐘
+揭露 B2，17 分鐘
   ↓
 宣布 Digital Worker 規則
   ↓
-揭露 B3，13 分鐘
+揭露 B3，20 分鐘
   ↓
-交付摘要 4 分鐘
+交付摘要 6 分鐘
 ```
 
 每階段標示：

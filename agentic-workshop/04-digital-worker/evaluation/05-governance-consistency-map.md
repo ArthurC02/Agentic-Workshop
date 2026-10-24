@@ -3,7 +3,7 @@
 > 讀者：Evaluation、Facilitator、Agent Production。時機：素材靜態驗收及真實演練前。
 > 前置：[治理指令](../../../docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md)、B3任務／Rule Registry及本輪15必要輸出。可見性：Evaluation內部。
 
-本表為文件靜態一致性檢查，不代表真實13分鐘工作坊已演練、已有人員Gate核准或已取得學員行為分數。B3程式驗證與治理活動驗證分開記錄。
+本表為文件靜態一致性檢查，不代表真實20分鐘B3已演練、已有人員Gate核准或已取得學員行為分數。B3程式驗證與治理活動驗證分開記錄。
 
 | 06來源節 | 文件定位 | 可判定檢查 |
 |---|---|---|
@@ -18,8 +18,8 @@
 | §11 唯一事件 | facilitator/03-exception-injection.md | EXCEPTION-DW-001 SQLite；自然提出即不再注入，假設卡不冒稱真實提議，不安裝資料庫 |
 | §12 Response | participant/06-exception-response-card.md | 5欄Scope／Evidence／Risk／Decision／Instruction空白，未嵌入SQLite標準答案 |
 | §13 觀察 | facilitator/01-governance-observation-guide.md | Agent／人員行為、Challenge／Review／條件、Audit／Context／Session／成本時間觀測需求 |
-| §14 Cue | facilitator/02-approval-gate-cues.md | 相對0／1／3／6／7／11／12／13對應活動63–76；三Gate／例外含在13分鐘 |
-| §15 Injection | facilitator/03-exception-injection.md | Gate2相對6–7分鐘；60秒可縮30秒，一件事件、剔除SQLite、先解除條件才開工 |
+| §14 Cue | facilitator/02-approval-gate-cues.md | 相對0／3／6／9／12／18／19／20對應活動79–99；三Gate／例外含在20分鐘 |
+| §15 Injection | facilitator/03-exception-injection.md | Gate2相對9–12分鐘；60秒可縮30秒，一件事件、剔除SQLite、先解除條件才開工 |
 | §16 介入 | facilitator/04-intervention-rules.md | 越界／人Coding／跳Gate／核准SQLite／假通過／超時介入；正常選項比較不代解 |
 | §17 Rubric | evaluation/01-autonomy-and-governance-rubric.md | A–E各0–3完整anchor、總15只回顧、不排名、不以程式量為唯一成功 |
 | §18 Approval Evidence | evaluation/02-approval-evidence-checklist.md | 七欄＋Approver／時間／Context；條件結案證據可核對，未核准不前進 |
@@ -35,8 +35,8 @@
 - 必要輸出為Participant六檔＋Facilitator五檔＋Evaluation四檔，15個來源要求檔名皆已建立；本映射與後續Validation Report為附加Evaluation文件。
 - Work Order列出的17個GROUP／GROUP-PAY／GROUP-FARE／GROUP-AUDIT／GROUP-NOTIFY ID，與Rule Registry的17項集合精確一致、沒有遺漏或額外ID；B2 FARE-007–010與四票率及資格不改。
 - Participant六檔唯讀檢查未出現SQLite標準回應、Reference Solution／Evaluation答案連結或完整Python實作；Exception Card是空白判讀，完整SQLite答案留在Evaluation。
-- 三Gate與短格式、七欄核准證據、唯一事件、13分鐘Cue與條件結案可在各文件定位。Rubric與Audit為空模板，未造作實際學員核准、命令、分數或Session。
-- 真實2分鐘閱讀／13分鐘演練、參與者是否遵守Gate、Level1–3分布及Rubric得分尚未執行；文件靜態通過不能代替活動實證。
+- 三Gate與短格式、七欄核准證據、唯一事件、20分鐘Cue與條件結案可在各文件定位。Rubric與Audit為空模板，未造作實際學員核准、命令、分數或Session。
+- 真實2分鐘閱讀／20分鐘演練、參與者是否遵守Gate、Level1–3分布及Rubric得分尚未執行；文件靜態通過不能代替活動實證。
 
 需要在真實演練記錄：核准Context、每Gate Approver／時間／Evidence／Conditions結案、唯一事件來源、Agent偏差／停止、實際Test與交付範圍。最終文件驗收結果由[治理驗證報告](06-governance-validation-report.md)統一記錄。
 

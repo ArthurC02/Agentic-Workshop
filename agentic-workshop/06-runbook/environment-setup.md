@@ -64,6 +64,6 @@ PYTHONPATH=src .venv/bin/python -c 'from smart_ticket.main import app; print(app
 
 G0為`01-greenfield/participant/starter-repository/`，B0為`03-brownfield/participant/repository/smart-ticket-b0/`（學員實際內容以 participant-29-b0.zip 為準）。G1與B1–B3位於Evaluation，只供主持驗證；學員只取得按[Recovery](recovery-plan.md)整理的受控版本，不能取得作者Repo或Bundle。
 
-事前完成依賴下載／安裝與Agent操作確認；若網路不可用且依賴未備妥，改用事先已驗證環境或分析降級，不在90分鐘中臨時更換Python版本或改用其他技術。各版venv不進交付包。資料固定種子、可控Clock／Gateway與In-Memory，重啟會重置；先保存學員成果再復原。
+事前完成依賴下載／安裝與Agent操作確認；若網路不可用且依賴未備妥，改用事先已驗證環境或分析降級，不在120分鐘中臨時更換Python版本或改用其他技術。各版venv不進交付包。資料固定種子、可控Clock／Gateway與In-Memory，重啟會重置；先保存學員成果再復原。
 
 完成條件：逐版Python／依賴／Import／Health／OpenAPI及版本Gate真實證據完整、學員受控來源與Agent可用，且每台學員電腦的Agent能代為建環境、啟動伺服器，瀏覽器能開/docs；填[Preflight](preflight-checklist.md)，未執行項不勾選。

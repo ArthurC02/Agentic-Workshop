@@ -30,17 +30,17 @@ Gate 是有前置、檢查項、實際證據與決策的關卡，不以 Agent �
 
 | 產製階段 | 前置與必需證據 | 通過／後續條件 |
 |---|---|---|
-| P1 治理文件 | 四份文件存在；目標、90 分鐘、責任、詞彙、版本、可見性、Rule 追溯與本 Gate 一致；來源連結存在；O-01–O-07 狀態明確 | 文件一致性與連結檢查完成可交付 P1；不判定程式通過，不自動解除後續阻擋 |
+| P1 治理文件 | 四份文件存在；目標、120 分鐘、責任、詞彙、版本、可見性、Rule 追溯與本 Gate 一致；來源連結存在；O-01–O-07 狀態明確 | 文件一致性與連結檢查完成可交付 P1；不判定程式通過，不自動解除後續阻擋 |
 | P2 技術基線 | P1、Python／FastAPI／Pydantic／pytest／In-Memory 與分層要求；Rule ID 適用紀錄 | O-03 已對齊並同步來源；核對技術基線、Rule Registry 與版本驗證要求，不視為 Runtime 已通過 |
-| G0 Starter | P1／P2；依[G0 指令](../../docs/instructions/02_Greenfield_Starter_Kit產製指令書.md)驗證 Health、固定 Seed／Reset、10–16 個主要 TODO、骨架、需求與 AC、隔離與初始測試報告 | Health 通過；未實作 Feature 可明確 Skip 並引用規則／功能，無未知失敗。不提供完整答案；22 分鐘範圍合理 |
+| G0 Starter | P1／P2；依[G0 指令](../../docs/instructions/02_Greenfield_Starter_Kit產製指令書.md)驗證 Health、固定 Seed／Reset、10–16 個主要 TODO、骨架、需求與 AC、隔離與初始測試報告 | Health 通過；未實作 Feature 可明確 Skip 並引用規則／功能，無未知失敗。不提供完整答案；23 分鐘範圍合理 |
 | G1 Reference | 已驗收 G0；依[G1 指令](../../docs/instructions/03_G1_Greenfield_Reference_MVP產製指令書.md)完成 API Happy Path、75% 學生票、建立失敗不扣座位、付款失敗不建 Order／不轉 PAID、AC Map 與 Delta | 全測試通過、無 Skip／XFail；至少 18 個有效測試、目標小於 5 秒；Final Decision 為 `PASS`／`PASS WITH DOCUMENTED LIMITATION`／`FAIL`。B0 前置仍要求 `PASS` |
 | B0 Baseline | G1 PASS；依[B0 指令](../../docs/instructions/04_B0_Brownfield_Repository演化產製指令書.md)新增功能、35–45 個實質 Python／測試檔、3 債務、2 文件落差、原始基線副本、Delta 與 Module Map | 僅一個 `BUG-B0-001`；保留全部 28 項 G1 Regression 與正確斷言，完整實測失敗 node ID 集合須與已核實 Intentional Failure Manifest 完全一致，其餘全部通過、零非預期失敗、無 Skip／XFail／未知 Warning；決策為 `PASS AS BROWNFIELD BASELINE` 或 `FAIL`。B0已按方案A實測驗收 |
 | B1 Reference | 已驗收 B0；學生票最小修復、Manifest 全部失敗恢復、成人與混合 Passenger 正確、不改既有優惠順序 | 全部 28 項 G1 Regression 及全部 B0 新增測試通過、無 Skip／XFail；修改和規則可追溯，不弱化測試；28 並非 B1 全套數 |
 | B2 Reference | 已驗收 B1；逐位最有利、不疊加、各優惠代表組合、Applied Discount、改票重新計價與文件同步 | 全套與 Regression 通過、無 Skip／XFail；不提前完成團體功能 |
 | B3 Reference | 已驗收 B2；5／20 與4／21人邊界、同車廂完整連續區段、建立失敗不保留座位、付款失敗整筆取消／全釋放／無Order、單一成功Order、B2計價、Audit／通知與文件 | 全套與 Regression 通過、無 Skip／XFail／未知失敗；B1–B3 整體決策 `PASS FOR WORKSHOP USE` 或 `FAIL`；完整套件建議55–75內、目標小於10秒 |
-| Digital Worker 治理 | B0–B3 規格確立；依[治理指令](../../docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md)提供 Work Order、三 Gate、Review、升級、交付、唯一SQLite例外、Rubric與Audit範本 | 與 B3 規則一致、不改商業需求、13分鐘可用、素材隔離；決策 `PASS FOR GOVERNED DIGITAL WORKER EXERCISE` 或 `FAIL` |
-| Runbook／回顧 | 已驗收階段材料；時程、提示／中止、發放、Recovery、回顧與組織導入問題 | 90分鐘配置完整、O-01／O-02對象對齊、主持可執行；演練時間另取實際證據 |
-| 全域與打包 | 所有版本與教材已驗收；允許清單、角色／階段包、來源識別、檔案／連結／歷史隔離與乾淨環境／Recovery／90分鐘演練記錄 | 無洩漏、無未知失敗、實測問題已處理；未驗證的包或演練不宣稱可正式交付 |
+| Digital Worker 治理 | B0–B3 規格確立；依[治理指令](../../docs/instructions/06_Digital_Worker治理與操作規則產製指令書.md)提供 Work Order、三 Gate、Review、升級、交付、唯一SQLite例外、Rubric與Audit範本 | 與 B3 規則一致、不改商業需求、20分鐘可用、素材隔離；決策 `PASS FOR GOVERNED DIGITAL WORKER EXERCISE` 或 `FAIL` |
+| Runbook／回顧 | 已驗收階段材料；時程、提示／中止、發放、Recovery、回顧與組織導入問題 | 120分鐘配置完整、O-01／O-02對象對齊、主持可執行；演練時間另取實際證據 |
+| 全域與打包 | 所有版本與教材已驗收；允許清單、角色／階段包、來源識別、檔案／連結／歷史隔離與乾淨環境／Recovery／120分鐘演練記錄 | 無洩漏、無未知失敗、實測問題已處理；未驗證的包或演練不宣稱可正式交付 |
 
 B1–B3 詳細 AC 與 API 以[任務指令](../../docs/instructions/05_Brownfield任務卡與B1-B3產製指令書.md)為準；本表是 Gate 摘要，不省略原指令逐項驗收。測試數／效能目標按原指令區分最低要求、建議範圍與目標，不以湊數取代功能證據。
 
@@ -73,7 +73,7 @@ B1–B3 詳細 AC 與 API 以[任務指令](../../docs/instructions/05_Brownfiel
 
 | 問題 | P1適用狀態 | 後續前置／解除證據 |
 |---|---|---|
-| O-01 時程／角色 | 使用90分鐘及個人→混合小組；原通用內容未改 | Runbook與角色／發放對齊、實際演練 |
+| O-01 時程／角色 | 使用120分鐘及個人→混合小組；原通用內容未改 | Runbook與角色／發放對齊、實際演練 |
 | O-02 完整DoD／學員分級 | 依上表區分學習與完整交付 | B3任務與評估表對象一致；Reference門檻不降低 |
 | O-03 Rule ID | P2 已統一一般最多4人為002、座位容量為003並同步來源 | G0 起實際 Code／Test／Document 應沿用唯一映射 |
 | O-04 B0失敗數／Regression | 規格衝突已依方案 A 核准解除；B0已按方案A實測驗收 | 一個 Bug、完整 Manifest 集合一致、零非預期；B1 全恢復；不刪／弱化／隱藏測試 |

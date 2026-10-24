@@ -254,7 +254,7 @@ Agent 必須提交：
 
 ## 7. Gate 回覆短格式
 
-為避免 13 分鐘 B3 任務被長篇討論消耗，每個 Gate 使用短格式：
+為避免 20 分鐘 B3 任務被長篇討論消耗，每個 Gate 使用短格式：
 
 ```markdown
 Gate：
@@ -385,7 +385,7 @@ Agent 必須根據實際完成度填寫，不得自動勾選 Level 3。
 
 ## 11. 例外事件設計
 
-工作坊只有 90 分鐘，因此 Digital Worker 階段只注入 **一個** 例外事件，不能同時加入多個事件。
+工作坊只有 120 分鐘，因此 Digital Worker 階段只注入 **一個** 例外事件，不能同時加入多個事件。
 
 固定例外：
 
@@ -489,18 +489,18 @@ Participant 若提出其他不新增外部依賴的受控方案，也可接受�
 
 建立 `02-approval-gate-cues.md`，以工作坊分鐘為基準。
 
-B3 13 分鐘建議：
+B3 20 分鐘建議：
 
 ```text
 00:00 發放 B3 與 Operating Rules
-00:01 Agent 開始 Gate 1
-00:03 Gate 1 決策
-00:03 Agent 開始 Gate 2
-00:06 Gate 2 決策及例外事件
-00:07 Agent 開始執行
-00:11 要求停止擴充並執行測試
-00:12 Gate 3 Review
-00:13 產生 Delivery Summary
+00:03 Agent 開始 Gate 1
+00:06 Gate 1 決策
+00:06 Agent 開始 Gate 2
+00:09 Gate 2 決策及例外事件
+00:12 Agent 開始執行，做完計畫就整理證據交 Gate 3
+00:18 還沒交 Gate 3 就要求停止擴充並執行測試
+00:19 Gate 3 Review
+00:20 產生 Delivery Summary
 ```
 
 若 Agent 在 Gate 回覆過長，主持人提醒使用短格式。
@@ -819,7 +819,7 @@ Final Decision 僅可為：
 - Participant 能在 60 秒內對例外做出治理決策。
 - Autonomy and Governance Rubric 已完成。
 - Audit Template 能支援後續平台需求萃取。
-- 所有素材符合 13 分鐘 B3 Timebox。
+- 所有素材符合 20 分鐘 B3 Timebox。
 - Participant、Facilitator、Evaluation 已隔離。
 - 與 B3 任務規則一致，沒有新增或改寫商業需求。
 - Final Decision 為 `PASS FOR GOVERNED DIGITAL WORKER EXERCISE`。

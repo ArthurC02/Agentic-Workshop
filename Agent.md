@@ -6,7 +6,7 @@
 
 ## 1. 專案目標
 
-本 Repo 產製 **Agentic Software Development Evolution Workshop** 的教材、程式案例、主持指南、評估與交付素材：90 分鐘主課與 DLC 延伸課程（DDD），固定案例 Smart Ticket Platform，學習主線 **Tool → Teammate → Digital Worker**。
+本 Repo 產製 **Agentic Software Development Evolution Workshop** 的教材、程式案例、主持指南、評估與交付素材：120 分鐘主課與 DLC 延伸課程（DDD），固定案例 Smart Ticket Platform，學習主線 **Tool → Teammate → Digital Worker**。
 
 優先順序（2026-10-09 起）：
 
@@ -66,7 +66,7 @@ Greenfield 為個人活動；時間快轉後所有人改用統一 B0。Brownfiel
 | B2 | 不疊加優惠，逐位旅客選最有利單一優惠 | 全部通過，無 Skip／XFail |
 | B3 | 5–20 人團體訂票、同車廂連續座位與付款失敗補償 | 全部通過，無 Skip／XFail |
 
-各版本須能獨立安裝、啟動與測試；不得在 G0、G1 或 B0 提前實作後續任務答案。B3 中人員只做 Challenge、Review、Approve／Reject 及要求補充證據。`materials/speech/` 與 90 分鐘流程的整合需由使用者另行安排。
+各版本須能獨立安裝、啟動與測試；不得在 G0、G1 或 B0 提前實作後續任務答案。B3 中人員只做 Challenge、Review、Approve／Reject 及要求補充證據。`materials/speech/` 與 120 分鐘流程的整合需由使用者另行安排。
 
 ## 6. 技術與資料基線
 

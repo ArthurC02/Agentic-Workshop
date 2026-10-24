@@ -14,15 +14,15 @@
 
   var PLAN = [
     { seg: "opening", label: "開場", start: 0, end: 7 },
-    { seg: "greenfield", label: "Greenfield", start: 7, end: 29 },
-    { seg: "timeskip", label: "Time Skip", start: 29, end: 33 },
-    { seg: "analysis", label: "個人分析", start: 33, end: 39 },
-    { seg: "shared", label: "Shared Context", start: 39, end: 44 },
-    { seg: "b1", label: "B1", start: 44, end: 52 },
-    { seg: "b2", label: "B2", start: 52, end: 63 },
-    { seg: "b3", label: "B3", start: 63, end: 76 },
-    { seg: "delivery", label: "交付", start: 76, end: 80 },
-    { seg: "retro", label: "回顧", start: 80, end: 90 }
+    { seg: "greenfield", label: "Greenfield", start: 7, end: 30 },
+    { seg: "timeskip", label: "Time Skip", start: 30, end: 39 },
+    { seg: "analysis", label: "個人分析", start: 39, end: 46 },
+    { seg: "shared", label: "Shared Context", start: 46, end: 52 },
+    { seg: "b1", label: "B1", start: 52, end: 62 },
+    { seg: "b2", label: "B2", start: 62, end: 79 },
+    { seg: "b3", label: "B3", start: 79, end: 99 },
+    { seg: "delivery", label: "交付", start: 99, end: 105 },
+    { seg: "retro", label: "回顧", start: 105, end: 120 }
   ];
 
   var STAGE_OF = {

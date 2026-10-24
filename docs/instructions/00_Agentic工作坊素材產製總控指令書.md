@@ -3,13 +3,13 @@
 
 > 本文件的目標讀者是 Coding Agent，不是工作坊參與者。
 >
-> 你的任務是依照本指令書，逐步產製一套可在 90 分鐘內執行的 Agentic Software Development Evolution Workshop 素材。除非後續指令書明確要求，請勿自行擴大範圍、改變故事線或替換核心案例。
+> 你的任務是依照本指令書，逐步產製一套可在 120 分鐘內執行的 Agentic Software Development Evolution Workshop 素材。除非後續指令書明確要求，請勿自行擴大範圍、改變故事線或替換核心案例。
 
 ---
 
 ## 1. 專案目標
 
-建立一套以 **Smart Ticket Platform** 為案例的工作坊素材，使參與者能在 90 分鐘內親身經歷 Agent 在軟體開發中的角色演化：
+建立一套以 **Smart Ticket Platform** 為案例的工作坊素材，使參與者能在 120 分鐘內親身經歷 Agent 在軟體開發中的角色演化：
 
 ```text
 Tool
@@ -43,7 +43,7 @@ Digital Worker
 
 ### 2.1 時間與參與者
 
-- 工作坊總長度：90 分鐘。
+- 工作坊總長度：120 分鐘。
 - 參與者：主要為工程師。
 - 參與者開發能力：普通，不應假設具備高階架構或演算法能力。
 - Greenfield 階段：一人一組。
@@ -402,7 +402,7 @@ PAYMENT-003
 - Greenfield 必須可由普通工程師在 Agent 協助下完成。
 - Brownfield 必須需要 Repository Understanding 與 Impact Analysis，但不可依賴隱晦知識。
 - 提示應漸進揭露，不應第一時間給出檔案位置或完整答案。
-- 最終任務應具有挑戰，但不得要求參與者在 90 分鐘內完成不合理的大量程式碼。
+- 最終任務應具有挑戰，但不得要求參與者在 120 分鐘內完成不合理的大量程式碼。
 
 ### 7.5 評估一致性
 
@@ -487,6 +487,6 @@ Coding Agent 閱讀本文件後，應能正確說明：
 - 為什麼 Brownfield 任務採 Bug、規則變更及新功能的混合設計。
 - 哪些內容屬於 Participant、Facilitator、Evaluation 與 Agent Production。
 - 為什麼不可綁定特定 Coding Agent 產品。
-- 為什麼素材必須在 90 分鐘工作坊限制下保持可執行、可理解及可驗證。
+- 為什麼素材必須在 120 分鐘工作坊限制下保持可執行、可理解及可驗證。
 
 若後續局部指令與本文件衝突，除非局部指令明確標示為「已核准變更」，否則應以本文件為準並回報衝突。

@@ -1,7 +1,7 @@
 ---
 id: gf-submission
 title: Greenfield 回顧與交付決定
-minute: 25-29
+minute: 25-30
 group: greenfield
 section: Greenfield｜Tool
 ---
@@ -29,5 +29,5 @@ Agent 在做檢查點 4 時就先填，不用等它做完。理由與證據 Agen
 3. **延伸**：如果交給你的是別人寫了一年、文件和程式不一定對得上的專案，你會先要 Agent 做什麼？
 
 ```callout sync
-⏸ 看投影：第 29 分鐘請先停手，一起看 Greenfield 揭曉
+⏸ 看投影：第 30 分鐘請先停手，一起看 Greenfield 揭曉
 ```

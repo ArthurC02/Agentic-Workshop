@@ -10,7 +10,7 @@
 
 以 **Smart Ticket Platform** 的演化呈現 **Tool → Teammate → Digital Worker**。目標依序是練習 Agentic Coding 技巧、體驗 Tool → Teammate → Digital Worker、由 Agent 留下證據；組織導入在回顧時討論（2026-10-09 已核准變更）。
 
-活動長度 90 分鐘，對象為一般工程師。Greenfield 一人一組；Brownfield 多人一組，個人先用自己的 Agent 分析，小組整合後由主要 Agent 執行。不採角色扮演型競賽，不以程式量或自主率作唯一成功指標。
+活動長度 120 分鐘，對象為一般工程師。Greenfield 一人一組；Brownfield 多人一組，個人先用自己的 Agent 分析，小組整合後由主要 Agent 執行。不採角色扮演型競賽，不以程式量或自主率作唯一成功指標。
 
 全部教材工具中立；可要求 Plan、Diff Review、Test 與交付說明，不要求某產品專屬功能。真實交通規則、品牌、金流、個資與外部 API 不屬於案例。環境與帳號先準備，核心操作使用本機資料、固定 Clock 與 Mock Payment。
 
@@ -27,24 +27,24 @@ Time Skip 固定為 G1 上線後 12 個月，所有人使用主持人提供的�
 
 B1 為 Bug Fix 暖身；B2 為 Business Rule Change 與 Teammate→Digital Worker 過渡；B3 為 New Feature 與 Digital Worker。B3 人員不得直接改程式或補測試，主要 Agent 必須先通過需求理解與設計 Gate，再執行，最後提交交付 Review。主持人控制節奏、提示、例外與 Recovery，不直接解題。
 
-## 3. 90 分鐘配置
+## 3. 120 分鐘配置
 
 依[B1–B3 任務指令](../../docs/instructions/05_Brownfield任務卡與B1-B3產製指令書.md)採以下基準；這是活動配置，尚未實際演練：
 
 | 起訖分鐘 | 長度 | 活動 |
 |---|---:|---|
 | 00–07 | 7 | 開場與共同認知 |
-| 07–29 | 22 | Greenfield／Tool |
-| 29–33 | 4 | Time Skip 與重新分組 |
-| 33–39 | 6 | 個人 Agent 分析 B0，不修改程式 |
-| 39–44 | 5 | 比較分析、建立 Shared Context |
-| 44–52 | 8 | B1 Bug Fix |
-| 52–63 | 11 | B2 Rule Change |
-| 63–76 | 13 | B3 與 Digital Worker 三 Gate、例外、執行及測試 |
-| 76–80 | 4 | 交付摘要與階段收斂 |
-| 80–90 | 10 | 回顧與組織導入收斂 |
+| 07–30 | 23 | Greenfield／Tool |
+| 30–39 | 9 | Time Skip 與重新分組 |
+| 39–46 | 7 | 個人 Agent 分析 B0，不修改程式 |
+| 46–52 | 6 | 比較分析、建立 Shared Context |
+| 52–62 | 10 | B1 Bug Fix |
+| 62–79 | 17 | B2 Rule Change |
+| 79–99 | 20 | B3 與 Digital Worker 三 Gate、例外、執行及測試 |
+| 99–105 | 6 | 交付摘要與階段收斂 |
+| 105–120 | 15 | 回顧與組織導入收斂 |
 
-總計 90 分鐘，Time Skip 加 Brownfield 為 51 分鐘。任務卡按 Shared Context→B1→B2→切換操作規則→B3 揭露。時間到立即收斂；B1／B2 可依 Runbook 使用 Recovery Baseline，但需保留未完成與切換紀錄，不記成小組自行完成。
+總計 120 分鐘，Time Skip 加 Brownfield 為 75 分鐘。任務卡按 Shared Context→B1→B2→切換操作規則→B3 揭露。時間到立即收斂；B1／B2 可依 Runbook 使用 Recovery Baseline，但需保留未完成與切換紀錄，不記成小組自行完成。
 
 ## 4. 功能與版本邊界
 

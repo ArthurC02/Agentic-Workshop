@@ -1,7 +1,7 @@
 ---
 id: glossary
 title: 詞彙表
-minute: 00-90
+minute: 00-120
 group: open
 section: 參考
 ---
@@ -39,7 +39,7 @@ section: 參考
 | /docs | 伺服器啟動後，在瀏覽器開的 API 測試頁。點開 API，按「Try it out」，貼範例，再按「Execute」看狀態碼：200 或 201 是成功，404 是找不到，409 是不符商業規則或和目前狀態衝突，422 是輸入格式錯誤。 | FastAPI 官方文件〈First Steps〉；IETF〈RFC 9110 HTTP Semantics〉 |
 | notes 資料夾 | Agent 把分析、計畫、核准決策與驗收紀錄寫成檔案的地方；你只做決定與核對。 | 本課程〈歡迎與使用方式〉 |
 | SHA256 雜湊 | 檔案的指紋：只要改一個位元組，值就不同；用來確認下載的復原包是原版。 | NIST〈FIPS 180-4 Secure Hash Standard (SHS)〉 |
-| 復原包（Recovery） | 進度落後時改用的接續版本，已完成前一段；使用它不算小組自行完成前段。 | 本課程〈B1 Recovery：第 52 分鐘，必要時才切換〉 |
+| 復原包（Recovery） | 進度落後時改用的接續版本，已完成前一段；使用它不算小組自行完成前段。 | 本課程〈B1 Recovery：第 62 分鐘，必要時才切換〉 |
 
 ## Agent 技巧
 

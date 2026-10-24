@@ -120,7 +120,7 @@ def use_stub():
 # ---------------------------------------------------------------- fixtures
 
 GROUPS = [{"id": "greenfield", "minute": 7, "code": "GF-ALPHA-07", "label": "Greenfield"},
-          {"id": "b1", "minute": 44, "code": "B1-BRAVO-44", "label": "B1"}]
+          {"id": "b1", "minute": 52, "code": "B1-BRAVO-44", "label": "B1"}]
 SEG_TITLES = [(seg, start) for seg, start, _end, _label in bm.PLAN]
 
 
@@ -463,7 +463,7 @@ class DeckValidationTests(unittest.TestCase):
         self.assertProblem(good_slides() + slide("retro", "X", ' data-unlock="nope"'), "not a known group")
 
     def test_group_without_unlock_slide(self):
-        groups = GROUPS + [{"id": "b2", "minute": 52, "code": "B2-X-52", "label": "B2"}]
+        groups = GROUPS + [{"id": "b2", "minute": 62, "code": "B2-X-52", "label": "B2"}]
         self.assertProblem(good_slides(), "'b2' has no data-unlock slide", groups)
 
     def test_unlock_minute_mismatch(self):
@@ -481,7 +481,7 @@ class DeckValidationTests(unittest.TestCase):
         bad = (("opening", 0, 7, "a"), ("greenfield", 8, 29, "b"), ("retro", 29, 90, "c"))
         self.assertTrue(any("gap/overlap" in p for p in bm.plan_problems(bad)))
         short = (("opening", 0, 7, "a"), ("retro", 7, 80, "c"))
-        self.assertTrue(any("90" in p for p in bm.plan_problems(short)))
+        self.assertTrue(any("120" in p for p in bm.plan_problems(short)))
 
 
 # ---------------------------------------------------------------- fixture builds
@@ -667,7 +667,7 @@ class RealBuildIntegrationTests(unittest.TestCase):
 
 # ---------------------------------------------------------------- editions
 
-DLC_PLAN = (("intro", 0, 7, "Intro"), ("greenfield", 7, 44, "Domain"), ("b1", 44, 180, "Model"))
+DLC_PLAN = (("intro", 0, 7, "Intro"), ("greenfield", 7, 52, "Domain"), ("b1", 52, 180, "Model"))
 
 
 class EditionTests(FixtureCase):
@@ -679,7 +679,7 @@ class EditionTests(FixtureCase):
     def use_dlc_sources(self):
         slides = (slide("intro", "Intro", ' data-minute="00"') +
                   slide("greenfield", "Unlock", ' data-minute="07" data-unlock="greenfield"') +
-                  slide("b1", "Unlock B1", ' data-minute="44" data-unlock="b1"') +
+                  slide("b1", "Unlock B1", ' data-minute="52" data-unlock="b1"') +
                   slide("reveal", "Reveal", ' data-reveal-of="b1"'))
         (self.fx.materials / "facilitator-deck" / "src" / "slides" / "10-all.html").write_text(slides, encoding="utf-8")
         tpl = self.fx.materials / "participant-runbook" / "template"
@@ -693,7 +693,7 @@ class EditionTests(FixtureCase):
         main = bm.load_edition("main")
         self.assertIs(main, bm.MAIN)
         self.assertEqual((main.materials, main.candidate_dir, main.plan, main.segments, main.total_minutes),
-                         (bm.MATERIALS, bm.CANDIDATE, bm.PLAN, bm.SEGMENTS, 90))
+                         (bm.MATERIALS, bm.CANDIDATE, bm.PLAN, bm.SEGMENTS, 120))
         self.assertEqual((main.storage_prefix, main.recovery_groups, main.marker_exemptions),
                          ("stw:", bm.RECOVERY_GROUPS, bm.MARKER_EXEMPTIONS))
         self.assertEqual(main.package_output, "dist/materials/participant-materials.zip")
@@ -717,7 +717,7 @@ class EditionTests(FixtureCase):
 
     def test_plan_uses_edition_total(self):
         self.assertEqual(bm.plan_problems(DLC_PLAN, 180), [])
-        self.assertTrue(any("total 90" in p for p in bm.plan_problems(DLC_PLAN)))
+        self.assertTrue(any("total 120" in p for p in bm.plan_problems(DLC_PLAN)))
         with self.assertRaises(bm.BuildError):
             bm.validate_slides(good_slides(), GROUPS, edition=self.edition())  # main segments under a dlc plan
 

@@ -1,6 +1,6 @@
 # Agentic Software Development 工作坊文件包
 
-> 2026-10-09 起，本文件包已對齊現行 90 分鐘設計：目標依序為練習 Agentic Coding 技巧 → 體驗 Agentic SDLC（Tool → Teammate → Digital Worker）→ 萃取組織導入方法；全程學員不寫、不讀程式，以行為與證據驗收；每個檢查點是可複製的提示詞，指令由 Agent 執行，紀錄由 Agent 寫進 `notes/*.md` 與 `skills/*.md`。與產製規格不一致時，以 [總控指令書](../instructions/00_Agentic工作坊素材產製總控指令書.md) 為準。
+> 2026-10-09 起，本文件包已對齊現行 120 分鐘設計：目標依序為練習 Agentic Coding 技巧 → 體驗 Agentic SDLC（Tool → Teammate → Digital Worker）→ 萃取組織導入方法；全程學員不寫、不讀程式，以行為與證據驗收；每個檢查點是可複製的提示詞，指令由 Agent 執行，紀錄由 Agent 寫進 `notes/*.md` 與 `skills/*.md`。與產製規格不一致時，以 [總控指令書](../instructions/00_Agentic工作坊素材產製總控指令書.md) 為準。
 
 ## 文件目的
 

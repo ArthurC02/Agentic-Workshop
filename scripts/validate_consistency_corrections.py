@@ -94,8 +94,8 @@ def corrections(package_output):
     shared = '03-brownfield/participant/04-shared-context-template.md'
     text = compact(read(shared))
     early = text.split('##任務揭露後補填')[0]
-    record('C-03', '39–44 Shared Context gathers common facts; task-specific scope/plan/approval follows B1 reveal at44',
-           all(s in text for s in ['39–44', '44分鐘', '尚未揭露B1', '不修改程式', '任務揭露後補填'])
+    record('C-03', '46–52 Shared Context gathers common facts; task-specific scope/plan/approval follows B1 reveal at52',
+           all(s in text for s in ['46–52', '52分鐘', '尚未揭露B1', '不修改程式', '任務揭露後補填'])
            and '|任務ID／起點版本／規則來源|' not in early,
            ['agentic-workshop/' + shared])
 
@@ -137,8 +137,8 @@ def corrections(package_output):
 
     recovery = '04-digital-worker/facilitator/04-intervention-rules.md'
     text = compact(read(recovery))
-    record('C-05', 'B3 does not switch versions midway; Recovery only at52 intoB2 and63 intoB3, then analysis/review fallback',
-           all(s in text for s in ['不在B3中途切換版本', '52分鐘進B2', '63分鐘進B3', '分析／Review降級']),
+    record('C-05', 'B3 does not switch versions midway; Recovery only at62 intoB2 and79 intoB3, then analysis/review fallback',
+           all(s in text for s in ['不在B3中途切換版本', '62分鐘進B2', '79分鐘進B3', '分析／Review降級']),
            ['agentic-workshop/' + recovery])
 
     errata = '03-brownfield/evaluation/22-b2-documentation-errata.md'
@@ -166,8 +166,8 @@ def corrections(package_output):
 
     card = '04-digital-worker/participant/06-exception-response-card.md'
     text = compact(read(card))
-    record('C-08', 'Exception response card is blank at63, activated69–70; does not prefill SQLite answer',
-           '63' in text and '69' in text and ('空白' in text or '空模板' in text)
+    record('C-08', 'Exception response card is blank at79, activated88–91; does not prefill SQLite answer',
+           '79' in text and '88' in text and ('空白' in text or '空模板' in text)
            and not any(s in text for s in ['SQLite', 'In-Memory', '資料庫'])
            and '選擇與依據：____' in text and '決策：____' in text,
            ['agentic-workshop/' + card])

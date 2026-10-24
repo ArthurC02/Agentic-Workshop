@@ -1,12 +1,12 @@
 ---
 id: recovery-b1
 title: B1 Recovery 切換
-minute: 52-63
+minute: 62-79
 group: recovery-b1
 section: Brownfield｜Teammate
 ---
 
-# B1 Recovery：第 52 分鐘，必要時才切換
+# B1 Recovery：第 62 分鐘，必要時才切換
 
 ```callout info
 現在在做什麼

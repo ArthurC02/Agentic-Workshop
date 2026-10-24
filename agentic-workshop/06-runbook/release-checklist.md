@@ -5,7 +5,7 @@
 > 前置條件：已取得具版本與 Checksum 的交付候選，閱讀 [Preflight](preflight-checklist.md)、[Recovery](recovery-plan.md) 與 [真人紀錄](rehearsal-record.md)。
 > 可見性：Facilitator／Evaluation，不整份提供學員。
 
-**Automated Candidate Status: NOT_RUN**（本模板未填實際自動化證據）。**Human Rehearsal Status: NOT_RUN**。**Workshop Release Decision: PENDING**。使用者已選擇本次安排真人演練，排程與人員待確認。自動化檢查通過只能支持候選包，不能單獨宣稱 90 分鐘工作坊已正式驗收。
+**Automated Candidate Status: NOT_RUN**（本模板未填實際自動化證據）。**Human Rehearsal Status: NOT_RUN**。**Workshop Release Decision: PENDING**。使用者已選擇本次安排真人演練，排程與人員待確認。自動化檢查通過只能支持候選包，不能單獨宣稱 120 分鐘工作坊已正式驗收。
 
 ## 本次 Release 識別
 
@@ -42,16 +42,16 @@
 證據引用 [Rehearsal Record](rehearsal-record.md) 的實際時間與觀察，不以測試秒數、字數推估或 Agent 模擬代替。
 
 - [ ] 排程、一般工程師真人參與者、主持／計時／記錄／放行責任人已確認。
-- [ ] 十段完整執行，90 分鐘總限制有真實開始／結束與偏差紀錄。
+- [ ] 十段完整執行，120 分鐘總限制有真實開始／結束與偏差紀錄。
 - [ ] Greenfield 個人、Time Skip 統一 B0、Brownfield 個人分析後 Shared Context、主要 Agent 執行實際成立。
 - [ ] B1／B2／B3 分批揭露，人員在 B3 不 Coding／不補測試；版本及 Context 不混用。
-- [ ] B3 13 分鐘實測，Gate 1／2 核准後才前進，Gate 3 至少審查測試及未完成，條件未解除時保持停止。
+- [ ] B3 20 分鐘實測，Gate 1／2 核准後才前進，Gate 3 至少審查測試及未完成，條件未解除時保持停止。
 - [ ] Operating Rules 真人閱讀目標 2 分鐘內有實測及理解核對。
-- [ ] 只有 EXCEPTION-DW-001，69–70 分鐘內最多 60 秒完成決策；縮 30 秒情況有原因與真實證據，未真正加入超範圍依賴。
+- [ ] 只有 EXCEPTION-DW-001，88–91 分鐘內最多 60 秒完成決策；縮 30 秒情況有原因與真實證據，未真正加入超範圍依賴。
 - [ ] Recovery 實際切換或另次受控試演有原成果、時間、包 Checksum、新 Session／Context、Health 與接續紀錄。
-- [ ] B1 Recovery 僅 52 分鐘進 B2，B2 Recovery 僅 63 分鐘進 B3；不提供 B3 解答作起點，不拿 Recovery 當本組已完成。
+- [ ] B1 Recovery 僅 62 分鐘進 B2，B2 Recovery 僅 79 分鐘進 B3；不提供 B3 解答作起點，不拿 Recovery 當本組已完成。
 - [ ] Level 1–3／未完成如實記錄；治理 Rubric 與完整標準實作驗收分開，不排名。
-- [ ] 80–90 分鐘回顧收斂有效實務、根因、控制點／平台需求、改善責任人及後續驗證。
+- [ ] 105–120 分鐘回顧收斂有效實務、根因、控制點／平台需求、改善責任人及後續驗證。
 
 真人判定：NOT_RUN | PASS | FAIL | INCOMPLETE。實際選擇：NOT_RUN。演練紀錄／觀察／責任人：未記錄。時間偏差、風險與重驗：未記錄。
 
