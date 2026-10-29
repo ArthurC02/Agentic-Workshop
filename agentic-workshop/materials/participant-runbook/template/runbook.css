@@ -1872,7 +1872,6 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 
 /* ---------- 21. Responsive ------------------------------------------- */
 @media (max-width: 1099.98px) {
-  .rb-progress-label { display: none; }
   .rb-progress-track { width: 5rem; }
 }
 @media (max-width: 959.98px) {
@@ -1966,7 +1965,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   .rb-cmd .rb-copy { top: .3rem; }
 }
 @media (max-width: 479.98px) {
-  .rb-progress-track { display: none; }
+  .rb-progress { display: none; }
 }
 
 /* ---------- 22. Print ------------------------------------------------ */

@@ -1415,8 +1415,10 @@ body.is-presenter #dk-black { display: none !important; }
 .pv-plan { font-size: 20px; font-weight: 600; color: #CFE6F2; }
 .pv-now { margin-top: 8px; padding-top: 8px; border-top: 1px solid #263452; }
 .pv-now-title { font-size: 14px; font-weight: 700; letter-spacing: .08em; color: #7FD3EE; margin-bottom: 4px; }
-.pv-now-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 17px; }
-.pv-now-row code { font-family: var(--mono); font-weight: 800; letter-spacing: .12em; color: #FFFFFF; font-size: 26px; }
+.pv-now-row { font-size: 17px; }
+.pv-now-row.is-private { border-top: 1px solid #536078; margin-top: 8px; padding-top: 8px; }
+.pv-now-row.is-private .pv-now-label { color: #FFC9B5; }
+.pv-now-row code { display: block; white-space: nowrap; font-family: var(--mono); font-weight: 800; letter-spacing: .12em; color: #FFFFFF; font-size: 26px; }
 .pv-codes tr.is-current td { background: #22345A; }
 .pv-plan[data-state="late"], .pv-plan.is-late { color: var(--orange); }
 

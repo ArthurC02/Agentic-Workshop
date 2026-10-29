@@ -636,10 +636,11 @@
         tr.classList.toggle('is-current', hits.some(function (g) { return g.id === tr.getAttribute('data-id'); }));
       });
       pv.now.textContent = '';
-      if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本時點解鎖碼'));
+      if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本段可用解鎖碼'));
       hits.forEach(function (g) {
-        var row = pv.now.appendChild(el('div', 'pv-now-row'));
-        row.appendChild(el('span', 'pv-now-label', g.label || g.id));
+        var privateCode = /^recovery-/.test(g.id);
+        var row = pv.now.appendChild(el('div', 'pv-now-row' + (privateCode ? ' is-private' : '')));
+        row.appendChild(el('span', 'pv-now-label', (privateCode ? '只私下提供：' : '全場公布：') + (g.label || g.id)));
         row.appendChild(el('code', null, g.code));
       });
       pv.now.hidden = !hits.length;

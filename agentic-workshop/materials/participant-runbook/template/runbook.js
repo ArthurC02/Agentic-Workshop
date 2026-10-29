@@ -204,6 +204,7 @@
   });
   var order = DATA.pages.map(function (p) { return p.id; }).filter(function (id) { return articles[id]; });
   var navLinks = $$('.rb-nav-link[data-page]');
+  var returnPages = { 'recovery-b1': 'b2', 'recovery-b2': 'b3', 'b3-exception-card': 'b3' };
 
   function pageGroup(id) {
     var p = pageById[id];
@@ -353,7 +354,7 @@
       if (pageGroup(id) !== 'open') {
         metaEl.appendChild(el('span', 'rb-meta-item ' + (locked ? 'is-locked' : 'is-unlocked'), locked ? '尚未解鎖' : '已解鎖'));
       }
-      if (!locked && pageDone(id)) metaEl.appendChild(el('span', 'rb-meta-item is-done', '已完成'));
+      if (!locked && pageDone(id)) metaEl.appendChild(el('span', 'rb-meta-item is-done', '本頁清單已勾完'));
     }
     doc.title = pageTitle(id) + ' · ' + baseTitle;
     renderCheckpointNav(id);
@@ -441,7 +442,7 @@
   function pagerLink(id, dir) {
     var a = el('a', 'rb-pager-link rb-pager-' + dir + (isPageLocked(id) ? ' is-locked' : ''));
     a.href = '#p-' + id;
-    a.appendChild(el('span', 'rb-pager-dir', dir === 'prev' ? '上一頁' : '下一頁'));
+    a.appendChild(el('span', 'rb-pager-dir', dir === 'prev' ? '上一頁' : (isPageLocked(id) ? '下一階段 · 看投影解鎖' : '下一頁')));
     a.appendChild(el('span', 'rb-pager-title', pageTitle(id)));
     return a;
   }
@@ -455,17 +456,27 @@
   function renderPager(id) {
     if (!pagerEl) return;
     pagerEl.innerHTML = '';
-    var list = !isPageLocked(id) && steps[id], k = list ? stepIndex(id) : -1;
-    if (list && (k > 0 || k < list.length - 1)) {
-      if (k > 0) pagerEl.appendChild(stepLink(list[k - 1], 'prev'));
-      else if (order.indexOf(id) > 0) pagerEl.appendChild(pagerLink(order[order.indexOf(id) - 1], 'prev'));
-      if (k < list.length - 1) pagerEl.appendChild(stepLink(list[k + 1], 'next'));
-      else if (order.indexOf(id) < order.length - 1) pagerEl.appendChild(pagerLink(order[order.indexOf(id) + 1], 'next'));
+    if (returnPages[id]) {
+      var back = pagerLink(returnPages[id], 'next');
+      $('.rb-pager-dir', back).textContent = '完成後返回任務';
+      pagerEl.appendChild(back);
       return;
     }
-    var i = order.indexOf(id);
-    if (i > 0) pagerEl.appendChild(pagerLink(order[i - 1], 'prev'));
-    if (i >= 0 && i < order.length - 1) pagerEl.appendChild(pagerLink(order[i + 1], 'next'));
+    var list = !isPageLocked(id) && steps[id], k = list ? stepIndex(id) : -1;
+    var prev = adjacentPage(id, -1), next = adjacentPage(id, 1);
+    if (list && k > 0) pagerEl.appendChild(stepLink(list[k - 1], 'prev'));
+    else if (prev) pagerEl.appendChild(pagerLink(prev, 'prev'));
+    if (list && k < list.length - 1) pagerEl.appendChild(stepLink(list[k + 1], 'next'));
+    else if (next) pagerEl.appendChild(pagerLink(next, 'next'));
+  }
+
+  function adjacentPage(id, direction) {
+    if (returnPages[id]) return returnPages[id];
+    for (var i = order.indexOf(id) + direction; i >= 0 && i < order.length; i += direction) {
+      if (/^recovery-/.test(pageGroup(order[i])) || order[i] === 'b3-exception-card') continue;
+      return order[i];
+    }
+    return null;
   }
 
   function scrollToEl(target) {
@@ -730,10 +741,12 @@
     var done = all.filter(function (c) { return c.checked; }).length;
     var pct = all.length ? Math.round(done * 100 / all.length) : 0;
     if (progFill) progFill.style.width = pct + '%';
-    if (progNum) progNum.textContent = pct + '%';
+    if (progNum) progNum.textContent = done + '/' + all.length;
     if (progEl) {
-      progEl.setAttribute('aria-valuenow', String(pct));
-      progEl.setAttribute('title', '已完成 ' + done + ' / ' + all.length + ' 項任務');
+      progEl.hidden = all.length === 0;
+      progEl.setAttribute('aria-valuemax', String(all.length || 1));
+      progEl.setAttribute('aria-valuenow', String(done));
+      progEl.setAttribute('aria-valuetext', '已解鎖內容中，已勾選 ' + done + ' / ' + all.length + ' 項');
     }
     if (currentId) renderHead(currentId);
     updateNavStates();
@@ -1389,8 +1402,8 @@
       if (typing || ev.ctrlKey || ev.metaKey || ev.altKey) return;
       if (ev.key === '/' && searchInput) { ev.preventDefault(); searchInput.focus(); searchInput.select(); }
       else if ((ev.key === '[' || ev.key === ']') && currentId) {
-        var i = order.indexOf(currentId) + (ev.key === ']' ? 1 : -1);
-        if (i >= 0 && i < order.length) location.hash = '#p-' + order[i];
+        var next = adjacentPage(currentId, ev.key === ']' ? 1 : -1);
+        if (next) location.hash = '#p-' + next;
       }
     });
   }
