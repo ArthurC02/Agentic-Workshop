@@ -344,8 +344,7 @@
     if (metaEl) {
       metaEl.innerHTML = '';
       if (p.minute !== undefined && p.minute !== '') metaEl.appendChild(el('span', 'rb-meta-item rb-meta-min', String(p.minute)));
-      var idx = order.indexOf(id);
-      metaEl.appendChild(el('span', 'rb-meta-item', '第 ' + (idx + 1) + ' / ' + order.length + ' 章'));
+      if (!steps[id] || locked) metaEl.appendChild(el('span', 'rb-meta-item', '第 ' + (order.indexOf(id) + 1) + ' / ' + order.length + ' 章'));
       if (steps[id] && !locked) {
         var heading = steps[id][stepIndex(id)].label;
         var cp = /^(\d+) ·/.exec(heading);
@@ -367,6 +366,7 @@
       nav.setAttribute('aria-label', '對照投影，選擇檢查點');
       $('.rb-page-head').appendChild(nav);
     }
+    var focused = nav.contains(doc.activeElement) && doc.activeElement.getAttribute('href');
     nav.textContent = '';
     var list = !isPageLocked(id) && steps[id];
     nav.hidden = !list;
@@ -378,7 +378,15 @@
       a.href = '#' + s.id;
       if (s.min) a.appendChild(el('span', 'rb-checkpoint-time', '第 ' + s.min + ' 分鐘'));
       if (i === current) a.setAttribute('aria-current', 'step');
+      on(a, 'click', function (ev) {
+        ev.preventDefault();
+        showPage(id, s.el);
+        if (location.hash !== '#' + s.id) {
+          try { history.pushState(null, '', '#' + s.id); } catch (e) { location.hash = s.id; }
+        }
+      });
       nav.appendChild(a);
+      if (focused === a.getAttribute('href')) a.focus({ preventScroll: true });
     });
   }
 

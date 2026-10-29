@@ -1377,8 +1377,10 @@ body.is-presenter #dk-black { display: none !important; }
 .pv-next-title, .pv-title { margin-top: 8px; font-weight: 700; font-size: 18px; color: #E6ECF2; }
 
 .pv-notes { font-size: 24px; line-height: 1.6; color: #F1F5F9; }
-  .pv-learner-cue { padding: 12px 16px; margin-bottom: 20px; border-left: 4px solid #70D7D0; background: #183342; }
+  .pv-learner-cue { padding: 12px 16px; margin-bottom: 20px; border-left: 4px solid #70D7D0; background: #183342; font-size: 20px; }
+  .pv-cue-title { font-size: 24px; }
   .pv-learner-cue ol { margin: 8px 0; }
+  .pv-learner-cue li > span { display: block; color: #CFE6F2; font-size: 18px; }
   .pv-notes p { margin: 0 0 .7em; }
 .pv-notes ul, .pv-notes ol { margin: 0 0 .7em; padding-left: 1.3em; }
 .pv-notes b, .pv-notes strong { color: #FFC9B5; }

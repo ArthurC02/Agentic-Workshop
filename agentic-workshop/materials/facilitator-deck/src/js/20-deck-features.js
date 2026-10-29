@@ -614,14 +614,12 @@
       var start = s && $('.seg-start', s);
       if (flow || start) {
         var cue = el('div', 'pv-learner-cue');
-        cue.appendChild(el('b', null, '學員現在做'));
+        cue.appendChild(el('b', 'pv-cue-title', '學員現在做'));
         if (flow) {
           var kicker = $('.kicker', s);
           if (kicker) cue.appendChild(el('div', null, kicker.textContent));
           var actions = cue.appendChild(el('ol'));
-          $$('li', flow).forEach(function (item) {
-            actions.appendChild(el('li', null, Array.prototype.map.call(item.children, function (part) { return part.textContent; }).join(' · ')));
-          });
+          $$('li', flow).forEach(function (item) { actions.appendChild(item.cloneNode(true)); });
           var judge = $('.cp-judge', s);
           if (judge) cue.appendChild(el('div', null, judge.textContent));
           var next = $('.cp-next', s);
