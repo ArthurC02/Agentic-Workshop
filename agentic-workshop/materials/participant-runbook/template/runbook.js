@@ -346,13 +346,40 @@
       if (p.minute !== undefined && p.minute !== '') metaEl.appendChild(el('span', 'rb-meta-item rb-meta-min', String(p.minute)));
       var idx = order.indexOf(id);
       metaEl.appendChild(el('span', 'rb-meta-item', '第 ' + (idx + 1) + ' / ' + order.length + ' 章'));
-      if (steps[id] && !locked) metaEl.appendChild(el('span', 'rb-meta-item rb-meta-step', '第 ' + (stepIndex(id) + 1) + ' / ' + steps[id].length + ' 步'));
+      if (steps[id] && !locked) {
+        var heading = steps[id][stepIndex(id)].label;
+        var cp = /^(\d+) ·/.exec(heading);
+        metaEl.appendChild(el('span', 'rb-meta-item rb-meta-step', cp ? '檢查點 ' + cp[1] : heading));
+      }
       if (pageGroup(id) !== 'open') {
         metaEl.appendChild(el('span', 'rb-meta-item ' + (locked ? 'is-locked' : 'is-unlocked'), locked ? '尚未解鎖' : '已解鎖'));
       }
       if (!locked && pageDone(id)) metaEl.appendChild(el('span', 'rb-meta-item is-done', '已完成'));
     }
     doc.title = pageTitle(id) + ' · ' + baseTitle;
+    renderCheckpointNav(id);
+  }
+
+  function renderCheckpointNav(id) {
+    var nav = $('.rb-checkpoints');
+    if (!nav) {
+      nav = el('nav', 'rb-checkpoints');
+      nav.setAttribute('aria-label', '對照投影，選擇檢查點');
+      $('.rb-page-head').appendChild(nav);
+    }
+    nav.textContent = '';
+    var list = !isPageLocked(id) && steps[id];
+    nav.hidden = !list;
+    if (!list) return;
+    var current = stepIndex(id);
+    list.forEach(function (s, i) {
+      var a = el('a', 'rb-checkpoint');
+      a.appendChild(el('span', 'rb-checkpoint-name', s.label));
+      a.href = '#' + s.id;
+      if (s.min) a.appendChild(el('span', 'rb-checkpoint-time', '第 ' + s.min + ' 分鐘'));
+      if (i === current) a.setAttribute('aria-current', 'step');
+      nav.appendChild(a);
+    });
   }
 
   var tocObserver = null;

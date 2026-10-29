@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build c1d1817d46ee8fd4 inputs-sha256 c1d1817d46ee8fd438e605b54f37667e554fbb7f4f6e8b1714232236e077ab08 -->
+<!-- 主持人專用，不發給學員。build bfb26c86ed516407 inputs-sha256 bfb26c86ed516407292e13762e5c9a295d29b9f02212bca8d26a9ffa8bb65643 -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -1386,7 +1386,9 @@ body.is-presenter #dk-black { display: none !important; }
 .pv-next-title, .pv-title { margin-top: 8px; font-weight: 700; font-size: 18px; color: #E6ECF2; }
 
 .pv-notes { font-size: 24px; line-height: 1.6; color: #F1F5F9; }
-.pv-notes p { margin: 0 0 .7em; }
+  .pv-learner-cue { padding: 12px 16px; margin-bottom: 20px; border-left: 4px solid #70D7D0; background: #183342; }
+  .pv-learner-cue ol { margin: 8px 0; }
+  .pv-notes p { margin: 0 0 .7em; }
 .pv-notes ul, .pv-notes ol { margin: 0 0 .7em; padding-left: 1.3em; }
 .pv-notes b, .pv-notes strong { color: #FFC9B5; }
 .pv-notes code { font-family: var(--mono); font-size: .88em; background: rgba(255, 255, 255, .08); padding: .05em .35em; border-radius: 4px; }
@@ -4309,6 +4311,26 @@ body.is-presenter #dk-black { display: none !important; }
       pv.nextTitle.textContent = ns ? (ns.getAttribute('data-title') || (h ? h.textContent.trim() : '')) : '—';
       var notes = s ? $('.notes', s) : null;
       pv.notes.innerHTML = notes && notes.innerHTML.trim() ? notes.innerHTML : '<p class="pv-no-notes">（本頁無備註）</p>';
+      pv.notes.scrollTop = 0;
+      var flow = s && $('.cp-flow', s);
+      var start = s && $('.seg-start', s);
+      if (flow || start) {
+        var cue = el('div', 'pv-learner-cue');
+        cue.appendChild(el('b', null, '學員現在做'));
+        if (flow) {
+          var kicker = $('.kicker', s);
+          if (kicker) cue.appendChild(el('div', null, kicker.textContent));
+          var actions = cue.appendChild(el('ol'));
+          $$('li', flow).forEach(function (item) {
+            actions.appendChild(el('li', null, Array.prototype.map.call(item.children, function (part) { return part.textContent; }).join(' · ')));
+          });
+          var judge = $('.cp-judge', s);
+          if (judge) cue.appendChild(el('div', null, judge.textContent));
+          var next = $('.cp-next', s);
+          if (next) cue.appendChild(el('div', null, next.textContent));
+        } else cue.appendChild(el('div', null, start.textContent));
+        pv.notes.insertBefore(cue, pv.notes.firstChild);
+      }
       pv.count.textContent = (i + 1) + ' / ' + slides.length;
       var seg = segOf(i);
       // Codes released at this slide's minute (incl. on-demand Recovery codes) or for its segment.

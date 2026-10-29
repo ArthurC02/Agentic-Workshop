@@ -609,6 +609,26 @@
       pv.nextTitle.textContent = ns ? (ns.getAttribute('data-title') || (h ? h.textContent.trim() : '')) : '—';
       var notes = s ? $('.notes', s) : null;
       pv.notes.innerHTML = notes && notes.innerHTML.trim() ? notes.innerHTML : '<p class="pv-no-notes">（本頁無備註）</p>';
+      pv.notes.scrollTop = 0;
+      var flow = s && $('.cp-flow', s);
+      var start = s && $('.seg-start', s);
+      if (flow || start) {
+        var cue = el('div', 'pv-learner-cue');
+        cue.appendChild(el('b', null, '學員現在做'));
+        if (flow) {
+          var kicker = $('.kicker', s);
+          if (kicker) cue.appendChild(el('div', null, kicker.textContent));
+          var actions = cue.appendChild(el('ol'));
+          $$('li', flow).forEach(function (item) {
+            actions.appendChild(el('li', null, Array.prototype.map.call(item.children, function (part) { return part.textContent; }).join(' · ')));
+          });
+          var judge = $('.cp-judge', s);
+          if (judge) cue.appendChild(el('div', null, judge.textContent));
+          var next = $('.cp-next', s);
+          if (next) cue.appendChild(el('div', null, next.textContent));
+        } else cue.appendChild(el('div', null, start.textContent));
+        pv.notes.insertBefore(cue, pv.notes.firstChild);
+      }
       pv.count.textContent = (i + 1) + ' / ' + slides.length;
       var seg = segOf(i);
       // Codes released at this slide's minute (incl. on-demand Recovery codes) or for its segment.
