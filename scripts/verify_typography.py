@@ -110,9 +110,10 @@ for (const a of document.querySelectorAll('.rb-page')) {
     if (!sideSeen.has(o.text)) { sideSeen.add(o.text); side.push(o); }
 }
 document.querySelectorAll('.rb-page, .rb-step').forEach(e => { e.hidden = false; });
+document.querySelectorAll('details.rb-context-panel, details.rb-decision-panel').forEach(e => { e.open = true; });
 await sleep(50);
 const paras = [];
-for (const p of document.querySelectorAll('.rb-page-body > p, .rb-step > p')) {
+for (const p of document.querySelectorAll('.rb-page-body > p, .rb-step > p, .rb-context > p, .rb-decision > p')) {
   if (!p.getClientRects().length || p.classList.contains('rb-block-label')) continue;
   const cs = getComputedStyle(p), fs = parseFloat(cs.fontSize), ls = parseFloat(cs.letterSpacing) || 0;
   paras.push({page: p.closest('[data-page]').getAttribute('data-page'), chars: +(p.clientWidth / (fs + ls)).toFixed(1),

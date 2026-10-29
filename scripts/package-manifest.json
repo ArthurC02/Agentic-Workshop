@@ -3153,7 +3153,7 @@
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
           "destination": "agentic-workshop/06-runbook/evaluation/p11-static-validation-evidence.json",
-          "sha256": "031cb2f5f1ee7c3e099789a58cd40b22a2949907e68c4b2ffe2fef41704b0560"
+          "sha256": "c546424d884bad349a3fba38e77084588100b8c64dadbd62874bc450fecff914"
         },
         {
           "source": "agentic-workshop/06-runbook/evaluation/p11-validation-evidence.json",
@@ -3378,7 +3378,7 @@
         {
           "source": "agentic-workshop/materials/README.md",
           "destination": "agentic-workshop/materials/README.md",
-          "sha256": "cd472cb6e988a9ef525df13c20483189e5e9666de9f3dc5d2aae290d5515e7cc"
+          "sha256": "86adacf546e877800b0c171ebd197d0f0d4dd52e0fc9af1b185c85596daecc54"
         },
         {
           "source": "agentic-workshop/materials/cross-review-2026-10-06.json",

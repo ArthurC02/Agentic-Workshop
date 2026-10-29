@@ -638,7 +638,7 @@
       pv.now.textContent = '';
       if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本段可用解鎖碼'));
       hits.forEach(function (g) {
-        var privateCode = /^recovery-/.test(g.id);
+        var privateCode = /^(recovery-|dlc-rec-)/.test(g.id);
         var row = pv.now.appendChild(el('div', 'pv-now-row' + (privateCode ? ' is-private' : '')));
         row.appendChild(el('span', 'pv-now-label', (privateCode ? '只私下提供：' : '全場公布：') + (g.label || g.id)));
         row.appendChild(el('code', null, g.code));

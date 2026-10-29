@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Smart Ticket 工作坊主持簡報</title>
-<!-- 主持人專用，不發給學員。build cbf02f15e7204627 inputs-sha256 cbf02f15e7204627cb3940843b01f43eef237776fcfb49122a4bc00f7781be93 -->
+<!-- 主持人專用，不發給學員。build 674270e1f8226d03 inputs-sha256 674270e1f8226d0305a74296665ab8e87aa450847fe1d1a18f169bc3c77db24d -->
 <style>
 /* ==========================================================================
    Facilitator deck — deck.css
@@ -4344,7 +4344,7 @@ body.is-presenter #dk-black { display: none !important; }
       pv.now.textContent = '';
       if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本段可用解鎖碼'));
       hits.forEach(function (g) {
-        var privateCode = /^recovery-/.test(g.id);
+        var privateCode = /^(recovery-|dlc-rec-)/.test(g.id);
         var row = pv.now.appendChild(el('div', 'pv-now-row' + (privateCode ? ' is-private' : '')));
         row.appendChild(el('span', 'pv-now-label', (privateCode ? '只私下提供：' : '全場公布：') + (g.label || g.id)));
         row.appendChild(el('code', null, g.code));

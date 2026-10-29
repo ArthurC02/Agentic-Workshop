@@ -33,13 +33,14 @@ for (let i = 0; i < slides.length; i++) {
 }
 return {ok: true};
 """
-        with tempfile.TemporaryDirectory() as tmp:
-            work = Path(tmp)
-            source = ROOT / 'agentic-workshop/materials/facilitator-deck/facilitator-deck.html'
-            presenter = work / 'presenter.html'
-            presenter.write_text(source.read_text(encoding='utf-8').replace(
-                '<head>', "<head><script>location.hash = '#presenter';</script>"), encoding='utf-8')
-            self.assertEqual(report_of(probe(presenter, wrap(script, 12), '1400,1000', work)), {'ok': True})
+        for edition in ('materials', 'materials-dlc'):
+            with self.subTest(edition=edition), tempfile.TemporaryDirectory() as tmp:
+                work = Path(tmp)
+                source = ROOT / 'agentic-workshop' / edition / 'facilitator-deck/facilitator-deck.html'
+                presenter = work / 'presenter.html'
+                presenter.write_text(source.read_text(encoding='utf-8').replace(
+                    '<head>', "<head><script>location.hash = '#presenter';</script>"), encoding='utf-8')
+                self.assertEqual(report_of(probe(presenter, wrap(script, 12), '1400,1000', work)), {'ok': True})
 
     def test_primary_route_and_checklist_scope(self):
         base = ROOT / 'agentic-workshop/materials'

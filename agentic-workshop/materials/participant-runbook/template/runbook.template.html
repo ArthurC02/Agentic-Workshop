@@ -27,7 +27,7 @@
   <button type="button" class="rb-icon-btn rb-menu-btn" aria-label="開啟章節導覽" aria-controls="rb-sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <a class="rb-brand" href="#" data-home>
+  <a class="rb-brand" href="#" data-home aria-label="Smart Ticket 工作坊 Runbook 首頁">
     <span class="rb-brand-mark" aria-hidden="true">
       <svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>
     </span>
@@ -35,9 +35,9 @@
   </a>
   <div class="rb-search" role="search">
     <svg class="rb-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
-    <input type="search" class="rb-search-input" placeholder="搜尋章節與內容" aria-label="搜尋章節與內容" autocomplete="off" spellcheck="false">
+    <input type="search" class="rb-search-input" placeholder="搜尋章節與內容" aria-label="搜尋章節與內容" role="combobox" aria-autocomplete="list" aria-controls="rb-search-results" aria-expanded="false" autocomplete="off" spellcheck="false">
     <kbd class="rb-search-kbd" aria-hidden="true">/</kbd>
-    <div class="rb-search-results" role="listbox" hidden></div>
+    <div class="rb-search-results" id="rb-search-results" role="listbox" aria-label="搜尋結果" hidden></div>
   </div>
   <div class="rb-header-right">
     <div class="rb-progress" role="progressbar" aria-label="已解鎖內容的勾選清單" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" title="只計算已解鎖內容的勾選框，不代表課程完成度" hidden>
