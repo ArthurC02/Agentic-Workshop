@@ -18,14 +18,6 @@
     return e;
   }
   function on(target, type, fn, opts) { if (target) target.addEventListener(type, fn, opts || false); }
-  function debounce(fn, ms) {
-    var t = null;
-    return function () {
-      var args = arguments, self = this;
-      clearTimeout(t);
-      t = setTimeout(function () { fn.apply(self, args); }, ms);
-    };
-  }
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
   function nowHMS() { var d = new Date(); return pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds()); }
 
@@ -204,6 +196,7 @@
   });
   var order = DATA.pages.map(function (p) { return p.id; }).filter(function (id) { return articles[id]; });
   var navLinks = $$('.rb-nav-link[data-page]');
+  var returnPages = { 'recovery-d1': 'd2', 'recovery-d2': 'd3a', 'recovery-d3a': 'd3b', 'recovery-d3b': 'd3c', 'recovery-d3c': 'd4' };
 
   function pageGroup(id) {
     var p = pageById[id];
@@ -287,7 +280,51 @@
       }
       cur.el.appendChild(n);
     });
-    list.forEach(function (s) { body.appendChild(s.el); });
+    var context = list[0];
+    context.el.className = 'rb-context';
+    context.panel = el('details', 'rb-context-panel');
+    var setup = heads.find(function (h) { return /^開始前/.test(h.textContent.trim()); });
+    context.hasSetup = !!setup;
+    var hasCard = heads.some(function (h) { return /^(任務卡|需求卡)/.test(h.textContent.trim()); });
+    context.panel.appendChild(el('summary', null, setup ? setup.textContent : (hasCard ? '本段說明與任務卡' : '本段說明與提醒')));
+    context.panel.appendChild(context.el);
+    context.back = el('button', 'rb-btn rb-context-return');
+    context.back.type = 'button';
+    on(context.back, 'click', function () {
+      var target = list[stepIndex(pid) || 1];
+      var link = $('.rb-checkpoints a[href="#' + target.id + '"]');
+      if (!link) return;
+      link.click(); context.panel.open = false;
+      var heading = $('h3', target.el);
+      heading.tabIndex = -1; heading.focus({ preventScroll: true }); scrollToEl(heading);
+    });
+    context.panel.appendChild(context.back);
+    $$(':scope > .rb-callout', context.el).forEach(function (notice) {
+      var title = $('.rb-callout-title', notice);
+      if (notice.classList.contains('rb-callout-sync') || (title && /^(時間不夠|用 Recovery)/.test(title.textContent.trim()))) {
+        body.appendChild(notice);
+      }
+    });
+    body.appendChild(context.panel);
+    list.slice(1).forEach(function (s, index) {
+      if (s.min || !$('.rb-form', s.el)) { body.appendChild(s.el); return; }
+      s.el.className = 'rb-decision';
+      s.panel = el('details', 'rb-decision-panel');
+      s.panel.appendChild(el('summary', null, s.label));
+      s.panel.appendChild(s.el);
+      var back = s.panel.appendChild(el('button', 'rb-btn rb-context-return', '回到目前檢查點'));
+      back.type = 'button';
+      on(back, 'click', function () {
+        var target = list[stepIndex(pid)];
+        if (!target.min) target = list[list.slice(0, index + 1).map(function (step) { return !!step.min; }).lastIndexOf(true)];
+        var link = $('.rb-checkpoints a[href="#' + target.id + '"]');
+        if (!link) return;
+        link.click(); s.panel.open = false;
+        var heading = $('h3', target.el);
+        heading.tabIndex = -1; heading.focus({ preventScroll: true }); scrollToEl(heading);
+      });
+      body.appendChild(s.panel);
+    });
     steps[pid] = list;
   }
 
@@ -302,7 +339,12 @@
   function showStep(id, i) {
     var list = steps[id];
     if (!list) return;
-    list.forEach(function (s, k) { s.el.hidden = k !== i; });
+    list.slice(1).forEach(function (s, k) {
+      if (s.panel) s.panel.open = k + 1 === i;
+      else s.el.hidden = k + 1 !== i;
+    });
+    list[0].panel.open = i === 0 || (i === 1 && list[0].hasSetup);
+    list[0].back.textContent = i === 0 ? '開始檢查點 1' : (list[i].min ? '回到目前檢查點' : '回到目前段落');
     stepMem[id] = list[i].id;
     store.set('{{STORAGE_PREFIX}}step:' + id, list[i].id);
   }
@@ -344,15 +386,55 @@
     if (metaEl) {
       metaEl.innerHTML = '';
       if (p.minute !== undefined && p.minute !== '') metaEl.appendChild(el('span', 'rb-meta-item rb-meta-min', String(p.minute)));
-      var idx = order.indexOf(id);
-      metaEl.appendChild(el('span', 'rb-meta-item', '第 ' + (idx + 1) + ' / ' + order.length + ' 章'));
-      if (steps[id] && !locked) metaEl.appendChild(el('span', 'rb-meta-item rb-meta-step', '第 ' + (stepIndex(id) + 1) + ' / ' + steps[id].length + ' 步'));
+      if (!steps[id] || locked) metaEl.appendChild(el('span', 'rb-meta-item', '第 ' + (order.indexOf(id) + 1) + ' / ' + order.length + ' 章'));
+      if (steps[id] && !locked) {
+        var heading = steps[id][stepIndex(id)].label;
+        var cp = /^(\d+) ·/.exec(heading);
+        metaEl.appendChild(el('span', 'rb-meta-item rb-meta-step', cp ? '檢查點 ' + cp[1] : heading));
+      }
       if (pageGroup(id) !== 'open') {
         metaEl.appendChild(el('span', 'rb-meta-item ' + (locked ? 'is-locked' : 'is-unlocked'), locked ? '尚未解鎖' : '已解鎖'));
       }
-      if (!locked && pageDone(id)) metaEl.appendChild(el('span', 'rb-meta-item is-done', '已完成'));
+      if (!locked && pageDone(id)) metaEl.appendChild(el('span', 'rb-meta-item is-done', '本頁清單已勾完'));
     }
     doc.title = pageTitle(id) + ' · ' + baseTitle;
+    renderCheckpointNav(id);
+  }
+
+  function renderCheckpointNav(id) {
+    var nav = $('.rb-checkpoints');
+    if (!nav) {
+      nav = el('nav', 'rb-checkpoints');
+      nav.setAttribute('aria-label', '對照投影，選擇檢查點');
+      $('.rb-page-head').appendChild(nav);
+    }
+    var focused = nav.contains(doc.activeElement) && doc.activeElement.getAttribute('href');
+    nav.textContent = '';
+    var list = !isPageLocked(id) && steps[id];
+    nav.hidden = !list;
+    if (!list) return;
+    var current = stepIndex(id);
+    list.forEach(function (s, i) {
+      var a = el('a', 'rb-checkpoint');
+      a.appendChild(el('span', 'rb-checkpoint-name', s.label));
+      if (s.min) {
+        a.classList.add('is-checkpoint');
+        a.appendChild(el('span', 'rb-checkpoint-short', '檢查點 ' + s.label.split(' · ')[0]));
+        a.setAttribute('aria-label', s.label + '，第 ' + s.min + ' 分鐘');
+      }
+      a.href = '#' + s.id;
+      if (s.min) a.appendChild(el('span', 'rb-checkpoint-time', '第 ' + s.min + ' 分鐘'));
+      if (i === current) a.setAttribute('aria-current', 'step');
+      on(a, 'click', function (ev) {
+        ev.preventDefault();
+        showPage(id, s.el);
+        if (location.hash !== '#' + s.id) {
+          try { history.pushState(null, '', '#' + s.id); } catch (e) { location.hash = s.id; }
+        }
+      });
+      nav.appendChild(a);
+      if (focused === a.getAttribute('href')) a.focus({ preventScroll: true });
+    });
   }
 
   var tocObserver = null;
@@ -406,7 +488,7 @@
   function pagerLink(id, dir) {
     var a = el('a', 'rb-pager-link rb-pager-' + dir + (isPageLocked(id) ? ' is-locked' : ''));
     a.href = '#p-' + id;
-    a.appendChild(el('span', 'rb-pager-dir', dir === 'prev' ? '上一頁' : '下一頁'));
+    a.appendChild(el('span', 'rb-pager-dir', dir === 'prev' ? '上一頁' : (isPageLocked(id) ? '下一階段 · 看投影解鎖' : '下一頁')));
     a.appendChild(el('span', 'rb-pager-title', pageTitle(id)));
     return a;
   }
@@ -420,17 +502,27 @@
   function renderPager(id) {
     if (!pagerEl) return;
     pagerEl.innerHTML = '';
-    var list = !isPageLocked(id) && steps[id], k = list ? stepIndex(id) : -1;
-    if (list && (k > 0 || k < list.length - 1)) {
-      if (k > 0) pagerEl.appendChild(stepLink(list[k - 1], 'prev'));
-      else if (order.indexOf(id) > 0) pagerEl.appendChild(pagerLink(order[order.indexOf(id) - 1], 'prev'));
-      if (k < list.length - 1) pagerEl.appendChild(stepLink(list[k + 1], 'next'));
-      else if (order.indexOf(id) < order.length - 1) pagerEl.appendChild(pagerLink(order[order.indexOf(id) + 1], 'next'));
+    if (returnPages[id]) {
+      var back = pagerLink(returnPages[id], 'next');
+      $('.rb-pager-dir', back).textContent = '完成後返回任務';
+      pagerEl.appendChild(back);
       return;
     }
-    var i = order.indexOf(id);
-    if (i > 0) pagerEl.appendChild(pagerLink(order[i - 1], 'prev'));
-    if (i >= 0 && i < order.length - 1) pagerEl.appendChild(pagerLink(order[i + 1], 'next'));
+    var list = !isPageLocked(id) && steps[id], k = list ? stepIndex(id) : -1;
+    var prev = adjacentPage(id, -1), next = adjacentPage(id, 1);
+    if (list && k > 0) pagerEl.appendChild(stepLink(list[k - 1], 'prev'));
+    else if (prev) pagerEl.appendChild(pagerLink(prev, 'prev'));
+    if (list && k < list.length - 1) pagerEl.appendChild(stepLink(list[k + 1], 'next'));
+    else if (next) pagerEl.appendChild(pagerLink(next, 'next'));
+  }
+
+  function adjacentPage(id, direction) {
+    if (returnPages[id]) return returnPages[id];
+    for (var i = order.indexOf(id) + direction; i >= 0 && i < order.length; i += direction) {
+      if (returnPages[order[i]]) continue;
+      return order[i];
+    }
+    return null;
   }
 
   function scrollToEl(target) {
@@ -444,21 +536,34 @@
     Object.keys(articles).forEach(function (k) { articles[k].hidden = (k !== id); });
     currentId = id;
     store.set('{{STORAGE_PREFIX}}last-page', id);
+    var decisionPanel = null;
     if (steps[id]) {
-      var stepEl = anchorEl && anchorEl.closest ? anchorEl.closest('.rb-step') : null;
+      var stepEl = anchorEl && anchorEl.closest ? anchorEl.closest('.rb-step, .rb-context, .rb-decision') : null;
       var k = stepEl ? steps[id].map(function (s) { return s.el; }).indexOf(stepEl) : -1;
       var before = stepIndex(id);
+      var lastCheckpoint = steps[id].map(function (s) { return !!s.min; }).lastIndexOf(true);
+      if (k > 0 && steps[id][k].panel && steps[id][before].min && before < lastCheckpoint) {
+        decisionPanel = steps[id][k].panel;
+        k = before;
+      }
       showStep(id, k >= 0 ? k : before);
+      if (decisionPanel) decisionPanel.open = true;
       if (k >= 0 && k !== before) changed = true;
       // Jumping to a step itself (its section or its heading) starts at the top.
-      if (stepEl && (anchorEl === stepEl || anchorEl === stepEl.firstElementChild)) anchorEl = null;
+      if (!decisionPanel && stepEl && (anchorEl === stepEl || anchorEl === stepEl.firstElementChild)) anchorEl = null;
     }
     renderHead(id);
     renderToc(id);
     renderPager(id);
     updateNavStates();
     renderNavSteps();
+    var fromMenu = sidebar && sidebar.classList.contains('is-open');
     closeSidebar();
+    if (fromMenu) $('#rb-main').focus({ preventScroll: true });
+    if (decisionPanel) {
+      anchorEl = $('h3', decisionPanel);
+      anchorEl.tabIndex = -1; anchorEl.focus({ preventScroll: true });
+    }
     if (anchorEl) setTimeout(function () { scrollToEl(anchorEl); }, 0);
     else if (changed) { resetScroll(); setTimeout(resetScroll, 0); }
   }
@@ -480,7 +585,7 @@
   function revealSearchHit(q) {
     var art = articles[currentId];
     if (!art || !q) return;
-    var scope = art.querySelector('.rb-step:not([hidden])') || art;
+    var scope = steps[currentId] ? steps[currentId][stepIndex(currentId)].el : art;
     $$('details.rb-callout-fold', scope).forEach(function (d) {
       if ((d.textContent || '').toLowerCase().indexOf(q) >= 0) d.open = true;
     });
@@ -496,7 +601,7 @@
   function initFolds() {
     var opened = [];
     on(window, 'beforeprint', function () {
-      opened = $$('details.rb-callout-fold:not([open])');
+      opened = $$('details.rb-callout-fold:not([open]), details.rb-context-panel:not([open]), details.rb-decision-panel:not([open])');
       opened.forEach(function (d) { d.open = true; });
     });
     on(window, 'afterprint', function () {
@@ -597,7 +702,7 @@
       if (wrap.querySelector(':scope > .rb-copy')) return;
       var btn = el('button', 'rb-copy', '複製');
       btn.type = 'button';
-      btn.setAttribute('aria-label', '複製程式碼');
+      btn.setAttribute('aria-label', '複製內容');
       on(btn, 'click', function () {
         var code = pre.querySelector('code');
         copyText((code || pre).textContent.replace(/\n$/, '')).then(function (ok) {
@@ -695,10 +800,12 @@
     var done = all.filter(function (c) { return c.checked; }).length;
     var pct = all.length ? Math.round(done * 100 / all.length) : 0;
     if (progFill) progFill.style.width = pct + '%';
-    if (progNum) progNum.textContent = pct + '%';
+    if (progNum) progNum.textContent = done + '/' + all.length;
     if (progEl) {
-      progEl.setAttribute('aria-valuenow', String(pct));
-      progEl.setAttribute('title', '已完成 ' + done + ' / ' + all.length + ' 項任務');
+      progEl.hidden = all.length === 0;
+      progEl.setAttribute('aria-valuemax', String(all.length || 1));
+      progEl.setAttribute('aria-valuenow', String(done));
+      progEl.setAttribute('aria-valuetext', '已解鎖內容中，已勾選 ' + done + ' / ' + all.length + ' 項');
     }
     if (currentId) renderHead(currentId);
     updateNavStates();
@@ -897,15 +1004,16 @@
     if (def.kind) card.setAttribute('data-kind', def.kind);
     card.appendChild(el('h3', 'rb-form-title', def.title || fid));
     var savedEl = el('span', 'rb-form-saved', saved && Object.keys(saved).length ? '已載入先前內容' : '');
+    savedEl.setAttribute('role', 'status');
 
-    var persist = debounce(function () {
+    var persist = function () {
       var ok = store.setJSON(key, values);
       savedEl.textContent = ok ? '已自動儲存 ' + nowHMS() : '無法儲存（瀏覽器封鎖本機儲存）';
       savedEl.classList.toggle('is-error', !ok);
       savedEl.classList.remove('is-saving');
       savedEl.classList.add('is-flash');
       setTimeout(function () { savedEl.classList.remove('is-flash'); }, 1200);
-    }, 400);
+    };
 
     fields.forEach(function (f) {
       var domId = 'rbf-' + fid + '-' + f.id;
@@ -1027,6 +1135,7 @@
         else ctl.value = d;
       });
       savedEl.textContent = '已清除';
+      savedEl.classList.remove('is-error');
       toast('已清除表單「' + (def.title || fid) + '」');
     });
     on(bClear, 'blur', function () { setTimeout(resetClear, 150); });
@@ -1226,6 +1335,17 @@
   function closeSearch() {
     if (searchBox) { searchBox.hidden = true; searchBox.innerHTML = ''; }
     activeHit = -1;
+    if (searchInput) {
+      searchInput.setAttribute('aria-expanded', 'false');
+      searchInput.removeAttribute('aria-activedescendant');
+    }
+  }
+
+  function chooseSearchHit(hit, query) {
+    location.hash = hit.getAttribute('href');
+    closeSearch(); searchInput.value = ''; searchInput.blur();
+    $('#rb-main').focus({ preventScroll: true });
+    setTimeout(function () { revealSearchHit(query); }, 60);
   }
 
   function runSearch() {
@@ -1233,14 +1353,15 @@
     var q = searchInput.value.trim().toLowerCase();
     searchBox.innerHTML = '';
     activeHit = -1;
-    if (!q) { searchBox.hidden = true; return; }
+    searchInput.removeAttribute('aria-activedescendant');
+    if (!q) { closeSearch(); return; }
     var hits = [];
     index.forEach(function (it) {
       var inTitle = it.hay.indexOf(q) >= 0, inText = it.low.indexOf(q) >= 0;
       if (inTitle || inText) hits.push({ it: it, score: inTitle ? 0 : 1 });
     });
     hits.sort(function (a, b) { return a.score - b.score; });
-    hits.slice(0, 12).forEach(function (h) {
+    hits.slice(0, 12).forEach(function (h, i) {
       var a = el('a', 'rb-search-hit rb-search-result' + (h.it.locked ? ' is-locked' : ''));
       a.href = '#p-' + h.it.id;
       if (!h.it.locked && steps[h.it.id]) {
@@ -1251,6 +1372,8 @@
         });
       }
       a.setAttribute('role', 'option');
+      a.id = 'rb-search-hit-' + i;
+      a.setAttribute('aria-selected', 'false');
       a.appendChild(el('b', 'rb-search-result-title', h.it.title));
       if (h.it.section) a.appendChild(el('span', 'rb-search-result-section', h.it.section));
       var sub = h.it.locked ? '尚未解鎖' : snippet(h.it.text, h.it.low, q);
@@ -1265,10 +1388,7 @@
         a.appendChild(sn);
       }
       on(a, 'mousedown', function (ev) { ev.preventDefault(); });   // keep focus until click resolves
-      on(a, 'click', function () {
-        closeSearch(); searchInput.value = ''; searchInput.blur();
-        setTimeout(function () { revealSearchHit(q); }, 60);
-      });
+      on(a, 'click', function (ev) { ev.preventDefault(); chooseSearchHit(a, q); });
       searchBox.appendChild(a);
     });
     if (!hits.length) {
@@ -1276,13 +1396,18 @@
       searchBox.appendChild(none);
     }
     searchBox.hidden = false;
+    searchInput.setAttribute('aria-expanded', 'true');
   }
 
   function moveHit(delta) {
     var hits = $$('.rb-search-hit', searchBox);
     if (!hits.length) return;
-    activeHit = (activeHit + delta + hits.length) % hits.length;
-    hits.forEach(function (h, i) { h.classList.toggle('is-active', i === activeHit); });
+    activeHit = activeHit < 0 ? (delta > 0 ? 0 : hits.length - 1) : (activeHit + delta + hits.length) % hits.length;
+    hits.forEach(function (h, i) {
+      h.classList.toggle('is-active', i === activeHit);
+      h.setAttribute('aria-selected', String(i === activeHit));
+    });
+    searchInput.setAttribute('aria-activedescendant', hits[activeHit].id);
     try { hits[activeHit].scrollIntoView({ block: 'nearest' }); } catch (e) { /* ignore */ }
   }
 
@@ -1298,7 +1423,7 @@
         ev.preventDefault();
         var hits = $$('.rb-search-hit', searchBox);
         var pick = hits[activeHit >= 0 ? activeHit : 0];
-        if (pick) { location.hash = pick.getAttribute('href'); closeSearch(); searchInput.value = ''; searchInput.blur(); }
+        if (pick) chooseSearchHit(pick, searchInput.value.trim().toLowerCase());
       } else if (ev.key === 'Escape') { closeSearch(); searchInput.blur(); }
     });
   }
@@ -1317,23 +1442,35 @@
   }
 
   var sidebar = $('.rb-sidebar'), scrim = $('.rb-scrim'), menuBtn = $('.rb-menu-btn');
+  var navMedia = window.matchMedia('(max-width: 959.98px)');
+  function syncSidebar() {
+    var open = navMedia.matches && sidebar.classList.contains('is-open');
+    sidebar.inert = navMedia.matches && !open;
+    $$('.rb-header > :not(.rb-menu-btn), .rb-main, .rb-toc').forEach(function (n) { n.inert = open; });
+  }
   function openSidebar() {
     if (!sidebar) return;
     sidebar.classList.add('is-open');
     doc.body.classList.add('is-nav-open');
     if (scrim) scrim.hidden = false;
-    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+    if (menuBtn) { menuBtn.setAttribute('aria-expanded', 'true'); menuBtn.setAttribute('aria-label', '關閉章節導覽'); }
+    syncSidebar();
     var cur = $('.rb-nav-link.is-current', sidebar) || $('.rb-nav-link', sidebar);
     if (cur) cur.focus();             // keyboard lands in the menu, scrolled to where you are
   }
   function closeSidebar() {
     if (!sidebar) return;
+    var hadFocus = sidebar.contains(doc.activeElement);
     sidebar.classList.remove('is-open');
     doc.body.classList.remove('is-nav-open');
     if (scrim) scrim.hidden = true;
-    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    if (menuBtn) { menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.setAttribute('aria-label', '開啟章節導覽'); }
+    syncSidebar();
+    if (hadFocus && navMedia.matches && menuBtn) menuBtn.focus();
   }
   function initSidebar() {
+    closeSidebar();
+    on(navMedia, 'change', closeSidebar);
     on(menuBtn, 'click', function () { if (sidebar && sidebar.classList.contains('is-open')) closeSidebar(); else openSidebar(); });
     on(scrim, 'click', closeSidebar);
     $$('[data-home]').forEach(function (a) {
@@ -1354,8 +1491,8 @@
       if (typing || ev.ctrlKey || ev.metaKey || ev.altKey) return;
       if (ev.key === '/' && searchInput) { ev.preventDefault(); searchInput.focus(); searchInput.select(); }
       else if ((ev.key === '[' || ev.key === ']') && currentId) {
-        var i = order.indexOf(currentId) + (ev.key === ']' ? 1 : -1);
-        if (i >= 0 && i < order.length) location.hash = '#p-' + order[i];
+        var next = adjacentPage(currentId, ev.key === ']' ? 1 : -1);
+        if (next) location.hash = '#p-' + next;
       }
     });
   }

@@ -5,6 +5,27 @@
    ========================================================================== */
 
 /* ---------- 1. Design tokens ------------------------------------------- */
+.rb-checkpoints { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin-top: 1rem; }
+.rb-checkpoints[hidden] { display: none; }
+.rb-checkpoint { display: flex; flex-direction: column; gap: .25rem; padding: .65rem .8rem; border: 1px solid var(--c-line); border-radius: var(--radius-sm); color: var(--c-ink-2); background: var(--c-surface); text-decoration: none; font-size: 14px; line-height: 1.6; }
+.rb-checkpoint:first-child { grid-column: 1 / -1; padding-block: .35rem; }
+.rb-checkpoint:hover { border-color: var(--c-primary-700); }
+.rb-checkpoint[aria-current="step"] { border-color: var(--c-primary-700); box-shadow: inset 0 3px var(--c-primary-700); background: var(--c-tint); color: var(--c-link); font-weight: 700; }
+.rb-checkpoint-time { font-size: 12px; color: var(--c-muted); font-weight: 400; }
+.rb-checkpoint-name { text-wrap: balance; }
+.rb-checkpoint-short { display: none; }
+.rb-context-panel, .rb-decision-panel { margin-bottom: 1rem; border: 1px solid var(--c-line); border-radius: var(--radius-sm); background: var(--c-surface); }
+.rb-context-panel > summary, .rb-decision-panel > summary { min-height: 44px; padding: .65rem 1rem; color: var(--c-link); font-weight: 700; cursor: pointer; }
+.rb-context-panel[open] > summary, .rb-decision-panel[open] > summary { border-bottom: 1px solid var(--c-line); }
+.rb-context, .rb-decision { padding: 1rem; }
+.rb-context > :first-child, .rb-decision > :first-child { margin-top: 0; }
+.rb-context-return { margin: 0 1rem 1rem; }
+@media (max-width: 599.98px) {
+  .rb-checkpoints { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rb-checkpoint.is-checkpoint .rb-checkpoint-name { display: none; }
+  .rb-checkpoint-short { display: block; }
+}
+@media print { .rb-checkpoints { display: none; } }
 :root {
   --c-primary: #0093C1;
   --c-primary-700: #006E91;
@@ -1863,7 +1884,6 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
 
 /* ---------- 21. Responsive ------------------------------------------- */
 @media (max-width: 1099.98px) {
-  .rb-progress-label { display: none; }
   .rb-progress-track { width: 5rem; }
 }
 @media (max-width: 959.98px) {
@@ -1957,7 +1977,7 @@ pre.rb-code[data-lang="text"] code { width: auto; white-space: pre-wrap; overflo
   .rb-cmd .rb-copy { top: .3rem; }
 }
 @media (max-width: 479.98px) {
-  .rb-progress-track { display: none; }
+  .rb-progress { display: none; }
 }
 
 /* ---------- 22. Print ------------------------------------------------ */

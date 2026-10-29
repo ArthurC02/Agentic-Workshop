@@ -609,6 +609,24 @@
       pv.nextTitle.textContent = ns ? (ns.getAttribute('data-title') || (h ? h.textContent.trim() : '')) : '—';
       var notes = s ? $('.notes', s) : null;
       pv.notes.innerHTML = notes && notes.innerHTML.trim() ? notes.innerHTML : '<p class="pv-no-notes">（本頁無備註）</p>';
+      pv.notes.scrollTop = 0;
+      var flow = s && $('.cp-flow', s);
+      var start = s && $('.seg-start', s);
+      if (flow || start) {
+        var cue = el('div', 'pv-learner-cue');
+        cue.appendChild(el('b', 'pv-cue-title', '學員現在做'));
+        if (flow) {
+          var kicker = $('.kicker', s);
+          if (kicker) cue.appendChild(el('div', null, kicker.textContent));
+          var actions = cue.appendChild(el('ol'));
+          $$('li', flow).forEach(function (item) { actions.appendChild(item.cloneNode(true)); });
+          var judge = $('.cp-judge', s);
+          if (judge) cue.appendChild(el('div', null, judge.textContent));
+          var next = $('.cp-next', s);
+          if (next) cue.appendChild(el('div', null, next.textContent));
+        } else cue.appendChild(el('div', null, start.textContent));
+        pv.notes.insertBefore(cue, pv.notes.firstChild);
+      }
       pv.count.textContent = (i + 1) + ' / ' + slides.length;
       var seg = segOf(i);
       // Codes released at this slide's minute (incl. on-demand Recovery codes) or for its segment.
@@ -618,10 +636,11 @@
         tr.classList.toggle('is-current', hits.some(function (g) { return g.id === tr.getAttribute('data-id'); }));
       });
       pv.now.textContent = '';
-      if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本時點解鎖碼'));
+      if (hits.length) pv.now.appendChild(el('div', 'pv-now-title', '本段可用解鎖碼'));
       hits.forEach(function (g) {
-        var row = pv.now.appendChild(el('div', 'pv-now-row'));
-        row.appendChild(el('span', 'pv-now-label', g.label || g.id));
+        var privateCode = /^(recovery-|dlc-rec-)/.test(g.id);
+        var row = pv.now.appendChild(el('div', 'pv-now-row' + (privateCode ? ' is-private' : '')));
+        row.appendChild(el('span', 'pv-now-label', (privateCode ? '只私下提供：' : '全場公布：') + (g.label || g.id)));
         row.appendChild(el('code', null, g.code));
       });
       pv.now.hidden = !hits.length;
