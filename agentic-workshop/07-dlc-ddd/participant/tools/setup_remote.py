@@ -3,7 +3,7 @@
   py -3.13 -X utf8 ../../tools/setup_remote.py                # 建 ../<repo 名>-remote.git 並設為 origin
   py -3.13 -X utf8 ../../tools/setup_remote.py --path D:/x.git --name origin
 
-之後：先啟用 .venv（hook 要在 PATH 上找到 python3 或 python ≥ 3.10），再 `git push -u origin HEAD`。
+之後：`git push -u origin HEAD`（hook 用 Plugin 的執行檔檢查簽章）。
 """
 from __future__ import annotations
 

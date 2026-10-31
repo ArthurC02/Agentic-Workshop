@@ -8,7 +8,7 @@
 
 `bash` 區塊是 Windows Git Bash 的寫法。macOS 用同一組 bash 指令（一樣包在 `( set -e … )`），只換下面幾處。
 
-- Python：`py -3.13` 換成 `python3.13`；`.venv/Scripts/python.exe` 換成 `.venv/bin/python`；`source .venv/Scripts/activate` 換成 `source .venv/bin/activate`。
+- Python：`py -3.13` 換成 `python3.13`；`.venv/Scripts/python.exe` 換成 `.venv/bin/python`。
 - 找不到 `~/Downloads/recovery-dlc-d3a.zip`：Safari 可能已自動解壓並刪掉 zip，到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，再重新下載。
 - `dm.sh` 出現 permission denied：先執行 `chmod +x ../../tools/dm.sh`（只開執行權限）。
 

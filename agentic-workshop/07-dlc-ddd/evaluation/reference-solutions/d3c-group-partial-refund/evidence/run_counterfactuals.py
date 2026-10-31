@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 # Usage (from anywhere):
-#   py -3.13 -X utf8 evidence/run_counterfactuals.py <path-to-venv-python.exe> <path-to-domain-memory/scripts/registry_tools.py>
+#   py -3.13 -X utf8 evidence/run_counterfactuals.py <path-to-venv-python.exe> <path-to-domain-memory/engine/bin/<platform>/domain-memory[.exe]>
 # The plugin splits --test-command with shlex and runs it without a shell (0.34+): quote the interpreter path,
 # write every other path with forward slashes (an unquoted backslash is dropped).
 PY, TOOL = (str(Path(arg).resolve()) for arg in sys.argv[1:3])
@@ -102,7 +102,7 @@ CASES = [
 OUT.mkdir(parents=True, exist_ok=True)
 rows = []
 for name, ac, file, find, replace, k in CASES:
-    proc = subprocess.run([sys.executable, "-X", "utf8", TOOL, "counterfactual", "--repo-root", str(REPO),
+    proc = subprocess.run([TOOL, "counterfactual", "--repo-root", str(REPO),
                            "--file", file, "--find", find, "--replace", replace,
                            "--test-command", test(k), "--timeout", "120"],
                           capture_output=True, text=True, encoding="utf-8", errors="replace")

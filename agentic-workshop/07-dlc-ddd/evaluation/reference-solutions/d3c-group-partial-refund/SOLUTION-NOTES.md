@@ -10,7 +10,7 @@ py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -X utf8 -m pytest -q          # 179 passed（D3b 的 156 + 新 23）
 .\.venv\Scripts\python.exe -X utf8 -m pytest -q tests\integration\test_partial_cancellation.py   # 23 passed
 # 反事實檢查（需 domain-memory 外掛），結果寫入 evidence\counterfactual\*.json
-py -3.13 -X utf8 evidence\run_counterfactuals.py .venv\Scripts\python.exe <SkillHub>\.claude\skills\domain-memory\scripts\registry_tools.py
+py -3.13 -X utf8 evidence\run_counterfactuals.py .venv\Scripts\python.exe <SkillHub>\.claude\skills\domain-memory\engine\bin\windows-x86_64\domain-memory.exe
 ```
 
 D3b 原有的 156 個測試一個都沒改，全部通過（含 `test_refunds.py` 的「只能退一次」與 `len(memory_store.refunds) == 1`：`refunds` 改成清單後語意相同）。

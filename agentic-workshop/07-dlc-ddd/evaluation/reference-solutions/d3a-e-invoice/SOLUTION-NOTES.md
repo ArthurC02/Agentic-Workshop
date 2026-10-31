@@ -10,7 +10,7 @@ py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -X utf8 -m pytest -q          # 118 passed（原 76 + 新 42）
 .\.venv\Scripts\python.exe -X utf8 -m pytest -q tests\integration\test_e_invoice.py   # 42 passed
 # 反事實檢查（需 domain-memory 外掛），結果寫入 evidence\counterfactual\*.json
-py -3.13 -X utf8 evidence\run_counterfactuals.py .venv\Scripts\python.exe <SkillHub>\.claude\skills\domain-memory\scripts\registry_tools.py
+py -3.13 -X utf8 evidence\run_counterfactuals.py .venv\Scripts\python.exe <SkillHub>\.claude\skills\domain-memory\engine\bin\windows-x86_64\domain-memory.exe
 ```
 
 ## 1. 設計摘要

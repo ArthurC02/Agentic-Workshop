@@ -22,8 +22,8 @@
 
 | # | 主軸 | 可觀察行為 |
 |---|---|---|
-| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 86 files`、`"version": "4.2.0"`，每步最後一行是 `check` Skill 的「成功」（沒有時學員貼 ③「用 check 檢查剛才這一段」）才往下 |
-| O2 | H | 學員只貼提示詞、不貼規則，自己不打指令；Agent 照 `AGENTS.md` 做事（Plugin 指令經 `tools/dm.*`，沒有直接呼叫 `registry_tools.py`）；5 個 Skill 已放到工具自動載入的位置，`AGENTS.md`「Skill」一節有它們的位置，起始 commit 含 `AGENTS.md` 與 Skill |
+| O1 | E | Agent 回報裡出現 `76 passed`、`SHA OK 37 files`、`"version": "6.1.1"`，每步最後一行是 `check` Skill 的「成功」（沒有時學員貼 ③「用 check 檢查剛才這一段」）才往下 |
+| O2 | H | 學員只貼提示詞、不貼規則，自己不打指令；Agent 照 `AGENTS.md` 做事（Plugin 指令經 `tools/dm.*`，沒有直接呼叫 Plugin 執行檔）；5 個 Skill 已放到工具自動載入的位置，`AGENTS.md`「Skill」一節有它們的位置，起始 commit 含 `AGENTS.md` 與 Skill |
 | O3 | E | `notes/opening.md` 記有 `python` 路徑在 `.venv\Scripts\`、`doctor.py` 全 `[OK]` |
 
 介入訊號：`SHA MISMATCH` 卻想繼續 →「這份 Plugin 的判定還可信嗎？」；學員自己在終端機打指令或改指令 →「把 Runbook 的提示詞貼給 Agent，check 回「失敗」就貼『失敗時』那一段」；Agent 沒照 `AGENTS.md` 做（沒經 dm 腳本、沒啟用 `.venv`）→ 請學員說「請先讀 AGENTS.md」，不重貼規則。

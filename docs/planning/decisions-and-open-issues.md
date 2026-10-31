@@ -616,6 +616,33 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 6.1.1（2026-10-30）
+
+使用者要求取得最新版，且只要編譯好的執行檔、不要 Rust 原始碼：由 4.2.0 換成 6.1.1（SkillHub `7c7cd6f8c`「release 6.1.1」，origin/main，以 `git archive` 匯出；沒有用 SkillHub 工作區）。三個執行檔的 SHA256 都和 Plugin 的 `engine/bin/manifest.json` 相符。
+
+影響 DLC 的變更（CHANGELOG 4.2.1–6.1.1）：
+- 6.0.0 刪掉 Python 實作（`scripts/registry_tools.py`）：每個指令都是 `engine/bin/<平台>/domain-memory`，參數與輸出不變。DLC 的 `dmlib` 原本呼叫 `registry_tools.py`，相容性檢查原本 import Plugin 的 `cli_parser`，兩者都會壞。
+- 5.1.0 pre-push／pre-commit hook 改跑執行檔，不再在 PATH 上找 Python；hook 寫死 engine 的絕對路徑，學員包搬家後要重裝 hook。
+- 5.0.0 刪 `describe-table`、`extract-sql-schema` 與政策的 `schema_conventions`；`validate` 拒絕這個鍵，所以 4.2.0 產生的 Recovery d1 政策在 6.1.1 下會失敗（重產後已沒有）。
+- 6.1.0 訊息裡的空值寫成 `null`／`true`／`false`；學員頁沒有引用。
+
+DLC 的改動：
+- `vendor_dlc_plugin.py`：engine 只帶 Windows、macOS 執行檔與 `manifest.json`（封裝前比對 SHA256），macOS 執行檔在 ZIP 裡是 755、`create_system` 固定 Unix；不帶 Rust 原始碼、建置檔、測試、`contract/cli.json`（已編進執行檔）、Linux 執行檔（學員只有 Windows、macOS，沒有腳本或測試用到）、`evals/`、`README.md`。`domain-memory-6.1.1.zip` 36 個檔、約 4.7 MB（學員看到 `SHA OK 37 files`）；刪 4.2.0 的 ZIP 與 SHA256SUMS。
+- `dmlib`：依作業系統執行 `engine/bin/windows-x86_64/domain-memory.exe` 或 `engine/bin/macos-universal/domain-memory`（macOS 沒有執行權限時給 `chmod +x` 指令）；指令集合刪兩個已移除的指令。`doctor.py`：刪「PATH 上的 python ≥ 3.10」（hook 不用了），加「Plugin 執行檔能執行」（macOS 檢查執行權限與 `com.apple.quarantine`，Windows 實際執行一次）。
+- `check_dlc_plugin_compat.py`：指令與旗標改讀執行檔各指令的 `--help`；學員引用的字串在本次輸出、執行檔文字或 Plugin 文件裡找（編譯器會把短字串內嵌進程式碼，所以參考 Registry 多跑一次 `coverage`）。
+- `AGENTS.md`（generated）：寫明兩個作業系統的執行檔完整路徑；macOS 在 SHA OK 後對執行檔做 `chmod +x` 與 `xattr -d com.apple.quarantine`；push 前不用再啟用 `.venv`。`signed-commit` Skill、D4 檢查點 3 提示詞、RECOVERY 步驟 4 一併刪掉啟用 `.venv`。
+- Runbook 開場檢查點 2（6.1.1）與 4 的 ①、開場與 D4 投影片備註、主持指南（1.3、1.4 課前執行檔檢查、常見問題第 1、3、8 列）、tools README、觀察指引、指令書 11、參考解答的反事實腳本、course-authoring。
+
+Windows：從終端機執行帶下載標記（Mark of the Web）的執行檔不會跳 SmartScreen（實測）；智慧型應用程式控制或公司的應用程式控制可能擋下未簽章的執行檔，主持指南 1.4 列為課前檢查。macOS：執行檔是 ad-hoc 簽章，未在實機驗證。
+
+相容性檢查：封裝 ZIP 33 PASS、0 CHANGED（`QUOTED` 80）。Recovery 五段重產通過（d1 政策少 `schema_conventions`，d2～d3c 不變，參考歷史不用重新簽章）。`release_materials.py`：RELEASE PIPELINE PASS。
+
+演練（Windows，真的 `claude -p` 2.1.312，`--permission-mode auto`，沙箱 `C:\tmp\dm611-a`、`dm611-c`，候選包 `75b876a6888ea294`，結束後刪除）：開場檢查點 1–4 兩次（`SHA OK 37 files`、6.1.1、brownfield／high、pytest；doctor `[OK] Plugin 執行檔能執行`）；D1 檢查點 1–6（15 筆候選，證據 36 筆 current）；D2 檢查點 1–6（killed、applied、8 個事件、push `for 2 commits.`）；D3a 檢查點 1–6（96 passed、兩個 killed、3 筆候選、簽章 commit）；D3c Recovery 三步（179 passed、99／31／32、66 個事件、`for 1 commit.`）；D4 檢查點 1–3（3 筆候選；pre-commit hook 擋下改名、點名 13 筆、給出 `relocate-evidence`）。沒有權限拒絕；Agent 一律經 dm 腳本，沒有直接呼叫或自己找執行檔。沙箱限制：`py` 啟動器沒有 3.13，健檢一項 [!!]。
+
+演練看到、和換版無關、留給內容維護：開場檢查點 3 在 `git init` 前跑 readiness，stderr 有 `NOTE: git could not list the Domain Memories…`（Agent 自己解釋為無害）；D4 檢查點 3 夥伴 commit 後又寫 `notes/d4.md`，和 ③「除了 records/ 沒有其他變更」不符；參考歷史有一個訊息含「domain-memory 0.33.0」的 commit（改訊息要重新簽章，不做）。
+
+未驗證：macOS 實機。
+
 ## 主課程實戰化：AGENTS.md、標準 Skill、交辦式提示詞（2026-10-22）
 
 使用者回饋：提示詞要「更符合實際工作狀況，而不是只存在教科書上的格式」，AGENTS.md 這類實戰知識要進課程。決定：

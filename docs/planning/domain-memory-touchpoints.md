@@ -1,7 +1,7 @@
 # domain-memory 觸及點與換版步驟
 
 > 讀者：DLC 維護者。時機：domain-memory 換版前。可見性：內部，不發學員。
-> 更新日期：2026-10-24。目前固定 4.2.0（SkillHub `fefcbc5bb`），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 4.2.0〉〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉〈domain-memory 升級 1.2.2〉〈domain-memory 1.2.4（patch）〉〈domain-memory 1.2.8（patch）〉〈domain-memory 1.2.18（patch）〉。
+> 更新日期：2026-10-30。目前固定 6.1.1（SkillHub `7c7cd6f8c`；6.0.0 起 Plugin 是每個作業系統一個編譯好的執行檔，沒有 Python），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 6.1.1〉〈domain-memory 升級 4.2.0〉〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉〈domain-memory 升級 1.2.2〉〈domain-memory 1.2.4（patch）〉〈domain-memory 1.2.8（patch）〉〈domain-memory 1.2.18（patch）〉。
 
 ## 0. 現況
 
@@ -23,7 +23,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 
 ## 1. Plugin 指令與旗標
 
-學員都經 `dm.ps1`／`dm.sh`（→ `dmlib.py`）呼叫；`dmlib.expand()` 自動補 `--registry-root domain-memory`、`--repo-root .`，`verify-sources` 另補 `--source-map`、`--policy`，`init-signing-key` 補 `--key-file`。三組指令集合（`REGISTRY_REQUIRED`／`REGISTRY_OPTIONAL`／`REPO_ROOT`）與 4.2.0 的 `cli_parser.py` 完全一致（4.2.0：加 `describe-table`、`extract-sql-schema`、`reconcile-audit`、`refresh-indexes`，`record-approval` 收選用的兩個根目錄，刪 `migrate-evidence`、`migrate-registry`；3.0.0 起十個讀取指令不收 `--repo-root`）（1.2.0 加 `rebase-proposal`，63 個指令，1.2.3–1.2.18 沒有增減；1.2.10 起 dmlib 在 `DOMAIN_MEMORY_GIT_TIMEOUT` 沒設時給 60 秒，使用者設的值優先；1.0 起 `ERROR:` 拒絕訊息與 NOTE 都印在 stderr，`--save` 只存 stdout），相容性檢查會逐一比對（0.52.0 加了 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`，Registry 存在時 dmlib 會補，輸出多 `explained_by`；0.61.0 的 `redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root` 與 `--repo-root`，`coverage`、`promote-candidate` 接受 `--repo-root`）。
+學員都經 `dm.ps1`／`dm.sh`（→ `dmlib.py` → `engine/bin/windows-x86_64/domain-memory.exe` 或 `engine/bin/macos-universal/domain-memory`）呼叫；6.1.1 的集合由相容性檢查讀執行檔各指令的 `--help` 比對（5.0.0 刪 `describe-table`、`extract-sql-schema`）；`dmlib.expand()` 自動補 `--registry-root domain-memory`、`--repo-root .`，`verify-sources` 另補 `--source-map`、`--policy`，`init-signing-key` 補 `--key-file`。三組指令集合（`REGISTRY_REQUIRED`／`REGISTRY_OPTIONAL`／`REPO_ROOT`）與 4.2.0 的 `cli_parser.py` 完全一致（4.2.0：加 `describe-table`、`extract-sql-schema`、`reconcile-audit`、`refresh-indexes`，`record-approval` 收選用的兩個根目錄，刪 `migrate-evidence`、`migrate-registry`；3.0.0 起十個讀取指令不收 `--repo-root`）（1.2.0 加 `rebase-proposal`，63 個指令，1.2.3–1.2.18 沒有增減；1.2.10 起 dmlib 在 `DOMAIN_MEMORY_GIT_TIMEOUT` 沒設時給 60 秒，使用者設的值優先；1.0 起 `ERROR:` 拒絕訊息與 NOTE 都印在 stderr，`--save` 只存 stdout），相容性檢查會逐一比對（0.52.0 加了 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`，Registry 存在時 dmlib 會補，輸出多 `explained_by`；0.61.0 的 `redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root` 與 `--repo-root`，`coverage`、`promote-candidate` 接受 `--repo-root`）。
 
 | 指令 | 用到的旗標 | 出處 | 標記 |
 |---|---|---|---|
@@ -95,7 +95,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | Recovery d1 | `facilitator/recovery/d1/`（`make_recovery.py d1` 以 Plugin 現場產生，未簽章、未 commit Registry） | OKF |
 | Recovery d2～d3c | `facilitator/recovery/d2…d3c/`（從 bundle tag 重產，`repo.bundle` 帶簽章歷史） | OKF；Registry commit 7 個 |
 | 參考解答 d3a～d3c 的 `domain-memory/` | `evaluation/reference-solutions/*/domain-memory/`（含 D3 候選；不是 Git repo） | OKF（各跑過一次 `migrate-registry`） |
-| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-4.2.0.zip(.SHA256SUMS)` | 85 個 Plugin 檔案（2.x 刪 `registry-authoring.md`、`registry-maintenance.md`、`packaging.md` 等），`SHA OK 86 files` |
+| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-6.1.1.zip(.SHA256SUMS)` | 36 個 Plugin 檔案（engine 只帶 Windows、macOS 執行檔與 `manifest.json`，macOS 的是 755；不帶 Rust 原始碼與 Linux 執行檔），約 4.7 MB，`SHA OK 37 files` |
 | 打包清單 | `scripts/package-manifest-dlc.json` | 由 `release_materials.py` 自動 `--pin` |
 | 驗證證據 | `evaluation/dlc-validation-evidence.json` 的 `plugin_0_33_0_remeasure`、`plugin_0_52_0_remeasure`、`plugin_0_61_0_remeasure`、`plugin_1_1_0_remeasure`、`plugin_1_1_1_remeasure`、`plugin_1_2_2_remeasure`、`plugin_1_2_4_remeasure`、`plugin_1_2_8_remeasure`、`plugin_1_2_18_remeasure`、`plugin_4_2_0_remeasure` | 已記 |
 
@@ -126,6 +126,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | 1.2.18（`f76ca1e54` 匯出與封裝 ZIP，2026-10-19） | 32 PASS、0 CHANGED（不用改 dmlib 的指令集合；`QUOTED` 73 → 79，加主持指南第 19、20 條引用的字串） |
 | 4.2.0（`fefcbc5bb` 匯出，改任何檔案前，2026-10-24） | 15 PASS、7 CHANGED：dmlib 三組集合；`cite --start/--end`、`amend-policy --field/--value` 已刪；tools 自檢與 D1 重播停在 `cite`；`QUOTED` 少三個（D1 重播沒跑到 readiness） |
 | 4.2.0（封裝 ZIP，修改後，2026-10-24） | 32 PASS、0 CHANGED（dmlib 照 4.2.0 parser；學員旗標改 `cite --lines`、`amend-policy --set`；`QUOTED` 80 個） |
+| 6.1.1（`7c7cd6f8c` 封裝 ZIP，修改後，2026-10-30） | 33 PASS、0 CHANGED（dmlib 改跑執行檔、集合刪兩個指令；指令面改讀 `--help`；引用字串也找執行檔文字與 Plugin 文件；參考 Registry 多跑 `coverage`） |
 
 ## 6. 下次換版的步驟
 

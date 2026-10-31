@@ -12,6 +12,6 @@ description: 夥伴（Maintainer）在自己的對話裡，把這一段的成果
    - `git -c "user.name=DLC Maintainer" -c "user.email=maintainer@example.com" commit -S -m "訊息"`
    - `git log --show-signature -1`
 4. 回報 commit 編號和簽章那一行（應有 `Good "git" signature for maintainer@example.com`）。不顯示金鑰內容。
-5. 提示詞要 push 時才 push：同一次執行裡先啟用 `.venv`、設 `PYTHONUTF8=1`，再 `git push`（第一次加 `-u origin HEAD`）。回報 hook 印出的 `Git governance is valid for N commits.`。
+5. 提示詞要 push 時才 push：`git push`（第一次加 `-u origin HEAD`）。回報 hook 印出的 `Git governance is valid for N commits.`。
 
 簽章錯誤或被 hook 擋下時：不改 Git 設定、不重做 commit、不用 `--no-verify`，貼出錯誤訊息、用白話解釋原因，停下。

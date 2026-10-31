@@ -4,8 +4,10 @@ Usage:
     py -3.13 -X utf8 scripts/vendor_dlc_plugin.py --source <exported plugin dir> [--check]
 
 Writes agentic-workshop/07-dlc-ddd/participant/vendor/domain-memory-<version>.zip (top folder
-domain-memory/, runtime files only: development files and caches excluded, sorted members, fixed timestamps) and <zip>.SHA256SUMS with one
-line per member file plus a final line for the ZIP itself (sha256sum format).
+domain-memory/, runtime files only: no Rust source, build files, tests, evals or caches; of engine/ only the Windows
+and macOS executables and their manifest, the macOS one with its executable bit; sorted members, fixed timestamps)
+and <zip>.SHA256SUMS with one line per member file plus a final line for the ZIP itself (sha256sum format).
+Each shipped executable must match the SHA-256 in the plugin's engine/bin/manifest.json.
 --check rebuilds in memory and exits 1 when the vendored files differ.
 Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
     git -C <SkillHub> archive <commit> .claude/skills/domain-memory | tar -x -C <scratch>
@@ -25,8 +27,12 @@ ROOT = Path(__file__).resolve().parents[1]
 VENDOR = ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor"
 EXCLUDED_DIRS = {".pytest_cache", ".ruff_cache", "__pycache__", ".git", ".venv"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
-# The plugin README: everything except evals/ and scripts/test_*.py ships; README.md and ruff.toml are developer-only.
+# Developer-only top-level entries: README.md is for changing the plugin; evals/ left the plugin in 6.0.0.
 EXCLUDED_TOP = {"evals", "README.md", "ruff.toml"}
+# Of engine/ only these ship: Rust source, build files, tests and contract/cli.json (compiled into the executable)
+# stay out, and Linux is not a learner platform.
+ENGINE_SHIPPED = {"bin/manifest.json", "bin/windows-x86_64/domain-memory.exe", "bin/macos-universal/domain-memory"}
+EXECUTABLE_BIT = "domain-memory/engine/bin/macos-universal/domain-memory"
 TOP = "domain-memory"
 
 
@@ -35,12 +41,23 @@ def plugin_files(source: Path) -> list[tuple[str, bytes]]:
     for path in source.rglob("*"):
         rel = path.relative_to(source)
         if (path.is_dir() or EXCLUDED_DIRS & set(rel.parts) or path.suffix in EXCLUDED_SUFFIXES
-                or rel.parts[0] in EXCLUDED_TOP or (rel.parts[0] == "scripts" and rel.name.startswith("test_"))):
+                or rel.parts[0] in EXCLUDED_TOP or (rel.parts[0] == "scripts" and rel.name.startswith("test_"))
+                or (rel.parts[0] == "engine" and "/".join(rel.parts[1:]) not in ENGINE_SHIPPED)):
             continue
         if path.is_symlink():
             raise ValueError(f"Symlink not allowed in vendored plugin: {rel.as_posix()}")
         files.append((f"{TOP}/{rel.as_posix()}", path.read_bytes()))
+    check_binaries(source, dict(files))
     return sorted(files)
+
+
+def check_binaries(source: Path, files: dict[str, bytes]) -> None:
+    """Every shipped executable is present and matches the SHA-256 the plugin's own manifest records."""
+    recorded = json.loads((source / "engine/bin/manifest.json").read_text(encoding="utf-8"))["binaries"]
+    for rel in sorted(ENGINE_SHIPPED - {"bin/manifest.json"}):
+        data = files.get(f"{TOP}/engine/{rel}")
+        if data is None or hashlib.sha256(data).hexdigest() != recorded[rel.removeprefix("bin/")]["sha256"]:
+            raise ValueError(f"engine/{rel} is missing or does not match engine/bin/manifest.json")
 
 
 def build(source: Path) -> tuple[str, bytes, bytes]:
@@ -52,7 +69,8 @@ def build(source: Path) -> tuple[str, bytes, bytes]:
         for name, data in files:
             info = zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o100644 << 16
+            info.create_system = 3  # Unix host on every build machine, so macOS unzip restores the mode below
+            info.external_attr = (0o100755 if name == EXECUTABLE_BIT else 0o100644) << 16
             archive.writestr(info, data)
     data = buffer.getvalue()
     name = f"domain-memory-{version}.zip"
@@ -93,6 +111,9 @@ def main(argv: list[str] | None = None) -> int:
         print(("UP-TO-DATE " if same else "STALE ") + zip_path.relative_to(ROOT).as_posix())
         return 0 if same else 1
     VENDOR.mkdir(parents=True, exist_ok=True)
+    for old in VENDOR.glob("domain-memory-*.zip*"):  # one pinned version at a time
+        if old.name not in (zip_path.name, sums_path.name):
+            old.unlink()
     zip_path.write_bytes(data)
     sums_path.write_bytes(sums)
     print(json.dumps({"zip": zip_path.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(data).hexdigest(),

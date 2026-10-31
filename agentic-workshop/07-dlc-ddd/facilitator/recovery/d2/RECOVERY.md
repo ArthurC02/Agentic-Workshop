@@ -8,7 +8,7 @@
 
 `bash` 區塊是 Windows Git Bash 的寫法。macOS 用同一組 bash 指令（一樣包在 `( set -e … )`），只換下面幾處。
 
-- Python：`py -3.13` 換成 `python3.13`；`.venv/Scripts/python.exe` 換成 `.venv/bin/python`；`source .venv/Scripts/activate` 換成 `source .venv/bin/activate`。
+- Python：`py -3.13` 換成 `python3.13`；`.venv/Scripts/python.exe` 換成 `.venv/bin/python`。
 - 找不到 `~/Downloads/recovery-dlc-d2.zip`：Safari 可能已自動解壓並刪掉 zip，到 Safari › 設定 › 一般，取消「下載後打開『安全』的檔案」，再重新下載。
 - `dm.sh` 出現 permission denied：先執行 `chmod +x ../../tools/dm.sh`（只開執行權限）。
 
@@ -119,21 +119,17 @@ py -3.13 -m venv .venv
 **看到什麼算成功**：pytest 全部 passed（Recovery 的套件可能多 1 個 warning，屬預期）；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 全部 `current`。結果寫進 `notes/recovery-d2.md` 的「環境與驗證」，最後一行寫「D2 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
 
 
-## 4. （選做）push 檢查（夥伴的 Agent 對話，步驟 3 建好 `.venv` 之後）
+## 4. （選做）push 檢查（夥伴的 Agent 對話，步驟 2 之後）
 
 Recovery 沒有 CP-D2-001，D2 檢查點 6 的 push 在這裡補做；hook 一次檢查所有碰到 Registry 的 commit。不 commit。
 
 ```powershell
 py -3.13 -X utf8 ..\..\tools\setup_remote.py
-.\.venv\Scripts\Activate.ps1
-$env:PYTHONUTF8 = '1'
 git push -u origin HEAD
 ```
 
 ```bash
 py -3.13 -X utf8 ../../tools/setup_remote.py
-source .venv/Scripts/activate
-export PYTHONUTF8=1
 git push -u origin HEAD
 ```
 

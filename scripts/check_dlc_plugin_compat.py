@@ -7,11 +7,13 @@
     ... --source <scratch>/.claude/skills/domain-memory
 
 Everything runs in a temp sandbox; the repo, the reference bundle and the private key are never written or used.
-Checks: (1) plugin commands/flags vs dmlib and the commands learners run, (2) participant tools self-test,
+Checks: (1) plugin commands/flags (read from the executable's own --help) vs dmlib and the commands learners run,
+(2) participant tools self-test,
 (3) D1 replay (make_recovery.build_d1) plus the D1/D3 read commands, (4) reference Registry from the bundle:
 validate, verify-evidence/sources/audit, verify-git-governance, Change Packages, export (OKF records), push through
 the pre-push hook (existing signed history, no key needed), (5) every plugin string the Runbook, Recovery or
-the deck quotes to learners. Prints PASS/CHANGED per item; exit 1 when anything CHANGED.
+the deck quotes to learners (found in this run's output or in the executable's own text). Prints PASS/CHANGED
+per item; exit 1 when anything CHANGED.
 Inventory and upgrade plan: docs/planning/domain-memory-touchpoints.md.
 """
 from __future__ import annotations
@@ -19,6 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -29,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-4.2.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.1.1.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -118,18 +121,27 @@ def unpack(source: Path, sandbox: Path) -> Path:
     return sandbox / "plugin/domain-memory"
 
 
+def usage_flags(usage: str) -> dict[str, bool]:
+    """{--flag: required} from one argparse-style usage block: a flag outside [ ] is required."""
+    required = usage
+    while (shorter := re.sub(r"\[[^\[\]]*\]", "", required)) != required:
+        required = shorter
+    return {flag: flag in re.findall(r"--[\w-]+", required) for flag in re.findall(r"--[\w-]+", usage)}
+
+
 def parser_surface(plugin: Path) -> dict[str, dict[str, bool]]:
-    """{command: {--flag: required}} read from the plugin's own argparse parser (in a child process)."""
-    code = ("import argparse,json,sys;sys.path.insert(0,sys.argv[1]);"
-            "from domain_registry.cli_parser import build_parser;p=build_parser();"
-            "s=next(a for a in p._actions if isinstance(a,argparse._SubParsersAction));"
-            "print(json.dumps({n:{o:a.required for a in sp._actions for o in a.option_strings if o.startswith('--')}"
-            " for n,sp in s.choices.items()}))")
-    done = subprocess.run([sys.executable, "-I", "-c", code, str(plugin / "scripts")], capture_output=True,
-                          text=True, encoding="utf-8")
-    if done.returncode:
-        raise SystemExit(f"cannot read the plugin parser:\n{done.stderr}")
-    return json.loads(done.stdout)
+    """{command: {--flag: required}} read from the executable's own --help (6.0.0: no Python parser to import)."""
+    exe = str(plugin / dmlib.executable_path())
+
+    def help_text(*args: str) -> str:
+        done = subprocess.run([exe, *args, "--help"], capture_output=True, text=True, encoding="utf-8")
+        if done.returncode:
+            raise SystemExit(f"cannot read {' '.join(args) or 'the'} --help:\n{done.stderr}")
+        return done.stdout
+
+    listing = help_text().split("positional arguments:", 1)[1].split("\noptions:", 1)[0]
+    commands = re.findall(r"^    ([a-z][\w-]*)", listing, re.M)
+    return {c: usage_flags(help_text(c).split("\n\n", 1)[0].replace("-h, --help", "")) for c in commands}
 
 
 def check_commands(plugin: Path) -> None:
@@ -141,7 +153,7 @@ def check_commands(plugin: Path) -> None:
             "REPO_ROOT": ({c for c, o in cli.items() if "--repo-root" in o}, dmlib.REPO_ROOT)}
     for name, (plugin_set, ours) in sets.items():
         extra, missing = sorted(plugin_set - ours), sorted(ours - plugin_set)
-        report(not extra and not missing, f"dmlib.{name} vs cli_parser",
+        report(not extra and not missing, f"dmlib.{name} vs --help",
                f"plugin adds {extra}, plugin drops {missing}" if extra or missing else f"{len(ours)} commands")
     gone = [f"{c} {f}".strip() for c, flags in LEARNER_COMMANDS.items() for f in ([""] + flags)
             if c not in cli or (f and f not in cli[c])]
@@ -204,7 +216,8 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
               *(["validate-change-package", "--package-root", f"domain-memory/changes/CP-CORE-00{n}"] for n in (1, 2)),
               # 1.2.2: verify-proposal on an applied package is a harmless re-run (1.1.x packages unchanged).
               *(["verify-proposal", "--package-root", f"domain-memory/changes/CP-CORE-00{n}"] for n in (1, 2)),
-              ["install-git-hitl-hook"], ["governance-readiness"]]
+              # 6.0: the executable keeps short strings out of its text, so produce the reviewed-rule proof rows.
+              ["coverage"], ["install-git-hitl-hook"], ["governance-readiness"]]
     for args in checks:
         done = dm(repo, plugin, *args)
         report(done.returncode == 0, f"reference {' '.join(args)}", "" if done.returncode == 0 else
@@ -217,8 +230,8 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     report(sorted(exported) == sorted(dmlib.ASSETS) and records and not odd, "reference export (OKF records)",
            f"{len(exported)} assets, {len(records)} records" + (f"; review block or no verified: {odd}" if odd else ""))
     sh(["git", "init", "-q", "--bare", str(sandbox / "remote.git")], sandbox)
-    path = os.pathsep.join([str(Path(sys.executable).parent), os.environ.get("PATH", "")])
-    done = sh(["git", "push", "-u", str(sandbox / "remote.git"), "HEAD:main"], repo, {"PATH": path})
+    # 5.1+: the hooks run the plugin executable, so no Python needs to be on PATH.
+    done = sh(["git", "push", "-u", str(sandbox / "remote.git"), "HEAD:main"], repo)
     # 0.58+: the hook verifies a push's Registry commits in one call and prints one line for them all.
     output = done.stdout + done.stderr
     expected = f"Git governance is valid for {REGISTRY_COMMITS} commits."
@@ -229,8 +242,7 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     dm(repo, plugin, "install-pre-commit-hook")
     cited, moved = "src/smart_ticket/domain/discounts.py", "src/smart_ticket/domain/discount_rules.py"
     sh(["git", "mv", cited, moved], repo)
-    done = sh(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "-m", "rename"], repo,
-              {"PATH": path})
+    done = sh(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "-m", "rename"], repo)
     sh(["git", "mv", moved, cited], repo)
     output = done.stdout + done.stderr
     report(done.returncode != 0 and "relocate-evidence --from" in output, "reference pre-commit hook refuses a rename",
@@ -238,8 +250,10 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
 
 
 def check_quoted(plugin: Path) -> None:
-    source = "\n".join(p.read_text(encoding="utf-8", errors="replace") for p in (plugin / "scripts").rglob("*.py")
-                       if not p.name.startswith("test_"))
+    # The executable holds its messages as UTF-8 literals (sentences built from variables are matched in parts);
+    # the compiler may inline a short literal into code, so the plugin's own docs count too.
+    source = "\n".join([(plugin / dmlib.executable_path()).read_bytes().decode("utf-8", errors="replace"),
+                        *(p.read_text(encoding="utf-8") for p in plugin.rglob("*.md"))])
     seen = "\n".join(transcript)
     missing = [q for q in QUOTED if q not in seen and q not in source]
     report(not missing, "learner-quoted plugin strings", f"missing: {missing}" if missing else

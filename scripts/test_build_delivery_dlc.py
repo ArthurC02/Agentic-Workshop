@@ -26,6 +26,22 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def fake_engine(plugin: Path) -> None:
+    """6.0+ layout: committed executables, their manifest, and the Rust sources that must not ship."""
+    bins = {"windows-x86_64/domain-memory.exe": b"MZexe", "macos-universal/domain-memory": b"\xcf\xfa\xed\xfe",
+            "linux-x86_64/domain-memory": b"\x7fELF"}
+    files = {f"engine/bin/{rel}": body for rel, body in bins.items()}
+    files["engine/bin/manifest.json"] = json.dumps({"binaries": {rel: {"sha256": sha(body)}
+                                                                  for rel, body in bins.items()}}).encode()
+    for dev in ("engine/src/main.rs", "engine/tests/docs.rs", "engine/parity/cases.json", "engine/Cargo.toml",
+                "engine/Cargo.lock", "engine/rust-toolchain.toml", "engine/.gitignore", "engine/README.md",
+                "engine/contract/cli.json", "engine/examples/build_binaries.rs"):
+        files[dev] = b"dev"
+    for name, body in files.items():
+        (plugin / name).parent.mkdir(parents=True, exist_ok=True)
+        (plugin / name).write_bytes(body)
+
+
 class VendorPluginTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -37,6 +53,7 @@ class VendorPluginTests(unittest.TestCase):
                            "ruff.toml": "dev", "CHANGELOG.md": "log"}.items():
             (self.src / name).parent.mkdir(parents=True, exist_ok=True)
             (self.src / name).write_bytes(body.encode())
+        fake_engine(self.src)
 
     def tearDown(self):
         self.tmp.cleanup()
@@ -48,20 +65,31 @@ class VendorPluginTests(unittest.TestCase):
         with zipfile.ZipFile(io.BytesIO(data)) as archive:
             self.assertEqual(archive.namelist(), ["domain-memory/.claude-plugin/plugin.json",
                                                   "domain-memory/CHANGELOG.md", "domain-memory/SKILL.md",
+                                                  "domain-memory/engine/bin/macos-universal/domain-memory",
+                                                  "domain-memory/engine/bin/manifest.json",
+                                                  "domain-memory/engine/bin/windows-x86_64/domain-memory.exe",
                                                   "domain-memory/scripts/tool.py"])
             self.assertEqual(archive.read("domain-memory/scripts/tool.py"), b"x = 1\r\n")  # bytes untouched
             self.assertTrue(all(i.date_time == (2026, 1, 1, 0, 0, 0) for i in archive.infolist()))
+            modes = {i.filename: (i.create_system, i.external_attr >> 16) for i in archive.infolist()}
+            self.assertEqual(modes["domain-memory/engine/bin/macos-universal/domain-memory"], (3, 0o100755))
+            self.assertEqual(modes["domain-memory/SKILL.md"], (3, 0o100644))
         out = Path(self.tmp.name) / name
         out.write_bytes(data)
         out.with_name(name + ".SHA256SUMS").write_bytes(sums)
         self.assertEqual(vendor.verify(out), [])
         self.assertEqual(dlc.vendor_check({dlc.VENDOR_PACKED: data, dlc.VENDOR_PACKED + ".SHA256SUMS":
-                                           sums.replace(name.encode(), b"domain-memory-4.2.0.zip")}), True)
+                                           sums.replace(name.encode(), b"domain-memory-6.1.1.zip")}), True)
         out.write_bytes(data + b"x")
         self.assertTrue(vendor.verify(out))
 
+    def test_refuses_an_executable_that_does_not_match_the_plugin_manifest(self):
+        (self.src / "engine/bin/windows-x86_64/domain-memory.exe").write_bytes(b"tampered")
+        with self.assertRaises(ValueError):
+            vendor.build(self.src)
+
     def test_vendored_repo_copy_matches_its_sums(self):
-        target = vendor.VENDOR / "domain-memory-4.2.0.zip"
+        target = vendor.VENDOR / "domain-memory-6.1.1.zip"
         if not target.exists():
             self.skipTest("plugin not vendored yet")
         self.assertEqual(vendor.verify(target), [])
@@ -80,7 +108,8 @@ class DlcBuilderTests(unittest.TestCase):
         self.write("agentic-workshop/07-dlc-ddd/evaluation/answer.md", "# private\n")
         plugin = self.root / "plugin"
         (plugin / ".claude-plugin").mkdir(parents=True)
-        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "4.2.0"}')
+        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "6.1.1"}')
+        fake_engine(plugin)
         _name, data, sums = vendor.build(plugin)
         (self.root / dlc.VENDOR_ZIP).parent.mkdir(parents=True)
         (self.root / dlc.VENDOR_ZIP).write_bytes(data)

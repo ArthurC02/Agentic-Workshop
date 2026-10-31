@@ -43,6 +43,18 @@ class UnitTests(unittest.TestCase):
                 for k, v in saved.items():
                     os.environ.pop(k, None) if v is None else os.environ.__setitem__(k, v)
 
+    def test_doctor_flags_an_executable_that_cannot_run(self):
+        # 6.0 起 Plugin 是執行檔：macOS 解壓後沒有執行權限、Windows 被擋下，都要列為 [!!] 並給修正。
+        import doctor
+        with tempfile.TemporaryDirectory() as root:
+            exe = Path(root) / dmlib.executable_path()
+            exe.parent.mkdir(parents=True)
+            exe.write_bytes(b"not a program")
+            level, _, detail = doctor.executable_check(Path(root))
+            self.assertEqual(level, "!!", detail)
+            if os.name != "nt":
+                self.assertIn("chmod +x", detail)
+
     def test_expand_adds_fixed_roots_only_where_accepted(self):
         self.assertEqual(dmlib.expand(["validate"], True),
                          ["validate", "--registry-root", "domain-memory", "--repo-root", "."])

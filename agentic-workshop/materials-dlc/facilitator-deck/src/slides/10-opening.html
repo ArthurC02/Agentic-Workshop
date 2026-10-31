@@ -82,7 +82,7 @@
   <p class="callout seg-start"><b>從這裡開始</b>Runbook『開場與環境』› 檢查點 1</p>
   <aside class="notes">
     <p><b>說（約 20 秒）</b>：「14 分鐘：先把環境備好。四個檢查點，每個都分四塊：① 為什麼、② 貼給 Agent、③ 確認結果、④ 補充。③ 回『成功』就往下；回『失敗』就貼『失敗時』。提示詞都在 Runbook；檢查點頁會列出要貼哪一段、要判斷什麼、幾分前完成。」</p>
-    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 86 files）由 check Skill 對照實際輸出檢查。之後每段都一樣。</p>
+    <p><b>檢查點頁備註的「看」</b>：學員自己判斷的項目對應 Runbook ①（例如 D1 選來源、D2 核准），Agent 回報的數字與檔案（例如 76 passed、SHA OK 37 files）由 check Skill 對照實際輸出檢查。之後每段都一樣。</p>
     <p><b>操作</b>：本頁按 <b>T</b> 啟動 14:00 段落計時（00:00＝第 0 分）。說完翻到檢查點 1；之後每到時間點翻到下一個檢查點頁，本頁時間軸會依計時自動標示目前檢查點（各段都一樣）。配對放到檢查點 4（第 11 分）。</p>
     <p><b>時間（演練實測）</b>：開場四個檢查點約 15 分鐘，檢查點 1 最久（約 7 分鐘：Agent 建 venv、安裝套件加第一次測試約 2–3 分鐘）；學員包在開場說明時就下載好，可省下約 1.5 分鐘。check 在程式沒改時沿用上次測試結果，不重跑。Agent 跑 check 時學員讀 ④，不要另貼 ③ 重跑一次。</p>
     <p><b>降級</b>：第 14 分鐘仍有人環境檢查未過 → 兩人一機繼續，D1 起以夥伴機器為主；記錄耗時，不延長本段。</p>
@@ -121,7 +121,7 @@
   <p class="cp-next"><b>第 8 分前完成</b><span>→ 下一步：檢查點 3 找出只能靠人審查的錯</span></p>
   <aside class="notes">
     <p><b>說（06:00／第 6 分）</b>：「第 6 分。檢查點 2：我們要建的共用模型，Agent 會一直照著它做事，所以存它的工具要先確認沒被動過；Agent 核對，你看成功就好。」</p>
-    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 86 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。</p>
+    <p><b>看</b>：Agent 回報是否為 <code>SHA OK 37 files</code>；有沒有把 Plugin 展開進 Repo 內（不需要）。macOS 的 Agent 核對後會對執行檔做 <code>chmod +x</code> 與 <code>xattr -d com.apple.quarantine</code>（只動那一個檔），屬預期。</p>
     <p><b>介入訊號</b>：<code>SHA MISMATCH</code> → 重新下載學員包再請 Agent 重跑，不要讓 Agent 修改 Plugin 檔案。</p>
   </aside>
 </section>
@@ -138,8 +138,8 @@
   <p class="cp-next"><b>第 11 分前完成</b><span>→ 下一步：檢查點 4 確認環境並建立起始版本</span></p>
   <aside class="notes">
     <p><b>說（08:00／第 8 分）</b>：「第 8 分。檢查點 3：Agent 用兩個唯讀檢查看這個 Repo。記住：這個 Repo 沒有架構檢查，程式越過 Context 邊界只有你們抓得到，D3 審查時會再問。」</p>
-    <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] registry_tools.py ...</code>）；結果應是 <code>"state": "brownfield"</code>、<code>"confidence": "high"</code>，quality-gates 只有 <code>"tool": "pytest"</code>（沒有 lint、型別、架構檢查）。</p>
-    <p><b>介入訊號</b>：出現 cp950 UnicodeDecodeError → Agent 沒走 dm 腳本；請學員說「照 AGENTS.md『怎麼跑』，Plugin 一律經 dm 腳本」，還是不行就說「請先讀 AGENTS.md」。</p>
+    <p><b>看</b>：Agent 是否經 dm 腳本執行（回報裡有 <code>[dm] domain-memory ...</code>）；結果應是 <code>"state": "brownfield"</code>、<code>"confidence": "high"</code>，quality-gates 只有 <code>"tool": "pytest"</code>（沒有 lint、型別、架構檢查）。</p>
+    <p><b>介入訊號</b>：Agent 直接呼叫執行檔、少了 <code>--registry-root</code> 而被拒，或自己找別的位置的執行檔 → 請學員說「照 AGENTS.md『怎麼跑』，Plugin 一律經 dm 腳本」，還是不行就說「請先讀 AGENTS.md」。macOS 出現 permission denied 或「無法打開」→ 主持指南第 5 節常見問題第 3 條。</p>
     <p><b>提示</b>：H1：「請 Agent 說明它用哪種終端機、經過哪支 dm 腳本。」</p>
   </aside>
 </section>
@@ -147,7 +147,7 @@
 <section class="slide slide-cp" data-seg="dlc-opening" data-title="檢查點 4 · 確認環境並建立起始版本" data-minute="11">
   <p class="kicker">檢查點 4 / 4 · 第 11–14 分鐘</p>
   <h2 class="title">確認環境並建立起始版本</h2>
-  <p class="cp-why"><b>為什麼</b>確認 Python 並建立起始版本；D2 推送檢查要用到</p>
+  <p class="cp-why"><b>為什麼</b>確認 Python 與模型工具能用，建立起始版本</p>
   <p class="cp-label">現在做</p>
   <ol class="cp-flow">
     <li><b>貼 ②「確認 Python」</b><span>Runbook › 檢查點 4；也建立起始 commit</span></li>
@@ -157,10 +157,10 @@
   <p class="cp-next"><b>第 14 分前完成</b><span>→ 下一步：D1 共同語言與邊界；還沒有 D2 夥伴的，現在找好</span></p>
   <p class="sync-cue" data-sync="夥伴">⏸ 看投影</p>
   <aside class="notes">
-    <p><b>說（11:00／第 11 分）</b>：「第 11 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名。D2 push 前，Git 會自動執行一段檢查腳本（pre-push hook），它在 PATH 上找 python3 或 python（3.10 以上）；Windows 上常只有 py 啟動器或 Store 捷徑，所以 push 前要先啟用 .venv。這裡沒確認好，D2 push 就會卡住。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
+    <p><b>說（11:00／第 11 分）</b>：「第 11 分。最後一個：python 必須是真的 3.13，不是 Microsoft Store 的捷徑別名；健檢也會確認模型工具的執行檔在這台電腦跑得起來，D2 push 前的自動檢查（pre-push hook）就是用它。請 Agent 確認給你看。還沒有 D2 夥伴的，現在找好：兩人一組，選 D1 做得比較完整的那台機器，它的主人當提案者，另一人當夥伴（持鑰人）；角色細節在 D2 解鎖時說明。」</p>
     <p><b>省時</b>：② 最後已請 Agent 用 check 自己檢查，最後一行回成功／失敗，學員不必再貼 ③；找夥伴放在等 Agent 的時間。</p>
     <p><b>看</b>：Agent 回報的 python 路徑含不含 <code>WindowsApps</code>；doctor 有沒有 <code>[!!]</code>；<code>notes/opening.md</code> 是否有四段結果；是否已找到夥伴。</p>
-    <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（在同一個指令裡先啟用 .venv，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
+    <p><b>介入訊號</b>：Microsoft Store 的捷徑別名 → 請學員貼檢查點 4 的「失敗時」提示詞，讓 Agent 說明原因並提出修正（改用 .venv 裡的 Python，或關閉 App 執行別名），學員同意再做；落單者就近併組，三人組第三人當觀察員（Observer）。</p>
   </aside>
 </section>
 

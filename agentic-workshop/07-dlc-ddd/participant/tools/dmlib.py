@@ -1,4 +1,4 @@
-"""DLC 輔助工具共用模組：找到 domain-memory Plugin，補上固定參數後呼叫 registry_tools.py。
+"""DLC 輔助工具共用模組：找到 domain-memory Plugin 的執行檔，補上固定參數後呼叫它。
 
 直接執行時就是 dm.ps1／dm.sh 背後的命令前綴：
 
@@ -7,11 +7,13 @@
 - 在 Repo 根目錄執行；自動補 `--registry-root domain-memory` 與 `--repo-root .`（若該指令接受且你沒給）。
 - `--save 檔案`：把 JSON 輸出以 UTF-8 存檔（PowerShell 5.1 的 `>` 會存成 UTF-16，之後的工具讀不到）。
 - Plugin 位置依序：`--plugin <路徑>`、環境變數 DOMAIN_MEMORY_PLUGIN、tools/ 旁的 vendor/domain-memory/。
+- 執行檔依作業系統：Windows `engine/bin/windows-x86_64/domain-memory.exe`，macOS `engine/bin/macos-universal/domain-memory`。
 """
 from __future__ import annotations
 
 import json
 import os
+import platform
 import re
 import subprocess
 import sys
@@ -21,13 +23,13 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-4.2.0")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-6.1.1")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 4.2.0 的 cli_parser.py 整理（只讀，不 import Plugin）；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 6.1.1 各指令的 --help 整理；scripts/check_dlc_plugin_compat.py 逐一比對。
 REGISTRY_REQUIRED = {
     "amend-policy", "analyze-boundary", "boundary-impact", "brief", "confirm-sources", "coverage",
-    "demote-local-reviews", "dependents", "discard-harvest", "export", "extract-sql-schema", "get-context",
+    "demote-local-reviews", "dependents", "discard-harvest", "export", "get-context",
     "get-record", "governance-readiness", "harvest", "harvest-candidates", "install-git-hitl-hook",
     "install-pre-commit-hook", "lookup", "mcp-serve", "probe", "promote-candidate", "rebase-proposal", "recite",
     "reconcile-audit", "record-test-result", "recover-registry-update", "refine-sources", "refresh-indexes",
@@ -37,13 +39,13 @@ REGISTRY_REQUIRED = {
 }
 # 可選 --registry-root：只有 domain-memory/ 已存在時才補。
 REGISTRY_OPTIONAL = {
-    "change-coupling", "cite", "describe-table", "init-change-package", "readiness", "record-approval",
+    "change-coupling", "cite", "init-change-package", "readiness", "record-approval",
     "redraft-proposal", "supersede-proposal", "validate-change-package",
 }
 REPO_ROOT = {
     "audit-attestations", "boundary-impact", "brief", "change-coupling", "cite", "compare-registry",
-    "confirm-sources", "counterfactual", "coverage", "demote-local-reviews", "describe-table", "discard-harvest",
-    "discover-sources", "export", "extract-sql-schema", "governance-readiness", "harvest", "harvest-candidates",
+    "confirm-sources", "counterfactual", "coverage", "demote-local-reviews", "discard-harvest",
+    "discover-sources", "export", "governance-readiness", "harvest", "harvest-candidates",
     "init-domain-memory", "init-signing-key", "install-git-hitl-hook", "install-pre-commit-hook", "mcp-serve",
     "probe", "promote-candidate", "quality-gates", "readiness", "rebase-proposal", "recite", "record-approval",
     "record-test-result", "recover-registry-update", "redraft-proposal", "refine-sources", "refresh-listing",
@@ -53,14 +55,31 @@ REPO_ROOT = {
 }
 
 
+def executable_path() -> str:
+    """這台電腦要用的 Plugin 執行檔，相對 Plugin 資料夾。"""
+    if os.name == "nt":
+        return "engine/bin/windows-x86_64/domain-memory.exe"
+    if sys.platform == "darwin":
+        return "engine/bin/macos-universal/domain-memory"
+    return f"engine/bin/{'linux-x86_64' if platform.machine() == 'x86_64' else 'unsupported'}/domain-memory"
+
+
 def plugin_root(flag: str | None = None) -> Path:
     for candidate in (flag, os.environ.get("DOMAIN_MEMORY_PLUGIN"), *DEFAULT_PLUGIN_DIRS):
-        if candidate and (Path(candidate) / "scripts" / "registry_tools.py").is_file():
+        if candidate and (Path(candidate) / executable_path()).is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        "找不到 domain-memory Plugin。請把 vendor/domain-memory-4.2.0.zip 解壓到 vendor/domain-memory/，"
-        "或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
+        f"找不到 domain-memory Plugin 的執行檔 {executable_path()}。請把 vendor/domain-memory-6.1.1.zip 解壓到 "
+        "vendor/domain-memory/，或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
+
+
+def executable(plugin: str | None = None) -> Path:
+    """Plugin 執行檔的完整路徑；macOS 解壓後沒有執行權限時，說明怎麼修（只修這一個檔）。"""
+    exe = plugin_root(plugin) / executable_path()
+    if os.name != "nt" and not os.access(exe, os.X_OK):
+        raise SystemExit(f'Plugin 執行檔沒有執行權限：{exe}。修正（只動這一個檔）：chmod +x "{exe}"')
+    return exe
 
 
 def expand(args: list[str], registry_exists: bool | None = None) -> list[str]:
@@ -108,8 +127,7 @@ def env() -> dict[str, str]:
 
 
 def command_line(args: list[str], plugin: str | None = None) -> list[str]:
-    script = plugin_root(plugin) / "scripts" / "registry_tools.py"
-    return [sys.executable, "-X", "utf8", str(script), *expand(args)]
+    return [str(executable(plugin)), *expand(args)]
 
 
 def run(args: list[str], plugin: str | None = None, check: bool = True) -> subprocess.CompletedProcess:
@@ -166,7 +184,7 @@ def main(argv: list[str]) -> int:
         index = argv.index("--save")
         save, argv = argv[index + 1], argv[:index] + argv[index + 2:]
     cmd = command_line(argv, plugin)
-    print("[dm] registry_tools.py " + " ".join(cmd[4:]), file=sys.stderr)
+    print("[dm] domain-memory " + " ".join(cmd[1:]), file=sys.stderr)
     if save is None:
         return subprocess.run(cmd, env=env()).returncode
     done = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=env())

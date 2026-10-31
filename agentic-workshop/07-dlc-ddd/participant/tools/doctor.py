@@ -20,7 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dmlib  # noqa: E402
 
-PLUGIN_VERSION = "4.2.0"
+PLUGIN_VERSION = "6.1.1"
 WINDOWS = os.name == "nt"
 
 
@@ -50,6 +50,26 @@ def key_checks(repo: Path) -> list[tuple[str, str, str]]:
     return [("OK", "金鑰在 Repo 外", f"預設金鑰資料夾 {keys}")]
 
 
+def executable_check(root: Path) -> tuple[str, str, str]:
+    """Plugin 執行檔跑得起來：macOS 要有執行權限、沒有下載隔離標記；Windows 要沒被安全功能擋下。"""
+    exe = root / dmlib.executable_path()
+    label = "Plugin 執行檔能執行"
+    fixes = []
+    if not WINDOWS:
+        if not os.access(exe, os.X_OK):
+            fixes.append(f'chmod +x "{exe}"')
+        if run("xattr", "-p", "com.apple.quarantine", str(exe))[0] == 0:
+            fixes.append(f'xattr -d com.apple.quarantine "{exe}"')
+    if fixes:
+        return ("!!", label, "修正（只動這一個檔）：" + "；".join(fixes))
+    code, out = run(str(exe), "--help")
+    if code == 0 and "usage: domain-memory" in out:
+        return ("OK", label, str(exe))
+    return ("!!", label, f"{exe} 無法執行（exit {code}）：{out[:200]}。" + (
+        "多半是 Windows 安全功能（智慧型應用程式控制、Defender）擋下未簽章的執行檔，請找主持人。" if WINDOWS else
+        "請找主持人。"))
+
+
 def checks(plugin: str | None) -> list[tuple[str, str, str]]:
     """回傳 (等級, 項目, 說明或修正)；等級為 OK、!!、--。"""
     results = []
@@ -68,18 +88,6 @@ def checks(plugin: str | None) -> list[tuple[str, str, str]]:
         level = "!!" if locale.getpreferredencoding(False).lower() in ("cp950", "big5", "mbcs") else "--"
         results.append((level, "UTF-8 模式（-X utf8）",
                         "所有 Plugin 指令請經 tools/dm.ps1 或 dm.sh（已固定 -X utf8），否則 cp950 會 UnicodeDecodeError。"))
-    # 與 pre-push hook 相同：先找 python3、再找 python，要 3.10 以上（Store 捷徑跑不起來，等於沒有）。
-    label = "PATH 上的 python3／python ≥ 3.10（pre-push hook 會用）"
-    for name in ("python3", "python"):
-        python = shutil.which(name)
-        code, out = run(python, "--version") if python and "WindowsApps" not in python else (1, "")
-        if code == 0 and version_tuple(out) >= (3, 10):
-            results.append(("OK", label, f"{python} → {out}"))
-            break
-    else:
-        results.append(("!!", label, "找不到。push 前在同一次執行先啟用 .venv：" + (
-            "PowerShell `.\\.venv\\Scripts\\Activate.ps1`；Git Bash `source .venv/Scripts/activate`。" if WINDOWS else
-            "`source .venv/bin/activate`。")))
     code, out = run("git", "--version")
     git_ok = code == 0 and version_tuple(out) >= (2, 34)
     results.append(("OK" if git_ok else "!!", "git ≥ 2.34（SSH 簽章）", out if git_ok else
@@ -96,6 +104,7 @@ def checks(plugin: str | None) -> list[tuple[str, str, str]]:
         results.append(("OK" if version == PLUGIN_VERSION else "!!", "domain-memory Plugin",
                         f"{root}（版本 {version}）" if version == PLUGIN_VERSION else
                         f"{root} 版本是 {version}，本課程固定 {PLUGIN_VERSION}。"))
+        results.append(executable_check(root))
     except (SystemExit, OSError, ValueError) as error:
         results.append(("!!", "domain-memory Plugin", str(error)))
     if Path(".git").exists():
