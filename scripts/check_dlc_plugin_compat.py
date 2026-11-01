@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.7.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.8.1.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -246,7 +246,7 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     output = done.stdout + done.stderr
     report(done.returncode != 0 and "relocate-evidence --from" in output, "reference pre-commit hook refuses a rename",
            "refused with the relocate-evidence hint" if done.returncode else "commit went through")
-    # 6.7.0: dmlib installs the hooks with --executable relative to the repo root, so moving the whole learner
+    # 6.8.1: dmlib installs the hooks with --executable relative to the repo root, so moving the whole learner
     # package (repo and plugin together) keeps them working.
     moved_root = sandbox / "moved"
     moved_root.mkdir()

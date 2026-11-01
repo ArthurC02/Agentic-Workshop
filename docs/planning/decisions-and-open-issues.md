@@ -616,6 +616,24 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 6.8.0、6.8.1（2026-11-01）
+
+使用者要求「只管更新」：Domain-Memory 對話通知新版本就直接換。6.8.0 取自 tag `v6.8.0`（commit `5c2854e36`）。
+
+影響 DLC 的變更：
+- `brief`：Markdown 的每個 Context 底下只列「引用到這次改動檔案」的規則（`rules citing changed files:`），其餘只計數；多一行列出不屬於任何 Context 的改動檔案；不跨 Context 的那行改成 `No two Contexts changed together.`。學員頁只說 brief「列出改動碰到引用行的已審查紀錄」，提示詞也要 Agent 把檢查點 1 記下、brief 沒列的逐筆看，所以不用改。
+- `probe`、`readiness`、`verify-sources` 的 refresh-listing 建議改寫；超過五個來源改變時只列五個。學員頁沒有引用。
+- 來源快照與探索清單在 Repo 有追蹤檔案後忽略未追蹤的檔案：學員在選定資料夾裡的暫存檔不再讓來源過期。
+- hook 找不到設定的執行檔時改用 PATH 上的 `domain-memory` 並提示；都沒有時印出設定的路徑，接著 dmlib 設的 `install-hint`。
+
+相容性檢查：改任何檔案前就是 33 PASS、0 CHANGED；只換 ZIP 與版本字串。
+
+演練（Windows，候選包 `2d18777c68231e94`（6.8.0），沙箱 `C:\tmp\dm680`，結束後刪除）：Recovery D3a／D3b／D3c、D3b 檢查點 1–6（156 passed、兩個 killed、brief 的 Attention 16 筆、5 筆候選、簽章 commit）、D4 檢查點 1–3（stale 21／shifted 26／共 39、16 條規則都有測試證明、pre-commit hook 擋下改名、點名 14 筆）。brief 新增的那行 `N changed files lie outside every Context`（複數）原本不在 AGENTS.md「不算進摘要」的規則裡，已補進 AGENTS.md、D3b 投影片備註與主持指南；DLC 的 Context 都沒有 `implementation_path`，所以「rules citing changed files」那段不會出現。hook：`domain-memory.executable` 是相對路徑；學員包整個搬家（含空格的路徑）後 hook 照樣擋下；`vendor/domain-memory` 不見時印 `no Domain Memory executable at …, which git config domain-memory.executable names from this worktree's top;` 接課程的 install-hint。另修：主持指南與 D3b 投影片的「MEMBER-004 只出現在 lies-outside 行」改成看有沒有改到 business-rules.md 第 28 行；D4 投影片與主持指南註明 Recovery 組的「套用」commit 必定 exit 1、照範本往後找。
+
+留給內容維護：`worksheets/d3-decision-card.md` 只在 `participant-dlc-d3a.zip`，D3a 檢查點 1 前就改用 D3a Recovery 的組到 D3b 檢查點 2 會沒有決策卡。
+
+同日 6.8.1（tag `v6.8.1`，commit `6d9942124`）是 patch：6.8.0 只列追蹤檔案讓 probe、readiness 在大型 Repo 慢 20–75%，恢復 6.7.0 的速度；安裝腳本的檢查與學員包無關；輸出字串、Skill、hook 範本不變。相容性檢查 33 PASS、0 CHANGED。D3b、D4 演練在 6.8.0 的候選包上跑（兩版輸出相同）。
+
 ## domain-memory 升級 6.7.0（hook 記相對路徑，2026-11-01）
 
 使用者要求 hook 搬家問題照常見做法處理：設定裡不寫死絕對路徑，錯誤訊息要給看得懂、做得到的處理方式。6.7.0（tag `v6.7.0`，commit `668751552`）的 `install-git-hitl-hook`、`install-pre-commit-hook` 加 `--executable <路徑>`，原樣寫進 `git config domain-memory.executable`；相對路徑從 Repo 頂層讀。其他指令沒變。

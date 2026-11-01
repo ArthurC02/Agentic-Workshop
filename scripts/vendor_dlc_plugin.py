@@ -10,8 +10,8 @@ and <zip>.SHA256SUMS with one line per member file plus a final line for the ZIP
 Each shipped executable must match the SHA-256 in the plugin's engine/bin/manifest.json.
 --check rebuilds in memory and exits 1 when the vendored files differ.
 Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
-    git clone --depth 1 --branch v6.7.0 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
-    git -C <repo> archive v6.7.0 | tar -x -C <scratch>
+    git clone --depth 1 --branch v6.8.1 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
+    git -C <repo> archive v6.8.1 | tar -x -C <scratch>
 and pass --source <scratch>.
 """
 from __future__ import annotations
@@ -29,7 +29,7 @@ VENDOR = ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor"
 EXCLUDED_DIRS = {".pytest_cache", ".ruff_cache", "__pycache__", ".git", ".venv"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 # Developer-only top-level entries: README.md is for changing the plugin; evals/ left the plugin in 6.0.0. Since
-# 6.7.0 the plugin is its own repository: its CI, contributor docs, installers, Action, wrapper scripts (bin/; dmlib
+# 6.8.1 the plugin is its own repository: its CI, contributor docs, installers, Action, wrapper scripts (bin/; dmlib
 # runs the engine executable directly) and example project are not plugin runtime.
 EXCLUDED_TOP = {"evals", "README.md", "ruff.toml", ".github", ".gitattributes", "CONTRIBUTING.md", "SECURITY.md",
                 "action.yml", "install.sh", "install.ps1", "bin", "examples"}
