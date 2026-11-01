@@ -616,7 +616,9 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
-## domain-memory 7.0.1–7.0.4（patch，2026-11-02）
+## domain-memory 7.0.1–7.0.5（patch，2026-11-02）
+
+7.0.5（tag `v7.0.5`，commit `e9560b4d1`）：`record-approval` 去掉 `--reviewer` 與提案者名字前後的空白，`human:`／`agent:` 前綴不分大小寫；沒有新的或改變的輸出字串。相容性檢查 33 PASS、0 CHANGED。
 
 7.0.4（tag `v7.0.4`，commit `f93e9d855`）：`record-approval` 也拒絕去掉一個 `human:` 後仍以 `human:` 或 `agent:` 開頭的 `--reviewer`（例如 `human:human:X`），訊息同 7.0.3。DLC 傳的是 `maintainer@example.com`，不受影響。相容性檢查 33 PASS、0 CHANGED。
 

@@ -30,8 +30,8 @@ from build_delivery import ROOT, digest, link_check, safe_path
 MANIFEST = ROOT / "scripts/package-manifest-dlc.json"
 OUT_ROOT = ROOT / "dist/dlc-candidate"
 DLC = "agentic-workshop/07-dlc-ddd"
-VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-7.0.4.zip"
-VENDOR_PACKED = "vendor/domain-memory-7.0.4.zip"  # its path inside participant-dlc-open
+VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-7.0.5.zip"
+VENDOR_PACKED = "vendor/domain-memory-7.0.5.zip"  # its path inside participant-dlc-open
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
     "participant-dlc-open": ("participant", 0),
