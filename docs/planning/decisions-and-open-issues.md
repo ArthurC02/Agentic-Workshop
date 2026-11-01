@@ -616,6 +616,18 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 7.0.0（Plugin 移到 plugins/domain-memory/，2026-11-02）
+
+依「只管更新」直接換。7.0.0（tag `v7.0.0`，commit `17a9c84ee`；6.9.0 先把 `bin/` 包裝腳本移到 `scripts/`）為了符合官方 Plugin 規則（claude.ai 與 Cowork 不收頂層 `bin/`、Plugin 資料夾不收超過 5 MiB 的檔案），把 Repo 改成 marketplace：Plugin 的 `.claude-plugin/`、`engine/bin/`、`skills/`、`references/`、`templates/`、`AGENTS.md` 都移到 `plugins/domain-memory/`，根目錄的 `AGENTS.md` 只剩指向它的說明。執行檔改為縮小體積的建置，記錄的輸出不變；`--version` 印 7.0.0。
+
+DLC 的做法：只封裝 `plugins/domain-memory/`，ZIP 頂層仍是 `domain-memory/`，所以學員包內的 `vendor/domain-memory/engine/bin/…`、dmlib、hook 記的相對路徑、AGENTS.md 與所有學員頁都不用改（維護者原本建議改 dmlib 與重裝 hook，是針對封裝整個 Repo 的情況）。`vendor_dlc_plugin.py` 加排除 `scripts/`（包裝腳本），並在 Plugin 資料夾沒有 `LICENSE` 時從 Repo 根目錄帶入（MIT 授權要求複本附上授權聲明）。ZIP 38 個檔、約 3.3 MB（學員看到 `SHA OK 39 files`）；比 6.8.1 少 `CHANGELOG.md` 與 `marketplace.json`、多 `assets/icon.png`。
+
+順便修正：前兩次整批改版本字串時，把 `vendor_dlc_plugin.py`、`check_dlc_plugin_compat.py`、`dmlib.py` 裡記歷史的「6.6.0 起」「6.7.0：」也改成新版本號，已改回。
+
+建置時候選包的私鑰掃描擋下 Windows 執行檔：7.0.0 的執行檔把 Plugin 自己 scan-secrets 用的 `-----BEGIN PRIVATE KEY-----` 存成連續字串（後面直接接下一個字串，不是金鑰）。`build_delivery_dlc.py` 的 `PRIVATE_KEY` 改成要求標頭後有換行與 base64 內容（真的 PEM 金鑰一定有），測試改用有內容的假金鑰並加「只有標頭不算」；已告知維護者，建議把這個字串拆開，免得 GitHub push protection 或公司的 DLP 也擋下。
+
+相容性檢查 33 PASS、0 CHANGED；學員路徑與輸出都沒變，沒有重跑真人演練。未驗證：macOS 實機（縮小體積後的 macOS 執行檔）。
+
 ## domain-memory 升級 6.8.0、6.8.1（2026-11-01）
 
 使用者要求「只管更新」：Domain-Memory 對話通知新版本就直接換。6.8.0 取自 tag `v6.8.0`（commit `5c2854e36`）。

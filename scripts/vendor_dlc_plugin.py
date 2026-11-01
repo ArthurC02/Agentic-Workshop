@@ -10,9 +10,9 @@ and <zip>.SHA256SUMS with one line per member file plus a final line for the ZIP
 Each shipped executable must match the SHA-256 in the plugin's engine/bin/manifest.json.
 --check rebuilds in memory and exits 1 when the vendored files differ.
 Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
-    git clone --depth 1 --branch v6.8.1 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
-    git -C <repo> archive v6.8.1 | tar -x -C <scratch>
-and pass --source <scratch>.
+    git clone --depth 1 --branch v7.0.0 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
+    git -C <repo> archive v7.0.0 | tar -x -C <scratch>
+and pass --source <scratch>/plugins/domain-memory.
 """
 from __future__ import annotations
 
@@ -29,10 +29,12 @@ VENDOR = ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor"
 EXCLUDED_DIRS = {".pytest_cache", ".ruff_cache", "__pycache__", ".git", ".venv"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 # Developer-only top-level entries: README.md is for changing the plugin; evals/ left the plugin in 6.0.0. Since
-# 6.8.1 the plugin is its own repository: its CI, contributor docs, installers, Action, wrapper scripts (bin/; dmlib
-# runs the engine executable directly) and example project are not plugin runtime.
+# 6.6.0 the plugin is its own repository: its CI, contributor docs, installers, Action, wrapper scripts (bin/, since
+# 7.0.0 scripts/; dmlib runs the engine executable directly) and example project are not plugin runtime. Since 7.0.0
+# the repository is a marketplace and the plugin is plugins/domain-memory/: pass that folder as --source. LICENSE
+# stays at the repository root and is added from there (MIT: the notice travels with every copy).
 EXCLUDED_TOP = {"evals", "README.md", "ruff.toml", ".github", ".gitattributes", "CONTRIBUTING.md", "SECURITY.md",
-                "action.yml", "install.sh", "install.ps1", "bin", "examples"}
+                "action.yml", "install.sh", "install.ps1", "bin", "scripts", "examples"}
 # Of engine/ only these ship: Rust source, build files, tests and contract/cli.json (compiled into the executable)
 # stay out, and Linux is not a learner platform.
 ENGINE_SHIPPED = {"bin/manifest.json", "bin/windows-x86_64/domain-memory.exe", "bin/macos-universal/domain-memory"}
@@ -51,6 +53,9 @@ def plugin_files(source: Path) -> list[tuple[str, bytes]]:
         if path.is_symlink():
             raise ValueError(f"Symlink not allowed in vendored plugin: {rel.as_posix()}")
         files.append((f"{TOP}/{rel.as_posix()}", path.read_bytes()))
+    license = source.parents[1] / "LICENSE"
+    if not (source / "LICENSE").exists() and source.parent.name == "plugins" and license.is_file():
+        files.append((f"{TOP}/LICENSE", license.read_bytes()))
     check_binaries(source, dict(files))
     return sorted(files)
 

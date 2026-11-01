@@ -30,8 +30,8 @@ from build_delivery import ROOT, digest, link_check, safe_path
 MANIFEST = ROOT / "scripts/package-manifest-dlc.json"
 OUT_ROOT = ROOT / "dist/dlc-candidate"
 DLC = "agentic-workshop/07-dlc-ddd"
-VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-6.8.1.zip"
-VENDOR_PACKED = "vendor/domain-memory-6.8.1.zip"  # its path inside participant-dlc-open
+VENDOR_ZIP = f"{DLC}/participant/vendor/domain-memory-7.0.0.zip"
+VENDOR_PACKED = "vendor/domain-memory-7.0.0.zip"  # its path inside participant-dlc-open
 RECOVERY_ROOT = f"{DLC}/facilitator/recovery"
 RELEASES = {
     "participant-dlc-open": ("participant", 0),
@@ -49,7 +49,9 @@ EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 # Path segments (case-insensitive substring) that must never reach a participant or recovery package.
 PRIVATE_SEGMENTS = ("facilitator", "evaluation", "instructions", "reference-registry", "reference-solution",
                     "rubric", "observation")
-PRIVATE_KEY = re.compile(rb"-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----")
+# A key is the PEM header followed by a line break and its base64 body; the plugin executable (7.0.0+) holds the bare
+# header as its own secret-scanner pattern, which is not key material.
+PRIVATE_KEY = re.compile(rb"-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----\r?\n[A-Za-z0-9+/=]{16}")
 ZIP_TIME = (2026, 1, 1, 0, 0, 0)
 
 

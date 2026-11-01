@@ -2,6 +2,7 @@
 import hashlib
 import io
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -18,6 +19,7 @@ import build_materials as bm  # noqa: E402
 import vendor_dlc_plugin as vendor  # noqa: E402
 
 P = "agentic-workshop/07-dlc-ddd/participant"
+KEY = "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQ==\n-----END OPENSSH PRIVATE KEY-----\n"
 RELEASES = {"participant-dlc-open": ("participant", 0), "participant-dlc-d1": ("participant", 10),
             "recovery-dlc-d1": ("participant", 35), "evaluation-dlc-private": ("evaluation", -1)}
 
@@ -50,13 +52,21 @@ class VendorPluginTests(unittest.TestCase):
                            "scripts/tool.py": "x = 1\r\n", "scripts/__pycache__/tool.cpython-313.pyc": "junk",
                            ".pytest_cache/v/x": "junk", ".ruff_cache/x": "junk", "scripts/stray.pyc": "junk",
                            "evals/case.json": "dev", "scripts/test_tool.py": "dev", "README.md": "dev",
-                           "ruff.toml": "dev", "CHANGELOG.md": "log"}.items():
+                           "ruff.toml": "dev", "CHANGELOG.md": "log", "skills/a/SKILL.md": "x = 1\r\n"}.items():
             (self.src / name).parent.mkdir(parents=True, exist_ok=True)
             (self.src / name).write_bytes(body.encode())
         fake_engine(self.src)
 
     def tearDown(self):
         self.tmp.cleanup()
+
+    def test_marketplace_layout_takes_license_from_repository_root(self):
+        # 7.0.0: the repository is a marketplace; the plugin is plugins/<name>/ and LICENSE stays at the top.
+        repo = Path(self.tmp.name) / "repo"
+        shutil.copytree(self.src, repo / "plugins/domain-memory")
+        (repo / "LICENSE").write_bytes(b"MIT")
+        with zipfile.ZipFile(io.BytesIO(vendor.build(repo / "plugins/domain-memory")[1])) as archive:
+            self.assertEqual(archive.read("domain-memory/LICENSE"), b"MIT")
 
     def test_deterministic_runtime_zip_without_dev_files_and_verifiable_sums(self):
         name, data, sums = vendor.build(self.src)
@@ -68,8 +78,8 @@ class VendorPluginTests(unittest.TestCase):
                                                   "domain-memory/engine/bin/macos-universal/domain-memory",
                                                   "domain-memory/engine/bin/manifest.json",
                                                   "domain-memory/engine/bin/windows-x86_64/domain-memory.exe",
-                                                  "domain-memory/scripts/tool.py"])
-            self.assertEqual(archive.read("domain-memory/scripts/tool.py"), b"x = 1\r\n")  # bytes untouched
+                                                  "domain-memory/skills/a/SKILL.md"])  # scripts/ is wrappers (7.0.0)
+            self.assertEqual(archive.read("domain-memory/skills/a/SKILL.md"), b"x = 1\r\n")  # bytes untouched
             self.assertTrue(all(i.date_time == (2026, 1, 1, 0, 0, 0) for i in archive.infolist()))
             modes = {i.filename: (i.create_system, i.external_attr >> 16) for i in archive.infolist()}
             self.assertEqual(modes["domain-memory/engine/bin/macos-universal/domain-memory"], (3, 0o100755))
@@ -79,7 +89,7 @@ class VendorPluginTests(unittest.TestCase):
         out.with_name(name + ".SHA256SUMS").write_bytes(sums)
         self.assertEqual(vendor.verify(out), [])
         self.assertEqual(dlc.vendor_check({dlc.VENDOR_PACKED: data, dlc.VENDOR_PACKED + ".SHA256SUMS":
-                                           sums.replace(name.encode(), b"domain-memory-6.8.1.zip")}), True)
+                                           sums.replace(name.encode(), b"domain-memory-7.0.0.zip")}), True)
         out.write_bytes(data + b"x")
         self.assertTrue(vendor.verify(out))
 
@@ -89,7 +99,7 @@ class VendorPluginTests(unittest.TestCase):
             vendor.build(self.src)
 
     def test_vendored_repo_copy_matches_its_sums(self):
-        target = vendor.VENDOR / "domain-memory-6.8.1.zip"
+        target = vendor.VENDOR / "domain-memory-7.0.0.zip"
         if not target.exists():
             self.skipTest("plugin not vendored yet")
         self.assertEqual(vendor.verify(target), [])
@@ -108,7 +118,7 @@ class DlcBuilderTests(unittest.TestCase):
         self.write("agentic-workshop/07-dlc-ddd/evaluation/answer.md", "# private\n")
         plugin = self.root / "plugin"
         (plugin / ".claude-plugin").mkdir(parents=True)
-        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "6.8.1"}')
+        (plugin / ".claude-plugin/plugin.json").write_text('{"version": "7.0.0"}')
         fake_engine(plugin)
         _name, data, sums = vendor.build(plugin)
         (self.root / dlc.VENDOR_ZIP).parent.mkdir(parents=True)
@@ -199,7 +209,7 @@ class DlcBuilderTests(unittest.TestCase):
             self.build()
 
     def test_participant_policies(self):
-        cases = [(f"{P}/repository/base/key.txt", "-----BEGIN OPENSSH PRIVATE KEY-----\nabc\n", "Private key"),
+        cases = [(f"{P}/repository/base/key.txt", KEY, "Private key"),
                  (f"{P}/repository/base/observation-guide.md", "# x\n", "Role violation"),
                  (f"{P}/repository/base/docs/rubric.md", "# x\n", "Role violation")]
         for rel, body, error in cases:
@@ -214,9 +224,14 @@ class DlcBuilderTests(unittest.TestCase):
     def test_nested_zip_with_private_key_is_rejected(self):
         stream = io.BytesIO()
         with zipfile.ZipFile(stream, "w") as nested:
-            nested.writestr("id_ed25519", "-----BEGIN OPENSSH PRIVATE KEY-----\n")
+            nested.writestr("id_ed25519", KEY)
         with self.assertRaisesRegex(ValueError, "Private key"):
             dlc.content_policy({"role": "participant"}, {f"{P}/vendor/x.zip": stream.getvalue()})
+
+    def test_bare_pem_header_is_not_key_material(self):
+        # The plugin executable holds the header as its scanner pattern, with no key body after it.
+        dlc.content_policy({"role": "participant"},
+                           {f"{P}/vendor/bin.exe": b"counterfactual_check-----BEGIN PRIVATE KEY-----asset\x04git"})
 
     def test_participant_source_needs_participant_segment_and_recovery_its_folder(self):
         with self.assertRaisesRegex(ValueError, "Unapproved participant source"):
