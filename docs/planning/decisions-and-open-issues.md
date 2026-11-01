@@ -639,7 +639,9 @@ DLC 的改動：
 
 演練找到、一併修正：主持指南與開場投影片「少了 `--registry-root` 而被拒」的舊症狀（6.4.0 起不會出現）；開場檢查點 3 的 readiness NOTE（`git init` 前屬預期）寫進投影片備註；`setup_remote.py` 與主持指南 D4 列「先啟用 venv」（6.0 起 hook 跑執行檔）；回顧檢查點 2 的基準 commit 改用 D4 交接單寫的模型版本（Recovery 歷史最上面的「套用」commit 是舊格式，`compare-registry` 回 `no Domain Memory Registry at`；6.1.1 也一樣）。
 
-留給內容維護：RECOVERY.md 的 `verify-evidence` 沒加 `--save`（162 筆輸出進對話）；D1 檢查點 5、6 在 D3c 之前就問 Aggregate；D3c 檢查點 4 一次跑 6 個反事實可能超過工具預設的 120 秒。
+演練另外找到的三個舊問題，使用者要求照常見做法修（同日第二個 commit）：RECOVERY.md 的 `verify-evidence` 改成 `--save ../../tmp/verify-evidence-recovery.json`、只讀 `summary`（長輸出存檔，不進對話；只重產 RECOVERY.md，bundle 不動）；D1 檢查點 5 第一次出現 Aggregate 時加一句白話說明（概念先說明再使用）；`counterfactual` Skill 一次最多跑 3 條、超過就分批（6 條一起跑超過 120 秒，Agent 工具的指令逾時常是 2 分鐘）。
+
+Domain-Memory 對課程內容的回覆：dm 照舊明確傳兩個根目錄（一個 Repo 有兩個 Domain Memory 時自動尋找會拒絕）；沒有被淘汰的做法；`references/getting-started.md` 是給自己打指令的人，不當必讀。hook 搬家問題的建議做法是安裝時記下執行檔路徑（`git config domain-memory.executable`，6.7.0 起 `install-… --executable`，相對路徑從 Repo 頂層讀），再用 `domain-memory.install-hint` 換掉 `cargo build` 提示；等 6.7.0 一起換。
 
 未驗證：macOS 實機。
 

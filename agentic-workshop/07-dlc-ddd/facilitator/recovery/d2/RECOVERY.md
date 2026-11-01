@@ -111,12 +111,12 @@ py -3.13 -m venv .venv
 & '.\.venv\Scripts\python.exe' -m pytest -q
 ..\..\tools\dm.ps1 validate --require-reviewed
 ..\..\tools\dm.ps1 verify-audit
-..\..\tools\dm.ps1 verify-evidence
+..\..\tools\dm.ps1 verify-evidence --save ../../tmp/verify-evidence-recovery.json
 ```
 
 （Git Bash 用 `.venv/Scripts/python.exe` 與 `../../tools/dm.sh`；macOS 用 `python3.13`、`.venv/bin/python` 與 `../../tools/dm.sh`。）
 
-**看到什麼算成功**：pytest 全部 passed（Recovery 的套件可能多 1 個 warning，屬預期）；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 全部 `current`。結果寫進 `notes/recovery-d2.md` 的「環境與驗證」，最後一行寫「D2 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
+**看到什麼算成功**：pytest 全部 passed（Recovery 的套件可能多 1 個 warning，屬預期）；`Registry is valid.`（帶 `--require-reviewed`：全部是已審查事實）；verify-audit `"status": "valid"`；verify-evidence 全部 `current`（輸出存在 `../../tmp/verify-evidence-recovery.json`，只讀 `summary`，不把整份讀進對話）。結果寫進 `notes/recovery-d2.md` 的「環境與驗證」，最後一行寫「D2 的成果由 Recovery 提供，不是我們自己完成」；不 commit（下一次由夥伴的對話一起 commit）。
 
 
 ## 4. （選做）push 檢查（夥伴的 Agent 對話，步驟 2 之後）
