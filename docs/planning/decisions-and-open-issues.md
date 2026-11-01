@@ -616,7 +616,9 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
-## domain-memory 7.0.1（patch，2026-11-02）
+## domain-memory 7.0.1、7.0.2（patch，2026-11-02）
+
+7.0.2（tag `v7.0.2`，commit `581fd4c91`）只改文件：路由 Skill 只寫 PowerShell 的 `& "${CLAUDE_PLUGIN_ROOT}/scripts/domain-memory.cmd"`，README 說明不用 gh 怎麼對 SHA256SUMS 核對執行檔；執行檔行為、輸出、brief 與 JSON 都不變，只有 `--version` 印 7.0.2。相容性檢查 33 PASS、0 CHANGED。
 
 修掉 DLC 回報的兩件事：執行檔不再含 `PRIVATE KEY` 字串（scan-secrets 的樣式改存小寫、比對時轉大寫，偵測不變；Plugin 的文件測試會拒絕含這個標頭的檔案）；`plugins/domain-memory/LICENSE` 隨 Plugin 附上（`vendor_dlc_plugin.py` 從 Repo 根目錄帶入的做法保留給 7.0.0 這種情況，現在用不到）。另外 hook 找不到執行檔時的預設提示從 `cargo build` 改成一般安裝指令，學員包照舊用 dmlib 設的 install-hint；路由 Skill 寫明 PowerShell 用 `scripts\domain-memory.cmd`；`plugin.json` 少了多餘的 `skills` 鍵。tag `v7.0.1`（commit `21f1cec08`），ZIP 仍是 38 個檔（`SHA OK 39 files`）。整批換版本字串改用只比對獨立版本號的寫法，避開 `127.0.0.1` 這類 IP 與「7.0.0 起」這類歷史註解。相容性檢查 33 PASS、0 CHANGED。候選包私鑰掃描的收緊（要求 PEM 標頭後有金鑰內容）保留。
 

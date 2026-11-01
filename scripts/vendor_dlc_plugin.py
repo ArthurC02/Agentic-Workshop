@@ -10,8 +10,8 @@ and <zip>.SHA256SUMS with one line per member file plus a final line for the ZIP
 Each shipped executable must match the SHA-256 in the plugin's engine/bin/manifest.json.
 --check rebuilds in memory and exits 1 when the vendored files differ.
 Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
-    git clone --depth 1 --branch v7.0.1 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
-    git -C <repo> archive v7.0.1 | tar -x -C <scratch>
+    git clone --depth 1 --branch v7.0.2 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
+    git -C <repo> archive v7.0.2 | tar -x -C <scratch>
 and pass --source <scratch>/plugins/domain-memory.
 """
 from __future__ import annotations
