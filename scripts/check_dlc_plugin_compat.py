@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.6.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.7.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -246,6 +246,23 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
     output = done.stdout + done.stderr
     report(done.returncode != 0 and "relocate-evidence --from" in output, "reference pre-commit hook refuses a rename",
            "refused with the relocate-evidence hint" if done.returncode else "commit went through")
+    # 6.7.0: dmlib installs the hooks with --executable relative to the repo root, so moving the whole learner
+    # package (repo and plugin together) keeps them working.
+    moved_root = sandbox / "moved"
+    moved_root.mkdir()
+    for name in ("reference", "plugin"):
+        shutil.move(sandbox / name, moved_root / name)
+    repo = moved_root / "reference"
+    recorded = sh(["git", "config", "domain-memory.executable"], repo).stdout.strip()
+    sh(["git", "mv", cited, moved], repo)
+    done = sh(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "-m", "rename"], repo)
+    sh(["git", "mv", moved, cited], repo)
+    output = done.stdout + done.stderr
+    for name in ("reference", "plugin"):  # back in place for the checks that follow
+        shutil.move(moved_root / name, sandbox / name)
+    report(not Path(recorded).is_absolute() and done.returncode != 0 and "relocate-evidence --from" in output,
+           "hooks survive moving the package", f"executable {recorded!r}; " +
+           ("still refused with the relocate-evidence hint" if "relocate-evidence --from" in output else output[-200:]))
 
 
 def check_quoted(plugin: Path) -> None:

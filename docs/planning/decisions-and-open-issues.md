@@ -616,6 +616,17 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 6.7.0（hook 記相對路徑，2026-11-01）
+
+使用者要求 hook 搬家問題照常見做法處理：設定裡不寫死絕對路徑，錯誤訊息要給看得懂、做得到的處理方式。6.7.0（tag `v6.7.0`，commit `668751552`）的 `install-git-hitl-hook`、`install-pre-commit-hook` 加 `--executable <路徑>`，原樣寫進 `git config domain-memory.executable`；相對路徑從 Repo 頂層讀。其他指令沒變。
+
+DLC 的改動：
+- `dmlib`：安裝兩個 hook 時，沒給 `--executable` 就補「Plugin 執行檔相對 Repo 根目錄的路徑」（例如 `../../vendor/domain-memory/engine/bin/windows-x86_64/domain-memory.exe`；Windows 跨磁碟機沒有相對路徑時用絕對路徑），成功後設 `git config domain-memory.install-hint`，把找不到執行檔時的 `cargo build` 提示換成課程的處理方式。學員提示詞不變。
+- 相容性檢查加一項：把參考 Repo 與 Plugin 一起搬到別的資料夾，pre-commit hook 照樣擋下改名（33 PASS、0 CHANGED）。
+- 主持指南常見問題第 3 列與 D4 列改寫：學員包整個搬家不受影響；只有 `vendor/domain-memory/` 沒解壓、被刪或 Repo 被搬出學員包才會出現 `no Domain Memory executable at …`。
+
+驗證：相容性檢查 33 PASS（含 tools 自檢、D1 重播、參考 Registry push 與 pre-commit hook）、`release_materials.py` PASS。學員提示詞沒變，沒有重跑真人演練（6.6.0 的演練見下一節）。未驗證：macOS 實機。
+
 ## domain-memory 升級 6.6.0（2026-11-01）
 
 使用者要求取得新外掛、等最新版：由 6.1.1 換成 6.6.0。Plugin 已從 SkillHub 搬到獨立 Repo github.com/ArthurC02/Domain-Memory-PlugIn，以 tag `v6.6.0`（commit `8e02126a0`）`git archive` 匯出；兩個執行檔的 SHA256 和 `engine/bin/manifest.json` 相符。維護者是「Domain-Memory」對話，之後每個影響 CLI、Skill、hook 或安裝的版本都會通知 DLC 對話。

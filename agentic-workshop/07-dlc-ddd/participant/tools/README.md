@@ -18,7 +18,7 @@
 
 ## Plugin 位置
 
-依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-6.6.0.zip` 解壓到這裡）。Plugin 是一個執行檔，依作業系統用 `engine/bin/windows-x86_64/domain-memory.exe`（Windows）或 `engine/bin/macos-universal/domain-memory`（macOS）；macOS 解壓後要對它執行 `chmod +x` 與 `xattr -d com.apple.quarantine`，`doctor.py` 會檢查。
+依序尋找：`--plugin <資料夾>` → 環境變數 `DOMAIN_MEMORY_PLUGIN` → `tools/` 旁的 `vendor/domain-memory/`（從 Repo 根目錄看是 `../../vendor/domain-memory/`；把 `vendor/domain-memory-6.7.0.zip` 解壓到這裡）。Plugin 是一個執行檔，依作業系統用 `engine/bin/windows-x86_64/domain-memory.exe`（Windows）或 `engine/bin/macos-universal/domain-memory`（macOS）；macOS 解壓後要對它執行 `chmod +x` 與 `xattr -d com.apple.quarantine`，`doctor.py` 會檢查。
 
 ## 常用指令
 

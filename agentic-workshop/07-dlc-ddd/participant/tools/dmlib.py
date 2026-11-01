@@ -8,6 +8,7 @@
 - `--save 檔案`：把 JSON 輸出以 UTF-8 存檔（PowerShell 5.1 的 `>` 會存成 UTF-16，之後的工具讀不到）。
 - Plugin 位置依序：`--plugin <路徑>`、環境變數 DOMAIN_MEMORY_PLUGIN、tools/ 旁的 vendor/domain-memory/。
 - 執行檔依作業系統：Windows `engine/bin/windows-x86_64/domain-memory.exe`，macOS `engine/bin/macos-universal/domain-memory`。
+- 安裝 hook（install-git-hitl-hook、install-pre-commit-hook）時補 `--executable <相對 Repo 根目錄的執行檔路徑>`，成功後設 `git config domain-memory.install-hint`：學員包整個搬家後 hook 照樣找得到執行檔，找不到時印課程的處理方式。
 """
 from __future__ import annotations
 
@@ -23,10 +24,10 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-6.6.0")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-6.7.0")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 6.6.0 各指令的 --help 整理；scripts/check_dlc_plugin_compat.py 逐一比對。6.4.0 起 --help 把每個
+# 依 Plugin 6.7.0 各指令的 --help 整理；scripts/check_dlc_plugin_compat.py 逐一比對。6.4.0 起 --help 把每個
 # --registry-root 都標成可選（在 git 裡會自己找），這裡仍明確傳入，讓找不到 Registry 時的錯誤指名 domain-memory/。
 # 一律補 --registry-root：這些指令處理已存在的 Registry。
 REGISTRY_REQUIRED = {
@@ -71,7 +72,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / executable_path()).is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        f"找不到 domain-memory Plugin 的執行檔 {executable_path()}。請把 vendor/domain-memory-6.6.0.zip 解壓到 "
+        f"找不到 domain-memory Plugin 的執行檔 {executable_path()}。請把 vendor/domain-memory-6.7.0.zip 解壓到 "
         "vendor/domain-memory/，或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 
@@ -128,8 +129,29 @@ def env() -> dict[str, str]:
     return {"DOMAIN_MEMORY_GIT_TIMEOUT": "60", **os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
 
 
+HOOK_INSTALLS = {"install-git-hitl-hook", "install-pre-commit-hook"}
+# hook 找不到執行檔時印的處理方式（git config domain-memory.install-hint），取代 Plugin 預設的 cargo build 提示。
+INSTALL_HINT = ("請 Agent 確認學員包的 vendor/domain-memory/ 已解壓（macOS 再對執行檔做 chmod +x 與 "
+                "xattr -d com.apple.quarantine），再從 Repo 根目錄用 dm 腳本重跑 install-git-hitl-hook"
+                "（D4 後還有 install-pre-commit-hook）")
+
+
 def command_line(args: list[str], plugin: str | None = None) -> list[str]:
-    return [str(executable(plugin)), *expand(args)]
+    exe = executable(plugin)
+    args = expand(args)
+    if args and args[0] in HOOK_INSTALLS and "--executable" not in args:
+        # 6.7.0：記成相對 Repo 根目錄的路徑，學員包整個搬家或改名後 hook 照樣找得到執行檔。
+        try:
+            path = os.path.relpath(exe, Path.cwd())
+        except ValueError:  # Windows 不同磁碟機沒有相對路徑
+            path = str(exe)
+        args += ["--executable", path.replace("\\", "/")]
+    return [str(exe), *args]
+
+
+def after_success(args: list[str]) -> None:
+    if args and args[0] in HOOK_INSTALLS:
+        subprocess.run(["git", "config", "domain-memory.install-hint", INSTALL_HINT], check=False)
 
 
 def run(args: list[str], plugin: str | None = None, check: bool = True) -> subprocess.CompletedProcess:
@@ -138,6 +160,8 @@ def run(args: list[str], plugin: str | None = None, check: bool = True) -> subpr
                           encoding="utf-8", errors="replace", env=env())
     if check and done.returncode != 0:
         raise SystemExit(f"Plugin 指令失敗（exit {done.returncode}）：{args[0]}\n{done.stdout}{done.stderr}")
+    if done.returncode == 0:
+        after_success(args)
     return done
 
 
@@ -188,7 +212,10 @@ def main(argv: list[str]) -> int:
     cmd = command_line(argv, plugin)
     print("[dm] domain-memory " + " ".join(cmd[1:]), file=sys.stderr)
     if save is None:
-        return subprocess.run(cmd, env=env()).returncode
+        code = subprocess.run(cmd, env=env()).returncode
+        if code == 0:
+            after_success(argv)
+        return code
     done = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=env())
     sys.stderr.write(done.stderr)  # 1.0 起 Plugin 的 ERROR 與 NOTE 都印在 stderr，stdout 只有輸出本身
     if not done.stdout.strip():  # 被拒絕時沒有輸出：不留空檔，免得下一步把它當成結果
