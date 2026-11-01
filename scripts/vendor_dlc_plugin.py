@@ -10,8 +10,8 @@ and <zip>.SHA256SUMS with one line per member file plus a final line for the ZIP
 Each shipped executable must match the SHA-256 in the plugin's engine/bin/manifest.json.
 --check rebuilds in memory and exits 1 when the vendored files differ.
 Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
-    git clone --depth 1 --branch v7.0.0 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
-    git -C <repo> archive v7.0.0 | tar -x -C <scratch>
+    git clone --depth 1 --branch v7.0.1 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
+    git -C <repo> archive v7.0.1 | tar -x -C <scratch>
 and pass --source <scratch>/plugins/domain-memory.
 """
 from __future__ import annotations
@@ -31,8 +31,8 @@ EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 # Developer-only top-level entries: README.md is for changing the plugin; evals/ left the plugin in 6.0.0. Since
 # 6.6.0 the plugin is its own repository: its CI, contributor docs, installers, Action, wrapper scripts (bin/, since
 # 7.0.0 scripts/; dmlib runs the engine executable directly) and example project are not plugin runtime. Since 7.0.0
-# the repository is a marketplace and the plugin is plugins/domain-memory/: pass that folder as --source. LICENSE
-# stays at the repository root and is added from there (MIT: the notice travels with every copy).
+# the repository is a marketplace and the plugin is plugins/domain-memory/: pass that folder as --source. 7.0.0 kept
+# LICENSE only at the repository root, so it is added from there when missing (MIT: the notice travels with every copy).
 EXCLUDED_TOP = {"evals", "README.md", "ruff.toml", ".github", ".gitattributes", "CONTRIBUTING.md", "SECURITY.md",
                 "action.yml", "install.sh", "install.ps1", "bin", "scripts", "examples"}
 # Of engine/ only these ship: Rust source, build files, tests and contract/cli.json (compiled into the executable)

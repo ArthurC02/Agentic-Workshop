@@ -616,6 +616,10 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 7.0.1（patch，2026-11-02）
+
+修掉 DLC 回報的兩件事：執行檔不再含 `PRIVATE KEY` 字串（scan-secrets 的樣式改存小寫、比對時轉大寫，偵測不變；Plugin 的文件測試會拒絕含這個標頭的檔案）；`plugins/domain-memory/LICENSE` 隨 Plugin 附上（`vendor_dlc_plugin.py` 從 Repo 根目錄帶入的做法保留給 7.0.0 這種情況，現在用不到）。另外 hook 找不到執行檔時的預設提示從 `cargo build` 改成一般安裝指令，學員包照舊用 dmlib 設的 install-hint；路由 Skill 寫明 PowerShell 用 `scripts\domain-memory.cmd`；`plugin.json` 少了多餘的 `skills` 鍵。tag `v7.0.1`（commit `21f1cec08`），ZIP 仍是 38 個檔（`SHA OK 39 files`）。整批換版本字串改用只比對獨立版本號的寫法，避開 `127.0.0.1` 這類 IP 與「7.0.0 起」這類歷史註解。相容性檢查 33 PASS、0 CHANGED。候選包私鑰掃描的收緊（要求 PEM 標頭後有金鑰內容）保留。
+
 ## domain-memory 升級 7.0.0（Plugin 移到 plugins/domain-memory/，2026-11-02）
 
 依「只管更新」直接換。7.0.0（tag `v7.0.0`，commit `17a9c84ee`；6.9.0 先把 `bin/` 包裝腳本移到 `scripts/`）為了符合官方 Plugin 規則（claude.ai 與 Cowork 不收頂層 `bin/`、Plugin 資料夾不收超過 5 MiB 的檔案），把 Repo 改成 marketplace：Plugin 的 `.claude-plugin/`、`engine/bin/`、`skills/`、`references/`、`templates/`、`AGENTS.md` 都移到 `plugins/domain-memory/`，根目錄的 `AGENTS.md` 只剩指向它的說明。執行檔改為縮小體積的建置，記錄的輸出不變；`--version` 印 7.0.0。
