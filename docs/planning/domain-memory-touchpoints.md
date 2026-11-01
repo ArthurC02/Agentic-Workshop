@@ -1,7 +1,7 @@
 # domain-memory 觸及點與換版步驟
 
 > 讀者：DLC 維護者。時機：domain-memory 換版前。可見性：內部，不發學員。
-> 更新日期：2026-11-01。目前固定 7.0.3（Plugin 已搬到獨立 Repo github.com/ArthurC02/Domain-Memory-PlugIn，7.0.0 起 Repo 是 marketplace，Plugin 在 `plugins/domain-memory/`，取自 tag `v7.0.3`；6.0.0 起 Plugin 是每個作業系統一個編譯好的執行檔，沒有 Python），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 7.0.0（Plugin 移到 plugins/domain-memory/）、7.0.1、7.0.2、7.0.3（patch）〉〈domain-memory 升級 6.8.0、6.8.1（patch）〉〈domain-memory 升級 6.7.0（hook 記相對路徑）〉〈domain-memory 升級 6.6.0〉〈domain-memory 升級 6.1.1〉〈domain-memory 升級 4.2.0〉〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉〈domain-memory 升級 1.2.2〉〈domain-memory 1.2.4（patch）〉〈domain-memory 1.2.8（patch）〉〈domain-memory 1.2.18（patch）〉。
+> 更新日期：2026-11-01。目前固定 7.0.4（Plugin 已搬到獨立 Repo github.com/ArthurC02/Domain-Memory-PlugIn，7.0.0 起 Repo 是 marketplace，Plugin 在 `plugins/domain-memory/`，取自 tag `v7.0.4`；6.0.0 起 Plugin 是每個作業系統一個編譯好的執行檔，沒有 Python），Registry 是 OKF（Open Knowledge Format）版面（0.33.0 起，之後的版本都沒有再改）；升級紀錄見 `decisions-and-open-issues.md`〈domain-memory 升級 7.0.0（Plugin 移到 plugins/domain-memory/）、7.0.1–7.0.4（patch）〉〈domain-memory 升級 6.8.0、6.8.1（patch）〉〈domain-memory 升級 6.7.0（hook 記相對路徑）〉〈domain-memory 升級 6.6.0〉〈domain-memory 升級 6.1.1〉〈domain-memory 升級 4.2.0〉〈domain-memory 升級 0.33.0（OKF）〉〈domain-memory 升級 0.52.0〉〈domain-memory 升級 0.61.0〉〈domain-memory 升級 1.1.0〉〈domain-memory 1.1.1（patch）〉〈domain-memory 升級 1.2.2〉〈domain-memory 1.2.4（patch）〉〈domain-memory 1.2.8（patch）〉〈domain-memory 1.2.18（patch）〉。
 
 ## 0. 現況
 
@@ -23,7 +23,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 
 ## 1. Plugin 指令與旗標
 
-學員都經 `dm.ps1`／`dm.sh`（→ `dmlib.py` → `engine/bin/windows-x86_64/domain-memory.exe` 或 `engine/bin/macos-universal/domain-memory`）呼叫；7.0.3 的集合由相容性檢查讀執行檔各指令的 `--help` 比對（5.0.0 刪 `describe-table`、`extract-sql-schema`；6.4.0 起 `--help` 把每個 `--registry-root` 都標成可選，所以只比對 `REGISTRY_REQUIRED` 與 `REGISTRY_OPTIONAL` 的聯集，dmlib 仍明確傳入）；`dmlib.expand()` 自動補 `--registry-root domain-memory`、`--repo-root .`，`verify-sources` 另補 `--source-map`、`--policy`，`init-signing-key` 補 `--key-file`。三組指令集合（`REGISTRY_REQUIRED`／`REGISTRY_OPTIONAL`／`REPO_ROOT`）與 4.2.0 的 `cli_parser.py` 完全一致（4.2.0：加 `describe-table`、`extract-sql-schema`、`reconcile-audit`、`refresh-indexes`，`record-approval` 收選用的兩個根目錄，刪 `migrate-evidence`、`migrate-registry`；3.0.0 起十個讀取指令不收 `--repo-root`）（1.2.0 加 `rebase-proposal`，63 個指令，1.2.3–1.2.18 沒有增減；1.2.10 起 dmlib 在 `DOMAIN_MEMORY_GIT_TIMEOUT` 沒設時給 60 秒，使用者設的值優先；1.0 起 `ERROR:` 拒絕訊息與 NOTE 都印在 stderr，`--save` 只存 stdout），相容性檢查會逐一比對（0.52.0 加了 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`，Registry 存在時 dmlib 會補，輸出多 `explained_by`；0.61.0 的 `redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root` 與 `--repo-root`，`coverage`、`promote-candidate` 接受 `--repo-root`）。
+學員都經 `dm.ps1`／`dm.sh`（→ `dmlib.py` → `engine/bin/windows-x86_64/domain-memory.exe` 或 `engine/bin/macos-universal/domain-memory`）呼叫；7.0.4 的集合由相容性檢查讀執行檔各指令的 `--help` 比對（5.0.0 刪 `describe-table`、`extract-sql-schema`；6.4.0 起 `--help` 把每個 `--registry-root` 都標成可選，所以只比對 `REGISTRY_REQUIRED` 與 `REGISTRY_OPTIONAL` 的聯集，dmlib 仍明確傳入）；`dmlib.expand()` 自動補 `--registry-root domain-memory`、`--repo-root .`，`verify-sources` 另補 `--source-map`、`--policy`，`init-signing-key` 補 `--key-file`。三組指令集合（`REGISTRY_REQUIRED`／`REGISTRY_OPTIONAL`／`REPO_ROOT`）與 4.2.0 的 `cli_parser.py` 完全一致（4.2.0：加 `describe-table`、`extract-sql-schema`、`reconcile-audit`、`refresh-indexes`，`record-approval` 收選用的兩個根目錄，刪 `migrate-evidence`、`migrate-registry`；3.0.0 起十個讀取指令不收 `--repo-root`）（1.2.0 加 `rebase-proposal`，63 個指令，1.2.3–1.2.18 沒有增減；1.2.10 起 dmlib 在 `DOMAIN_MEMORY_GIT_TIMEOUT` 沒設時給 60 秒，使用者設的值優先；1.0 起 `ERROR:` 拒絕訊息與 NOTE 都印在 stderr，`--save` 只存 stdout），相容性檢查會逐一比對（0.52.0 加了 `harvest-candidates`；`change-coupling` 改為可選 `--registry-root`，Registry 存在時 dmlib 會補，輸出多 `explained_by`；0.61.0 的 `redraft-proposal`、`supersede-proposal` 接受可選 `--registry-root` 與 `--repo-root`，`coverage`、`promote-candidate` 接受 `--repo-root`）。
 
 | 指令 | 用到的旗標 | 出處 | 標記 |
 |---|---|---|---|
@@ -95,7 +95,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | Recovery d1 | `facilitator/recovery/d1/`（`make_recovery.py d1` 以 Plugin 現場產生，未簽章、未 commit Registry） | OKF |
 | Recovery d2～d3c | `facilitator/recovery/d2…d3c/`（從 bundle tag 重產，`repo.bundle` 帶簽章歷史） | OKF；Registry commit 7 個 |
 | 參考解答 d3a～d3c 的 `domain-memory/` | `evaluation/reference-solutions/*/domain-memory/`（含 D3 候選；不是 Git repo） | OKF（各跑過一次 `migrate-registry`） |
-| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-7.0.3.zip(.SHA256SUMS)` | 38 個 Plugin 檔案（取自 Repo 的 `plugins/domain-memory/`）（engine 只帶 Windows、macOS 執行檔與 `manifest.json`，macOS 的是 755；不帶 Rust 原始碼、Linux 執行檔、安裝腳本、`bin/` 包裝腳本、範例與 Repo 的 CI 檔），約 3.3 MB，`SHA OK 39 files` |
+| Plugin ZIP 與逐檔 SHA256 | `participant/vendor/domain-memory-7.0.4.zip(.SHA256SUMS)` | 38 個 Plugin 檔案（取自 Repo 的 `plugins/domain-memory/`）（engine 只帶 Windows、macOS 執行檔與 `manifest.json`，macOS 的是 755；不帶 Rust 原始碼、Linux 執行檔、安裝腳本、`bin/` 包裝腳本、範例與 Repo 的 CI 檔），約 3.3 MB，`SHA OK 39 files` |
 | 打包清單 | `scripts/package-manifest-dlc.json` | 由 `release_materials.py` 自動 `--pin` |
 | 驗證證據 | `evaluation/dlc-validation-evidence.json` 的 `plugin_0_33_0_remeasure`、`plugin_0_52_0_remeasure`、`plugin_0_61_0_remeasure`、`plugin_1_1_0_remeasure`、`plugin_1_1_1_remeasure`、`plugin_1_2_2_remeasure`、`plugin_1_2_4_remeasure`、`plugin_1_2_8_remeasure`、`plugin_1_2_18_remeasure`、`plugin_4_2_0_remeasure` | 已記 |
 
@@ -136,6 +136,7 @@ DLC 工具讀 Registry 一律經 `dmlib.registry_documents()`（＝`export`）�
 | 7.0.1（tag `v7.0.1` 封裝 ZIP，2026-11-02） | 33 PASS、0 CHANGED（patch：執行檔不再含 `PRIVATE KEY` 字串、Plugin 資料夾附 `LICENSE`；只有 hook 找不到執行檔的預設提示改了，學員包用自己的 install-hint） |
 | 7.0.2（tag `v7.0.2` 封裝 ZIP，2026-11-02） | 33 PASS、0 CHANGED（只改文件：路由 Skill 的 PowerShell 寫法、README 的 SHA256SUMS 核對方式） |
 | 7.0.3（tag `v7.0.3` 封裝 ZIP，2026-11-02） | 33 PASS、0 CHANGED（record-approval 存不帶 `human:` 的 reviewer；DLC 本來就傳 `maintainer@example.com`，也沒用 `--proposer`） |
+| 7.0.4（tag `v7.0.4` 封裝 ZIP，2026-11-02） | 33 PASS、0 CHANGED（record-approval 也拒絕 `human:human:X`、`human:agent:X`） |
 
 ## 6. 下次換版的步驟
 

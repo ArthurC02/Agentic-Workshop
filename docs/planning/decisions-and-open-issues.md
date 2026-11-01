@@ -616,7 +616,9 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
-## domain-memory 7.0.1、7.0.2、7.0.3（patch，2026-11-02）
+## domain-memory 7.0.1–7.0.4（patch，2026-11-02）
+
+7.0.4（tag `v7.0.4`，commit `f93e9d855`）：`record-approval` 也拒絕去掉一個 `human:` 後仍以 `human:` 或 `agent:` 開頭的 `--reviewer`（例如 `human:human:X`），訊息同 7.0.3。DLC 傳的是 `maintainer@example.com`，不受影響。相容性檢查 33 PASS、0 CHANGED。
 
 7.0.3（tag `v7.0.3`，commit `d08d53308`）：`record-approval --reviewer` 收 `name` 或 `human:name`、存成不帶前綴的名字，`agent:` 開頭會被拒；`init-change-package --proposer` 在 stderr 提醒提案者不能當自己的審查者；`validate` 對 `human:human:` 的紀錄印 NOTE、只讀一次 Registry。DLC 的 D2 本來就傳 `--reviewer maintainer@example.com`，已審查紀錄的 `verified.by` 仍是 `human:maintainer@example.com`（單一前綴，不觸發 NOTE），也沒有用 `--proposer`，所以學員頁、提示詞、工具都不用改。相容性檢查 33 PASS、0 CHANGED。可考慮的改進：`fill_package` 建套件時傳 `--proposer`，讓 Plugin 自己擋下提案者核准自己的套件（目前靠 `amend-policy` 的金鑰授權與兩人分工）；要先設計提案者名字從哪裡來，另開。
 
