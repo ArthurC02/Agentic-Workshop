@@ -41,7 +41,7 @@ def main(argv: list[str] | None = None) -> int:
     path = Path(args.path) if args.path else Path("..") / f"{Path.cwd().name}-remote.git"
     remote = setup(path, args.name)
     print(f"remote {args.name} → {remote}")
-    print(f"下一步：啟用 .venv 後 git push -u {args.name} HEAD")
+    print(f"下一步：git push -u {args.name} HEAD")
     return 0
 
 

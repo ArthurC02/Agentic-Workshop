@@ -10,8 +10,9 @@ and <zip>.SHA256SUMS with one line per member file plus a final line for the ZIP
 Each shipped executable must match the SHA-256 in the plugin's engine/bin/manifest.json.
 --check rebuilds in memory and exits 1 when the vendored files differ.
 Vendor a committed version, never a working tree that may hold unreleased edits: export it first, e.g.
-    git -C <SkillHub> archive <commit> .claude/skills/domain-memory | tar -x -C <scratch>
-and pass --source <scratch>/.claude/skills/domain-memory.
+    git clone --depth 1 --branch v6.6.0 https://github.com/ArthurC02/Domain-Memory-PlugIn <repo>
+    git -C <repo> archive v6.6.0 | tar -x -C <scratch>
+and pass --source <scratch>.
 """
 from __future__ import annotations
 
@@ -27,8 +28,11 @@ ROOT = Path(__file__).resolve().parents[1]
 VENDOR = ROOT / "agentic-workshop/07-dlc-ddd/participant/vendor"
 EXCLUDED_DIRS = {".pytest_cache", ".ruff_cache", "__pycache__", ".git", ".venv"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
-# Developer-only top-level entries: README.md is for changing the plugin; evals/ left the plugin in 6.0.0.
-EXCLUDED_TOP = {"evals", "README.md", "ruff.toml"}
+# Developer-only top-level entries: README.md is for changing the plugin; evals/ left the plugin in 6.0.0. Since
+# 6.6.0 the plugin is its own repository: its CI, contributor docs, installers, Action, wrapper scripts (bin/; dmlib
+# runs the engine executable directly) and example project are not plugin runtime.
+EXCLUDED_TOP = {"evals", "README.md", "ruff.toml", ".github", ".gitattributes", "CONTRIBUTING.md", "SECURITY.md",
+                "action.yml", "install.sh", "install.ps1", "bin", "examples"}
 # Of engine/ only these ship: Rust source, build files, tests and contract/cli.json (compiled into the executable)
 # stay out, and Linux is not a learner platform.
 ENGINE_SHIPPED = {"bin/manifest.json", "bin/windows-x86_64/domain-memory.exe", "bin/macos-universal/domain-memory"}
@@ -101,7 +105,7 @@ def verify(zip_path: Path) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--source", type=Path, required=True,
-                        help="plugin dir exported from a committed SkillHub version (git archive), never the working tree")
+                        help="plugin dir exported from a release tag of the plugin repository (git archive), never the working tree")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args(argv)
     name, data, sums = build(args.source)

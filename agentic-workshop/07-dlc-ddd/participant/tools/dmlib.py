@@ -23,10 +23,12 @@ HERE = Path(__file__).resolve().parent
 REGISTRY = "domain-memory"
 ASSETS = ["contexts", "vocabulary", "aggregates", "rules", "contracts", "interactions", "decisions",
           "events", "capabilities", "value-objects", "dependency-policies"]
-_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-6.1.1")]
+_VENDOR = [HERE.parent / "vendor" / name for name in ("domain-memory", "domain-memory-6.6.0")]
 DEFAULT_PLUGIN_DIRS = [*_VENDOR, *(p / "domain-memory" for p in _VENDOR), HERE.parent / "plugin" / "domain-memory"]
 
-# 依 Plugin 6.1.1 各指令的 --help 整理；scripts/check_dlc_plugin_compat.py 逐一比對。
+# 依 Plugin 6.6.0 各指令的 --help 整理；scripts/check_dlc_plugin_compat.py 逐一比對。6.4.0 起 --help 把每個
+# --registry-root 都標成可選（在 git 裡會自己找），這裡仍明確傳入，讓找不到 Registry 時的錯誤指名 domain-memory/。
+# 一律補 --registry-root：這些指令處理已存在的 Registry。
 REGISTRY_REQUIRED = {
     "amend-policy", "analyze-boundary", "boundary-impact", "brief", "confirm-sources", "coverage",
     "demote-local-reviews", "dependents", "discard-harvest", "export", "get-context",
@@ -69,7 +71,7 @@ def plugin_root(flag: str | None = None) -> Path:
         if candidate and (Path(candidate) / executable_path()).is_file():
             return Path(candidate).resolve()
     raise SystemExit(
-        f"找不到 domain-memory Plugin 的執行檔 {executable_path()}。請把 vendor/domain-memory-6.1.1.zip 解壓到 "
+        f"找不到 domain-memory Plugin 的執行檔 {executable_path()}。請把 vendor/domain-memory-6.6.0.zip 解壓到 "
         "vendor/domain-memory/，或設定環境變數 DOMAIN_MEMORY_PLUGIN=<Plugin 資料夾>，或加 --plugin <Plugin 資料夾>。"
     )
 

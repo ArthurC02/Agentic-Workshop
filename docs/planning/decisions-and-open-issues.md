@@ -616,6 +616,33 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 6.6.0（2026-11-01）
+
+使用者要求取得新外掛、等最新版：由 6.1.1 換成 6.6.0。Plugin 已從 SkillHub 搬到獨立 Repo github.com/ArthurC02/Domain-Memory-PlugIn，以 tag `v6.6.0`（commit `8e02126a0`）`git archive` 匯出；兩個執行檔的 SHA256 和 `engine/bin/manifest.json` 相符。維護者是「Domain-Memory」對話，之後每個影響 CLI、Skill、hook 或安裝的版本都會通知 DLC 對話。
+
+影響 DLC 的變更（CHANGELOG 6.2.0–6.6.0）：
+- 6.3.0 根目錄的 `SKILL.md` 改成 `skills/domain-memory/SKILL.md`（路由 Skill），安裝後共 8 個 Skill；學員頁沒有引用根目錄的 `SKILL.md`。
+- 6.4.0 在 git Repo 裡 `--registry-root`、`--repo-root` 都可省略（預設 Repo 頂層與唯一的 Domain Memory）；`--help` 把每個 `--registry-root` 都標成可選。dmlib 照舊明確傳入，學員指令不變。
+- 6.5.0 加 `--version`；`verify-sources` 自己找 `--source-map`、`--policy`（dmlib 照舊傳入）。
+- 6.6.0 hook 依序找 `git config domain-memory.executable`、Plugin 的 engine、PATH 上的 `domain-memory`；找不到時印安裝指令。一行安裝腳本與 GitHub Action 是 Repo 的事，學員包不帶。
+
+DLC 的改動：
+- `vendor_dlc_plugin.py`：排除 Repo 才有的檔案（`.github/`、`.gitattributes`、`CONTRIBUTING.md`、`SECURITY.md`、`action.yml`、`install.sh`、`install.ps1`、`bin/` 包裝腳本、`examples/`）；`domain-memory-6.6.0.zip` 40 個檔、約 4.6 MB（學員看到 `SHA OK 41 files`），多了 `LICENSE`、`.claude-plugin/` 的 `icon.png`、`marketplace.json`；刪 6.1.1 的 ZIP 與 SHA256SUMS。
+- `check_dlc_plugin_compat.py`：`--registry-root` 改比對 `REGISTRY_REQUIRED` 與 `REGISTRY_OPTIONAL` 的聯集（`--help` 已分不出哪些必填）。
+- 版本字串與檔案數：dmlib、`doctor.PLUGIN_VERSION`、Runbook 開場檢查點 2、主持指南、觀察指引、tools README、指令書 11、DLC README、course-authoring、建置與封裝清單；參考解答的反事實指令改寫成 `<Plugin 資料夾>`。
+
+相容性檢查：修改前 31 PASS、2 CHANGED（兩組 `--registry-root` 集合）；修改後 32 PASS、0 CHANGED（`QUOTED` 80）。
+
+演練（Windows，候選包 `9b4a137c95adcad6`，沙箱 `C:\tmp\dm660-a`、`dm660-c`，結束後刪除；Agent 扮學員與學員的 Agent，自動載入以真的 `claude -p` 2.1.316 探測）：開場檢查點 1–4（76 passed、`SHA OK 41 files`、6.6.0、brownfield／high、doctor `[OK] Plugin 執行檔能執行`）；D1 檢查點 1–6（證據 15 筆 current）；D2 檢查點 1–6（killed、applied、8 個事件、push `for 2 commits.`、未簽章 commit 被拒）；Recovery D1、D2 兩種殼層（162 筆 current、66 個事件、`for 8 commits.`）；D3b→D3c Recovery 與 D3c 檢查點 1–6（165 passed、反事實 killed、7 筆候選、Aggregate 跨 Context 被拒）；D4 檢查點 1–3（stale 17／shifted 24、pre-commit hook 擋下改名、點名 14 筆、給出 `relocate-evidence`）；回顧檢查點 1–4。AGENTS.md 與 5 個 Skill 都自動載入。沙箱限制：`py` 啟動器沒有 3.13（健檢一項 [!!]）；一次 push 到本機 bare remote 被權限檢查擋下，由另一個沙箱的 push 涵蓋。
+
+6.6.0 的 hook 在學員包搬家後照樣印 `no Domain Memory executable at …`（hook 記 `engine` 資料夾；學員沒有設 `git config domain-memory.executable`，PATH 上也沒有），重裝兩個 hook 即恢復，主持指南常見問題第 3 列照實寫，並註明訊息裡的 `cargo build` 提示不適用。
+
+演練找到、一併修正：主持指南與開場投影片「少了 `--registry-root` 而被拒」的舊症狀（6.4.0 起不會出現）；開場檢查點 3 的 readiness NOTE（`git init` 前屬預期）寫進投影片備註；`setup_remote.py` 與主持指南 D4 列「先啟用 venv」（6.0 起 hook 跑執行檔）；回顧檢查點 2 的基準 commit 改用 D4 交接單寫的模型版本（Recovery 歷史最上面的「套用」commit 是舊格式，`compare-registry` 回 `no Domain Memory Registry at`；6.1.1 也一樣）。
+
+留給內容維護：RECOVERY.md 的 `verify-evidence` 沒加 `--save`（162 筆輸出進對話）；D1 檢查點 5、6 在 D3c 之前就問 Aggregate；D3c 檢查點 4 一次跑 6 個反事實可能超過工具預設的 120 秒。
+
+未驗證：macOS 實機。
+
 ## domain-memory 升級 6.1.1（2026-10-30）
 
 使用者要求取得最新版，且只要編譯好的執行檔、不要 Rust 原始碼：由 4.2.0 換成 6.1.1（SkillHub `7c7cd6f8c`「release 6.1.1」，origin/main，以 `git archive` 匯出；沒有用 SkillHub 工作區）。三個執行檔的 SHA256 都和 Plugin 的 `engine/bin/manifest.json` 相符。

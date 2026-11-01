@@ -2,9 +2,9 @@
 
     uv run --no-project --python 3.13 python -X utf8 scripts/check_dlc_plugin_compat.py [--source <plugin dir or ZIP>]
 
---source defaults to the vendored ZIP. Export a SkillHub commit first, never a working tree:
-    git -C <SkillHub> archive <commit> .claude/skills/domain-memory | tar -x -C <scratch>
-    ... --source <scratch>/.claude/skills/domain-memory
+--source defaults to the vendored ZIP. Export a release tag of the plugin repository first, never a working tree:
+    git -C <Domain-Memory-PlugIn clone> archive <tag> | tar -x -C <scratch>
+    ... --source <scratch>
 
 Everything runs in a temp sandbox; the repo, the reference bundle and the private key are never written or used.
 Checks: (1) plugin commands/flags (read from the executable's own --help) vs dmlib and the commands learners run,
@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.1.1.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-6.6.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -146,10 +146,9 @@ def parser_surface(plugin: Path) -> dict[str, dict[str, bool]]:
 
 def check_commands(plugin: Path) -> None:
     cli = parser_surface(plugin)
-    sets = {"REGISTRY_REQUIRED": ({c for c, o in cli.items() if o.get("--registry-root") is True},
-                                  dmlib.REGISTRY_REQUIRED),
-            "REGISTRY_OPTIONAL": ({c for c, o in cli.items() if o.get("--registry-root") is False},
-                                  dmlib.REGISTRY_OPTIONAL),
+    # Since 6.4.0 every --registry-root shows as optional (discovered inside git), so --help only gives the union.
+    sets = {"REGISTRY_REQUIRED | REGISTRY_OPTIONAL": ({c for c, o in cli.items() if "--registry-root" in o},
+                                                      dmlib.REGISTRY_REQUIRED | dmlib.REGISTRY_OPTIONAL),
             "REPO_ROOT": ({c for c, o in cli.items() if "--repo-root" in o}, dmlib.REPO_ROOT)}
     for name, (plugin_set, ours) in sets.items():
         extra, missing = sorted(plugin_set - ours), sorted(ours - plugin_set)
