@@ -13,7 +13,7 @@ description: 把使用者同意的詞彙、Context、規則等登記成 domain-m
    - `{"asset": "contexts", "id": "context id", "name": "名稱", "responsibility": "它決定什麼", "evidence": ["路徑:起-迄"]}`
    - `{"asset": "vocabulary", "id": "詞彙 id", "name": "名稱", "definition": "定義", "context": "context id", "evidence": ["路徑:起-迄"]}`
    - `{"asset": "rules", "id": "規則 id", "statement": "一句能被測試推翻的敘述", "context": "context id", "evidence": ["規則文件的段落", "測試或程式的段落"]}`
-   - id 用小寫英文加連字號；規則 id 沿用文件裡的規則編號。
+   - id 用小寫英文加連字號；規則 id 沿用文件裡的規則編號（編號本來是大寫就維持大寫，例如 FARE-008）。
    - 兩個 Context 確實共用同一個定義，才寫 `"context": ["id1", "id2"]`。同一個詞在兩個 Context 意思不同，各寫一筆（不同 id），互加 `"not_same_as": ["對方的 id"]`。使用者選了別名，加 `"synonyms": ["別名"]`；別名不可重複，也不可和任何詞彙的名稱相同。
    - Context id 改了，同步改詞彙和規則的 `context`。
 2. 先試產生、不登記：`<py> -X utf8 ../../tools/make_record.py --batch d1-records.json`。它遇到第一筆沒通過就停下：回報第一筆沒通過的與原因，修好再重跑，直到全部通過（全部通過就說「全部通過」）。

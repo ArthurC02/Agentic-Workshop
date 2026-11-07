@@ -616,7 +616,9 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
-## domain-memory 7.0.1–7.0.6（patch，2026-11-02）
+## domain-memory 7.0.1–7.0.7（patch，2026-11-02 至 11-07）
+
+7.0.7（tag `v7.0.7`，commit `c7a9c64ca`）：`submit-proposal`（以及對 submitted 狀態的 `validate-change-package`）新增檢查「會升為 reviewed 的更新缺必要欄位時就拒絕」，訊息 `registry update <asset>/<id> would be reviewed but missing <fields>; ship-package refuses to apply it, so add it before submit-proposal`；`upsert-candidate` 的保留 title 欄位錯誤多了「該類紀錄的 title 就是它的 <欄位>」的後綴。演練（Windows，候選包 `4a92bcbed1aba50c`，沙箱 `C:	mpdm707`，結束後刪除）：自己做 D1（11 筆）與 Recovery D1（57 筆，含 aggregates、interactions、decisions）兩種起點，`submit-proposal` 都通過、`ship-package` 都 applied；故意拿掉 reviewed 紀錄的 name 會得到 `is reviewed but missing name`；提案者改大小寫或前後加空白當 reviewer 都被拒；Recovery D1、D2 與 push（`Git governance is valid for 2 commits.`）照舊。`make_record.py` 會先擋缺欄位，所以學員路徑碰不到新檢查。順便修：主持指南 D2 示範補「改大小寫也會被拒」、投影片備註的斷言範例註明依改法而異、`record-candidates` Skill 註明規則編號本來是大寫就維持大寫。相容性檢查 33 PASS、0 CHANGED。未驗證：macOS 實機。
 
 7.0.6（tag `v7.0.6`，commit `bf980fb42`）：核准者名字和提案者只差大小寫時，`record-approval` 也當成提案者拒絕（沿用 `the proposer cannot approve the proposal`）。DLC 的提案者 `proposer@example.com` 與核准者 `maintainer@example.com` 不同，不受影響。相容性檢查 33 PASS、0 CHANGED。
 
