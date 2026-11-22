@@ -616,6 +616,14 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 7.1.0（新指令 refresh-citations，2026-11-23）
+
+依「只管更新」直接換。7.1.0（tag `v7.1.0`，commit `ac6595ab2`）新增 `refresh-citations --registry-root <root> --repo-root <repo>`：把「只是移動」（`shifted`）的引用一次改成內容現在所在的行，不需要審查、不需要 Change Package，會附加一筆稽核事件（`operation` 是 `refresh-citations`）。同時 `verify-evidence` 對 shifted 引用的說明與 Change Package 的 NOTE 不再建議 `relocate-evidence`、改建議 `refresh-citations`；根目錄的 `--help` 多列一個指令。brief、其他指令的 JSON 與 exit code 不變。
+
+DLC 的改動：`dmlib` 的 `REGISTRY_REQUIRED`、`REPO_ROOT` 加 `refresh-citations`（相容性檢查修改前 31 PASS、2 CHANGED，修改後 34 PASS、0 CHANGED，多的一項是在參考 Registry 跑它：沒有 shifted 時印空清單、不寫檔）。學員頁、投影片、主持指南都沒有引用被改掉的 shifted 說明（`relocate-evidence` 只出現在 D4 的 pre-commit hook 擋下改名那段，輸出不變），所以沒有改學員內容、沒有重跑真人演練。
+
+教學上的取捨：D4 現在把 shifted 當成「重構留下的痕跡，不登記、只列筆數」。`refresh-citations` 讓這些引用可以一次更新而不用審查，但它會改 `domain-memory/`，要由夥伴簽章 commit 才能通過 pre-push hook；維護者的回覆（2026-11-23）：寫入的是 `registry/` 與 `audit/events.jsonl`，所以是一般的 Registry commit，要由夥伴的簽章 commit 才能通過 pre-push hook（政策的核准方式是 `local-draft-only` 時照舊不用簽章）；它只改每筆引用的 `lines`，reviewed 紀錄仍是 reviewed、`verified` 不變、verify-audit 仍 valid，`stale` 的引用不會被它動到。維護者建議在 D4 結尾教：先報 shifted 筆數（現有的教學），再跑 `refresh-citations`，再由夥伴簽一個 commit 收整批；不教的代價只是儲存的行號慢慢漂移。是否加進 D4（多一個簽章步驟、約幾分鐘）是課程設計的取捨，等使用者決定，目前沒有改學員內容。
+
 ## domain-memory 7.0.1–7.0.7（patch，2026-11-02 至 11-07）
 
 7.0.7（tag `v7.0.7`，commit `c7a9c64ca`）：`submit-proposal`（以及對 submitted 狀態的 `validate-change-package`）新增檢查「會升為 reviewed 的更新缺必要欄位時就拒絕」，訊息 `registry update <asset>/<id> would be reviewed but missing <fields>; ship-package refuses to apply it, so add it before submit-proposal`；`upsert-candidate` 的保留 title 欄位錯誤多了「該類紀錄的 title 就是它的 <欄位>」的後綴。演練（Windows，候選包 `4a92bcbed1aba50c`，沙箱 `C:	mpdm707`，結束後刪除）：自己做 D1（11 筆）與 Recovery D1（57 筆，含 aggregates、interactions、decisions）兩種起點，`submit-proposal` 都通過、`ship-package` 都 applied；故意拿掉 reviewed 紀錄的 name 會得到 `is reviewed but missing name`；提案者改大小寫或前後加空白當 reviewer 都被拒；Recovery D1、D2 與 push（`Git governance is valid for 2 commits.`）照舊。`make_record.py` 會先擋缺欄位，所以學員路徑碰不到新檢查。順便修：主持指南 D2 示範補「改大小寫也會被拒」、投影片備註的斷言範例註明依改法而異、`record-candidates` Skill 註明規則編號本來是大寫就維持大寫。相容性檢查 33 PASS、0 CHANGED。未驗證：macOS 實機。
