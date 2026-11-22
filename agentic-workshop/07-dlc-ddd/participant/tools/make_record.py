@@ -166,6 +166,8 @@ def main(argv: list[str] | None = None) -> int:
             files = [arg for out in groups[asset] for arg in ("--record-file", str(out))]
             done = dmlib.run(["upsert-candidate", "--asset", asset, *files], args.plugin)
             print(f"  upsert-candidate {asset}（{len(groups[asset])} 筆）→ {done.stdout.strip() or 'OK'}")
+            if done.stderr.strip():  # 7.2.1：引用文字在檔案別處重複時的 NOTE（請加寬引用範圍）
+                print(done.stderr.strip())
     return 0
 
 

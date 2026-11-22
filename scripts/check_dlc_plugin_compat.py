@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-7.1.0.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-7.2.1.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -216,13 +216,19 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
               # 1.2.2: verify-proposal on an applied package is a harmless re-run (1.1.x packages unchanged).
               *(["verify-proposal", "--package-root", f"domain-memory/changes/CP-CORE-00{n}"] for n in (1, 2)),
               # 6.0: the executable keeps short strings out of its text, so produce the reviewed-rule proof rows.
-              ["coverage"], ["install-git-hitl-hook"], ["governance-readiness"],
-              # 7.1.0: nothing has shifted in the reference Registry, so this prints empty lists and writes nothing.
-              ["refresh-citations"]]
+              ["coverage"], ["install-git-hitl-hook"], ["governance-readiness"]]
     for args in checks:
         done = dm(repo, plugin, *args)
         report(done.returncode == 0, f"reference {' '.join(args)}", "" if done.returncode == 0 else
                (done.stdout + done.stderr).strip()[-300:])
+    # 7.1.0 refresh-citations: nothing has shifted in the reference Registry, so it prints only empty collections
+    # (7.2.1 adds `unresolved`, one entry per stale citation) and writes nothing.
+    done = dm(repo, plugin, "refresh-citations")
+    report_json = json.loads(done.stdout) if done.returncode == 0 and done.stdout.strip() else {}
+    leftover = {k: v for k, v in report_json.items() if isinstance(v, list) and v}
+    report(done.returncode == 0 and report_json and not leftover, "reference refresh-citations is a silent no-op",
+           f"non-empty: {sorted(leftover)}" if leftover else
+           "" if done.returncode == 0 and report_json else (done.stdout + done.stderr).strip()[-200:])
     # OKF bundle (0.29+ layout, 0.31 record shape): export lists every asset; reviewed records carry `verified`.
     exported = run_in(repo, dmlib.registry_documents, "domain-memory", str(plugin))
     records = [r for doc in exported.values() for v in doc.values() if isinstance(v, list) for r in v
