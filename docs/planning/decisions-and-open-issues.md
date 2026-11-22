@@ -616,6 +616,10 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 7.2.1（引用重複提示、refresh-citations 回報 unresolved，2026-11-23）
+
+依「只管更新」直接換。7.2.1（tag `v7.2.1`，commit `72a74927b`）：`upsert-candidate` 在引用文字於檔案別處也出現時，於 stderr 印一行 `NOTE: <asset>/<id> the text of <path>:<a>-<b> also starts at line <n>, …`，請把引用加寬到包住它的區塊；`refresh-citations` 的輸出多一個 `unresolved` 清單。DLC 的改動：版本字串換 7.2.1；相容性檢查 34 PASS、0 CHANGED，並把 `refresh-citations` 一項改嚴（參考 Registry 上必須是空清單、不寫檔）；`make_record.py --upsert` 原本丟掉成功時的 stderr，現在把 NOTE 印出來，學員與 Agent 看得到。學員頁與投影片沒有引用被改掉的字串。D4 結尾是否教 `refresh-citations` 仍待使用者決定，沒有動。
+
 ## domain-memory 升級 7.1.0（新指令 refresh-citations，2026-11-23）
 
 依「只管更新」直接換。7.1.0（tag `v7.1.0`，commit `ac6595ab2`）新增 `refresh-citations --registry-root <root> --repo-root <repo>`：把「只是移動」（`shifted`）的引用一次改成內容現在所在的行，不需要審查、不需要 Change Package，會附加一筆稽核事件（`operation` 是 `refresh-citations`）。同時 `verify-evidence` 對 shifted 引用的說明與 Change Package 的 NOTE 不再建議 `relocate-evidence`、改建議 `refresh-citations`；根目錄的 `--help` 多列一個指令。brief、其他指令的 JSON 與 exit code 不變。
