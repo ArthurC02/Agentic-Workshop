@@ -32,7 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DLC = ROOT / "agentic-workshop/07-dlc-ddd"
 TOOLS = DLC / "participant/tools"
-VENDOR_ZIP = DLC / "participant/vendor/domain-memory-7.2.1.zip"
+VENDOR_ZIP = DLC / "participant/vendor/domain-memory-7.3.0.zip"
 REFERENCE = DLC / "evaluation/reference-registry"
 sys.path[:0] = [str(TOOLS), str(DLC / "facilitator/recovery")]
 import dmlib  # noqa: E402
@@ -222,7 +222,7 @@ def check_reference(plugin: Path, sandbox: Path) -> None:
         report(done.returncode == 0, f"reference {' '.join(args)}", "" if done.returncode == 0 else
                (done.stdout + done.stderr).strip()[-300:])
     # 7.1.0 refresh-citations: nothing has shifted in the reference Registry, so it prints only empty collections
-    # (7.2.1 adds `unresolved`, one entry per stale citation) and writes nothing.
+    # (7.3.0 adds `unresolved`, one entry per stale citation) and writes nothing.
     done = dm(repo, plugin, "refresh-citations")
     report_json = json.loads(done.stdout) if done.returncode == 0 and done.stdout.strip() else {}
     leftover = {k: v for k, v in report_json.items() if isinstance(v, list) and v}
