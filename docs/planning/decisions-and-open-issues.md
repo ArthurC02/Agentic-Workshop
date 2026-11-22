@@ -616,6 +616,10 @@ DLC 的改動：
 
 未驗證：macOS 實機。
 
+## domain-memory 升級 7.3.0（cite／recite 唯一時也印 NOTE，2026-11-23）
+
+依「只管更新」直接換。7.3.0（tag `v7.3.0`，commit `73e9d7086`）：`cite`、`recite` 在引用文字於檔內唯一時也印 stderr NOTE `the text of <path>:<a>-<b> occurs once in the file, so a later edit can still find it.`，重複時的 NOTE 不變；`upsert-candidate` 仍只在重複時出聲。DLC 的改動：版本字串換 7.3.0；相容性檢查 34 PASS、0 CHANGED。學員頁、投影片、Skill、提示沒有逐字貼 `cite` 輸出；`make_record` 用 `run_json`（讀 stdout），不受多出的 stderr 影響。
+
 ## domain-memory 升級 7.2.1（引用重複提示、refresh-citations 回報 unresolved，2026-11-23）
 
 依「只管更新」直接換。7.2.1（tag `v7.2.1`，commit `72a74927b`）：`upsert-candidate` 在引用文字於檔案別處也出現時，於 stderr 印一行 `NOTE: <asset>/<id> the text of <path>:<a>-<b> also starts at line <n>, …`，請把引用加寬到包住它的區塊；`refresh-citations` 的輸出多一個 `unresolved` 清單。DLC 的改動：版本字串換 7.2.1；相容性檢查 34 PASS、0 CHANGED，並把 `refresh-citations` 一項改嚴（參考 Registry 上必須是空清單、不寫檔）；`make_record.py --upsert` 原本丟掉成功時的 stderr，現在把 NOTE 印出來，學員與 Agent 看得到。學員頁與投影片沒有引用被改掉的字串。D4 結尾是否教 `refresh-citations` 仍待使用者決定，沒有動。
